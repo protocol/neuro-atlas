@@ -2,6 +2,7 @@ const linkGroups = [
   {
     label: "Explore",
     links: [
+      { label: "Use with AI", href: "/ai/" },
       { label: "PL R&D", href: "https://www.plrd.org/" },
       { label: "PL Neuro", href: "https://www.plneuro.xyz/" },
       { label: "Protocol Labs", href: "https://www.protocol.ai/" },
