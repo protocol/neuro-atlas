@@ -38,7 +38,11 @@ try:
         cdp('Emulation.setDeviceMetricsOverride',width=width,height=1000,deviceScaleFactor=1,mobile=False)
         for ident,count in CHARTS.items():
             expected = BASE + '#' + ident
-            goto_url(expected); wait_for_load(); cdp("Page.reload", ignoreCache=True); wait_for_load(); snap(f'modal-fresh-{ident}-{width}')
+            goto_url(expected); wait_for_load(); cdp("Page.reload", ignoreCache=True); wait_for_load()
+            for attempt in range(50):
+                if opened() == ident + '-title': break
+                time.sleep(.1)
+            snap(f'modal-fresh-{ident}-{width}')
             assert opened() == ident + '-title'
             assert val('document.querySelectorAll("dialog [data-source-observation]").length') == count
             assert val('document.querySelectorAll("[data-curve-point]").length') == count

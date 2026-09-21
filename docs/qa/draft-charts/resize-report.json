@@ -1,0 +1,26 @@
+[
+  {
+    "width": 1440,
+    "left": 486.96875,
+    "right": 597.59375,
+    "parentLeft": 285,
+    "parentRight": 600.59375,
+    "scroll": 0
+  },
+  {
+    "width": 390,
+    "left": 230.96875,
+    "right": 341.59375,
+    "parentLeft": 33,
+    "parentRight": 342,
+    "scroll": 4
+  },
+  {
+    "width": 320,
+    "left": 160.96875,
+    "right": 271.59375,
+    "parentLeft": 33,
+    "parentRight": 272,
+    "scroll": 74
+  }
+]

@@ -59,8 +59,27 @@
 .pc-provenance summary { cursor: pointer; width: fit-content; }
 .pc-provenance p { margin-top: .5rem; }
 .performance-curves :is(summary, a, button, select, [tabindex]):focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: .3rem; }
-@media (max-width: 900px) { .pc-grid { grid-template-columns: 1fr; } .pc-trigger { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .25rem 1rem; } .pc-trigger > :not(.pc-preview) { grid-column: 1; } .pc-preview { grid-column: 2; grid-row: 1 / 5; align-self: center; margin: 0; } .pc-coverage, .pc-card-title { display: block; min-height: 0; } }
+.draft-charts { max-width: 78rem; }
+.draft-charts-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem 1rem; }
+.draft-charts-header h2 { font-size: 1.35rem; font-weight: 650; letter-spacing: -.035em; }
+.draft-charts-header .pc-eyebrow { width: 100%; }
+.draft-charts-intro { max-width: 52rem; margin: .75rem 0 1.5rem; color: var(--muted); font-size: .85rem; line-height: 1.7; }
+.draft-charts-groups { display: grid; gap: 2rem; }
+.draft-chart-group { border-top: 1px solid var(--border); padding-top: 1rem; }
+.draft-chart-group h3 { font-size: .92rem; font-weight: 650; letter-spacing: -.02em; }
+.draft-chart-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: .85rem; }
+.draft-chart-card { min-width: 0; padding: 1.15rem; }
+.draft-chart-card-header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: .75rem; }
+.draft-chart-readiness { flex-shrink: 0; border: 1px solid var(--border-strong); border-radius: 999px; padding: .25rem .45rem; color: var(--muted); font-size: .58rem; font-weight: 600; letter-spacing: .07em; line-height: 1.25; text-align: right; text-transform: uppercase; }
+.draft-chart-card h4 { margin-top: .55rem; font-size: .98rem; font-weight: 650; letter-spacing: -.025em; line-height: 1.35; }
+.draft-chart-card dl { display: grid; gap: .75rem; margin-top: 1rem; }
+.draft-chart-card dt { color: var(--foreground); font-size: .61rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.draft-chart-card dd { margin-top: .2rem; color: var(--muted); font-size: .74rem; line-height: 1.55; overflow-wrap: anywhere; }
+.draft-chart-link { display: inline-flex; margin-top: 1rem; color: var(--accent); font-size: .72rem; font-weight: 600; line-height: 1.45; text-decoration: none; }
+.draft-chart-link:hover { text-decoration: underline; }
+@media (max-width: 900px) { .draft-chart-grid { grid-template-columns: 1fr; } .pc-grid { grid-template-columns: 1fr; } .pc-trigger { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .25rem 1rem; } .pc-trigger > :not(.pc-preview) { grid-column: 1; } .pc-preview { grid-column: 2; grid-row: 1 / 5; align-self: center; margin: 0; } .pc-coverage, .pc-card-title { display: block; min-height: 0; } }
 @media (max-width: 560px) { .pc-trigger { display: block; padding: 1rem; } .pc-preview { margin: .9rem -.2rem; } .pc-detail { padding: 0 1rem 1rem; } .pc-methodology dl { grid-template-columns: 1fr; } .pc-section-header { gap: .65rem; } }
+@media (max-width: 560px) { .draft-chart-readiness { max-width: 8.5rem; } }
 .pc-trigger { display: block; width: 100%; text-align: left; color: inherit; background: none; }
 .pc-card-share { padding: 0 1.25rem; }
 .pc-extrapolation-control { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1rem; margin: .25rem 0 1rem; }

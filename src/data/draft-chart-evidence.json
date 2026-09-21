@@ -1,0 +1,1083 @@
+{
+  "Brain tissue mapped over time": {
+    "status": "plotted",
+    "summary": "Selected synapse-resolution datasets, shown in cm³. Separate sample bases are retained; these are not a global volume or growth curve.",
+    "plots": [
+      {
+        "id": "tissue-cm3",
+        "title": "Selected tissue-volume checkpoints",
+        "xLabel": "Release / publication year",
+        "xKind": "year",
+        "yLabel": "Tissue volume (cm³ · log)",
+        "scale": "log",
+        "scope": "Selected global evidence across human, mouse, and fruit fly datasets; not an exhaustive inventory or worldwide cumulative volume. Sample bounds, imaged volume, and neuropil volume are not interchangeable. Reconstruction completeness varies; no cross-dataset lines, sums, or global growth rate. Values converted from mm³ ÷ 1,000; ≈ denotes approximate sample bounds.",
+        "points": [
+          {
+            "id": "bock-mouse-imaged-2011-01-01",
+            "x": 2011.0,
+            "y": 8.19e-06,
+            "label": "Bock mouse V1",
+            "dateLabel": "2011 · publication",
+            "sourceUrl": "https://cellimagelibrary.org/images/40263",
+            "sourceTitle": "Bock mouse V1 — primary source",
+            "quote": "Reconstruction encompasses 450 X 350 X 52 um volume of tissue and contains ~ 1500 cell bodies.",
+            "qualifier": "≈",
+            "note": "Source: “Reconstruction encompasses 450 X 350 X 52 um volume of tissue.” Derived geometric volume: 450 × 350 × 52 / 10⁹ = 0.00819 mm³. Publication-year checkpoint; first release date not established. Dense reconstruction of every neurite is not asserted.",
+            "group": "Mouse"
+          },
+          {
+            "id": "hemibrain-fly-bounds-2020-01-01",
+            "x": 2020.0,
+            "y": 1.56e-05,
+            "label": "Hemibrain",
+            "dateLabel": "2020 · publication",
+            "sourceUrl": "https://elifesciences.org/articles/57443",
+            "sourceTitle": "Hemibrain — primary source",
+            "quote": "The hemibrain sample is roughly 250 × 250 × 250 μm",
+            "qualifier": "≈",
+            "note": "Source: “The hemibrain sample is roughly 250 × 250 × 250 μm.” Geometric product 0.015625 mm³, displayed approximately 0.0156; not acquired voxel-mask volume. Publication year, not exact release date.",
+            "group": "Fruit fly"
+          },
+          {
+            "id": "h01-human-imaged-2021-06-01",
+            "x": 2021.4136986301369,
+            "y": 0.001,
+            "label": "H01 first public release",
+            "dateLabel": "2021-06-01 · release",
+            "sourceUrl": "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+            "sourceTitle": "H01 first public release — primary source",
+            "quote": "imaging data that covers roughly one cubic millimeter of brain tissue",
+            "qualifier": "≈",
+            "note": "Source: “roughly one cubic millimeter of brain tissue.” Announcement dated June 1, 2021. Automated segmentation and annotated synapses; only selected cells proofread. Later 1.05-mm³ compression-corrected paper estimate is not new tissue.",
+            "group": "Human"
+          },
+          {
+            "id": "microns-mouse-imaged-2021-07-01",
+            "x": 2021.495890410959,
+            "y": 0.001,
+            "label": "MICrONS v117",
+            "dateLabel": "2021-07 · release",
+            "sourceUrl": "https://microns-explorer.org/manifests/mm3-v117",
+            "sourceTitle": "MICrONS v117 — primary source",
+            "quote": "the first public data released on the cubic millimeter dataset in July 2021",
+            "qualifier": "≈",
+            "note": "Source: “first public data released on the cubic millimeter dataset in July 2021.” Approximate nominal sample scale, not an exact valid segmentation mask. July precision; 2025 paper is later analysis of this specimen.",
+            "group": "Mouse"
+          },
+          {
+            "id": "flywire-fly-neuropil-2024-01-01",
+            "x": 2024.0,
+            "y": 1.7500000000000002e-05,
+            "label": "FlyWire whole-brain neuropil",
+            "dateLabel": "2024 · publication",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+            "sourceTitle": "FlyWire whole-brain neuropil — primary source",
+            "quote": "The whole brain contains 0.0175 mm3 of neuropil volume",
+            "qualifier": "",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024.",
+            "group": "Fruit fly"
+          },
+          {
+            "id": "liconn-mouse-native-2025-01-01",
+            "x": 2025.0,
+            "y": 9.5e-07,
+            "label": "LICONN native tissue",
+            "dateLabel": "2025 · publication",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08985-1",
+            "sourceTitle": "LICONN native tissue — primary source",
+            "quote": "0.95 × 10^6 µm^3 before and 3.5 × 10^9 µm^3 after hydrogel expansion",
+            "qualifier": "≈",
+            "note": "Figure 1: “0.95 × 10⁶ µm³ before” expansion, equivalent to 0.00095 mm³. Native volume, not expanded hydrogel; automated dense reconstruction with synaptic molecular predictions and selected traced validation regions. Publication-year checkpoint, first final-dataset release not established.",
+            "group": "Mouse"
+          },
+          {
+            "id": "malecns-fly-imaged-2025-10-03",
+            "x": 2025.7534246575342,
+            "y": 8.2e-05,
+            "label": "MaleCNS v0.9",
+            "dateLabel": "2025-10-03 · release",
+            "sourceUrl": "https://biorxiv.org/content/10.1101/2025.10.09.680999v2.full",
+            "sourceTitle": "MaleCNS v0.9 — primary source",
+            "quote": "160 teravoxels at 8×8×8 nm isotropic resolution (0.082 mm3 total volume)",
+            "qualifier": "≈",
+            "note": "Preprint: “0.082 mm3 total volume” (160 teravoxels at 8-nm isotropic resolution). Release date independently verified at https://male-cns.janelia.org/ : “2025-10-03 - MaleCNS v0.9 released”. Later v1.0 and 2026 publication reuse this specimen; not all synapses have proofread partners.",
+            "group": "Fruit fly"
+          }
+        ]
+      }
+    ]
+  },
+  "Largest published connectome over time": {
+    "status": "plotted",
+    "summary": "Selected published maps, not a verified all-time record frontier. Neurons and synapses are separate; completeness differs by study.",
+    "plots": [
+      {
+        "id": "largest-connectome-neurons",
+        "title": "Selected published connectomes — neuron counts",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Neurons (log)",
+        "scale": "log",
+        "scope": "Four selected studies; whole and partial maps are not equivalent. No global running-maximum or cross-study growth fit.",
+        "points": [
+          {
+            "id": "hemibrain-neurons",
+            "x": 2020,
+            "y": 25000,
+            "label": "Hemibrain",
+            "dateLabel": "2020 · paper publication year",
+            "sourceUrl": "https://elifesciences.org/articles/57443",
+            "sourceTitle": "A connectome and analysis of the adult Drosophila central brain",
+            "quote": "The largest dense reconstruction to date, it contains around 25,000 neurons, most of which were rigorously clustered and named, with about 20 million chemical synapses between them, plus portions of many other neurons truncated by the boundary of the data set (details in Figure 1).",
+            "qualifier": "≈",
+            "note": "Partial adult female Drosophila central brain; boundaries truncate neurons.",
+            "group": "Partial adult fly"
+          },
+          {
+            "id": "larval-brain-neurons",
+            "x": 2023,
+            "y": 3016,
+            "label": "Larval Drosophila whole brain",
+            "dateLabel": "2023 · paper publication year",
+            "sourceUrl": "https://par.nsf.gov/servlets/purl/10422064",
+            "sourceTitle": "The connectome of an insect brain",
+            "quote": "RESULTS: The complete synaptic-resolution\nconnectome of the Drosophila larval brain\ncomprises 3016 neurons and 548,000 synapses.",
+            "qualifier": "",
+            "note": "Whole larval brain, not whole nervous system. Smaller than earlier partial adult maps; NOT an overall record.",
+            "group": "Whole larval fly"
+          },
+          {
+            "id": "flywire-neurons",
+            "x": 2024,
+            "y": 139255,
+            "label": "FlyWire v783 adult whole brain",
+            "dateLabel": "2024 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
+            "qualifier": "",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment.",
+            "group": "Whole adult fly"
+          },
+          {
+            "id": "microns-neurons",
+            "x": 2025,
+            "y": 84035,
+            "label": "MICrONS individually segmented neurons",
+            "dateLabel": "2025 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+            "sourceTitle": "Functional connectomics spanning multiple areas of mouse visual cortex",
+            "quote": "Using a combination of manual and automated error-detection workflows, we have split almost all neurons into single-soma objects, bringing the total number of individually segmented neurons to 84,035 (Extended Data Fig. 3).",
+            "qualifier": "",
+            "note": "Partial mouse visual cortex; individually segmented somatic neurons, not 200,000+ total cells, and not 84,035 completely proofread neurons. Proofreading restricted to subvolume 65; neuron count is not equivalent to all process fragments across both volumes.",
+            "group": "Partial mouse cortex"
+          }
+        ]
+      },
+      {
+        "id": "largest-connectome-synapses",
+        "title": "Selected published maps — synapse counts",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Synapses / clefts (log)",
+        "scale": "log",
+        "scope": "Four selected studies; whole and partial maps are not equivalent. No global running-maximum or cross-study growth fit.",
+        "points": [
+          {
+            "id": "hemibrain-synapses",
+            "x": 2020,
+            "y": 20000000,
+            "label": "Hemibrain",
+            "dateLabel": "2020 · paper publication year",
+            "sourceUrl": "https://elifesciences.org/articles/57443",
+            "sourceTitle": "A connectome and analysis of the adult Drosophila central brain",
+            "quote": "The largest dense reconstruction to date, it contains around 25,000 neurons, most of which were rigorously clustered and named, with about 20 million chemical synapses between them, plus portions of many other neurons truncated by the boundary of the data set (details in Figure 1).",
+            "qualifier": "≈",
+            "note": "Partial adult female Drosophila central brain; boundaries truncate neurons. Counts paired pre/post contacts, not unique neuron-pair graph edges.",
+            "group": "Partial adult fly"
+          },
+          {
+            "id": "larval-brain-synapses",
+            "x": 2023,
+            "y": 548000,
+            "label": "Larval Drosophila whole brain",
+            "dateLabel": "2023 · paper publication year",
+            "sourceUrl": "https://par.nsf.gov/servlets/purl/10422064",
+            "sourceTitle": "The connectome of an insect brain",
+            "quote": "RESULTS: The complete synaptic-resolution\nconnectome of the Drosophila larval brain\ncomprises 3016 neurons and 548,000 synapses.",
+            "qualifier": "≈",
+            "note": "Whole larval brain, not whole nervous system. Smaller than earlier partial adult maps; NOT an overall record. Counts paired pre/post contacts, not unique neuron-pair graph edges.",
+            "group": "Whole larval fly"
+          },
+          {
+            "id": "flywire-synapses",
+            "x": 2024,
+            "y": 54500000,
+            "label": "FlyWire v783 adult whole brain",
+            "dateLabel": "2024 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
+            "qualifier": "≈",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges.",
+            "group": "Whole adult fly"
+          },
+          {
+            "id": "microns-synapses",
+            "x": 2025,
+            "y": 524000000,
+            "label": "MICrONS automatically detected synaptic clefts",
+            "dateLabel": "2025 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+            "sourceTitle": "Functional connectomics spanning multiple areas of mouse visual cortex",
+            "quote": "We automatically detected and associated a total of 524 million synaptic clefts across both subvolumes (subvolume 35: 186 million, subvolume 65: 337 million).",
+            "qualifier": "≈",
+            "note": "Partial mouse cortex, BOTH subvolumes 35 and 65. Automatically detected/associated clefts, NOT an entirely proofread connectome. Author rounded total 524m retained; rounded component counts 186m + 337m do not sum to rounded reported total.",
+            "group": "Partial mouse cortex"
+          }
+        ]
+      }
+    ],
+    "gapReason": "A complete, consistently defined largest-map frontier has not been established."
+  },
+  "Connectomics imaging throughput over time": {
+    "status": "plotted",
+    "summary": "Measured acquisition examples at explicitly different resolutions. These do not yet measure sustained end-to-end reconstruction throughput.",
+    "plots": [
+      {
+        "id": "acquisition-rates",
+        "title": "Selected EM acquisition rates",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Acquired volume (mm³/day · log)",
+        "scale": "log",
+        "scope": "Different protocols; acquisition only. Derived from reported dimensions, elapsed time, or montage count. > is a lower bound, not an exact rate.",
+        "points": [
+          {
+            "id": "fib-sem-2017",
+            "x": 2017,
+            "y": 9e-06,
+            "label": "Enhanced FIB-SEM, Drosophila optic lobe",
+            "dateLabel": "2017 · paper publication year",
+            "sourceUrl": "https://elifesciences.org/articles/25916",
+            "sourceTitle": "Enhanced FIB-SEM systems for large-volume 3D imaging",
+            "quote": "To evaluate the suitability of the customized FIB-SEM system for imaging even larger volumes, the *Drosophila* optic lobe, including medulla, lobula, and lobula plate, was imaged at 8 × 8 × 8 nm3 voxel resolution over a 100 day period, yielding a final four terabyte image volume of about 180 × 100 × 50 µm3 (50 µm in the direction of the FIB beam), shown in Figure 3.",
+            "qualifier": "≈",
+            "note": "Real 100-day acquisition, includes documented interruptions. Approximate final bounding volume, NOT quality-mask volume. Excludes upstream preparation and downstream reconstruction; one instrument; 8×8×8 nm voxels. Derivation: {\"formula\": \"180*100*50 / 1e9 / 100\", \"input_units\": \"um3 / um3-per-mm3 / days\", \"basis\": \"reported final dimensions and actual elapsed acquisition period\"}",
+            "group": "FIB-SEM · 8 nm isotropic"
+          },
+          {
+            "id": "autotem-2020",
+            "x": 2020,
+            "y": 0.0028,
+            "label": "autoTEM demonstrated montage production per microscope",
+            "dateLabel": "2020 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41467-020-18659-3",
+            "sourceTitle": "A petascale automated imaging pipeline for mapping neuronal circuits with high-throughput transmission electron microscopy",
+            "quote": "More than 70 montages, each 1 mm2, could be imaged per day per scope.",
+            "qualifier": ">",
+            "note": "LOWER BOUND (>70 montages/day); 1 mm2 section ROI × nominal 40 nm section thickness. Nominal montage slab volume, not valid-tissue mask or whole-pipeline rate. Section preparation and downstream alignment/reconstruction excluded; 4 nm pixels. Derivation: {\"formula\": \"70 * 1 mm2 * (40 / 1e6) mm\", \"basis\": \"reported daily montage count, montage area and nominal thickness\"}",
+            "group": "autoTEM · 4×4×40 nm"
+          }
+        ]
+      }
+    ],
+    "gapReason": "Comparable preparation-to-quality-controlled-volume throughput is unavailable."
+  },
+  "Cost to map 1 cm³ over time": {
+    "status": "gap",
+    "summary": "No verified all-in cost series.",
+    "plots": [],
+    "gapReason": "Imaging components, research grants and estimated whole-brain budgets omit different costs. A realized imaging + compute + storage + proofreading total at a common quality threshold is still needed."
+  },
+  "Automated reconstruction accuracy over time": {
+    "status": "plotted",
+    "summary": "One published benchmark snapshot—not a historical accuracy trend. nERL is normalized expected run length, not percent of voxels correct.",
+    "plots": [
+      {
+        "id": "pathfinder-nerl",
+        "title": "PATHFINDER v1: axon tracing benchmark",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Normalized ERL (%)",
+        "scale": "linear",
+        "scope": "2025 preprint v1; mouse unmyelinated axons, one fixed ground-truth set. Publication year does not establish the evaluation date.",
+        "points": [
+          {
+            "id": "pathfinder-nerl-2025",
+            "x": 2025,
+            "y": 94.2,
+            "label": "PATHFINDER v1, unmyelinated mouse cortical axons",
+            "dateLabel": "2025 · version-1 preprint posting year; not an independently dated evaluation event",
+            "sourceUrl": "https://www.biorxiv.org/content/10.1101/2025.05.16.654254v1.full",
+            "sourceTitle": "Accelerating Neuron Reconstruction with PATHFINDER",
+            "quote": "The segmentation variant optimized to minimize the total number of axon split and merge errors showed a normalized expected run length (nERL) of 94.2% (Table 1).",
+            "qualifier": "",
+            "note": "Preprint benchmark snapshot; NOT percent correctly segmented voxels. nERL = ERL / maximum ERL of this ground-truth set. Mouse IBEAM-mSEM, 80.4×84.8×99.2 um3; unmyelinated axons, 4,284 mm total path. Evaluation excludes a boundary margin for splits and uses node thresholds; no matched longitudinal series assembled."
+          }
+        ]
+      }
+    ],
+    "gapReason": "No matched multi-year evaluation series was verified."
+  },
+  "Human proofreading burden over time": {
+    "status": "plotted",
+    "summary": "Available related evidence: total proofreading person-years. This is not the requested hours per mm³ and cannot establish a productivity trend.",
+    "plots": [
+      {
+        "id": "proofreading-effort",
+        "title": "Reported project proofreading effort",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Person-years",
+        "scale": "linear",
+        "scope": "Different map scope and completeness. >50 is a lower bound; ≈33 is an author estimate. No assumed hours per person-year or volume normalization.",
+        "points": [
+          {
+            "id": "hemibrain-proofreading",
+            "x": 2020,
+            "y": 50,
+            "label": "Hemibrain proofreading effort",
+            "dateLabel": "2020 · paper publication year",
+            "sourceUrl": "https://elifesciences.org/articles/57443",
+            "sourceTitle": "A connectome and analysis of the adult Drosophila central brain",
+            "quote": "We applied numerous machine-learning algorithms and over 50 person-years of proofreading effort over ≈2 calendar years",
+            "qualifier": ">",
+            "note": "Reported over 50 person-years, not exactly 50. No assumed work-year hours or division by nominal cube; completeness target differs from FlyWire.",
+            "group": "Hemibrain"
+          },
+          {
+            "id": "flywire-proofreading",
+            "x": 2024,
+            "y": 33,
+            "label": "FlyWire proofreading effort",
+            "dateLabel": "2024 · paper publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "quote": "We estimate that FlyWire’s brain reconstruction took around 33 person-years of manual proofreading.",
+            "qualifier": "≈",
+            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain.",
+            "group": "FlyWire"
+          }
+        ]
+      }
+    ],
+    "gapReason": "Common-quality person-hours/mm³ remains unavailable."
+  },
+  "Human tissue preservation quality over time": {
+    "status": "gap",
+    "summary": "No quantified human connection-traceability series.",
+    "plots": [],
+    "gapReason": "The reviewed 2025 human brain-bank study says traceability could not be rigorously quantified. Image artifact area and visible synapses are not fractions of connections traceable."
+  },
+  "Tissue loss in subdivision/sectioning over time": {
+    "status": "plotted",
+    "summary": "Available related evidence: rejected or lost sections, not volume-weighted tissue loss. Protocols and denominators remain separate.",
+    "plots": [
+      {
+        "id": "gauss-section-rejection",
+        "title": "GAUSS-EM rejected sections",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Rejected sections (%)",
+        "scale": "linear",
+        "scope": "2024 paper; one volume per tissue, nominal 35 nm sections. Rejection includes insufficient contrast and folds, not just physical loss.",
+        "points": [
+          {
+            "id": "gauss-zebrafish",
+            "x": 2024,
+            "y": 0.73,
+            "label": "GAUSS-EM zebrafish retina",
+            "dateLabel": "2024 · publication year; not asserted first release date",
+            "sourceUrl": "https://doi.org/10.1016/j.crmeth.2024.100720",
+            "sourceTitle": "GAUSS-EM, guided accumulation of ultrathin serial sections with a static magnetic field for volume electron microscopy",
+            "quote": "This leads to a rejected section rates of 0.73% and 0.186% for the zebrafish and olfactory bulb volumes, respectively.",
+            "qualifier": "",
+            "note": "Reported rejected-section percentage; mostly <35 nm sections with insufficient contrast, occasionally folds. One volume per tissue, not whole-sample physical tissue lost.",
+            "group": "Zebrafish retina"
+          },
+          {
+            "id": "gauss-mouse",
+            "x": 2024,
+            "y": 0.186,
+            "label": "GAUSS-EM mouse olfactory bulb",
+            "dateLabel": "2024 · publication year; not asserted first release date",
+            "sourceUrl": "https://doi.org/10.1016/j.crmeth.2024.100720",
+            "sourceTitle": "GAUSS-EM, guided accumulation of ultrathin serial sections with a static magnetic field for volume electron microscopy",
+            "quote": "This leads to a rejected section rates of 0.73% and 0.186% for the zebrafish and olfactory bulb volumes, respectively.",
+            "qualifier": "",
+            "note": "Reported rejected-section percentage; mostly <35 nm sections with insufficient contrast, occasionally folds. One volume per tissue, not whole-sample physical tissue lost.",
+            "group": "Mouse olfactory bulb"
+          }
+        ]
+      },
+      {
+        "id": "microns-section-loss",
+        "title": "MICrONS selected-region section loss",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Lost sections (%)",
+        "scale": "linear",
+        "scope": "2025 paper; a selected 800 µm region with around 0.1% physical section loss. Not all tissue damage or whole-block volume loss.",
+        "points": [
+          {
+            "id": "microns-section-loss",
+            "x": 2025,
+            "y": 0.1,
+            "label": "MICrONS selected 800 µm region",
+            "dateLabel": "2025 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+            "sourceTitle": "Functional connectomics spanning multiple areas of mouse visual cortex",
+            "quote": "An 800-µm region (sections 7,931–27,904) (Fig. 4a) was selected for further processing, as it had no consecutive section loss and an overall section loss of around 0.1%.",
+            "qualifier": "≈",
+            "note": "Approximate physical section loss in selected region, not full 27,972-section block and not all damage/folds."
+          }
+        ]
+      }
+    ],
+    "gapReason": "A matched time series of lost/damaged tissue volume is not available."
+  },
+  "Molecular annotation coverage over time": {
+    "status": "gap",
+    "summary": "No validated molecular-label coverage series.",
+    "plots": [],
+    "gapReason": "Cell-type morphology, classification accuracy and antigen counts do not measure experimentally validated neurotransmitter/receptor coverage. A selected molecular label, assay and denominator are still required."
+  },
+  "Humans with implanted high-bandwidth BCIs over time": {
+    "status": "plotted",
+    "summary": "Selected chronic intracortical research recipients, by program—not a global installed base or an active-user count.",
+    "plots": [
+      {
+        "id": "neuralink-cumulative",
+        "title": "Neuralink · cumulative recipients",
+        "xLabel": "Implantation month / disclosure year",
+        "xKind": "year",
+        "yLabel": "People ever implanted",
+        "scale": "linear",
+        "scope": "One company’s disclosed cumulative implanted trial participants; observation months early, disclosure dates later. No sum across programs or overlapping review cohorts. Latest plotted disclosure is not a current census.",
+        "points": [
+          {
+            "id": "neuralink-cumulative-2024-01-01",
+            "x": 2024.0,
+            "y": 1,
+            "label": "Neuralink first participant",
+            "dateLabel": "2024-01 · observation",
+            "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update/",
+            "sourceTitle": "Neuralink first participant — primary source",
+            "quote": "In January, we conducted the first human implantation of our brain-computer interface (BCI).",
+            "qualifier": "",
+            "note": "April 12, 2024 disclosure: “In January, we conducted the first human implantation.” January is the implantation month, not an exact surgery day."
+          },
+          {
+            "id": "neuralink-cumulative-2024-07-01",
+            "x": 2024.4972677595629,
+            "y": 2,
+            "label": "Neuralink second participant",
+            "dateLabel": "2024-07 · observation",
+            "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update-second-participant/",
+            "sourceTitle": "Neuralink second participant — primary source",
+            "quote": "Last month, the second participant in our PRIME Study received his Neuralink implant (Link).",
+            "qualifier": "",
+            "note": "August 21, 2024 disclosure: “Last month, Alex ... the second participant ... received his Neuralink implant.” July implantation month; cumulative two recipients."
+          },
+          {
+            "id": "neuralink-cumulative-2025-02-05",
+            "x": 2025.0958904109589,
+            "y": 3,
+            "label": "Neuralink three participants",
+            "dateLabel": "2025-02-05 · disclosure",
+            "sourceUrl": "https://neuralink.com/updates/a-year-of-telepathy/",
+            "sourceTitle": "Neuralink three participants — primary source",
+            "quote": "Over the past year, three people with paralysis have received Neuralink implants.",
+            "qualifier": "",
+            "note": "Source: “Today, there are three people with Telepathy: Noland, Alex, and Brad.” Disclosure date, not all three surgery dates."
+          },
+          {
+            "id": "neuralink-cumulative-2025-06-02",
+            "x": 2025.4164383561645,
+            "y": 5,
+            "label": "Neuralink five participants",
+            "dateLabel": "2025-06-02 · disclosure",
+            "sourceUrl": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+            "sourceTitle": "Neuralink five participants — primary source",
+            "quote": "Five individuals with severe paralysis are now using Neuralink to control digital and physical devices with their thoughts",
+            "qualifier": "",
+            "note": "Source: “Five individuals with severe paralysis are now using Neuralink to control digital and physical devices with their thoughts.” Post-implant use supports receipt, not mere enrollment."
+          },
+          {
+            "id": "neuralink-cumulative-2026-01-28",
+            "x": 2026.0739726027398,
+            "y": 21,
+            "label": "Neuralink 21 participants",
+            "dateLabel": "2026-01-28 · disclosure",
+            "sourceUrl": "https://neuralink.com/updates/two-years-of-telepathy/",
+            "sourceTitle": "Neuralink 21 participants — primary source",
+            "quote": "With a growing crew of 21 Neuralnauts enrolled in trials worldwide ... higher signal quality across 18 of the subsequent 20 participants.",
+            "qualifier": "",
+            "note": "Company headline says “21 Neuralnauts enrolled”; implantation interpretation also requires body: “higher signal quality across 18 of the subsequent 20 participants” after the first recipient. Company-reported cumulative checkpoint, not independently audited current active users. Page release date Jan 28; last modification Feb 2 is not the checkpoint."
+          }
+        ]
+      },
+      {
+        "id": "paradromics-connect-one",
+        "title": "Paradromics · long-term study",
+        "xLabel": "Implantation month / disclosure year",
+        "xKind": "year",
+        "yLabel": "People ever implanted",
+        "scale": "linear",
+        "scope": "At least one long-term Connexus Connect-One recipient; excludes temporary 2025 epilepsy recording. No sum across programs or overlapping review cohorts. Latest plotted disclosure is not a current census.",
+        "points": [
+          {
+            "id": "paradromics-connect-one-2026-06-17",
+            "x": 2026.4575342465753,
+            "y": 1,
+            "label": "Paradromics first long-term participant",
+            "dateLabel": "2026-06-17 · disclosure",
+            "sourceUrl": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation",
+            "sourceTitle": "Paradromics — first Connexus Connect-One implantation",
+            "quote": "The first participant, a Michigan woman who has difficulty speaking due to motor neuron disease, was enrolled and implanted",
+            "qualifier": "≥",
+            "note": "June 17, 2026 issuer release: “The first participant ... was enrolled and implanted ... and will be followed and evaluated over the next six years.” Exact disclosure date, not surgery date. At least one long-term participant; earlier temporary 2025 epilepsy implantation is excluded."
+          }
+        ]
+      }
+    ]
+  },
+  "Neural recording hours collected over time": {
+    "status": "plotted",
+    "summary": "Reported session-hours in selected datasets, with human and nonhuman data and reused training corpora separated. Overlapping releases are never added.",
+    "plots": [
+      {
+        "id": "tusz-scalp-eeg",
+        "title": "TUSZ · human scalp EEG, controlled access",
+        "xLabel": "Release / publication year",
+        "xKind": "year",
+        "yLabel": "Recording hours",
+        "scale": "linear",
+        "scope": "Maintainer-reported full seizure-corpus release sizes, including held-out evaluation; a subset of TUEG. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "points": [
+          {
+            "id": "tusz-scalp-eeg-2017-04-17",
+            "x": 2017.2904109589042,
+            "y": 170,
+            "label": "TUSZ v1.0.0",
+            "dateLabel": "2017-04-17 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.0.0 – 04/17/2017: 170",
+            "qualifier": "",
+            "note": "Table 1 reports v1.0.0, 2017-04-17, Total Duration (Hours): 170. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2017-08-04",
+            "x": 2017.5890410958905,
+            "y": 425,
+            "label": "TUSZ v1.1.0",
+            "dateLabel": "2017-08-04 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.1.0 – 08/04/2017: 425",
+            "qualifier": "",
+            "note": "Table 1 reports v1.1.0, 2017-08-04, Total Duration (Hours): 425. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2018-04-15",
+            "x": 2018.2849315068493,
+            "y": 504,
+            "label": "TUSZ v1.2.0",
+            "dateLabel": "2018-04-15 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.2.0 – 04/15/2018: 504",
+            "qualifier": "",
+            "note": "Table 1 reports v1.2.0, 2018-04-15, Total Duration (Hours): 504. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2018-08-16",
+            "x": 2018.6219178082192,
+            "y": 651,
+            "label": "TUSZ v1.3.0",
+            "dateLabel": "2018-08-16 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.3.0 – 08/16/2018: 651",
+            "qualifier": "",
+            "note": "Table 1 reports v1.3.0, 2018-08-16, Total Duration (Hours): 651. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2018-11-14",
+            "x": 2018.868493150685,
+            "y": 651,
+            "label": "TUSZ v1.4.0",
+            "dateLabel": "2018-11-14 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.4.0 – 11/14/2018: 651",
+            "qualifier": "",
+            "note": "Table 1 reports v1.4.0, 2018-11-14, Total Duration (Hours): 651. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2019-07-22",
+            "x": 2019.5534246575342,
+            "y": 1074,
+            "label": "TUSZ v1.5.0",
+            "dateLabel": "2019-07-22 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.5.0 – 07/22/2019: 1,074",
+            "qualifier": "",
+            "note": "Table 1 reports v1.5.0, 2019-07-22, Total Duration (Hours): 1,074. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2020-04-23",
+            "x": 2020.308743169399,
+            "y": 1074,
+            "label": "TUSZ v1.5.1",
+            "dateLabel": "2020-04-23 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.5.1 – 04/23/2020: 1,074",
+            "qualifier": "",
+            "note": "Table 1 reports v1.5.1, 2020-04-23, Total Duration (Hours): 1,074. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          },
+          {
+            "id": "tusz-scalp-eeg-2020-05-09",
+            "x": 2020.3524590163934,
+            "y": 1074,
+            "label": "TUSZ v1.5.2",
+            "dateLabel": "2020-05-09 · release",
+            "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+            "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+            "quote": "Table 1, Total Duration (Hours), v1.5.2 – 05/09/2020: 1,074",
+            "qualifier": "",
+            "note": "Table 1 reports v1.5.2, 2020-05-09, Total Duration (Hours): 1,074. Full corpus size, not seizure-event duration or channel-hours. Registration-controlled data; evaluation partition withheld in accompanying poster. Versions overlap and must not be summed; unchanged totals can accompany annotation revisions."
+          }
+        ]
+      },
+      {
+        "id": "ajile12-intracranial",
+        "title": "AJILE12 · human intracranial, open",
+        "xLabel": "Release / publication year",
+        "xKind": "year",
+        "yLabel": "Recording hours",
+        "scale": "linear",
+        "scope": "Frozen DANDI 000055/0.220127.0436; 12 participants; open CC-BY-4.0 ECoG/depth recordings. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "points": [
+          {
+            "id": "ajile12-intracranial-2022-01-27",
+            "x": 2022.0712328767124,
+            "y": 1280,
+            "label": "AJILE12 frozen release",
+            "dateLabel": "2022-01-27 · release",
+            "sourceUrl": "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
+            "sourceTitle": "DANDI AJILE12 frozen release 0.220127.0436",
+            "quote": "Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.",
+            "qualifier": "",
+            "note": "Release metadata: “Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.” datePublished January 27, 2022. Reported duration, not electrode-multiplied time; gaps/preprocessing mean nominal and QC-valid hours differ."
+          }
+        ]
+      },
+      {
+        "id": "poyo-primate-training",
+        "title": "POYO-1 · primate spikes, training corpus",
+        "xLabel": "Release / publication year",
+        "xKind": "year",
+        "yLabel": "Recording hours",
+        "scale": "linear",
+        "scope": "Reported model-training corpus spanning seven nonhuman primates and constituent datasets with varying access; not a new unique-data release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "points": [
+          {
+            "id": "poyo-primate-training-2023-10-24",
+            "x": 2023.8109589041096,
+            "y": 100,
+            "label": "POYO-1 training corpus",
+            "dateLabel": "2023-10-24 · publication",
+            "sourceUrl": "https://arxiv.org/abs/2310.16046",
+            "sourceTitle": "POYO-1 training corpus — primary source",
+            "quote": "over 100 hours of recordings",
+            "qualifier": ">",
+            "note": "Abstract: “over 100 hours of recordings” from seven nonhuman primates and over 158 sessions. Strict lower-bound marker, not exactly 100. Existing datasets reused for training; no new-data or wholly open-corpus claim."
+          }
+        ]
+      },
+      {
+        "id": "japaneeg-scalp-eeg",
+        "title": "JapanEEG · human scalp EEG, open release claim",
+        "xLabel": "Release / publication year",
+        "xKind": "year",
+        "yLabel": "Recording hours",
+        "scale": "linear",
+        "scope": "Japanese speech dataset, three participants; simultaneous EEG/EMG/audio counted once for EEG duration; author-reported CC0 OpenNeuro release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "points": [
+          {
+            "id": "japaneeg-scalp-eeg-2026-05-31",
+            "x": 2026.4109589041095,
+            "y": 1020,
+            "label": "JapanEEG descriptor",
+            "dateLabel": "2026-05-31 · publication",
+            "sourceUrl": "https://arxiv.org/abs/2606.01264",
+            "sourceTitle": "JapanEEG descriptor — primary source",
+            "quote": "1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio from three healthy native Japanese speakers",
+            "qualifier": "",
+            "note": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”; authors say released through OpenNeuro under CC0. Descriptor submission date, not verified archive upload date. Count once, not three modalities; full manifest not enumerated."
+          }
+        ]
+      }
+    ]
+  },
+  "Paired structure–function dataset scale over time": {
+    "status": "plotted",
+    "summary": "Same-specimen neuronal identities matched between anatomy and activity. Manual and automated matching are distinct; overlapping 2025 tables are not added.",
+    "plots": [
+      {
+        "id": "paired-manual",
+        "title": "Selected structure–function matches",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Matched neuronal identities (log)",
+        "scale": "log",
+        "scope": "Publication-year snapshots from partial mouse visual cortex. 2016 includes 46 cells + 4 dendrite-only identities; 2022 has 112 linked cells; 2025 has 15,439 unique manual matches.",
+        "points": [
+          {
+            "id": "lee2016-paired",
+            "x": 2016,
+            "y": 50,
+            "label": "Lee 2016 selected visual-response neurons",
+            "dateLabel": "2016 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/nature17192",
+            "sourceTitle": "Anatomy and function of an excitatory network in the visual cortex",
+            "quote": "We focused on 46 L2/3 excitatory neurons and 4 deep layer apical dendrites that showed reproducible responses to visual stimulation",
+            "qualifier": "",
+            "note": "50 selected functionally characterized neuronal identities = 46 L2/3 cells plus 4 deep-layer neurons represented by apical dendrites. Connectivity reconstructed locally; not 1,278 anatomical targets. Derived: 46 + 4; includes four dendrite-only deep-layer neuronal identities",
+            "group": "Selected / manual"
+          },
+          {
+            "id": "turner2022-paired",
+            "x": 2022,
+            "y": 112,
+            "label": "MICrONS Phase 1: EASE-linked pyramidal cells",
+            "dateLabel": "2022 · publication year; not asserted first release date",
+            "sourceUrl": "https://doi.org/10.1016/j.cell.2022.01.023",
+            "sourceTitle": "Reconstruction of neocortex: Organelles, compartments, cells, circuits, and activity",
+            "quote": "Activity traces were extracted for 112 of the 363 PyCs (Figure 7C) via the EASE algorithm (Zhou et al., 2020).",
+            "qualifier": "",
+            "note": "Only overlapping visually responsive pyramidal cells. Publication-year point, not backdated to the 2019 anatomical preprint.",
+            "group": "EM-assisted extraction"
+          },
+          {
+            "id": "microns2025-manual",
+            "x": 2025,
+            "y": 15439,
+            "label": "MICrONS manual high-confidence matches",
+            "dateLabel": "2025 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+            "sourceTitle": "Functional connectomics spanning multiple areas of mouse visual cortex",
+            "quote": "For the second step we used the results of the transform to guide a group of experts to manually match 19,181 functional ROIs from 14 scans to 15,439 individual EM neurons (multiple functional ROIs can match to a single EM neuron if it was present in multiple scans).",
+            "qualifier": "",
+            "note": "Unique EM neurons, not ROI count. Recommended principal 2025 point; manually matched does not imply every neurite fully proofread.",
+            "group": "Selected / manual"
+          }
+        ]
+      },
+      {
+        "id": "paired-auto",
+        "title": "MICrONS automated matches",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Matched EM neurons",
+        "scale": "linear",
+        "scope": "2025 automatic fiducial table: 37,364 unique EM neurons, 83% precision versus manual. Overlaps the manual table; not extra unique neurons.",
+        "points": [
+          {
+            "id": "microns2025-auto",
+            "x": 2025,
+            "y": 37364,
+            "label": "MICrONS automated fiducial matches (83% precision)",
+            "dateLabel": "2025 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+            "sourceTitle": "Functional connectomics spanning multiple areas of mouse visual cortex",
+            "quote": "This method (referred to as the fiducial-based automatch table) resulted in 84,198 functional ROIs matched to 37,364 EM neurons.",
+            "qualifier": "",
+            "note": "Separate automatic track: 83% precision versus manual matching. Overlaps manual and other automated tables; not additional unique cells."
+          }
+        ]
+      }
+    ]
+  },
+  "Comparative connectomics cohort size over time": {
+    "status": "plotted",
+    "summary": "Selected comparative studies, not a disease/treatment cohort trajectory. Animals—not hemispheres or neurons—are counted.",
+    "plots": [
+      {
+        "id": "comparative-specimens",
+        "title": "Independently mapped specimens per study",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Specimens",
+        "scale": "linear",
+        "scope": "Eight isogenic worms across development versus two existing adult fly brains. Different research questions; no sum across studies and no inferred decline.",
+        "points": [
+          {
+            "id": "witvliet2021-cohort",
+            "x": 2021,
+            "y": 8,
+            "label": "C. elegans developmental connectomes",
+            "dateLabel": "2021 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/s41586-021-03778-8",
+            "sourceTitle": "Connectomes across development reveal principles of brain maturation",
+            "quote": "We fully reconstructed the brains of eight isogenic hermaphrodites at different postembryonic ages, from hatching (birth) to adulthood",
+            "qualifier": "",
+            "note": "Developmental comparison: three L1, two L2, one L3 and two adults. Scope is nerve ring and ventral ganglion, not all body neurons. One animal at most time points.",
+            "group": "Developmental worm"
+          },
+          {
+            "id": "flywire-hemibrain-comparison",
+            "x": 2024,
+            "y": 2,
+            "label": "FlyWire–hemibrain interindividual comparison",
+            "dateLabel": "2024 · publication year; not asserted first release date",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07686-5",
+            "sourceTitle": "Whole-brain annotation and multi-connectome cell typing of Drosophila",
+            "quote": "In conclusion, we validated 3,643 high-confidence consensus cell type labels for 43,737 neurons from three different hemispheres and two different brains",
+            "qualifier": "",
+            "note": "Two existing independently mapped animals reused in comparative analysis; three hemispheres are not three animals. Partial central-brain overlap only.",
+            "group": "Adult fly comparison"
+          }
+        ]
+      }
+    ],
+    "gapReason": "Comparable mammalian disease/control/treatment cohorts remain unassembled."
+  },
+  "Open-access connectomics data over time": {
+    "status": "plotted",
+    "summary": "Producer-reported sizes of selected publicly accessible resources. These are not audited byte counts or a cumulative global archive.",
+    "plots": [
+      {
+        "id": "public-data-size",
+        "title": "Reported public-resource sizes",
+        "xLabel": "Release / size-report year",
+        "xKind": "year",
+        "yLabel": "Reported resource size (PB)",
+        "scale": "linear",
+        "scope": "Decimal PB. Hemibrain ≥26 TB; H01 rendering 1.4 PB; MICrONS aggregate resource 1.6 PB. Representations differ. Mirrors/versions are not added; 2025 is a size snapshot, not first release.",
+        "points": [
+          {
+            "id": "hemibrain-v1",
+            "x": 2020,
+            "y": 0.026,
+            "label": "Hemibrain v1.0 reported data size (26+ TB)",
+            "dateLabel": "2020-01-22 · v1.0 release date from Janelia release history",
+            "sourceUrl": "https://dvid.io/blog/release/",
+            "sourceTitle": "FlyEM Hemibrain Release",
+            "quote": "From the 26+ TB of data, we can generate",
+            "qualifier": "≥",
+            "note": "Publisher-reported lower bound, decimal conversion TB/1000. Not exact byte inventory and not the compact 25 MB graph. Public EM and reconstructions; license not verified in inspected sources.",
+            "group": "Hemibrain"
+          },
+          {
+            "id": "h01-2021",
+            "x": 2021,
+            "y": 1.4,
+            "label": "H01 public rendering",
+            "dateLabel": "2021-06-01 · dated producer announcement says today releasing",
+            "sourceUrl": "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+            "sourceTitle": "A Browsable Petascale Reconstruction of the Human Cortex",
+            "quote": "a 1.4 petabyte rendering of a small sample of human brain tissue",
+            "qualifier": "",
+            "note": "Reported rendering size; public images plus reconstruction/annotations. Exact compressed download footprint and image/derivative byte partition unmeasured. Do not add 2024 republication as new data.",
+            "group": "H01"
+          },
+          {
+            "id": "microns-2025-size",
+            "x": 2025,
+            "y": 1.6,
+            "label": "MICrONS public-resource size snapshot",
+            "dateLabel": "2025-04-09 · dated producer report/publication snapshot, not first release",
+            "sourceUrl": "https://alleninstitute.org/news/scientists-complete-largest-wiring-diagram-and-functional-map-of-the-brain-to-date",
+            "sourceTitle": "Scientists complete largest wiring diagram and functional map of the brain to date",
+            "quote": "The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.",
+            "qualifier": "",
+            "note": "Producer reports aggregate resource size; no raw/processed partition. Not the >2 PB raw acquisition claim. Mirrors on AWS/Google/BossDB are the same dataset.",
+            "group": "MICrONS"
+          }
+        ]
+      }
+    ],
+    "gapReason": "Raw-image versus processed-data byte splits and a deduplicated global inventory remain unavailable."
+  },
+  "Public connectome reuse over time": {
+    "status": "gap",
+    "summary": "No validated reuse-share denominator.",
+    "plots": [],
+    "gapReason": "No defensible year-resolved corpus denominator and validated reuse classification was recovered in this bounded search. Do not compute a percentage or equate citation counts with reuse."
+  },
+  "Simulation/emulation fidelity over time": {
+    "status": "plotted",
+    "summary": "Fixed 2024 FlyVis benchmark: physiological contrast preference was not used to fit these models. This is task-specific validation, not whole-brain emulation fidelity.",
+    "plots": [
+      {
+        "id": "flyvis-contrast",
+        "title": "FlyVis: correct contrast preference",
+        "xLabel": "Publication year",
+        "xKind": "year",
+        "yLabel": "Correct classifications (%)",
+        "scale": "linear",
+        "scope": "Same 32 experimentally characterized cell-type/compartment labels. Ensemble median 32/32=100%; task-optimal single model 30/32=93.75%. No longitudinal trend.",
+        "points": [
+          {
+            "id": "flyvis-0",
+            "x": 2024,
+            "y": 100.0,
+            "label": "FlyVis ensemble median",
+            "dateLabel": "2024 · publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07939-3",
+            "sourceTitle": "Connectome-constrained networks predict neural activity across the fly visual system",
+            "quote": "the median flash response index (FRI) across the ensemble predicts the correct ON- and OFF-preferred contrast selectivity for all 32 cell types for which contrast selectivity has been experimentally established (terminals of CT1 in the medulla and lobula are listed as CT1(M10) and CT1(Lo1)). This is also the case for the model with the best task performance (task-optimal model), which correctly predicts the preferred contrast of 30 of 32 cells (Fig. 2b). We used only connectome and task constraints to construct our DMN, without any measurements of neural activity.",
+            "note": "32 of 32 cell-type/compartment labels; aggregated ensemble prediction, not 32 single-neuron temporal traces."
+          },
+          {
+            "id": "flyvis-1",
+            "x": 2024,
+            "y": 93.75,
+            "label": "FlyVis task-optimal single model",
+            "dateLabel": "2024 · publication year",
+            "sourceUrl": "https://www.nature.com/articles/s41586-024-07939-3",
+            "sourceTitle": "Connectome-constrained networks predict neural activity across the fly visual system",
+            "quote": "the median flash response index (FRI) across the ensemble predicts the correct ON- and OFF-preferred contrast selectivity for all 32 cell types for which contrast selectivity has been experimentally established (terminals of CT1 in the medulla and lobula are listed as CT1(M10) and CT1(Lo1)). This is also the case for the model with the best task performance (task-optimal model), which correctly predicts the preferred contrast of 30 of 32 cells (Fig. 2b). We used only connectome and task constraints to construct our DMN, without any measurements of neural activity.",
+            "note": "30 of 32 on the same characterized-cell-type contrast task. Model selected by optic-flow task performance, not by fitting these physiological measurements."
+          }
+        ]
+      }
+    ],
+    "gapReason": "No matched multi-year fidelity series is assembled."
+  },
+  "Number of simulations/emulations over time": {
+    "status": "gap",
+    "summary": "Counting unit and census remain unresolved.",
+    "plots": [],
+    "gapReason": "A few selected model families do not establish a field-wide count. Choose models, runs, organisms or independently validated emulations and assemble a deduplicated inventory before plotting a history."
+  },
+  "NeuroAI performance–cost frontier over time": {
+    "status": "plotted",
+    "summary": "Fixed ImageNet-1K benchmark: measured accuracy versus theoretical inference energy. Energy is operation-count modeling, not measured hardware consumption or training cost.",
+    "plots": [
+      {
+        "id": "neuroai-imagenet",
+        "title": "2023 ImageNet performance–energy trade-off",
+        "xLabel": "Estimated inference energy (mJ/image)",
+        "xKind": "number",
+        "yLabel": "Top-1 accuracy (%)",
+        "scale": "linear",
+        "scope": "Same 224×224 benchmark; 32-bit operations at 45 nm. 5 spiking configurations and 1 non-spiking baseline. Selected paper rows, not a global Pareto frontier.",
+        "points": [
+          {
+            "id": "sdt-0",
+            "x": 3.9,
+            "y": 72.28,
+            "label": "SDT 8-384, T=4",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Spiking Transformer-8-384 ✓ 16.81 3.90 4 72.28",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Spiking transformer"
+          },
+          {
+            "id": "sdt-1",
+            "x": 3.56,
+            "y": 74.11,
+            "label": "SDT 6-512, T=4",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Spiking Transformer-6-512 ✓ 23.37 3.56 4 74.11",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Spiking transformer"
+          },
+          {
+            "id": "sdt-2",
+            "x": 1.13,
+            "y": 71.68,
+            "label": "SDT 8-512, T=1",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Spiking Transformer-8-512 ✓ 29.68 1.13 1 71.68",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Spiking transformer"
+          },
+          {
+            "id": "sdt-3",
+            "x": 4.5,
+            "y": 74.57,
+            "label": "SDT 8-512, T=4",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Spiking Transformer-8-512 ✓ 29.68 4.50 4 74.57",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Spiking transformer"
+          },
+          {
+            "id": "sdt-4",
+            "x": 5.53,
+            "y": 74.66,
+            "label": "SDT 10-512, T=4",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Spiking Transformer-10-512 ✓ 36.01 5.53 4 74.66",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Spiking transformer"
+          },
+          {
+            "id": "sdt-5",
+            "x": 41.77,
+            "y": 80.8,
+            "label": "Non-spiking Transformer 8-512",
+            "dateLabel": "2023 · publication year",
+            "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+            "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
+            "quote": "Transformer Transformer-8-512 ✗ 29.68 41.77 1 80.80",
+            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "group": "Non-spiking baseline"
+          }
+        ]
+      }
+    ],
+    "gapReason": "No matched multi-year frontier or measured device-energy series is assembled."
+  },
+  "Demonstrated applications enabled by connectomics over time": {
+    "status": "plotted",
+    "summary": "A categorical evidence timeline of selected synaptic-connectome research applications—not an impact score or a deployment count.",
+    "plots": [],
+    "timeline": {
+      "scope": "AI benchmark demonstration and biological validation are separate evidence categories. Publication dates, not first-use dates. Functional-MRI clinical trials are excluded from this synaptic-connectome view.",
+      "events": [
+        {
+          "id": "application-0",
+          "dateLabel": "2023-04-30 · publication year",
+          "year": 2023,
+          "label": "Worm-connectome image classifier",
+          "stage": "AI research demonstration",
+          "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10175957/",
+          "sourceTitle": "Caenorhabditis elegans Connectomes of both Sexes as Image Classifiers",
+          "quote": "For the MNIST classification task, the hermaphrodite network showed 99.6% and the male network showed 99.5% accuracy after roughly 15,000 iterations We used the data from WormWiring, a website hosting the nematode connectome data mapped from electron microscope images [ 13 ]. We downloaded the latest versions of structural connectomes for both hermaphrodite and adult male C. elegans from the website [ 14 ]. The network structures of two sexes",
+          "note": "Research benchmark demonstration, not deployment or causal proof of general AI advantage. Worm synaptic graph transformed to a DAG; neurons implemented as convolutional units."
+        },
+        {
+          "id": "application-2",
+          "dateLabel": "2024 · publication year",
+          "year": 2024,
+          "label": "Connectome-predicted feeding circuitry validated in flies",
+          "stage": "Experimental biological validation",
+          "sourceUrl": "https://www.nature.com/articles/s41586-024-07763-9",
+          "sourceTitle": "A Drosophila computational brain model reveals sensorimotor processing",
+          "quote": "In addition, using the model to activate neurons in the feeding region of the *Drosophila* brain predicts those that elicit motor neuron firing5—a testable hypothesis that we validate by optogenetic activation and behavioural studies.",
+          "note": "A demonstrated mechanistic research application; not a therapy, BCI or deployed AI product. Included as its own basic-science category rather than claiming clinical impact."
+        }
+      ]
+    },
+    "gapReason": "No synaptic-connectome-enabled clinical therapy or deployed BCI is established by this evidence."
+  }
+}
