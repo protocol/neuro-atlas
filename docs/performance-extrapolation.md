@@ -54,6 +54,14 @@ Every hours date is labeled **TUSZ corpus-only**. Worldwide human-data ETA is ex
 
 The user's **100,000 h milestone** remains distinct from the [article's **100 million h** human-data goal](https://www.plrd.org/blog/neurotech-frontier-human-flourishing/). Corpus size does not establish current worldwide supply, unique subject-hours, access, quality or usable training data.
 
+## Toggle motion
+
+Expanded neuron and hours charts share an 800 ms cubic ease-in/out display-space transition. Historical marks, frontier lines, ticks, SVG viewBox height and minimum render width follow the same progress. The original height cap relaxes continuously during expansion. Incoming ticks enter from the old plot bounds and stay hidden until they have separated; model/target overlays reveal late and fade first on reversal. Source coordinates and scientific fits are not edited.
+
+A reversal starts at the displayed progress, not an endpoint. Reduced motion snaps immediately (including preference changes during motion); unmount cancels RAF and removes its media-query listener. Settled off uses the original SVG markup and geometry. Scenario and track selection retain their existing immediate semantics; this animation is scoped to the extrapolation switch. Compact previews and tissue remain unchanged.
+
+Enabled-only warnings, scenario selection and diagnostics sit below the chart. Both hint strings reserve one shared grid cell so narrow-screen wrapping cannot push the chart down on toggle. Physical chart-top stability and rendered sizes still require headed-browser checks; jsdom only verifies the layout structure and sizing inputs.
+
 ## Verification and evidence boundaries
 
 The standard `npm test` glob includes:
@@ -61,6 +69,7 @@ The standard `npm test` glob includes:
 - `extrapolation.test.mjs`: independent numeric fixtures, invalid/flat/decreasing/mixed histories, anchored first sample, bounded crossings, TUSZ-only fit with retained plateaus, unchanged source observations.
 - `extrapolation-scenarios.test.mjs`: Python-corroborated OLS and anchored log R², later-window and literature crossings, flat-tail no-crossing/N/A behavior, unsupported-track suppression.
 - `extrapolation-ui.test.mjs`: default-off/on/off behavior and exact untouched-base SVG hashes; scenario changes affecting real geometry; diagnostics, caveats and count-equivalent labels; filtering; unchanged canonical bytes, source counts/tables and previews; tissue preservation; modal reopen resets switch; source focus; CSS sizing.
+- `extrapolation-motion.test.mjs`: deterministic fake RAF/media-query checks for both charts' intermediate geometry, easing, tick/reveal timing, render-sizing inputs, repeated reversals, exact settled-off SVG restoration, reduced-motion changes, StrictMode cleanup and stable above-chart controls.
 - Existing modal/history/link/clipboard, Metrics layout and data-validation suites remain intact.
 
 Run full tests, `npm run typecheck`, changed-file ESLint and `git diff --check`. Full-project lint has baseline issues outside this change; compare diagnostics rather than hiding them. Actual headed-browser QA must compare off/on/off against the untouched base at 1440/390/320, exercise scenario choices and unsupported tracks, check requested versus rendered width, page/modal/SVG bounds, keyboard switch and fit disclosure. Screenshots must be embedded in the PR with exact-SHA GitHub blob URLs.

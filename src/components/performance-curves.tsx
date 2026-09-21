@@ -2,6 +2,7 @@
 
 import React, { useId, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
+import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
 import { usePerformanceHash, navigatePerformance, performanceUrl } from "@/lib/field-velocity/navigation";
@@ -94,10 +95,33 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
   const active = focused ?? hovered;
   const readoutId = useId();
   const extrapolationHint = useId();
-  const scenario = !compact && extrapolate && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
+  const progress = useExtrapolationMotion(!compact && !!extrapolation && extrapolate);
+  const scenario = !compact && (extrapolate || progress > 0) && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
   // Filtering suppresses unsupported model output, but never moves source markers.
   const future = scenario && extrapolation ? extrapolationGeometry(data, extrapolationScenario(extrapolation, data.points, "", mode)) : null;
-  const g = future ?? chartGeometry(data);
+  const original = chartGeometry(data);
+  const mix = (from: number, to: number) => progress === 0 ? from : progress === 1 ? to : from + (to - from) * progress;
+  const g = !future || progress === 0 ? original : progress === 1 ? future : {
+    ...original,
+    height: mix(original.height, future.height),
+    x: (date: string) => mix(original.x(date), future.x(date)),
+    y: (value: number) => mix(original.y(value), future.y(Math.max(value, future.ticks[0]))),
+  };
+  const moving = !!future && progress < 1;
+  // Values outside the old domain enter at its edge, not millions of SVG units away.
+  const clamp = (value: number, low: number, high: number) => Math.max(low, Math.min(high, value));
+  const enteringY = (value: number) => future ? mix(clamp(original.y(value), 28, original.height - 44), future.y(value)) : original.y(value);
+  const enteringX = (year: number) => {
+    const whole = Math.floor(year);
+    const time = Date.UTC(whole, 0, 1) + (year - whole) * (Date.UTC(whole + 1, 0, 1) - Date.UTC(whole, 0, 1));
+    return future ? mix(clamp(original.x(new Date(Math.round(time)).toISOString()), g.left, g.width - g.right), future.xYear(year)) : g.left;
+  };
+  const ticks = moving && future ? [...new Set([...original.ticks, ...future.ticks])].sort((a, b) => a - b) : g.ticks;
+  // Let new ticks separate before revealing labels that enter at the same edge.
+  const tickReveal = Math.max(0, (progress - .4) / .6);
+  const tickOpacity = (tick: number) => !moving || !future ? undefined : original.ticks.includes(tick) ? (future.ticks.includes(tick) ? 1 : 1 - progress) : tickReveal;
+  const tickY = (tick: number) => original.ticks.includes(tick) ? g.y(tick) : enteringY(tick);
+  const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
   const points = data.points.filter(p => !track || p.track === track);
   const clusters: PlotPoint[][] = [];
@@ -110,7 +134,10 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
       <button type="button" role="switch" aria-checked={extrapolate} aria-describedby={extrapolationHint} onClick={() => setExtrapolate(on => !on)}>
         <span className="pc-switch-track" aria-hidden="true" /><span>Extrapolation</span><span className="pc-switch-state" aria-hidden="true">{extrapolate ? "On" : "Off"}</span>
       </button>
-      <span id={extrapolationHint}>{extrapolate ? (extrapolation === "hours" ? "Axis switched from linear to log · targets span 100 million hours" : "Conditional model · expanded time range") : "Off by default · original observations and axes"}</span>
+      <span id={extrapolationHint} className="pc-extrapolation-hint">
+        <span aria-hidden={extrapolate} style={{ visibility: extrapolate ? "hidden" : "visible" }}>Off by default · original observations and axes</span>
+        <span aria-hidden={!extrapolate} style={{ visibility: extrapolate ? "visible" : "hidden" }}>{extrapolation === "hours" ? "Axis switched from linear to log · targets span 100 million hours" : "Conditional model · expanded time range"}</span>
+      </span>
     </div>}
     {!compact && data.tracks.length > 1 && <label className="pc-track-select">Dataset / track
       <select value={track} onChange={e => setTrack(e.target.value)}>
@@ -119,7 +146,47 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
       </select>
       <span>Isolate a track · axes stay fixed</span>
     </label>}
-    {scenario && <>
+    <div className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
+      "--pc-chart-min-width": `${mix(560, 720)}px`,
+      "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
+    } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
+      <svg viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+        <text x={g.left} y={16}>{data.unit} · {scale} scale</text>
+        {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
+          <line x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" />
+          <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
+        </g>)}
+        {data.line && <polyline data-frontier-line="true" points={points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} />}
+        {scenario && future && <g className="pc-extrapolation-overlay" opacity={moving ? reveal : undefined}>
+          {scenario.targets.map(target => <g key={target.id}>
+            <line data-target-line={target.id} x1={g.left} x2={g.width - g.right} y1={enteringY(target.value)} y2={enteringY(target.value)} stroke="var(--muted)" strokeDasharray="4 4" />
+            <text className="pc-target-label" x={g.left + 8} y={enteringY(target.value) - 25}>
+              <tspan x={g.left + 8}>{target.label}</tspan>
+              <tspan x={g.left + 8} dy={15}>{crossingLabel(target.crossing, scenario.kind)}</tspan>
+            </text>
+          </g>)}
+          {scenario.samples.length > 0 && <polyline data-extrapolation-line={scenario.kind} points={scenario.samples.map(p => `${enteringX(p.year)},${enteringY(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeDasharray="8 5" />}
+        </g>}
+        {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
+        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={active === p ? 7 : 5} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={1.5}
+          tabIndex={compact ? undefined : 0} role={compact ? undefined : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
+          onFocus={compact ? undefined : () => setFocused(p)} onBlur={compact ? undefined : () => setFocused(null)} onMouseEnter={compact ? undefined : () => setHovered(p)} onMouseLeave={compact ? undefined : () => setHovered(null)} />)}
+        {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
+        {moving && future ? <>
+          <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
+          <text x={mix(g.width - g.right, future.x(new Date(original.maxTime).toISOString().slice(0, 10)))} y={g.height - 20} textAnchor="end" opacity={1 - progress}>{new Date(original.maxTime).getUTCFullYear()}</text>
+          {future.yearTicks.map(year => <text key={year} x={enteringX(year)} y={g.height - 20} textAnchor="middle" opacity={tickReveal}>{year}</text>)}
+        </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : <>
+          <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
+          <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
+        </>}
+        <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>
+      </svg>
+    </div>
+    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label ?? "Hover or tab to any marker for its value, date and source. All observations also appear in the source table below."}</p>}
+    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
+    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
+    {extrapolate && scenario && <>
       <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records stop in 2014. Neuron-count equivalence is not successful whole-brain live recording." : "TUSZ corpus only — not worldwide human data. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
       <label className="pc-track-select pc-scenario-select">Growth scenario
         <select data-scenario-select="true" aria-label="Growth scenario" value={mode} onChange={e => setMode(e.target.value as ExtrapolationMode)}>
@@ -137,40 +204,7 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
         </details>
       </div>}
     </>}
-    <div className="pc-chart-scroll" role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
-        <text x={g.left} y={16}>{data.unit} · {scale} scale</text>
-        {g.ticks.map(tick => <g key={tick}>
-          <line x1={g.left} x2={g.width - g.right} y1={g.y(tick)} y2={g.y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" />
-          <text x={g.left - 9} y={g.y(tick) + 4} textAnchor="end">{scenario ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
-        </g>)}
-        {data.line && <polyline data-frontier-line="true" points={points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} />}
-        {scenario && future && <g className="pc-extrapolation-overlay">
-          {scenario.targets.map(target => <g key={target.id}>
-            <line data-target-line={target.id} x1={g.left} x2={g.width - g.right} y1={g.y(target.value)} y2={g.y(target.value)} stroke="var(--muted)" strokeDasharray="4 4" />
-            <text className="pc-target-label" x={g.left + 8} y={g.y(target.value) - 25}>
-              <tspan x={g.left + 8}>{target.label}</tspan>
-              <tspan x={g.left + 8} dy={15}>{crossingLabel(target.crossing, scenario.kind)}</tspan>
-            </text>
-          </g>)}
-          {scenario.samples.length > 0 && <polyline data-extrapolation-line={scenario.kind} points={scenario.samples.map(p => `${future.xYear(p.year)},${g.y(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeDasharray="8 5" />}
-        </g>}
-        {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
-        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={active === p ? 7 : 5} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={1.5}
-          tabIndex={compact ? undefined : 0} role={compact ? undefined : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
-          onFocus={compact ? undefined : () => setFocused(p)} onBlur={compact ? undefined : () => setFocused(null)} onMouseEnter={compact ? undefined : () => setHovered(p)} onMouseLeave={compact ? undefined : () => setHovered(null)} />)}
-        {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
-        {future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : <>
-          <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
-          <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
-        </>}
-        <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>
-      </svg>
-    </div>
-    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label ?? "Hover or tab to any marker for its value, date and source. All observations also appear in the source table below."}</p>}
-    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
-    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
-    {scenario && <ExtrapolationNotes scenario={scenario} />}
+    {extrapolate && scenario && <ExtrapolationNotes scenario={scenario} />}
   </div>;
 }
 
