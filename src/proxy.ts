@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { atlasSiteUrl, atlasIndexable } from "./lib/atlas-metadata";
 
 // Simple HTTP Basic Auth gate for the whole site. Any username, password "plneuro".
 const PASSWORD = "plneuro";
@@ -17,11 +18,16 @@ export function proxy(req: NextRequest) {
   }
   return new NextResponse("Authentication required.", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Neuro Atlas", charset="UTF-8"' },
+    headers: {
+      "WWW-Authenticate": 'Basic realm="Neuro Atlas", charset="UTF-8"',
+      ...(atlasSiteUrl && !atlasIndexable ? { "X-Robots-Tag": "noindex, nofollow" } : {}),
+    },
   });
 }
 
 export const config = {
-  // Gate everything except Next's internal asset pipeline and the favicon.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  // Explicit root matcher also covers the bare basePath (e.g. /neuro-atlas).
+  // The catch-all alone requires a slash after the prefix and misses that URL.
+  // Keep the existing internal asset and favicon exclusions.
+  matcher: ["/", "/((?!_next/static|_next/image|favicon.ico).*)"],
 };

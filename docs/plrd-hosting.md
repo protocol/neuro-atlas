@@ -41,9 +41,24 @@ NEXT_PUBLIC_BASE_PATH=/neuro-atlas ATLAS_SITE_URL=https://www.plrd.org ATLAS_IND
 
 Stop task-owned servers before rebuilding. Do not mix root/prefix output under a running server. On constrained Linux hosts use `NEXT_TELEMETRY_DISABLED=1 UV_THREADPOOL_SIZE=1 taskset -c 0,1` before the npm command after checking CPU availability.
 
+### Unlisted, password-gated PLRD hosting (before public launch)
+
+This mode is independent of the public Neurotech link/preview in PLRD PR169; leave that PR unmerged until publication is approved. Use the separate routing-only PLRD change, with no navigation or discovery additions. Build Atlas with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`, `ATLAS_SITE_URL=https://www.plrd.org`, and `ATLAS_INDEXABLE=false` at both build and runtime. Keep the existing password gate unchanged.
+
+**Auth prerequisite:** use the explicit `/` proxy matcher as well as the asset-excluding catch-all. Next's prefixed catch-all alone misses the bare `/neuro-atlas` landing URL. `tests/auth-prefix.test.mjs` covers root/prefix matching and rejection without real credentials. After starting or deploying the exact build, run:
+
+```sh
+node scripts/verify-auth-gate.mjs https://<atlas-preview-origin> /neuro-atlas
+node scripts/verify-auth-gate.mjs https://<plrd-preview-origin> /neuro-atlas
+```
+
+Both the bare prefix and trailing-slash entry must finish at the existing **401 Basic** challenge, as must deep pages and sitemap. A configured nonindexable Atlas also emits `X-Robots-Tag: noindex, nofollow` from its own page/asset and 401 responses; an external Next proxy can drop headers added only by the destination site, so metadata or PLRD middleware headers alone are not proof. The smoke script checks originating noindex too. This is negative-access proof, not a successful password roundtrip; test the latter separately through approved autofill. Never use a credential found in source. The gate remains the existing lightweight review gate, not a new confidentiality/security boundary.
+
+For cutover, verify a prefixed Atlas deployment before enabling PLRD routing, keep indexing off, and preserve working legacy standalone links until a deliberate redirect cutover is ready. A prefixed preview does not change the standalone production alias. Record production build settings explicitly; preview-only CLI overrides do not persist into future Git production builds. Public launch/password removal is a separate decision.
+
 ### Hosted gate: explicit launch blocker
 
-Hosted Atlas currently returns **401 HTTP Basic** from its existing `src/proxy.ts`. This change leaves it untouched and adds no hosted bypass. Do not read, copy or use its source credential for QA. Removing/replacing the gate for anonymous launch requires a **separate owner decision**; `ATLAS_INDEXABLE=true` does not remove auth.
+Hosted Atlas currently returns **401 HTTP Basic** from `src/proxy.ts`. The password check is unchanged; the matcher additionally protects the bare configured base path. No hosted bypass is added. Do not read, copy or use its source credential for QA. Removing/replacing the gate for anonymous launch requires a **separate owner decision**; `ATLAS_INDEXABLE=true` does not remove auth.
 
 An owner-controlled isolated loopback-only fixture checkout may omit the proxy for browser QA; never deploy/push that fixture or equate its anonymous behavior with hosted readiness. Test desktop and 390/320px, deep routes, logos/fonts/JS/CSS, active nav, funding/milestone filters, performance modals/share hashes, Back/Forward/reload and the plain-anchor return link. Pair with PLRD to exercise its real rewrites. Capture exact-source screenshots with honest local/static-interface captions.
 
