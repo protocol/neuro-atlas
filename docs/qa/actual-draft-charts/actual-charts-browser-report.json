@@ -1,0 +1,47 @@
+[
+  {
+    "width": 1440,
+    "candidates": 19,
+    "points": 57,
+    "svg_text_unclipped": true,
+    "native_point_and_keyboard": true,
+    "source_table": true,
+    "existing_modals_and_focus": true,
+    "explicit_gaps": true,
+    "bounds": {
+      "inner": 1440,
+      "client": 1425,
+      "scroll": 1425
+    }
+  },
+  {
+    "width": 390,
+    "candidates": 19,
+    "points": 57,
+    "svg_text_unclipped": true,
+    "native_point_and_keyboard": true,
+    "source_table": true,
+    "existing_modals_and_focus": true,
+    "explicit_gaps": true,
+    "bounds": {
+      "inner": 390,
+      "client": 375,
+      "scroll": 375
+    }
+  },
+  {
+    "width": 320,
+    "candidates": 19,
+    "points": 57,
+    "svg_text_unclipped": true,
+    "native_point_and_keyboard": true,
+    "source_table": true,
+    "existing_modals_and_focus": true,
+    "explicit_gaps": true,
+    "bounds": {
+      "inner": 320,
+      "client": 305,
+      "scroll": 305
+    }
+  }
+]

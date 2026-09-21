@@ -2,8 +2,20 @@
 
 import { useSyncExternalStore } from "react";
 
-export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations"] as const;
+export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts"] as const;
 const changedEvent = "atlas-performance-location";
+let performanceFocusReturn: HTMLElement | null = null;
+
+/** Keep a cross-tab trigger alive until the modal has restored its originating pane. */
+export function setPerformanceFocusReturn(target: HTMLElement | null) {
+  performanceFocusReturn = target;
+}
+
+export function takePerformanceFocusReturn() {
+  const target = performanceFocusReturn?.isConnected ? performanceFocusReturn : null;
+  performanceFocusReturn = null;
+  return target;
+}
 
 /** Relative to the actual current origin/path/query; never hardcode a deployment. */
 export function performanceUrl(currentUrl: string, anchor: string) {
@@ -16,7 +28,7 @@ export function performanceUrl(currentUrl: string, anchor: string) {
 export function navigatePerformance(anchor: string) {
   const url = performanceUrl(window.location.href, anchor);
   if (url === window.location.href) return;
-  const isChart = anchor !== "performance_curves" && anchor !== "expectations";
+  const isChart = !["performance_curves", "expectations", "draft-charts"].includes(anchor);
   window.history.pushState({ ...window.history.state, atlasModalFrom: isChart ? window.location.href : null }, "", url);
   window.dispatchEvent(new Event(changedEvent));
 }

@@ -1,0 +1,53 @@
+[
+  {
+    "width": 1440,
+    "cards": 19,
+    "categories": 6,
+    "definition_only": true,
+    "fresh_deep_link": true,
+    "both_metrics_links": true,
+    "keyboard_tabs": true,
+    "back_forward": true,
+    "escape_close_focus_return": true,
+    "text_unclipped": true,
+    "bounds": {
+      "inner": 1440,
+      "client": 1425,
+      "scroll": 1425
+    }
+  },
+  {
+    "width": 390,
+    "cards": 19,
+    "categories": 6,
+    "definition_only": true,
+    "fresh_deep_link": true,
+    "both_metrics_links": true,
+    "keyboard_tabs": true,
+    "back_forward": true,
+    "escape_close_focus_return": true,
+    "text_unclipped": true,
+    "bounds": {
+      "inner": 390,
+      "client": 375,
+      "scroll": 375
+    }
+  },
+  {
+    "width": 320,
+    "cards": 19,
+    "categories": 6,
+    "definition_only": true,
+    "fresh_deep_link": true,
+    "both_metrics_links": true,
+    "keyboard_tabs": true,
+    "back_forward": true,
+    "escape_close_focus_return": true,
+    "text_unclipped": true,
+    "bounds": {
+      "inner": 320,
+      "client": 305,
+      "scroll": 305
+    }
+  }
+]

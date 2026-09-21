@@ -1,0 +1,152 @@
+[
+  {
+    "width": 1440,
+    "chart": "simultaneously-recorded-neurons",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 1440,
+    "chart": "tissue-mapped",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 1440,
+    "chart": "neural-recording-hours",
+    "source_points": 11,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 1440,
+    "chart": "idea_vintage",
+    "source_points": 27,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 1440,
+    "chart": "latency_compression",
+    "source_points": 4,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 390,
+    "chart": "simultaneously-recorded-neurons",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 390,
+    "chart": "tissue-mapped",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 390,
+    "chart": "neural-recording-hours",
+    "source_points": 11,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 390,
+    "chart": "idea_vintage",
+    "source_points": 27,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 390,
+    "chart": "latency_compression",
+    "source_points": 4,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 320,
+    "chart": "simultaneously-recorded-neurons",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 320,
+    "chart": "tissue-mapped",
+    "source_points": 7,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 320,
+    "chart": "neural-recording-hours",
+    "source_points": 11,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 320,
+    "chart": "idea_vintage",
+    "source_points": 27,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  },
+  {
+    "width": 320,
+    "chart": "latency_compression",
+    "source_points": 4,
+    "fresh_url": true,
+    "clipboard": true,
+    "focus_wrap_restore": true,
+    "close_escape_backdrop": true,
+    "back_forward_no_layout_or_scroll_shift": true
+  }
+]

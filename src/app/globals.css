@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../components/performance-curves.css";
+@import "../components/draft-chart-plot.css";
 @import "../components/landing.css";
 
 @custom-variant dark (&:where(.dark, .dark *));

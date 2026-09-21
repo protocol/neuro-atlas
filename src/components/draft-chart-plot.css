@@ -1,0 +1,76 @@
+/* Scoped to Draft charts: the existing Metrics/Expectations visualizations are unchanged. */
+.draft-charts-gallery { width: 100%; min-width: 0; }
+.draft-charts-gallery .draft-chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row dense; align-items: start; gap: 1.25rem; }
+.draft-charts-gallery .draft-chart-card { padding: 1.25rem; overflow-wrap: anywhere; }
+.draft-charts-gallery .draft-chart-card h4 { font-size: 1.08rem; line-height: 1.4; }
+.draft-charts-gallery .draft-chart-card-multiple { grid-column: 1 / -1; }
+.draft-chart-plots { display: grid; gap: 1.4rem; margin-top: 1.15rem; min-width: 0; }
+.draft-chart-card-multiple .draft-chart-plots { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.draft-chart-summary { color: var(--muted); font-size: .8rem; line-height: 1.6; margin-top: .6rem; max-width: 65rem; }
+.draft-chart-still-missing { border-left: 2px solid var(--border-strong); padding-left: .75rem; margin-top: 1rem; color: var(--muted); font-size: .74rem; line-height: 1.6; }
+.draft-chart-still-missing strong { color: var(--foreground); font-weight: 600; }
+.draft-chart-methodology { border-top: 1px solid var(--border); margin-top: 1rem; padding-top: .8rem; font-size: .76rem; }
+.draft-chart-methodology summary, .draft-plot-data summary { cursor: pointer; color: var(--muted); width: fit-content; font-weight: 550; }
+.draft-plot { margin: 0; min-width: 0; color: var(--foreground); }
+.draft-plot > figcaption { font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: .5rem; }
+.draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
+.draft-plot-tick { font-size: 11px; font-variant-numeric: tabular-nums; fill: var(--muted); }
+.draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
+.draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
+.draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
+.draft-plot-svg [data-source-observation] { cursor: pointer; stroke: var(--surface); stroke-width: 2; }
+.draft-plot-svg [data-source-observation]:is(:hover, :focus-visible) { stroke: var(--foreground); stroke-width: 3; outline: none; }
+.draft-plot-legend { display: flex; flex-wrap: wrap; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: .66rem; line-height: 1.5; }
+.draft-plot-legend > span { color: var(--accent); }
+.draft-group-legend { display: flex; flex-wrap: wrap; gap: .35rem .85rem; list-style: none; margin: .45rem 0; padding: 0; color: var(--muted); font-size: .7rem; line-height: 1.5; }
+.draft-group-legend li { display: flex; align-items: baseline; gap: .3rem; }
+.draft-plot-inspector { height: 9rem; overflow-y: auto; scrollbar-gutter: stable; margin: .6rem 0 .8rem; padding: .65rem .75rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--surface-raised); font-size: .74rem; line-height: 1.5; overflow-wrap: anywhere; }
+.draft-plot-inspector p { margin-top: .15rem; color: var(--muted); }
+.draft-plot-inspector strong { color: var(--foreground); font-weight: 600; }
+.draft-plot-hint { max-width: 23rem; }
+.draft-plot a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.draft-plot-data { font-size: .74rem; line-height: 1.6; min-width: 0; }
+.draft-plot-data > p { color: var(--muted); margin: .65rem 0; }
+.draft-plot-table-scroll { width: 100%; overflow-x: auto; margin-top: .75rem; overscroll-behavior-x: contain; }
+.draft-plot table { width: 100%; border-collapse: collapse; text-align: left; font-size: .72rem; }
+.draft-plot caption { text-align: left; color: var(--muted); margin-bottom: .6rem; }
+.draft-plot th, .draft-plot td { border-top: 1px solid var(--border); padding: .65rem; vertical-align: top; min-width: 7rem; max-width: 24rem; }
+.draft-plot th { font-weight: 600; }
+.draft-plot td:last-child { min-width: 13rem; }
+.draft-plot th small { display: block; margin-top: .25rem; color: var(--muted); font-weight: 400; }
+.draft-plot blockquote { border-left: 2px solid var(--border-strong); padding-left: .65rem; margin: .5rem 0; color: var(--muted); }
+.draft-chart-category-gap { margin-top: .5rem; color: var(--muted); font-size: .76rem; }
+.draft-evidence-gaps { margin-top: 2.5rem; border-top: 1px solid var(--border-strong); padding-top: 1.25rem; }
+.draft-evidence-gaps > h3 { font-size: 1rem; font-weight: 650; }
+.draft-evidence-gaps > h3 span { color: var(--muted); }
+.draft-evidence-gaps > p { color: var(--muted); font-size: .8rem; margin-top: .5rem; }
+.draft-gap-group { margin-top: 1.25rem; }
+.draft-gap-group > h4 { font-size: .72rem; color: var(--muted); font-weight: 600; margin-bottom: .45rem; }
+.draft-chart-gap { border-top: 1px solid var(--border); padding: .65rem 0; font-size: .8rem; }
+.draft-chart-gap > details > summary { cursor: pointer; font-weight: 550; }
+.draft-gap-label { display: inline-block; color: var(--muted); font-size: .65rem; font-weight: 400; margin-left: .7rem; }
+.draft-chart-gap p { margin-top: .6rem; line-height: 1.6; color: var(--muted); }
+.draft-chart-gap dl { margin-top: .65rem; display: grid; gap: .5rem; }
+.draft-chart-gap dt { font-weight: 600; }
+.draft-chart-gap dd { color: var(--muted); line-height: 1.6; }
+.draft-event-timeline { margin-top: 1.15rem; }
+.draft-event-timeline > .draft-plot-scope { color: var(--muted); font-size: .74rem; line-height: 1.6; }
+.draft-event-list { list-style: none; padding: 0; margin: .75rem 0; font-size: .76rem; line-height: 1.6; }
+.draft-event-list li { border-top: 1px solid var(--border); padding-top: .85rem; margin-top: .85rem; }
+.draft-event-list strong { display: block; margin: .2rem 0; font-weight: 600; }
+.draft-event-list p { color: var(--muted); }
+.draft-event-date { font-size: .68rem; }
+.draft-charts-gallery :is(summary, a, [tabindex]):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: .2rem; }
+.draft-charts-gallery circle[tabindex]:focus-visible { outline: none; }
+@media (max-width: 900px) {
+  .draft-charts-gallery .draft-chart-grid { grid-template-columns: 1fr; }
+  .draft-chart-card-multiple .draft-chart-plots { grid-template-columns: 1fr; }
+  .draft-charts-gallery .draft-chart-card-multiple { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .draft-charts-gallery .draft-chart-card { padding: .9rem; }
+  .draft-charts-gallery .draft-chart-card h4 { font-size: 1rem; }
+  .draft-charts-gallery .draft-chart-readiness { font-size: .56rem; }
+  .draft-chart-summary { font-size: .76rem; }
+  .draft-plot-inspector { padding: .6rem; }
+}
