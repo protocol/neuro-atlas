@@ -74,6 +74,31 @@ An owner-controlled isolated loopback-only fixture checkout may omit the proxy f
 
 **Rollback:** record previous deployment IDs/SHAs and nonsecret config first. Restore PLRD's previous deployment/config to remove entry points/proxy; then restore Atlas's previous standalone deployment or rebuild with empty base path and previous metadata settings. Preserve hosted auth; recheck both domains/deep links. Leave indexing off for an incomplete migration. Do not delete/transfer the repository as a rollback mechanism.
 
+## Legacy-link redirect cutover
+
+When built with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas` and a configured `ATLAS_SITE_URL`, Atlas redirects only the old **unprefixed** entry points to that canonical origin:
+
+- `/` → `/neuro-atlas`
+- `/milestones`, `/funding`, `/field-velocity`, `/methodology`, `/ecosystem` → the equivalent `/neuro-atlas/...` path (including nested suffixes)
+- `/regulatory-landscape` → `/neuro-atlas/milestones`
+
+These are temporary **307** redirects with `basePath: false`. Query values—including repeated and encoded values—are retained. Fragments are browser-managed, not sent to the server. Next may first normalize a trailing slash with its existing same-origin 308; the actual cross-origin move is still 307. Ecosystem retains its existing gated onward redirect to Neurofounders; this change does not rehost ecosystem content. Standalone builds, missing canonical configuration, and other base paths do not enable the cutover.
+
+There is deliberately no Host-based or catch-all domain redirect. PLRD uses this same Atlas origin behind the scenes, so `/neuro-atlas` and its descendants must continue serving the existing app/gate/assets. The existing *prefixed* regulatory alias still goes to the prefixed Milestone timeline. Unknown unprefixed routes and old asset URLs remain 404 rather than being redirected indiscriminately.
+
+Verification after a preview build (and again after the separately approved production release):
+
+```sh
+node scripts/verify-legacy-redirects.mjs https://<atlas-preview-origin> https://www.plrd.org
+node scripts/verify-auth-gate.mjs https://www.plrd.org /neuro-atlas
+```
+
+The first replay checks actual HTTP mappings, encoded/repeated query preservation, bounded trailing-slash handling, unknown-path exclusions, and absent/invalid auth plus noindex at the prefixed routes. It does not send real credentials or automatically follow redirects across origins. Follow representative legacy links through PLRD separately, check assets, and report successful real-password login independently. The experimental Next config helper flattens repeated query keys; the actual HTTP replay—not a relaxed assertion—is the preservation gate.
+
+**Release:** merge the Atlas-only PR after review, let the existing `protocol/neuro-atlas` → Protocol Vercel project build `main`, verify the exact deployed SHA/alias, then run both replays against `https://neuro-atlas-app.vercel.app` and PLRD. No new environment variable, PLRD source/config change, DNS change, auth removal, or merge of public-launch PR169 is needed. Until that production deployment, the old URLs remain unchanged.
+
+**Redirect-only rollback:** revert the redirect PR and redeploy Atlas, or restore the previously recorded prefixed production deployment. Keep the current `/neuro-atlas` build settings, PLRD proxy, password and noindex; do **not** roll back to a standalone/root build. Old unprefixed URLs will return to 404 while the PLRD home keeps working. A switch from 307 to permanent 308 requires a separate later decision.
+
 ## Shared trust and analytics
 
 `plrd.org/neuro-atlas` is the **same browser origin** as PLRD, not a security sandbox. Atlas JavaScript can access origin-scoped storage and readable cookies; paths do not isolate them. Review contributors/dependencies before production. Give Atlas no cross-app PLRD secrets or deployment credentials. Keep projects/permissions separate.
