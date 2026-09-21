@@ -86,6 +86,9 @@
 .pc-extrapolation-control button { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; padding: .55rem .8rem; border: 1px solid var(--border-strong); border-radius: .65rem; background: var(--surface); color: var(--foreground); font-size: .8rem; font-weight: 550; cursor: pointer; }
 .pc-extrapolation-control button[aria-checked=true] { background: var(--accent-soft); border-color: var(--accent); }
 .pc-extrapolation-control > span { font-size: .7rem; color: var(--muted); line-height: 1.6; }
+/* Both hints reserve the same wrapped height, including on narrow screens. */
+.pc-extrapolation-hint { display: grid; }
+.pc-extrapolation-hint > span { grid-area: 1 / 1; }
 .pc-switch-track { position: relative; width: 2rem; height: 1.15rem; border-radius: 999px; border: 1px solid var(--muted); flex-shrink: 0; }
 .pc-switch-track::after { content: ""; position: absolute; top: 2px; left: 2px; width: .75rem; height: .75rem; border-radius: 50%; background: var(--muted); }
 [aria-checked=true] > .pc-switch-track { background: var(--accent); border-color: var(--accent); }
@@ -93,6 +96,7 @@
 .pc-switch-state { min-width: 1.5rem; font-size: .7rem; color: var(--muted); }
 .pc-plot[data-extrapolation=on] { min-width: 0; }
 .pc-plot[data-extrapolation=on] svg { min-width: 720px; max-height: none; }
+.pc-plot .pc-chart-scroll[data-motion] svg { min-width: var(--pc-chart-min-width); max-height: var(--pc-chart-max-height); }
 .pc-extrapolation-overlay { pointer-events: none; }
 .pc-plot .pc-target-label { fill: var(--foreground); font-size: 12px; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 .pc-target-label tspan:first-child { font-weight: 650; }

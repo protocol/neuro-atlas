@@ -1,0 +1,67 @@
+{
+  "runtime": "c0d85456fc47d647db55c5bd835d9c70b7627631",
+  "baseline": "cc545e686bf8f0e913ebd2161a821b0b2e26b70a",
+  "surface": "local production build; loopback-only auth fixture; not hosted authenticated verification",
+  "cases": [
+    {
+      "width": 1440,
+      "chart": "simultaneously-recorded-neurons",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 49,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d",
+      "baseline_off_svg_hash_matches": true
+    },
+    {
+      "width": 1440,
+      "chart": "neural-recording-hours",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 46,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "f8a43e011f1888e3060245875d2353f9c4c5d02a8261ae4daf6de7bdeef0dc56",
+      "baseline_off_svg_hash_matches": true
+    },
+    {
+      "width": 390,
+      "chart": "simultaneously-recorded-neurons",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 49,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d",
+      "baseline_off_svg_hash_matches": true
+    },
+    {
+      "width": 390,
+      "chart": "neural-recording-hours",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 50,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "f8a43e011f1888e3060245875d2353f9c4c5d02a8261ae4daf6de7bdeef0dc56",
+      "baseline_off_svg_hash_matches": true
+    },
+    {
+      "width": 320,
+      "chart": "simultaneously-recorded-neurons",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 49,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d",
+      "baseline_off_svg_hash_matches": true
+    },
+    {
+      "width": 320,
+      "chart": "neural-recording-hours",
+      "baseline_distinct_forward_positions": 1,
+      "forward_positions": 49,
+      "reverse_positions": 50,
+      "chart_top_drift_px": 0.0,
+      "original_off_svg_hash": "f8a43e011f1888e3060245875d2353f9c4c5d02a8261ae4daf6de7bdeef0dc56",
+      "baseline_off_svg_hash_matches": true
+    }
+  ]
+}

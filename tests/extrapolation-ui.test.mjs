@@ -5,7 +5,14 @@ import { readFileSync } from 'node:fs';
 import React, { act } from 'react';
 import { PerformanceCurves } from '../src/components/performance-curves.tsx';
 import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
-import { mount, click, settle } from './modal-helpers.mjs';
+import { mount as mountDOM, click, settle } from './modal-helpers.mjs';
+
+// These assertions cover settled scientific/UI invariants. Intermediate frames,
+// live media-query changes and interruption are exercised with a fake RAF clock
+// in extrapolation-motion.test.mjs, not timing-sensitive sleeps here.
+const mount = (node, hash) => mountDOM(node, hash, window => {
+  window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });
+});
 
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
