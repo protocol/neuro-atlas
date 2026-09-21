@@ -18,9 +18,12 @@ const nextConfig: NextConfig = {
     const legacyRedirects = atlasBasePath === "/neuro-atlas" && canonicalOrigin
       ? [
           { source: "/", path: "" },
-          ...["milestones", "funding", "field-velocity", "methodology", "ecosystem"].map((page) => ({
-            source: `/${page}/:path*`, path: `/${page}/:path*`,
-          })),
+          // Separate exact and nonempty suffix rules: Vercel retains the slash
+          // before an empty :path*, unlike next start, causing an extra hop.
+          ...["milestones", "funding", "field-velocity", "methodology", "ecosystem"].flatMap((page) => [
+            { source: `/${page}`, path: `/${page}` },
+            { source: `/${page}/:path+`, path: `/${page}/:path+` },
+          ]),
           { source: "/regulatory-landscape", path: "/milestones" },
         ].map(({ source, path }) => ({
           source,
