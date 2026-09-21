@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { atlasSiteUrl, atlasIndexable } from "./lib/atlas-metadata";
 
 // Simple HTTP Basic Auth gate for the whole site. Any username, password "plneuro".
 const PASSWORD = "plneuro";
@@ -17,7 +18,10 @@ export function proxy(req: NextRequest) {
   }
   return new NextResponse("Authentication required.", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Neuro Atlas", charset="UTF-8"' },
+    headers: {
+      "WWW-Authenticate": 'Basic realm="Neuro Atlas", charset="UTF-8"',
+      ...(atlasSiteUrl && !atlasIndexable ? { "X-Robots-Tag": "noindex, nofollow" } : {}),
+    },
   });
 }
 

@@ -18,7 +18,8 @@ for (const suffix of ['', '/', '/milestones', '/funding', '/field-velocity', '/m
     assert.equal(new URL(response.url).origin, origin.origin, `Unexpected cross-origin redirect: ${path}`);
     assert.equal(response.status, 401, `${path}: ${invalid ? 'invalid' : 'absent'} credentials`);
     assert.match(response.headers.get('www-authenticate') ?? '', /^Basic realm="Neuro Atlas"/);
-    results.push({ path, credentials: invalid ? 'invalid' : 'absent', status: response.status });
+    if (prefix) assert.match(response.headers.get('x-robots-tag') ?? '', /noindex/, `${path}: missing originating noindex header`);
+    results.push({ path, credentials: invalid ? 'invalid' : 'absent', status: response.status, robots: response.headers.get('x-robots-tag') });
   }
 }
 console.log(JSON.stringify({ result: 'PASS', origin: origin.origin, prefix, successfulLogin: 'not tested', results }, null, 2));

@@ -52,7 +52,7 @@ node scripts/verify-auth-gate.mjs https://<atlas-preview-origin> /neuro-atlas
 node scripts/verify-auth-gate.mjs https://<plrd-preview-origin> /neuro-atlas
 ```
 
-Both the bare prefix and trailing-slash entry must finish at the existing **401 Basic** challenge, as must deep pages and sitemap. This is negative-access proof, not a successful password roundtrip; test the latter separately through approved autofill. Never use a credential found in source. The gate remains the existing lightweight review gate, not a new confidentiality/security boundary.
+Both the bare prefix and trailing-slash entry must finish at the existing **401 Basic** challenge, as must deep pages and sitemap. A configured nonindexable Atlas also emits `X-Robots-Tag: noindex, nofollow` from its own page/asset and 401 responses; an external Next proxy can drop headers added only by the destination site, so metadata or PLRD middleware headers alone are not proof. The smoke script checks originating noindex too. This is negative-access proof, not a successful password roundtrip; test the latter separately through approved autofill. Never use a credential found in source. The gate remains the existing lightweight review gate, not a new confidentiality/security boundary.
 
 For cutover, verify a prefixed Atlas deployment before enabling PLRD routing, keep indexing off, and preserve working legacy standalone links until a deliberate redirect cutover is ready. A prefixed preview does not change the standalone production alias. Record production build settings explicitly; preview-only CLI overrides do not persist into future Git production builds. Public launch/password removal is a separate decision.
 
