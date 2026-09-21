@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { atlasMetadata } from "@/lib/atlas-metadata";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { LandingVisual } from "@/components/landing-visual";
+
+export const metadata = atlasMetadata("/", "Neuro Atlas");
 
 const PLATES = [
   { href: "/milestones", title: "Milestones", view: "milestones", blurb: "Follow the scientific, clinical, and commercial breakthroughs." },
@@ -20,7 +23,7 @@ export default function Home() {
         </p>
         <div className="landing-actions">
           <a href="#explore" className="landing-explore">Explore the atlas <span aria-hidden="true">↓</span></a>
-          <a href="https://github.com/lksbrssr/neuro-atlas/compare" target="_blank" rel="noreferrer" className="landing-contribute">
+          <a href="https://github.com/protocol/neuro-atlas/compare" target="_blank" rel="noreferrer" className="landing-contribute">
             Contribute via PR <span aria-hidden="true">↗</span>
           </a>
         </div>

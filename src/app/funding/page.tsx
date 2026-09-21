@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { atlasMetadata } from "@/lib/atlas-metadata";
 import fundingData from "@/data/funding-index.json";
 import { FundingIndexDashboard } from "@/components/funding-index-dashboard";
 import { PlateHero } from "@/components/plate-header";
 import { formatCapital, type FundingIndexData } from "@/lib/funding-index";
 
-export const metadata: Metadata = {
-  title: "BCI Funding Index · Neuro Atlas",
-  description: "A screened view of BCI financing rounds, investors, and regulatory milestones.",
-};
+export const metadata = atlasMetadata(
+  "/funding",
+  "BCI Funding Index · Neuro Atlas",
+  "A screened view of BCI financing rounds, investors, and regulatory milestones.",
+);
 
 export default function FundingPage() {
   const data = fundingData as FundingIndexData;

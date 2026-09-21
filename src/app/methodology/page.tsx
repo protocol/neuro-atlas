@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { atlasMetadata } from "@/lib/atlas-metadata";
+import { atlasPath } from "@/lib/atlas-path";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { PlateHero } from "@/components/plate-header";
 import { Abbr } from "@/components/abbr";
 
-export const metadata: Metadata = { title: "Methodology — Neuro Atlas" };
+export const metadata = atlasMetadata("/methodology", "Methodology — Neuro Atlas");
 
 const SOURCES = [
   {
@@ -101,7 +102,7 @@ export default function MethodologyPage() {
             <div key={s.name} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-baseline sm:gap-4">
               <div className="w-56 shrink-0 text-[13px] font-semibold">
                 {s.url ? (
-                  <a href={s.url} target="_blank" rel="noreferrer" className="hover:text-accent">
+                  <a href={atlasPath(s.url)} target="_blank" rel="noreferrer" className="hover:text-accent">
                     {s.name} ↗
                   </a>
                 ) : (
@@ -140,7 +141,7 @@ export default function MethodologyPage() {
           </p>
           <div className="mt-4">
             <a
-              href="https://github.com/lksbrssr/neuro-atlas/pulls"
+              href="https://github.com/protocol/neuro-atlas/pulls"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"

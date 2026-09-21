@@ -22,7 +22,7 @@ test("the shared footer provides PL destinations and a visible investment discla
     ["PL Neuro", "https://www.plneuro.xyz/"],
     ["Protocol Labs", "https://www.protocol.ai/"],
     ["X / Twitter", "https://x.com/protocollabs_rd"],
-    ["GitHub", "https://github.com/lksbrssr/neuro-atlas"],
+    ["GitHub", "https://github.com/protocol/neuro-atlas"],
     ["Privacy Policy", "https://www.protocol.ai/legal/#privacy-policy"],
     ["Terms of Service", "https://www.protocol.ai/legal/#terms-conditions"],
   ]);

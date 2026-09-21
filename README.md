@@ -15,7 +15,7 @@ The Field velocity plate now includes [shared performance curves](docs/performan
 ## Develop
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -46,4 +46,6 @@ src/
 
 ## Deploy
 
-Hosted on Vercel; pushes to `main` deploy to production, PRs get preview URLs.
+Hosted on Vercel. After the transfer to [protocol/neuro-atlas](https://github.com/protocol/neuro-atlas), verify the existing project's GitHub App access and Git connection before relying on automatic main/PR deployments.
+
+See [Contributing](CONTRIBUTING.md) for source/units/provenance and tests, and [PLRD hosting](docs/plrd-hosting.md) for opt-in `/neuro-atlas`, canonical metadata, the existing hosted Basic-auth gate, launch and rollback. Root hosting remains the default. This change alone does not authorize public launch or change production settings.

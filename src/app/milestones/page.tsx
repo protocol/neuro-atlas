@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { MilestonesSection } from "@/components/sections/milestones-section";
 import MILESTONES from "@/data/milestones.json";
 
-export const metadata: Metadata = { title: "Milestones — Neuro Atlas" };
+export const metadata = atlasMetadata("/milestones", "Milestones — Neuro Atlas");
 
 const years = new Set(MILESTONES.map((row) => (row.date ?? "").slice(0, 4))).size;
 const companies = new Set(MILESTONES.map((row) => row.company)).size;

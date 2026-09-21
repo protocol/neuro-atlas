@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { atlasPath } from "@/lib/atlas-path";
 
 export function FirmLogo({
   src,
@@ -12,7 +13,7 @@ export function FirmLogo({
   if (src) {
     return (
       <img
-        src={src}
+        src={atlasPath(src)}
         alt=""
         width={size}
         height={size}

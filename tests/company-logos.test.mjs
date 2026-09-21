@@ -60,7 +60,7 @@ test("restored assets retain independent provenance and exact integrity", () => 
 test("logo renderer uses images when available and retains initials for genuinely unavailable logos", () => {
   const image = renderToStaticMarkup(React.createElement(FirmLogo, { name: "Neuralink", src: "/logos/neuralink.png", size: 24 }));
   assert.match(image, /<img/);
-  assert.match(image, /src="\/logos\/neuralink.png"/);
+  assert.ok(image.includes(`src="${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logos/neuralink.png"`));
   assert.match(image, /width="24"/);
   const fallback = renderToStaticMarkup(React.createElement(FirmLogo, { name: "Unavailable", src: null }));
   assert.doesNotMatch(fallback, /<img/);

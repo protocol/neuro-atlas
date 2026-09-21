@@ -71,12 +71,12 @@ test("contribute via PR button is present across plates and navigation", async (
   const nav = await readFile(path.join(root, "src", "components", "site-nav.tsx"), "utf8");
   const methodology = await readFile(path.join(root, "src", "app", "methodology", "page.tsx"), "utf8");
 
-  assert.match(hero, /https:\/\/github\.com\/lksbrssr\/neuro-atlas\/pulls/);
+  assert.match(hero, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
   assert.match(hero, /Contribute via PR/);
 
-  assert.match(nav, /https:\/\/github\.com\/lksbrssr\/neuro-atlas\/pulls/);
+  assert.match(nav, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
   assert.match(nav, /Contribute via PR/);
 
-  assert.match(methodology, /https:\/\/github\.com\/lksbrssr\/neuro-atlas\/pulls/);
+  assert.match(methodology, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
   assert.match(methodology, /Open a Pull Request on GitHub/);
 });

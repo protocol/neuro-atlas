@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { VelocityTabs } from "@/components/sections/velocity-tabs";
 import INSTRUMENTS from "@/data/velocity/instruments.json";
@@ -10,7 +10,7 @@ import { selectPerformance, selectPace } from "@/lib/field-velocity/performance"
 import { PerformanceCurves } from "@/components/performance-curves";
 import { PaceReadings } from "@/components/pace-readings";
 
-export const metadata: Metadata = { title: "Field velocity — Neuro Atlas" };
+export const metadata = atlasMetadata("/field-velocity", "Field velocity — Neuro Atlas");
 
 const feed = parseFeed(SNAPSHOT);
 const readings = feed.records.filter((row) => row.state === "reading").length;

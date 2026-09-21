@@ -11,7 +11,7 @@ const linkGroups = [
     label: "Connect",
     links: [
       { label: "X / Twitter", href: "https://x.com/protocollabs_rd" },
-      { label: "GitHub", href: "https://github.com/lksbrssr/neuro-atlas" },
+      { label: "GitHub", href: "https://github.com/protocol/neuro-atlas" },
     ],
   },
   {

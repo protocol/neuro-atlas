@@ -32,7 +32,7 @@ export function PlateHero({
         <span aria-hidden="true">•</span>
         <span className={`rounded-full px-3 py-1.5 ${s.cls}`}>{s.label}</span>
         <a
-          href="https://github.com/lksbrssr/neuro-atlas/pulls"
+          href="https://github.com/protocol/neuro-atlas/pulls"
           target="_blank"
           rel="noreferrer"
           className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-normal text-white/80 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"

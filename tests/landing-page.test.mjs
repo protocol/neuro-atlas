@@ -38,7 +38,7 @@ test("hero offers a real explore anchor and GitHub pull-request route for feedba
   assert.ok(explore, "Missing exploration CTA");
   assert.ok(document.querySelector("#explore"), "Explore target must exist");
   assert.equal(document.querySelector("#explore").getAttribute("tabindex"), "-1");
-  const contribute = hero.querySelector('a[href="https://github.com/lksbrssr/neuro-atlas/compare"]');
+  const contribute = hero.querySelector('a[href="https://github.com/protocol/neuro-atlas/compare"]');
   assert.ok(contribute, "Contribution CTA should reach the new-PR flow, not a placeholder");
   assert.match(contribute.textContent, /Contribute via PR/);
   assert.match(hero.textContent, /Feedback, corrections, or new data/);
