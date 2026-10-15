@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import React from 'react';
+import React, { act } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { mount, click } from './modal-helpers.mjs';
@@ -46,6 +46,10 @@ for (const id of ['neurotech', 'neuralink']) test(`${id} deep link opens sourced
     assert.ok(modal.querySelector(`a[download][href$="/${id}.csv"]`));
     assert.ok(modal.querySelector('a[href^="https://trends.google.com/trends/explore?"]'));
     assert.match(modal.textContent, new RegExp(group.rawSha256));
+    await act(async () => modal.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true })));
+    assert.equal(document.activeElement, modal.querySelector('summary'), 'Closed source tables must not trap focus in hidden content');
+    await act(async () => modal.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', bubbles: true })));
+    assert.equal(document.activeElement, modal.querySelector('button[aria-label^="Close"]'));
     await click(modal.querySelector('button[aria-label^="Close"]'));
     assert.equal(document.querySelector('dialog[open]'), null);
   } finally { await cleanup(); }

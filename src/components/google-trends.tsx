@@ -47,6 +47,7 @@ function TrendCard({ group }: { group: Group }) {
   const id = `google-trends-${group.id}`;
   const open = hash === `#${id}`;
   const [copyStatus, setCopyStatus] = useState('');
+  const [valuesOpen, setValuesOpen] = useState(false);
   const latest = group.rows.filter(row => !row.partial).at(-1)!;
   const normalization = group.id === 'neurotech' ? 'Both terms compared in one request; shared 0–100 scale.' : 'Neuralink is independently normalized; its index cannot be compared with the other chart.';
   const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
@@ -85,8 +86,8 @@ function TrendCard({ group }: { group: Group }) {
         <li><a href="https://support.google.com/trends/answer/4359550?hl=en" target="_blank" rel="noreferrer">Search terms versus topics ↗</a></li>
       </ul>
       {share}
-      <details className="gt-values"><summary>All source values · {group.rows.length} weekly rows (including partial)</summary>
-        <div className="pc-table-scroll" role="region" aria-label={`${group.title} source values`} tabIndex={0}>
+      <details className="gt-values" open={valuesOpen} onToggle={event => setValuesOpen(event.currentTarget.open)}><summary tabIndex={0}>All source values · {group.rows.length} weekly rows (including partial)</summary>
+        <div className="pc-table-scroll" role="region" aria-label={`${group.title} source values`} tabIndex={valuesOpen ? 0 : undefined}>
           <table><caption>Google Trends normalized index · original precision, no rescaling</caption><thead><tr><th scope="col">Week start (UTC)</th>{group.terms.map(term => <th scope="col" key={term}>{term}</th>)}<th scope="col">Period status</th></tr></thead>
             <tbody>{group.rows.map(row => <tr key={row.date} data-trends-row={row.date}><th scope="row">{row.date}</th>{row.displayValues.map((value, i) => <td key={i}>{value}</td>)}<td>{row.partial ? 'Partial · excluded' : 'Complete'}</td></tr>)}</tbody>
           </table>
