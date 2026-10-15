@@ -198,5 +198,9 @@
   "trial": {
     "expansion": "Clinical trial",
     "definition": "A formal study of a device or therapy in human subjects"
+  },
+  "HUD": {
+    "expansion": "Humanitarian Use Device",
+    "definition": "FDA rare-disease device designation enabling an HDE marketing application; designation alone is not marketing approval"
   }
 }
