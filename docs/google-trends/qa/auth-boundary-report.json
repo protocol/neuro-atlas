@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/neuro-atlas/field-velocity",
+    "status": 401,
+    "robots": "noindex, nofollow",
+    "authChallenge": true
+  },
+  {
+    "path": "/neuro-atlas/data/google-trends/neurotech.csv",
+    "status": 401,
+    "robots": "noindex, nofollow",
+    "authChallenge": true
+  },
+  {
+    "path": "/neuro-atlas/data/google-trends/google-trends.json",
+    "status": 401,
+    "robots": "noindex, nofollow",
+    "authChallenge": true
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "capturedAt": "2026-10-15T18:59:03.096730+00:00",
+  "exploreRequest": {
+    "comparisonItem": [
+      {
+        "keyword": "neurotechnology",
+        "geo": "",
+        "time": "2023-10-15 2026-10-15"
+      },
+      {
+        "keyword": "brain-computer interface",
+        "geo": "",
+        "time": "2023-10-15 2026-10-15"
+      }
+    ],
+    "category": 0,
+    "property": ""
+  },
+  "widgetRequest": {
+    "time": "2023-10-15 2026-10-15",
+    "resolution": "WEEK",
+    "locale": "en-US",
+    "comparisonItem": [
+      {
+        "geo": {},
+        "complexKeywordsRestriction": {
+          "keyword": [
+            {
+              "type": "BROAD",
+              "value": "neurotechnology"
+            }
+          ]
+        }
+      },
+      {
+        "geo": {},
+        "complexKeywordsRestriction": {
+          "keyword": [
+            {
+              "type": "BROAD",
+              "value": "brain-computer interface"
+            }
+          ]
+        }
+      }
+    ],
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 0
+    },
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  }
+}

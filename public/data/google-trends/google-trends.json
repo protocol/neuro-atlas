@@ -1,0 +1,3496 @@
+{
+  "version": 1,
+  "geography": "Worldwide",
+  "property": "Web Search",
+  "category": "All categories",
+  "resolution": "Weekly (UTC)",
+  "start": "2023-10-15",
+  "end": "2026-10-15",
+  "groups": [
+    {
+      "id": "neurotech",
+      "title": "Neurotech search terms",
+      "terms": [
+        "neurotechnology",
+        "brain-computer interface"
+      ],
+      "start": "2023-10-15",
+      "end": "2026-10-15",
+      "capturedAt": "2026-10-15T18:59:03.096730+00:00",
+      "rows": [
+        {
+          "date": "2023-10-15",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-10-22",
+          "values": [
+            4,
+            1
+          ],
+          "displayValues": [
+            "4",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-10-29",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-05",
+          "values": [
+            4,
+            1
+          ],
+          "displayValues": [
+            "4",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-12",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-19",
+          "values": [
+            2,
+            2
+          ],
+          "displayValues": [
+            "2",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-26",
+          "values": [
+            4,
+            1
+          ],
+          "displayValues": [
+            "4",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-03",
+          "values": [
+            4,
+            1
+          ],
+          "displayValues": [
+            "4",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-10",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-17",
+          "values": [
+            2,
+            2
+          ],
+          "displayValues": [
+            "2",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-24",
+          "values": [
+            2,
+            2
+          ],
+          "displayValues": [
+            "2",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-31",
+          "values": [
+            3,
+            1
+          ],
+          "displayValues": [
+            "3",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-07",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-14",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-21",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-28",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-04",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-11",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-18",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-25",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-03",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-10",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-17",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-24",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-31",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-07",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-14",
+          "values": [
+            7,
+            2
+          ],
+          "displayValues": [
+            "7",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-21",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-28",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-05",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-12",
+          "values": [
+            6,
+            3
+          ],
+          "displayValues": [
+            "6",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-19",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-26",
+          "values": [
+            5,
+            1
+          ],
+          "displayValues": [
+            "5",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-02",
+          "values": [
+            5,
+            null
+          ],
+          "displayValues": [
+            "5",
+            "Unavailable"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-09",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-16",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-23",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-30",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-07",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-14",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-21",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-28",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-04",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-11",
+          "values": [
+            2,
+            2
+          ],
+          "displayValues": [
+            "2",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-18",
+          "values": [
+            5,
+            1
+          ],
+          "displayValues": [
+            "5",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-25",
+          "values": [
+            5,
+            1
+          ],
+          "displayValues": [
+            "5",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-01",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-08",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-15",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-22",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-29",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-06",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-13",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-20",
+          "values": [
+            6,
+            3
+          ],
+          "displayValues": [
+            "6",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-27",
+          "values": [
+            6,
+            null
+          ],
+          "displayValues": [
+            "6",
+            "Unavailable"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-03",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-10",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-17",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-24",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-01",
+          "values": [
+            5,
+            1
+          ],
+          "displayValues": [
+            "5",
+            "1"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-08",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-15",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-22",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-29",
+          "values": [
+            3,
+            2
+          ],
+          "displayValues": [
+            "3",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-05",
+          "values": [
+            5,
+            2
+          ],
+          "displayValues": [
+            "5",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-12",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-19",
+          "values": [
+            6,
+            4
+          ],
+          "displayValues": [
+            "6",
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-26",
+          "values": [
+            4,
+            2
+          ],
+          "displayValues": [
+            "4",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-02",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-09",
+          "values": [
+            5,
+            null
+          ],
+          "displayValues": [
+            "5",
+            "Unavailable"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-16",
+          "values": [
+            7,
+            3
+          ],
+          "displayValues": [
+            "7",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-23",
+          "values": [
+            5,
+            5
+          ],
+          "displayValues": [
+            "5",
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-02",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-09",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-16",
+          "values": [
+            7,
+            3
+          ],
+          "displayValues": [
+            "7",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-23",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-30",
+          "values": [
+            4,
+            3
+          ],
+          "displayValues": [
+            "4",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-06",
+          "values": [
+            7,
+            2
+          ],
+          "displayValues": [
+            "7",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-13",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-20",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-27",
+          "values": [
+            6,
+            3
+          ],
+          "displayValues": [
+            "6",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-04",
+          "values": [
+            7,
+            2
+          ],
+          "displayValues": [
+            "7",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-11",
+          "values": [
+            6,
+            2
+          ],
+          "displayValues": [
+            "6",
+            "2"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-18",
+          "values": [
+            5,
+            3
+          ],
+          "displayValues": [
+            "5",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-25",
+          "values": [
+            6,
+            3
+          ],
+          "displayValues": [
+            "6",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-01",
+          "values": [
+            9,
+            3
+          ],
+          "displayValues": [
+            "9",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-08",
+          "values": [
+            10,
+            4
+          ],
+          "displayValues": [
+            "10",
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-15",
+          "values": [
+            11,
+            5
+          ],
+          "displayValues": [
+            "11",
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-22",
+          "values": [
+            8,
+            4
+          ],
+          "displayValues": [
+            "8",
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-29",
+          "values": [
+            8,
+            4
+          ],
+          "displayValues": [
+            "8",
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-06",
+          "values": [
+            8,
+            5
+          ],
+          "displayValues": [
+            "8",
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-13",
+          "values": [
+            8,
+            6
+          ],
+          "displayValues": [
+            "8",
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-20",
+          "values": [
+            9,
+            5
+          ],
+          "displayValues": [
+            "9",
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-27",
+          "values": [
+            12,
+            11
+          ],
+          "displayValues": [
+            "12",
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-03",
+          "values": [
+            17,
+            17
+          ],
+          "displayValues": [
+            "17",
+            "17"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-10",
+          "values": [
+            32,
+            52
+          ],
+          "displayValues": [
+            "32",
+            "52"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-17",
+          "values": [
+            27,
+            37
+          ],
+          "displayValues": [
+            "27",
+            "37"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-24",
+          "values": [
+            21,
+            27
+          ],
+          "displayValues": [
+            "21",
+            "27"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-31",
+          "values": [
+            21,
+            53
+          ],
+          "displayValues": [
+            "21",
+            "53"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-07",
+          "values": [
+            25,
+            44
+          ],
+          "displayValues": [
+            "25",
+            "44"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-14",
+          "values": [
+            21,
+            47
+          ],
+          "displayValues": [
+            "21",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-21",
+          "values": [
+            32,
+            84
+          ],
+          "displayValues": [
+            "32",
+            "84"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-28",
+          "values": [
+            27,
+            61
+          ],
+          "displayValues": [
+            "27",
+            "61"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-05",
+          "values": [
+            28,
+            53
+          ],
+          "displayValues": [
+            "28",
+            "53"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-12",
+          "values": [
+            27,
+            55
+          ],
+          "displayValues": [
+            "27",
+            "55"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-19",
+          "values": [
+            30,
+            56
+          ],
+          "displayValues": [
+            "30",
+            "56"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-26",
+          "values": [
+            27,
+            48
+          ],
+          "displayValues": [
+            "27",
+            "48"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-02",
+          "values": [
+            52,
+            51
+          ],
+          "displayValues": [
+            "52",
+            "51"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-09",
+          "values": [
+            45,
+            48
+          ],
+          "displayValues": [
+            "45",
+            "48"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-16",
+          "values": [
+            34,
+            55
+          ],
+          "displayValues": [
+            "34",
+            "55"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-23",
+          "values": [
+            32,
+            57
+          ],
+          "displayValues": [
+            "32",
+            "57"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-30",
+          "values": [
+            33,
+            55
+          ],
+          "displayValues": [
+            "33",
+            "55"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-07",
+          "values": [
+            27,
+            47
+          ],
+          "displayValues": [
+            "27",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-14",
+          "values": [
+            23,
+            47
+          ],
+          "displayValues": [
+            "23",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-21",
+          "values": [
+            18,
+            35
+          ],
+          "displayValues": [
+            "18",
+            "35"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-28",
+          "values": [
+            16,
+            35
+          ],
+          "displayValues": [
+            "16",
+            "35"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-04",
+          "values": [
+            21,
+            38
+          ],
+          "displayValues": [
+            "21",
+            "38"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-11",
+          "values": [
+            24,
+            34
+          ],
+          "displayValues": [
+            "24",
+            "34"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-18",
+          "values": [
+            27,
+            39
+          ],
+          "displayValues": [
+            "27",
+            "39"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-25",
+          "values": [
+            29,
+            47
+          ],
+          "displayValues": [
+            "29",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-01",
+          "values": [
+            29,
+            35
+          ],
+          "displayValues": [
+            "29",
+            "35"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-08",
+          "values": [
+            29,
+            37
+          ],
+          "displayValues": [
+            "29",
+            "37"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-15",
+          "values": [
+            39,
+            33
+          ],
+          "displayValues": [
+            "39",
+            "33"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-22",
+          "values": [
+            32,
+            36
+          ],
+          "displayValues": [
+            "32",
+            "36"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-01",
+          "values": [
+            34,
+            41
+          ],
+          "displayValues": [
+            "34",
+            "41"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-08",
+          "values": [
+            32,
+            47
+          ],
+          "displayValues": [
+            "32",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-15",
+          "values": [
+            27,
+            62
+          ],
+          "displayValues": [
+            "27",
+            "62"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-22",
+          "values": [
+            28,
+            59
+          ],
+          "displayValues": [
+            "28",
+            "59"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-29",
+          "values": [
+            32,
+            65
+          ],
+          "displayValues": [
+            "32",
+            "65"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-05",
+          "values": [
+            31,
+            67
+          ],
+          "displayValues": [
+            "31",
+            "67"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-12",
+          "values": [
+            31,
+            68
+          ],
+          "displayValues": [
+            "31",
+            "68"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-19",
+          "values": [
+            33,
+            58
+          ],
+          "displayValues": [
+            "33",
+            "58"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-26",
+          "values": [
+            40,
+            68
+          ],
+          "displayValues": [
+            "40",
+            "68"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-03",
+          "values": [
+            43,
+            84
+          ],
+          "displayValues": [
+            "43",
+            "84"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-10",
+          "values": [
+            50,
+            100
+          ],
+          "displayValues": [
+            "50",
+            "100"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-17",
+          "values": [
+            46,
+            94
+          ],
+          "displayValues": [
+            "46",
+            "94"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-24",
+          "values": [
+            48,
+            81
+          ],
+          "displayValues": [
+            "48",
+            "81"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-31",
+          "values": [
+            50,
+            98
+          ],
+          "displayValues": [
+            "50",
+            "98"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-07",
+          "values": [
+            49,
+            82
+          ],
+          "displayValues": [
+            "49",
+            "82"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-14",
+          "values": [
+            50,
+            100
+          ],
+          "displayValues": [
+            "50",
+            "100"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-21",
+          "values": [
+            49,
+            89
+          ],
+          "displayValues": [
+            "49",
+            "89"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-28",
+          "values": [
+            48,
+            74
+          ],
+          "displayValues": [
+            "48",
+            "74"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-05",
+          "values": [
+            46,
+            77
+          ],
+          "displayValues": [
+            "46",
+            "77"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-12",
+          "values": [
+            37,
+            70
+          ],
+          "displayValues": [
+            "37",
+            "70"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-19",
+          "values": [
+            41,
+            64
+          ],
+          "displayValues": [
+            "41",
+            "64"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-26",
+          "values": [
+            37,
+            47
+          ],
+          "displayValues": [
+            "37",
+            "47"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-02",
+          "values": [
+            30,
+            43
+          ],
+          "displayValues": [
+            "30",
+            "43"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-09",
+          "values": [
+            33,
+            37
+          ],
+          "displayValues": [
+            "33",
+            "37"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-16",
+          "values": [
+            19,
+            25
+          ],
+          "displayValues": [
+            "19",
+            "25"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-23",
+          "values": [
+            22,
+            21
+          ],
+          "displayValues": [
+            "22",
+            "21"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-30",
+          "values": [
+            34,
+            26
+          ],
+          "displayValues": [
+            "34",
+            "26"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-06",
+          "values": [
+            20,
+            23
+          ],
+          "displayValues": [
+            "20",
+            "23"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-13",
+          "values": [
+            30,
+            24
+          ],
+          "displayValues": [
+            "30",
+            "24"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-20",
+          "values": [
+            31,
+            27
+          ],
+          "displayValues": [
+            "31",
+            "27"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-27",
+          "values": [
+            14,
+            16
+          ],
+          "displayValues": [
+            "14",
+            "16"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-10-04",
+          "values": [
+            7,
+            3
+          ],
+          "displayValues": [
+            "7",
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-10-11",
+          "values": [
+            6,
+            3
+          ],
+          "displayValues": [
+            "6",
+            "3"
+          ],
+          "partial": true
+        }
+      ],
+      "sourceUrl": "https://trends.google.com/trends/explore?date=2023-10-15+2026-10-15&q=neurotechnology%2Cbrain-computer+interface&hl=en-US",
+      "rawSha256": "13f8075c9982c0f7bba52d145118c51474fc16c6c9863d7898329d74e60269b0",
+      "requestSha256": "b72c1e54485b97d8d41cda38729f3f488f3f7bbc5cc466190955df20f4a9a0a1"
+    },
+    {
+      "id": "neuralink",
+      "title": "Neuralink · brand context",
+      "terms": [
+        "Neuralink"
+      ],
+      "start": "2023-10-15",
+      "end": "2026-10-15",
+      "capturedAt": "2026-10-15T18:59:19.629966+00:00",
+      "rows": [
+        {
+          "date": "2023-10-15",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-10-22",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-10-29",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-05",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-12",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-19",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-11-26",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-03",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-10",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-17",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-24",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2023-12-31",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-07",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-14",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-21",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-01-28",
+          "values": [
+            100
+          ],
+          "displayValues": [
+            "100"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-04",
+          "values": [
+            22
+          ],
+          "displayValues": [
+            "22"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-11",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-18",
+          "values": [
+            20
+          ],
+          "displayValues": [
+            "20"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-02-25",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-03",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-10",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-17",
+          "values": [
+            32
+          ],
+          "displayValues": [
+            "32"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-24",
+          "values": [
+            22
+          ],
+          "displayValues": [
+            "22"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-03-31",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-07",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-14",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-21",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-04-28",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-05",
+          "values": [
+            14
+          ],
+          "displayValues": [
+            "14"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-12",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-19",
+          "values": [
+            13
+          ],
+          "displayValues": [
+            "13"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-05-26",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-02",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-09",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-16",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-23",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-06-30",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-07",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-14",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-21",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-07-28",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-04",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-11",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-18",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-08-25",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-01",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-08",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-15",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-22",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-09-29",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-06",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-13",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-20",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-10-27",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-03",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-10",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-17",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-11-24",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-01",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-08",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-15",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-22",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2024-12-29",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-05",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-12",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-19",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-01-26",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-02",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-09",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-16",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-02-23",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-02",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-09",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-16",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-23",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-03-30",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-06",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-13",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-20",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-04-27",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-04",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-11",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-18",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-05-25",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-01",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-08",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-15",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-22",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-06-29",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-06",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-13",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-20",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-07-27",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-03",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-10",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-17",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-24",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-08-31",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-07",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-14",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-21",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-09-28",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-05",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-12",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-19",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-10-26",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-02",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-09",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-16",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-23",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-11-30",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-07",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-14",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-21",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2025-12-28",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-04",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-11",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-18",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-01-25",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-01",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-08",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-15",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-02-22",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-01",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-08",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-15",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-22",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-03-29",
+          "values": [
+            14
+          ],
+          "displayValues": [
+            "14"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-05",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-12",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-19",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-04-26",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-03",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-10",
+          "values": [
+            11
+          ],
+          "displayValues": [
+            "11"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-17",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-24",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-05-31",
+          "values": [
+            12
+          ],
+          "displayValues": [
+            "12"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-07",
+          "values": [
+            13
+          ],
+          "displayValues": [
+            "13"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-14",
+          "values": [
+            15
+          ],
+          "displayValues": [
+            "15"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-21",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-06-28",
+          "values": [
+            10
+          ],
+          "displayValues": [
+            "10"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-05",
+          "values": [
+            9
+          ],
+          "displayValues": [
+            "9"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-12",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-19",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-07-26",
+          "values": [
+            7
+          ],
+          "displayValues": [
+            "7"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-02",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-09",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-16",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-23",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-08-30",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-06",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-13",
+          "values": [
+            6
+          ],
+          "displayValues": [
+            "6"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-20",
+          "values": [
+            8
+          ],
+          "displayValues": [
+            "8"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-09-27",
+          "values": [
+            5
+          ],
+          "displayValues": [
+            "5"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-10-04",
+          "values": [
+            4
+          ],
+          "displayValues": [
+            "4"
+          ],
+          "partial": false
+        },
+        {
+          "date": "2026-10-11",
+          "values": [
+            3
+          ],
+          "displayValues": [
+            "3"
+          ],
+          "partial": true
+        }
+      ],
+      "sourceUrl": "https://trends.google.com/trends/explore?date=2023-10-15+2026-10-15&q=Neuralink&hl=en-US",
+      "rawSha256": "611b43f4f5e0c4f5c61a79ede71cc3416abb3f5a0f30170d784b9c44b2d245b8",
+      "requestSha256": "c467e67dca0f5cc3929cecd6ed35b2707dc4b5c4dbf6d152c67f6ee0927aede9"
+    }
+  ]
+}

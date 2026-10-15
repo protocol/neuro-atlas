@@ -11,7 +11,9 @@
     "typecheck": "next typegen && tsc --noEmit",
     "performance:sync": "tsx scripts/sync-performance-curves.ts",
     "performance:verify": "tsx scripts/verify-performance-parity.ts",
-    "data:generate": "node scripts/generate-derived.mjs"
+    "data:generate": "node scripts/generate-derived.mjs",
+    "trends:refresh": "tsx scripts/refresh-google-trends.ts",
+    "trends:verify": "tsx scripts/refresh-google-trends.ts --check"
   },
   "dependencies": {
     "next": "16.3.2",
