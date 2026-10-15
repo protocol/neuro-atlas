@@ -1,3 +1,11 @@
+export type FundingFounding = {
+  year: number | null;
+  sourceUrl: string;
+  sourceKind: "primary" | "reporting" | "";
+  reviewedOn: string;
+  note: string;
+};
+
 export type FundingCompany = {
   slug: string;
   name: string;
@@ -8,6 +16,7 @@ export type FundingCompany = {
   website?: string;
   scope: string;
   logo?: string;
+  founding?: FundingFounding | null;
 };
 
 export type FundingRound = {

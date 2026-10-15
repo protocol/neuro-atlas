@@ -30,15 +30,45 @@ export function parseCsv(text) {
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones] = await Promise.all([
+  const [companies, rounds, milestones, foundings] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
+    load("foundings.csv"),
   ]);
-  return { companies, rounds, milestones };
+  return { companies, rounds, milestones, foundings };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings }) {
+  const roster = new Set(companies.map((company) => company.slug));
+  if (roster.size !== companies.length) throw new Error("Duplicate company slug");
+  const foundingBySlug = new Map();
+  for (const row of foundings ?? []) {
+    const slug = row.company_slug;
+    if (!roster.has(slug)) throw new Error(`Unknown founding company: ${slug}`);
+    if (foundingBySlug.has(slug)) throw new Error(`Duplicate founding company: ${slug}`);
+    const reviewedOn = row.reviewed_on?.trim() ?? "";
+    const timestamp = Date.parse(`${reviewedOn}T00:00:00Z`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(reviewedOn) || !Number.isFinite(timestamp) || new Date(timestamp).toISOString().slice(0, 10) !== reviewedOn) {
+      throw new Error(`Invalid founding review date: ${slug}`);
+    }
+    const rawYear = row.founding_year?.trim() ?? "";
+    const year = rawYear ? Number(rawYear) : null;
+    if (year !== null && (!/^\d{4}$/.test(rawYear) || year < 1800 || year > Number(reviewedOn.slice(0, 4)))) {
+      throw new Error(`Invalid founding year: ${slug}`);
+    }
+    const sourceUrl = row.source_url?.trim() ?? "";
+    let validSource = false;
+    try { validSource = new URL(sourceUrl).protocol === "https:"; } catch { /* No usable source. */ }
+    const sourceKind = row.source_kind?.trim() ?? "";
+    const note = row.note?.trim() ?? "";
+    if (!note || (year !== null && (!validSource || !SOURCE_KINDS.has(sourceKind))) ||
+        (sourceUrl && !validSource) || (sourceKind && !SOURCE_KINDS.has(sourceKind))) {
+      throw new Error(`Invalid founding provenance: ${slug}`);
+    }
+    foundingBySlug.set(slug, { year, sourceUrl, sourceKind, reviewedOn, note });
+  }
+  if (foundings && foundingBySlug.size !== roster.size) throw new Error("Missing founding roster entries");
   const normalizedCompanies = companies.map((company) => ({
     slug: company.slug,
     name: company.name,
@@ -48,6 +78,7 @@ export function buildFundingIndex({ companies, rounds, milestones }) {
     indication: company.indication,
     website: company.website,
     scope: company.scope,
+    founding: foundingBySlug.get(company.slug) ?? null,
   }));
   const companySlugs = new Set(normalizedCompanies.map((company) => company.slug));
   const seenEvents = new Set();

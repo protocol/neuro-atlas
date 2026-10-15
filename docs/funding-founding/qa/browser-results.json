@@ -1,0 +1,213 @@
+{
+  "status": "PASS",
+  "fixture": "Loopback static serving of npm run build HTML/assets; production auth unchanged; not hosted verification",
+  "sourceCommit": "5ff441529717e9682b1e4472398f0d78952965c9",
+  "fundingHtmlSha256": "d051a1f6033ab153964a3a490f516c9bece7b6ac47bbeacd8948d2df34e92e43",
+  "fundingDataSha256": "e3fbea5d40c909706840c7ad1e19391fdd41ae40ddccb3bcaa5020192d254fb4",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 305,
+        "client": 305
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 340,
+        "client": 305
+      },
+      "matchesPreexisting320StageOverflow": true,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "timeline",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 305,
+        "client": 305
+      },
+      "matchesPreexisting320StageOverflow": false,
+      "detailCompany": "gestala",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "stage",
+      "companyCount": 25,
+      "allYearsMatch": true,
+      "newLabelsContained": true,
+      "pageBounds": {
+        "scroll": 340,
+        "client": 305
+      },
+      "matchesPreexisting320StageOverflow": true,
+      "detailCompany": "neurosoft-bioelectronics",
+      "detailSourceMatches": true,
+      "detailLinkVisible": true,
+      "escapeCloses": true
+    }
+  ]
+}

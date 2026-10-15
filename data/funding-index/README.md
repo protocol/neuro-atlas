@@ -40,6 +40,7 @@ The set is illustrative and source-linked, not a complete regulatory history.
 ## Files
 
 - `companies.csv` — the screened company universe and classification fields
+- `foundings.csv` — one reviewed founding-year record per company, with source URL, source kind, review date and a concise origin/registration/rebrand note; blank years remain unknown
 - `rounds.csv` — disclosed financing events, investor participants, and sources
 - `milestones.csv` — selected regulatory inflection points and sources
 - `src/data/funding-index.json` — generated client payload; do not edit by hand
@@ -51,6 +52,12 @@ The set is illustrative and source-linked, not a complete regulatory history.
 3. Run `npm test`, `npm run lint`, and `npm run build`.
 4. Check `/funding` in both themes and at desktop and mobile widths.
 5. Update `metadata.asOf` in `scripts/generate-derived.mjs` only when the source review actually advanced.
+
+## Founding years
+
+`foundings.csv` is a separate reviewed enrichment, joined by stable company slug. Every roster company must have exactly one entry; duplicate, missing or foreign slugs fail generation. Years are four-digit integers or blank (unknown), never inferred from financing. Known years require an HTTPS source URL, `primary` or `reporting` source kind, a valid `reviewed_on` date and a concise interpretation note. Blank years still require review context and render as **Unknown**.
+
+Founding-year review: **2026-10-15**, 25/25 companies with source-linked years. This does **not** advance the financing/regulatory coverage date below. Business founding, corporate establishment, research origins and public launches are not interchangeable. Neurosoft's selected 2020 year retains a documented 2019 source conflict; Echo and Merge rely on explicitly labeled reporting. See [founding-year source notes](../../docs/funding-founding/README.md).
 
 ## Coverage date
 
