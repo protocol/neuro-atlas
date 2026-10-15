@@ -9,6 +9,7 @@ import { parseFeed } from "@/lib/field-velocity/schema";
 import { selectPerformance, selectPace } from "@/lib/field-velocity/performance";
 import { PerformanceCurves } from "@/components/performance-curves";
 import { PaceReadings } from "@/components/pace-readings";
+import { GoogleTrends } from "@/components/google-trends";
 
 export const metadata = atlasMetadata("/field-velocity", "Field velocity — Neuro Atlas");
 
@@ -33,7 +34,7 @@ export default function FieldVelocityPage() {
         ]}
       />
       <div className="mt-8">
-        <VelocityTabs performance={<><PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} /><PaceReadings data={selectPace(feed)} /></>} />
+        <VelocityTabs performance={<><PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} /><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
       </div>
     </>
   );

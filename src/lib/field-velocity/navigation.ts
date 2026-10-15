@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { isDraftAnchor } from "@/data/draft-chart-links";
 
-export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts"] as const;
+export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink"] as const;
 const changedEvent = "atlas-performance-location";
 let performanceFocusReturn: HTMLElement | null = null;
 
