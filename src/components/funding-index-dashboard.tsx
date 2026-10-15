@@ -214,6 +214,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         <FirmLogo name={row.name} src={row.logo} size={38} />
                         <div className="min-w-0">
                           <div className="truncate text-sm font-semibold tracking-[-0.01em]">{row.name}</div>
+                          <div className="mt-0.5 text-[11px] text-muted" data-founding-year={row.slug}>Founding year · <span className="font-medium tabular-nums text-foreground">{row.founding?.year ?? "Unknown"}</span></div>
                           <div className="mt-0.5 truncate text-[11px] text-muted" title={`${row.modality} · ${row.latestStage}`}>{row.modality} · {row.latestStage}</div>
                         </div>
                       </div>
@@ -291,6 +292,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         <FirmLogo name={row.name} src={row.logo} size={32} />
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center justify-between gap-3 text-xs font-semibold"><span className="truncate">{row.name}</span><span>{formatCapital(row.observedCapitalUsdM)}</span></div>
+                          <div className="mt-1 text-[11px] text-muted" data-founding-year={row.slug}>Founding year · <span className="font-medium tabular-nums text-foreground">{row.founding?.year ?? "Unknown"}</span></div>
                           {row.rounds.some((round) => round.sourceKind || round.reviewedOn) && <div className="mt-1 text-[10px] text-muted">{[...new Set(row.rounds.flatMap((round) => [round.sourceKind ? sourceKindLabel(round.sourceKind) : "", round.reviewedOn ? sourceReviewLabel(round.reviewedOn) : ""].filter(Boolean)))].join(" · ")}</div>}
                           <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-accent" style={{ width: `${Math.max(4, (row.observedCapitalUsdM / Math.max(group.companies[0]?.observedCapitalUsdM ?? 1, 1)) * 100)}%` }} /></div>
                         </div>
@@ -389,6 +391,14 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selected.observedCapitalUsdM)}</div>
                 <p className="mt-3 text-sm text-white/58">{selected.indication}</p>
               </div>
+
+              <section className="mt-8 rounded-2xl border border-border bg-surface-raised p-4">
+                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-muted">Founding year</h3>
+                <p className="mt-2 text-2xl font-semibold tabular-nums">{selected.founding?.year ?? "Unknown"}</p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">{selected.founding?.note ?? "Founding year not yet verified. No date is inferred from financing history."}</p>
+                {selected.founding?.reviewedOn && <p className="mt-3 text-xs text-muted">{selected.founding.sourceKind ? `${sourceKindLabel(selected.founding.sourceKind)} · ` : ""}{sourceReviewLabel(selected.founding.reviewedOn)}</p>}
+                {selected.founding?.sourceUrl && <a href={selected.founding.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-accent underline decoration-accent/35 underline-offset-4 hover:decoration-accent">Founding source ↗</a>}
+              </section>
 
               <section className="mt-8">
                 <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-muted">Financing history</h3>
