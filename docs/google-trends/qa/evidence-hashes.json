@@ -1,0 +1,18 @@
+{
+  "applicationSha": "f4363e9441222a51f0c66c812851204c46fd9029",
+  "fixture": "Loopback-only production UI; test proxy excluded from source; not hosted",
+  "screenshots": {
+    "local-modal-neuralink-1440.png": "e8e96bafeb7c5c181e33b73b9bb21f4952eb73ad8fe7d2a9283d3afe2831283b",
+    "local-modal-neuralink-320.png": "3e09db8881d5c95a5ef374e0ec5230ad424054a001211c6579a73e8bef576f74",
+    "local-modal-neuralink-390.png": "db0db9d522a8f5dc33821a6bfffe8bd8c6daafda97df46ef46f52be6938fdf78",
+    "local-modal-neurotech-1440.png": "660e2e035899d41a484491524e16c3fd09b910d75430153ba2fa390c67829072",
+    "local-modal-neurotech-320.png": "90a8cdb6da7a734c47da4ac2e1e70758b03f6416a17988c25a8bb99567bf515a",
+    "local-modal-neurotech-390.png": "185f1ae416f51eb633ef8e6b96b511148114166d5ad8e9a5097dd2b3140f2205",
+    "local-overview-1440.png": "004220c07d995d6008e783838a62f2d7e17037ca9ee03e87d0f74748bbb96845",
+    "local-overview-320.png": "626517aff6783ad0af2a435b068c80272192dcdc268f4579d4e524ae19d35078",
+    "local-overview-390.png": "8d130bf133b668ea5a7fbb93cf3ecdf57b99a5743eb43fdba1e0fc4b19a2c786",
+    "local-partial-values-390.png": "f1243936eb285e19de1ecdbe82ee3e46846140b79d00b36c222e9e2f79f54082",
+    "local-recent-history-390.png": "d88a85988c526d290f13c33c598c74e82fa3e57e8b3721852108187e54d035e7",
+    "local-values-390.png": "a71af3fb35c18a8b07b253dc919dbfaa7506addda0eb64f1e48895d36e7685a4"
+  }
+}
