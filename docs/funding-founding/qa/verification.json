@@ -1,0 +1,47 @@
+{
+  "sourceCommit": "5ff441529717e9682b1e4472398f0d78952965c9",
+  "baselineCommit": "a7b14fde34e6c8629278233bffeaf9ae3d809630",
+  "testCommand": "npm test",
+  "tests": 197,
+  "passed": 197,
+  "failed": 0,
+  "typecheck": "PASS",
+  "build": "PASS",
+  "changedFileLint": "PASS",
+  "repositoryLint": "5 pre-existing errors, independently reproduced on baseline",
+  "coverage": {
+    "roster": 25,
+    "sourceLinkedYears": 25,
+    "primary": 17,
+    "reporting": 8,
+    "missingYears": 0
+  },
+  "unknownFallbackTested": true,
+  "allNonFoundingDataUnchanged": true,
+  "authNoindexBasePathAndDependenciesUnchanged": true,
+  "baseline320StageBounds": {
+    "scroll": 340,
+    "client": 305
+  },
+  "browser": {
+    "cases": 12,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "views": [
+      "timeline",
+      "stage"
+    ],
+    "newLabelsContained": true,
+    "representativeDetailsAndSourceLinks": "PASS",
+    "searchKeyboardEnterEscapeFocusRestoration": "PASS",
+    "limitation": "Pre-existing 320px Stage overflow matches baseline; no hosted authentication or physical-device touch verification"
+  },
+  "unresolvedSourceConflict": "Neurosoft selected2020 (Startupticker co-founding and Venturelab incorporation); PitchBook2019 remains unresolved"
+}
