@@ -30,12 +30,16 @@
       {
         "id": "draft-panel-acquisition-rates",
         "plotId": "acquisition-rates"
+      },
+      {
+        "id": "draft-panel-acquisition-economics",
+        "plotId": "acquisition-economics"
       }
     ]
   },
   {
     "id": "draft-mapping-cost",
-    "title": "Cost to map 1 cm\u00b3 over time",
+    "title": "Cost to map 1 cm³ over time",
     "panels": []
   },
   {
@@ -45,6 +49,14 @@
       {
         "id": "draft-panel-pathfinder-nerl",
         "plotId": "pathfinder-nerl"
+      },
+      {
+        "id": "draft-panel-connectomics-roboem-human-split-merge",
+        "plotId": "connectomics-roboem-human-split-merge"
+      },
+      {
+        "id": "draft-panel-connectomics-roboem-mouse-split-merge",
+        "plotId": "connectomics-roboem-mouse-split-merge"
       }
     ]
   },
@@ -120,7 +132,7 @@
   },
   {
     "id": "draft-paired-structure-function",
-    "title": "Paired structure\u2013function dataset scale over time",
+    "title": "Paired structure–function dataset scale over time",
     "panels": [
       {
         "id": "draft-panel-paired-manual",
@@ -174,7 +186,7 @@
   },
   {
     "id": "draft-neuroai-frontier",
-    "title": "NeuroAI performance\u2013cost frontier over time",
+    "title": "NeuroAI performance–cost frontier over time",
     "panels": [
       {
         "id": "draft-panel-neuroai-imagenet",

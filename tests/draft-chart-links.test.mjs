@@ -118,7 +118,7 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   }
 });
 
-test("all 19 candidates and 21 evidence panels have pinned independent share targets", () => {
+test("all 19 candidates and 24 evidence panels have pinned independent share targets", () => {
   globalThis.React = React;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartsSection)));
   try {

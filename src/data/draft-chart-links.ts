@@ -11,9 +11,9 @@ export type DraftChartLink = {
 export const DRAFT_CHART_LINKS: readonly DraftChartLink[] = [
   {"id": "draft-brain-tissue-mapped", "title": "Brain tissue mapped over time", "panels": [{"id": "draft-panel-tissue-cm3", "plotId": "tissue-cm3"}]},
   {"id": "draft-largest-connectome", "title": "Largest published connectome over time", "panels": [{"id": "draft-panel-largest-connectome-neurons", "plotId": "largest-connectome-neurons"}, {"id": "draft-panel-largest-connectome-synapses", "plotId": "largest-connectome-synapses"}]},
-  {"id": "draft-imaging-throughput", "title": "Connectomics imaging throughput over time", "panels": [{"id": "draft-panel-acquisition-rates", "plotId": "acquisition-rates"}]},
+  {"id": "draft-imaging-throughput", "title": "Connectomics imaging throughput over time", "panels": [{"id": "draft-panel-acquisition-rates", "plotId": "acquisition-rates"}, {"id": "draft-panel-acquisition-economics", "plotId": "acquisition-economics"}]},
   {"id": "draft-mapping-cost", "title": "Cost to map 1 cm³ over time", "panels": []},
-  {"id": "draft-reconstruction-accuracy", "title": "Automated reconstruction accuracy over time", "panels": [{"id": "draft-panel-pathfinder-nerl", "plotId": "pathfinder-nerl"}]},
+  {"id": "draft-reconstruction-accuracy", "title": "Automated reconstruction accuracy over time", "panels": [{"id": "draft-panel-pathfinder-nerl", "plotId": "pathfinder-nerl"}, {"id": "draft-panel-connectomics-roboem-human-split-merge", "plotId": "connectomics-roboem-human-split-merge"}, {"id": "draft-panel-connectomics-roboem-mouse-split-merge", "plotId": "connectomics-roboem-mouse-split-merge"}]},
   {"id": "draft-proofreading-burden", "title": "Human proofreading burden over time", "panels": [{"id": "draft-panel-proofreading-effort", "plotId": "proofreading-effort"}]},
   {"id": "draft-tissue-preservation", "title": "Human tissue preservation quality over time", "panels": []},
   {"id": "draft-sectioning-loss", "title": "Tissue loss in subdivision/sectioning over time", "panels": [{"id": "draft-panel-gauss-section-rejection", "plotId": "gauss-section-rejection"}, {"id": "draft-panel-microns-section-loss", "plotId": "microns-section-loss"}]},

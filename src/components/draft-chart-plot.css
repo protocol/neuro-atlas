@@ -24,8 +24,17 @@
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
 .draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
-.draft-plot-svg [data-source-observation] { cursor: pointer; stroke: var(--surface); stroke-width: 2; }
+.draft-plot-svg [data-source-observation] { cursor: pointer; stroke-width: 2; }
 .draft-plot-svg [data-source-observation]:is(:hover, :focus-visible) { stroke: var(--foreground); stroke-width: 3; outline: none; }
+.draft-annotation-key { pointer-events: none; }
+.draft-annotation-leader { stroke-width: 1; pointer-events: none; }
+.draft-annotation-key rect { fill: var(--surface); stroke-width: 1; }
+.draft-annotation-key text { fill: var(--foreground); font-size: 11px; font-weight: 600; }
+.draft-point-annotations { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .25rem .75rem; list-style: none; margin: .5rem 0; padding: 0; }
+.draft-point-annotations button { display: flex; align-items: baseline; gap: .45rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .72rem; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
+.draft-point-annotations button:is(:hover, :focus-visible) > span:last-child { text-decoration: underline; text-underline-offset: 2px; }
+.draft-point-annotations button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.draft-annotation-number { flex: 0 0 1.5em; border: 1px solid currentColor; border-radius: 4px; text-align: center; font-size: 11px; font-weight: 600; }
 .draft-plot-legend { display: flex; flex-wrap: wrap; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: .66rem; line-height: 1.5; }
 .draft-plot-legend > span { color: var(--accent); }
 .draft-group-legend { display: flex; flex-wrap: wrap; gap: .35rem .85rem; list-style: none; margin: .45rem 0; padding: 0; color: var(--muted); font-size: .7rem; line-height: 1.5; }

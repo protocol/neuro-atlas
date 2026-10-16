@@ -48,7 +48,7 @@ for width in [1440,390,320]:
  assert 'FlyWire' in val('document.querySelector('+json.dumps(point)+').closest("figure").innerText')
  summary='[data-draft-chart-card="Largest published connectome over time"] .draft-plot-data summary';click(summary)
  assert val('document.querySelector('+json.dumps(summary)+').parentElement.open')
- assert val('document.querySelector('+json.dumps(summary)+').parentElement.querySelectorAll("tbody tr").length')==4
+ assert val('document.querySelector('+json.dumps(summary)+').parentElement.querySelectorAll("tbody tr").length')==len(next(plot for plot in DATA["Largest published connectome over time"]["plots"] if plot["id"]=="largest-connectome-neurons")["points"])
  shot('connectome-source-table-'+str(width));click(summary)
  # Existing modal link interaction and exact focus return must survive.
  for anchor in ['tissue-mapped','neural-recording-hours']:

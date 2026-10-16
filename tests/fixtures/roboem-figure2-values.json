@@ -1,0 +1,96 @@
+[
+  {
+    "id": "connectomics-roboem-human-split-merge",
+    "points": [
+      {
+        "id": "roboem-2024-human-multisem-1",
+        "x": 70.39219476932107,
+        "y": 1.0454286351879365,
+        "quote": "FFN c3 | 70.392194769321065 | 1.0454286351879365",
+        "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-human-multisem-2",
+        "x": 64.81657538165207,
+        "y": 1.742381058646561,
+        "quote": "FFN c2 | 64.816575381652072 | 1.7423810586465609",
+        "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-human-multisem-3",
+        "x": 50.87752691247958,
+        "y": 1.7423810586465611,
+        "quote": "FFN c3 + RoboEM mapping 40 | 50.877526912479581 | 1.7423810586465611",
+        "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-human-multisem-4",
+        "x": 27.878096938344974,
+        "y": 3.1362859055638093,
+        "quote": "FFN c2 + RoboEM mapping 100 | 27.878096938344974 | 3.1362859055638093",
+        "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A5:C5. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      }
+    ]
+  },
+  {
+    "id": "connectomics-roboem-mouse-split-merge",
+    "points": [
+      {
+        "id": "roboem-2024-mouse-multisem-1",
+        "x": 42.72574786981524,
+        "y": 3.309741032168786,
+        "quote": "autoAggl. mapping 85 | 42.725747869815237 | 3.3097410321687861",
+        "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-multisem-2",
+        "x": 31.8939,
+        "y": 3.9115,
+        "quote": "autoAggl. mapping 90 | 31.893899999999999 | 3.9115000000000002",
+        "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-multisem-3",
+        "x": 16.2478,
+        "y": 7.52215,
+        "quote": "autoAggl. mapping 95 | 16.247800000000002 | 7.5221499999999999",
+        "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-multisem-4",
+        "x": 9.026566451369417,
+        "y": 3.911512128926747,
+        "quote": "autoAggl. mapping 85 + RoboEM mapping 80 | 9.0265664513694173 | 3.9115121289267472",
+        "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A5:C5. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-multisem-5",
+        "x": 6.017710967579611,
+        "y": 4.513283225684708,
+        "quote": "autoAggl. mapping 85 + RoboEM mapping 100 | 6.0177109675796112 | 4.5132832256847077",
+        "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A6:C6. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-sbem-6",
+        "x": 31.9046,
+        "y": 6.961,
+        "quote": "autoAggl. | 31.904599999999999 | 6.9610000000000003",
+        "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-sbem-7",
+        "x": 5.2207,
+        "y": 6.09085,
+        "quote": "autoAggl. + Human | 5.2206999999999999 | 6.0908499999999997",
+        "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      },
+      {
+        "id": "roboem-2024-mouse-sbem-8",
+        "x": 12.1817,
+        "y": 7.8311,
+        "quote": "autoAggl. + RoboEM | 12.181699999999999 | 7.8311000000000002",
+        "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+      }
+    ]
+  }
+]
