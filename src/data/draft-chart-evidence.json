@@ -49,7 +49,8 @@
             "quote": "imaging data that covers roughly one cubic millimeter of brain tissue",
             "qualifier": "≈",
             "note": "Source: “roughly one cubic millimeter of brain tissue.” Announcement dated June 1, 2021. Automated segmentation and annotated synapses; only selected cells proofread. Later 1.05-mm³ compression-corrected paper estimate is not new tissue.",
-            "group": "Human"
+            "group": "Human",
+            "annotation": "H01 · human · ≈1 mm³ · released Jun 2021"
           },
           {
             "id": "microns-mouse-imaged-2021-07-01",
@@ -62,7 +63,8 @@
             "quote": "the first public data released on the cubic millimeter dataset in July 2021",
             "qualifier": "≈",
             "note": "Source: “first public data released on the cubic millimeter dataset in July 2021.” Approximate nominal sample scale, not an exact valid segmentation mask. July precision; 2025 paper is later analysis of this specimen.",
-            "group": "Mouse"
+            "group": "Mouse",
+            "annotation": "MICrONS · mouse · ≈1 mm³ · released Jul 2021"
           },
           {
             "id": "flywire-fly-neuropil-2024-01-01",
@@ -109,7 +111,7 @@
   },
   "Largest published connectome over time": {
     "status": "plotted",
-    "summary": "Selected published maps, not a verified all-time record frontier. Neurons and synapses are separate; completeness differs by study.",
+    "summary": "Selected neuronal and synaptic counts, not spatial complexity or comparable complete maps. Includes targeted boundary-truncated mouse neuronal reconstructions, not a verified all-time record frontier.",
     "plots": [
       {
         "id": "largest-connectome-neurons",
@@ -118,8 +120,22 @@
         "xKind": "year",
         "yLabel": "Neurons (log)",
         "scale": "log",
-        "scope": "Four selected studies; whole and partial maps are not equivalent. No global running-maximum or cross-study growth fit.",
+        "scope": "Selected neuronal counts, not spatial complexity and not comparable complete maps. Whole-brain, segmented somatic neurons and targeted boundary-truncated neuronal reconstructions have different completeness; no global running-maximum or cross-study growth fit.",
         "points": [
+          {
+            "id": "lee-reid-2016-neuronal-targets",
+            "x": 2016,
+            "y": 1278,
+            "label": "Lee/Reid mouse V1: excitatory neuronal targets",
+            "annotation": "Lee/Reid · partial mouse",
+            "dateLabel": "2016 · online paper publication (28 March); release date not established",
+            "sourceUrl": "https://www.nature.com/articles/nature17192",
+            "sourceTitle": "Anatomy and function of an excitatory network in the visual cortex",
+            "quote": "Excitatory neuronal targets 1278 Presynaptic neurons 130 Postsynaptic partners 1228",
+            "qualifier": "",
+            "note": "Table 1: 1,278 excitatory neuronal targets, not complete neurons. Targeted, boundary-truncated reconstruction in the middle 450 × 450 × 50 µm of a 450 × 450 × 150 µm imaged volume. Postsynaptic dendrites followed to soma OR boundary; input axons were not retrogradely traced. Categories overlap; do not sum presynaptic and postsynaptic counts. Public author manuscript: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4844839/fullTextXML",
+            "group": "Partial mouse cortex"
+          },
           {
             "id": "hemibrain-neurons",
             "x": 2020,
@@ -242,7 +258,7 @@
   },
   "Connectomics imaging throughput over time": {
     "status": "plotted",
-    "summary": "Measured acquisition examples at explicitly different resolutions. These do not yet measure sustained end-to-end reconstruction throughput.",
+    "summary": "Measured acquisition examples and a separate optical/EM acquisition-economics comparison. The latter contains rough author estimates, not measured all-in costs or a resolution-normalized productivity trend.",
     "plots": [
       {
         "id": "acquisition-rates",
@@ -280,6 +296,144 @@
             "group": "autoTEM · 4×4×40 nm"
           }
         ]
+      },
+      {
+        "id": "acquisition-economics",
+        "title": "Approximate acquisition economics — optical and electron microscopy",
+        "xLabel": "Year as printed in Table A1",
+        "xKind": "year",
+        "yLabel": "Approx. voxels/$ (log)",
+        "scale": "log",
+        "scope": "Rough author estimates of acquisition economics, not measured all-in costs. Voxels differ in resolution, labeling and biological information; not equal native-tissue volume or completed connectomes. PEEM includes prospective throughput.",
+        "seriesNote": "Table A1 values retained exactly; Table A1 and Figure 2 differ (MultiSEM 706 value; mesoSPIM absent and TEMCA extra in figure). Excludes unresolved ExA-SPIM 2024 citation and X-ray. No fitted curve, inferred TEMCA dollar point, or fabricated SBF-SEM/tomography costs.",
+        "points": [
+          {
+            "id": "exm2015",
+            "x": 2015,
+            "y": 1000000000,
+            "label": "ExM + confocal",
+            "annotation": "ExM + confocal",
+            "dateLabel": "2015 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Optical",
+            "note": "Table A1 row 1: ExM + Confocal; Approx. Voxels/$ = 1000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. Published technology; cost/throughput are crowdsourced estimates, not project accounting. Effective optical resolution in Chen et al. (2015), not a recorded voxel sampling for the cost estimate."
+          },
+          {
+            "id": "sem2018",
+            "x": 2018,
+            "y": 100000000,
+            "label": "Single-beam SEM",
+            "annotation": "Single-beam SEM",
+            "dateLabel": "2018 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Electron microscopy",
+            "note": "Table A1 row 3: EM (SEM, single beam); Approx. Voxels/$ = 100000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. 2018 is the table year, not a verified first-demonstration year. Do not label this SBFSEM2004. Not specified in Table A1. Its reference 55 is Hughes et al. 2014, not Denk & Horstmann 2004."
+          },
+          {
+            "id": "exllsm2019",
+            "x": 2019,
+            "y": 1000000000,
+            "label": "ExLLSM",
+            "annotation": "ExLLSM",
+            "dateLabel": "2019 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Optical",
+            "note": "Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. Primary acquisition rate 10–100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30–50 nm voxel dimensions."
+          },
+          {
+            "id": "exaspim2023",
+            "x": 2023,
+            "y": 10000000000,
+            "label": "ExA-SPIM 2023",
+            "annotation": "ExA-SPIM 2023",
+            "dateLabel": "2023 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Optical",
+            "note": "Table A1 row 5: ExA-SPIM (LSFM); Approx. Voxels/$ = 10000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. 2023 preprint; final version published 2025. Preserve table year. Primary maximum 946 Mvox/s in final version, not the table’s 1e12 vox/h. Context from final eLife version (2025), effective optical resolution with 4x expansion; not guaranteed to describe the exact 2023 cost-estimate setting."
+          },
+          {
+            "id": "multisem506",
+            "x": 2023,
+            "y": 1000000000,
+            "label": "MultiSEM 506",
+            "annotation": "MultiSEM 506",
+            "dateLabel": "2023 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Electron microscopy",
+            "note": "Table A1 row 6: EM (Zeiss, MultiSEM 506); Approx. Voxels/$ = 1000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. 91 beams, not 61 (505 has 61). Cost-normalization arithmetic does not equal the rounded stated vox/$; retain stated value. Example voxel sampling from ZEISS brochure (4 nm pixels, 50 nm section), not resolution specified by Table A1."
+          },
+          {
+            "id": "multisem706",
+            "x": 2025,
+            "y": 1000000000,
+            "label": "MultiSEM 706",
+            "annotation": "MultiSEM 706",
+            "dateLabel": "2025 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Electron microscopy",
+            "note": "Table A1 row 7: EM (Zeiss, MultiSEM 706); Approx. Voxels/$ = 1000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. 91 beams. Figure 2 visually near 2e9 vox/$; Table A1 says 1e9. Use table value, flag discrepancy. 2025 is table year, not verified launch date. Example pixel size/section thickness on current vendor page, not a verified matched setting for Table A1 cost."
+          },
+          {
+            "id": "mesospim2024",
+            "x": 2024,
+            "y": 1000000000,
+            "label": "mesoSPIM",
+            "annotation": "mesoSPIM",
+            "dateLabel": "2024 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Optical",
+            "note": "Table A1 row 9: Benchtop mesoSPIM; Approx. Voxels/$ = 1000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. Present in Table A1 but not visibly plotted in Figure 2. Micron-scale light-sheet optical, not synapse-resolving EM-equivalent data. Best reported optical resolution; not voxel sampling. Not an expansion-microscopy system by default."
+          },
+          {
+            "id": "peem2024",
+            "x": 2024,
+            "y": 20000000000,
+            "label": "PEEM*",
+            "annotation": "PEEM · prospective",
+            "dateLabel": "2024 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "PEEM · prospective",
+            "note": "Table A1 row 10: PEEM; Approx. Voxels/$ = 20000000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. Table uses 2024, cited PNAS publication is 2025. ~2 Gvox/s net scenario is prospective; do not present 2e10 vox/$ as measured end-to-end performance. Primary paper demonstrates synaptic-resolution PEEM and faster imaging at coarser resolution; the 8x8x30 nm setting in its mouse-brain estimate is prospective, not matched demonstrated high-speed acquisition."
+          },
+          {
+            "id": "bdtem2024",
+            "x": 2024,
+            "y": 6500000000,
+            "label": "bdTEM",
+            "annotation": "bdTEM",
+            "dateLabel": "2024 · year as printed in Table A1; not verified acquisition/launch year",
+            "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+            "sourceTitle": "Compiling molecular ultrastructure into neural dynamics — arXiv:2603.25713v1, Table A1 (p. 18)",
+            "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.",
+            "qualifier": "≈",
+            "group": "Electron microscopy",
+            "note": "Table A1 row 11: bdTEM; Approx. Voxels/$ = 6500000000. Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Not verified all-in tissue preparation, reconstruction, storage or proofreading cost. Primary measured net rate ~0.3 Gpixel/s; four scopes/one mm3/five weeks is a projection. Table cost efficiency retained as estimate. Primary paper tests 3 or 4 nm pixels; Table A1 does not specify section thickness or a matched setting."
+          }
+        ]
       }
     ],
     "gapReason": "Comparable preparation-to-quality-controlled-volume throughput is unavailable."
@@ -292,7 +446,7 @@
   },
   "Automated reconstruction accuracy over time": {
     "status": "plotted",
-    "summary": "One published benchmark snapshot—not a historical accuracy trend. nERL is normalized expected run length, not percent of voxels correct.",
+    "summary": "Separate nERL benchmark and RoboEM split/merge error-rate operating points, not a historical accuracy trend. ConnectomeBench2 Figure 2 reports ROC/classifier performance, not errors/mm; RoboEM is an explicitly different source. nERL is not percent of voxels correct.",
     "plots": [
       {
         "id": "pathfinder-nerl",
@@ -316,13 +470,181 @@
             "note": "Preprint benchmark snapshot; NOT percent correctly segmented voxels. nERL = ERL / maximum ERL of this ground-truth set. Mouse IBEAM-mSEM, 80.4×84.8×99.2 um3; unmyelinated axons, 4,284 mm total path. Evaluation excludes a boundary margin for splits and uses node thresholds; no matched longitudinal series assembled."
           }
         ]
+      },
+      {
+        "id": "connectomics-roboem-human-split-merge",
+        "title": "Human cortex: split–merge error trade-offs",
+        "xLabel": "Split errors per mm of axon path",
+        "yLabel": "Merge errors per mm of axon path",
+        "scale": "linear",
+        "scope": "H01 human cortex multiSEM: same densely seeded test axons, FFN agglomerations c2/c3 and RoboEM correction operating points.",
+        "points": [
+          {
+            "id": "roboem-2024-human-multisem-1",
+            "x": 70.39219476932107,
+            "y": 1.0454286351879365,
+            "label": "FFN c3",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Human cortex",
+            "quote": "FFN c3 | 70.392194769321065 | 1.0454286351879365",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "FFN baseline",
+            "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-human-multisem-2",
+            "x": 64.81657538165207,
+            "y": 1.742381058646561,
+            "label": "FFN c2",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Human cortex",
+            "quote": "FFN c2 | 64.816575381652072 | 1.7423810586465609",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "FFN baseline",
+            "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-human-multisem-3",
+            "x": 50.87752691247958,
+            "y": 1.7423810586465611,
+            "label": "FFN c3 + RoboEM mapping 40",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Human cortex",
+            "quote": "FFN c3 + RoboEM mapping 40 | 50.877526912479581 | 1.7423810586465611",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "FFN + RoboEM",
+            "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-human-multisem-4",
+            "x": 27.878096938344974,
+            "y": 3.1362859055638093,
+            "label": "FFN c2 + RoboEM mapping 100",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Human cortex",
+            "quote": "FFN c2 + RoboEM mapping 100 | 27.878096938344974 | 3.1362859055638093",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "FFN + RoboEM",
+            "note": "Exact source row: 'Fig 2b, mSEM Human cortex'!A5:C5. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.4 mm path length (paper-rounded), human cortex H01 multiSEM. Human H01 (150 µm)^3 test subvolume; five separate training axons; not the 6.5-mm soma-seeded set. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          }
+        ],
+        "xKind": "number",
+        "seriesNote": "Lower is better on both axes. Exact RoboEM Figure 2b workbook values; x = splits/mm, y = merges/mm (original axes transposed). Protocol-dependent operating points, not a temporal trend or nERL. Compare methods within each dataset; sample sizes, error thresholds and weighting remain in point notes. No source uncertainty intervals."
+      },
+      {
+        "id": "connectomics-roboem-mouse-split-merge",
+        "title": "Mouse cortex: split–merge error trade-offs",
+        "xLabel": "Split errors per mm of axon path",
+        "yLabel": "Merge errors per mm of axon path",
+        "scale": "linear",
+        "scope": "Two separate mouse S1 layer-4 test datasets: Si150L4 multiSEM and Motta et al. SBEM. Compare correction methods within each dataset, not as one pooled benchmark.",
+        "points": [
+          {
+            "id": "roboem-2024-mouse-multisem-1",
+            "x": 42.72574786981524,
+            "y": 3.309741032168786,
+            "label": "autoAggl. mapping 85",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Mouse cortex",
+            "quote": "autoAggl. mapping 85 | 42.725747869815237 | 3.3097410321687861",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "Si150L4 multiSEM · automated baseline",
+            "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-multisem-2",
+            "x": 31.8939,
+            "y": 3.9115,
+            "label": "autoAggl. mapping 90",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Mouse cortex",
+            "quote": "autoAggl. mapping 90 | 31.893899999999999 | 3.9115000000000002",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "Si150L4 multiSEM · automated baseline",
+            "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-multisem-3",
+            "x": 16.2478,
+            "y": 7.52215,
+            "label": "autoAggl. mapping 95",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Mouse cortex",
+            "quote": "autoAggl. mapping 95 | 16.247800000000002 | 7.5221499999999999",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "Si150L4 multiSEM · automated baseline",
+            "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-multisem-4",
+            "x": 9.026566451369417,
+            "y": 3.911512128926747,
+            "label": "autoAggl. mapping 85 + RoboEM mapping 80",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Mouse cortex",
+            "quote": "autoAggl. mapping 85 + RoboEM mapping 80 | 9.0265664513694173 | 3.9115121289267472",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "Si150L4 multiSEM · RoboEM correction",
+            "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A5:C5. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-multisem-5",
+            "x": 6.017710967579611,
+            "y": 4.513283225684708,
+            "label": "autoAggl. mapping 85 + RoboEM mapping 100",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, mSEM Mouse cortex",
+            "quote": "autoAggl. mapping 85 + RoboEM mapping 100 | 6.0177109675796112 | 4.5132832256847077",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "Si150L4 multiSEM · RoboEM correction",
+            "note": "Exact source row: 'Fig 2b, mSEM Mouse cortex'!A6:C6. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 5 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 Si150L4 multiSEM. Test in a (150 µm)^3 Si150L4 mouse S1 L4 subvolume. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-sbem-6",
+            "x": 31.9046,
+            "y": 6.961,
+            "label": "autoAggl.",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, SBEM Mouse cortex",
+            "quote": "autoAggl. | 31.904599999999999 | 6.9610000000000003",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "SBEM · automated baseline",
+            "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A2:C2. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-sbem-7",
+            "x": 5.2207,
+            "y": 6.09085,
+            "label": "autoAggl. + Human",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, SBEM Mouse cortex",
+            "quote": "autoAggl. + Human | 5.2206999999999999 | 6.0908499999999997",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "SBEM · human correction",
+            "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A3:C3. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          },
+          {
+            "id": "roboem-2024-mouse-sbem-8",
+            "x": 12.1817,
+            "y": 7.8311,
+            "label": "autoAggl. + RoboEM",
+            "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+            "sourceTitle": "RoboEM (2024) — Source Data Fig. 2 — Fig 2b, SBEM Mouse cortex",
+            "quote": "autoAggl. + RoboEM | 12.181699999999999 | 7.8311000000000002",
+            "dateLabel": "2024 source publication; not a temporal observation",
+            "group": "SBEM · RoboEM correction",
+            "note": "Exact source row: 'Fig 2b, SBEM Mouse cortex'!A4:C4. Quote columns: Reconstruction Method | Splits along axons [1/mm] | Mergers along axons [1/mm]. Test: 10 randomly/densely seeded axons, 1.7 mm path length (paper-rounded), mouse S1 L4 SBEM (Motta et al. 2019). Test in 92.6 × 61.8 × 94.8 µm³ mouse S1 L4 SBEM volume; baseline/human reference is Motta et al. 2019, reproduced/evaluated here. Source workbook columns are B=split errors/mm and C=merge errors/mm; x/y here intentionally transpose the original Figure 2b axes. Merge detection required >2.2 µm excursions from ground truth; baseline merge events weighted 0.5 per neurite; new RoboEM multiSEM mergers weighted 1. Split evaluation excludes agglomerates with ≤2.5 µm ground-truth overlap (about 90% of ground-truth path remains covered). These are operating points, not a year trend or erL/nERL values. No uncertainty interval is supplied in this source workbook. Methods: https://www.nature.com/articles/s41592-024-02226-5#Sec2"
+          }
+        ],
+        "xKind": "number",
+        "seriesNote": "Lower is better on both axes. Exact RoboEM Figure 2b workbook values; x = splits/mm, y = merges/mm (original axes transposed). Protocol-dependent operating points, not a temporal trend or nERL. Compare methods within each dataset; sample sizes, error thresholds and weighting remain in point notes. No source uncertainty intervals."
       }
     ],
     "gapReason": "No matched multi-year evaluation series was verified."
   },
   "Human proofreading burden over time": {
     "status": "plotted",
-    "summary": "Available related evidence: total proofreading person-years. This is not the requested hours per mm³ and cannot establish a productivity trend.",
+    "summary": "Fly project proofreading person-years remain separate. MICrONS reports 1,433 proofread axons / 84,035 segmented neurons (≈1.7%), with varying extension, not equivalent completed neurons or a volume/labor completion fraction.",
     "plots": [
       {
         "id": "proofreading-effort",
@@ -359,10 +681,11 @@
             "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain.",
             "group": "FlyWire"
           }
-        ]
+        ],
+        "seriesNote": "MICrONS axon proofreading has varying extension in subvolume 65, not equivalent completed neurons. NeuVue merge-cleanup hours are not full axonal tracing or total MICrONS effort. No full-volume numeric extrapolation, assumed work-year conversion or productivity trend."
       }
     ],
-    "gapReason": "Common-quality person-hours/mm³ remains unavailable."
+    "gapReason": "No matched labor numerator supports extrapolating full dense-volume proofreading. NeuVue v2 (2026) reports 2,451 hours for merge correction/cleanup; v1 (2022) reports 3,740 cumulative hours and ≈3,600 campaign hours. Different versions and scopes, not total MICrONS labor; do not sum or divide by the axon subset fraction. Common-quality person-hours/mm³ remains unavailable. Sources: https://www.nature.com/articles/s41586-025-08790-w ; https://www.biorxiv.org/content/10.1101/2022.07.18.500521v1.full ; https://www.biorxiv.org/content/10.1101/2022.07.18.500521v2.full"
   },
   "Human tissue preservation quality over time": {
     "status": "gap",

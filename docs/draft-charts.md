@@ -1,24 +1,24 @@
 # Draft charts — actual evidence, not definitions alone
 
-This revision corrects the previous definition-only gallery. It preserves all 19 proposed metric definitions and gives **14 candidates an actual visual evidence view**: **20 numeric scatter panels (57 observations) and one categorical application timeline (2 events)**. **Five candidates remain unplotted evidence gaps.**
+This revision corrects the previous definition-only gallery. It preserves all 19 proposed metric definitions and gives **14 candidates an actual visual evidence view**: **23 numeric scatter panels (79 observations) and one categorical application timeline (2 events)**. **Five candidates remain unplotted evidence gaps.**
 
-These are not 19 completed historical series. Several views are explicitly a one-year benchmark, a single checkpoint, a selected-study comparison, or an alternative unit. Their remaining mismatch is visible in each card, not hidden only here. No annual points, global totals, cost estimates, or trend lines were invented to fill gaps.
+These are not 19 completed historical series. Several views are explicitly a one-year benchmark, a single checkpoint, a selected-study comparison, or an alternative unit. Their remaining mismatch is visible in each card, not hidden only here. No annual points, global totals, cost estimates, or trend lines were invented to fill gaps. Acquisition economics is explicitly sourced rough author estimation, not measured all-in cost.
 
 ## Source contract
 
 `src/data/draft-chart-evidence.json` is the exact UI dataset. Every observation retains its public primary-source URL/title, supporting excerpt, date basis, numeric qualifier and comparability note. `src/data/draft-charts.ts` retains the proposed definitions separately. The source table on each plot exposes all observations; pointer activation and keyboard focus inspect individual points. Private deliberations are not included.
 
-Sources were retrieved September 18, 2026. Publication years are not evaluation or release dates unless specifically established. Existing tissue and recording checkpoints are carried from the pinned shared snapshot after rechecking their cited sources; tissue is converted from mm³ to cm³ by division by 1,000. Existing Metrics and extrapolation records are unchanged.
+Original sources were retrieved September 18, 2026; curated additions were verified October 16, 2026 (see [public provenance](draft-chart-source-provenance.md)). Publication years are not evaluation or release dates unless specifically established. Existing tissue and recording checkpoints are carried from the pinned shared snapshot after rechecking their cited sources; tissue is converted from mm³ to cm³ by division by 1,000. Existing Metrics and extrapolation records are unchanged.
 
 ## Coverage inventory
 
 | Proposed metric | Rendered evidence | Remaining boundary |
 |---|---|---|
 | Brain tissue mapped over time | 1 numeric panel(s), 7 observations | Selected-study scope; not an exhaustive field total. |
-| Largest published connectome over time | 2 numeric panel(s), 8 observations | A complete, consistently defined largest-map frontier has not been established. |
-| Connectomics imaging throughput over time | 1 numeric panel(s), 2 observations | Comparable preparation-to-quality-controlled-volume throughput is unavailable. |
+| Largest published connectome over time | 2 numeric panel(s), 9 observations | A complete, consistently defined largest-map frontier has not been established. |
+| Connectomics imaging throughput over time | 2 numeric panel(s), 11 observations | Acquisition-rate observations and rough author-estimated economics are separate; no measured all-in costs or common-resolution trend. |
 | Cost to map 1 cm³ over time | No plot — evidence gap | Imaging components, research grants and estimated whole-brain budgets omit different costs. A realized imaging + compute + storage + proofreading total at a common quality threshold is still needed. |
-| Automated reconstruction accuracy over time | 1 numeric panel(s), 1 observations | No matched multi-year evaluation series was verified. |
+| Automated reconstruction accuracy over time | 3 numeric panel(s), 13 observations | nERL stays separate from exact RoboEM split/merge operating points. ConnectomeBench2 Figure 2 is ROC/classifier performance, not errors/mm. |
 | Human proofreading burden over time | 1 numeric panel(s), 2 observations | Common-quality person-hours/mm³ remains unavailable. |
 | Human tissue preservation quality over time | No plot — evidence gap | The reviewed 2025 human brain-bank study says traceability could not be rigorously quantified. Image artifact area and visible synapses are not fractions of connections traceable. |
 | Tissue loss in subdivision/sectioning over time | 2 numeric panel(s), 3 observations | A matched time series of lost/damaged tissue volume is not available. |
@@ -34,6 +34,16 @@ Sources were retrieved September 18, 2026. Publication years are not evaluation 
 | NeuroAI performance–cost frontier over time | 1 numeric panel(s), 6 observations | No matched multi-year frontier or measured device-energy series is assembled. |
 | Demonstrated applications enabled by connectomics over time | categorical timeline, 2 events | No synaptic-connectome-enabled clinical therapy or deployed BCI is established by this evidence. |
 
+## October 2026 source curation
+
+- H01 and MICrONS tissue coordinates are unchanged; short annotations distinguish human/June 2021 from mouse/July 2021 releases at approximately 1 mm³.
+- Lee/Reid 2016 adds 1,278 excitatory neuronal targets, not complete neurons. These counts do not measure spatial complexity or comparable complete maps.
+- The nine-point optical/EM economics panel uses Table A1's approximate voxels/$ column, source years, and ≈ qualifiers. All 11 source rows remain archived; unresolved ExA-SPIM 2024 and X-ray are not plotted. PEEM is prospective/mixed. No fitted curve or unsupported historical dollar values.
+- RoboEM Figure 2b adds four human and eight mouse split/merge operating points with full precision and per-point methods notes. Existing PATHFINDER nERL is retained. ConnectomeBench2 Figure 2 contains ROC/classifier metrics, not error counts per mm; the different source is explicit.
+- MICrONS 1,433 / 84,035 ≈1.7% describes axons with varying proofreading extent, not equivalent completed neurons or completed volume/labor. NeuVue v2's 2,451 hours of merge cleanup differs from v1's 3,740 cumulative / ≈3,600 campaign hours. No matched labor numerator supports full dense-volume extrapolation; no MICrONS numeric labor point is added.
+
+See [source provenance and exclusions](draft-chart-source-provenance.md) and [archived Table A1 rows](data/acquisition-economics-table-a1.json). The historical browser/build evidence below applies only to the original baseline; this source update needs a fresh integrated browser/build verification.
+
 ## Important exclusions
 
 - Connectome neuron counts and synapse/cleft counts occupy different panels. Selected whole/partial studies are not asserted to be successive world records. FlyWire's 54.5 million mapped synapses are not replaced by its approximately 130 million predicted neuropil synapses.
@@ -46,7 +56,7 @@ Sources were retrieved September 18, 2026. Publication years are not evaluation 
 - The application timeline includes synaptic-connectome research demonstrations only. Functional-MRI clinical trials are excluded so they cannot masquerade as synaptic-connectome clinical impact.
 - No plot is created merely by counting the few papers found in this search. Simulation/emulation count remains a gap until its inclusion unit and inventory are defined.
 
-## Verification
+## Historical verification (September 2026 baseline)
 
 Verified runtime: `533eb5bdbdd78e245bd3ecc44d63d1d8da390dfc` (September 18, 2026). Later evidence-only commits do not change runtime, tests or dependencies.
 

@@ -8,7 +8,7 @@ test('connectome candidate contains separately sourced neuron and synapse plots,
  const c=evidence['Largest published connectome over time'];
  assert.equal(c.status,'plotted');
  assert.equal(c.plots.length,2);
- assert.deepEqual(c.plots.map(p=>p.points.length),[4,4]);
+ assert.deepEqual(c.plots.map(p=>p.points.length),[5,4]);
  assert.equal(c.plots[0].points.find(p=>p.id==='flywire-neurons').y,139255);
  assert.equal(c.plots[1].points.find(p=>p.id==='flywire-synapses').y,54500000);
 });

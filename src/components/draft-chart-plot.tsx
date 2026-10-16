@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
+const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
 const exactNumber = (value: number) => value.toLocaleString("en-US", { maximumFractionDigits: 20 });
 const tickLabel = (value: number) => {
   // Axis labels are display ticks, not source values: suppress binary arithmetic noise.
@@ -42,7 +43,8 @@ function usePlotWidth() {
 export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
   const id = useId();
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
-  const groupColor = (point: DraftObservation) => GROUP_COLORS[groups.indexOf(point.group ?? "Other observations") % GROUP_COLORS.length];
+  const groupColor = ({ group = "Other observations" }: Pick<DraftObservation, "group">) => SPECIES_COLORS[group]
+    ?? GROUP_COLORS[groups.indexOf(group) % GROUP_COLORS.length];
   const [active, setActive] = useState<DraftObservation | null>(null);
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(point.y)}`;
   const { width, figure } = usePlotWidth();
@@ -74,6 +76,48 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
   const y = (value: number) => bottom - (log
     ? (Math.log10(value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
+  // Preserve the quantitative centers. Earlier overlapping marks become outer
+  // rings, so subsequent filled marks cannot paint them out of the chart.
+  const overlaps = plot.points.map(point => plot.points.filter(other => other.id !== point.id
+    && Math.hypot(x(point.x) - x(other.x), y(point.y) - y(other.y)) < 14));
+  const markerRadius = (index: number) => 6 + 6 * plot.points.slice(index + 1)
+    .filter(point => overlaps[index].includes(point)).length;
+  // Only callouts move. Search bounded slots for the closest free 20px badge;
+  // leave clearance from both source glyphs and already placed badges.
+  const placedKeys: { x: number; y: number }[] = [];
+  const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / 24) + 1) }, (_, column) =>
+    Array.from({ length: Math.floor((bottom - top - 24) / 24) + 1 }, (_, row) => ({ x: left + 12 + column * 24, y: top + 12 + row * 24 }))).flat();
+  const annotations = plot.points.flatMap((point, index) => {
+    const text = point.annotation?.trim() || (overlaps[index].length
+      ? [point.label, point.group, qualifiedValue(point)].filter(Boolean).join(" · ") : "");
+    if (!text) return [];
+    const order = overlaps[index].filter(other => plot.points.indexOf(other) < index).length;
+    const side = overlaps[index].length ? (order % 2 ? 1 : -1) : (x(point.x) > (left + right) / 2 ? -1 : 1);
+    const preferred = {
+      x: Math.max(left + 10, Math.min(right - 10, x(point.x) + side * 24)),
+      y: Math.max(top + 10, Math.min(bottom - 10, y(point.y)
+        + (y(point.y) > (top + bottom) / 2 ? -1 : 1) * (24 + Math.floor(order / 2) * 24))),
+    };
+    const position = [preferred, ...keySlots]
+      .sort((a, b) => Math.hypot(a.x - preferred.x, a.y - preferred.y) - Math.hypot(b.x - preferred.x, b.y - preferred.y))
+      .find(candidate => placedKeys.every(other => Math.abs(candidate.x - other.x) >= 23 || Math.abs(candidate.y - other.y) >= 23)
+        && plot.points.every((other, otherIndex) => Math.hypot(
+          Math.max(0, Math.abs(candidate.x - x(other.x)) - 10),
+          Math.max(0, Math.abs(candidate.y - y(other.y)) - 10),
+        ) >= markerRadius(otherIndex) + 3)) ?? preferred;
+    placedKeys.push(position);
+    return [{ point, text, ...position }];
+  });
+  const inspectProps = (point: DraftObservation) => ({
+    tabIndex: 0, role: "button",
+    "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
+    "aria-describedby": active?.id === point.id ? `${id}-tooltip` : undefined,
+    onFocus: () => setActive(point), onMouseEnter: () => setActive(point), onClick: () => setActive(point),
+    onKeyDown: (event: KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActive(point); }
+      if (event.key === "Escape") setActive(null);
+    },
+  });
 
   return <figure ref={figure} className="draft-plot" aria-labelledby={`${id}-title`}>
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
@@ -86,18 +130,25 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
       <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />
       {xTicks.map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? tickLabel(tick) : String(tick)}</text>)}
       <text className="draft-plot-axis-title" x={width / 2} y={bottom + 52} textAnchor="middle">{xTitle.map((line, index) => <tspan key={index} x={width / 2} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
-      {plot.points.map(point => <circle key={point.id} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={6} fill={groupColor(point)}
-        tabIndex={0} role="button"
-        aria-label={`${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`}
-        aria-describedby={active?.id === point.id ? `${id}-tooltip` : undefined}
-        onFocus={() => setActive(point)} onMouseEnter={() => setActive(point)} onClick={() => setActive(point)}
-        onKeyDown={event => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActive(point); }
-          if (event.key === "Escape") setActive(null);
-        }}
+      {annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
+        x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
+      {annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
+        <rect x={labelX - 10} y={labelY - 10} width={20} height={20} rx={4} stroke={groupColor(point)} />
+        <text x={labelX} y={labelY + 4} textAnchor="middle">{index + 1}</text>
+      </g>)}
+      {plot.points.map((point, index) => <circle key={point.id} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
+        fill={markerRadius(index) > 6 ? "none" : groupColor(point)} stroke={markerRadius(index) > 6 ? groupColor(point) : "var(--surface)"}
+        pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
+        {...inspectProps(point)}
       />)}
     </svg>
-    {groups.length > 1 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{groups.map((group, index) => <li key={group}><span aria-hidden="true" style={{ color: GROUP_COLORS[index % GROUP_COLORS.length] }}>●</span> {group}</li>)}</ul>}
+    {annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
+      <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
+        <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
+        <span>{text}</span>
+      </button>
+    </li>)}</ul>}
+    {groups.length > 1 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{groups.map(group => <li key={group}><span aria-hidden="true" style={{ color: groupColor({ group }) }}>●</span> {group}</li>)}</ul>}
     <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
     <div className="draft-plot-inspector">
       {active ? <div role="tooltip" id={`${id}-tooltip`}>

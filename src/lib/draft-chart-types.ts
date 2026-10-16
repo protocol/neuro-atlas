@@ -11,6 +11,8 @@ export type DraftObservation = {
   qualifier?: string;
   group?: string;
   note?: string;
+  /** Short persistent caption; presentation only, never changes x/y. */
+  annotation?: string;
 };
 
 export type DraftPlot = {
