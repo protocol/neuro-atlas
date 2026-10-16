@@ -28,6 +28,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="describedby" href="/llms.txt" type="text/plain" />
+      </head>
       <body className="min-h-full bg-background">
         <ThemeProvider>
           <div className="mx-auto flex min-h-screen w-full max-w-[100rem] px-0 lg:pl-4">
