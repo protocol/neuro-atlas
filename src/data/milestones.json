@@ -923,19 +923,6 @@
     "scope": "bci"
   },
   {
-    "company": "Science Corp",
-    "slug": "science-corp",
-    "activity": "leadership",
-    "stage": "commercial",
-    "amountUsdM": null,
-    "date": "2026-09-17",
-    "datePrecision": "day",
-    "note": "Science announced the promotion of Chief Strategy Officer Darius Shahida to President. CEO Max Hodak cited his role in the Series C and European commercial launch of PRIMA. Date is the company announcement, not a separately disclosed effective date.",
-    "sourceUrl": "https://science.xyz/news/leadership-shahida/",
-    "logo": "/logos/science-corp.png",
-    "scope": "bci"
-  },
-  {
     "company": "Neuracle",
     "slug": "neuracle",
     "activity": "sales",
