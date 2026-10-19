@@ -1051,5 +1051,44 @@
     "sourceUrl": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
+  },
+  {
+    "company": "Newronika",
+    "slug": "newronika",
+    "activity": "pivotal",
+    "stage": "clinical",
+    "amountUsdM": null,
+    "date": "2026-09-21",
+    "datePrecision": "day",
+    "note": "Newronika reported the first ADVENT participant received an αDBS implant in Monza on September 21; the September 30 announcement marked the first pivotal-study procedure, not U.S. marketing approval or comparative study results.",
+    "sourceUrl": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+    "logo": "/logos/newronika.png",
+    "scope": "broader"
+  },
+  {
+    "company": "Neuralink",
+    "slug": "neuralink",
+    "activity": "research",
+    "stage": "clinical",
+    "amountUsdM": null,
+    "date": "2026-10-01",
+    "datePrecision": "day",
+    "note": "Neuralink reported participants streamed over 50,000 hours of unlabeled neural data and participant-specific neural encoders were pretrained on thousands of hours of each participant's recordings; six participants reached personal records and one reached 11.32 BPS. Company-reported engineering update, not independent validation, peer-reviewed evidence, or regulatory approval.",
+    "sourceUrl": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+    "logo": "/logos/neuralink.png",
+    "scope": "bci"
+  },
+  {
+    "company": "INBRAIN Neuroelectronics",
+    "slug": "inbrain-neuroelectronics",
+    "activity": "preclinical",
+    "stage": "clinical",
+    "amountUsdM": null,
+    "date": "2026-10-07",
+    "datePrecision": "day",
+    "note": "INBRAIN and the MINIGRAPH consortium announced project completion: graphene probes, implant electronics, autonomous software, and a magnetic robotic implantation procedure were integrated into a functional prototype and validated in a translational model. Preclinical consortium outcome, not human implantation, regulatory clearance, or commercialization.",
+    "sourceUrl": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+    "logo": "/logos/inbrain-neuroelectronics.png",
+    "scope": "bci"
   }
 ]
