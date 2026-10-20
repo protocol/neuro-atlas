@@ -23,18 +23,19 @@ function MetricsChartLink({ anchor, note }: { anchor: "tissue-mapped" | "neural-
   </a>;
 }
 
-function Methodology({ chart }: { chart: DraftChart }) {
+function Methodology({ chart, context }: { chart: DraftChart; context?: string }) {
   return <details className="draft-chart-methodology" data-draft-methodology>
     <summary>Definition and comparability</summary>
     <dl>
       <div><dt>Candidate axes</dt><dd>{chart.axes}</dd></div>
       <div><dt>Definition</dt><dd>{chart.definition}</dd></div>
       <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>
+      {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}
     </dl>
   </details>;
 }
 
-export function DraftChartsSection({ category: selectedCategory, query = "" }: { category?: string; query?: string } = {}) {
+export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true }: { category?: string; query?: string; showGaps?: boolean } = {}) {
   const matches = (chart: DraftChart) => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(query);
   const linksFor = (chart: DraftChart) => DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
   const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || chart.category === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status === "plotted");
@@ -80,8 +81,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "" }: {
                   <DraftEventTimeline timeline={evidence.timeline} />
                   <DraftChartShare anchor={linksFor(chart).panels.find(panel => panel.plotId === null)!.id} label="Selected application events" />
                 </div>}
-                {evidence.gapReason && <p className="draft-chart-still-missing" data-draft-still-missing><strong>Still missing:</strong> {evidence.gapReason}</p>}
-                <Methodology chart={chart} />
+                <Methodology chart={chart} context={evidence.gapReason} />
                 {chart.metricsAnchor && chart.metricsNote && <MetricsChartLink anchor={chart.metricsAnchor} note={chart.metricsNote} />}
               </article>;
             })}
@@ -89,7 +89,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "" }: {
         </section>;
       })}
     </div>
-    {gaps.length > 0 && <section className="draft-evidence-gaps" data-draft-evidence-gaps aria-label="Evidence gaps">
+    {showGaps && gaps.length > 0 && <section className="draft-evidence-gaps" data-draft-evidence-gaps aria-label="Evidence gaps">
       <h3>Evidence gaps <span>({gaps.length})</span></h3>
       <p>Candidate definitions without a defensible plotted series yet. No measurements are inferred.</p>
       {DRAFT_CHART_CATEGORIES.filter(category => !selectedCategory || category === selectedCategory).map(category => {

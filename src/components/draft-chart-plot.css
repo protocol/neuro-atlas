@@ -99,7 +99,8 @@
 .metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
 .metrics-index > [role=status] { color: var(--muted); font-size: .75rem; margin-bottom: 1rem; }
 .metric-category { margin: .7rem 0; padding: 1rem 1.2rem; min-width: 0; overflow-wrap: anywhere; }
-.metric-category h2 > button { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
+.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
+.metric-category-name { min-width: 0; }
 .metric-category h2 > button:disabled { cursor: default; }
 .metric-category h2 small { margin-left: auto; color: var(--muted); font-size: .7rem; font-weight: 400; }
 .metric-category-summary { color: var(--muted); font-size: .8rem; line-height: 1.6; margin: .1rem 0 .25rem 1.2rem; }
@@ -108,6 +109,7 @@
 .metric-anchor { display: block; scroll-margin-top: 6rem; }
 @media (max-width: 560px) {
   .metric-category { padding: .75rem; }
-  .metric-category h2 small { flex-basis: 100%; margin-left: 1.2rem; }
+  .metric-category h2 > button { grid-template-columns: auto minmax(0, 1fr); }
+  .metric-category h2 small { grid-column: 2; margin-left: 0; }
   .metrics-tools input { flex-basis: 100%; }
 }

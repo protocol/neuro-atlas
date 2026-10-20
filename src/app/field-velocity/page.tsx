@@ -23,19 +23,18 @@ export default function FieldVelocityPage() {
         kicker="Pace"
         meta={["PL R&D metrics"]}
         title="Field velocity"
-        description="Metrics that read neurotech's underlying pace: recording capability, mapped tissue and neural data supply, alongside commitments and expectations. Selected source observations, not a live feed or a single global growth rate."
-        status="partial"
+        description="Explore neurotech measurements across six scientific categories, alongside field context and expectations."
         stats={[
           { value: String(DRAFT_CHART_CATEGORIES.length), label: "scientific categories" },
           { value: String(evidence.reduce((sum, item) => sum + item.plots.length, 0)), label: "curated numeric panels" },
+          { value: String(evidence.reduce((sum, item) => sum + item.plots.reduce((total, plot) => total + plot.points.length, 0), 0)), label: "observations" },
           { value: String(evidence.filter(item => item.timeline).length), label: "event timeline" },
-          { value: String(evidence.filter(item => item.status !== "plotted").length), label: "evidence gaps" },
         ]}
       />
       <div className="mt-8">
         <VelocityTabs references={{
           mapping: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["tissue-mapped"]} />,
-          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons", "neural-recording-hours", "channel-count-frontier"]} />,
+          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons", "neural-recording-hours"]} />,
         }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
       </div>
     </>

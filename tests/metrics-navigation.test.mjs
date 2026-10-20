@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { VelocityTabs } from '../src/components/sections/velocity-tabs.tsx';
-import { DRAFT_CHART_CATEGORIES } from '../src/data/draft-charts.ts';
+import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from '../src/data/draft-charts.ts';
+import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 
@@ -27,7 +28,8 @@ test('Metrics is one collapsed, keyboard-native index in deck order, with separa
     assert.equal(document.activeElement, toggles[0]);
     await click(toggles[0]);
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 19);
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 14);
+    assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
     assert.equal(document.querySelectorAll('[data-source-observation]').length, 79);
   } finally { await cleanup(); }
 });
@@ -69,12 +71,12 @@ const feed = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 test('reference selections preserve original API but render every legacy card only once in appropriate categories', () => {
   const data = selectPerformance(feed);
-  const refs = { mapping: React.createElement(PerformanceCurves, { data, provenance, selection: ['tissue-mapped'] }), recording: React.createElement(PerformanceCurves, { data, provenance, selection: ['neural-recording-hours', 'simultaneously-recorded-neurons', 'channel-count-frontier'] }) };
+  const refs = { mapping: React.createElement(PerformanceCurves, { data, provenance, selection: ['tissue-mapped'] }), recording: React.createElement(PerformanceCurves, { data, provenance, selection: ['neural-recording-hours', 'simultaneously-recorded-neurons'] }) };
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(VelocityTabs, { performance: null, references: refs })));
   try {
     const doc = dom.window.document;
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 3);
-    assert.equal(doc.querySelectorAll('[data-coming-soon]').length, 1);
+    assert.equal(doc.querySelectorAll('[data-coming-soon]').length, 0);
     assert.ok(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'));
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'));
     assert.match(doc.querySelector('#metric-category-0').textContent, /Reference view/);
@@ -97,7 +99,10 @@ test('clean and legacy links override search/collapse, reveal exact target and r
     assert.equal(window.history.state.atlasModalFrom, null);
     await act(async () => navigatePerformance('draft-mapping-cost'));
     await settle(); await settle();
-    assert.ok(document.querySelector('#draft-mapping-cost details').open);
+    assert.equal(document.querySelector('#draft-mapping-cost').closest('[data-metrics-category]').dataset.metricsCategory, 'Cost and automation');
+    assert.equal(document.querySelector('[data-metric-toggle="Cost and automation"]').getAttribute('aria-expanded'), 'true');
+    assert.equal(document.querySelector('#draft-mapping-cost').closest('[data-draft-chart-card]'), null);
+    assert.ok(scrolled.includes('draft-mapping-cost'));
     await act(async () => window.history.back()); await settle(); await settle();
     assert.equal(window.location.hash, '#metric-panel-tissue-cm3');
     await act(async () => window.history.forward()); await settle(); await settle();
@@ -107,10 +112,10 @@ test('clean and legacy links override search/collapse, reveal exact target and r
 });
 
 test('search includes references and field context, labels category results, disables search-time toggles', async () => {
-  const refs = { mapping: React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, selection: ['tissue-mapped'] }), recording: React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, selection: ['neural-recording-hours', 'simultaneously-recorded-neurons', 'channel-count-frontier'] }) };
+  const refs = { mapping: React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, selection: ['tissue-mapped'] }), recording: React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, selection: ['neural-recording-hours', 'simultaneously-recorded-neurons'] }) };
   const cleanup = await mount(React.createElement(VelocityTabs, { performance: React.createElement('p', null, 'Idea vintage · Google Trends'), references: refs }));
   try {
-    for (const term of ['Channel count frontier', 'Idea vintage', 'Markets', 'Google Trends']) {
+    for (const term of ['Simultaneously recorded neurons', 'Idea vintage', 'Google Trends']) {
       await search(term);
       assert.ok(visible('[data-metric-toggle]').length > 0, term);
       assert.ok(visible('[data-metric-toggle]').every(n => n.disabled));
@@ -119,6 +124,18 @@ test('search includes references and field context, labels category results, dis
     await click(document.querySelector('[data-expand-metrics]'));
     assert.equal(document.querySelector('input').value, '');
     assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 7);
+  } finally { await cleanup(); }
+});
+
+test('search excludes retired definitions and unwired placeholders', async () => {
+  const cleanup = await mount(React.createElement(VelocityTabs, { performance: null }));
+  try {
+    const retired = DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status !== 'plotted');
+    for (const term of [...retired.map(chart => chart.title), 'Channel count frontier', 'Markets', 'term-structure aggregation', 'Enrolment is now accelerating']) {
+      await search(term);
+      assert.equal(visible('[data-metric-toggle]').length, 0, term);
+      assert.match(document.querySelector('[role=status]').textContent, /No metrics match/, term);
+    }
   } finally { await cleanup(); }
 });
 

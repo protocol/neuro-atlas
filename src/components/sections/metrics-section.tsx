@@ -1,33 +1,32 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
-import { DRAFT_CHART_LINKS } from "@/data/draft-chart-links";
+import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { usePerformanceHash, revealDraftTarget } from "@/lib/field-velocity/navigation";
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from "@/data/draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "@/data/draft-chart-observations";
 import { DraftChartsSection } from "./draft-charts-section";
 import { VelocityInstrumentsSection } from "./velocity-instruments-section";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
-import RECORDS from "@/data/velocity/neurotech_records.json";
 import TRENDS from "../../../public/data/google-trends/google-trends.json";
 
 // Search retained views by their source metadata as well as their visible titles.
 const supplementaryText = [
   JSON.stringify(SNAPSHOT.measurementSeries.filter(series => series.id === "tissue-mapped")),
   "", "",
-  JSON.stringify([SNAPSHOT.measurementSeries.filter(series => series.id === "neural-recording-hours"), SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons Channel count frontier"]),
+  JSON.stringify([SNAPSHOT.measurementSeries.filter(series => series.id === "neural-recording-hours"), SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons"]),
   "", "",
-  JSON.stringify([SNAPSHOT.records.filter(row => ["idea_vintage", "latency_compression"].includes(row.instrument)), RECORDS, TRENDS, "Idea vintage Latency compression Google Trends Public attention Revealed commitments Markets"]),
+  JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), TRENDS, "Idea vintage Latency compression Google Trends Public attention Revealed commitments"]),
 ].map(text => text.toLocaleLowerCase());
 
 const summaries = [
   "Mapped tissue, connectome size and acquisition throughput.",
-  "Mapping economics, reconstruction quality and proofreading effort.",
-  "Preservation, sectioning loss and validated molecular labels.",
+  "Reconstruction quality and proofreading effort.",
+  "Section rejection and loss in selected datasets.",
   "Implanted interfaces, recording capability and neural data supply.",
-  "Paired datasets, comparative cohorts, open data and reuse.",
-  "Model fidelity, simulation counts, NeuroAI and demonstrated applications.",
-  "Pace, attention, commitments and markets — context, not scientific benchmarks.",
+  "Paired datasets, comparative cohorts and open data.",
+  "Model fidelity, NeuroAI and demonstrated applications.",
+  "Pace, public attention and revealed commitments.",
 ];
 export type MetricReferences = { mapping: React.ReactNode; recording: React.ReactNode };
 export function MetricsSection({ performance, references }: { performance: React.ReactNode; references?: MetricReferences }) {
@@ -51,13 +50,13 @@ export function MetricsSection({ performance, references }: { performance: React
   }, [hash]);
   useLayoutEffect(() => revealDraftTarget(hash.slice(1)), [hash, expanded, query]);
   const term = query.trim().toLocaleLowerCase();
-  const matches = DRAFT_CHARTS.filter(chart => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(term));
+  const matches = DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status === "plotted" && JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(term));
   const categories = [...DRAFT_CHART_CATEGORIES, "Field context"];
   const supplementaryMatch = (index: number) => !!supplementaryText[index] && supplementaryText[index].includes(term);
   const categoryMatch = (category: string, index: number) => matches.some(chart => chart.category === category) || supplementaryMatch(index);
   const matchingCategories = categories.filter(categoryMatch).length;
   return <section className="metrics-index" aria-label="Metrics catalog">
-    <p className="pc-intro">Explore source-backed measurements by category. Each panel retains its own units, scope and comparability limits; evidence gaps are not inferred measurements.</p>
+    <p className="pc-intro">Browse measurements by category, or search for a metric, species or dataset.</p>
     <div className="metrics-tools">
       <label htmlFor="metrics-search">Search metrics, panels, species or datasets</label>
       <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder="Try H01, mouse, recording hours…" />
@@ -70,18 +69,22 @@ export function MetricsSection({ performance, references }: { performance: React
       const charts = DRAFT_CHARTS.filter(chart => chart.category === category);
       const count = charts.reduce((sum, chart) => sum + DRAFT_CHART_EVIDENCE[chart.title].plots.length, 0);
       const timelines = charts.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].timeline).length;
-      const gaps = charts.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status !== "plotted").length;
+      const retiredAnchors = charts.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status !== "plotted").flatMap(chart => {
+        const id = DRAFT_CHART_LINKS.find(link => link.title === chart.title)!.id;
+        return [id, canonicalMetricAnchor(id)];
+      });
       const matched = categoryMatch(category, index);
       const open = term ? matched : expanded.has(category);
       return <section key={category} className="metric-category card" data-metrics-category={category} hidden={!!term && !matched}>
+        {retiredAnchors.map(id => <span key={id} id={id} className="metric-anchor" aria-hidden="true" />)}
         <h2><button type="button" disabled={!!term} id={`metric-category-${index}-toggle`} data-metric-toggle={category} aria-expanded={open} aria-controls={`metric-category-${index}`} onClick={() => setExpanded(previous => { const next = new Set(previous); if (next.has(category)) next.delete(category); else next.add(category); return next; })}>
-          <span aria-hidden="true">{open ? "−" : "+"}</span> {category}
-          {charts.length > 0 && <small>{count} numeric panels{timelines > 0 ? ` · ${timelines} timeline` : ""} · {gaps} evidence gaps{index === 0 && references ? " · 1 reference view" : index === 3 && references ? " · 2 reference views + channel placeholder" : ""}</small>}
-          {index === 6 && <small>Pace · attention · commitments · markets</small>}
+          <span aria-hidden="true">{open ? "−" : "+"}</span><span className="metric-category-name">{category}</span>
+          {charts.length > 0 && <small>{count} {count === 1 ? "chart" : "charts"}{timelines > 0 ? ` · ${timelines} timeline` : ""}{index === 0 && references ? " · 1 reference view" : index === 3 && references ? " · 2 reference views" : ""}</small>}
+          {index === 6 && <small>Pace · attention · commitments</small>}
         </button></h2>
         <p className="metric-category-summary">{summaries[index]}</p>
         <div id={`metric-category-${index}`} hidden={!open} aria-labelledby={`metric-category-${index}-toggle`}>
-          {category === "Field context" ? <VelocityInstrumentsSection performance={performance} /> : <DraftChartsSection category={category} query={term} />}
+          {category === "Field context" ? <VelocityInstrumentsSection performance={performance} /> : <DraftChartsSection category={category} query={term} showGaps={false} />}
           {index === 0 && <div hidden={!!term && !supplementaryMatch(index)}>{references?.mapping}</div>}
           {index === 3 && <div hidden={!!term && !supplementaryMatch(index)}>{references?.recording}</div>}
         </div>

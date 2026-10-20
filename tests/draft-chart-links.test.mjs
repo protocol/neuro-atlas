@@ -24,7 +24,7 @@ function configureScroll(scrolled) {
 }
 const expected = JSON.parse(readFileSync(new URL("./fixtures/draft-chart-links.json", import.meta.url), "utf8"));
 
-test("fresh candidate and panel URLs select Draft, reveal exact targets and expand gap details", async () => {
+test("fresh actual chart/panel URLs reveal exact targets; retired definitions reveal their category", async () => {
   globalThis.React = React;
   for (const candidate of expected) {
     for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)].flatMap(id => [id, id.replace(/^draft-/, "metric-")])) {
@@ -35,7 +35,13 @@ test("fresh candidate and panel URLs select Draft, reveal exact targets and expa
         await until(() => scrolled.includes(id));
         const target = document.getElementById(id);
         assert.equal(target.closest("[hidden]"), null);
-        if (target.dataset.draftChartStatus === "gap") assert.ok(target.querySelector("[data-draft-gap-details]").open);
+        if (candidate.panels.length === 0) {
+          assert.equal(target.closest("[data-draft-chart-card]"), null);
+          const category = target.closest("[data-metrics-category]");
+          assert.ok(category);
+          assert.equal(category.querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
+          assert.equal(category.querySelectorAll("[data-draft-chart-status=gap]").length, 0);
+        }
         assert.equal(window.location.pathname, "/neuro-atlas/field-velocity");
         assert.equal(window.location.search, "?review=1&review=2");
       } finally { await cleanup(); }
@@ -75,7 +81,8 @@ test("direct links, repeated clicks, hashchange and Back/Forward select and scro
     const gap = expected.find(candidate => candidate.panels.length === 0).id;
     await act(async () => { window.location.hash = gap; });
     await until(() => scrolled.at(-1) === gap);
-    assert.ok(document.getElementById(gap).querySelector("[data-draft-gap-details]").open);
+    assert.equal(document.getElementById(gap).closest("[data-metrics-category]").querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
+    assert.equal(document.getElementById(gap).closest("[data-draft-chart-card]"), null);
   } finally { await cleanup(); }
 });
 
@@ -100,7 +107,7 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll([]));
   try {
     await click(document.querySelector("[data-expand-metrics]"));
-    for (const candidate of expected) {
+    for (const candidate of expected.filter(candidate => candidate.panels.length > 0)) {
       for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
         const canonical = id.replace(/^draft-/, "metric-");
         const button = document.querySelector(`[data-copy-draft-link="${canonical}"]`);
