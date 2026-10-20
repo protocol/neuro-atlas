@@ -18,10 +18,10 @@ export function PlateHero({
   meta?: string[];
   title: string;
   description: string;
-  status: "live" | "partial" | "planned";
+  status?: "live" | "partial" | "planned";
   stats: PlateStat[];
 }) {
-  const s = STATUS[status];
+  const s = status ? STATUS[status] : undefined;
   return (
     <section className="-mx-5 -mt-5 rounded-t-2xl border-b border-border bg-[#101217] px-5 pb-8 pt-8 text-white sm:-mx-7 sm:-mt-7 sm:px-7 sm:pb-10 sm:pt-10 lg:-mx-9 lg:-mt-9 lg:px-9 lg:pb-12 lg:pt-12">
       <div className="mb-8 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
@@ -29,8 +29,10 @@ export function PlateHero({
         {(meta ?? []).map((item) => (
           <span key={item}>{item}</span>
         ))}
-        <span aria-hidden="true">•</span>
-        <span className={`rounded-full px-3 py-1.5 ${s.cls}`}>{s.label}</span>
+        {s && <>
+          <span aria-hidden="true">•</span>
+          <span className={`rounded-full px-3 py-1.5 ${s.cls}`}>{s.label}</span>
+        </>}
         <a
           href="https://github.com/protocol/neuro-atlas/pulls"
           target="_blank"

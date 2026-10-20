@@ -269,7 +269,8 @@ function MeasurementCard({ series }: { series: MeasurementSeries }) {
 }
 
 type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: string; source: { repository: string } };
-export function PerformanceCurves({ data, provenance }: { data: PerformanceData; provenance: Provenance }) {
+export function PerformanceCurves({ data, provenance, selection }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[] }) {
+  const includes = (id: string) => !selection || selection.includes(id);
   const r = data.record;
   const reading = r.state === "reading";
   const neuronPlot: PlotData | undefined = reading ? {
@@ -277,11 +278,12 @@ export function PerformanceCurves({ data, provenance }: { data: PerformanceData;
     tracks: [{ id: "neuron-frontier", label: "Selected simultaneous-recording frontier" }],
     points: r.series!.map(p => ({ date: `${p.x}-01-01`, value: p.y, track: "neuron-frontier", trackIndex: 0, label: `${p.x}: ${number(p.y)} neurons (year precision); shared Stevenson sources below` })),
   } : undefined;
-  return <section className="performance-curves" id="performance_curves" aria-labelledby="performance-title">
-    <header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
-    <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p>
+  return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label={selection ? "Reference views" : "Performance curves"}>
+    {!selection && <><header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
+    <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p></>}
+    {selection && <p className="pc-intro"><strong>Reference views.</strong> Earlier Atlas series with separate scope and exploratory extrapolations; not additional observations in the curated panels above.</p>}
     <div className="pc-grid">
-      <CurveCard id="simultaneously-recorded-neurons" title={reading ? r.metric! : "Simultaneously recorded neurons"} eyebrow={reading ? "Historical series" : r.state.replaceAll("_", " ")} coverage={reading ? `${r.window} · selected recording frontier, not a current maximum or a human-only BCI series.` : (r.blocker ?? r.reason ?? "No reading available.")} plot={neuronPlot}>
+      {includes("simultaneously-recorded-neurons") && <CurveCard id="simultaneously-recorded-neurons" title={reading ? r.metric! : "Simultaneously recorded neurons"} eyebrow={reading ? "Historical series" : r.state.replaceAll("_", " ")} coverage={reading ? `${r.window} · selected recording frontier, not a current maximum or a human-only BCI series.` : (r.blocker ?? r.reason ?? "No reading available.")} plot={neuronPlot}>
         {reading ? <>
           <section className="pc-methodology" aria-label="Neuron curve definitions and methodology">
             <h4>Definitions &amp; methodology</h4><p>{data.definition.description}</p>
@@ -299,9 +301,9 @@ export function PerformanceCurves({ data, provenance }: { data: PerformanceData;
           </div>
           <ul className="pc-sources">{r.sources!.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a></li>)}</ul>
         </> : <p>{r.candidateMetric ?? r.reason}</p>}
-      </CurveCard>
-      {data.measurements.map(s => <MeasurementCard key={s.id} series={s} />)}
-      <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
+      </CurveCard>}
+      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} />)}
+      {includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>
         <h3 className="pc-card-title" id="channel-count-title">Channel count frontier</h3>
         <p className="pc-coverage">Maximum simultaneously recorded channels in a human, over time. Not yet wired; channels are not recorded neurons.</p>
@@ -314,7 +316,7 @@ export function PerformanceCurves({ data, provenance }: { data: PerformanceData;
           <span className="pc-coming-soon-label">Coming soon</span>
         </div>
         <p className="pc-chart-note">Source series not assembled yet. Preview is illustrative, not data.</p>
-      </article>
+      </article>}
     </div>
     <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
       <p>Bounded, committed PL R&amp;D snapshot. Refreshed deliberately from a validated provider export, not an automatically updating feed.</p>

@@ -1,8 +1,8 @@
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { VelocityTabs } from "@/components/sections/velocity-tabs";
-import INSTRUMENTS from "@/data/velocity/instruments.json";
-import POINTS from "@/data/velocity/neurotech_inflection_points.json";
+import { DRAFT_CHART_CATEGORIES } from "@/data/draft-charts";
+import { DRAFT_CHART_EVIDENCE } from "@/data/draft-chart-observations";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import PROVENANCE from "@/data/field-velocity/neurotech.snapshot.json.provenance.json";
 import { parseFeed } from "@/lib/field-velocity/schema";
@@ -14,8 +14,7 @@ import { GoogleTrends } from "@/components/google-trends";
 export const metadata = atlasMetadata("/field-velocity", "Field velocity — Neuro Atlas");
 
 const feed = parseFeed(SNAPSHOT);
-const readings = feed.records.filter((row) => row.state === "reading").length;
-const unwired = feed.records.filter((row) => row.state === "unwired").length;
+const evidence = Object.values(DRAFT_CHART_EVIDENCE);
 
 export default function FieldVelocityPage() {
   return (
@@ -24,17 +23,19 @@ export default function FieldVelocityPage() {
         kicker="Pace"
         meta={["PL R&D metrics"]}
         title="Field velocity"
-        description="Metrics that read neurotech's underlying pace: recording capability, mapped tissue and neural data supply, alongside commitments and expectations. Selected source observations, not a live feed or a single global growth rate."
-        status="partial"
+        description="Explore neurotech measurements across six scientific categories, alongside field context and expectations."
         stats={[
-          { value: String(INSTRUMENTS.instruments.length), label: "metric families" },
-          { value: String(readings), label: "families with readings" },
-          { value: String(unwired), label: "named, still unwired" },
-          { value: String(POINTS.points.length), label: "inflection points" },
+          { value: String(DRAFT_CHART_CATEGORIES.length), label: "scientific categories" },
+          { value: String(evidence.reduce((sum, item) => sum + item.plots.length, 0)), label: "curated numeric panels" },
+          { value: String(evidence.reduce((sum, item) => sum + item.plots.reduce((total, plot) => total + plot.points.length, 0), 0)), label: "observations" },
+          { value: String(evidence.filter(item => item.timeline).length), label: "event timeline" },
         ]}
       />
       <div className="mt-8">
-        <VelocityTabs performance={<><PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} /><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
+        <VelocityTabs references={{
+          mapping: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["tissue-mapped"]} />,
+          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons", "neural-recording-hours"]} />,
+        }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
       </div>
     </>
   );

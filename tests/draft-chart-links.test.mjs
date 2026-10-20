@@ -24,18 +24,24 @@ function configureScroll(scrolled) {
 }
 const expected = JSON.parse(readFileSync(new URL("./fixtures/draft-chart-links.json", import.meta.url), "utf8"));
 
-test("fresh candidate and panel URLs select Draft, reveal exact targets and expand gap details", async () => {
+test("fresh actual chart/panel URLs reveal exact targets; retired definitions reveal their category", async () => {
   globalThis.React = React;
   for (const candidate of expected) {
-    for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
+    for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)].flatMap(id => [id, id.replace(/^draft-/, "metric-")])) {
       const scrolled = [];
       const cleanup = await mount(tabs(), `#${id}`, configureScroll(scrolled));
       try {
-        assert.equal(document.querySelector("[aria-current=true]").textContent, "Draft charts", id);
+        assert.equal(document.querySelector("[aria-current=true]").textContent, "Metrics", id);
         await until(() => scrolled.includes(id));
         const target = document.getElementById(id);
         assert.equal(target.closest("[hidden]"), null);
-        if (target.dataset.draftChartStatus === "gap") assert.ok(target.querySelector("[data-draft-gap-details]").open);
+        if (candidate.panels.length === 0) {
+          assert.equal(target.closest("[data-draft-chart-card]"), null);
+          const category = target.closest("[data-metrics-category]");
+          assert.ok(category);
+          assert.equal(category.querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
+          assert.equal(category.querySelectorAll("[data-draft-chart-status=gap]").length, 0);
+        }
         assert.equal(window.location.pathname, "/neuro-atlas/field-velocity");
         assert.equal(window.location.search, "?review=1&review=2");
       } finally { await cleanup(); }
@@ -49,7 +55,8 @@ test("direct links, repeated clicks, hashchange and Back/Forward select and scro
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll(scrolled));
   try {
     assert.deepEqual(scrolled, [], "legacy section anchor does not change scroll behavior");
-    const first = expected[0].id, panel = expected[1].panels[1].id;
+    await click(document.querySelector("[data-expand-metrics]"));
+    const first = expected[0].id.replace(/^draft-/, "metric-"), panel = expected[1].panels[1].id.replace(/^draft-/, "metric-");
     await click(document.querySelector(`a[href="#${first}"]`));
     await until(() => scrolled.at(-1) === first);
     assert.equal(window.history.state.atlasModalFrom, null);
@@ -66,7 +73,7 @@ test("direct links, repeated clicks, hashchange and Back/Forward select and scro
     scrolled.length = 0;
     await act(async () => window.history.back());
     await until(() => scrolled.at(-1) === panel);
-    assert.equal(document.querySelector("[aria-current=true]").textContent, "Draft charts");
+    assert.equal(document.querySelector("[aria-current=true]").textContent, "Metrics");
     await act(async () => window.history.back());
     await until(() => scrolled.at(-1) === first);
     await act(async () => window.history.forward());
@@ -74,7 +81,8 @@ test("direct links, repeated clicks, hashchange and Back/Forward select and scro
     const gap = expected.find(candidate => candidate.panels.length === 0).id;
     await act(async () => { window.location.hash = gap; });
     await until(() => scrolled.at(-1) === gap);
-    assert.ok(document.getElementById(gap).querySelector("[data-draft-gap-details]").open);
+    assert.equal(document.getElementById(gap).closest("[data-metrics-category]").querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
+    assert.equal(document.getElementById(gap).closest("[data-draft-chart-card]"), null);
   } finally { await cleanup(); }
 });
 
@@ -98,11 +106,13 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   Object.defineProperty(globalThis.navigator, "clipboard", { configurable: true, value: { writeText: async text => { copied = text; } } });
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll([]));
   try {
-    for (const candidate of expected) {
+    await click(document.querySelector("[data-expand-metrics]"));
+    for (const candidate of expected.filter(candidate => candidate.panels.length > 0)) {
       for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
-        const button = document.querySelector(`[data-copy-draft-link="${id}"]`);
+        const canonical = id.replace(/^draft-/, "metric-");
+        const button = document.querySelector(`[data-copy-draft-link="${canonical}"]`);
         await click(button);
-        assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${id}`);
+        assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
         assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
         assert.equal(window.location.hash, "#draft-charts");
       }
@@ -133,8 +143,8 @@ test("all 19 candidates and 24 evidence panels have pinned independent share tar
         const target = document.getElementById(id);
         assert.ok(target, `Missing target ${id}`);
         assert.ok(card.contains(target));
-        assert.ok(target.querySelector(`a[href="#${id}"]`), `Direct link ${id}`);
-        assert.ok(target.querySelector(`button[data-copy-draft-link="${id}"]`), `Copy link ${id}`);
+        assert.ok(target.querySelector(`a[href="#${id.replace(/^draft-/, "metric-")}"]`), `Direct link ${id}`);
+        assert.ok(target.querySelector(`button[data-copy-draft-link="${id.replace(/^draft-/, "metric-")}"]`), `Copy link ${id}`);
       }
       assert.equal(card.querySelectorAll("[data-draft-panel]").length, candidate.panels.length);
     }

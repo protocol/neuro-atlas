@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { isDraftAnchor } from "@/data/draft-chart-links";
 
-export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink"] as const;
+export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink", "revealed_commitments"] as const;
 const changedEvent = "atlas-performance-location";
 let performanceFocusReturn: HTMLElement | null = null;
 
@@ -27,13 +27,13 @@ export function performanceUrl(currentUrl: string, anchor: string) {
 }
 
 /** Wait for the revealed pane and its responsive plots to finish layout before scrolling.
- * Only exact Draft targets scroll; section and existing modal locations retain their behavior.
+ * Only exact inline metric targets scroll; existing modal locations retain their behavior.
  */
 export function revealDraftTarget(anchor: string) {
-  if (anchor === "draft-charts" || !isDraftAnchor(anchor)) return;
+  if (anchor === "draft-charts" || (!isDraftAnchor(anchor) && anchor !== "revealed_commitments")) return;
   const target = document.getElementById(anchor);
   if (!target || target.closest("[hidden]")) return;
-  const gap = target.querySelector<HTMLDetailsElement>("[data-draft-gap-details]");
+  const gap = target.closest("[data-draft-chart-card]")?.querySelector<HTMLDetailsElement>("[data-draft-gap-details]");
   if (gap) gap.open = true;
   let frame = window.requestAnimationFrame(() => {
     frame = window.requestAnimationFrame(() => {
@@ -48,10 +48,11 @@ export function revealDraftTarget(anchor: string) {
 export function navigatePerformance(anchor: string) {
   const url = performanceUrl(window.location.href, anchor);
   if (url === window.location.href) {
+    window.dispatchEvent(new Event("atlas-metric-reveal"));
     revealDraftTarget(anchor);
     return;
   }
-  const isChart = !isDraftAnchor(anchor) && !["performance_curves", "expectations"].includes(anchor);
+  const isChart = !isDraftAnchor(anchor) && !["performance_curves", "expectations", "revealed_commitments"].includes(anchor);
   window.history.pushState({ ...window.history.state, atlasModalFrom: isChart ? window.location.href : null }, "", url);
   window.dispatchEvent(new Event(changedEvent));
 }

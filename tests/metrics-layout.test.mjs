@@ -21,22 +21,21 @@ function metricsDocument() {
   return new JSDOM(renderToStaticMarkup(React.createElement(VelocityInstrumentsSection, { performance })));
 }
 
-test('commitments and markets are peer titled sections with single-slot cards and retained evidence', () => {
+test('commitments retains its sourced reading without an unwired Markets section', () => {
   const dom = metricsDocument();
   try {
     const doc = dom.window.document;
     assert.deepEqual([...doc.querySelectorAll('.pc-section-header h2')].map(h => h.textContent), [
-      'Performance curves', 'Idea vintage & latency compression', 'Revealed commitments', 'Markets',
+      'Performance curves', 'Idea vintage & latency compression', 'Revealed commitments',
     ]);
-    for (const id of ['revealed_commitments', 'markets']) {
+    for (const id of ['revealed_commitments']) {
       const section = doc.getElementById(id);
       assert.ok(section?.matches('section.performance-curves'), `${id} must be a peer section`);
       assert.equal(section.querySelectorAll(':scope > .pc-grid > .pc-card').length, 1);
     }
-    assert.match(doc.getElementById('revealed_commitments').textContent, /67 participants implanted/);
+    assert.match(doc.getElementById('revealed_commitments').textContent, /67 participants through December 2023/);
     assert.ok(doc.querySelector('a[href="https://doi.org/10.1038/s44222-024-00239-5"]'));
-    assert.match(doc.getElementById('markets').textContent, /term-structure aggregation is not built/);
-    assert.equal(doc.getElementById('markets').querySelectorAll('[data-curve-point]').length, 0);
+    assert.equal(doc.getElementById('markets'), null);
   } finally { dom.window.close(); }
 });
 
@@ -71,7 +70,7 @@ test('every desktop Metrics grid reserves three tracks even with one, two or mor
     style.textContent = css;
     dom.window.document.head.append(style);
     const grids = [...dom.window.document.querySelectorAll('.pc-grid')];
-    assert.equal(grids.length, 4);
+    assert.equal(grids.length, 3);
     for (const grid of grids) {
       assert.equal(dom.window.getComputedStyle(grid).gridTemplateColumns, 'repeat(3, minmax(0, 1fr))');
       for (const card of grid.children) {

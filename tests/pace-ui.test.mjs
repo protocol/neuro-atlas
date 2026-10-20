@@ -55,8 +55,18 @@ test('Atlas routes render shared pace cards instead of obsolete unwired rows and
   const page = readFileSync('src/app/field-velocity/page.tsx', 'utf8');
   assert.match(page, /PaceReadings/);
   assert.match(page, /selectPace/);
-  assert.match(source, /idea_vintage/);
-  assert.match(source, /latency_compression/);
+  assert.doesNotMatch(source, /data\/velocity\/neurotech_records\.json/, 'Do not remount stale local pace rows');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { JSDOM } = await import('jsdom');
+  const imported = await import('../src/app/field-velocity/page.tsx');
+  const Page = imported.default.default ?? imported.default;
+  globalThis.React = React;
+  const dom = new JSDOM(renderToStaticMarkup(React.createElement(Page)));
+  try {
+    for (const id of ['idea_vintage', 'latency_compression']) {
+      assert.equal(dom.window.document.querySelectorAll(`[data-performance-card="${id}"]`).length, 1, `${id}: one actual shared pace card`);
+    }
+  } finally { dom.window.close(); }
 });
 
 test('switching from a later pace modal to an earlier performance modal keeps scroll locked', async () => {

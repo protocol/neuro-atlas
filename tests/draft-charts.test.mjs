@@ -86,9 +86,9 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
       const evidence = DRAFT_CHART_EVIDENCE[chart.title];
       if (evidence.timeline) assert.equal(card.querySelectorAll('[data-source-event]').length, evidence.timeline.events.length);
       if (evidence.gapReason) {
-        assert.ok(card.querySelector('[data-draft-still-missing]'), 'Bounded proxies show what remains unmeasured');
-        assert.match(card.querySelector('[data-draft-still-missing]').textContent, /Still missing/);
-        assert.ok(card.querySelector('[data-draft-still-missing]').textContent.includes(evidence.gapReason));
+        assert.ok(card.querySelector('details [data-draft-context]'), 'Bounded proxies retain contextual limits in definition details');
+        assert.match(card.querySelector('[data-draft-context]').textContent, /Context/);
+        assert.ok(card.querySelector('[data-draft-context]').textContent.includes(evidence.gapReason));
       }
       assert.equal(card.querySelectorAll('[data-source-observation]').length, plots.reduce((sum, plot) => sum + plot.points.length, 0));
       assert.ok(card.querySelector('details[data-draft-methodology]'), 'Definitions live in a disclosure');
