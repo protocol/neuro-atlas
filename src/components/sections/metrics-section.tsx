@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { usePerformanceHash, revealDraftTarget } from "@/lib/field-velocity/navigation";
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from "@/data/draft-charts";
@@ -32,23 +32,38 @@ export type MetricReferences = { mapping: React.ReactNode; recording: React.Reac
 export function MetricsSection({ performance, references }: { performance: React.ReactNode; references?: MetricReferences }) {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
+  const pendingReveal = useRef<string | null>(null);
+  const cancelReveal = useRef<(() => void) | undefined>(undefined);
   const hash = usePerformanceHash();
   useLayoutEffect(() => {
     const reveal = () => {
       const anchor = hash.slice(1);
+      pendingReveal.current = anchor;
       const legacy = anchor.replace(/^metric-/, "draft-");
       const link = DRAFT_CHART_LINKS.find(link => link.id === legacy || link.panels.some(panel => panel.id === legacy));
       const candidate = DRAFT_CHARTS.find(chart => chart.title === link?.title);
       const card = [...document.querySelectorAll<HTMLElement>("[data-performance-card], [data-trends-card]")].find(card => card.dataset.performanceCard === anchor || `google-trends-${card.dataset.trendsCard}` === anchor);
-      const parent = card?.closest('[id^="metric-category-"]');
+      const parent = (card ?? document.getElementById(anchor))?.closest('[id^="metric-category-"]');
       const category = candidate?.category ?? (parent ? [...DRAFT_CHART_CATEGORIES, "Field context"][Number(parent.id.split('-').at(-1))] : undefined);
       if (category) { setQuery(""); setExpanded(previous => new Set(previous).add(category)); }
     };
     reveal();
     window.addEventListener("atlas-metric-reveal", reveal);
-    return () => window.removeEventListener("atlas-metric-reveal", reveal);
+    return () => {
+      window.removeEventListener("atlas-metric-reveal", reveal);
+      cancelReveal.current?.();
+      cancelReveal.current = undefined;
+    };
   }, [hash]);
-  useLayoutEffect(() => revealDraftTarget(hash.slice(1)), [hash, expanded, query]);
+  useLayoutEffect(() => {
+    const anchor = pendingReveal.current;
+    const target = anchor ? document.getElementById(anchor) : null;
+    if (!anchor || !target || target.closest("[hidden]")) return;
+    // A navigation intent survives category revelation, not later browsing actions.
+    pendingReveal.current = null;
+    cancelReveal.current?.();
+    cancelReveal.current = revealDraftTarget(anchor);
+  }, [hash, expanded, query]);
   const term = query.trim().toLocaleLowerCase();
   const matches = DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status === "plotted" && JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(term));
   const categories = [...DRAFT_CHART_CATEGORIES, "Field context"];

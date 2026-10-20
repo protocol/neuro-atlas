@@ -39,7 +39,9 @@ Search matches actual metric titles, panel metadata, species, datasets and retai
 
 The five retired candidate hashes, and their canonical aliases, are empty anchor aliases at the containing real category header. Both forms select Metrics, clear conflicting search, open that category and scroll to its header without resurrecting a placeholder or gap message. Actual chart/panel links reveal and scroll their exact target after layout. Repeated navigation reveals a collapsed target without adding history. Links preserve origin, base path and query, including repeated parameters. Back/Forward and Expectations transitions retain the navigation subscription and modal focus-return contract; no route/auth logic changed.
 
-Legacy modal anchors remain unchanged: `simultaneously-recorded-neurons`, `tissue-mapped`, `neural-recording-hours`, `idea_vintage`, `latency_compression`, `google-trends-neurotech`, `google-trends-neuralink`. Their category opens before the modal is inspected. Modal close and focus restoration retain StrictMode coverage.
+Legacy modal anchors remain unchanged: `simultaneously-recorded-neurons`, `tissue-mapped`, `neural-recording-hours`, `idea_vintage`, `latency_compression`, `google-trends-neurotech`, `google-trends-neuralink`. Their category opens before the modal is inspected. Modal close and focus restoration retain StrictMode coverage. Fresh modal entry waits for the category to become visible before focusing Close; native browsers reject focus inside a hidden ancestor. The retained `#revealed_commitments` fragment reveals and scrolls Field context without opening a modal.
+
+Inline-chart scrolling consumes a one-shot navigation intent. After following a chart link, searching, clearing search, or toggling unrelated categories does not scroll back to that old target. Fresh URLs, history transitions and explicit repeated links still reveal their targets. Regression tests cover both legacy and canonical fragments.
 
 ## Validation
 

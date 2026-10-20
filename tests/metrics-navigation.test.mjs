@@ -158,3 +158,45 @@ test('every canonical share link has exactly one legacy alias and an independent
   for (const id of metricChartAnchors) assert.equal(performanceUrl('https://atlas.example/base/field-velocity?a=1&a=2', id), `https://atlas.example/base/field-velocity?a=1&a=2#${id}`);
   assert.equal(DRAFT_CHART_LINKS.length, 19);
 });
+
+for (const anchor of ['draft-panel-tissue-cm3', 'metric-panel-tissue-cm3']) {
+  test(`${anchor} scrolls only for navigation, not subsequent search/disclosure changes`, async () => {
+    const scrolled = [];
+    const cleanup = await mount(React.createElement(VelocityTabs, { performance: null }), `#${anchor}`, win => {
+      win.HTMLElement.prototype.scrollIntoView = function() { scrolled.push(this.id); };
+    });
+    try {
+      await settle(); await settle();
+      assert.ok(scrolled.includes(anchor));
+      const count = scrolled.length;
+      await search('H01'); await settle(); await settle();
+      assert.equal(scrolled.length, count, 'typing must not navigate back to the old hash');
+      await click(document.querySelector('[data-clear-metrics]')); await settle(); await settle();
+      await click(document.querySelector('[data-metric-toggle="Cost and automation"]')); await settle(); await settle();
+      assert.equal(scrolled.length, count, 'ordinary disclosure must not navigate back to the old hash');
+      await click(document.querySelector('[data-metric-toggle="Mapping scale"]'));
+      await act(async () => navigatePerformance(anchor)); await settle(); await settle();
+      assert.equal(document.querySelector('[data-metric-toggle="Mapping scale"]').getAttribute('aria-expanded'), 'true');
+      assert.ok(scrolled.length > count, 'explicit same-hash navigation still reveals the target');
+    } finally { await cleanup(); }
+  });
+}
+
+import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
+const Page = FieldVelocityPage.default ?? FieldVelocityPage;
+test('the retained commitments fragment reveals Field context and scrolls its reading, not a modal', async () => {
+  const scrolled = [];
+  const cleanup = await mount(React.createElement(Page), '#revealed_commitments', win => {
+    win.HTMLElement.prototype.scrollIntoView = function() { scrolled.push(this.id); };
+  });
+  try {
+    await settle(); await settle();
+    assert.equal(document.querySelector('[data-metric-toggle="Field context"]').getAttribute('aria-expanded'), 'true');
+    assert.equal(document.querySelector('#revealed_commitments').closest('[hidden]'), null);
+    assert.ok(scrolled.includes('revealed_commitments'));
+    assert.equal(document.querySelector('dialog[open]'), null);
+    await act(async () => navigatePerformance('performance_curves'));
+    await act(async () => navigatePerformance('revealed_commitments'));
+    assert.equal(window.history.state.atlasModalFrom, null);
+  } finally { await cleanup(); }
+});

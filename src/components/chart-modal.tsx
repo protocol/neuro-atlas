@@ -40,8 +40,20 @@ export function ChartModal({ id, title, children, returnFocus }: { id: string; t
     originRef.current ??= crossTabOrigin ?? (previous instanceof HTMLElement && previous !== document.body && previous.isConnected ? previous : trigger);
     const releaseScroll = lockModalScroll(document);
     dialog.showModal();
-    closeRef.current?.focus({ preventScroll: true });
+    let focusFrame = 0;
+    // Fresh chart hashes can mount the dialog before Metrics reveals its category.
+    // Native focus is ignored while an ancestor is hidden; retry after that reveal.
+    const focusClose = (remainingFrames: number) => {
+      if (!dialog.isConnected || !dialog.open) return;
+      if (dialog.closest("[hidden]")) {
+        if (remainingFrames > 0) focusFrame = window.requestAnimationFrame(() => focusClose(remainingFrames - 1));
+        return;
+      }
+      closeRef.current?.focus({ preventScroll: true });
+    };
+    focusClose(3);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       dialog.close();
       releaseScroll();
       if (!document.querySelector("dialog[open]")) {
