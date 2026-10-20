@@ -31,6 +31,8 @@ export const DRAFT_CHART_LINKS: readonly DraftChartLink[] = [
  ];
 
 export const draftChartAnchors = DRAFT_CHART_LINKS.flatMap(chart => [chart.id, ...chart.panels.map(panel => panel.id)]);
+export const canonicalMetricAnchor = (anchor: string) => anchor.replace(/^draft-/, "metric-");
+export const metricChartAnchors = draftChartAnchors.map(canonicalMetricAnchor);
 export function isDraftAnchor(anchor: string) {
-  return anchor === "draft-charts" || draftChartAnchors.includes(anchor);
+  return anchor === "draft-charts" || draftChartAnchors.includes(anchor) || metricChartAnchors.includes(anchor);
 }

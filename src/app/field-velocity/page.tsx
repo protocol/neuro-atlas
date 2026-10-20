@@ -34,7 +34,10 @@ export default function FieldVelocityPage() {
         ]}
       />
       <div className="mt-8">
-        <VelocityTabs performance={<><PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} /><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
+        <VelocityTabs references={{
+          mapping: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["tissue-mapped"]} />,
+          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons", "neural-recording-hours", "channel-count-frontier"]} />,
+        }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
       </div>
     </>
   );

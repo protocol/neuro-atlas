@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { navigatePerformance, performanceUrl } from "@/lib/field-velocity/navigation";
 
-export function DraftChartShare({ anchor, label }: { anchor: string; label: string }) {
+export function DraftChartShare({ anchor: legacyAnchor, label }: { anchor: string; label: string }) {
+  const anchor = canonicalMetricAnchor(legacyAnchor);
   const [status, setStatus] = useState("");
   return <div className="draft-chart-share">
     <a href={`#${anchor}`} aria-label={`Direct link to ${label}`} onClick={event => {

@@ -33,7 +33,7 @@ export function revealDraftTarget(anchor: string) {
   if (anchor === "draft-charts" || !isDraftAnchor(anchor)) return;
   const target = document.getElementById(anchor);
   if (!target || target.closest("[hidden]")) return;
-  const gap = target.querySelector<HTMLDetailsElement>("[data-draft-gap-details]");
+  const gap = target.closest("[data-draft-chart-card]")?.querySelector<HTMLDetailsElement>("[data-draft-gap-details]");
   if (gap) gap.open = true;
   let frame = window.requestAnimationFrame(() => {
     frame = window.requestAnimationFrame(() => {
@@ -48,6 +48,7 @@ export function revealDraftTarget(anchor: string) {
 export function navigatePerformance(anchor: string) {
   const url = performanceUrl(window.location.href, anchor);
   if (url === window.location.href) {
+    window.dispatchEvent(new Event("atlas-metric-reveal"));
     revealDraftTarget(anchor);
     return;
   }

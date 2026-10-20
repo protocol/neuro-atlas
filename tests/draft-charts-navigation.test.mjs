@@ -45,6 +45,7 @@ for (const strict of [false, true]) {
     const tabs = React.createElement(VelocityTabs, { performance: React.createElement(PerformanceCurves, { data, provenance }) });
     const cleanup = await mount(strict ? React.createElement(StrictMode, null, tabs) : tabs, '#draft-charts');
     try {
+      await click(document.querySelector('[data-expand-metrics]'));
       for (const id of ['tissue-mapped', 'neural-recording-hours']) {
         const link = document.querySelector(`.draft-charts a[href="#${id}"]`);
         link.focus();
