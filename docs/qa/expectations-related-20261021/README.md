@@ -4,29 +4,30 @@
 
 - Base/main: `6603d9b8fec4b3ac9438a1c2b7aba2ce505c3967`.
 - Before screenshots: retained loopback build at `8fe8412c035a9d9c776dd5dd20c99aade82c7a7e`; independently verified no runtime/data/config delta from base/main.
-- After screenshots and `native-results.json`: `3114a8618e8eca3505fdd26cd19caecfbed32494`.
-- Both run the actual production Next application under `/neuro-atlas/field-velocity`, with only a disposable `proxy.ts` passthrough in a separate, loopback-only worktree. That fixture is never committed, pushed or deployed. Production auth/routing remains unchanged.
+- After screenshots and the corrected `native-results.json`: `739f99f6920dda8a67a30871905940a5875b9f77`.
+- Both run the actual production Next app under `/neuro-atlas/field-velocity`, with only a disposable `proxy.ts` passthrough in a separate, loopback-only worktree. That fixture is never committed, pushed or deployed. Production auth/routing remains unchanged.
 - Images are headed-Chrome local captures, not authenticated hosted acceptance. Responsive keyboard/pointer tests do not establish physical-phone touch behavior.
 
 ## Verified behavior
 
-`npm test`: **260 passing, zero failed**. Typecheck, changed-file ESLint and production build passed.
+At the corrected runtime revision, `npm test`: **261 passing, zero failed**. Typecheck, changed-file ESLint and production build passed. Eleven served client assets matched the built worktree before and after replay.
 
-`scripts/qa/expectations-related-browser.py` ran in the task-owned browser at desktop 1440 and mobile-emulated 390/320 widths:
+`scripts/qa/expectations-related-browser.py` ran at desktop 1440 and mobile-emulated 390/320 widths:
 
 - All five links at each width (15 cases), including native pointer/Enter activation, actual plotted observations, query/base-path preservation, category reveal, settled target scrolling, and Back/Forward heading/origin-link focus.
-- All five fresh direct URLs reveal the plotted target (5 cases).
+- Retained A → Expectations tab → B history, all three Back and Forward transitions at each width (3 cases).
+- All five direct URLs in genuinely fresh documents reveal their plotted targets (5 cases).
 - A prior no-match Metrics search is cleared when an Expectations related link reveals its target (1 case).
 - Separate forecast disclosure open/close at every width; existing external questions open in a new tab.
 - Equal document client/scroll widths at every tested width.
 
-The initial probe checked target geometry immediately after heading focus and before the existing second-frame scroll. Live readback showed the scroll settled correctly at 96px. The corrected probe waits for both conditions; no product change was made for that timing issue. The initial corrected probe records **21/21** cases, plus forecast and layout assertions.
+The corrected receipt records **24/24** cases, plus forecast and layout assertions. Final-head replay and independent-review status are reported in the PR, separate from these source-revision receipts.
 
-## Review correction and final replay
+## Review correction
 
-The receipt above is the initial 21-case pass, not proof of the later multi-entry edge. Independent review found that A → Expectations tab → B, then Back three times, reused B's focus origin for A's older visit. The parent reproduced this in both the component test and the native browser before changing code. The fix stores a validated related-measurement anchor per history entry while preserving existing router state. The new component regression passed, and the native probe now adds this Back/Forward sequence at all three widths (24 cases total). Final exact-head results and review verdict are reported in the PR.
+Independent review found that the initial last-clicked ref lost focus intent for older visits in retained history. The parent reproduced the exact failure in both the component test and native browser before changing code. Focus is now associated with a validated anchor on each history entry, preserving existing router state. The independent reviewer subsequently passed all six related-measurement tests and closed the finding.
 
-The committed screenshots predate this focus-only correction; their visible copy/layout is unchanged. Do not treat the initial native receipt as the corrected final-head replay.
+The QA probe waits for the existing second-frame scroll as well as heading focus. It avoids redundant same-URL navigation (which reloads), and uses an explicit blank-document boundary for fresh-entry tests; a previously rendered DOM is not proof that a pending navigation has finished.
 
 ## Reproduction
 
@@ -38,4 +39,4 @@ QA_OUT = '/opt/data/tmp/<unique-evidence-directory>'
 exec(open('<repo>/scripts/qa/expectations-related-browser.py').read())
 ```
 
-The script fails closed outside loopback or a mismatched current origin. The release check separately verifies served client asset bytes against the exact built worktree. PR publication, preview availability, merge and authenticated hosted QA are distinct states.
+The script fails closed outside loopback or a mismatched current origin. PR publication, preview availability, merge and authenticated hosted QA remain distinct states.

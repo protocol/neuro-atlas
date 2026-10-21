@@ -65,6 +65,10 @@
     "back_forward_focus": true
   },
   {
+    "multi_entry_history": true,
+    "width": 1440
+  },
+  {
     "width": 390,
     "activation": "native pointer",
     "target": {
@@ -97,7 +101,7 @@
       "hash": "#metric-panel-neuroai-imagenet",
       "path": "/neuro-atlas/field-velocity",
       "query": "?review=1",
-      "top": 96.46875,
+      "top": 95.578125,
       "heading": "NeuroAI performance\u2013cost frontier over time",
       "observations": 6
     },
@@ -128,6 +132,10 @@
       "observations": 2
     },
     "back_forward_focus": true
+  },
+  {
+    "multi_entry_history": true,
+    "width": 390
   },
   {
     "width": 320,
@@ -162,7 +170,7 @@
       "hash": "#metric-panel-neuroai-imagenet",
       "path": "/neuro-atlas/field-velocity",
       "query": "?review=1",
-      "top": 96.390625,
+      "top": 95.671875,
       "heading": "NeuroAI performance\u2013cost frontier over time",
       "observations": 6
     },
@@ -193,6 +201,10 @@
       "observations": 2
     },
     "back_forward_focus": true
+  },
+  {
+    "multi_entry_history": true,
+    "width": 320
   },
   {
     "fresh": "metric-implanted-bci-humans",

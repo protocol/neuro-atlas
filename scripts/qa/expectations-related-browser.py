@@ -23,6 +23,16 @@ def wait_for(expression, label):
     raise AssertionError(label)
 
 
+def navigate(url, fresh=False):
+    # Page.navigate on an unchanged URL reloads; never race its previous document.
+    if fresh:
+        goto_url('about:blank')
+        wait_for("location.href === 'about:blank' && document.readyState === 'complete'", 'blank document boundary')
+    if js('location.href') != url:
+        goto_url(url)
+    wait_for(f"location.href === {json.dumps(url)} && document.readyState === 'complete' && document.querySelectorAll('[data-related-measurement]').length === 5", 'destination document')
+
+
 def point(selector):
     js(f"document.querySelector({json.dumps(selector)}).scrollIntoView({{block:'center',behavior:'instant'}})")
     capture_screenshot(path=str(out / 'current-viewport.png'))
@@ -41,8 +51,7 @@ def go_history(delta):
 
 
 def multi_entry_history():
-    goto_url(QA_URL + '#expectations')
-    wait_for_load()
+    navigate(QA_URL + '#expectations')
     wait_for("location.hash === '#expectations' && !document.querySelector('[data-related-measurement]').closest('[hidden]')", 'multi-entry start')
     a, b = anchors[:2]
     for anchor in [a, b]:
@@ -65,8 +74,7 @@ def multi_entry_history():
 for width in [1440, 390, 320]:
     cdp('Emulation.setDeviceMetricsOverride', width=width, height=1100,
         deviceScaleFactor=1, mobile=width < 500)
-    goto_url(QA_URL + '#expectations')
-    wait_for_load()
+    navigate(QA_URL + '#expectations', fresh=True)
     wait_for('document.querySelectorAll("[data-related-measurement]").length === 5 && !document.querySelector("[data-related-measurement]").closest("[hidden]")', 'Expectations ready')
     assert js('document.querySelectorAll("[data-inflection]").length') == 4
     bounds = js('({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth})')
@@ -111,14 +119,12 @@ for width in [1440, 390, 320]:
 
 # Fresh direct links retain existing Metrics reveal behavior.
 for anchor in anchors:
-    goto_url(QA_URL + '#' + anchor)
-    wait_for_load()
+    navigate(QA_URL + '#' + anchor, fresh=True)
     wait_for(f"document.getElementById('{anchor}') && !document.getElementById('{anchor}').closest('[hidden]')", 'fresh direct link: ' + anchor)
     results.append({'fresh': anchor, 'visible': True})
 
 # A filtered catalog must not make a later related destination disappear.
-goto_url(QA_URL + '#performance_curves')
-wait_for_load()
+navigate(QA_URL + '#performance_curves', fresh=True)
 assert wait_for_element('#metrics-search', visible=True)
 fill_input('#metrics-search', 'no-matching-data-for-related-test')
 assert js("document.querySelector('#metrics-search').value") == 'no-matching-data-for-related-test'
