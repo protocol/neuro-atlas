@@ -20,7 +20,13 @@
 - Separate forecast disclosure open/close at every width; existing external questions open in a new tab.
 - Equal document client/scroll widths at every tested width.
 
-The initial probe checked target geometry immediately after heading focus and before the existing second-frame scroll. Live readback showed the scroll settled correctly at 96px. The corrected probe waits for both conditions; no product change was made for that timing issue. The final native result records **21/21** cases, plus forecast and layout assertions.
+The initial probe checked target geometry immediately after heading focus and before the existing second-frame scroll. Live readback showed the scroll settled correctly at 96px. The corrected probe waits for both conditions; no product change was made for that timing issue. The initial corrected probe records **21/21** cases, plus forecast and layout assertions.
+
+## Review correction and final replay
+
+The receipt above is the initial 21-case pass, not proof of the later multi-entry edge. Independent review found that A → Expectations tab → B, then Back three times, reused B's focus origin for A's older visit. The parent reproduced this in both the component test and the native browser before changing code. The fix stores a validated related-measurement anchor per history entry while preserving existing router state. The new component regression passed, and the native probe now adds this Back/Forward sequence at all three widths (24 cases total). Final exact-head results and review verdict are reported in the PR.
+
+The committed screenshots predate this focus-only correction; their visible copy/layout is unchanged. Do not treat the initial native receipt as the corrected final-head replay.
 
 ## Reproduction
 

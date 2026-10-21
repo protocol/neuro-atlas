@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect } from "react";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import MARKETS from "@/data/velocity/neurotech_market_signals.json";
 import INFLECTIONS from "@/data/velocity/neurotech_inflection_points.json";
@@ -14,9 +14,10 @@ const PLATFORM_LABEL: Record<string, string> = {
 
 export function ExpectationsSection() {
   const hash = usePerformanceHash();
-  const origin = useRef<HTMLAnchorElement | null>(null);
   useLayoutEffect(() => {
-    const link = origin.current;
+    const anchor = window.history.state?.atlasRelatedMeasurement;
+    if (!Object.values(RELATED_MEASUREMENTS).flat().some(measurement => measurement.anchor === anchor)) return;
+    const link = document.querySelector<HTMLAnchorElement>(`[data-related-measurement="${anchor}"]`);
     if (!link || (hash !== "#expectations" && hash !== link.hash)) return;
     let attempts = 0;
     let frame: number;
@@ -68,7 +69,8 @@ export function ExpectationsSection() {
                   <a data-related-measurement={measurement.anchor} href={`#${measurement.anchor}`} onClick={event => {
                     if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
                       event.preventDefault();
-                      origin.current = event.currentTarget;
+                      // Bind return focus to this history entry, not the latest clicked link.
+                      window.history.replaceState({ ...window.history.state, atlasRelatedMeasurement: measurement.anchor }, "", window.location.href);
                       navigatePerformance(measurement.anchor);
                     }
                   }} className="inline-block rounded-sm text-sm font-semibold leading-relaxed text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">

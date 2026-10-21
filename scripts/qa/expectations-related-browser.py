@@ -40,6 +40,28 @@ def go_history(delta):
     cdp('Page.navigateToHistoryEntry', entryId=entry['id'])
 
 
+def multi_entry_history():
+    goto_url(QA_URL + '#expectations')
+    wait_for_load()
+    wait_for("location.hash === '#expectations' && !document.querySelector('[data-related-measurement]').closest('[hidden]')", 'multi-entry start')
+    a, b = anchors[:2]
+    for anchor in [a, b]:
+        selector = f'[data-related-measurement="{anchor}"]'
+        p = point(selector)
+        click_at_xy(p['x'], p['y'])
+        wait_for(f"location.hash === '#{anchor}'", 'multi-entry target')
+        if anchor == a:
+            p = point('button[aria-current="true"] + button')
+            click_at_xy(p['x'], p['y'])
+            wait_for("location.hash === '#expectations'", 'retain A in history')
+    for delta, anchor, kind in [(-1,b,'link'),(-1,a,'heading'),(-1,a,'link'),(1,a,'heading'),(1,b,'link'),(1,b,'heading')]:
+        go_history(delta)
+        wanted_hash = '#expectations' if kind == 'link' else '#' + anchor
+        selector = f'[data-related-measurement="{anchor}"]'
+        focus = f"document.querySelector({json.dumps(selector)})" if kind == 'link' else f"document.getElementById('{anchor}').closest('article').querySelector('h4')"
+        wait_for(f"location.hash === '{wanted_hash}' && document.activeElement === {focus}", f'multi-entry focus {delta} {anchor} {kind}')
+
+
 for width in [1440, 390, 320]:
     cdp('Emulation.setDeviceMetricsOverride', width=width, height=1100,
         deviceScaleFactor=1, mobile=width < 500)
@@ -84,6 +106,8 @@ for width in [1440, 390, 320]:
     p = point(selector)
     click_at_xy(p['x'], p['y'])
     wait_for("!document.querySelector('[data-related-forecasts]').open", 'forecast collapse')
+    multi_entry_history()
+    results.append({'multi_entry_history': True, 'width': width})
 
 # Fresh direct links retain existing Metrics reveal behavior.
 for anchor in anchors:

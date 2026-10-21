@@ -19,6 +19,6 @@ Expectations presents each unmodified `neurotech_inflection_points.json` signal,
 
 ## Navigation contract
 
-The href is an ordinary same-page fragment, preserving origin, deployment base path and query. Unmodified activation uses the existing Metrics navigation path, which switches tabs, clears stale search, opens the category and scrolls to the real target. Modified clicks retain browser defaults. The new link origin retains keyboard focus through Back/Forward; fresh direct links keep existing Metrics behavior. Focus waits for the hidden category to reveal and cancels on navigation/unmount.
+The href is an ordinary same-page fragment, preserving origin, deployment base path and query. Unmodified activation uses the existing Metrics navigation path, which switches tabs, clears stale search, opens the category and scrolls to the real target. Modified clicks retain browser defaults. The new links retain keyboard focus through Back/Forward using a small, validated anchor value attached to each history entry; existing Next/router history state is preserved. This also covers comparing A → Expectations tab → B and traversing both visits in either direction. Fresh direct links keep existing Metrics behavior. Focus waits for the hidden category to reveal and cancels on navigation/unmount.
 
 Regression coverage: `tests/expectations-related-measurements.test.mjs`. Native verification and exact revision evidence are recorded with the PR, separately from any hosted release claim.

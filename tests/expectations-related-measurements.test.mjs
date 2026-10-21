@@ -119,3 +119,32 @@ test('related anchors identify actual plotted evidence, with source signals and 
     expected.forEach((item, index) => assert.ok(actual[index].textContent.includes(item.question)));
   } finally { dom.window.close(); }
 });
+
+test('retained multi-entry history restores each measurement visit rather than the last link', async () => {
+  const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(VelocityTabs, { performance: null })), '#expectations', win => { win.HTMLElement.prototype.scrollIntoView = function () {}; });
+  try {
+    window.history.replaceState({ nextRouterState: { retained: true } }, '', window.location.href);
+    const a = document.querySelector('[data-related-measurement="metric-implanted-bci-humans"]');
+    const b = document.querySelector('[data-related-measurement="metric-recording-hours"]');
+    await click(a); await settle(); await settle();
+    await click([...document.querySelectorAll('button')].find(x => x.textContent === 'Expectations'));
+    await settle();
+    await click(b); await settle(); await settle();
+    const steps = [
+      ['#expectations', b],
+      ['#metric-implanted-bci-humans', document.getElementById('metric-implanted-bci-humans').closest('article').querySelector('h4')],
+      ['#expectations', a],
+    ];
+    for (const [hash, focus] of steps) {
+      await act(async () => window.history.back()); await settle(); await settle();
+      assert.equal(window.location.hash, hash);
+      assert.equal(document.activeElement === focus, true, `focus for history entry ${hash}`);
+      assert.deepEqual(window.history.state.nextRouterState, { retained: true }, 'unrelated router state preserved');
+    }
+    for (const [hash, focus] of [steps[1], steps[0], ['#metric-recording-hours', document.getElementById('metric-recording-hours').closest('article').querySelector('h4')]]) {
+      await act(async () => window.history.forward()); await settle(); await settle();
+      assert.equal(window.location.hash, hash);
+      assert.equal(document.activeElement === focus, true, `forward focus ${hash}`);
+    }
+  } finally { await cleanup(); }
+});
