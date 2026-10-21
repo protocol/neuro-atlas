@@ -1,0 +1,232 @@
+[
+  {
+    "width": 1440,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-implanted-bci-humans",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.65625,
+      "heading": "Humans with implanted high-bandwidth BCIs over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 1440,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-recording-hours",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.375,
+      "heading": "Neural recording hours collected over time",
+      "observations": 11
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 1440,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-neuroai-imagenet",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.875,
+      "heading": "NeuroAI performance\u2013cost frontier over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 1440,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-paired-structure-function",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.25,
+      "heading": "Paired structure\u2013function dataset scale over time",
+      "observations": 4
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 1440,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-flyvis-contrast",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.359375,
+      "heading": "Simulation/emulation fidelity over time",
+      "observations": 2
+    },
+    "back_forward_focus": true
+  },
+  {
+    "multi_entry_history": true,
+    "width": 1440
+  },
+  {
+    "width": 390,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-implanted-bci-humans",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.640625,
+      "heading": "Humans with implanted high-bandwidth BCIs over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 390,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-recording-hours",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.109375,
+      "heading": "Neural recording hours collected over time",
+      "observations": 11
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 390,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-neuroai-imagenet",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.578125,
+      "heading": "NeuroAI performance\u2013cost frontier over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 390,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-paired-structure-function",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.828125,
+      "heading": "Paired structure\u2013function dataset scale over time",
+      "observations": 4
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 390,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-flyvis-contrast",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.71875,
+      "heading": "Simulation/emulation fidelity over time",
+      "observations": 2
+    },
+    "back_forward_focus": true
+  },
+  {
+    "multi_entry_history": true,
+    "width": 390
+  },
+  {
+    "width": 320,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-implanted-bci-humans",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.484375,
+      "heading": "Humans with implanted high-bandwidth BCIs over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 320,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-recording-hours",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.640625,
+      "heading": "Neural recording hours collected over time",
+      "observations": 11
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 320,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-neuroai-imagenet",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 95.671875,
+      "heading": "NeuroAI performance\u2013cost frontier over time",
+      "observations": 6
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 320,
+    "activation": "native Enter",
+    "target": {
+      "hash": "#metric-paired-structure-function",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.171875,
+      "heading": "Paired structure\u2013function dataset scale over time",
+      "observations": 4
+    },
+    "back_forward_focus": true
+  },
+  {
+    "width": 320,
+    "activation": "native pointer",
+    "target": {
+      "hash": "#metric-panel-flyvis-contrast",
+      "path": "/neuro-atlas/field-velocity",
+      "query": "?review=1",
+      "top": 96.125,
+      "heading": "Simulation/emulation fidelity over time",
+      "observations": 2
+    },
+    "back_forward_focus": true
+  },
+  {
+    "multi_entry_history": true,
+    "width": 320
+  },
+  {
+    "fresh": "metric-implanted-bci-humans",
+    "visible": true
+  },
+  {
+    "fresh": "metric-recording-hours",
+    "visible": true
+  },
+  {
+    "fresh": "metric-panel-neuroai-imagenet",
+    "visible": true
+  },
+  {
+    "fresh": "metric-paired-structure-function",
+    "visible": true
+  },
+  {
+    "fresh": "metric-panel-flyvis-contrast",
+    "visible": true
+  },
+  {
+    "stale_search_cleared": true
+  }
+]
