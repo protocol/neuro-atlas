@@ -3,7 +3,7 @@
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES, type DraftChart } from "@/data/draft-charts";
 import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { DraftChartShare } from "@/components/draft-chart-share";
-import { DRAFT_CHART_EVIDENCE } from "@/data/draft-chart-observations";
+import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, isVisibleMetric } from "@/data/metric-chart-visibility";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
 import { setPerformanceFocusReturn, navigatePerformance } from "@/lib/field-velocity/navigation";
 
@@ -38,7 +38,7 @@ function Methodology({ chart, context }: { chart: DraftChart; context?: string }
 export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true }: { category?: string; query?: string; showGaps?: boolean } = {}) {
   const matches = (chart: DraftChart) => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(query);
   const linksFor = (chart: DraftChart) => DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
-  const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || chart.category === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status === "plotted");
+  const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || chart.category === selectedCategory) && isVisibleMetric(chart));
   const gaps = DRAFT_CHARTS.filter(chart => (!selectedCategory || chart.category === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status !== "plotted");
   return <section className="draft-charts draft-charts-gallery" aria-label={selectedCategory ?? "Metrics"}>
     {!selectedCategory && <header className="draft-charts-header">
@@ -51,7 +51,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
       units and scope; unconnected points do not imply a comparable trend. Inspect any point or open its source table.
     </p>}
     <div className="draft-charts-groups">
-      {DRAFT_CHART_CATEGORIES.filter(category => !selectedCategory || category === selectedCategory).map(category => {
+      {DRAFT_CHART_CATEGORIES.filter(category => (!selectedCategory || category === selectedCategory) && plotted.some(chart => chart.category === category)).map(category => {
         const charts = plotted.filter(chart => chart.category === category);
         const categoryId = `draft-${category.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`;
         return <section key={category} className="draft-chart-group" data-draft-chart-category={category} aria-labelledby={`${categoryId}-title`}>

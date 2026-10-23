@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { VelocityTabs } from '../src/components/sections/velocity-tabs.tsx';
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from '../src/data/draft-charts.ts';
-import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
+import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, METRIC_CHART_CATEGORIES, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
 import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 
@@ -13,7 +13,7 @@ test('Metrics is one collapsed, keyboard-native index in deck order, with separa
     assert.deepEqual([...document.querySelectorAll('button[aria-current]')].map(n => n.textContent), ['Metrics']);
     assert.equal([...document.querySelectorAll('button')].some(n => n.textContent === 'Draft charts'), false);
     const toggles = [...document.querySelectorAll('[data-metric-toggle]')];
-    assert.deepEqual(toggles.map(n => n.dataset.metricToggle), [...DRAFT_CHART_CATEGORIES, 'Field context']);
+    assert.deepEqual(toggles.map(n => n.dataset.metricToggle), [...METRIC_CHART_CATEGORIES, 'Field context']);
     for (const toggle of toggles) {
       assert.equal(toggle.tagName, 'BUTTON');
       assert.equal(toggle.type, 'button');
@@ -28,9 +28,9 @@ test('Metrics is one collapsed, keyboard-native index in deck order, with separa
     assert.equal(document.activeElement, toggles[0]);
     await click(toggles[0]);
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 14);
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 12);
     assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 85);
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 77);
   } finally { await cleanup(); }
 });
 
@@ -56,7 +56,7 @@ test('search matches dataset/species and panel titles, opens results; clear rest
     await click(document.querySelector('[data-clear-metrics]'));
     assert.deepEqual([...document.querySelectorAll('[data-metric-toggle][aria-expanded=true]')].map(n => n.dataset.metricToggle), ['Cost and automation']);
     await click(document.querySelector('[data-expand-metrics]'));
-    assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 7);
+    assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 6);
     await click(document.querySelector('[data-collapse-metrics]'));
     assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 0);
   } finally { await cleanup(); }
@@ -123,14 +123,14 @@ test('search includes references and field context, labels category results, dis
     }
     await click(document.querySelector('[data-expand-metrics]'));
     assert.equal(document.querySelector('input').value, '');
-    assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 7);
+    assert.equal(document.querySelectorAll('[data-metric-toggle][aria-expanded=true]').length, 6);
   } finally { await cleanup(); }
 });
 
 test('search excludes retired definitions and unwired placeholders', async () => {
   const cleanup = await mount(React.createElement(VelocityTabs, { performance: null }));
   try {
-    const retired = DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status !== 'plotted');
+    const retired = DRAFT_CHARTS.filter(chart => !isVisibleMetric(chart));
     for (const term of [...retired.map(chart => chart.title), 'Channel count frontier', 'Markets', 'term-structure aggregation', 'Enrolment is now accelerating']) {
       await search(term);
       assert.equal(visible('[data-metric-toggle]').length, 0, term);

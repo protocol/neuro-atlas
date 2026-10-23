@@ -6,7 +6,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { JSDOM } from "jsdom";
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from "../src/data/draft-charts.ts";
-import { DRAFT_CHART_EVIDENCE } from "../src/data/draft-chart-observations.ts";
+import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, METRIC_CHART_CATEGORIES, isVisibleMetric } from "../src/data/metric-chart-visibility.ts";
 import { DraftChartsSection } from "../src/components/sections/draft-charts-section.tsx";
 import { restoreFocusAfterPaneReveal } from "../src/components/chart-modal.tsx";
 import { revealActiveTab, scheduleActiveTabReveal } from "../src/components/sub-tabs.tsx";
@@ -74,11 +74,11 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartsSection)));
   try {
     const document = dom.window.document;
-    const plotted = DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title]?.status === 'plotted');
+    const plotted = DRAFT_CHARTS.filter(isVisibleMetric);
     assert.ok(plotted.length > 0, 'Actual source-backed production data is assembled');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="plotted"]').length, plotted.length);
-    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 19);
-    assert.deepEqual([...document.querySelectorAll("[data-draft-chart-category]")].map(group => group.dataset.draftChartCategory), DRAFT_CHART_CATEGORIES);
+    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 17);
+    assert.deepEqual([...document.querySelectorAll("[data-draft-chart-category]")].map(group => group.dataset.draftChartCategory), METRIC_CHART_CATEGORIES);
     for (const chart of plotted) {
       const card = [...document.querySelectorAll('[data-draft-chart-card]')].find(card => card.dataset.draftChartCard === chart.title);
       const plots = DRAFT_CHART_EVIDENCE[chart.title].plots;
@@ -96,7 +96,7 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
     }
     const count = document.querySelector('[data-draft-chart-counts]');
     assert.ok(count.textContent.includes(`${plotted.length} plotted`));
-    assert.ok(count.textContent.includes(`${DRAFT_CHARTS.length - plotted.length} evidence gaps`));
+    assert.ok(count.textContent.includes(`${DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status === 'gap').length} evidence gaps`));
     assert.deepEqual([...document.querySelectorAll('.draft-chart-link')].map(link => link.getAttribute('href')).sort(), ['#neural-recording-hours', '#tissue-mapped']);
     assert.doesNotMatch(document.body.textContent, /Definition drafts · no observations/);
   } finally { dom.window.close(); }
