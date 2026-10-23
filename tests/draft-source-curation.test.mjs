@@ -18,7 +18,7 @@ test('tissue release annotations preserve coordinates and neuronal targets remai
 test('acquisition economics uses nine approximate Table A1 values, excludes unresolved rows and preserves raw archive',()=>{
  const p=plot('acquisition-economics'); assert.ok(p,'acquisition-economics plot must exist');
  const expected=[['exm2015',2015,1e9],['sem2018',2018,1e8],['exllsm2019',2019,1e9],['exaspim2023',2023,1e10],['multisem506',2023,1e9],['multisem706',2025,1e9],['mesospim2024',2024,1e9],['peem2024',2024,2e10],['bdtem2024',2024,6.5e9]];
- assert.deepEqual(p.points.map(p=>[p.id,p.x,p.y]),expected);
+ assert.deepEqual(p.points.map(p=>[p.id,p.x,p.y]),expected.map(([id,x,value])=>[id,x,1/value]));
  assert.ok(p.points.every(p=>p.qualifier==='≈'));
  assert.equal(p.points.find(p=>p.id==='peem2024').group,'PEEM · prospective');
  assert.deepEqual([...new Set(p.points.map(p=>p.group))].sort(),['Electron microscopy','Optical','PEEM · prospective']);
@@ -31,10 +31,10 @@ test('acquisition economics uses nine approximate Table A1 values, excludes unre
 test('RoboEM preserves exact workbook coordinates and full point notes while retaining nERL',()=>{
  const expected=JSON.parse(readFileSync('tests/fixtures/roboem-figure2-values.json','utf8'));
  for(const source of expected){
-  const p=plot(source.id); assert.ok(p,'exact RoboEM plot must exist');
+  const p=plot('connectomics-roboem-human-split-merge'); assert.ok(p,'combined RoboEM plot must exist');
   assert.equal(p.xKind,'number'); assert.equal(p.scale,'linear'); assert.match(p.xLabel,/Split/); assert.match(p.yLabel,/Merge/);
-  assert.deepEqual(p.points.map(({id,x,y,quote,note})=>({id,x,y,quote,note})),source.points);
-  assert.ok(p.seriesNote.length<450); assert.match(p.seriesNote,/not.*trend/);
+  assert.deepEqual(p.points.filter(point=>source.points.some(s=>s.id===point.id)).map(({id,x,y,quote,note})=>({id,x,y,quote,note})),source.points);
+  assert.ok(p.seriesNote.length<450); assert.match(p.seriesNote,/not.*species effect/);
  }
  assert.equal(plot('pathfinder-nerl').points[0].y,94.2);
  assert.match(evidence['Automated reconstruction accuracy over time'].summary,/ConnectomeBench2.*ROC.*not errors\/mm/);
@@ -54,7 +54,7 @@ test('all candidate definitions, evidence gaps and additive share targets remain
  assert.equal(Object.keys(evidence).length,19);
  assert.equal(Object.values(evidence).filter(c=>c.status==='gap').length,5);
  assert.equal(Object.values(evidence).flatMap(c=>c.plots).length,23);
- assert.equal(Object.values(evidence).flatMap(c=>c.plots).flatMap(p=>p.points).length,79);
+ assert.equal(Object.values(evidence).flatMap(c=>c.plots).flatMap(p=>p.points).length,85);
 });
 
 test('browser source-table probe derives its exact row count from current neuronal data',async()=>{

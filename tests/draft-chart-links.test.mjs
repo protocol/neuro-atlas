@@ -111,6 +111,7 @@ test("candidate and panel copy controls copy without navigating; failure is visi
       for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
         const canonical = id.replace(/^draft-/, "metric-");
         const button = document.querySelector(`[data-copy-draft-link="${canonical}"]`);
+        if (!button && document.getElementById(id)?.hasAttribute("data-panel-alias")) continue;
         await click(button);
         assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
         assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
@@ -143,10 +144,11 @@ test("all 19 candidates and 24 evidence panels have pinned independent share tar
         const target = document.getElementById(id);
         assert.ok(target, `Missing target ${id}`);
         assert.ok(card.contains(target));
+        if (target.hasAttribute("data-panel-alias")) continue;
         assert.ok(target.querySelector(`a[href="#${id.replace(/^draft-/, "metric-")}"]`), `Direct link ${id}`);
         assert.ok(target.querySelector(`button[data-copy-draft-link="${id.replace(/^draft-/, "metric-")}"]`), `Copy link ${id}`);
       }
-      assert.equal(card.querySelectorAll("[data-draft-panel]").length, candidate.panels.length);
+      assert.equal(card.querySelectorAll("[data-draft-panel]").length, new Set(candidate.panels.map(panel => panel.plotId)).size);
     }
   } finally { dom.window.close(); }
 });

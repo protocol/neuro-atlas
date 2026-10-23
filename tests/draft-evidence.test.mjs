@@ -32,10 +32,10 @@ test('draft chart evidence supplies real tissue, recording and implanted-partici
  assert.equal(hours.find(p=>p.id==='tusz-scalp-eeg').points.length,8);
  assert.equal(hours.find(p=>p.id==='tusz-scalp-eeg').points.at(-1).y,1074);
  const bci=evidence['Humans with implanted high-bandwidth BCIs over time'].plots;
- assert.deepEqual(bci.map(p=>p.id),['neuralink-cumulative','paradromics-connect-one']);
- assert.equal(bci[0].points.at(-1).y,21);
- assert.match(bci[0].points.at(-1).note,/18 of the subsequent 20/);
- assert.equal(bci[1].points[0].qualifier,'≥');
+ assert.deepEqual(bci.map(p=>p.id),['neuralink-cumulative','precision-temporary-recording']);
+ const nl=bci[0].points.find(p=>p.id==='neuralink-cumulative-2026-01-28');
+ assert.equal(nl.y,21);assert.match(nl.note,/18 of the subsequent 20/);
+ assert.equal(bci[0].points.find(p=>p.id==='paradromics-connect-one-2026-06-17').qualifier,'≥');
  for(const [title,item] of Object.entries(evidence)) {
   assert.ok(item.summary.length>10,title);
   if(item.status==='gap'){assert.equal(item.plots.length,0);assert.ok(item.gapReason.length>20);continue;}

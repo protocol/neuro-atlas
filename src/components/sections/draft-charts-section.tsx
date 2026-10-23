@@ -69,9 +69,11 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                 <DraftChartShare anchor={linksFor(chart).id} label={chart.title} />
                 <p className="draft-chart-summary">{evidence.summary}</p>
                 <div className="draft-chart-plots">{evidence.plots.map(plot => {
-                  const panel = linksFor(chart).panels.find(panel => panel.plotId === plot.id)!;
+                  const panels = linksFor(chart).panels.filter(panel => panel.plotId === plot.id);
+                  const panel = panels[0]!;
                   return <div key={plot.id} id={panel.id} data-draft-panel>
                     <span id={canonicalMetricAnchor(panel.id)} className="metric-anchor" />
+                    {panels.slice(1).map(alias => <span key={alias.id} id={alias.id} data-panel-alias className="metric-anchor"><span id={canonicalMetricAnchor(alias.id)} /></span>)}
                     <DraftChartPlot plot={plot} />
                     <DraftChartShare anchor={panel.id} label={plot.title} />
                   </div>;

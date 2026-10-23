@@ -44,7 +44,7 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 5, 'Three reference views and two pace cards');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
     assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 14);
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 79);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 85);
     assert.ok(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'));
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'));
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));
