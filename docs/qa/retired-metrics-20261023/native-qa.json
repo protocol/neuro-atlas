@@ -1,0 +1,765 @@
+{
+  "runtimeSha": "f7f59eb",
+  "cases": [
+    {
+      "width": 1440,
+      "case": "inventory",
+      "passed": true,
+      "details": {
+        "ids": [
+          "ajile12-intracranial-2022-01-27",
+          "autotem-2020",
+          "bdtem2024",
+          "bock-mouse-imaged-2011-01-01",
+          "braingate-documented-cohort-2023-01-13",
+          "exaspim2023",
+          "exllsm2019",
+          "exm2015",
+          "fafb-image-download-2018",
+          "fib-sem-2017",
+          "flyvis-0",
+          "flyvis-1",
+          "flywire-fly-neuropil-2024-01-01",
+          "flywire-neurons",
+          "flywire-proofreading",
+          "flywire-synapses",
+          "h01-2021",
+          "h01-human-imaged-2021-06-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "hemibrain-neurons",
+          "hemibrain-proofreading",
+          "hemibrain-synapses",
+          "hemibrain-v1",
+          "hildebrand-zebrafish-public-images-2017",
+          "japaneeg-scalp-eeg-2026-05-31",
+          "larval-brain-neurons",
+          "larval-brain-synapses",
+          "lee-reid-2016-neuronal-targets",
+          "lee2016-paired",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03",
+          "mesospim2024",
+          "microns-2025-size",
+          "microns-mouse-imaged-2021-07-01",
+          "microns-neurons",
+          "microns-synapses",
+          "microns2025-manual",
+          "multisem506",
+          "multisem706",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "neuralink-reported-hours-2026-10-01",
+          "paradromics-connect-one-2026-06-17",
+          "pathfinder-nerl-2025",
+          "peem2024",
+          "poyo-primate-training-2023-10-24",
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8",
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5",
+          "sem2018",
+          "turner2022-paired",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09"
+        ],
+        "figures": 19,
+        "cards": 12,
+        "categories": [
+          {
+            "name": "Mapping scale",
+            "count": "5 charts \u00b7 1 reference view",
+            "open": "true"
+          },
+          {
+            "name": "Cost and automation",
+            "count": "3 charts",
+            "open": "true"
+          },
+          {
+            "name": "Human interfaces and recordings",
+            "count": "6 charts \u00b7 2 reference views",
+            "open": "true"
+          },
+          {
+            "name": "Data access and scientific use",
+            "count": "2 charts",
+            "open": "true"
+          },
+          {
+            "name": "Simulation, NeuroAI, and impact",
+            "count": "2 charts \u00b7 1 timeline",
+            "open": "true"
+          },
+          {
+            "name": "Field context",
+            "count": "Pace \u00b7 attention \u00b7 commitments",
+            "open": "true"
+          }
+        ],
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      }
+    },
+    {
+      "width": 1440,
+      "case": "search-excludes GAUSS-EM",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "search-excludes MICrONS selected-region section loss",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "search-excludes Precision \u00b7 temporary",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "search-excludes Comparative connectomics cohort size",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh draft-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "fresh metric-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "retained hours modal focus/Escape",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "retained connectomics-roboem-mouse-split-merge",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "retained paired-manual",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "retained neuralink-cumulative",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "inventory",
+      "passed": true,
+      "details": {
+        "ids": [
+          "ajile12-intracranial-2022-01-27",
+          "autotem-2020",
+          "bdtem2024",
+          "bock-mouse-imaged-2011-01-01",
+          "braingate-documented-cohort-2023-01-13",
+          "exaspim2023",
+          "exllsm2019",
+          "exm2015",
+          "fafb-image-download-2018",
+          "fib-sem-2017",
+          "flyvis-0",
+          "flyvis-1",
+          "flywire-fly-neuropil-2024-01-01",
+          "flywire-neurons",
+          "flywire-proofreading",
+          "flywire-synapses",
+          "h01-2021",
+          "h01-human-imaged-2021-06-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "hemibrain-neurons",
+          "hemibrain-proofreading",
+          "hemibrain-synapses",
+          "hemibrain-v1",
+          "hildebrand-zebrafish-public-images-2017",
+          "japaneeg-scalp-eeg-2026-05-31",
+          "larval-brain-neurons",
+          "larval-brain-synapses",
+          "lee-reid-2016-neuronal-targets",
+          "lee2016-paired",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03",
+          "mesospim2024",
+          "microns-2025-size",
+          "microns-mouse-imaged-2021-07-01",
+          "microns-neurons",
+          "microns-synapses",
+          "microns2025-manual",
+          "multisem506",
+          "multisem706",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "neuralink-reported-hours-2026-10-01",
+          "paradromics-connect-one-2026-06-17",
+          "pathfinder-nerl-2025",
+          "peem2024",
+          "poyo-primate-training-2023-10-24",
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8",
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5",
+          "sem2018",
+          "turner2022-paired",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09"
+        ],
+        "figures": 19,
+        "cards": 12,
+        "categories": [
+          {
+            "name": "Mapping scale",
+            "count": "5 charts \u00b7 1 reference view",
+            "open": "true"
+          },
+          {
+            "name": "Cost and automation",
+            "count": "3 charts",
+            "open": "true"
+          },
+          {
+            "name": "Human interfaces and recordings",
+            "count": "6 charts \u00b7 2 reference views",
+            "open": "true"
+          },
+          {
+            "name": "Data access and scientific use",
+            "count": "2 charts",
+            "open": "true"
+          },
+          {
+            "name": "Simulation, NeuroAI, and impact",
+            "count": "2 charts \u00b7 1 timeline",
+            "open": "true"
+          },
+          {
+            "name": "Field context",
+            "count": "Pace \u00b7 attention \u00b7 commitments",
+            "open": "true"
+          }
+        ],
+        "inner": 390,
+        "client": 375,
+        "scroll": 375
+      }
+    },
+    {
+      "width": 390,
+      "case": "search-excludes GAUSS-EM",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "search-excludes MICrONS selected-region section loss",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "search-excludes Precision \u00b7 temporary",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "search-excludes Comparative connectomics cohort size",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh draft-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "fresh metric-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "retained hours modal focus/Escape",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "retained connectomics-roboem-mouse-split-merge",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "retained paired-manual",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "retained neuralink-cumulative",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "inventory",
+      "passed": true,
+      "details": {
+        "ids": [
+          "ajile12-intracranial-2022-01-27",
+          "autotem-2020",
+          "bdtem2024",
+          "bock-mouse-imaged-2011-01-01",
+          "braingate-documented-cohort-2023-01-13",
+          "exaspim2023",
+          "exllsm2019",
+          "exm2015",
+          "fafb-image-download-2018",
+          "fib-sem-2017",
+          "flyvis-0",
+          "flyvis-1",
+          "flywire-fly-neuropil-2024-01-01",
+          "flywire-neurons",
+          "flywire-proofreading",
+          "flywire-synapses",
+          "h01-2021",
+          "h01-human-imaged-2021-06-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "hemibrain-neurons",
+          "hemibrain-proofreading",
+          "hemibrain-synapses",
+          "hemibrain-v1",
+          "hildebrand-zebrafish-public-images-2017",
+          "japaneeg-scalp-eeg-2026-05-31",
+          "larval-brain-neurons",
+          "larval-brain-synapses",
+          "lee-reid-2016-neuronal-targets",
+          "lee2016-paired",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03",
+          "mesospim2024",
+          "microns-2025-size",
+          "microns-mouse-imaged-2021-07-01",
+          "microns-neurons",
+          "microns-synapses",
+          "microns2025-manual",
+          "multisem506",
+          "multisem706",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "neuralink-reported-hours-2026-10-01",
+          "paradromics-connect-one-2026-06-17",
+          "pathfinder-nerl-2025",
+          "peem2024",
+          "poyo-primate-training-2023-10-24",
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8",
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5",
+          "sem2018",
+          "turner2022-paired",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09"
+        ],
+        "figures": 19,
+        "cards": 12,
+        "categories": [
+          {
+            "name": "Mapping scale",
+            "count": "5 charts \u00b7 1 reference view",
+            "open": "true"
+          },
+          {
+            "name": "Cost and automation",
+            "count": "3 charts",
+            "open": "true"
+          },
+          {
+            "name": "Human interfaces and recordings",
+            "count": "6 charts \u00b7 2 reference views",
+            "open": "true"
+          },
+          {
+            "name": "Data access and scientific use",
+            "count": "2 charts",
+            "open": "true"
+          },
+          {
+            "name": "Simulation, NeuroAI, and impact",
+            "count": "2 charts \u00b7 1 timeline",
+            "open": "true"
+          },
+          {
+            "name": "Field context",
+            "count": "Pace \u00b7 attention \u00b7 commitments",
+            "open": "true"
+          }
+        ],
+        "inner": 320,
+        "client": 305,
+        "scroll": 305
+      }
+    },
+    {
+      "width": 320,
+      "case": "search-excludes GAUSS-EM",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "search-excludes MICrONS selected-region section loss",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "search-excludes Precision \u00b7 temporary",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "search-excludes Comparative connectomics cohort size",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh draft-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-sectioning-loss",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-tissue-preservation",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-molecular-annotation",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-comparative-cohorts",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-panel-gauss-section-rejection",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-panel-microns-section-loss",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-panel-precision-temporary-recording",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-panel-paired-auto",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "fresh metric-panel-comparative-specimens",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "retained hours modal focus/Escape",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "retained connectomics-roboem-mouse-split-merge",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "retained paired-manual",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "retained neuralink-cumulative",
+      "passed": true
+    }
+  ],
+  "limits": "Loopback-only disposable auth fixture; emulated desktop viewport widths, not physical-phone or authenticated hosted acceptance."
+}
