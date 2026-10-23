@@ -1,0 +1,51 @@
+{
+  "runtimeSourceSha": "84476107b0fa1614df826aaed89f4202b4734795",
+  "loopback": "http://127.0.0.1:3278",
+  "fixture": "disposable proxy.ts only; never committed",
+  "assets": [
+    {
+      "path": "/neuro-atlas/_next/static/chunks/02fh7_m5mrih8.js",
+      "sha256": "e6474226e6954df3087a1e9604430b0cea36458f448eb6c77aad52f06e08e236"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/09c_25_asm7q-.css",
+      "sha256": "0e3584ac91ff87dc3f587a709ac09545b2643a617fa43ab31caf15d7df01f0fb"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/19mx3mg6lkumu.js",
+      "sha256": "170f3982866674a829571beec30cc23c69fcd36196739ff34b9d586b3ad73cd7"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1dhto4irblv5a.js",
+      "sha256": "178274ad400855a85e344c76fc4c2a79ec1f776e793ee941281e4b3b1f7a0b7b"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1hv4itjw5i3bp.js",
+      "sha256": "9147540b81d8c4a55c03bb12a3f1fb857636816a9d320b8b52e786818da5d1e7"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/3-ie-xuatc_oc.js",
+      "sha256": "4bf18e38ff8f3e12ca5951e87100ff9de751810f88590317e614233a3744fee5"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/310vm2bl3xxpt.js",
+      "sha256": "8a943b00599e56b53569f36f4341e3465ae7705c1391562cd6c7e1f290c0c387"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/turbopack-3ppxnk1n3vw8l.js",
+      "sha256": "8cd4cf6952513a285859a97e64da707872ee4f2c540b2147c21ac2bdbfa44c66"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608"
+    }
+  ]
+}

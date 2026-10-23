@@ -1,0 +1,634 @@
+[
+  {
+    "plotId": "tissue-cm3",
+    "id": "bock-mouse-imaged-2011-01-01",
+    "x": 2011.0,
+    "y": 8.19e-06,
+    "sourceUrl": "https://cellimagelibrary.org/images/40263",
+    "quote": "Reconstruction encompasses 450 X 350 X 52 um volume of tissue and contains ~ 1500 cell bodies."
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "hemibrain-fly-bounds-2020-01-01",
+    "x": 2020.0,
+    "y": 1.56e-05,
+    "sourceUrl": "https://elifesciences.org/articles/57443",
+    "quote": "The hemibrain sample is roughly 250 × 250 × 250 μm"
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "h01-human-imaged-2021-06-01",
+    "x": 2021.4136986301369,
+    "y": 0.001,
+    "sourceUrl": "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+    "quote": "imaging data that covers roughly one cubic millimeter of brain tissue"
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "microns-mouse-imaged-2021-07-01",
+    "x": 2021.495890410959,
+    "y": 0.001,
+    "sourceUrl": "https://microns-explorer.org/manifests/mm3-v117",
+    "quote": "the first public data released on the cubic millimeter dataset in July 2021"
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "flywire-fly-neuropil-2024-01-01",
+    "x": 2024.0,
+    "y": 1.7500000000000002e-05,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+    "quote": "The whole brain contains 0.0175 mm3 of neuropil volume"
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "liconn-mouse-native-2025-01-01",
+    "x": 2025.0,
+    "y": 9.5e-07,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08985-1",
+    "quote": "0.95 × 10^6 µm^3 before and 3.5 × 10^9 µm^3 after hydrogel expansion"
+  },
+  {
+    "plotId": "tissue-cm3",
+    "id": "malecns-fly-imaged-2025-10-03",
+    "x": 2025.7534246575342,
+    "y": 8.2e-05,
+    "sourceUrl": "https://biorxiv.org/content/10.1101/2025.10.09.680999v2.full",
+    "quote": "160 teravoxels at 8×8×8 nm isotropic resolution (0.082 mm3 total volume)"
+  },
+  {
+    "plotId": "largest-connectome-neurons",
+    "id": "lee-reid-2016-neuronal-targets",
+    "x": 2016,
+    "y": 1278,
+    "sourceUrl": "https://www.nature.com/articles/nature17192",
+    "quote": "Excitatory neuronal targets 1278 Presynaptic neurons 130 Postsynaptic partners 1228"
+  },
+  {
+    "plotId": "largest-connectome-neurons",
+    "id": "hemibrain-neurons",
+    "x": 2020,
+    "y": 25000,
+    "sourceUrl": "https://elifesciences.org/articles/57443",
+    "quote": "The largest dense reconstruction to date, it contains around 25,000 neurons, most of which were rigorously clustered and named, with about 20 million chemical synapses between them, plus portions of many other neurons truncated by the boundary of the data set (details in Figure 1)."
+  },
+  {
+    "plotId": "largest-connectome-neurons",
+    "id": "larval-brain-neurons",
+    "x": 2023,
+    "y": 3016,
+    "sourceUrl": "https://par.nsf.gov/servlets/purl/10422064",
+    "quote": "RESULTS: The complete synaptic-resolution\nconnectome of the Drosophila larval brain\ncomprises 3016 neurons and 548,000 synapses."
+  },
+  {
+    "plotId": "largest-connectome-neurons",
+    "id": "flywire-neurons",
+    "x": 2024,
+    "y": 139255,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+    "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons."
+  },
+  {
+    "plotId": "largest-connectome-neurons",
+    "id": "microns-neurons",
+    "x": 2025,
+    "y": 84035,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+    "quote": "Using a combination of manual and automated error-detection workflows, we have split almost all neurons into single-soma objects, bringing the total number of individually segmented neurons to 84,035 (Extended Data Fig. 3)."
+  },
+  {
+    "plotId": "largest-connectome-synapses",
+    "id": "hemibrain-synapses",
+    "x": 2020,
+    "y": 20000000,
+    "sourceUrl": "https://elifesciences.org/articles/57443",
+    "quote": "The largest dense reconstruction to date, it contains around 25,000 neurons, most of which were rigorously clustered and named, with about 20 million chemical synapses between them, plus portions of many other neurons truncated by the boundary of the data set (details in Figure 1)."
+  },
+  {
+    "plotId": "largest-connectome-synapses",
+    "id": "larval-brain-synapses",
+    "x": 2023,
+    "y": 548000,
+    "sourceUrl": "https://par.nsf.gov/servlets/purl/10422064",
+    "quote": "RESULTS: The complete synaptic-resolution\nconnectome of the Drosophila larval brain\ncomprises 3016 neurons and 548,000 synapses."
+  },
+  {
+    "plotId": "largest-connectome-synapses",
+    "id": "flywire-synapses",
+    "x": 2024,
+    "y": 54500000,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+    "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons."
+  },
+  {
+    "plotId": "largest-connectome-synapses",
+    "id": "microns-synapses",
+    "x": 2025,
+    "y": 524000000,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+    "quote": "We automatically detected and associated a total of 524 million synaptic clefts across both subvolumes (subvolume 35: 186 million, subvolume 65: 337 million)."
+  },
+  {
+    "plotId": "acquisition-rates",
+    "id": "fib-sem-2017",
+    "x": 2017,
+    "y": 9e-06,
+    "sourceUrl": "https://elifesciences.org/articles/25916",
+    "quote": "To evaluate the suitability of the customized FIB-SEM system for imaging even larger volumes, the *Drosophila* optic lobe, including medulla, lobula, and lobula plate, was imaged at 8 × 8 × 8 nm3 voxel resolution over a 100 day period, yielding a final four terabyte image volume of about 180 × 100 × 50 µm3 (50 µm in the direction of the FIB beam), shown in Figure 3."
+  },
+  {
+    "plotId": "acquisition-rates",
+    "id": "autotem-2020",
+    "x": 2020,
+    "y": 0.0028,
+    "sourceUrl": "https://www.nature.com/articles/s41467-020-18659-3",
+    "quote": "More than 70 montages, each 1 mm2, could be imaged per day per scope."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "exm2015",
+    "x": 2015,
+    "y": 1000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "sem2018",
+    "x": 2018,
+    "y": 100000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "exllsm2019",
+    "x": 2019,
+    "y": 1000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "exaspim2023",
+    "x": 2023,
+    "y": 10000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "multisem506",
+    "x": 2023,
+    "y": 1000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "multisem706",
+    "x": 2025,
+    "y": 1000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "mesospim2024",
+    "x": 2024,
+    "y": 1000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "peem2024",
+    "x": 2024,
+    "y": 20000000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "acquisition-economics",
+    "id": "bdtem2024",
+    "x": 2024,
+    "y": 6500000000,
+    "sourceUrl": "https://arxiv.org/pdf/2603.25713v1",
+    "quote": "Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made."
+  },
+  {
+    "plotId": "pathfinder-nerl",
+    "id": "pathfinder-nerl-2025",
+    "x": 2025,
+    "y": 94.2,
+    "sourceUrl": "https://www.biorxiv.org/content/10.1101/2025.05.16.654254v1.full",
+    "quote": "The segmentation variant optimized to minimize the total number of axon split and merge errors showed a normalized expected run length (nERL) of 94.2% (Table 1)."
+  },
+  {
+    "plotId": "connectomics-roboem-human-split-merge",
+    "id": "roboem-2024-human-multisem-1",
+    "x": 70.39219476932107,
+    "y": 1.0454286351879365,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "FFN c3 | 70.392194769321065 | 1.0454286351879365"
+  },
+  {
+    "plotId": "connectomics-roboem-human-split-merge",
+    "id": "roboem-2024-human-multisem-2",
+    "x": 64.81657538165207,
+    "y": 1.742381058646561,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "FFN c2 | 64.816575381652072 | 1.7423810586465609"
+  },
+  {
+    "plotId": "connectomics-roboem-human-split-merge",
+    "id": "roboem-2024-human-multisem-3",
+    "x": 50.87752691247958,
+    "y": 1.7423810586465611,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "FFN c3 + RoboEM mapping 40 | 50.877526912479581 | 1.7423810586465611"
+  },
+  {
+    "plotId": "connectomics-roboem-human-split-merge",
+    "id": "roboem-2024-human-multisem-4",
+    "x": 27.878096938344974,
+    "y": 3.1362859055638093,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "FFN c2 + RoboEM mapping 100 | 27.878096938344974 | 3.1362859055638093"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-multisem-1",
+    "x": 42.72574786981524,
+    "y": 3.309741032168786,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. mapping 85 | 42.725747869815237 | 3.3097410321687861"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-multisem-2",
+    "x": 31.8939,
+    "y": 3.9115,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. mapping 90 | 31.893899999999999 | 3.9115000000000002"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-multisem-3",
+    "x": 16.2478,
+    "y": 7.52215,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. mapping 95 | 16.247800000000002 | 7.5221499999999999"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-multisem-4",
+    "x": 9.026566451369417,
+    "y": 3.911512128926747,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. mapping 85 + RoboEM mapping 80 | 9.0265664513694173 | 3.9115121289267472"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-multisem-5",
+    "x": 6.017710967579611,
+    "y": 4.513283225684708,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. mapping 85 + RoboEM mapping 100 | 6.0177109675796112 | 4.5132832256847077"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-sbem-6",
+    "x": 31.9046,
+    "y": 6.961,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. | 31.904599999999999 | 6.9610000000000003"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-sbem-7",
+    "x": 5.2207,
+    "y": 6.09085,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. + Human | 5.2206999999999999 | 6.0908499999999997"
+  },
+  {
+    "plotId": "connectomics-roboem-mouse-split-merge",
+    "id": "roboem-2024-mouse-sbem-8",
+    "x": 12.1817,
+    "y": 7.8311,
+    "sourceUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-024-02226-5/MediaObjects/41592_2024_2226_MOESM6_ESM.xlsx",
+    "quote": "autoAggl. + RoboEM | 12.181699999999999 | 7.8311000000000002"
+  },
+  {
+    "plotId": "proofreading-effort",
+    "id": "hemibrain-proofreading",
+    "x": 2020,
+    "y": 50,
+    "sourceUrl": "https://elifesciences.org/articles/57443",
+    "quote": "We applied numerous machine-learning algorithms and over 50 person-years of proofreading effort over ≈2 calendar years"
+  },
+  {
+    "plotId": "proofreading-effort",
+    "id": "flywire-proofreading",
+    "x": 2024,
+    "y": 33,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
+    "quote": "We estimate that FlyWire’s brain reconstruction took around 33 person-years of manual proofreading."
+  },
+  {
+    "plotId": "gauss-section-rejection",
+    "id": "gauss-zebrafish",
+    "x": 2024,
+    "y": 0.73,
+    "sourceUrl": "https://doi.org/10.1016/j.crmeth.2024.100720",
+    "quote": "This leads to a rejected section rates of 0.73% and 0.186% for the zebrafish and olfactory bulb volumes, respectively."
+  },
+  {
+    "plotId": "gauss-section-rejection",
+    "id": "gauss-mouse",
+    "x": 2024,
+    "y": 0.186,
+    "sourceUrl": "https://doi.org/10.1016/j.crmeth.2024.100720",
+    "quote": "This leads to a rejected section rates of 0.73% and 0.186% for the zebrafish and olfactory bulb volumes, respectively."
+  },
+  {
+    "plotId": "microns-section-loss",
+    "id": "microns-section-loss",
+    "x": 2025,
+    "y": 0.1,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+    "quote": "An 800-µm region (sections 7,931–27,904) (Fig. 4a) was selected for further processing, as it had no consecutive section loss and an overall section loss of around 0.1%."
+  },
+  {
+    "plotId": "neuralink-cumulative",
+    "id": "neuralink-cumulative-2024-01-01",
+    "x": 2024.0,
+    "y": 1,
+    "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update/",
+    "quote": "In January, we conducted the first human implantation of our brain-computer interface (BCI)."
+  },
+  {
+    "plotId": "neuralink-cumulative",
+    "id": "neuralink-cumulative-2024-07-01",
+    "x": 2024.4972677595629,
+    "y": 2,
+    "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update-second-participant/",
+    "quote": "Last month, the second participant in our PRIME Study received his Neuralink implant (Link)."
+  },
+  {
+    "plotId": "neuralink-cumulative",
+    "id": "neuralink-cumulative-2025-02-05",
+    "x": 2025.0958904109589,
+    "y": 3,
+    "sourceUrl": "https://neuralink.com/updates/a-year-of-telepathy/",
+    "quote": "Over the past year, three people with paralysis have received Neuralink implants."
+  },
+  {
+    "plotId": "neuralink-cumulative",
+    "id": "neuralink-cumulative-2025-06-02",
+    "x": 2025.4164383561645,
+    "y": 5,
+    "sourceUrl": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+    "quote": "Five individuals with severe paralysis are now using Neuralink to control digital and physical devices with their thoughts"
+  },
+  {
+    "plotId": "neuralink-cumulative",
+    "id": "neuralink-cumulative-2026-01-28",
+    "x": 2026.0739726027398,
+    "y": 21,
+    "sourceUrl": "https://neuralink.com/updates/two-years-of-telepathy/",
+    "quote": "With a growing crew of 21 Neuralnauts enrolled in trials worldwide ... higher signal quality across 18 of the subsequent 20 participants."
+  },
+  {
+    "plotId": "paradromics-connect-one",
+    "id": "paradromics-connect-one-2026-06-17",
+    "x": 2026.4575342465753,
+    "y": 1,
+    "sourceUrl": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation",
+    "quote": "The first participant, a Michigan woman who has difficulty speaking due to motor neuron disease, was enrolled and implanted"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2017-04-17",
+    "x": 2017.2904109589042,
+    "y": 170,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.0.0 – 04/17/2017: 170"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2017-08-04",
+    "x": 2017.5890410958905,
+    "y": 425,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.1.0 – 08/04/2017: 425"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2018-04-15",
+    "x": 2018.2849315068493,
+    "y": 504,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.2.0 – 04/15/2018: 504"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2018-08-16",
+    "x": 2018.6219178082192,
+    "y": 651,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.3.0 – 08/16/2018: 651"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2018-11-14",
+    "x": 2018.868493150685,
+    "y": 651,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.4.0 – 11/14/2018: 651"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2019-07-22",
+    "x": 2019.5534246575342,
+    "y": 1074,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.5.0 – 07/22/2019: 1,074"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2020-04-23",
+    "x": 2020.308743169399,
+    "y": 1074,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.5.1 – 04/23/2020: 1,074"
+  },
+  {
+    "plotId": "tusz-scalp-eeg",
+    "id": "tusz-scalp-eeg-2020-05-09",
+    "x": 2020.3524590163934,
+    "y": 1074,
+    "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+    "quote": "Table 1, Total Duration (Hours), v1.5.2 – 05/09/2020: 1,074"
+  },
+  {
+    "plotId": "ajile12-intracranial",
+    "id": "ajile12-intracranial-2022-01-27",
+    "x": 2022.0712328767124,
+    "y": 1280,
+    "sourceUrl": "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
+    "quote": "Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours."
+  },
+  {
+    "plotId": "poyo-primate-training",
+    "id": "poyo-primate-training-2023-10-24",
+    "x": 2023.8109589041096,
+    "y": 100,
+    "sourceUrl": "https://arxiv.org/abs/2310.16046",
+    "quote": "over 100 hours of recordings"
+  },
+  {
+    "plotId": "japaneeg-scalp-eeg",
+    "id": "japaneeg-scalp-eeg-2026-05-31",
+    "x": 2026.4109589041095,
+    "y": 1020,
+    "sourceUrl": "https://arxiv.org/abs/2606.01264",
+    "quote": "1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio from three healthy native Japanese speakers"
+  },
+  {
+    "plotId": "paired-manual",
+    "id": "lee2016-paired",
+    "x": 2016,
+    "y": 50,
+    "sourceUrl": "https://www.nature.com/articles/nature17192",
+    "quote": "We focused on 46 L2/3 excitatory neurons and 4 deep layer apical dendrites that showed reproducible responses to visual stimulation"
+  },
+  {
+    "plotId": "paired-manual",
+    "id": "turner2022-paired",
+    "x": 2022,
+    "y": 112,
+    "sourceUrl": "https://doi.org/10.1016/j.cell.2022.01.023",
+    "quote": "Activity traces were extracted for 112 of the 363 PyCs (Figure 7C) via the EASE algorithm (Zhou et al., 2020)."
+  },
+  {
+    "plotId": "paired-manual",
+    "id": "microns2025-manual",
+    "x": 2025,
+    "y": 15439,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+    "quote": "For the second step we used the results of the transform to guide a group of experts to manually match 19,181 functional ROIs from 14 scans to 15,439 individual EM neurons (multiple functional ROIs can match to a single EM neuron if it was present in multiple scans)."
+  },
+  {
+    "plotId": "paired-auto",
+    "id": "microns2025-auto",
+    "x": 2025,
+    "y": 37364,
+    "sourceUrl": "https://www.nature.com/articles/s41586-025-08790-w",
+    "quote": "This method (referred to as the fiducial-based automatch table) resulted in 84,198 functional ROIs matched to 37,364 EM neurons."
+  },
+  {
+    "plotId": "comparative-specimens",
+    "id": "witvliet2021-cohort",
+    "x": 2021,
+    "y": 8,
+    "sourceUrl": "https://www.nature.com/articles/s41586-021-03778-8",
+    "quote": "We fully reconstructed the brains of eight isogenic hermaphrodites at different postembryonic ages, from hatching (birth) to adulthood"
+  },
+  {
+    "plotId": "comparative-specimens",
+    "id": "flywire-hemibrain-comparison",
+    "x": 2024,
+    "y": 2,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07686-5",
+    "quote": "In conclusion, we validated 3,643 high-confidence consensus cell type labels for 43,737 neurons from three different hemispheres and two different brains"
+  },
+  {
+    "plotId": "public-data-size",
+    "id": "hemibrain-v1",
+    "x": 2020,
+    "y": 0.026,
+    "sourceUrl": "https://dvid.io/blog/release/",
+    "quote": "From the 26+ TB of data, we can generate"
+  },
+  {
+    "plotId": "public-data-size",
+    "id": "h01-2021",
+    "x": 2021,
+    "y": 1.4,
+    "sourceUrl": "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+    "quote": "a 1.4 petabyte rendering of a small sample of human brain tissue"
+  },
+  {
+    "plotId": "public-data-size",
+    "id": "microns-2025-size",
+    "x": 2025,
+    "y": 1.6,
+    "sourceUrl": "https://alleninstitute.org/news/scientists-complete-largest-wiring-diagram-and-functional-map-of-the-brain-to-date",
+    "quote": "The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system."
+  },
+  {
+    "plotId": "flyvis-contrast",
+    "id": "flyvis-0",
+    "x": 2024,
+    "y": 100.0,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07939-3",
+    "quote": "the median flash response index (FRI) across the ensemble predicts the correct ON- and OFF-preferred contrast selectivity for all 32 cell types for which contrast selectivity has been experimentally established (terminals of CT1 in the medulla and lobula are listed as CT1(M10) and CT1(Lo1)). This is also the case for the model with the best task performance (task-optimal model), which correctly predicts the preferred contrast of 30 of 32 cells (Fig. 2b). We used only connectome and task constraints to construct our DMN, without any measurements of neural activity."
+  },
+  {
+    "plotId": "flyvis-contrast",
+    "id": "flyvis-1",
+    "x": 2024,
+    "y": 93.75,
+    "sourceUrl": "https://www.nature.com/articles/s41586-024-07939-3",
+    "quote": "the median flash response index (FRI) across the ensemble predicts the correct ON- and OFF-preferred contrast selectivity for all 32 cell types for which contrast selectivity has been experimentally established (terminals of CT1 in the medulla and lobula are listed as CT1(M10) and CT1(Lo1)). This is also the case for the model with the best task performance (task-optimal model), which correctly predicts the preferred contrast of 30 of 32 cells (Fig. 2b). We used only connectome and task constraints to construct our DMN, without any measurements of neural activity."
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-0",
+    "x": 3.9,
+    "y": 72.28,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Spiking Transformer-8-384 ✓ 16.81 3.90 4 72.28"
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-1",
+    "x": 3.56,
+    "y": 74.11,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Spiking Transformer-6-512 ✓ 23.37 3.56 4 74.11"
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-2",
+    "x": 1.13,
+    "y": 71.68,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Spiking Transformer-8-512 ✓ 29.68 1.13 1 71.68"
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-3",
+    "x": 4.5,
+    "y": 74.57,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Spiking Transformer-8-512 ✓ 29.68 4.50 4 74.57"
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-4",
+    "x": 5.53,
+    "y": 74.66,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Spiking Transformer-10-512 ✓ 36.01 5.53 4 74.66"
+  },
+  {
+    "plotId": "neuroai-imagenet",
+    "id": "sdt-5",
+    "x": 41.77,
+    "y": 80.8,
+    "sourceUrl": "https://arxiv.org/html/2307.01694v1",
+    "quote": "Transformer Transformer-8-512 ✗ 29.68 41.77 1 80.80"
+  }
+]

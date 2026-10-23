@@ -56,7 +56,7 @@
       },
       {
         "id": "draft-panel-connectomics-roboem-mouse-split-merge",
-        "plotId": "connectomics-roboem-mouse-split-merge"
+        "plotId": "connectomics-roboem-human-split-merge"
       }
     ]
   },
@@ -104,7 +104,11 @@
       },
       {
         "id": "draft-panel-paradromics-connect-one",
-        "plotId": "paradromics-connect-one"
+        "plotId": "neuralink-cumulative"
+      },
+      {
+        "id": "draft-panel-precision-temporary-recording",
+        "plotId": "precision-temporary-recording"
       }
     ]
   },
@@ -112,6 +116,10 @@
     "id": "draft-recording-hours",
     "title": "Neural recording hours collected over time",
     "panels": [
+      {
+        "id": "draft-panel-neuralink-private-intracortical-hours",
+        "plotId": "neuralink-private-intracortical-hours"
+      },
       {
         "id": "draft-panel-tusz-scalp-eeg",
         "plotId": "tusz-scalp-eeg"

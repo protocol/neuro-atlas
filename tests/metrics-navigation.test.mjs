@@ -30,7 +30,7 @@ test('Metrics is one collapsed, keyboard-native index in deck order, with separa
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 14);
     assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 79);
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 85);
   } finally { await cleanup(); }
 });
 
@@ -148,13 +148,13 @@ test('category styling keeps counts scannable and disclosures/search keyboard-vi
 
 import { createHash } from 'node:crypto';
 import { DRAFT_CHART_LINKS, metricChartAnchors, draftChartAnchors } from '../src/data/draft-chart-links.ts';
-test('source definitions, raw observations, plots, caveats and provenance are byte-identical to base', () => {
-  const frozen = {"src/data/draft-charts.ts": "cafa46498df5396063757e04126c7b8c6778df09b26d8f59f8cf7cb3902cb661", "src/data/draft-chart-evidence.json": "f3d0d23799262f64a45e2ccd976def811b1f545c6853cf789613d3c0973cc58e", "src/data/draft-chart-observations.ts": "d4937f5b2c4b2a559cb8d341917b27f03a4572d4c6e9c38a62257c8fd87679f9", "src/components/draft-chart-plot.tsx": "5cb1eb0a6c8bfb91f20a1d9c93096c0dcb7efe5618db30406ca3538ceb80cfea", "src/data/field-velocity/neurotech.snapshot.json": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee", "src/data/field-velocity/neurotech.snapshot.json.provenance.json": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97", "src/data/velocity/neurotech_records.json": "57695c0a26d8f67f092bb951740ae75991d0b5ca8174027e9b03280232494f62", "public/data/google-trends/google-trends.json": "830e31c5315f6fefa07897a264136a04f098bbf107dafab9c660d6fd989dbc36"};
+test('unrevised definitions, provider snapshot and provenance remain byte-identical to base', () => {
+  const frozen = {"src/data/draft-charts.ts": "cafa46498df5396063757e04126c7b8c6778df09b26d8f59f8cf7cb3902cb661", "src/data/draft-chart-observations.ts": "d4937f5b2c4b2a559cb8d341917b27f03a4572d4c6e9c38a62257c8fd87679f9", "src/data/field-velocity/neurotech.snapshot.json": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee", "src/data/field-velocity/neurotech.snapshot.json.provenance.json": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97", "src/data/velocity/neurotech_records.json": "57695c0a26d8f67f092bb951740ae75991d0b5ca8174027e9b03280232494f62", "public/data/google-trends/google-trends.json": "830e31c5315f6fefa07897a264136a04f098bbf107dafab9c660d6fd989dbc36"};
   for (const [path, sha] of Object.entries(frozen)) assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'), sha, path);
 });
 test('every canonical share link has exactly one legacy alias and an independently addressable target', () => {
-  assert.equal(metricChartAnchors.length, 43);
-  assert.equal(new Set([...metricChartAnchors, ...draftChartAnchors]).size, 86);
+  assert.equal(metricChartAnchors.length, 45);
+  assert.equal(new Set([...metricChartAnchors, ...draftChartAnchors]).size, 90);
   for (const id of metricChartAnchors) assert.equal(performanceUrl('https://atlas.example/base/field-velocity?a=1&a=2', id), `https://atlas.example/base/field-velocity?a=1&a=2#${id}`);
   assert.equal(DRAFT_CHART_LINKS.length, 19);
 });
