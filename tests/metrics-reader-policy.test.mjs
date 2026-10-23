@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { readFileSync } from 'node:fs';
 import { VelocityInstrumentsSection } from '../src/components/sections/velocity-instruments-section.tsx';
-import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
+import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 
 globalThis.React = React;
@@ -43,8 +43,8 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
     assert.equal(doc.querySelectorAll('[data-coming-soon], #markets').length, 0);
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 5, 'Three reference views and two pace cards');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
-    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 14);
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 85);
+    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 12);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 77);
     assert.ok(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'));
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'));
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));

@@ -111,7 +111,7 @@ test("candidate and panel copy controls copy without navigating; failure is visi
       for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
         const canonical = id.replace(/^draft-/, "metric-");
         const button = document.querySelector(`[data-copy-draft-link="${canonical}"]`);
-        if (!button && document.getElementById(id)?.hasAttribute("data-panel-alias")) continue;
+        if (!button && (document.getElementById(id)?.hasAttribute("data-panel-alias") || document.getElementById(id)?.hasAttribute("data-retired-metric-anchor"))) continue;
         await click(button);
         assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
         assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
@@ -129,9 +129,9 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   }
 });
 
-test("all 19 candidates and 24 evidence panels have pinned independent share targets", () => {
+test("all stable candidate/panel targets survive; retired targets have no share controls or charts", () => {
   globalThis.React = React;
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartsSection)));
+  const dom = new JSDOM(renderToStaticMarkup(React.createElement(VelocityTabs, { performance: null })));
   try {
     const document = dom.window.document;
     const allIds = [...document.querySelectorAll("[id]")].map(node => node.id);
@@ -139,16 +139,22 @@ test("all 19 candidates and 24 evidence panels have pinned independent share tar
     for (const candidate of expected) {
       const card = document.getElementById(candidate.id);
       assert.ok(card, `Missing candidate target ${candidate.id}`);
-      assert.equal(card.dataset.draftChartCard, candidate.title);
+      if (!card.hasAttribute("data-retired-metric-anchor")) assert.equal(card.dataset.draftChartCard, candidate.title);
       for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
         const target = document.getElementById(id);
         assert.ok(target, `Missing target ${id}`);
+        if (target.hasAttribute("data-retired-metric-anchor")) {
+          assert.equal(target.closest("[data-draft-chart-card]"), null);
+          assert.ok(target.closest("[data-metrics-category]"));
+          continue;
+        }
         assert.ok(card.contains(target));
         if (target.hasAttribute("data-panel-alias")) continue;
         assert.ok(target.querySelector(`a[href="#${id.replace(/^draft-/, "metric-")}"]`), `Direct link ${id}`);
         assert.ok(target.querySelector(`button[data-copy-draft-link="${id.replace(/^draft-/, "metric-")}"]`), `Copy link ${id}`);
       }
-      assert.equal(card.querySelectorAll("[data-draft-panel]").length, new Set(candidate.panels.map(panel => panel.plotId)).size);
+      const retained = candidate.panels.filter(panel => !document.getElementById(panel.id).hasAttribute("data-retired-metric-anchor"));
+      assert.equal(card.querySelectorAll("[data-draft-panel]").length, new Set(retained.map(panel => panel.plotId)).size);
     }
   } finally { dom.window.close(); }
 });

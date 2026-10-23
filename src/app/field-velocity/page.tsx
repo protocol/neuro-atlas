@@ -1,8 +1,7 @@
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { VelocityTabs } from "@/components/sections/velocity-tabs";
-import { DRAFT_CHART_CATEGORIES } from "@/data/draft-charts";
-import { DRAFT_CHART_EVIDENCE } from "@/data/draft-chart-observations";
+import { METRIC_CHART_CATEGORIES, METRIC_CHART_EVIDENCE } from "@/data/metric-chart-visibility";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import PROVENANCE from "@/data/field-velocity/neurotech.snapshot.json.provenance.json";
 import { parseFeed } from "@/lib/field-velocity/schema";
@@ -14,7 +13,7 @@ import { GoogleTrends } from "@/components/google-trends";
 export const metadata = atlasMetadata("/field-velocity", "Field velocity — Neuro Atlas");
 
 const feed = parseFeed(SNAPSHOT);
-const evidence = Object.values(DRAFT_CHART_EVIDENCE);
+const evidence = Object.values(METRIC_CHART_EVIDENCE);
 
 export default function FieldVelocityPage() {
   return (
@@ -23,9 +22,9 @@ export default function FieldVelocityPage() {
         kicker="Pace"
         meta={["PL R&D metrics"]}
         title="Field velocity"
-        description="Explore neurotech measurements across six scientific categories, alongside field context and expectations."
+        description={`Explore neurotech measurements across ${METRIC_CHART_CATEGORIES.length} scientific categories, alongside field context and expectations.`}
         stats={[
-          { value: String(DRAFT_CHART_CATEGORIES.length), label: "scientific categories" },
+          { value: String(METRIC_CHART_CATEGORIES.length), label: "scientific categories" },
           { value: String(evidence.reduce((sum, item) => sum + item.plots.length, 0)), label: "curated numeric panels" },
           { value: String(evidence.reduce((sum, item) => sum + item.plots.reduce((total, plot) => total + plot.points.length, 0), 0)), label: "observations" },
           { value: String(evidence.filter(item => item.timeline).length), label: "event timeline" },
