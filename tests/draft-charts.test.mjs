@@ -82,7 +82,7 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
     for (const chart of plotted) {
       const card = [...document.querySelectorAll('[data-draft-chart-card]')].find(card => card.dataset.draftChartCard === chart.title);
       const plots = DRAFT_CHART_EVIDENCE[chart.title].plots;
-      assert.equal(card.querySelectorAll('svg[role="img"]').length, plots.length + (DRAFT_CHART_EVIDENCE[chart.title].timeline ? 1 : 0), 'Each scope gets its own plot or categorical timeline');
+      assert.equal(card.querySelectorAll('svg.draft-plot-svg').length, plots.length + (DRAFT_CHART_EVIDENCE[chart.title].timeline ? 1 : 0), 'Each scope gets its own plot or categorical timeline');
       const evidence = DRAFT_CHART_EVIDENCE[chart.title];
       if (evidence.timeline) assert.equal(card.querySelectorAll('[data-source-event]').length, evidence.timeline.events.length);
       if (evidence.gapReason) {
