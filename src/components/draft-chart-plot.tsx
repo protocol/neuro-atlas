@@ -1,17 +1,37 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
-const exactNumber = (value: number) => value.toLocaleString("en-US", { maximumFractionDigits: 20 });
+const exactNumber = (value: number) => {
+  const formatted = value.toLocaleString("en-US", { maximumFractionDigits: 20 });
+  // Keep familiar formatting unless its decimal limit loses source precision.
+  return Number(formatted.replaceAll(",", "")) === value ? formatted : String(value);
+};
 const tickLabel = (value: number) => {
   // Axis labels are display ticks, not source values: suppress binary arithmetic noise.
   const rounded = Number(value.toPrecision(6));
   const label = exactNumber(rounded);
   return label.length <= 10 ? label : rounded.toExponential(2).replace("e+", "e");
 };
+
+function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttributes<SVGElement> & {
+  marker?: DraftObservation["marker"]; cx: number; cy: number; r: number;
+}) {
+  // All glyphs share a circumradius, so existing collision clearances stay valid.
+  // The triangle's centroid (not its bounding-box center) is the source position.
+  if (marker === "square") {
+    const halfSide = r / Math.SQRT2;
+    return <rect x={cx - halfSide} y={cy - halfSide} width={halfSide * 2} height={halfSide * 2} {...props} />;
+  }
+  if (marker === "triangle") {
+    const halfBase = Math.sqrt(3) * r / 2;
+    return <polygon points={`${cx},${cy - r} ${cx + halfBase},${cy + r / 2} ${cx - halfBase},${cy + r / 2}`} {...props} />;
+  }
+  return <circle cx={cx} cy={cy} r={r} {...props} />;
+}
 
 function wrapLabel(label: string, width: number) {
   const limit = Math.max(16, Math.floor(width / 7));
@@ -43,8 +63,12 @@ function usePlotWidth() {
 export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
   const id = useId();
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
-  const groupColor = ({ group = "Other observations" }: Pick<DraftObservation, "group">) => SPECIES_COLORS[group]
+  const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
     ?? GROUP_COLORS[groups.indexOf(group) % GROUP_COLORS.length];
+  const legend = plot.legend ?? (groups.length > 1 ? groups.map(group => {
+    const point = plot.points.find(point => (point.group ?? "Other observations") === group);
+    return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
+  }) : []);
   const [active, setActive] = useState<DraftObservation | null>(null);
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(point.y)}`;
   const { width, figure } = usePlotWidth();
@@ -136,7 +160,7 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
         <rect x={labelX - 10} y={labelY - 10} width={20} height={20} rx={4} stroke={groupColor(point)} />
         <text x={labelX} y={labelY + 4} textAnchor="middle">{index + 1}</text>
       </g>)}
-      {plot.points.map((point, index) => <circle key={point.id} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
+      {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > 6 ? "none" : groupColor(point)} stroke={markerRadius(index) > 6 ? groupColor(point) : "var(--surface)"}
         pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
         {...inspectProps(point)}
@@ -148,7 +172,11 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
         <span>{text}</span>
       </button>
     </li>)}</ul>}
-    {groups.length > 1 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{groups.map(group => <li key={group}><span aria-hidden="true" style={{ color: groupColor({ group }) }}>●</span> {group}</li>)}</ul>}
+    {legend.length > 0 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{legend.map(entry => <li key={entry.label}>
+      <span aria-hidden="true" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+        <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
+      </svg> : "●"}</span> {entry.label}
+    </li>)}</ul>}
     <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
     <div className="draft-plot-inspector">
       {active ? <div role="tooltip" id={`${id}-tooltip`}>

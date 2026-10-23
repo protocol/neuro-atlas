@@ -10,6 +10,10 @@ export type DraftObservation = {
   dateLabel: string;
   qualifier?: string;
   group?: string;
+  /** Optional presentation override; otherwise the existing group palette applies. */
+  color?: string;
+  /** Centered on the source coordinates; defaults to a circle. */
+  marker?: "circle" | "square" | "triangle";
   note?: string;
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
@@ -25,6 +29,8 @@ export type DraftPlot = {
   points: DraftObservation[];
   xKind?: "year" | "number";
   seriesNote?: string;
+  /** Optional dataset key; use the same colors and markers as the observations. */
+  legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };
 
 export type DraftEvent = {
