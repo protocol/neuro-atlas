@@ -1,6 +1,32 @@
 {
-  "runtimeSha": "f7f59eb",
+  "runtimeSha": "27c5b4c52457cafa05cd3178777781b94f7af34f",
   "cases": [
+    {
+      "width": 1440,
+      "case": "hero agrees with visible inventory",
+      "passed": true,
+      "details": {
+        "stats": [
+          [
+            "5",
+            "scientific categories"
+          ],
+          [
+            "18",
+            "curated numeric panels"
+          ],
+          [
+            "77",
+            "observations"
+          ],
+          [
+            "1",
+            "event timeline"
+          ]
+        ],
+        "description": "Explore neurotech measurements across 5 scientific categories, alongside field context and expectations."
+      }
+    },
     {
       "width": 1440,
       "case": "inventory",
@@ -253,6 +279,37 @@
       "width": 1440,
       "case": "retained neuralink-cumulative",
       "passed": true
+    },
+    {
+      "width": 1440,
+      "case": "history retired to retained Back/Forward",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "hero agrees with visible inventory",
+      "passed": true,
+      "details": {
+        "stats": [
+          [
+            "5",
+            "scientific categories"
+          ],
+          [
+            "18",
+            "curated numeric panels"
+          ],
+          [
+            "77",
+            "observations"
+          ],
+          [
+            "1",
+            "event timeline"
+          ]
+        ],
+        "description": "Explore neurotech measurements across 5 scientific categories, alongside field context and expectations."
+      }
     },
     {
       "width": 390,
@@ -508,6 +565,37 @@
       "passed": true
     },
     {
+      "width": 390,
+      "case": "history retired to retained Back/Forward",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "hero agrees with visible inventory",
+      "passed": true,
+      "details": {
+        "stats": [
+          [
+            "5",
+            "scientific categories"
+          ],
+          [
+            "18",
+            "curated numeric panels"
+          ],
+          [
+            "77",
+            "observations"
+          ],
+          [
+            "1",
+            "event timeline"
+          ]
+        ],
+        "description": "Explore neurotech measurements across 5 scientific categories, alongside field context and expectations."
+      }
+    },
+    {
       "width": 320,
       "case": "inventory",
       "passed": true,
@@ -758,6 +846,11 @@
     {
       "width": 320,
       "case": "retained neuralink-cumulative",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "history retired to retained Back/Forward",
       "passed": true
     }
   ],

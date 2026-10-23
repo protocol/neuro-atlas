@@ -1,14 +1,20 @@
-[
-  {
-    "width": 1440,
-    "historyRetiredToRetained": true
-  },
-  {
-    "width": 390,
-    "historyRetiredToRetained": true
-  },
-  {
-    "width": 320,
-    "historyRetiredToRetained": true
-  }
-]
+{
+  "runtimeSha": "27c5b4c52457cafa05cd3178777781b94f7af34f",
+  "cases": [
+    {
+      "width": 1440,
+      "case": "history retired to retained Back/Forward",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "case": "history retired to retained Back/Forward",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "case": "history retired to retained Back/Forward",
+      "passed": true
+    }
+  ]
+}
