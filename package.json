@@ -16,7 +16,7 @@
     "trends:verify": "tsx scripts/refresh-google-trends.ts --check"
   },
   "dependencies": {
-    "next": "16.3.2",
+    "next": "16.4.1",
     "next-themes": "^0.4.6",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -28,7 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.2",
+    "eslint-config-next": "16.4.1",
     "jsdom": "^30.0.1",
     "tailwindcss": "^4",
     "tsx": "^4.23.13",
