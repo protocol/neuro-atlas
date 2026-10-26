@@ -1,4 +1,25 @@
-# Hosting the separate Atlas under PLRD
+# Hosting the separate Atlas
+
+## Current location — October 26, 2026
+
+The gated home is **https://www.plneuro.xyz/neuro-atlas**. PL Neuro proxies the existing Atlas deployment at `https://neuro-atlas-app.vercel.app`, preserving `/neuro-atlas` for pages and assets. The former PLRD `/neuro-atlas` namespace redirects to the corresponding PL Neuro path; query strings and deep links remain supported. The apex domains retain their existing redirects to `www`.
+
+Keep `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`, set `ATLAS_SITE_URL=https://www.plneuro.xyz` in both production and preview, and keep **`ATLAS_INDEXABLE=false`**. Rebuild after the canonical-origin change. The password gate, app/data, credits, and PL R&D return links are unchanged. No public navigation or sitemap entry is added. Moving domains does **not** authorize publication or removal of the gate. A browser may prompt for the existing credentials again on the new domain.
+
+The proxy strips PL Neuro cookies while preserving `Authorization`; Atlas emits the authoritative gate and noindex headers. PL Neuro preserves its ordinary trailing-slash behavior but exempts the Atlas namespace, whose existing no-slash policy must not be changed. Roll back routing to the previous deployment rather than reverting Atlas to an unprefixed build.
+
+Verification commands take the new origin explicitly:
+
+```bash
+node scripts/verify-auth-gate.mjs https://www.plneuro.xyz /neuro-atlas
+node scripts/verify-legacy-redirects.mjs https://neuro-atlas-app.vercel.app https://www.plneuro.xyz
+```
+
+These verify redirects and negative access only, not a successful real-password sign-in. Use a separate loopback-only synthetic upstream to test positive forwarding without reading production credentials.
+
+## Historical PLRD integration reference
+
+The remaining sections document the original PLRD cutover. Their PLRD canonical-origin examples and publication sequence are historical; the current location and gated settings above take precedence. General base-path, isolation, and verification guidance still applies.
 
 Atlas remains its own Next application and repository, [protocol/neuro-atlas](https://github.com/protocol/neuro-atlas). Its eventual canonical home is **https://www.plrd.org/neuro-atlas/**. PLRD proxies that namespace to a separately built Atlas deployment: no iframe, copied app/dataset or new main-menu item. Plain HTML anchors cross the app boundary; `by PL R&D` and the footer return to PLRD. Powered-by credits remain intact.
 

@@ -4,6 +4,8 @@ An interactive atlas of the brain-computer interface field — milestones, capit
 
 **Status:** taking shape. The atlas includes Milestones, the BCI Funding Index, Field velocity, and Methodology. Ecosystem links to the [Neurofounders startup map](https://www.neurofounders.co/resources/start-up-map), rather than hosting a copy of their directory. Canonical Atlas data lives in `data/` (CSV/JSON with provenance); `scripts/generate-derived.mjs` builds the `src/data/*.json` the app consumes.
 
+**Gated home:** [plneuro.xyz/neuro-atlas](https://www.plneuro.xyz/neuro-atlas). The previous PLRD address redirects here. Hosting configuration and access-preservation rules: [hosting guide](docs/plrd-hosting.md).
+
 ## Stack
 
 The Field velocity plate now includes [shared performance curves](docs/performance-curves.md): selected neuron-recording, mapped-tissue and recording-hours evidence from a validated, pinned PL R&D export. See that guide for source provenance, refresh/parity commands, counting limits and QA.
