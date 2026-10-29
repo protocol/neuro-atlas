@@ -203,7 +203,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
         <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>
       </svg>
     </div>
-    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label ?? "Hover or tab to any marker for its value, date and source. All observations also appear in the source table below."}</p>}
+    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label}</p>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>

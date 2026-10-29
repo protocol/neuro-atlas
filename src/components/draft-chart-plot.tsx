@@ -194,7 +194,7 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
         <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
         <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a>
         {active.note && <p>{active.note}</p>}
-      </div> : <p className="draft-plot-hint">Hover, tap, or focus an observation to inspect its value and source.</p>}
+      </div> : null}
     </div>
     <details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
