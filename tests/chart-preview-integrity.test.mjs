@@ -49,3 +49,19 @@ test('preview SVG keeps native text scale and adopts narrow card width without a
     assert.equal(getComputedStyle(svg.querySelector('.draft-plot-tick')).fontSize, '11px');
   } finally { await cleanup(); delete globalThis.ResizeObserver; }
 });
+
+test('narrow timeline preview wraps its date-axis title without overlapping year ticks', async () => {
+  const { DraftEventTimeline } = await import('../src/components/draft-chart-plot.tsx');
+  const timeline = Object.values(METRIC_CHART_EVIDENCE).find(e => e.timeline).timeline;
+  let resize;
+  globalThis.ResizeObserver = class { constructor(callback) { resize = callback; } observe() {} disconnect() {} };
+  const cleanup = await mount(React.createElement(DraftEventTimeline, { timeline, preview: true }));
+  try {
+    await act(async () => resize([{ contentRect: { width: 172 } }]));
+    const title = [...document.querySelectorAll('.draft-plot-axis-title')].at(-1);
+    assert.ok(title.querySelectorAll('tspan').length >= 2);
+    assert.equal(title.textContent, 'Publication / demonstration year');
+    const ticks = [...document.querySelectorAll('.draft-plot-tick')];
+    assert.ok(Number(title.getAttribute('y')) > Math.max(...ticks.map(t => Number(t.getAttribute('y')))) + 20);
+  } finally { await cleanup(); delete globalThis.ResizeObserver; }
+});

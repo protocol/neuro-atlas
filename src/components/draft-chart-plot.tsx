@@ -240,7 +240,9 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
   const years = timeline.events.map(event => event.year);
   const first = Math.floor(Math.min(...years));
   const last = Math.max(first + 1, Math.ceil(Math.max(...years)));
-  const height = Math.max(320, stages.length * 100 + 100);
+  const xTitle = wrapLabel("Publication / demonstration year", width - 12);
+  const baseHeight = Math.max(320, stages.length * 100 + 100);
+  const height = baseHeight + (xTitle.length - 1) * 16;
   const x = (year: number) => 28 + (year - first) / (last - first) * (width - 56);
   const y = (stage: string) => 90 + stages.indexOf(stage) * 100;
   const ticks = [...new Set([first, Math.round((first + last) / 2), last])];
@@ -255,8 +257,8 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
         <line className="draft-plot-gridline" x1={28} x2={width - 28} y1={y(stage)} y2={y(stage)} />
       </g>)}
       {timeline.events.map(event => <circle key={event.id} data-source-event={event.id} cx={x(event.year)} cy={y(event.stage)} r={7} fill="var(--accent)"><title>{`${event.label} · ${event.dateLabel} · ${event.stage}`}</title></circle>)}
-      {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={height - 45} textAnchor="middle">{year}</text>)}
-      <text className="draft-plot-axis-title" x={width / 2} y={height - 16} textAnchor="middle">Publication / demonstration year</text>
+      {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={baseHeight - 45} textAnchor="middle">{year}</text>)}
+      <text className="draft-plot-axis-title" x={width / 2} y={baseHeight - 16} textAnchor="middle">{xTitle.map((line, index) => <tspan key={index} x={width / 2} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
     </svg>
     {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title="Selected application events" getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: "Selected application events", anchor: shareAnchor,
