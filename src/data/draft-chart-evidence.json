@@ -1361,7 +1361,7 @@
         ]
       }
     ],
-    "gapReason": "Raw-image versus processed-data byte splits and a deduplicated global inventory remain unavailable."
+    "gapReason": "Raw-image versus processed-data byte splits and a deduplicated global inventory remain unavailable. Coverage checked October 29, 2026: MaleCNS is public (initial release October 2025; v1.0 June 8, 2026), but no verified TB/PB image-resource total was found; nominal voxel-grid capacity is not stored data. Fish Fire&Wire (Fish2) has request-only research-group access, redistribution restrictions, and a publication embargo until December 1, 2027; its byte footprint is also unverified. This is not Fish1. Neither is assigned an invented size or counted as another FAFB/FlyWire image acquisition."
   },
   "Public connectome reuse over time": {
     "status": "gap",
