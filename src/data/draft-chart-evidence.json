@@ -810,6 +810,7 @@
     "plots": [
       {
         "id": "neuralink-cumulative",
+        "integerTicks": true,
         "title": "Selected chronic intracortical recipients",
         "xLabel": "Implantation month / disclosure or publication year",
         "xKind": "year",
@@ -912,6 +913,7 @@
       },
       {
         "id": "precision-temporary-recording",
+        "integerTicks": true,
         "title": "Precision · temporary surface recordings",
         "xLabel": "Company disclosure year",
         "xKind": "year",

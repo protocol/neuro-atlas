@@ -25,6 +25,8 @@ export type DraftPlot = {
   xLabel: string;
   yLabel: string;
   scale: "linear" | "log";
+  /** Count axes use whole-number ticks without changing source values. */
+  integerTicks?: boolean;
   scope: string;
   points: DraftObservation[];
   xKind?: "year" | "number";

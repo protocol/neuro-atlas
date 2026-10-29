@@ -88,12 +88,17 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
   const minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
   if (maxPower === minPower) maxPower += 1;
-  const yMax = log ? 10 ** maxPower : Math.max(...ys) || 1;
+  const rawYMax = Math.max(...ys) || 1;
+  const integerStep = Math.max(1, Math.ceil(rawYMax / 5));
+  const integerAxis = !log && plot.integerTicks;
+  const yMax = log ? 10 ** maxPower : integerAxis ? Math.ceil(rawYMax / integerStep) * integerStep : rawYMax;
   const yMin = log ? 10 ** minPower : Math.min(0, ...ys);
   const powerStep = Math.max(1, Math.ceil((maxPower - minPower) / 5));
   const yTicks = log
     ? [...new Set([...Array.from({ length: Math.floor((maxPower - minPower) / powerStep) + 1 }, (_, i) => 10 ** (minPower + i * powerStep)), yMax])]
-    : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
+    : integerAxis
+      ? Array.from({ length: Math.round((yMax - yMin) / integerStep) + 1 }, (_, i) => yMin + i * integerStep)
+      : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
   const xTicks = [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
   const left = Math.max(46, ...yTicks.map(tick => tickLabel(tick).length * 6.5 + 12));
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? tickLabel(tick) : String(tick)).length * 3.5 + 4));
