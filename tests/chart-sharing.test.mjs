@@ -262,3 +262,51 @@ test('filtered performance export retains the selected track definition and ever
     out.window.close();
   } finally { await cleanup(); boundary.restore(); }
 });
+
+
+test('curated exports visibly preserve every source-qualified value with its observation identity', async () => {
+  globalThis.React = React;
+  let boundary;
+  const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
+  const { JSDOM } = await import('jsdom');
+  try {
+    let qualifiedCount = 0;
+    for (const panel of document.querySelectorAll('[data-draft-panel]')) {
+      const button = panel.querySelector('[data-copy-chart]');
+      if (!button) continue;
+      const rows = [...panel.querySelectorAll('.draft-plot-data tbody tr')].filter(row => /^[≈≥>]/.test(row.querySelectorAll('td')[1].textContent));
+      if (!rows.length) continue;
+      await click(button);
+      const exported = new JSDOM(boundary.svgs.at(-1), { contentType: 'image/svg+xml' });
+      const visible = [...exported.window.document.querySelectorAll('text')].map(e => e.textContent).join(' ').replace(/\s+/g, ' ');
+      for (const row of rows) {
+        const label = row.querySelector('th').firstChild.textContent;
+        const qualified = row.querySelectorAll('td')[1].textContent;
+        assert.ok(visible.includes(`${label}: ${qualified}`), `${panel.id}: missing visible association ${label}: ${qualified}`);
+        qualifiedCount++;
+      }
+      exported.window.close();
+    }
+    assert.ok(qualifiedCount > 10, 'Audit all qualified curated observations, not only the examples');
+  } finally { await cleanup(); boundary.restore(); }
+});
+
+test('filtered POYO reference export visibly retains More than 100 hours without hidden accessibility metadata', async () => {
+  globalThis.React = React;
+  let boundary;
+  const cleanup = await mount(React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance }), '#neural-recording-hours', win => { boundary = browserBoundaries(win); });
+  const { JSDOM } = await import('jsdom');
+  try {
+    const modal=document.querySelector('dialog');
+    const select=modal.querySelector('select');
+    const option=[...select.options].find(o=>o.textContent.includes('POYO'));
+    assert.ok(option);
+    await act(async()=>{select.value=option.value;select.dispatchEvent(new Event('change',{bubbles:true}));});
+    await click(modal.querySelector('[data-copy-chart]'));
+    const exported=new JSDOM(boundary.svgs.at(-1), {contentType:'image/svg+xml'});
+    const visible=[...exported.window.document.querySelectorAll('text')].map(e=>e.textContent).join(' ');
+    assert.match(visible,/POYO[^;]*More than 100 hours/);
+    assert.equal(exported.window.document.querySelectorAll('[data-curve-point]').length,1);
+    exported.window.close();
+  } finally { await cleanup(); boundary.restore(); }
+});

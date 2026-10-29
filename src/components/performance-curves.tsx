@@ -19,7 +19,7 @@ export function pointValue(point: MeasurementPoint) {
   return `${point.qualifier ? prefix[point.qualifier] : ""}${number(point.value)}`;
 }
 
-type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean };
+type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string };
 export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
@@ -138,6 +138,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
       return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor,
         legend: data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })),
         notes: [
+        ...points.flatMap(point => point.qualifiedValueLabel ? [point.qualifiedValueLabel] : []),
           ...Array.from(detail.querySelectorAll(".pc-methodology > p:first-of-type, .pc-caveat"), node => node.textContent ?? ""),
           ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
             .filter(node => !track || node.querySelector("dt")?.textContent === data.tracks.find(t => t.id === track)?.label)
@@ -263,7 +264,7 @@ export function CurveCard({ id, title, eyebrow, coverage, plot, children }: { id
 }
 
 function MeasurementCard({ series }: { series: MeasurementSeries }) {
-  const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
+  const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks };
   return <CurveCard id={series.id} title={series.title} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>

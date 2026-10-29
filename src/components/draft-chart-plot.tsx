@@ -182,7 +182,9 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
     {shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,
-      notes: [plot.scope, plot.seriesNote ?? "", `Source-reported · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
+      notes: [plot.scope, plot.seriesNote ?? "",
+        ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
+        `Source-reported · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} />}

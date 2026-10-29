@@ -7,6 +7,7 @@
 ## Export contract
 
 - Full original SVG viewBox and exact plotted geometry, intervals, marker shapes, colors, targets and selected scenario/track; not the clipped mobile scroll viewport. Pointer-only marker emphasis and tooltip/UI/disclosure scaffolding are excluded.
+- Observation-level qualifiers (≈/≥/> or their source words) are rendered visibly with the exact observation identity and unit. Hover/accessibility metadata is not sufficient for a standalone PNG; filtered reference exports include qualifiers only for the plotted selected points.
 - Portable system fonts and resolved light/dark paint; title, axes, actual legend, source/scope notes, Neuro Atlas and chart link are rendered into the image.
 - SVG geometry/paint allowlist, no foreignObject, active markup, stylesheet/resource URLs, external rendering service or data upload. Rich HTML is constructed from escaped text and the generated PNG, not copied HTML.
 - 1200 CSS-pixel export width, normally rasterized at 2×; large images are capped at 16 MP / 8192 px per side. Overlong exports fail explicitly, not by clipping qualifiers. Height follows the full chart and wrapped metadata.
