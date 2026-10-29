@@ -5,6 +5,7 @@ import SNAPSHOT from '../../public/data/google-trends/google-trends.json';
 import type { TrendsData } from '@/lib/field-velocity/google-trends';
 import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
+import { ChartShare } from '@/components/chart-share';
 import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
@@ -12,11 +13,22 @@ const groups: Group[] = SNAPSHOT.groups;
 const colors = ['var(--accent)', '#087f8c'];
 
 function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean }) {
+  const plotRef = useRef<HTMLDivElement>(null);
   const rows = group.rows.filter(row => !row.partial);
   const start = Date.parse(group.start), end = Date.parse(group.end);
   const x = (date: string) => 48 + (Date.parse(date) - start) / (end - start) * 532;
   const y = (value: number) => 24 + (100 - value) / 100 * 200;
-  return <div className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
+  return <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
+    {!compact && <ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
+      svg: plotRef.current!.querySelector('svg')!, title: group.title, anchor: `google-trends-${group.id}`,
+      legend: group.terms.map((term, index) => ({ label: term, color: colors[index], marker: index ? 'dashed' : 'line' })),
+      notes: [
+        `Weekly UTC Google Trends index · 0–100 · ${group.start}–${group.end}. Worldwide · Web Search · All categories.`,
+        group.id === 'neurotech' ? 'Both English search terms compared in one request; shared scale.' : 'Neuralink: independently normalized brand context; not comparable with the other chart.',
+        'Public attention, not technical progress or absolute search counts. Complete weeks only; partial periods excluded without rescaling. Missing values remain gaps. 0 means low or insufficient interest; <1 is plotted at the index floor.',
+        `Source: Google Trends Explore · captured ${group.capturedAt}. Dated snapshot, not a live feed.`,
+      ],
+    })} />}
     {compact && <span className="gt-preview-axis">Weekly index · 0–100</span>}
     <svg viewBox={compact ? '48 0 552 235' : '0 0 600 270'} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={580} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}

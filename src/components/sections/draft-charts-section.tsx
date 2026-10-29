@@ -62,11 +62,10 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
               return <article hidden={!matches(chart)} id={linksFor(chart).id} key={chart.title} className={`draft-chart-card card${evidence.plots.length > 1 ? " draft-chart-card-multiple" : ""}`} data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
                 <span id={canonicalMetricAnchor(linksFor(chart).id)} className="metric-anchor" />
                 <div className="draft-chart-card-header">
-                  <span className="pc-eyebrow">Bounded evidence</span>
                   <span className="draft-chart-readiness">{evidence.timeline ? `${evidence.timeline.events.length} events` : `${evidence.plots.reduce((sum, plot) => sum + plot.points.length, 0)} observations`}</span>
                 </div>
                 <h4>{chart.title}</h4>
-                <DraftChartShare anchor={linksFor(chart).id} label={chart.title} />
+                <DraftChartShare anchor={linksFor(chart).id} label={chart.title} card />
                 <p className="draft-chart-summary">{evidence.summary}</p>
                 <div className="draft-chart-plots">{evidence.plots.map(plot => {
                   const panels = linksFor(chart).panels.filter(panel => panel.plotId === plot.id);
@@ -74,7 +73,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                   return <div key={plot.id} id={panel.id} data-draft-panel>
                     <span id={canonicalMetricAnchor(panel.id)} className="metric-anchor" />
                     {panels.slice(1).map(alias => <span key={alias.id} id={alias.id} data-panel-alias className="metric-anchor"><span id={canonicalMetricAnchor(alias.id)} /></span>)}
-                    <DraftChartPlot plot={plot} />
+                    <DraftChartPlot plot={plot} shareAnchor={canonicalMetricAnchor(panel.id)} />
                     <DraftChartShare anchor={panel.id} label={plot.title} />
                   </div>;
                 })}</div>

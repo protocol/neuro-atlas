@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
+import { ChartShare } from "@/components/chart-share";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -60,7 +61,7 @@ function usePlotWidth() {
   return { width, figure };
 }
 
-export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
+export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAnchor?: string }) {
   const id = useId();
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
@@ -162,7 +163,7 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
       </g>)}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > 6 ? "none" : groupColor(point)} stroke={markerRadius(index) > 6 ? groupColor(point) : "var(--surface)"}
-        pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
+        data-export-stroke-width={2} pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
         {...inspectProps(point)}
       />)}
     </svg>
@@ -178,6 +179,13 @@ export function DraftChartPlot({ plot }: { plot: DraftPlot }) {
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
     <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
+    {shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
+      svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
+      legend,
+      notes: [plot.scope, plot.seriesNote ?? "", `Source-reported · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
+        ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
+        `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
+    })} />}
     <div className="draft-plot-inspector">
       {active ? <div role="tooltip" id={`${id}-tooltip`}>
         <strong>{active.label}</strong>
