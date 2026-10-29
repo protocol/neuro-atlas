@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { StrictMode } from 'react';
-import { mount, click } from './modal-helpers.mjs';
+import { mount, click, settle } from './modal-helpers.mjs';
 import { DraftChartsSection } from '../src/components/sections/draft-charts-section.tsx';
 
 // Only browser raster/clipboard boundaries are fixtures. Real components, SVG
@@ -34,6 +34,17 @@ function browserBoundaries(win, { rejectWrite = false, unsupported = false } = {
   } };
 }
 
+
+async function openPanel(panel) {
+  const existing = document.querySelector('dialog[open]');
+  if (existing && panel.contains(existing)) return existing;
+  if (existing) { await click(existing.querySelector('.pc-modal-header button')); await settle(); await settle(); }
+  await click(panel.querySelector('[data-draft-popout-trigger]'));
+  const modal = panel.querySelector('dialog[open]');
+  assert.ok(modal, 'selected chart detail is open');
+  return modal;
+}
+
 test('each curated numeric panel offers a single-item PNG + absolute chart URL + safe rich HTML, without writes on render', async () => {
   globalThis.React = React;
   let boundary;
@@ -46,12 +57,14 @@ test('each curated numeric panel offers a single-item PNG + absolute chart URL +
     const panels = [...document.querySelectorAll('[data-draft-panel]')].filter(panel => panel.querySelector('[data-source-observation]'));
     assert.ok(panels.length > 1);
     for (const panel of panels) {
+      await openPanel(panel);
       const button = panel.querySelector('button[data-copy-chart]');
       assert.ok(button, `Copy chart missing for ${panel.id}`);
       const anchor = panel.querySelector('.metric-anchor').id;
       assert.equal(button.dataset.copyChart, anchor);
     }
     const panel = panels.find(panel => panel.closest('article').querySelectorAll('[data-draft-panel]').length > 1);
+    await openPanel(panel);
     const title = panel.querySelector('figcaption').textContent;
     await click(panel.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes.length, 1);
@@ -144,6 +157,7 @@ for (const failure of ['unsupported', 'permission']) test(`${failure}: recover w
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win, { unsupported: failure === 'unsupported', rejectWrite: failure === 'permission' }); });
   try {
     const panel = document.querySelector('[data-draft-panel]');
+    await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
     assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable.*Download PNG.*Copy link/);
     assert.equal(boundary.downloads.length, 0, 'Never silently download on failure');
@@ -166,6 +180,7 @@ test('image rendering failure is announced, releases object URLs and permits a r
     const WorkingImage = globalThis.Image;
     globalThis.Image = class { set src(_) { queueMicrotask(() => this.onerror()); } };
     const panel = document.querySelector('[data-draft-panel]');
+    await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
     assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable/);
     assert.equal(boundary.objects.size, 0);
@@ -184,7 +199,11 @@ test('rendered metric cards omit the generic Bounded evidence eyebrow, retaining
     for (const card of document.querySelectorAll('[data-draft-chart-status="plotted"]')) {
       assert.match(card.querySelector('.draft-chart-readiness').textContent, /[0-9]+ (observations|events)/);
       assert.ok(card.querySelector('[data-draft-methodology]'));
-      for (const plot of card.querySelectorAll('.draft-plot:not(.draft-event-timeline)')) assert.ok(plot.querySelector('.draft-plot-scope').textContent.length > 0);
+      for (const panel of card.querySelectorAll('[data-draft-panel]')) {
+        if (!panel.querySelector('[data-source-observation]')) continue;
+        const modal = await openPanel(panel);
+        assert.ok(modal.querySelector('.draft-plot-scope').textContent.length > 0);
+      }
     }
   } finally { await cleanup(); }
 });
@@ -198,23 +217,24 @@ test('multi-panel cards distinguish card links from each specific plot link and 
       assert.match(cardLink.textContent, /Copy card link/);
       assert.match(cardLink.getAttribute('aria-label'), /card/i);
       assert.equal(card.querySelector(':scope > [data-chart-share]'), null);
-      const panelTargets = [...card.querySelectorAll('[data-copy-chart]')].map(button => button.dataset.copyChart);
+      const panelTargets = [...card.querySelectorAll('[data-draft-popout]')].map(panel => panel.dataset.draftPopout);
       assert.equal(new Set(panelTargets).size, panelTargets.length);
       assert.ok(panelTargets.every(target => target !== cardLink.dataset.copyDraftLink));
     }
   } finally { await cleanup(); }
 });
 
-test('all 18 visible curated panels export their exact mark geometry and scientific scope, not a neighboring panel', async () => {
+test('all 14 visible curated panels export their exact mark geometry and scientific scope, not a neighboring panel', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
   try {
     const { JSDOM } = await import('jsdom');
     const panels = [...document.querySelectorAll('[data-draft-panel]')].filter(panel => panel.querySelector('[data-source-observation]'));
-    assert.equal(panels.length, 18, 'Independent current public inventory');
+    assert.equal(panels.length, 14, 'Independent current public inventory');
     for (const panel of panels) {
-      const source = panel.querySelector('svg');
+      const modal = await openPanel(panel);
+      const source = modal.querySelector('svg');
       const geometry = svg => [...svg.querySelectorAll('[data-source-observation]')].map(node => Object.fromEntries(['data-source-observation', 'cx', 'cy', 'x', 'y', 'width', 'height', 'r', 'points', 'fill', 'stroke'].map(key => [key, node.getAttribute(key)])));
       await click(panel.querySelector('[data-copy-chart]'));
       const out = new JSDOM(boundary.svgs.at(-1), { contentType: 'image/svg+xml' });
@@ -237,6 +257,7 @@ test('optional rich HTML is omitted only when unsupported; PNG and URL stay in o
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
   try {
     ClipboardItem.supports = type => type !== 'text/html';
+    await openPanel(document.querySelector('[data-draft-panel]'));
     await click(document.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes[0].length, 1);
     assert.deepEqual(boundary.writes[0][0].types, ['image/png', 'text/plain']);
@@ -272,6 +293,8 @@ test('curated exports visibly preserve every source-qualified value with its obs
   try {
     let qualifiedCount = 0;
     for (const panel of document.querySelectorAll('[data-draft-panel]')) {
+      if (!panel.querySelector('[data-source-observation]')) continue;
+      await openPanel(panel);
       const button = panel.querySelector('[data-copy-chart]');
       if (!button) continue;
       const rows = [...panel.querySelectorAll('.draft-plot-data tbody tr')].filter(row => /^[≈≥>]/.test(row.querySelectorAll('td')[1].textContent));
@@ -308,5 +331,47 @@ test('filtered POYO reference export visibly retains More than 100 hours without
     assert.match(visible,/POYO[^;]*More than 100 hours/);
     assert.equal(exported.window.document.querySelectorAll('[data-curve-point]').length,1);
     exported.window.close();
+  } finally { await cleanup(); boundary.restore(); }
+});
+
+
+test('unified recording-hours export has one generic chart URL, all 12 marks and observation-linked lower bounds/scopes', async () => {
+  globalThis.React = React;
+  let boundary;
+  const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
+  const { JSDOM } = await import('jsdom');
+  try {
+    const card = await openPanel(document.querySelector('#draft-recording-hours [data-draft-panel]'));
+    assert.equal(card.querySelector('[data-copy-chart]').dataset.copyChart, 'metric-recording-hours');
+    assert.equal(card.querySelectorAll('[data-copy-chart]').length, 1);
+    assert.deepEqual([...card.querySelectorAll('.draft-chart-share a')].map(a => a.hash), ['#metric-recording-hours']);
+    await click(card.querySelector('[data-copy-chart]'));
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-recording-hours');
+    const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
+    const doc = exported.window.document;
+    assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
+    const text = [...doc.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
+    assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
+    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'not a new unique-data release', 'seven nonhuman primates', 'Log scale', 'Unconnected observations']) assert.ok(text.includes(phrase), phrase);
+    for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
+    assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
+    exported.window.close();
+  } finally { await cleanup(); boundary.restore(); }
+});
+
+
+test('NeuroAI clipboard export uses the corrected performance–cost title with its original panel URL', async () => {
+  globalThis.React = React;
+  let boundary;
+  const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
+  try {
+    const modal = await openPanel(document.getElementById('draft-panel-neuroai-imagenet'));
+    assert.equal(modal.querySelector('h2').textContent, 'NeuroAI performance–cost frontier');
+    await click(modal.querySelector('[data-copy-chart]'));
+    assert.equal(boundary.writes.length, 1);
+    assert.match(boundary.svgs[0], /NeuroAI performance–cost frontier/);
+    assert.doesNotMatch(boundary.svgs[0], /frontier over time/);
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-panel-neuroai-imagenet');
   } finally { await cleanup(); boundary.restore(); }
 });

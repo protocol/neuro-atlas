@@ -17,12 +17,18 @@ test('retired panels are unmounted, with every other source observation retained
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
     assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), expected);
     assert.equal(expected.length, 77);
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 12);
-    assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 19); // 18 numeric + timeline
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 13);
+    assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 15); // 14 numeric + timeline
     assert.equal(document.querySelector('[data-metric-toggle="Tissue quality and annotation"]'), null);
     assert.doesNotMatch(document.body.textContent, /No plotted observations yet|Section rejection and loss|comparative cohorts/i);
     assert.equal(document.querySelectorAll('[data-source-observation^="roboem-"]').length, 12);
-    assert.match(document.querySelector('#draft-panel-paired-manual').textContent, /37,364 at 83% precision/);
+    await click(document.querySelector('#draft-panel-paired-manual [data-draft-popout-trigger]'));
+    const detail = document.querySelector('dialog[open] .draft-popout-detail');
+    assert.ok(detail, 'the retained paired-data chart opens real detail');
+    assert.match(detail.textContent, /37,364 at 83% precision/);
+    const paired = DRAFT_CHART_EVIDENCE['Paired structure–function dataset scale over time'].plots.find(plot => plot.id === 'paired-manual');
+    assert.deepEqual([...detail.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation), paired.points.map(point => point.id));
+    for (const point of paired.points) assert.ok(detail.textContent.includes(point.note), `${point.id}: source qualifier retained`);
   } finally { await cleanup(); }
 });
 
@@ -45,11 +51,11 @@ test('search and category counts describe only the retained panels', async () =>
     await click(document.querySelector('[data-clear-metrics]'));
     const counts = [...document.querySelectorAll('[data-metric-toggle]')].map(n => [n.dataset.metricToggle, n.querySelector('small')?.textContent]);
     assert.deepEqual(counts, [
-      ['Mapping scale', '5 charts'], ['Cost and automation', '3 charts'],
-      ['Human interfaces and recordings', '6 charts'], ['Data access and scientific use', '2 charts'],
-      ['Simulation, NeuroAI, and impact', '2 charts · 1 timeline'], ['Field context', 'Pace · attention · commitments'],
+      ['Neurotech Engagement', '4 charts · commitments'], ['Human interfaces and recordings', '2 charts'],
+      ['Mapping Scale', '6 charts'], ['Cost and automation', '4 charts'],
+      ['Simulation and NeuroAI', '2 charts · 1 timeline'],
     ]);
-    assert.match(document.querySelector('[role=status]').textContent, /5 scientific categories/);
+    assert.match(document.querySelector('[role=status]').textContent, /5 groups/);
   } finally { await cleanup(); }
 });
 

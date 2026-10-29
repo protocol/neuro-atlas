@@ -22,6 +22,8 @@ export function ExpectationsSection() {
     let attempts = 0;
     let frame: number;
     const focus = () => {
+      // The chart dialog owns entry focus; never move it back into its inert background.
+      if (hash !== "#expectations" && document.querySelector("dialog[open]")) return;
       const target = hash === "#expectations" ? link : document.getElementById(hash.slice(1));
       if (!target || target.closest("[hidden]")) {
         if (++attempts < 30) frame = requestAnimationFrame(focus);

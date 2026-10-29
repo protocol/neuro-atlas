@@ -1,7 +1,7 @@
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { VelocityTabs } from "@/components/sections/velocity-tabs";
-import { METRIC_CHART_CATEGORIES, METRIC_CHART_EVIDENCE } from "@/data/metric-chart-visibility";
+import { METRIC_GROUPS, METRIC_CHART_EVIDENCE } from "@/data/metric-chart-visibility";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import PROVENANCE from "@/data/field-velocity/neurotech.snapshot.json.provenance.json";
 import { parseFeed } from "@/lib/field-velocity/schema";
@@ -22,19 +22,18 @@ export default function FieldVelocityPage() {
         kicker="Pace"
         meta={["PL R&D metrics"]}
         title="Field velocity"
-        description={`Explore neurotech measurements across ${METRIC_CHART_CATEGORIES.length} scientific categories, alongside field context and expectations.`}
+        description={`Explore neurotech measurements across ${METRIC_GROUPS.length} groups, alongside expectations.`}
         stats={[
-          { value: String(METRIC_CHART_CATEGORIES.length), label: "scientific categories" },
+          { value: String(METRIC_GROUPS.length), label: "metric groups" },
           { value: String(evidence.reduce((sum, item) => sum + item.plots.length, 0)), label: "curated numeric panels" },
           { value: String(evidence.reduce((sum, item) => sum + item.plots.reduce((total, plot) => total + plot.points.length, 0), 0)), label: "observations" },
           { value: String(evidence.filter(item => item.timeline).length), label: "event timeline" },
         ]}
       />
       <div className="mt-8">
-        <VelocityTabs references={{
-          mapping: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["tissue-mapped"]} />,
-          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons", "neural-recording-hours"]} />,
-        }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends /></>} />
+        <VelocityTabs engagementPreview={<GoogleTrends selection={["neurotech"]} />} references={{
+          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons"]} />,
+        }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends selection={["neuralink"]} /></>} />
       </div>
     </>
   );

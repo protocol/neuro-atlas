@@ -40,21 +40,21 @@ async function until(predicate) {
 }
 
 for (const strict of [false, true]) {
-  test(`Draft links recover exact visible focus after close and Forward under StrictMode=${strict}`, async () => {
+  test(`Retained neuron chart recovers exact visible focus after close and Forward under StrictMode=${strict}`, async () => {
     globalThis.React = React;
-    const tabs = React.createElement(VelocityTabs, { performance: React.createElement(PerformanceCurves, { data, provenance }) });
+    const tabs = React.createElement(VelocityTabs, { performance: null, references: { recording: React.createElement(PerformanceCurves, { data, provenance, selection: ['simultaneously-recorded-neurons'] }) } });
     const cleanup = await mount(strict ? React.createElement(StrictMode, null, tabs) : tabs, '#draft-charts');
     try {
       await click(document.querySelector('[data-expand-metrics]'));
-      for (const id of ['tissue-mapped', 'neural-recording-hours']) {
-        const link = document.querySelector(`.draft-charts a[href="#${id}"]`);
+      for (const id of ['simultaneously-recorded-neurons']) {
+        const link = document.querySelector(`[data-performance-card="${id}"] .pc-trigger`);
         link.focus();
         await click(link);
         assert.ok(document.querySelector('dialog[open]'));
         await click(document.querySelector('dialog .pc-modal-header button'));
         await until(() => window.location.hash === '#draft-charts' && document.activeElement === link);
         assert.equal(window.location.hash, '#draft-charts');
-        assert.equal(document.activeElement === link, true, 'Close restores exact draft link');
+        assert.equal(document.activeElement === link, true, 'Close restores exact chart trigger');
         assert.equal(link.closest('[hidden]'), null);
         await act(async () => window.history.forward());
         await until(() => !!document.querySelector('dialog[open]'));
@@ -62,7 +62,7 @@ for (const strict of [false, true]) {
         await click(document.querySelector('dialog .pc-modal-header button'));
         await until(() => window.location.hash === '#draft-charts' && document.activeElement === link);
         assert.equal(window.location.hash, '#draft-charts');
-        assert.equal(document.activeElement === link, true, 'Forward then Close restores exact draft link');
+        assert.equal(document.activeElement === link, true, 'Forward then Close restores exact chart trigger');
       }
     } finally { await cleanup(); }
   });

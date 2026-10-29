@@ -6,7 +6,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { JSDOM } from "jsdom";
 import { DRAFT_CHARTS, DRAFT_CHART_CATEGORIES } from "../src/data/draft-charts.ts";
-import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, METRIC_CHART_CATEGORIES, isVisibleMetric } from "../src/data/metric-chart-visibility.ts";
+import { METRIC_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, METRIC_CHART_CATEGORIES, isVisibleMetric } from "../src/data/metric-chart-visibility.ts";
 import { DraftChartsSection } from "../src/components/sections/draft-charts-section.tsx";
 import { restoreFocusAfterPaneReveal } from "../src/components/chart-modal.tsx";
 import { revealActiveTab, scheduleActiveTabReveal } from "../src/components/sub-tabs.tsx";
@@ -74,10 +74,10 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartsSection)));
   try {
     const document = dom.window.document;
-    const plotted = DRAFT_CHARTS.filter(isVisibleMetric);
+    const plotted = METRIC_CHARTS.filter(isVisibleMetric);
     assert.ok(plotted.length > 0, 'Actual source-backed production data is assembled');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="plotted"]').length, plotted.length);
-    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 17);
+    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 18);
     assert.deepEqual([...document.querySelectorAll("[data-draft-chart-category]")].map(group => group.dataset.draftChartCategory), METRIC_CHART_CATEGORIES);
     for (const chart of plotted) {
       const card = [...document.querySelectorAll('[data-draft-chart-card]')].find(card => card.dataset.draftChartCard === chart.title);
@@ -97,7 +97,7 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
     const count = document.querySelector('[data-draft-chart-counts]');
     assert.ok(count.textContent.includes(`${plotted.length} plotted`));
     assert.ok(count.textContent.includes(`${DRAFT_CHARTS.filter(chart => DRAFT_CHART_EVIDENCE[chart.title].status === 'gap').length} evidence gaps`));
-    assert.deepEqual([...document.querySelectorAll('.draft-chart-link')].map(link => link.getAttribute('href')).sort(), ['#neural-recording-hours', '#tissue-mapped']);
+    assert.deepEqual([...document.querySelectorAll('.draft-chart-link')].map(link => link.getAttribute('href')).sort(), []);
     assert.doesNotMatch(document.body.textContent, /Definition drafts · no observations/);
   } finally { dom.window.close(); }
 });
@@ -149,17 +149,21 @@ test('the wired gallery stylesheet makes two readable columns, mobile single col
   assert.match(readFileSync('src/app/globals.css', 'utf8'), /@import "\.\.\/components\/draft-chart-plot\.css"/);
 });
 
-test('plot-first cards keep full scope in the source disclosure, not in a paragraph wall above the SVG', () => {
+test('plot previews open source-qualified detail without a paragraph wall above the SVG', async () => {
   globalThis.React = React;
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartsSection)));
+  const { mount, click, settle } = await import('./modal-helpers.mjs');
+  const cleanup = await mount(React.createElement(DraftChartsSection));
   try {
-    for (const figure of dom.window.document.querySelectorAll('.draft-plot:not(.draft-event-timeline)')) {
-      assert.equal(figure.querySelectorAll(':scope > .draft-plot-scope').length, 0);
+    for (const preview of document.querySelectorAll('.draft-plot:not(.draft-event-timeline)')) {
+      assert.equal(preview.querySelectorAll(':scope > .draft-plot-scope').length, 0);
+      assert.equal(preview.querySelector('details'), null);
+      await click(preview.closest('[data-draft-popout]').querySelector('[data-draft-popout-trigger]'));
+      const figure = document.querySelector('dialog[open] .draft-plot');
       assert.ok(figure.querySelector('details .draft-plot-scope'));
-      const svg = figure.querySelector('svg');
-      assert.equal(svg.previousElementSibling.tagName, 'FIGCAPTION', 'The graph immediately follows the panel title');
+      assert.equal(figure.querySelector('svg').previousElementSibling.tagName, 'FIGCAPTION');
+      await click(document.querySelector('dialog[open] .pc-modal-header button')); await settle(); await settle();
     }
-  } finally { dom.window.close(); }
+  } finally { await cleanup(); }
 });
 
 test("Draft chart status rows wrap before labels spill into card padding", () => {

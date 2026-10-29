@@ -1,5 +1,8 @@
 # Shared field-velocity charts
 
+> Current presentation (October 29): the duplicate tissue and recording-hours views described below are retained internally, not mounted on the current page. Their fragments resolve to the curated charts; recording hours is now one twelve-observation, five-series log scatter with no pooled fit. The unique neuron capability chart and its default-off scenarios remain. See [current Metrics groups](metrics-navigation.md) and [consolidation](recording-hours-consolidation.md). The original source and method contract below remains archival documentation.
+
+
 `/field-velocity` → **Metrics** has compact chart cards that open an in-place, URL-addressed modal. The grid never expands or scrolls to a chart. The existing Milestones, Funding Index, Ecosystem and implemented implant content are preserved.
 
 ## Exact source scope

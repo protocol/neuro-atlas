@@ -110,12 +110,13 @@ function TrendCard({ group }: { group: Group }) {
   </article>;
 }
 
-export function GoogleTrends() {
-  return <section id="google-trends" className="performance-curves gt-section" aria-labelledby="google-trends-title">
-    <header className="pc-section-header"><h2 id="google-trends-title">Public attention · Google Trends</h2></header>
+export function GoogleTrends({ selection }: { selection?: readonly string[] } = {}) {
+  const sectionId = selection ? `google-trends-${selection.join("-")}-section` : "google-trends";
+  return <section id={sectionId} className="performance-curves gt-section" aria-labelledby={`${sectionId}-title`}>
+    <header className="pc-section-header"><h2 id={`${sectionId}-title`}>Public attention · Google Trends</h2></header>
     <p className="pc-intro">Search interest is public attention, not technical progress, adoption or total search counts. A bounded English-language term basket, not the whole neurotech field.</p>
     <p className="gt-scope">Past 36 months · {SNAPSHOT.start}–{SNAPSHOT.end}<br />Worldwide · Web Search · All categories · weekly UTC</p>
-    <div className="pc-grid">{groups.map(group => <TrendCard key={group.id} group={group} />)}</div>
+    <div className="pc-grid">{groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} />)}</div>
     <p className="gt-scope">Snapshot captured {groups[0].capturedAt.slice(0, 10)} · not a live feed. Incomplete weeks are excluded from charts and latest readings. Expand a chart for methodology and downloadable source values.</p>
   </section>;
 }

@@ -73,14 +73,14 @@ test('related links reveal the real Metrics card, clear old search, and move key
       const target = document.getElementById(anchor);
       assert.equal(target.closest('[hidden]'), null, 'target is visible');
       assert.equal(search.value, '', 'stale search cleared');
-      assert.ok(scrolled.includes(anchor), 'target scrolled into view');
-      assert.equal(document.activeElement === target.closest('article').querySelector('h4'), true, 'keyboard focus reaches chart heading');
+      assert.equal(scrolled.includes(anchor), false, 'popup does not scroll the background');
+      assert.equal(document.activeElement === document.querySelector('dialog[open] .pc-modal-header button'), true, 'keyboard focus reaches popup Close');
       await act(async () => window.history.back()); await settle(); await settle();
       assert.equal(window.location.hash, '#expectations');
       assert.equal(document.activeElement === link, true, 'Back restores the originating link');
       await act(async () => window.history.forward()); await settle(); await settle();
       assert.equal(window.location.hash, `#${anchor}`);
-      assert.equal(document.activeElement === target.closest('article').querySelector('h4'), true, 'Forward restores chart focus');
+      assert.equal(document.activeElement === document.querySelector('dialog[open] .pc-modal-header button'), true, 'Forward restores popup focus');
       await act(async () => window.history.back()); await settle(); await settle();
     }
   } finally { await cleanup(); }
@@ -127,24 +127,24 @@ test('retained multi-entry history restores each measurement visit rather than t
     const a = document.querySelector('[data-related-measurement="metric-implanted-bci-humans"]');
     const b = document.querySelector('[data-related-measurement="metric-recording-hours"]');
     await click(a); await settle(); await settle();
-    await click([...document.querySelectorAll('button')].find(x => x.textContent === 'Expectations'));
+    await act(async () => navigatePerformance('expectations'));
     await settle();
     await click(b); await settle(); await settle();
     const steps = [
       ['#expectations', b],
-      ['#metric-implanted-bci-humans', document.getElementById('metric-implanted-bci-humans').closest('article').querySelector('h4')],
+      ['#metric-implanted-bci-humans', () => document.querySelector('dialog[open] .pc-modal-header button')],
       ['#expectations', a],
     ];
     for (const [hash, focus] of steps) {
       await act(async () => window.history.back()); await settle(); await settle();
       assert.equal(window.location.hash, hash);
-      assert.equal(document.activeElement === focus, true, `focus for history entry ${hash}`);
+      assert.equal(document.activeElement === (typeof focus === 'function' ? focus() : focus), true, `focus for history entry ${hash}`);
       assert.deepEqual(window.history.state.nextRouterState, { retained: true }, 'unrelated router state preserved');
     }
-    for (const [hash, focus] of [steps[1], steps[0], ['#metric-recording-hours', document.getElementById('metric-recording-hours').closest('article').querySelector('h4')]]) {
+    for (const [hash, focus] of [steps[1], steps[0], ['#metric-recording-hours', () => document.querySelector('dialog[open] .pc-modal-header button')]]) {
       await act(async () => window.history.forward()); await settle(); await settle();
       assert.equal(window.location.hash, hash);
-      assert.equal(document.activeElement === focus, true, `forward focus ${hash}`);
+      assert.equal(document.activeElement === (typeof focus === 'function' ? focus() : focus), true, `forward focus ${hash}`);
     }
   } finally { await cleanup(); }
 });

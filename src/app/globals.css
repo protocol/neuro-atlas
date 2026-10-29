@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../components/performance-curves.css";
 @import "../components/draft-chart-plot.css";
+@import "../components/draft-chart-panel.css";
 @import "../components/landing.css";
 @import "../components/google-trends.css";
 

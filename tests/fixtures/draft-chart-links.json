@@ -30,7 +30,13 @@
       {
         "id": "draft-panel-acquisition-rates",
         "plotId": "acquisition-rates"
-      },
+      }
+    ]
+  },
+  {
+    "id": "draft-imaging-cost-efficiency",
+    "title": "Connectomics imaging cost efficiency",
+    "panels": [
       {
         "id": "draft-panel-acquisition-economics",
         "plotId": "acquisition-economics"
@@ -118,23 +124,23 @@
     "panels": [
       {
         "id": "draft-panel-neuralink-private-intracortical-hours",
-        "plotId": "neuralink-private-intracortical-hours"
+        "plotId": "recording-hours"
       },
       {
         "id": "draft-panel-tusz-scalp-eeg",
-        "plotId": "tusz-scalp-eeg"
+        "plotId": "recording-hours"
       },
       {
         "id": "draft-panel-ajile12-intracranial",
-        "plotId": "ajile12-intracranial"
+        "plotId": "recording-hours"
       },
       {
         "id": "draft-panel-poyo-primate-training",
-        "plotId": "poyo-primate-training"
+        "plotId": "recording-hours"
       },
       {
         "id": "draft-panel-japaneeg-scalp-eeg",
-        "plotId": "japaneeg-scalp-eeg"
+        "plotId": "recording-hours"
       }
     ]
   },

@@ -1,50 +1,55 @@
 # Metrics navigation
 
-The Field velocity plate has one Metrics index and Expectations. Scientific categories follow the six-category deck order; Field context separately retains actual pace, attention and commitments readings. The source deck is not edited or embedded. Unsupported proposals belong to the separate research-backlog workstream, not the reader-facing catalog.
+The Field velocity plate has one Metrics index and Expectations. Five groups follow the current reading order: Neurotech Engagement, Human interfaces and recordings, Mapping Scale, Cost and automation, Simulation and NeuroAI. Mapping Scale includes paired datasets and open data, formerly under Data access and scientific use. The source deck is not edited or embedded. Unsupported proposals belong to the separate research-backlog workstream, not the reader-facing catalog.
 
 ## Inventory and count semantics
 
-| Category | Displayed metrics | Numeric charts | Observations | Timelines |
+| Group | Curated cards | Curated numeric charts | Curated observations | Timelines |
 |---|---:|---:|---:|---:|
-| Mapping scale | 3 | 5 | 27 | 0 |
-| Cost and automation | 2 | 4 | 15 | 0 |
-| Tissue quality and annotation | 1 | 2 | 3 | 0 |
-| Human interfaces and recordings | 2 | 6 | 17 | 0 |
-| Data access and scientific use | 3 | 4 | 9 | 0 |
-| Simulation, NeuroAI, and impact | 3 | 2 | 8 | 1 |
+| Neurotech Engagement | — | — | — | — |
+| Human interfaces and recordings | 2 | 2 | 19 | 0 |
+| Mapping Scale | 5 | 6 | 26 | 0 |
+| Cost and automation | 3 | 4 | 24 | 0 |
+| Simulation and NeuroAI | 3 | 2 | 8 | 1 |
 
-The actual catalog contains 14 metrics: 23 curated numeric charts with 79 observations, plus one categorical timeline. Multi-panel metrics count once as a metric and once per numeric chart. Timeline events are not numeric observations. The hero reports six scientific categories, 23 curated numeric panels, 79 observations and one event timeline; no gap count or page-wide coverage badge. Other pages retain their explicitly supplied PlateHero statuses.
+The hero reports five groups, 14 curated numeric charts, 77 curated observations and one event timeline. Human interfaces and recordings additionally retains the unique seven-observation simultaneous-neuron capability chart, so its header counts three charts. Neurotech Engagement contains two pace charts, two Google Trends charts and the commitments reading. The curated catalog has thirteen cards; counts never treat aliases or preview/detail presentations as additional observations.
 
-All 19 source definitions remain unchanged internally. The five unsupported definitions are not rendered as cards or included in search; their old links remain compatible as category-level aliases. `DraftChartsSection` retains its archival `showGaps=true` default for source-preservation tests, while the actual Metrics mount explicitly passes `showGaps={false}`. No standalone Draft tab is mounted.
+All 19 source definitions remain archived. `METRIC_CHARTS` adds only a presentation definition for acquisition cost efficiency, moved from Mapping Scale to Cost and automation with unchanged plot values and scope. Unsupported and previously retired panels remain absent from the actual page. The separate Draft tab is not mounted. `DraftChartsSection` retains its archival `showGaps=true` default for source-preservation tests; Metrics passes `showGaps={false}`.
 
-Mapping additionally contains the original tissue-volume reference view (mm³). Human interfaces and recordings additionally contains the simultaneous-neuron and recording-hours reference views. Counts label these as one and two reference views respectively, separate from the curated charts. Existing extrapolations, modal source tables and provenance remain intact. Field context contains two pace cards, two Google Trends cards and the commitments reading. The unwired Markets and Channel count frontier placeholders are absent from this page; their source definitions are retained.
+The duplicate tissue and hours reference views are retired. Their original observations remain in the snapshot and corresponding curated charts; the generic reference introduction and self-links are removed. The unique neuron chart and its default-off scenarios remain. See [recording-hours consolidation](recording-hours-consolidation.md) for exact scope, aliases and conservation checks.
 
 ## Scientific context and consumer-source correction
 
-The existing chart summaries, plot implementation, raw coordinates, source tables and comparability definitions are unchanged. Essential scope remains beside the charts: the boundary-truncated mouse reconstruction, H01/MICrONS identities, acquisition economics estimates, RoboEM benchmark scopes and MICrONS proofreading denominator qualifications are not hidden or generalized. Former “Still missing” paragraphs retain their exact text as **Context** within each chart's closed Definition and comparability disclosure, rather than prominent unfinished notices.
+Original raw coordinates and source qualifications remain unchanged; summaries and chart grouping follow the presentation projection. Essential scope remains beside the charts: the boundary-truncated mouse reconstruction, H01/MICrONS identities, acquisition economics estimates, RoboEM benchmark scopes and MICrONS proofreading denominator qualifications are not hidden or generalized. Former “Still missing” paragraphs retain their exact text as **Context** within each chart's closed Definition and comparability disclosure, rather than prominent unfinished notices.
 
 The commitments consumer now reads the already-curated `revealed_commitments` record in `src/data/field-velocity/neurotech.snapshot.json`, rather than the stale duplicate in `src/data/velocity/neurotech_records.json`. The same 67 participants are correctly labeled **participants in implantable BCI studies through December 2023**, including intracortical, endovascular and ECoG systems—not an active installed base. Full source scope remains verbatim in closed Definition and source details. The stale intracortical-only/1998–2024 label, enrollment-acceleration claim and old milestone comparison bar are not displayed. Search uses the same shared record. This is a consumer-source binding correction, not new research or a data-file edit; both source JSON files remain byte-identical.
 
 ## Search and disclosure
 
-All seven categories start collapsed on a fresh index, including the legacy `#draft-charts` index URL. Native buttons provide Enter/Space activation, `aria-expanded` and `aria-controls`; multiple categories can remain open. Stable QA hooks are `data-metrics-category`, `data-metric-toggle`, `.metric-category-name`, and the labeled `#metrics-search` input.
+Every group has three states, exposed as `data-metric-state="collapsed|preview|full"`:
 
-Headers use a grid with a separately wrapping title, keeping the disclosure icon aligned with the first title line on narrow screens. Numeric chart counts use singular/plural labels and omit gaps/placeholders.
+- **Collapsed:** headline only.
+- **Preview (default):** headline plus one featured chart. In order: Google Trends neurotech search terms (not the Neuralink brand series); neural recording hours; open-access connectomics data; acquisition economics; NeuroAI performance–cost frontier.
+- **Full:** all charts in that group. No preview/full copies are created; the existing card instances are revealed.
 
-Search matches actual metric titles, panel metadata, species, datasets and retained source metadata, not hidden unsupported definitions, unwired placeholders or the stale commitments claim. Curated metrics filter individually; retained reference/context groups remain together to preserve shared scope. Result counts refer to matching **categories**, not individual charts. Search temporarily reveals matches without changing the user's expansion selection. Clear restores that selection. Disclosure buttons are disabled during search; Expand all and Collapse all clear search and apply their labeled action.
+The headline button (`data-metric-toggle`) switches collapsed/preview. A separate native Show all / Show featured button (`data-metric-more`) switches preview/full. Both have `aria-controls` and `aria-expanded`; keyboard focus remains on the activated control. Bulk Expand all and Collapse all set all groups to full/collapsed. QA can select groups with `data-metrics-category`, with names exactly matching the table above. Historic category content IDs remain 6, 3, 0, 1, 5 in the new visual order.
+
+Search matches group names, actual metric titles, panel metadata, species, datasets and retained source metadata, not unsupported definitions or unwired placeholders. Matching non-featured charts are revealed in full state; Clear restores the previous group states. Search-time disclosure buttons are disabled. Result counts describe matching groups, not individual charts.
+
+Navigation to a featured chart reveals preview (without collapsing an already-full group); non-featured charts reveal full. Legacy aliases follow their actual chart's group, including the moved acquisition-cost panel and merged mapping/data group. Search is cleared before explicit navigation. These are navigation intents, not effects replayed on ordinary searching or disclosure changes.
 
 ## Canonical links and aliases
 
-`src/data/draft-chart-links.ts` remains the unchanged identity manifest: 19 candidate targets and 24 panel/timeline targets. The 14 actual metric cards and 24 panel/timeline targets retain their 38 exact legacy `#draft-…` / `#draft-panel-…` IDs and canonical `#metric-…` / `#metric-panel-…` aliases. Share controls use canonical links. The pinned old manifest remains in `tests/fixtures/draft-chart-links.json`.
+`src/data/draft-chart-links.ts` keeps all existing IDs and adds only `draft-imaging-cost-efficiency` (plus its canonical alias). The manifest has 20 card targets and 26 panel/timeline targets; multiple panel IDs may alias one plot. All 46 IDs have both `draft-` and `metric-` forms. The independent fixture pins the deliberate recording-hours consolidation and acquisition-economics move. Shared recording-hours actions use `#metric-recording-hours`; its five dataset panel IDs remain compatibility aliases.
 
-The five retired candidate hashes, and their canonical aliases, are empty anchor aliases at the containing real category header. Both forms select Metrics, clear conflicting search, open that category and scroll to its header without resurrecting a placeholder or gap message. Actual chart/panel links reveal and scroll their exact target after layout. Repeated navigation reveals a collapsed target without adding history. Links preserve origin, base path and query, including repeated parameters. Back/Forward and Expectations transitions retain the navigation subscription and modal focus-return contract; no route/auth logic changed.
+The five retired candidate hashes, and their canonical aliases, are empty anchor aliases at the containing real category header. Both forms select Metrics, clear conflicting search, open that category and scroll to its header without resurrecting a placeholder or gap message. Actual chart/panel links reveal their containing group and open the exact URL-selected popup without scrolling the background. Repeated navigation reveals a collapsed target without adding history. Links preserve origin, base path and query, including repeated parameters. Back/Forward and Expectations transitions retain the navigation subscription and modal focus-return contract; no route/auth logic changed.
 
-Legacy modal anchors remain unchanged: `simultaneously-recorded-neurons`, `tissue-mapped`, `neural-recording-hours`, `idea_vintage`, `latency_compression`, `google-trends-neurotech`, `google-trends-neuralink`. Their category opens before the modal is inspected. Modal close and focus restoration retain StrictMode coverage. Fresh modal entry waits for the category to become visible before focusing Close; native browsers reject focus inside a hidden ancestor. The retained `#revealed_commitments` fragment reveals and scrolls Field context without opening a modal.
+Retained modal anchors are `simultaneously-recorded-neurons`, `idea_vintage`, `latency_compression`, `google-trends-neurotech`, and `google-trends-neuralink`. Their category opens before the modal is inspected; Close focus and restoration retain StrictMode coverage. `#tissue-mapped` and `#neural-recording-hours` open their corresponding curated chart popups rather than the retired reference renderers. The retained `#revealed_commitments` fragment reveals Neurotech Engagement without a modal.
 
-Inline-chart scrolling consumes a one-shot navigation intent. After following a chart link, searching, clearing search, or toggling unrelated categories does not scroll back to that old target. Fresh URLs, history transitions and explicit repeated links still reveal their targets. Regression tests cover both legacy and canonical fragments.
+Only retained inline readings and retired-category anchors scroll, consuming a one-shot navigation intent. Popup entry, dismissal and repeat links keep the background fixed. After following a chart link, searching, clearing search, or toggling unrelated categories does not scroll back to that old target. Fresh URLs, history transitions and explicit repeated links still reveal their targets. Regression tests cover both legacy and canonical fragments.
 
 ## Validation
 
-Behavior tests cover the actual page inventory, no placeholders, concise hero, contextual limits, corrected commitments binding, collapsed index, search/clear/bulk actions, reference placement, all old/canonical targets, retired-category aliases, direct/copy URLs, Back/Forward and existing cross-category modal focus return. Source-preservation SHA-256 assertions pin definitions, evidence, plot implementation and retained data/provenance byte-for-byte against base `2d258e7ed05755e88fabfe23bee295974dbd4d7f`.
+Behavior tests cover the actual page inventory, no placeholders, concise hero, contextual limits, corrected commitments binding, all three group states, search/clear/bulk actions, unique capability placement, all old/canonical targets, retired-category aliases, direct/copy URLs, Back/Forward and existing cross-category modal focus return. Source-preservation assertions pin archived definitions and shared data/provenance; conservation tests compare actual plotted identities and source-qualified values. Native QA is separate from these DOM and data tests.
 
 Full unit tests, typecheck and focused changed-file ESLint are the implementation gates. Whole-repository lint has five independently reproduced pre-existing errors outside this change (theme-toggle, timeline immutability and two module-variable declarations); it is not a clean baseline. Native layout/keyboard/browser QA and independent critique are performed separately by the parent against a frozen local revision; jsdom/CSS assertions alone do not verify 320px browser geometry.

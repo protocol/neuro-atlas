@@ -1,5 +1,8 @@
 # Opt-in performance extrapolation and scenarios
 
+> Current presentation (October 29): the duplicate tissue and recording-hours views described below are retained internally, not mounted on the current page. Their fragments resolve to the curated charts; recording hours is now one twelve-observation, five-series log scatter with no pooled fit. The unique neuron capability chart and its default-off scenarios remain. See [current Metrics groups](metrics-navigation.md) and [consolidation](recording-hours-consolidation.md). The original source and method contract below remains archival documentation.
+
+
 ## Scope
 
 Extrapolation-only PR, based on `58dd8c2`. The separate Draft charts tab is not included. Canonical snapshot/provenance, source rows, navigation, preview SVGs and the tissue chart remain unchanged. Both expanded neuron and hours charts have a native keyboard-accessible switch, **off by default** on each modal mount. Off returns the exact original SVG. No persistence or URL change is introduced.
