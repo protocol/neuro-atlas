@@ -1,0 +1,39 @@
+{
+  "sha": "f929a5938fc9f481936497505555239f2c184c14",
+  "localFixture": true,
+  "assets": [
+    {
+      "path": "/neuro-atlas/_next/static/chunks/2r4s4h5xul1n-.js",
+      "sha256": "e1d4feb378b6ba6cfc1f31809ecdc03b14b8e0759bbe0065de29fb6646b277a2"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/01s_f_3qlcqtb.js",
+      "sha256": "e941c350531e6a7b183634809cea8acabb9a28738fa42bb7fce0cc8ee9158dce"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0qxq_rj_v947j.js",
+      "sha256": "be429fce9d58ecd64224de520cf95a737aae704201a378b88afe0cf0c712511e"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/turbopack-0onr37fwc3ews.js",
+      "sha256": "4a0dfe88d2417d901d65fe0224e0b55a03085eee6e623a26c59ee011c24c54a4"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1_w44ncps0jft.js",
+      "sha256": "c702dd1f990f574e23fda20cd4bec31f22c9d7aa0579dc3358c132e5e4c7477c"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/34kxbgmj2l_93.js",
+      "sha256": "bf17b9fbf45df35a2985503e5e8cd09d97d6aae1a2b52eb9fb2014d3db1e39ac"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1x6obpmlu1_c2.js",
+      "sha256": "7c0be00bfd43494dcddc8817168e952d9900555c3e80355686a423eedd2bab22"
+    }
+  ],
+  "status": 200
+}

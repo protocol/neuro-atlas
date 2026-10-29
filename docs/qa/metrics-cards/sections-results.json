@@ -1,0 +1,395 @@
+[
+  {
+    "width": 1440,
+    "order": [
+      "Neurotech Engagement",
+      "Human interfaces and recordings",
+      "Mapping Scale",
+      "Cost and automation",
+      "Simulation and NeuroAI"
+    ],
+    "initial": [
+      {
+        "name": "Neurotech Engagement",
+        "state": "preview",
+        "charts": [
+          {
+            "title": "Neurotech search terms: weekly Google Trends index, 0\u2013100. Complete weeks only; source values available in the expanded chart.",
+            "card": "neurotech"
+          }
+        ],
+        "text": "\u2212\nNeurotech Engagement\n4 charts \u00b7 commitments\n\nPace, public attention and revealed commitments.\n\nShow all 4 charts\nPublic attention \u00b7 Google Trends\n\nSearch interest is public attention, not technical progress, adoption or total search counts. A bounded English-language term basket, not the whole neurotech field.\n\nPast 36 months \u00b7 2023-10-15\u20132026-10-15\nWorldwide \u00b7 Web Search \u00b7 All categories \u00b7 weekly UTC\n\nSEARCH TERMS \u00b7 SHARED SCALE\nNeurotech search terms\nWeekly index \u00b7 0\u2013100\n2023-10\n2026-10\nExpand chart & source values \u2197\nneurotechnology\nbrain-computer interface\n\nLatest complete week \u00b7 2026-10-04\nneurotechnology: 7 \u00b7 brain-computer interface: 3\n\nBoth terms compared in one request; shared 0\u2013100 scale.\n\nDirect link \u2197\nCopy link\n\nSnapshot captured 2026-10-15 \u00b7 not a live feed. Incomplete weeks are excluded from charts and latest readings. Expand a chart for methodology and downloadable source values."
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Neural recording hours collected over time"
+          }
+        ],
+        "text": "\u2212\nHuman interfaces and recordings\n3 charts\n\nImplanted interfaces, recording capability and neural data supply.\n\nShow all 3 charts\n12 OBSERVATIONS\nNeural recording hours collected over time\n\nReported recording hours in selected datasets, with intracortical, scalp EEG, intracranial surface recordings and reused training corpora kept distinct. Public or controlled-access datasets are not pooled with company-held claims.\n\nNeural recording hours \u2014 selected datasets\nRecording hours\n100\n1,000\n10,000\n100,000\n2017\n2022\n2027\nRelease / publication / disclosure year\n1\n2\n3\n4\nNeuralink \u00b7 human intracortical, company-held\nTUSZ \u00b7 human scalp EEG, controlled access\nAJILE12 \u00b7 human intracranial, open\nPOYO-1 \u00b7 primate spikes, training corpus\nJapanEEG \u00b7 human scalp EEG, open release claim\n\nRecording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Mapping Scale",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Open-access connectomics data over time"
+          }
+        ],
+        "text": "\u2212\nMapping Scale\n6 charts\n\nMapped tissue, connectome size, acquisition throughput, paired datasets and open data.\n\nShow all 6 charts\n5 OBSERVATIONS\nOpen-access connectomics data over time\nCard link\nCopy card link\n\nSelected published public-resource footprints, not a global total. FlyWire derives from the FAFB imagery; larval zebrafish resources are named by dataset to avoid combining different studies or counting derivatives twice.\n\nSelected public image/resource footprints\nReported resource size (decimal PB)\n0.001\n0.01\n0.1\n1\n10\n2017\n2021\n2025\nPublication / public-availability year\n\u25cf\nHildebrand zebrafish\n\u25cf\nFAFB / FlyWire imagery\n\u25cf\nHemibrain\n\u25cf\nH01\n\u25cf\nMICrONS\n\nReported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Cost and automation",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Connectomics imaging cost efficiency"
+          }
+        ],
+        "text": "\u2212\nCost and automation\n4 charts\n\nAcquisition cost estimates, reconstruction quality and proofreading effort.\n\nShow all 4 charts\n9 OBSERVATIONS\nConnectomics imaging cost efficiency\nCard link\nCopy card link\n\nSource-estimated acquisition costs, not all-in mapping costs. Preserve each protocol's resolution and scope; no fitted frontier.\n\nEstimated acquisition cost per voxel \u2014 optical and EM\nApprox. $/voxel (log)\n1.00e-11\n1.00e-10\n1.00e-9\n0.00000001\n2015\n2020\n2025\nYear as printed in Table A1\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\u25cf\nOptical\n\u25cf\nElectron microscopy\n\u25cf\nPEEM \u00b7 prospective\n\nAll plotted values are approximate (\u2248).\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "NeuroAI performance\u2013cost frontier over time"
+          }
+        ],
+        "text": "\u2212\nSimulation and NeuroAI\n2 charts \u00b7 1 timeline\n\nModel fidelity, NeuroAI and demonstrated applications.\n\nShow all 2 charts\n6 OBSERVATIONS\nNeuroAI performance\u2013cost frontier\nCard link\nCopy card link\n\nFixed ImageNet-1K benchmark: measured accuracy versus theoretical inference energy. Energy is operation-count modeling, not measured hardware consumption or training cost.\n\nNeuroAI performance\u2013cost frontier\nTop-1 accuracy (%)\n0\n20.2\n40.4\n60.6\n80.8\n1.13\n21.45\n41.77\nEstimated inference energy (mJ/image)\n1\n2\n3\n4\n\u25cf\nSpiking transformer\n\u25cf\nNon-spiking baseline\n\n\u25cf\nSource-reported \u00b7 Linear scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      }
+    ],
+    "interaction": [
+      {
+        "name": "Neurotech Engagement",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      },
+      {
+        "name": "Mapping Scale",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 6,
+        "restorePreview": true
+      },
+      {
+        "name": "Cost and automation",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      }
+    ],
+    "deepLinks": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "title": "Humans with implanted high-bandwidth BCIs over time",
+        "group": "Human interfaces and recordings",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "title": "Paired structure\u2013function dataset scale over time",
+        "group": "Mapping Scale",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "title": "Simulation/emulation fidelity over time",
+        "group": "Simulation and NeuroAI",
+        "state": "full"
+      }
+    ],
+    "bounds": {
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425
+    },
+    "uniqueIds": true,
+    "searchNonPreview": true
+  },
+  {
+    "width": 390,
+    "order": [
+      "Neurotech Engagement",
+      "Human interfaces and recordings",
+      "Mapping Scale",
+      "Cost and automation",
+      "Simulation and NeuroAI"
+    ],
+    "initial": [
+      {
+        "name": "Neurotech Engagement",
+        "state": "preview",
+        "charts": [
+          {
+            "title": "Neurotech search terms: weekly Google Trends index, 0\u2013100. Complete weeks only; source values available in the expanded chart.",
+            "card": "neurotech"
+          }
+        ],
+        "text": "\u2212\nNeurotech Engagement\n4 charts \u00b7 commitments\n\nPace, public attention and revealed commitments.\n\nShow all 4 charts\nPublic attention \u00b7 Google Trends\n\nSearch interest is public attention, not technical progress, adoption or total search counts. A bounded English-language term basket, not the whole neurotech field.\n\nPast 36 months \u00b7 2023-10-15\u20132026-10-15\nWorldwide \u00b7 Web Search \u00b7 All categories \u00b7 weekly UTC\n\nSEARCH TERMS \u00b7 SHARED SCALE\nNeurotech search terms\nWeekly index \u00b7 0\u2013100\n2023-10\n2026-10\nExpand chart & source values \u2197\nneurotechnology\nbrain-computer interface\n\nLatest complete week \u00b7 2026-10-04\nneurotechnology: 7 \u00b7 brain-computer interface: 3\n\nBoth terms compared in one request; shared 0\u2013100 scale.\n\nDirect link \u2197\nCopy link\n\nSnapshot captured 2026-10-15 \u00b7 not a live feed. Incomplete weeks are excluded from charts and latest readings. Expand a chart for methodology and downloadable source values."
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Neural recording hours collected over time"
+          }
+        ],
+        "text": "\u2212\nHuman interfaces and recordings\n3 charts\n\nImplanted interfaces, recording capability and neural data supply.\n\nShow all 3 charts\n12 OBSERVATIONS\nNeural recording hours collected over time\n\nReported recording hours in selected datasets, with intracortical, scalp EEG, intracranial surface recordings and reused training corpora kept distinct. Public or controlled-access datasets are not pooled with company-held claims.\n\nNeural recording hours \u2014 selected datasets\nRecording hours\n100\n1,000\n10,000\n100,000\n2017\n2022\n2027\nRelease / publication / disclosure year\n1\n2\n3\n4\n5\n6\n7\nNeuralink \u00b7 human intracortical, company-held\nTUSZ \u00b7 human scalp EEG, controlled access\nAJILE12 \u00b7 human intracranial, open\nPOYO-1 \u00b7 primate spikes, training corpus\nJapanEEG \u00b7 human scalp EEG, open release claim\n\nRecording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Mapping Scale",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Open-access connectomics data over time"
+          }
+        ],
+        "text": "\u2212\nMapping Scale\n6 charts\n\nMapped tissue, connectome size, acquisition throughput, paired datasets and open data.\n\nShow all 6 charts\n5 OBSERVATIONS\nOpen-access connectomics data over time\nCard link\nCopy card link\n\nSelected published public-resource footprints, not a global total. FlyWire derives from the FAFB imagery; larval zebrafish resources are named by dataset to avoid combining different studies or counting derivatives twice.\n\nSelected public image/resource footprints\nReported resource size (decimal PB)\n0.001\n0.01\n0.1\n1\n10\n2017\n2021\n2025\nPublication / public-availability year\n\u25cf\nHildebrand zebrafish\n\u25cf\nFAFB / FlyWire imagery\n\u25cf\nHemibrain\n\u25cf\nH01\n\u25cf\nMICrONS\n\nReported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Cost and automation",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Connectomics imaging cost efficiency"
+          }
+        ],
+        "text": "\u2212\nCost and automation\n4 charts\n\nAcquisition cost estimates, reconstruction quality and proofreading effort.\n\nShow all 4 charts\n9 OBSERVATIONS\nConnectomics imaging cost efficiency\nCard link\nCopy card link\n\nSource-estimated acquisition costs, not all-in mapping costs. Preserve each protocol's resolution and scope; no fitted frontier.\n\nEstimated acquisition cost per voxel \u2014 optical and EM\nApprox. $/voxel (log)\n1.00e-11\n1.00e-10\n1.00e-9\n0.00000001\n2015\n2020\n2025\nYear as printed in Table A1\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\u25cf\nOptical\n\u25cf\nElectron microscopy\n\u25cf\nPEEM \u00b7 prospective\n\nAll plotted values are approximate (\u2248).\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "NeuroAI performance\u2013cost frontier over time"
+          }
+        ],
+        "text": "\u2212\nSimulation and NeuroAI\n2 charts \u00b7 1 timeline\n\nModel fidelity, NeuroAI and demonstrated applications.\n\nShow all 2 charts\n6 OBSERVATIONS\nNeuroAI performance\u2013cost frontier\nCard link\nCopy card link\n\nFixed ImageNet-1K benchmark: measured accuracy versus theoretical inference energy. Energy is operation-count modeling, not measured hardware consumption or training cost.\n\nNeuroAI performance\u2013cost frontier\nTop-1 accuracy (%)\n0\n20.2\n40.4\n60.6\n80.8\n1.13\n21.45\n41.77\nEstimated inference energy (mJ/image)\n1\n2\n3\n4\n5\n\u25cf\nSpiking transformer\n\u25cf\nNon-spiking baseline\n\n\u25cf\nSource-reported \u00b7 Linear scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      }
+    ],
+    "interaction": [
+      {
+        "name": "Neurotech Engagement",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      },
+      {
+        "name": "Mapping Scale",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 6,
+        "restorePreview": true
+      },
+      {
+        "name": "Cost and automation",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      }
+    ],
+    "deepLinks": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "title": "Humans with implanted high-bandwidth BCIs over time",
+        "group": "Human interfaces and recordings",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "title": "Paired structure\u2013function dataset scale over time",
+        "group": "Mapping Scale",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "title": "Simulation/emulation fidelity over time",
+        "group": "Simulation and NeuroAI",
+        "state": "full"
+      }
+    ],
+    "bounds": {
+      "width": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    "uniqueIds": true,
+    "searchNonPreview": true
+  },
+  {
+    "width": 320,
+    "order": [
+      "Neurotech Engagement",
+      "Human interfaces and recordings",
+      "Mapping Scale",
+      "Cost and automation",
+      "Simulation and NeuroAI"
+    ],
+    "initial": [
+      {
+        "name": "Neurotech Engagement",
+        "state": "preview",
+        "charts": [
+          {
+            "title": "Neurotech search terms: weekly Google Trends index, 0\u2013100. Complete weeks only; source values available in the expanded chart.",
+            "card": "neurotech"
+          }
+        ],
+        "text": "\u2212\nNeurotech Engagement\n4 charts \u00b7 commitments\n\nPace, public attention and revealed commitments.\n\nShow all 4 charts\nPublic attention \u00b7 Google Trends\n\nSearch interest is public attention, not technical progress, adoption or total search counts. A bounded English-language term basket, not the whole neurotech field.\n\nPast 36 months \u00b7 2023-10-15\u20132026-10-15\nWorldwide \u00b7 Web Search \u00b7 All categories \u00b7 weekly UTC\n\nSEARCH TERMS \u00b7 SHARED SCALE\nNeurotech search terms\nWeekly index \u00b7 0\u2013100\n2023-10\n2026-10\nExpand chart & source values \u2197\nneurotechnology\nbrain-computer interface\n\nLatest complete week \u00b7 2026-10-04\nneurotechnology: 7 \u00b7 brain-computer interface: 3\n\nBoth terms compared in one request; shared 0\u2013100 scale.\n\nDirect link \u2197\nCopy link\n\nSnapshot captured 2026-10-15 \u00b7 not a live feed. Incomplete weeks are excluded from charts and latest readings. Expand a chart for methodology and downloadable source values."
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Neural recording hours collected over time"
+          }
+        ],
+        "text": "\u2212\nHuman interfaces and recordings\n3 charts\n\nImplanted interfaces, recording capability and neural data supply.\n\nShow all 3 charts\n12 OBSERVATIONS\nNeural recording hours collected over time\n\nReported recording hours in selected datasets, with intracortical, scalp EEG, intracranial surface recordings and reused training corpora kept distinct. Public or controlled-access datasets are not pooled with company-held claims.\n\nNeural recording hours \u2014 selected datasets\nRecording hours\n100\n1,000\n10,000\n100,000\n2017\n2022\n2027\nRelease / publication / disclosure year\n1\n2\n3\n4\n5\n6\n7\nNeuralink \u00b7 human intracortical, company-held\nTUSZ \u00b7 human scalp EEG, controlled access\nAJILE12 \u00b7 human intracranial, open\nPOYO-1 \u00b7 primate spikes, training corpus\nJapanEEG \u00b7 human scalp EEG, open release claim\n\nRecording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Mapping Scale",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Open-access connectomics data over time"
+          }
+        ],
+        "text": "\u2212\nMapping Scale\n6 charts\n\nMapped tissue, connectome size, acquisition throughput, paired datasets and open data.\n\nShow all 6 charts\n5 OBSERVATIONS\nOpen-access connectomics data over time\nCard link\nCopy card link\n\nSelected published public-resource footprints, not a global total. FlyWire derives from the FAFB imagery; larval zebrafish resources are named by dataset to avoid combining different studies or counting derivatives twice.\n\nSelected public image/resource footprints\nReported resource size (decimal PB)\n0.001\n0.01\n0.1\n1\n10\n2017\n2021\n2025\nPublication / public-availability year\n\u25cf\nHildebrand zebrafish\n\u25cf\nFAFB / FlyWire imagery\n\u25cf\nHemibrain\n\u25cf\nH01\n\u25cf\nMICrONS\n\nReported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Cost and automation",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "Connectomics imaging cost efficiency"
+          }
+        ],
+        "text": "\u2212\nCost and automation\n4 charts\n\nAcquisition cost estimates, reconstruction quality and proofreading effort.\n\nShow all 4 charts\n9 OBSERVATIONS\nConnectomics imaging cost efficiency\nCard link\nCopy card link\n\nSource-estimated acquisition costs, not all-in mapping costs. Preserve each protocol's resolution and scope; no fitted frontier.\n\nEstimated acquisition cost per voxel \u2014 optical and EM\nApprox. $/voxel (log)\n1.00e-11\n1.00e-10\n1.00e-9\n0.00000001\n2015\n2020\n2025\nYear as printed in Table A1\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\u25cf\nOptical\n\u25cf\nElectron microscopy\n\u25cf\nPEEM \u00b7 prospective\n\nAll plotted values are approximate (\u2248).\n\n\u25cf\nSource-reported \u00b7 Log scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "state": "preview",
+        "charts": [
+          {
+            "title": null,
+            "card": "NeuroAI performance\u2013cost frontier over time"
+          }
+        ],
+        "text": "\u2212\nSimulation and NeuroAI\n2 charts \u00b7 1 timeline\n\nModel fidelity, NeuroAI and demonstrated applications.\n\nShow all 2 charts\n6 OBSERVATIONS\nNeuroAI performance\u2013cost frontier\nCard link\nCopy card link\n\nFixed ImageNet-1K benchmark: measured accuracy versus theoretical inference energy. Energy is operation-count modeling, not measured hardware consumption or training cost.\n\nNeuroAI performance\u2013cost frontier\nTop-1 accuracy (%)\n0\n20.2\n40.4\n60.6\n80.8\n1.13\n21.45\n41.77\nEstimated inference energy (mJ/image)\n1\n2\n3\n4\n5\n\u25cf\nSpiking transformer\n\u25cf\nNon-spiking baseline\n\n\u25cf\nSource-reported \u00b7 Linear scale \u00b7 Unconnected observations\n\nEnlarge chart\n\u2197\nDirect link\nCopy link\nDefinition and comparability"
+      }
+    ],
+    "interaction": [
+      {
+        "name": "Neurotech Engagement",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      },
+      {
+        "name": "Mapping Scale",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 6,
+        "restorePreview": true
+      },
+      {
+        "name": "Cost and automation",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 4,
+        "restorePreview": true
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "collapsed": true,
+        "keyboardPreview": true,
+        "fullChartCount": 3,
+        "restorePreview": true
+      }
+    ],
+    "deepLinks": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "title": "Humans with implanted high-bandwidth BCIs over time",
+        "group": "Human interfaces and recordings",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "title": "Paired structure\u2013function dataset scale over time",
+        "group": "Mapping Scale",
+        "state": "full"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "title": "Simulation/emulation fidelity over time",
+        "group": "Simulation and NeuroAI",
+        "state": "full"
+      }
+    ],
+    "bounds": {
+      "width": 320,
+      "client": 320,
+      "scroll": 320
+    },
+    "uniqueIds": true,
+    "searchNonPreview": true
+  }
+]

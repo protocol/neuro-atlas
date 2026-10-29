@@ -1,0 +1,212 @@
+{
+  "responsiveInteractions": [
+    {
+      "width": 1440,
+      "plotCount": 1,
+      "observationIds": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "oneInitiallyEmptyInspector": true,
+      "keyboardEveryPoint": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "pointer": true,
+      "bounds": {
+        "width": 1440,
+        "client": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "width": 390,
+      "plotCount": 1,
+      "observationIds": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "oneInitiallyEmptyInspector": true,
+      "keyboardEveryPoint": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "pointer": true,
+      "bounds": {
+        "width": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "width": 320,
+      "plotCount": 1,
+      "observationIds": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "oneInitiallyEmptyInspector": true,
+      "keyboardEveryPoint": [
+        "neuralink-reported-hours-2026-10-01",
+        "tusz-scalp-eeg-2017-04-17",
+        "tusz-scalp-eeg-2017-08-04",
+        "tusz-scalp-eeg-2018-04-15",
+        "tusz-scalp-eeg-2018-08-16",
+        "tusz-scalp-eeg-2018-11-14",
+        "tusz-scalp-eeg-2019-07-22",
+        "tusz-scalp-eeg-2020-04-23",
+        "tusz-scalp-eeg-2020-05-09",
+        "ajile12-intracranial-2022-01-27",
+        "poyo-primate-training-2023-10-24",
+        "japaneeg-scalp-eeg-2026-05-31"
+      ],
+      "pointer": true,
+      "bounds": {
+        "width": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ],
+  "legacyLinks": [
+    {
+      "anchor": "metric-recording-hours",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-recording-hours",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "neural-recording-hours",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "metric-panel-neuralink-private-intracortical-hours",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "metric-panel-tusz-scalp-eeg",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "metric-panel-ajile12-intracranial",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "metric-panel-poyo-primate-training",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "metric-panel-japaneeg-scalp-eeg",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-panel-neuralink-private-intracortical-hours",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-panel-tusz-scalp-eeg",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-panel-ajile12-intracranial",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-panel-poyo-primate-training",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "draft-panel-japaneeg-scalp-eeg",
+      "unifiedChartVisible": true
+    },
+    {
+      "anchor": "tissue-mapped",
+      "width": 1440,
+      "curatedTissueVisible": true,
+      "plots": 1,
+      "points": 7,
+      "duplicate": false
+    },
+    {
+      "anchor": "tissue-mapped",
+      "width": 390,
+      "curatedTissueVisible": true,
+      "plots": 1,
+      "points": 7,
+      "duplicate": false
+    },
+    {
+      "anchor": "tissue-mapped",
+      "width": 320,
+      "curatedTissueVisible": true,
+      "plots": 1,
+      "points": 7,
+      "duplicate": false
+    }
+  ],
+  "clipboard": {
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35872/neuro-atlas/field-velocity#metric-recording-hours",
+    "width": 2400,
+    "height": 3300,
+    "size": 881000
+  },
+  "referenceIntroAbsent": true,
+  "duplicateHoursReferenceAbsent": true
+}
