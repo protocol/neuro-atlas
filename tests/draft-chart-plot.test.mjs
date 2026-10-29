@@ -36,13 +36,27 @@ test('point detail box starts empty without placeholder text or a preselected ob
   } finally { await cleanup(); }
 });
 
+test('a modal appearing beneath a stationary pointer does not preselect an observation', async () => {
+  const DraftChartPlot = await renderer();
+  const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
+  try {
+    const point = document.querySelector('[data-source-observation]');
+    const inspector = document.querySelector('.draft-plot-inspector');
+    // Native pop-out layout causes mouseover even without a new pointer movement.
+    await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
+    assert.equal(inspector.textContent, '', 'Layout-only entry is not an inspection request');
+    await act(async () => point.dispatchEvent(new MouseEvent('mousemove', { bubbles: true })));
+    assert.match(inspector.textContent, /Fixture A/);
+  } finally { await cleanup(); }
+});
+
 test('inspection stays selected after hover, focus or tap so the source link remains usable', async () => {
   const DraftChartPlot = await renderer();
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
   try {
     const points = document.querySelectorAll('[data-source-observation]');
     const inspector = document.querySelector('.draft-plot-inspector');
-    for (const [index, type] of ['mouseover', 'focus', 'click'].entries()) {
+    for (const [index, type] of ['mousemove', 'focus', 'click'].entries()) {
       const point = points[index];
       await act(async () => {
         if (type === 'focus') point.focus();
@@ -81,7 +95,7 @@ test('keyboard focus and hover reveal exact qualified values, date, scope and so
     assert.equal(tooltip.querySelector('a').href, plot.points[0].sourceUrl);
     assert.equal(point.getAttribute('aria-describedby'), tooltip.id);
     await act(async () => point.blur());
-    await act(async () => document.querySelector('[data-source-observation="b"]').dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
+    await act(async () => document.querySelector('[data-source-observation="b"]').dispatchEvent(new MouseEvent('mousemove', { bubbles: true })));
     tooltip = document.querySelector('[role="tooltip"]');
     assert.ok(tooltip.textContent.includes('≈1,000'));
     await act(async () => document.querySelector('[data-source-observation="c"]').focus());

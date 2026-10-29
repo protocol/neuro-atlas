@@ -52,7 +52,7 @@ test('recording hours renders one populated log scatter with five labeled series
       assert.ok(rows[i].textContent.includes(point.note));
     });
     for (const plot of raw.plots) assert.ok(el.textContent.includes(plot.scope), `scope retained: ${plot.id}`);
-    await act(async () => pos('neuralink-reported-hours-2026-10-01').dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
+    await act(async () => pos('neuralink-reported-hours-2026-10-01').dispatchEvent(new MouseEvent('mousemove', { bubbles: true })));
     assert.match(el.querySelector('[role=tooltip]').textContent, />50,000/);
     await act(async () => pos('poyo-primate-training-2023-10-24').dispatchEvent(new Event('focusin', { bubbles: true })));
     assert.match(el.querySelector('[role=tooltip]').textContent, />100/);

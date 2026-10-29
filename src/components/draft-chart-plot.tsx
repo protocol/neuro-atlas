@@ -142,7 +142,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     tabIndex: 0, role: "button",
     "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
     "aria-describedby": active?.id === point.id ? `${id}-tooltip` : undefined,
-    onFocus: () => setActive(point), onMouseEnter: () => setActive(point), onClick: () => setActive(point),
+    // A newly opened modal can appear under a stationary pointer; inspect only on actual movement.
+    onFocus: () => setActive(point), onMouseMove: () => setActive(point), onClick: () => setActive(point),
     onKeyDown: (event: KeyboardEvent) => {
       if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActive(point); }
       if (event.key === "Escape") setActive(null);

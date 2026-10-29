@@ -146,7 +146,7 @@ test('styled markers preserve inspection by keyboard, pointer and persistent lab
         await act(async () => node.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true })));
         assert.equal(document.querySelector('[role="tooltip"] a').href, point.sourceUrl);
       }
-      for (const type of ['mouseover', 'click']) {
+      for (const type of ['mousemove', 'click']) {
         await act(async () => node.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
         await act(async () => node.dispatchEvent(new MouseEvent(type, { bubbles: true })));
         assert.equal(document.querySelector('[role="tooltip"] a').href, point.sourceUrl);
