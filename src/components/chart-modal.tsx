@@ -4,6 +4,20 @@ import React, { useEffect, useRef } from "react";
 import { lockModalScroll } from "@/lib/field-velocity/modal-scroll";
 import { closePerformance, takePerformanceFocusReturn } from "@/lib/field-velocity/navigation";
 
+/** Match native Tab visibility, especially the contents of closed source disclosures. */
+function isVisibleControl(control: HTMLElement) {
+  if (control.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
+  for (let ancestor: HTMLElement | null = control; ancestor; ancestor = ancestor.parentElement) {
+    if (ancestor.tagName === "DETAILS" && !ancestor.hasAttribute("open")) {
+      const summary = Array.from(ancestor.children).find(child => child.tagName === "SUMMARY");
+      if (!summary?.contains(control)) return false;
+    }
+    const style = window.getComputedStyle(ancestor);
+    if (style.display === "none" || style.visibility === "hidden") return false;
+  }
+  return true;
+}
+
 /** Focus only after the prior SubTabs pane has become visible again. */
 export function restoreFocusAfterPaneReveal(target: HTMLElement | null) {
   const document = target?.ownerDocument;
@@ -67,7 +81,8 @@ export function ChartModal({ id, title, children, returnFocus }: { id: string; t
     onKeyDown={event => {
       if (event.key === "Escape") { event.preventDefault(); closePerformance(); }
       if (event.key !== "Tab") return;
-      const controls = Array.from(ref.current!.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], select:not([disabled]), [tabindex="0"]'));
+      const controls = Array.from(ref.current!.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), select:not([disabled]), [tabindex="0"]'))
+        .filter(control => control.getAttribute("tabindex") !== "-1" && isVisibleControl(control));
       const first = controls[0], last = controls[controls.length - 1];
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus({ preventScroll: true }); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus({ preventScroll: true }); }
