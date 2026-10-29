@@ -20,6 +20,7 @@
 .draft-plot { margin: 0; min-width: 0; color: var(--foreground); }
 .draft-plot > figcaption { font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: .5rem; }
 .draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
+.draft-plot-qualifications { margin: 10px 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
 .draft-plot-tick { font-size: 11px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }

@@ -17,7 +17,7 @@
   box-shadow: 0 3px 12px rgb(0 0 0 / .1);
 }
 .draft-popout-preview { pointer-events: none; min-width: 0; }
-.draft-popout-preview .draft-plot-svg { height: 240px; min-height: 0; overflow: hidden; }
+.draft-popout-preview .draft-plot-svg { height: auto; min-height: 0; overflow: visible; }
 .draft-popout-preview .draft-plot > figcaption { padding-right: 8px; }
 .draft-popout-preview .draft-group-legend { font-size: .68rem; }
 .draft-popout-hint {

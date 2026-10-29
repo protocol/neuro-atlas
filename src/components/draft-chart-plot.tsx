@@ -53,7 +53,7 @@ function usePlotWidth() {
     const observer = new ResizeObserver(entries => {
       const measured = entries[0]?.contentRect.width;
       // A hidden tab has no width. Keep the last usable coordinate system until reveal.
-      if (measured > 0) setWidth(Math.max(200, Math.round(measured)));
+      if (measured > 0) setWidth(Math.max(120, Math.round(measured)));
     });
     observer.observe(figure.current);
     return () => observer.disconnect();
@@ -184,6 +184,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
+    {plot.points.some(point => point.qualifier) && <p className="draft-plot-qualifications" data-visible-qualifications>
+      {plot.points.every(point => point.qualifier === "≈") ? "All plotted values are approximate (≈)." : <>
+        <span>{plot.yLabel}: </span>
+        {plot.points.filter(point => point.qualifier).map((point, index) => <span key={point.id} data-qualified-observation={point.id}>
+          {index > 0 && "; "}{point.label}{!point.label.includes(qualifiedValue(point)) && `: ${qualifiedValue(point)}`}
+        </span>)}
+      </>}
+    </p>}
     <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
     {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
