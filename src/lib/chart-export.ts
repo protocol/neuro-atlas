@@ -51,7 +51,10 @@ function safePlot(source: Element): Element | null {
     const value = resolved((source as SVGElement).style.getPropertyValue(name) || source.getAttribute(name) || computed.getPropertyValue(name) || "", source);
     if (value) result.setAttribute(name, value);
   }
-  for (const name of ["r", "stroke-width"]) {
+  // The existing curve-point contract has a base radius of five (hover: seven).
+  // Keep its on-screen SVG bytes unchanged; normalize only the detached export.
+  if (source.hasAttribute("data-curve-point")) result.setAttribute("r", "5");
+  for (const name of ["stroke-width"]) {
     const value = source.getAttribute(`data-export-${name}`);
     if (value && /^\d+(\.\d+)?$/.test(value)) result.setAttribute(name, value);
   }
