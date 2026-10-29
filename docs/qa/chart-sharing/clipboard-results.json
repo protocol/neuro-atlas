@@ -1,0 +1,502 @@
+[
+  {
+    "anchor": "metric-panel-tissue-cm3",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected tissue-volume checkpoints",
+      "marks": 7
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-tissue-cm3",
+    "width": 2400,
+    "height": 2998,
+    "size": 487613,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "1e9172725eaf07591f402e7f85ce253044929cdee6aa334dd7071b5ec33ca7fb"
+  },
+  {
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected published connectomes \u2014 neuron counts",
+      "marks": 5
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-largest-connectome-neurons",
+    "width": 2400,
+    "height": 2764,
+    "size": 393975,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "2a5a5cd3e7cba5adab087e4facca1c8bd7719c5e6f11b5ad22b03af0fa529a52"
+  },
+  {
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected published maps \u2014 synapse counts",
+      "marks": 4
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-largest-connectome-synapses",
+    "width": 2400,
+    "height": 2748,
+    "size": 397148,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "db00c3efa1ba46d113d33c7387a651c8e2d570ef5e5bebe84010e83b2e0dc8e7"
+  },
+  {
+    "anchor": "metric-panel-acquisition-rates",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected EM acquisition rates",
+      "marks": 2
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-acquisition-rates",
+    "width": 2400,
+    "height": 2538,
+    "size": 351509,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "50de5dee3fc07617649101926227a8d1a71d60ced829121800a983a9251096e0"
+  },
+  {
+    "anchor": "metric-panel-acquisition-economics",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Estimated acquisition cost per voxel \u2014 optical and EM",
+      "marks": 9
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-acquisition-economics",
+    "width": 2400,
+    "height": 3534,
+    "size": 562110,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "e171799b2e5d41b5916e3413181b110a0a41171138d960e66b926ee781066853"
+  },
+  {
+    "anchor": "metric-panel-pathfinder-nerl",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: PATHFINDER v1: axon tracing benchmark",
+      "marks": 1
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-pathfinder-nerl",
+    "width": 2400,
+    "height": 2262,
+    "size": 241527,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "147c878e68b737866cd9c994788c95c50113d0010fb5b7024d3840b231c3f49e"
+  },
+  {
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Human and mouse cortex: split\u2013merge error trade-offs",
+      "marks": 12
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-connectomics-roboem-human-split-merge",
+    "width": 2400,
+    "height": 2748,
+    "size": 442108,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "83bdf6c0943c81f76940eb0772c40cf55a2a8b2dabc7433cde7b34b33df3478b"
+  },
+  {
+    "anchor": "metric-panel-proofreading-effort",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Reported project proofreading effort",
+      "marks": 2
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-proofreading-effort",
+    "width": 2400,
+    "height": 2772,
+    "size": 372494,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "631e989e8e6a9e24d59b93f5680d2749703ef7c0070214a9603ed778b2b536f9"
+  },
+  {
+    "anchor": "metric-panel-neuralink-cumulative",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected chronic intracortical recipients",
+      "marks": 7
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-neuralink-cumulative",
+    "width": 2400,
+    "height": 2756,
+    "size": 400734,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "6dd5b0c60014e14233661b3aa277cd28192c8b25c8b950b0ef02d9dcd5518628"
+  },
+  {
+    "anchor": "metric-panel-neuralink-private-intracortical-hours",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Neuralink \u00b7 human intracortical, company-held",
+      "marks": 1
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-neuralink-private-intracortical-hours",
+    "width": 2400,
+    "height": 2434,
+    "size": 326279,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "9ba82a44d5fc60c27e0cf0b4d6c95698cb9d520a89766a923168f4cf8cdc4445"
+  },
+  {
+    "anchor": "metric-panel-tusz-scalp-eeg",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: TUSZ \u00b7 human scalp EEG, controlled access",
+      "marks": 8
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-tusz-scalp-eeg",
+    "width": 2400,
+    "height": 2502,
+    "size": 330486,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "9dc2796be76a0c3bb1cf6821b9664a3750d29f48de84e61ab5394159fe10ccca"
+  },
+  {
+    "anchor": "metric-panel-ajile12-intracranial",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: AJILE12 \u00b7 human intracranial, open",
+      "marks": 1
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-ajile12-intracranial",
+    "width": 2400,
+    "height": 2366,
+    "size": 285051,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "9d1451d7ba746ca943135749a4e97a062eff0d285f16c94ab511d9e189d5f031"
+  },
+  {
+    "anchor": "metric-panel-poyo-primate-training",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: POYO-1 \u00b7 primate spikes, training corpus",
+      "marks": 1
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-poyo-primate-training",
+    "width": 2400,
+    "height": 2434,
+    "size": 317029,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "f1ad40f8a2b9a5b00e0273e5d3247a30a66eabc555489d0e66c43d6eabddd957"
+  },
+  {
+    "anchor": "metric-panel-japaneeg-scalp-eeg",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: JapanEEG \u00b7 human scalp EEG, open release claim",
+      "marks": 1
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-japaneeg-scalp-eeg",
+    "width": 2400,
+    "height": 2366,
+    "size": 298474,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "c246b7601a46778ffc1796a5da74ddbb31be1ae755e0158334661305e6c5b99d"
+  },
+  {
+    "anchor": "metric-panel-paired-manual",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected structure\u2013function matches",
+      "marks": 3
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-paired-manual",
+    "width": 2400,
+    "height": 2636,
+    "size": 365636,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "dd395c0e5a1e75279aba5763971ee098aeefbde36f8d45a40596df91f840646d"
+  },
+  {
+    "anchor": "metric-panel-public-data-size",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: Selected public image/resource footprints",
+      "marks": 5
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-public-data-size",
+    "width": 2400,
+    "height": 3018,
+    "size": 498007,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "05064f24d69fe213c4ed925d62d11cf9ff033ec962c75070790b3174f6cc608b"
+  },
+  {
+    "anchor": "metric-panel-flyvis-contrast",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: FlyVis: correct contrast preference",
+      "marks": 2
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-flyvis-contrast",
+    "width": 2400,
+    "height": 2324,
+    "size": 259697,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "d7b461d208b68ad14bfb224feb9247bd5cfa8821464a0f6998c7867d1846637f"
+  },
+  {
+    "anchor": "metric-panel-neuroai-imagenet",
+    "family": "curated",
+    "source": {
+      "title": "Copy chart: 2023 ImageNet performance\u2013energy trade-off",
+      "marks": 6
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#metric-panel-neuroai-imagenet",
+    "width": 2400,
+    "height": 2700,
+    "size": 389143,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "f5d18806d1f77bce1bd7db16efce0125b0cb91e7df82c107ed9bc956ef10ee24"
+  },
+  {
+    "anchor": "simultaneously-recorded-neurons",
+    "family": "reference-or-pace",
+    "source": {
+      "title": "Copy chart: Simultaneously recorded neurons",
+      "marks": 7
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#simultaneously-recorded-neurons",
+    "width": 2400,
+    "height": 2136,
+    "size": 425293,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "85030643f9048c780f824f8fd03ab246d8d76529eb313e3807c5015075feac75"
+  },
+  {
+    "anchor": "tissue-mapped",
+    "family": "reference-or-pace",
+    "source": {
+      "title": "Copy chart: Neural tissue mapped \u2014 selected datasets",
+      "marks": 7
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#tissue-mapped",
+    "width": 2400,
+    "height": 3492,
+    "size": 760354,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "fcbaad6a4efcb9af4d2f5dec6d858696ab7b6a263566f8fb6b939e6ca38f5691"
+  },
+  {
+    "anchor": "neural-recording-hours",
+    "family": "reference-or-pace",
+    "source": {
+      "title": "Copy chart: Neural recording hours \u2014 selected datasets",
+      "marks": 11
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#neural-recording-hours",
+    "width": 2400,
+    "height": 2632,
+    "size": 563917,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "7271fca72ea816027d121af8840c95851538c4454636444b1b1ee0a0c83d7c67"
+  },
+  {
+    "anchor": "idea_vintage",
+    "family": "reference-or-pace",
+    "source": {
+      "title": "Copy chart: Idea vintage",
+      "marks": 27
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#idea_vintage",
+    "width": 2400,
+    "height": 2950,
+    "size": 737824,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "2ff89acfe1581a39db948461f74555f6cc59688117fdcc3c1e54e3126abafd9d"
+  },
+  {
+    "anchor": "latency_compression",
+    "family": "reference-or-pace",
+    "source": {
+      "title": "Copy chart: Latency compression",
+      "marks": 4
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#latency_compression",
+    "width": 2400,
+    "height": 2030,
+    "size": 336766,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "4bcf257b1817e41d2204616719d2f2f82c0bc5c128fd2fc197acd61f89218f8f"
+  },
+  {
+    "anchor": "google-trends-neurotech",
+    "family": "trends",
+    "source": {
+      "title": "Copy chart: Neurotech search terms",
+      "marks": 309
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#google-trends-neurotech",
+    "width": 2400,
+    "height": 2052,
+    "size": 403401,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "5ea7525a4dce13a47acba747d3b3911eeb24df38c83fa8ea41a59a368f8c9c69"
+  },
+  {
+    "anchor": "google-trends-neuralink",
+    "family": "trends",
+    "source": {
+      "title": "Copy chart: Neuralink \u00b7 brand context",
+      "marks": 156
+    },
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35762/neuro-atlas/field-velocity#google-trends-neuralink",
+    "width": 2400,
+    "height": 2000,
+    "size": 328254,
+    "htmlHasImage": true,
+    "htmlHasLink": true,
+    "hash": "5e5a9fd426a7d371d826bba786030beb00296ed2bbde235a9b89e9b0e5e0d82e"
+  }
+]

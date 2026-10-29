@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "emptyBeforeInteraction": true,
+    "nativeHover": true,
+    "keyboardEnterEscape": true,
+    "dimensions": {
+      "innerWidth": 1440,
+      "client": 1425,
+      "scroll": 1425
+    },
+    "selectedLabel": "Bock mouse V1"
+  },
+  {
+    "width": 390,
+    "emptyBeforeInteraction": true,
+    "pointerActivation": true,
+    "keyboardEnterEscape": true,
+    "dimensions": {
+      "innerWidth": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    "selectedLabel": "Bock mouse V1"
+  },
+  {
+    "width": 320,
+    "emptyBeforeInteraction": true,
+    "pointerActivation": true,
+    "keyboardEnterEscape": true,
+    "dimensions": {
+      "innerWidth": 320,
+      "client": 320,
+      "scroll": 320
+    },
+    "selectedLabel": "Bock mouse V1"
+  }
+]

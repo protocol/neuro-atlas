@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import React, { act } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
@@ -18,6 +19,54 @@ export const plot = {
     { id: 'c', x: 2020, y: 10000, label: 'Fixture C', sourceUrl: 'https://example.org/c', sourceTitle: 'Fixture source C', quote: 'More than 10000 neurons.', dateLabel: '2020 release', qualifier: '>' },
   ],
 };
+
+test('point detail box starts empty without placeholder text or a preselected observation', async () => {
+  const DraftChartPlot = await renderer();
+  const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
+  try {
+    const inspector = document.querySelector('.draft-plot-inspector');
+    assert.ok(inspector, 'Keep the reserved detail box mounted');
+    const style = document.createElement('style');
+    style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    document.head.append(style);
+    assert.equal(getComputedStyle(inspector).height, '144px');
+    assert.equal(inspector.textContent, '');
+    assert.equal(inspector.childElementCount, 0);
+    assert.equal(document.querySelector('[aria-describedby]'), null);
+  } finally { await cleanup(); }
+});
+
+test('inspection stays selected after hover, focus or tap so the source link remains usable', async () => {
+  const DraftChartPlot = await renderer();
+  const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
+  try {
+    const points = document.querySelectorAll('[data-source-observation]');
+    const inspector = document.querySelector('.draft-plot-inspector');
+    for (const [index, type] of ['mouseover', 'focus', 'click'].entries()) {
+      const point = points[index];
+      await act(async () => {
+        if (type === 'focus') point.focus();
+        else point.dispatchEvent(new MouseEvent(type, { bubbles: true }));
+      });
+      assert.equal(inspector.querySelector('a').href, plot.points[index].sourceUrl);
+      await act(async () => {
+        point.blur();
+        point.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body }));
+      });
+      const link = inspector.querySelector('a');
+      assert.equal(link.href, plot.points[index].sourceUrl, 'Keep existing sticky inspection after actual interaction');
+      await act(async () => link.focus());
+      assert.equal(document.activeElement, link);
+      let activated = false;
+      link.addEventListener('click', event => { activated = true; event.preventDefault(); }, { once: true });
+      await act(async () => link.click());
+      assert.equal(activated, true);
+      await act(async () => point.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
+      assert.equal(inspector.textContent, '', 'Existing Escape dismissal returns to an empty box');
+      assert.equal(document.querySelector('[aria-describedby]'), null);
+    }
+  } finally { await cleanup(); }
+});
 
 test('keyboard focus and hover reveal exact qualified values, date, scope and source without relying on color', async () => {
   const DraftChartPlot = await renderer();

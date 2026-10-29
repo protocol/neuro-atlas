@@ -17,6 +17,10 @@ const mount = (node, hash) => mountDOM(node, hash, window => {
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 const sha = text => createHash('sha256').update(text).digest('hex');
+// Clipboard sharing adds only this nonvisual export hint to the original SVG.
+// Preserve the independently captured golden hashes: no geometry/style/value,
+// other data attributes, or different export-radius values are normalized away.
+const svgSha = text => sha(text.replaceAll(' data-export-r="5"', ''));
 // Captured from untouched 58dd8c2 before adding the controls, not the new off-state itself.
 const baseline = {
   'simultaneously-recorded-neurons': 'b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d',
@@ -31,7 +35,7 @@ test('canonical source bytes and unmodified tissue chart are preserved', async (
   try {
     assert.equal(document.querySelector('[role="switch"]'), null);
     assert.equal(document.querySelector('[data-extrapolation-line]'), null);
-    assert.equal(sha(document.querySelector('dialog svg').outerHTML), baseline['tissue-mapped']);
+    assert.equal(svgSha(document.querySelector('dialog svg').outerHTML), baseline['tissue-mapped']);
     assert.equal(document.querySelectorAll('[data-curve-point]').length, 7);
     assert.equal(document.querySelectorAll('[data-source-observation]').length, 7);
   } finally { await cleanup(); }
@@ -87,7 +91,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     const toggle = dialog.querySelector('[role="switch"]');
     assert.ok(toggle, 'Hours modal needs its own opt-in switch');
     assert.equal(toggle.getAttribute('aria-checked'), 'false');
-    assert.equal(sha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
+    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
     const table = dialog.querySelector('table').outerHTML;
     const previews = [...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML);
     await click(toggle);
@@ -131,7 +135,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     assert.ok(point.getAttribute('aria-describedby'));
     await act(async () => { point.blur(); select.value = ''; select.dispatchEvent(new Event('change', { bubbles: true })); });
     await click(toggle);
-    assert.equal(sha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
+    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
     assert.equal(dialog.querySelector('table').outerHTML, table);
     assert.deepEqual([...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML), previews);
   } finally { await cleanup(); }
@@ -145,7 +149,7 @@ test('neuron modal opt-in adds a connected dashed continuation and restores exac
     assert.ok(toggle, 'Extrapolation needs an accessible expanded-chart switch');
     assert.equal(toggle.getAttribute('aria-checked'), 'false');
     assert.match(toggle.textContent, /Extrapolation/);
-    assert.equal(sha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
+    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
     const source = dialog.querySelector('table').outerHTML;
     const previews = [...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML);
     const url = window.location.href;
@@ -177,7 +181,7 @@ test('neuron modal opt-in adds a connected dashed continuation and restores exac
     await click(toggle);
     assert.equal(toggle.getAttribute('aria-checked'), 'false');
     assert.equal(dialog.querySelector('[data-extrapolation-summary]'), null);
-    assert.equal(sha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
+    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
     assert.equal(dialog.querySelector('table').outerHTML, source);
     await click(dialog.querySelector('.pc-modal-header button')); await settle();
     await click(document.querySelector('[data-performance-card="simultaneously-recorded-neurons"] .pc-trigger'));
@@ -206,7 +210,7 @@ test('scenario controls expose log R², real alternative dates and count-equival
   }
   assert.match(dialog.textContent,/No post-2014 observations have been added/);
   await click(dialog.querySelector('[role="switch"]'));
-  assert.equal(sha(dialog.querySelector('svg').outerHTML),baseline['simultaneously-recorded-neurons']);
+  assert.equal(svgSha(dialog.querySelector('svg').outerHTML),baseline['simultaneously-recorded-neurons']);
  } finally {await cleanup();}
 });
 test('hours scenarios expose the old flat tail beside the chart and remove optimistic dates under plateau',async()=>{
@@ -221,6 +225,6 @@ test('hours scenarios expose the old flat tail beside the chart and remove optim
   assert.ok([...dialog.querySelectorAll('[data-crossing-label]')].every(e=>e.textContent.includes('not reached if plateau continues')));
   assert.doesNotMatch(dialog.querySelector('[data-extrapolation-summary]').textContent,/≈2029|≈2043|Infinity/);
   await click(dialog.querySelector('[role="switch"]'));
-  assert.equal(sha(dialog.querySelector('svg').outerHTML),baseline['neural-recording-hours']);
+  assert.equal(svgSha(dialog.querySelector('svg').outerHTML),baseline['neural-recording-hours']);
  }finally{await cleanup();}
 });

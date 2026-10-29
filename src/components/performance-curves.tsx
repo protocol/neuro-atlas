@@ -2,6 +2,7 @@
 
 import React, { useId, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
+import { ChartShare } from "@/components/chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
@@ -18,7 +19,7 @@ export function pointValue(point: MeasurementPoint) {
   return `${point.qualifier ? prefix[point.qualifier] : ""}${number(point.value)}`;
 }
 
-type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean };
+type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string };
 export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
@@ -86,7 +87,8 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
   </section>;
 }
 
-function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind }) {
+function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string }) {
+  const plotRef = useRef<HTMLDivElement>(null);
   const [track, setTrack] = useState("");
   const [extrapolate, setExtrapolate] = useState(false);
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
@@ -129,7 +131,26 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
     if (group) group.push(point); else clusters.push([point]);
   }
-  return <div className={compact ? "pc-preview" : "pc-plot"} data-extrapolation={scenario ? "on" : undefined}>
+  return <div ref={plotRef} className={compact ? "pc-preview" : "pc-plot"} data-extrapolation={scenario ? "on" : undefined}>
+    {!compact && shareAnchor && <ChartShare anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
+      const root = plotRef.current!;
+      const detail = root.closest(".pc-detail")!;
+      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor,
+        legend: data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })),
+        notes: [
+        ...points.flatMap(point => point.qualifiedValueLabel ? [point.qualifiedValueLabel] : []),
+          ...Array.from(detail.querySelectorAll(".pc-methodology > p:first-of-type, .pc-caveat"), node => node.textContent ?? ""),
+          ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
+            .filter(node => !track || node.querySelector("dt")?.textContent === data.tracks.find(t => t.id === track)?.label)
+            .map(node => `${node.querySelector("dt")?.textContent}: ${node.querySelector("dd")?.textContent}`),
+          data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved.",
+          ...(data.points.some(p => p.lo != null) ? ["Whiskers: source intervals. Hollow markers: under-indexed observations."] : []),
+          ...(scenario ? [`Scenario: ${root.querySelector<HTMLSelectElement>("[data-scenario-select]")?.selectedOptions[0]?.textContent ?? mode}. Conditional continuation, not a forecast.`,
+            ...Array.from(root.querySelectorAll(".pc-scenario-warning, .pc-extrapolation-notes > p, .pc-fit-diagnostics > strong, .pc-fit-diagnostics > span"), node => node.textContent ?? "")] : []),
+          `Sources: ${Array.from(detail.querySelectorAll(".pc-sources a"), node => node.textContent?.replace(/ ↗$/, "")).join("; ") || [...new Set(data.points.map(p => p.label.split(". ").at(-1)))].join("; ")}`,
+        ],
+      };
+    }} />}
     {!compact && extrapolation && <div className="pc-extrapolation-control">
       <button type="button" role="switch" aria-checked={extrapolate} aria-describedby={extrapolationHint} onClick={() => setExtrapolate(on => !on)}>
         <span className="pc-switch-track" aria-hidden="true" /><span>Extrapolation</span><span className="pc-switch-state" aria-hidden="true">{extrapolate ? "On" : "Off"}</span>
@@ -169,7 +190,7 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
         </g>}
         {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
         {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={active === p ? 7 : 5} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={1.5}
-          tabIndex={compact ? undefined : 0} role={compact ? undefined : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
+          data-export-r={5} tabIndex={compact ? undefined : 0} role={compact ? undefined : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
           onFocus={compact ? undefined : () => setFocused(p)} onBlur={compact ? undefined : () => setFocused(null)} onMouseEnter={compact ? undefined : () => setHovered(p)} onMouseLeave={compact ? undefined : () => setHovered(null)} />)}
         {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
         {moving && future ? <>
@@ -183,7 +204,7 @@ function CurvePlot({ data, compact = false, extrapolation }: { data: PlotData; c
         <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>
       </svg>
     </div>
-    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label ?? "Hover or tab to any marker for its value, date and source. All observations also appear in the source table below."}</p>}
+    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label}</p>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>
@@ -236,14 +257,14 @@ export function CurveCard({ id, title, eyebrow, coverage, plot, children }: { id
     <div className="pc-card-share">{share}</div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
       {share}
-      {plot && <CurvePlot data={plot} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}
+      {plot && <CurvePlot data={plot} shareAnchor={id} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}
       {children}
     </ChartModal>}
   </article>;
 }
 
 function MeasurementCard({ series }: { series: MeasurementSeries }) {
-  const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
+  const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks };
   return <CurveCard id={series.id} title={series.title} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
