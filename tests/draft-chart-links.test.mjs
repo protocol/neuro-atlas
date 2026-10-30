@@ -60,7 +60,7 @@ test("fresh actual chart/panel URLs open the matching popup; retired definitions
   }
 });
 
-test("direct links, same-hash navigation and Back/Forward preserve popup history without background scroll", async () => {
+test("stable alias URLs, same-hash navigation and Back/Forward preserve popup history without background scroll", async () => {
   globalThis.React = React;
   const scrolled = [];
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll(scrolled));
@@ -75,7 +75,7 @@ test("direct links, same-hash navigation and Back/Forward preserve popup history
       assert.equal(document.querySelectorAll("dialog[open]").length, 1);
       assert.deepEqual(scrolled, [], "popup/history navigation does not scroll background");
     };
-    await click(document.querySelector(`a[href="#${first}"]`));
+    await act(async () => navigatePerformance(first));
     await openAt(first);
     assert.match(window.history.state.atlasModalFrom, /#draft-charts$/);
     assert.equal(window.history.state.existing, "preserved");
@@ -125,16 +125,15 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll([]));
   try {
     await click(document.querySelector("[data-expand-metrics]"));
-    for (const candidate of expected.filter(candidate => candidate.panels.length > 0)) {
-      for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)]) {
-        const canonical = id.replace(/^draft-/, "metric-");
-        const button = document.querySelector(`[data-copy-draft-link="${canonical}"]`);
-        if (!button && (document.getElementById(id)?.hasAttribute("data-panel-alias") || document.getElementById(id)?.hasAttribute("data-retired-metric-anchor"))) continue;
-        await click(button);
-        assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
-        assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
-        assert.equal(window.location.hash, "#draft-charts");
-      }
+    const buttons = [...document.querySelectorAll('[data-copy-draft-link]')];
+    assert.equal(buttons.length, 15, 'One Copy link per actual plot or timeline, not per alias');
+    for (const button of buttons) {
+      const canonical = button.dataset.copyDraftLink;
+      assert.ok(document.getElementById(canonical));
+      await click(button);
+      assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
+      assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
+      assert.equal(window.location.hash, "#draft-charts");
     }
     globalThis.navigator.clipboard.writeText = async () => { throw new Error("denied"); };
     const button = document.querySelector("[data-copy-draft-link]");
@@ -166,13 +165,17 @@ test("all stable candidate/panel targets survive; retired targets have no share 
           assert.ok(target.closest("[data-metrics-category]"));
           continue;
         }
-        assert.ok(card.contains(target));
-        if (target.hasAttribute("data-panel-alias")) continue;
-        assert.ok(target.querySelector(`a[href="#${id.replace(/^draft-/, "metric-")}"]`), `Direct link ${id}`);
-        assert.ok(target.querySelector(`button[data-copy-draft-link="${id.replace(/^draft-/, "metric-")}"]`), `Copy link ${id}`);
+        const tile = target.closest('[data-draft-chart-card]');
+        assert.equal(tile?.dataset.draftChartCard, candidate.title, 'Each panel remains in its original definition, now as a peer tile');
+        const popout = tile.querySelector('[data-draft-popout]');
+        assert.ok([popout.dataset.draftPopout, ...popout.dataset.draftPopoutAliases.split(' ')].includes(id), `Alias still opens its original plot: ${id}`);
+        assert.equal(tile.querySelectorAll('[data-copy-draft-link]').length, 1);
+        assert.equal(tile.querySelector('[data-copy-draft-link]').dataset.copyDraftLink, popout.dataset.draftPopout);
       }
+      if (card.hasAttribute('data-retired-metric-anchor')) continue;
       const retained = candidate.panels.filter(panel => !document.getElementById(panel.id).hasAttribute("data-retired-metric-anchor"));
-      assert.equal(card.querySelectorAll("[data-draft-panel]").length, new Set(retained.map(panel => panel.plotId)).size);
+      const tiles = [...document.querySelectorAll('[data-draft-chart-card]')].filter(tile => tile.dataset.draftChartCard === candidate.title);
+      assert.equal(tiles.length, new Set(retained.map(panel => panel.plotId)).size);
     }
   } finally { dom.window.close(); }
 });

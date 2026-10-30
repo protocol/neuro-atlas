@@ -3,10 +3,11 @@
 import React, { useId, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
+import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
-import { usePerformanceHash, navigatePerformance, performanceUrl } from "@/lib/field-velocity/navigation";
+import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { decimalYear, extrapolationScenario, type Crossing, type ExtrapolationKind, type ExtrapolationMode, type ExtrapolationScenario } from "@/lib/extrapolation";
 
 const number = (value: number) => new Intl.NumberFormat("en", { maximumSignificantDigits: 7 }).format(value);
@@ -37,6 +38,16 @@ export function chartGeometry(data: PlotData) {
   const x = (date: string) => left + (Date.parse(date) - minTime + padding) / (maxTime - minTime + 2 * padding) * (width - left - right);
   const y = (value: number) => top + (1 - (data.scale === "log" ? (Math.log10(value) - low) / (high - low) : value / (step * 4))) * (height - top - bottom);
   return { width, height, left, right, minTime, maxTime, ticks, x, y };
+}
+
+/** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
+function compactChartGeometry(data: PlotData) {
+  const full = chartGeometry(data);
+  const width = 360, height = 220, left = 64, right = 16, top = 32, bottom = 52;
+  return { ...full, width, height, left, right,
+    x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
+    y: (value: number) => top + (full.y(value) - 28) / (full.height - 28 - 44) * (height - top - bottom),
+  };
 }
 
 /** Opt-in geometry only; the original geometry above remains the off-state path. */
@@ -101,7 +112,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
   const scenario = !compact && (extrapolate || progress > 0) && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
   // Filtering suppresses unsupported model output, but never moves source markers.
   const future = scenario && extrapolation ? extrapolationGeometry(data, extrapolationScenario(extrapolation, data.points, "", mode)) : null;
-  const original = chartGeometry(data);
+  const original = compact ? compactChartGeometry(data) : chartGeometry(data);
   const mix = (from: number, to: number) => progress === 0 ? from : progress === 1 ? to : from + (to - from) * progress;
   const g = !future || progress === 0 ? original : progress === 1 ? future : {
     ...original,
@@ -175,7 +186,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
         <text x={g.left} y={16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" />
-          <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
+          <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
         {data.line && <polyline data-frontier-line="true" points={points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} />}
         {scenario && future && <g className="pc-extrapolation-overlay" opacity={moving ? reveal : undefined}>
@@ -201,9 +212,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}
-        <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>
+        {!compact && <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>}
       </svg>
     </div>
+    {compact && <span className="pc-preview-axis">{data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies")}</span>}
     {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label}</p>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
@@ -229,30 +241,17 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
   </div>;
 }
 
-export function CurveCard({ id, title, eyebrow, coverage, plot, children }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode }) {
+export function CurveCard({ id, title, coverage, plot, children }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${id}`;
-  const [copyStatus, setCopyStatus] = useState("");
-  const share = <div className="pc-share">
-    <a href={`#${id}`} aria-label={`Direct link to ${title}`} onClick={event => {
-      if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigatePerformance(id); }
-    }}>Direct link ↗</a>
-    <button type="button" aria-label={`Copy link to ${title}`} onClick={async () => {
-      try {
-        await navigator.clipboard.writeText(performanceUrl(window.location.href, id));
-        setCopyStatus("Link copied");
-      } catch { setCopyStatus("Copy unavailable — use the direct link"); }
-    }}>Copy link</button>
-    <span role="status">{copyStatus}</span>
-  </div>;
-  return <article className="pc-card card" data-performance-card={id}>
+  const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
+  return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     <button ref={ref} type="button" className="pc-trigger" aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-      <span className="pc-eyebrow">{eyebrow}</span>
+
       <span className="pc-card-title">{title}</span>
       <span className="pc-coverage">{coverage}</span>
       {plot && <CurvePlot data={plot} compact />}
-      <span className="pc-expand">View chart, definitions &amp; sources <span aria-hidden="true">↗</span></span>
     </button>
     <div className="pc-card-share">{share}</div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
@@ -263,7 +262,7 @@ export function CurveCard({ id, title, eyebrow, coverage, plot, children }: { id
   </article>;
 }
 
-function MeasurementCard({ series }: { series: MeasurementSeries }) {
+function MeasurementCard({ series, provenance }: { series: MeasurementSeries; provenance?: React.ReactNode }) {
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks };
   return <CurveCard id={series.id} title={series.title} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
@@ -286,11 +285,12 @@ function MeasurementCard({ series }: { series: MeasurementSeries }) {
         </tr>))}</tbody>
       </table>
     </div>
+    {provenance}
   </CurveCard>;
 }
 
 type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: string; source: { repository: string } };
-export function PerformanceCurves({ data, provenance, selection }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[] }) {
+export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
   const includes = (id: string) => !selection || selection.includes(id);
   const r = data.record;
   const reading = r.state === "reading";
@@ -299,10 +299,13 @@ export function PerformanceCurves({ data, provenance, selection }: { data: Perfo
     tracks: [{ id: "neuron-frontier", label: "Selected simultaneous-recording frontier" }],
     points: r.series!.map(p => ({ date: `${p.x}-01-01`, value: p.y, track: "neuron-frontier", trackIndex: 0, label: `${p.x}: ${number(p.y)} neurons (year precision); shared Stevenson sources below` })),
   } : undefined;
-  return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label="Performance curves">
-    {!selection && <><header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
-    <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p></>}
-    <div className="pc-grid">
+  const provenanceDetails = <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
+      <p>Bounded, committed PL R&amp;D snapshot. Refreshed deliberately from a validated provider export, not an automatically updating feed.</p>
+      <p>Export assembled <time dateTime={provenance.exportGeneratedAt}>{provenance.exportGeneratedAt}</time>. Observation and source-check dates above remain separate.</p>
+      <p><a href={`${provenance.source.repository}/tree/${provenance.providerCommit}`} target="_blank" rel="noreferrer">Provider revision {provenance.providerCommit} ↗</a></p>
+      <p>Export SHA-256: <code>{provenance.sha256}</code></p>
+    </details>;
+  const cards = <>
       {includes("simultaneously-recorded-neurons") && <CurveCard id="simultaneously-recorded-neurons" title={reading ? r.metric! : "Simultaneously recorded neurons"} eyebrow={reading ? "Historical series" : r.state.replaceAll("_", " ")} coverage={reading ? `${r.window} · selected recording frontier, not a current maximum or a human-only BCI series.` : (r.blocker ?? r.reason ?? "No reading available.")} plot={neuronPlot}>
         {reading ? <>
           <section className="pc-methodology" aria-label="Neuron curve definitions and methodology">
@@ -321,9 +324,10 @@ export function PerformanceCurves({ data, provenance, selection }: { data: Perfo
           </div>
           <ul className="pc-sources">{r.sources!.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a></li>)}</ul>
         </> : <p>{r.candidateMetric ?? r.reason}</p>}
+        {flat && provenanceDetails}
       </CurveCard>}
-      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} />)}
-      {includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
+      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} provenance={flat ? provenanceDetails : undefined} />)}
+      {!flat && includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>
         <h3 className="pc-card-title" id="channel-count-title">Channel count frontier</h3>
         <p className="pc-coverage">Maximum simultaneously recorded channels in a human, over time. Not yet wired; channels are not recorded neurons.</p>
@@ -337,12 +341,12 @@ export function PerformanceCurves({ data, provenance, selection }: { data: Perfo
         </div>
         <p className="pc-chart-note">Source series not assembled yet. Preview is illustrative, not data.</p>
       </article>}
-    </div>
-    <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
-      <p>Bounded, committed PL R&amp;D snapshot. Refreshed deliberately from a validated provider export, not an automatically updating feed.</p>
-      <p>Export assembled <time dateTime={provenance.exportGeneratedAt}>{provenance.exportGeneratedAt}</time>. Observation and source-check dates above remain separate.</p>
-      <p><a href={`${provenance.source.repository}/tree/${provenance.providerCommit}`} target="_blank" rel="noreferrer">Provider revision {provenance.providerCommit} ↗</a></p>
-      <p>Export SHA-256: <code>{provenance.sha256}</code></p>
-    </details>
+  </>;
+  if (flat) return cards;
+  return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label="Performance curves">
+    {!selection && <><header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
+    <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p></>}
+    <div className="pc-grid">{cards}</div>
+    {provenanceDetails}
   </section>;
 }

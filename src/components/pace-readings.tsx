@@ -4,11 +4,8 @@ import React from "react";
 import type { PaceData } from "@/lib/field-velocity/performance";
 import { CurveCard, type PlotData } from "@/components/performance-curves";
 
-export function PaceReadings({ data }: { data: PaceData }) {
-  return <section className="performance-curves" aria-label="Idea vintage and latency compression">
-    <header className="pc-section-header"><h2>Idea vintage &amp; latency compression</h2></header>
-    <p className="pc-intro">How old are the ideas new work draws on, and how long does translation take? Separate, sourced readings in years — not a combined field score.</p>
-    <div className="pc-grid">{data.records.map(record => {
+export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: boolean }) {
+  const cards = data.records.map(record => {
       const definition = data.definitions.find(d => d.id === record.instrument)!;
       const reading = record.state === "reading";
       const vintage = record.instrument === "idea_vintage";
@@ -46,6 +43,11 @@ export function PaceReadings({ data }: { data: PaceData }) {
           {record.patentVintage && <section className="pc-methodology" aria-label="Patent vintage"><h4>Patent vintage · {record.patentVintage.state.replaceAll("_", " ")}</h4><p>{record.patentVintage.state === "reading" ? record.patentVintage.value : record.patentVintage.candidateMetric ?? record.patentVintage.reason}</p>{record.patentVintage.state !== "reading" && <p>{record.patentVintage.blocker}</p>}</section>}
         </>}
       </CurveCard>;
-    })}</div>
+    });
+  if (flat) return <>{cards}</>;
+  return <section className="performance-curves" aria-label="Idea vintage and latency compression">
+    <header className="pc-section-header"><h2>Idea vintage &amp; latency compression</h2></header>
+    <p className="pc-intro">How old are the ideas new work draws on, and how long does translation take? Separate, sourced readings in years — not a combined field score.</p>
+    <div className="pc-grid">{cards}</div>
   </section>;
 }

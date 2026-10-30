@@ -41,7 +41,7 @@ test('five ordered groups default to exactly their selected chart, with independ
     }
     await click(document.querySelector('[data-expand-metrics]'));
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
-    assert.equal(visible('[data-draft-chart-card]').length, 13);
+    assert.equal(visible('[data-draft-chart-card]').length, 15, 'Each of the 14 numeric plots and the timeline is a peer tile');
     assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 14);
     assert.equal(visible('[data-source-observation]').length, 77);
     assert.equal(visible('[data-trends-card]').length, 2);

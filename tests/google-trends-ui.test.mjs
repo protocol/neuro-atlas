@@ -27,10 +27,10 @@ test('deployed /neuro-atlas source downloads keep the basePath and exact query m
   assert.equal(result.status, 0, result.stderr || result.stdout);
 });
 
-for (const id of ['neurotech', 'neuralink']) test(`${id} deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values`, async () => {
+for (const flat of [false, true]) for (const id of ['neurotech', 'neuralink']) test(`${id} ${flat ? 'flat' : 'standalone'} deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values`, async () => {
   const { GoogleTrends } = await import('../src/components/google-trends.tsx');
   assert.equal(performanceUrl('https://example.org/neuro-atlas/field-velocity?view=all', `google-trends-${id}`), `https://example.org/neuro-atlas/field-velocity?view=all#google-trends-${id}`);
-  const cleanup = await mount(React.createElement(GoogleTrends), `#google-trends-${id}`);
+  const cleanup = await mount(React.createElement(GoogleTrends, { flat }), `#google-trends-${id}`);
   try {
     const modal = document.querySelector('dialog[open]'); assert.ok(modal, 'Attention modal must open from a fresh URL');
     const group = JSON.parse(readFileSync('public/data/google-trends/google-trends.json', 'utf8')).groups.find(g => g.id === id);
@@ -39,7 +39,15 @@ for (const id of ['neurotech', 'neuralink']) test(`${id} deep link opens sourced
     assert.deepEqual(plotted, expected);
     assert.equal(modal.querySelector('[data-date="2026-10-11"]'), null);
     assert.equal(modal.querySelectorAll('[data-trends-row]').length, 157);
+    assert.deepEqual([...modal.querySelectorAll('[data-trends-row]')].map(row => [...row.querySelectorAll('td')].slice(0, -1).map(cell => cell.textContent)), group.rows.map(row => row.displayValues), 'Every original source value and missing/low-interest qualifier remains verbatim');
+    const latest = group.rows.filter(row => !row.partial).at(-1);
+    const latestReading = modal.querySelector(`[data-trends-latest="${latest.date}"]`);
+    assert.ok(latestReading, 'Latest complete reading remains available inside the modal');
+    assert.ok(latestReading.textContent.endsWith(group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')));
     assert.match(modal.querySelector('[data-trends-row="2026-10-11"]').textContent, /Partial · excluded/);
+    assert.match(modal.textContent, /2023-10-15–2026-10-15/);
+    assert.match(modal.textContent, /Worldwide.*Web Search.*All categories/);
+    assert.match(modal.textContent, /Captured 2026-10-15.*snapshot, not a live connection/);
     assert.match(modal.textContent, /sample/);
     assert.match(modal.textContent, /not topics/);
     assert.match(modal.textContent, /not zero searches/);
@@ -55,20 +63,25 @@ for (const id of ['neurotech', 'neuralink']) test(`${id} deep link opens sourced
   } finally { await cleanup(); }
 });
 
-test('Metrics renders two real 36-month attention graphs, latest complete readings and distinct normalization', async () => {
+test('Metrics renders two real 36-month attention previews with distinct normalization, reserving latest values for the modal', async () => {
   assert.ok(existsSync('src/components/google-trends.tsx'), 'Google Trends section is missing');
   const { GoogleTrends } = await import('../src/components/google-trends.tsx');
   globalThis.React = React;
   const doc = new JSDOM(renderToStaticMarkup(React.createElement(GoogleTrends))).window.document;
-  assert.match(doc.body.textContent, /Public attention/);
   assert.match(doc.body.textContent, /36 months/);
-  assert.match(doc.body.textContent, /2023-10-15.*2026-10-15/);
-  assert.match(doc.body.textContent, /not technical progress/);
-  assert.match(doc.body.textContent, /Worldwide.*Web Search.*All categories/);
   assert.equal(doc.querySelectorAll('[data-trend-line]').length, 3);
-  assert.equal(doc.querySelectorAll('[data-trends-latest="2026-10-04"]').length, 2);
-  assert.match(doc.querySelector('[data-trends-card="neurotech"]').textContent, /neurotechnology: 7.*brain-computer interface: 3/);
-  assert.match(doc.querySelector('[data-trends-card="neuralink"]').textContent, /Neuralink: 4/);
-  assert.match(doc.body.textContent, /independently normalized/);
+  assert.equal(doc.querySelectorAll('[data-trends-latest]').length, 0);
+  for (const card of doc.querySelectorAll('[data-trends-card]')) {
+    assert.equal(card.querySelectorAll('h3').length, 1);
+    assert.equal(card.querySelectorAll('.gt-range').length, 1);
+    assert.equal(card.querySelector('.gt-range').textContent, 'Past 36 months · 2023-10–2026-10');
+    assert.equal(card.querySelector('.gt-preview-dates'), null, 'The compact date range is not repeated below the plot');
+    assert.match(card.textContent, /Worldwide.*0–100/);
+    assert.doesNotMatch(card.textContent, /Shared scale|shared scale|Latest complete week|2026-10-04|neurotechnology: 7|Neuralink: 4|Expand chart|source values ↗/);
+    assert.equal(card.querySelector('button[aria-haspopup="dialog"]').getAttribute('aria-label'), `Open ${card.querySelector('h3').textContent}`);
+    assert.ok(card.querySelector('.gt-legend'));
+  }
+  assert.doesNotMatch(doc.querySelector('[data-trends-card="neurotech"]').textContent, /Search interest, not progress/);
+  assert.match(doc.querySelector('[data-trends-card="neuralink"]').textContent, /Brand context.*independently normalized.*not comparable/);
   assert.match(readFileSync('src/app/field-velocity/page.tsx', 'utf8'), /<GoogleTrends/);
 });

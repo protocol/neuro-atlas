@@ -7,11 +7,11 @@ import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 
 test('NeuroAI title describes the performance–cost comparison without implying a time series', async () => {
-  const cleanup = await mount(React.createElement(DraftChartsSection));
+  const cleanup = await mount(React.createElement(DraftChartsSection, { flat: true }));
   try {
     const card = document.getElementById('draft-neuroai-frontier');
-    assert.equal(card.querySelector('h4').textContent, 'NeuroAI performance–cost frontier');
-    assert.equal(card.querySelector('[aria-label^="Direct card link"]').getAttribute('aria-label'), 'Direct card link to NeuroAI performance–cost frontier');
+    assert.equal(card.querySelector('figcaption').textContent, 'NeuroAI performance–cost frontier');
+    assert.equal(card.querySelector('[data-copy-draft-link]').getAttribute('aria-label'), 'Copy link to NeuroAI performance–cost frontier');
     assert.ok(card.querySelector('#metric-neuroai-frontier'));
     assert.ok(card.querySelector('#metric-panel-neuroai-imagenet'));
     assert.doesNotMatch(card.textContent, /frontier over time/);
@@ -45,7 +45,7 @@ for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics 
     const source = DRAFT_CHART_EVIDENCE['Connectomics imaging throughput over time'].plots.find(p => p.id === 'acquisition-economics');
     const projected = METRIC_CHART_EVIDENCE['Connectomics imaging cost efficiency'].plots;
     assert.deepEqual(projected, [source], 'unchanged source plot, not a conversion or new cost estimate');
-    assert.equal(panel.closest('article').querySelector('h4').textContent, 'Connectomics imaging cost efficiency');
+    assert.equal(panel.closest('article').dataset.draftChartCard, 'Connectomics imaging cost efficiency');
     assert.ok(document.getElementById('metric-imaging-cost-efficiency'));
     assert.equal(panel.querySelector('figcaption').textContent, source.title);
     assert.deepEqual([...panel.querySelectorAll('[data-draft-preview] [data-source-observation]')].map(n => n.dataset.sourceObservation), source.points.map(p => p.id));

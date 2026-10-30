@@ -1,11 +1,11 @@
 /* Attention charts keep HTML preview labels readable at narrow card widths. */
 .gt-scope { color: var(--muted); font-size: .75rem; line-height: 1.7; margin: .75rem 0 1.1rem; }
-.gt-card h3 { font-size: 1rem; font-weight: 650; margin: .4rem 0 .9rem; line-height: 1.4; }
+.gt-card > .pc-trigger h3 { font-size: 1rem; font-weight: 650; margin: 0; line-height: 1.4; }
+.gt-range { display: block; margin-top: .5rem; color: var(--muted); font-size: .7rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .gt-preview { display: block; margin: .8rem 0; }
 .gt-preview svg, .gt-plot svg { width: 100%; height: auto; display: block; }
 .gt-preview svg text { display: none; }
-.gt-preview-axis, .gt-preview-dates { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); }
-.gt-preview-dates { display: flex; justify-content: space-between; gap: 1rem; }
+.gt-preview-axis { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); }
 .gt-plot { max-width: 100%; overflow-x: auto; }
 .gt-plot svg { min-width: 560px; }
 .gt-plot svg text { font-size: 16px; fill: var(--muted); }
@@ -17,9 +17,11 @@
 .gt-latest { font-size: .75rem; line-height: 1.8; font-variant-numeric: tabular-nums; }
 .gt-scale { font-size: .75rem; line-height: 1.65; color: var(--muted); margin-top: .7rem; }
 .gt-card > .pc-share { padding: .4rem 1.25rem 1rem; }
-.gt-card .pc-open-hint { display: block; font-size: .75rem; color: var(--accent); border-top: 1px solid var(--border); padding-top: .75rem; }
+.gt-copy-fallback { display: grid; gap: .35rem; flex-basis: 100%; min-width: 0; color: var(--muted); font-size: .7rem; }
+.gt-copy-fallback input { width: 100%; min-width: 0; padding: .5rem; border: 1px solid var(--border-strong); border-radius: .4rem; background: var(--surface); color: var(--foreground); font: inherit; }
 .gt-values { font-size: .8rem; margin-top: 1rem; }
 .gt-values summary { cursor: pointer; padding: .7rem 0; font-weight: 600; }
 .gt-hash { font-size: .7rem; color: var(--muted); overflow-wrap: anywhere; margin-top: 1rem; line-height: 1.7; }
 .gt-plot:focus-visible, .gt-values summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gt-card :is(a, button, input):focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: .3rem; }
 @media (max-width: 560px) { .gt-card-notes { padding-inline: 1rem; } .gt-card > .pc-share { padding-inline: 1rem; } }

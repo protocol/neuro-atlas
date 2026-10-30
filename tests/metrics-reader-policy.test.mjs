@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { VelocityInstrumentsSection } from '../src/components/sections/velocity-instruments-section.tsx';
 import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
+import { mount, click } from './modal-helpers.mjs';
 
 globalThis.React = React;
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
@@ -19,21 +20,26 @@ test('category summaries describe displayed measurements rather than backlog pro
   } finally { dom.window.close(); }
 });
 
-test('curated chart context is preserved verbatim in closed definition details, not unfinished notices', () => {
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(Page)));
+test('curated chart context is preserved verbatim in modal definition details, not repeated preview notices', async () => {
+  const cleanup = await mount(React.createElement(Page));
   try {
-    const doc = dom.window.document;
-    for (const card of doc.querySelectorAll('[data-draft-chart-card]')) {
+    await click(document.querySelector('[data-expand-metrics]'));
+    for (const card of document.querySelectorAll('[data-draft-chart-card]')) {
       const evidence = DRAFT_CHART_EVIDENCE[card.dataset.draftChartCard];
-      assert.equal(card.querySelector('.draft-chart-summary').textContent, evidence.summary, 'Keep essential scope beside the plotted readings');
+      assert.equal(card.querySelector('.draft-chart-summary'), null, 'Preview avoids a repeated definition wrapper');
+      assert.ok(card.querySelector('[data-metric-scope]')?.textContent.trim(), 'Essential scope stays visible');
+      await click(card.querySelector('[data-draft-popout-trigger]'));
+      const modal = card.querySelector('dialog[open]');
+      assert.equal(modal.querySelector('.draft-chart-summary').textContent, evidence.summary, 'Full original context stays with the chart');
       if (evidence.gapReason) {
-        const details = card.querySelector('details[data-draft-methodology]:not([open])');
+        const details = modal.querySelector('details[data-draft-methodology]:not([open])');
         assert.ok(details.textContent.includes(evidence.gapReason), `${card.dataset.draftChartCard}: context must be disclosed without losing wording`);
       }
       assert.equal(card.querySelectorAll(':scope > [data-draft-still-missing]').length, 0);
       assert.equal(card.textContent.includes('Still missing:'), false);
+      await click(modal.querySelector('.pc-modal-header button'));
     }
-  } finally { dom.window.close(); }
+  } finally { await cleanup(); }
 });
 
 test('the actual Field velocity page contains readings, not Markets or channel-count placeholders', () => {
@@ -43,7 +49,7 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
     assert.equal(doc.querySelectorAll('[data-coming-soon], #markets').length, 0);
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 3, 'Unique neuron capability chart and two pace cards');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
-    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 13);
+    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 77);
     assert.equal(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'), null);
     assert.equal(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'), null);

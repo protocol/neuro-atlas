@@ -23,7 +23,8 @@ test('recording hours renders one populated log scatter with five labeled series
     assert.equal(el.querySelector('.draft-plot-inspector').textContent, '');
     assert.equal(el.querySelectorAll('[data-copy-chart]').length, 1);
     assert.equal(el.querySelectorAll('[data-download-chart]').length, 1);
-    assert.equal([...el.querySelectorAll('a')].filter(a => a.textContent === 'Direct link').length, 1);
+    assert.equal(el.querySelectorAll('[data-copy-draft-link="metric-recording-hours"]').length, 1);
+    assert.equal([...el.querySelectorAll('a')].filter(a => a.textContent === 'Direct link').length, 0);
     const points = METRIC_CHART_EVIDENCE[title].plots[0].points;
     assert.equal(points.length, 12);
     for (const original of sourcePoints) {
@@ -82,8 +83,11 @@ test('the real page retires only the duplicate hours reference, its self-link an
     assert.deepEqual([...document.querySelectorAll('#metric-category-0 [data-performance-card], #metric-category-3 [data-performance-card]')].map(n => n.dataset.performanceCard), ['simultaneously-recorded-neurons']);
     assert.doesNotMatch(document.body.textContent, /Reference views\.|Earlier Atlas series with separate scope|not additional observations in the curated panels above/);
     assert.equal(card().querySelector('a[href="#neural-recording-hours"]'), null, 'no self-referential related chart');
-    assert.match(card().querySelector('.draft-chart-methodology').textContent, /disclosure date.*log scale/);
-    assert.equal(document.querySelector('[data-metric-toggle="Human interfaces and recordings"] small').textContent, '3 charts');
+    assert.equal(card().querySelector('.draft-chart-methodology'), null, 'Definitions are modal-only at rest');
+    await click(card().querySelector('[data-draft-popout-trigger]'));
+    assert.match(document.querySelector('dialog .draft-chart-methodology').textContent, /disclosure date.*log scale/);
+    await click(document.querySelector('dialog .pc-modal-header button')); await settle(); await settle();
+    assert.equal(document.querySelectorAll('#metric-category-3 [data-metric-tile]').length, 3);
     for (const term of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO', 'JapanEEG']) {
       await search(term);
       assert.equal(card().closest('[hidden]'), null, term);
@@ -159,7 +163,7 @@ test('tissue-mapped opens the curated popup with seven preserved observations, n
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, 7);
     assert.equal(tissue.querySelector('a[href="#tissue-mapped"]'), null);
     assert.doesNotMatch(document.body.textContent, /reference views?/i);
-    assert.equal(document.querySelector('[data-metric-toggle="Mapping Scale"] small').textContent, '6 charts');
+    assert.equal(document.querySelectorAll('#metric-category-0 [data-metric-tile]').length, 6);
     await click(modal.querySelector('.pc-modal-header button')); await settle(); await settle();
     await search('H01'); await settle();
     assert.equal(tissue.closest('[hidden]'), null);

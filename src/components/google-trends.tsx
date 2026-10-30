@@ -29,7 +29,7 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
         `Source: Google Trends Explore · captured ${group.capturedAt}. Dated snapshot, not a live feed.`,
       ],
     })} />}
-    {compact && <span className="gt-preview-axis">Weekly index · 0–100</span>}
+    {compact && <span className="gt-preview-axis">Worldwide · Weekly index · 0–100</span>}
     <svg viewBox={compact ? '48 0 552 235' : '0 0 600 270'} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={580} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
       {group.terms.map((term, index) => {
@@ -45,7 +45,6 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
       {!compact && rows.flatMap(row => row.values.map((value, i) => value === null ? null : <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} r={2.5} fill={colors[i]}><title>{row.date} · {group.terms[i]}: {row.displayValues[i]}</title></circle>))}
       <text x={48} y={254}>{group.start.slice(0, 7)}</text><text x={580} y={254} textAnchor="end">{group.end.slice(0, 7)}</text>
     </svg>
-    {compact && <span className="gt-preview-dates"><span>{group.start.slice(0, 7)}</span><span>{group.end.slice(0, 7)}</span></span>}
   </div>;
 }
 
@@ -59,24 +58,26 @@ function TrendCard({ group }: { group: Group }) {
   const id = `google-trends-${group.id}`;
   const open = hash === `#${id}`;
   const [copyStatus, setCopyStatus] = useState('');
+  const [copyFallback, setCopyFallback] = useState('');
   const [valuesOpen, setValuesOpen] = useState(false);
   const latest = group.rows.filter(row => !row.partial).at(-1)!;
   const normalization = group.id === 'neurotech' ? 'Both terms compared in one request; shared 0–100 scale.' : 'Neuralink is independently normalized; its index cannot be compared with the other chart.';
   const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
   const share = <div className="pc-share">
-    <a href={`#${id}`} aria-label={`Direct link to ${group.title}`} onClick={event => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigatePerformance(id); } }}>Direct link ↗</a>
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
-      try { await navigator.clipboard.writeText(performanceUrl(window.location.href, id)); setCopyStatus('Link copied'); }
-      catch { setCopyStatus('Copy unavailable — use the direct link'); }
+      const url = performanceUrl(window.location.href, id);
+      try { await navigator.clipboard.writeText(url); setCopyFallback(''); setCopyStatus('Link copied'); }
+      catch { setCopyFallback(url); setCopyStatus('Copy unavailable — select and copy the chart URL below.'); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
+    {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id}>
-    <button ref={ref} type="button" className="pc-trigger" aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-      <span className="pc-eyebrow">{group.id === 'neurotech' ? 'Search terms · shared scale' : 'Brand context · separate scale'}</span>
-      <h3>{group.title}</h3><TrendPlot group={group} compact />
-      <span className="pc-open-hint">Expand chart &amp; source values ↗</span>
+    <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+      <h3>{group.title}</h3>
+      <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
+      <TrendPlot group={group} compact />
     </button>
-    <div className="gt-card-notes"><Legend group={group} />{latestReading}<p className="gt-scale">{normalization}</p></div>
+    <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Brand context · independently normalized; not comparable across charts.</p>}</div>
     {share}
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
       <p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>
@@ -110,13 +111,11 @@ function TrendCard({ group }: { group: Group }) {
   </article>;
 }
 
-export function GoogleTrends({ selection }: { selection?: readonly string[] } = {}) {
+export function GoogleTrends({ selection, flat = false }: { selection?: readonly string[]; flat?: boolean } = {}) {
+  const cards = groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} />);
+  if (flat) return <>{cards}</>;
   const sectionId = selection ? `google-trends-${selection.join("-")}-section` : "google-trends";
-  return <section id={sectionId} className="performance-curves gt-section" aria-labelledby={`${sectionId}-title`}>
-    <header className="pc-section-header"><h2 id={`${sectionId}-title`}>Public attention · Google Trends</h2></header>
-    <p className="pc-intro">Search interest is public attention, not technical progress, adoption or total search counts. A bounded English-language term basket, not the whole neurotech field.</p>
-    <p className="gt-scope">Past 36 months · {SNAPSHOT.start}–{SNAPSHOT.end}<br />Worldwide · Web Search · All categories · weekly UTC</p>
-    <div className="pc-grid">{groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} />)}</div>
-    <p className="gt-scope">Snapshot captured {groups[0].capturedAt.slice(0, 10)} · not a live feed. Incomplete weeks are excluded from charts and latest readings. Expand a chart for methodology and downloadable source values.</p>
+  return <section id={sectionId} className="performance-curves gt-section" aria-label="Google Trends search interest">
+    <div className="pc-grid">{cards}</div>
   </section>;
 }

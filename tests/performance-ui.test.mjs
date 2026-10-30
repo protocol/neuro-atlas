@@ -14,10 +14,11 @@ test("performance UI offers three compact dialog triggers and share controls wit
   const html = renderToStaticMarkup(React.createElement(PerformanceCurves, { data, provenance }));
   assert.equal((html.match(/class="pc-share"/g) ?? []).length, 3, "Every curve needs a discoverable share control");
   assert.equal((html.match(/>Copy link<\/button>/g) ?? []).length, 3);
-  for (const id of ["simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours"]) assert.ok(html.includes(`href="#${id}"`));
+  for (const id of ["simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours"]) assert.ok(html.includes(`data-copy-draft-link="${id}"`));
   assert.equal((html.match(/data-performance-card=/g) ?? []).length, 3);
   assert.equal((html.match(/data-source-observation=/g) ?? []).length, 0);
   assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 3);
-  assert.match(html, /Historical series/);
+  assert.match(html, /1957 → 2014/);
+  assert.match(html, /not a current maximum or a human-only BCI series/);
   assert.doesNotMatch(html, /<dialog|bci-implants|<details[^>]*data-performance-card/);
 });

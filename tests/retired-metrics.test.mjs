@@ -17,12 +17,13 @@ test('retired panels are unmounted, with every other source observation retained
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
     assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), expected);
     assert.equal(expected.length, 77);
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 13);
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 15); // 14 numeric + timeline
     assert.equal(document.querySelector('[data-metric-toggle="Tissue quality and annotation"]'), null);
     assert.doesNotMatch(document.body.textContent, /No plotted observations yet|Section rejection and loss|comparative cohorts/i);
     assert.equal(document.querySelectorAll('[data-source-observation^="roboem-"]').length, 12);
-    await click(document.querySelector('#draft-panel-paired-manual [data-draft-popout-trigger]'));
+    assert.ok(document.getElementById('draft-panel-paired-manual'), 'Legacy panel anchor remains addressable');
+    await click(document.querySelector('[data-draft-popout-trigger="metric-panel-paired-manual"]'));
     const detail = document.querySelector('dialog[open] .draft-popout-detail');
     assert.ok(detail, 'the retained paired-data chart opens real detail');
     assert.match(detail.textContent, /37,364 at 83% precision/);
@@ -49,13 +50,14 @@ test('search and category counts describe only the retained panels', async () =>
       assert.match(document.querySelector('[role=status]').textContent, /No metrics match/);
     }
     await click(document.querySelector('[data-clear-metrics]'));
-    const counts = [...document.querySelectorAll('[data-metric-toggle]')].map(n => [n.dataset.metricToggle, n.querySelector('small')?.textContent]);
+    const counts = [...document.querySelectorAll('[data-metric-more]')].map(n => [n.dataset.metricMore, n.textContent]);
     assert.deepEqual(counts, [
-      ['Neurotech Engagement', '4 charts · commitments'], ['Human interfaces and recordings', '2 charts'],
-      ['Mapping Scale', '6 charts'], ['Cost and automation', '4 charts'],
-      ['Simulation and NeuroAI', '2 charts · 1 timeline'],
+      ['Neurotech Engagement', 'Show all 4 charts'], ['Human interfaces and recordings', 'Show all 2 charts'],
+      ['Mapping Scale', 'Show all 6 charts'], ['Cost and automation', 'Show all 4 charts'],
+      ['Simulation and NeuroAI', 'Show all 3 charts'],
     ]);
-    assert.match(document.querySelector('[role=status]').textContent, /5 groups/);
+    assert.doesNotMatch(document.querySelector('.metrics-index > [role=status]')?.textContent ?? '', /5 groups|featured chart/);
+    assert.equal(document.querySelector('[data-metric-toggle] small'), null, 'No redundant header count/badge');
   } finally { await cleanup(); }
 });
 

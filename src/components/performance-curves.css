@@ -16,7 +16,8 @@
 .pc-coverage { display: block; font-size: .7rem; line-height: 1.6; color: var(--muted); margin-top: .6rem; min-height: 5.6rem; }
 .pc-preview { pointer-events: none; margin: .8rem -.5rem .4rem; }
 .pc-preview svg { width: 100%; height: auto; display: block; }
-.pc-preview svg text { font-size: 20px; }
+.pc-preview svg text { font-size: 18px; }
+.pc-preview-axis { display: block; color: var(--muted); font-size: .7rem; line-height: 1.5; text-align: center; margin-top: .3rem; overflow-wrap: anywhere; }
 .pc-expand { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .7rem; font-weight: 550; color: var(--accent); border-top: 1px solid var(--border); padding-top: .85rem; }
 .pc-detail { padding: 0 1.25rem 1.25rem; }
 .pc-share { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; font-size: .75rem; margin: .25rem 0 1rem; }
@@ -24,7 +25,7 @@
 .pc-share [role=status] { color: var(--muted); font-size: .7rem; }
 .pc-chart-scroll { overflow-x: auto; max-width: 100%; }
 .pc-plot svg { display: block; width: 100%; min-width: 560px; height: auto; max-height: 410px; }
-.performance-curves svg text { fill: var(--muted); font-family: inherit; font-variant-numeric: tabular-nums; }
+:is(.performance-curves, .pc-card, .pc-detail) svg text { fill: var(--muted); font-family: inherit; font-variant-numeric: tabular-nums; }
 .pc-plot svg text { font-size: 12px; }
 .pc-chart-note { font-size: .7rem; color: var(--muted); line-height: 1.6; }
 .pc-point-readout { min-height: 3.5rem; padding: .65rem .8rem; margin: .7rem 0; border-radius: .5rem; background: var(--accent-soft); color: var(--foreground); font-size: .75rem; line-height: 1.6; overflow-wrap: anywhere; }
@@ -52,13 +53,13 @@
 .pc-table-scroll td:nth-child(2) { min-width: 150px; }
 .pc-table-scroll td:nth-child(3) { min-width: 140px; }
 .pc-table-scroll td p { color: var(--muted); margin-top: .5rem; }
-.performance-curves a { color: var(--accent); overflow-wrap: anywhere; }
-.performance-curves a:hover { text-decoration: underline; }
+:is(.performance-curves, .pc-card, .pc-detail) a { color: var(--accent); overflow-wrap: anywhere; }
+:is(.performance-curves, .pc-card, .pc-detail) a:hover { text-decoration: underline; }
 .pc-sources { font-size: .75rem; display: grid; gap: .5rem; }
 .pc-provenance { margin-top: 1rem; font-size: .7rem; line-height: 1.7; color: var(--muted); overflow-wrap: anywhere; }
 .pc-provenance summary { cursor: pointer; width: fit-content; }
 .pc-provenance p { margin-top: .5rem; }
-.performance-curves :is(summary, a, button, select, [tabindex]):focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: .3rem; }
+:is(.performance-curves, .pc-card, .pc-detail) :is(summary, a, button, select, [tabindex]):focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: .3rem; }
 .draft-charts { max-width: 78rem; }
 .draft-charts-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem 1rem; }
 .draft-charts-header h2 { font-size: 1.35rem; font-weight: 650; letter-spacing: -.035em; }
