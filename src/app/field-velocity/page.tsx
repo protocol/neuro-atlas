@@ -31,9 +31,9 @@ export default function FieldVelocityPage() {
         ]}
       />
       <div className="mt-8">
-        <VelocityTabs engagementPreview={<GoogleTrends selection={["neurotech"]} />} references={{
-          recording: <PerformanceCurves data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons"]} />,
-        }} performance={<><PaceReadings data={selectPace(feed)} /><GoogleTrends selection={["neuralink"]} /></>} />
+        <VelocityTabs engagementPreview={<GoogleTrends flat selection={["neurotech"]} />} references={{
+          recording: <PerformanceCurves flat data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons"]} />,
+        }} performance={<><PaceReadings flat data={selectPace(feed)} /><GoogleTrends flat selection={["neuralink"]} /></>} />
       </div>
     </>
   );
