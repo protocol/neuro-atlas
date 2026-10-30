@@ -1,0 +1,447 @@
+{
+  "runtime": "32d133decc01d979b23d2a7038d64a10360d384f",
+  "cases": [
+    {
+      "width": 390,
+      "before": {
+        "scrollY": 5407,
+        "documentTop": 4771.328125,
+        "top": -635.671875,
+        "height": "770px",
+        "cards": [
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          }
+        ],
+        "maxScroll": 5407
+      },
+      "after": {
+        "scrollY": 5407,
+        "documentTop": 4771.328125,
+        "top": -635.671875,
+        "height": "770px",
+        "cards": [
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": true
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          },
+          {
+            "height": 770,
+            "width": 284,
+            "visible": false
+          }
+        ],
+        "maxScroll": 5407
+      }
+    },
+    {
+      "width": 320,
+      "before": {
+        "scrollY": 6403,
+        "documentTop": 5510.484375,
+        "top": -892.515625,
+        "height": "935px",
+        "cards": [
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          }
+        ],
+        "maxScroll": 6403
+      },
+      "after": {
+        "scrollY": 6403,
+        "documentTop": 5510.484375,
+        "top": -892.515625,
+        "height": "935px",
+        "cards": [
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": true
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          },
+          {
+            "height": 935,
+            "width": 214,
+            "visible": false
+          }
+        ],
+        "maxScroll": 6403
+      }
+    }
+  ]
+}
