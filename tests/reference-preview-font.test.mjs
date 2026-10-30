@@ -60,11 +60,31 @@ function assertGeometry() {
   for (const card of cards) {
     const svg = card.querySelector('.pc-preview svg');
     assert.equal(svg.getAttribute('viewBox'), '0 0 360 220', 'The fixed plot coordinate frame must not change');
-    assert.equal(createHash('sha256').update(svg.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
-      'Every path, point, interval and label retains its original coordinates/content');
+    // Only the readable unit/scale caption may move down to reserve its ascent.
+    // Its content/x plus every tick, point, interval and other label remain pinned.
+    const normalized = svg.cloneNode(true);
+    const caption = normalized.querySelector('text');
+    assert.match(caption.textContent, / · (linear|log) scale$/);
+    caption.setAttribute('y', '16');
+    assert.equal(createHash('sha256').update(normalized.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
+      'All scientific geometry/content remain unchanged apart from the separately tested caption baseline');
   }
   assert.equal(JSON.stringify(feed), sourceBefore, 'Source objects remain unchanged');
 }
+
+test('preview unit and scale captions reserve their full readable ascent inside narrow SVGs', async () => {
+  for (const width of [180, 230, 520]) {
+    const cleanup = await mount(charts(), '', configureWidth(width));
+    try {
+      for (const svg of document.querySelectorAll('.pc-preview svg')) {
+        const caption = svg.querySelector('text');
+        assert.match(caption.textContent, / · (linear|log) scale$/);
+        assert.ok(Number(caption.getAttribute('y')) >= Number.parseFloat(svg.style.fontSize) * 1.2,
+          'Readable unit/scale caption must not clip above the preview SVG');
+      }
+    } finally { await cleanup(); }
+  }
+});
 
 test('reference and Pace previews measure their SVG width to render 11px labels without changing plot geometry', async () => {
   for (const width of [230, 520]) {
