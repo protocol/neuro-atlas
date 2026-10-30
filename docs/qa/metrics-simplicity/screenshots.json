@@ -1,47 +1,47 @@
 {
-  "runtimeSha": "c884b3a1011caccaf8d395b9376853fb7b0a22d8",
+  "runtimeSha": "3acdf45532f5a7bf5008d237a91757f72f8eedf7",
   "capture": "native Chrome, local production build; mobile image is an unmodified-pixel crop",
   "images": {
     "after-engagement-all-1440.png": {
-      "sha256": "964f70909d5cabf9fb694024f9d27a3ca0c4bd623c4f9c32eae7bc3ce2ce85e6",
+      "sha256": "9daf06a24ed5c68c8830dcb12a8c8fb866cbcd28141b5162f5bda4a238d16aa4",
       "dimensions": [
         1087,
         888
       ]
     },
     "after-engagement-preview-1440.png": {
-      "sha256": "78d2f8eb0a199b206eb4d98ea433a34977efeb54e8efffa0701872a2bbdfcb62",
+      "sha256": "9bece8c4044a6a4de0954a6fbbc67646080c751c2b8c8035580fd6a05865c3d9",
       "dimensions": [
         1087,
-        453
+        434
       ]
     },
     "after-hero-1440.png": {
-      "sha256": "8148b3063d574fdb389f93e63ddc29441887c041fe5d4041b3f723152f5fbb2a",
+      "sha256": "b44f98aa0d5cfb01f3755793eec8411362ec7d6d81441953dde750b11fa8f341",
       "dimensions": [
         1440,
         1050
       ]
     },
     "after-dark-390.png": {
-      "sha256": "b63439f6532639a6fcfb2fd57537653f01dfdeaed36c35d2115ca9758019c1b3",
+      "sha256": "2fc169f1f7f6caac2593582b89ad67457a00b63b2bc51479e4befce33ef055fd",
       "dimensions": [
         390,
         1050
       ]
     },
     "after-mobile-320.png": {
-      "sha256": "45ca6e0701f5edf5c9469f72250363f38049c01edb5f6be4b4364bc43f24c853",
+      "sha256": "1dea084f4b9cf8538d182bbd2d522c45484a3367001bcf9f198d24f392a34a8b",
       "dimensions": [
         254,
         900
       ]
     },
     "after-mapping-all-1440.png": {
-      "sha256": "d52ad1c8f8d127e1d222f30e57209b11c8a154568592ac3b5fad15933d4390fb",
+      "sha256": "4564453e9c4dc16a921fd5ba165553535de5dc28dc59aa59acfe63bdc204abb5",
       "dimensions": [
         1102,
-        1418
+        1427
       ]
     },
     "before-hero-1440.png": {
