@@ -16,7 +16,7 @@
 .pc-coverage { display: block; font-size: .7rem; line-height: 1.6; color: var(--muted); margin-top: .6rem; min-height: 5.6rem; }
 .pc-preview { pointer-events: none; margin: .8rem -.5rem .4rem; }
 .pc-preview svg { width: 100%; height: auto; display: block; }
-.pc-preview svg text { font-size: 18px; }
+.pc-preview svg text { font-size: inherit; }
 .pc-preview-axis { display: block; color: var(--muted); font-size: .7rem; line-height: 1.5; text-align: center; margin-top: .3rem; overflow-wrap: anywhere; }
 .pc-expand { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .7rem; font-weight: 550; color: var(--accent); border-top: 1px solid var(--border); padding-top: .85rem; }
 .pc-detail { padding: 0 1.25rem 1.25rem; }
