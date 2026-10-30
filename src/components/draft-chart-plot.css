@@ -114,6 +114,7 @@
 .metric-chart-rail { display: grid; grid-auto-flow: column; grid-auto-columns: var(--metric-card-width); gap: 1rem; align-items: start; grid-column: 1 / -1; grid-row: 1; width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; padding-block: .25rem .75rem; scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: auto; scrollbar-color: var(--border-strong) transparent; }
 .metric-category[data-metric-state="preview"] .metric-chart-rail { padding-block: .25rem; }
 .metric-chart-rail article { min-width: 0; scroll-snap-align: start; }
+.metric-chart-rail:focus-within { scroll-snap-type: none; }
 .metric-chart-rail:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .metric-chart-rail::-webkit-scrollbar { height: 10px; }
 .metric-chart-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 1rem; }
