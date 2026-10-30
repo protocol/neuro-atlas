@@ -249,13 +249,13 @@ export function CurveCard({ id, title, coverage, plot, children }: { id: string;
   const open = hash === `#${id}`;
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
-    <button ref={ref} type="button" className="pc-trigger" aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+    <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
 
       <span className="pc-card-title">{title}</span>
       <span className="pc-coverage">{coverage}</span>
       {plot && <CurvePlot data={plot} compact />}
     </button>
-    <div className="pc-card-share">{share}</div>
+    <div className="pc-card-share" data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
       {share}
       {plot && <CurvePlot data={plot} shareAnchor={id} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}

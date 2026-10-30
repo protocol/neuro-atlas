@@ -84,13 +84,15 @@ function TrendCard({ group }: { group: Group }) {
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id}>
+    <div data-metric-card-body>
     <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
       <TrendPlot group={group} compact />
     </button>
     <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Brand context · independently normalized; not comparable across charts.</p>}</div>
-    {share}
+    </div>
+    <div data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
       <p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>
       <TrendPlot group={group} /><Legend group={group} />{latestReading}

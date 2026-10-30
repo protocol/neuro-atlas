@@ -1,6 +1,6 @@
 /* Attention charts keep HTML preview labels readable at narrow card widths. */
 .gt-scope { color: var(--muted); font-size: .75rem; line-height: 1.7; margin: .75rem 0 1.1rem; }
-.gt-card > .pc-trigger h3 { font-size: 1rem; font-weight: 650; margin: 0; line-height: 1.4; }
+.gt-card .pc-trigger h3 { font-size: 1rem; font-weight: 650; margin: 0; line-height: 1.4; }
 .gt-range { display: block; margin-top: .5rem; color: var(--muted); font-size: .7rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .gt-preview { display: block; margin: .8rem 0; }
 .gt-preview svg, .gt-plot svg { width: 100%; height: auto; display: block; }

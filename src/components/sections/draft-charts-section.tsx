@@ -47,7 +47,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
               {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
             </div>}
             methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
-          <DraftChartShare anchor={anchor} label={displayPlot.title} />
+          <div data-metric-card-footer><DraftChartShare anchor={anchor} label={displayPlot.title} /></div>
         </div>
       </article>;
     });
@@ -63,7 +63,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
           <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
             previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
             methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
-          <DraftChartShare anchor={anchor} label="Selected application events" />
+          <div data-metric-card-footer><DraftChartShare anchor={anchor} label="Selected application events" /></div>
         </div>
       </article>);
     }

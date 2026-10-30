@@ -8,6 +8,7 @@ import { DraftChartsSection } from "./draft-charts-section";
 import { VelocityInstrumentsSection } from "./velocity-instruments-section";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import TRENDS from "../../../public/data/google-trends/google-trends.json";
+import { useMetricCardHeight } from "@/components/use-metric-card-height";
 
 const neuronText = JSON.stringify([SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons"]).toLocaleLowerCase();
 const engagementPreviewText = JSON.stringify([TRENDS.groups.filter(group => group.id === "neurotech"), "Google Trends Public attention"]).toLocaleLowerCase();
@@ -86,7 +87,8 @@ export function MetricsSection({ performance, references, engagementPreview }: {
     setQuery("");
     setStates(Object.fromEntries(METRIC_GROUPS.map(group => [group.name, state])));
   };
-  return <section className="metrics-index" aria-label="Metrics catalog">
+  const cardHeightRef = useMetricCardHeight();
+  return <section ref={cardHeightRef} className="metrics-index" aria-label="Metrics catalog">
     <p className="pc-intro">Open a chart for methodology and downloadable source values.</p>
     <div className="metrics-tools">
       <label htmlFor="metrics-search">Search metrics, panels, species or datasets</label>

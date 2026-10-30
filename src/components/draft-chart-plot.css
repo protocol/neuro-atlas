@@ -121,6 +121,15 @@
 .metric-chart-rail::-webkit-scrollbar-track { background: transparent; }
 .metric-chart-fragment { display: contents; }
 .metric-chart-card { min-width: 0; }
+/* One measured outer height across all chart families; scientific SVGs stay natural-size. */
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]) { display: flex; flex-direction: column; box-sizing: border-box; min-height: var(--metric-card-height, 0px); padding: 0; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: 0 2px 6px rgb(0 0 0 / .05); }
+.metric-chart-card > [data-draft-panel], .metric-chart-card > [data-draft-panel] > .draft-popout { display: contents; }
+.metric-chart-rail [data-metric-card-body] { flex: 0 0 auto; min-width: 0; margin: 0; }
+.metric-chart-rail .draft-popout-card { padding: 1.25rem; border: 0; border-radius: 0; box-shadow: none; background: none; }
+.metric-chart-rail [data-metric-card-footer] { flex: 0 0 auto; min-width: 0; margin-top: auto; padding: 0 1.25rem 1rem; }
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { margin: 0; }
+.metric-chart-rail .metric-chart-card:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
+.metric-chart-rail .metric-chart-card .draft-popout-trigger:focus-visible { outline-offset: -2px; }
 .metric-preview-context { color: var(--muted); font-size: .72rem; line-height: 1.6; margin-top: .65rem; }
 .metric-preview-context p + p { margin-top: .5rem; }
 .metric-chart-rail .pc-coverage { min-height: 0; }
