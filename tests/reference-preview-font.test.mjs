@@ -67,11 +67,13 @@ function assertGeometry() {
 }
 
 test('reference and Pace previews measure their SVG width to render 11px labels without changing plot geometry', async () => {
-  const cleanup = await mount(charts(), '', configureWidth(520));
-  try {
-    assertGeometry();
-    assertFonts(520);
-  } finally { await cleanup(); }
+  for (const width of [230, 520]) {
+    const cleanup = await mount(charts(), '', configureWidth(width));
+    try {
+      assertGeometry();
+      assertFonts(width);
+    } finally { await cleanup(); }
+  }
 });
 
 function resizeHarness() {
