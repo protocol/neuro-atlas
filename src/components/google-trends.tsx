@@ -77,7 +77,7 @@ function TrendCard({ group }: { group: Group }) {
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
       <TrendPlot group={group} compact />
     </button>
-    <div className="gt-card-notes"><Legend group={group} /><p className="gt-scale">{group.id === 'neurotech' ? 'Search interest, not progress.' : 'Brand context · independently normalized; not comparable across charts.'}</p></div>
+    <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Brand context · independently normalized; not comparable across charts.</p>}</div>
     {share}
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
       <p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>

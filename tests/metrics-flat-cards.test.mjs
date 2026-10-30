@@ -98,7 +98,7 @@ test('category expansion stays in one three-column peer grid beside its preserve
       await click(more);
       assert.equal(featured[0].isConnected, true, 'Do not replace/remount the featured chart');
       assert.equal(featured[0].closest('[hidden]'), null);
-      assert.match(more.textContent, /Show featured/);
+      assert.equal(more.textContent, 'show only featured');
       assert.equal(grid.querySelector('.pc-grid, .draft-chart-grid, .pc-section-header'), null, 'No nested subgroup grids or headings');
       assert.ok([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')).length > 1);
       for (const card of grid.querySelectorAll('article')) {

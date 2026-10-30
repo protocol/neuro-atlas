@@ -73,7 +73,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const [active, setActive] = useState<DraftObservation | null>(null);
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(point.y)}`;
   const { width, figure } = usePlotWidth();
-  const yTitle = wrapLabel(plot.yLabel, width - 12);
+  const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
+  const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const top = 28 + yTitle.length * 16;
   const bottom = top + 232;
