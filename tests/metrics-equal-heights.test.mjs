@@ -112,6 +112,17 @@ test('hidden chart regions remain measurable but inert and visually excluded in 
   } finally { await cleanup(); }
 });
 
+test('sizing visibility overrides Tailwind base-layer hidden rules without putting the rail above its action', async () => {
+  const cleanup = await mount(React.createElement(Page));
+  try {
+    const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    assert.match(css, /@layer base\s*\{[\s\S]*?metric-chart-fragment\[data-metric-size-hidden\]\[hidden\]\s*\{\s*display:\s*contents\s*!important/);
+    const style = document.createElement('style'); style.textContent = css; document.head.append(style);
+    assert.equal(getComputedStyle(document.querySelector('.metric-category-content')).position, 'relative');
+    assert.equal(getComputedStyle(document.querySelector('.metric-chart-rail')).position, 'static');
+  } finally { await cleanup(); }
+});
+
 test('every real Metrics chart has separately measurable natural content and a footer', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
