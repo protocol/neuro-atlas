@@ -15,8 +15,8 @@ const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.st
 
 type GroupState = "collapsed" | "preview" | "full";
 function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {
-  // Dialogs live in the top layer; their focus must never scroll the background rail.
-  if (event.target.closest("dialog[open]")) return;
+  // Dialogs never move the background; pressed pointer targets must stay put until click.
+  if (event.target.closest("dialog[open]") || event.target.matches(":active")) return;
   const rail = event.currentTarget;
   const tile = event.target.closest<HTMLElement>("article");
   if (!tile || !rail.clientWidth) return;

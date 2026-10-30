@@ -145,3 +145,26 @@ test('keyboard focus and modal-close restoration reveal their full tile using on
     // The mount helper throws on window.scrollTo and scrollIntoView: neither is a valid focus-repair shortcut.
   } finally { await cleanup(); }
 });
+
+test('pointer-pressed focus does not move a peer out from under the pending click', async () => {
+  const cleanup = await mount(React.createElement(Page));
+  try {
+    const category = document.querySelector('[data-metrics-category="Mapping Scale"]');
+    await click(category.querySelector('[data-metric-more]'));
+    const rail = category.querySelector('[data-metric-rail]');
+    Object.defineProperty(rail, 'clientWidth', { configurable: true, value: 600 });
+    rail.getBoundingClientRect = () => ({ left: 100, right: 700, width: 600 });
+    const tiles = [...rail.querySelectorAll('article')].filter(tile => !tile.closest('[hidden]'));
+    for (const [index, tile] of tiles.entries()) tile.getBoundingClientRect = () => ({ left: 100 + index * 416 - rail.scrollLeft, right: 500 + index * 416 - rail.scrollLeft, width: 400 });
+    const peer = tiles[1].querySelector('[data-draft-popout-trigger]');
+    const matches = peer.matches.bind(peer);
+    let pressed = true;
+    peer.matches = selector => selector === ':active' ? pressed : matches(selector);
+    await act(async () => peer.focus({ preventScroll: true }));
+    assert.equal(document.activeElement, peer);
+    assert.equal(rail.scrollLeft, 0, 'Pointer focus must not relocate the click target between down and up');
+    pressed = false;
+    await act(async () => { peer.blur(); peer.focus({ preventScroll: true }); });
+    assert.equal(rail.scrollLeft, 216, 'Ordinary keyboard/programmatic focus still reveals the full tile');
+  } finally { await cleanup(); }
+});
