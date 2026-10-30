@@ -81,7 +81,7 @@ test('Metrics renders two real 36-month attention previews with distinct normali
     assert.equal(card.querySelector('button[aria-haspopup="dialog"]').getAttribute('aria-label'), `Open ${card.querySelector('h3').textContent}`);
     assert.ok(card.querySelector('.gt-legend'));
   }
-  assert.match(doc.querySelector('[data-trends-card="neurotech"]').textContent, /Search interest, not progress/);
+  assert.doesNotMatch(doc.querySelector('[data-trends-card="neurotech"]').textContent, /Search interest, not progress/);
   assert.match(doc.querySelector('[data-trends-card="neuralink"]').textContent, /Brand context.*independently normalized.*not comparable/);
   assert.match(readFileSync('src/app/field-velocity/page.tsx', 'utf8'), /<GoogleTrends/);
 });
