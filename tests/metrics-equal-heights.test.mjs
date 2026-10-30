@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
+import { readFileSync } from 'node:fs';
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 import { mount, click } from './modal-helpers.mjs';
 
@@ -67,6 +68,25 @@ test('natural-size observers can grow and shrink all cards and ignore deliveries
     if (previous === undefined) delete globalThis.ResizeObserver;
     else globalThis.ResizeObserver = previous;
   }
+});
+
+test('equalized whitespace remains part of the chart trigger while the footer stays independently clickable', async () => {
+  const cleanup = await mount(React.createElement(Page));
+  try {
+    const style = document.createElement('style');
+    style.textContent = readFileSync('src/components/draft-chart-panel.css', 'utf8') + readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    document.head.append(style);
+    await click(document.querySelector('[data-expand-metrics]'));
+    const cards = [...document.querySelectorAll('[data-metric-rail] article')].filter(card => card.querySelector('[data-metric-card-body]'));
+    for (const card of cards) {
+      assert.equal(getComputedStyle(card).position, 'relative');
+      assert.equal(getComputedStyle(card.querySelector('[data-metric-card-footer]')).zIndex, '1');
+      if (card.classList.contains('metric-chart-card')) assert.equal(getComputedStyle(card.querySelector('.draft-popout-card')).position, 'static');
+    }
+    const overlay = [...style.sheet.cssRules].find(rule => rule.selectorText === '.metric-chart-rail .pc-trigger::after');
+    assert.equal(overlay.style.position, 'absolute');
+    assert.equal(Number.parseFloat(overlay.style.inset), 0);
+  } finally { await cleanup(); }
 });
 
 test('every real Metrics chart has separately measurable natural content and a footer', async () => {
