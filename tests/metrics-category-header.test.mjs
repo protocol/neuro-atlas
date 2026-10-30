@@ -23,7 +23,7 @@ test('category headers expose a separately wrapping name without redundant badge
     assert.equal(layout.alignItems, 'baseline');
   }
   assert.equal(doc.querySelectorAll('[data-metric-toggle] small').length, 0);
-  assert.equal(doc.querySelector('[data-metric-more="Mapping Scale"]').textContent, 'Show all 6 charts');
-  assert.equal(doc.querySelector('[data-metric-more="Human interfaces and recordings"]').textContent, 'Show all 2 charts');
+  assert.deepEqual([...doc.querySelectorAll('[data-metric-more]')].map(button => button.textContent),
+    Array(5).fill('show more charts'), 'Expansion copy is lowercase and does not specify a count');
   dom.window.close();
 });

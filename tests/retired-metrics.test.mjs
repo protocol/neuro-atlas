@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { VelocityTabs } from '../src/components/sections/velocity-tabs.tsx';
+import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 import { mount, click, settle } from './modal-helpers.mjs';
 import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
@@ -41,8 +42,9 @@ async function search(value) {
     input.dispatchEvent(new Event('input', { bubbles: true }));
   });
 }
-test('search and category counts describe only the retained panels', async () => {
-  const cleanup = await mount(React.createElement(VelocityTabs, { performance: null }));
+test('search and category inventories describe only the retained panels without counts in expansion copy', async () => {
+  const Page = FieldVelocityPage.default ?? FieldVelocityPage;
+  const cleanup = await mount(React.createElement(Page));
   try {
     for (const term of ['GAUSS-EM', 'MICrONS selected-region section loss', 'Precision · temporary', 'Comparative connectomics cohort size']) {
       await search(term);
@@ -50,12 +52,15 @@ test('search and category counts describe only the retained panels', async () =>
       assert.match(document.querySelector('[role=status]').textContent, /No metrics match/);
     }
     await click(document.querySelector('[data-clear-metrics]'));
-    const counts = [...document.querySelectorAll('[data-metric-more]')].map(n => [n.dataset.metricMore, n.textContent]);
+    assert.deepEqual([...document.querySelectorAll('[data-metric-more]')].map(button => button.textContent), Array(5).fill('show more charts'));
+    await click(document.querySelector('[data-expand-metrics]'));
+    const counts = [...document.querySelectorAll('[data-metrics-category]')].map(category => [category.dataset.metricsCategory,
+      category.querySelectorAll('[data-draft-popout], [data-trends-card], [data-performance-card]').length]);
     assert.deepEqual(counts, [
-      ['Neurotech Engagement', 'Show all 4 charts'], ['Human interfaces and recordings', 'Show all 2 charts'],
-      ['Mapping Scale', 'Show all 6 charts'], ['Cost and automation', 'Show all 4 charts'],
-      ['Simulation and NeuroAI', 'Show all 3 charts'],
-    ]);
+      ['Neurotech Engagement', 4], ['Human interfaces and recordings', 3],
+      ['Mapping Scale', 6], ['Cost and automation', 4], ['Simulation and NeuroAI', 3],
+    ], 'Pin actual chart inventory independently of the now-count-free buttons');
+    assert.equal(document.querySelectorAll('[data-metric-reading="revealed_commitments"]').length, 1, 'Keep the historical scalar distinct from chart counts');
     assert.doesNotMatch(document.querySelector('.metrics-index > [role=status]')?.textContent ?? '', /5 groups|featured chart/);
     assert.equal(document.querySelector('[data-metric-toggle] small'), null, 'No redundant header count/badge');
   } finally { await cleanup(); }

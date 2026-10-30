@@ -14,6 +14,18 @@ const engagementPreviewText = JSON.stringify([TRENDS.groups.filter(group => grou
 const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), TRENDS.groups.filter(group => group.id === "neuralink"), "Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
 
 type GroupState = "collapsed" | "preview" | "full";
+function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {
+  // Dialogs live in the top layer; their focus must never scroll the background rail.
+  if (event.target.closest("dialog[open]")) return;
+  const rail = event.currentTarget;
+  const tile = event.target.closest<HTMLElement>("article");
+  if (!tile || !rail.clientWidth) return;
+  const viewportLeft = rail.getBoundingClientRect().left + rail.clientLeft;
+  const viewportRight = viewportLeft + rail.clientWidth;
+  const bounds = tile.getBoundingClientRect();
+  if (bounds.left < viewportLeft) rail.scrollLeft += bounds.left - viewportLeft;
+  else if (bounds.right > viewportRight) rail.scrollLeft += bounds.right - viewportRight;
+}
 export type MetricReferences = { recording: React.ReactNode };
 export function MetricsSection({ performance, references, engagementPreview }: { performance: React.ReactNode; references?: MetricReferences; engagementPreview?: React.ReactNode }) {
   const [states, setStates] = useState<Record<string, GroupState>>({});
@@ -60,20 +72,31 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   const supplementalMatch = (id: number) => id === 3 ? neuronText.includes(term) : id === 6 && (engagementPreviewText.includes(term) || engagementMoreText.includes(term));
   const categoryMatch = (group: typeof METRIC_GROUPS[number]) => group.name.toLocaleLowerCase().includes(term) || matches.some(chart => metricCategoryFor(chart) === group.name) || supplementalMatch(group.id);
   const matchingCategories = METRIC_GROUPS.filter(categoryMatch).length;
-  const setAll = (state: GroupState) => { setQuery(""); setStates(Object.fromEntries(METRIC_GROUPS.map(group => [group.name, state]))); };
+  const changeGroup = (name: string, state: GroupState, control: HTMLButtonElement) => {
+    if (state !== "full") {
+      if (control.getAttribute("aria-expanded") === "true") control.focus({ preventScroll: true });
+      const rail = control.closest("[data-metrics-category]")?.querySelector<HTMLElement>("[data-metric-rail]");
+      if (rail) rail.scrollLeft = 0;
+    }
+    setStates(previous => ({ ...previous, [name]: state }));
+  };
+  const setAll = (state: GroupState, control: HTMLButtonElement) => {
+    control.focus({ preventScroll: true });
+    control.closest(".metrics-index")?.querySelectorAll<HTMLElement>("[data-metric-rail]").forEach(rail => { rail.scrollLeft = 0; });
+    setQuery("");
+    setStates(Object.fromEntries(METRIC_GROUPS.map(group => [group.name, state])));
+  };
   return <section className="metrics-index" aria-label="Metrics catalog">
     <p className="pc-intro">Open a chart for methodology and downloadable source values.</p>
     <div className="metrics-tools">
       <label htmlFor="metrics-search">Search metrics, panels, species or datasets</label>
       <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder="Try H01, mouse, recording hours…" />
       <button type="button" data-clear-metrics onClick={() => setQuery("")}>Clear search</button>
-      <button type="button" data-expand-metrics onClick={() => setAll("full")}>Expand all</button>
-      <button type="button" data-collapse-metrics onClick={() => setAll("collapsed")}>Collapse all</button>
+      <button type="button" data-expand-metrics onClick={event => setAll("full", event.currentTarget)}>Expand all</button>
+      <button type="button" data-collapse-metrics onClick={event => setAll("collapsed", event.currentTarget)}>Collapse all</button>
     </div>
     {term && <p role="status">{matchingCategories ? `${matchingCategories} matching categories · matching metrics and context groups shown. Clear search to toggle groups.` : "No metrics match. Try a different title, species or dataset, or clear search."}</p>}
     {METRIC_GROUPS.map(group => {
-      const charts = METRIC_CHARTS.filter(chart => metricCategoryFor(chart) === group.name && isVisibleMetric(chart));
-      const count = group.id === 6 ? 4 : charts.reduce((sum, chart) => sum + METRIC_CHART_EVIDENCE[chart.title].plots.length + Number(!!METRIC_CHART_EVIDENCE[chart.title].timeline), 0) + (group.id === 3 && references?.recording ? 1 : 0);
       const retiredAnchors = METRIC_CHARTS.filter(chart => metricCategoryFor(chart) === group.name).flatMap(chart => {
         const link = DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
         const ids = isVisibleMetric(chart)
@@ -88,18 +111,18 @@ export function MetricsSection({ performance, references, engagementPreview }: {
       const contentId = `metric-category-${group.id}`;
       return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} hidden={!!term && !matched}>
         {retiredAnchors.map(id => <span key={id} id={id} className="metric-anchor" data-retired-metric-anchor aria-hidden="true" />)}
-        <h2><button type="button" disabled={!!term} id={`${contentId}-toggle`} data-metric-toggle={group.name} aria-expanded={open} aria-controls={contentId} onClick={() => setStates(previous => ({ ...previous, [group.name]: open ? "collapsed" : "preview" }))}>
+        <h2><button type="button" disabled={!!term} id={`${contentId}-toggle`} data-metric-toggle={group.name} aria-expanded={open} aria-controls={contentId} onClick={event => changeGroup(group.name, open ? "collapsed" : "preview", event.currentTarget)}>
           <span aria-hidden="true">{open ? "−" : "+"}</span><span className="metric-category-name">{group.name}</span>
         </button></h2>
-        <div id={contentId} hidden={!open} aria-labelledby={`${contentId}-toggle`}>
-          <div id={`${contentId}-charts`} className="metric-chart-grid" data-metric-grid>
+        <div id={contentId} className="metric-category-content" hidden={!open} aria-labelledby={`${contentId}-toggle`}>
+          <div id={`${contentId}-charts`} className="metric-chart-rail" data-metric-rail role="region" aria-label={`${group.name} charts`} tabIndex={0} onFocusCapture={revealFocusedTile}>
             {group.id === 6 ? <>
               <div className="metric-chart-fragment" hidden={!!groupQuery && !engagementPreviewText.includes(groupQuery)}>{engagementPreview}</div>
               <div className="metric-chart-fragment" hidden={groupQuery ? !engagementMoreText.includes(groupQuery) : state !== "full"}><VelocityInstrumentsSection performance={performance} flat /></div>
             </> : <DraftChartsSection flat category={group.name} query={groupQuery} showGaps={false} featuredTitle={group.preview ?? undefined} visibleTitles={state === "full" || term ? undefined : [group.preview!]} />}
             {group.id === 3 && <div className="metric-chart-fragment" hidden={groupQuery ? !neuronText.includes(groupQuery) : state !== "full"}>{references?.recording}</div>}
-            <button className="metric-category-more" type="button" data-metric-more={group.name} disabled={!!term} aria-expanded={state === "full"} aria-controls={`${contentId}-charts`} onClick={() => setStates(previous => ({ ...previous, [group.name]: state === "full" ? "preview" : "full" }))}>{state === "full" ? "show only featured" : `Show all ${count} charts`}</button>
           </div>
+          <button className="metric-category-more" type="button" data-metric-more={group.name} disabled={!!term} aria-expanded={state === "full"} aria-controls={`${contentId}-charts`} onClick={event => changeGroup(group.name, state === "full" ? "preview" : "full", event.currentTarget)}>{state === "full" ? "show only featured" : "show more charts"}</button>
         </div>
       </section>;
     })}

@@ -13,12 +13,12 @@ const featured = [
 ];
 const visibleCards = grid => [...grid.querySelectorAll('article')].filter(card => !card.closest('[hidden]'));
 
-test('Show all adds peer cards after the existing featured chart without moving it out of the first grid slot', async () => {
+test('show more charts adds peers after the unchanged featured tile in the first rail slot', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     for (const [group, anchor] of featured) {
       const category = document.querySelector(`[data-metrics-category="${group}"]`);
-      const grid = category.querySelector('[data-metric-grid]');
+      const grid = category.querySelector('[data-metric-rail]');
       const tile = grid.querySelector(`[data-draft-popout="${anchor}"]`).closest('article');
       assert.equal(visibleCards(grid)[0], tile);
       await click(category.querySelector('[data-metric-more]'));

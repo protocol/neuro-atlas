@@ -77,33 +77,40 @@ test('flat curated cards keep essential scope visible and move complete definiti
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
 
-test('category expansion stays in one three-column peer grid beside its preserved featured card', async () => {
+test('category expansion keeps all chart families in one native horizontal rail with an outside action', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const style = document.createElement('style');
     style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
     document.head.append(style);
-    assert.equal(document.querySelectorAll('[data-metric-grid]').length, 5);
+    assert.equal(document.querySelectorAll('[data-metric-rail]').length, 5);
     assert.equal(document.body.textContent.split('Open a chart for methodology and downloadable source values.').length - 1, 1);
     assert.doesNotMatch(document.querySelector('.metrics-index > [role=status]')?.textContent ?? '', /5 groups|featured chart/);
     for (const category of document.querySelectorAll('[data-metrics-category]')) {
       assert.equal(category.classList.contains('card'), false, 'Category is a heading, not an enclosing padded card');
       assert.equal(category.querySelector('.metric-category-summary'), null);
-      const grid = category.querySelector('[data-metric-grid]');
-      assert.equal(getComputedStyle(grid).gridTemplateColumns, 'repeat(3, minmax(0, 1fr))');
+      const grid = category.querySelector('[data-metric-rail]');
+      assert.equal(getComputedStyle(grid).gridAutoFlow, 'column');
+      assert.equal(getComputedStyle(grid).overflowX, 'auto');
+      assert.equal(grid.tabIndex, 0, 'Native keyboard scrolling stays available');
+      assert.equal(grid.getAttribute('aria-label'), `${category.dataset.metricsCategory} charts`);
       const more = category.querySelector('[data-metric-more]');
-      assert.equal(more.parentElement, grid, 'Show all is a quiet grid action, not above the preview');
+      assert.equal(more.parentElement, grid.parentElement, 'The action stays outside the scrollable track');
+      assert.equal(grid.contains(more), false);
+      assert.equal(more.textContent, 'show more charts');
       const featured = [...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]'));
       assert.equal(featured.length, 1);
+      for (const hidden of grid.querySelectorAll('[hidden]')) assert.equal(getComputedStyle(hidden).display, 'none', 'display:contents must not reveal hidden fragments or tiles');
       await click(more);
       assert.equal(featured[0].isConnected, true, 'Do not replace/remount the featured chart');
       assert.equal(featured[0].closest('[hidden]'), null);
+      assert.equal([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]'))[0], featured[0], 'Revealed peers follow the unchanged featured tile in every family');
       assert.equal(more.textContent, 'show only featured');
-      assert.equal(grid.querySelector('.pc-grid, .draft-chart-grid, .pc-section-header'), null, 'No nested subgroup grids or headings');
+      assert.equal(grid.querySelector('.pc-grid, .draft-chart-grid, .pc-section-header'), null, 'No nested subgroup grids or headings in the rail');
       assert.ok([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')).length > 1);
       for (const card of grid.querySelectorAll('article')) {
         assert.ok(card.hasAttribute('data-metric-tile') || card.hasAttribute('data-trends-card'), 'Every chart or scalar reading has a stable tile selector (Trends retains its owned selector)');
-        assert.equal(card.closest('[data-metric-grid]'), grid);
+        assert.equal(card.closest('[data-metric-rail]'), grid);
         assert.equal(card.parentElement === grid || card.parentElement.classList.contains('metric-chart-fragment'), true);
       }
       await click(more);
