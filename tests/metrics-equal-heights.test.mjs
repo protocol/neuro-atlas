@@ -70,7 +70,7 @@ test('natural-size observers can grow and shrink all cards and ignore deliveries
   }
 });
 
-test('equalized whitespace remains part of the chart trigger while the footer stays independently clickable', async () => {
+test('equalized cards declare full-card overlay geometry and a separate footer stacking layer', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const style = document.createElement('style');
