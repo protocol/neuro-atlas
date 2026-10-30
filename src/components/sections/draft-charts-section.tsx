@@ -18,10 +18,11 @@ function Methodology({ chart, context }: { chart: DraftChart; context?: string }
   </details>;
 }
 
-export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true, visibleTitles, flat = false }: { category?: string; query?: string; showGaps?: boolean; visibleTitles?: readonly string[]; flat?: boolean } = {}) {
+export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true, visibleTitles, flat = false, featuredTitle }: { category?: string; query?: string; showGaps?: boolean; visibleTitles?: readonly string[]; flat?: boolean; featuredTitle?: string } = {}) {
   const matches = (chart: DraftChart) => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(query);
   const linksFor = (chart: DraftChart) => DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
   const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && isVisibleMetric(chart));
+  if (flat && featuredTitle) plotted.sort((a, b) => Number(b.title === featuredTitle) - Number(a.title === featuredTitle));
   const gaps = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status !== "plotted");
   if (flat) return <>{plotted.flatMap(chart => {
     const evidence = DRAFT_CHART_EVIDENCE[chart.title];

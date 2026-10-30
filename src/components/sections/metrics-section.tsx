@@ -96,7 +96,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
             {group.id === 6 ? <>
               <div className="metric-chart-fragment" hidden={!!groupQuery && !engagementPreviewText.includes(groupQuery)}>{engagementPreview}</div>
               <div className="metric-chart-fragment" hidden={groupQuery ? !engagementMoreText.includes(groupQuery) : state !== "full"}><VelocityInstrumentsSection performance={performance} flat /></div>
-            </> : <DraftChartsSection flat category={group.name} query={groupQuery} showGaps={false} visibleTitles={state === "full" || term ? undefined : [group.preview!]} />}
+            </> : <DraftChartsSection flat category={group.name} query={groupQuery} showGaps={false} featuredTitle={group.preview ?? undefined} visibleTitles={state === "full" || term ? undefined : [group.preview!]} />}
             {group.id === 3 && <div className="metric-chart-fragment" hidden={groupQuery ? !neuronText.includes(groupQuery) : state !== "full"}>{references?.recording}</div>}
             <button className="metric-category-more" type="button" data-metric-more={group.name} disabled={!!term} aria-expanded={state === "full"} aria-controls={`${contentId}-charts`} onClick={() => setStates(previous => ({ ...previous, [group.name]: state === "full" ? "preview" : "full" }))}>{state === "full" ? "Show featured" : `Show all ${count} charts`}</button>
           </div>
