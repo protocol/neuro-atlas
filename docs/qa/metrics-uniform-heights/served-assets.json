@@ -1,0 +1,61 @@
+{
+  "sourceRevision": "83ea91e3c3331d77c9c8cd3e69f3582582f33904",
+  "protectedFilesUnchanged": 22,
+  "servedAssets": [
+    {
+      "path": "/neuro-atlas/_next/static/chunks/01s_f_3qlcqtb.js",
+      "sha256": "e941c350531e6a7b183634809cea8acabb9a28738fa42bb7fce0cc8ee9158dce",
+      "bytes": 229820
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "bytes": 112594
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0qxq_rj_v947j.js",
+      "sha256": "be429fce9d58ecd64224de520cf95a737aae704201a378b88afe0cf0c712511e",
+      "bytes": 168465
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0zgoezfet_0wn.js",
+      "sha256": "62a3a26c7cfb5f9980e70abd67ac797e06030bc6d2f571cefa73888d35de266b",
+      "bytes": 286026
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1x6obpmlu1_c2.js",
+      "sha256": "7c0be00bfd43494dcddc8817168e952d9900555c3e80355686a423eedd2bab22",
+      "bytes": 5361
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/2e3vv5pgkm_an.js",
+      "sha256": "f9d3fdd1a908bebc8997254b19d44546465910c3c24ad2998e8ead8a9000dbd0",
+      "bytes": 32749
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/2iahstye000wy.css",
+      "sha256": "86d7affc5f785d4c3898371273118287e54c2345540b687d0b2b5d8261c06b47",
+      "bytes": 80408
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/2r4s4h5xul1n-.js",
+      "sha256": "e1d4feb378b6ba6cfc1f31809ecdc03b14b8e0759bbe0065de29fb6646b277a2",
+      "bytes": 28739
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/turbopack-0onr37fwc3ews.js",
+      "sha256": "4a0dfe88d2417d901d65fe0224e0b55a03085eee6e623a26c59ee011c24c54a4",
+      "bytes": 10042
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b",
+      "bytes": 23108
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+      "bytes": 29288
+    }
+  ]
+}

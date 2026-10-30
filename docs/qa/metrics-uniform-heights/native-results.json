@@ -1,0 +1,994 @@
+{
+  "runtime": "83ea91e3c3331d77c9c8cd3e69f3582582f33904",
+  "widths": [
+    {
+      "width": 1440,
+      "defaults": [
+        {
+          "title": "Neurotech search terms",
+          "height": 574,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 574,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 574,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 574,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 574,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "expanded": [
+        {
+          "title": "Neurotech search terms",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Idea vintage",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Latency compression",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neuralink \u00b7 brand context",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Simultaneously recorded neurons",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected application events",
+          "height": 606,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "bounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      }
+    },
+    {
+      "width": 1024,
+      "defaults": [
+        {
+          "title": "Neurotech search terms",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "expanded": [
+        {
+          "title": "Neurotech search terms",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Idea vintage",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Latency compression",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neuralink \u00b7 brand context",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Simultaneously recorded neurons",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected application events",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "bounds": {
+        "inner": 1024,
+        "client": 1009,
+        "scroll": 1009
+      }
+    },
+    {
+      "width": 768,
+      "defaults": [
+        {
+          "title": "Neurotech search terms",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 659,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "expanded": [
+        {
+          "title": "Neurotech search terms",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Idea vintage",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Latency compression",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neuralink \u00b7 brand context",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Simultaneously recorded neurons",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected application events",
+          "height": 679,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "bounds": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      }
+    },
+    {
+      "width": 390,
+      "defaults": [
+        {
+          "title": "Neurotech search terms",
+          "height": 763,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 763,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 763,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 763,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 763,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "expanded": [
+        {
+          "title": "Neurotech search terms",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Idea vintage",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Latency compression",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neuralink \u00b7 brand context",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Simultaneously recorded neurons",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected application events",
+          "height": 770,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "bounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "width": 320,
+      "defaults": [
+        {
+          "title": "Neurotech search terms",
+          "height": 849,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 849,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 849,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 849,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 849,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "expanded": [
+        {
+          "title": "Neurotech search terms",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Idea vintage",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Latency compression",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neuralink \u00b7 brand context",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Simultaneously recorded neurons",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        },
+        {
+          "title": "Selected application events",
+          "height": 935,
+          "bodyInside": true,
+          "footerInside": true,
+          "noInternalVerticalScroll": true
+        }
+      ],
+      "bounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ],
+  "themes": [
+    {
+      "before": null,
+      "expected": "light",
+      "actual": {
+        "theme": "T19VSG_variable _8Li5zG_variable h-full antialiased light",
+        "stored": null,
+        "scheme": "light"
+      }
+    },
+    {
+      "before": "system",
+      "expected": "light",
+      "actual": {
+        "theme": "T19VSG_variable _8Li5zG_variable h-full antialiased light",
+        "stored": null,
+        "scheme": "light"
+      }
+    },
+    {
+      "before": "unknown",
+      "expected": "light",
+      "actual": {
+        "theme": "T19VSG_variable _8Li5zG_variable h-full antialiased light",
+        "stored": null,
+        "scheme": "light"
+      }
+    },
+    {
+      "before": "dark",
+      "expected": "dark",
+      "actual": {
+        "theme": "T19VSG_variable _8Li5zG_variable h-full antialiased dark",
+        "stored": "dark",
+        "scheme": "dark"
+      }
+    },
+    {
+      "before": "light",
+      "expected": "light",
+      "actual": {
+        "theme": "T19VSG_variable _8Li5zG_variable h-full antialiased light",
+        "stored": "light",
+        "scheme": "light"
+      }
+    }
+  ],
+  "nativeBlankClickFamilies": 3,
+  "resizeWithoutReload": [
+    1440,
+    320,
+    1440
+  ],
+  "nativeToggleReloadNavigation": true
+}
