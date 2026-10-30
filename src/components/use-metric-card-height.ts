@@ -4,6 +4,13 @@ import { useLayoutEffect, useRef } from "react";
 
 /** Equalize the chrome, never the SVG: labels and qualifiers retain their natural size. */
 function measureCards(root: HTMLElement) {
+  // Reserve native scrollbar height before a rail opens, including at document bottom.
+  const gutter = document.createElement("div");
+  gutter.style.cssText = "position:absolute;left:0;top:0;width:100px;height:100px;overflow:scroll;visibility:hidden;pointer-events:none;contain:strict";
+  root.append(gutter);
+  const scrollbarHeight = gutter.offsetHeight - gutter.clientHeight;
+  gutter.remove();
+  root.style.setProperty("--metric-scrollbar-height", `${scrollbarHeight}px`);
   let height = 0;
   // Hidden peers participate in sizing so toggles cannot resize earlier rows.
   for (const body of root.querySelectorAll<HTMLElement>("[data-metric-card-body]")) {

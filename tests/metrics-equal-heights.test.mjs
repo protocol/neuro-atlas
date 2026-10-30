@@ -123,6 +123,20 @@ test('sizing visibility overrides Tailwind base-layer hidden rules without putti
   } finally { await cleanup(); }
 });
 
+test('preview and expanded rows reserve the same action and scrollbar space to avoid bottom clamping', async () => {
+  const cleanup = await mount(React.createElement(Page));
+  try {
+    const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    const style = document.createElement('style'); style.textContent = css; document.head.append(style);
+    const content = getComputedStyle(document.querySelector('.metric-category-content'));
+    assert.equal(content.alignContent, 'start', 'Extra reserved space stays below the charts, not inside their geometry');
+    assert.match(content.minHeight, /metric-card-height/);
+    assert.match(content.minHeight, /metric-scrollbar-height/);
+    assert.match(content.minHeight, /metric-more-row-space/);
+    assert.equal(document.querySelector('.metrics-index').style.getPropertyValue('--metric-scrollbar-height'), '0px', 'Use native measured scrollbar space (zero in jsdom)');
+  } finally { await cleanup(); }
+});
+
 test('every real Metrics chart has separately measurable natural content and a footer', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
