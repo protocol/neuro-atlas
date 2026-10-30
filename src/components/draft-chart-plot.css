@@ -130,7 +130,7 @@
 .metric-anchor { display: block; scroll-margin-top: 6rem; }
 @media (max-width: 560px) {
   .metric-category-content { --metric-card-width: calc(100% - 2.5rem); }
-  .metric-category[data-metric-state="preview"] .metric-category-more { grid-column: 1 / -1; grid-row: 2; width: 7rem; margin-top: .75rem; }
+  .metric-category[data-metric-state="preview"] .metric-category-more { grid-column: 1; grid-row: 2; width: 7rem; margin-top: .75rem; }
   .metric-category h2 > button { grid-template-columns: auto minmax(0, 1fr); }
   .metric-category h2 small { grid-column: 2; margin-left: 0; }
   .metrics-tools input { flex-basis: 100%; }

@@ -59,7 +59,7 @@ test('the large circular expansion button is centered in the blank space beside 
     const narrow = [...stylesheet.sheet.cssRules].find(rule => rule.conditionText === '(max-width: 560px)' && [...rule.cssRules].some(rule => rule.selectorText === '.metric-category-content'));
     const narrowAction = [...narrow.cssRules].find(rule => rule.selectorText?.includes('[data-metric-state="preview"]') && rule.selectorText.endsWith('.metric-category-more'));
     assert.ok(narrowAction, 'If no room beside the full narrow chart, keep a centered circle below it instead of overflowing');
-    assert.equal(narrowAction.style.getPropertyValue('grid-column'), '1 / -1');
+    assert.equal(narrowAction.style.getPropertyValue('grid-column'), '1', 'Center the narrow circle under the featured card, not the full rail');
     assert.equal(narrowAction.style.getPropertyValue('grid-row'), '2');
     await click(categories[0].querySelector('[data-metric-more]'));
     const collapse = categories[0].querySelector('[data-metric-more]');
