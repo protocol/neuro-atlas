@@ -8,7 +8,7 @@ import { mount, click } from './modal-helpers.mjs';
 globalThis.React = React;
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
 
-test('the catalog equalizes visible natural content without imposing a fixed SVG height', async () => {
+test('the catalog reserves one natural-content maximum independent of which panels are open', async () => {
   const cleanup = await mount(React.createElement(Page), '', window => {
     const style = window.document.createElement('style');
     style.textContent = 'article { border: 0px solid; padding: 0; }';
@@ -22,11 +22,11 @@ test('the catalog equalizes visible natural content without imposing a fixed SVG
   });
   try {
     const catalog = document.querySelector('.metrics-index');
-    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '440px');
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     await click(document.querySelector('[data-expand-metrics]'));
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     await click(document.querySelector('[data-metric-more="Neurotech Engagement"]'));
-    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '440px');
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     for (const svg of catalog.querySelectorAll('svg')) assert.equal(svg.style.height, '', 'Never squeeze scientific SVGs to force a card height');
   } finally { await cleanup(); }
 });
@@ -86,6 +86,29 @@ test('equalized cards declare full-card overlay geometry and a separate footer s
     const overlay = [...style.sheet.cssRules].find(rule => rule.selectorText === '.metric-chart-rail .pc-trigger::after');
     assert.equal(overlay.style.position, 'absolute');
     assert.equal(Number.parseFloat(overlay.style.inset), 0);
+  } finally { await cleanup(); }
+});
+
+test('hidden chart regions remain measurable but inert and visually excluded in every panel state', async () => {
+  const cleanup = await mount(React.createElement(Page));
+  try {
+    const style = document.createElement('style');
+    style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    document.head.append(style);
+    for (const state of ['preview', 'collapsed', 'search']) {
+      if (state === 'collapsed') await click(document.querySelector('[data-collapse-metrics]'));
+      if (state === 'search') await act(async () => {
+        const input = document.querySelector('#metrics-search');
+        input.value = 'H01'; input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const hidden = [...document.querySelectorAll('.metrics-index [hidden]')];
+      assert.ok(hidden.length);
+      for (const region of hidden) {
+        assert.ok(region.hasAttribute('data-metric-size-hidden'), `${state}: hidden chart regions must have an explicit measurement contract`);
+        assert.ok(region.hasAttribute('inert'), 'Invisible chart controls must not receive input');
+        assert.equal(getComputedStyle(region).visibility, 'hidden');
+      }
+    }
   } finally { await cleanup(); }
 });
 

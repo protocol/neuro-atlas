@@ -5,8 +5,8 @@ import { useLayoutEffect, useRef } from "react";
 /** Equalize the chrome, never the SVG: labels and qualifiers retain their natural size. */
 function measureCards(root: HTMLElement) {
   let height = 0;
+  // Hidden peers participate in sizing so toggles cannot resize earlier rows.
   for (const body of root.querySelectorAll<HTMLElement>("[data-metric-card-body]")) {
-    if (body.closest("[hidden]")) continue;
     const card = body.closest<HTMLElement>("article");
     const footer = card?.querySelector<HTMLElement>("[data-metric-card-footer]");
     if (!card || !footer) continue;
@@ -22,7 +22,7 @@ function measureCards(root: HTMLElement) {
 
 export function useMetricCardHeight() {
   const ref = useRef<HTMLElement>(null);
-  // Group/search changes can reveal a taller card without changing the page width.
+  // Keep sizing synchronized with layout, without tying height to expansion state.
   useLayoutEffect(() => { if (ref.current) measureCards(ref.current); });
   useLayoutEffect(() => {
     const root = ref.current;

@@ -4,6 +4,7 @@ import { type DraftChart } from "@/data/draft-charts";
 import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { METRIC_CHARTS as DRAFT_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, isVisibleMetric, metricCategoryFor, METRIC_CHART_CATEGORIES } from "@/data/metric-chart-visibility";
+import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
 
 function Methodology({ chart, context }: { chart: DraftChart; context?: string }) {
@@ -37,7 +38,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
       const ids = [...new Set([...panels.flatMap(panel => [panel.id, canonicalMetricAnchor(panel.id)]), ...(index === 0 ? candidateIds : [])])];
       const cardId = index === 0 ? link.id : panels[0]!.id;
       const displayPlot = chart.title === "NeuroAI performance–cost frontier over time" ? { ...plot, title: displayTitle } : plot;
-      return <article key={plot.id} id={cardId} hidden={hidden} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+      return <article key={plot.id} id={cardId} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
         <div data-draft-panel>
           <span id={anchor} className="metric-anchor" />
           {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
@@ -56,7 +57,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
       const panel = link.panels.find(panel => panel.plotId === null)!;
       const anchor = canonicalMetricAnchor(panel.id);
       const ids = [panel.id, ...(cards.length ? [] : candidateIds)];
-      cards.push(<article key={panel.id} id={cards.length ? panel.id : link.id} hidden={hidden} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+      cards.push(<article key={panel.id} id={cards.length ? panel.id : link.id} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
         <div data-draft-panel>
           <span id={anchor} className="metric-anchor" />
           {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}

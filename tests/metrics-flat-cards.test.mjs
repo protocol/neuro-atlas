@@ -100,7 +100,11 @@ test('category expansion keeps all chart families in one native horizontal rail 
       assert.equal(more.textContent, 'show more charts');
       const featured = [...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]'));
       assert.equal(featured.length, 1);
-      for (const hidden of grid.querySelectorAll('[hidden]')) assert.equal(getComputedStyle(hidden).display, 'none', 'display:contents must not reveal hidden fragments or tiles');
+      for (const hidden of grid.querySelectorAll('[hidden]')) {
+        assert.equal(getComputedStyle(hidden).visibility, 'hidden', 'Measurable peers must never be painted');
+        assert.equal(hidden.getAttribute('aria-hidden'), 'true');
+        assert.ok(hidden.hasAttribute('inert'), 'Sizing must not expose hidden chart controls');
+      }
       await click(more);
       assert.equal(featured[0].isConnected, true, 'Do not replace/remount the featured chart');
       assert.equal(featured[0].closest('[hidden]'), null);

@@ -8,6 +8,7 @@ import { DraftChartsSection } from "./draft-charts-section";
 import { VelocityInstrumentsSection } from "./velocity-instruments-section";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import TRENDS from "../../../public/data/google-trends/google-trends.json";
+import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { useMetricCardHeight } from "@/components/use-metric-card-height";
 
 const neuronText = JSON.stringify([SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons"]).toLocaleLowerCase();
@@ -111,18 +112,18 @@ export function MetricsSection({ performance, references, engagementPreview }: {
       const state: GroupState = term && matched ? "full" : states[group.name] ?? "preview";
       const open = state !== "collapsed";
       const contentId = `metric-category-${group.id}`;
-      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} hidden={!!term && !matched}>
+      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} {...metricSizingVisibility(!!term && !matched)}>
         {retiredAnchors.map(id => <span key={id} id={id} className="metric-anchor" data-retired-metric-anchor aria-hidden="true" />)}
         <h2><button type="button" disabled={!!term} id={`${contentId}-toggle`} data-metric-toggle={group.name} aria-expanded={open} aria-controls={contentId} onClick={event => changeGroup(group.name, open ? "collapsed" : "preview", event.currentTarget)}>
           <span aria-hidden="true">{open ? "−" : "+"}</span><span className="metric-category-name">{group.name}</span>
         </button></h2>
-        <div id={contentId} className="metric-category-content" hidden={!open} aria-labelledby={`${contentId}-toggle`}>
+        <div id={contentId} className="metric-category-content" {...metricSizingVisibility(!open)} aria-labelledby={`${contentId}-toggle`}>
           <div id={`${contentId}-charts`} className="metric-chart-rail" data-metric-rail role="region" aria-label={`${group.name} charts`} tabIndex={0} onFocusCapture={revealFocusedTile}>
             {group.id === 6 ? <>
-              <div className="metric-chart-fragment" hidden={!!groupQuery && !engagementPreviewText.includes(groupQuery)}>{engagementPreview}</div>
-              <div className="metric-chart-fragment" hidden={groupQuery ? !engagementMoreText.includes(groupQuery) : state !== "full"}><VelocityInstrumentsSection performance={performance} flat /></div>
+              <div className="metric-chart-fragment" {...metricSizingVisibility(!!groupQuery && !engagementPreviewText.includes(groupQuery))}>{engagementPreview}</div>
+              <div className="metric-chart-fragment" {...metricSizingVisibility(groupQuery ? !engagementMoreText.includes(groupQuery) : state !== "full")}><VelocityInstrumentsSection performance={performance} flat /></div>
             </> : <DraftChartsSection flat category={group.name} query={groupQuery} showGaps={false} featuredTitle={group.preview ?? undefined} visibleTitles={state === "full" || term ? undefined : [group.preview!]} />}
-            {group.id === 3 && <div className="metric-chart-fragment" hidden={groupQuery ? !neuronText.includes(groupQuery) : state !== "full"}>{references?.recording}</div>}
+            {group.id === 3 && <div className="metric-chart-fragment" {...metricSizingVisibility(groupQuery ? !neuronText.includes(groupQuery) : state !== "full")}>{references?.recording}</div>}
           </div>
           <button className="metric-category-more" type="button" data-metric-more={group.name} disabled={!!term} aria-expanded={state === "full"} aria-controls={`${contentId}-charts`} onClick={event => changeGroup(group.name, state === "full" ? "preview" : "full", event.currentTarget)}>{state === "full" ? "show only featured" : "show more charts"}</button>
         </div>
