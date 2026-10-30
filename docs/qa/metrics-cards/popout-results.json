@@ -1,0 +1,1364 @@
+[
+  {
+    "width": 1440,
+    "anchor": "metric-panel-neuralink-cumulative",
+    "title": "Selected chronic intracortical recipients",
+    "points": [
+      "braingate-documented-cohort-2023-01-13",
+      "neuralink-cumulative-2024-01-01",
+      "neuralink-cumulative-2024-07-01",
+      "neuralink-cumulative-2025-02-05",
+      "neuralink-cumulative-2025-06-02",
+      "neuralink-cumulative-2026-01-28",
+      "paradromics-connect-one-2026-06-17"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 133.203125,
+      "right": 1220,
+      "bottom": 966.796875,
+      "width": 1000,
+      "height": 833.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-recording-hours",
+    "title": "Neural recording hours \u2014 selected datasets",
+    "points": [
+      "neuralink-reported-hours-2026-10-01",
+      "tusz-scalp-eeg-2017-04-17",
+      "tusz-scalp-eeg-2017-08-04",
+      "tusz-scalp-eeg-2018-04-15",
+      "tusz-scalp-eeg-2018-08-16",
+      "tusz-scalp-eeg-2018-11-14",
+      "tusz-scalp-eeg-2019-07-22",
+      "tusz-scalp-eeg-2020-04-23",
+      "tusz-scalp-eeg-2020-05-09",
+      "ajile12-intracranial-2022-01-27",
+      "poyo-primate-training-2023-10-24",
+      "japaneeg-scalp-eeg-2026-05-31"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 93.59375,
+      "right": 1220,
+      "bottom": 1006.390625,
+      "width": 1000,
+      "height": 912.796875
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-tissue-cm3",
+    "title": "Selected tissue-volume checkpoints",
+    "points": [
+      "bock-mouse-imaged-2011-01-01",
+      "hemibrain-fly-bounds-2020-01-01",
+      "h01-human-imaged-2021-06-01",
+      "microns-mouse-imaged-2021-07-01",
+      "flywire-fly-neuropil-2024-01-01",
+      "liconn-mouse-native-2025-01-01",
+      "malecns-fly-imaged-2025-10-03"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 97.796875,
+      "right": 1220,
+      "bottom": 1002.203125,
+      "width": 1000,
+      "height": 904.40625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "points": [
+      "lee-reid-2016-neuronal-targets",
+      "hemibrain-neurons",
+      "larval-brain-neurons",
+      "flywire-neurons",
+      "microns-neurons"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 106.796875,
+      "right": 1220,
+      "bottom": 993.203125,
+      "width": 1000,
+      "height": 886.40625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "title": "Selected published maps \u2014 synapse counts",
+    "points": [
+      "hemibrain-synapses",
+      "larval-brain-synapses",
+      "flywire-synapses",
+      "microns-synapses"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 133.203125,
+      "right": 1220,
+      "bottom": 966.796875,
+      "width": 1000,
+      "height": 833.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-acquisition-rates",
+    "title": "Selected EM acquisition rates",
+    "points": [
+      "fib-sem-2017",
+      "autotem-2020"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 133.203125,
+      "right": 1220,
+      "bottom": 966.796875,
+      "width": 1000,
+      "height": 833.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-paired-manual",
+    "title": "Selected structure\u2013function matches",
+    "points": [
+      "lee2016-paired",
+      "turner2022-paired",
+      "microns2025-manual"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 151.3125,
+      "right": 1220,
+      "bottom": 948.6875,
+      "width": 1000,
+      "height": 797.375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-public-data-size",
+    "title": "Selected public image/resource footprints",
+    "points": [
+      "hildebrand-zebrafish-public-images-2017",
+      "fafb-image-download-2018",
+      "hemibrain-v1",
+      "h01-2021",
+      "microns-2025-size"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 124.203125,
+      "right": 1220,
+      "bottom": 975.796875,
+      "width": 1000,
+      "height": 851.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-pathfinder-nerl",
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "points": [
+      "pathfinder-nerl-2025"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 163.296875,
+      "right": 1220,
+      "bottom": 936.6875,
+      "width": 1000,
+      "height": 773.390625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "points": [
+      "roboem-2024-human-multisem-1",
+      "roboem-2024-human-multisem-2",
+      "roboem-2024-human-multisem-3",
+      "roboem-2024-human-multisem-4",
+      "roboem-2024-mouse-multisem-1",
+      "roboem-2024-mouse-multisem-2",
+      "roboem-2024-mouse-multisem-3",
+      "roboem-2024-mouse-multisem-4",
+      "roboem-2024-mouse-multisem-5",
+      "roboem-2024-mouse-sbem-6",
+      "roboem-2024-mouse-sbem-7",
+      "roboem-2024-mouse-sbem-8"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 150.3125,
+      "right": 1220,
+      "bottom": 949.6875,
+      "width": 1000,
+      "height": 799.375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-proofreading-effort",
+    "title": "Reported project proofreading effort",
+    "points": [
+      "hemibrain-proofreading",
+      "flywire-proofreading"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 133.203125,
+      "right": 1220,
+      "bottom": 966.796875,
+      "width": 1000,
+      "height": 833.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-acquisition-economics",
+    "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+    "points": [
+      "exm2015",
+      "sem2018",
+      "exllsm2019",
+      "exaspim2023",
+      "multisem506",
+      "multisem706",
+      "mesospim2024",
+      "peem2024",
+      "bdtem2024"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 58.796875,
+      "right": 1220,
+      "bottom": 1041.203125,
+      "width": 1000,
+      "height": 982.40625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-flyvis-contrast",
+    "title": "FlyVis: correct contrast preference",
+    "points": [
+      "flyvis-0",
+      "flyvis-1"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 163.296875,
+      "right": 1220,
+      "bottom": 936.6875,
+      "width": 1000,
+      "height": 773.390625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-neuroai-imagenet",
+    "title": "NeuroAI performance\u2013cost frontier",
+    "points": [
+      "sdt-0",
+      "sdt-1",
+      "sdt-2",
+      "sdt-3",
+      "sdt-4",
+      "sdt-5"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 122.203125,
+      "right": 1220,
+      "bottom": 977.796875,
+      "width": 1000,
+      "height": 855.59375
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-application-events",
+    "title": "Selected application events",
+    "points": [],
+    "events": [
+      "application-0",
+      "application-2"
+    ],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 220,
+      "y": 64.71875,
+      "right": 1220,
+      "bottom": 1035.28125,
+      "width": 1000,
+      "height": 970.5625
+    },
+    "viewport": {
+      "w": 1440,
+      "h": 1100
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-neuralink-cumulative",
+    "title": "Selected chronic intracortical recipients",
+    "points": [
+      "braingate-documented-cohort-2023-01-13",
+      "neuralink-cumulative-2024-01-01",
+      "neuralink-cumulative-2024-07-01",
+      "neuralink-cumulative-2025-02-05",
+      "neuralink-cumulative-2025-06-02",
+      "neuralink-cumulative-2026-01-28",
+      "paradromics-connect-one-2026-06-17"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 69.5,
+      "right": 382,
+      "bottom": 930.5,
+      "width": 374,
+      "height": 861
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-recording-hours",
+    "title": "Neural recording hours \u2014 selected datasets",
+    "points": [
+      "neuralink-reported-hours-2026-10-01",
+      "tusz-scalp-eeg-2017-04-17",
+      "tusz-scalp-eeg-2017-08-04",
+      "tusz-scalp-eeg-2018-04-15",
+      "tusz-scalp-eeg-2018-08-16",
+      "tusz-scalp-eeg-2018-11-14",
+      "tusz-scalp-eeg-2019-07-22",
+      "tusz-scalp-eeg-2020-04-23",
+      "tusz-scalp-eeg-2020-05-09",
+      "ajile12-intracranial-2022-01-27",
+      "poyo-primate-training-2023-10-24",
+      "japaneeg-scalp-eeg-2026-05-31"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-tissue-cm3",
+    "title": "Selected tissue-volume checkpoints",
+    "points": [
+      "bock-mouse-imaged-2011-01-01",
+      "hemibrain-fly-bounds-2020-01-01",
+      "h01-human-imaged-2021-06-01",
+      "microns-mouse-imaged-2021-07-01",
+      "flywire-fly-neuropil-2024-01-01",
+      "liconn-mouse-native-2025-01-01",
+      "malecns-fly-imaged-2025-10-03"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 9.09375,
+      "right": 382,
+      "bottom": 990.90625,
+      "width": 374,
+      "height": 981.8125
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "points": [
+      "lee-reid-2016-neuronal-targets",
+      "hemibrain-neurons",
+      "larval-brain-neurons",
+      "flywire-neurons",
+      "microns-neurons"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 48.890625,
+      "right": 382,
+      "bottom": 951.09375,
+      "width": 374,
+      "height": 902.203125
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "title": "Selected published maps \u2014 synapse counts",
+    "points": [
+      "hemibrain-synapses",
+      "larval-brain-synapses",
+      "flywire-synapses",
+      "microns-synapses"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 75.296875,
+      "right": 382,
+      "bottom": 924.6875,
+      "width": 374,
+      "height": 849.390625
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-acquisition-rates",
+    "title": "Selected EM acquisition rates",
+    "points": [
+      "fib-sem-2017",
+      "autotem-2020"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 73.90625,
+      "right": 382,
+      "bottom": 926.09375,
+      "width": 374,
+      "height": 852.1875
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-paired-manual",
+    "title": "Selected structure\u2013function matches",
+    "points": [
+      "lee2016-paired",
+      "turner2022-paired",
+      "microns2025-manual"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 101.90625,
+      "right": 382,
+      "bottom": 898.09375,
+      "width": 374,
+      "height": 796.1875
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-public-data-size",
+    "title": "Selected public image/resource footprints",
+    "points": [
+      "hildebrand-zebrafish-public-images-2017",
+      "fafb-image-download-2018",
+      "hemibrain-v1",
+      "h01-2021",
+      "microns-2025-size"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 48.296875,
+      "right": 382,
+      "bottom": 951.6875,
+      "width": 374,
+      "height": 903.390625
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-pathfinder-nerl",
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "points": [
+      "pathfinder-nerl-2025"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 113.890625,
+      "right": 382,
+      "bottom": 886.09375,
+      "width": 374,
+      "height": 772.203125
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "points": [
+      "roboem-2024-human-multisem-1",
+      "roboem-2024-human-multisem-2",
+      "roboem-2024-human-multisem-3",
+      "roboem-2024-human-multisem-4",
+      "roboem-2024-mouse-multisem-1",
+      "roboem-2024-mouse-multisem-2",
+      "roboem-2024-mouse-multisem-3",
+      "roboem-2024-mouse-multisem-4",
+      "roboem-2024-mouse-multisem-5",
+      "roboem-2024-mouse-sbem-6",
+      "roboem-2024-mouse-sbem-7",
+      "roboem-2024-mouse-sbem-8"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 78.859375,
+      "right": 382,
+      "bottom": 921.125,
+      "width": 374,
+      "height": 842.265625
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-proofreading-effort",
+    "title": "Reported project proofreading effort",
+    "points": [
+      "hemibrain-proofreading",
+      "flywire-proofreading"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 77.5,
+      "right": 382,
+      "bottom": 922.5,
+      "width": 374,
+      "height": 845
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-acquisition-economics",
+    "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+    "points": [
+      "exm2015",
+      "sem2018",
+      "exllsm2019",
+      "exaspim2023",
+      "multisem506",
+      "multisem706",
+      "mesospim2024",
+      "peem2024",
+      "bdtem2024"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-flyvis-contrast",
+    "title": "FlyVis: correct contrast preference",
+    "points": [
+      "flyvis-0",
+      "flyvis-1"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 113.890625,
+      "right": 382,
+      "bottom": 886.09375,
+      "width": 374,
+      "height": 772.203125
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-neuroai-imagenet",
+    "title": "NeuroAI performance\u2013cost frontier",
+    "points": [
+      "sdt-0",
+      "sdt-1",
+      "sdt-2",
+      "sdt-3",
+      "sdt-4",
+      "sdt-5"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 390,
+    "anchor": "metric-panel-application-events",
+    "title": "Selected application events",
+    "points": [],
+    "events": [
+      "application-0",
+      "application-2"
+    ],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "viewport": {
+      "w": 390,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-neuralink-cumulative",
+    "title": "Selected chronic intracortical recipients",
+    "points": [
+      "braingate-documented-cohort-2023-01-13",
+      "neuralink-cumulative-2024-01-01",
+      "neuralink-cumulative-2024-07-01",
+      "neuralink-cumulative-2025-02-05",
+      "neuralink-cumulative-2025-06-02",
+      "neuralink-cumulative-2026-01-28",
+      "paradromics-connect-one-2026-06-17"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 50.859375,
+      "right": 312,
+      "bottom": 949.140625,
+      "width": 304,
+      "height": 898.28125
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-recording-hours",
+    "title": "Neural recording hours \u2014 selected datasets",
+    "points": [
+      "neuralink-reported-hours-2026-10-01",
+      "tusz-scalp-eeg-2017-04-17",
+      "tusz-scalp-eeg-2017-08-04",
+      "tusz-scalp-eeg-2018-04-15",
+      "tusz-scalp-eeg-2018-08-16",
+      "tusz-scalp-eeg-2018-11-14",
+      "tusz-scalp-eeg-2019-07-22",
+      "tusz-scalp-eeg-2020-04-23",
+      "tusz-scalp-eeg-2020-05-09",
+      "ajile12-intracranial-2022-01-27",
+      "poyo-primate-training-2023-10-24",
+      "japaneeg-scalp-eeg-2026-05-31"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-tissue-cm3",
+    "title": "Selected tissue-volume checkpoints",
+    "points": [
+      "bock-mouse-imaged-2011-01-01",
+      "hemibrain-fly-bounds-2020-01-01",
+      "h01-human-imaged-2021-06-01",
+      "microns-mouse-imaged-2021-07-01",
+      "flywire-fly-neuropil-2024-01-01",
+      "liconn-mouse-native-2025-01-01",
+      "malecns-fly-imaged-2025-10-03"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "points": [
+      "lee-reid-2016-neuronal-targets",
+      "hemibrain-neurons",
+      "larval-brain-neurons",
+      "flywire-neurons",
+      "microns-neurons"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 17.140625,
+      "right": 312,
+      "bottom": 982.859375,
+      "width": 304,
+      "height": 965.71875
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "title": "Selected published maps \u2014 synapse counts",
+    "points": [
+      "hemibrain-synapses",
+      "larval-brain-synapses",
+      "flywire-synapses",
+      "microns-synapses"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 54.734375,
+      "right": 312,
+      "bottom": 945.25,
+      "width": 304,
+      "height": 890.515625
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-acquisition-rates",
+    "title": "Selected EM acquisition rates",
+    "points": [
+      "fib-sem-2017",
+      "autotem-2020"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 37.578125,
+      "right": 312,
+      "bottom": 962.40625,
+      "width": 304,
+      "height": 924.828125
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-paired-manual",
+    "title": "Selected structure\u2013function matches",
+    "points": [
+      "lee2016-paired",
+      "turner2022-paired",
+      "microns2025-manual"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 91.1875,
+      "right": 312,
+      "bottom": 908.8125,
+      "width": 304,
+      "height": 817.625
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-public-data-size",
+    "title": "Selected public image/resource footprints",
+    "points": [
+      "hildebrand-zebrafish-public-images-2017",
+      "fafb-image-download-2018",
+      "hemibrain-v1",
+      "h01-2021",
+      "microns-2025-size"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 9.390625,
+      "right": 312,
+      "bottom": 990.609375,
+      "width": 304,
+      "height": 981.21875
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-pathfinder-nerl",
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "points": [
+      "pathfinder-nerl-2025"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 95.25,
+      "right": 312,
+      "bottom": 904.734375,
+      "width": 304,
+      "height": 809.484375
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "points": [
+      "roboem-2024-human-multisem-1",
+      "roboem-2024-human-multisem-2",
+      "roboem-2024-human-multisem-3",
+      "roboem-2024-human-multisem-4",
+      "roboem-2024-mouse-multisem-1",
+      "roboem-2024-mouse-multisem-2",
+      "roboem-2024-mouse-multisem-3",
+      "roboem-2024-mouse-multisem-4",
+      "roboem-2024-mouse-multisem-5",
+      "roboem-2024-mouse-sbem-6",
+      "roboem-2024-mouse-sbem-7",
+      "roboem-2024-mouse-sbem-8"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 49.03125,
+      "right": 312,
+      "bottom": 950.96875,
+      "width": 304,
+      "height": 901.9375
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-proofreading-effort",
+    "title": "Reported project proofreading effort",
+    "points": [
+      "hemibrain-proofreading",
+      "flywire-proofreading"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 58.859375,
+      "right": 312,
+      "bottom": 941.140625,
+      "width": 304,
+      "height": 882.28125
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-acquisition-economics",
+    "title": "Estimated acquisition cost per voxel \u2014 optical and EM",
+    "points": [
+      "exm2015",
+      "sem2018",
+      "exllsm2019",
+      "exaspim2023",
+      "multisem506",
+      "multisem706",
+      "mesospim2024",
+      "peem2024",
+      "bdtem2024"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-flyvis-contrast",
+    "title": "FlyVis: correct contrast preference",
+    "points": [
+      "flyvis-0",
+      "flyvis-1"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 95.25,
+      "right": 312,
+      "bottom": 904.734375,
+      "width": 304,
+      "height": 809.484375
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-neuroai-imagenet",
+    "title": "NeuroAI performance\u2013cost frontier",
+    "points": [
+      "sdt-0",
+      "sdt-1",
+      "sdt-2",
+      "sdt-3",
+      "sdt-4",
+      "sdt-5"
+    ],
+    "events": [],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  },
+  {
+    "width": 320,
+    "anchor": "metric-panel-application-events",
+    "title": "Selected application events",
+    "points": [],
+    "events": [
+      "application-0",
+      "application-2"
+    ],
+    "copy": 1,
+    "focus": true,
+    "rect": {
+      "x": 8,
+      "y": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "viewport": {
+      "w": 320,
+      "h": 1000
+    },
+    "modals": 1,
+    "escapeFocusReturn": true,
+    "reverseTabVisible": true
+  }
+]

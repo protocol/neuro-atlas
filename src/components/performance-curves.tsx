@@ -299,10 +299,9 @@ export function PerformanceCurves({ data, provenance, selection }: { data: Perfo
     tracks: [{ id: "neuron-frontier", label: "Selected simultaneous-recording frontier" }],
     points: r.series!.map(p => ({ date: `${p.x}-01-01`, value: p.y, track: "neuron-frontier", trackIndex: 0, label: `${p.x}: ${number(p.y)} neurons (year precision); shared Stevenson sources below` })),
   } : undefined;
-  return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label={selection ? "Reference views" : "Performance curves"}>
+  return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label="Performance curves">
     {!selection && <><header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
     <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p></>}
-    {selection && <p className="pc-intro"><strong>Reference views.</strong> Earlier Atlas series with separate scope and exploratory extrapolations; not additional observations in the curated panels above.</p>}
     <div className="pc-grid">
       {includes("simultaneously-recorded-neurons") && <CurveCard id="simultaneously-recorded-neurons" title={reading ? r.metric! : "Simultaneously recorded neurons"} eyebrow={reading ? "Historical series" : r.state.replaceAll("_", " ")} coverage={reading ? `${r.window} · selected recording frontier, not a current maximum or a human-only BCI series.` : (r.blocker ?? r.reason ?? "No reading available.")} plot={neuronPlot}>
         {reading ? <>

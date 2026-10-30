@@ -14,14 +14,14 @@ test('Field velocity hero counts the rendered catalog, never the retired source 
   try {
     const doc = dom.window.document;
     const rendered = [
-      doc.querySelectorAll('[data-metric-toggle]').length - 1,
+      doc.querySelectorAll('[data-metric-toggle]').length,
       doc.querySelectorAll('.draft-plot:not(.draft-event-timeline)').length,
       doc.querySelectorAll('[data-source-observation]').length,
       doc.querySelectorAll('.draft-event-timeline').length,
     ];
-    assert.deepEqual(rendered, [5, 18, 77, 1]);
+    assert.deepEqual(rendered, [5, 14, 77, 1]);
     assert.deepEqual(hero.props.stats, [
-      { value: String(rendered[0]), label: 'scientific categories' },
+      { value: String(rendered[0]), label: 'metric groups' },
       { value: String(rendered[1]), label: 'curated numeric panels' },
       { value: String(rendered[2]), label: 'observations' },
       { value: String(rendered[3]), label: 'event timeline' },

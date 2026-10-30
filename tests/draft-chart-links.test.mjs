@@ -24,7 +24,7 @@ function configureScroll(scrolled) {
 }
 const expected = JSON.parse(readFileSync(new URL("./fixtures/draft-chart-links.json", import.meta.url), "utf8"));
 
-test("fresh actual chart/panel URLs reveal exact targets; retired definitions reveal their category", async () => {
+test("fresh actual chart/panel URLs open the matching popup; retired definitions still reveal inline", async () => {
   globalThis.React = React;
   for (const candidate of expected) {
     for (const id of [candidate.id, ...candidate.panels.map(panel => panel.id)].flatMap(id => [id, id.replace(/^draft-/, "metric-")])) {
@@ -32,16 +32,27 @@ test("fresh actual chart/panel URLs reveal exact targets; retired definitions re
       const cleanup = await mount(tabs(), `#${id}`, configureScroll(scrolled));
       try {
         assert.equal(document.querySelector("[aria-current=true]").textContent, "Metrics", id);
-        await until(() => scrolled.includes(id));
         const target = document.getElementById(id);
-        assert.equal(target.closest("[hidden]"), null);
-        if (candidate.panels.length === 0) {
+        assert.ok(target, id);
+        if (target.hasAttribute("data-retired-metric-anchor")) {
+          await until(() => scrolled.includes(id));
           assert.equal(target.closest("[data-draft-chart-card]"), null);
           const category = target.closest("[data-metrics-category]");
           assert.ok(category);
           assert.equal(category.querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
           assert.equal(category.querySelectorAll("[data-draft-chart-status=gap]").length, 0);
+          assert.equal(document.querySelector("dialog[open]"), null);
+        } else {
+          await until(() => document.querySelector("dialog[open] .pc-modal-header button") === document.activeElement);
+          const modal = document.querySelector("dialog[open]");
+          assert.equal(document.querySelectorAll("dialog[open]").length, 1, id);
+          const owner = modal.closest("[data-draft-popout]");
+          assert.ok(owner.dataset.draftPopout === id || owner.dataset.draftPopoutAliases.split(" ").includes(id), `matching popup for ${id}`);
+          assert.ok(modal.querySelector("[data-source-observation], [data-source-event]"), `real source marks for ${id}`);
+          assert.equal(modal.closest("[hidden]"), null, id);
+          assert.deepEqual(scrolled, [], "modal entry never scrolls background");
         }
+        assert.equal(target.closest("[hidden]"), null);
         assert.equal(window.location.pathname, "/neuro-atlas/field-velocity");
         assert.equal(window.location.search, "?review=1&review=2");
       } finally { await cleanup(); }
@@ -49,7 +60,7 @@ test("fresh actual chart/panel URLs reveal exact targets; retired definitions re
   }
 });
 
-test("direct links, repeated clicks, hashchange and Back/Forward select and scroll without modal state", async () => {
+test("direct links, same-hash navigation and Back/Forward preserve popup history without background scroll", async () => {
   globalThis.React = React;
   const scrolled = [];
   const cleanup = await mount(tabs(), "#draft-charts", configureScroll(scrolled));
@@ -57,30 +68,37 @@ test("direct links, repeated clicks, hashchange and Back/Forward select and scro
     assert.deepEqual(scrolled, [], "legacy section anchor does not change scroll behavior");
     await click(document.querySelector("[data-expand-metrics]"));
     const first = expected[0].id.replace(/^draft-/, "metric-"), panel = expected[1].panels[1].id.replace(/^draft-/, "metric-");
+    const openAt = async anchor => {
+      await until(() => window.location.hash === `#${anchor}` && !!document.querySelector("dialog[open]"));
+      const owner = document.querySelector("dialog[open]").closest("[data-draft-popout]");
+      assert.ok(owner.dataset.draftPopout === anchor || owner.dataset.draftPopoutAliases.split(" ").includes(anchor), anchor);
+      assert.equal(document.querySelectorAll("dialog[open]").length, 1);
+      assert.deepEqual(scrolled, [], "popup/history navigation does not scroll background");
+    };
     await click(document.querySelector(`a[href="#${first}"]`));
-    await until(() => scrolled.at(-1) === first);
-    assert.equal(window.history.state.atlasModalFrom, null);
+    await openAt(first);
+    assert.match(window.history.state.atlasModalFrom, /#draft-charts$/);
     assert.equal(window.history.state.existing, "preserved");
-    scrolled.length = 0;
     const length = window.history.length;
-    await click(document.querySelector(`a[href="#${first}"]`));
-    await until(() => scrolled.includes(first));
-    assert.equal(window.history.length, length, "repeat scroll creates no duplicate history entry");
-    await click(document.querySelector(`a[href="#${panel}"]`));
-    await until(() => scrolled.at(-1) === panel);
+    await act(async () => navigatePerformance(first));
+    await openAt(first);
+    assert.equal(window.history.length, length, "repeat navigation creates no duplicate history entry");
+    await act(async () => navigatePerformance(panel));
+    await openAt(panel);
     await act(async () => navigatePerformance("expectations"));
     assert.equal(document.querySelector("[aria-current=true]").textContent, "Expectations");
-    scrolled.length = 0;
+    assert.equal(document.querySelector("dialog[open]"), null);
     await act(async () => window.history.back());
-    await until(() => scrolled.at(-1) === panel);
+    await openAt(panel);
     assert.equal(document.querySelector("[aria-current=true]").textContent, "Metrics");
     await act(async () => window.history.back());
-    await until(() => scrolled.at(-1) === first);
+    await openAt(first);
     await act(async () => window.history.forward());
-    await until(() => scrolled.at(-1) === panel);
+    await openAt(panel);
     const gap = expected.find(candidate => candidate.panels.length === 0).id;
     await act(async () => { window.location.hash = gap; });
     await until(() => scrolled.at(-1) === gap);
+    assert.equal(document.querySelector("dialog[open]"), null);
     assert.equal(document.getElementById(gap).closest("[data-metrics-category]").querySelector("[data-metric-toggle]").getAttribute("aria-expanded"), "true");
     assert.equal(document.getElementById(gap).closest("[data-draft-chart-card]"), null);
   } finally { await cleanup(); }

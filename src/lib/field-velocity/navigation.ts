@@ -26,11 +26,20 @@ export function performanceUrl(currentUrl: string, anchor: string) {
   return url.href;
 }
 
+/** Only mounted curated panels opt into modal behavior; retired targets stay inline.
+ * Metadata works even while the owning category is hidden, before it reveals.
+ */
+function isCuratedPopupTarget(anchor: string) {
+  return Array.from(document.querySelectorAll<HTMLElement>("[data-draft-popout]")).some(panel =>
+    panel.dataset.draftPopout === anchor || panel.dataset.draftPopoutAliases?.split(" ").includes(anchor));
+}
+
 /** Wait for the revealed pane and its responsive plots to finish layout before scrolling.
  * Only exact inline metric targets scroll; existing modal locations retain their behavior.
  */
 export function revealDraftTarget(anchor: string) {
-  if (anchor === "draft-charts" || (!isDraftAnchor(anchor) && anchor !== "revealed_commitments")) return;
+  if (isCuratedPopupTarget(anchor)) return;
+  if (anchor === "draft-charts" || (!isDraftAnchor(anchor) && !["revealed_commitments", "neural-recording-hours", "tissue-mapped"].includes(anchor))) return;
   const target = document.getElementById(anchor);
   if (!target || target.closest("[hidden]")) return;
   const gap = target.closest("[data-draft-chart-card]")?.querySelector<HTMLDetailsElement>("[data-draft-gap-details]");
@@ -38,6 +47,10 @@ export function revealDraftTarget(anchor: string) {
   let frame = window.requestAnimationFrame(() => {
     frame = window.requestAnimationFrame(() => {
       if (window.location.hash === `#${anchor}` && target.isConnected && !target.closest("[hidden]")) {
+        if (anchor === "neural-recording-hours" || anchor === "tissue-mapped") {
+          const heading = target.closest("article")?.querySelector("h4");
+          if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
+        }
         target.scrollIntoView({ block: "start", behavior: "instant" });
       }
     });
@@ -52,7 +65,9 @@ export function navigatePerformance(anchor: string) {
     revealDraftTarget(anchor);
     return;
   }
-  const isChart = !isDraftAnchor(anchor) && !["performance_curves", "expectations", "revealed_commitments"].includes(anchor);
+  const inlineAlias = ["neural-recording-hours", "tissue-mapped"].includes(anchor)
+    && !!document.getElementById(anchor)?.closest("[data-draft-chart-card]");
+  const isChart = isCuratedPopupTarget(anchor) || (!isDraftAnchor(anchor) && !inlineAlias && !["performance_curves", "expectations", "revealed_commitments"].includes(anchor));
   window.history.pushState({ ...window.history.state, atlasModalFrom: isChart ? window.location.href : null }, "", url);
   window.dispatchEvent(new Event(changedEvent));
 }

@@ -1,0 +1,2867 @@
+[
+  {
+    "width": 1440,
+    "plots": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "points": [
+          "braingate-documented-cohort-2023-01-13",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "qualifiers": "People ever implanted: Paradromics first long-term participant: \u22651",
+        "qualifiedIds": [
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "ticks": [
+          {
+            "text": "People ever implanted",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "5",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "15",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "20",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Implantation month / disclosure or publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-recording-hours",
+        "points": [
+          "neuralink-reported-hours-2026-10-01",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09",
+          "ajile12-intracranial-2022-01-27",
+          "poyo-primate-training-2023-10-24",
+          "japaneeg-scalp-eeg-2026-05-31"
+        ],
+        "qualifiers": "Recording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100",
+        "qualifiedIds": [
+          "neuralink-reported-hours-2026-10-01",
+          "poyo-primate-training-2023-10-24"
+        ],
+        "ticks": [
+          {
+            "text": "Recording hours",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Release / publication / disclosure year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "points": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "flywire-fly-neuropil-2024-01-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "qualifiers": "Tissue volume (cm\u00b3 \u00b7 log): Bock mouse V1: \u22480.00000819; Hemibrain: \u22480.0000156; H01 first public release: \u22480.001; MICrONS v117: \u22480.001; LICONN native tissue: \u22480.00000095; MaleCNS v0.9: \u22480.000082",
+        "qualifiedIds": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "ticks": [
+          {
+            "text": "Tissue volume (cm\u00b3 \u00b7 log)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0.0000001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2011",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Release / publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "points": [
+          "lee-reid-2016-neuronal-targets",
+          "hemibrain-neurons",
+          "larval-brain-neurons",
+          "flywire-neurons",
+          "microns-neurons"
+        ],
+        "qualifiers": "Neurons (log): Hemibrain: \u224825,000",
+        "qualifiedIds": [
+          "hemibrain-neurons"
+        ],
+        "ticks": [
+          {
+            "text": "Neurons (log)",
+            "px": 12.007720588235294,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.007720588235294,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "points": [
+          "hemibrain-synapses",
+          "larval-brain-synapses",
+          "flywire-synapses",
+          "microns-synapses"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Synapses / clefts (log)",
+            "px": 12.007720588235294,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "10,000,000",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "1.00e8",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "1.00e9",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.007720588235294,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "points": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "qualifiers": "Acquired volume (mm\u00b3/day \u00b7 log): Enhanced FIB-SEM, Drosophila optic lobe: \u22480.000009; autoTEM demonstrated montage production per microscope: >0.0028",
+        "qualifiedIds": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "ticks": [
+          {
+            "text": "Acquired volume (mm\u00b3/day \u00b7 log)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "points": [
+          "lee2016-paired",
+          "turner2022-paired",
+          "microns2025-manual"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Matched neuronal identities (log)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "points": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1",
+          "h01-2021",
+          "microns-2025-size"
+        ],
+        "qualifiers": "Reported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026",
+        "qualifiedIds": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1"
+        ],
+        "ticks": [
+          {
+            "text": "Reported resource size (decimal PB)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.1",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Publication / public-availability year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "points": [
+          "pathfinder-nerl-2025"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Normalized ERL (%)",
+            "px": 12.007720588235294,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "23.55",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "47.1",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "70.65",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "94.2",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.007720588235294,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "points": [
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Merge errors per mm of axon path",
+            "px": 12.007720588235294,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "1.95778",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "3.91555",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "5.87333",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "7.8311",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "5.2207",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "37.8064",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "70.3922",
+            "px": 11.007077205882354,
+            "inside": true
+          },
+          {
+            "text": "Split errors per mm of axon path",
+            "px": 12.007720588235294,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "points": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "qualifiers": "Person-years: Hemibrain proofreading effort: >50; FlyWire proofreading effort: \u224833",
+        "qualifiedIds": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "ticks": [
+          {
+            "text": "Person-years",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "12.5",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "37.5",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "points": [
+          "exm2015",
+          "sem2018",
+          "exllsm2019",
+          "exaspim2023",
+          "multisem506",
+          "multisem706",
+          "mesospim2024",
+          "peem2024",
+          "bdtem2024"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Approx. $/voxel (log)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "1.00e-11",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1.00e-10",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1.00e-9",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "0.00000001",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2015",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Year as printed in Table A1",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "points": [
+          "flyvis-0",
+          "flyvis-1"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Correct classifications (%)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "75",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "points": [
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Top-1 accuracy (%)",
+            "px": 12.008272058823529,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "20.2",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "40.4",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "60.6",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "80.8",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "1.13",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "21.45",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "41.77",
+            "px": 11.007582720588236,
+            "inside": true
+          },
+          {
+            "text": "Estimated inference energy (mJ/image)",
+            "px": 12.008272058823529,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "points": [],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "AI research demonstration",
+            "px": 12.008203125000001,
+            "inside": true
+          },
+          {
+            "text": "Experimental biological validation",
+            "px": 12.008203125000001,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.00751953125,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.00751953125,
+            "inside": true
+          },
+          {
+            "text": "Publication / demonstration year",
+            "px": 12.008203125000001,
+            "inside": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "plots": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "points": [
+          "braingate-documented-cohort-2023-01-13",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "qualifiers": "People ever implanted: Paradromics first long-term participant: \u22651",
+        "qualifiedIds": [
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "ticks": [
+          {
+            "text": "People ever implanted",
+            "px": 12.010533707865168,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "5",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "15",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "20",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "Implantation month / disclosure or publication year",
+            "px": 12.010533707865168,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-recording-hours",
+        "points": [
+          "neuralink-reported-hours-2026-10-01",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09",
+          "ajile12-intracranial-2022-01-27",
+          "poyo-primate-training-2023-10-24",
+          "japaneeg-scalp-eeg-2026-05-31"
+        ],
+        "qualifiers": "Recording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100",
+        "qualifiedIds": [
+          "neuralink-reported-hours-2026-10-01",
+          "poyo-primate-training-2023-10-24"
+        ],
+        "ticks": [
+          {
+            "text": "Recording hours",
+            "px": 12.010533707865168,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "Release / publication / disclosure year",
+            "px": 12.010533707865168,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "points": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "flywire-fly-neuropil-2024-01-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "qualifiers": "Tissue volume (cm\u00b3 \u00b7 log): Bock mouse V1: \u22480.00000819; Hemibrain: \u22480.0000156; H01 first public release: \u22480.001; MICrONS v117: \u22480.001; LICONN native tissue: \u22480.00000095; MaleCNS v0.9: \u22480.000082",
+        "qualifiedIds": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "ticks": [
+          {
+            "text": "Tissue volume (cm\u00b3 \u00b7 log)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0.0000001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2011",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Release / publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "points": [
+          "lee-reid-2016-neuronal-targets",
+          "hemibrain-neurons",
+          "larval-brain-neurons",
+          "flywire-neurons",
+          "microns-neurons"
+        ],
+        "qualifiers": "Neurons (log): Hemibrain: \u224825,000",
+        "qualifiedIds": [
+          "hemibrain-neurons"
+        ],
+        "ticks": [
+          {
+            "text": "Neurons (log)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "points": [
+          "hemibrain-synapses",
+          "larval-brain-synapses",
+          "flywire-synapses",
+          "microns-synapses"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Synapses / clefts (log)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "10,000,000",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1.00e8",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1.00e9",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "points": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "qualifiers": "Acquired volume (mm\u00b3/day \u00b7 log): Enhanced FIB-SEM, Drosophila optic lobe: \u22480.000009; autoTEM demonstrated montage production per microscope: >0.0028",
+        "qualifiedIds": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "ticks": [
+          {
+            "text": "Acquired volume (mm\u00b3/day \u00b7 log)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "points": [
+          "lee2016-paired",
+          "turner2022-paired",
+          "microns2025-manual"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Matched neuronal identities (log)",
+            "px": 12.010533707865168,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010533707865168,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "points": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1",
+          "h01-2021",
+          "microns-2025-size"
+        ],
+        "qualifiers": "Reported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026",
+        "qualifiedIds": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1"
+        ],
+        "ticks": [
+          {
+            "text": "Reported resource size (decimal PB)",
+            "px": 12.010584677419356,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "0.1",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "1",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009702620967744,
+            "inside": true
+          },
+          {
+            "text": "Publication / public-availability year",
+            "px": 12.010584677419356,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "points": [
+          "pathfinder-nerl-2025"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Normalized ERL (%)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "23.55",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "47.1",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "70.65",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "94.2",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "points": [
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Merge errors per mm of axon path",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1.95778",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "3.91555",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "5.87333",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "7.8311",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "5.2207",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "37.8064",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "70.3922",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Split errors per mm of axon path",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "points": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "qualifiers": "Person-years: Hemibrain proofreading effort: >50; FlyWire proofreading effort: \u224833",
+        "qualifiedIds": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "ticks": [
+          {
+            "text": "Person-years",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "12.5",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "37.5",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "points": [
+          "exm2015",
+          "sem2018",
+          "exllsm2019",
+          "exaspim2023",
+          "multisem506",
+          "multisem706",
+          "mesospim2024",
+          "peem2024",
+          "bdtem2024"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Approx. $/voxel (log)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "1.00e-11",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1.00e-10",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "1.00e-9",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "0.00000001",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2015",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Year as printed in Table A1",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "points": [
+          "flyvis-0",
+          "flyvis-1"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Correct classifications (%)",
+            "px": 12.010477941176472,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "75",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.009604779411767,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.010477941176472,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "points": [
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Top-1 accuracy (%)",
+            "px": 12.010533707865168,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "20.2",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "40.4",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "60.6",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "80.8",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "1.13",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "21.45",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "41.77",
+            "px": 11.009655898876403,
+            "inside": true
+          },
+          {
+            "text": "Estimated inference energy (mJ/image)",
+            "px": 12.010533707865168,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "points": [],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "AI research demonstration",
+            "px": 12.010546875000001,
+            "inside": true
+          },
+          {
+            "text": "Experimental biological validation",
+            "px": 12.010546875000001,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.009667968750001,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.009667968750001,
+            "inside": true
+          },
+          {
+            "text": "Publication / demonstration year",
+            "px": 12.010546875000001,
+            "inside": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "plots": [
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "points": [
+          "braingate-documented-cohort-2023-01-13",
+          "neuralink-cumulative-2024-01-01",
+          "neuralink-cumulative-2024-07-01",
+          "neuralink-cumulative-2025-02-05",
+          "neuralink-cumulative-2025-06-02",
+          "neuralink-cumulative-2026-01-28",
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "qualifiers": "People ever implanted: Paradromics first long-term participant: \u22651",
+        "qualifiedIds": [
+          "paradromics-connect-one-2026-06-17"
+        ],
+        "ticks": [
+          {
+            "text": "People ever implanted",
+            "px": 12.015120967741936,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "5",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "15",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "20",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "Implantation month / disclosure or publication year",
+            "px": 12.015120967741936,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-recording-hours",
+        "points": [
+          "neuralink-reported-hours-2026-10-01",
+          "tusz-scalp-eeg-2017-04-17",
+          "tusz-scalp-eeg-2017-08-04",
+          "tusz-scalp-eeg-2018-04-15",
+          "tusz-scalp-eeg-2018-08-16",
+          "tusz-scalp-eeg-2018-11-14",
+          "tusz-scalp-eeg-2019-07-22",
+          "tusz-scalp-eeg-2020-04-23",
+          "tusz-scalp-eeg-2020-05-09",
+          "ajile12-intracranial-2022-01-27",
+          "poyo-primate-training-2023-10-24",
+          "japaneeg-scalp-eeg-2026-05-31"
+        ],
+        "qualifiers": "Recording hours: Neuralink \u00b7 >50,000 accumulated recording hours; POYO-1 training corpus: >100",
+        "qualifiedIds": [
+          "neuralink-reported-hours-2026-10-01",
+          "poyo-primate-training-2023-10-24"
+        ],
+        "ticks": [
+          {
+            "text": "Recording hours",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2027",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Release / publication / disclosure year",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "points": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "flywire-fly-neuropil-2024-01-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "qualifiers": "Tissue volume (cm\u00b3 \u00b7 log): Bock mouse V1: \u22480.00000819; Hemibrain: \u22480.0000156; H01 first public release: \u22480.001; MICrONS v117: \u22480.001; LICONN native tissue: \u22480.00000095; MaleCNS v0.9: \u22480.000082",
+        "qualifiedIds": [
+          "bock-mouse-imaged-2011-01-01",
+          "hemibrain-fly-bounds-2020-01-01",
+          "h01-human-imaged-2021-06-01",
+          "microns-mouse-imaged-2021-07-01",
+          "liconn-mouse-native-2025-01-01",
+          "malecns-fly-imaged-2025-10-03"
+        ],
+        "ticks": [
+          {
+            "text": "Tissue volume (cm\u00b3 \u00b7 log)",
+            "px": 12.015120967741936,
+            "inside": true
+          },
+          {
+            "text": "0.0000001",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2011",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "Release / publication year",
+            "px": 12.015120967741936,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "points": [
+          "lee-reid-2016-neuronal-targets",
+          "hemibrain-neurons",
+          "larval-brain-neurons",
+          "flywire-neurons",
+          "microns-neurons"
+        ],
+        "qualifiers": "Neurons (log): Hemibrain: \u224825,000",
+        "qualifiedIds": [
+          "hemibrain-neurons"
+        ],
+        "ticks": [
+          {
+            "text": "Neurons (log)",
+            "px": 12.014889705882354,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.014889705882354,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "points": [
+          "hemibrain-synapses",
+          "larval-brain-synapses",
+          "flywire-synapses",
+          "microns-synapses"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Synapses / clefts (log)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1,000,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "10,000,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1.00e8",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1.00e9",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "points": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "qualifiers": "Acquired volume (mm\u00b3/day \u00b7 log): Enhanced FIB-SEM, Drosophila optic lobe: \u22480.000009; autoTEM demonstrated montage production per microscope: >0.0028",
+        "qualifiedIds": [
+          "fib-sem-2017",
+          "autotem-2020"
+        ],
+        "ticks": [
+          {
+            "text": "Acquired volume (mm\u00b3/day \u00b7 log)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "0.000001",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "0.00001",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "0.0001",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2019",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "points": [
+          "lee2016-paired",
+          "turner2022-paired",
+          "microns2025-manual"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Matched neuronal identities (log)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "10,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "100,000",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2016",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "points": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1",
+          "h01-2021",
+          "microns-2025-size"
+        ],
+        "qualifiers": "Reported resource size (decimal PB): Hildebrand larval zebrafish: compressed aligned imagery: \u22480.0027; FAFB public image volume (source for FlyWire): \u22480.012; Hemibrain v1.0 reported data size (26+ TB): \u22650.026",
+        "qualifiedIds": [
+          "hildebrand-zebrafish-public-images-2017",
+          "fafb-image-download-2018",
+          "hemibrain-v1"
+        ],
+        "ticks": [
+          {
+            "text": "Reported resource size (decimal PB)",
+            "px": 12.014980670103093,
+            "inside": true
+          },
+          {
+            "text": "0.001",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "0.01",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "0.1",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "1",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "10",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "2017",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "2021",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.013732280927835,
+            "inside": true
+          },
+          {
+            "text": "Publication / public-availability year",
+            "px": 12.014980670103093,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "points": [
+          "pathfinder-nerl-2025"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Normalized ERL (%)",
+            "px": 12.014889705882354,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "23.55",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "47.1",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "70.65",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "94.2",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2026",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.014889705882354,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "points": [
+          "roboem-2024-human-multisem-1",
+          "roboem-2024-human-multisem-2",
+          "roboem-2024-human-multisem-3",
+          "roboem-2024-human-multisem-4",
+          "roboem-2024-mouse-multisem-1",
+          "roboem-2024-mouse-multisem-2",
+          "roboem-2024-mouse-multisem-3",
+          "roboem-2024-mouse-multisem-4",
+          "roboem-2024-mouse-multisem-5",
+          "roboem-2024-mouse-sbem-6",
+          "roboem-2024-mouse-sbem-7",
+          "roboem-2024-mouse-sbem-8"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Merge errors per mm of axon path",
+            "px": 12.015120967741936,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "1.95778",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "3.91555",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "5.87333",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "7.8311",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "5.2207",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "37.8064",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "70.3922",
+            "px": 11.013860887096774,
+            "inside": true
+          },
+          {
+            "text": "Split errors per mm of axon path",
+            "px": 12.015120967741936,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "points": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "qualifiers": "Person-years: Hemibrain proofreading effort: >50; FlyWire proofreading effort: \u224833",
+        "qualifiedIds": [
+          "hemibrain-proofreading",
+          "flywire-proofreading"
+        ],
+        "ticks": [
+          {
+            "text": "Person-years",
+            "px": 12.014889705882354,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "12.5",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "37.5",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2022",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.013648897058824,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.014889705882354,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "points": [
+          "exm2015",
+          "sem2018",
+          "exllsm2019",
+          "exaspim2023",
+          "multisem506",
+          "multisem706",
+          "mesospim2024",
+          "peem2024",
+          "bdtem2024"
+        ],
+        "qualifiers": "All plotted values are approximate (\u2248).",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Approx. $/voxel (log)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "1.00e-11",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1.00e-10",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1.00e-9",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "0.00000001",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2015",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2020",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Year as printed in Table A1",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "points": [
+          "flyvis-0",
+          "flyvis-1"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Correct classifications (%)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "25",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "50",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "75",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "100",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "2025",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Publication year",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "points": [
+          "sdt-0",
+          "sdt-1",
+          "sdt-2",
+          "sdt-3",
+          "sdt-4",
+          "sdt-5"
+        ],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "Top-1 accuracy (%)",
+            "px": 12.015273876404493,
+            "inside": true
+          },
+          {
+            "text": "0",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "20.2",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "40.4",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "60.6",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "80.8",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "1.13",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "21.45",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "41.77",
+            "px": 11.014001053370785,
+            "inside": true
+          },
+          {
+            "text": "Estimated inference energy (mJ/image)",
+            "px": 12.015273876404493,
+            "inside": true
+          }
+        ]
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "points": [],
+        "qualifiers": "",
+        "qualifiedIds": [],
+        "ticks": [
+          {
+            "text": "AI research demonstration",
+            "px": 12.015066964285714,
+            "inside": true
+          },
+          {
+            "text": "Experimental biological validation",
+            "px": 12.015066964285714,
+            "inside": true
+          },
+          {
+            "text": "2023",
+            "px": 11.013811383928571,
+            "inside": true
+          },
+          {
+            "text": "2024",
+            "px": 11.013811383928571,
+            "inside": true
+          },
+          {
+            "text": "Publication / demonstration year",
+            "px": 12.015066964285714,
+            "inside": true
+          }
+        ]
+      }
+    ]
+  }
+]

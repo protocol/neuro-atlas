@@ -8,7 +8,7 @@ import { MetricsSection } from '../src/components/sections/metrics-section.tsx';
 globalThis.React = React;
 
 test('category headers expose a separately wrapping name and grammatical evidence counts', () => {
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(MetricsSection, { performance: null, references: { mapping: null, recording: null } })));
+  const dom = new JSDOM(renderToStaticMarkup(React.createElement(MetricsSection, { performance: null, references: { recording: null } })));
   const doc = dom.window.document;
   const style = doc.createElement('style');
   style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
@@ -22,7 +22,7 @@ test('category headers expose a separately wrapping name and grammatical evidenc
     assert.match(layout.gridTemplateColumns, /^auto minmax\(0, 1fr\)/);
     assert.equal(layout.alignItems, 'baseline');
   }
-  assert.match(doc.querySelector('[data-metric-toggle="Mapping scale"] small').textContent, /charts · 1 reference view/);
-  assert.match(doc.querySelector('[data-metric-toggle="Human interfaces and recordings"] small').textContent, /charts · 2 reference views/);
+  assert.match(doc.querySelector('[data-metric-toggle="Mapping Scale"] small').textContent, /^6 charts$/);
+  assert.match(doc.querySelector('[data-metric-toggle="Human interfaces and recordings"] small').textContent, /^2 charts$/);
   dom.window.close();
 });

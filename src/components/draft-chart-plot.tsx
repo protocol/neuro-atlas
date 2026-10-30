@@ -53,7 +53,7 @@ function usePlotWidth() {
     const observer = new ResizeObserver(entries => {
       const measured = entries[0]?.contentRect.width;
       // A hidden tab has no width. Keep the last usable coordinate system until reveal.
-      if (measured > 0) setWidth(Math.max(200, Math.round(measured)));
+      if (measured > 0) setWidth(Math.max(120, Math.round(measured)));
     });
     observer.observe(figure.current);
     return () => observer.disconnect();
@@ -61,7 +61,7 @@ function usePlotWidth() {
   return { width, figure };
 }
 
-export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAnchor?: string }) {
+export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
@@ -88,12 +88,17 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
   const minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
   if (maxPower === minPower) maxPower += 1;
-  const yMax = log ? 10 ** maxPower : Math.max(...ys) || 1;
+  const rawYMax = Math.max(...ys) || 1;
+  const integerStep = Math.max(1, Math.ceil(rawYMax / 5));
+  const integerAxis = !log && plot.integerTicks;
+  const yMax = log ? 10 ** maxPower : integerAxis ? Math.ceil(rawYMax / integerStep) * integerStep : rawYMax;
   const yMin = log ? 10 ** minPower : Math.min(0, ...ys);
   const powerStep = Math.max(1, Math.ceil((maxPower - minPower) / 5));
   const yTicks = log
     ? [...new Set([...Array.from({ length: Math.floor((maxPower - minPower) / powerStep) + 1 }, (_, i) => 10 ** (minPower + i * powerStep)), yMax])]
-    : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
+    : integerAxis
+      ? Array.from({ length: Math.round((yMax - yMin) / integerStep) + 1 }, (_, i) => yMin + i * integerStep)
+      : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
   const xTicks = [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
   const left = Math.max(46, ...yTicks.map(tick => tickLabel(tick).length * 6.5 + 12));
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? tickLabel(tick) : String(tick)).length * 3.5 + 4));
@@ -137,14 +142,15 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
     tabIndex: 0, role: "button",
     "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
     "aria-describedby": active?.id === point.id ? `${id}-tooltip` : undefined,
-    onFocus: () => setActive(point), onMouseEnter: () => setActive(point), onClick: () => setActive(point),
+    // A newly opened modal can appear under a stationary pointer; inspect only on actual movement.
+    onFocus: () => setActive(point), onMouseMove: () => setActive(point), onClick: () => setActive(point),
     onKeyDown: (event: KeyboardEvent) => {
       if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActive(point); }
       if (event.key === "Escape") setActive(null);
     },
   });
 
-  return <figure ref={figure} className="draft-plot" aria-labelledby={`${id}-title`}>
+  return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
     <svg className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
@@ -164,10 +170,10 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > 6 ? "none" : groupColor(point)} stroke={markerRadius(index) > 6 ? groupColor(point) : "var(--surface)"}
         data-export-stroke-width={2} pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
-        {...inspectProps(point)}
+        {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
+    {!preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
       <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
         <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
         <span>{text}</span>
@@ -178,8 +184,16 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
+    {plot.points.some(point => point.qualifier) && <p className="draft-plot-qualifications" data-visible-qualifications>
+      {plot.points.every(point => point.qualifier === "≈") ? "All plotted values are approximate (≈)." : <>
+        <span>{plot.yLabel}: </span>
+        {plot.points.filter(point => point.qualifier).map((point, index) => <span key={point.id} data-qualified-observation={point.id}>
+          {index > 0 && "; "}{point.label}{!point.label.includes(qualifiedValue(point)) && `: ${qualifiedValue(point)}`}
+        </span>)}
+      </>}
+    </p>}
     <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
-    {shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
+    {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,
       notes: [plot.scope, plot.seriesNote ?? "",
@@ -188,7 +202,7 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} />}
-    <div className="draft-plot-inspector">
+    {!preview && <><div className="draft-plot-inspector">
       {active ? <div role="tooltip" id={`${id}-tooltip`}>
         <strong>{active.label}</strong>
         {active.group && <p>{active.group}</p>}
@@ -214,25 +228,27 @@ export function DraftChartPlot({ plot, shareAnchor }: { plot: DraftPlot; shareAn
           </tr>)}</tbody>
         </table>
       </div>
-    </details>
+    </details></>}
   </figure>;
 }
 
 /** Categorical lanes carry no ordinal/impact score; positions encode dates only. */
-export function DraftEventTimeline({ timeline }: { timeline: NonNullable<DraftChartEvidence["timeline"]> }) {
+export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: { timeline: NonNullable<DraftChartEvidence["timeline"]>; preview?: boolean; shareAnchor?: string }) {
   const id = useId();
   const { width, figure } = usePlotWidth();
   const stages = [...new Set(timeline.events.map(event => event.stage))];
   const years = timeline.events.map(event => event.year);
   const first = Math.floor(Math.min(...years));
   const last = Math.max(first + 1, Math.ceil(Math.max(...years)));
-  const height = Math.max(320, stages.length * 100 + 100);
+  const xTitle = wrapLabel("Publication / demonstration year", width - 12);
+  const baseHeight = Math.max(320, stages.length * 100 + 100);
+  const height = baseHeight + (xTitle.length - 1) * 16;
   const x = (year: number) => 28 + (year - first) / (last - first) * (width - 56);
   const y = (stage: string) => 90 + stages.indexOf(stage) * 100;
   const ticks = [...new Set([first, Math.round((first + last) / 2), last])];
-  return <figure ref={figure} className="draft-plot draft-event-timeline" aria-labelledby={`${id}-title`}>
+  return <figure ref={figure} className="draft-plot draft-event-timeline" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     <figcaption id={`${id}-title`}>Selected application events</figcaption>
-    <p className="draft-plot-scope">{timeline.scope}</p>
+    {!preview && <p className="draft-plot-scope">{timeline.scope}</p>}
     <p className="draft-plot-legend">● Source-backed event · Categorical stages, not an impact score or ranking</p>
     <svg className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
@@ -241,15 +257,20 @@ export function DraftEventTimeline({ timeline }: { timeline: NonNullable<DraftCh
         <line className="draft-plot-gridline" x1={28} x2={width - 28} y1={y(stage)} y2={y(stage)} />
       </g>)}
       {timeline.events.map(event => <circle key={event.id} data-source-event={event.id} cx={x(event.year)} cy={y(event.stage)} r={7} fill="var(--accent)"><title>{`${event.label} · ${event.dateLabel} · ${event.stage}`}</title></circle>)}
-      {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={height - 45} textAnchor="middle">{year}</text>)}
-      <text className="draft-plot-axis-title" x={width / 2} y={height - 16} textAnchor="middle">Publication / demonstration year</text>
+      {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={baseHeight - 45} textAnchor="middle">{year}</text>)}
+      <text className="draft-plot-axis-title" x={width / 2} y={baseHeight - 16} textAnchor="middle">{xTitle.map((line, index) => <tspan key={index} x={width / 2} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
     </svg>
-    <ul className="draft-event-list">{timeline.events.map(event => <li key={event.id} data-draft-event={event.id}>
+    {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title="Selected application events" getChart={() => ({
+      svg: figure.current!.querySelector("svg")!, title: "Selected application events", anchor: shareAnchor,
+      notes: [timeline.scope, "Categorical stages, not an impact score or ranking",
+        ...timeline.events.map(event => `${event.dateLabel} · ${event.stage} · ${event.label} — ${event.sourceTitle}`)],
+    })} />}
+    {!preview && <ul className="draft-event-list">{timeline.events.map(event => <li key={event.id} data-draft-event={event.id}>
       <p className="draft-event-date">{event.dateLabel} · {event.stage}</p>
       <strong>{event.label}</strong>
       <p>{event.note}</p>
       <a href={event.sourceUrl} target="_blank" rel="noreferrer">{event.sourceTitle} ↗</a>
       <blockquote>{event.quote}</blockquote>
-    </li>)}</ul>
+    </li>)}</ul>}
   </figure>;
 }

@@ -41,12 +41,12 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
   try {
     const doc = dom.window.document;
     assert.equal(doc.querySelectorAll('[data-coming-soon], #markets').length, 0);
-    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 5, 'Three reference views and two pace cards');
+    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 3, 'Unique neuron capability chart and two pace cards');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
-    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 12);
+    assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 13);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 77);
-    assert.ok(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'));
-    assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'));
+    assert.equal(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'), null);
+    assert.equal(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'), null);
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));
     assert.ok(doc.querySelector('#metric-category-6 #revealed_commitments'));
     const surface = doc.querySelector('.metrics-index').cloneNode(true);

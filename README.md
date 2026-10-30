@@ -8,7 +8,7 @@ An interactive atlas of the brain-computer interface field — milestones, capit
 
 ## Stack
 
-The Field velocity plate now includes [shared performance curves](docs/performance-curves.md): selected neuron-recording, mapped-tissue and recording-hours evidence from a validated, pinned PL R&D export. See that guide for source provenance, refresh/parity commands, counting limits and QA.
+The Field velocity plate groups source-backed charts into [five three-state groups](docs/metrics-navigation.md). [Recording hours](docs/recording-hours-consolidation.md) uses one shared log scatter; duplicate tissue/hours reference views are retired with their original evidence and URLs retained. [Shared performance curves](docs/performance-curves.md) documents the pinned provider source, refresh/parity commands and counting limits.
 
 - [Next.js](https://nextjs.org) (App Router, TypeScript)
 - [Tailwind CSS v4](https://tailwindcss.com) — design tokens in `src/app/globals.css`

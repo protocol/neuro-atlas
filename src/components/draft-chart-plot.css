@@ -20,6 +20,7 @@
 .draft-plot { margin: 0; min-width: 0; color: var(--foreground); }
 .draft-plot > figcaption { font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: .5rem; }
 .draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
+.draft-plot-qualifications { margin: 10px 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
 .draft-plot-tick { font-size: 11px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
@@ -101,6 +102,8 @@
 .metric-category { margin: .7rem 0; padding: 1rem 1.2rem; min-width: 0; overflow-wrap: anywhere; }
 .metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
 .metric-category-name { min-width: 0; }
+.metric-category-more { min-height: 44px; margin: .25rem 0 .75rem 1.2rem; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
+.metric-category-more:disabled { cursor: default; }
 .metric-category h2 > button:disabled { cursor: default; }
 .metric-category h2 small { margin-left: auto; color: var(--muted); font-size: .7rem; font-weight: 400; }
 .metric-category-summary { color: var(--muted); font-size: .8rem; line-height: 1.6; margin: .1rem 0 .25rem 1.2rem; }
