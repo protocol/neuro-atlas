@@ -1,0 +1,62 @@
+{
+  "runtimeSha": "c884b3a1011caccaf8d395b9376853fb7b0a22d8",
+  "capture": "native Chrome, local production build; mobile image is an unmodified-pixel crop",
+  "images": {
+    "after-engagement-all-1440.png": {
+      "sha256": "964f70909d5cabf9fb694024f9d27a3ca0c4bd623c4f9c32eae7bc3ce2ce85e6",
+      "dimensions": [
+        1087,
+        888
+      ]
+    },
+    "after-engagement-preview-1440.png": {
+      "sha256": "78d2f8eb0a199b206eb4d98ea433a34977efeb54e8efffa0701872a2bbdfcb62",
+      "dimensions": [
+        1087,
+        453
+      ]
+    },
+    "after-hero-1440.png": {
+      "sha256": "8148b3063d574fdb389f93e63ddc29441887c041fe5d4041b3f723152f5fbb2a",
+      "dimensions": [
+        1440,
+        1050
+      ]
+    },
+    "after-dark-390.png": {
+      "sha256": "b63439f6532639a6fcfb2fd57537653f01dfdeaed36c35d2115ca9758019c1b3",
+      "dimensions": [
+        390,
+        1050
+      ]
+    },
+    "after-mobile-320.png": {
+      "sha256": "45ca6e0701f5edf5c9469f72250363f38049c01edb5f6be4b4364bc43f24c853",
+      "dimensions": [
+        254,
+        900
+      ]
+    },
+    "after-mapping-all-1440.png": {
+      "sha256": "d52ad1c8f8d127e1d222f30e57209b11c8a154568592ac3b5fad15933d4390fb",
+      "dimensions": [
+        1102,
+        1418
+      ]
+    },
+    "before-hero-1440.png": {
+      "sha256": "999c8183374081d783b03f5779dbf6339705cd433a79e92be646cf0fcfe2adf7",
+      "dimensions": [
+        1440,
+        1050
+      ]
+    },
+    "before-engagement-all-1440.png": {
+      "sha256": "b55f56b3456b48f4a5c06f30bc4a40bd08df88b85701be8076875da80b50379a",
+      "dimensions": [
+        1087,
+        2655
+      ]
+    }
+  }
+}
