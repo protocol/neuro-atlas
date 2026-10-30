@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SNAPSHOT from '../../public/data/google-trends/google-trends.json';
 import type { TrendsData } from '@/lib/field-velocity/google-trends';
 import { atlasPath } from '@/lib/atlas-path';
@@ -14,9 +14,21 @@ const colors = ['var(--accent)', '#087f8c'];
 
 function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean }) {
   const plotRef = useRef<HTMLDivElement>(null);
+  const [previewWidth, setPreviewWidth] = useState(560);
+  useEffect(() => {
+    if (!compact || !plotRef.current || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(entries => {
+      const measured = entries[0]?.contentRect.width;
+      if (measured > 0) setPreviewWidth(Math.max(120, Math.round(measured)));
+    });
+    observer.observe(plotRef.current);
+    return () => observer.disconnect();
+  }, [compact]);
+  const width = compact ? previewWidth : 600;
+  const right = width - 20;
   const rows = group.rows.filter(row => !row.partial);
   const start = Date.parse(group.start), end = Date.parse(group.end);
-  const x = (date: string) => 48 + (Date.parse(date) - start) / (end - start) * 532;
+  const x = (date: string) => 48 + (Date.parse(date) - start) / (end - start) * (right - 48);
   const y = (value: number) => 24 + (100 - value) / 100 * 200;
   return <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
     {!compact && <ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
@@ -30,8 +42,8 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
       ],
     })} />}
     {compact && <span className="gt-preview-axis">Worldwide · Weekly index · 0–100</span>}
-    <svg viewBox={compact ? '48 0 552 235' : '0 0 600 270'} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
-      {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={580} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
+    <svg viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
+      {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text data-trends-axis="y" x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
       {group.terms.map((term, index) => {
         let gap = true;
         const path = rows.map(row => {
@@ -43,7 +55,7 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
         return <path key={term} data-trend-line={term} d={path} fill="none" stroke={colors[index]} strokeWidth={2.5} strokeDasharray={index ? '7 3' : undefined} />;
       })}
       {!compact && rows.flatMap(row => row.values.map((value, i) => value === null ? null : <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} r={2.5} fill={colors[i]}><title>{row.date} · {group.terms[i]}: {row.displayValues[i]}</title></circle>))}
-      <text x={48} y={254}>{group.start.slice(0, 7)}</text><text x={580} y={254} textAnchor="end">{group.end.slice(0, 7)}</text>
+      <text data-trends-axis="x" x={48} y={254}>{group.start.slice(0, compact && width < 240 ? 4 : 7)}</text><text data-trends-axis="x" x={right} y={254} textAnchor="end">{group.end.slice(0, compact && width < 240 ? 4 : 7)}</text>
     </svg>
   </div>;
 }

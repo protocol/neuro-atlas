@@ -4,7 +4,7 @@
 .gt-range { display: block; margin-top: .5rem; color: var(--muted); font-size: .7rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .gt-preview { display: block; margin: .8rem 0; }
 .gt-preview svg, .gt-plot svg { width: 100%; height: auto; display: block; }
-.gt-preview svg text { display: none; }
+.gt-card .gt-preview svg text { font-size: 11px; fill: var(--muted); }
 .gt-preview-axis { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); }
 .gt-plot { max-width: 100%; overflow-x: auto; }
 .gt-plot svg { min-width: 560px; }
