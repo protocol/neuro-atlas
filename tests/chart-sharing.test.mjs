@@ -208,19 +208,22 @@ test('rendered metric cards omit the generic Bounded evidence eyebrow, retaining
   } finally { await cleanup(); }
 });
 
-test('multi-panel cards distinguish card links from each specific plot link and never offer an ambiguous whole-card image', async () => {
+test('multi-panel definitions render separate tiles with one unambiguous panel copy action each', async () => {
   globalThis.React = React;
-  const cleanup = await mount(React.createElement(DraftChartsSection));
+  const cleanup = await mount(React.createElement(DraftChartsSection, { flat: true, showGaps: false }));
   try {
-    for (const card of document.querySelectorAll('.draft-chart-card-multiple')) {
-      const cardLink = card.querySelector(':scope > .draft-chart-share [data-copy-draft-link]');
-      assert.match(cardLink.textContent, /Copy card link/);
-      assert.match(cardLink.getAttribute('aria-label'), /card/i);
-      assert.equal(card.querySelector(':scope > [data-chart-share]'), null);
-      const panelTargets = [...card.querySelectorAll('[data-draft-popout]')].map(panel => panel.dataset.draftPopout);
-      assert.equal(new Set(panelTargets).size, panelTargets.length);
-      assert.ok(panelTargets.every(target => target !== cardLink.dataset.copyDraftLink));
+    const targets = [];
+    for (const card of document.querySelectorAll('[data-draft-chart-card]')) {
+      assert.equal(card.querySelectorAll('[data-draft-popout]').length, 1);
+      const popout = card.querySelector('[data-draft-popout]');
+      const copies = card.querySelectorAll('[data-copy-draft-link]');
+      assert.equal(copies.length, 1);
+      assert.equal(copies[0].textContent, 'Copy link');
+      assert.equal(copies[0].dataset.copyDraftLink, popout.dataset.draftPopout);
+      assert.equal(card.querySelector('[data-chart-share]'), null, 'Image export is mounted only inside its selected modal');
+      targets.push(popout.dataset.draftPopout);
     }
+    assert.equal(new Set(targets).size, targets.length);
   } finally { await cleanup(); }
 });
 
@@ -344,7 +347,8 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     const card = await openPanel(document.querySelector('#draft-recording-hours [data-draft-panel]'));
     assert.equal(card.querySelector('[data-copy-chart]').dataset.copyChart, 'metric-recording-hours');
     assert.equal(card.querySelectorAll('[data-copy-chart]').length, 1);
-    assert.deepEqual([...card.querySelectorAll('.draft-chart-share a')].map(a => a.hash), ['#metric-recording-hours']);
+    assert.deepEqual([...card.querySelectorAll('[data-copy-draft-link]')].map(button => button.dataset.copyDraftLink), ['metric-recording-hours']);
+    assert.equal(card.querySelectorAll('.draft-chart-share a').length, 0, 'Copy link replaces duplicate Direct link');
     await click(card.querySelector('[data-copy-chart]'));
     assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-recording-hours');
     const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });

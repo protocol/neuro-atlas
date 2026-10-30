@@ -18,11 +18,56 @@ function Methodology({ chart, context }: { chart: DraftChart; context?: string }
   </details>;
 }
 
-export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true, visibleTitles }: { category?: string; query?: string; showGaps?: boolean; visibleTitles?: readonly string[] } = {}) {
+export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true, visibleTitles, flat = false }: { category?: string; query?: string; showGaps?: boolean; visibleTitles?: readonly string[]; flat?: boolean } = {}) {
   const matches = (chart: DraftChart) => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(query);
   const linksFor = (chart: DraftChart) => DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
   const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && isVisibleMetric(chart));
   const gaps = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status !== "plotted");
+  if (flat) return <>{plotted.flatMap(chart => {
+    const evidence = DRAFT_CHART_EVIDENCE[chart.title];
+    const link = linksFor(chart);
+    const hidden = !matches(chart) || (!!visibleTitles && !visibleTitles.includes(chart.title));
+    const recording = chart.metricsAnchor === "neural-recording-hours";
+    const displayTitle = chart.title === "NeuroAI performance–cost frontier over time" ? "NeuroAI performance–cost frontier" : chart.title;
+    const candidateIds = [link.id, canonicalMetricAnchor(link.id), ...(chart.metricsAnchor ? [chart.metricsAnchor] : [])];
+    const cards = evidence.plots.map((plot, index) => {
+      const panels = link.panels.filter(panel => panel.plotId === plot.id);
+      const anchor = canonicalMetricAnchor(recording ? link.id : panels[0]!.id);
+      const ids = [...new Set([...panels.flatMap(panel => [panel.id, canonicalMetricAnchor(panel.id)]), ...(index === 0 ? candidateIds : [])])];
+      const cardId = index === 0 ? link.id : panels[0]!.id;
+      const displayPlot = chart.title === "NeuroAI performance–cost frontier over time" ? { ...plot, title: displayTitle } : plot;
+      return <article key={plot.id} id={cardId} hidden={hidden} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+        <div data-draft-panel>
+          <span id={anchor} className="metric-anchor" />
+          {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
+          <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
+            previewContext={<div className="metric-preview-context">
+              <p data-metric-scope>{plot.scope.split(/\.(?:\s|$)/)[0]}.</p>
+              {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
+            </div>}
+            methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+          <DraftChartShare anchor={anchor} label={displayPlot.title} />
+        </div>
+      </article>;
+    });
+    if (evidence.timeline) {
+      const timeline = evidence.timeline;
+      const panel = link.panels.find(panel => panel.plotId === null)!;
+      const anchor = canonicalMetricAnchor(panel.id);
+      const ids = [panel.id, ...(cards.length ? [] : candidateIds)];
+      cards.push(<article key={panel.id} id={cards.length ? panel.id : link.id} hidden={hidden} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+        <div data-draft-panel>
+          <span id={anchor} className="metric-anchor" />
+          {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
+          <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
+            previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
+            methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+          <DraftChartShare anchor={anchor} label="Selected application events" />
+        </div>
+      </article>);
+    }
+    return cards;
+  })}</>;
   return <section className="draft-charts draft-charts-gallery" aria-label={selectedCategory ?? "Metrics"}>
     {!selectedCategory && <header className="draft-charts-header">
       <p className="pc-eyebrow">Source-backed observations</p>

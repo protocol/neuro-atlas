@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { MetricsSection } from '../src/components/sections/metrics-section.tsx';
 globalThis.React = React;
 
-test('category headers expose a separately wrapping name and grammatical evidence counts', () => {
+test('category headers expose a separately wrapping name without redundant badges or counts', () => {
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(MetricsSection, { performance: null, references: { recording: null } })));
   const doc = dom.window.document;
   const style = doc.createElement('style');
@@ -22,7 +22,8 @@ test('category headers expose a separately wrapping name and grammatical evidenc
     assert.match(layout.gridTemplateColumns, /^auto minmax\(0, 1fr\)/);
     assert.equal(layout.alignItems, 'baseline');
   }
-  assert.match(doc.querySelector('[data-metric-toggle="Mapping Scale"] small').textContent, /^6 charts$/);
-  assert.match(doc.querySelector('[data-metric-toggle="Human interfaces and recordings"] small').textContent, /^2 charts$/);
+  assert.equal(doc.querySelectorAll('[data-metric-toggle] small').length, 0);
+  assert.equal(doc.querySelector('[data-metric-more="Mapping Scale"]').textContent, 'Show all 6 charts');
+  assert.equal(doc.querySelector('[data-metric-more="Human interfaces and recordings"]').textContent, 'Show all 2 charts');
   dom.window.close();
 });

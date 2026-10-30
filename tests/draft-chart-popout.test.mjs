@@ -33,12 +33,12 @@ test('timeline preview retains the real dated events without its detailed source
 });
 
 async function panels() {
-  const module = await import('../src/components/draft-chart-panel.tsx').catch(error => {
+  const loaded = await import('../src/components/draft-chart-panel.tsx').catch(error => {
     if (error.code === 'ERR_MODULE_NOT_FOUND') return {};
     throw error;
   });
-  assert.equal(typeof module.DraftChartPanel, 'function', 'Curated charts need a real preview/popup component');
-  return module;
+  assert.equal(typeof loaded.DraftChartPanel, 'function', 'Curated charts need a real preview/popup component');
+  return loaded;
 }
 async function until(predicate) {
   for (let attempt = 0; attempt < 20 && !predicate(); attempt++) await settle();
@@ -74,7 +74,7 @@ test('whole-card native button opens one URL-addressed full plot and Close retur
     assert.equal(modal.querySelector('.draft-plot-inspector').textContent, '');
     assert.ok(modal.querySelector('[data-copy-chart]'));
     assert.ok(modal.querySelector('[data-download-chart]'));
-    assert.ok(modal.querySelector(`a[href="#${anchor}"]`));
+    assert.ok(modal.querySelector(`[data-copy-draft-link="${anchor}"]`));
     const ids = [...document.querySelectorAll('[id]')].map(el => el.id);
     assert.equal(new Set(ids).size, ids.length);
     await click(modal.querySelector('.pc-modal-header button'));
@@ -199,8 +199,8 @@ test('only registered curated popup targets skip inline reveal; retired links re
 
 for (const hash of ['metric-recording-hours', 'draft-panel-japaneeg-scalp-eeg', 'neural-recording-hours', 'tissue-mapped', 'metric-panel-acquisition-economics', 'metric-neuroai-frontier', 'draft-panel-application-events']) {
   test(`real page fresh ${hash} reveals its category before native modal focus`, async () => {
-    const module = await import('../src/app/field-velocity/page.tsx');
-    const Page = module.default.default ?? module.default;
+    const loaded = await import('../src/app/field-velocity/page.tsx');
+    const Page = loaded.default.default ?? loaded.default;
     const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(Page)), `#${hash}`, win => {
       const focus = win.HTMLElement.prototype.focus;
       win.HTMLElement.prototype.focus = function(options) { if (!this.closest('[hidden]')) focus.call(this, options); };
@@ -221,8 +221,8 @@ for (const hash of ['metric-recording-hours', 'draft-panel-japaneeg-scalp-eeg', 
 
 for (const strict of [false, true]) {
   test(`curated cross-tab popup restores the real Expectations link after Close and Forward (StrictMode=${strict})`, async () => {
-    const module = await import('../src/app/field-velocity/page.tsx');
-    const Page = module.default.default ?? module.default;
+    const loaded = await import('../src/app/field-velocity/page.tsx');
+    const Page = loaded.default.default ?? loaded.default;
     const page = React.createElement(Page);
     const cleanup = await mount(strict ? React.createElement(React.StrictMode, null, page) : page, '#expectations', win => {
       const focus = win.HTMLElement.prototype.focus;
