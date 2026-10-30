@@ -192,7 +192,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </span>)}
       </>}
     </p>}
-    <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>
+    {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>}
     {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,

@@ -241,14 +241,14 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
   </div>;
 }
 
-export function CurveCard({ id, title, eyebrow, coverage, plot, children }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode }) {
+export function CurveCard({ id, title, coverage, plot, children }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${id}`;
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     <button ref={ref} type="button" className="pc-trigger" aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-      <span className="pc-eyebrow">{eyebrow}</span>
+
       <span className="pc-card-title">{title}</span>
       <span className="pc-coverage">{coverage}</span>
       {plot && <CurvePlot data={plot} compact />}
