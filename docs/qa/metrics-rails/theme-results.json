@@ -1,0 +1,2066 @@
+[
+  {
+    "width": 1440,
+    "theme": "light",
+    "expected": [
+      107,
+      107,
+      116,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "expected": [
+      161,
+      161,
+      170,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "expected": [
+      107,
+      107,
+      116,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "expected": [
+      161,
+      161,
+      170,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "theme": "light",
+    "expected": [
+      107,
+      107,
+      116,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          107,
+          107,
+          116,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(217, 217, 222)"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "theme": "dark",
+    "expected": [
+      161,
+      161,
+      170,
+      255
+    ],
+    "curves": [
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "3",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "9",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "12",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2000",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2026",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "years \u00b7 linear scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "0",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "4",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "6",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "8",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1992",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2021",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "neurons \u00b7 log scale",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "100",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "10K",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "1957",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      },
+      {
+        "text": "2014",
+        "fill": [
+          161,
+          161,
+          170,
+          255
+        ],
+        "font": "Geist, \"Geist Fallback\", system-ui, sans-serif"
+      }
+    ],
+    "edges": [
+      {
+        "anchor": "metric-recording-hours",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuralink-cumulative",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-public-data-size",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-tissue-cm3",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-neurons",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-largest-connectome-synapses",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-rates",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-paired-manual",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-acquisition-economics",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-pathfinder-nerl",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-proofreading-effort",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-neuroai-imagenet",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-flyvis-contrast",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      },
+      {
+        "anchor": "metric-panel-application-events",
+        "width": 1,
+        "style": "solid",
+        "color": "rgb(48, 48, 54)"
+      }
+    ]
+  }
+]

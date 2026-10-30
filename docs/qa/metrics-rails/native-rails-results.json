@@ -1,0 +1,7927 @@
+[
+  {
+    "width": 1440,
+    "defaults": [
+      {
+        "state": "preview",
+        "more": {
+          "x": 1089.03125,
+          "y": 774.203125,
+          "width": 144,
+          "height": 144,
+          "left": 1089.03125,
+          "right": 1233.03125,
+          "top": 774.203125,
+          "bottom": 918.203125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 583.453125,
+          "width": 1087,
+          "height": 525.5,
+          "left": 285,
+          "right": 1372,
+          "top": 583.453125,
+          "bottom": 1108.953125,
+          "client": 1087,
+          "scroll": 1087,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 587.453125,
+            "width": 649.078125,
+            "height": 517.5,
+            "left": 285,
+            "right": 934.078125,
+            "top": 587.453125,
+            "bottom": 1104.953125,
+            "title": "Open Neurotech search terms"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 1089.03125,
+          "y": 1437.265625,
+          "width": 144,
+          "height": 144,
+          "left": 1089.03125,
+          "right": 1233.03125,
+          "top": 1437.265625,
+          "bottom": 1581.265625,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 1220.34375,
+          "width": 1087,
+          "height": 577.84375,
+          "left": 285,
+          "right": 1372,
+          "top": 1220.34375,
+          "bottom": 1798.1875,
+          "client": 1087,
+          "scroll": 1087,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 1224.34375,
+            "width": 649.078125,
+            "height": 569.84375,
+            "left": 285,
+            "right": 934.078125,
+            "top": 1224.34375,
+            "bottom": 1794.1875,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 1089.03125,
+          "y": 2110.59375,
+          "width": 144,
+          "height": 144,
+          "left": 1089.03125,
+          "right": 1233.03125,
+          "top": 2110.59375,
+          "bottom": 2254.59375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 1909.578125,
+          "width": 1087,
+          "height": 546.03125,
+          "left": 285,
+          "right": 1372,
+          "top": 1909.578125,
+          "bottom": 2455.609375,
+          "client": 1087,
+          "scroll": 1087,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 1913.578125,
+            "width": 649.078125,
+            "height": 538.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 1913.578125,
+            "bottom": 2451.609375,
+            "title": "Enlarge Selected public image/resource footprints"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 1089.03125,
+          "y": 2759.015625,
+          "width": 144,
+          "height": 144,
+          "left": 1089.03125,
+          "right": 1233.03125,
+          "top": 2759.015625,
+          "bottom": 2903.015625,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 2567,
+          "width": 1087,
+          "height": 528.03125,
+          "left": 285,
+          "right": 1372,
+          "top": 2567,
+          "bottom": 3095.03125,
+          "client": 1087,
+          "scroll": 1087,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 2571,
+            "width": 649.078125,
+            "height": 520.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 2571,
+            "bottom": 3091.03125,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 1089.03125,
+          "y": 3384.4375,
+          "width": 144,
+          "height": 144,
+          "left": 1089.03125,
+          "right": 1233.03125,
+          "top": 3384.4375,
+          "bottom": 3528.4375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 3206.421875,
+          "width": 1087,
+          "height": 500.03125,
+          "left": 285,
+          "right": 1372,
+          "top": 3206.421875,
+          "bottom": 3706.453125,
+          "client": 1087,
+          "scroll": 1087,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 3210.421875,
+            "width": 649.078125,
+            "height": 492.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 3210.421875,
+            "bottom": 3702.453125,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "expanded": [
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 855.5,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 855.5,
+          "bottom": 899.5,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 262.453125,
+          "width": 1087,
+          "height": 593.046875,
+          "left": 285,
+          "right": 1372,
+          "top": 262.453125,
+          "bottom": 855.5,
+          "client": 1087,
+          "scroll": 3309,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 266.453125,
+            "width": 649.078125,
+            "height": 517.5,
+            "left": 285,
+            "right": 934.078125,
+            "top": 266.453125,
+            "bottom": 783.953125,
+            "title": "Open Neurotech search terms"
+          },
+          {
+            "x": 950.078125,
+            "y": 266.453125,
+            "width": 649.078125,
+            "height": 562.046875,
+            "left": 950.078125,
+            "right": 1599.15625,
+            "top": 266.453125,
+            "bottom": 828.5,
+            "title": "Idea vintage9.0 years (2023)years \u00b7 linear scale03691220002026Publication year"
+          },
+          {
+            "x": 1615.15625,
+            "y": 266.453125,
+            "width": 649.078125,
+            "height": 562.046875,
+            "left": 1615.15625,
+            "right": 2264.234375,
+            "top": 266.453125,
+            "bottom": 828.5,
+            "title": "Latency compressionMedian ~3.3 years, preclinical demonstration to first-in-human (4 modalities)years \u00b7 linear scale0246819922021Pivotal preclinical demonstration year"
+          },
+          {
+            "x": 2280.234375,
+            "y": 266.453125,
+            "width": 649.078125,
+            "height": 537.296875,
+            "left": 2280.234375,
+            "right": 2929.3125,
+            "top": 266.453125,
+            "bottom": 803.75,
+            "title": "Open Neuralink \u00b7 brand context"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 837.1875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 837.1875,
+          "bottom": 881.1875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 236.34375,
+          "width": 1087,
+          "height": 600.84375,
+          "left": 285,
+          "right": 1372,
+          "top": 236.34375,
+          "bottom": 837.1875,
+          "client": 1087,
+          "scroll": 1979,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 240.34375,
+            "width": 649.078125,
+            "height": 569.84375,
+            "left": 285,
+            "right": 934.078125,
+            "top": 240.34375,
+            "bottom": 810.1875,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          },
+          {
+            "x": 950.078125,
+            "y": 240.34375,
+            "width": 649.078125,
+            "height": 520.03125,
+            "left": 950.078125,
+            "right": 1599.15625,
+            "top": 240.34375,
+            "bottom": 760.375,
+            "title": "Enlarge Selected chronic intracortical recipients"
+          },
+          {
+            "x": 1615.15625,
+            "y": 240.34375,
+            "width": 649.078125,
+            "height": 562.046875,
+            "left": 1615.15625,
+            "right": 2264.234375,
+            "top": 240.34375,
+            "bottom": 802.390625,
+            "title": "Simultaneously recorded neurons1957 \u2192 2014 \u00b7 selected recording frontier, not a current maximum or a human-only BCI series.neurons \u00b7 log scale1101001K10K19572014Year \u00b7 historical frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 883.875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 883.875,
+          "bottom": 927.875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 251.578125,
+          "width": 1087,
+          "height": 632.296875,
+          "left": 285,
+          "right": 1372,
+          "top": 251.578125,
+          "bottom": 883.875,
+          "client": 1087,
+          "scroll": 3974,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 538.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 255.578125,
+            "bottom": 793.609375,
+            "title": "Enlarge Selected public image/resource footprints"
+          },
+          {
+            "x": 950.078125,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 601.296875,
+            "left": 950.078125,
+            "right": 1599.15625,
+            "top": 255.578125,
+            "bottom": 856.875,
+            "title": "Enlarge Selected tissue-volume checkpoints"
+          },
+          {
+            "x": 1615.15625,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 564.875,
+            "left": 1615.15625,
+            "right": 2264.234375,
+            "top": 255.578125,
+            "bottom": 820.453125,
+            "title": "Enlarge Selected published connectomes \u2014 neuron counts"
+          },
+          {
+            "x": 2280.234375,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 564.875,
+            "left": 2280.234375,
+            "right": 2929.3125,
+            "top": 255.578125,
+            "bottom": 820.453125,
+            "title": "Enlarge Selected published maps \u2014 synapse counts"
+          },
+          {
+            "x": 2945.3125,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 538.03125,
+            "left": 2945.3125,
+            "right": 3594.390625,
+            "top": 255.578125,
+            "bottom": 793.609375,
+            "title": "Enlarge Selected EM acquisition rates"
+          },
+          {
+            "x": 3610.390625,
+            "y": 255.578125,
+            "width": 649.078125,
+            "height": 518.453125,
+            "left": 3610.390625,
+            "right": 4259.46875,
+            "top": 255.578125,
+            "bottom": 774.03125,
+            "title": "Enlarge Selected structure\u2013function matches"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 812.03125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 812.03125,
+          "bottom": 856.03125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 261,
+          "width": 1087,
+          "height": 551.03125,
+          "left": 285,
+          "right": 1372,
+          "top": 261,
+          "bottom": 812.03125,
+          "client": 1087,
+          "scroll": 2644,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 265,
+            "width": 649.078125,
+            "height": 520.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 265,
+            "bottom": 785.03125,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          },
+          {
+            "x": 950.078125,
+            "y": 265,
+            "width": 649.078125,
+            "height": 468.53125,
+            "left": 950.078125,
+            "right": 1599.15625,
+            "top": 265,
+            "bottom": 733.53125,
+            "title": "Enlarge PATHFINDER v1: axon tracing benchmark"
+          },
+          {
+            "x": 1615.15625,
+            "y": 265,
+            "width": 649.078125,
+            "height": 494.03125,
+            "left": 1615.15625,
+            "right": 2264.234375,
+            "top": 265,
+            "bottom": 759.03125,
+            "title": "Enlarge Human and mouse cortex: split\u2013merge error trade-offs"
+          },
+          {
+            "x": 2280.234375,
+            "y": 265,
+            "width": 649.078125,
+            "height": 520.03125,
+            "left": 2280.234375,
+            "right": 2929.3125,
+            "top": 265,
+            "bottom": 785.03125,
+            "title": "Enlarge Reported project proofreading effort"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 798.453125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 798.453125,
+          "bottom": 842.453125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 275.421875,
+          "width": 1087,
+          "height": 523.03125,
+          "left": 285,
+          "right": 1372,
+          "top": 275.421875,
+          "bottom": 798.453125,
+          "client": 1087,
+          "scroll": 1979,
+          "leftEdge": 285,
+          "rightEdge": 1372,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 279.421875,
+            "width": 649.078125,
+            "height": 492.03125,
+            "left": 285,
+            "right": 934.078125,
+            "top": 279.421875,
+            "bottom": 771.453125,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          },
+          {
+            "x": 950.078125,
+            "y": 279.421875,
+            "width": 649.078125,
+            "height": 468.53125,
+            "left": 950.078125,
+            "right": 1599.15625,
+            "top": 279.421875,
+            "bottom": 747.953125,
+            "title": "Enlarge FlyVis: correct contrast preference"
+          },
+          {
+            "x": 1615.15625,
+            "y": 279.421875,
+            "width": 649.078125,
+            "height": 489.953125,
+            "left": 1615.15625,
+            "right": 2264.234375,
+            "top": 279.421875,
+            "bottom": 769.375,
+            "title": "Enlarge Selected application events"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "fonts": [
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "3",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "9",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "12",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2000",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2026",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "4",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "8",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1992",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2021",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11.00127314814815,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "15",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "neurons \u00b7 log scale",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "100",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1K",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10K",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1957",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2014",
+        "px": 10.99977103338068,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.1",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0000001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2011",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e8",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e9",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-11",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-10",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-9",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00000001",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2015",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "23.55",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "47.1",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.65",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "94.2",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.95778",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "3.91555",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.87333",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "7.8311",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.2207",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.8064",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.3922",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "12.5",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.5",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20.2",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "40.4",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "60.6",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "80.8",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.13",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "21.45",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "41.77",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "75",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.001011029411764,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.001074218749999,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.001074218749999,
+        "inside": true
+      }
+    ],
+    "bounds": {
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425
+    }
+  },
+  {
+    "width": 1024,
+    "defaults": [
+      {
+        "state": "preview",
+        "more": {
+          "x": 754.984375,
+          "y": 786.828125,
+          "width": 144,
+          "height": 144,
+          "left": 754.984375,
+          "right": 898.984375,
+          "top": 786.828125,
+          "bottom": 930.828125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 596.109375,
+          "width": 671,
+          "height": 525.4375,
+          "left": 285,
+          "right": 956,
+          "top": 596.109375,
+          "bottom": 1121.546875,
+          "client": 671,
+          "scroll": 671,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 600.109375,
+            "width": 396.96875,
+            "height": 517.4375,
+            "left": 285,
+            "right": 681.96875,
+            "top": 600.109375,
+            "bottom": 1117.546875,
+            "title": "Open Neurotech search terms"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 754.984375,
+          "y": 1491.9375,
+          "width": 144,
+          "height": 144,
+          "left": 754.984375,
+          "right": 898.984375,
+          "top": 1491.9375,
+          "bottom": 1635.9375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 1232.9375,
+          "width": 671,
+          "height": 662.015625,
+          "left": 285,
+          "right": 956,
+          "top": 1232.9375,
+          "bottom": 1894.953125,
+          "client": 671,
+          "scroll": 671,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 1236.9375,
+            "width": 396.96875,
+            "height": 654.015625,
+            "left": 285,
+            "right": 681.96875,
+            "top": 1236.9375,
+            "bottom": 1890.953125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 754.984375,
+          "y": 2236.28125,
+          "width": 144,
+          "height": 144,
+          "left": 754.984375,
+          "right": 898.984375,
+          "top": 2236.28125,
+          "bottom": 2380.28125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 2006.34375,
+          "width": 671,
+          "height": 603.875,
+          "left": 285,
+          "right": 956,
+          "top": 2006.34375,
+          "bottom": 2610.21875,
+          "client": 671,
+          "scroll": 671,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 2010.34375,
+            "width": 396.96875,
+            "height": 595.875,
+            "left": 285,
+            "right": 681.96875,
+            "top": 2010.34375,
+            "bottom": 2606.21875,
+            "title": "Enlarge Selected public image/resource footprints"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 754.984375,
+          "y": 2922.796875,
+          "width": 144,
+          "height": 144,
+          "left": 754.984375,
+          "right": 898.984375,
+          "top": 2922.796875,
+          "bottom": 3066.796875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 2721.609375,
+          "width": 671,
+          "height": 546.390625,
+          "left": 285,
+          "right": 956,
+          "top": 2721.609375,
+          "bottom": 3268,
+          "client": 671,
+          "scroll": 671,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 2725.609375,
+            "width": 396.96875,
+            "height": 538.390625,
+            "left": 285,
+            "right": 681.96875,
+            "top": 2725.609375,
+            "bottom": 3264,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 754.984375,
+          "y": 3557.375,
+          "width": 144,
+          "height": 144,
+          "left": 754.984375,
+          "right": 898.984375,
+          "top": 3557.375,
+          "bottom": 3701.375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 285,
+          "y": 3379.390625,
+          "width": 671,
+          "height": 499.96875,
+          "left": 285,
+          "right": 956,
+          "top": 3379.390625,
+          "bottom": 3879.359375,
+          "client": 671,
+          "scroll": 671,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 3383.390625,
+            "width": 396.96875,
+            "height": 491.96875,
+            "left": 285,
+            "right": 681.96875,
+            "top": 3383.390625,
+            "bottom": 3875.359375,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "expanded": [
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 850.140625,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 850.140625,
+          "bottom": 894.140625,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 262.109375,
+          "width": 671,
+          "height": 588.03125,
+          "left": 285,
+          "right": 956,
+          "top": 262.109375,
+          "bottom": 850.140625,
+          "client": 671,
+          "scroll": 2049,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 266.109375,
+            "width": 396.96875,
+            "height": 517.4375,
+            "left": 285,
+            "right": 681.96875,
+            "top": 266.109375,
+            "bottom": 783.546875,
+            "title": "Open Neurotech search terms"
+          },
+          {
+            "x": 697.96875,
+            "y": 266.109375,
+            "width": 396.96875,
+            "height": 407.984375,
+            "left": 697.96875,
+            "right": 1094.9375,
+            "top": 266.109375,
+            "bottom": 674.09375,
+            "title": "Idea vintage9.0 years (2023)years \u00b7 linear scale03691220002026Publication year"
+          },
+          {
+            "x": 1110.9375,
+            "y": 266.109375,
+            "width": 396.96875,
+            "height": 425.90625,
+            "left": 1110.9375,
+            "right": 1507.90625,
+            "top": 266.109375,
+            "bottom": 692.015625,
+            "title": "Latency compressionMedian ~3.3 years, preclinical demonstration to first-in-human (4 modalities)years \u00b7 linear scale0246819922021Pivotal preclinical demonstration year"
+          },
+          {
+            "x": 1523.90625,
+            "y": 266.109375,
+            "width": 396.96875,
+            "height": 557.03125,
+            "left": 1523.90625,
+            "right": 1920.875,
+            "top": 266.109375,
+            "bottom": 823.140625,
+            "title": "Open Neuralink \u00b7 brand context"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 878.953125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 878.953125,
+          "bottom": 922.953125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 193.9375,
+          "width": 671,
+          "height": 685.015625,
+          "left": 285,
+          "right": 956,
+          "top": 193.9375,
+          "bottom": 878.953125,
+          "client": 671,
+          "scroll": 1223,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 197.9375,
+            "width": 396.96875,
+            "height": 654.015625,
+            "left": 285,
+            "right": 681.96875,
+            "top": 197.9375,
+            "bottom": 851.953125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          },
+          {
+            "x": 697.96875,
+            "y": 197.9375,
+            "width": 396.96875,
+            "height": 553.96875,
+            "left": 697.96875,
+            "right": 1094.9375,
+            "top": 197.9375,
+            "bottom": 751.90625,
+            "title": "Enlarge Selected chronic intracortical recipients"
+          },
+          {
+            "x": 1110.9375,
+            "y": 197.9375,
+            "width": 396.96875,
+            "height": 425.90625,
+            "left": 1110.9375,
+            "right": 1507.90625,
+            "top": 197.9375,
+            "bottom": 623.84375,
+            "title": "Simultaneously recorded neurons1957 \u2192 2014 \u00b7 selected recording frontier, not a current maximum or a human-only BCI series.neurons \u00b7 log scale1101001K10K19572014Year \u00b7 historical frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 928.421875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 928.421875,
+          "bottom": 972.421875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 223.34375,
+          "width": 671,
+          "height": 705.078125,
+          "left": 285,
+          "right": 956,
+          "top": 223.34375,
+          "bottom": 928.421875,
+          "client": 671,
+          "scroll": 2462,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 595.875,
+            "left": 285,
+            "right": 681.96875,
+            "top": 227.34375,
+            "bottom": 823.21875,
+            "title": "Enlarge Selected public image/resource footprints"
+          },
+          {
+            "x": 697.96875,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 674.078125,
+            "left": 697.96875,
+            "right": 1094.9375,
+            "top": 227.34375,
+            "bottom": 901.421875,
+            "title": "Enlarge Selected tissue-volume checkpoints"
+          },
+          {
+            "x": 1110.9375,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 623.5625,
+            "left": 1110.9375,
+            "right": 1507.90625,
+            "top": 227.34375,
+            "bottom": 850.90625,
+            "title": "Enlarge Selected published connectomes \u2014 neuron counts"
+          },
+          {
+            "x": 1523.90625,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 586.71875,
+            "left": 1523.90625,
+            "right": 1920.875,
+            "top": 227.34375,
+            "bottom": 814.0625,
+            "title": "Enlarge Selected published maps \u2014 synapse counts"
+          },
+          {
+            "x": 1936.875,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 555.96875,
+            "left": 1936.875,
+            "right": 2333.84375,
+            "top": 227.34375,
+            "bottom": 783.3125,
+            "title": "Enlarge Selected EM acquisition rates"
+          },
+          {
+            "x": 2349.84375,
+            "y": 227.34375,
+            "width": 396.96875,
+            "height": 555.234375,
+            "left": 2349.84375,
+            "right": 2746.8125,
+            "top": 227.34375,
+            "bottom": 782.578125,
+            "title": "Enlarge Selected structure\u2013function matches"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 821,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 821,
+          "bottom": 865,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 251.609375,
+          "width": 671,
+          "height": 569.390625,
+          "left": 285,
+          "right": 956,
+          "top": 251.609375,
+          "bottom": 821,
+          "client": 671,
+          "scroll": 1636,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 255.609375,
+            "width": 396.96875,
+            "height": 538.390625,
+            "left": 285,
+            "right": 681.96875,
+            "top": 255.609375,
+            "bottom": 794,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          },
+          {
+            "x": 697.96875,
+            "y": 255.609375,
+            "width": 396.96875,
+            "height": 486.890625,
+            "left": 697.96875,
+            "right": 1094.9375,
+            "top": 255.609375,
+            "bottom": 742.5,
+            "title": "Enlarge PATHFINDER v1: axon tracing benchmark"
+          },
+          {
+            "x": 1110.9375,
+            "y": 255.609375,
+            "width": 396.96875,
+            "height": 536.296875,
+            "left": 1110.9375,
+            "right": 1507.90625,
+            "top": 255.609375,
+            "bottom": 791.90625,
+            "title": "Enlarge Human and mouse cortex: split\u2013merge error trade-offs"
+          },
+          {
+            "x": 1523.90625,
+            "y": 255.609375,
+            "width": 396.96875,
+            "height": 537.96875,
+            "left": 1523.90625,
+            "right": 1920.875,
+            "top": 255.609375,
+            "bottom": 793.578125,
+            "title": "Enlarge Reported project proofreading effort"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 285,
+          "y": 830.546875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 285,
+          "right": 420.9375,
+          "top": 830.546875,
+          "bottom": 874.546875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 285,
+          "y": 275.390625,
+          "width": 671,
+          "height": 555.15625,
+          "left": 285,
+          "right": 956,
+          "top": 275.390625,
+          "bottom": 830.546875,
+          "client": 671,
+          "scroll": 1223,
+          "leftEdge": 285,
+          "rightEdge": 956,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 285,
+            "y": 279.390625,
+            "width": 396.96875,
+            "height": 491.96875,
+            "left": 285,
+            "right": 681.96875,
+            "top": 279.390625,
+            "bottom": 771.359375,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          },
+          {
+            "x": 697.96875,
+            "y": 279.390625,
+            "width": 396.96875,
+            "height": 486.890625,
+            "left": 697.96875,
+            "right": 1094.9375,
+            "top": 279.390625,
+            "bottom": 766.28125,
+            "title": "Enlarge FlyVis: correct contrast preference"
+          },
+          {
+            "x": 1110.9375,
+            "y": 279.390625,
+            "width": 396.96875,
+            "height": 524.15625,
+            "left": 1110.9375,
+            "right": 1507.90625,
+            "top": 279.390625,
+            "bottom": 803.546875,
+            "title": "Enlarge Selected application events"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "fonts": [
+      {
+        "family": "google",
+        "label": "0",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "3",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "9",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "12",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2000",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2026",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "4",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "8",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1992",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2021",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "0",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 10.998726851851853,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "15",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 10.99903441011236,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "neurons \u00b7 log scale",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "100",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1K",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10K",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1957",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2014",
+        "px": 10.999812478693181,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.1",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0000001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2011",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e8",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e9",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-11",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-10",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-9",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00000001",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2015",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "23.55",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "47.1",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.65",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "94.2",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.95778",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "3.91555",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.87333",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "7.8311",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.2207",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.8064",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.3922",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "12.5",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.5",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20.2",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "40.4",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "60.6",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "80.8",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.13",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "21.45",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "41.77",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "75",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 10.998988970588234,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 10.99892578125,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 10.99892578125,
+        "inside": true
+      }
+    ],
+    "bounds": {
+      "width": 1024,
+      "client": 1009,
+      "scroll": 1009
+    }
+  },
+  {
+    "width": 768,
+    "defaults": [
+      {
+        "state": "preview",
+        "more": {
+          "x": 508.546875,
+          "y": 852.46875,
+          "width": 144,
+          "height": 144,
+          "left": 508.546875,
+          "right": 652.546875,
+          "top": 852.46875,
+          "bottom": 996.46875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 45,
+          "y": 661.703125,
+          "width": 663,
+          "height": 525.546875,
+          "left": 45,
+          "right": 708,
+          "top": 661.703125,
+          "bottom": 1187.25,
+          "client": 663,
+          "scroll": 663,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 665.703125,
+            "width": 392.109375,
+            "height": 517.546875,
+            "left": 45,
+            "right": 437.109375,
+            "top": 665.703125,
+            "bottom": 1183.25,
+            "title": "Open Neurotech search terms"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 508.546875,
+          "y": 1557.703125,
+          "width": 144,
+          "height": 144,
+          "left": 508.546875,
+          "right": 652.546875,
+          "top": 1557.703125,
+          "bottom": 1701.703125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 45,
+          "y": 1298.640625,
+          "width": 663,
+          "height": 662.140625,
+          "left": 45,
+          "right": 708,
+          "top": 1298.640625,
+          "bottom": 1960.78125,
+          "client": 663,
+          "scroll": 663,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 1302.640625,
+            "width": 392.109375,
+            "height": 654.140625,
+            "left": 45,
+            "right": 437.109375,
+            "top": 1302.640625,
+            "bottom": 1956.78125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 508.546875,
+          "y": 2302.171875,
+          "width": 144,
+          "height": 144,
+          "left": 508.546875,
+          "right": 652.546875,
+          "top": 2302.171875,
+          "bottom": 2446.171875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 45,
+          "y": 2072.171875,
+          "width": 663,
+          "height": 604,
+          "left": 45,
+          "right": 708,
+          "top": 2072.171875,
+          "bottom": 2676.171875,
+          "client": 663,
+          "scroll": 663,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 2076.171875,
+            "width": 392.109375,
+            "height": 596,
+            "left": 45,
+            "right": 437.109375,
+            "top": 2076.171875,
+            "bottom": 2672.171875,
+            "title": "Enlarge Selected public image/resource footprints"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 508.546875,
+          "y": 2988.8125,
+          "width": 144,
+          "height": 144,
+          "left": 508.546875,
+          "right": 652.546875,
+          "top": 2988.8125,
+          "bottom": 3132.8125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 45,
+          "y": 2787.5625,
+          "width": 663,
+          "height": 546.515625,
+          "left": 45,
+          "right": 708,
+          "top": 2787.5625,
+          "bottom": 3334.078125,
+          "client": 663,
+          "scroll": 663,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 2791.5625,
+            "width": 392.109375,
+            "height": 538.515625,
+            "left": 45,
+            "right": 437.109375,
+            "top": 2791.5625,
+            "bottom": 3330.078125,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 508.546875,
+          "y": 3623.515625,
+          "width": 144,
+          "height": 144,
+          "left": 508.546875,
+          "right": 652.546875,
+          "top": 3623.515625,
+          "bottom": 3767.515625,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 45,
+          "y": 3445.46875,
+          "width": 663,
+          "height": 500.09375,
+          "left": 45,
+          "right": 708,
+          "top": 3445.46875,
+          "bottom": 3945.5625,
+          "client": 663,
+          "scroll": 663,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 3449.46875,
+            "width": 392.109375,
+            "height": 492.09375,
+            "left": 45,
+            "right": 437.109375,
+            "top": 3449.46875,
+            "bottom": 3941.5625,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "expanded": [
+      {
+        "state": "full",
+        "more": {
+          "x": 45,
+          "y": 850.84375,
+          "width": 135.9375,
+          "height": 44,
+          "left": 45,
+          "right": 180.9375,
+          "top": 850.84375,
+          "bottom": 894.84375,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 45,
+          "y": 262.703125,
+          "width": 663,
+          "height": 588.140625,
+          "left": 45,
+          "right": 708,
+          "top": 262.703125,
+          "bottom": 850.84375,
+          "client": 663,
+          "scroll": 2025,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 266.703125,
+            "width": 392.109375,
+            "height": 517.546875,
+            "left": 45,
+            "right": 437.109375,
+            "top": 266.703125,
+            "bottom": 784.25,
+            "title": "Open Neurotech search terms"
+          },
+          {
+            "x": 453.109375,
+            "y": 266.703125,
+            "width": 392.109375,
+            "height": 385.828125,
+            "left": 453.109375,
+            "right": 845.21875,
+            "top": 266.703125,
+            "bottom": 652.53125,
+            "title": "Idea vintage9.0 years (2023)years \u00b7 linear scale03691220002026Publication year"
+          },
+          {
+            "x": 861.21875,
+            "y": 266.703125,
+            "width": 392.109375,
+            "height": 403.75,
+            "left": 861.21875,
+            "right": 1253.328125,
+            "top": 266.703125,
+            "bottom": 670.453125,
+            "title": "Latency compressionMedian ~3.3 years, preclinical demonstration to first-in-human (4 modalities)years \u00b7 linear scale0246819922021Pivotal preclinical demonstration year"
+          },
+          {
+            "x": 1269.328125,
+            "y": 266.703125,
+            "width": 392.109375,
+            "height": 557.140625,
+            "left": 1269.328125,
+            "right": 1661.4375,
+            "top": 266.703125,
+            "bottom": 823.84375,
+            "title": "Open Neuralink \u00b7 brand context"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 45,
+          "y": 878.78125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 45,
+          "right": 180.9375,
+          "top": 878.78125,
+          "bottom": 922.78125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 45,
+          "y": 193.640625,
+          "width": 663,
+          "height": 685.140625,
+          "left": 45,
+          "right": 708,
+          "top": 193.640625,
+          "bottom": 878.78125,
+          "client": 663,
+          "scroll": 1208,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 197.640625,
+            "width": 392.109375,
+            "height": 654.140625,
+            "left": 45,
+            "right": 437.109375,
+            "top": 197.640625,
+            "bottom": 851.78125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          },
+          {
+            "x": 453.109375,
+            "y": 197.640625,
+            "width": 392.109375,
+            "height": 554.09375,
+            "left": 453.109375,
+            "right": 845.21875,
+            "top": 197.640625,
+            "bottom": 751.734375,
+            "title": "Enlarge Selected chronic intracortical recipients"
+          },
+          {
+            "x": 861.21875,
+            "y": 197.640625,
+            "width": 392.109375,
+            "height": 403.75,
+            "left": 861.21875,
+            "right": 1253.328125,
+            "top": 197.640625,
+            "bottom": 601.390625,
+            "title": "Simultaneously recorded neurons1957 \u2192 2014 \u00b7 selected recording frontier, not a current maximum or a human-only BCI series.neurons \u00b7 log scale1101001K10K19572014Year \u00b7 historical frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 45,
+          "y": 928.375,
+          "width": 135.9375,
+          "height": 44,
+          "left": 45,
+          "right": 180.9375,
+          "top": 928.375,
+          "bottom": 972.375,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 45,
+          "y": 223.171875,
+          "width": 663,
+          "height": 705.203125,
+          "left": 45,
+          "right": 708,
+          "top": 223.171875,
+          "bottom": 928.375,
+          "client": 663,
+          "scroll": 2433,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 596,
+            "left": 45,
+            "right": 437.109375,
+            "top": 227.171875,
+            "bottom": 823.171875,
+            "title": "Enlarge Selected public image/resource footprints"
+          },
+          {
+            "x": 453.109375,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 674.203125,
+            "left": 453.109375,
+            "right": 845.21875,
+            "top": 227.171875,
+            "bottom": 901.375,
+            "title": "Enlarge Selected tissue-volume checkpoints"
+          },
+          {
+            "x": 861.21875,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 623.6875,
+            "left": 861.21875,
+            "right": 1253.328125,
+            "top": 227.171875,
+            "bottom": 850.859375,
+            "title": "Enlarge Selected published connectomes \u2014 neuron counts"
+          },
+          {
+            "x": 1269.328125,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 586.84375,
+            "left": 1269.328125,
+            "right": 1661.4375,
+            "top": 227.171875,
+            "bottom": 814.015625,
+            "title": "Enlarge Selected published maps \u2014 synapse counts"
+          },
+          {
+            "x": 1677.4375,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 556.09375,
+            "left": 1677.4375,
+            "right": 2069.546875,
+            "top": 227.171875,
+            "bottom": 783.265625,
+            "title": "Enlarge Selected EM acquisition rates"
+          },
+          {
+            "x": 2085.546875,
+            "y": 227.171875,
+            "width": 392.109375,
+            "height": 555.359375,
+            "left": 2085.546875,
+            "right": 2477.65625,
+            "top": 227.171875,
+            "bottom": 782.53125,
+            "title": "Enlarge Selected structure\u2013function matches"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 45,
+          "y": 821.078125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 45,
+          "right": 180.9375,
+          "top": 821.078125,
+          "bottom": 865.078125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 45,
+          "y": 251.5625,
+          "width": 663,
+          "height": 569.515625,
+          "left": 45,
+          "right": 708,
+          "top": 251.5625,
+          "bottom": 821.078125,
+          "client": 663,
+          "scroll": 1616,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 255.5625,
+            "width": 392.109375,
+            "height": 538.515625,
+            "left": 45,
+            "right": 437.109375,
+            "top": 255.5625,
+            "bottom": 794.078125,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          },
+          {
+            "x": 453.109375,
+            "y": 255.5625,
+            "width": 392.109375,
+            "height": 487.015625,
+            "left": 453.109375,
+            "right": 845.21875,
+            "top": 255.5625,
+            "bottom": 742.578125,
+            "title": "Enlarge PATHFINDER v1: axon tracing benchmark"
+          },
+          {
+            "x": 861.21875,
+            "y": 255.5625,
+            "width": 392.109375,
+            "height": 536.421875,
+            "left": 861.21875,
+            "right": 1253.328125,
+            "top": 255.5625,
+            "bottom": 791.984375,
+            "title": "Enlarge Human and mouse cortex: split\u2013merge error trade-offs"
+          },
+          {
+            "x": 1269.328125,
+            "y": 255.5625,
+            "width": 392.109375,
+            "height": 538.09375,
+            "left": 1269.328125,
+            "right": 1661.4375,
+            "top": 255.5625,
+            "bottom": 793.65625,
+            "title": "Enlarge Reported project proofreading effort"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 45,
+          "y": 829.75,
+          "width": 135.9375,
+          "height": 44,
+          "left": 45,
+          "right": 180.9375,
+          "top": 829.75,
+          "bottom": 873.75,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 45,
+          "y": 274.46875,
+          "width": 663,
+          "height": 555.28125,
+          "left": 45,
+          "right": 708,
+          "top": 274.46875,
+          "bottom": 829.75,
+          "client": 663,
+          "scroll": 1208,
+          "leftEdge": 45,
+          "rightEdge": 708,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 45,
+            "y": 278.46875,
+            "width": 392.109375,
+            "height": 492.09375,
+            "left": 45,
+            "right": 437.109375,
+            "top": 278.46875,
+            "bottom": 770.5625,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          },
+          {
+            "x": 453.109375,
+            "y": 278.46875,
+            "width": 392.109375,
+            "height": 487.015625,
+            "left": 453.109375,
+            "right": 845.21875,
+            "top": 278.46875,
+            "bottom": 765.484375,
+            "title": "Enlarge FlyVis: correct contrast preference"
+          },
+          {
+            "x": 861.21875,
+            "y": 278.46875,
+            "width": 392.109375,
+            "height": 524.28125,
+            "left": 861.21875,
+            "right": 1253.328125,
+            "top": 278.46875,
+            "bottom": 802.75,
+            "title": "Enlarge Selected application events"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "fonts": [
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "3",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "9",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "12",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2000",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2026",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "4",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "8",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1992",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2021",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11.00318287037037,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "15",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11.002896769662922,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "neurons \u00b7 log scale",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "100",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1K",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10K",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1957",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2014",
+        "px": 10.999913664772729,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.1",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0000001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2011",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e8",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e9",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-11",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-10",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-9",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00000001",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2015",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "23.55",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "47.1",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.65",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "94.2",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.95778",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "3.91555",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.87333",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "7.8311",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.2207",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.8064",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.3922",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "12.5",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.5",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20.2",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "40.4",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "60.6",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "80.8",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.13",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "21.45",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "41.77",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "75",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11.003033088235293,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11.00322265625,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11.00322265625,
+        "inside": true
+      }
+    ],
+    "bounds": {
+      "width": 768,
+      "client": 753,
+      "scroll": 753
+    }
+  },
+  {
+    "width": 390,
+    "defaults": [
+      {
+        "state": "preview",
+        "more": {
+          "x": 119,
+          "y": 1318.21875,
+          "width": 112,
+          "height": 112,
+          "left": 119,
+          "right": 231,
+          "top": 1318.21875,
+          "bottom": 1430.21875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 765.15625,
+          "width": 324,
+          "height": 541.0625,
+          "left": 33,
+          "right": 357,
+          "top": 765.15625,
+          "bottom": 1306.21875,
+          "client": 324,
+          "scroll": 324,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 769.15625,
+            "width": 284,
+            "height": 533.0625,
+            "left": 33,
+            "right": 317,
+            "top": 769.15625,
+            "bottom": 1302.21875,
+            "title": "Open Neurotech search terms"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 119,
+          "y": 2296.078125,
+          "width": 112,
+          "height": 112,
+          "left": 119,
+          "right": 231,
+          "top": 2296.078125,
+          "bottom": 2408.078125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 1541.609375,
+          "width": 324,
+          "height": 742.46875,
+          "left": 33,
+          "right": 357,
+          "top": 1541.609375,
+          "bottom": 2284.078125,
+          "client": 324,
+          "scroll": 324,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 1545.609375,
+            "width": 284,
+            "height": 734.46875,
+            "left": 33,
+            "right": 317,
+            "top": 1545.609375,
+            "bottom": 2280.078125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 119,
+          "y": 3255.390625,
+          "width": 112,
+          "height": 112,
+          "left": 119,
+          "right": 231,
+          "top": 3255.390625,
+          "bottom": 3367.390625,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 2519.46875,
+          "width": 324,
+          "height": 723.921875,
+          "left": 33,
+          "right": 357,
+          "top": 2519.46875,
+          "bottom": 3243.390625,
+          "client": 324,
+          "scroll": 324,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 2523.46875,
+            "width": 284,
+            "height": 715.921875,
+            "left": 33,
+            "right": 317,
+            "top": 2523.46875,
+            "bottom": 3239.390625,
+            "title": "Enlarge Selected public image/resource footprints"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 119,
+          "y": 4070.796875,
+          "width": 112,
+          "height": 112,
+          "left": 119,
+          "right": 231,
+          "top": 4070.796875,
+          "bottom": 4182.796875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 3478.78125,
+          "width": 324,
+          "height": 580.015625,
+          "left": 33,
+          "right": 357,
+          "top": 3478.78125,
+          "bottom": 4058.796875,
+          "client": 324,
+          "scroll": 324,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 3482.78125,
+            "width": 284,
+            "height": 572.015625,
+            "left": 33,
+            "right": 317,
+            "top": 3482.78125,
+            "bottom": 4054.796875,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 119,
+          "y": 4832.609375,
+          "width": 112,
+          "height": 112,
+          "left": 119,
+          "right": 231,
+          "top": 4832.609375,
+          "bottom": 4944.609375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 4294.1875,
+          "width": 324,
+          "height": 526.421875,
+          "left": 33,
+          "right": 357,
+          "top": 4294.1875,
+          "bottom": 4820.609375,
+          "client": 324,
+          "scroll": 324,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 4298.1875,
+            "width": 284,
+            "height": 518.421875,
+            "left": 33,
+            "right": 317,
+            "top": 4298.1875,
+            "bottom": 4816.609375,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "expanded": [
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 481.21875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 481.21875,
+          "bottom": 525.21875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -83.84375,
+          "width": 324,
+          "height": 565.0625,
+          "left": 33,
+          "right": 357,
+          "top": -83.84375,
+          "bottom": 481.21875,
+          "client": 324,
+          "scroll": 1484,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -79.84375,
+            "width": 284,
+            "height": 533.0625,
+            "left": 33,
+            "right": 317,
+            "top": -79.84375,
+            "bottom": 453.21875,
+            "title": "Open Neurotech search terms"
+          },
+          {
+            "x": 333,
+            "y": -79.84375,
+            "width": 284,
+            "height": 345.421875,
+            "left": 333,
+            "right": 617,
+            "top": -79.84375,
+            "bottom": 265.578125,
+            "title": "Idea vintage9.0 years (2023)years \u00b7 linear scale03691220002026Publication year"
+          },
+          {
+            "x": 633,
+            "y": -79.84375,
+            "width": 284,
+            "height": 363.34375,
+            "left": 633,
+            "right": 917,
+            "top": -79.84375,
+            "bottom": 283.5,
+            "title": "Latency compressionMedian ~3.3 years, preclinical demonstration to first-in-human (4 modalities)years \u00b7 linear scale0246819922021Pivotal preclinical demonstration year"
+          },
+          {
+            "x": 933,
+            "y": -79.84375,
+            "width": 284,
+            "height": 549.0625,
+            "left": 933,
+            "right": 1217,
+            "top": -79.84375,
+            "bottom": 469.21875,
+            "title": "Open Neuralink \u00b7 brand context"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 465.078125,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 465.078125,
+          "bottom": 509.078125,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -285.390625,
+          "width": 324,
+          "height": 750.46875,
+          "left": 33,
+          "right": 357,
+          "top": -285.390625,
+          "bottom": 465.078125,
+          "client": 324,
+          "scroll": 884,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -281.390625,
+            "width": 284,
+            "height": 734.46875,
+            "left": 33,
+            "right": 317,
+            "top": -281.390625,
+            "bottom": 453.078125,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          },
+          {
+            "x": 333,
+            "y": -281.390625,
+            "width": 284,
+            "height": 584.109375,
+            "left": 333,
+            "right": 617,
+            "top": -281.390625,
+            "bottom": 302.71875,
+            "title": "Enlarge Selected chronic intracortical recipients"
+          },
+          {
+            "x": 633,
+            "y": -281.390625,
+            "width": 284,
+            "height": 363.34375,
+            "left": 633,
+            "right": 917,
+            "top": -281.390625,
+            "bottom": 81.953125,
+            "title": "Simultaneously recorded neurons1957 \u2192 2014 \u00b7 selected recording frontier, not a current maximum or a human-only BCI series.neurons \u00b7 log scale1101001K10K19572014Year \u00b7 historical frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 465.390625,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 465.390625,
+          "bottom": 509.390625,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -266.53125,
+          "width": 324,
+          "height": 731.921875,
+          "left": 33,
+          "right": 357,
+          "top": -266.53125,
+          "bottom": 465.390625,
+          "client": 324,
+          "scroll": 1784,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -262.53125,
+            "width": 284,
+            "height": 715.921875,
+            "left": 33,
+            "right": 317,
+            "top": -262.53125,
+            "bottom": 453.390625,
+            "title": "Enlarge Selected public image/resource footprints"
+          },
+          {
+            "x": 333,
+            "y": -262.53125,
+            "width": 284,
+            "height": 702.53125,
+            "left": 333,
+            "right": 617,
+            "top": -262.53125,
+            "bottom": 440,
+            "title": "Enlarge Selected tissue-volume checkpoints"
+          },
+          {
+            "x": 633,
+            "y": -262.53125,
+            "width": 284,
+            "height": 653.703125,
+            "left": 633,
+            "right": 917,
+            "top": -262.53125,
+            "bottom": 391.171875,
+            "title": "Enlarge Selected published connectomes \u2014 neuron counts"
+          },
+          {
+            "x": 933,
+            "y": -262.53125,
+            "width": 284,
+            "height": 635.28125,
+            "left": 933,
+            "right": 1217,
+            "top": -262.53125,
+            "bottom": 372.75,
+            "title": "Enlarge Selected published maps \u2014 synapse counts"
+          },
+          {
+            "x": 1233,
+            "y": -262.53125,
+            "width": 284,
+            "height": 587.90625,
+            "left": 1233,
+            "right": 1517,
+            "top": -262.53125,
+            "bottom": 325.375,
+            "title": "Enlarge Selected EM acquisition rates"
+          },
+          {
+            "x": 1533,
+            "y": -262.53125,
+            "width": 284,
+            "height": 547.265625,
+            "left": 1533,
+            "right": 1817,
+            "top": -262.53125,
+            "bottom": 284.734375,
+            "title": "Enlarge Selected structure\u2013function matches"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 464.796875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 464.796875,
+          "bottom": 508.796875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -123.21875,
+          "width": 324,
+          "height": 588.015625,
+          "left": 33,
+          "right": 357,
+          "top": -123.21875,
+          "bottom": 464.796875,
+          "client": 324,
+          "scroll": 1184,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -119.21875,
+            "width": 284,
+            "height": 572.015625,
+            "left": 33,
+            "right": 317,
+            "top": -119.21875,
+            "bottom": 452.796875,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          },
+          {
+            "x": 333,
+            "y": -119.21875,
+            "width": 284,
+            "height": 498.609375,
+            "left": 333,
+            "right": 617,
+            "top": -119.21875,
+            "bottom": 379.390625,
+            "title": "Enlarge PATHFINDER v1: axon tracing benchmark"
+          },
+          {
+            "x": 633,
+            "y": -119.21875,
+            "width": 284,
+            "height": 566.4375,
+            "left": 633,
+            "right": 917,
+            "top": -119.21875,
+            "bottom": 447.21875,
+            "title": "Enlarge Human and mouse cortex: split\u2013merge error trade-offs"
+          },
+          {
+            "x": 933,
+            "y": -119.21875,
+            "width": 284,
+            "height": 530,
+            "left": 933,
+            "right": 1217,
+            "top": -119.21875,
+            "bottom": 410.78125,
+            "title": "Enlarge Reported project proofreading effort"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 464.609375,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 464.609375,
+          "bottom": 508.609375,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -69.8125,
+          "width": 324,
+          "height": 534.421875,
+          "left": 33,
+          "right": 357,
+          "top": -69.8125,
+          "bottom": 464.609375,
+          "client": 324,
+          "scroll": 884,
+          "leftEdge": 33,
+          "rightEdge": 357,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -65.8125,
+            "width": 284,
+            "height": 518.421875,
+            "left": 33,
+            "right": 317,
+            "top": -65.8125,
+            "bottom": 452.609375,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          },
+          {
+            "x": 333,
+            "y": -65.8125,
+            "width": 284,
+            "height": 478.921875,
+            "left": 333,
+            "right": 617,
+            "top": -65.8125,
+            "bottom": 413.109375,
+            "title": "Enlarge FlyVis: correct contrast preference"
+          },
+          {
+            "x": 633,
+            "y": -65.8125,
+            "width": 284,
+            "height": 516.1875,
+            "left": 633,
+            "right": 917,
+            "top": -65.8125,
+            "bottom": 450.375,
+            "title": "Enlarge Selected application events"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "fonts": [
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "3",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "9",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "12",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2000",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2026",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "4",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "8",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1992",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2021",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "15",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "neurons \u00b7 log scale",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "100",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1K",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10K",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1957",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2014",
+        "px": 10.999125,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2011",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e8",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e9",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-11",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-9",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2015",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "23.55",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "47.1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.65",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "94.2",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.95778",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "3.91555",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.87333",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "7.8311",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.2207",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.8064",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.3922",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "12.5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20.2",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "40.4",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "60.6",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "80.8",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.13",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "21.45",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "41.77",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "75",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      }
+    ],
+    "bounds": {
+      "width": 390,
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "width": 320,
+    "defaults": [
+      {
+        "state": "preview",
+        "more": {
+          "x": 84,
+          "y": 1431.3125,
+          "width": 112,
+          "height": 112,
+          "left": 84,
+          "right": 196,
+          "top": 1431.3125,
+          "bottom": 1543.3125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 837.9375,
+          "width": 254,
+          "height": 581.375,
+          "left": 33,
+          "right": 287,
+          "top": 837.9375,
+          "bottom": 1419.3125,
+          "client": 254,
+          "scroll": 254,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 841.9375,
+            "width": 214,
+            "height": 573.375,
+            "left": 33,
+            "right": 247,
+            "top": 841.9375,
+            "bottom": 1415.3125,
+            "title": "Open Neurotech search terms"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 84,
+          "y": 2517.21875,
+          "width": 112,
+          "height": 112,
+          "left": 84,
+          "right": 196,
+          "top": 2517.21875,
+          "bottom": 2629.21875,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 1661.078125,
+          "width": 254,
+          "height": 844.140625,
+          "left": 33,
+          "right": 287,
+          "top": 1661.078125,
+          "bottom": 2505.21875,
+          "client": 254,
+          "scroll": 254,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 1665.078125,
+            "width": 214,
+            "height": 836.140625,
+            "left": 33,
+            "right": 247,
+            "top": 1665.078125,
+            "bottom": 2501.21875,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 84,
+          "y": 3494.53125,
+          "width": 112,
+          "height": 112,
+          "left": 84,
+          "right": 196,
+          "top": 3494.53125,
+          "bottom": 3606.53125,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 2740.609375,
+          "width": 254,
+          "height": 741.921875,
+          "left": 33,
+          "right": 287,
+          "top": 2740.609375,
+          "bottom": 3482.53125,
+          "client": 254,
+          "scroll": 254,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 2744.609375,
+            "width": 214,
+            "height": 733.921875,
+            "left": 33,
+            "right": 247,
+            "top": 2744.609375,
+            "bottom": 3478.53125,
+            "title": "Enlarge Selected public image/resource footprints"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 84,
+          "y": 4362.359375,
+          "width": 112,
+          "height": 112,
+          "left": 84,
+          "right": 196,
+          "top": 4362.359375,
+          "bottom": 4474.359375,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 3717.921875,
+          "width": 254,
+          "height": 632.4375,
+          "left": 33,
+          "right": 287,
+          "top": 3717.921875,
+          "bottom": 4350.359375,
+          "client": 254,
+          "scroll": 254,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 3721.921875,
+            "width": 214,
+            "height": 624.4375,
+            "left": 33,
+            "right": 247,
+            "top": 3721.921875,
+            "bottom": 4346.359375,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "preview",
+        "more": {
+          "x": 84,
+          "y": 5165.765625,
+          "width": 112,
+          "height": 112,
+          "left": 84,
+          "right": 196,
+          "top": 5165.765625,
+          "bottom": 5277.765625,
+          "text": "show more charts",
+          "radius": 50
+        },
+        "rail": {
+          "x": 33,
+          "y": 4585.75,
+          "width": 254,
+          "height": 568.015625,
+          "left": 33,
+          "right": 287,
+          "top": 4585.75,
+          "bottom": 5153.765625,
+          "client": 254,
+          "scroll": 254,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": 4589.75,
+            "width": 214,
+            "height": 560.015625,
+            "left": 33,
+            "right": 247,
+            "top": 4589.75,
+            "bottom": 5149.765625,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "expanded": [
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 501.109375,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 501.109375,
+          "bottom": 545.109375,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -124.0625,
+          "width": 254,
+          "height": 625.171875,
+          "left": 33,
+          "right": 287,
+          "top": -124.0625,
+          "bottom": 501.109375,
+          "client": 254,
+          "scroll": 1134,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -120.0625,
+            "width": 214,
+            "height": 573.375,
+            "left": 33,
+            "right": 247,
+            "top": -120.0625,
+            "bottom": 453.3125,
+            "title": "Open Neurotech search terms"
+          },
+          {
+            "x": 263,
+            "y": -120.0625,
+            "width": 214,
+            "height": 302.65625,
+            "left": 263,
+            "right": 477,
+            "top": -120.0625,
+            "bottom": 182.59375,
+            "title": "Idea vintage9.0 years (2023)years \u00b7 linear scale03691220002026Publication year"
+          },
+          {
+            "x": 493,
+            "y": -120.0625,
+            "width": 214,
+            "height": 355.296875,
+            "left": 493,
+            "right": 707,
+            "top": -120.0625,
+            "bottom": 235.234375,
+            "title": "Latency compressionMedian ~3.3 years, preclinical demonstration to first-in-human (4 modalities)years \u00b7 linear scale0246819922021Pivotal preclinical demonstration year"
+          },
+          {
+            "x": 723,
+            "y": -120.0625,
+            "width": 214,
+            "height": 609.171875,
+            "left": 723,
+            "right": 937,
+            "top": -120.0625,
+            "bottom": 489.109375,
+            "title": "Open Neuralink \u00b7 brand context"
+          }
+        ],
+        "border": {
+          "width": 0,
+          "style": "solid",
+          "color": "rgb(12, 12, 14)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 465.21875,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 465.21875,
+          "bottom": 509.21875,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -386.921875,
+          "width": 254,
+          "height": 852.140625,
+          "left": 33,
+          "right": 287,
+          "top": -386.921875,
+          "bottom": 465.21875,
+          "client": 254,
+          "scroll": 674,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -382.921875,
+            "width": 214,
+            "height": 836.140625,
+            "left": 33,
+            "right": 247,
+            "top": -382.921875,
+            "bottom": 453.21875,
+            "title": "Enlarge Neural recording hours \u2014 selected datasets"
+          },
+          {
+            "x": 263,
+            "y": -382.921875,
+            "width": 214,
+            "height": 640.015625,
+            "left": 263,
+            "right": 477,
+            "top": -382.921875,
+            "bottom": 257.09375,
+            "title": "Enlarge Selected chronic intracortical recipients"
+          },
+          {
+            "x": 493,
+            "y": -382.921875,
+            "width": 214,
+            "height": 360.09375,
+            "left": 493,
+            "right": 707,
+            "top": -382.921875,
+            "bottom": -22.828125,
+            "title": "Simultaneously recorded neurons1957 \u2192 2014 \u00b7 selected recording frontier, not a current maximum or a human-only BCI series.neurons \u00b7 log scale1101001K10K19572014Year \u00b7 historical frontier"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 578.515625,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 578.515625,
+          "bottom": 622.515625,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -285.390625,
+          "width": 254,
+          "height": 863.90625,
+          "left": 33,
+          "right": 287,
+          "top": -285.390625,
+          "bottom": 578.515625,
+          "client": 254,
+          "scroll": 1364,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -281.390625,
+            "width": 214,
+            "height": 733.921875,
+            "left": 33,
+            "right": 247,
+            "top": -281.390625,
+            "bottom": 452.53125,
+            "title": "Enlarge Selected public image/resource footprints"
+          },
+          {
+            "x": 263,
+            "y": -281.390625,
+            "width": 214,
+            "height": 847.90625,
+            "left": 263,
+            "right": 477,
+            "top": -281.390625,
+            "bottom": 566.515625,
+            "title": "Enlarge Selected tissue-volume checkpoints"
+          },
+          {
+            "x": 493,
+            "y": -281.390625,
+            "width": 214,
+            "height": 772.046875,
+            "left": 493,
+            "right": 707,
+            "top": -281.390625,
+            "bottom": 490.65625,
+            "title": "Enlarge Selected published connectomes \u2014 neuron counts"
+          },
+          {
+            "x": 723,
+            "y": -281.390625,
+            "width": 214,
+            "height": 715.515625,
+            "left": 723,
+            "right": 937,
+            "top": -281.390625,
+            "bottom": 434.125,
+            "title": "Enlarge Selected published maps \u2014 synapse counts"
+          },
+          {
+            "x": 953,
+            "y": -281.390625,
+            "width": 214,
+            "height": 659.59375,
+            "left": 953,
+            "right": 1167,
+            "top": -281.390625,
+            "bottom": 378.203125,
+            "title": "Enlarge Selected EM acquisition rates"
+          },
+          {
+            "x": 1183,
+            "y": -281.390625,
+            "width": 214,
+            "height": 641.703125,
+            "left": 1183,
+            "right": 1397,
+            "top": -281.390625,
+            "bottom": 360.3125,
+            "title": "Enlarge Selected structure\u2013function matches"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 465.359375,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 465.359375,
+          "bottom": 509.359375,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -175.078125,
+          "width": 254,
+          "height": 640.4375,
+          "left": 33,
+          "right": 287,
+          "top": -175.078125,
+          "bottom": 465.359375,
+          "client": 254,
+          "scroll": 904,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -171.078125,
+            "width": 214,
+            "height": 624.4375,
+            "left": 33,
+            "right": 247,
+            "top": -171.078125,
+            "bottom": 453.359375,
+            "title": "Enlarge Estimated acquisition cost per voxel \u2014 optical and EM"
+          },
+          {
+            "x": 263,
+            "y": -171.078125,
+            "width": 214,
+            "height": 517.03125,
+            "left": 263,
+            "right": 477,
+            "top": -171.078125,
+            "bottom": 345.953125,
+            "title": "Enlarge PATHFINDER v1: axon tracing benchmark"
+          },
+          {
+            "x": 493,
+            "y": -171.078125,
+            "width": 214,
+            "height": 622.34375,
+            "left": 493,
+            "right": 707,
+            "top": -171.078125,
+            "bottom": 451.265625,
+            "title": "Enlarge Human and mouse cortex: split\u2013merge error trade-offs"
+          },
+          {
+            "x": 723,
+            "y": -171.078125,
+            "width": 214,
+            "height": 586.109375,
+            "left": 723,
+            "right": 937,
+            "top": -171.078125,
+            "bottom": 415.03125,
+            "title": "Enlarge Reported project proofreading effort"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      },
+      {
+        "state": "full",
+        "more": {
+          "x": 33,
+          "y": 464.765625,
+          "width": 135.9375,
+          "height": 44,
+          "left": 33,
+          "right": 168.9375,
+          "top": 464.765625,
+          "bottom": 508.765625,
+          "text": "show only featured",
+          "radius": 8
+        },
+        "rail": {
+          "x": 33,
+          "y": -111.25,
+          "width": 254,
+          "height": 576.015625,
+          "left": 33,
+          "right": 287,
+          "top": -111.25,
+          "bottom": 464.765625,
+          "client": 254,
+          "scroll": 674,
+          "leftEdge": 33,
+          "rightEdge": 287,
+          "scrollLeft": 0,
+          "overflow": "auto",
+          "scrollbar": "auto",
+          "role": "region",
+          "tabIndex": 0
+        },
+        "charts": [
+          {
+            "x": 33,
+            "y": -107.25,
+            "width": 214,
+            "height": 560.015625,
+            "left": 33,
+            "right": 247,
+            "top": -107.25,
+            "bottom": 452.765625,
+            "title": "Enlarge NeuroAI performance\u2013cost frontier"
+          },
+          {
+            "x": 263,
+            "y": -107.25,
+            "width": 214,
+            "height": 533.03125,
+            "left": 263,
+            "right": 477,
+            "top": -107.25,
+            "bottom": 425.78125,
+            "title": "Enlarge FlyVis: correct contrast preference"
+          },
+          {
+            "x": 493,
+            "y": -107.25,
+            "width": 214,
+            "height": 550.609375,
+            "left": 493,
+            "right": 707,
+            "top": -107.25,
+            "bottom": 443.359375,
+            "title": "Enlarge Selected application events"
+          }
+        ],
+        "border": {
+          "width": 1,
+          "style": "solid",
+          "color": "rgb(231, 231, 234)"
+        },
+        "outsideHeadings": []
+      }
+    ],
+    "fonts": [
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "3",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "9",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "12",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "years \u00b7 linear scale",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "4",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "6",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "8",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1992",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "google",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "15",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2027",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "neurons \u00b7 log scale",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1K",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "10K",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "1957",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "reference",
+        "label": "2014",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2011",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e8",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e9",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.0001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.01",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2017",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2019",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "10,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100,000",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2016",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2021",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-11",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-10",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.00e-9",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0.00000001",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2015",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "23.55",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "47.1",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.65",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "94.2",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2026",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.95778",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "3.91555",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.87333",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "7.8311",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "5.2207",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.8064",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "70.3922",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "12.5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "37.5",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2020",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2022",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "20.2",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "40.4",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "60.6",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "80.8",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "1.13",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "21.45",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "41.77",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "0",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "25",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "50",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "75",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "100",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2025",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2023",
+        "px": 11,
+        "inside": true
+      },
+      {
+        "family": "curated",
+        "label": "2024",
+        "px": 11,
+        "inside": true
+      }
+    ],
+    "bounds": {
+      "width": 320,
+      "client": 320,
+      "scroll": 320
+    }
+  }
+]
