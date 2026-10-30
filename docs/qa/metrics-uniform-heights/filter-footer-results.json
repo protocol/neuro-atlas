@@ -1,0 +1,11 @@
+{
+  "runtime": "83ea91e3c3331d77c9c8cd3e69f3582582f33904",
+  "filter": "H01",
+  "matchingChartCount": 4,
+  "commonHeight": 606,
+  "nativeCopyCompletionFamilies": [
+    "[data-trends-card=\"neurotech\"]",
+    "[data-performance-card=\"idea_vintage\"]",
+    "[data-draft-chart-card]"
+  ]
+}

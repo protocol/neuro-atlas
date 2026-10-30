@@ -111,8 +111,8 @@ test('search exposes non-featured charts in merged groups, clear restores state,
 });
 
 
-test('show-all controls are visible button-sized actions, not unstyled text', () => {
-  const dom = new JSDOM('<style></style><button class="metric-category-more">Show all charts</button>');
+test('chart expansion controls retain a touch-sized minimum, not unstyled text', () => {
+  const dom = new JSDOM('<style></style><button class="metric-category-more">show more charts</button>');
   try {
     dom.window.document.querySelector('style').textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
     assert.equal(dom.window.getComputedStyle(dom.window.document.querySelector('button')).minHeight, '44px');

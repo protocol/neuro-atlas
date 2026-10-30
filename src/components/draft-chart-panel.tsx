@@ -17,7 +17,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
   const hash = usePerformanceHash().slice(1);
   const open = hash === anchor || aliases.includes(hash);
   return <div className="draft-popout" data-draft-popout={anchor} data-draft-popout-aliases={aliases.join(" ")}>
-    <div className="draft-popout-card">
+    <div className="draft-popout-card" data-metric-card-body>
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>
       {previewContext}
       <button ref={trigger} type="button" className="draft-popout-trigger" data-draft-popout-trigger={anchor}

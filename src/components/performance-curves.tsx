@@ -5,6 +5,7 @@ import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
+import { usePreviewFont } from "@/components/use-preview-font";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
@@ -113,6 +114,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
   // Filtering suppresses unsupported model output, but never moves source markers.
   const future = scenario && extrapolation ? extrapolationGeometry(data, extrapolationScenario(extrapolation, data.points, "", mode)) : null;
   const original = compact ? compactChartGeometry(data) : chartGeometry(data);
+  const previewFont = usePreviewFont(original.width, compact);
   const mix = (from: number, to: number) => progress === 0 ? from : progress === 1 ? to : from + (to - from) * progress;
   const g = !future || progress === 0 ? original : progress === 1 ? future : {
     ...original,
@@ -182,8 +184,8 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
-        <text x={g.left} y={16}>{data.unit} · {scale} scale</text>
+      <svg ref={compact ? previewFont.ref : undefined} style={compact ? { fontSize: previewFont.fontSize } : undefined} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+        <text x={g.left} y={compact ? Math.max(16, previewFont.fontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
@@ -247,13 +249,13 @@ export function CurveCard({ id, title, coverage, plot, children }: { id: string;
   const open = hash === `#${id}`;
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
-    <button ref={ref} type="button" className="pc-trigger" aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+    <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
 
       <span className="pc-card-title">{title}</span>
       <span className="pc-coverage">{coverage}</span>
       {plot && <CurvePlot data={plot} compact />}
     </button>
-    <div className="pc-card-share">{share}</div>
+    <div className="pc-card-share" data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
       {share}
       {plot && <CurvePlot data={plot} shareAnchor={id} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}

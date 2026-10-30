@@ -1,0 +1,30 @@
+{
+  "sourceRevision": "83ea91e3c3331d77c9c8cd3e69f3582582f33904",
+  "captureOrigin": "loopback-only production build; not authenticated hosted verification",
+  "images": {
+    "equal-height-engagement-1440.png": {
+      "bytes": 59648,
+      "sha256": "2b8c2eeb262bed7192bfd09a25f23ad4b7a70090b4599d8dd70785dc52bf802c"
+    },
+    "equal-height-recording-1440.png": {
+      "bytes": 69338,
+      "sha256": "a1c33e0f8255230c3657396f99068767d0899044c58444db587b6e9f774485b3"
+    },
+    "equal-height-engagement-390.png": {
+      "bytes": 33286,
+      "sha256": "6fb943ba9b62411aca5d689dea7af9f45da4547e0a9694be993378f75faeb57e"
+    },
+    "equal-height-engagement-320.png": {
+      "bytes": 30890,
+      "sha256": "a5650d9cba456f4b03a058aba9f2631ea68fb5f4f6aeb73c38c8c91cfbba6060"
+    },
+    "equal-height-recording-390.png": {
+      "bytes": 52602,
+      "sha256": "2783e7984d26969cc58c12a7fdf284e1ba2161bfaddba7a2c7c8e1fc0daa480f"
+    },
+    "equal-height-dark-1440.png": {
+      "bytes": 63526,
+      "sha256": "56e072c5a920dc69e4b94011231e7266125992f79a5c5dc95c25bb2eba7de21d"
+    }
+  }
+}

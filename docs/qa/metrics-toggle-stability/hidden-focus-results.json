@@ -1,0 +1,7680 @@
+{
+  "runtime": "32d133decc01d979b23d2a7038d64a10360d384f",
+  "viewports": [
+    {
+      "width": 1440,
+      "states": [
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "BODY",
+            "label": "try{const key=\"theme\";const theme=localStorage.getItem(key);if(theme!=",
+            "hidden": false
+          },
+          "state": "featured",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "+Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-collapsed",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "\u2212Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-reopened",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Collapse all",
+            "hidden": false
+          },
+          "state": "collapse-all",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": false
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "matching-search",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "no-match-search",
+          "viewport": 1440
+        },
+        {
+          "height": "606px",
+          "bodies": [
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            },
+            {
+              "width": 647.078125,
+              "height": 606,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1440,
+            "client": 1425,
+            "scroll": 1425
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Clear search",
+            "hidden": false
+          },
+          "state": "clear-search",
+          "viewport": 1440
+        }
+      ],
+      "hiddenFocusAttempt": {
+        "found": true,
+        "accepted": false
+      },
+      "nativeTabTargets": [
+        {
+          "tag": "BUTTON",
+          "label": "Clear search",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Expand all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Collapse all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Neurotech Engagement",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Neurotech Engagement charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Open Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Human interfaces and recordings",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Human interfaces and recordings charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Enlarge Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Mapping Scale",
+          "hidden": false
+        }
+      ],
+      "visibleModalCloseFocusAndReturn": true
+    },
+    {
+      "width": 1024,
+      "states": [
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "BODY",
+            "label": "try{const key=\"theme\";const theme=localStorage.getItem(key);if(theme!=",
+            "hidden": false
+          },
+          "state": "featured",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "+Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-collapsed",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "\u2212Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-reopened",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Collapse all",
+            "hidden": false
+          },
+          "state": "collapse-all",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "matching-search",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "no-match-search",
+          "viewport": 1024
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 394.96875,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 1024,
+            "client": 1009,
+            "scroll": 1009
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Clear search",
+            "hidden": false
+          },
+          "state": "clear-search",
+          "viewport": 1024
+        }
+      ],
+      "hiddenFocusAttempt": {
+        "found": true,
+        "accepted": false
+      },
+      "nativeTabTargets": [
+        {
+          "tag": "BUTTON",
+          "label": "Clear search",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Expand all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Collapse all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Neurotech Engagement",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Neurotech Engagement charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Open Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Human interfaces and recordings",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Human interfaces and recordings charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Enlarge Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Mapping Scale",
+          "hidden": false
+        }
+      ],
+      "visibleModalCloseFocusAndReturn": true
+    },
+    {
+      "width": 768,
+      "states": [
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "BODY",
+            "label": "try{const key=\"theme\";const theme=localStorage.getItem(key);if(theme!=",
+            "hidden": false
+          },
+          "state": "featured",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "+Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-collapsed",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "\u2212Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-reopened",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Collapse all",
+            "hidden": false
+          },
+          "state": "collapse-all",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": false
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "matching-search",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "no-match-search",
+          "viewport": 768
+        },
+        {
+          "height": "679px",
+          "bodies": [
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            },
+            {
+              "width": 390.109375,
+              "height": 679,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 768,
+            "client": 753,
+            "scroll": 753
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Clear search",
+            "hidden": false
+          },
+          "state": "clear-search",
+          "viewport": 768
+        }
+      ],
+      "hiddenFocusAttempt": {
+        "found": true,
+        "accepted": false
+      },
+      "nativeTabTargets": [
+        {
+          "tag": "BUTTON",
+          "label": "Clear search",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Expand all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Collapse all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Neurotech Engagement",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Neurotech Engagement charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Open Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Human interfaces and recordings",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Human interfaces and recordings charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Enlarge Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Mapping Scale",
+          "hidden": false
+        }
+      ],
+      "visibleModalCloseFocusAndReturn": true
+    },
+    {
+      "width": 390,
+      "states": [
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "BODY",
+            "label": "try{const key=\"theme\";const theme=localStorage.getItem(key);if(theme!=",
+            "hidden": false
+          },
+          "state": "featured",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "+Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-collapsed",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "\u2212Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-reopened",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Collapse all",
+            "hidden": false
+          },
+          "state": "collapse-all",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": false
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "matching-search",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "no-match-search",
+          "viewport": 390
+        },
+        {
+          "height": "770px",
+          "bodies": [
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            },
+            {
+              "width": 282,
+              "height": 770,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 390,
+            "client": 390,
+            "scroll": 390
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Clear search",
+            "hidden": false
+          },
+          "state": "clear-search",
+          "viewport": 390
+        }
+      ],
+      "hiddenFocusAttempt": {
+        "found": true,
+        "accepted": false
+      },
+      "nativeTabTargets": [
+        {
+          "tag": "BUTTON",
+          "label": "Clear search",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Expand all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Collapse all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Neurotech Engagement",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Neurotech Engagement charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Open Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Human interfaces and recordings",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Human interfaces and recordings charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Enlarge Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Mapping Scale",
+          "hidden": false
+        }
+      ],
+      "visibleModalCloseFocusAndReturn": true
+    },
+    {
+      "width": 320,
+      "states": [
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "BODY",
+            "label": "try{const key=\"theme\";const theme=localStorage.getItem(key);if(theme!=",
+            "hidden": false
+          },
+          "state": "featured",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "+Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-collapsed",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "\u2212Mapping Scale",
+            "hidden": false
+          },
+          "state": "headline-reopened",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Collapse all",
+            "hidden": false
+          },
+          "state": "collapse-all",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": false
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "matching-search",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "INPUT",
+            "label": "",
+            "hidden": false
+          },
+          "state": "no-match-search",
+          "viewport": 320
+        },
+        {
+          "height": "935px",
+          "bodies": [
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            },
+            {
+              "width": 212,
+              "height": 935,
+              "hidden": true
+            }
+          ],
+          "hidden": [
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            },
+            {
+              "inert": true,
+              "aria": "true",
+              "visibility": "hidden"
+            }
+          ],
+          "bounds": {
+            "inner": 320,
+            "client": 320,
+            "scroll": 320
+          },
+          "active": {
+            "tag": "BUTTON",
+            "label": "Clear search",
+            "hidden": false
+          },
+          "state": "clear-search",
+          "viewport": 320
+        }
+      ],
+      "hiddenFocusAttempt": {
+        "found": true,
+        "accepted": false
+      },
+      "nativeTabTargets": [
+        {
+          "tag": "BUTTON",
+          "label": "Clear search",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Expand all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Collapse all",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Neurotech Engagement",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Neurotech Engagement charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Open Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neurotech search terms",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Human interfaces and recordings",
+          "hidden": false
+        },
+        {
+          "tag": "DIV",
+          "label": "Human interfaces and recordings charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Enlarge Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Copy link to Neural recording hours \u2014 selected datasets",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "show more charts",
+          "hidden": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "\u2212Mapping Scale",
+          "hidden": false
+        }
+      ],
+      "visibleModalCloseFocusAndReturn": true
+    }
+  ]
+}

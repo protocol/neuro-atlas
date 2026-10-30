@@ -1,0 +1,22 @@
+{
+  "runtime": "32d133decc01d979b23d2a7038d64a10360d384f",
+  "captureOrigin": "real production-built loopback route; hosted auth unchanged; not authenticated hosted-rendering evidence",
+  "images": {
+    "before-expand-1440.png": {
+      "bytes": 74524,
+      "sha256": "9c8ce19f13f505b49bf2bd55e5b0857f3c2595ce88de23bdb913e2595ef2cf3d"
+    },
+    "after-expand-1440.png": {
+      "bytes": 98118,
+      "sha256": "b325425dcc689d1873b0eb5df8220a20f38cd46296d91cf6d9836fe5a35a4138"
+    },
+    "before-expand-390.png": {
+      "bytes": 51141,
+      "sha256": "f9e484e1587fc442ffd89434812702a49c60b4b53153218ccfe6a28b91940f92"
+    },
+    "after-expand-390.png": {
+      "bytes": 50283,
+      "sha256": "2d9b2e0fda9c22384a0690cb8672b228ec14fb2877f3cbb5f9b2e114fae007b1"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "runtimeRevision": "92df3dd0cf60df99a5ab25536af5ba18c2b6a130",
+  "captureScope": "Native headed Chrome; disposable production build bound to127.0.0.1; original hosted authentication unchanged. Not positive hosted acceptance.",
+  "images": [
+    {
+      "file": "default-engagement-1440.png",
+      "bytes": 46983,
+      "sha256": "982d55113cfe928eee644f2e2fda0286056acb47f70830684e04704cc5bf39c5"
+    },
+    {
+      "file": "expanded-0-1440.png",
+      "bytes": 60872,
+      "sha256": "4ae6c27b4b286bf1fa7f2cb5f2cae319d21ed9a5183134d37a43e673c2a956da"
+    },
+    {
+      "file": "default-catalog-1440.png",
+      "bytes": 240109,
+      "sha256": "fd61db06f81edadfacc34a732fe395eefc3986439731dbbff9b74d159e73d63a"
+    },
+    {
+      "file": "default-engagement-320.png",
+      "bytes": 31063,
+      "sha256": "c6f3d2d27f5c65f4cac7231c814cb03722bf4062a6ceb93dbed14bc09dcc6752"
+    },
+    {
+      "file": "expanded-0-390.png",
+      "bytes": 33171,
+      "sha256": "5b0fbd1cb1f78d64bc63111c635640515a500180e6539020fc6329e77024b350"
+    },
+    {
+      "file": "engagement-dark-390.png",
+      "bytes": 55029,
+      "sha256": "c96bd569a28a145fc66555099bfc990af40dca4d014b5bab9a6f144c9884db9b"
+    },
+    {
+      "file": "recording-hours-export.png",
+      "bytes": 880970,
+      "sha256": "ca2ac838814cb928f2d1883d633c9cdb789f3952af855642b9430c87eec75110"
+    }
+  ],
+  "widths": [
+    1440,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "modalCases": {
+    "curated": 45,
+    "referenceAndTrends": 15
+  },
+  "themes": 6,
+  "searchCases": 15,
+  "clipboard": {
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "url": "http://127.0.0.1:35903/neuro-atlas/field-velocity#metric-recording-hours",
+    "width": 2400,
+    "height": 3300,
+    "size": 880970
+  }
+}

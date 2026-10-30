@@ -92,35 +92,69 @@
 }
 
 /* Unified metrics navigation; legacy plot classes remain stable compatibility hooks. */
-.metrics-index { max-width: 78rem; min-width: 0; }
+.metrics-index { position: relative; max-width: 78rem; min-width: 0; }
 .metrics-index [hidden] { display: none !important; }
+/* Important declarations must share Tailwind's base layer to beat its hidden reset. */
+@layer base {
+  .metrics-index .metric-category[data-metric-size-hidden][hidden] { display: block !important; }
+  .metrics-index .metric-category-content[data-metric-size-hidden][hidden] { display: grid !important; }
+  .metrics-index .metric-chart-fragment[data-metric-size-hidden][hidden] { display: contents !important; }
+  .metrics-index :is(article[data-metric-size-hidden][hidden], [data-metric-size-hidden][hidden] article):has([data-metric-card-body]) { display: flex !important; }
+}
+/* Keep hidden chart peers in a noninteractive sizing lane, never in the rail flow. */
+.metrics-index [data-metric-size-hidden][hidden] { visibility: hidden; pointer-events: none; }
+.metrics-index .metric-category[data-metric-size-hidden][hidden] { display: block !important; position: absolute; inset-inline: 0; top: 0; height: 0; overflow: clip; }
+.metrics-index .metric-category-content[data-metric-size-hidden][hidden] { display: grid !important; min-height: 0; position: absolute; inset-inline: 0; top: 0; height: 0; overflow: clip; }
+.metrics-index .metric-chart-fragment[data-metric-size-hidden][hidden] { display: contents !important; }
+.metrics-index :is(article[data-metric-size-hidden][hidden], [data-metric-size-hidden][hidden] article):has([data-metric-card-body]) { display: flex !important; position: absolute; left: 0; top: 0; width: var(--metric-card-width); visibility: hidden; pointer-events: none; }
+.metrics-index [data-metric-size-hidden][hidden] article:not(:has([data-metric-card-body])) { display: none; }
 .metrics-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .65rem; }
 .metrics-tools label { flex-basis: 100%; font-size: .8rem; font-weight: 600; }
 .metrics-tools input { flex: 1 1 20rem; min-width: 0; padding: .65rem .8rem; border: 1px solid var(--border-strong); border-radius: .5rem; background: var(--surface); color: var(--foreground); }
 .metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
 .metrics-index > [role=status] { color: var(--muted); font-size: .75rem; margin-bottom: 1rem; }
-.metric-category { margin: 1.5rem 0 2rem; min-width: 0; overflow-wrap: anywhere; }
+.metric-category { position: relative; margin: 1.5rem 0 2rem; min-width: 0; overflow-wrap: anywhere; }
+.metric-category:not([hidden]) ~ .metric-category:not([hidden]) { border-top: 1px solid var(--border); padding-top: 1.5rem; }
 .metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
 .metric-category-name { min-width: 0; }
-.metric-category-more { min-height: 44px; justify-self: start; align-self: start; margin: 0; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
+.metric-category-more { grid-column: 1 / -1; min-height: 44px; justify-self: start; align-self: start; margin: 0; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
 .metric-category-more:disabled { cursor: default; }
 .metric-category h2 > button:disabled { cursor: default; }
 .metric-category h2 small { margin-left: auto; color: var(--muted); font-size: .7rem; font-weight: 400; }
 .metric-category-summary { color: var(--muted); font-size: .8rem; line-height: 1.6; margin: .1rem 0 .25rem 1.2rem; }
-.metric-category > div { padding-top: .65rem; }
-.metric-chart-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.metric-category-content { align-content: start; min-height: calc(var(--metric-card-height, 0px) + 1.65rem + var(--metric-more-row-space, 3rem) + var(--metric-scrollbar-height, 0px)); position: relative; --metric-card-width: calc((100% - 1rem) / 1.65); display: grid; grid-template-columns: var(--metric-card-width) minmax(0, 1fr); column-gap: 1rem; min-width: 0; padding-top: .65rem; }
+.metric-category[data-metric-state="preview"] .metric-category-more { grid-column: 2; grid-row: 1; align-self: center; justify-self: center; display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 9rem; aspect-ratio: 1 / 1; min-height: 0; border-radius: 50%; padding: 1.25rem; font-size: .95rem; line-height: 1.4; background: var(--surface); }
+/* One flat native rail; shared sizing keeps the featured tile fixed when peers reveal. */
+.metric-chart-rail { display: grid; grid-auto-flow: column; grid-auto-columns: var(--metric-card-width); gap: 1rem; align-items: start; grid-column: 1 / -1; grid-row: 1; width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; padding-block: .25rem .75rem; scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: auto; scrollbar-color: var(--border-strong) transparent; }
+.metric-category[data-metric-state="preview"] .metric-chart-rail { padding-block: .25rem; }
+.metric-chart-rail article { min-width: 0; scroll-snap-align: start; }
+.metric-chart-rail:focus-within { scroll-snap-type: none; }
+.metric-chart-rail:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.metric-chart-rail::-webkit-scrollbar { height: 10px; }
+.metric-chart-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 1rem; }
+.metric-chart-rail::-webkit-scrollbar-track { background: transparent; }
 .metric-chart-fragment { display: contents; }
 .metric-chart-card { min-width: 0; }
+/* One measured outer height across all chart families; scientific SVGs stay natural-size. */
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]) { position: relative; display: flex; flex-direction: column; box-sizing: border-box; min-height: var(--metric-card-height, 0px); padding: 0; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: 0 2px 6px rgb(0 0 0 / .05); }
+.metric-chart-card > [data-draft-panel], .metric-chart-card > [data-draft-panel] > .draft-popout { display: contents; }
+.metric-chart-rail [data-metric-card-body] { flex: 0 0 auto; min-width: 0; margin: 0; }
+.metric-chart-rail .draft-popout-card { position: static; padding: 1.25rem; border: 0; border-radius: 0; box-shadow: none; background: none; }
+.metric-chart-rail [data-metric-card-footer] { position: relative; z-index: 1; flex: 0 0 auto; min-width: 0; margin-top: auto; padding: 0 1.25rem 1rem; }
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { margin: 0; }
+.metric-chart-rail .pc-trigger::after { content: ""; position: absolute; inset: 0; cursor: zoom-in; }
+.metric-chart-rail .metric-chart-card:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
+.metric-chart-rail .metric-chart-card .draft-popout-trigger:focus-visible { outline-offset: -2px; }
 .metric-preview-context { color: var(--muted); font-size: .72rem; line-height: 1.6; margin-top: .65rem; }
 .metric-preview-context p + p { margin-top: .5rem; }
-.metric-chart-grid .pc-coverage { min-height: 0; }
-.metric-chart-grid .pc-card-title { min-height: 0; }
-.metric-chart-grid .pc-preview { margin-left: 0; margin-right: 0; }
-@media (max-width: 1200px) { .metric-chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 900px) { .metric-chart-grid { grid-template-columns: 1fr; } }
+.metric-chart-rail .pc-coverage { min-height: 0; }
+.metric-chart-rail .pc-card-title { min-height: 0; }
+.metric-chart-rail .pc-preview { margin-left: 0; margin-right: 0; }
 .metrics-index :is(button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .metric-anchor { display: block; scroll-margin-top: 6rem; }
 @media (max-width: 560px) {
+  .metric-category-content { --metric-more-row-space: 7.75rem; --metric-card-width: calc(100% - 2.5rem); }
+  .metric-category[data-metric-state="preview"] .metric-category-more { grid-column: 1; grid-row: 2; width: 7rem; margin-top: .75rem; }
   .metric-category h2 > button { grid-template-columns: auto minmax(0, 1fr); }
   .metric-category h2 small { grid-column: 2; margin-left: 0; }
   .metrics-tools input { flex-basis: 100%; }
