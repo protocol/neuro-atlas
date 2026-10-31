@@ -8,7 +8,7 @@ import { JSDOM } from 'jsdom';
 import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
-const names = ['Neurotech Engagement', 'Human interfaces and recordings', 'Mapping Scale', 'Cost and automation', 'Simulation and NeuroAI'];
+const names = ['Neurotech field engagement', 'Human interfaces and recordings', 'Mapping Scale', 'Cost and automation', 'Simulation and NeuroAI'];
 const visible = selector => [...document.querySelectorAll(selector)].filter(n => !n.closest('[hidden]'));
 const group = name => [...document.querySelectorAll('[data-metrics-category]')].find(n => n.dataset.metricsCategory === name);
 
@@ -60,15 +60,15 @@ for (const [anchor, name, state] of [
   ['metric-open-access-data', 'Mapping Scale', 'preview'],
   ['metric-imaging-cost-efficiency', 'Cost and automation', 'preview'],
   ['metric-neuroai-frontier', 'Simulation and NeuroAI', 'preview'],
-  ['google-trends-neurotech', 'Neurotech Engagement', 'preview'],
+  ['google-trends-neurotech', 'Neurotech field engagement', 'preview'],
   ['metric-paired-structure-function', 'Mapping Scale', 'full'],
   ['draft-panel-tissue-cm3', 'Mapping Scale', 'full'],
   ['metric-panel-pathfinder-nerl', 'Cost and automation', 'full'],
   ['metric-panel-flyvis-contrast', 'Simulation and NeuroAI', 'full'],
   ['simultaneously-recorded-neurons', 'Human interfaces and recordings', 'full'],
-  ['google-trends-neuralink', 'Neurotech Engagement', 'full'],
-  ['idea_vintage', 'Neurotech Engagement', 'full'],
-  ['revealed_commitments', 'Neurotech Engagement', 'full'],
+  ['google-trends-neuralink', 'Neurotech field engagement', 'full'],
+  ['idea_vintage', 'Neurotech field engagement', 'full'],
+  ['revealed_commitments', 'Neurotech field engagement', 'full'],
 ]) test(`${anchor} reveals its owning ${state} state without duplicate chart instances`, async () => {
   const scrolled = [];
   const cleanup = await mount(React.createElement(StrictMode, null, React.createElement(Page)), `#${anchor}`, win => {

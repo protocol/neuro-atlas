@@ -71,7 +71,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
   }) : []);
   const [active, setActive] = useState<DraftObservation | null>(null);
-  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(point.y)}`;
+  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
   const { width, figure } = usePlotWidth();
   const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
   const yTitle = wrapLabel(yLabel, width - 12);

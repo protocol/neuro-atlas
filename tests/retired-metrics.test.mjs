@@ -57,7 +57,7 @@ test('search and category inventories describe only the retained panels without 
     const counts = [...document.querySelectorAll('[data-metrics-category]')].map(category => [category.dataset.metricsCategory,
       category.querySelectorAll('[data-draft-popout], [data-trends-card], [data-performance-card]').length]);
     assert.deepEqual(counts, [
-      ['Neurotech Engagement', 4], ['Human interfaces and recordings', 3],
+      ['Neurotech field engagement', 4], ['Human interfaces and recordings', 3],
       ['Mapping Scale', 6], ['Cost and automation', 4], ['Simulation and NeuroAI', 3],
     ], 'Pin actual chart inventory independently of the now-count-free buttons');
     assert.equal(document.querySelectorAll('[data-metric-reading="revealed_commitments"]').length, 1, 'Keep the historical scalar distinct from chart counts');

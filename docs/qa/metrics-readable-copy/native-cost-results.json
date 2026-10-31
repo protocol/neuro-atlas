@@ -1,0 +1,173 @@
+[
+  {
+    "title": "Estimated acquisition cost per million voxels \u2014 optical and EM",
+    "axis": "Approx. $/million voxels (log)",
+    "rows": [
+      {
+        "label": "ExM + confocalOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 1: ExM + Confocal; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Cost and throughput are crowdsourced estimates. Effective optical resolution in Chen et al. (2015), not a recorded voxel sampling for the cost estimate. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "Single-beam SEMElectron microscopy",
+        "cost": "\u22480.01",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 3: EM (SEM, single beam); Approx. Voxels/$ = 100,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2018 is the table year, not a verified first-demonstration year. Do not label this SBFSEM2004. Not specified in Table A1. Its reference 55 is Hughes et al. 2014, not Denk & Horstmann 2004. Display conversion: 0.01 $/million voxels."
+      },
+      {
+        "label": "ExLLSMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "ExA-SPIM 2023Optical",
+        "cost": "\u22480.0001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 5: ExA-SPIM (LSFM); Approx. Voxels/$ = 10,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2023 preprint; final version published 2025. Preserve table year. Primary maximum 946 Mvox/s in final version, not the table\u2019s 1e12 vox/h. Context from final eLife version (2025), effective optical resolution with 4x expansion; not guaranteed to describe the exact 2023 cost-estimate setting. Display conversion: 0.0001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 506Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 6: EM (Zeiss, MultiSEM 506); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams, not 61 (505 has 61). Cost-normalization arithmetic does not equal the rounded stated vox/$; retain stated value. Example voxel sampling from ZEISS brochure (4 nm pixels, 50 nm section), not resolution specified by Table A1. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 706Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 7: EM (Zeiss, MultiSEM 706); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams. Figure 2 visually near 2e9 vox/$; Table A1 says 1e9. Use table value, flag discrepancy. 2025 is table year, not verified launch date. Example pixel size/section thickness on current vendor page, not a verified matched setting for Table A1 cost. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "mesoSPIMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 9: Benchtop mesoSPIM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Present in Table A1 but not visibly plotted in Figure 2. Micron-scale light-sheet optical, not synapse-resolving EM-equivalent data. Best reported optical resolution; not voxel sampling. Not an expansion-microscopy system by default. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "PEEM*PEEM \u00b7 prospective",
+        "cost": "\u22480.00005",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 10: PEEM; Approx. Voxels/$ = 20,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Table uses 2024, cited PNAS publication is 2025. ~2 Gvox/s net scenario is prospective; do not present 2e10 vox/$ as measured end-to-end performance. Primary paper demonstrates synaptic-resolution PEEM and faster imaging at coarser resolution; the 8x8x30 nm setting in its mouse-brain estimate is prospective, not matched demonstrated high-speed acquisition. Display conversion: 0.00005 $/million voxels."
+      },
+      {
+        "label": "bdTEMElectron microscopy",
+        "cost": "\u22480.000154",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 11: bdTEM; Approx. Voxels/$ = 6,500,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary measured net rate ~0.3 Gpixel/s; four scopes/one mm3/five weeks is a projection. Table cost efficiency retained as estimate. Primary paper tests 3 or 4 nm pixels; Table A1 does not specify section thickness or a matched setting. Display conversion: 0.000154 $/million voxels."
+      }
+    ],
+    "width": 1440,
+    "client": 1440,
+    "scrollWidth": 1440,
+    "height": "606px",
+    "inspection": "ExLLSMOptical2019 \u00b7 year as printed in Table A1Approx. $/million voxels (log): \u22480.001Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels.",
+    "focusReturned": true
+  },
+  {
+    "title": "Estimated acquisition cost per million voxels \u2014 optical and EM",
+    "axis": "Approx. $/million voxels (log)",
+    "rows": [
+      {
+        "label": "ExM + confocalOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 1: ExM + Confocal; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Cost and throughput are crowdsourced estimates. Effective optical resolution in Chen et al. (2015), not a recorded voxel sampling for the cost estimate. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "Single-beam SEMElectron microscopy",
+        "cost": "\u22480.01",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 3: EM (SEM, single beam); Approx. Voxels/$ = 100,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2018 is the table year, not a verified first-demonstration year. Do not label this SBFSEM2004. Not specified in Table A1. Its reference 55 is Hughes et al. 2014, not Denk & Horstmann 2004. Display conversion: 0.01 $/million voxels."
+      },
+      {
+        "label": "ExLLSMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "ExA-SPIM 2023Optical",
+        "cost": "\u22480.0001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 5: ExA-SPIM (LSFM); Approx. Voxels/$ = 10,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2023 preprint; final version published 2025. Preserve table year. Primary maximum 946 Mvox/s in final version, not the table\u2019s 1e12 vox/h. Context from final eLife version (2025), effective optical resolution with 4x expansion; not guaranteed to describe the exact 2023 cost-estimate setting. Display conversion: 0.0001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 506Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 6: EM (Zeiss, MultiSEM 506); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams, not 61 (505 has 61). Cost-normalization arithmetic does not equal the rounded stated vox/$; retain stated value. Example voxel sampling from ZEISS brochure (4 nm pixels, 50 nm section), not resolution specified by Table A1. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 706Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 7: EM (Zeiss, MultiSEM 706); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams. Figure 2 visually near 2e9 vox/$; Table A1 says 1e9. Use table value, flag discrepancy. 2025 is table year, not verified launch date. Example pixel size/section thickness on current vendor page, not a verified matched setting for Table A1 cost. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "mesoSPIMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 9: Benchtop mesoSPIM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Present in Table A1 but not visibly plotted in Figure 2. Micron-scale light-sheet optical, not synapse-resolving EM-equivalent data. Best reported optical resolution; not voxel sampling. Not an expansion-microscopy system by default. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "PEEM*PEEM \u00b7 prospective",
+        "cost": "\u22480.00005",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 10: PEEM; Approx. Voxels/$ = 20,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Table uses 2024, cited PNAS publication is 2025. ~2 Gvox/s net scenario is prospective; do not present 2e10 vox/$ as measured end-to-end performance. Primary paper demonstrates synaptic-resolution PEEM and faster imaging at coarser resolution; the 8x8x30 nm setting in its mouse-brain estimate is prospective, not matched demonstrated high-speed acquisition. Display conversion: 0.00005 $/million voxels."
+      },
+      {
+        "label": "bdTEMElectron microscopy",
+        "cost": "\u22480.000154",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 11: bdTEM; Approx. Voxels/$ = 6,500,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary measured net rate ~0.3 Gpixel/s; four scopes/one mm3/five weeks is a projection. Table cost efficiency retained as estimate. Primary paper tests 3 or 4 nm pixels; Table A1 does not specify section thickness or a matched setting. Display conversion: 0.000154 $/million voxels."
+      }
+    ],
+    "width": 390,
+    "client": 390,
+    "scrollWidth": 390,
+    "height": "770px",
+    "inspection": "ExLLSMOptical2019 \u00b7 year as printed in Table A1Approx. $/million voxels (log): \u22480.001Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels.",
+    "focusReturned": true
+  },
+  {
+    "title": "Estimated acquisition cost per million voxels \u2014 optical and EM",
+    "axis": "Approx. $/million voxels (log)",
+    "rows": [
+      {
+        "label": "ExM + confocalOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 1: ExM + Confocal; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Cost and throughput are crowdsourced estimates. Effective optical resolution in Chen et al. (2015), not a recorded voxel sampling for the cost estimate. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "Single-beam SEMElectron microscopy",
+        "cost": "\u22480.01",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 3: EM (SEM, single beam); Approx. Voxels/$ = 100,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2018 is the table year, not a verified first-demonstration year. Do not label this SBFSEM2004. Not specified in Table A1. Its reference 55 is Hughes et al. 2014, not Denk & Horstmann 2004. Display conversion: 0.01 $/million voxels."
+      },
+      {
+        "label": "ExLLSMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "ExA-SPIM 2023Optical",
+        "cost": "\u22480.0001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 5: ExA-SPIM (LSFM); Approx. Voxels/$ = 10,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 2023 preprint; final version published 2025. Preserve table year. Primary maximum 946 Mvox/s in final version, not the table\u2019s 1e12 vox/h. Context from final eLife version (2025), effective optical resolution with 4x expansion; not guaranteed to describe the exact 2023 cost-estimate setting. Display conversion: 0.0001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 506Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 6: EM (Zeiss, MultiSEM 506); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams, not 61 (505 has 61). Cost-normalization arithmetic does not equal the rounded stated vox/$; retain stated value. Example voxel sampling from ZEISS brochure (4 nm pixels, 50 nm section), not resolution specified by Table A1. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "MultiSEM 706Electron microscopy",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 7: EM (Zeiss, MultiSEM 706); Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. 91 beams. Figure 2 visually near 2e9 vox/$; Table A1 says 1e9. Use table value, flag discrepancy. 2025 is table year, not verified launch date. Example pixel size/section thickness on current vendor page, not a verified matched setting for Table A1 cost. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "mesoSPIMOptical",
+        "cost": "\u22480.001",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 9: Benchtop mesoSPIM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Present in Table A1 but not visibly plotted in Figure 2. Micron-scale light-sheet optical, not synapse-resolving EM-equivalent data. Best reported optical resolution; not voxel sampling. Not an expansion-microscopy system by default. Display conversion: 0.001 $/million voxels."
+      },
+      {
+        "label": "PEEM*PEEM \u00b7 prospective",
+        "cost": "\u22480.00005",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 10: PEEM; Approx. Voxels/$ = 20,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Table uses 2024, cited PNAS publication is 2025. ~2 Gvox/s net scenario is prospective; do not present 2e10 vox/$ as measured end-to-end performance. Primary paper demonstrates synaptic-resolution PEEM and faster imaging at coarser resolution; the 8x8x30 nm setting in its mouse-brain estimate is prospective, not matched demonstrated high-speed acquisition. Display conversion: 0.00005 $/million voxels."
+      },
+      {
+        "label": "bdTEMElectron microscopy",
+        "cost": "\u22480.000154",
+        "note": "Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Many of these numbers come from a crowdsourcing effort: we thank the many involved scientists for providing estimates of these numbers. No claim beyond rough size (order of magnitude) is made.Table A1 row 11: bdTEM; Approx. Voxels/$ = 6,500,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary measured net rate ~0.3 Gpixel/s; four scopes/one mm3/five weeks is a projection. Table cost efficiency retained as estimate. Primary paper tests 3 or 4 nm pixels; Table A1 does not specify section thickness or a matched setting. Display conversion: 0.000154 $/million voxels."
+      }
+    ],
+    "width": 320,
+    "client": 320,
+    "scrollWidth": 320,
+    "height": "935px",
+    "inspection": "ExLLSMOptical2019 \u00b7 year as printed in Table A1Approx. $/million voxels (log): \u22480.001Compiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197Table A1 row 4: ExLLSM; Approx. Voxels/$ = 1,000,000,000. Published Table A1 efficiency. Table says Total Cost ($/h), but composition/amortization/utilization/labor/maintenance and price-year are unspecified. Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified. Primary acquisition rate 10\u2013100 million voxels/s; dollar efficiency remains author estimate. Effective optical resolution at 4x expansion; primary paper separately describes ~30\u201350 nm voxel dimensions. Display conversion: 0.001 $/million voxels.",
+    "focusReturned": true
+  }
+]
