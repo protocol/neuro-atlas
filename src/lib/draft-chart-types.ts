@@ -27,6 +27,8 @@ export type DraftPlot = {
   scale: "linear" | "log";
   /** Count axes use whole-number ticks without changing source values. */
   integerTicks?: boolean;
+  /** Display precision only; coordinates and source values retain their full precision. */
+  valueSignificantDigits?: number;
   scope: string;
   points: DraftObservation[];
   xKind?: "year" | "number";

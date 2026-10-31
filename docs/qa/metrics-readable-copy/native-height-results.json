@@ -1,0 +1,32 @@
+{
+  "revision": "d873bcb2ec1e266a50d304d3bc38aaab394b705f",
+  "rows": [
+    {
+      "viewport": 1440,
+      "count": 20,
+      "minHeight": 606,
+      "maxHeight": 606,
+      "allWidthsPositive": true,
+      "client": 1425,
+      "scrollWidth": 1425
+    },
+    {
+      "viewport": 390,
+      "count": 20,
+      "minHeight": 770,
+      "maxHeight": 770,
+      "allWidthsPositive": true,
+      "client": 390,
+      "scrollWidth": 390
+    },
+    {
+      "viewport": 320,
+      "count": 20,
+      "minHeight": 935,
+      "maxHeight": 935,
+      "allWidthsPositive": true,
+      "client": 320,
+      "scrollWidth": 320
+    }
+  ]
+}

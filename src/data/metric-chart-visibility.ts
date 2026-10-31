@@ -12,7 +12,7 @@ const recordingHoursPlot: DraftPlot = {
   xKind: "year",
   yLabel: "Recording hours",
   scale: "log",
-  scope: "Reported recording hours, not a unique global total or independently recomputed QC-valid subject-hours. Release, publication and disclosure dates are distinct from acquisition dates. No sums across overlapping releases, datasets, modalities or model reuse; no pooled fit or connecting lines.",
+  scope: "Release, publication and disclosure dates are distinct from acquisition dates. No sums across overlapping releases, datasets, modalities or model reuse; no pooled fit or connecting lines.",
   seriesNote: recordingHours.plots.map(plot => `${plot.title}: ${plot.scope}`).join("\n\n"),
   points: recordingHours.plots.flatMap((plot, index) => plot.points.map(point => ({
     ...point, group: point.group ?? plot.title, color: recordingColors[index],
@@ -21,12 +21,29 @@ const recordingHoursPlot: DraftPlot = {
 };
 
 // A separate acquisition-cost reading, not the unsupported end-to-end mapping-cost proposal.
-const acquisitionEconomics = DRAFT_CHART_EVIDENCE["Connectomics imaging throughput over time"].plots.find(plot => plot.id === "acquisition-economics")!;
+const acquisitionSource = DRAFT_CHART_EVIDENCE["Connectomics imaging throughput over time"].plots.find(plot => plot.id === "acquisition-economics")!;
+const acquisitionEconomics: DraftPlot = {
+  ...acquisitionSource,
+  title: "Estimated acquisition cost per 10M voxels — optical and EM",
+  yLabel: "Approx. $/10M voxels (log)",
+  valueSignificantDigits: 3,
+  seriesNote: "Each displayed cost is 10,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ. Excludes the unresolved ExA-SPIM 2024 citation and X-ray.",
+  points: acquisitionSource.points.map(point => ({
+    ...point,
+    y: point.y * 10_000_000,
+    dateLabel: `${point.x} · year as printed in Table A1`,
+    note: point.note?.replace(/Display transformation:.*$/, `Display conversion: ${Number((point.y * 10_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/10M voxels.`)
+      .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
+      .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
+      .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
+      .replace("Published technology; cost/throughput are crowdsourced estimates, not project accounting.", "Cost and throughput are crowdsourced estimates."),
+  })),
+};
 const costEfficiency: DraftChart = {
   category: "Cost and automation",
   title: "Connectomics imaging cost efficiency",
   axes: `${acquisitionEconomics.xLabel} · ${acquisitionEconomics.yLabel}`,
-  definition: "Compare source-estimated acquisition costs per voxel at each stated resolution and protocol.",
+  definition: "Compare source-estimated acquisition costs per 10M voxels at each stated resolution and protocol.",
   constraint: acquisitionEconomics.scope,
 };
 export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency];
@@ -45,14 +62,14 @@ export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.
     ...evidence,
     plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots.filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics"),
     ...(title === "Connectomics imaging throughput over time" ? {
-      summary: "Selected source-reported EM acquisition rates. Protocols and resolutions differ; these are not a like-for-like throughput frontier.",
+      summary: "Selected source-reported EM acquisition rates at each protocol's stated resolution.",
     } : {}),
     ...(title === "Humans with implanted high-bandwidth BCIs over time" ? {
-      summary: "Selected chronic intracortical research cohorts. Named program checkpoints are not additive or a current global installed base.",
+      summary: "Selected chronic intracortical research cohorts, shown as separate program checkpoints.",
     } : {}),
   }]).concat([[costEfficiency.title, {
     status: "plotted",
-    summary: "Source-estimated acquisition costs, not all-in mapping costs. Preserve each protocol's resolution and scope; no fitted frontier.",
+    summary: "Source-estimated acquisition costs at each protocol's stated resolution and scope.",
     plots: [acquisitionEconomics],
   }]]),
 );
@@ -63,7 +80,7 @@ export function isVisibleMetric(chart: DraftChart) {
 }
 // Retain the existing category DOM IDs while changing reader-facing order and grouping.
 export const METRIC_GROUPS: readonly { id: number; name: string; categories: readonly string[]; preview: string | null; summary: string }[] = [
-  { id: 6, name: "Neurotech Engagement", categories: [], preview: null, summary: "Pace, public attention and revealed commitments." },
+  { id: 6, name: "Neurotech field engagement", categories: [], preview: null, summary: "Pace, public attention and revealed commitments." },
   { id: 3, name: "Human interfaces and recordings", categories: ["Human interfaces and recordings"], preview: "Neural recording hours collected over time", summary: "Implanted interfaces, recording capability and neural data supply." },
   { id: 0, name: "Mapping Scale", categories: ["Mapping scale", "Data access and scientific use", "Tissue quality and annotation"], preview: "Open-access connectomics data over time", summary: "Mapped tissue, connectome size, acquisition throughput, paired datasets and open data." },
   { id: 1, name: "Cost and automation", categories: ["Cost and automation"], preview: "Connectomics imaging cost efficiency", summary: "Acquisition cost estimates, reconstruction quality and proofreading effort." },

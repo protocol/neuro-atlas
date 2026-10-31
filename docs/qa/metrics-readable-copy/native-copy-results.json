@@ -1,0 +1,22 @@
+{
+  "revision": "d873bcb2ec1e266a50d304d3bc38aaab394b705f",
+  "copy": [
+    {
+      "anchor": "metric-panel-public-data-size",
+      "title": "Selected public image/resource footprints",
+      "removedPhraseAbsent": true
+    },
+    {
+      "anchor": "metric-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "removedPhraseAbsent": true
+    },
+    {
+      "anchor": "metric-panel-neuroai-imagenet",
+      "title": "NeuroAI performance\u2013cost frontier",
+      "removedPhraseAbsent": true
+    }
+  ],
+  "nativePNGGenerated": true,
+  "pngBytes": 507055
+}

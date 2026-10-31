@@ -304,7 +304,7 @@
         "xKind": "year",
         "yLabel": "Approx. $/voxel (log)",
         "scale": "log",
-        "scope": "Rough author estimates of acquisition costs, not measured all-in mapping costs. Lower is cheaper. Voxels differ in resolution, labeling and biological information; this is not a like-for-like cost frontier. PEEM includes prospective throughput.",
+        "scope": "Rough author estimates of acquisition costs. Lower is cheaper. Each protocol has its own resolution, labeling and biological scope. PEEM includes prospective throughput.",
         "seriesNote": "Each point is 1 / the published Table A1 Approx. Voxels/$ value; source estimates are archived unchanged. Table A1 and Figure 2 differ. Excludes unresolved ExA-SPIM 2024 citation and X-ray; no fitted curve or inferred costs.",
         "points": [
           {
@@ -986,7 +986,7 @@
         "xKind": "year",
         "yLabel": "Recording hours",
         "scale": "linear",
-        "scope": "Maintainer-reported full seizure-corpus release sizes, including held-out evaluation; a subset of TUEG. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "scope": "Maintainer-reported full seizure-corpus release sizes, including held-out evaluation; a subset of TUEG. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale.",
         "points": [
           {
             "id": "tusz-scalp-eeg-2017-04-17",
@@ -1093,7 +1093,7 @@
         "xKind": "year",
         "yLabel": "Recording hours",
         "scale": "linear",
-        "scope": "Frozen DANDI 000055/0.220127.0436; 12 participants; open CC-BY-4.0 ECoG/depth recordings. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "scope": "Frozen DANDI 000055/0.220127.0436; 12 participants; open CC-BY-4.0 ECoG/depth recordings. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale.",
         "points": [
           {
             "id": "ajile12-intracranial-2022-01-27",
@@ -1116,7 +1116,7 @@
         "xKind": "year",
         "yLabel": "Recording hours",
         "scale": "linear",
-        "scope": "Reported model-training corpus spanning seven nonhuman primates and constituent datasets with varying access; not a new unique-data release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "scope": "Reported model-training corpus spanning seven nonhuman primates and constituent datasets with varying access; not a new unique-data release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale.",
         "points": [
           {
             "id": "poyo-primate-training-2023-10-24",
@@ -1139,7 +1139,7 @@
         "xKind": "year",
         "yLabel": "Recording hours",
         "scale": "linear",
-        "scope": "Japanese speech dataset, three participants; simultaneous EEG/EMG/audio counted once for EEG duration; author-reported CC0 OpenNeuro release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale. These are reported hours, not independently recomputed QC-valid subject-hours.",
+        "scope": "Japanese speech dataset, three participants; simultaneous EEG/EMG/audio counted once for EEG duration; author-reported CC0 OpenNeuro release. No sums across datasets, releases, modalities, or model reuse. TUSZ includes held-out evaluation data; POYO is reused training-corpus scale.",
         "points": [
           {
             "id": "japaneeg-scalp-eeg-2026-05-31",
@@ -1282,7 +1282,7 @@
   },
   "Open-access connectomics data over time": {
     "status": "plotted",
-    "summary": "Selected published public-resource footprints, not a global total. FlyWire derives from the FAFB imagery; larval zebrafish resources are named by dataset to avoid combining different studies or counting derivatives twice.",
+    "summary": "Selected published public-resource footprints. FlyWire derives from the FAFB imagery; larval zebrafish resources are identified by dataset.",
     "plots": [
       {
         "id": "public-data-size",
@@ -1291,7 +1291,7 @@
         "xKind": "year",
         "yLabel": "Reported resource size (decimal PB)",
         "scale": "log",
-        "scope": "Named public data products, not a cumulative archive. Public compressed imagery, raw imagery and mixed image/derived-resource sizes are unlike byte bases. The 2018 FAFB image volume underlies FlyWire; the 2024 FlyWire connectivity release is not another 12 TB image acquisition. Fish1 (2025) is publicly available but no comparable total byte footprint was verified.",
+        "scope": "Public compressed imagery, raw imagery and mixed image/derived-resource sizes are unlike byte bases. The 2018 FAFB image volume underlies FlyWire; the 2024 FlyWire connectivity release is not another 12 TB image acquisition. Fish1 (2025) is publicly available but no comparable total byte footprint was verified.",
         "points": [
           {
             "id": "hildebrand-zebrafish-public-images-2017",
@@ -1417,7 +1417,7 @@
   },
   "NeuroAI performance–cost frontier over time": {
     "status": "plotted",
-    "summary": "Fixed ImageNet-1K benchmark: measured accuracy versus theoretical inference energy. Energy is operation-count modeling, not measured hardware consumption or training cost.",
+    "summary": "ImageNet-1K benchmark: measured accuracy versus inference energy estimated from operation counts.",
     "plots": [
       {
         "id": "neuroai-imagenet",
@@ -1426,7 +1426,7 @@
         "xKind": "number",
         "yLabel": "Top-1 accuracy (%)",
         "scale": "linear",
-        "scope": "Same 224×224 benchmark; 32-bit operations at 45 nm. 5 spiking configurations and 1 non-spiking baseline. Selected paper rows, not a global Pareto frontier.",
+        "scope": "Selected paper rows from the same 224×224 benchmark, using 32-bit operations at 45 nm: 5 spiking configurations and 1 non-spiking baseline.",
         "points": [
           {
             "id": "sdt-0",
@@ -1437,7 +1437,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Spiking Transformer-8-384 ✓ 16.81 3.90 4 72.28",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Spiking transformer"
           },
           {
@@ -1449,7 +1449,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Spiking Transformer-6-512 ✓ 23.37 3.56 4 74.11",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Spiking transformer"
           },
           {
@@ -1461,7 +1461,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Spiking Transformer-8-512 ✓ 29.68 1.13 1 71.68",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Spiking transformer"
           },
           {
@@ -1473,7 +1473,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Spiking Transformer-8-512 ✓ 29.68 4.50 4 74.57",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Spiking transformer"
           },
           {
@@ -1485,7 +1485,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Spiking Transformer-10-512 ✓ 36.01 5.53 4 74.66",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Spiking transformer"
           },
           {
@@ -1497,7 +1497,7 @@
             "sourceUrl": "https://arxiv.org/html/2307.01694v1",
             "sourceTitle": "Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023)",
             "quote": "Transformer Transformer-8-512 ✗ 29.68 41.77 1 80.80",
-            "note": "Accuracy is experimentally evaluated; energy is an operation-count estimate, NOT measured device or wall-plug energy. All included rows use 224×224 inference. A 2023 cross-sectional comparison, not progress over time.",
+            "note": "Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224×224 inference.",
             "group": "Non-spiking baseline"
           }
         ]
