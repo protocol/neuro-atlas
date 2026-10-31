@@ -35,27 +35,27 @@ test('the first Metrics section is named Neurotech field engagement', () => {
 const raw = JSON.parse(readFileSync('src/data/draft-chart-evidence.json', 'utf8'));
 const acquisitionSource = raw['Connectomics imaging throughput over time'].plots.find(p => p.id === 'acquisition-economics');
 
-test('acquisition preview and details use dollars per million voxels with the exact unit conversion', () => {
+test('acquisition preview and details use dollars per 10M voxels with the exact unit conversion', () => {
   const plot = plots.find(p => p.id === 'acquisition-economics');
-  assert.equal(plot.yLabel, 'Approx. $/million voxels (log)');
-  assert.match(plot.title, /per million voxels/);
+  assert.equal(plot.yLabel, 'Approx. $/10M voxels (log)');
+  assert.match(plot.title, /per 10M voxels/);
   assert.equal(plot.scale, 'log');
   for (const source of acquisitionSource.points) {
     const shown = plot.points.find(p => p.id === source.id);
-    assert.equal(shown.y, source.y * 1_000_000);
+    assert.equal(shown.y, source.y * 10_000_000);
     for (const key of ['id', 'x', 'qualifier', 'sourceUrl', 'sourceTitle', 'quote', 'group', 'color']) {
       assert.equal(shown[key], source[key], `${source.id}: ${key} preserved`);
     }
   }
   for (const preview of [true, false]) {
     const doc = documentFor(plot, preview);
-    assert.match(doc.querySelector('svg').textContent, /Approx\. \$\/million voxels \(log\)/);
+    assert.match(doc.querySelector('svg').textContent, /Approx\. \$\/10M voxels \(log\)/);
     assert.doesNotMatch(doc.body.textContent, /\$\/voxel\b/);
     if (!preview) {
       const row = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('ExLLSM'));
-      assert.equal(row.cells[2].textContent, '≈0.001');
+      assert.equal(row.cells[2].textContent, '≈0.01');
       const bdtem = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('bdTEM'));
-      assert.equal(bdtem.cells[2].textContent, '≈0.000154', 'Approximate costs have readable display precision');
+      assert.equal(bdtem.cells[2].textContent, '≈0.00154', 'Approximate costs have readable display precision');
     }
   }
 });

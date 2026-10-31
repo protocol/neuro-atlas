@@ -44,7 +44,7 @@ for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics 
     assert.deepEqual(scrolled, [], 'popup navigation does not scroll the page');
     const source = DRAFT_CHART_EVIDENCE['Connectomics imaging throughput over time'].plots.find(p => p.id === 'acquisition-economics');
     const projected = METRIC_CHART_EVIDENCE['Connectomics imaging cost efficiency'].plots;
-    assert.deepEqual(projected[0].points.map(p => ({ id: p.id, x: p.x, y: p.y, sourceUrl: p.sourceUrl, quote: p.quote })), source.points.map(p => ({ id: p.id, x: p.x, y: p.y * 1_000_000, sourceUrl: p.sourceUrl, quote: p.quote })), 'Per-million unit conversion retains exact source identity and precision');
+    assert.deepEqual(projected[0].points.map(p => ({ id: p.id, x: p.x, y: p.y, sourceUrl: p.sourceUrl, quote: p.quote })), source.points.map(p => ({ id: p.id, x: p.x, y: p.y * 10_000_000, sourceUrl: p.sourceUrl, quote: p.quote })), 'Per-million unit conversion retains exact source identity and precision');
     assert.equal(panel.closest('article').dataset.draftChartCard, 'Connectomics imaging cost efficiency');
     assert.ok(document.getElementById('metric-imaging-cost-efficiency'));
     assert.equal(panel.querySelector('figcaption').textContent, projected[0].title);

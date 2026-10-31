@@ -24,15 +24,15 @@ const recordingHoursPlot: DraftPlot = {
 const acquisitionSource = DRAFT_CHART_EVIDENCE["Connectomics imaging throughput over time"].plots.find(plot => plot.id === "acquisition-economics")!;
 const acquisitionEconomics: DraftPlot = {
   ...acquisitionSource,
-  title: "Estimated acquisition cost per million voxels — optical and EM",
-  yLabel: "Approx. $/million voxels (log)",
+  title: "Estimated acquisition cost per 10M voxels — optical and EM",
+  yLabel: "Approx. $/10M voxels (log)",
   valueSignificantDigits: 3,
-  seriesNote: "Each displayed cost is 1,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ. Excludes the unresolved ExA-SPIM 2024 citation and X-ray.",
+  seriesNote: "Each displayed cost is 10,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ. Excludes the unresolved ExA-SPIM 2024 citation and X-ray.",
   points: acquisitionSource.points.map(point => ({
     ...point,
-    y: point.y * 1_000_000,
+    y: point.y * 10_000_000,
     dateLabel: `${point.x} · year as printed in Table A1`,
-    note: point.note?.replace(/Display transformation:.*$/, `Display conversion: ${Number((point.y * 1_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/million voxels.`)
+    note: point.note?.replace(/Display transformation:.*$/, `Display conversion: ${Number((point.y * 10_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/10M voxels.`)
       .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
       .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
       .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
@@ -43,7 +43,7 @@ const costEfficiency: DraftChart = {
   category: "Cost and automation",
   title: "Connectomics imaging cost efficiency",
   axes: `${acquisitionEconomics.xLabel} · ${acquisitionEconomics.yLabel}`,
-  definition: "Compare source-estimated acquisition costs per million voxels at each stated resolution and protocol.",
+  definition: "Compare source-estimated acquisition costs per 10M voxels at each stated resolution and protocol.",
   constraint: acquisitionEconomics.scope,
 };
 export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency];
