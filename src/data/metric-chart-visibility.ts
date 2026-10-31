@@ -31,8 +31,12 @@ const acquisitionEconomics: DraftPlot = {
   points: acquisitionSource.points.map(point => ({
     ...point,
     y: point.y * 1_000_000,
+    dateLabel: `${point.x} · year as printed in Table A1`,
     note: point.note?.replace(/Display transformation:.*$/, `Display conversion: ${Number((point.y * 1_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/million voxels.`)
-      .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`),
+      .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
+      .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
+      .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
+      .replace("Published technology; cost/throughput are crowdsourced estimates, not project accounting.", "Cost and throughput are crowdsourced estimates."),
   })),
 };
 const costEfficiency: DraftChart = {

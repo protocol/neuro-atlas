@@ -66,6 +66,8 @@ test('published Table A1 efficiencies use thousands separators in inspection and
   assert.match(note, /Table A1 row 4: ExLLSM; Approx\. Voxels\/\$ = 1,000,000,000\./);
   for (const point of plot.points) {
     assert.doesNotMatch(point.note, /(?<![\w.])\d{5,}\b/, point.id);
+    assert.doesNotMatch(point.note, /Verbatim numeric column transcription; not recomputed|Not verified all-in/);
+    assert.doesNotMatch(point.dateLabel, /; not verified/);
   }
   const doc = documentFor(plot);
   const row = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('ExLLSM'));
