@@ -25,7 +25,7 @@ test('the catalog reserves one natural-content maximum independent of which pane
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     await click(document.querySelector('[data-expand-metrics]'));
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
-    await click(document.querySelector('[data-metric-more="Neurotech Engagement"]'));
+    await click(document.querySelector('[data-metric-more="Neurotech field engagement"]'));
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     for (const svg of catalog.querySelectorAll('svg')) assert.equal(svg.style.height, '', 'Never squeeze scientific SVGs to force a card height');
   } finally { await cleanup(); }

@@ -196,14 +196,14 @@ for (const anchor of ['draft-panel-tissue-cm3', 'metric-panel-tissue-cm3']) {
 
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
-test('the retained commitments fragment reveals Neurotech Engagement and scrolls its reading, not a modal', async () => {
+test('the retained commitments fragment reveals Neurotech field engagement and scrolls its reading, not a modal', async () => {
   const scrolled = [];
   const cleanup = await mount(React.createElement(Page), '#revealed_commitments', win => {
     win.HTMLElement.prototype.scrollIntoView = function() { scrolled.push(this.id); };
   });
   try {
     await settle(); await settle();
-    assert.equal(document.querySelector('[data-metric-toggle="Neurotech Engagement"]').getAttribute('aria-expanded'), 'true');
+    assert.equal(document.querySelector('[data-metric-toggle="Neurotech field engagement"]').getAttribute('aria-expanded'), 'true');
     assert.equal(document.querySelector('#revealed_commitments').closest('[hidden]'), null);
     assert.ok(scrolled.includes('revealed_commitments'));
     assert.equal(document.querySelector('dialog[open]'), null);

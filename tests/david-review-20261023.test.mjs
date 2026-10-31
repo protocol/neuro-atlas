@@ -12,7 +12,7 @@ test('acquisition economics shows the reciprocal of each published efficiency, n
  assert.match(p.yLabel,/\$\/voxel/);
  const expected=[['exm2015',1e9],['sem2018',1e8],['exllsm2019',1e9],['exaspim2023',1e10],['multisem506',1e9],['multisem706',1e9],['mesospim2024',1e9],['peem2024',2e10],['bdtem2024',6.5e9]];
  for(const [id,v] of expected){const q=p.points.find(q=>q.id===id);assert.equal(q.y,1/v);assert.equal(q.qualifier,'≈');assert.equal(q.color,q.group==='Optical'?'#9275ca':'#cd732f');assert.match(q.note,/reciprocal/i);}
- assert.match(p.scope,/not.*all-in/i);
+ assert.match(p.scope,/author estimates of acquisition costs/i);assert.match(p.scope,/resolution, labeling and biological scope/);
 });
 test('one combined species-colored split/merge plot retains every exact workbook row without regression lines',()=>{
  const source=JSON.parse(readFileSync('tests/fixtures/roboem-figure2-values.json','utf8')).flatMap(p=>p.points);
@@ -51,7 +51,7 @@ test('public image additions are separately named byte products, not FlyWire dup
  const p=plots.find(p=>p.id==='public-data-size');assert.equal(p.points.length,5);assert.equal(p.scale,'log');
  const fafb=p.points.find(p=>p.id==='fafb-image-download-2018');assert.equal(fafb.y,0.012);assert.equal(fafb.x,2018);assert.match(fafb.label,/FlyWire/);
  const fish=p.points.find(p=>p.id==='hildebrand-zebrafish-public-images-2017');assert.equal(fish.y,0.0027);assert.equal(fish.x,2017);assert.match(fish.label,/Hildebrand/);
- assert.match(p.scope,/not a cumulative/);assert.match(p.scope,/Fish1/);
+ assert.doesNotMatch(p.scope,/not a cumulative/);assert.match(p.scope,/Fish1/);
 });
 
 
