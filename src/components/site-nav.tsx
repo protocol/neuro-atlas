@@ -8,9 +8,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const TABS: { href: string; label: string }[] = [
   { href: "/milestones", label: "Milestones" },
-  { href: NEUROFOUNDERS_MAP_URL, label: "Ecosystem ↗" },
+  { href: "/field-velocity", label: "Field Velocity" },
   { href: "/funding", label: "BCI Funding Index" },
-  { href: "/field-velocity", label: "Field velocity" },
+  { href: NEUROFOUNDERS_MAP_URL, label: "Ecosystem ↗" },
 ];
 
 function BrandMark() {

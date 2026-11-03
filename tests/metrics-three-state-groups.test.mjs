@@ -19,7 +19,7 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.equal(document.querySelector('[data-metric-more]'), null);
     assert.equal(visible('[data-draft-chart-card]').length, 15, 'Every numeric plot and timeline is visible from the start');
     assert.deepEqual(visible('[data-trends-card]').map(n => n.dataset.trendsCard), ['neurotech', 'neuralink']);
-    assert.equal(visible('[data-performance-card]').length, 3);
+    assert.equal(visible('[data-performance-card]').length, 4);
     assert.equal(visible('svg.draft-plot-svg').length, 15);
     assert.equal(visible('.gt-preview svg').length, 2);
     for (const name of names) {
@@ -47,7 +47,7 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 14);
     assert.equal(visible('[data-source-observation]').length, 77);
     assert.equal(visible('[data-trends-card]').length, 2);
-    assert.equal(visible('[data-performance-card]').length, 3);
+    assert.equal(visible('[data-performance-card]').length, 4);
     const ids = [...document.querySelectorAll('[id]')].map(n => n.id);
     assert.equal(new Set(ids).size, ids.length, 'collapse/reopen reuse the same instances');
     await click(document.querySelector('[data-collapse-metrics]'));

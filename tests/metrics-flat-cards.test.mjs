@@ -117,8 +117,9 @@ test('all chart families start in one native horizontal rail and remain intact t
       await click(toggle);
       assert.deepEqual([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')), cards, 'Reopening restores all original peers in the same order');
     }
-    const commitment = document.getElementById('revealed_commitments');
-    assert.ok(commitment.matches('article[data-metric-tile]'), 'Historical cohort reading remains a peer, not a fifth chart');
+    const commitment = document.querySelector('[data-performance-card="revealed_commitments"]');
+    assert.ok(commitment.matches('article[data-metric-tile]'), 'The source-qualified cohort timeline is the fifth engagement chart');
+    assert.ok(commitment.querySelector('svg circle'));
   } finally { await cleanup(); }
 });
 
@@ -133,7 +134,7 @@ test('each chart has only Copy link at rest, with selectable URL fallback only a
     React.createElement(DraftChartShare, { anchor: 'draft-recording-hours', label: 'Recording hours' }),
     React.createElement(PaceReadings, { data: selectPace(feed), flat: true })));
   try {
-    assert.equal(document.querySelectorAll('a, input[readonly], .pc-expand').length, 0, 'No repeated Direct link / View chart hints');
+    assert.equal(document.querySelectorAll('a:not([data-curve-source-link]), input[readonly], .pc-expand').length, 0, 'No repeated Direct link / View chart hints; explicitly requested primary citations remain visible');
     assert.equal(document.querySelectorAll('button[aria-label^="Copy link"]').length, 3);
     const button = document.querySelector('[data-copy-draft-link="metric-recording-hours"]');
     const before = window.location.href;

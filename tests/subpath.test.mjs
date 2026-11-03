@@ -55,7 +55,7 @@ for (const prefix of ["", "/neuro-atlas"]) {
         for (const a of nav.querySelectorAll('a[href^="/"]')) assert.ok(!a.getAttribute('href').includes('/neuro-atlas/neuro-atlas'));
       }
       const home = render(React.createElement(Home));
-      assert.deepEqual([...home.querySelectorAll('.landing-tile')].map(a => a.getAttribute('href')), [prefix + '/milestones', 'https://www.neurofounders.co/resources/start-up-map', prefix + '/funding', prefix + '/field-velocity']);
+      assert.deepEqual([...home.querySelectorAll('.landing-tile')].map(a => a.getAttribute('href')), [prefix + '/milestones', prefix + '/field-velocity', prefix + '/funding', 'https://www.neurofounders.co/resources/start-up-map']);
       assert.ok(home.querySelector('a[href="#explore"]'));
       const methodology = render(React.createElement(MethodologyImport.default ?? MethodologyImport));
       const fundingSource = [...methodology.querySelectorAll('a')].find(a => a.textContent.trim() === 'BCI Funding Index ↗');

@@ -57,10 +57,10 @@ test('search and default full-rail inventories describe only the retained panels
     const counts = [...document.querySelectorAll('[data-metrics-category]')].map(category => [category.dataset.metricsCategory,
       category.querySelectorAll('[data-draft-popout], [data-trends-card], [data-performance-card]').length]);
     assert.deepEqual(counts, [
-      ['Neurotech field engagement', 4], ['Human interfaces and recordings', 3],
+      ['Neurotech field engagement', 5], ['Human interfaces and recordings', 3],
       ['Mapping Scale', 6], ['Cost and automation', 4], ['Simulation and NeuroAI', 3],
     ], 'Pin actual chart inventory independently of the category headings');
-    assert.equal(document.querySelectorAll('[data-metric-reading="revealed_commitments"]').length, 1, 'Keep the historical scalar distinct from chart counts');
+    assert.equal(document.querySelectorAll('[data-performance-card="revealed_commitments"]').length, 1, 'The former scalar is now one sourced over-time cohort chart');
     assert.doesNotMatch(document.querySelector('.metrics-index > [role=status]')?.textContent ?? '', /5 groups|featured chart/);
     assert.equal(document.querySelector('[data-metric-toggle] small'), null, 'No redundant header count/badge');
   } finally { await cleanup(); }

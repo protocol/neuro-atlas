@@ -15,6 +15,16 @@ test("old Ecosystem bookmarks redirect to the original map", () => {
 });
 const render = (Component) => new JSDOM(renderToStaticMarkup(React.createElement(Component))).window.document;
 
+test("sidebar and mobile header follow Milestones, Field Velocity, BCI Funding Index, Ecosystem order", () => {
+  const nav = moduleValue(Nav);
+  for (const Component of [nav.SideNav, nav.MobileBar]) {
+    const doc = render(Component);
+    const links = [...doc.querySelectorAll("nav a")].filter(link => ["/milestones", "/field-velocity", "/funding", MAP].includes(link.getAttribute("href")));
+    assert.deepEqual(links.map(link => link.getAttribute("href")), ["/milestones", "/field-velocity", "/funding", MAP]);
+    assert.deepEqual(links.map(link => link.textContent), ["Milestones", "Field Velocity", "BCI Funding Index", "Ecosystem ↗"]);
+  }
+});
+
 test("Ecosystem links directly to Neurofounders from home and both navigation layouts", () => {
   const nav = moduleValue(Nav);
   for (const Component of [moduleValue(Home), nav.SideNav, nav.MobileBar]) {

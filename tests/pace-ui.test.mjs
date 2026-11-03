@@ -8,7 +8,8 @@ import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
 import { mount, click } from './modal-helpers.mjs';
 import { selectPace } from '../src/lib/field-velocity/performance.ts';
 const feed = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8'));
-for (const [id, count] of [['idea_vintage', 27], ['latency_compression', 4]]) test(`${id} shared modal renders exact source years and qualified readings`, async () => {
+// Latency's withdrawn animal-event series is covered by latency-evidence.test.mjs.
+for (const [id, count] of [['idea_vintage', 27]]) test(`${id} shared modal renders exact source years and qualified readings`, async () => {
   assert.ok(existsSync('src/components/pace-readings.tsx'), 'Missing shared pace UI');
   const { PaceReadings } = await import('../src/components/pace-readings.tsx');
   const cleanup = await mount(React.createElement(PaceReadings, { data: selectPace(feed) }), '#' + id);
