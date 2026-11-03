@@ -1291,7 +1291,7 @@
         "xKind": "year",
         "yLabel": "Resource size (PB)",
         "scale": "log",
-        "scope": "Each point describes a named public product. Footprints depend on sample size, resolution, encoding and included products. Colors distinguish published image sizes, broader resource reports and a measured JPEG image pyramid. Dates identify the report or storage measurement; original release dates remain in the source notes. 1 PB = 1,000 TB = 10¹⁵ bytes. Fish1 (2025) remains a separate public dataset with an unverified total footprint.",
+        "scope": "Footprints depend on sample size, resolution, encoding and included products. Colors distinguish published image sizes, broader resource reports and a measured JPEG image pyramid. Dates identify the report or storage measurement; original release dates remain in the source notes. 1 PB = 1,000 TB = 10¹⁵ bytes. Fish1 (2025) remains a separate public dataset with an unverified total footprint.",
         "points": [
           {
             "id": "hildebrand-zebrafish-public-images-2017",
@@ -1379,9 +1379,10 @@
             "quote": "The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.",
             "group": "Measured image size",
             "qualifier": "",
-            "note": "Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification.",
+            "note": "Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm³ of tissue, including brain and ventral nerve cord.",
             "annotation": "MaleCNS fly · 0.05091 PB JPEG imagery · measured Nov. 3, 2026",
-            "marker": "square"
+            "marker": "square",
+            "exportNote": "All 11 JPEG image resolution levels: 50,910,260,068,834 stored bytes from the same specimen (0.054 mm³ of tissue). Separate N5 imagery, segmentation, meshes, tables and databases are excluded."
           }
         ],
         "observationBasis": "Published / measured",

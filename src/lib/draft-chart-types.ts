@@ -17,6 +17,8 @@ export type DraftObservation = {
   note?: string;
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
+  /** Decisive point-specific provenance retained in standalone chart exports. */
+  exportNote?: string;
 };
 
 export type DraftPlot = {

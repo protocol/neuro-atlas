@@ -99,5 +99,9 @@
     "duplicateObjectNames": 0,
     "allPagesExhausted": true,
     "allSavedJSONPageHashesVerified": true
+  },
+  "provenance": {
+    "imageRecordsWithGenerationAndUpdated": 27594,
+    "metadataRow": "The single 633-byte info metadata row preserves its name and size only from the original observation. Generation and update timestamp were not captured; none are inferred retrospectively."
   }
 }

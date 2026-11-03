@@ -379,3 +379,18 @@ test('NeuroAI clipboard export uses the corrected performance–cost title with 
     assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-panel-neuroai-imagenet');
   } finally { await cleanup(); boundary.restore(); }
 });
+
+import {METRIC_CHART_EVIDENCE} from '../src/data/metric-chart-visibility.ts';
+import {DraftChartPlot} from '../src/components/draft-chart-plot.tsx';
+test('actual public-data PNG payload retains measurement date, existing specimen and encoded-product scope', async () => {
+ globalThis.React=React;let boundary;
+ const plot=Object.values(METRIC_CHART_EVIDENCE).flatMap(e=>e.plots).find(p=>p.id==='public-data-size');
+ const cleanup=await mount(React.createElement(DraftChartPlot,{plot,shareAnchor:'metric-panel-public-data-size'}),'',win=>{boundary=browserBoundaries(win)});
+ try{
+  await click(document.querySelector('[data-download-chart]'));
+  assert.equal(boundary.downloads.length,1);
+  const {JSDOM}=await import('jsdom');const doc=new JSDOM(boundary.svgs[0],{contentType:'image/svg+xml'});const text=[...doc.window.document.querySelectorAll('text')].map(e=>e.children.length?[...e.children].map(line=>line.textContent).join(' '):e.textContent).join('\n').replace(/\s+/g,' ');
+  for(const required of [/2026-11-03/,/initial release October 2025/,/same specimen/i,/11 JPEG image resolution levels/,/50,910,260,068,834/,/N5.*segmentation.*meshes.*tables.*excluded/])assert.match(text,required);
+  assert.match(text,/Resource size \(PB\)/);assert.doesNotMatch(text,/decimal PB/);assert.equal(doc.window.document.querySelectorAll('[data-source-observation]').length,6);doc.window.close();
+ }finally{await cleanup();boundary.restore()}
+});

@@ -20,3 +20,13 @@ for(const [kind,items,error] of [
  try {const path=dir+'/bad.jsonl.gz';writeFileSync(path,gzipSync(items.map(x=>JSON.stringify(x)).join('\n')));const r=run('--snapshot',path);assert.notEqual(r.status,0);assert.match(r.stderr,new RegExp(error));}
  finally{rmSync(dir,{recursive:true,force:true});}
 });
+
+import {readFileSync} from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+test('historical snapshot discloses the sole size-only metadata row without inventing its provenance',()=>{
+ const manifest=JSON.parse(readFileSync('docs/data/public-data-size/malecns-20261103.json','utf8'));
+ const rows=gunzipSync(readFileSync('docs/data/public-data-size/malecns-20261103.jsonl.gz')).toString().trim().split('\n').map(l=>JSON.parse(l));
+ const missing=rows.filter(r=>!r.generation||!r.updated);assert.deepEqual(missing,[{name:'em/em-clahe-jpeg/info',size:'633'}]);
+ assert.equal(manifest.provenance.imageRecordsWithGenerationAndUpdated,27594);
+ assert.match(manifest.provenance.metadataRow,/size only/);
+});

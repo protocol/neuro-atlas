@@ -202,6 +202,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
         `${observationBasis} · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
+        ...plot.points.filter(point => point.exportNote).map(point => `${point.label} · ${point.dateLabel}. ${point.exportNote}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} />}
     {!preview && <><div className="draft-plot-inspector">
