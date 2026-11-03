@@ -7,7 +7,7 @@ import { METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, METRIC_CHART_CATEGORIES,
 import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 
-test('Metrics is one preview-default, keyboard-native index in the five-group order', async () => {
+test('Metrics is one full-rail-default, keyboard-native index in the five-group order', async () => {
   const cleanup = await mount(React.createElement(VelocityTabs, { performance: null }));
   try {
     assert.deepEqual([...document.querySelectorAll('button[aria-current]')].map(n => n.textContent), ['Metrics']);
@@ -19,6 +19,7 @@ test('Metrics is one preview-default, keyboard-native index in the five-group or
       assert.equal(toggle.type, 'button');
       assert.equal(toggle.getAttribute('aria-expanded'), 'true');
       assert.equal(document.getElementById(toggle.getAttribute('aria-controls')).hidden, false);
+      assert.equal(toggle.closest('[data-metrics-category]').dataset.metricState, 'full');
     }
     await click(document.querySelector('[data-collapse-metrics]'));
     toggles[0].focus();
@@ -26,6 +27,7 @@ test('Metrics is one preview-default, keyboard-native index in the five-group or
     await click(toggles[1]);
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'true');
     assert.equal(toggles[1].getAttribute('aria-expanded'), 'true');
+    assert.ok(toggles.slice(0, 2).every(toggle => toggle.closest('[data-metrics-category]').dataset.metricState === 'full'));
     assert.equal(document.activeElement, toggles[0]);
     await click(toggles[0]);
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');

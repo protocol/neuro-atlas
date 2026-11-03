@@ -77,7 +77,7 @@ test('flat curated cards keep essential scope visible and move complete definiti
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
 
-test('category expansion keeps all chart families in one native horizontal rail with an outside action', async () => {
+test('all chart families start in one native horizontal rail and remain intact through heading collapse', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const style = document.createElement('style');
@@ -94,22 +94,10 @@ test('category expansion keeps all chart families in one native horizontal rail 
       assert.equal(getComputedStyle(grid).overflowX, 'auto');
       assert.equal(grid.tabIndex, 0, 'Native keyboard scrolling stays available');
       assert.equal(grid.getAttribute('aria-label'), `${category.dataset.metricsCategory} charts`);
-      const more = category.querySelector('[data-metric-more]');
-      assert.equal(more.parentElement, grid.parentElement, 'The action stays outside the scrollable track');
-      assert.equal(grid.contains(more), false);
-      assert.equal(more.textContent, 'show more charts');
-      const featured = [...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]'));
-      assert.equal(featured.length, 1);
-      for (const hidden of grid.querySelectorAll('[hidden]')) {
-        assert.equal(getComputedStyle(hidden).visibility, 'hidden', 'Measurable peers must never be painted');
-        assert.equal(hidden.getAttribute('aria-hidden'), 'true');
-        assert.ok(hidden.hasAttribute('inert'), 'Sizing must not expose hidden chart controls');
-      }
-      await click(more);
-      assert.equal(featured[0].isConnected, true, 'Do not replace/remount the featured chart');
-      assert.equal(featured[0].closest('[hidden]'), null);
-      assert.equal([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]'))[0], featured[0], 'Revealed peers follow the unchanged featured tile in every family');
-      assert.equal(more.textContent, 'show only featured');
+      assert.equal(category.querySelector('[data-metric-more]'), null);
+      assert.equal(category.dataset.metricState, 'full');
+      const cards = [...grid.querySelectorAll('article')];
+      assert.deepEqual(cards.filter(n => !n.closest('[hidden]')), cards, 'Every peer is visible without a chart-expansion action');
       assert.equal(grid.querySelector('.pc-grid, .draft-chart-grid, .pc-section-header'), null, 'No nested subgroup grids or headings in the rail');
       assert.ok([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')).length > 1);
       for (const card of grid.querySelectorAll('article')) {
@@ -117,8 +105,17 @@ test('category expansion keeps all chart families in one native horizontal rail 
         assert.equal(card.closest('[data-metric-rail]'), grid);
         assert.equal(card.parentElement === grid || card.parentElement.classList.contains('metric-chart-fragment'), true);
       }
-      await click(more);
-      assert.equal([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')).length, 1);
+      const toggle = category.querySelector('[data-metric-toggle]');
+      await click(toggle);
+      assert.equal([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')).length, 0);
+      const hidden = grid.closest('[hidden]');
+      assert.ok(hidden, 'Heading collapse hides the entire rail, not selected peers');
+      assert.equal(getComputedStyle(hidden).visibility, 'hidden', 'Measurable peers must never be painted');
+      assert.equal(hidden.getAttribute('aria-hidden'), 'true');
+      assert.ok(hidden.hasAttribute('inert'), 'Sizing must not expose hidden chart controls');
+      assert.ok(cards.every(card => card.isConnected), 'Do not replace/remount chart cards');
+      await click(toggle);
+      assert.deepEqual([...grid.querySelectorAll('article')].filter(n => !n.closest('[hidden]')), cards, 'Reopening restores all original peers in the same order');
     }
     const commitment = document.getElementById('revealed_commitments');
     assert.ok(commitment.matches('article[data-metric-tile]'), 'Historical cohort reading remains a peer, not a fifth chart');
