@@ -1,10 +1,10 @@
-# Janelia resource-size coverage — checked October 29, 2026
+# Janelia resource-size coverage — updated November 3, 2026
 
-This review concerns **reported public image/resource size in decimal PB**, not neuron counts, nominal voxel addresses, or a sum of unrelated downloads. No numeric observation was added for the following resources. The five preexisting byte-size observations remain unchanged.
+The MaleCNS image-product gap from the October 29 review is resolved by a reproducible public-storage inventory. The five earlier reported sizes remain unchanged; a sixth, explicitly measurement-dated point covers MaleCNS JPEG imagery. Full source review and reproducibility: [public data size audit](public-data-size-audit.md). Fish Fire&Wire access findings below retain their October 29 evidence date.
 
 ## MaleCNS
 
-A distinct male Drosophila specimen, not FAFB/FlyWire. The [official download page](https://male-cns.janelia.org/download/) publishes aligned EM and derivative products, but no matched total TB/PB image-resource footprint was verified. File sizes for connectivity/annotation tables are partial products and cannot stand in for the whole image resource.
+A distinct male Drosophila specimen. The [official download page](https://male-cns.janelia.org/download/) identifies public aligned EM and derivative products. A November 3, 2026 inventory establishes **50,910,260,068,834 stored bytes (0.050910260068834 PB)** for the complete CLAHE/JPEG image pyramid, including all 11 resolution levels. Native 8 nm imagery is **44,428,865,656,516 bytes**. Two independent metadata listing APIs agree. The [audit and compact inventory](public-data-size-audit.md) preserve the exact scope: alternative N5 imagery, segmentation, meshes, skeletons and tables are separate products.
 
 The [release notes](https://male-cns.janelia.org/release/) list v0.9 in October 2025 and v1.0 on June 8, 2026. The [project page](https://www.janelia.org/project-team/flyem/male-cns-connectome) gives October 3 for the first release; release notes give October 5. Preserve month precision rather than selecting a day. v1.0 describes minor proofreading changes and annotation refinement, not a new specimen. The [Cell paper](https://www.sciencedirect.com/science/article/pii/S0092867426009426) was published September 3, 2026.
 

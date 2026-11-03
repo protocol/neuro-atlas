@@ -17,7 +17,7 @@ test('retired panels are unmounted, with every other source observation retained
     for (const id of retiredPoints) assert.equal(!!document.querySelector(`[data-source-observation="${id}"]`), false, id);
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
     assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), expected);
-    assert.equal(expected.length, 77);
+    assert.equal(expected.length, 78);
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 15); // 14 numeric + timeline
     assert.equal(document.querySelector('[data-metric-toggle="Tissue quality and annotation"]'), null);

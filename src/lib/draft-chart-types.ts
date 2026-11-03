@@ -33,6 +33,8 @@ export type DraftPlot = {
   points: DraftObservation[];
   xKind?: "year" | "number";
   seriesNote?: string;
+  /** Optional evidence basis; default preserves source-reported charts. */
+  observationBasis?: string;
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

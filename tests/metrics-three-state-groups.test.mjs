@@ -45,7 +45,7 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
     assert.equal(visible('[data-draft-chart-card]').length, 15, 'Each of the 14 numeric plots and the timeline is a peer tile');
     assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 14);
-    assert.equal(visible('[data-source-observation]').length, 77);
+    assert.equal(visible('[data-source-observation]').length, 78);
     assert.equal(visible('[data-trends-card]').length, 2);
     assert.equal(visible('[data-performance-card]').length, 3);
     const ids = [...document.querySelectorAll('[id]')].map(n => n.id);

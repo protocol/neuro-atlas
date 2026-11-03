@@ -50,7 +50,7 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 3, 'Unique neuron capability chart and two pace cards');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
     assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 15);
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 77);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 78);
     assert.equal(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'), null);
     assert.equal(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'), null);
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));

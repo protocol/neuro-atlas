@@ -48,7 +48,7 @@ test('new human observations retain cohort, modality, access and bound distincti
 });
 
 test('public image additions are separately named byte products, not FlyWire duplicate acquisition',()=>{
- const p=plots.find(p=>p.id==='public-data-size');assert.equal(p.points.length,5);assert.equal(p.scale,'log');
+ const p=plots.find(p=>p.id==='public-data-size');assert.equal(p.points.length,6);assert.equal(p.scale,'log');
  const fafb=p.points.find(p=>p.id==='fafb-image-download-2018');assert.equal(fafb.y,0.012);assert.equal(fafb.x,2018);assert.match(fafb.label,/FlyWire/);
  const fish=p.points.find(p=>p.id==='hildebrand-zebrafish-public-images-2017');assert.equal(fish.y,0.0027);assert.equal(fish.x,2017);assert.match(fish.label,/Hildebrand/);
  assert.doesNotMatch(p.scope,/not a cumulative/);assert.match(p.scope,/Fish1/);

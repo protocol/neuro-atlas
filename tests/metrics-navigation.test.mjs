@@ -33,7 +33,7 @@ test('Metrics is one full-rail-default, keyboard-native index in the five-group 
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15, 'One peer tile per numeric plot or timeline');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 77);
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 78);
   } finally { await cleanup(); }
 });
 

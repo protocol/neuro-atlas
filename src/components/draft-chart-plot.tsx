@@ -63,6 +63,7 @@ function usePlotWidth() {
 
 export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
+  const observationBasis = plot.observationBasis ?? "Source-reported";
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
     ?? GROUP_COLORS[groups.indexOf(group) % GROUP_COLORS.length];
@@ -193,13 +194,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </span>)}
       </>}
     </p>}
-    {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> Source-reported · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>}
+    {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>}
     {!preview && shareAnchor && <ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,
       notes: [plot.scope, plot.seriesNote ?? "",
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
-        `Source-reported · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
+        `${observationBasis} · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} />}
@@ -219,7 +220,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       {plot.seriesNote && <p>{plot.seriesNote}</p>}
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
-          <caption>{plot.title} — source-reported observations</caption>
+          <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>
           <thead><tr><th scope="col">Observation</th><th scope="col">{plot.xLabel}</th><th scope="col">{plot.yLabel}</th><th scope="col">Source and scope notes</th></tr></thead>
           <tbody>{plot.points.map(point => <tr key={point.id}>
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
