@@ -1,0 +1,160 @@
+{
+  "revision": "0244b074d08e7506741a891ab647581d53375af8",
+  "widths": [
+    {
+      "title": "Selected public image/resource footprints",
+      "axis": "Resource size (PB)",
+      "marks": [
+        "hildebrand-zebrafish-public-images-2017",
+        "fafb-image-download-2018",
+        "hemibrain-v1",
+        "h01-2021",
+        "microns-2025-size",
+        "malecns-jpeg-inventory-2026"
+      ],
+      "groups": " Published image sizes Published resource sizes Measured image size",
+      "rows": [
+        {
+          "label": "Hildebrand larval zebrafish: compressed aligned imageryPublished image sizes",
+          "value": "\u22480.0027",
+          "note": "Hildebrand et al., Nature 2017, Whole-brain serial-section electron microscopy in larval zebrafish \u2197The entire aligned image dataset requires ~2.7 TB of disk space as compressed PNG imagesThe paper reports approximately 2.7 TB for the entire aligned multiresolution image dataset as compressed PNGs, including targeted peripheral imagery and small registered reference-atlas components. It separately describes 2.4 TB and 4.9 TB imaging products. Publication date: May 10, 2017. This is the Hildebrand larval-zebrafish resource; Fish1 is a separate dataset."
+        },
+        {
+          "label": "FAFB public JPEG image pyramid (source for FlyWire)Published image sizes",
+          "value": "\u22480.012",
+          "note": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster \u2197The full 12 TB image volume is downloaded over the Internet.The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding."
+        },
+        {
+          "label": "Hemibrain v1.0 reported data size (26+ TB)Published resource sizes",
+          "value": "\u22650.026",
+          "note": "FlyEM Hemibrain Release \u2197From the 26+ TB of data, we can generateThe release page reports 26+ TB of data; encoding and included products are unspecified for that figure. Its public inventory includes images and derived products. Retain the published lower bound. The compact 25 MB connectivity graph is a separate product."
+        },
+        {
+          "label": "H01 public renderingPublished image sizes",
+          "value": "1.4",
+          "note": "A Browsable Petascale Reconstruction of the Human Cortex \u2197a 1.4 petabyte rendering of a small sample of human brain tissueThe June 1, 2021 producer announcement describes a 1.4 PB rendering and captions the sample as captured in 1.4 petabytes of images. Images and derived products are publicly available; the byte membership of the headline total remains unspecified. This reports roughly 1 mm\u00b3 of human cortex. Current image metadata specifies JPEG at 4 \u00d7 4 \u00d7 33 nm. The later 2024 paper describes the same specimen."
+        },
+        {
+          "label": "MICrONS public-resource size snapshotPublished resource sizes",
+          "value": "1.6",
+          "note": "Scientists complete largest wiring diagram and functional map of the brain to date \u2197The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.The April 9, 2025 producer announcement reports 1.6 PB for the wiring diagram and its data, with the included byte products unspecified. The first public release was July 2021. Its v117 manifest separately lists EM image products of 117 TB and 55 TB (172 TB combined); these are a narrower image-only scope. Source: https://www.microns-explorer.org/manifests/mm3-v117 . AWS and Google mirrors describe the same specimen."
+        },
+        {
+          "label": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size",
+          "value": "0.05091",
+          "note": "MaleCNS public-image inventory, November 3, 2026 \u2197The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord."
+        }
+      ],
+      "width": 1440,
+      "client": 1440,
+      "scrollWidth": 1440,
+      "inspection": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size2026-11-03 \u00b7 measured public stored bytes; initial release October 2025Resource size (PB): 0.05091MaleCNS public-image inventory, November 3, 2026 \u2197Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord.",
+      "focusReturned": true,
+      "all20EqualHeights": true
+    },
+    {
+      "title": "Selected public image/resource footprints",
+      "axis": "Resource size (PB)",
+      "marks": [
+        "hildebrand-zebrafish-public-images-2017",
+        "fafb-image-download-2018",
+        "hemibrain-v1",
+        "h01-2021",
+        "microns-2025-size",
+        "malecns-jpeg-inventory-2026"
+      ],
+      "groups": " Published image sizes Published resource sizes Measured image size",
+      "rows": [
+        {
+          "label": "Hildebrand larval zebrafish: compressed aligned imageryPublished image sizes",
+          "value": "\u22480.0027",
+          "note": "Hildebrand et al., Nature 2017, Whole-brain serial-section electron microscopy in larval zebrafish \u2197The entire aligned image dataset requires ~2.7 TB of disk space as compressed PNG imagesThe paper reports approximately 2.7 TB for the entire aligned multiresolution image dataset as compressed PNGs, including targeted peripheral imagery and small registered reference-atlas components. It separately describes 2.4 TB and 4.9 TB imaging products. Publication date: May 10, 2017. This is the Hildebrand larval-zebrafish resource; Fish1 is a separate dataset."
+        },
+        {
+          "label": "FAFB public JPEG image pyramid (source for FlyWire)Published image sizes",
+          "value": "\u22480.012",
+          "note": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster \u2197The full 12 TB image volume is downloaded over the Internet.The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding."
+        },
+        {
+          "label": "Hemibrain v1.0 reported data size (26+ TB)Published resource sizes",
+          "value": "\u22650.026",
+          "note": "FlyEM Hemibrain Release \u2197From the 26+ TB of data, we can generateThe release page reports 26+ TB of data; encoding and included products are unspecified for that figure. Its public inventory includes images and derived products. Retain the published lower bound. The compact 25 MB connectivity graph is a separate product."
+        },
+        {
+          "label": "H01 public renderingPublished image sizes",
+          "value": "1.4",
+          "note": "A Browsable Petascale Reconstruction of the Human Cortex \u2197a 1.4 petabyte rendering of a small sample of human brain tissueThe June 1, 2021 producer announcement describes a 1.4 PB rendering and captions the sample as captured in 1.4 petabytes of images. Images and derived products are publicly available; the byte membership of the headline total remains unspecified. This reports roughly 1 mm\u00b3 of human cortex. Current image metadata specifies JPEG at 4 \u00d7 4 \u00d7 33 nm. The later 2024 paper describes the same specimen."
+        },
+        {
+          "label": "MICrONS public-resource size snapshotPublished resource sizes",
+          "value": "1.6",
+          "note": "Scientists complete largest wiring diagram and functional map of the brain to date \u2197The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.The April 9, 2025 producer announcement reports 1.6 PB for the wiring diagram and its data, with the included byte products unspecified. The first public release was July 2021. Its v117 manifest separately lists EM image products of 117 TB and 55 TB (172 TB combined); these are a narrower image-only scope. Source: https://www.microns-explorer.org/manifests/mm3-v117 . AWS and Google mirrors describe the same specimen."
+        },
+        {
+          "label": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size",
+          "value": "0.05091",
+          "note": "MaleCNS public-image inventory, November 3, 2026 \u2197The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord."
+        }
+      ],
+      "width": 390,
+      "client": 390,
+      "scrollWidth": 390,
+      "inspection": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size2026-11-03 \u00b7 measured public stored bytes; initial release October 2025Resource size (PB): 0.05091MaleCNS public-image inventory, November 3, 2026 \u2197Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord.",
+      "focusReturned": true,
+      "all20EqualHeights": true
+    },
+    {
+      "title": "Selected public image/resource footprints",
+      "axis": "Resource size (PB)",
+      "marks": [
+        "hildebrand-zebrafish-public-images-2017",
+        "fafb-image-download-2018",
+        "hemibrain-v1",
+        "h01-2021",
+        "microns-2025-size",
+        "malecns-jpeg-inventory-2026"
+      ],
+      "groups": " Published image sizes Published resource sizes Measured image size",
+      "rows": [
+        {
+          "label": "Hildebrand larval zebrafish: compressed aligned imageryPublished image sizes",
+          "value": "\u22480.0027",
+          "note": "Hildebrand et al., Nature 2017, Whole-brain serial-section electron microscopy in larval zebrafish \u2197The entire aligned image dataset requires ~2.7 TB of disk space as compressed PNG imagesThe paper reports approximately 2.7 TB for the entire aligned multiresolution image dataset as compressed PNGs, including targeted peripheral imagery and small registered reference-atlas components. It separately describes 2.4 TB and 4.9 TB imaging products. Publication date: May 10, 2017. This is the Hildebrand larval-zebrafish resource; Fish1 is a separate dataset."
+        },
+        {
+          "label": "FAFB public JPEG image pyramid (source for FlyWire)Published image sizes",
+          "value": "\u22480.012",
+          "note": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster \u2197The full 12 TB image volume is downloaded over the Internet.The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding."
+        },
+        {
+          "label": "Hemibrain v1.0 reported data size (26+ TB)Published resource sizes",
+          "value": "\u22650.026",
+          "note": "FlyEM Hemibrain Release \u2197From the 26+ TB of data, we can generateThe release page reports 26+ TB of data; encoding and included products are unspecified for that figure. Its public inventory includes images and derived products. Retain the published lower bound. The compact 25 MB connectivity graph is a separate product."
+        },
+        {
+          "label": "H01 public renderingPublished image sizes",
+          "value": "1.4",
+          "note": "A Browsable Petascale Reconstruction of the Human Cortex \u2197a 1.4 petabyte rendering of a small sample of human brain tissueThe June 1, 2021 producer announcement describes a 1.4 PB rendering and captions the sample as captured in 1.4 petabytes of images. Images and derived products are publicly available; the byte membership of the headline total remains unspecified. This reports roughly 1 mm\u00b3 of human cortex. Current image metadata specifies JPEG at 4 \u00d7 4 \u00d7 33 nm. The later 2024 paper describes the same specimen."
+        },
+        {
+          "label": "MICrONS public-resource size snapshotPublished resource sizes",
+          "value": "1.6",
+          "note": "Scientists complete largest wiring diagram and functional map of the brain to date \u2197The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.The April 9, 2025 producer announcement reports 1.6 PB for the wiring diagram and its data, with the included byte products unspecified. The first public release was July 2021. Its v117 manifest separately lists EM image products of 117 TB and 55 TB (172 TB combined); these are a narrower image-only scope. Source: https://www.microns-explorer.org/manifests/mm3-v117 . AWS and Google mirrors describe the same specimen."
+        },
+        {
+          "label": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size",
+          "value": "0.05091",
+          "note": "MaleCNS public-image inventory, November 3, 2026 \u2197The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord."
+        }
+      ],
+      "width": 320,
+      "client": 320,
+      "scrollWidth": 320,
+      "inspection": "MaleCNS: JPEG imagery, all resolution levelsMeasured image size2026-11-03 \u00b7 measured public stored bytes; initial release October 2025Resource size (PB): 0.05091MaleCNS public-image inventory, November 3, 2026 \u2197Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm\u00b3 of tissue, including brain and ventral nerve cord.",
+      "focusReturned": true,
+      "all20EqualHeights": true
+    }
+  ],
+  "PNGBytes": 729755,
+  "nativePNGGenerated": true
+}

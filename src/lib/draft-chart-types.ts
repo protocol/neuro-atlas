@@ -17,6 +17,8 @@ export type DraftObservation = {
   note?: string;
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
+  /** Decisive point-specific provenance retained in standalone chart exports. */
+  exportNote?: string;
 };
 
 export type DraftPlot = {
@@ -33,6 +35,8 @@ export type DraftPlot = {
   points: DraftObservation[];
   xKind?: "year" | "number";
   seriesNote?: string;
+  /** Optional evidence basis; default preserves source-reported charts. */
+  observationBasis?: string;
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

@@ -1,0 +1,107 @@
+{
+  "scope": "gs://flyem-male-cns/em/em-clahe-jpeg/",
+  "measurementUTC": "2026-11-03T20:05:30.200897+00:00",
+  "complete": true,
+  "objects": 27595,
+  "bytes": 50910260068834,
+  "PB": 0.050910260068834,
+  "metadataBytes": 633,
+  "snapshot": "malecns-20261103.jsonl.gz",
+  "sha256": "a17dbc5454329e9b6b5092d8f335a7e7afe6f57931e109bc01048b538fccfb09",
+  "levels": [
+    {
+      "prefix": "em/em-clahe-jpeg/1024x1024x1024/",
+      "complete": true,
+      "objects": 1,
+      "bytes": 15363654,
+      "decimal_TB": 1.5363654e-05
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/128x128x128/",
+      "complete": true,
+      "objects": 25,
+      "bytes": 10481131100,
+      "decimal_TB": 0.0104811311
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/16x16x16/",
+      "complete": true,
+      "objects": 3492,
+      "bytes": 5661513143296,
+      "decimal_TB": 5.661513143296
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/2048x2048x2048/",
+      "complete": true,
+      "objects": 1,
+      "bytes": 2093604,
+      "decimal_TB": 2.093604e-06
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/256x256x256/",
+      "complete": true,
+      "objects": 8,
+      "bytes": 1270773452,
+      "decimal_TB": 0.001270773452
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/32x32x32/",
+      "complete": true,
+      "objects": 629,
+      "bytes": 719826207509,
+      "decimal_TB": 0.719826207509
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/4096x4096x4096/",
+      "complete": true,
+      "objects": 1,
+      "bytes": 322591,
+      "decimal_TB": 3.22591e-07
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/512x512x512/",
+      "complete": true,
+      "objects": 2,
+      "bytes": 148156984,
+      "decimal_TB": 0.000148156984
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/64x64x64/",
+      "complete": true,
+      "objects": 123,
+      "bytes": 88137157366,
+      "decimal_TB": 0.088137157366
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/8192x8192x8192/",
+      "complete": true,
+      "objects": 1,
+      "bytes": 62129,
+      "decimal_TB": 6.2129e-08
+    },
+    {
+      "prefix": "em/em-clahe-jpeg/8x8x8/",
+      "complete": true,
+      "objects": 23311,
+      "bytes": 44428865656516,
+      "decimal_TB": 44.428865656516
+    }
+  ],
+  "JSON_XML_verification": {
+    "pass": true,
+    "verificationUTC": "2026-11-03T20:05:32.710570+00:00",
+    "independentAPI": "GCS XML vs JSON listings",
+    "objects": 27595,
+    "bytes": 50910260068834,
+    "decimalTB": 50.910260068834,
+    "decimalPB": 0.050910260068834,
+    "sameObjectNames": true,
+    "duplicateObjectNames": 0,
+    "allPagesExhausted": true,
+    "allSavedJSONPageHashesVerified": true
+  },
+  "provenance": {
+    "imageRecordsWithGenerationAndUpdated": 27594,
+    "metadataRow": "The single 633-byte info metadata row preserves its name and size only from the original observation. Generation and update timestamp were not captured; none are inferred retrospectively."
+  }
+}

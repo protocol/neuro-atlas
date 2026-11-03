@@ -1282,16 +1282,16 @@
   },
   "Open-access connectomics data over time": {
     "status": "plotted",
-    "summary": "Selected published public-resource footprints. FlyWire derives from the FAFB imagery; larval zebrafish resources are identified by dataset.",
+    "summary": "Selected public connectomics footprints, with image products and broader resource reports distinguished.",
     "plots": [
       {
         "id": "public-data-size",
         "title": "Selected public image/resource footprints",
-        "xLabel": "Publication / public-availability year",
+        "xLabel": "Report / measurement year",
         "xKind": "year",
-        "yLabel": "Reported resource size (decimal PB)",
+        "yLabel": "Resource size (PB)",
         "scale": "log",
-        "scope": "Public compressed imagery, raw imagery and mixed image/derived-resource sizes are unlike byte bases. The 2018 FAFB image volume underlies FlyWire; the 2024 FlyWire connectivity release is not another 12 TB image acquisition. Fish1 (2025) is publicly available but no comparable total byte footprint was verified.",
+        "scope": "Footprints depend on sample size, resolution, encoding and included products. Colors distinguish published image sizes, broader resource reports and a measured JPEG image pyramid. Dates identify the report or storage measurement; original release dates remain in the source notes. 1 PB = 1,000 TB = 10¹⁵ bytes. Fish1 (2025) remains a separate public dataset with an unverified total footprint.",
         "points": [
           {
             "id": "hildebrand-zebrafish-public-images-2017",
@@ -1302,22 +1302,26 @@
             "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5594570/",
             "sourceTitle": "Hildebrand et al., Nature 2017, Whole-brain serial-section electron microscopy in larval zebrafish",
             "quote": "The entire aligned image dataset requires ~2.7 TB of disk space as compressed PNG images",
-            "group": "Hildebrand zebrafish",
+            "group": "Published image sizes",
             "qualifier": "≈",
-            "note": "Multiresolution EM image resource with small registered reference-atlas components; not all-neuron synaptic reconstruction. Not the separate 2.4 TB and 4.9 TB imaging products. Not Fish1 2025."
+            "note": "The paper reports approximately 2.7 TB for the entire aligned multiresolution image dataset as compressed PNGs, including targeted peripheral imagery and small registered reference-atlas components. It separately describes 2.4 TB and 4.9 TB imaging products. Publication date: May 10, 2017. This is the Hildebrand larval-zebrafish resource; Fish1 is a separate dataset.",
+            "annotation": "Hildebrand zebrafish · ≈0.0027 PB PNG imagery",
+            "marker": "circle"
           },
           {
             "id": "fafb-image-download-2018",
             "x": 2018,
             "y": 0.012,
-            "label": "FAFB public image volume (source for FlyWire)",
+            "label": "FAFB public JPEG image pyramid (source for FlyWire)",
             "dateLabel": "2018-07-19 publication; first release not established",
             "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6063995/fullTextXML",
             "sourceTitle": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster",
             "quote": "The full 12 TB image volume is downloaded over the Internet.",
-            "group": "FAFB / FlyWire imagery",
+            "group": "Published image sizes",
             "qualifier": "≈",
-            "note": "Publisher-reported public image representation, distinct from approximately 106 TB acquired camera images. Historic published availability; original site certificate currently expired. Do not date this image acquisition to the 2024 FlyWire paper."
+            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
+            "annotation": "FAFB / FlyWire · ≈0.012 PB JPEG imagery",
+            "marker": "circle"
           },
           {
             "id": "hemibrain-v1",
@@ -1329,8 +1333,10 @@
             "sourceTitle": "FlyEM Hemibrain Release",
             "quote": "From the 26+ TB of data, we can generate",
             "qualifier": "≥",
-            "note": "Publisher-reported lower bound, decimal conversion TB/1000. Not exact byte inventory and not the compact 25 MB graph. Public EM and reconstructions; license not verified in inspected sources.",
-            "group": "Hemibrain"
+            "note": "The release page reports 26+ TB of data; encoding and included products are unspecified for that figure. Its public inventory includes images and derived products. Retain the published lower bound. The compact 25 MB connectivity graph is a separate product.",
+            "group": "Published resource sizes",
+            "annotation": "Hemibrain · ≥0.026 PB reported data",
+            "marker": "triangle"
           },
           {
             "id": "h01-2021",
@@ -1342,8 +1348,10 @@
             "sourceTitle": "A Browsable Petascale Reconstruction of the Human Cortex",
             "quote": "a 1.4 petabyte rendering of a small sample of human brain tissue",
             "qualifier": "",
-            "note": "Reported rendering size; public images plus reconstruction/annotations. Exact compressed download footprint and image/derivative byte partition unmeasured. Do not add 2024 republication as new data.",
-            "group": "H01"
+            "note": "The June 1, 2021 producer announcement describes a 1.4 PB rendering and captions the sample as captured in 1.4 petabytes of images. Images and derived products are publicly available; the byte membership of the headline total remains unspecified. This reports roughly 1 mm³ of human cortex. Current image metadata specifies JPEG at 4 × 4 × 33 nm. The later 2024 paper describes the same specimen.",
+            "group": "Published image sizes",
+            "annotation": "H01 human cortex · 1.4 PB reported imagery",
+            "marker": "circle"
           },
           {
             "id": "microns-2025-size",
@@ -1355,13 +1363,33 @@
             "sourceTitle": "Scientists complete largest wiring diagram and functional map of the brain to date",
             "quote": "The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.",
             "qualifier": "",
-            "note": "Producer reports aggregate resource size; no raw/processed partition. Not the >2 PB raw acquisition claim. Mirrors on AWS/Google/BossDB are the same dataset.",
-            "group": "MICrONS"
+            "note": "The April 9, 2025 producer announcement reports 1.6 PB for the wiring diagram and its data, with the included byte products unspecified. The first public release was July 2021. Its v117 manifest separately lists EM image products of 117 TB and 55 TB (172 TB combined); these are a narrower image-only scope. Source: https://www.microns-explorer.org/manifests/mm3-v117 . AWS and Google mirrors describe the same specimen.",
+            "group": "Published resource sizes",
+            "annotation": "MICrONS mouse cortex · 1.6 PB reported resource",
+            "marker": "triangle"
+          },
+          {
+            "id": "malecns-jpeg-inventory-2026",
+            "x": 2026,
+            "y": 0.050910260068834,
+            "label": "MaleCNS: JPEG imagery, all resolution levels",
+            "dateLabel": "2026-11-03 · measured public stored bytes; initial release October 2025",
+            "sourceUrl": "https://github.com/protocol/neuro-atlas/blob/c49484c2773866a12531d23007208a15207ff5fd/docs/public-data-size-audit.md#malecns-measured-public-jpeg-image-pyramid",
+            "sourceTitle": "MaleCNS public-image inventory, November 3, 2026",
+            "quote": "The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.",
+            "group": "Measured image size",
+            "qualifier": "",
+            "note": "Public object inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery alone: 44,428,865,656,516 bytes. The initial specimen release was October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 image encoding, segmentation, meshes and tables are excluded. The linked audit includes the official image-product source, complete object snapshot and two-API verification. The fly specimen contains 0.054 mm³ of tissue, including brain and ventral nerve cord.",
+            "annotation": "MaleCNS fly · 0.05091 PB JPEG imagery · measured Nov. 3, 2026",
+            "marker": "square",
+            "exportNote": "All 11 JPEG image resolution levels: 50,910,260,068,834 stored bytes from the same specimen (0.054 mm³ of tissue). Separate N5 imagery, segmentation, meshes, tables and databases are excluded."
           }
-        ]
+        ],
+        "observationBasis": "Published / measured",
+        "valueSignificantDigits": 4
       }
     ],
-    "gapReason": "Raw-image versus processed-data byte splits and a deduplicated global inventory remain unavailable. Coverage checked October 29, 2026: MaleCNS is public (initial release October 2025; v1.0 June 8, 2026), but no verified TB/PB image-resource total was found; nominal voxel-grid capacity is not stored data. Fish Fire&Wire (Fish2) has request-only research-group access, redistribution restrictions, and a publication embargo until December 1, 2027; its byte footprint is also unverified. This is not Fish1. Neither is assigned an invented size or counted as another FAFB/FlyWire image acquisition."
+    "gapReason": "Source audit November 3, 2026: all five prior reported sizes are retained with explicit product scope. MaleCNS public JPEG imagery is now represented by an exact current-storage inventory with a measurement date. Original release-day byte inventories and matched image/derived partitions remain unavailable. Fish Fire&Wire (Fish2) retains request-only research-group access and redistribution restrictions; its footprint remains unverified. Fish2 is distinct from Fish1 and retains a publication embargo until December 1, 2027."
   },
   "Public connectome reuse over time": {
     "status": "gap",

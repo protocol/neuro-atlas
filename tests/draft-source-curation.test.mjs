@@ -54,7 +54,7 @@ test('all candidate definitions, evidence gaps and additive share targets remain
  assert.equal(Object.keys(evidence).length,19);
  assert.equal(Object.values(evidence).filter(c=>c.status==='gap').length,5);
  assert.equal(Object.values(evidence).flatMap(c=>c.plots).length,23);
- assert.equal(Object.values(evidence).flatMap(c=>c.plots).flatMap(p=>p.points).length,85);
+ assert.equal(Object.values(evidence).flatMap(c=>c.plots).flatMap(p=>p.points).length,86);
 });
 
 test('browser source-table probe derives its exact row count from current neuronal data',async()=>{

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "hildebrand-zebrafish-public-images-2017",
+    "x": 2017,
+    "y": 0.0027,
+    "label": "Hildebrand larval zebrafish: compressed aligned imagery",
+    "dateLabel": "2017-05-10 publication; first release not established",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5594570/",
+    "sourceTitle": "Hildebrand et al., Nature 2017, Whole-brain serial-section electron microscopy in larval zebrafish",
+    "quote": "The entire aligned image dataset requires ~2.7 TB of disk space as compressed PNG images",
+    "group": "Hildebrand zebrafish",
+    "qualifier": "≈",
+    "note": "Multiresolution EM image resource with small registered reference-atlas components; not all-neuron synaptic reconstruction. Not the separate 2.4 TB and 4.9 TB imaging products. Not Fish1 2025."
+  },
+  {
+    "id": "fafb-image-download-2018",
+    "x": 2018,
+    "y": 0.012,
+    "label": "FAFB public image volume (source for FlyWire)",
+    "dateLabel": "2018-07-19 publication; first release not established",
+    "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6063995/fullTextXML",
+    "sourceTitle": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster",
+    "quote": "The full 12 TB image volume is downloaded over the Internet.",
+    "group": "FAFB / FlyWire imagery",
+    "qualifier": "≈",
+    "note": "Publisher-reported public image representation, distinct from approximately 106 TB acquired camera images. Historic published availability; original site certificate currently expired. Do not date this image acquisition to the 2024 FlyWire paper."
+  },
+  {
+    "id": "hemibrain-v1",
+    "x": 2020,
+    "y": 0.026,
+    "label": "Hemibrain v1.0 reported data size (26+ TB)",
+    "dateLabel": "2020-01-22 · v1.0 release date from Janelia release history",
+    "sourceUrl": "https://dvid.io/blog/release/",
+    "sourceTitle": "FlyEM Hemibrain Release",
+    "quote": "From the 26+ TB of data, we can generate",
+    "qualifier": "≥",
+    "note": "Publisher-reported lower bound, decimal conversion TB/1000. Not exact byte inventory and not the compact 25 MB graph. Public EM and reconstructions; license not verified in inspected sources.",
+    "group": "Hemibrain"
+  },
+  {
+    "id": "h01-2021",
+    "x": 2021,
+    "y": 1.4,
+    "label": "H01 public rendering",
+    "dateLabel": "2021-06-01 · dated producer announcement says today releasing",
+    "sourceUrl": "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+    "sourceTitle": "A Browsable Petascale Reconstruction of the Human Cortex",
+    "quote": "a 1.4 petabyte rendering of a small sample of human brain tissue",
+    "qualifier": "",
+    "note": "Reported rendering size; public images plus reconstruction/annotations. Exact compressed download footprint and image/derivative byte partition unmeasured. Do not add 2024 republication as new data.",
+    "group": "H01"
+  },
+  {
+    "id": "microns-2025-size",
+    "x": 2025,
+    "y": 1.6,
+    "label": "MICrONS public-resource size snapshot",
+    "dateLabel": "2025-04-09 · dated producer report/publication snapshot, not first release",
+    "sourceUrl": "https://alleninstitute.org/news/scientists-complete-largest-wiring-diagram-and-functional-map-of-the-brain-to-date",
+    "sourceTitle": "Scientists complete largest wiring diagram and functional map of the brain to date",
+    "quote": "The Machine Intelligence from Cortical Networks (MICrONS) Project has built the most detailed wiring diagram of a mammalian brain to date. Today, scientists published the scientific findings from this massive data resource in a collection of ten studies in the *Nature* family of journals. The wiring diagram and its data, freely available through the MICrONS Explorer, are 1.6 petabytes in size (equivalent to 22 years of non-stop HD video), and offer never-before-seen insight into brain function and organization of the visual system.",
+    "qualifier": "",
+    "note": "Producer reports aggregate resource size; no raw/processed partition. Not the >2 PB raw acquisition claim. Mirrors on AWS/Google/BossDB are the same dataset.",
+    "group": "MICrONS"
+  }
+]
