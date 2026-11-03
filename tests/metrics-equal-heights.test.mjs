@@ -23,9 +23,14 @@ test('the catalog reserves one natural-content maximum independent of which pane
   try {
     const catalog = document.querySelector('.metrics-index');
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
+    await click(document.querySelector('[data-collapse-metrics]'));
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     await click(document.querySelector('[data-expand-metrics]'));
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
-    await click(document.querySelector('[data-metric-more="Neurotech field engagement"]'));
+    const toggle = document.querySelector('[data-metric-toggle="Neurotech field engagement"]');
+    await click(toggle);
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
+    await click(toggle);
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '560px');
     for (const svg of catalog.querySelectorAll('svg')) assert.equal(svg.style.height, '', 'Never squeeze scientific SVGs to force a card height');
   } finally { await cleanup(); }
@@ -95,13 +100,17 @@ test('hidden chart regions remain measurable but inert and visually excluded in 
     const style = document.createElement('style');
     style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
     document.head.append(style);
-    for (const state of ['preview', 'collapsed', 'search']) {
+    for (const state of ['full', 'collapsed', 'search']) {
       if (state === 'collapsed') await click(document.querySelector('[data-collapse-metrics]'));
       if (state === 'search') await act(async () => {
         const input = document.querySelector('#metrics-search');
         input.value = 'H01'; input.dispatchEvent(new Event('input', { bubbles: true }));
       });
       const hidden = [...document.querySelectorAll('.metrics-index [hidden]')];
+      if (state === 'full') {
+        assert.equal(hidden.length, 0, 'The default rail has no featured-only hidden peers');
+        continue;
+      }
       assert.ok(hidden.length);
       for (const region of hidden) {
         assert.ok(region.hasAttribute('data-metric-size-hidden'), `${state}: hidden chart regions must have an explicit measurement contract`);
@@ -112,7 +121,7 @@ test('hidden chart regions remain measurable but inert and visually excluded in 
   } finally { await cleanup(); }
 });
 
-test('sizing visibility overrides Tailwind base-layer hidden rules without putting the rail above its action', async () => {
+test('sizing visibility overrides Tailwind base-layer hidden rules while retaining local rail stacking', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
@@ -123,7 +132,7 @@ test('sizing visibility overrides Tailwind base-layer hidden rules without putti
   } finally { await cleanup(); }
 });
 
-test('preview and expanded rows reserve the same action and scrollbar space to avoid bottom clamping', async () => {
+test('full rows reserve card and scrollbar space without obsolete expansion-action space', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
@@ -132,7 +141,8 @@ test('preview and expanded rows reserve the same action and scrollbar space to a
     assert.equal(content.alignContent, 'start', 'Extra reserved space stays below the charts, not inside their geometry');
     assert.match(content.minHeight, /metric-card-height/);
     assert.match(content.minHeight, /metric-scrollbar-height/);
-    assert.match(content.minHeight, /metric-more-row-space/);
+    assert.doesNotMatch(content.minHeight, /metric-more-row-space/);
+    assert.doesNotMatch(css, /metric-more-row-space|metric-category-more/);
     assert.equal(document.querySelector('.metrics-index').style.getPropertyValue('--metric-scrollbar-height'), '0px', 'Use native measured scrollbar space (zero in jsdom)');
   } finally { await cleanup(); }
 });

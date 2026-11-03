@@ -15,7 +15,7 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
   const { dom, rules: css } = rules();
   try {
     const content = css.find(rule => rule.selectorText === '.metric-category-content');
-    assert.ok(content, 'The preview action and full rail share one width budget');
+    assert.ok(content, 'The complete rail uses one width budget');
     assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 1rem)/1.65)');
     const rail = css.find(rule => rule.selectorText === '.metric-chart-rail');
     assert.equal(rail.style.getPropertyValue('grid-auto-columns'), 'var(--metric-card-width)');
@@ -36,7 +36,7 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
     }
     assert.equal(css.some(rule => rule.selectorText === '.metric-chart-grid'), false);
     assert.equal(css.some(rule => rule.selectorText?.includes('data-metric-state') && rule.style.getPropertyValue('--metric-card-width')), false,
-      'Preview and full state must use the exact same card width');
+      'Card width must remain independent of disclosure state');
   } finally { dom.window.close(); }
 });
 

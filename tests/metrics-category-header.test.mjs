@@ -23,7 +23,8 @@ test('category headers expose a separately wrapping name without redundant badge
     assert.equal(layout.alignItems, 'baseline');
   }
   assert.equal(doc.querySelectorAll('[data-metric-toggle] small').length, 0);
-  assert.deepEqual([...doc.querySelectorAll('[data-metric-more]')].map(button => button.textContent),
-    Array(5).fill('show more charts'), 'Expansion copy is lowercase and does not specify a count');
+  assert.equal(doc.querySelector('[data-metric-more]'), null, 'No redundant chart-expansion action');
+  assert.deepEqual([...doc.querySelectorAll('[data-metrics-category]')].map(category => category.dataset.metricState),
+    Array(5).fill('full'), 'All category headers disclose the complete rail by default');
   dom.window.close();
 });

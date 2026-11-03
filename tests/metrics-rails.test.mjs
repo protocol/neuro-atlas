@@ -39,33 +39,21 @@ test('thin dividers separate the five sections even when every section is headli
 });
 
 
-test('the large circular expansion button is centered in the blank space beside the featured chart', async () => {
+test('full rails have no chart expansion action or obsolete circular-action layout', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
-    const stylesheet = addStyles();
+    addStyles();
+    const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
+    assert.doesNotMatch(css, /metric-category-more|metric-more-row-space|data-metric-state="preview"/);
     const categories = [...document.querySelectorAll('[data-metrics-category]')];
     for (const category of categories) {
-      const more = category.querySelector('[data-metric-more]');
-      const style = getComputedStyle(more);
-      assert.equal(more.textContent, 'show more charts');
-      assert.equal(style.borderRadius, '50%');
-      assert.equal(style.aspectRatio, '1 / 1');
-      assert.equal(style.width, '144px', 'Larger than the previous compact 44px action');
-      assert.equal(style.gridColumn, '2');
-      assert.equal(style.gridRow, '1');
-      assert.equal(style.alignSelf, 'center');
-      assert.equal(style.justifySelf, 'center');
+      assert.equal(category.dataset.metricState, 'full');
+      assert.equal(category.querySelector('[data-metric-more]'), null);
+      const content = category.querySelector('.metric-category-content');
+      assert.deepEqual([...content.children], [category.querySelector('[data-metric-rail]')], 'No blank action slot beside or below the rail');
+      assert.ok([...content.querySelectorAll('article')].filter(card => !card.closest('[hidden]')).length > 1);
     }
-    const narrow = [...stylesheet.sheet.cssRules].find(rule => rule.conditionText === '(max-width: 560px)' && [...rule.cssRules].some(rule => rule.selectorText === '.metric-category-content'));
-    const narrowAction = [...narrow.cssRules].find(rule => rule.selectorText?.includes('[data-metric-state="preview"]') && rule.selectorText.endsWith('.metric-category-more'));
-    assert.ok(narrowAction, 'If no room beside the full narrow chart, keep a centered circle below it instead of overflowing');
-    assert.equal(narrowAction.style.getPropertyValue('grid-column'), '1', 'Center the narrow circle under the featured card, not the full rail');
-    assert.equal(narrowAction.style.getPropertyValue('grid-row'), '2');
-    await click(categories[0].querySelector('[data-metric-more]'));
-    const collapse = categories[0].querySelector('[data-metric-more]');
-    assert.equal(collapse.textContent, 'show only featured');
-    assert.equal(collapse.closest('[data-metric-rail]'), null);
-    assert.equal(getComputedStyle(collapse).gridColumn, '1 / -1');
+    assert.doesNotMatch(document.querySelector('.metrics-index').textContent, /show more charts|show only featured/i);
   } finally { await cleanup(); }
 });
 
@@ -75,19 +63,21 @@ test('category collapse resets its rail and recovers focus before hiding the off
   try {
     const category = document.querySelector('[data-metrics-category="Mapping Scale"]');
     const rail = category.querySelector('[data-metric-rail]');
-    const more = category.querySelector('[data-metric-more]');
     const toggle = category.querySelector('[data-metric-toggle]');
-    for (const control of [more, toggle]) {
-      await click(more);
+    const cards = [...rail.querySelectorAll('article')];
+    for (let cycle = 0; cycle < 2; cycle++) {
       const peer = [...rail.querySelectorAll('[data-draft-popout-trigger]')].at(-1);
       rail.scrollLeft = 900;
       await act(async () => peer.focus({ preventScroll: true }));
       assert.equal(document.activeElement, peer);
-      await click(control);
-      assert.equal(rail.scrollLeft, 0, 'The featured tile must be visible on collapse and the next expansion');
-      assert.equal(document.activeElement, control, 'Never leave keyboard focus on a hidden peer');
-      if (control === toggle) await click(toggle);
-      assert.equal(category.dataset.metricState, 'preview');
+      await click(toggle);
+      assert.equal(category.dataset.metricState, 'collapsed');
+      assert.equal(rail.scrollLeft, 0, 'The first tile must be visible on collapse and the next expansion');
+      assert.equal(document.activeElement, toggle, 'Never leave keyboard focus on a hidden peer');
+      assert.ok(peer.closest('[hidden]'));
+      await click(toggle);
+      assert.equal(category.dataset.metricState, 'full');
+      assert.deepEqual([...rail.querySelectorAll('article')].filter(card => !card.closest('[hidden]')), cards);
       assert.equal(rail.scrollLeft, 0);
     }
   } finally { await cleanup(); }
@@ -109,6 +99,7 @@ test('Collapse all resets every horizontal position and leaves focus on its visi
     assert.equal(collapse.closest('[hidden]'), null);
     await click(document.querySelector('[data-expand-metrics]'));
     assert.deepEqual(rails.map(rail => rail.scrollLeft), [0, 0, 0, 0, 0]);
+    assert.ok([...document.querySelectorAll('[data-metrics-category]')].every(category => category.dataset.metricState === 'full'));
   } finally { await cleanup(); }
 });
 
@@ -117,7 +108,6 @@ test('keyboard focus and modal-close restoration reveal their full tile using on
   const cleanup = await mount(React.createElement(Page));
   try {
     const category = document.querySelector('[data-metrics-category="Mapping Scale"]');
-    await click(category.querySelector('[data-metric-more]'));
     const rail = category.querySelector('[data-metric-rail]');
     Object.defineProperty(rail, 'clientWidth', { configurable: true, value: 600 });
     rail.getBoundingClientRect = () => ({ left: 100, right: 700, width: 600 });
@@ -150,7 +140,6 @@ test('pointer-pressed focus does not move a peer out from under the pending clic
   const cleanup = await mount(React.createElement(Page));
   try {
     const category = document.querySelector('[data-metrics-category="Mapping Scale"]');
-    await click(category.querySelector('[data-metric-more]'));
     const rail = category.querySelector('[data-metric-rail]');
     Object.defineProperty(rail, 'clientWidth', { configurable: true, value: 600 });
     rail.getBoundingClientRect = () => ({ left: 100, right: 700, width: 600 });

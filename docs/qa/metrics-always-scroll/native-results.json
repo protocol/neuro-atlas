@@ -1,0 +1,320 @@
+[
+  {
+    "width": 1440,
+    "geometry": {
+      "inner": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "rows": [
+        {
+          "name": "Neurotech field engagement",
+          "width": 1087,
+          "scrollWidth": 3309,
+          "heights": [
+            606,
+            606,
+            606,
+            606
+          ],
+          "tops": [
+            587.453125,
+            587.453125,
+            587.453125,
+            587.453125,
+            587.453125
+          ],
+          "partial": true
+        },
+        {
+          "name": "Human interfaces and recordings",
+          "width": 1087,
+          "scrollWidth": 1979,
+          "heights": [
+            606,
+            606,
+            606
+          ],
+          "tops": [
+            1335.84375,
+            1335.84375,
+            1335.84375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Mapping Scale",
+          "width": 1087,
+          "scrollWidth": 3974,
+          "heights": [
+            606,
+            606,
+            606,
+            606,
+            606,
+            606
+          ],
+          "tops": [
+            2084.234375,
+            2084.234375,
+            2084.234375,
+            2084.234375,
+            2084.234375,
+            2084.234375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Cost and automation",
+          "width": 1087,
+          "scrollWidth": 2644,
+          "heights": [
+            606,
+            606,
+            606,
+            606
+          ],
+          "tops": [
+            2832.625,
+            2832.625,
+            2832.625,
+            2832.625
+          ],
+          "partial": true
+        },
+        {
+          "name": "Simulation and NeuroAI",
+          "width": 1087,
+          "scrollWidth": 1979,
+          "heights": [
+            606,
+            606,
+            606
+          ],
+          "tops": [
+            3581.015625,
+            3581.015625,
+            3581.015625
+          ],
+          "partial": true
+        }
+      ]
+    },
+    "allOrderEqualToBaselineExpanded": true,
+    "nativeWheelAllFiveRails": true,
+    "searchClear": true,
+    "collapseReopenAll": true,
+    "keyboardPeerModalEscapeFocusReturn": true
+  },
+  {
+    "width": 390,
+    "geometry": {
+      "inner": 390,
+      "client": 390,
+      "scroll": 390,
+      "rows": [
+        {
+          "name": "Neurotech field engagement",
+          "width": 324,
+          "scrollWidth": 1484,
+          "heights": [
+            770,
+            770,
+            770,
+            770
+          ],
+          "tops": [
+            769.15625,
+            769.15625,
+            769.15625,
+            769.15625,
+            769.15625
+          ],
+          "partial": true
+        },
+        {
+          "name": "Human interfaces and recordings",
+          "width": 324,
+          "scrollWidth": 884,
+          "heights": [
+            770,
+            770,
+            770
+          ],
+          "tops": [
+            1666.546875,
+            1666.546875,
+            1666.546875
+          ],
+          "partial": true
+        },
+        {
+          "name": "Mapping Scale",
+          "width": 324,
+          "scrollWidth": 1784,
+          "heights": [
+            770,
+            770,
+            770,
+            770,
+            770,
+            770
+          ],
+          "tops": [
+            2563.9375,
+            2563.9375,
+            2563.9375,
+            2563.9375,
+            2563.9375,
+            2563.9375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Cost and automation",
+          "width": 324,
+          "scrollWidth": 1184,
+          "heights": [
+            770,
+            770,
+            770,
+            770
+          ],
+          "tops": [
+            3461.328125,
+            3461.328125,
+            3461.328125,
+            3461.328125
+          ],
+          "partial": true
+        },
+        {
+          "name": "Simulation and NeuroAI",
+          "width": 324,
+          "scrollWidth": 884,
+          "heights": [
+            770,
+            770,
+            770
+          ],
+          "tops": [
+            4358.71875,
+            4358.71875,
+            4358.71875
+          ],
+          "partial": true
+        }
+      ]
+    },
+    "allOrderEqualToBaselineExpanded": true,
+    "nativeWheelAllFiveRails": true,
+    "searchClear": true,
+    "collapseReopenAll": true,
+    "keyboardPeerModalEscapeFocusReturn": true
+  },
+  {
+    "width": 320,
+    "geometry": {
+      "inner": 320,
+      "client": 320,
+      "scroll": 320,
+      "rows": [
+        {
+          "name": "Neurotech field engagement",
+          "width": 254,
+          "scrollWidth": 1134,
+          "heights": [
+            935,
+            935,
+            935,
+            935
+          ],
+          "tops": [
+            841.9375,
+            841.9375,
+            841.9375,
+            841.9375,
+            841.9375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Human interfaces and recordings",
+          "width": 254,
+          "scrollWidth": 674,
+          "heights": [
+            935,
+            935,
+            935
+          ],
+          "tops": [
+            1910.703125,
+            1910.703125,
+            1910.703125
+          ],
+          "partial": true
+        },
+        {
+          "name": "Mapping Scale",
+          "width": 254,
+          "scrollWidth": 1364,
+          "heights": [
+            935,
+            935,
+            935,
+            935,
+            935,
+            935
+          ],
+          "tops": [
+            2973.09375,
+            2973.09375,
+            2973.09375,
+            2973.09375,
+            2973.09375,
+            2973.09375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Cost and automation",
+          "width": 254,
+          "scrollWidth": 904,
+          "heights": [
+            935,
+            935,
+            935,
+            935
+          ],
+          "tops": [
+            4035.484375,
+            4035.484375,
+            4035.484375,
+            4035.484375
+          ],
+          "partial": true
+        },
+        {
+          "name": "Simulation and NeuroAI",
+          "width": 254,
+          "scrollWidth": 674,
+          "heights": [
+            935,
+            935,
+            935
+          ],
+          "tops": [
+            5097.875,
+            5097.875,
+            5097.875
+          ],
+          "partial": true
+        }
+      ]
+    },
+    "allOrderEqualToBaselineExpanded": true,
+    "nativeWheelAllFiveRails": true,
+    "searchClear": true,
+    "collapseReopenAll": true,
+    "keyboardPeerModalEscapeFocusReturn": true
+  }
+]

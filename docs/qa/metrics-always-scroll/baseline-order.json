@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Neurotech field engagement",
+    "cards": [
+      {
+        "id": "neurotech",
+        "title": "Neurotech search terms"
+      },
+      {
+        "id": "idea_vintage"
+      },
+      {
+        "id": "latency_compression"
+      },
+      {
+        "id": "neuralink",
+        "title": "Neuralink \u00b7 brand context"
+      },
+      {}
+    ]
+  },
+  {
+    "name": "Human interfaces and recordings",
+    "cards": [
+      {
+        "id": "metric-recording-hours"
+      },
+      {
+        "id": "metric-panel-neuralink-cumulative"
+      },
+      {
+        "id": "simultaneously-recorded-neurons"
+      }
+    ]
+  },
+  {
+    "name": "Mapping Scale",
+    "cards": [
+      {
+        "id": "metric-panel-public-data-size"
+      },
+      {
+        "id": "metric-panel-tissue-cm3"
+      },
+      {
+        "id": "metric-panel-largest-connectome-neurons"
+      },
+      {
+        "id": "metric-panel-largest-connectome-synapses"
+      },
+      {
+        "id": "metric-panel-acquisition-rates"
+      },
+      {
+        "id": "metric-panel-paired-manual"
+      }
+    ]
+  },
+  {
+    "name": "Cost and automation",
+    "cards": [
+      {
+        "id": "metric-panel-acquisition-economics"
+      },
+      {
+        "id": "metric-panel-pathfinder-nerl"
+      },
+      {
+        "id": "metric-panel-connectomics-roboem-human-split-merge"
+      },
+      {
+        "id": "metric-panel-proofreading-effort"
+      }
+    ]
+  },
+  {
+    "name": "Simulation and NeuroAI",
+    "cards": [
+      {
+        "id": "metric-panel-neuroai-imagenet"
+      },
+      {
+        "id": "metric-panel-flyvis-contrast"
+      },
+      {
+        "id": "metric-panel-application-events"
+      }
+    ]
+  }
+]
