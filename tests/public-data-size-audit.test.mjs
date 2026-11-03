@@ -75,3 +75,7 @@ test('exported dataset keys include size and the MaleCNS measurement date', () =
  assert.match(male.annotation,/0.05091 PB.*Nov\. 3, 2026/);
  assert.match(male.sourceUrl,/docs\/public-data-size-audit\.md/);
 });
+
+test('MaleCNS source opens the audit revision that discloses the size-only metadata exception', () => {
+ assert.match(plot.points.find(p=>p.id==='malecns-jpeg-inventory-2026').sourceUrl,/blob\/c49484c2773866a12531d23007208a15207ff5fd\/docs\/public-data-size-audit\.md/);
+});

@@ -1374,7 +1374,7 @@
             "y": 0.050910260068834,
             "label": "MaleCNS: JPEG imagery, all resolution levels",
             "dateLabel": "2026-11-03 · measured public stored bytes; initial release October 2025",
-            "sourceUrl": "https://github.com/protocol/neuro-atlas/blob/2320407333caadcfda1c4921e3936ffc73931dcb/docs/public-data-size-audit.md#malecns-measured-public-jpeg-image-pyramid",
+            "sourceUrl": "https://github.com/protocol/neuro-atlas/blob/c49484c2773866a12531d23007208a15207ff5fd/docs/public-data-size-audit.md#malecns-measured-public-jpeg-image-pyramid",
             "sourceTitle": "MaleCNS public-image inventory, November 3, 2026",
             "quote": "The aligned EM volume, contrast-adjusted with CLAHE normalization and JPEG-encoded.",
             "group": "Measured image size",
