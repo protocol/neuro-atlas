@@ -68,3 +68,10 @@ test('all five historical values, dates, quotations and source identities remain
  const before=JSON.parse(readFileSync('tests/fixtures/public-data-size-before-20261103.json','utf8'));
  for(const old of before){const actual=plot.points.find(p=>p.id===old.id);for(const field of ['id','x','y','sourceUrl','sourceTitle','quote','dateLabel','qualifier'])assert.equal(actual[field],old[field],`${old.id}: ${field}`);}
 });
+
+test('exported dataset keys include size and the MaleCNS measurement date', () => {
+ for(const p of plot.points) assert.match(p.annotation,/PB/);
+ const male=plot.points.find(p=>p.id==='malecns-jpeg-inventory-2026');
+ assert.match(male.annotation,/0.05091 PB.*Nov\. 3, 2026/);
+ assert.match(male.sourceUrl,/docs\/public-data-size-audit\.md/);
+});
