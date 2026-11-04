@@ -99,3 +99,34 @@ test('Git-second commit readback works with fractional receipt expiry; actual Gi
   const result=await publishBundle({enabled:true,bundle:f.bundle,publicKey:f.keys.publicKey,sources:f.sources,store,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_TOKEN'}});
   assert.equal(result.number,1);assert.equal(remote.prs.length,1);assert.equal(Date.parse(remote.commits.get(result.headSha).author.date),Math.floor(expiry/1000)*1000);assert.equal(f.bundle.receipt.expiresAt,expiry);
 });
+
+
+test('publisher independently denies a valid signed private-mode TSX patch before credentials or HTTP writes',async t=>{
+  const {PRIVATE_FEEDBACK_TASK}=await import('../src/lib/feedback/schema.ts'),{publishBundle}=await import('../scripts/feedback/publisher.ts');
+  const f=await bundleFixture(t),remote=await githubFixture(t,f.base);let loads=0;
+  const name='src/components/site-nav.tsx',original='export const nav = [{label: "Overview"}];\n';
+  const sources={...f.sources,[name]:original},publicTask={...PRIVATE_FEEDBACK_TASK,acceptance:[...PRIVATE_FEEDBACK_TASK.acceptance]};
+  const patch={baseSha:f.base,files:[{path:name,beforeSha256:sha256(original),content:original.replace('Overview','Private')}]};
+  const receipt={...f.bundle.receipt,approvalHash:approvalHash(publicTask,f.bundle.publicContext),patchDigest:sha256(canonical(patch))};
+  const bundle={...f.bundle,publicTask,patch,receipt,signature:sign(null,Buffer.from(canonical(receipt)),f.keys.privateKey).toString('base64')};
+  await assert.rejects(publishBundle({enabled:true,bundle,publicKey:f.keys.publicKey,sources,store:publicationStore(),github:{origin:remote.origin,fixture:true,token:()=>{loads++;return 'SYNTHETIC_TOKEN'}}}),/publisher_rejected/);
+  assert.equal(loads,0);assert.equal(remote.writes.length,0);
+});
+
+
+test('publisher independently rejects re-signed unknown/malformed private markers, public contexts and private bundle keys',async t=>{
+  const {PRIVATE_FEEDBACK_TASK}=await import('../src/lib/feedback/schema.ts'),{publishBundle}=await import('../scripts/feedback/publisher.ts');
+  const f=await bundleFixture(t),remote=await githubFixture(t,f.base);let loads=0;
+  const task={...PRIVATE_FEEDBACK_TASK,acceptance:[...PRIVATE_FEEDBACK_TASK.acceptance]};
+  for(const altered of [
+    {publicTask:{...task,origin:'private-feedback-v2'}}, {publicTask:{...task,title:'PRIVATE_MARKER_CANARY'}},
+    {publicTask:{...task,summary:'PRIVATE_MARKER_CANARY'}}, {publicTask:{...task,acceptance:['PRIVATE_MARKER_CANARY']}},
+    {publicContext:{...f.bundle.publicContext,element:{selector:'html > body > button',tagName:'button'}}},
+    {privateInstruction:{feedback:'PRIVATE_MARKER_CANARY'}},
+  ]){
+    const bundle={...f.bundle,publicTask:task,...altered};const receipt={...bundle.receipt,approvalHash:approvalHash(bundle.publicTask,bundle.publicContext)};
+    bundle.receipt=receipt;bundle.signature=sign(null,Buffer.from(canonical(receipt)),f.keys.privateKey).toString('base64');
+    await assert.rejects(publishBundle({enabled:true,bundle,publicKey:f.keys.publicKey,sources:f.sources,store:publicationStore(),github:{origin:remote.origin,fixture:true,token:()=>{loads++;return 'SYNTHETIC_TOKEN'}}}),e=>e.message==='publisher_rejected');
+  }
+  assert.equal(loads,0);assert.equal(remote.writes.length,0);
+});

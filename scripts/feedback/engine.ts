@@ -1,7 +1,8 @@
+import {publicTaskSchema,publicContextSchema,approvedPrivateInstruction} from '../../src/lib/feedback/schema';
 import { sign, verify, createPublicKey } from 'node:crypto';
 import { loadSnapshot, applyValidatedPatch, verifyAppliedPatch } from './git-sandbox';
 import { runTrustedChecks } from './checks';
-import { sha256, validatePatch, POLICY_VERSION, exactKeys } from './validator';
+import { sha256, validatePatch, POLICY_VERSION, exactKeys, CSS_PATHS } from './validator';
 import type { PublicTask, PublicContext, WorkerOptions, Bundle, Receipt, Capability } from './ports';
 export function canonical(value:unknown):string {
   if (value===null || typeof value!=='object') return JSON.stringify(value);
@@ -10,12 +11,9 @@ export function canonical(value:unknown):string {
 }
 export function approvalHash(publicTask:PublicTask,publicContext:PublicContext):string {return sha256(canonical({policyVersion:POLICY_VERSION,publicTask,publicContext}));}
 export function approvedEnvelope(task:PublicTask,context:PublicContext):{publicTask:PublicTask;publicContext:PublicContext} {
-  if (!exactKeys(task,['title','summary','acceptance']) || typeof task.title!=='string' || !task.title.length || task.title.length>100 || typeof task.summary!=='string' || !task.summary.length || task.summary.length>1500 || !Array.isArray(task.acceptance) || task.acceptance.length<1 || task.acceptance.length>5 || task.acceptance.some(s=>typeof s!=='string'||!s.length||s.length>200)) throw new Error('needs_human_review');
-  const allowed=['route','targetId','chartId','scenario','viewport','theme','deployedRevision'];
-  if (!context || Object.keys(context).some(k=>!allowed.includes(k)) || !['/','/field-velocity','/funding','/milestones','/ecosystem','/methodology'].includes(context.route) || !['light','dark','system'].includes(context.theme) || !exactKeys(context.viewport,['width','height']) || ![context.viewport.width,context.viewport.height].every(n=>Number.isInteger(n)&&n>0&&n<=10000)) throw new Error('needs_human_review');
-  for (const key of ['targetId','chartId','scenario'] as const) if (context[key]!==undefined && !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(context[key]!)) throw new Error('needs_human_review');
-  if (context.deployedRevision!==undefined && !/^[0-9a-f]{40}$/.test(context.deployedRevision)) throw new Error('needs_human_review');
-  return JSON.parse(JSON.stringify({publicTask:task,publicContext:context}));
+  const t=publicTaskSchema.safeParse(task),c=publicContextSchema.safeParse(context);
+  if(!t.success||!c.success)throw new Error('needs_human_review');
+  return JSON.parse(JSON.stringify({publicTask:t.data,publicContext:c.data}));
 }
 /** A previous receipt proves source history only, never renewed execution authority.
  * Its signature/digests/policy are checked, but its expired lease is deliberately not reused. */
@@ -27,7 +25,9 @@ function draftSources(cap:Capability,sources:Record<string,string>,key:WorkerOpt
     const envelope=approvedEnvelope(b.publicTask,b.publicContext);
     if(approvalHash(envelope.publicTask,envelope.publicContext)!==r.approvalHash || sha256(canonical(b))!==prior.bundleDigest || sha256(canonical(r))!==prior.receiptDigest || r.patchDigest!==prior.candidateDigest || sha256(canonical(b.patch))!==r.patchDigest || sha256(canonical(b.checks))!==r.checksDigest)throw new Error();
     for(const phase of ['baseline','candidate'] as const){const c=b.checks[phase];if(!exactKeys(c,['phase','passed','commands','digest']) || c.phase!==phase || c.passed!==true || canonical(c.commands)!==canonical(['test','typecheck','build']) || !/^[0-9a-f]{64}$/.test(c.digest))throw new Error();}
-    const patch=validatePatch(b.patch,sources,cap.baseSha);
+    // Historical public TSX approval cannot be renewed implicitly by a private CSS-only followup.
+    // Verify the full cumulative scope before baseline, inference or any reservation.
+    const patch=validatePatch(b.patch,sources,cap.baseSha,envelope.publicTask.origin==='private-feedback-v1'||cap.publicTask.origin==='private-feedback-v1'?'css-only':'legacy');
     return {...sources,...Object.fromEntries(patch.files.map(f=>[f.path,f.content]))};
   }catch{throw new Error('needs_human_review');}
 }
@@ -43,6 +43,8 @@ export async function runOne(options:WorkerOptions):Promise<{state:string}> {
     await active();
     if (!Number.isSafeInteger(cap.fence)||cap.fence<1 || !Number.isSafeInteger(cap.attempt)||cap.attempt<1||cap.attempt>2) throw new Error('needs_human_review');
     const envelope=approvedEnvelope(cap.publicTask,cap.publicContext);
+    const privateInstruction=approvedPrivateInstruction(envelope.publicTask,envelope.publicContext,cap.privateInstruction);
+    const scope=privateInstruction?'css-only':'legacy';
     if (approvalHash(envelope.publicTask,envelope.publicContext)!==cap.approvalHash) throw new Error('needs_human_review');
     const sources=await loadSnapshot(options.cwd,cap.baseSha);
     const modelSources=draftSources(cap,sources,options.signingKey);
@@ -53,15 +55,15 @@ export async function runOne(options:WorkerOptions):Promise<{state:string}> {
     // Baseline commands may generate files, but cannot change any tracked source or publishable input.
     const fresh=await loadSnapshot(options.cwd,cap.baseSha);
     if (canonical(fresh)!==canonical(sources)) throw new Error('needs_human_review');
-    const result=await options.model.generate({...envelope,sources:modelSources,baseSha:cap.baseSha},{assertActive:active,reserve:(cost,tokens)=>store.reserve(cap,cost,tokens),reconcile:(id,cost)=>store.reconcile(cap,id,cost),unknown:id=>store.unknown(cap,id)},abort.signal);
+    const result=await options.model.generate({...envelope,...(privateInstruction?{privateInstruction}:{}),sources:privateInstruction?Object.fromEntries(Object.entries(modelSources).filter(([path])=>(CSS_PATHS as readonly string[]).includes(path))):modelSources,baseSha:cap.baseSha},{assertActive:active,reserve:(cost,tokens)=>store.reserve(cap,cost,tokens),reconcile:(id,cost)=>store.reconcile(cap,id,cost),unknown:id=>store.unknown(cap,id)},abort.signal);
     await active();await store.transition(cap,'validating');
-    const incremental=validatePatch(result.patch,modelSources,cap.baseSha);
+    const incremental=validatePatch(result.patch,modelSources,cap.baseSha,scope);
     const candidateSources={...modelSources,...Object.fromEntries(incremental.files.map(f=>[f.path,f.content]))};
     // A cumulative patch keeps original main hashes, not the incremental draft hashes.
-    const patch=validatePatch({baseSha:cap.baseSha,files:Object.keys(candidateSources).filter(p=>candidateSources[p]!==sources[p]).sort().map(path=>({path,beforeSha256:sha256(sources[path]),content:candidateSources[path]}))},sources,cap.baseSha);
+    const patch=validatePatch({baseSha:cap.baseSha,files:Object.keys(candidateSources).filter(p=>candidateSources[p]!==sources[p]).sort().map(path=>({path,beforeSha256:sha256(sources[path]),content:candidateSources[path]}))},sources,cap.baseSha,scope);
     await applyValidatedPatch(options.cwd,patch,cap.baseSha);
     const candidate=await checks(options.cwd,'candidate',abort.signal);
-    await active();validatePatch(patch,sources,cap.baseSha);await verifyAppliedPatch(options.cwd,patch);
+    await active();validatePatch(patch,sources,cap.baseSha,scope);await verifyAppliedPatch(options.cwd,patch);
     if (baseline.passed!==true || candidate.passed!==true) throw new Error('checks_failed');
     const receipt:Receipt={policyVersion:POLICY_VERSION,jobId:cap.jobId,feedbackId:cap.feedbackId,inputVersion:cap.inputVersion,approvalHash:cap.approvalHash,baseSha:cap.baseSha,fence:cap.fence,patchDigest:sha256(canonical(patch)),checksDigest:sha256(canonical({baseline,candidate})),expiresAt:Math.min(cap.leaseUntil,Date.now()+600000)};
     const bundle:Bundle={receipt,signature:sign(null,Buffer.from(canonical(receipt)),options.signingKey).toString('base64'),...envelope,patch,checks:{baseline,candidate}};

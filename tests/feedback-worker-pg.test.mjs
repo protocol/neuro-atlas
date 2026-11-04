@@ -35,3 +35,34 @@ test('actual PostgreSQL migration: disabled defaults, global lease, durable rese
   await f.db.query('UPDATE atlas_feedback.control SET enabled=false');await assert.rejects(store.assertActive(cap),/fenced/);
   await f.db.query('UPDATE atlas_feedback.control SET enabled=true,fencing_token=fencing_token+1');await assert.rejects(store.transition(cap,'working'),/fenced/);
 });
+
+
+test('private instruction capability remains bound to immutable SQL payload at budget reservation',async t=>{
+  const f=await setup(t),{createFeedbackIntake}=await import('../src/lib/feedback/intake.ts'),{PgWorkStore}=await import('../scripts/feedback/pg-store.ts');
+  await f.db.query('UPDATE atlas_feedback.control SET enabled=true,allowed_owner_id=82394590,max_job_usd=1,max_day_usd=2,max_tokens=10000,max_turns=2,max_wall_seconds=120,max_attempts=2');
+  const intake=createFeedbackIntake(f.db,()=>new Date());await intake.create({githubId:82394590,login:'synthetic-owner'},randomUUID(),{feedback:'PRIVATE_BOUND_CANARY',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{route:'/',viewport:{width:1000,height:800},theme:'light',element:{selector:'html > body > button',tagName:'button'}}});
+  const store=new PgWorkStore(f.db,{trustedBaseSha:'a'.repeat(40)}),cap=await store.acquire();assert.equal(cap.privateInstruction.feedback,'PRIVATE_BOUND_CANARY');
+  const changed={...cap,privateInstruction:{...cap.privateInstruction,feedback:'changed'}};
+  await assert.rejects(store.reserve(changed,0.1,100),/fenced/);
+  const removed={...cap};delete removed.privateInstruction;await assert.rejects(store.reserve(removed,0.1,100),/fenced/);
+  assert.equal((await f.db.query('SELECT * FROM atlas_feedback.worker_reservations')).rows.length,0);
+  await store.assertActive(cap);
+});
+
+test('malformed immutable private job snapshots cannot acquire execution or reserve spend',async t=>{
+  const f=await setup(t),{createFeedbackIntake}=await import('../src/lib/feedback/intake.ts'),{PgWorkStore}=await import('../scripts/feedback/pg-store.ts');
+  await f.db.query('UPDATE atlas_feedback.control SET enabled=true,allowed_owner_id=82394590,max_job_usd=1,max_day_usd=2,max_tokens=10000,max_turns=2,max_wall_seconds=120,max_attempts=2');
+  const intake=createFeedbackIntake(f.db,()=>new Date()),actor={githubId:82394590,login:'synthetic-owner'};
+  const input={feedback:'PRIVATE_MALFORMED_CANARY',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{route:'/',viewport:{width:1000,height:800},theme:'light'}};
+  const mutations=[p=>({...p,privateComment:'PRIVATE_MALFORMED_CANARY'}),p=>({...p,privateInstruction:{...p.privateInstruction,unknown:'private'}}),p=>({...p,privateInstruction:null}),p=>({...p,publicTask:{...p.publicTask,origin:'private-feedback-v2'}}),p=>({...p,publicContext:{...p.publicContext,element:{selector:'html > body > button',tagName:'button'}}})];
+  for(const mutate of mutations){
+    const receipt=await intake.create(actor,randomUUID(),input),job=(await f.db.query('SELECT * FROM atlas_feedback.jobs WHERE feedback_id=$1',[receipt.id])).rows[0];
+    // A compromised insert is not authority; existing payloads cannot be mutated (SQL trigger tested above).
+    await f.db.query('DELETE FROM atlas_feedback.jobs WHERE id=$1',[job.id]);
+    await f.db.query('INSERT INTO atlas_feedback.jobs(id,feedback_id,input_version,approval_hash,payload) VALUES($1,$2,1,$3,$4)',[job.id,receipt.id,job.approval_hash,mutate(job.payload)]);
+    await assert.rejects(new PgWorkStore(f.db,{trustedBaseSha:'a'.repeat(40)}).acquire(),e=>['fenced','needs_human_review'].includes(e.message));
+    assert.equal((await f.db.query('SELECT attempt FROM atlas_feedback.jobs WHERE id=$1',[job.id])).rows[0].attempt,0);
+    assert.equal((await f.db.query('SELECT * FROM atlas_feedback.worker_reservations')).rows.length,0);
+    await f.db.query('DELETE FROM atlas_feedback.jobs WHERE id=$1',[job.id]);
+  }
+});

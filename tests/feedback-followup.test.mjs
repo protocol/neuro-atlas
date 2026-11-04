@@ -11,14 +11,15 @@ async function enable(db){await db.query('UPDATE atlas_feedback.control SET enab
 
 test('followup crossing each partial publication parks before inference and fences the old writer without erasing evidence',async t=>{
   const f=await setup(t);await enable(f.db);
-  for(const phase of ['reserved','commit_created','ref_written']){
-    const intake=createFeedbackIntake(f.db,()=>new Date()),first=await intake.create(actor,randomUUID(),input),store=new PgWorkStore(f.db,{trustedBaseSha:'a'.repeat(40)}),cap=await store.acquire();
+  const simple={feedback:'PRIVATE_PARTIAL_CANARY',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{...input.context,element:{selector:'html > body > button',tagName:'button'}}};
+  for(const [phase,body] of ['reserved','commit_created','ref_written'].flatMap(phase=>[input,simple].map(body=>[phase,body]))){
+    const intake=createFeedbackIntake(f.db,()=>new Date()),first=await intake.create(actor,randomUUID(),body),store=new PgWorkStore(f.db,{trustedBaseSha:'a'.repeat(40)}),cap=await store.acquire();
     assert.equal(cap.feedbackId,first.id);
     await f.db.query("UPDATE atlas_feedback.jobs SET state='publishing' WHERE id=$1",[cap.jobId]);
     await f.db.query("UPDATE atlas_feedback.feedback SET state='publishing' WHERE id=$1",[first.id]);
     await f.db.query('INSERT INTO atlas_feedback.publications(feedback_id,branch,candidate_digest,phase,version,commit_sha) VALUES($1,$2,$3,$4,1,$5)',[first.id,'atlas-feedback/'+first.id,'d'.repeat(64),phase,phase==='reserved'?null:'c'.repeat(40)]);
     const evidence=(await f.db.query('SELECT * FROM atlas_feedback.publications WHERE feedback_id=$1',[first.id])).rows[0];
-    const key=randomUUID(),followup={...input,expectedVersion:1};
+    const key=randomUUID(),followup={...body,expectedVersion:1};
     const next=await intake.followup(actor,first.id,key,followup);
     assert.equal(next.state,'needs_human_review',phase);assert.equal(next.version,2);
     assert.equal((await intake.status(actor,first.id)).reasonCode,'partial_publication_followup');
@@ -49,7 +50,7 @@ test('direct pending successor of each partial publication is parked by acquisit
 import {generateKeyPairSync,createHash} from 'node:crypto';
 import http from 'node:http';
 import {AnthropicModel} from '../scripts/feedback/model.ts';
-import {writeFile,readFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fixture} from './feedback-worker-git.test.mjs';
 import {githubFixture} from './feedback-publish-http.test.mjs';
@@ -132,3 +133,48 @@ test('expired signed history is source evidence only: newly approved followup ge
   assert.equal((await runOne({enabled:true,store,cwd:f.cwd,model,signingKey:f.keys.privateKey,checks,maxWallMs:30000})).state,'publishing');
   assert.equal(calls,1);assert.equal(completed.receipt.fence,2);assert.equal(completed.receipt.inputVersion,2);assert.ok(completed.receipt.expiresAt>Date.now());assert.equal(completed.patch.files[0].beforeSha256,sha256(f.sources['src/components/landing.css']));
 });
+
+
+async function mixedPrivatePipeline(t,tsxHistory=false) {
+  const f=await setup(t),{cwd}=await fixture(t),keys=generateKeyPairSync('ed25519');await enable(f.db);
+  const css='src/components/landing.css',nav='src/components/site-nav.tsx';
+  const original='.card { gap: 8px; margin: 4px; }\n',navigation='export const nav = [{label: "Overview"}];\n';
+  await writeFile(path.join(cwd,css),original);await writeFile(path.join(cwd,nav),navigation);
+  await writeFile(path.join(cwd,'package.json'),JSON.stringify({scripts:{test:'node check.cjs',typecheck:'node check.cjs',build:'node check.cjs'}}));
+  await writeFile(path.join(cwd,'check.cjs'),"if(Object.keys(process.env).some(k=>/TOKEN|SECRET|DATABASE|ANTHROPIC/.test(k)))process.exit(9)");
+  await git(cwd,['add','.']);await git(cwd,['commit','-qm','trusted mixed-mode fixture']);
+  const base=(await git(cwd,['rev-parse','HEAD'])).trim(),sources=await loadSnapshot(cwd,base),remote=await githubFixture(t,base);
+  const tree=remote.trees.get('b'.repeat(40));tree.tree=tree.tree.filter(f=>f.path!==css);for(const [path,content] of [[css,original],[nav,navigation]])tree.tree.push({path,mode:'100644',type:'blob',sha:blob(content)});
+  const intake=createFeedbackIntake(f.db,()=>new Date()),first=await intake.create(actor,randomUUID(),input);let calls=0;
+  const observed=[];
+  const provider=http.createServer(async(req,res)=>{
+    let raw='';for await(const c of req)raw+=c;
+    assert.ok(!raw.includes('PRIVATE_FOLLOWUP_CANARY'));const request=JSON.parse(JSON.parse(raw).messages[0].content);observed.push(request);calls++;
+    const name=calls===1&&tsxHistory?nav:css;
+    const content=calls===1?(tsxHistory?navigation.replace('Overview','Atlas'):original.replace('gap: 8px','gap: 12px')):request.sources[css].replace(calls===2?'margin: 4px':'gap: 12px',calls===2?'margin: 8px':'gap: 16px');
+    const patch={baseSha:base,files:[{path:name,beforeSha256:request.sourceHashes[name],content}]};
+    res.writeHead(200,{'content-type':'application/json'});res.end(JSON.stringify({model:'claude-synthetic',stop_reason:'end_turn',usage:{input_tokens:100,output_tokens:100},content:[{type:'text',text:JSON.stringify(patch)}]}));
+  });await new Promise(resolve=>provider.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>provider.close(resolve)));
+  const model=new AnthropicModel({enabled:true,fixture:true,origin:`http://127.0.0.1:${provider.address().port}`,model:'claude-synthetic',inputUsdPerMillion:3,outputUsdPerMillion:15,maxInputTokens:8000,maxOutputTokens:1000,maxBodyBytes:16000,maxResponseBytes:40000,timeoutMs:5000},()=> 'SYNTHETIC_KEY');
+  const run=()=>runOne({enabled:true,store:new PgWorkStore(f.db,{trustedBaseSha:base}),cwd,model,signingKey:keys.privateKey,maxWallMs:60000});
+  const publish=async version=>{const job=(await f.db.query('SELECT id FROM atlas_feedback.jobs WHERE feedback_id=$1 AND input_version=$2',[first.id,version])).rows[0];const store=new PgWorkStore(f.db,{trustedBaseSha:base,publisherInstanceId:randomUUID()}),bundle=await store.loadBundle(job.id);assert.ok(!JSON.stringify(bundle).includes('PRIVATE_'));await publishBundle({enabled:true,bundle,publicKey:keys.publicKey,sources,store,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_TOKEN'}});return bundle;};
+  assert.equal((await run()).state,'publishing');await publish(1);await git(cwd,['reset','--hard',base]);
+  const simple={feedback:'PRIVATE_MIXED_CANARY',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{...input.context,element:{selector:'html > body > main > button',tagName:'button',classes:['PRIVATE_MIXED_CLASS']}}};
+  assert.equal((await intake.followup(actor,first.id,randomUUID(),{...simple,expectedVersion:1})).state,'queued');
+  const result=await run();
+  if(tsxHistory){
+    assert.equal(result.state,'needs_human_review');assert.equal(calls,1,'prior TSX must park BEFORE inference');
+    assert.equal((await f.db.query('SELECT * FROM atlas_feedback.worker_reservations')).rows.length,1,'no second reservation');
+    assert.equal((await intake.status(actor,first.id)).state,'needs_human_review');assert.equal(remote.prs.length,1);return;
+  }
+  assert.equal(result.state,'publishing');const next=await publish(2);
+  assert.equal(observed[1].sources[css],original.replace('gap: 8px','gap: 12px'));
+  assert.deepEqual(observed[1].privateInstruction,{feedback:simple.feedback,element:simple.context.element});assert.equal(observed[0].privateInstruction,undefined);
+  assert.equal(next.patch.files[0].beforeSha256,sha256(original));assert.equal(next.patch.files[0].content,'.card { gap: 12px; margin: 8px; }\n');
+  await git(cwd,['reset','--hard',base]);
+  await intake.followup(actor,first.id,randomUUID(),{...input,expectedVersion:2});assert.equal((await run()).state,'publishing');await publish(3);
+  assert.equal(observed[2].privateInstruction,undefined);assert.ok(!JSON.stringify(observed[2]).includes('PRIVATE_MIXED'));
+  assert.equal(observed[2].sources[css],next.patch.files[0].content);assert.equal(remote.prs.length,1);assert.equal(calls,3);assert.ok(!JSON.stringify(remote.writes).includes('PRIVATE_'));
+}
+test('legacy CSS → simple CSS → legacy followups preserve cumulative draft and segregate each private instruction',async t=>mixedPrivatePipeline(t));
+test('simple followup to previously public-approved TSX history parks before inference or reservation',async t=>mixedPrivatePipeline(t,true));

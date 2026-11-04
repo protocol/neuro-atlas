@@ -1,10 +1,11 @@
+import type {PrivateInstruction} from '../../src/lib/feedback/schema';
 import type { KeyLike } from 'node:crypto';
 import type { Patch } from './validator';
 import type { Meter, ModelInput } from './model';
-export type PublicTask={title:string;summary:string;acceptance:string[]};
+export type PublicTask={origin?:'private-feedback-v1';title:string;summary:string;acceptance:string[]};
 export type PublicContext={route:string;targetId?:string;chartId?:string;scenario?:string;viewport:{width:number;height:number};theme:'light'|'dark'|'system';deployedRevision?:string};
 export type PriorDraft={version:number;headSha:string;candidateDigest:string;receiptDigest:string;bundleDigest:string;bundle:Bundle};
-export type Capability={jobId:string;feedbackId:string;inputVersion:number;approvalHash:string;publicTask:PublicTask;publicContext:PublicContext;baseSha:string;fence:number;attempt:number;leaseUntil:number;priorDraft?:PriorDraft};
+export type Capability={jobId:string;feedbackId:string;inputVersion:number;approvalHash:string;publicTask:PublicTask;publicContext:PublicContext;baseSha:string;fence:number;attempt:number;leaseUntil:number;privateInstruction?:PrivateInstruction;priorDraft?:PriorDraft};
 export type CheckReceipt={phase:'baseline'|'candidate';passed:true;commands:string[];digest:string};
 export type Receipt={policyVersion:'atlas-feedback-v1';jobId:string;feedbackId:string;inputVersion:number;approvalHash:string;baseSha:string;fence:number;patchDigest:string;checksDigest:string;expiresAt:number};
 export type Bundle={receipt:Receipt;signature:string;publicTask:PublicTask;publicContext:PublicContext;patch:Patch;checks:{baseline:CheckReceipt;candidate:CheckReceipt}};

@@ -21,3 +21,23 @@ test('every curated frontend selection produces context accepted by the actual i
     assert.equal(feedbackInputSchema.safeParse(input(context)).success, false);
   } finally { dom.window.close(); }
 });
+
+
+test('one-field intake accepts structural button/heading/nested SVG targets, rejects capture and mixed public modes',()=>{
+  const body={feedback:'Private note',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{route:'/field-velocity',chartId:'neural-recording-hours',viewport:{width:390,height:844},theme:'light'}};
+  for(const [selector,tagName] of [['html > body > main > button:nth-of-type(2)','button'],['html > body > main > h2','h2'],['html > body > main > svg > g:nth-of-type(3) > path','path']])assert.equal(feedbackInputSchema.safeParse({...body,context:{...body.context,element:{selector,tagName,classes:['static-css_token']}}}).success,true);
+  const element={selector:'html > body > main > button',tagName:'button'};
+  const invalid=[
+    {selector:'button#private',tagName:'button'}, {selector:'button.private',tagName:'button'}, {selector:'input[value="secret"]',tagName:'input'},
+    {selector:'html body button',tagName:'button'}, {selector:'html > body > button',tagName:'path'}, {selector:'button:nth-of-type(0)',tagName:'button'},
+    {selector:'button:nth-of-type(10001)',tagName:'button'}, {selector:Array(25).fill('div').join(' > '),tagName:'div'},
+    {...element,classes:['url(private)']}, {...element,classes:['contains:private']}, {...element,classes:Array(9).fill('token')},
+    {...element,role:'PRIVATE_ROLE'}, {...element,text:'private'}, {...element,html:'<button>private</button>'}, {...element,value:'private'},
+    {...element,href:'https://private.invalid'}, {...element,classes:['x'.repeat(65)]}, {...element,classes:['private\n']}, {...element,role:'button\n'},
+    {selector:'button\n',tagName:'button\n'},
+  ];
+  for(const reference of invalid)assert.equal(feedbackInputSchema.safeParse({...body,context:{...body.context,element:reference}}).success,false,JSON.stringify(reference));
+  for(const extra of [{publicTask:input(body.context).publicTask},{privateComment:'private'},{processingConsent:{approved:false,policyVersion:'atlas-feedback-simple-v1'}},{processingConsent:{approved:true,policyVersion:'atlas-feedback-v1'}},{feedback:'x'.repeat(3001)},{feedback:'  '}])assert.equal(feedbackInputSchema.safeParse({...body,...extra}).success,false);
+  assert.equal(feedbackInputSchema.safeParse({...body,feedback:'x'.repeat(3000)}).success,true);
+  assert.equal(feedbackInputSchema.safeParse({...input(body.context),context:{...body.context,element}}).success,false,'legacy never admits a private element instruction');
+});

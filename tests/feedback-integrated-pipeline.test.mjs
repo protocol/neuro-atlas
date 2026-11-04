@@ -16,7 +16,7 @@ import {runOne} from '../scripts/feedback/engine.ts';
 import {AnthropicModel} from '../scripts/feedback/model.ts';
 import {publishBundle} from '../scripts/feedback/publisher.ts';
 
-test('SYNTHETIC integrated owner PKCE → actual intake → durable job → model/checks → draft publisher → actual status', async t => {
+async function integratedPipeline(t,simple=false) {
   const f=await setup(t),{cwd}=await fixture(t),keys=generateKeyPairSync('ed25519');
   await writeFile(path.join(cwd,'package.json'),JSON.stringify({scripts:{test:'node check.cjs',typecheck:'node check.cjs',build:'node check.cjs'}}));
   await writeFile(path.join(cwd,'check.cjs'),"if(Object.keys(process.env).some(k=>/TOKEN|SECRET|DATABASE|ANTHROPIC/.test(k)))process.exit(9)");
@@ -30,6 +30,13 @@ test('SYNTHETIC integrated owner PKCE → actual intake → durable job → mode
     if(req.url==='/user') return res.end(JSON.stringify({id:82394590,login:'synthetic-owner'}));
     assert.equal(req.url,'/v1/messages');assert.ok(!raw.includes('PRIVATE_INTEGRATION_CANARY'));modelCalls++;
     const payload=JSON.parse(JSON.parse(raw).messages[0].content),name='src/components/landing.css';
+    if(simple){
+      assert.deepEqual(payload.privateInstruction,{feedback:'PRIVATE_SIMPLE_INTEGRATION_CANARY',element:{selector:'html > body > main > svg > path',tagName:'path',classes:['PRIVATE_CLASS_CANARY']}});
+      const publicInput={...payload};delete publicInput.privateInstruction;assert.ok(!JSON.stringify(publicInput).includes('PRIVATE_'));assert.ok(!JSON.stringify(publicInput).includes('html > body'));
+      assert.ok(Object.keys(payload.sources).every(p=>p.endsWith('.css')),'private model receives only the CSS source scope');
+      assert.deepEqual(payload.sources,Object.fromEntries(Object.entries(sources).filter(([p])=>p.endsWith('.css'))));
+      for(const [path,content] of Object.entries(payload.sources))assert.equal(payload.sourceHashes[path],createHash('sha256').update(content).digest('hex'));
+    }else assert.equal(payload.privateInstruction,undefined);
     res.end(JSON.stringify({model:'claude-synthetic',stop_reason:'end_turn',usage:{input_tokens:100,output_tokens:100},content:[{type:'text',text:JSON.stringify({baseSha:payload.baseSha,files:[{path:name,beforeSha256:payload.sourceHashes[name],content:'.card { gap: 12px; }\n'}]})}]}));
   });
   await new Promise(resolve=>provider.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>provider.close(resolve)));
@@ -41,16 +48,23 @@ test('SYNTHETIC integrated owner PKCE → actual intake → durable job → mode
   assert.equal((await handlers.start(request('/auth/start',{state,codeChallenge}))).status,200);
   const signed=await handlers.finish(request('/auth/finish',{state,code:'synthetic-code',codeVerifier}));assert.equal(signed.status,200);const {session}=await signed.json();
   await f.db.query('UPDATE atlas_feedback.control SET enabled=true,allowed_owner_id=82394590,max_job_usd=1,max_day_usd=2,max_tokens=10000,max_turns=2,max_wall_seconds=120,max_attempts=2');
-  const input={privateComment:'PRIVATE_INTEGRATION_CANARY',publicTask:{title:'Improve spacing',summary:'Improve the selected chart spacing.',acceptance:['Labels remain readable']},publicApproval:{approved:true,policyVersion:'atlas-feedback-v1'},context:{route:'/field-velocity',targetId:'simultaneously-recorded-neurons',chartId:'simultaneously-recorded-neurons',viewport:{width:390,height:844},theme:'light'}};
+  let input={privateComment:'PRIVATE_INTEGRATION_CANARY',publicTask:{title:'Improve spacing',summary:'Improve the selected chart spacing.',acceptance:['Labels remain readable']},publicApproval:{approved:true,policyVersion:'atlas-feedback-v1'},context:{route:'/field-velocity',targetId:'simultaneously-recorded-neurons',chartId:'simultaneously-recorded-neurons',viewport:{width:390,height:844},theme:'light'}};
+  if(simple)input={feedback:'PRIVATE_SIMPLE_INTEGRATION_CANARY',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{...input.context,element:{selector:'html > body > main > svg > path',tagName:'path',classes:['PRIVATE_CLASS_CANARY']}}};
   const key=randomUUID(),saved=await handlers.create(request('',input,session,key));assert.equal(saved.status,202);const receipt=await saved.json();assert.equal(receipt.state,'queued');
   const retry=await handlers.create(request('',input,session,key));assert.deepEqual(await retry.json(),receipt);
   const jobs=await f.db.query('SELECT id,payload FROM atlas_feedback.jobs');assert.equal(jobs.rows.length,1);assert.ok(!JSON.stringify(jobs.rows).includes('PRIVATE_INTEGRATION_CANARY'));
   const model=new AnthropicModel({enabled:true,fixture:true,origin,model:'claude-synthetic',inputUsdPerMillion:3,outputUsdPerMillion:15,maxInputTokens:8000,maxOutputTokens:1000,maxBodyBytes:16000,maxResponseBytes:40000,timeoutMs:5000},()=> 'SYNTHETIC_MODEL_KEY');
   assert.equal((await runOne({enabled:true,store:new PgWorkStore(f.db,{trustedBaseSha:base}),cwd,model,signingKey:keys.privateKey,maxWallMs:60000})).state,'publishing');assert.equal(modelCalls,1);
-  const db=await f.restart(),publisher=new PgWorkStore(db,{trustedBaseSha:base,publisherInstanceId:randomUUID()}),bundle=await publisher.loadBundle(jobs.rows[0].id),remote=await githubFixture(t,base);
+  const db=await f.restart();
+  const publicDb=d=>({query:async(sql,params)=>{const result=await d.query(sql,params);for(const row of result.rows){assert.ok(!Object.hasOwn(row,'payload'),'publisher SQL must not select private job payload');assert.ok(!Object.hasOwn(row,'input_private'));}return result;},transaction:fn=>d.transaction(tx=>fn(publicDb(tx)))});
+  const publisher=new PgWorkStore(publicDb(db),{trustedBaseSha:base,publisherInstanceId:randomUUID()}),bundle=await publisher.loadBundle(jobs.rows[0].id),remote=await githubFixture(t,base);
+  assert.ok(!JSON.stringify(bundle).includes('PRIVATE_'));assert.ok(!JSON.stringify(bundle).includes('html > body'));
   const pr=await publishBundle({enabled:true,bundle,publicKey:keys.publicKey,sources,store:publisher,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_INSTALLATION_TOKEN'}});
-  assert.equal(remote.prs.length,1);assert.ok(!JSON.stringify(remote.writes).includes('PRIVATE_INTEGRATION_CANARY'));
+  assert.equal(remote.prs.length,1);assert.ok(!JSON.stringify(remote.writes).includes('PRIVATE_'));assert.ok(!JSON.stringify(remote.writes).includes('html > body'));assert.ok(!JSON.stringify(remote.writes).includes('PRIVATE_INTEGRATION_CANARY'));
   const finalService=createFeedbackService({database:db,config}),finalHandlers=createFeedbackRouteHandlers(()=>finalService);
   const status=await finalHandlers.status(request('/'+receipt.id,undefined,session),receipt.id);assert.equal(status.status,200);const dto=await status.json();
   assert.equal(dto.state,'pr_ready');assert.equal(dto.pr.url,pr.url);assert.equal(dto.pr.headSha,pr.headSha);assert.equal(dto.preview,undefined);assert.equal(dto.liveSha,undefined);assert.ok(!JSON.stringify(dto).includes('PRIVATE_INTEGRATION_CANARY'));
-});
+}
+
+test('SYNTHETIC integrated owner PKCE → actual intake → durable job → model/checks → draft publisher → actual status',async t=>integratedPipeline(t));
+test('one-field private element reaches only private model instruction; durable public outbox and draft requests remain generic',async t=>integratedPipeline(t,true));

@@ -91,12 +91,14 @@ function tsxCompare(before:string,after:string):void {
   // AST identifies the only eligible string literals; exact outside-span compare prevents new code/imports/URLs.
   if (restored!==before) reject();
 }
-export function validatePatch(input:unknown,sources:Readonly<Record<string,string>>,baseSha:string):Patch {
+export function validatePatch(input:unknown,sources:Readonly<Record<string,string>>,baseSha:string,scope:'legacy'|'css-only'='legacy'):Patch {
   try {
+    if(!['legacy','css-only'].includes(scope))reject();
     if (!exactKeys(input,['baseSha','files']) || input.baseSha!==baseSha || !/^[0-9a-f]{40}$/.test(baseSha) || !Array.isArray(input.files) || input.files.length<1 || input.files.length>5 || Buffer.byteLength(JSON.stringify(input))>32768) reject();
     const paths=new Set<string>(); let changedLines=0;
     for (const file of input.files) {
       if (!exactKeys(file,['path','beforeSha256','content']) || typeof file.path!=='string' || typeof file.content!=='string' || typeof file.beforeSha256!=='string' || !SOURCE_PATHS.includes(file.path) || paths.has(file.path) || !Object.hasOwn(sources,file.path)) reject();
+      if(scope==='css-only' && !(CSS_PATHS as readonly string[]).includes(file.path))reject();
       paths.add(file.path);
       const before=sources[file.path];
       if (sha256(before)!==file.beforeSha256 || file.content===before || file.content.includes('\0') || Buffer.byteLength(file.content)>131072) reject();

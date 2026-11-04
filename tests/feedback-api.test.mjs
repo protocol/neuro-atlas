@@ -264,3 +264,31 @@ test('bounded oversized collections and deeply nested unknown keys are rejected 
   assert(!JSON.stringify(await unknownResponse.json()).includes('PRIVATE-NESTED-CANARY'));
   assert.equal((await f.pg.query('SELECT * FROM atlas_feedback.feedback')).rows.length,0);
 });
+
+
+test('one-field HTTP intake privately binds an element, retries immutably and fences mixed-mode followups',async t=>{
+  const f=await fixture(t),{auth}=await signIn(f),key=randomUUID();
+  const element={selector:'html > body > main:nth-of-type(1) > svg > g:nth-of-type(2) > path',tagName:'path',role:'img',classes:['PRIVATE_ELEMENT_CANARY']};
+  const body={feedback:'PRIVATE_SIMPLE_CANARY: tighten this element',processingConsent:{approved:true,policyVersion:'atlas-feedback-simple-v1'},context:{...input().context,element}};
+  const post=(value,k=key)=>f.request('',{method:'POST',session:auth.session,key:k,body:value});
+  const saved=await post(body);assert.equal(saved.status,202);
+  const receipt=await saved.json();assert.equal(receipt.state,'received');assert.deepEqual(await (await post(body)).json(),receipt);
+  assert.equal((await post({...body,context:{...body.context,element:{...element,selector:'html > body > main > button',tagName:'button'}}})).status,409);
+  const row=(await f.pg.query('SELECT * FROM atlas_feedback.feedback')).rows[0],job=(await f.pg.query('SELECT * FROM atlas_feedback.jobs')).rows[0];
+  assert.deepEqual(row.input_private,{feedback:body.feedback,element});
+  assert.deepEqual(job.payload.privateInstruction,{feedback:body.feedback,element});
+  assert.equal(row.approved_public.origin,'private-feedback-v1');assert.equal(row.approved_public.title,'Presentation update');
+  assert.deepEqual(row.public_context,input().context);assert.deepEqual(job.payload.publicContext,row.public_context);
+  assert.ok(!JSON.stringify([row.approved_public,row.public_context]).includes('PRIVATE_'));
+  const {publicApprovalHash}=await import('../src/lib/feedback/intake.ts');
+  const {approvalHash}=await import('../scripts/feedback/engine.ts');
+  assert.equal(publicApprovalHash(body),row.approval_hash);assert.equal(approvalHash(job.payload.publicTask,job.payload.publicContext),row.approval_hash);
+  await assert.rejects(f.pg.query("UPDATE atlas_feedback.jobs SET payload=jsonb_set(payload,'{privateInstruction,feedback}','\"changed\"')"),/immutable/);
+  assert.ok(!JSON.stringify(await (await f.request('/'+receipt.id,{session:auth.session})).json()).includes('PRIVATE_'));
+  const follow={...input('LEGACY_PRIVATE_CANARY'),expectedVersion:1};
+  assert.equal((await f.request('/'+receipt.id+'/followups',{method:'POST',session:auth.session,key:randomUUID(),body:follow})).status,202);
+  assert.equal((await f.request('/'+receipt.id+'/followups',{method:'POST',session:auth.session,key:randomUUID(),body:{...body,expectedVersion:1}})).status,409);
+  const next=await f.request('/'+receipt.id+'/followups',{method:'POST',session:auth.session,key:randomUUID(),body:{...body,expectedVersion:2}});assert.equal(next.status,202);assert.equal((await next.json()).version,3);
+  const jobs=(await f.pg.query('SELECT input_version,state,payload FROM atlas_feedback.jobs ORDER BY input_version')).rows;
+  assert.deepEqual(jobs.map(j=>j.state),['cancelled','cancelled','pending']);assert.equal(jobs[1].payload.privateInstruction,undefined);assert.ok(!JSON.stringify(jobs).includes('LEGACY_PRIVATE_CANARY'));
+});

@@ -54,3 +54,18 @@ test('kill during inference aborts capability, never completes, and attempt >2 f
   assert.equal((await runOne({enabled:true,store,model,cwd,signingKey:keys.privateKey,checks,maxWallMs:5000})).state,'cancelled');assert.equal(completed,false);assert.equal(calls,1);
   killed=false;cap.attempt=3;assert.equal((await runOne({enabled:true,store,model,cwd,signingKey:keys.privateKey,checks,maxWallMs:5000})).state,'needs_human_review');assert.equal(calls,1);
 });
+
+
+test('private instruction mode rejects otherwise valid navigation literal edits before candidate checks or outbox',async t=>{
+  const {runOne,approvalHash}=await import('../scripts/feedback/engine.ts'),{PRIVATE_FEEDBACK_TASK}=await import('../src/lib/feedback/schema.ts');
+  const {cwd}=await fixture(t),keys=generateKeyPairSync('ed25519'),name='src/components/site-nav.tsx',original='export const nav = [{label: "Overview"}];\n';
+  await writeFile(path.join(cwd,name),original);await git(cwd,['add','.']);await git(cwd,['commit','-qm','trusted navigation']);const base=(await git(cwd,['rev-parse','HEAD'])).trim();
+  const publicTask={...PRIVATE_FEEDBACK_TASK,acceptance:[...PRIVATE_FEEDBACK_TASK.acceptance]},publicContext={route:'/',viewport:{width:1000,height:800},theme:'light'};
+  const cap={jobId:'j',feedbackId:'16d0cd59-21ec-4cb0-83e0-31395208603d',inputVersion:1,approvalHash:approvalHash(publicTask,publicContext),publicTask,publicContext,privateInstruction:{feedback:'PRIVATE_NONCSS_CANARY'},baseSha:base,fence:1,attempt:1,leaseUntil:Date.now()+30000};
+  let completed=false,candidate=0;
+  const store={acquire:async()=>cap,assertActive:async()=>{},transition:async()=>{},complete:async()=>{completed=true},park:async()=>{}};
+  const model={generate:async request=>{assert.equal(request.sources[name],undefined);return {patch:{baseSha:base,files:[{path:name,beforeSha256:sha256(original),content:original.replace('Overview','Private')} ]},chargedUsd:0}}};
+  const checks=async(_,phase)=>{if(phase==='candidate')candidate++;return {phase,passed:true,commands:['test','typecheck','build'],digest:sha256(phase)}};
+  assert.equal((await runOne({enabled:true,store,cwd,model,checks,signingKey:keys.privateKey,maxWallMs:30000})).state,'needs_human_review');
+  assert.equal(completed,false);assert.equal(candidate,0);assert.equal(await readFile(path.join(cwd,name),'utf8'),original);
+});

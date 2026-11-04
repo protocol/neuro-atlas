@@ -4,21 +4,10 @@ import type {QueryDatabase} from "./database";
 import type {Actor} from "./service";
 import {hash} from "./service";
 import {FeedbackError,invalid,unavailable} from "./errors";
-import {FEEDBACK_TARGET_IDS,FEEDBACK_CHART_IDS,FEEDBACK_SCENARIOS,FEEDBACK_POLICY_VERSION,type FeedbackInput,type FeedbackStatus,type FeedbackReceipt,type FeedbackState} from "./contracts";
+import {FEEDBACK_POLICY_VERSION,type FeedbackSubmission,type FeedbackStatus,type FeedbackReceipt,type FeedbackState} from "./contracts";
 
-const text=(max:number)=>z.string().min(1).max(max).refine(s=>s.trim().length>0&&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(s));
-const shape={
-  privateComment:text(3000),
-  publicTask:z.object({title:text(100),summary:text(1500),acceptance:z.array(text(200)).min(1).max(5)}).strict(),
-  publicApproval:z.object({approved:z.literal(true),policyVersion:z.literal(FEEDBACK_POLICY_VERSION)}).strict(),
-  context:z.object({route:z.enum(["/","/field-velocity","/funding","/milestones","/ecosystem","/methodology"]),
-    targetId:z.enum(FEEDBACK_TARGET_IDS).optional(),chartId:z.enum(FEEDBACK_CHART_IDS).optional(),scenario:z.enum(FEEDBACK_SCENARIOS).optional(),
-    viewport:z.object({width:z.number().int().min(1).max(10000),height:z.number().int().min(1).max(10000)}).strict(),
-    theme:z.enum(["light","dark","system"]),deployedRevision:z.string().regex(/^[a-f0-9]{40}$/).optional(),
-  }).strict(),
-};
-export const feedbackInputSchema=z.object(shape).strict();
-const followupSchema=z.object({...shape,expectedVersion:z.number().int().min(1).max(2147483646)}).strict();
+export {feedbackInputSchema} from "./schema";
+import {feedbackInputSchema,feedbackFollowupSchema,normalizeFeedback} from "./schema";
 const uuid=z.string().uuid();
 function canonical(value:unknown):string {
   if(Array.isArray(value))return `[${value.map(canonical).join(",")}]`;
@@ -26,7 +15,10 @@ function canonical(value:unknown):string {
   return JSON.stringify(value);
 }
 /** Exact sorted-key JSON, including policy and ALL reviewed public context. No private input. */
-export const publicApprovalHash=(input:FeedbackInput)=>hash(canonical({policyVersion:input.publicApproval.policyVersion,publicTask:input.publicTask,publicContext:input.context}));
+export const publicApprovalHash=(input:FeedbackSubmission)=>{
+  const {publicTask,publicContext}=normalizeFeedback(input);
+  return hash(canonical({policyVersion:FEEDBACK_POLICY_VERSION,publicTask,publicContext}));
+};
 const conflict=(code:string,message:string):never=>{throw new FeedbackError(409,code,message);};
 type StoredStatus={id:string;version:number;state:FeedbackState;created_at:Date|string;updated_at:Date|string;last_reason_code:string|null;clarification:string|null;pr_number:number|null;pr_head_sha:string|null;merged_sha:string|null;live_sha:string|null};
 const statusColumns="id,version,state,created_at,updated_at,last_reason_code,clarification,pr_number,pr_head_sha,merged_sha,live_sha";
@@ -43,9 +35,9 @@ function statusDTO(row:StoredStatus):FeedbackStatus {
 export function createFeedbackIntake(db:QueryDatabase,now:()=>Date) {
   async function intake(actor:Actor,key:string|null,value:unknown,feedbackId?:string):Promise<FeedbackReceipt> {
     if(!uuid.safeParse(key).success || (feedbackId!==undefined&&(!uuid.safeParse(feedbackId).success||feedbackId!==feedbackId.toLowerCase())))return invalid();
-    const parsed=feedbackId===undefined?feedbackInputSchema.safeParse(value):followupSchema.safeParse(value);
+    const parsed=feedbackId===undefined?feedbackInputSchema.safeParse(value):feedbackFollowupSchema.safeParse(value);
     if(!parsed.success)return invalid();
-    const input=parsed.data, operation=feedbackId?`followup:${feedbackId}`:"create",requestHash=hash(canonical(input));
+    const input=parsed.data, normalized=normalizeFeedback(input), operation=feedbackId?`followup:${feedbackId}`:"create",requestHash=hash(canonical(input));
     return db.transaction(async tx=>{
       const c=await tx.query<Record<string,unknown>>("SELECT * FROM atlas_feedback.control WHERE singleton=true FOR UPDATE");
       const control=c.rows[0];if(!control)return unavailable();
@@ -55,7 +47,7 @@ export function createFeedbackIntake(db:QueryDatabase,now:()=>Date) {
       if(feedbackId) {
         const current=await tx.query<StoredStatus>(`SELECT ${statusColumns} FROM atlas_feedback.feedback WHERE id=$1 AND owner_github_id=$2 FOR UPDATE`,[id,actor.githubId]);
         const row=current.rows[0];if(!row)throw new FeedbackError(404,"not_found","Feedback not found.");
-        if(row.version!==(input as FeedbackInput&{expectedVersion:number}).expectedVersion)return conflict("version_conflict","Feedback changed. Reload its current status.");
+        if(row.version!==(input as FeedbackSubmission&{expectedVersion:number}).expectedVersion)return conflict("version_conflict","Feedback changed. Reload its current status.");
         version=row.version+1;from=row.state;merged=row.state==="merged"||row.state==="live"||row.merged_sha!==null;
         const publication=(await tx.query<{phase:string}>("SELECT phase FROM atlas_feedback.publications WHERE feedback_id=$1 FOR UPDATE",[id])).rows[0];
         partialPublication=publication!==undefined&&publication.phase!=="pr_ready";
@@ -67,9 +59,9 @@ export function createFeedbackIntake(db:QueryDatabase,now:()=>Date) {
       const state:FeedbackState=merged||partialPublication?"needs_human_review":automated?"queued":"received";
       const reason=merged?"merged_followup":partialPublication?"partial_publication_followup":automated?null:"automation_disabled";
       const approvalHash=publicApprovalHash(input);
-      if(feedbackId)await tx.query(`UPDATE atlas_feedback.feedback SET version=$3,state=$4,input_private=$5,approved_public=$6,public_context=$7,approval_hash=$8,approval_version=$9,updated_at=$10,last_reason_code=$11,clarification=NULL,preview_url=NULL,preview_verified_sha=NULL WHERE id=$1 AND owner_github_id=$2`,[id,actor.githubId,version,state,{privateComment:input.privateComment},input.publicTask,input.context,approvalHash,FEEDBACK_POLICY_VERSION,time,reason]);
-      else await tx.query(`INSERT INTO atlas_feedback.feedback(id,owner_github_id,version,state,input_private,approved_public,public_context,approval_hash,approval_version,created_at,updated_at,last_reason_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$10,$11)`,[id,actor.githubId,version,state,{privateComment:input.privateComment},input.publicTask,input.context,approvalHash,FEEDBACK_POLICY_VERSION,time,reason]);
-      await tx.query(`INSERT INTO atlas_feedback.jobs(id,feedback_id,input_version,approval_hash,payload,state,created_at,updated_at) VALUES($1,$2,$3,$4,$5,$6,$7,$7)`,[randomUUID(),id,version,approvalHash,{feedbackId:id,inputVersion:version,approvalHash,publicTask:input.publicTask,publicContext:input.context},merged||partialPublication?"parked":"pending",time]);
+      if(feedbackId)await tx.query(`UPDATE atlas_feedback.feedback SET version=$3,state=$4,input_private=$5,approved_public=$6,public_context=$7,approval_hash=$8,approval_version=$9,updated_at=$10,last_reason_code=$11,clarification=NULL,preview_url=NULL,preview_verified_sha=NULL WHERE id=$1 AND owner_github_id=$2`,[id,actor.githubId,version,state,normalized.privateInput,normalized.publicTask,normalized.publicContext,approvalHash,FEEDBACK_POLICY_VERSION,time,reason]);
+      else await tx.query(`INSERT INTO atlas_feedback.feedback(id,owner_github_id,version,state,input_private,approved_public,public_context,approval_hash,approval_version,created_at,updated_at,last_reason_code) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$10,$11)`,[id,actor.githubId,version,state,normalized.privateInput,normalized.publicTask,normalized.publicContext,approvalHash,FEEDBACK_POLICY_VERSION,time,reason]);
+      await tx.query(`INSERT INTO atlas_feedback.jobs(id,feedback_id,input_version,approval_hash,payload,state,created_at,updated_at) VALUES($1,$2,$3,$4,$5,$6,$7,$7)`,[randomUUID(),id,version,approvalHash,{feedbackId:id,inputVersion:version,approvalHash,publicTask:normalized.publicTask,publicContext:normalized.publicContext,...(normalized.privateInstruction?{privateInstruction:normalized.privateInstruction}:{})},merged||partialPublication?"parked":"pending",time]);
       await tx.query("INSERT INTO atlas_feedback.events(feedback_id,version,from_state,to_state,actor_service,reason_code,time) VALUES($1,$2,$3,$4,'intake',$5,$6)",[id,version,from,state,reason,time]);
       const receipt={id,state,version};
       await tx.query("INSERT INTO atlas_feedback.idempotency(owner_github_id,operation,key,request_hash,feedback_id,response_metadata,created_at) VALUES($1,$2,$3,$4,$5,$6,$7)",[actor.githubId,operation,key,requestHash,id,receipt,time]);

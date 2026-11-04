@@ -27,7 +27,7 @@ export function verifyBundle(bundle:Bundle,publicKey:KeyLike,sources:Readonly<Re
     const envelope=approvedEnvelope(bundle.publicTask,bundle.publicContext);
     if(approvalHash(envelope.publicTask,envelope.publicContext)!==r.approvalHash || sha256(canonical(bundle.patch))!==r.patchDigest || sha256(canonical(bundle.checks))!==r.checksDigest)fail();
     for(const phase of ['baseline','candidate'] as const) {const c=bundle.checks[phase];if(!exactKeys(c,['phase','passed','commands','digest']) || c.phase!==phase || c.passed!==true || canonical(c.commands)!==canonical(['test','typecheck','build']) || !/^[0-9a-f]{64}$/.test(c.digest))fail();}
-    validatePatch(bundle.patch,sources,r.baseSha);
+    validatePatch(bundle.patch,sources,r.baseSha,envelope.publicTask.origin==='private-feedback-v1'?'css-only':'legacy');
   }catch{fail();}
 }
 function blobSha(content:string):string {return createHash('sha1').update(Buffer.from(`blob ${Buffer.byteLength(content)}\0`)).update(content).digest('hex');}
