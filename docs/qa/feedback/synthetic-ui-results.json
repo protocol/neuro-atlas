@@ -23,7 +23,11 @@
       "documentWidth": 1440,
       "clientWidth": 1440,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 37,
+        "bottom": 70.96875
+      }
     },
     "toast": {
       "left": 1308.421875,
@@ -47,10 +51,10 @@
     "followupSameIdVersion2": true,
     "nativeFocusTrap": true,
     "geometry": {
-      "left": 10,
-      "right": 330,
-      "top": 10,
-      "bottom": 192.140625,
+      "left": 60,
+      "right": 380,
+      "top": 66.96875,
+      "bottom": 249.109375,
       "width": 320,
       "height": 182.140625,
       "viewportWidth": 390,
@@ -58,7 +62,11 @@
       "documentWidth": 390,
       "clientWidth": 390,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 25,
+        "bottom": 58.96875
+      }
     },
     "toast": {
       "left": 258.421875,
@@ -84,8 +92,8 @@
     "geometry": {
       "left": 10,
       "right": 310,
-      "top": 10,
-      "bottom": 192.140625,
+      "top": 66.96875,
+      "bottom": 249.109375,
       "width": 300,
       "height": 182.140625,
       "viewportWidth": 320,
@@ -93,7 +101,11 @@
       "documentWidth": 320,
       "clientWidth": 320,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 25,
+        "bottom": 58.96875
+      }
     },
     "toast": {
       "left": 188.421875,

@@ -32,7 +32,24 @@ colors=js('''(()=>{const d=document.querySelector('[data-feedback-composer]'),i=
 capture_screenshot(path=str(out/'dark-composer-1440.png'))
 press_key('Escape');wait('!document.querySelector("[data-feedback-composer]")')
 click('button[aria-label="Switch to light mode"]');wait('!document.documentElement.classList.contains("dark")')
-result={'nativeNestedSvgButtonPick':True,'underlyingThemeActionSuppressed':True,'hoverOutlineMatchesActualButton':measure,'darkComposer':colors,'lightThemeRestored':True}
+cdp('Emulation.setDeviceMetricsOverride',width=390,height=1000,deviceScaleFactor=1,mobile=True)
+goto_url(base);wait_for_load();wait('!!document.querySelector(".atlas-feedback-launch")')
+click('.atlas-feedback-launch');wait('!!document.querySelector("[data-feedback-selection]:popover-open")')
+pick('h2','mobile-midpage-390')
+narrow=geometry(390)
+assert narrow['anchor'] and narrow['top']>12,narrow
+capture_screenshot(path=str(out/'mobile-anchored-390.png'))
+cdp('Emulation.setDeviceMetricsOverride',width=390,height=400,deviceScaleFactor=1,mobile=True)
+# Actual viewport resize drives the same placement listeners used for a software keyboard.
+wait('innerHeight===400')
+# CDP metrics changes precede the queued resize/visualViewport placement callback.
+# Await the actual UI condition, not only the synchronous window metric.
+wait("document.querySelector('[data-feedback-composer]').getBoundingClientRect().bottom <= 400")
+keyboard=geometry(390)
+assert keyboard['bottom']<=400,keyboard
+capture_screenshot(path=str(out/'mobile-keyboard-clamp-390.png'))
+press_key('Escape');wait('!document.querySelector("[data-feedback-composer]")')
+result={'nativeNestedSvgButtonPick':True,'underlyingThemeActionSuppressed':True,'hoverOutlineMatchesActualButton':measure,'darkComposer':colors,'lightThemeRestored':True,'narrowElementAnchoring':narrow,'keyboardSizedViewportClamp':keyboard}
 (out/'extra-native-results.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result))
 assert colors['contrast']>=4.5,colors

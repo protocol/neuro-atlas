@@ -21,7 +21,11 @@
       "documentWidth": 1425,
       "clientWidth": 1425,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 125.5,
+        "bottom": 182.953125
+      }
     },
     "chartGeometry": {
       "left": 241,
@@ -35,7 +39,11 @@
       "documentWidth": 1440,
       "clientWidth": 1440,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 215.546875,
+        "bottom": 608.453125
+      }
     }
   },
   {
@@ -49,10 +57,10 @@
     "disabledDraftRetained": true,
     "layeredEscape": true,
     "geometry": {
-      "left": 10,
-      "right": 330,
-      "top": 10,
-      "bottom": 218.53125,
+      "left": 33,
+      "right": 353,
+      "top": 299.703125,
+      "bottom": 508.234375,
       "width": 320,
       "height": 208.53125,
       "viewportWidth": 390,
@@ -60,13 +68,17 @@
       "documentWidth": 390,
       "clientWidth": 390,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 256,
+        "bottom": 291.703125
+      }
     },
     "chartGeometry": {
-      "left": 10,
-      "right": 330,
-      "top": 10,
-      "bottom": 218.328125,
+      "left": 25,
+      "right": 345,
+      "top": 468.390625,
+      "bottom": 676.71875,
       "width": 320,
       "height": 208.328125,
       "viewportWidth": 390,
@@ -74,7 +86,11 @@
       "documentWidth": 390,
       "clientWidth": 390,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 227.0625,
+        "bottom": 460.390625
+      }
     }
   },
   {
@@ -90,8 +106,8 @@
     "geometry": {
       "left": 10,
       "right": 310,
-      "top": 10,
-      "bottom": 218.53125,
+      "top": 299.703125,
+      "bottom": 508.234375,
       "width": 300,
       "height": 208.53125,
       "viewportWidth": 320,
@@ -99,13 +115,17 @@
       "documentWidth": 320,
       "clientWidth": 320,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 256,
+        "bottom": 291.703125
+      }
     },
     "chartGeometry": {
       "left": 10,
       "right": 310,
-      "top": 10,
-      "bottom": 218.328125,
+      "top": 381.671875,
+      "bottom": 590,
       "width": 300,
       "height": 208.328125,
       "viewportWidth": 320,
@@ -113,7 +133,11 @@
       "documentWidth": 320,
       "clientWidth": 320,
       "fields": 1,
-      "inputs": 0
+      "inputs": 0,
+      "anchor": {
+        "top": 102.78125,
+        "bottom": 2214.328125
+      }
     }
   }
 ]

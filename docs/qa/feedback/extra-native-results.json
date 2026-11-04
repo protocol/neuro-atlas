@@ -12,5 +12,41 @@
     "input": "rgb(244, 244, 245)",
     "contrast": 17.15925424605791
   },
-  "lightThemeRestored": true
+  "lightThemeRestored": true,
+  "narrowElementAnchoring": {
+    "left": 33,
+    "right": 353,
+    "top": 762.765625,
+    "bottom": 971.09375,
+    "width": 320,
+    "height": 208.328125,
+    "viewportWidth": 390,
+    "viewportHeight": 1000,
+    "documentWidth": 390,
+    "clientWidth": 390,
+    "fields": 1,
+    "inputs": 0,
+    "anchor": {
+      "top": 710.765625,
+      "bottom": 754.765625
+    }
+  },
+  "keyboardSizedViewportClamp": {
+    "left": 33,
+    "right": 353,
+    "top": 181.671875,
+    "bottom": 390,
+    "width": 320,
+    "height": 208.328125,
+    "viewportWidth": 390,
+    "viewportHeight": 400,
+    "documentWidth": 390,
+    "clientWidth": 390,
+    "fields": 1,
+    "inputs": 0,
+    "anchor": {
+      "top": 710.765625,
+      "bottom": 754.765625
+    }
+  }
 }

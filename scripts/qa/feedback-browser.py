@@ -49,8 +49,8 @@ def geometry(width):
  if anchor:
   below=anchor['bottom']+8
   above=anchor['top']-result['height']-8
-  if below+result['height']<=result['viewportHeight']-10:assert abs(result['top']-below)<=2,result
-  elif above>=10:assert abs(result['top']-above)<=2,result
+  if below>=10 and below+result['height']<=result['viewportHeight']-10:assert abs(result['top']-below)<=2,result
+  elif above>=10 and above+result['height']<=result['viewportHeight']-10:assert abs(result['top']-above)<=2,result
  return result
 results=[]
 for width in [1440,390,320]:
