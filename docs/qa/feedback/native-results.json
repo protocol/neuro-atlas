@@ -1,146 +1,119 @@
 [
   {
     "width": 1440,
-    "nestedNativeModal": true,
-    "semanticSelection": true,
-    "privatePublicSeparated": true,
-    "consentUnchecked": true,
-    "disabledNoSubmit": true,
+    "height": 1000,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
     "layeredEscape": true,
     "geometry": {
-      "inner": 1440,
-      "client": 1440,
-      "scroll": 1440,
-      "panel": {
-        "left": 450,
-        "right": 990
-      },
-      "controls": [
-        {
-          "left": 947.359375,
-          "right": 973
-        },
-        {
-          "left": 467,
-          "right": 973
-        },
-        {
-          "left": 467,
-          "right": 973
-        },
-        {
-          "left": 467,
-          "right": 973
-        },
-        {
-          "left": 467,
-          "right": 483
-        },
-        {
-          "left": 467,
-          "right": 520.25
-        },
-        {
-          "left": 528.25,
-          "right": 652.4375
-        }
-      ]
+      "left": 285,
+      "right": 605,
+      "top": 190.953125,
+      "bottom": 399.484375,
+      "width": 320,
+      "height": 208.53125,
+      "viewportWidth": 1440,
+      "viewportHeight": 1000,
+      "documentWidth": 1425,
+      "clientWidth": 1425,
+      "fields": 1,
+      "inputs": 0
+    },
+    "chartGeometry": {
+      "left": 241,
+      "right": 561,
+      "top": 616.453125,
+      "bottom": 824.78125,
+      "width": 320,
+      "height": 208.328125,
+      "viewportWidth": 1440,
+      "viewportHeight": 1000,
+      "documentWidth": 1440,
+      "clientWidth": 1440,
+      "fields": 1,
+      "inputs": 0
     }
   },
   {
     "width": 390,
-    "nestedNativeModal": true,
-    "semanticSelection": true,
-    "privatePublicSeparated": true,
-    "consentUnchecked": true,
-    "disabledNoSubmit": true,
+    "height": 1000,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
     "layeredEscape": true,
     "geometry": {
-      "inner": 390,
-      "client": 390,
-      "scroll": 390,
-      "panel": {
-        "left": 10,
-        "right": 380
-      },
-      "controls": [
-        {
-          "left": 341.359375,
-          "right": 367
-        },
-        {
-          "left": 23,
-          "right": 367
-        },
-        {
-          "left": 23,
-          "right": 367
-        },
-        {
-          "left": 23,
-          "right": 367
-        },
-        {
-          "left": 23,
-          "right": 39
-        },
-        {
-          "left": 23,
-          "right": 76.25
-        },
-        {
-          "left": 84.25,
-          "right": 208.4375
-        }
-      ]
+      "left": 10,
+      "right": 330,
+      "top": 10,
+      "bottom": 218.53125,
+      "width": 320,
+      "height": 208.53125,
+      "viewportWidth": 390,
+      "viewportHeight": 1000,
+      "documentWidth": 390,
+      "clientWidth": 390,
+      "fields": 1,
+      "inputs": 0
+    },
+    "chartGeometry": {
+      "left": 10,
+      "right": 330,
+      "top": 10,
+      "bottom": 218.328125,
+      "width": 320,
+      "height": 208.328125,
+      "viewportWidth": 390,
+      "viewportHeight": 1000,
+      "documentWidth": 390,
+      "clientWidth": 390,
+      "fields": 1,
+      "inputs": 0
     }
   },
   {
     "width": 320,
-    "nestedNativeModal": true,
-    "semanticSelection": true,
-    "privatePublicSeparated": true,
-    "consentUnchecked": true,
-    "disabledNoSubmit": true,
+    "height": 600,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
     "layeredEscape": true,
     "geometry": {
-      "inner": 320,
-      "client": 320,
-      "scroll": 320,
-      "panel": {
-        "left": 10,
-        "right": 310
-      },
-      "controls": [
-        {
-          "left": 271.359375,
-          "right": 297
-        },
-        {
-          "left": 23,
-          "right": 297
-        },
-        {
-          "left": 23,
-          "right": 297
-        },
-        {
-          "left": 23,
-          "right": 297
-        },
-        {
-          "left": 23,
-          "right": 39
-        },
-        {
-          "left": 23,
-          "right": 76.25
-        },
-        {
-          "left": 84.25,
-          "right": 208.4375
-        }
-      ]
+      "left": 10,
+      "right": 310,
+      "top": 10,
+      "bottom": 218.53125,
+      "width": 300,
+      "height": 208.53125,
+      "viewportWidth": 320,
+      "viewportHeight": 600,
+      "documentWidth": 320,
+      "clientWidth": 320,
+      "fields": 1,
+      "inputs": 0
+    },
+    "chartGeometry": {
+      "left": 10,
+      "right": 310,
+      "top": 10,
+      "bottom": 218.328125,
+      "width": 300,
+      "height": 208.328125,
+      "viewportWidth": 320,
+      "viewportHeight": 600,
+      "documentWidth": 320,
+      "clientWidth": 320,
+      "fields": 1,
+      "inputs": 0
     }
   }
 ]

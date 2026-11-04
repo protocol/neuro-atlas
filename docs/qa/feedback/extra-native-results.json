@@ -1,0 +1,16 @@
+{
+  "nativeNestedSvgButtonPick": true,
+  "underlyingThemeActionSuppressed": true,
+  "hoverOutlineMatchesActualButton": {
+    "deltaLeft": 0,
+    "deltaTop": 0,
+    "deltaWidth": 0,
+    "deltaHeight": 0
+  },
+  "darkComposer": {
+    "background": "rgb(17, 17, 19)",
+    "input": "rgb(244, 244, 245)",
+    "contrast": 17.15925424605791
+  },
+  "lightThemeRestored": true
+}

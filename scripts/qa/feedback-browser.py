@@ -14,6 +14,11 @@ def wait(expr):
   time.sleep(.05)
  raise AssertionError(expr)
 def point(selector):
+ # Popup completion/other task windows can background this shared headed tab.
+ # Front the owned page and force paint before measuring a native pointer target.
+ cdp('Page.bringToFront')
+ wait('document.visibilityState === "visible"')
+ capture_screenshot(path=str(out/'current.png'))
  return js(f'''(()=>{{const e=document.querySelector({json.dumps(selector)});if(!e)throw Error('Missing '+{json.dumps(selector)});e.scrollIntoView({{block:'nearest'}});const r=e.getBoundingClientRect();return {{x:r.left+r.width/2,y:r.top+r.height/2}}}})()''')
 def click(selector):
  p=point(selector);click_at_xy(p['x'],p['y'])
@@ -35,8 +40,9 @@ def pick(selector,name):
  click_at_xy(p['x'],p['y'])
  wait('!!document.querySelector("[data-feedback-composer][open]")')
 def geometry(width):
- result=js('''(()=>{const d=document.querySelector('[data-feedback-composer]'),r=d.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height,viewportWidth:innerWidth,viewportHeight:innerHeight,documentWidth:document.documentElement.scrollWidth,fields:d.querySelectorAll('textarea').length,inputs:d.querySelectorAll('input').length}})()''')
+ result=js('''(()=>{const d=document.querySelector('[data-feedback-composer]'),r=d.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height,viewportWidth:innerWidth,viewportHeight:innerHeight,documentWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,fields:d.querySelectorAll('textarea').length,inputs:d.querySelectorAll('input').length}})()''')
  assert result['left']>=0 and result['right']<=width and result['top']>=0 and result['bottom']<=result['viewportHeight'],result
+ assert result['viewportWidth']==width and result['documentWidth']==result['clientWidth'],result
  assert result['width']<=320 and result['fields']==1 and result['inputs']==0,result
  if width<=480:assert result['top']<=12,result
  return result

@@ -1,37 +1,41 @@
-# Feedback native QA
+# One-field feedback native QA
 
-Runtime source: `c73ba658489602e018b0cbf7322dcfe4edb67693`.
+Runtime source: `b1955fc881f1a81b32f6c4da1592eb3ba1076616`. The final evidence-only head is runtime-equivalent; exact-head tests/review receipts are in the PR.
 
-Captures are from a **disposable loopback-only Next production build**, mounted at `/neuro-atlas`, with only its authentication proxy replaced by a private raw-Host/runtime-flag-guarded fixture. That fixture is not part of this PR and must never be pushed/deployed. The real source gate, scientific data, chart ordering and Next hosting configuration are unchanged.
+Captures use the **actual Atlas Next production build** mounted at `/neuro-atlas` on a disposable `127.0.0.1:35641` fixture. Only the copied proxy is replaced by a raw-Host/runtime-flag guard; it is never committed or deployed. Its exact source-revision header was checked before native replays. Source auth, scientific data and hosting configuration are unchanged. The owner's private reference recording is not published here.
 
-## Native results
+## Verified interactions
 
-- `native-results.json`: three cases, 1440/390/320px. Actual native chart + feedback top layers, Alt+Shift+F, geometric chart selection, separated private/public inputs, unchecked consent, honest disabled submit, horizontal bounds and layer-by-layer Escape.
-- `synthetic-ui-results.json`: three actual rendered-client cases with **explicitly synthetic transport, GitHub identity and popup completion**. No external provider navigation or write. Native click/type/tab verifies failed retry keeps the same UUID/draft, private text does not prefill public task, consent clears after edits, received does not imply started, no fake PR/preview link, same-ID versioned follow-up and focus wrapping. The 320px case uses a short 600px viewport and confirms the wrapped Close control scrolls back into view.
-- Screenshots show both the normal disabled surface and clearly named `synthetic-owner` UI states. They do not prove hosted OAuth, private cloud persistence, a paid model call, a real feedback-created GitHub PR or deployment status.
+- `native-results.json`: actual heading and native-chart hover outlines, click-to-pin compact composer, exactly ONE textarea/zero input fields, disabled draft retention, reselect/Escape/focus and unchanged underlying native chart at 1440/390/320px. The 320px case is 600px tall. Requested viewport width, actual inner width, document/client width and popup bounds are checked.
+- `synthetic-ui-results.json`: actual rendered client with **explicitly synthetic identity/network/popup peers** at those three widths. Picking the original chart's Close button suppresses its full activation sequence. Enter submits; Shift+Enter makes a newline. Failed retry retains identical UUID/body/element; confirmed save closes the composer and shows a real top-layer “Feedback saved” toast above the original modal. Received is not started; no PR/preview is invented. Same-ID follow-up and keyboard focus are exercised.
+- `extra-native-results.json`: actual nested theme-button SVG targets its button without toggling it, outline geometry matches the exact button, dark input contrast is measured in the real app, and light mode is restored. These are pointer/browser checks, not a physical-phone touch certification.
+- One replay encountered a backgrounded headed tab after a synthetic popup. Readback showed the composer still open and the page hidden; fronting the same owned page made History work. The helper now fronts/paints before measuring each pointer action. The complete strengthened matrices then passed; no product or auth change was made for that harness issue.
 
-## Replays
+## Privacy and integration
 
-Run with an owned browser-harness window and the isolated fixture bound only to `127.0.0.1:35641`. Do not run these scripts against a hosted environment. The synthetic transport asserts the exact loopback origin and never navigates its popup to GitHub.
+New one-field feedback and structural element references are private instructions for the bounded model. Fixed server-owned public metadata and CSS-only validation keep raw notes/references out of publication bundles/PR prose; publisher independently enforces the private-mode scope. Legacy explicitly public tasks remain compatible and their privateComment still never reaches the model. Real HTTP/PGlite/Git tests exercise this boundary, durability, idempotency, cumulative/mixed follow-ups and partial-publication parking. Actual Atlas baseline/candidate full checks supplement the small synthetic-peer integration fixture. See `docs/feedback.md` and `docs/feedback-worker.md` for limits and activation prerequisites.
+
+## Reproduce
+
+Use an owned browser-harness window and the isolated guarded fixture; never a hosted bypass:
 
 ```sh
-FEEDBACK_QA_ROOT="$PWD" FEEDBACK_QA_OUT=/opt/data/tmp/atlas-feedback-evidence BU_NAME=<owned-window> browser-harness < scripts/qa/feedback-browser.py
-FEEDBACK_QA_ROOT="$PWD" FEEDBACK_QA_OUT=/opt/data/tmp/atlas-feedback-evidence BU_NAME=<owned-window> browser-harness < scripts/qa/feedback-synthetic-browser.py
+FEEDBACK_QA_ROOT="$PWD" FEEDBACK_QA_OUT=/opt/data/tmp/atlas-feedback-evidence browser-harness < scripts/qa/feedback-browser.py
+FEEDBACK_QA_ROOT="$PWD" FEEDBACK_QA_OUT=/opt/data/tmp/atlas-feedback-evidence browser-harness < scripts/qa/feedback-synthetic-browser.py
+FEEDBACK_QA_ROOT="$PWD" FEEDBACK_QA_OUT=/opt/data/tmp/atlas-feedback-evidence browser-harness < scripts/qa/feedback-element-browser.py
 ```
 
-The second replay installs an explicitly synthetic Page script only for that target, then removes the registration in `finally`. Reload/navigation clears its in-page fixture. It is not included in application bundles.
+Synthetic script registration is removed in finally; navigation clears its in-page overrides. The optional component-only fixture in `feedback-ui-fixture.mjs` is separate from these full-app captures; its receipts are explicitly qualified in `feedback-ui-receipts.md`.
 
-## Functional and security gates
+## Image captions
 
-Standard `npm test` includes real PostgreSQL/PGlite migrations and restart persistence, actual auth/intake handlers, selected-chart contract, body/auth/origin/replay guards, immutable public-only job snapshots, model/billing validation, real Git/parser/subprocess checks, signature/budget/kill/fence guards, crash/readback publication and cumulative follow-up regressions. `tests/feedback-integrated-pipeline.test.mjs` joins those actual components with explicitly synthetic external peers.
+- `selection-1440.png`: real cursor outline around an ordinary page icon button.
+- `button-composer-1440.png`: that exact button pinned to the one-field composer, without activating it.
+- `composer-1440.png` / `composer-320.png`: real page-heading feedback; narrow short viewport remains bounded.
+- `chart-composer-1440.png`: feedback anchored below the selected plot while its native modal remains open.
+- `dark-composer-1440.png`: real dark-mode heading and composer.
+- `synthetic-retry-390.png`: one-field failed-save retention using synthetic transport.
+- `synthetic-saved-1440.png`: confirmed synthetic receipt, visible top-layer saved toast.
+- `synthetic-history-320.png`: versioned follow-up/status, synthetic peers; not a real hosted owner submission.
 
-The independent candidate review identified F1–F4 (Git timestamp precision, cumulative follow-ups, documented usage metadata and partial-publication parking). Located regression coverage lives in `feedback-publish-http.test.mjs`, `feedback-followup.test.mjs`, `feedback-worker-model.test.mjs` and the integrated pipeline. The final exact-head test/build/lint/review receipts are summarized in the PR; live activation remains separate. `docs/feedback.md` is the short implementation-versus-proposal checklist and activation runbook.
-
-## Evidence captions
-
-- `composer-1440.png`: real composer above the original open chart, disabled backend.
-- `selection-1440.png`: geometric selection retains the chart's native top layer.
-- `public-review-320.png`: complete narrow public-task review with initially unchecked consent; disabled backend.
-- `synthetic-retry-390.png`: synthetic failed write retains the draft for an idempotent retry.
-- `synthetic-followup-320-bottom.png`: short-viewport form after local vertical scroll; consent and submit remain reachable. Keyboard wrap separately reveals Close.
-- `synthetic-received-1440.png`: actual received UI using synthetic transport; no PR or preview is fabricated.
+No live connections, provider spending, unattended service or activation occurred. Hosted owner/OAuth/database/provider/GitHub acceptance remains separate.
