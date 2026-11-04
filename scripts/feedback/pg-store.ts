@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { canonical,approvalHash,approvedEnvelope } from './engine';
 import { sha256,POLICY_VERSION } from './validator';
-import type { Capability,WorkStore,Bundle } from './ports';
+import type { Capability,WorkStore,Bundle,PriorDraft } from './ports';
 import type { Publication,PublicationStore } from './publisher';
 /** Structurally identical to backend QueryDatabase; inject createFeedbackDatabase() after integration. */
 export interface QueryDatabase {query<Row=Record<string,unknown>>(sql:string,params?:unknown[]):Promise<{rows:Row[];rowCount:number|null}>;transaction<T>(fn:(tx:QueryDatabase)=>Promise<T>):Promise<T>}
@@ -19,6 +19,10 @@ export class PgWorkStore implements WorkStore,PublicationStore {
     const completed=j.state==='completed'&&j.feedback_state==='pr_ready';
     if(!completed && (c.lease_job_id!==cap.jobId || Number(c.fencing_token)!==cap.fence || date(c.lease_until)<=Date.now() || date(j.lease_until)<=Date.now() || !['leased','working','validating','publishing'].includes(j.state)))fenced();
     if(Number(j.attempt)>Math.min(2,Number(c.max_attempts)) || Number(c.daily_reserved)+Number(c.daily_charged)>Number(c.max_day_usd)+1e-10 || Number(j.reserved_cost)+Number(j.charged_cost)>Number(c.max_job_usd)+1e-10)fenced();
+    if(cap.priorDraft) {
+      const p=(await tx.query<Row>('SELECT * FROM atlas_feedback.publications WHERE feedback_id=$1 FOR UPDATE',[cap.feedbackId])).rows[0],prior=cap.priorDraft;
+      if(!p || p.phase!=='pr_ready' || p.version!==prior.version || p.commit_sha!==prior.headSha || p.candidate_digest!==prior.candidateDigest || p.receipt_digest!==prior.receiptDigest)fenced();
+    }
     return {c,j};
   }
   async acquire():Promise<Capability|null> {
@@ -34,15 +38,37 @@ export class PgWorkStore implements WorkStore,PublicationStore {
       await tx.query('UPDATE atlas_feedback.control SET daily_charged=0,accounting_day=CURRENT_DATE WHERE accounting_day<>CURRENT_DATE AND daily_reserved=0');
       c=await this.control(tx);
       if(Number(c.daily_reserved)+Number(c.daily_charged)>=Number(c.max_day_usd))return null;
-      const j=(await tx.query<Row>(`SELECT j.*,f.owner_github_id FROM atlas_feedback.jobs j JOIN atlas_feedback.feedback f ON f.id=j.feedback_id WHERE j.state='pending' AND j.attempt<$1 AND f.version=j.input_version AND f.approval_hash=j.approval_hash AND f.owner_github_id=$2 AND f.state IN ('queued','received') ORDER BY j.created_at,j.id LIMIT 1 FOR UPDATE OF j,f`,[Math.min(2,Number(c.max_attempts)),c.allowed_owner_id])).rows[0];
+      const j=(await tx.query<Row>(`SELECT j.*,f.owner_github_id,f.pr_head_sha,f.pr_number FROM atlas_feedback.jobs j JOIN atlas_feedback.feedback f ON f.id=j.feedback_id WHERE j.state='pending' AND j.attempt<$1 AND f.version=j.input_version AND f.approval_hash=j.approval_hash AND f.owner_github_id=$2 AND f.state IN ('queued','received') ORDER BY j.created_at,j.id LIMIT 1 FOR UPDATE OF j,f`,[Math.min(2,Number(c.max_attempts)),c.allowed_owner_id])).rows[0];
       if(!j)return null;
+      const publication=(await tx.query<Row>('SELECT * FROM atlas_feedback.publications WHERE feedback_id=$1 FOR UPDATE',[j.feedback_id])).rows[0];
+      if(publication && (publication.phase!=='pr_ready' || publication.version>=j.input_version)) {
+        await tx.query("UPDATE atlas_feedback.jobs SET state='parked',last_reason_code='partial_publication_followup',updated_at=now() WHERE id=$1",[j.id]);
+        await tx.query("UPDATE atlas_feedback.feedback SET state='needs_human_review',last_reason_code='partial_publication_followup',updated_at=now() WHERE id=$1",[j.feedback_id]);
+        return null;
+      }
+      if(!publication && (j.pr_head_sha!==null || j.pr_number!==null)) {
+        await tx.query("UPDATE atlas_feedback.jobs SET state='parked',last_reason_code='followup_history_unverified',updated_at=now() WHERE id=$1",[j.id]);
+        await tx.query("UPDATE atlas_feedback.feedback SET state='needs_human_review',last_reason_code='followup_history_unverified',updated_at=now() WHERE id=$1",[j.feedback_id]);
+        return null;
+      }
+      let priorDraft:PriorDraft|undefined;
+      if(publication) {
+        const old=(await tx.query<Row>("SELECT j.*,b.bundle,b.digest FROM atlas_feedback.jobs j JOIN atlas_feedback.worker_bundles b ON b.job_id=j.id WHERE j.feedback_id=$1 AND j.input_version=$2 AND j.state='completed'",[j.feedback_id,publication.version])).rows[0];
+        const b=old?.bundle as Bundle|undefined;
+        if(!b || old!.digest!==old!.candidate_ref || old!.digest!==sha256(canonical(b)) || b.receipt.jobId!==old!.id || b.receipt.feedbackId!==j.feedback_id || b.receipt.inputVersion!==publication.version || b.receipt.baseSha!==this.options.trustedBaseSha || b.receipt.patchDigest!==publication.candidate_digest || sha256(canonical(b.receipt))!==publication.receipt_digest || publication.commit_sha!==j.pr_head_sha || publication.pr_number!==j.pr_number || !publication.pr_number || !/^[0-9a-f]{40}$/.test(publication.commit_sha??'')) {
+          await tx.query("UPDATE atlas_feedback.jobs SET state='parked',last_reason_code='followup_history_unverified',updated_at=now() WHERE id=$1",[j.id]);
+          await tx.query("UPDATE atlas_feedback.feedback SET state='needs_human_review',last_reason_code='followup_history_unverified',updated_at=now() WHERE id=$1",[j.feedback_id]);
+          return null;
+        }
+        priorDraft={version:publication.version,headSha:publication.commit_sha,candidateDigest:publication.candidate_digest,receiptDigest:publication.receipt_digest,bundleDigest:old!.digest,bundle:b};
+      }
       const p=j.payload;const env=approvedEnvelope(p.publicTask,p.publicContext);
       if(p.feedbackId!==j.feedback_id || p.inputVersion!==j.input_version || p.approvalHash!==j.approval_hash || approvalHash(env.publicTask,env.publicContext)!==j.approval_hash)fenced();
       const fence=Number(c.fencing_token)+1;if(!Number.isSafeInteger(fence))fenced();
       const leaseUntil=Date.now()+Number(c.max_wall_seconds)*1000;
       await tx.query("UPDATE atlas_feedback.jobs SET state='leased',attempt=attempt+1,fencing_token=$2,lease_until=$3,base_sha=$4,updated_at=now() WHERE id=$1",[j.id,fence,new Date(leaseUntil).toISOString(),this.options.trustedBaseSha]);
       await tx.query('UPDATE atlas_feedback.control SET lease_job_id=$1,lease_until=$2,fencing_token=$3 WHERE singleton=true',[j.id,new Date(leaseUntil).toISOString(),fence]);
-      return {jobId:j.id,feedbackId:j.feedback_id,inputVersion:j.input_version,approvalHash:j.approval_hash,...env,baseSha:this.options.trustedBaseSha,fence,attempt:j.attempt+1,leaseUntil};
+      return {jobId:j.id,feedbackId:j.feedback_id,inputVersion:j.input_version,approvalHash:j.approval_hash,...env,baseSha:this.options.trustedBaseSha,fence,attempt:j.attempt+1,leaseUntil,...(priorDraft?{priorDraft}:{})};
     });
   }
   async assertActive(capOrBundle:Capability|Bundle):Promise<void> {
