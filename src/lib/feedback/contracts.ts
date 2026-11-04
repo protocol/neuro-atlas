@@ -11,6 +11,20 @@ export type FeedbackInput = {
     deployedRevision?: string;
   };
 };
+export type FeedbackElementReference = {
+  /** Structural tag/nth-of-type locator only: no text, HTML, attributes, values or URLs. */
+  selector: string;
+  tagName: string;
+  role?: string;
+  classes?: string[];
+};
+export const FEEDBACK_SIMPLE_POLICY_VERSION = "atlas-feedback-simple-v1" as const;
+export type SimpleFeedbackInput = {
+  feedback: string;
+  processingConsent: { approved: true; policyVersion: typeof FEEDBACK_SIMPLE_POLICY_VERSION };
+  context: FeedbackInput["context"] & { element?: FeedbackElementReference };
+};
+export type FeedbackSubmission = FeedbackInput | SimpleFeedbackInput;
 export type FeedbackState = "received" | "queued" | "working" | "validating" | "publishing" | "pr_ready" | "merged" | "live" | "needs_clarification" | "needs_human_review" | "failed" | "cancelled";
 export type FeedbackStatus = {
   id: string; version: number; state: FeedbackState; createdAt: string; updatedAt: string;
