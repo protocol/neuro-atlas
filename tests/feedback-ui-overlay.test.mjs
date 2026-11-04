@@ -119,7 +119,7 @@ test('real client review separates private input, consent starts unchecked, fail
     await key('Tab');
     assert.ok(document.activeElement === closeControl, 'forward Tab wraps within the feedback layer');
     await click(byText('Follow up'));
-    assert.match(document.querySelector('[data-feedback-composer]').textContent, /replacement public task.*include the complete change/i);
+    assert.match(document.querySelector('[data-feedback-composer]').textContent, /follow-up builds on the existing draft PR/i);
     await input('Private comment', 'Private followup'); await click(byText('Review public task'));
     assert.equal(document.querySelector('[data-feedback-consent]').checked, false);
     await input('Public title', 'Refine spacing'); await input('Public summary', 'Use clearer spacing.'); await input('Acceptance criteria', 'No overlap'); await click(document.querySelector('[data-feedback-consent]')); await click(document.querySelector('[data-feedback-submit]')); await settle();

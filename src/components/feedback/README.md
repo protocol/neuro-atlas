@@ -25,6 +25,6 @@ node --import tsx --test tests/feedback-ui*.test.mjs
 
 React/jsdom lifecycle tests execute the actual component and actual client against explicitly synthetic fetch fixtures. Native top-layer rendering, 320/390px visual checks, the full integrated build and real API end-to-end tests are integration-owner work. These tests are not live GitHub OAuth evidence.
 
-Backend owns `src/lib/feedback/contracts.ts`; frontend imports its types only. This exclusive UI worktree intentionally does not create a second copy. Standalone repository tsc awaits that integration and Next-generated LayoutProps. An in-memory compiler-host check against the backend worker's actual DTO source produced zero diagnostics for the owned frontend files.
+Backend owns `src/lib/feedback/contracts.ts`; the frontend imports its DTO types and shared curated selection constants rather than maintaining a second contract. Run the integrated `npm run typecheck` (Next route type generation followed by project TypeScript) as a separate gate from component tests.
 
 **Integrated selection contract:** `contracts.ts` exports the shared curated chart-ID allowlist consumed by both `selection.ts` and strict intake validation. `tests/feedback-context-contract.test.mjs` independently enumerates the public link registry and verifies every selectable identity is accepted while arbitrary DOM IDs remain rejected.

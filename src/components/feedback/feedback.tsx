@@ -215,8 +215,9 @@ export function Feedback() {
         if (event.key !== "Tab") return;
         const controls = visibleFeedbackControls(event.currentTarget);
         const first = controls[0], last = controls[controls.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus({preventScroll:true}); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus({preventScroll:true}); }
+        // Let native focus reveal the target inside a vertically scrolled small-screen composer.
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }}
       onClick={event => {
         if (selecting) {
@@ -232,7 +233,7 @@ export function Feedback() {
       </div> : <section className="atlas-feedback-panel">
         <header><h2>{followup ? "Follow up" : "Atlas feedback"}</h2><button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
         <p className="atlas-feedback-note">Owner-only · private intake. No screenshots, uploads, or page text capture.</p>
-        {followup && <p className="atlas-feedback-note">A replacement public task regenerates the same draft PR from current main. Include the complete change, including earlier edits you want to keep.</p>}
+        {followup && <p className="atlas-feedback-note">Your approved follow-up builds on the existing draft PR. Incomplete publication or unverified draft history is saved for human review.</p>}
         {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Your draft stays in this page; nothing is submitted.</p> : !config.connected ? <p role="status">Feedback is disconnected. Your draft stays here; processing is not running. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
         {available && <div className="atlas-feedback-auth">{session ? <><span>Signed in as {session.actor.login}</span><button type="button" onClick={() => void signOut()}>Sign out</button></> : <><span>Verify the owner account to submit.</span><button type="button" disabled={authBusy} onClick={signIn}>{authBusy ? "Signing in…" : "Sign in with GitHub"}</button>{authBusy && <button type="button" onClick={() => client.current?.cancelSignIn()}>Cancel sign-in</button>}</>}</div>}
         {error && <p role="alert">{error}</p>}

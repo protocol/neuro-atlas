@@ -5,7 +5,21 @@ import type { Capability,WorkStore,Bundle,PriorDraft } from './ports';
 import type { Publication,PublicationStore } from './publisher';
 /** Structurally identical to backend QueryDatabase; inject createFeedbackDatabase() after integration. */
 export interface QueryDatabase {query<Row=Record<string,unknown>>(sql:string,params?:unknown[]):Promise<{rows:Row[];rowCount:number|null}>;transaction<T>(fn:(tx:QueryDatabase)=>Promise<T>):Promise<T>}
-type Row=Record<string,any>;
+// Named SQL projections; every authority/budget fence below still validates live values.
+type Row = {
+  [column:string]:unknown;
+  id:string; feedback_id:string; input_version:number; current_version:number; version:number; attempt:number;
+  approval_hash:string; current_approval:string; base_sha:string; owner_github_id:string|number;
+  state:string; feedback_state:string; created_at:string|Date; lease_until:string|Date; lease_job_id:string|null;
+  enabled:boolean; allowed_owner_id:string|number; policy_version:string; fencing_token:string|number;
+  daily_reserved:string|number; daily_charged:string|number; reserved_cost:string|number; charged_cost:string|number;
+  max_attempts:string|number; max_turns:string|number; max_tokens:string|number; max_wall_seconds:string|number;
+  max_job_usd:string|number; max_day_usd:string|number;
+  payload:{feedbackId:string;inputVersion:number;approvalHash:string;publicTask:Capability['publicTask'];publicContext:Capability['publicContext']};
+  bundle:Bundle; digest:string; candidate_ref:string; candidate_digest:string; receipt_digest:string;
+  pr_head_sha:string|null; pr_number:number|null; branch:string; phase:string; commit_sha:string; expected_head_sha:string|null;
+  upper_tokens:number; upper_usd:string|number; actual_usd:string|number|null; instance_id:string;
+};
 const date=(d:unknown)=>new Date(d as string).getTime();
 const validLimits=(c:Row)=>c.policy_version===POLICY_VERSION && Number.isSafeInteger(Number(c.allowed_owner_id)) && Number(c.allowed_owner_id)>0 && ['max_job_usd','max_day_usd','max_tokens','max_turns','max_wall_seconds','max_attempts'].every(k=>Number.isFinite(Number(c[k]))&&Number(c[k])>0) && Number(c.max_attempts)<=2 && Number(c.max_wall_seconds)<=600;
 const fenced=():never=>{throw new Error('fenced')};
