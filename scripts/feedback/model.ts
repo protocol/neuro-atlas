@@ -14,8 +14,11 @@ const instruction='Return only strict JSON {"baseSha":"40 hex trusted revision",
 function uncachedStandardUsage(usage: Record<string, unknown>): boolean {
   const known = ['input_tokens','output_tokens','cache_creation_input_tokens','cache_read_input_tokens','cache_creation','server_tool_use','service_tier','inference_geo','speed','output_tokens_details'];
   if (Object.keys(usage).some(key => !known.includes(key))) return false;
-  for (const key of ['cache_creation_input_tokens','cache_read_input_tokens']) if (usage[key] !== undefined && usage[key] !== 0) return false;
-  for (const [key,expected] of [['service_tier','standard'],['inference_geo','global'],['speed','standard']]) if (usage[key] !== undefined && usage[key] !== expected) return false;
+  // This private caller never sends cache_control (including blocks), tools, thinking or speed:fast.
+  // Messages caching/fast mode are opt-in; nullable optional categories are therefore not requested.
+  // Required priced input/output counters remain non-null and are validated separately below.
+  for (const key of ['cache_creation_input_tokens','cache_read_input_tokens']) if (usage[key] !== undefined && usage[key] !== null && usage[key] !== 0) return false;
+  for (const [key,expected] of [['service_tier','standard'],['inference_geo','global'],['speed','standard']]) if (usage[key] !== undefined && usage[key] !== null && usage[key] !== expected) return false;
   const zeroFields: Record<string, string[]> = {
     cache_creation:['ephemeral_1h_input_tokens','ephemeral_5m_input_tokens'],
     server_tool_use:['web_fetch_requests','web_search_requests'],

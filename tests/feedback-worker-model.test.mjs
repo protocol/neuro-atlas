@@ -40,8 +40,13 @@ test('documented standard uncached usage metadata is accepted; priced-mode chang
   assert.equal((await model.generate(input,meter)).patch.baseSha,input.baseSha);
   assert.equal(settled,1);assert.equal(unknown,0);
   assert.equal(captured.service_tier,'standard_only');assert.equal(captured.inference_geo,'global');
-  for(const extra of [{cache_read_input_tokens:1},{cache_creation_input_tokens:1},{service_tier:'priority'},{speed:'fast'},{inference_geo:'us'},{server_tool_use:{web_search_requests:1,web_fetch_requests:0}},{future_billable_tokens:0}]){
+  assert.equal(captured.cache_control,undefined);assert.equal(captured.tools,undefined);assert.equal(captured.thinking,undefined);assert.equal(captured.speed,undefined);
+  const normal=usage,nullable=['cache_creation_input_tokens','cache_read_input_tokens','service_tier','inference_geo','speed'];
+  for(const key of nullable){usage={...normal,[key]:null};await model.generate(input,meter);}
+  usage={...normal,...Object.fromEntries(nullable.map(key=>[key,null])),cache_creation:null,server_tool_use:null,output_tokens_details:null};await model.generate(input,meter);
+  usage=normal;assert.equal(settled,1+nullable.length+1);assert.equal(unknown,0);
+  for(const extra of [{cache_read_input_tokens:1},{cache_creation_input_tokens:1},{service_tier:'priority'},{speed:'fast'},{inference_geo:'us'},{server_tool_use:{web_search_requests:1,web_fetch_requests:0}},{future_billable_tokens:0},{input_tokens:null},{output_tokens:null}]){
     const base=usage;usage={...usage,...extra};await assert.rejects(model.generate(input,meter),/provider_unknown_outcome/);usage=base;
   }
-  assert.equal(settled,1);assert.equal(unknown,7);
+  assert.equal(settled,1+nullable.length+1);assert.equal(unknown,9);
 });
