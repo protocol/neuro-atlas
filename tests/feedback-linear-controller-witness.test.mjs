@@ -39,3 +39,19 @@ test('controller admits only the independently witnessed exact latest chain and 
  await assert.rejects(c.assertCurrentInput(privateRecordHash(a)),/review_blocked/);
  assert.ok(reads>=4);
 });
+
+test('witness flags, foreign scope and uninitialized volumes cannot admit native input; cryptographic source verification still precedes witness comparison',async t=>{
+ const {FileIntakeWitness}=await import('../scripts/feedback-linear/witness-store.ts');
+ const root=await mkdtemp('/opt/data/tmp/atlas-controller-witness-trust-');t.after(()=>rm(root,{recursive:true,force:true}));
+ let reads=0;const a=record(),readNative=async()=>{reads++;return receipt([a]);};
+ for(const witness of [true,{scope:ids,assertAvailable:async()=>{},assertLatest:async()=>{}},new FileIntakeWitness({root:root+'/foreign',scope:{...ids,ownerId:ids.teamId}})]){
+  await assert.rejects(new ReviewController(config(root,witness,readNative)).assertCurrentInput(),/native_history_witness_unavailable/);
+ }
+ assert.equal(reads,0);
+ const witness=new FileIntakeWitness({root:root+'/witness',scope:ids}),c=new ReviewController(config(root,witness,readNative));
+ await assert.rejects(c.assertCurrentInput());assert.equal(reads,0,'unavailable independent storage blocks before any source read');
+ await witness.initialize();await witness.reserve(operation(a));await witness.complete(operation(a));
+ const changed={...a,input:{...a.input,feedback:'Tampered synthetic input'}};
+ c.config.readNative=async()=>receipt([changed]);
+ await assert.rejects(c.assertCurrentInput(),/native_input_rejected/);
+});
