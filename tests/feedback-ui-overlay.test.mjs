@@ -51,6 +51,22 @@ test('native chart survives selection → composer → chart Escape ordering, fo
   } finally { await cleanup(); }
 });
 
+test('clicking a selected chart keeps the composer open through the full pointerup/click sequence', async () => {
+  const cleanup = await mount(React.createElement(ChartFixture), '#tissue-mapped', win => { win.fetch = async () => json({enabled:false,connected:false}); });
+  try {
+    const chart = document.querySelector('.pc-modal');
+    chart.getBoundingClientRect = () => ({left:0,top:0,right:600,bottom:600,width:600,height:600});
+    await key('f', {altKey:true,shiftKey:true});
+    await click(byText('Select area'));
+    const layer = document.querySelector('[data-feedback-selection]');
+    await act(async () => layer.dispatchEvent(new window.MouseEvent('pointerup', {bubbles:true,clientX:200,clientY:300})));
+    await act(async () => layer.dispatchEvent(new window.MouseEvent('click', {bubbles:true,clientX:200,clientY:300})));
+    assert.ok(document.querySelector('[data-feedback-composer][open]'), 'selection click must return to composer, not dismiss it');
+    assert.equal(document.querySelector('.atlas-feedback-target').textContent, 'tissue-mapped');
+    assert.equal(chart.open, true);
+  } finally { await cleanup(); }
+});
+
 test('real client review separates private input, consent starts unchecked, failures retry same key, status/followup same ID', async () => {
   const calls = []; let popup; let failures = 1; let version = 1;
   const status = () => ({ id: 'fixture-id', state: 'needs_clarification', version, createdAt: '2026-01-01T00:00:00Z', updatedAt: '2026-01-01T00:00:00Z', clarification: 'Please clarify the public task.' });

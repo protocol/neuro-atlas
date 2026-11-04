@@ -197,9 +197,12 @@ export function Feedback() {
     {open && <dialog ref={dialog} data-atlas-feedback data-feedback-composer={!selecting ? "" : undefined} data-feedback-selection={selecting ? "" : undefined}
       className={`atlas-feedback-layer${selecting ? " atlas-feedback-selecting" : ""}`} aria-label={selecting ? "Select feedback area" : "Atlas feedback"} aria-modal="true"
       onCancel={event => { event.preventDefault(); event.stopPropagation(); if (selecting) finishSelection(target); else close(); }}
-      onClick={event => { if (!selecting && event.target === event.currentTarget) close(); }}
-      onPointerMove={event => { if (selecting) setHover(targetAt(document, event.clientX, event.clientY)); }}
-      onPointerUp={event => { if (selecting && !(event.target as HTMLElement).closest('[data-selection-controls]')) finishSelection(targetAt(document, event.clientX, event.clientY)); }}>
+      onClick={event => {
+        if (selecting) {
+          if (!(event.target as HTMLElement).closest('[data-selection-controls]')) finishSelection(targetAt(document, event.clientX, event.clientY));
+        } else if (event.target === event.currentTarget) close();
+      }}
+      onPointerMove={event => { if (selecting) setHover(targetAt(document, event.clientX, event.clientY)); }}>
       {selecting ? <div className="atlas-feedback-selection-controls" data-selection-controls>
         <p>Choose a chart or use General page. No screenshot or text is captured.</p>
         {hover && <p className="atlas-feedback-target">{hover}</p>}
