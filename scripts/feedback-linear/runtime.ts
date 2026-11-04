@@ -6,11 +6,13 @@ import {z} from 'zod';
 import {ReviewController, type ReviewConfig} from './controller';
 import {uuid} from './input';
 import {hermesModelSchema} from './hermes-model';
+import {FileIntakeWitness} from './witness-store';
 
 const absolute = z.string().refine(path.isAbsolute);
 const positive = z.number().finite().positive();
 const commonSchema = z.object({
   root:absolute,repo:absolute,nativeReadPath:absolute,hostPublicKeyPath:absolute,capturePublicKeyPath:absolute,
+  historyWitnessRoot:absolute.optional(),workspaceId:z.string().uuid().optional(),
   ownerId:z.string(),workspace:z.string().regex(/^[a-z0-9][a-z0-9-]{0,79}$/),projectId:z.string(),teamId:z.string(),channelId:z.string().min(1),reviewerIds:z.array(z.string().min(1)).min(1),
   maxTokens:positive.int(),maxWallMs:positive.int().max(600000),proposalTtlMs:positive.int().max(86400000),
 }).strict();
@@ -19,7 +21,7 @@ const usdSchema = commonSchema.extend({
   model:z.object({model:z.string().min(1),inputUsdPerMillion:positive,outputUsdPerMillion:positive,maxInputTokens:positive.int(),maxOutputTokens:positive.int().max(8192),maxBodyBytes:positive.int().max(131072),maxResponseBytes:positive.int().max(262144),timeoutMs:positive.int().max(120000)}).strict(),
 }).strict();
 const countSchema = commonSchema.extend({provider:z.literal('hermes-astra'),budget:z.object({kind:z.literal('attempts'),maxAttemptsPerDay:positive.int().max(5),timeZone:z.string().min(1).refine(value=>{try{new Intl.DateTimeFormat('en-CA',{timeZone:value});return true;}catch{return false;}})}).strict(),model:hermesModelSchema.omit({enabled:true,fixture:true,fixtureOrigin:true}).strict()}).strict();
-const configSchema = z.discriminatedUnion('provider',[usdSchema,countSchema]);
+const configSchema = z.discriminatedUnion('provider',[usdSchema,countSchema]).refine(c=>(c.historyWitnessRoot===undefined)===(c.workspaceId===undefined));
 async function privateBytes(file: string): Promise<Buffer> {
   if (!path.isAbsolute(file)) throw new Error('runtime_blocked');
   const s = await lstat(file);
@@ -27,6 +29,23 @@ async function privateBytes(file: string): Promise<Buffer> {
   return readFile(file);
 }
 const privateJson = async (file: string) => JSON.parse((await privateBytes(file)).toString());
+/** Fixed trusted factory; no initialization, arbitrary module loader, inference or writes. */
+export async function loadReviewController(env:NodeJS.ProcessEnv=process.env):Promise<ReviewController> {
+  try {
+    if(env.ATLAS_LINEAR_REVIEW_ENABLED!=='true')throw new Error();
+    const c=configSchema.parse(await privateJson(env.ATLAS_LINEAR_REVIEW_CONFIG??''));
+    const key=env.ATLAS_LINEAR_REVIEW_RECORD_KEY??'';
+    if(!/^[A-Za-z0-9_-]{43}$/.test(key)||Buffer.from(key,'base64url').length!==32||Buffer.from(key,'base64url').toString('base64url')!==key)throw new Error();
+    const hostPublicKey=createPublicKey(await privateBytes(c.hostPublicKeyPath)),capturePublicKey=createPublicKey(await privateBytes(c.capturePublicKeyPath));
+    if(hostPublicKey.asymmetricKeyType!=='ed25519'||capturePublicKey.asymmetricKeyType!=='ed25519')throw new Error();
+    const historyWitness=c.historyWitnessRoot?new FileIntakeWitness({root:c.historyWitnessRoot,scope:{workspaceId:c.workspaceId!,ownerId:c.ownerId,projectId:c.projectId,teamId:c.teamId}}):undefined;
+    const common={enabled:true,root:c.root,repo:c.repo,inputPolicy:{ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url')},...(historyWitness?{historyWitness}:{}),channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs};
+    const config:ReviewConfig=c.provider==='hermes-astra'
+      ?{...common,provider:c.provider,budget:c.budget,model:{...c.model,enabled:true}}
+      :{...common,provider:c.provider,budget:c.budget,maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY??''};
+    return new ReviewController(config);
+  }catch{throw new Error('runtime_blocked');}
+}
 /** Local operator CLI only. No listener, HTTP route, service, scheduler or receipt signer. */
 export async function runtimeMain(args: string[], env: NodeJS.ProcessEnv = process.env): Promise<unknown> {
   if (env.ATLAS_LINEAR_REVIEW_ENABLED !== 'true') return {state:'disabled'};
@@ -39,16 +58,7 @@ export async function runtimeMain(args: string[], env: NodeJS.ProcessEnv = proce
       throw new Error('runtime_blocked');
     }
     if (role === 'prepare' && ['FEEDBACK_GITHUB_INSTALLATION_TOKEN','GH_TOKEN','GITHUB_TOKEN','ATLAS_LINEAR_REVIEW_RECEIPT_PRIVATE_KEY'].some(k=>env[k])) throw new Error();
-    const c = configSchema.parse(await privateJson(env.ATLAS_LINEAR_REVIEW_CONFIG ?? ''));
-    const key = env.ATLAS_LINEAR_REVIEW_RECORD_KEY ?? '';
-    if (!/^[A-Za-z0-9_-]{43}$/.test(key) || Buffer.from(key,'base64url').length !== 32 || Buffer.from(key,'base64url').toString('base64url') !== key) throw new Error();
-    const hostPublicKey = createPublicKey(await privateBytes(c.hostPublicKeyPath)), capturePublicKey = createPublicKey(await privateBytes(c.capturePublicKeyPath));
-    if (hostPublicKey.asymmetricKeyType !== 'ed25519' || capturePublicKey.asymmetricKeyType !== 'ed25519') throw new Error();
-    const common = {enabled:true,root:c.root,repo:c.repo,inputPolicy:{ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url')},channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs};
-    const config: ReviewConfig = c.provider === 'hermes-astra'
-      ? {...common,provider:c.provider,budget:c.budget,model:{...c.model,enabled:true}}
-      : {...common,provider:c.provider,budget:c.budget,maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY ?? ''};
-    const controller = new ReviewController(config);
+    const controller = await loadReviewController(env);
     let result: Awaited<ReturnType<ReviewController['prepare']>>;
     if (role === 'prepare') result = await controller.prepare();
     else if (role === 'status') result = await controller.status(id);

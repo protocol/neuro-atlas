@@ -9,10 +9,12 @@ import {HostWorkflow} from './host-workflow';
 import {ReviewController} from './controller';
 import {livePorts} from './host-transport';
 import {uuid,validateNative} from './input';
+import {loadReviewController} from './runtime';
 
 const absolute=z.string().refine(path.isAbsolute),envName=z.string().regex(/^[A-Z][A-Z0-9_]{0,99}$/);
 const schema=z.object({
   root:absolute,repo:absolute,scope:hostScopeSchema,slack:slackConfigSchema,
+  reviewConfigPath:absolute.optional(),
   hostPublicKeyPath:absolute,capturePublicKeyPath:absolute,hostSigningKeyEnv:envName,recordKeyEnv:envName,publisherSigningKeyEnv:envName,githubTokenEnv:envName,
   reviewerVerificationReferences:z.record(z.string(),z.string().min(1).max(1000)),syncAuditReference:z.string().min(1).max(1000),
 }).strict();
@@ -40,7 +42,11 @@ export async function hostRuntimeMain(args:string[],env:NodeJS.ProcessEnv=proces
   const c=schema.parse(JSON.parse((await bytes(required(env,'ATLAS_LINEAR_HOST_CONFIG'),65536)).toString()));
   const reviewers=c.slack.verifiedHumanReviewerIds;
   if(Object.keys(c.reviewerVerificationReferences).length!==reviewers.length||reviewers.some(r=>!Object.hasOwn(c.reviewerVerificationReferences,r)))return blocked('verified_reviewers_required');
-  if(command!=='native'&&!(controller instanceof ReviewController))throw new Error('host_setup_missing:OWNER_ACCOUNT_CONTROLLER');
+  if(command!=='native'&&!(controller instanceof ReviewController)){
+    if(!c.reviewConfigPath)throw new Error('host_setup_missing:OWNER_ACCOUNT_CONTROLLER');
+    controller=await loadReviewController({...env,ATLAS_LINEAR_REVIEW_CONFIG:c.reviewConfigPath,ATLAS_LINEAR_REVIEW_RECORD_KEY:required(env,c.recordKeyEnv)});
+    if(controller.config.provider!=='hermes-astra')return blocked('selected_account_required');
+  }
   if(command==='prepare'&&[c.publisherSigningKeyEnv,c.githubTokenEnv].some(name=>env[name]))return blocked('publisher_credentials_in_preparation');
   const recordKeyText=required(env,c.recordKeyEnv);
   if(!/^[A-Za-z0-9_-]{43}$/.test(recordKeyText)||Buffer.from(recordKeyText,'base64url').toString('base64url')!==recordKeyText)return blocked('derived_record_key');
@@ -51,7 +57,7 @@ export async function hostRuntimeMain(args:string[],env:NodeJS.ProcessEnv=proces
   const host={scope:c.scope,inputPolicy,signingKey};
   if(command==='native'){const verified=validateNative(await new PrivateHost(host,livePorts()).readNative(),inputPolicy);return {state:'verified',issueId:c.scope.issueId,version:verified.record.version,recordHash:verified.recordHash};}
   const common=controller!.config;
-  if(common.root!==c.root||common.repo!==c.repo||!publicDer(common.capturePublicKey).equals(publicDer(capturePublicKey)))return blocked('controller_trust_binding');
+  if(common.root!==c.root||common.repo!==c.repo||common.inputPolicy.ownerId!==c.scope.ownerId||common.inputPolicy.workspace!==c.scope.workspace||common.inputPolicy.projectId!==c.scope.projectId||common.inputPolicy.teamId!==c.scope.teamId||!publicDer(common.capturePublicKey).equals(publicDer(capturePublicKey)))return blocked('controller_trust_binding');
   const w=new HostWorkflow({host,slack:c.slack,controller:controller!,writesEnabled:env.ATLAS_LINEAR_HOST_WRITES_ENABLED==='true',publishEnabled:env.ATLAS_LINEAR_HOST_PUBLISH_ENABLED==='true'});
   if(!['native','prepare'].includes(command)&&id!==c.scope.issueId)return blocked('issue_scope');
   if(command==='prepare')return w.controller.prepare();
