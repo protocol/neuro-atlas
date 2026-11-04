@@ -12,7 +12,8 @@ import {PrivateFiles} from './files';
 import {hostPayload,validateNative,fresh,uuid,digest} from './input';
 import {captureSchema,deliverySchema,decisionSchema,threadSchema,type ThreadRequest,type Proposal} from './evidence';
 
-export type WorkflowConfig={host:HostConfig;slack:SlackConfig;writesEnabled?:boolean;publishEnabled?:boolean}&({controller:ReviewController;review?:never}|{review:Omit<ReviewConfig,'readNative'|'readReviewThread'>;controller?:never});
+type WithoutReaders<T> = T extends unknown ? Omit<T,'readNative'|'readReviewThread'> : never;
+export type WorkflowConfig={host:HostConfig;slack:SlackConfig;writesEnabled?:boolean;publishEnabled?:boolean}&({controller:ReviewController;review?:never}|{review:WithoutReaders<ReviewConfig>;controller?:never});
 const blocked=(reason:string):never=>{throw new Error('host_blocked:'+reason);};
 const proposalSchema=z.object({schema:z.literal(1),revision:z.literal(1),candidateDigest:digest,captureDigest:digest,beforeDigest:digest,afterDigest:digest,channelId:z.string(),inputHash:digest,baseSha:z.string(),patchDigest:digest,checksDigest:digest,expiresAt:z.number().int()}).strict();
 const postSchema=z.object({status:z.literal('delivered'),platform:z.literal('slack'),channel:z.string(),ts:z.string().regex(/^[0-9]{10,16}\.[0-9]{6}$/),event_id:uuid,partial:z.literal(false).optional(),thread_ts:z.string().optional(),redirected_to:z.never().optional()});
