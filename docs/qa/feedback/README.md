@@ -1,6 +1,6 @@
 # Feedback native QA
 
-Runtime source: `3011bbd8cc3e7e826117b478e18ebaf78cc1983c`.
+Runtime source: `c73ba658489602e018b0cbf7322dcfe4edb67693`.
 
 Captures are from a **disposable loopback-only Next production build**, mounted at `/neuro-atlas`, with only its authentication proxy replaced by a private raw-Host/runtime-flag-guarded fixture. That fixture is not part of this PR and must never be pushed/deployed. The real source gate, scientific data, chart ordering and Next hosting configuration are unchanged.
 

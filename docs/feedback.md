@@ -21,7 +21,7 @@ Closing preserves the draft in page memory; reloading loses an unsent draft and 
 - Fixed automated validation runs tests, typecheck and build. **Model-driven browser reproduction and automated before/after screenshots are not implemented.** Native browser evidence in this PR was produced by the implementation owner, not by the feedback worker.
 - **No deployment/merge status collector yet.** `pr_ready` is the automatic terminal success state. Vercel may attach its ordinary preview to the PR, but this code does not claim a verified preview, Merged or Live. Those DTO fields are withheld without a separately reviewed exact-project evidence collector.
 - New approved follow-ups preserve verified earlier changes and update the same draft/branch, with cumulative validation and a fresh signed receipt. Partial publication, stale/unverifiable history and merged/live follow-ups park for human review before another model request. Earlier receipt expiry is never reused as new execution authority.
-- Failed/ambiguous requests remain saved with a safe status. Unknown model billing retains the worst-case reservation. No invented PR, preview or successful fix is returned.
+- Failed/ambiguous requests remain saved with a safe status; the worker does not generate an automated clarification dialogue in v1. Unknown model billing retains the worst-case reservation. No invented PR, preview or successful fix is returned.
 
 These are explicit differences from the broader proposal, not a claim that unrestricted artifact-style repair or live activation is finished.
 
