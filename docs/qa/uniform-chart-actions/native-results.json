@@ -1,0 +1,3026 @@
+[
+  {
+    "title": "Neurotech search terms",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "b713aa1cba2e2923fd2f442054844fe4cab0a32847106c054bdf998ff4b273a4",
+    "anchor": "google-trends-neurotech",
+    "width": 1440
+  },
+  {
+    "title": "Citation latency",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "aec4ea390ed2f87d4d622d24d66a2d31c7defb8909c944c462392758432ac021",
+    "anchor": "idea_vintage",
+    "width": 1440
+  },
+  {
+    "title": "Latency compression",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "c05554a5fb5edbaf1d598a3d9895235f612ffd5009dc94799691c12b82147acf",
+    "anchor": "latency_compression",
+    "width": 1440
+  },
+  {
+    "title": "Neuralink \u00b7 brand context",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "4c8d102f77ae9284704c48dfdeffefde1138760eddf769dede080fa8fe35d6b9",
+    "anchor": "google-trends-neuralink",
+    "width": 1440
+  },
+  {
+    "title": "Implanted BCI participants over time",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "66eb191189da0012f79c9147641ef6a61f9be653a774f0d4f7d9e6375126cc60",
+    "anchor": "revealed_commitments",
+    "width": 1440
+  },
+  {
+    "title": "Neural recording hours \u2014 selected datasets",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "e848ab09abd05f7c64a9e91ce4f83510fea40b8f1559d68959283cca189020f0",
+    "anchor": "metric-recording-hours",
+    "width": 1440
+  },
+  {
+    "title": "Selected chronic intracortical recipients",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 157.21875,
+        "right": 308.84375,
+        "bottom": 188.796875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 157.21875,
+        "right": 390.703125,
+        "bottom": 188.796875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 157.21875,
+        "right": 495.53125,
+        "bottom": 188.796875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 65.25,
+      "right": 1220,
+      "bottom": 934.734375,
+      "width": 1000,
+      "height": 869.484375
+    },
+    "svgHash": "0bbb2217b90ef4a034364856e8e1fe415b2f52d1d9b92f8335adb34a72182ee7",
+    "anchor": "metric-panel-neuralink-cumulative",
+    "width": 1440
+  },
+  {
+    "title": "Simultaneously recorded neurons",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "1c46704269319803405b431b20409fbf105cc7172a6ea927e3e171ec41a17ef3",
+    "anchor": "simultaneously-recorded-neurons",
+    "width": 1440
+  },
+  {
+    "title": "Selected public image/resource footprints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "fa12438e5ca528a74ef41da172df35eea7a7f037779a3ae3d173c75bf6eb46f9",
+    "anchor": "metric-panel-public-data-size",
+    "width": 1440
+  },
+  {
+    "title": "Selected tissue-volume checkpoints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 121.8125,
+        "right": 308.84375,
+        "bottom": 153.390625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 121.8125,
+        "right": 390.703125,
+        "bottom": 153.390625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 121.8125,
+        "right": 495.53125,
+        "bottom": 153.390625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 29.84375,
+      "right": 1220,
+      "bottom": 970.140625,
+      "width": 1000,
+      "height": 940.296875
+    },
+    "svgHash": "3b69938ec0635134c05b66bf4881789844e09824c66859b59445e2412fff9d9e",
+    "anchor": "metric-panel-tissue-cm3",
+    "width": 1440
+  },
+  {
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 120.578125,
+        "right": 308.84375,
+        "bottom": 152.15625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 120.578125,
+        "right": 390.703125,
+        "bottom": 152.15625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 120.578125,
+        "right": 495.53125,
+        "bottom": 152.15625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 28.609375,
+      "right": 1220,
+      "bottom": 971.375,
+      "width": 1000,
+      "height": 942.765625
+    },
+    "svgHash": "6767bfa2f7799298b7ad7c2a78ed119f8c587fbb416a446da2f96d84ff86c793",
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "width": 1440
+  },
+  {
+    "title": "Selected published maps \u2014 synapse counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 146.984375,
+        "right": 308.84375,
+        "bottom": 178.5625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 146.984375,
+        "right": 390.703125,
+        "bottom": 178.5625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 146.984375,
+        "right": 495.53125,
+        "bottom": 178.5625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 55.015625,
+      "right": 1220,
+      "bottom": 944.96875,
+      "width": 1000,
+      "height": 889.953125
+    },
+    "svgHash": "f580e782e617dc968fade3fd55a9fa002c27b4f6ab593dba4e13097ae63c9497",
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "width": 1440
+  },
+  {
+    "title": "Selected EM acquisition rates",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 157.21875,
+        "right": 308.84375,
+        "bottom": 188.796875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 157.21875,
+        "right": 390.703125,
+        "bottom": 188.796875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 157.21875,
+        "right": 495.53125,
+        "bottom": 188.796875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 65.25,
+      "right": 1220,
+      "bottom": 934.734375,
+      "width": 1000,
+      "height": 869.484375
+    },
+    "svgHash": "b8e7cc68ca2c35f5f160294878140493b94c154d6a86b362cda9bb94ccd968bf",
+    "anchor": "metric-panel-acquisition-rates",
+    "width": 1440
+  },
+  {
+    "title": "Selected structure\u2013function matches",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 172.625,
+        "right": 308.84375,
+        "bottom": 204.203125,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 172.625,
+        "right": 390.703125,
+        "bottom": 204.203125,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 172.625,
+        "right": 495.53125,
+        "bottom": 204.203125,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 80.65625,
+      "right": 1220,
+      "bottom": 919.328125,
+      "width": 1000,
+      "height": 838.671875
+    },
+    "svgHash": "6da1ab368dbc7557d75a19b4e8a46091fba7bba0ba918a3d0fe1db84aa6ed709",
+    "anchor": "metric-panel-paired-manual",
+    "width": 1440
+  },
+  {
+    "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 107.96875,
+        "right": 308.84375,
+        "bottom": 139.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 107.96875,
+        "right": 390.703125,
+        "bottom": 139.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 107.96875,
+        "right": 495.53125,
+        "bottom": 139.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "ebcf84345629c0881c11efd22e99615634f412f19357850d95513e4c0539cde3",
+    "anchor": "metric-panel-acquisition-economics",
+    "width": 1440
+  },
+  {
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 161.390625,
+        "right": 308.84375,
+        "bottom": 192.96875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 161.390625,
+        "right": 390.703125,
+        "bottom": 192.96875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 161.390625,
+        "right": 495.53125,
+        "bottom": 192.96875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 69.421875,
+      "right": 1220,
+      "bottom": 930.5625,
+      "width": 1000,
+      "height": 861.140625
+    },
+    "svgHash": "d4bfebfa5a08a92fecadb251c513023946c391c177d0e5ba76a556c194d20712",
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "width": 1440
+  },
+  {
+    "title": "Reported project proofreading effort",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 146.984375,
+        "right": 308.84375,
+        "bottom": 178.5625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 146.984375,
+        "right": 390.703125,
+        "bottom": 178.5625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 146.984375,
+        "right": 495.53125,
+        "bottom": 178.5625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 55.015625,
+      "right": 1220,
+      "bottom": 944.96875,
+      "width": 1000,
+      "height": 889.953125
+    },
+    "svgHash": "666667a5f98f7a051110e2742e8d21605cfb4a12d7e360e9dbf509705c40dafa",
+    "anchor": "metric-panel-proofreading-effort",
+    "width": 1440
+  },
+  {
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 174.390625,
+        "right": 308.84375,
+        "bottom": 205.96875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 174.390625,
+        "right": 390.703125,
+        "bottom": 205.96875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 174.390625,
+        "right": 495.53125,
+        "bottom": 205.96875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 82.421875,
+      "right": 1220,
+      "bottom": 917.578125,
+      "width": 1000,
+      "height": 835.15625
+    },
+    "svgHash": "6ae4fb9e75838ff63dcf07de8aea6a84edcd25ff7f071fb6e16c37f9ed2e6a68",
+    "anchor": "metric-panel-pathfinder-nerl",
+    "width": 1440
+  },
+  {
+    "title": "NeuroAI performance\u2013cost frontier",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 146.21875,
+        "right": 308.84375,
+        "bottom": 177.796875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 146.21875,
+        "right": 390.703125,
+        "bottom": 177.796875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 146.21875,
+        "right": 495.53125,
+        "bottom": 177.796875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 54.25,
+      "right": 1220,
+      "bottom": 945.734375,
+      "width": 1000,
+      "height": 891.484375
+    },
+    "svgHash": "1d9019d7277f1e9a0720b008cc81c12fd3922559ac880dfb79cb44b4d93496f4",
+    "anchor": "metric-panel-neuroai-imagenet",
+    "width": 1440
+  },
+  {
+    "title": "FlyVis: correct contrast preference",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 184.625,
+        "right": 308.84375,
+        "bottom": 216.203125,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 184.625,
+        "right": 390.703125,
+        "bottom": 216.203125,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 184.625,
+        "right": 495.53125,
+        "bottom": 216.203125,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 92.65625,
+      "right": 1220,
+      "bottom": 907.34375,
+      "width": 1000,
+      "height": 814.6875
+    },
+    "svgHash": "a63b9e9822843ee07083eabc124fb2c6d994593eb7ddb309b937edad457b226d",
+    "anchor": "metric-panel-flyvis-contrast",
+    "width": 1440
+  },
+  {
+    "title": "Selected application events",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "top": 110.359375,
+        "right": 308.84375,
+        "bottom": 141.9375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 314.4375,
+        "top": 110.359375,
+        "right": 390.703125,
+        "bottom": 141.9375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 396.296875,
+        "top": 110.359375,
+        "right": 495.53125,
+        "bottom": 141.9375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "modal": {
+      "left": 220,
+      "top": 16,
+      "right": 1220,
+      "bottom": 984,
+      "width": 1000,
+      "height": 968
+    },
+    "svgHash": "217f4328671c0fd1d83edb126f6c5a4aa4d44ac03e7419baf22f2819752de66f",
+    "anchor": "metric-panel-application-events",
+    "width": 1440
+  },
+  {
+    "title": "Neurotech search terms",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "b713aa1cba2e2923fd2f442054844fe4cab0a32847106c054bdf998ff4b273a4",
+    "anchor": "google-trends-neurotech",
+    "width": 390
+  },
+  {
+    "title": "Citation latency",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "aec4ea390ed2f87d4d622d24d66a2d31c7defb8909c944c462392758432ac021",
+    "anchor": "idea_vintage",
+    "width": 390
+  },
+  {
+    "title": "Latency compression",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "c05554a5fb5edbaf1d598a3d9895235f612ffd5009dc94799691c12b82147acf",
+    "anchor": "latency_compression",
+    "width": 390
+  },
+  {
+    "title": "Neuralink \u00b7 brand context",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "4c8d102f77ae9284704c48dfdeffefde1138760eddf769dede080fa8fe35d6b9",
+    "anchor": "google-trends-neuralink",
+    "width": 390
+  },
+  {
+    "title": "Implanted BCI participants over time",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "66eb191189da0012f79c9147641ef6a61f9be653a774f0d4f7d9e6375126cc60",
+    "anchor": "revealed_commitments",
+    "width": 390
+  },
+  {
+    "title": "Neural recording hours \u2014 selected datasets",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "b71a1094c828c97301fcce7492c2bb07e7bd57728801357061ff0067d0d95326",
+    "anchor": "metric-recording-hours",
+    "width": 390
+  },
+  {
+    "title": "Selected chronic intracortical recipients",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 134.421875,
+        "right": 92.84375,
+        "bottom": 166,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 134.421875,
+        "right": 174.703125,
+        "bottom": 166,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 134.421875,
+        "right": 279.53125,
+        "bottom": 166,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 39.640625,
+      "right": 382,
+      "bottom": 960.34375,
+      "width": 374,
+      "height": 920.703125
+    },
+    "svgHash": "0220999fd9b8ab1d0f225eabbbe2f059a982d7c01d9ab905842e5aaf8fdf1539",
+    "anchor": "metric-panel-neuralink-cumulative",
+    "width": 390
+  },
+  {
+    "title": "Simultaneously recorded neurons",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "1c46704269319803405b431b20409fbf105cc7172a6ea927e3e171ec41a17ef3",
+    "anchor": "simultaneously-recorded-neurons",
+    "width": 390
+  },
+  {
+    "title": "Selected public image/resource footprints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "4587c10d90d3a6b2a2263b7d7a5a22a5b8d71c6f510ca36afa4aec1a8fd8a9d7",
+    "anchor": "metric-panel-public-data-size",
+    "width": 390
+  },
+  {
+    "title": "Selected tissue-volume checkpoints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "6319cf9874b07281016c9f40fb1477accc9d94a1ebc3e475e68d2c5104cbb79b",
+    "anchor": "metric-panel-tissue-cm3",
+    "width": 390
+  },
+  {
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "193c4ec89b4bcd646533b01d082246ee2f35a7514b086899a8869aeedf5de8f8",
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "width": 390
+  },
+  {
+    "title": "Selected published maps \u2014 synapse counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 120.796875,
+        "right": 92.84375,
+        "bottom": 152.375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 120.796875,
+        "right": 174.703125,
+        "bottom": 152.375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 120.796875,
+        "right": 279.53125,
+        "bottom": 152.375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 26.015625,
+      "right": 382,
+      "bottom": 973.984375,
+      "width": 374,
+      "height": 947.96875
+    },
+    "svgHash": "765507e7d5fd9bf6457180013c37d4e5b08cb9ff2d67f0546afbab4cc4fdddf8",
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "width": 390
+  },
+  {
+    "title": "Selected EM acquisition rates",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 128.015625,
+        "right": 92.84375,
+        "bottom": 159.59375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 128.015625,
+        "right": 174.703125,
+        "bottom": 159.59375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 128.015625,
+        "right": 279.53125,
+        "bottom": 159.59375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 44.046875,
+      "right": 382,
+      "bottom": 955.9375,
+      "width": 374,
+      "height": 911.890625
+    },
+    "svgHash": "dfc06684d9b98b1b91353867af7be0abafdc38e4d30e45a19ae58bf64d5b4c8b",
+    "anchor": "metric-panel-acquisition-rates",
+    "width": 390
+  },
+  {
+    "title": "Selected structure\u2013function matches",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 157.109375,
+        "right": 92.84375,
+        "bottom": 188.6875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 157.109375,
+        "right": 174.703125,
+        "bottom": 188.6875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 157.109375,
+        "right": 279.53125,
+        "bottom": 188.6875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 62.328125,
+      "right": 382,
+      "bottom": 937.65625,
+      "width": 374,
+      "height": 875.328125
+    },
+    "svgHash": "fbc32adb3e82305b4bde509c3096b8d3dd147a656e6a229c26d497768f69a610",
+    "anchor": "metric-panel-paired-manual",
+    "width": 390
+  },
+  {
+    "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "b8372f96b8fc6c028f1d47946a8ff5cae33ad66b2306a657bc328cc9b48d9419",
+    "anchor": "metric-panel-acquisition-economics",
+    "width": 390
+  },
+  {
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 114.640625,
+        "right": 92.84375,
+        "bottom": 146.21875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 114.640625,
+        "right": 174.703125,
+        "bottom": 146.21875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 114.640625,
+        "right": 279.53125,
+        "bottom": 146.21875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 19.859375,
+      "right": 382,
+      "bottom": 980.140625,
+      "width": 374,
+      "height": 960.28125
+    },
+    "svgHash": "5270f1780ae7e51b9e0ea1e4ef39def05af27a25e2a955cdcd180edce883ff1e",
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "width": 390
+  },
+  {
+    "title": "Reported project proofreading effort",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 122.984375,
+        "right": 92.84375,
+        "bottom": 154.5625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 122.984375,
+        "right": 174.703125,
+        "bottom": 154.5625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 122.984375,
+        "right": 279.53125,
+        "bottom": 154.5625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 28.203125,
+      "right": 382,
+      "bottom": 971.78125,
+      "width": 374,
+      "height": 943.578125
+    },
+    "svgHash": "804da1bdfa356299070e6405176220a665b0800ccf8efae33d88011a0302d3a9",
+    "anchor": "metric-panel-proofreading-effort",
+    "width": 390
+  },
+  {
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 149.671875,
+        "right": 92.84375,
+        "bottom": 181.25,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 149.671875,
+        "right": 174.703125,
+        "bottom": 181.25,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 149.671875,
+        "right": 279.53125,
+        "bottom": 181.25,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 54.890625,
+      "right": 382,
+      "bottom": 945.109375,
+      "width": 374,
+      "height": 890.21875
+    },
+    "svgHash": "51e306c6f308816b4556e3e243e56f484d1c28961dc86a0ea36aad68f5e58b5d",
+    "anchor": "metric-panel-pathfinder-nerl",
+    "width": 390
+  },
+  {
+    "title": "NeuroAI performance\u2013cost frontier",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "98ef9ea4810037f872280d708a9a2124a5433cbd39dbfb6e7ff67c11687a1ff7",
+    "anchor": "metric-panel-neuroai-imagenet",
+    "width": 390
+  },
+  {
+    "title": "FlyVis: correct contrast preference",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 169.109375,
+        "right": 92.84375,
+        "bottom": 200.6875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 169.109375,
+        "right": 174.703125,
+        "bottom": 200.6875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 169.109375,
+        "right": 279.53125,
+        "bottom": 200.6875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 74.328125,
+      "right": 382,
+      "bottom": 925.671875,
+      "width": 374,
+      "height": 851.34375
+    },
+    "svgHash": "ebdadf130668800b2e6b3045897b027e8dad4ced6422f63ecc5e842712910fdc",
+    "anchor": "metric-panel-flyvis-contrast",
+    "width": 390
+  },
+  {
+    "title": "Selected application events",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 94.359375,
+        "right": 92.84375,
+        "bottom": 125.9375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 94.359375,
+        "right": 174.703125,
+        "bottom": 125.9375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 94.359375,
+        "right": 279.53125,
+        "bottom": 125.9375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 390,
+    "client": 390,
+    "scroll": 390,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 382,
+      "bottom": 992,
+      "width": 374,
+      "height": 984
+    },
+    "svgHash": "966a85506bb1c61f306b3e6490d225de2539b8844adc516b2c090b6e453abe6c",
+    "anchor": "metric-panel-application-events",
+    "width": 390
+  },
+  {
+    "title": "Neurotech search terms",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "b713aa1cba2e2923fd2f442054844fe4cab0a32847106c054bdf998ff4b273a4",
+    "anchor": "google-trends-neurotech",
+    "width": 320
+  },
+  {
+    "title": "Citation latency",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "aec4ea390ed2f87d4d622d24d66a2d31c7defb8909c944c462392758432ac021",
+    "anchor": "idea_vintage",
+    "width": 320
+  },
+  {
+    "title": "Latency compression",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "c05554a5fb5edbaf1d598a3d9895235f612ffd5009dc94799691c12b82147acf",
+    "anchor": "latency_compression",
+    "width": 320
+  },
+  {
+    "title": "Neuralink \u00b7 brand context",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 91.96875,
+        "right": 92.84375,
+        "bottom": 123.546875,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 91.96875,
+        "right": 174.703125,
+        "bottom": 123.546875,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 91.96875,
+        "right": 279.53125,
+        "bottom": 123.546875,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "4c8d102f77ae9284704c48dfdeffefde1138760eddf769dede080fa8fe35d6b9",
+    "anchor": "google-trends-neuralink",
+    "width": 320
+  },
+  {
+    "title": "Implanted BCI participants over time",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "66eb191189da0012f79c9147641ef6a61f9be653a774f0d4f7d9e6375126cc60",
+    "anchor": "revealed_commitments",
+    "width": 320
+  },
+  {
+    "title": "Neural recording hours \u2014 selected datasets",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "661dda61c05b9fe7fb597ae51cd18cd332b01f67f794b2669732122f07db189f",
+    "anchor": "metric-recording-hours",
+    "width": 320
+  },
+  {
+    "title": "Selected chronic intracortical recipients",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 115.78125,
+        "right": 92.84375,
+        "bottom": 147.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 115.78125,
+        "right": 174.703125,
+        "bottom": 147.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 115.78125,
+        "right": 279.53125,
+        "bottom": 147.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 21,
+      "right": 312,
+      "bottom": 978.984375,
+      "width": 304,
+      "height": 957.984375
+    },
+    "svgHash": "ab9ae4e8ca21e807e57e2a486dc713bab2fcd5538feac9923aa76f3f793cc4da",
+    "anchor": "metric-panel-neuralink-cumulative",
+    "width": 320
+  },
+  {
+    "title": "Simultaneously recorded neurons",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "1c46704269319803405b431b20409fbf105cc7172a6ea927e3e171ec41a17ef3",
+    "anchor": "simultaneously-recorded-neurons",
+    "width": 320
+  },
+  {
+    "title": "Selected public image/resource footprints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 125.171875,
+        "right": 92.84375,
+        "bottom": 156.75,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 125.171875,
+        "right": 174.703125,
+        "bottom": 156.75,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 125.171875,
+        "right": 279.53125,
+        "bottom": 156.75,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "ae905ebf452f0b8896c9aa6b37a6af784a36bed97a548aedba5a83990bdbdeff",
+    "anchor": "metric-panel-public-data-size",
+    "width": 320
+  },
+  {
+    "title": "Selected tissue-volume checkpoints",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "fd5da7c4db51a54e89ddf0d0f08786a380872bcfcdbb3f2be6916d0cdccb4412",
+    "anchor": "metric-panel-tissue-cm3",
+    "width": 320
+  },
+  {
+    "title": "Selected published connectomes \u2014 neuron counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 125.171875,
+        "right": 92.84375,
+        "bottom": 156.75,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 125.171875,
+        "right": 174.703125,
+        "bottom": 156.75,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 125.171875,
+        "right": 279.53125,
+        "bottom": 156.75,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "d3228fc953a24bd68de5b50453ba71505d52a59f3c5bd2c42a5d92838f2719a7",
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "width": 320
+  },
+  {
+    "title": "Selected published maps \u2014 synapse counts",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "bbcbd63bb08b214eb3a85fb1f80e0e6a3ce1929c8f12f3893142ea29c6e92f5d",
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "width": 320
+  },
+  {
+    "title": "Selected EM acquisition rates",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "391e00180ff4b82ea384b0b3417701a41540a1e7f024ee6de72119165413d382",
+    "anchor": "metric-panel-acquisition-rates",
+    "width": 320
+  },
+  {
+    "title": "Selected structure\u2013function matches",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 136.671875,
+        "right": 92.84375,
+        "bottom": 168.25,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 136.671875,
+        "right": 174.703125,
+        "bottom": 168.25,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 136.671875,
+        "right": 279.53125,
+        "bottom": 168.25,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 41.890625,
+      "right": 312,
+      "bottom": 958.09375,
+      "width": 304,
+      "height": 916.203125
+    },
+    "svgHash": "09968c6101a226937abd1c32d2c9ba8d8a9827d677756fcd8d20ae50e59440d9",
+    "anchor": "metric-panel-paired-manual",
+    "width": 320
+  },
+  {
+    "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 125.171875,
+        "right": 92.84375,
+        "bottom": 156.75,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 125.171875,
+        "right": 174.703125,
+        "bottom": 156.75,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 125.171875,
+        "right": 279.53125,
+        "bottom": 156.75,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "d4730f2dcc4c0098f5bb3aca7d16649c2fc65cbc4f3cc903016815d1b227e2b6",
+    "anchor": "metric-panel-acquisition-economics",
+    "width": 320
+  },
+  {
+    "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 125.171875,
+        "right": 92.84375,
+        "bottom": 156.75,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 125.171875,
+        "right": 174.703125,
+        "bottom": 156.75,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 125.171875,
+        "right": 279.53125,
+        "bottom": 156.75,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "520a19df332ae34304aa74cd6bae270e665338e3eb879e31e6240cba9336396f",
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "width": 320
+  },
+  {
+    "title": "Reported project proofreading effort",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "ebe593fc9a9e0d5ed86b30112d014f451e8eefa266544079d7a779a28869b001",
+    "anchor": "metric-panel-proofreading-effort",
+    "width": 320
+  },
+  {
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 121.3125,
+        "right": 92.84375,
+        "bottom": 152.890625,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 121.3125,
+        "right": 174.703125,
+        "bottom": 152.890625,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 121.3125,
+        "right": 279.53125,
+        "bottom": 152.890625,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 26.53125,
+      "right": 312,
+      "bottom": 973.46875,
+      "width": 304,
+      "height": 946.9375
+    },
+    "svgHash": "7d8c0489dfb0b01eace73929eccf10e31fc51676cc435e7e5ea5ab41b9b87851",
+    "anchor": "metric-panel-pathfinder-nerl",
+    "width": 320
+  },
+  {
+    "title": "NeuroAI performance\u2013cost frontier",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 102.78125,
+        "right": 92.84375,
+        "bottom": 134.359375,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 102.78125,
+        "right": 174.703125,
+        "bottom": 134.359375,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 102.78125,
+        "right": 279.53125,
+        "bottom": 134.359375,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "d6d3fb8056e0690b272bd5b3c19395a5b1c44ce5ec6b898ecca032d7330bccb6",
+    "anchor": "metric-panel-neuroai-imagenet",
+    "width": 320
+  },
+  {
+    "title": "FlyVis: correct contrast preference",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 140.75,
+        "right": 92.84375,
+        "bottom": 172.328125,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 140.75,
+        "right": 174.703125,
+        "bottom": 172.328125,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 140.75,
+        "right": 279.53125,
+        "bottom": 172.328125,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 45.96875,
+      "right": 312,
+      "bottom": 954.03125,
+      "width": 304,
+      "height": 908.0625
+    },
+    "svgHash": "173cae859fc2ffd4b7f796ec08b8d75dad54cd6eff33d1c00326d7366cbf6ad5",
+    "anchor": "metric-panel-flyvis-contrast",
+    "width": 320
+  },
+  {
+    "title": "Selected application events",
+    "buttons": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "top": 105.171875,
+        "right": 92.84375,
+        "bottom": 136.75,
+        "width": 67.84375,
+        "height": 31.578125
+      },
+      {
+        "label": "Copy chart",
+        "left": 98.4375,
+        "top": 105.171875,
+        "right": 174.703125,
+        "bottom": 136.75,
+        "width": 76.265625,
+        "height": 31.578125
+      },
+      {
+        "label": "Download PNG",
+        "left": 180.296875,
+        "top": 105.171875,
+        "right": 279.53125,
+        "bottom": 136.75,
+        "width": 99.234375,
+        "height": 31.578125
+      }
+    ],
+    "toolbarCount": 1,
+    "toolbarAbovePlot": true,
+    "viewport": 320,
+    "client": 320,
+    "scroll": 320,
+    "modal": {
+      "left": 8,
+      "top": 8,
+      "right": 312,
+      "bottom": 992,
+      "width": 304,
+      "height": 984
+    },
+    "svgHash": "2fbb54def19adbf954eb091c443a6e9d22c6fd873adae80f2f36cd2d3b0d8cf2",
+    "anchor": "metric-panel-application-events",
+    "width": 320
+  }
+]

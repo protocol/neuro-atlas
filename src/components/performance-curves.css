@@ -23,6 +23,17 @@
 .pc-share { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; font-size: .75rem; margin: .25rem 0 1rem; }
 .pc-share button { cursor: pointer; color: var(--accent); border: 1px solid var(--border-strong); border-radius: .5rem; padding: .4rem .7rem; }
 .pc-share [role=status] { color: var(--muted); font-size: .7rem; }
+/* Expanded-chart sharing: the three full labels always occupy the first row.
+   Existing stateful controls stay intact; only their layout wrappers dissolve. */
+.chart-actions { display: grid; grid-template-columns: repeat(3, max-content); align-items: center; gap: .35rem; width: 100%; min-width: 0; margin: .25rem 0 1rem; }
+.chart-actions > .pc-share, .chart-actions > .draft-chart-share { display: contents; }
+.chart-actions > :is(.pc-share, .draft-chart-share) button { text-decoration: none; grid-row: 1; white-space: nowrap; cursor: pointer; color: var(--accent); border: 1px solid var(--border-strong); border-radius: .5rem; padding: .4rem .45rem; font-size: .75rem; line-height: 1.4; }
+.chart-actions [data-copy-chart] { grid-column: 2; }
+.chart-actions [data-download-chart] { grid-column: 3; }
+.chart-actions [role=status], .chart-actions .chart-link-fallback, .chart-actions .gt-copy-fallback { grid-column: 1 / -1; width: 0; min-width: 100%; color: var(--muted); font-size: .7rem; overflow-wrap: anywhere; }
+.chart-actions [role=status]:empty { display: none; }
+.chart-actions :is(.chart-link-fallback, .gt-copy-fallback) input { min-width: 0; max-width: 100%; }
+
 .pc-chart-scroll { overflow-x: auto; max-width: 100%; }
 .pc-plot svg { display: block; width: 100%; min-width: 560px; height: auto; max-height: 410px; }
 :is(.performance-curves, .pc-card, .pc-detail) svg text { fill: var(--muted); font-family: inherit; font-variant-numeric: tabular-nums; }

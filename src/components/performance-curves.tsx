@@ -3,6 +3,7 @@
 import React, { useId, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
+import { ChartActions } from "@/components/chart-actions";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import { usePreviewFont } from "@/components/use-preview-font";
@@ -99,7 +100,7 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
   </section>;
 }
 
-function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string }) {
+function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode }) {
   const plotRef = useRef<HTMLDivElement>(null);
   const [track, setTrack] = useState("");
   const [extrapolate, setExtrapolate] = useState(false);
@@ -144,8 +145,8 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
     if (group) group.push(point); else clusters.push([point]);
   }
-  return <div ref={plotRef} className={compact ? "pc-preview" : "pc-plot"} data-extrapolation={scenario ? "on" : undefined}>
-    {!compact && shareAnchor && <ChartShare anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
+  return <>
+    {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
       return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor,
@@ -163,7 +164,9 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
           `Sources: ${Array.from(detail.querySelectorAll(".pc-sources a"), node => node.textContent?.replace(/ ↗$/, "")).join("; ") || [...new Set(data.points.map(p => p.label.split(". ").at(-1)))].join("; ")}`,
         ],
       };
-    }} />}
+    }} /></ChartActions>}
+    {intro}
+    <div ref={plotRef} className={compact ? "pc-preview" : "pc-plot"} data-extrapolation={scenario ? "on" : undefined}>
     {!compact && extrapolation && <div className="pc-extrapolation-control">
       <button type="button" role="switch" aria-checked={extrapolate} aria-describedby={extrapolationHint} onClick={() => setExtrapolate(on => !on)}>
         <span className="pc-switch-track" aria-hidden="true" /><span>Extrapolation</span><span className="pc-switch-state" aria-hidden="true">{extrapolate ? "On" : "Off"}</span>
@@ -240,7 +243,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
       </div>}
     </>}
     {extrapolate && scenario && <ExtrapolationNotes scenario={scenario} />}
-  </div>;
+  </div></>;
 }
 
 export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode }) {
@@ -261,9 +264,7 @@ export function CurveCard({ id, title, coverage, plot, children, sourceLinks, pr
       {share}
     </div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
-      {share}
-      {modalIntro}
-      {plot && <CurvePlot data={plot} shareAnchor={id} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}
+      {plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>}
       {children}
     </ChartModal>}
   </article>;

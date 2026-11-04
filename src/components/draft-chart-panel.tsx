@@ -3,7 +3,6 @@
 import { useRef, type ReactNode } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
-import { DraftChartShare } from "@/components/draft-chart-share";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 
@@ -25,7 +24,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
         onClick={() => navigatePerformance(anchor)} />
     </div>
     {open && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger}>
-      <div className="draft-popout-detail">{children}{methodology}<DraftChartShare anchor={anchor} label={title} /></div>
+      <div className="draft-popout-detail">{children}{methodology}</div>
     </ChartModal>}
   </div>;
 }
