@@ -1,0 +1,25 @@
+/** Browser-safe frozen DTOs. No database/provider credentials in this module. */
+export type FeedbackInput = {
+  privateComment: string;
+  publicTask: {title: string; summary: string; acceptance: string[]};
+  publicApproval: {approved: true; policyVersion: "atlas-feedback-v1"};
+  context: {
+    route: "/" | "/field-velocity" | "/funding" | "/milestones" | "/ecosystem" | "/methodology";
+    targetId?: string; chartId?: string; scenario?: string;
+    viewport: {width: number; height: number}; theme: "light" | "dark" | "system";
+    deployedRevision?: string;
+  };
+};
+export type FeedbackState = "received" | "queued" | "working" | "validating" | "publishing" | "pr_ready" | "merged" | "live" | "needs_clarification" | "needs_human_review" | "failed" | "cancelled";
+export type FeedbackStatus = {
+  id: string; version: number; state: FeedbackState; createdAt: string; updatedAt: string;
+  reasonCode?: string; clarification?: string; pr?: {number: number; url: string; headSha: string};
+  preview?: {url: string; verifiedSha: string}; mergedSha?: string; liveSha?: string;
+};
+export type FeedbackSession = {session: string; expiresAt: string; actor: {githubId: number; login: string}};
+export type FeedbackReceipt = Pick<FeedbackStatus, "id" | "state" | "version">;
+export const FEEDBACK_SESSION_HEADER = "X-Atlas-Feedback-Session";
+export const FEEDBACK_POLICY_VERSION = "atlas-feedback-v1" as const;
+export const FEEDBACK_TARGET_IDS = ["site-nav", "page-header", "field-velocity", "funding", "milestones", "ecosystem", "methodology", "velocity-tabs"] as const;
+export const FEEDBACK_CHART_IDS = ["papers", "patents", "funding", "trials", "companies", "performance", "recording-hours", "neurons", "google-trends"] as const;
+export const FEEDBACK_SCENARIOS = ["historical", "literature", "plateau"] as const;
