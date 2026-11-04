@@ -4,7 +4,7 @@
 // side by side: click a year to focus it (smooth width slide). The focused year
 // shows the full-year lane timeline that scrolls horizontally (the scrollbar
 // itself signals there's more). 2026 also draws a live "today" line and a faint
-// cumulative-capital line + EOY extrapolation in the Capital lane. The right
+// sourced cumulative-capital line in the Capital lane. The right
 // summary rail is collapsible. Legend pills expand inline into subcategories
 // (acronyms carry a tooltip; ✕ collapses). Undated milestones sit in a
 // "date TBD" shelf.
@@ -226,13 +226,10 @@ export function MilestoneTimeline() {
     const series = cumulativeCapital(focusYear, scopeFilter);
     const pts = [{ x: 0, y: 0 }, ...series.map((p) => ({ x: pctIn(p.x, t0, t1), y: p.y }))];
     const last = pts[pts.length - 1];
-    const slope = last.x > 0 ? last.y / last.x : 0;
-    const yEoy = slope * 100;
-    const yMax = Math.max(yEoy, last.y) || 1;
+    const yMax = last.y || 1;
     const ys = (v: number) => H - 5 - (v / yMax) * (H - 12);
     return {
       solid: pts.map((p) => `${p.x.toFixed(2)},${ys(p.y).toFixed(2)}`).join(" "),
-      dashed: `${last.x.toFixed(2)},${ys(last.y).toFixed(2)} 100,${ys(yEoy).toFixed(2)}`,
     };
   };
 
@@ -337,7 +334,6 @@ export function MilestoneTimeline() {
               {cap && (
                 <svg className="pointer-events-none absolute inset-0" width="100%" height={l.height} viewBox={`0 0 100 ${l.height}`} preserveAspectRatio="none" aria-hidden>
                   <polyline points={cap.solid} fill="none" stroke={l.stage.color} strokeWidth={1} opacity={0.4} vectorEffect="non-scaling-stroke" />
-                  <polyline points={cap.dashed} fill="none" stroke={l.stage.color} strokeWidth={1} strokeDasharray="3 3" opacity={0.28} vectorEffect="non-scaling-stroke" />
                 </svg>
               )}
               <span className="absolute left-2.5 top-1.5 text-[10px] font-semibold uppercase tracking-wider" style={{ color: l.stage.color }}>{l.stage.label}</span>
