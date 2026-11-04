@@ -16,7 +16,8 @@ const sourceBefore = JSON.stringify(feed);
 // Captured independently from b883bcb before the font normalization. These hash
 // all original text/mark coordinates and content, not just the plotted points.
 const baseline = {
-  'simultaneously-recorded-neurons': '5b23f211cf1203c59efdf82d80d323f1da3a5cdde89cd95c6804ccdbb5f92671',
+  // Intentional replacement: three modern electrical observations; no old frontier line.
+  'simultaneously-recorded-neurons': null,
   'tissue-mapped': '4381ff79385d5b1375b516b77b21840bd1601497e8cac0eeab3143bd45678d89',
   'neural-recording-hours': '4089d4a140e99d8703af2f956e032218e9d3965a7e7051aaf8d6ac38d884d266',
   idea_vintage: '158b7a9b48047b6ff64c84ea9982b55ba0f655f0fa346117ac16145f90d74f47',
@@ -67,6 +68,13 @@ function assertGeometry() {
     const caption = normalized.querySelector('text');
     assert.match(caption.textContent, / · (linear|log) scale$/);
     caption.setAttribute('y', '16');
+    if (card.dataset.performanceCard === 'simultaneously-recorded-neurons') {
+      assert.equal(normalized.querySelector('polyline'), null);
+      assert.equal(normalized.querySelectorAll('circle').length, 3);
+      assert.match(caption.textContent, /electrical units/);
+      for (const p of normalized.querySelectorAll('circle')) for (const a of ['cx', 'cy']) assert.ok(Number.isFinite(Number(p.getAttribute(a))));
+      continue;
+    }
     assert.equal(createHash('sha256').update(normalized.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
       'All scientific geometry/content remain unchanged apart from the separately tested caption baseline');
   }

@@ -91,3 +91,16 @@ test('share link validates chart identity and strips URL credentials/query while
   assert.throws(() => chartShareUrl('https://atlas.example/', 'made-up-target'), /Unknown/);
   assert.throws(() => chartShareUrl('javascript:alert(1)', 'tissue-mapped'), /HTTP/);
 });
+
+
+test('recording image URLs retain only an exact single allowlisted measurement view for the recording anchor', () => {
+  const anchor = 'simultaneously-recorded-neurons';
+  const clean = 'https://atlas.example/neuro-atlas/field-velocity';
+  for (const view of ['electrical', 'human-channels', 'optical']) {
+    assert.equal(chartShareUrl(`https://name:secret@atlas.example/neuro-atlas/field-velocity?token=private&review=1&recordingView=${view}`, anchor), `${clean}?recordingView=${view}#${anchor}`);
+    assert.equal(chartShareUrl(`${clean}?recordingView=${view}`, 'tissue-mapped'), `${clean}#tissue-mapped`);
+  }
+  for (const query of ['recordingView=unknown', 'recordingView=OPTICAL', 'recordingView=optical%20', 'recordingView=', 'recordingView=optical&recordingView=human-channels', 'recordingView=optical&recordingView=optical', 'recordingView=%3Cscript%3E', 'recordingView=%E0%A4%A']) {
+    assert.equal(chartShareUrl(`${clean}?token=private&${query}`, anchor), `${clean}#${anchor}`, query);
+  }
+});

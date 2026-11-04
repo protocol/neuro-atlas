@@ -78,6 +78,6 @@ test('switching from a later pace modal to an earlier performance modal keeps sc
     await act(async () => navigatePerformance('simultaneously-recorded-neurons'));
     assert.equal(document.querySelectorAll('dialog[open]').length, 1);
     assert.equal(document.body.style.overflow, 'hidden');
-    assert.equal(document.activeElement.getAttribute('aria-label'), 'Close Simultaneously recorded neurons');
+    assert.equal(document.activeElement.getAttribute('aria-label'), 'Close Simultaneous neural recordings');
   } finally { await cleanup(); }
 });

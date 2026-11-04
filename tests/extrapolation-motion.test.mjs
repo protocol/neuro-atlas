@@ -59,7 +59,7 @@ test('enabled-only controls stay below the chart and both hint strings reserve a
 
 test('unmount during motion cancels RAF and removes the preference listener, including StrictMode replay', async () => {
   const clock = animationClock();
-  const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(PerformanceCurves, { data, provenance })), '#simultaneously-recorded-neurons', clock.configure);
+  const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(PerformanceCurves, { data, provenance })), '#neural-recording-hours', clock.configure);
   await click(document.querySelector('[role="switch"]')); await clock.advance(200);
   assert.ok(clock.pending > 0);
   assert.ok(clock.subscriptions > 0);
@@ -97,41 +97,45 @@ test('reduced motion snaps both ways without RAF and a live preference change fi
 
 test('ticks move and crossfade; render constraints and forecast reveal follow the geometry clock', async () => {
   const clock = animationClock();
-  const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#simultaneously-recorded-neurons', clock.configure);
+  const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#neural-recording-hours', clock.configure);
   try {
     const svg = document.querySelector('dialog svg'), scroll = svg.parentElement;
-    const oldTick = tickY(svg, '100');
+    const oldTick = tickY(svg, '400');
     await click(document.querySelector('[role="switch"]'));
     assert.equal(scroll.style.getPropertyValue('--pc-chart-min-width'), '560px', 'Do not jump the mobile render width on click');
     assert.equal(svg.querySelector('.pc-extrapolation-overlay')?.getAttribute('opacity'), '0');
     await clock.advance(200);
-    for (const label of ['100M', '2080']) {
+    for (const label of ['100M', '2040']) {
       const incoming = [...svg.querySelectorAll('text')].find(el => el.textContent === label);
-      const layer = label === '2080' ? incoming : incoming.parentElement;
+      const layer = label === '2040' ? incoming : incoming.parentElement;
       assert.equal(layer.getAttribute('opacity'), '0', 'New labels stay invisible while crowded at the entry edge');
     }
     await clock.advance(200);
-    const middleTick = tickY(svg, '100');
+    const middleTick = tickY(svg, '400');
     assert.equal(scroll.style.getPropertyValue('--pc-chart-min-width'), '640px');
     assert.notEqual(scroll.style.getPropertyValue('--pc-chart-max-height'), 'none', 'Original height cap must not vanish on click');
     const incoming = [...svg.querySelectorAll('text')].find(el => el.textContent === '100M');
     assert.ok(incoming, 'Incoming ticks exist before the final frame');
     between(Number(incoming.parentElement.getAttribute('opacity')), 0, 1, 'Incoming tick fade');
-    const futureYear = [...svg.querySelectorAll('text')].find(el => el.textContent === '2080');
+    const futureYear = [...svg.querySelectorAll('text')].find(el => el.textContent === '2040');
     between(Number(futureYear.getAttribute('opacity')), 0, 1, 'Incoming year fade');
     const middleYearX = Number(futureYear.getAttribute('x'));
     assert.equal(svg.querySelector('.pc-extrapolation-overlay').getAttribute('opacity'), '0', 'Reveal forecast only after the main rescale');
     await clock.advance(200);
     between(Number(svg.querySelector('.pc-extrapolation-overlay').getAttribute('opacity')), 0, 1, 'Late forecast reveal');
     await clock.advance(200);
-    between(middleTick, oldTick, tickY(svg, '100'), 'Common y tick');
-    const finalYear = [...svg.querySelectorAll('text')].find(el => el.textContent === '2080');
+    assert.ok(Number.isFinite(middleTick));
+    assert.notEqual(middleTick, oldTick, 'Outgoing linear tick moves before it fades');
+    assert.ok(![...svg.querySelectorAll('text')].some(el => el.textContent === '400'), 'Old linear tick leaves the final log scale');
+    const finalYear = [...svg.querySelectorAll('text')].find(el => el.textContent === '2040');
     between(middleYearX, Number(finalYear.getAttribute('x')), 698, 'Future x tick enters from right edge');
     assert.equal(scroll.hasAttribute('data-motion'), false);
   } finally { await cleanup(); }
 });
 
-for (const id of ['simultaneously-recorded-neurons', 'neural-recording-hours']) {
+// Historical-neuron scenarios are retired from the recording UI. Preserve
+// the shared animation contract on the still-available hours scenario.
+for (const id of ['neural-recording-hours']) {
   test(`${id}: rapid reversals resume the displayed frame and restore the exact original SVG`, async () => {
     const clock = animationClock();
     const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), `#${id}`, clock.configure);
