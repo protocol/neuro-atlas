@@ -12,7 +12,7 @@ import {ReviewController} from '../scripts/feedback-linear/controller.ts';
 const host=generateKeyPairSync('ed25519'),key=Buffer.alloc(32,71); // Synthetic only.
 const ids={owner:'11111111-1111-4111-8111-111111111111',project:'22222222-2222-4222-8222-222222222222',team:'33333333-3333-4333-8333-333333333333'};
 const g=(cwd,...args)=>execFileSync('/usr/bin/git',args,{cwd,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
-async function fixture(mode='') {
+export async function fixture(mode='') {
   const dir=await mkdtemp(path.join(tmpdir(),'astra-core-')),repo=path.join(dir,'repo');
   await mkdir(path.join(repo,'src/components'),{recursive:true});await mkdir(path.join(repo,'node_modules'));
   await writeFile(path.join(repo,'src/components/landing.css'),'.card { padding: 8px; }\n');

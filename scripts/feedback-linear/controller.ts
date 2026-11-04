@@ -238,7 +238,7 @@ export class ReviewController {
   async prepare(): Promise<Job | {state: 'disabled'} | {state:'deferred';reason:'daily_attempt_quota'}> {
     if (this.config.enabled !== true) return {state: 'disabled'};
     this.enabled();
-    if (this.config.provider === 'hermes-astra') new HermesAstraModel(this.config.model).assertAvailable();
+    if (this.config.provider === 'hermes-astra') await new HermesAstraModel(this.config.model).preflight();
     return this.files.lock(async state => {
       const input = await this.input(), id = input.record.feedbackId, base = await this.main();
       const existing = state.jobs[id] as Job | undefined;
@@ -279,11 +279,11 @@ export class ReviewController {
             reserve:async tokens=>{
               await active();
               if (!Number.isSafeInteger(tokens) || tokens < 1 || tokens > c.maxTokens) blocked();
-              return this.files.reserveAttempt(state,{job:id,tokens,budget:c.budget,provider:c.provider,account:c.model.account,model:c.model.model,policyDigest:this.policyDigest()});
+              return this.files.reserveAttempt(state,{...(c.model.nativePolicy==='attempt-count-v1'?{tokenPolicy:'attempt-count-v1' as const}:{}),job:id,tokens,budget:c.budget,provider:c.provider,account:c.model.account,model:c.model.model,policyDigest:this.policyDigest()});
             },
             complete:async (reservation,usage)=>{
               await active(); const row = state.attempts.find(a=>a.id===reservation && a.job===id);
-              if (!row || row.status !== 'reserved' || !Number.isSafeInteger(usage.inputTokens) || !Number.isSafeInteger(usage.outputTokens) || usage.inputTokens < 0 || usage.outputTokens < 0 || usage.inputTokens+usage.outputTokens > row.tokens) blocked();
+              if (!row || row.status !== 'reserved' || !Number.isSafeInteger(usage.inputTokens) || !Number.isSafeInteger(usage.outputTokens) || usage.inputTokens < 0 || usage.outputTokens < 0 || (row.tokenPolicy!=='attempt-count-v1' && usage.inputTokens+usage.outputTokens > row.tokens)) blocked();
               row!.status='completed';row!.usage=usage;await this.files.save(state);
             },
           },signal) : await new AnthropicModel(c.model, c.modelKey).generate(modelInput, {
