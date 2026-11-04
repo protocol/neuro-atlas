@@ -111,6 +111,13 @@ test('real client review separates private input, consent starts unchecked, fail
     assert.equal(body.context.route, '/field-velocity');
     assert.equal(JSON.stringify(body.context).includes('review=1'), false);
     assert.match(document.querySelector('[data-feedback-composer]').textContent, /Please clarify/);
+    const closeControl = document.querySelector('[data-feedback-close]');
+    const historySummary = [...document.querySelectorAll('[data-feedback-composer] summary')].find(e => e.textContent === 'My recent feedback');
+    closeControl.focus();
+    await key('Tab', {shiftKey:true});
+    assert.ok(document.activeElement === historySummary, 'reverse Tab wraps to the visible disclosure, not hidden history buttons');
+    await key('Tab');
+    assert.ok(document.activeElement === closeControl, 'forward Tab wraps within the feedback layer');
     await click(byText('Follow up'));
     assert.match(document.querySelector('[data-feedback-composer]').textContent, /replacement public task.*include the complete change/i);
     await input('Private comment', 'Private followup'); await click(byText('Review public task'));

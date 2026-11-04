@@ -14,6 +14,20 @@ const labels: Record<string, string> = {
   received: "Received · awaiting processing", queued: "Queued", working: "Working", validating: "Validating", publishing: "Publishing", pr_ready: "PR ready", merged: "Merged · not yet verified live", live: "Live · deployment verified", needs_clarification: "Needs clarification", needs_human_review: "Needs human review", failed: "Failed", cancelled: "Cancelled",
 };
 function message(error: unknown) { return error instanceof FeedbackClientError ? error.message : "Feedback is unavailable. Your draft is still here; try again."; }
+function visibleFeedbackControls(layer: HTMLDialogElement) {
+  return [...layer.querySelectorAll<HTMLElement>('button:not([disabled]),a[href],summary,input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),select:not([disabled]),[tabindex="0"]')].filter(control => {
+    if (control.getAttribute("tabindex") === "-1" || control.closest('[hidden],[inert],[aria-hidden="true"]')) return false;
+    for (let node: HTMLElement | null = control; node && node !== layer; node = node.parentElement) {
+      if (node.tagName === "DETAILS" && !node.hasAttribute("open")) {
+        const summary = [...node.children].find(child => child.tagName === "SUMMARY");
+        if (!summary?.contains(control)) return false;
+      }
+      const style = window.getComputedStyle(node);
+      if (style.display === "none" || style.visibility === "hidden") return false;
+    }
+    return true;
+  });
+}
 function publicPr(status: FeedbackStatus) {
   const pr = status.pr;
   return pr && Number.isSafeInteger(pr.number) && pr.number > 0 && pr.url === `https://github.com/protocol/neuro-atlas/pull/${pr.number}` ? pr.url : undefined;
@@ -197,6 +211,13 @@ export function Feedback() {
     {open && <dialog ref={dialog} data-atlas-feedback data-feedback-composer={!selecting ? "" : undefined} data-feedback-selection={selecting ? "" : undefined}
       className={`atlas-feedback-layer${selecting ? " atlas-feedback-selecting" : ""}`} aria-label={selecting ? "Select feedback area" : "Atlas feedback"} aria-modal="true"
       onCancel={event => { event.preventDefault(); event.stopPropagation(); if (selecting) finishSelection(target); else close(); }}
+      onKeyDown={event => {
+        if (event.key !== "Tab") return;
+        const controls = visibleFeedbackControls(event.currentTarget);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus({preventScroll:true}); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus({preventScroll:true}); }
+      }}
       onClick={event => {
         if (selecting) {
           if (!(event.target as HTMLElement).closest('[data-selection-controls]')) finishSelection(targetAt(document, event.clientX, event.clientY));
