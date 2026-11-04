@@ -1,0 +1,61 @@
+/* Scoped to the feedback surface; existing chart dialogs are never restyled. */
+.atlas-feedback-launch {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 45;
+  border: 1px solid var(--border); border-radius: 999px; padding: .45rem .8rem;
+  background: var(--surface, #fff); color: var(--foreground, #222); font-size: .75rem;
+  box-shadow: 0 2px 12px #0001; cursor: pointer;
+}
+dialog.atlas-feedback-layer {
+  position: fixed; inset: 0; margin: 0; padding: max(12px, 13dvh) 12px 12px;
+  width: 100%; max-width: none; height: 100dvh; max-height: none;
+  border: 0; background: transparent; color: var(--foreground, #222); overflow-y: auto;
+}
+.atlas-feedback-layer::backdrop { background: #0005; backdrop-filter: blur(3px); }
+.atlas-feedback-panel, .atlas-feedback-selection-controls {
+  box-sizing: border-box; width: min(100%, 540px); min-width: 0; margin: 0 auto;
+  padding: 16px; border: 1px solid var(--border, #ddd); border-radius: 16px;
+  background: var(--surface, #fff); box-shadow: 0 14px 60px #0003;
+  font-size: .8125rem; line-height: 1.5; overflow-wrap: anywhere;
+}
+.atlas-feedback-panel > * + * { margin-top: .7rem; }
+.atlas-feedback-panel header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.atlas-feedback-panel h2 { font-size: .9rem; font-weight: 650; margin: 0; }
+.atlas-feedback-panel h3 { font-size: .85rem; font-weight: 650; }
+.atlas-feedback-panel label { display: flex; flex-direction: column; gap: .3rem; }
+.atlas-feedback-panel input:not([type=checkbox]), .atlas-feedback-panel textarea {
+  box-sizing: border-box; display: block; width: 100%; min-width: 0;
+  background: var(--background, #fff); color: inherit; font: inherit; font-size: 16px;
+  border: 1px solid var(--border, #ccc); border-radius: 8px; padding: .55rem .65rem;
+}
+.atlas-feedback-panel textarea { resize: vertical; min-height: 3.5rem; max-height: 10rem; }
+.atlas-feedback-panel button, .atlas-feedback-selection-controls button, .atlas-feedback-panel a {
+  font: inherit; color: inherit; border: 1px solid var(--border, #ccc); background: var(--background, #fafafa);
+  border-radius: 8px; padding: .4rem .65rem; cursor: pointer; max-width: 100%;
+  overflow-wrap: anywhere; text-align: left;
+}
+.atlas-feedback-panel button:disabled { opacity: .45; cursor: not-allowed; }
+.atlas-feedback-panel button:focus-visible, .atlas-feedback-panel input:focus-visible,
+.atlas-feedback-panel textarea:focus-visible, .atlas-feedback-panel summary:focus-visible,
+.atlas-feedback-selection-controls button:focus-visible { outline: 2px solid var(--accent, #5865f2); outline-offset: 2px; }
+.atlas-feedback-panel [data-feedback-close] { border: none; font-size: 1.2rem; line-height: 1; padding: .3rem .5rem; }
+.atlas-feedback-note, .atlas-feedback-panel footer { font-size: .72rem; color: var(--muted, #777); }
+.atlas-feedback-actions, .atlas-feedback-auth { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.atlas-feedback-target { font-size: .72rem; overflow-wrap: anywhere; }
+.atlas-feedback-panel .atlas-feedback-consent { flex-direction: row; align-items: flex-start; gap: .5rem; }
+.atlas-feedback-consent input { flex: 0 0 auto; margin-top: .25rem; width: 16px; height: 16px; }
+.atlas-feedback-panel details > summary, .atlas-feedback-selection-controls summary { cursor: pointer; }
+.atlas-feedback-panel details p { margin-top: .4rem; }
+.atlas-feedback-panel [role=alert] { color: var(--foreground, #222); border-left: 2px solid #bc4848; padding-left: .6rem; }
+.atlas-feedback-panel footer { border-top: 1px solid var(--border, #ddd); padding-top: .6rem; }
+.atlas-feedback-history { display: grid; gap: .4rem; padding: .5rem 0; list-style: none; }
+.atlas-feedback-layer.atlas-feedback-selecting { cursor: crosshair; padding-top: 12px; }
+.atlas-feedback-selecting::backdrop { background: transparent; backdrop-filter: none; }
+.atlas-feedback-selection-controls { cursor: auto; margin-left: auto; margin-right: 0; width: min(100%, 360px); }
+.atlas-feedback-selection-controls p { margin-bottom: .5rem; }
+.atlas-feedback-selection-controls details { margin-top: .5rem; }
+.atlas-feedback-selection-controls ul { list-style: none; max-height: 35dvh; overflow: auto; display: grid; gap: .4rem; margin-top: .5rem; }
+@media (max-width: 480px) {
+  dialog.atlas-feedback-layer { padding: 10px; }
+  .atlas-feedback-panel, .atlas-feedback-selection-controls { padding: 12px; border-radius: 12px; }
+  .atlas-feedback-launch { right: .6rem; bottom: .6rem; }
+}
