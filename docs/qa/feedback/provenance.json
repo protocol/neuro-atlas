@@ -1,0 +1,18 @@
+{
+  "runtimeSourceSha": "b1955fc881f1a81b32f6c4da1592eb3ba1076616",
+  "runtimeFixture": "actual Next production app with disposable raw-Host/flag-guarded loopback proxy only",
+  "header": "feedback-simple-b1955fc881f1a81b32f6c4da1592eb3ba1076616",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "shortViewport": [
+    320,
+    600
+  ],
+  "nativeDisabledCases": 3,
+  "syntheticIdentityTransportCases": 3,
+  "liveOAuthModelGitHubAcceptance": false,
+  "privateReferenceMediaPublished": false
+}

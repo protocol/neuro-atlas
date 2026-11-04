@@ -1,0 +1,143 @@
+[
+  {
+    "width": 1440,
+    "height": 1000,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
+    "layeredEscape": true,
+    "geometry": {
+      "left": 285,
+      "right": 605,
+      "top": 190.953125,
+      "bottom": 399.484375,
+      "width": 320,
+      "height": 208.53125,
+      "viewportWidth": 1440,
+      "viewportHeight": 1000,
+      "documentWidth": 1425,
+      "clientWidth": 1425,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 125.5,
+        "bottom": 182.953125
+      }
+    },
+    "chartGeometry": {
+      "left": 241,
+      "right": 561,
+      "top": 616.453125,
+      "bottom": 824.78125,
+      "width": 320,
+      "height": 208.328125,
+      "viewportWidth": 1440,
+      "viewportHeight": 1000,
+      "documentWidth": 1440,
+      "clientWidth": 1440,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 215.546875,
+        "bottom": 608.453125
+      }
+    }
+  },
+  {
+    "width": 390,
+    "height": 1000,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
+    "layeredEscape": true,
+    "geometry": {
+      "left": 33,
+      "right": 353,
+      "top": 299.703125,
+      "bottom": 508.234375,
+      "width": 320,
+      "height": 208.53125,
+      "viewportWidth": 390,
+      "viewportHeight": 1000,
+      "documentWidth": 390,
+      "clientWidth": 390,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 256,
+        "bottom": 291.703125
+      }
+    },
+    "chartGeometry": {
+      "left": 25,
+      "right": 345,
+      "top": 468.390625,
+      "bottom": 676.71875,
+      "width": 320,
+      "height": 208.328125,
+      "viewportWidth": 390,
+      "viewportHeight": 1000,
+      "documentWidth": 390,
+      "clientWidth": 390,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 227.0625,
+        "bottom": 460.390625
+      }
+    }
+  },
+  {
+    "width": 320,
+    "height": 600,
+    "freshHoverPicker": true,
+    "headingPick": true,
+    "chartPick": true,
+    "realHitTesting": true,
+    "nativeModalRetained": true,
+    "disabledDraftRetained": true,
+    "layeredEscape": true,
+    "geometry": {
+      "left": 10,
+      "right": 310,
+      "top": 299.703125,
+      "bottom": 508.234375,
+      "width": 300,
+      "height": 208.53125,
+      "viewportWidth": 320,
+      "viewportHeight": 600,
+      "documentWidth": 320,
+      "clientWidth": 320,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 256,
+        "bottom": 291.703125
+      }
+    },
+    "chartGeometry": {
+      "left": 10,
+      "right": 310,
+      "top": 381.671875,
+      "bottom": 590,
+      "width": 300,
+      "height": 208.328125,
+      "viewportWidth": 320,
+      "viewportHeight": 600,
+      "documentWidth": 320,
+      "clientWidth": 320,
+      "fields": 1,
+      "inputs": 0,
+      "anchor": {
+        "top": 102.78125,
+        "bottom": 2214.328125
+      }
+    }
+  }
+]

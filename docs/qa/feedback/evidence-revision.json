@@ -1,0 +1,25 @@
+{
+  "runtimeSource": "372cc68dd718e56a3f25e1f58d1f13c311453c96",
+  "fixture": "Actual Atlas Next production build, loopback-only copied proxy guard",
+  "nativeWidths": [
+    1440,
+    390,
+    320
+  ],
+  "syntheticTransportWidths": [
+    1440,
+    390,
+    320
+  ],
+  "additionalNative": [
+    "nested SVG button",
+    "underlying activation suppression",
+    "dark mode",
+    "390x1000 element anchoring",
+    "390x400 viewport resize clamp"
+  ],
+  "hostedOwnerAcceptance": false,
+  "physicalPhoneTouch": false,
+  "liveProviderOrPublication": false,
+  "historyCancellation": "Back and Escape return to history with zero additional synthetic POSTs at every native width"
+}

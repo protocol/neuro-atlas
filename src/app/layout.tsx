@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SideNav, MobileBar } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
+import { Feedback } from "@/components/feedback/feedback";
+import "@/components/feedback/feedback.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <SiteFooter />
             </div>
           </div>
+          <Feedback />
         </ThemeProvider>
       </body>
     </html>

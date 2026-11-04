@@ -46,6 +46,10 @@ src/
 - Numbers: always tabular (`.tnum`)
 - All tokens are CSS variables — restyle in one file
 
+## Owner feedback
+
+The [feedback workflow](docs/feedback.md) adds private owner-authenticated intake and a narrowly scoped, tested draft-PR pipeline. It is **disabled by default** and requires separate access, isolation and spending-limit configuration before live use. That guide separates implemented behavior, v1 exclusions and activation acceptance.
+
 ## Deploy
 
 Hosted on Vercel. After the transfer to [protocol/neuro-atlas](https://github.com/protocol/neuro-atlas), verify the existing project's GitHub App access and Git connection before relying on automatic main/PR deployments.
