@@ -1,0 +1,47 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import http from 'node:http';
+import { generateKeyPairSync,randomUUID } from 'node:crypto';
+import { setup } from './feedback-worker-pg.test.mjs';
+import { fixture } from './feedback-worker-git.test.mjs';
+import { githubFixture } from './feedback-publish-http.test.mjs';
+import { git,loadSnapshot } from '../scripts/feedback/git-sandbox.ts';
+import { runOne } from '../scripts/feedback/engine.ts';
+import { AnthropicModel } from '../scripts/feedback/model.ts';
+import { PgWorkStore } from '../scripts/feedback/pg-store.ts';
+import { publishBundle } from '../scripts/feedback/publisher.ts';
+import { drainWorker } from '../scripts/feedback/runtime.ts';
+
+test('SYNTHETIC full durable pipeline: real git + real npm checks + HTTP model + signed SQL outbox + separate HTTP publisher',async t=>{
+  const f=await setup(t),{job}=await f.seed();let {cwd}=await fixture(t);const keys=generateKeyPairSync('ed25519');
+  await writeFile(path.join(cwd,'package.json'),JSON.stringify({scripts:{test:'node check.cjs',typecheck:'node check.cjs',build:'node check.cjs'}}));
+  await writeFile(path.join(cwd,'check.cjs'),'if(Object.keys(process.env).some(k=>/TOKEN|SECRET|DATABASE|ANTHROPIC/.test(k)))process.exit(9)');
+  await git(cwd,['add','.']);await git(cwd,['-c','user.name=Synthetic','-c','user.email=synthetic@example.invalid','commit','-qm','trusted synthetic checks']);const base=(await git(cwd,['rev-parse','HEAD'])).trim();const sources=await loadSnapshot(cwd,base);
+  await f.db.query("UPDATE atlas_feedback.control SET enabled=true,allowed_owner_id=82394590,max_job_usd=1,max_day_usd=2,max_tokens=10000,max_turns=2,max_wall_seconds=120,max_attempts=2");
+  let calls=0;
+  const server=http.createServer(async(req,res)=>{calls++;let body='';for await(const c of req)body+=c;assert.ok(!body.includes('PRIVATE_CANARY'));const input=JSON.parse(JSON.parse(body).messages[0].content);const name='src/components/landing.css';res.writeHead(200,{'content-type':'application/json'});res.end(JSON.stringify({model:'claude-synthetic',stop_reason:'end_turn',usage:{input_tokens:100,output_tokens:100},content:[{type:'text',text:JSON.stringify({baseSha:input.baseSha,files:[{path:name,beforeSha256:input.sourceHashes[name],content:'.card { gap: 12px; }\n'}]})}]}));});
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
+  const model=new AnthropicModel({enabled:true,fixture:true,origin:`http://127.0.0.1:${server.address().port}`,model:'claude-synthetic',inputUsdPerMillion:3,outputUsdPerMillion:15,maxInputTokens:8000,maxOutputTokens:1000,maxBodyBytes:16000,maxResponseBytes:40000,timeoutMs:5000},()=> 'SYNTHETIC_KEY');
+  let store=new PgWorkStore(f.db,{trustedBaseSha:base});
+  const rows=await drainWorker({enabled:true,maxJobs:2,next:()=>runOne({enabled:true,store,cwd,model,signingKey:keys.privateKey,maxWallMs:60000})});assert.equal(rows[0].state,'publishing');assert.equal(calls,1);
+  const db=await f.restart();store=new PgWorkStore(db,{trustedBaseSha:base,publisherInstanceId:randomUUID()});const bundle=await store.loadBundle(job);assert.ok(!JSON.stringify(bundle).includes('PRIVATE_CANARY'));
+  assert.equal((await db.query('SELECT count(*)::int AS n FROM atlas_feedback.worker_bundles')).rows[0].n,1);
+  await assert.rejects(db.query("UPDATE atlas_feedback.worker_bundles SET digest=repeat('a',64) WHERE job_id=$1",[job]),/immutable/);
+  await store.assertActive(bundle);
+  const rival=new PgWorkStore(db,{trustedBaseSha:base,publisherInstanceId:randomUUID()});await assert.rejects(rival.assertActive(bundle),/claimed/);
+  const remote=await githubFixture(t,base);
+  const result=await publishBundle({enabled:true,bundle,publicKey:keys.publicKey,sources,store,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_INSTALLATION_TOKEN'}});assert.equal(result.number,1);
+  assert.equal((await db.query('SELECT state FROM atlas_feedback.jobs WHERE id=$1',[job])).rows[0].state,'completed');
+  assert.ok(!JSON.stringify(remote.writes).includes('PRIVATE_CANARY'));
+  // Explicit newly approved follow-up reuses the one branch/draft, never a second PR.
+  await git(cwd,['reset','--hard',base]);
+  const { approvalHash }=await import('../scripts/feedback/engine.ts');
+  const nextTask={...bundle.publicTask,summary:'Refine spacing'},nextApproval=approvalHash(nextTask,bundle.publicContext),nextJob=randomUUID();
+  await db.transaction(async tx=>{await tx.query("UPDATE atlas_feedback.feedback SET version=2,state='queued',approved_public=$2,approval_hash=$3 WHERE id=$1",[bundle.receipt.feedbackId,nextTask,nextApproval]);await tx.query('INSERT INTO atlas_feedback.jobs(id,feedback_id,input_version,approval_hash,payload) VALUES($1,$2,2,$3,$4)',[nextJob,bundle.receipt.feedbackId,nextApproval,{feedbackId:bundle.receipt.feedbackId,inputVersion:2,approvalHash:nextApproval,publicTask:nextTask,publicContext:bundle.publicContext}]);});
+  const worker=new PgWorkStore(db,{trustedBaseSha:base});assert.equal((await runOne({enabled:true,store:worker,cwd,model,signingKey:keys.privateKey,maxWallMs:60000})).state,'publishing');
+  const nextPublisher=new PgWorkStore(db,{trustedBaseSha:base,publisherInstanceId:randomUUID()}),nextBundle=await nextPublisher.loadBundle(nextJob);
+  const updated=await publishBundle({enabled:true,bundle:nextBundle,publicKey:keys.publicKey,sources,store:nextPublisher,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_INSTALLATION_TOKEN'}});
+  assert.equal(updated.number,1);assert.equal(remote.prs.length,1);assert.notEqual(updated.headSha,result.headSha);assert.match(remote.prs[0].body,/Refine spacing/);
+});
