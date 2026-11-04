@@ -1,6 +1,8 @@
 # One-field feedback native QA
 
-Runtime source: `372cc68dd718e56a3f25e1f58d1f13c311453c96`. The final evidence-only head is runtime-equivalent; exact-head tests/review receipts are in the PR.
+**Historical PR79 evidence only.** These captures were made from runtime source `372cc68dd718e56a3f25e1f58d1f13c311453c96`. Later website/client and Linear/witness/HOST/Astra changes are not runtime-equivalent to that pin. These files and the interaction results below are not final evidence for the integrated Linear workflow. Current implementation/acceptance boundaries are in [Linear verification](../../feedback-linear-verification.md); refreshed receipts must name their own exact source and real-versus-synthetic scope. No old screenshot or test count is relabeled as current.
+
+A separate native UI regression was actually rerun at `629d872894d7a2a4202198ffd8f07140fe5ae486` on a disposable real Next **development** app with loopback-only replacement gate, disabled backend, 1440/390/320 widths, element/event suppression, dark contrast and same-mounted keyboard-size placement. Those private operator receipts are not these historical production captures, not a generated-candidate image pair and not owner/OAuth/provider/publication acceptance.
 
 Captures use the **actual Atlas Next production build** mounted at `/neuro-atlas` on a disposable `127.0.0.1:35641` fixture. Only the copied proxy is replaced by a raw-Host/runtime-flag guard; it is never committed or deployed. Its exact source-revision header was checked before native replays. Source auth, scientific data and hosting configuration are unchanged. The owner's private reference recording is not published here.
 

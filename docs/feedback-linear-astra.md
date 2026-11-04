@@ -64,8 +64,10 @@ The controller performs fixed no-inference preflight before source reads/claims,
 Partial operator-model example (common private roots/identities/public-key paths are also required):
 
 ```json
-{"provider":"hermes-astra","budget":{"kind":"attempts","maxAttemptsPerDay":5,"timeZone":"Europe/Berlin"},"model":{"account":"hermes-default-openai-codex","model":"gpt-6-astra","nativePolicy":"attempt-count-v1","maxTurns":1,"maxInputTokens":40000,"maxOutputTokens":1000,"maxBodyBytes":131072,"maxResponseBytes":262144,"timeoutMs":5000}}
+{"provider":"hermes-astra","budget":{"kind":"attempts","maxAttemptsPerDay":5,"timeZone":"Europe/Berlin"},"model":{"account":"hermes-default-openai-codex","model":"gpt-6-astra","nativePolicy":"attempt-count-v1","maxTurns":1,"maxInputTokens":60000,"maxOutputTokens":1000,"maxBodyBytes":131072,"maxResponseBytes":262144,"timeoutMs":5000}}
 ```
+
+Use total admission estimate `maxTokens:100000` in the common review config with this example. The offline `node --import tsx docs/qa/feedback-linear/astra-config-admission.mjs` probe reads these exact model settings and actual allowlisted Atlas CSS, checking both a short note and the maximum 3,000-code-unit note with near-maximum structural selector/classes/role and complete context. It must reach only an injected synthetic sentinel, never native authentication/inference; byte, time and no-tools bounds stay unchanged. Run it again when CSS or the example changes.
 
 In this explicit native policy, **legacy `maxOutputTokens` and total `maxTokens` are admission estimates, not generation ceilings**. The native request omits a generation cap. New durable attempt rows carry `tokenPolicy:'attempt-count-v1'`; actual nonnegative safe-integer usage is recorded without clamping. Old capped fixture rows retain their old strict validation; no legacy rows are reinterpreted. Account/model/policy/quota/timezone and request/time/byte bounds enter the candidate policy digest. USD fields/model keys are forbidden in count config; prices remain UNPRICED/null.
 
