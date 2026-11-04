@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "runtimeSha": "b0e5584",
+  "baselineSha": "d4f4ae0",
+  "limits": "Loopback-only compiled static pages; hosted authentication is unchanged and positive hosted UI is unverified. Desktop viewport emulation, not physical-phone testing.",
+  "records": [
+    {
+      "width": 1440,
+      "phase": "before",
+      "lines": 2,
+      "dashed": 1,
+      "points": "0.00,167.00 3.30,165.90 3.85,138.09 11.54,129.48 15.11,128.93 17.31,103.54 18.96,101.23 20.60,101.01 21.43,97.81 25.00,89.75 28.57,84.56 32.42,78.49 38.19,77.67 73.08,50.08",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 1440,
+      "phase": "after",
+      "lines": 1,
+      "dashed": 0,
+      "points": "0.00,167.00 3.30,165.49 3.85,127.43 11.54,115.66 15.11,114.90 17.31,80.17 18.96,77.00 20.60,76.69 21.43,72.31 25.00,61.29 28.57,54.19 32.42,45.89 38.19,44.75 73.08,7.00",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 1440,
+      "chart": "simultaneously-recorded-neurons",
+      "checked": "false",
+      "models": 0,
+      "points": 7
+    },
+    {
+      "width": 1440,
+      "chart": "neural-recording-hours",
+      "checked": "unavailable",
+      "models": 0,
+      "points": 12
+    },
+    {
+      "width": 390,
+      "phase": "before",
+      "lines": 2,
+      "dashed": 1,
+      "points": "0.00,167.00 3.30,165.90 3.85,138.09 11.54,129.48 15.11,128.93 17.31,103.54 18.96,101.23 20.60,101.01 21.43,97.81 25.00,89.75 28.57,84.56 32.42,78.49 38.19,77.67 73.08,50.08",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 390,
+      "phase": "after",
+      "lines": 1,
+      "dashed": 0,
+      "points": "0.00,167.00 3.30,165.49 3.85,127.43 11.54,115.66 15.11,114.90 17.31,80.17 18.96,77.00 20.60,76.69 21.43,72.31 25.00,61.29 28.57,54.19 32.42,45.89 38.19,44.75 73.08,7.00",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 390,
+      "chart": "simultaneously-recorded-neurons",
+      "checked": "false",
+      "models": 0,
+      "points": 7
+    },
+    {
+      "width": 390,
+      "chart": "neural-recording-hours",
+      "checked": "unavailable",
+      "models": 0,
+      "points": 12
+    },
+    {
+      "width": 320,
+      "phase": "before",
+      "lines": 2,
+      "dashed": 1,
+      "points": "0.00,167.00 3.30,165.90 3.85,138.09 11.54,129.48 15.11,128.93 17.31,103.54 18.96,101.23 20.60,101.01 21.43,97.81 25.00,89.75 28.57,84.56 32.42,78.49 38.19,77.67 73.08,50.08",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 320,
+      "phase": "after",
+      "lines": 1,
+      "dashed": 0,
+      "points": "0.00,167.00 3.30,165.49 3.85,127.43 11.54,115.66 15.11,114.90 17.31,80.17 18.96,77.00 20.60,76.69 21.43,72.31 25.00,61.29 28.57,54.19 32.42,45.89 38.19,44.75 73.08,7.00",
+      "height": 172,
+      "year": "2026 timeline. Scroll horizontally for later months."
+    },
+    {
+      "width": 320,
+      "chart": "simultaneously-recorded-neurons",
+      "checked": "false",
+      "models": 0,
+      "points": 7
+    },
+    {
+      "width": 320,
+      "chart": "neural-recording-hours",
+      "checked": "unavailable",
+      "models": 0,
+      "points": 12
+    }
+  ]
+}
