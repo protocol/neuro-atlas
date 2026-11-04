@@ -158,6 +158,12 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
   const points = data.points.filter(p => !track || p.track === track);
+  const recordingDateTicks = inspectOnActivate ? [...new Set([g.minTime, g.maxTime])].map(time => ({
+    date: new Date(time).toISOString(),
+    label: g.minTime !== g.maxTime && new Date(g.minTime).getUTCFullYear() === new Date(g.maxTime).getUTCFullYear()
+      ? new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" }).format(time)
+      : String(new Date(time).getUTCFullYear()),
+  })) : null;
   const clusters: PlotPoint[][] = [];
   for (const point of points) {
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
@@ -234,7 +240,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
           <text x={mix(g.width - g.right, future.x(new Date(original.maxTime).toISOString().slice(0, 10)))} y={g.height - 20} textAnchor="end" opacity={1 - progress}>{new Date(original.maxTime).getUTCFullYear()}</text>
           {future.yearTicks.map(year => <text key={year} x={enteringX(year)} y={g.height - 20} textAnchor="middle" opacity={tickReveal}>{year}</text>)}
-        </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : <>
+        </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : recordingDateTicks ? recordingDateTicks.map(tick => <text key={tick.date} x={g.x(tick.date)} y={g.height - 20} textAnchor="middle">{tick.label}</text>) : <>
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}

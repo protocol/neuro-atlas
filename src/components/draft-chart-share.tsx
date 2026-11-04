@@ -6,18 +6,19 @@ import { navigatePerformance, performanceUrl } from "@/lib/field-velocity/naviga
 
 export function DraftChartShare({ anchor: legacyAnchor, label, card = false, className = "draft-chart-share" }: { anchor: string; label: string; card?: boolean; className?: string }) {
   const anchor = canonicalMetricAnchor(legacyAnchor);
-  const [status, setStatus] = useState("");
-  const [fallback, setFallback] = useState("");
+  // Clipboard feedback belongs to the exact URL that was attempted. A view
+  // change must not relabel an old fallback or a late clipboard result.
+  const [result, setResult] = useState({ url: "", status: "", fallback: "" });
+  const currentUrl = typeof window === "undefined" ? "" : performanceUrl(window.location.href, anchor);
+  const { status, fallback } = result.url === currentUrl ? result : { status: "", fallback: "" };
   return <div className={className}>
     <button type="button" data-copy-draft-link={anchor} aria-label={`Copy ${card ? "card " : ""}link to ${label}`} onClick={async () => {
       const url = performanceUrl(window.location.href, anchor);
       try {
         await navigator.clipboard.writeText(url);
-        setFallback("");
-        setStatus("Copied");
+        setResult({ url, fallback: "", status: "Copied" });
       } catch {
-        setFallback(url);
-        setStatus("Copy failed — select the chart URL below");
+        setResult({ url, fallback: url, status: "Copy failed — select the chart URL below" });
       }
     }}>Copy link</button>
     <span role="status">{status}</span>
