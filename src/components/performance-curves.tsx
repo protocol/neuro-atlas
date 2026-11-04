@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useRef, useState, useSyncExternalStore } from "react";
+import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
@@ -104,6 +104,20 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
 
 function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
   const plotRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const singleObservation = data.points.length === 1;
+  useLayoutEffect(() => {
+    if (!inspectOnActivate || !scrollRef.current) return;
+    const viewport = scrollRef.current;
+    // Reveal the sole source mark in a narrow horizontal viewport, without
+    // selecting it, moving its coordinates, or changing the exported SVG.
+    const reveal = () => { viewport.scrollLeft = singleObservation ? Math.max(0, (viewport.scrollWidth - viewport.clientWidth) / 2) : 0; };
+    reveal();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(reveal);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [inspectOnActivate, singleObservation, data.title]);
   const [track, setTrack] = useState("");
   const [extrapolate, setExtrapolate] = useState(false);
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
@@ -188,7 +202,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       </select>
       <span>Isolate a track · axes stay fixed</span>
     </label>}
-    <div className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
+    <div ref={scrollRef} className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
