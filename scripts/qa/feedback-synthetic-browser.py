@@ -38,6 +38,8 @@ try:
   assert js('document.querySelector("[data-feedback-consent]").checked')==False
   click('[data-feedback-consent]');capture_screenshot(path=str(out/f'synthetic-followup-{width}.png'))
   if width==320:
+   js("document.querySelector('[data-atlas-feedback]').scrollTop=document.querySelector('[data-atlas-feedback]').scrollHeight")
+   capture_screenshot(path=str(out/'synthetic-followup-320-bottom.png'))
    js("(()=>{const s=[...document.querySelectorAll('[data-atlas-feedback] summary')].find(e=>e.textContent==='My recent feedback');s.scrollIntoView({block:'center'});s.focus()})()")
    press_key('Tab')
    close_rect=js("(()=>{const r=document.querySelector('[data-feedback-close]').getBoundingClientRect();return {top:r.top,bottom:r.bottom,height:innerHeight,focused:document.activeElement.hasAttribute('data-feedback-close')}})()")

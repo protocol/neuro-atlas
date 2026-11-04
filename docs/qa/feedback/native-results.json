@@ -1,0 +1,146 @@
+[
+  {
+    "width": 1440,
+    "nestedNativeModal": true,
+    "semanticSelection": true,
+    "privatePublicSeparated": true,
+    "consentUnchecked": true,
+    "disabledNoSubmit": true,
+    "layeredEscape": true,
+    "geometry": {
+      "inner": 1440,
+      "client": 1440,
+      "scroll": 1440,
+      "panel": {
+        "left": 450,
+        "right": 990
+      },
+      "controls": [
+        {
+          "left": 947.359375,
+          "right": 973
+        },
+        {
+          "left": 467,
+          "right": 973
+        },
+        {
+          "left": 467,
+          "right": 973
+        },
+        {
+          "left": 467,
+          "right": 973
+        },
+        {
+          "left": 467,
+          "right": 483
+        },
+        {
+          "left": 467,
+          "right": 520.25
+        },
+        {
+          "left": 528.25,
+          "right": 652.4375
+        }
+      ]
+    }
+  },
+  {
+    "width": 390,
+    "nestedNativeModal": true,
+    "semanticSelection": true,
+    "privatePublicSeparated": true,
+    "consentUnchecked": true,
+    "disabledNoSubmit": true,
+    "layeredEscape": true,
+    "geometry": {
+      "inner": 390,
+      "client": 390,
+      "scroll": 390,
+      "panel": {
+        "left": 10,
+        "right": 380
+      },
+      "controls": [
+        {
+          "left": 341.359375,
+          "right": 367
+        },
+        {
+          "left": 23,
+          "right": 367
+        },
+        {
+          "left": 23,
+          "right": 367
+        },
+        {
+          "left": 23,
+          "right": 367
+        },
+        {
+          "left": 23,
+          "right": 39
+        },
+        {
+          "left": 23,
+          "right": 76.25
+        },
+        {
+          "left": 84.25,
+          "right": 208.4375
+        }
+      ]
+    }
+  },
+  {
+    "width": 320,
+    "nestedNativeModal": true,
+    "semanticSelection": true,
+    "privatePublicSeparated": true,
+    "consentUnchecked": true,
+    "disabledNoSubmit": true,
+    "layeredEscape": true,
+    "geometry": {
+      "inner": 320,
+      "client": 320,
+      "scroll": 320,
+      "panel": {
+        "left": 10,
+        "right": 310
+      },
+      "controls": [
+        {
+          "left": 271.359375,
+          "right": 297
+        },
+        {
+          "left": 23,
+          "right": 297
+        },
+        {
+          "left": 23,
+          "right": 297
+        },
+        {
+          "left": 23,
+          "right": 297
+        },
+        {
+          "left": 23,
+          "right": 39
+        },
+        {
+          "left": 23,
+          "right": 76.25
+        },
+        {
+          "left": 84.25,
+          "right": 208.4375
+        }
+      ]
+    }
+  }
+]

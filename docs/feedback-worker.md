@@ -70,7 +70,7 @@ npm run typecheck
 FEEDBACK_TEST_MIGRATION=/path/to/001-feedback.sql FEEDBACK_TEST_INTAKE_MODULE=/path/to/src/lib/feedback/intake.ts node --import tsx --test tests/feedback-worker*.test.mjs tests/feedback-publish*.test.mjs
 ```
 
-Latest local verification: worker/publisher tests **31/31**; complete existing `npm test` suite **513/513**; `npm run typecheck` and `npm run build` passed. Approval-hash compatibility (absent, populated, and explicitly undefined optional context fields) is checked against the actual backend `publicApprovalHash` export, not a fabricated substitute. The worker-only verification supplies the backend migration/intake module through the two explicit test-only paths above.
+The standard full-repository test command includes these worker/publisher suites. Final exact-revision verification is recorded in the PR, alongside native evidence in `docs/qa/feedback/`. Approval-hash compatibility (absent, populated, and explicitly undefined optional context fields) is checked against the actual backend `publicApprovalHash` export, not a fabricated substitute. A worker-only verification can supply the backend migration/intake module through the two explicit test-only paths above.
 
 Tests use real temporary Git repositories, actual PostCSS/TypeScript parsing, real npm child processes, disk-backed PostgreSQL-WASM/PGlite transactions/restarts using both real migrations, synthetic Anthropic/GitHub HTTP fixtures, signed immutable SQL outbox, budgets/unknown spend/fences, kill during inference, follow-up reuse, and crash-boundary reconciliation. Fixture success is **not** a real provider/App/preview acceptance run.
 

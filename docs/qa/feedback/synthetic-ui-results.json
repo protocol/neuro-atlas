@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "syntheticIdentity": true,
+    "realRenderedClient": true,
+    "failedRetrySameKey": true,
+    "privatePublicSeparate": true,
+    "receivedNotStarted": true,
+    "noFakePrOrPreviewLink": true,
+    "followupSameIdVersion2": true,
+    "consentInvalidatedOnEdit": true,
+    "nativeFocusTrap": true
+  },
+  {
+    "width": 390,
+    "syntheticIdentity": true,
+    "realRenderedClient": true,
+    "failedRetrySameKey": true,
+    "privatePublicSeparate": true,
+    "receivedNotStarted": true,
+    "noFakePrOrPreviewLink": true,
+    "followupSameIdVersion2": true,
+    "consentInvalidatedOnEdit": true,
+    "nativeFocusTrap": true
+  },
+  {
+    "width": 320,
+    "syntheticIdentity": true,
+    "realRenderedClient": true,
+    "failedRetrySameKey": true,
+    "privatePublicSeparate": true,
+    "receivedNotStarted": true,
+    "noFakePrOrPreviewLink": true,
+    "followupSameIdVersion2": true,
+    "consentInvalidatedOnEdit": true,
+    "nativeFocusTrap": true
+  }
+]
