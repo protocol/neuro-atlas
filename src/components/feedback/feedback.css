@@ -41,7 +41,7 @@ dialog.atlas-feedback-layer {
 .atlas-feedback-selection-controls button:focus-visible { outline: 2px solid #397cf6; outline-offset: 2px; }
 .atlas-feedback-panel [data-feedback-close] { border: none; font-size: 1rem; line-height: 1; padding: .2rem .3rem; }
 .atlas-feedback-note, .atlas-feedback-auth, .atlas-feedback-target { font-size: .6875rem; color: var(--muted, #777); }
-.atlas-feedback-target { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.atlas-feedback-target { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .atlas-feedback-panel [data-feedback-submit] { margin-left: auto; font-size: .875rem; }
 .atlas-feedback-panel details > summary { cursor: pointer; }
 .atlas-feedback-panel details p { margin-top: .4rem; }

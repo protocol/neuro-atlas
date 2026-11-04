@@ -31,7 +31,9 @@ test('global root mounts feedback once and scoped responsive styles preserve ful
   assert.ok(parsed.nodes.length > 5);
   assert.match(css, /overflow-wrap:\s*anywhere/);
   assert.match(css, /100dvh/);
-  assert.doesNotMatch(css, /text-overflow:\s*ellipsis|white-space:\s*nowrap/);
+  parsed.walkDecls(decl => {
+    if ((decl.prop === 'text-overflow' && decl.value === 'ellipsis') || (decl.prop === 'white-space' && decl.value === 'nowrap')) assert.equal(decl.parent.selector, '.atlas-feedback-target', 'only the local reference chip may truncate; form/actions retain full text');
+  });
 });
 
 
@@ -113,4 +115,13 @@ test('reference chip has a bounded meaningful local name; only safe classes/role
 test('decorative aria-hidden icons inside an accessible button still select that button', () => {
  const dom=new JSDOM('<button aria-label="Copy chart"><svg aria-hidden="true"><path /></svg></button>');
  try {const button=dom.window.document.querySelector('button');button.getBoundingClientRect=()=>rect(1,2,30,40);assert.equal(selection.pickElement(button.querySelector('path'))?.element,button);} finally {dom.window.close();}
+});
+
+test('a long local element name stays a one-line reference chip rather than inflating the compact composer', () => {
+  const css = postcss.parse(readFileSync('src/components/feedback/feedback.css', 'utf8'));
+  const rule = css.nodes.find(node => node.type === 'rule' && node.selector === '.atlas-feedback-target');
+  const values = Object.fromEntries(rule.nodes.filter(node => node.type === 'decl').map(node => [node.prop,node.value]));
+  assert.equal(values['white-space'], 'nowrap');
+  assert.equal(values.overflow, 'hidden');
+  assert.equal(values['text-overflow'], 'ellipsis');
 });
