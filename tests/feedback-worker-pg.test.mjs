@@ -20,7 +20,8 @@ export async function setup(t) {
 test('actual PostgreSQL migration: disabled defaults, global lease, durable reservations, caps, kill and fencing',async t=>{
   const { PgWorkStore }=await import('../scripts/feedback/pg-store.ts');const f=await setup(t);const one=await f.seed();
   const {pathToFileURL}=await import('node:url');const intake=await import(process.env.FEEDBACK_TEST_INTAKE_MODULE?pathToFileURL(process.env.FEEDBACK_TEST_INTAKE_MODULE).href:new URL('../src/lib/feedback/intake.ts',import.meta.url).href);
-  const payload=(await f.db.query('SELECT payload FROM atlas_feedback.jobs WHERE id=$1',[one.job])).rows[0].payload;assert.equal(payload.approvalHash,intake.publicApprovalHash({publicApproval:{policyVersion:'atlas-feedback-v1'},publicTask:payload.publicTask,context:payload.publicContext}));
+  const payload=(await f.db.query('SELECT payload FROM atlas_feedback.jobs WHERE id=$1',[one.job])).rows[0].payload;
+  for(const context of [payload.publicContext,{...payload.publicContext,targetId:'field-velocity',chartId:'neural-recording-hours',scenario:'historical',deployedRevision:'b'.repeat(40)},{...payload.publicContext,targetId:undefined,chartId:undefined,scenario:undefined,deployedRevision:undefined}])assert.equal(approvalHash(payload.publicTask,context),intake.publicApprovalHash({publicApproval:{approved:true,policyVersion:'atlas-feedback-v1'},publicTask:payload.publicTask,context}));
   let store=new PgWorkStore(f.db,{trustedBaseSha:'a'.repeat(40)});
   assert.equal(await store.acquire(),null);
   await f.db.query("UPDATE atlas_feedback.control SET enabled=true,allowed_owner_id=82394590,max_job_usd=1,max_day_usd=2,max_tokens=10000,max_turns=2,max_wall_seconds=60,max_attempts=2");
