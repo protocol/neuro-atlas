@@ -3,7 +3,8 @@
 import { atlasPath } from "./atlas-path";
 import type { FeedbackSubmission, FeedbackSession, FeedbackStatus } from "./feedback/contracts";
 
-export type FeedbackConfig = { enabled: boolean; connected: boolean };
+import type { LinearFeedbackInput } from './feedback-linear/contracts';
+export type FeedbackConfig = { enabled: boolean; connected: boolean; provider?: 'github' | 'linear'; policyVersion?: 'atlas-feedback-simple-v1' | 'atlas-feedback-linear-v1' };
 export type FeedbackReceipt = Pick<FeedbackStatus, "id" | "state" | "version">;
 export class FeedbackClientError extends Error {
   constructor(public code: string, message: string) { super(message); this.name = "FeedbackClientError"; }
@@ -24,6 +25,7 @@ export class FeedbackClient {
   private session: FeedbackSession | null = null;
   private cancelAuth?: () => void;
   private disposed = false;
+  private provider: "github" | "linear" = "github";
   private readonly win: Window;
   private readonly crypto: Crypto;
   private readonly fetcher: typeof fetch;
@@ -57,6 +59,10 @@ export class FeedbackClient {
   async config() {
     const result = await this.request<FeedbackConfig>("/config");
     if (typeof result.enabled !== "boolean" || typeof result.connected !== "boolean") throw safeError(503);
+    if (result.provider !== undefined && result.provider !== 'github' && result.provider !== 'linear') throw safeError(503);
+    if (result.provider === 'linear' && result.policyVersion !== 'atlas-feedback-linear-v1') throw safeError(503);
+    if (result.provider !== 'linear' && result.policyVersion !== undefined && result.policyVersion !== 'atlas-feedback-simple-v1') throw safeError(503);
+    this.provider = result.provider ?? 'github';
     return result;
   }
   list() { return this.request<{ items: FeedbackStatus[] }>("?limit=20", "GET", undefined, true); }
@@ -68,8 +74,8 @@ export class FeedbackClient {
     }
     return value;
   }
-  submit(input: FeedbackSubmission, key: string) { return this.receipt(this.request<FeedbackReceipt>("", "POST", input, true, key)); }
-  followup(id: string, expectedVersion: number, input: FeedbackSubmission, key: string) {
+  submit(input: FeedbackSubmission | LinearFeedbackInput, key: string) { return this.receipt(this.request<FeedbackReceipt>("", "POST", input, true, key)); }
+  followup(id: string, expectedVersion: number, input: FeedbackSubmission | LinearFeedbackInput, key: string) {
     return this.receipt(this.request<FeedbackReceipt>(`/${encodeURIComponent(id)}/followups`, "POST", { ...input, expectedVersion }, true, key));
   }
   async signOut() {
@@ -77,23 +83,29 @@ export class FeedbackClient {
     finally { this.session = null; this.cancelSignIn(); }
   }
   cancelSignIn() { this.cancelAuth?.(); }
-  dispose() { this.disposed = true; this.cancelSignIn(); this.session = null; }
+  private discardSession(session: FeedbackSession | null) {
+    if (session?.provider !== 'linear' || typeof session.session !== 'string' || !session.session) return;
+    // Best-effort upstream revocation even after disposal/abort; never restore page memory.
+    void this.fetcher(atlasPath('/api/feedback/auth/session'), {method:'DELETE', headers:{Accept:'application/json', 'X-Atlas-Feedback-Session':session.session}, cache:'no-store', credentials:'same-origin', redirect:'error', keepalive:true, signal:AbortSignal.timeout(8000)}).catch(() => {});
+  }
+  dispose() { this.disposed = true; this.cancelSignIn(); this.discardSession(this.session); this.session = null; }
 
   /** Must be called directly by the click handler: open BEFORE crypto/network awaits. */
   signIn(): Promise<FeedbackSession> {
+    if (this.disposed) return Promise.reject(new FeedbackClientError("closed", "Feedback is closed."));
     this.cancelSignIn();
     const popup = this.win.open("about:blank", "atlas-feedback-signin", "popup,width=520,height=700");
     if (!popup) return Promise.reject(new FeedbackClientError("popup_blocked", "Allow the sign-in popup, then try again."));
-    const origin = this.win.location.origin;
+    const origin = this.win.location.origin, provider = this.provider;
     const controller = new AbortController();
     return new Promise((resolve, reject) => {
-      let state = "", verifier = "", consumed = false, settled = false;
+      let state = "", verifier = "", transaction = "", consumed = false, settled = false;
       const cleanup = () => {
         this.win.removeEventListener("message", message);
         clearInterval(timer);
         this.cancelAuth = undefined;
         popup.close();
-        state = ""; verifier = "";
+        state = ""; verifier = ""; transaction = "";
       };
       const fail = (error: unknown) => { if (settled) return; settled = true; controller.abort(); cleanup(); reject(error); };
       const message = (event: MessageEvent) => {
@@ -101,9 +113,9 @@ export class FeedbackClient {
         consumed = true;
         this.win.removeEventListener("message", message);
         // Keep the transaction timer alive while finish is in flight too.
-        void this.request<FeedbackSession>("/auth/finish", "POST", { state, code: event.data.code, codeVerifier: verifier }, false, undefined, controller.signal).then(session => {
-          if (settled) return;
-          if (!session || typeof session.session !== "string" || !session.session || !Number.isFinite(Date.parse(session.expiresAt)) || Date.parse(session.expiresAt) <= Date.now() || !Number.isSafeInteger(session.actor?.githubId) || typeof session.actor?.login !== "string" || !session.actor.login) { fail(safeError(503)); return; }
+        void this.request<FeedbackSession>("/auth/finish", "POST", { state, code: event.data.code, codeVerifier: verifier, ...(provider === "linear" ? {transaction} : {}) }, false, undefined, controller.signal).then(session => {
+          if (settled) { this.discardSession(session); return; }
+          if (!session || typeof session.session !== "string" || !session.session || !Number.isFinite(Date.parse(session.expiresAt)) || Date.parse(session.expiresAt) <= Date.now() || !(provider === 'linear' ? session.provider === 'linear' && /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(session.actor?.linearId ?? '') && /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(session.actor?.workspaceId ?? '') : session.provider !== 'linear' && Number.isSafeInteger(session.actor?.githubId)) || typeof session.actor?.login !== "string" || !session.actor.login) { fail(safeError(503)); return; }
           this.session = session; settled = true; cleanup(); resolve(session);
         }).catch(fail);
       };
@@ -119,10 +131,16 @@ export class FeedbackClient {
         verifier = base64url(this.crypto.getRandomValues(new Uint8Array(32)));
         const challenge = base64url(new Uint8Array(await this.crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier))));
         if (settled) return;
-        const start = await this.request<{ authorizeUrl: string; expiresAt: string }>("/auth/start", "POST", { state, codeChallenge: challenge }, false, undefined, controller.signal);
+        const start = await this.request<{ authorizeUrl: string; expiresAt: string; transaction?: string; provider?: string }>("/auth/start", "POST", { state, codeChallenge: challenge }, false, undefined, controller.signal);
         if (settled) return;
         const url = new URL(start.authorizeUrl);
-        if (url.origin !== "https://github.com" || url.pathname !== "/login/oauth/authorize" || url.username || url.password || url.searchParams.get("state") !== state || url.searchParams.get("code_challenge") !== challenge || url.searchParams.get("code_challenge_method") !== "S256") throw safeError(503);
+        const expected = provider === 'linear' ? ['https://linear.app', '/oauth/authorize'] : ['https://github.com', '/login/oauth/authorize'];
+        // Test provider URLs are server-only. The actual browser always visits fixed Linear/GitHub.
+        if (url.origin !== expected[0] || url.pathname !== expected[1] || url.username || url.password || url.hash || url.searchParams.get('state') !== state || url.searchParams.get('code_challenge') !== challenge || url.searchParams.get('code_challenge_method') !== 'S256') throw safeError(503);
+        if (provider === 'linear') {
+          if (start.provider !== 'linear' || typeof start.transaction !== 'string' || !/^[A-Za-z0-9_-]{40,2000}$/.test(start.transaction) || !Number.isFinite(Date.parse(start.expiresAt)) || Date.parse(start.expiresAt) <= Date.now() || Date.parse(start.expiresAt) > Date.now()+300000 || [...new Set(url.searchParams.keys())].some(k=>url.searchParams.getAll(k).length!==1) || url.searchParams.get('scope') !== 'read,issues:create,comments:create' || url.searchParams.get('actor') !== 'user' || url.searchParams.get('response_type') !== 'code' || url.searchParams.has('client_secret')) throw safeError(503);
+          transaction = start.transaction;
+        }
         popup.location.href = url.href;
       })().catch(fail);
     });
