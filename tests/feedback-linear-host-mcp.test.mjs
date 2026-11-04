@@ -59,7 +59,9 @@ async def main():
    else: raise AssertionError('incomplete native comments were admitted: '+mode)
   finally: await peer.shutdown()
 asyncio.run(main())`;
-  const r=await exec('/opt/hermes/.venv/bin/python3',['-c',program,helper,peer],{timeout:45000,maxBuffer:200000});
+  const env={...process.env};delete env.PYTHONDONTWRITEBYTECODE;
+  const r=await exec('/opt/hermes/.venv/bin/python3',['-B','-c',program,helper,peer],{env,timeout:45000,maxBuffer:200000});
+  assert.equal(existsSync(path.join(path.dirname(helper),'__pycache__')),false,'trusted checks must not dirty the pinned source with imported helper bytecode');
   const data=JSON.parse(r.stdout.trim());
   assert.equal(data.read.complete,true);assert.equal(data.read.comments.length,0);
   assert.equal(data.write.body,'atlas-linear-proposal-v1\nSYNTHETIC');assert.equal(data.write.id,'66666666-6666-4666-8666-666666666666');assert.match(r.stderr,/native_cursor_repeated_or_missing/);assert.match(r.stderr,/native_total_mismatch/);assert.match(r.stderr,/native_tool_filtered/);assert.match(r.stderr,/native_client_disabled_or_untrusted/);
