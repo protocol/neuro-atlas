@@ -11,6 +11,6 @@ export function VelocityTabs({ performance, references, engagementPreview }: { p
     onSelect={key => navigatePerformance(key === "expectations" ? "expectations" : "performance_curves")}
     tabs={[
       { key: "instruments", label: "Metrics", node: <MetricsSection performance={performance} references={references} engagementPreview={engagementPreview} /> },
-      { key: "expectations", label: "Expectations", node: <ExpectationsSection /> },
+      { key: "expectations", label: "Inflection points", node: <ExpectationsSection /> },
     ]} />;
 }

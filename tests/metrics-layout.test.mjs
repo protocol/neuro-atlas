@@ -21,20 +21,21 @@ function metricsDocument() {
   return new JSDOM(renderToStaticMarkup(React.createElement(VelocityInstrumentsSection, { performance })));
 }
 
-test('commitments retains its sourced reading without an unwired Markets section', () => {
+test('commitments renders sourced participant observations over time without an unwired Markets section', () => {
   const dom = metricsDocument();
   try {
     const doc = dom.window.document;
     assert.deepEqual([...doc.querySelectorAll('.pc-section-header h2')].map(h => h.textContent), [
-      'Performance curves', 'Idea vintage & latency compression', 'Revealed commitments',
+      'Performance curves', 'Citation latency & latency compression',
     ]);
     for (const id of ['revealed_commitments']) {
-      const section = doc.getElementById(id);
-      assert.ok(section?.matches('section.performance-curves'), `${id} must be a peer section`);
-      assert.equal(section.querySelectorAll(':scope > .pc-grid > .pc-card').length, 1);
+      const section = doc.querySelector(`[data-performance-card="${id}"]`);
+      assert.ok(section, `${id} must retain its modal/deep-link identity`);
+      assert.equal(doc.querySelectorAll(`[data-performance-card="${id}"]`).length, 1);
+      assert.ok(doc.querySelector(`[data-performance-card="${id}"] .pc-preview svg`));
     }
-    assert.match(doc.getElementById('revealed_commitments').textContent, /67 participants through December 2023/);
-    assert.ok(doc.querySelector('a[href="https://doi.org/10.1038/s44222-024-00239-5"]'));
+    assert.match(doc.querySelector('[data-performance-card="revealed_commitments"]').textContent, /Implanted BCI participants over time/);
+    assert.match(doc.querySelector('[data-performance-card="revealed_commitments"]').textContent, /15 dated checkpoints/);
     assert.equal(doc.getElementById('markets'), null);
   } finally { dom.window.close(); }
 });
@@ -57,7 +58,7 @@ test('channel-count frontier is only a noninteractive coming-soon chart in the P
     assert.equal(placeholder.querySelectorAll('a, button, [tabindex], [data-curve-point], [data-source-observation]').length, 0);
     assert.equal(doc.querySelectorAll('[data-coming-soon="channel-count-frontier"]').length, 1);
     assert.doesNotMatch(doc.body.textContent, /The Channel-Count Frontier|Visually it's the single most compelling/);
-    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 5, 'Only the five sourced charts remain shareable');
+    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 6, 'The participant time plot is now the sixth sourced shareable chart');
     assert.match(css, /\.pc-placeholder-preview svg\s*\{[^}]*filter:\s*blur\(/);
     assert.match(css, /\.pc-coming-soon-label\s*\{[^}]*position:\s*absolute/);
   } finally { dom.window.close(); }

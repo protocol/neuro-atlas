@@ -1,0 +1,230 @@
+{
+  "checkedAt": "2026-11-03",
+  "measurement": "selected-report-to-human",
+  "definition": "Elapsed time from a named public preclinical report or demonstration to a documented human milestone. This starts at the selected report date; earlier experimental work may predate it.",
+  "scope": "Selected device lineages retain their species, date precision, and temporary-placement versus implant endpoints. Fieldwide acceleration and a pooled median remain unmeasured by this sample.",
+  "corpusUrl": "https://github.com/protocol/plrd.org/blob/main/src/data/velocity/corpora/neuro-latency-modalities.json",
+  "upstreamCorrectionDate": "2026-10-28",
+  "intervals": [
+    {
+      "id": "neurotrophic-cone",
+      "label": "Neurotrophic cone electrode",
+      "species": "monkey",
+      "report": {
+        "date": "1992-07",
+        "precision": "month",
+        "basis": "publication",
+        "url": "https://doi.org/10.1097/00001756-199207000-00015",
+        "sourceLabel": "Preclinical report / demo",
+        "quotes": [
+          "July 1992.",
+          "Long-term recording of stable action potentials with a new electrode configuration has been achieved for up to 15 months in monkeys."
+        ]
+      },
+      "human": {
+        "date": "1996-12-04",
+        "precision": "day",
+        "basis": "implant event; MH, Table I",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2574508/",
+        "sourceLabel": "Human implant evidence",
+        "quotes": [
+          "| **MH** | 38, 12/4/1996 | ALS | NE",
+          "| **JR** | 52, 4/24/1998 | BSS | NE",
+          "16 months in the rat"
+        ]
+      },
+      "clinicalEndpoint": "implant",
+      "originalMetricApproved": false,
+      "context": "1998-06-01 is publication, not first implant; 1996-12-04 is first listed NE implantation. Earlier rat work is acknowledged in the author methods paper, so 1992 is not established as first animal work."
+    },
+    {
+      "id": "utah-braingate",
+      "label": "Utah / BrainGate · Blackrock lineage",
+      "species": "monkey",
+      "report": {
+        "date": "2002-03-14",
+        "precision": "day",
+        "basis": "publication issue date",
+        "url": "https://www.nature.com/articles/416141a",
+        "sourceLabel": "Preclinical report / demo",
+        "quotes": [
+          "Issue date: 14 March 2002",
+          "Here we show how activity from a few (7–30) MI neurons can be decoded into a signal that a monkey is able to use immediately to move a computer cursor"
+        ]
+      },
+      "human": {
+        "date": "2004-06",
+        "precision": "month",
+        "basis": "first BrainGate implant event",
+        "url": "https://archive2.news.brown.edu/1987-2007/2004-05/04-035.html",
+        "sourceLabel": "Human implant evidence",
+        "quotes": [
+          "who implanted the first BrainGate device in June."
+        ]
+      },
+      "clinicalEndpoint": "implant",
+      "originalMetricApproved": false,
+      "context": "Keep BrainGate scope; 2002 is selected functional publication, not established first animal-event date or first-ever intracortical array. Blackrock is this lineage, not a second modern independent transition."
+    },
+    {
+      "id": "stentrode",
+      "label": "Synchron · Stentrode",
+      "species": "sheep",
+      "report": {
+        "date": "2016-02-08",
+        "precision": "day",
+        "basis": "publication",
+        "url": "https://www.nature.com/articles/nbt.3428",
+        "sourceLabel": "Preclinical report / demo",
+        "quotes": [
+          "Published: 08 February 2016",
+          "demonstrate neural recordings in freely moving sheep for up to 190 d."
+        ]
+      },
+      "human": {
+        "date": "2019-08",
+        "precision": "month",
+        "basis": "implant event",
+        "url": "https://snisonline.org/journal-of-neurointerventional-surgery-patients-with-severe-paralysis-able-to-text-email-bank-online-using-stentrode-brain-computer-interface",
+        "sourceLabel": "Human implant evidence",
+        "quotes": [
+          "He received the Stentrode implant in August 2019.",
+          "He was the first patient enrolled in the first Stentrode clinical study"
+        ]
+      },
+      "clinicalEndpoint": "implant",
+      "originalMetricApproved": false,
+      "context": "First implant August 2019, not September announcement; preclinical paper publication is not animal experiment date."
+    },
+    {
+      "id": "neuralink",
+      "label": "Neuralink · N1 / Link",
+      "species": "macaque for selected Pager demo; earlier rodent/pig work acknowledged",
+      "report": {
+        "date": "2021-04",
+        "precision": "month",
+        "basis": "public demonstration/disclosure; current page metadata April 18; historical April 8 conflict not resolved",
+        "url": "https://neuralink.com/updates/pager-plays-mindpong/",
+        "sourceLabel": "Preclinical report / demo",
+        "quotes": [
+          "In a 2019",
+          "In 2020, we publicly",
+          "macaque monkey, named Pager",
+          "1,024 electrode"
+        ]
+      },
+      "human": {
+        "date": "2024-01",
+        "precision": "month",
+        "basis": "implant event, primary company evidence",
+        "url": "https://neuralink.com/updates/a-year-of-telepathy/",
+        "sourceLabel": "Human implant evidence",
+        "quotes": [
+          "In January 2024, Noland became the first person to receive a Neuralink implant."
+        ]
+      },
+      "clinicalEndpoint": "implant",
+      "originalMetricApproved": false,
+      "context": "Do not silently promote April 8 to settled event date. Current metadata April 18; first implant primary evidence month-only; earlier 2019 rodent and 2020 pig disclosures invalidate a generic first-animal-2021 claim."
+    },
+    {
+      "id": "precision-layer7",
+      "label": "Precision · Layer 7",
+      "species": "Göttingen minipig",
+      "report": {
+        "date": "2022-01-02",
+        "precision": "day",
+        "basis": "v1 preprint publication; original PDF verified, not shared API abstract",
+        "url": "https://www.biorxiv.org/content/10.1101/2022.01.02.474656v1.full.pdf",
+        "sourceLabel": "Original v1 preprint",
+        "quotes": [
+          "this version posted January 2, 2022.",
+          "regions in both hemispheres of the Göttingen minipig brain simultaneously",
+          "Each microelectrode array \ncomprises 529 electrodes"
+        ]
+      },
+      "human": {
+        "date": "2023-04",
+        "precision": "month",
+        "basis": "temporary intraoperative placement, not chronic assistive implantation",
+        "url": "https://www.globenewswire.com/news-release/2023/06/06/2682588/0/en/Precision-Neuroscience-Begins-First-in-Human-Study-of-its-Neural-Interface-Technology.html",
+        "sourceLabel": "First human procedure announcement",
+        "quotes": [
+          "Since the first procedure, completed in mid-April at the RNI",
+          "the Layer 7 Cortical Interface was temporarily placed on the brain of a patient undergoing resection of a brain tumor."
+        ]
+      },
+      "clinicalEndpoint": "temporary-placement",
+      "originalMetricApproved": false,
+      "context": "The human endpoint is temporary intraoperative placement in mid-April 2023. Original preprint January 2, 2022 reports minipig recordings. Month precision is retained for the human date; no chronic implant endpoint is inferred."
+    }
+  ],
+  "additionalPathways": [
+    {
+      "id": "science-biohybrid",
+      "label": "Science · cortical Biohybrid",
+      "status": "Human endpoint unverified",
+      "note": "The reviewed sources establish a mouse optical-stimulation study and a planned transition toward human patients. A completed cortical biohybrid human endpoint remains unverified in this review.",
+      "sources": [
+        {
+          "label": "Biohybrid mouse study · 2024-11-23",
+          "url": "https://science.xyz/news/biohybrid-neural-interfaces/"
+        },
+        {
+          "label": "Clinical-transition update · 2026-03-31",
+          "url": "https://science.xyz/news/leadership-gunel"
+        }
+      ]
+    },
+    {
+      "id": "science-prima",
+      "label": "Science · PRIMA",
+      "status": "Separate retinal-prosthesis lineage",
+      "note": "PRIMA is a retinal prosthesis inherited from the Stanford/Pixium lineage. Human use preceded Science’s acquisition. December 2017 implantation month is inferred from the issuer’s January 2018 activation report. Earliest in-vivo preclinical milestone remains unresolved.",
+      "sources": [
+        {
+          "label": "Preclinical retinal publication · 2015-04-27",
+          "url": "https://www.nature.com/articles/nm.3851"
+        },
+        {
+          "label": "Human activation report · 2018-01-25",
+          "url": "https://www.biospace.com/pixium-vision-completes-world-s-first-successful-activation-in-human-of-prima-bionic-vision-system"
+        },
+        {
+          "label": "Science acquisition · 2024-04-25",
+          "url": "https://science.xyz/news/pixium-vision-acquisition"
+        }
+      ]
+    },
+    {
+      "id": "paradromics-connexus",
+      "label": "Paradromics · Connexus",
+      "status": "Exact comparable preclinical start unverified",
+      "note": "The issuer reports nearly three years of same-device preclinical work before the temporary human procedure. Exact first preclinical event and surgery dates remain unspecified; temporary and long-term milestones remain distinct.",
+      "sources": [
+        {
+          "label": "Temporary human recording · disclosed 2025-06-02",
+          "url": "https://paradromics.com/news/paradromics-completes-first-in-human-recording-with-the-connexus-brain-computer-interface/"
+        },
+        {
+          "label": "Long-term study implantation · disclosed 2026-06-17",
+          "url": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation"
+        }
+      ]
+    }
+  ],
+  "previewSources": [
+    {
+      "label": "Blackrock lineage",
+      "url": "https://blackrockneurotech.com/our-story/"
+    },
+    {
+      "label": "Precision study",
+      "url": "https://www.biorxiv.org/content/10.1101/2022.01.02.474656v1.full.pdf"
+    },
+    {
+      "label": "Science study",
+      "url": "https://science.xyz/news/biohybrid-neural-interfaces/"
+    }
+  ]
+}

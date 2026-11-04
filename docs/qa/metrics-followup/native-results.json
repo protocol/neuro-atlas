@@ -1,0 +1,95 @@
+[
+  {
+    "width": 1440,
+    "navigation": [
+      "Milestones",
+      "Field Velocity",
+      "BCI Funding Index",
+      "Ecosystem \u2197"
+    ],
+    "bounds": {
+      "inner": 1440,
+      "client": 1425,
+      "scroll": 1425
+    },
+    "equalHeights": true,
+    "chartCount": 21,
+    "citationLegacyLink": true,
+    "participants": 15,
+    "participantPapers": 3,
+    "participantHistoryFocus": true,
+    "latencyPairs": 5,
+    "latencyPrimarySourceLinks": 10,
+    "unverifiedScienceUnplotted": true,
+    "costOrder": [
+      "metric-panel-acquisition-economics",
+      "metric-panel-connectomics-roboem-human-split-merge",
+      "metric-panel-proofreading-effort",
+      "metric-panel-pathfinder-nerl"
+    ],
+    "nativeRoboEMKeyboardOpen": true,
+    "searchNamesCompaniesPrograms": true
+  },
+  {
+    "width": 390,
+    "navigation": [
+      "Milestones",
+      "Field Velocity",
+      "BCI Funding Index",
+      "Ecosystem \u2197"
+    ],
+    "bounds": {
+      "inner": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    "equalHeights": true,
+    "chartCount": 21,
+    "citationLegacyLink": true,
+    "participants": 15,
+    "participantPapers": 3,
+    "participantHistoryFocus": true,
+    "latencyPairs": 5,
+    "latencyPrimarySourceLinks": 10,
+    "unverifiedScienceUnplotted": true,
+    "costOrder": [
+      "metric-panel-acquisition-economics",
+      "metric-panel-connectomics-roboem-human-split-merge",
+      "metric-panel-proofreading-effort",
+      "metric-panel-pathfinder-nerl"
+    ],
+    "nativeRoboEMKeyboardOpen": true,
+    "searchNamesCompaniesPrograms": true
+  },
+  {
+    "width": 320,
+    "navigation": [
+      "Milestones",
+      "Field Velocity",
+      "BCI Funding Index",
+      "Ecosystem \u2197"
+    ],
+    "bounds": {
+      "inner": 320,
+      "client": 320,
+      "scroll": 320
+    },
+    "equalHeights": true,
+    "chartCount": 21,
+    "citationLegacyLink": true,
+    "participants": 15,
+    "participantPapers": 3,
+    "participantHistoryFocus": true,
+    "latencyPairs": 5,
+    "latencyPrimarySourceLinks": 10,
+    "unverifiedScienceUnplotted": true,
+    "costOrder": [
+      "metric-panel-acquisition-economics",
+      "metric-panel-connectomics-roboem-human-split-merge",
+      "metric-panel-proofreading-effort",
+      "metric-panel-pathfinder-nerl"
+    ],
+    "nativeRoboEMKeyboardOpen": true,
+    "searchNamesCompaniesPrograms": true
+  }
+]

@@ -8,12 +8,14 @@ import { DraftChartsSection } from "./draft-charts-section";
 import { VelocityInstrumentsSection } from "./velocity-instruments-section";
 import SNAPSHOT from "@/data/field-velocity/neurotech.snapshot.json";
 import TRENDS from "../../../public/data/google-trends/google-trends.json";
+import PARTICIPANT_ADDITIONS from "@/data/field-velocity/bci-participants.additions.json";
+import TRANSLATION_EVIDENCE from "@/data/field-velocity/bci-translation-evidence.json";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { useMetricCardHeight } from "@/components/use-metric-card-height";
 
 const neuronText = JSON.stringify([SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons"]).toLocaleLowerCase();
 const engagementPreviewText = JSON.stringify([TRENDS.groups.filter(group => group.id === "neurotech"), "Google Trends Public attention"]).toLocaleLowerCase();
-const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), TRENDS.groups.filter(group => group.id === "neuralink"), "Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
+const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), SNAPSHOT.measurementSeries.filter(series => series.id === "bci-implants"), PARTICIPANT_ADDITIONS, TRANSLATION_EVIDENCE, TRENDS.groups.filter(group => group.id === "neuralink"), "Citation latency Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
 
 type GroupState = "collapsed" | "full";
 function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {

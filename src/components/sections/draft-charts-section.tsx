@@ -7,6 +7,13 @@ import { METRIC_CHARTS as DRAFT_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVI
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
 
+const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
+  ["acquisition-economics", 0],
+  ["connectomics-roboem-human-split-merge", 1],
+  ["proofreading-effort", 2],
+  ["pathfinder-nerl", 3],
+]);
+
 function Methodology({ chart, context }: { chart: DraftChart; context?: string }) {
   return <details className="draft-chart-methodology" data-draft-methodology>
     <summary>Definition and comparability</summary>
@@ -25,51 +32,58 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
   const plotted = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && isVisibleMetric(chart));
   if (flat && featuredTitle) plotted.sort((a, b) => Number(b.title === featuredTitle) - Number(a.title === featuredTitle));
   const gaps = DRAFT_CHARTS.filter(chart => (!selectedCategory || metricCategoryFor(chart) === selectedCategory) && DRAFT_CHART_EVIDENCE[chart.title]?.status !== "plotted");
-  if (flat) return <>{plotted.flatMap(chart => {
-    const evidence = DRAFT_CHART_EVIDENCE[chart.title];
-    const link = linksFor(chart);
-    const hidden = !matches(chart) || (!!visibleTitles && !visibleTitles.includes(chart.title));
-    const recording = chart.metricsAnchor === "neural-recording-hours";
-    const displayTitle = chart.title === "NeuroAI performance–cost frontier over time" ? "NeuroAI performance–cost frontier" : chart.title;
-    const candidateIds = [link.id, canonicalMetricAnchor(link.id), ...(chart.metricsAnchor ? [chart.metricsAnchor] : [])];
-    const cards = evidence.plots.map((plot, index) => {
-      const panels = link.panels.filter(panel => panel.plotId === plot.id);
-      const anchor = canonicalMetricAnchor(recording ? link.id : panels[0]!.id);
-      const ids = [...new Set([...panels.flatMap(panel => [panel.id, canonicalMetricAnchor(panel.id)]), ...(index === 0 ? candidateIds : [])])];
-      const cardId = index === 0 ? link.id : panels[0]!.id;
-      const displayPlot = chart.title === "NeuroAI performance–cost frontier over time" ? { ...plot, title: displayTitle } : plot;
-      return <article key={plot.id} id={cardId} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
-        <div data-draft-panel>
-          <span id={anchor} className="metric-anchor" />
-          {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
-          <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
-            previewContext={<div className="metric-preview-context">
-              <p data-metric-scope>{plot.scope.split(/\.(?:\s|$)/)[0]}.</p>
-              {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
-            </div>}
-            methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
-          <div data-metric-card-footer><DraftChartShare anchor={anchor} label={displayPlot.title} /></div>
-        </div>
-      </article>;
+  if (flat) {
+    const tiles = plotted.flatMap(chart => {
+      const evidence = DRAFT_CHART_EVIDENCE[chart.title];
+      const link = linksFor(chart);
+      const hidden = !matches(chart) || (!!visibleTitles && !visibleTitles.includes(chart.title));
+      const recording = chart.metricsAnchor === "neural-recording-hours";
+      const displayTitle = chart.title === "NeuroAI performance–cost frontier over time" ? "NeuroAI performance–cost frontier" : chart.title;
+      const candidateIds = [link.id, canonicalMetricAnchor(link.id), ...(chart.metricsAnchor ? [chart.metricsAnchor] : [])];
+      const cards = evidence.plots.map((plot, index) => {
+        const panels = link.panels.filter(panel => panel.plotId === plot.id);
+        const anchor = canonicalMetricAnchor(recording ? link.id : panels[0]!.id);
+        const ids = [...new Set([...panels.flatMap(panel => [panel.id, canonicalMetricAnchor(panel.id)]), ...(index === 0 ? candidateIds : [])])];
+        const cardId = index === 0 ? link.id : panels[0]!.id;
+        const displayPlot = chart.title === "NeuroAI performance–cost frontier over time" ? { ...plot, title: displayTitle } : plot;
+        return <article key={plot.id} id={cardId} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+          <div data-draft-panel>
+            <span id={anchor} className="metric-anchor" />
+            {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
+            <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
+              previewContext={<div className="metric-preview-context">
+                <p data-metric-scope>{plot.scope.split(/\.(?:\s|$)/)[0]}.</p>
+                {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
+              </div>}
+              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+            <div data-metric-card-footer><DraftChartShare anchor={anchor} label={displayPlot.title} /></div>
+          </div>
+        </article>;
+      });
+      if (evidence.timeline) {
+        const timeline = evidence.timeline;
+        const panel = link.panels.find(panel => panel.plotId === null)!;
+        const anchor = canonicalMetricAnchor(panel.id);
+        const ids = [panel.id, ...(cards.length ? [] : candidateIds)];
+        cards.push(<article key={panel.id} id={cards.length ? panel.id : link.id} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
+          <div data-draft-panel>
+            <span id={anchor} className="metric-anchor" />
+            {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
+            <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
+              previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
+              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+            <div data-metric-card-footer><DraftChartShare anchor={anchor} label="Selected application events" /></div>
+          </div>
+        </article>);
+      }
+      return cards;
     });
-    if (evidence.timeline) {
-      const timeline = evidence.timeline;
-      const panel = link.panels.find(panel => panel.plotId === null)!;
-      const anchor = canonicalMetricAnchor(panel.id);
-      const ids = [panel.id, ...(cards.length ? [] : candidateIds)];
-      cards.push(<article key={panel.id} id={cards.length ? panel.id : link.id} {...metricSizingVisibility(hidden)} className="metric-chart-card" data-metric-tile data-draft-chart-card={chart.title} data-draft-chart-status="plotted">
-        <div data-draft-panel>
-          <span id={anchor} className="metric-anchor" />
-          {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
-          <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
-            previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
-            methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
-          <div data-metric-card-footer><DraftChartShare anchor={anchor} label="Selected application events" /></div>
-        </div>
-      </article>);
-    }
-    return cards;
-  })}</>;
+    // Reorder peer tiles only after assigning aliases, preserving each original URL's owner.
+    if (selectedCategory === "Cost and automation") tiles.sort((a, b) =>
+      (COST_AUTOMATION_PLOT_ORDER.get(a.key ?? "") ?? COST_AUTOMATION_PLOT_ORDER.size)
+      - (COST_AUTOMATION_PLOT_ORDER.get(b.key ?? "") ?? COST_AUTOMATION_PLOT_ORDER.size));
+    return <>{tiles}</>;
+  }
   return <section className="draft-charts draft-charts-gallery" aria-label={selectedCategory ?? "Metrics"}>
     {!selectedCategory && <header className="draft-charts-header">
       <p className="pc-eyebrow">Source-backed observations</p>

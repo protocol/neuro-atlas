@@ -243,7 +243,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor }: { data
   </div>;
 }
 
-export function CurveCard({ id, title, coverage, plot, children }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode }) {
+export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${id}`;
@@ -254,20 +254,25 @@ export function CurveCard({ id, title, coverage, plot, children }: { id: string;
       <span className="pc-card-title">{title}</span>
       <span className="pc-coverage">{coverage}</span>
       {plot && <CurvePlot data={plot} compact />}
+      {previewNote && <span className="pc-preview-qualification">{previewNote}</span>}
     </button>
-    <div className="pc-card-share" data-metric-card-footer>{share}</div>
+    <div className="pc-card-share" data-metric-card-footer>
+      {sourceLinks?.length ? <div className="pc-preview-sources">{sourceLinks.map(source => <a key={source.url} data-curve-source-link href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>)}</div> : null}
+      {share}
+    </div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
       {share}
+      {modalIntro}
       {plot && <CurvePlot data={plot} shareAnchor={id} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} />}
       {children}
     </ChartModal>}
   </article>;
 }
 
-function MeasurementCard({ series, provenance }: { series: MeasurementSeries; provenance?: React.ReactNode }) {
+export function MeasurementCard({ series, provenance, anchor = series.id, previewNote }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string }) {
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks };
-  return <CurveCard id={series.id} title={series.title} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
+  return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
       <h4>Definitions &amp; methodology</h4>
       <p>{series.description}</p>

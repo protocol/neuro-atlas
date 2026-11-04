@@ -7,9 +7,9 @@ export const metadata = atlasMetadata("/", "Neuro Atlas");
 
 const PLATES = [
   { href: "/milestones", title: "Milestones", view: "milestones", blurb: "Follow the scientific, clinical, and commercial breakthroughs." },
-  { href: NEUROFOUNDERS_MAP_URL, title: "Ecosystem", view: "ecosystem", blurb: "Explore the startup map on Neurofounders. Opens in a new tab." },
+  { href: "/field-velocity", title: "Field Velocity", view: "velocity", blurb: "See how capabilities are advancing — and what could come next." },
   { href: "/funding", title: "BCI Funding Index", view: "funding", blurb: "Explore funding rounds and investors in brain-computer interfaces." },
-  { href: "/field-velocity", title: "Field velocity", view: "velocity", blurb: "See how capabilities are advancing — and what could come next." },
+  { href: NEUROFOUNDERS_MAP_URL, title: "Ecosystem", view: "ecosystem", blurb: "Explore the startup map on Neurofounders. Opens in a new tab." },
 ] as const;
 
 export default function Home() {

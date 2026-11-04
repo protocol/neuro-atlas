@@ -30,8 +30,8 @@ export function performanceUrl(currentUrl: string, anchor: string) {
  * Metadata works even while the owning category is hidden, before it reveals.
  */
 function isCuratedPopupTarget(anchor: string) {
-  return Array.from(document.querySelectorAll<HTMLElement>("[data-draft-popout]")).some(panel =>
-    panel.dataset.draftPopout === anchor || panel.dataset.draftPopoutAliases?.split(" ").includes(anchor));
+  return Array.from(document.querySelectorAll<HTMLElement>("[data-draft-popout], [data-performance-card]")).some(panel =>
+    panel.dataset.performanceCard === anchor || panel.dataset.draftPopout === anchor || panel.dataset.draftPopoutAliases?.split(" ").includes(anchor));
 }
 
 /** Wait for the revealed pane and its responsive plots to finish layout before scrolling.

@@ -79,7 +79,7 @@ test('only the unique capability chart remains alongside curated measurements', 
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(VelocityTabs, { performance: null, references: refs })));
   try {
     const doc = dom.window.document;
-    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 1);
+    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 2, 'Unique capability chart plus the participant timeline');
     assert.equal(doc.querySelectorAll('[data-coming-soon]').length, 0);
     assert.equal(doc.querySelector('[data-performance-card="tissue-mapped"], [data-performance-card="neural-recording-hours"]'), null);
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));
@@ -198,7 +198,7 @@ for (const anchor of ['draft-panel-tissue-cm3', 'metric-panel-tissue-cm3']) {
 
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
-test('the retained commitments fragment reveals Neurotech field engagement and scrolls its reading, not a modal', async () => {
+test('the retained commitments fragment opens the participant chart without moving the background', async () => {
   const scrolled = [];
   const cleanup = await mount(React.createElement(Page), '#revealed_commitments', win => {
     win.HTMLElement.prototype.scrollIntoView = function() { scrolled.push(this.id); };
@@ -206,11 +206,11 @@ test('the retained commitments fragment reveals Neurotech field engagement and s
   try {
     await settle(); await settle();
     assert.equal(document.querySelector('[data-metric-toggle="Neurotech field engagement"]').getAttribute('aria-expanded'), 'true');
-    assert.equal(document.querySelector('#revealed_commitments').closest('[hidden]'), null);
-    assert.ok(scrolled.includes('revealed_commitments'));
-    assert.equal(document.querySelector('dialog[open]'), null);
+    assert.equal(document.querySelector('[data-performance-card="revealed_commitments"]').closest('[hidden]'), null);
+    assert.equal(scrolled.includes('revealed_commitments'), false);
+    assert.ok(document.querySelector('dialog[open]'));
     await act(async () => navigatePerformance('performance_curves'));
     await act(async () => navigatePerformance('revealed_commitments'));
-    assert.equal(window.history.state.atlasModalFrom, null);
+    assert.ok(window.history.state.atlasModalFrom);
   } finally { await cleanup(); }
 });

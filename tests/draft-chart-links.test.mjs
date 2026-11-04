@@ -24,6 +24,30 @@ function configureScroll(scrolled) {
 }
 const expected = JSON.parse(readFileSync(new URL("./fixtures/draft-chart-links.json", import.meta.url), "utf8"));
 
+test("Inflection points remains reachable at the existing expectations fragment and tab action", async () => {
+  globalThis.React = React;
+  const cleanup = await mount(tabs(), "#expectations", configureScroll([]));
+  try {
+    const activeTab = () => document.querySelector("button[aria-current=true]");
+    assert.equal(activeTab().textContent, "Inflection points");
+    assert.equal(window.location.hash, "#expectations");
+    const section = document.querySelector('section[aria-label="Inflection points and related measurements"]');
+    assert.ok(section);
+    assert.equal(section.closest("[hidden]"), null);
+    assert.equal([...document.querySelectorAll("button")].some(button => button.textContent === "Expectations"), false);
+    await click([...document.querySelectorAll("button")].find(button => button.textContent === "Metrics"));
+    assert.equal(window.location.hash, "#performance_curves");
+    assert.equal(activeTab().textContent, "Metrics");
+    await click([...document.querySelectorAll("button")].find(button => button.textContent === "Inflection points"));
+    assert.equal(window.location.hash, "#expectations");
+    assert.equal(activeTab().textContent, "Inflection points");
+    assert.equal(section.closest("[hidden]"), null);
+    assert.equal(window.location.pathname, "/neuro-atlas/field-velocity");
+    assert.equal(window.location.search, "?review=1&review=2");
+    assert.equal(window.history.state.existing, "preserved");
+  } finally { await cleanup(); }
+});
+
 test("fresh actual chart/panel URLs open the matching popup; retired definitions still reveal inline", async () => {
   globalThis.React = React;
   for (const candidate of expected) {
@@ -86,7 +110,7 @@ test("stable alias URLs, same-hash navigation and Back/Forward preserve popup hi
     await act(async () => navigatePerformance(panel));
     await openAt(panel);
     await act(async () => navigatePerformance("expectations"));
-    assert.equal(document.querySelector("[aria-current=true]").textContent, "Expectations");
+    assert.equal(document.querySelector("[aria-current=true]").textContent, "Inflection points");
     assert.equal(document.querySelector("dialog[open]"), null);
     await act(async () => window.history.back());
     await openAt(panel);
@@ -126,10 +150,10 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   try {
     await click(document.querySelector("[data-expand-metrics]"));
     const buttons = [...document.querySelectorAll('[data-copy-draft-link]')];
-    assert.equal(buttons.length, 15, 'One Copy link per actual plot or timeline, not per alias');
+    assert.equal(buttons.length, 16, 'One Copy link per actual plot or timeline, including the participant time plot, not per alias');
     for (const button of buttons) {
       const canonical = button.dataset.copyDraftLink;
-      assert.ok(document.getElementById(canonical));
+      assert.ok(document.getElementById(canonical) ?? document.querySelector(`[data-performance-card="${canonical}"]`), `Share target ${canonical} exists as an inline anchor or modal chart`);
       await click(button);
       assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonical}`);
       assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");

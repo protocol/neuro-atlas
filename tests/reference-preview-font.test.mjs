@@ -20,7 +20,8 @@ const baseline = {
   'tissue-mapped': '4381ff79385d5b1375b516b77b21840bd1601497e8cac0eeab3143bd45678d89',
   'neural-recording-hours': '4089d4a140e99d8703af2f956e032218e9d3965a7e7051aaf8d6ac38d884d266',
   idea_vintage: '158b7a9b48047b6ff64c84ea9982b55ba0f655f0fa346117ac16145f90d74f47',
-  latency_compression: 'dbbf9b6c83aa40fdb5d3080e019f74b6d3e2d72ea888ca01627e6cbe1766daaa',
+  // Reviewed replacement of the withdrawn animal-event series: five sourced report intervals.
+  latency_compression: '3528e6676217983e6ffeebba28b29466ea2e344f878ad7d8c5cb5864af713826',
 };
 const charts = () => React.createElement(React.Fragment, null,
   React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, flat: true }),

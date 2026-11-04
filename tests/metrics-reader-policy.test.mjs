@@ -47,31 +47,32 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
   try {
     const doc = dom.window.document;
     assert.equal(doc.querySelectorAll('[data-coming-soon], #markets').length, 0);
-    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 3, 'Unique neuron capability chart and two pace cards');
+    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 4, 'Unique neuron capability chart, two pace cards and participant timeline');
     assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
     assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 78);
     assert.equal(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'), null);
     assert.equal(doc.querySelector('#metric-category-3 [data-performance-card="neural-recording-hours"]'), null);
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));
-    assert.ok(doc.querySelector('#metric-category-6 #revealed_commitments'));
+    assert.ok(doc.querySelector('#metric-category-6 [data-performance-card="revealed_commitments"]'));
     const surface = doc.querySelector('.metrics-index').cloneNode(true);
     surface.querySelectorAll('details').forEach(node => node.remove());
     assert.equal(/Channel count frontier|not yet wired|unwired|evidence gaps|no year-by-year series wired yet|\bmarkets\b/i.test(surface.textContent), false);
   } finally { dom.window.close(); }
 });
 
-test('commitments uses the validated shared cohort, scope and observation date', () => {
-  const record = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')).records.find(row => row.instrument === 'revealed_commitments');
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(VelocityInstrumentsSection, { performance: null })));
+test('commitments preserves the shared cohort source inside the new dated series', async () => {
+  const cleanup = await mount(React.createElement(VelocityInstrumentsSection, { performance: null }));
   try {
-    const card = dom.window.document.getElementById('revealed_commitments');
-    assert.ok(card.textContent.includes(record.metric), 'Use the shared implantable-BCI cohort definition');
-    assert.ok(card.textContent.includes(record.value), '67 participants through December 2023');
-    const details = card.querySelector('details:not([open])');
-    assert.ok(details?.textContent.includes(record.trend), 'Full original scope remains in the disclosure');
-    assert.match(card.textContent, /endovascular.*ECoG/);
-    assert.match(card.textContent, /not.*active installed base/);
-    assert.doesNotMatch(card.textContent, /Enrolment is now accelerating|1998–2024|through 2024|Cumulative humans implanted with an intracortical/);
-  } finally { dom.window.close(); }
+    const card = document.querySelector('[data-performance-card="revealed_commitments"]');
+    assert.ok(card.querySelector('svg circle'), 'Show the available chronological checkpoints');
+    await click(card.querySelector('.pc-trigger'));
+    const modal = document.querySelector('dialog[open]');
+    const review = modal.querySelector('[data-source-observation="identified-literature-cohort:2023-12-01"]');
+    assert.match(review.textContent, /67 participants/);
+    assert.match(review.textContent, /2023-12/);
+    assert.match(review.textContent, /endovascular/);
+    assert.ok(review.querySelector('a[href="https://www.nature.com/articles/s44222-024-00239-5"]'));
+    assert.doesNotMatch(modal.textContent, /Enrolment is now accelerating|1998–2024|through 2024|Cumulative humans implanted with an intracortical/);
+  } finally { await cleanup(); }
 });

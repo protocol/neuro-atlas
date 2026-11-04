@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-11-03",
+  "sourcePolicy": "Atlas-only reviewed additions; original versioned provider snapshot is retained byte-for-byte. Program series overlap and are never summed.",
+  "tracks": [
+    {
+      "id": "onward-arc-bci",
+      "label": "ONWARD ARC-BCI · brain–spine",
+      "definition": "Company-reported people receiving cortical WIMAGINE/ARC-BCI recording implant paired with implanted spinal-cord stimulation for thought-driven movement after SCI.",
+      "points": [
+        {
+          "date": "2024-09-12",
+          "datePrecision": "day",
+          "dateBasis": "observation",
+          "value": 3,
+          "label": "ONWARD ARC-BCI · brain–spine · 3 participants",
+          "sourceUrl": "https://www.globenewswire.com/news-release/2024/09/19/2948718/0/en/ONWARD-Medical-Announces-Third-Implant-of-Brain-Computer-Interface-BCI-System-to-Restore-Movement-after-Spinal-Cord-Injury.html",
+          "sourceLabel": "ONWARD Medical Announces Third Implant of Brain-Computer Interface (BCI) System to Restore Movement after Spinal Cord Injury",
+          "note": "Source: “This latest news marks the third human implant of the WIMAGINE BCI paired with ARC-IM Therapy to restore thought-enabled movement after SCI and the second for lower limb mobility.” Ordinal third implant interpreted as three program participants, supported by source referring to this participant and later five/seven person totals; not three arrays. Successive program totals overlap one another and may overlap historical CEA/WIMAGINE recipients in the review. Do not sum; do not include ARC-IM-only blood-pressure or mobility trials, ARC-EX, or count two cortical implants as two people."
+        },
+        {
+          "date": "2025-05-21",
+          "datePrecision": "day",
+          "dateBasis": "disclosure",
+          "value": 5,
+          "label": "ONWARD ARC-BCI · brain–spine · 5 participants",
+          "sourceUrl": "https://www.globenewswire.com/news-release/2025/05/21/3085412/0/en/ONWARD-Medical-Advances-Brain-Computer-Interface-Leadership-with-Fourth-and-Fifth-Successful-BCI-Implants.html",
+          "sourceLabel": "ONWARD Medical Advances Brain-Computer Interface Leadership with Fourth and Fifth Successful BCI Implants",
+          "note": "Source: “two additional individuals with spinal cord injury have received ONWARD’s investigational ARC-BCI® Therapy, bringing the total number of successful implants to five.”  Successive program totals overlap one another and may overlap historical CEA/WIMAGINE recipients in the review. Do not sum; do not include ARC-IM-only blood-pressure or mobility trials, ARC-EX, or count two cortical implants as two people."
+        },
+        {
+          "date": "2026-09-09",
+          "datePrecision": "day",
+          "dateBasis": "disclosure",
+          "value": 7,
+          "label": "ONWARD ARC-BCI · brain–spine · 7 participants",
+          "sourceUrl": "https://ir.onwd.com/static-files/d09584e7-1a3d-4d35-91c6-69c88fd667eb",
+          "sourceLabel": "ONWARD Medical Reports Half Year 2026 Results with Strong Product Revenue Growth and Continued Progress across ARC Therapy Pipeline",
+          "note": "Source: “Seven study participants have now received ARC-BCI Therapy to restore movement of their own paralyzed limbs.” Reaffirmation, not two new implants after January. The same report’s 22 participants are ARC-IM-only Empower BP, NOT implanted BCI recipients. Successive program totals overlap one another and may overlap historical CEA/WIMAGINE recipients in the review. Do not sum; do not include ARC-IM-only blood-pressure or mobility trials, ARC-EX, or count two cortical implants as two people."
+        }
+      ]
+    },
+    {
+      "id": "neo-documented-lower-bound",
+      "label": "NEO · documented recipients (lower bound)",
+      "definition": "NEO (Neuracle/Tsinghua), chronic wireless epidural ECoG for assistive hand-grasp control and rehabilitation in cervical SCI. Lower bound on documented program recipients, not a current total or active users.",
+      "points": [
+        {
+          "date": "2023-10-24",
+          "datePrecision": "day",
+          "dateBasis": "observation",
+          "value": 1,
+          "label": "NEO · documented recipients (lower bound) ≥1 participants",
+          "sourceUrl": "https://www.tsinghua.edu.cn/en/info/1245/12706.htm",
+          "sourceLabel": "Minimally Invasive Brain Computer Interface helps tetraplegia restore hand functions",
+          "note": "Source: “The first implantation of the NEO system was completed on October 24, 2023, in Beijing Xuanwu Hospital, and the second on December 19, 2023, in Beijing Tiantan Hospital.” Source gives exact surgery dates. Publication date is not displayed in HTML; left null, not guessed. First two feasibility recipients recur in later NEO research. The 32 confirmatory patients are a study cohort, not a stated entire-program total; use ≥32. Do not add the 4 feasibility cases to 32 absent a verified person-level crosswalk; do not add NEO to historical global 67 (cutoff/coverage mismatch).",
+          "qualifier": "at-least"
+        },
+        {
+          "date": "2023-12-19",
+          "datePrecision": "day",
+          "dateBasis": "observation",
+          "value": 2,
+          "label": "NEO · documented recipients (lower bound) ≥2 participants",
+          "sourceUrl": "https://www.tsinghua.edu.cn/en/info/1245/12706.htm",
+          "sourceLabel": "Minimally Invasive Brain Computer Interface helps tetraplegia restore hand functions",
+          "note": "Source: “The first implantation of the NEO system was completed on October 24, 2023, in Beijing Xuanwu Hospital, and the second on December 19, 2023, in Beijing Tiantan Hospital.” First and second explicitly identified; publication date not displayed. First two feasibility recipients recur in later NEO research. The 32 confirmatory patients are a study cohort, not a stated entire-program total; use ≥32. Do not add the 4 feasibility cases to 32 absent a verified person-level crosswalk; do not add NEO to historical global 67 (cutoff/coverage mismatch).",
+          "qualifier": "at-least"
+        },
+        {
+          "date": "2025-01-01",
+          "datePrecision": "year",
+          "dateBasis": "observation",
+          "value": 32,
+          "label": "NEO confirmatory study: at least 32 documented recipients",
+          "sourceUrl": "https://www.digitalchina.gov.cn/2026/xwzx/szkx/202604/t20260413_5307836.htm",
+          "sourceLabel": "Guangming Daily / Digital China — NEO clinical implants",
+          "note": "April 13, 2026 report: “2025年，在全国11家医院开展多中心确证性临床试验，完成32例颈段脊髓损伤患者的临床植入。” [In 2025, a multicenter confirmatory trial across 11 hospitals completed clinical implantation in 32 people with cervical spinal-cord injury; analyst translation.] The x-coordinate is the reported implantation year; January 1 is the year anchor. The program-wide documented lower bound is ≥32; the earlier feasibility cases may overlap. Counts are never added across tracks.",
+          "qualifier": "at-least"
+        }
+      ]
+    }
+  ],
+  "papers": [
+    {
+      "title": "The state-of-the-art of invasive brain-computer interfaces in humans: a systematic review and individual patient meta-analysis",
+      "url": "https://api.crossref.org/works/10.1088/1741-2552/adb88e",
+      "doi": "10.1088/1741-2552/adb88e",
+      "publishedDate": "2025-03-12",
+      "coverage": "Publisher-deposited abstract",
+      "count": 214,
+      "note": "214 patients across 93 studies under broader eligibility than the historical 67-person review. Without a person-level crosswalk, this is not a new point on the same cumulative series.",
+      "quote": "93 studies involving 214 patients were included in this systematic review."
+    },
+    {
+      "title": "Recalibration of implantable brain–computer interfaces to enable long-term independent use–a systematic review",
+      "url": "https://dspace.library.uu.nl/bitstreams/6ee40002-c30e-45dc-9761-7c2b17b4830b/download",
+      "doi": "10.1088/1741-2552/ae7694",
+      "publishedDate": "2026-06-23",
+      "coverage": "Publisher-version PDF in the Utrecht institutional repository",
+      "count": 39,
+      "note": "39 subjects across 58 recalibration-focused studies from 2006–2024. This narrower cohort is not a lower or newer global total.",
+      "quote": "The cohort of patients discussed in this review comprises 39 subjects"
+    },
+    {
+      "title": "Clinical safety assessment of implanted brain-computer interfaces: current evidence and a pathway to standardization",
+      "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2026.1994636/full",
+      "doi": "10.3389/fnins.2026.1994636",
+      "publishedDate": "2026-10-28",
+      "coverage": "Full text",
+      "count": null,
+      "note": "The October 2026 review explicitly distinguishes the eligibility behind 67 and 214 patients; it supplies context, not a new participant total.",
+      "quote": "A broader review included 93 studies and 214 patients because it used different eligibility boundaries"
+    }
+  ]
+}
