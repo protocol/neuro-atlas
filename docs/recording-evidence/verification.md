@@ -3,7 +3,7 @@
 ## Revisions and surface
 
 - Baseline: `f8c94214e392a121f1dbb80e0c6bf9776fc2bdc3`.
-- Native captured runtime: `7caba154ae353c5e9afa114aa9446cde79a1d254`.
+- Native captured runtime: `fe9b870470e780c1cb57cf86f14c36d34cd6957c`.
 - These are headed Chrome captures of the actual production-built `/field-velocity#simultaneously-recorded-neurons` route, served on loopback. They are **not authenticated hosted-preview screenshots**. Later documentation/evidence-only commits must have no runtime/configuration/test delta from this runtime.
 - Existing provider data and provenance remain unchanged. Curated observations live separately in `src/data/recording-evidence.ts`.
 
