@@ -15,19 +15,19 @@ import {createRequire} from 'node:module';
 const require = createRequire(import.meta.url);
 test('generated QA proxy runs the installed Next response and fails closed on hosted mode or wrong raw Host', async () => {
   const {fixtureProxySource} = await import('../scripts/qa/feedback-linear-fixture.mjs');
-  const ts = require('typescript'), module = {exports:{}};
+  const ts = require('typescript'), compiledModule = {exports:{}};
   const raw = fixtureProxySource({port:40589,revision:'a'.repeat(40),phase:'candidate'});
   const compiled = ts.transpileModule(raw,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
   const env = {ATLAS_PRIVATE_FEEDBACK_QA:'1'};
-  new Function('exports','require','process',compiled)(module.exports, require,{env});
+  new Function('exports','require','process',compiled)(compiledModule.exports, require,{env});
   const request = host => new Request('http://127.0.0.1:40589/neuro-atlas/field-velocity',{headers:{host}});
-  const accepted = module.exports.proxy(request('127.0.0.1:40589'));
+  const accepted = compiledModule.exports.proxy(request('127.0.0.1:40589'));
   assert.equal(accepted.headers.get('x-atlas-qa-revision'),`linear-feedback-candidate-${'a'.repeat(40)}`);
   assert.match(accepted.headers.get('x-robots-tag'),/noindex/);
-  assert.equal(module.exports.proxy(request('example.com')).status,403);
-  env.VERCEL='1'; assert.equal(module.exports.proxy(request('127.0.0.1:40589')).status,403);
+  assert.equal(compiledModule.exports.proxy(request('example.com')).status,403);
+  env.VERCEL='1'; assert.equal(compiledModule.exports.proxy(request('127.0.0.1:40589')).status,403);
   delete env.VERCEL; delete env.ATLAS_PRIVATE_FEEDBACK_QA;
-  assert.equal(module.exports.proxy(request('127.0.0.1:40589')).status,403);
+  assert.equal(compiledModule.exports.proxy(request('127.0.0.1:40589')).status,403);
 });
 
 import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
