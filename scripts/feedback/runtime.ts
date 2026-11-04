@@ -1,5 +1,5 @@
 import { createPrivateKey,createPublicKey,randomUUID } from 'node:crypto';
-import { mkdtemp,rm,symlink } from 'node:fs/promises';
+import { mkdtemp,rm,cp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -23,9 +23,9 @@ async function trustedMain():Promise<string> {
   const value=await boundedJson(response,8192) as {ref?:string;object?:{sha?:string}};
   if(value.ref!=='refs/heads/main'||!/^[0-9a-f]{40}$/.test(value.object?.sha??''))throw new Error('runtime_disabled');return value.object!.sha!;
 }
-async function withCheckout<T>(repo:string,base:string,dependencies:boolean,fn:(cwd:string)=>Promise<T>):Promise<T> {
+export async function withCheckout<T>(repo:string,base:string,dependencies:boolean,fn:(cwd:string)=>Promise<T>):Promise<T> {
   const directory=await mkdtemp(path.join(tmpdir(),'atlas-feedback-runtime-')),cwd=path.join(directory,'checkout');let added=false;
-  try {await git(repo,['worktree','add','--detach',cwd,base]);added=true;if(dependencies)await symlink(path.join(repo,'node_modules'),path.join(cwd,'node_modules'),'dir');return await fn(cwd);}
+  try {await git(repo,['worktree','add','--detach',cwd,base]);added=true;if(dependencies)await cp(path.join(repo,'node_modules'),path.join(cwd,'node_modules'),{recursive:true,verbatimSymlinks:true});return await fn(cwd);}
   finally {if(added)await git(repo,['worktree','remove','--force',cwd]).catch(()=>{});await rm(directory,{force:true,recursive:true});}
 }
 function required(name:string):string {const value=process.env[name];if(!value)throw new Error('runtime_disabled');return value;}
