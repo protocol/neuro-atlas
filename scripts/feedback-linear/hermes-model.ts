@@ -8,9 +8,10 @@ const positive = z.number().int().positive();
 export const hermesModelSchema = z.object({enabled:z.literal(true),account:z.literal('hermes-default-openai-codex'),model:z.literal('gpt-6-astra'),maxTurns:z.literal(1),maxInputTokens:positive,maxOutputTokens:positive.max(8192),maxBodyBytes:positive.max(131072),maxResponseBytes:positive.max(262144),timeoutMs:positive.max(120000),fixture:z.boolean().optional(),fixtureOrigin:z.string().optional()}).strict();
 export type HermesModelConfig = z.infer<typeof hermesModelSchema>;
 export type CountMeter = {assertActive(): Promise<void>; reserve(tokens: number): Promise<string>; complete(id: string, usage: {inputTokens: number; outputTokens: number}): Promise<void>};
-/** Verified 2026-11-04: proxy has only nous/xai; Codex auxiliary drops output caps.
- * Never replace this stop with an agent CLI (tools/context/fallback), credential bridge,
- * arbitrary subprocess, provider switch or a merely client-side output-length check.
+/** Default remains held until independently reviewed native-runner integration.
+ * astra_native.py now implements the fixed raw_codex=True no-tools bounded route;
+ * one authorized public smoke returned Astra/cap/usage (see feedback-linear-astra.md).
+ * Never bypass this stop with an agent CLI, credential bridge or client-side truncation.
  */
 export const ASTRA_BLOCKER = 'hermes_astra_bounded_broker_unavailable';
 export class HermesAstraModel {
