@@ -22,7 +22,7 @@
     "postcss": "^8.5.32",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "zod": "^4.5.4"
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.15",
