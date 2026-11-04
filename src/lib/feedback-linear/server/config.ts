@@ -7,6 +7,7 @@ export type LinearConfig = {
   origin: string; callbackUrl: string; clientId: string; clientSecret?: string;
   ownerId: string; workspaceId: string; workspaceKey: string; projectId: string; teamId: string;
   sessionKey: string; testMode: boolean;
+  witness?: {url:string;token:string};
 };
 /** No database, defaults to OFF. Audit is an operator attestation, not a provider proof. */
 export function loadLinearConfig(env: Record<string, string | undefined> = process.env): LinearConfig | null {
@@ -29,5 +30,12 @@ export function loadLinearConfig(env: Record<string, string | undefined> = proce
   if (!/^[A-Za-z0-9_-]{43}$/.test(sessionKey) || Buffer.from(sessionKey, 'base64url').length !== 32 || Buffer.from(sessionKey, 'base64url').toString('base64url') !== sessionKey) return null;
   const clientSecret = env.FEEDBACK_LINEAR_CLIENT_SECRET;
   if (clientSecret !== undefined && !/^[A-Za-z0-9_.-]{1,4096}$/.test(clientSecret)) return null;
-  return {origin, callbackUrl: `${origin}${basePath}/api/feedback/auth/callback`, clientId, ...(clientSecret ? {clientSecret} : {}), ownerId, workspaceId, workspaceKey, projectId, teamId, sessionKey, testMode};
+  let witness:LinearConfig['witness'];
+  const witnessUrl=env.FEEDBACK_LINEAR_WITNESS_URL,witnessToken=env.FEEDBACK_LINEAR_WITNESS_TOKEN;
+  if(witnessUrl!==undefined||witnessToken!==undefined){
+    if(!witnessUrl||!witnessToken||!/^[A-Za-z0-9_-]{43,128}$/.test(witnessToken))return null;
+    try{const url=new URL(witnessUrl);if(url.href!==witnessUrl||url.username||url.password||url.search||url.hash||url.pathname!=='/v1/intake-witness'||(url.protocol!=='https:'&&!(testMode&&isLoopbackUrl(witnessUrl))))return null;}catch{return null;}
+    witness={url:witnessUrl,token:witnessToken};
+  }
+  return {...(witness?{witness}:{}),origin, callbackUrl: `${origin}${basePath}/api/feedback/auth/callback`, clientId, ...(clientSecret ? {clientSecret} : {}), ownerId, workspaceId, workspaceKey, projectId, teamId, sessionKey, testMode};
 }

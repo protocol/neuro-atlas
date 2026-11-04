@@ -1,4 +1,7 @@
 import {z} from 'zod';
+import {isLoopbackUrl} from '../../feedback/config';
+import {createHttpIntakeWitness} from './witness-client';
+import {assertWitnessChain,witnessOperation} from './witness';
 import {FeedbackError, invalid, unavailable} from '../../feedback/errors';
 import type {LinearFeedbackInput, LinearFeedbackPrivateRecord} from '../contracts';
 import type {LinearConfig} from './config';
@@ -19,6 +22,8 @@ const LIST=`query AtlasList($projectId: ID!, $teamId: ID!, $ownerId: ID!, $after
 const pageSchema=z.object({nodes:z.array(z.unknown()).max(100),pageInfo:z.object({hasNextPage:z.boolean(),endCursor:z.string().nullable().optional()})});
 const commentSchema=z.object({id:z.string(),body:z.string().max(32768),issue:z.object({id:z.string()}).nullable(),user:z.object({id:z.string()}).nullable(),parent:z.object({id:z.string()}).nullable(),externalThread:z.object({id:z.string()}).nullable(),syncedWith:z.array(z.unknown()).nullable(),archivedAt:z.string().nullable(),createdAt:z.string()});
 export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeof createLinearProvider>,now:()=>Date) {
+  const witness=config.witness?createHttpIntakeWitness({...config.witness,scope:{workspaceId:config.workspaceId,projectId:config.projectId,teamId:config.teamId,ownerId:config.ownerId},testMode:config.testMode&&isLoopbackUrl(config.origin)}):undefined;
+  async function requireWitness(){if(witness)await witness.assertAvailable();else if(!(config.testMode&&isLoopbackUrl(config.origin)))return unavailable();}
   const query=(actor:LinearActor,name:string,text:string,variables:Record<string,unknown>)=>provider.graphql(actor.token,name,text,variables);
   function validateIssue(value:unknown,id?:string):Issue {
     const parsed=issueSchema.safeParse(value);if(!parsed.success)return corrupt();const issue=parsed.data;
@@ -59,6 +64,7 @@ export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeo
   function uuid(value:string|null) {if(!value||!UUID_V4.test(value))return invalid();return value;}
   const receipt=(id:string,version:number)=>({id,state:'received' as const,version});
   async function saveRecord(actor:LinearActor,record:LinearFeedbackPrivateRecord) {
+    if(witness&&!await witness.claimEffect(witnessOperation(record),'comment'))return unavailable();
     try {
       const data=await query(actor,'AtlasCommentCreate',COMMENT_CREATE,{input:{id:managedCommentId(record.feedbackId,record.version),issueId:record.feedbackId,body:renderPrivateComment(record),createOnSyncedSlackThread:false,doNotSubscribeToIssue:true}});
       const result=z.object({success:z.literal(true),comment:z.object({id:z.literal(managedCommentId(record.feedbackId,record.version))})}).safeParse(data.commentCreate);
@@ -67,7 +73,8 @@ export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeo
     const issue=await readIssue(actor,record.feedbackId);if(!issue)return corrupt();
     const history=await records(actor,record.feedbackId),saved=history[record.version-1];
     if(!saved)return unavailable();
-    if(saved.requestHash!==record.requestHash||saved.previousRecordHash!==record.previousRecordHash)return conflict();
+    if(privateRecordHash(saved)!==privateRecordHash(record))return conflict();
+    if(witness){await witness.complete(witnessOperation(record));await witness.assertLatest(history);}
     return receipt(record.feedbackId,record.version);
   }
   function conflict():never {throw new FeedbackError(409,'conflict','This feedback changed. Refresh its status before submitting again.');}
@@ -75,9 +82,66 @@ export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeo
     if(!history.length)return corrupt();
     return {...receipt(issue.id,history.length),createdAt:history[0].createdAt,updatedAt:history.at(-1)!.createdAt,reasonCode:'human_review_required'};
   };
+  async function reserveRecord(record:LinearFeedbackPrivateRecord){
+    const rows=await witness!.reserve(witnessOperation(record)),op=rows[record.version-1];
+    const {signature: _signature,...unsigned}=record;void _signature;
+    const canonicalRecord=signPrivateRecord(config,{...unsigned,createdAt:op.createdAt});
+    if(privateRecordHash(canonicalRecord)!==op.recordHash)return corrupt();
+    return canonicalRecord;
+  }
+  async function witnessedCreate(actor:LinearActor,id:string,input:LinearFeedbackInput) {
+    const rows=await witness!.read(id),known=rows[0];
+    const base={schema:'atlas-linear-feedback-v1' as const,feedbackId:id,operationId:id,ownerLinearId:config.ownerId,version:1,createdAt:known?.createdAt??now().toISOString(),input};
+    let record=signPrivateRecord(config,{...base,requestHash:requestHash(base)});
+    if(known&&known.requestHash!==record.requestHash)return conflict();
+    let issue=await readIssue(actor,id);
+    if(!known&&issue)return corrupt(); // Never adopt an unknown source identity/history.
+    if(known?.state==='committed'){
+      if(!issue)return corrupt();await witness!.assertLatest(await records(actor,id));return receipt(id,1);
+    }
+    record=await reserveRecord(record); // Durable canonical reservation before first issue mutation.
+    if(!issue){
+      if(!await witness!.claimEffect(witnessOperation(record),'issue'))return unavailable();
+      try{
+        const data=await query(actor,'AtlasIssueCreate',CREATE,{input:{id,teamId:config.teamId,projectId:config.projectId,title:TITLE,description:description(config,id),useDefaultTemplate:false,labelIds:[],subscriberIds:[],priority:0}});
+        if(!z.object({success:z.literal(true),issue:z.object({id:z.literal(id)})}).safeParse(data.issueCreate).success)return unavailable();
+      }catch(error){if(!(error instanceof FeedbackError)||error.status!==503)throw error;}
+      issue=await readIssue(actor,id);if(!issue)return unavailable();
+    }
+    const history=await records(actor,id);
+    if(history.length){
+      if(history.length!==1||privateRecordHash(history[0])!==privateRecordHash(record))return corrupt();
+      await witness!.complete(witnessOperation(history[0]));await witness!.assertLatest(history);return receipt(id,1);
+    }
+    return saveRecord(actor,record);
+  }
+  async function witnessedFollowup(actor:LinearActor,id:string,operationId:string,value:ReturnType<typeof linearFollowupSchema.parse>) {
+    const issue=await readIssue(actor,id);if(!issue)return corrupt();
+    const history=await records(actor,id),rows=await witness!.read(id),{expectedVersion,...input}=value,version=expectedVersion+1,known=rows[version-1];
+    const base={schema:'atlas-linear-feedback-v1' as const,feedbackId:id,operationId,ownerLinearId:config.ownerId,version,createdAt:known?.createdAt??now().toISOString(),input:input as LinearFeedbackInput};
+    const fingerprint=requestHash(base);
+    if(known&&known.requestHash!==fingerprint)return conflict();
+    if(known?.state==='committed'){await witness!.assertLatest(history);return receipt(id,version);}
+    if(known){
+      if(rows.length!==version||history.length<expectedVersion||history.length>version)return corrupt();
+      assertWitnessChain(rows.slice(0,-1),history.slice(0,expectedVersion),config.ownerId);
+    }else{
+      await witness!.assertLatest(history);
+      if(history.length!==expectedVersion||rows.some(r=>r.operationId===operationId))return conflict();
+    }
+    let record=signPrivateRecord(config,{...base,requestHash:fingerprint,previousRecordHash:privateRecordHash(history[expectedVersion-1])});
+    record=await reserveRecord(record);
+    if(history[version-1]){
+      if(privateRecordHash(history[version-1])!==privateRecordHash(record))return corrupt();
+      await witness!.complete(witnessOperation(history[version-1]));await witness!.assertLatest(history);return receipt(id,version);
+    }
+    return saveRecord(actor,record);
+  }
   return {
     async create(actor:LinearActor,key:string|null,value:unknown) {
+      await requireWitness();
       const id=uuid(key),parsed=linearInputSchema.safeParse(value);if(!parsed.success)return invalid();
+      if(witness)return witnessedCreate(actor,id,parsed.data as LinearFeedbackInput);
       let issue=await readIssue(actor,id);
       if(!issue) {
         try {
@@ -92,7 +156,9 @@ export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeo
       return saveRecord(actor,signPrivateRecord(config,{...base,requestHash:fingerprint}));
     },
     async followup(actor:LinearActor,value:string,key:string|null,body:unknown) {
+      await requireWitness();
       const id=uuid(value),operationId=uuid(key),parsed=linearFollowupSchema.safeParse(body);if(!parsed.success)return invalid();
+      if(witness)return witnessedFollowup(actor,id,operationId,parsed.data);
       const issue=await readIssue(actor,id);if(!issue)throw new FeedbackError(404,'not_found','Feedback not found.');
       const history=await records(actor,id);if(!history.length)return corrupt();
       const {expectedVersion,...input}=parsed.data,version=expectedVersion+1;
@@ -103,16 +169,19 @@ export function createLinearIntake(config:LinearConfig,provider:ReturnType<typeo
       return saveRecord(actor,signPrivateRecord(config,{...base,requestHash:fingerprint,previousRecordHash:privateRecordHash(history.at(-1)!)}));
     },
     async status(actor:LinearActor,value:string) {
+      await requireWitness();
       const id=uuid(value),issue=await readIssue(actor,id);if(!issue)throw new FeedbackError(404,'not_found','Feedback not found.');
-      return statusValue(issue,await records(actor,id));
+      const history=await records(actor,id);if(witness)await witness.assertLatest(history);return statusValue(issue,history);
     },
     async list(actor:LinearActor,limit:number) {
+      await requireWitness();
+      const witnessedIds=witness?await witness.identities():undefined,seen=new Set<string>();
       const items=[];let after:string|null=null;
       for(let pages=0;pages<25;pages++) {
         const data=await query(actor,'AtlasList',LIST,{projectId:config.projectId,teamId:config.teamId,ownerId:config.ownerId,after}),page=pageSchema.safeParse(data.issues);
         if(!page.success)return corrupt();
-        for(const raw of page.data.nodes){const issue=validateIssue(raw);items.push(statusValue(issue,await records(actor,issue.id)));if(items.length===limit)return {items};}
-        if(!page.data.pageInfo.hasNextPage)return {items};
+        for(const raw of page.data.nodes){const issue=validateIssue(raw),history=await records(actor,issue.id);if(seen.has(issue.id))return corrupt();seen.add(issue.id);if(witness)await witness.assertLatest(history);items.push(statusValue(issue,history));if(!witness&&items.length===limit)return {items};}
+        if(!page.data.pageInfo.hasNextPage){if(witnessedIds&&(witnessedIds.length!==seen.size||witnessedIds.some(id=>!seen.has(id))||JSON.stringify(witnessedIds)!==JSON.stringify(await witness!.identities())))return corrupt();return {items:items.slice(0,limit)};}
         const cursor=page.data.pageInfo.endCursor;if(!cursor||cursor===after)return corrupt();after=cursor;
       }
       return corrupt();
