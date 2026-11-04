@@ -9,7 +9,7 @@ async function listen(handler) {
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   return {url:`http://127.0.0.1:${server.address().port}`,close:()=>new Promise(resolve=>{server.closeAllConnections();server.close(resolve);})};
 }
-export async function fixture(t) {
+export async function fixture(t,extraConfig={}) {
   const {loadLinearConfig}=await import('../src/lib/feedback-linear/server/config.ts');
   const {createLinearService}=await import('../src/lib/feedback-linear/server/service.ts');
   const {createLinearRoutes}=await import('../src/lib/feedback-linear/server/routes.ts');
@@ -65,6 +65,7 @@ export async function fixture(t) {
   });
   const config=loadLinearConfig({FEEDBACK_ENABLED:'true',FEEDBACK_BACKEND:'linear',FEEDBACK_PUBLIC_ORIGIN:api.url,FEEDBACK_LINEAR_CLIENT_ID:'synthetic-client',FEEDBACK_LINEAR_OWNER_ID:ids.ownerId,FEEDBACK_LINEAR_WORKSPACE_ID:ids.workspaceId,FEEDBACK_LINEAR_WORKSPACE_KEY:state.workspaceKey,FEEDBACK_LINEAR_PROJECT_ID:ids.projectId,FEEDBACK_LINEAR_TEAM_ID:ids.teamId,FEEDBACK_LINEAR_SESSION_KEY:Buffer.alloc(32,7).toString('base64url'),FEEDBACK_LINEAR_SYNC_AUDIT:'ordinary-comments-isolated-v1',FEEDBACK_TEST_MODE:'true',NODE_ENV:'test',NEXT_PUBLIC_BASE_PATH:''});
   assert(config);
+  Object.assign(config,extraConfig); // Trusted synthetic peer setup, never a runtime config input.
   service=createLinearService({config,now:()=>new Date(state.clock),provider:{authorizeUrl:'https://linear.app/oauth/authorize',tokenUrl:`${peer.url}/token`,revokeUrl:`${peer.url}/revoke`,graphqlUrl:`${peer.url}/graphql`}});
   t.after(async()=>{await api.close();await peer.close();});
   const request=(path,{method='GET',body,session,key,headers={}}={})=>fetch(`${api.url}/api/feedback${path}`,{method,headers:{Origin:api.url,...(body!==undefined?{'Content-Type':'application/json'}:{}),...(session?{'X-Atlas-Feedback-Session':session}:{}),...(key?{'Idempotency-Key':key}:{}),...headers},...(body!==undefined?{body:JSON.stringify(body)}:{})});
