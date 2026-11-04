@@ -1,5 +1,6 @@
 import {randomUUID, sign, createPublicKey, type KeyLike} from 'node:crypto';
-import {PrivateFiles, type State} from './files';
+import {PrivateFiles, type State, type AttemptBudget} from './files';
+import {HermesAstraModel, hermesModelSchema, type HermesModelConfig} from './hermes-model';
 import {validateNative, hostPayload, fresh, type InputPolicy} from './input';
 import {captureSchema, assertPng, deliverySchema, decisionSchema, threadSchema, type ThreadRequest, type Proposal} from './evidence';
 import {canonical, approvalHash} from '../feedback/engine';
@@ -14,7 +15,12 @@ import {allowedOrigin, boundedJson} from '../feedback/http';
 import {normalizeFeedback} from '../../src/lib/feedback/schema';
 import type {CheckReceipt, Bundle} from '../feedback/ports';
 
-export type ReviewConfig = {enabled?: boolean; root: string; repo: string; inputPolicy: InputPolicy; channelId: string; reviewerIds: string[]; capturePublicKey: InputPolicy['hostPublicKey']; readNative: () => Promise<unknown>; readReviewThread?: (request: ThreadRequest) => Promise<unknown>; mainOrigin: string; fixture?: boolean; maxJobUsd: number; maxDayUsd: number; maxTokens: number; maxWallMs: number; proposalTtlMs: number; model: ModelConfig; modelKey: () => string};
+type ReviewCommon = {enabled?: boolean; root: string; repo: string; inputPolicy: InputPolicy; channelId: string; reviewerIds: string[]; capturePublicKey: InputPolicy['hostPublicKey']; readNative: () => Promise<unknown>; readReviewThread?: (request: ThreadRequest) => Promise<unknown>; mainOrigin: string; fixture?: boolean; maxTokens: number; maxWallMs: number; proposalTtlMs: number};
+// An omitted provider is the old explicit Anthropic/positive-USD fixture contract only.
+export type ReviewConfig = ReviewCommon & (
+  {provider?: 'anthropic'; budget?: {kind: 'usd'}; maxJobUsd: number; maxDayUsd: number; model: ModelConfig; modelKey: () => string} |
+  {provider: 'hermes-astra'; budget: AttemptBudget; maxJobUsd?: never; maxDayUsd?: never; model: HermesModelConfig; modelKey?: never}
+);
 type CheckedInput = ReturnType<typeof validateNative>;
 export type Candidate = {schema: 1; revision: number; input: CheckedInput; baseSha: string; patch: Patch; checks: {baseline: CheckReceipt; candidate: CheckReceipt}; sourcesDigest: string; policyDigest: string; preparedAt: number; expiresAt: number};
 export type Job = {state: string; fence: number; inputHash: string; candidateDigest?: string; proposalDigest?: string; deliveryDigest?: string; decisionDigest?: string; threadDigest?: string; bundleDigest?: string; publication?: Publication; result?: {number:number;url:string;headSha:string}; reason?: string};
@@ -25,11 +31,24 @@ export class ReviewController {
   constructor(readonly config: ReviewConfig) {this.files = new PrivateFiles(config.root);}
   private enabled() {
     const c = this.config;
-    if (c.enabled !== true || !c.channelId || !c.reviewerIds.length || new Set(c.reviewerIds).size !== c.reviewerIds.length || ![c.maxJobUsd,c.maxDayUsd,c.maxTokens,c.maxWallMs,c.proposalTtlMs].every(x => Number.isFinite(x) && x > 0) || !Number.isSafeInteger(c.maxTokens) || !Number.isSafeInteger(c.maxWallMs) || c.maxWallMs > 600000 || c.proposalTtlMs > 86400000 || !allowedOrigin(c.mainOrigin, 'https://api.github.com', c.fixture)) blocked();
+    this.providerEnabled();
+    if (c.enabled !== true || !c.channelId || !c.reviewerIds.length || new Set(c.reviewerIds).size !== c.reviewerIds.length || ![c.maxTokens,c.maxWallMs,c.proposalTtlMs].every(x => Number.isFinite(x) && x > 0) || !Number.isSafeInteger(c.maxTokens) || !Number.isSafeInteger(c.maxWallMs) || c.maxWallMs > 600000 || c.proposalTtlMs > 86400000 || !allowedOrigin(c.mainOrigin, 'https://api.github.com', c.fixture)) blocked();
+  }
+  private providerEnabled() {
+    const c = this.config;
+    if (c.provider === 'hermes-astra') {
+      if (c.budget?.kind !== 'attempts' || !Number.isSafeInteger(c.budget.maxAttemptsPerDay) || c.budget.maxAttemptsPerDay < 1 || c.budget.maxAttemptsPerDay > 5 || !c.budget.timeZone || !hermesModelSchema.safeParse(c.model).success || Object.hasOwn(c,'maxJobUsd') || Object.hasOwn(c,'maxDayUsd') || Object.hasOwn(c,'modelKey')) blocked();
+      try {new Intl.DateTimeFormat('en-CA',{timeZone:c.budget.timeZone});} catch {blocked();}
+    } else if ((c.provider !== undefined && c.provider !== 'anthropic') || (c.budget !== undefined && c.budget.kind !== 'usd') || ![c.maxJobUsd,c.maxDayUsd].every(x=>Number.isFinite(x) && x>0)) blocked();
+  }
+  private settled(state: State, id: string) {
+    return this.config.provider === 'hermes-astra'
+      ? state.attempts.filter(a=>a.job===id).length === 1 && state.attempts.find(a=>a.job===id)?.status === 'completed'
+      : state.spend.filter(s=>s.job===id).length === 1 && !state.spend.some(s=>s.job===id && s.actual===undefined);
   }
   private policyDigest() {
     const c = this.config;
-    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, model: c.model, caps: [c.maxJobUsd,c.maxDayUsd,c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
+    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, provider:c.provider ?? 'anthropic', budget:c.provider === 'hermes-astra' ? c.budget : {kind:'usd',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd}, model: c.model, caps: [c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
   }
   private async main() {
     const response = await fetch(this.config.mainOrigin + '/repos/protocol/neuro-atlas/git/ref/heads/main', {redirect: 'error', signal: AbortSignal.timeout(15000)});
@@ -163,7 +182,7 @@ export class ReviewController {
       job.bundleDigest = await this.files.artifact(Buffer.from(canonical(bundle)));
       job.state = 'publishing'; job.fence = fence; await this.files.save(state);
       const active = async (b: Bundle) => {
-        if (job.state !== 'publishing' || job.fence !== fence || state.fence !== fence || hash(await this.files.read()) !== hash(state) || hash(b) !== job.bundleDigest || !state.spend.some(s=>s.job===id) || state.spend.some(s=>s.job===id && s.actual===undefined)) return blocked();
+        if (job.state !== 'publishing' || job.fence !== fence || state.fence !== fence || hash(await this.files.read()) !== hash(state) || hash(b) !== job.bundleDigest || !this.settled(state,id)) return blocked();
         await this.revalidate(job); const currentProposal = await this.proposal(job);
         const currentApproval = hostPayload(JSON.parse((await this.files.artifactBytes(job.decisionDigest!)).toString()),'atlas-linear-human-decision-v1',this.config.inputPolicy.hostPublicKey,decisionSchema);
         const delivery = hostPayload(JSON.parse((await this.files.artifactBytes(job.deliveryDigest!)).toString()),'atlas-linear-review-delivery-v1',this.config.inputPolicy.hostPublicKey,deliverySchema);
@@ -198,6 +217,7 @@ export class ReviewController {
   async prepare(): Promise<Job | {state: 'disabled'}> {
     if (this.config.enabled !== true) return {state: 'disabled'};
     this.enabled();
+    if (this.config.provider === 'hermes-astra') new HermesAstraModel(this.config.model).assertAvailable();
     return this.files.lock(async state => {
       const input = await this.input(), id = input.record.feedbackId, base = await this.main();
       const existing = state.jobs[id] as Job | undefined;
@@ -224,14 +244,28 @@ export class ReviewController {
           if (hash(await loadSnapshot(cwd, base)) !== hash(sources)) blocked();
           const simple = {...input.record.input, processingConsent: {approved: true as const, policyVersion: 'atlas-feedback-simple-v1' as const}};
           const normalized = normalizeFeedback(simple);
-          const result = await new AnthropicModel(this.config.model, this.config.modelKey).generate({baseSha: base, publicTask: normalized.publicTask, publicContext: normalized.publicContext, privateInstruction: normalized.privateInstruction, sources: Object.fromEntries(Object.entries(sources).filter(([p]) => (CSS_PATHS as readonly string[]).includes(p)))}, {
+          const c = this.config;
+          const modelInput = {baseSha: base, publicTask: normalized.publicTask, publicContext: normalized.publicContext, privateInstruction: normalized.privateInstruction, sources: Object.fromEntries(Object.entries(sources).filter(([p]) => (CSS_PATHS as readonly string[]).includes(p)))};
+          const result = c.provider === 'hermes-astra' ? await new HermesAstraModel(c.model).generate(modelInput, {
+            assertActive:active,
+            reserve:async tokens=>{
+              await active();
+              if (!Number.isSafeInteger(tokens) || tokens < 1 || tokens > c.maxTokens) blocked();
+              return this.files.reserveAttempt(state,{job:id,tokens,budget:c.budget,provider:c.provider,account:c.model.account,model:c.model.model,policyDigest:this.policyDigest()});
+            },
+            complete:async (reservation,usage)=>{
+              await active(); const row = state.attempts.find(a=>a.id===reservation && a.job===id);
+              if (!row || row.status !== 'reserved' || !Number.isSafeInteger(usage.inputTokens) || !Number.isSafeInteger(usage.outputTokens) || usage.inputTokens < 0 || usage.outputTokens < 0 || usage.inputTokens+usage.outputTokens > row.tokens) blocked();
+              row!.status='completed';row!.usage=usage;await this.files.save(state);
+            },
+          },signal) : await new AnthropicModel(c.model, c.modelKey).generate(modelInput, {
             assertActive: active,
             reserve: async (upper, tokens) => {
               await active();
               const day = new Date().toISOString().slice(0, 10);
               const held = state.spend.filter(s => s.actual === undefined).reduce((n,s) => n + s.upper, 0);
               const today = state.spend.filter(s => s.actual !== undefined && s.day === day).reduce((n,s) => n + s.actual!, 0);
-              if (state.spend.some(s => s.job === id) || !Number.isFinite(upper) || upper <= 0 || upper > this.config.maxJobUsd || held + today + upper > this.config.maxDayUsd || !Number.isSafeInteger(tokens) || tokens < 1 || tokens > this.config.maxTokens) throw new Error('budget');
+              if (state.spend.some(s => s.job === id) || !Number.isFinite(upper) || upper <= 0 || upper > c.maxJobUsd || held + today + upper > c.maxDayUsd || !Number.isSafeInteger(tokens) || tokens < 1 || tokens > this.config.maxTokens) throw new Error('budget');
               const reservation = {id: randomUUID(), day, job: id, upper, tokens};
               state.spend.push(reservation); await this.files.save(state); return reservation.id;
             },
@@ -243,7 +277,7 @@ export class ReviewController {
             unknown: async reservation => {if (!state.spend.some(s => s.id === reservation)) blocked(); await this.files.save(state);},
           }, signal);
           await active();
-          if (state.spend.filter(s => s.job === id).length !== 1 || state.spend.some(s => s.job === id && s.actual === undefined)) blocked();
+          if (!this.settled(state,id)) blocked();
           const patch = validatePatch(result.patch, sources, base, 'css-only');
           await applyValidatedPatch(cwd, patch, base);
           const candidate = await runTrustedChecks(cwd, 'candidate', {timeoutMs: Math.min(this.config.maxWallMs, 300000), signal});

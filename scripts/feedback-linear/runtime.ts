@@ -5,16 +5,21 @@ import {pathToFileURL} from 'node:url';
 import {z} from 'zod';
 import {ReviewController, type ReviewConfig, type Job} from './controller';
 import {uuid} from './input';
+import {hermesModelSchema} from './hermes-model';
 
 const absolute = z.string().refine(path.isAbsolute);
 const positive = z.number().finite().positive();
-const configSchema = z.object({
+const commonSchema = z.object({
   root:absolute,repo:absolute,nativeReadPath:absolute,hostPublicKeyPath:absolute,capturePublicKeyPath:absolute,
   ownerId:z.string(),workspace:z.string().regex(/^[a-z0-9][a-z0-9-]{0,79}$/),projectId:z.string(),teamId:z.string(),channelId:z.string().min(1),reviewerIds:z.array(z.string().min(1)).min(1),
-  maxJobUsd:positive,maxDayUsd:positive,maxTokens:positive.int(),maxWallMs:positive.int().max(600000),proposalTtlMs:positive.int().max(86400000),
-  provider:z.literal('anthropic'),
+  maxTokens:positive.int(),maxWallMs:positive.int().max(600000),proposalTtlMs:positive.int().max(86400000),
+}).strict();
+const usdSchema = commonSchema.extend({
+  provider:z.literal('anthropic'),budget:z.object({kind:z.literal('usd')}).strict().optional(),maxJobUsd:positive,maxDayUsd:positive,
   model:z.object({model:z.string().min(1),inputUsdPerMillion:positive,outputUsdPerMillion:positive,maxInputTokens:positive.int(),maxOutputTokens:positive.int().max(8192),maxBodyBytes:positive.int().max(131072),maxResponseBytes:positive.int().max(262144),timeoutMs:positive.int().max(120000)}).strict(),
 }).strict();
+const countSchema = commonSchema.extend({provider:z.literal('hermes-astra'),budget:z.object({kind:z.literal('attempts'),maxAttemptsPerDay:positive.int().max(5),timeZone:z.string().min(1).refine(value=>{try{new Intl.DateTimeFormat('en-CA',{timeZone:value});return true;}catch{return false;}})}).strict(),model:hermesModelSchema.omit({enabled:true,fixture:true,fixtureOrigin:true}).strict()}).strict();
+const configSchema = z.discriminatedUnion('provider',[usdSchema,countSchema]);
 async function privateBytes(file: string): Promise<Buffer> {
   if (!path.isAbsolute(file)) throw new Error('runtime_blocked');
   const s = await lstat(file);
@@ -39,7 +44,10 @@ export async function runtimeMain(args: string[], env: NodeJS.ProcessEnv = proce
     if (!/^[A-Za-z0-9_-]{43}$/.test(key) || Buffer.from(key,'base64url').length !== 32 || Buffer.from(key,'base64url').toString('base64url') !== key) throw new Error();
     const hostPublicKey = createPublicKey(await privateBytes(c.hostPublicKeyPath)), capturePublicKey = createPublicKey(await privateBytes(c.capturePublicKeyPath));
     if (hostPublicKey.asymmetricKeyType !== 'ed25519' || capturePublicKey.asymmetricKeyType !== 'ed25519') throw new Error();
-    const config: ReviewConfig = {enabled:true,root:c.root,repo:c.repo,inputPolicy:{ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url')},channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY ?? ''};
+    const common = {enabled:true,root:c.root,repo:c.repo,inputPolicy:{ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url')},channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs};
+    const config: ReviewConfig = c.provider === 'hermes-astra'
+      ? {...common,provider:c.provider,budget:c.budget,model:{...c.model,enabled:true}}
+      : {...common,provider:c.provider,budget:c.budget,maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY ?? ''};
     const controller = new ReviewController(config);
     let result: Job | {state:'disabled'};
     if (role === 'prepare') result = await controller.prepare();
