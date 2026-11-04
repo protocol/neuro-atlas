@@ -10,6 +10,8 @@ if js('document.documentElement.classList.contains("dark")'):
  click('button[aria-label="Switch to light mode"]')
 wait('!document.documentElement.classList.contains("dark")')
 theme='button[aria-label="Switch to dark mode"]'
+# The launcher can render before the theme control finishes hydration (notably in dev).
+wait('!!document.querySelector('+json.dumps(theme)+')')
 js(f'(()=>{{window.__extraPickEvents=[];const e=document.querySelector({json.dumps(theme)});["pointerdown","pointerup","mousedown","mouseup","click"].forEach(t=>e.addEventListener(t,()=>window.__extraPickEvents.push(t)))}})()')
 click('.atlas-feedback-launch');wait('!!document.querySelector("[data-feedback-selection]:popover-open")')
 p=point(theme+' svg');cdp('Input.dispatchMouseEvent',type='mouseMoved',x=p['x'],y=p['y']);wait('!!document.querySelector("[data-feedback-outline]")')
