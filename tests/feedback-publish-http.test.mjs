@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
+import {execFileSync} from 'node:child_process';
 import { createHash,generateKeyPairSync,sign } from 'node:crypto';
 import { fixture } from './feedback-worker-git.test.mjs';
 import { loadSnapshot } from '../scripts/feedback/git-sandbox.ts';
@@ -18,7 +19,7 @@ export async function githubFixture(t,base,crash='') {
     if(p.startsWith('/git/ref/heads/')&&req.method==='GET'){const branch=p.slice('/git/ref/heads/'.length);value=refs.has(branch)?{ref:'refs/heads/'+branch,object:{sha:refs.get(branch)}}:undefined;}
     else if(p==='/git/trees'&&req.method==='POST'){const sha=h(body);trees.set(sha,{sha,truncated:false,tree:[...(trees.get(data.base_tree)?.tree??[]).filter(f=>!data.tree.some(n=>n.path===f.path)),...data.tree.map(f=>({path:f.path,mode:f.mode,type:f.type,sha:blob(f.content)}))]});value={sha};}
     else if(p.startsWith('/git/trees/')&&req.method==='GET')value=trees.get(p.split('/').at(-1));
-    else if(p==='/git/commits'&&req.method==='POST'){const sha=h(body);value={sha,tree:{sha:data.tree},parents:data.parents.map(sha=>({sha})),message:data.message,author:data.author,committer:data.committer};commits.set(sha,value);}
+    else if(p==='/git/commits'&&req.method==='POST'){const normalize=identity=>({...identity,date:new Date(Math.floor(Date.parse(identity.date)/1000)*1000).toISOString()});const normalized={...data,author:normalize(data.author),committer:normalize(data.committer)};const sha=h(JSON.stringify(normalized));value={sha,tree:{sha:data.tree},parents:data.parents.map(sha=>({sha})),message:data.message,author:normalized.author,committer:normalized.committer};commits.set(sha,value);}
     else if(p.startsWith('/git/commits/')&&req.method==='GET')value=commits.get(p.split('/').at(-1));
     else if(p==='/git/refs'&&req.method==='POST'){const branch=data.ref.replace('refs/heads/','');if(refs.has(branch)){code=422;value={};}else{refs.set(branch,data.sha);value={ref:data.ref,object:{sha:data.sha}};}}
     else if(p.startsWith('/git/refs/heads/')&&req.method==='PATCH'){const branch=p.slice('/git/refs/heads/'.length);assert.equal(data.force,false);refs.set(branch,data.sha);value={ref:'refs/heads/'+branch,object:{sha:data.sha}};}
@@ -69,7 +70,7 @@ test('tampered bundle, disabled control and unexpected head cannot load credenti
 test('publisher rejects a matching presentation blob hidden in a commit with extra unrelated changes',async t=>{
   const { publishBundle }=await import('../scripts/feedback/publisher.ts');
   const f=await bundleFixture(t),remote=await githubFixture(t,f.base),store=publicationStore();
-  const row=await store.open(f.bundle);const date=new Date(f.bundle.receipt.expiresAt).toISOString();const identity={name:'Atlas Feedback',email:'atlas-feedback@users.noreply.github.com',date};
+  const row=await store.open(f.bundle);const date=new Date(Math.floor(f.bundle.receipt.expiresAt/1000)*1000).toISOString();const identity={name:'Atlas Feedback',email:'atlas-feedback@users.noreply.github.com',date};
   const sha='d'.repeat(40),tree='e'.repeat(40);
   remote.trees.set(tree,{sha:tree,truncated:false,tree:[{path:'src/components/landing.css',type:'blob',mode:'100644',sha:blob(f.bundle.patch.files[0].content)},{path:'src/proxy.ts',type:'blob',mode:'100644',sha:'f'.repeat(40)}]});
   remote.commits.set(sha,{sha,tree:{sha:tree},parents:[{sha:f.base}],message:'Atlas feedback presentation update',author:identity,committer:identity});remote.refs.set(row.branch,sha);
@@ -82,4 +83,19 @@ test('GitHub adapter has no merge/deployment/arbitrary write endpoint even with 
   const api=new GitHubRest({origin:'http://127.0.0.1:1',fixture:true,token:()=>{loads++;return 'NEVER_LOAD'}},async()=>{});
   await assert.rejects(api.request('POST','/pulls/1/merge',{}),/publisher_rejected/);
   await assert.rejects(api.request('POST','/deployments',{}),/publisher_rejected/);assert.equal(loads,0);
+});
+
+
+test('Git-second commit readback works with fractional receipt expiry; actual Git confirms precision',async t=>{
+  const {publishBundle}=await import('../scripts/feedback/publisher.ts');
+  const f=await bundleFixture(t),expiry=Math.floor((Date.now()+60000)/1000)*1000+789;
+  f.bundle.receipt.expiresAt=expiry;f.bundle.signature=sign(null,Buffer.from(canonical(f.bundle.receipt)),f.keys.privateKey).toString('base64');
+  const env={PATH:'/usr/bin:/bin',HOME:'/nonexistent',GIT_CONFIG_NOSYSTEM:'1',GIT_CONFIG_GLOBAL:'/dev/null',GIT_AUTHOR_NAME:'Synthetic',GIT_AUTHOR_EMAIL:'synthetic@example.invalid',GIT_COMMITTER_NAME:'Synthetic',GIT_COMMITTER_EMAIL:'synthetic@example.invalid',GIT_AUTHOR_DATE:new Date(expiry).toISOString(),GIT_COMMITTER_DATE:new Date(expiry).toISOString()};
+  const tree=execFileSync('/usr/bin/git',['rev-parse','HEAD^{tree}'],{cwd:f.cwd,env,encoding:'utf8'}).trim();
+  const commit=execFileSync('/usr/bin/git',['commit-tree',tree,'-m','precision fixture'],{cwd:f.cwd,env,encoding:'utf8'}).trim();
+  const actual=execFileSync('/usr/bin/git',['show','-s','--format=%aI',commit],{cwd:f.cwd,env,encoding:'utf8'}).trim();
+  assert.equal(Date.parse(actual),Math.floor(expiry/1000)*1000);
+  const remote=await githubFixture(t,f.base),store=publicationStore();
+  const result=await publishBundle({enabled:true,bundle:f.bundle,publicKey:f.keys.publicKey,sources:f.sources,store,github:{origin:remote.origin,fixture:true,token:()=> 'SYNTHETIC_TOKEN'}});
+  assert.equal(result.number,1);assert.equal(remote.prs.length,1);assert.equal(Date.parse(remote.commits.get(result.headSha).author.date),Math.floor(expiry/1000)*1000);assert.equal(f.bundle.receipt.expiresAt,expiry);
 });

@@ -52,10 +52,12 @@ export async function publishBundle(o:PublishOptions):Promise<{number:number;url
   }
   const initialPhase=row.phase;
   const parent=row.expectedHeadSha??r.baseSha;
-  const identity={name:'Atlas Feedback',email:'atlas-feedback@users.noreply.github.com',date:new Date(r.expiresAt).toISOString()};
+  // Git stores author/committer time in whole seconds; receipt expiry remains exact.
+  const commitTime=Math.floor(r.expiresAt/1000)*1000;
+  const identity={name:'Atlas Feedback',email:'atlas-feedback@users.noreply.github.com',date:new Date(commitTime).toISOString()};
   async function verifyCommit(sha:string):Promise<boolean> {
     const c=await api.request('GET','/git/commits/'+sha,undefined,true);
-    if(!c || c.sha!==sha || !hex(c.tree?.sha) || c.parents?.length!==1 || c.parents[0].sha!==parent || c.message!=='Atlas feedback presentation update' || c.author?.name!==identity.name || c.author?.email!==identity.email || new Date(c.author?.date).getTime()!==r.expiresAt || c.committer?.name!==identity.name || c.committer?.email!==identity.email || new Date(c.committer?.date).getTime()!==r.expiresAt)return false;
+    if(!c || c.sha!==sha || !hex(c.tree?.sha) || c.parents?.length!==1 || c.parents[0].sha!==parent || c.message!=='Atlas feedback presentation update' || c.author?.name!==identity.name || c.author?.email!==identity.email || new Date(c.author?.date).getTime()!==commitTime || c.committer?.name!==identity.name || c.committer?.email!==identity.email || new Date(c.committer?.date).getTime()!==commitTime)return false;
     const tree=await api.request('GET','/git/trees/'+c.tree.sha+'?recursive=1');
     if(tree.sha!==c.tree.sha || tree.truncated!==false || !Array.isArray(tree.tree))return false;
     const baseCommit=await api.request('GET','/git/commits/'+r.baseSha);
