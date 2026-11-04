@@ -1,6 +1,6 @@
 // SYNTHETIC UI transport boundary. Inject only on this task's isolated loopback fixture.
 (() => {
-  if (location.origin !== 'http://127.0.0.1:35641') throw Error('Loopback UI fixture only');
+  if (!['http://127.0.0.1:35641','http://127.0.0.1:35642'].includes(location.origin)) throw Error('Loopback UI fixture only');
   const originalFetch=window.fetch.bind(window),originalOpen=window.open.bind(window);
   const id='11111111-1111-4111-8111-111111111111';
   let popup,version=1,writeCount=0,saved=false;

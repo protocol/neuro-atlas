@@ -1,7 +1,7 @@
 "use client";
 
 import { atlasPath } from "./atlas-path";
-import type { FeedbackInput, FeedbackSession, FeedbackStatus } from "./feedback/contracts";
+import type { FeedbackSubmission, FeedbackSession, FeedbackStatus } from "./feedback/contracts";
 
 export type FeedbackConfig = { enabled: boolean; connected: boolean };
 export type FeedbackReceipt = Pick<FeedbackStatus, "id" | "state" | "version">;
@@ -68,8 +68,8 @@ export class FeedbackClient {
     }
     return value;
   }
-  submit(input: FeedbackInput, key: string) { return this.receipt(this.request<FeedbackReceipt>("", "POST", input, true, key)); }
-  followup(id: string, expectedVersion: number, input: FeedbackInput, key: string) {
+  submit(input: FeedbackSubmission, key: string) { return this.receipt(this.request<FeedbackReceipt>("", "POST", input, true, key)); }
+  followup(id: string, expectedVersion: number, input: FeedbackSubmission, key: string) {
     return this.receipt(this.request<FeedbackReceipt>(`/${encodeURIComponent(id)}/followups`, "POST", { ...input, expectedVersion }, true, key));
   }
   async signOut() {

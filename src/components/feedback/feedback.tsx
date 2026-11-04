@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { FeedbackClient, FeedbackClientError, type FeedbackConfig } from "../../lib/feedback-client";
-import type { FeedbackInput, FeedbackSession, FeedbackStatus } from "../../lib/feedback/contracts";
-import { allowedTarget, feedbackContext, semanticTargets, targetAt } from "./selection";
+import type { SimpleFeedbackInput, FeedbackSession, FeedbackStatus } from "../../lib/feedback/contracts";
+import { allowedTarget, feedbackContext, semanticTargets, elementAt, pickElement, type PickedElement } from "./selection";
 
 /** PR77/chart actions can dispatch this with optional {targetId}; unknown IDs are ignored. */
 export const FEEDBACK_OPEN_EVENT = "atlas-feedback-open";
@@ -40,23 +41,25 @@ function previewUrl(status: FeedbackStatus) {
 export function Feedback() {
   const client = useRef<FeedbackClient | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const textarea = useRef<HTMLTextAreaElement>(null);
+  const picker = useRef<HTMLDivElement>(null);
+  const toastLayer = useRef<HTMLDivElement>(null);
+  const outline = useRef<HTMLDivElement>(null);
+  const downTarget = useRef<PickedElement | undefined>(undefined);
   const returnFocus = useRef<HTMLElement | null>(null);
   const mode = useRef({ open: false, selecting: false });
-  const pending = useRef<{ fingerprint: string; key: string } | null>(null);
+  const pending = useRef<{ fingerprint: string; key: string; input: SimpleFeedbackInput } | null>(null);
+  const retainedDraft = useRef(false);
   const submitting = useRef(false);
   const mounted = useRef(false);
   const [open, setOpen] = useState(false);
   const [selecting, setSelecting] = useState(false);
   const [target, setTarget] = useState<string>();
-  const [choices, setChoices] = useState<string[]>([]);
-  const [hover, setHover] = useState<string>();
-  const [step, setStep] = useState<"private" | "public" | "status">("private");
+  const [pinned, setPinned] = useState<PickedElement>();
+  const [hover, setHover] = useState<PickedElement>();
+  const [selectionHost, setSelectionHost] = useState<Element | null>(null);
+  const [step, setStep] = useState<"private" | "status">("private");
   const [comment, setComment] = useState("");
-  const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [acceptance, setAcceptance] = useState("");
-  const [approved, setApproved] = useState(false);
-  const [context, setContext] = useState<FeedbackInput["context"]>();
   const [config, setConfig] = useState<FeedbackConfig | null>(null);
   const [configLoading, setConfigLoading] = useState(false);
   const [session, setSession] = useState<FeedbackSession | null>(null);
@@ -66,16 +69,39 @@ export function Feedback() {
   const [items, setItems] = useState<FeedbackStatus[]>([]);
   const [current, setCurrent] = useState<FeedbackStatus | null>(null);
   const [savedId, setSavedId] = useState<string>();
+  const [toast, setToast] = useState("");
+  const [toastHost, setToastHost] = useState<Element | null>(null);
   const [followup, setFollowup] = useState<{ id: string; version: number }>();
   const available = config?.enabled && config.connected;
+
+  useLayoutEffect(() => {
+    if (!toast) return;
+    const layer = toastLayer.current!;
+    layer.showPopover?.();
+    const timeout = setTimeout(() => setToast(""), 6000);
+    return () => { clearTimeout(timeout); if (layer.matches(":popover-open")) layer.hidePopover?.(); };
+  }, [toast]);
+  useLayoutEffect(() => {
+    const field = textarea.current;
+    if (!field) return;
+    field.style.height = "0px";
+    field.style.height = `${Math.max(36, Math.min(128, field.scrollHeight))}px`;
+  }, [comment, open, selecting, step]);
+  useLayoutEffect(() => { retainedDraft.current = !!comment || !!pinned || !!target || step === "status"; }, [comment, pinned, target, step]);
 
   function show(targetId?: unknown) {
     if (mode.current.open) return;
     returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const id = allowedTarget(targetId);
-    if (id) { setTarget(id); setApproved(false); }
+    if (id) {
+      setTarget(id);
+      const match = semanticTargets(document).find(value => value.id === id);
+      const element = match?.element;
+      setPinned(element ? pickElement(element) : undefined);
+    }
     mode.current = { open: true, selecting: false };
-    setOpen(true);
+    setOpen(true); setToast("");
+    if (!id && !retainedDraft.current) selectArea();
     void loadConfig();
   }
   function close() {
@@ -83,8 +109,8 @@ export function Feedback() {
     client.current?.cancelSignIn();
     setOpen(false); setSelecting(false);
   }
-  function finishSelection(id?: string) {
-    setTarget(id); setApproved(false); setSelecting(false);
+  function finishSelection(pick?: PickedElement) {
+    setPinned(pick); setTarget(pick?.targetId); setSelecting(false); setHover(undefined);
     mode.current.selecting = false;
   }
   useEffect(() => {
@@ -93,6 +119,13 @@ export function Feedback() {
     const start = (event: Event) => show((event as CustomEvent).detail?.targetId);
     const keyboard = (event: KeyboardEvent) => {
       if (event.isComposing) return;
+      if (mode.current.selecting && event.key === "Tab") {
+        const controls = [...picker.current!.querySelectorAll<HTMLButtonElement>("button")];
+        const index = controls.indexOf(document.activeElement as HTMLButtonElement);
+        event.preventDefault(); event.stopImmediatePropagation();
+        controls[(index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length]?.focus();
+        return;
+      }
       if (event.key === "Escape" && mode.current.open) {
         event.preventDefault(); event.stopImmediatePropagation();
         if (mode.current.selecting) { mode.current.selecting = false; setSelecting(false); }
@@ -120,20 +153,83 @@ export function Feedback() {
     catch (cause) { if (mounted.current) { setError(message(cause)); setConfig(null); } }
     finally { if (mounted.current) setConfigLoading(false); }
   }
-  useEffect(() => {
-    if (!open) return;
+  useLayoutEffect(() => {
+    if (!open || selecting) return;
     const element = dialog.current!;
     element.showModal();
-    return () => {
-      element.close();
-      if (returnFocus.current?.isConnected) returnFocus.current.focus({ preventScroll: true });
-    };
-  }, [open]);
+    return () => { element.close(); };
+  }, [open, selecting]);
   useEffect(() => {
-    if (!open) return;
-    const focus = dialog.current?.querySelector<HTMLElement>(selecting ? '[data-selection-back]' : step === "private" ? 'textarea' : step === "public" ? 'input' : '[data-feedback-close]');
+    if (!open) {
+      if (returnFocus.current?.isConnected) returnFocus.current.focus({ preventScroll: true });
+      return;
+    }
+    const focus = selecting ? picker.current?.querySelector<HTMLElement>('[data-selection-back]') : dialog.current?.querySelector<HTMLElement>(step === "private" ? 'textarea' : '[data-feedback-close]');
     focus?.focus({ preventScroll: true });
   }, [open, selecting, step]);
+  useEffect(() => {
+    if (!open || !selecting) return;
+    const layer = picker.current!;
+    layer.showPopover?.();
+    const ownControl = (event: Event) => event.target instanceof window.Element && !!event.target.closest('[data-atlas-feedback]');
+    const suppress = (event: Event) => { event.preventDefault(); event.stopImmediatePropagation(); };
+    const hit = (event: MouseEvent) => elementAt(document, event.clientX, event.clientY);
+    const move = (event: MouseEvent) => {
+      if (ownControl(event)) return;
+      suppress(event);
+      const next = hit(event);
+      setHover(previous => previous?.element === next?.element ? previous : next);
+    };
+    const block = (event: Event) => {
+      if (ownControl(event)) return;
+      suppress(event);
+      if (event.type === "pointerdown") downTarget.current = hit(event as MouseEvent);
+      if (event.type === "click") {
+        const next = downTarget.current ?? hit(event as MouseEvent);
+        downTarget.current = undefined;
+        if (next) finishSelection(next);
+      }
+    };
+    window.addEventListener("pointermove", move, { capture: true, passive: false });
+    const events = ["pointerdown", "pointerup", "mousedown", "mouseup", "click", "auxclick", "dblclick", "contextmenu", "dragstart"];
+    events.forEach(type => window.addEventListener(type, block, { capture: true, passive: false }));
+    return () => {
+      window.removeEventListener("pointermove", move, true);
+      events.forEach(type => window.removeEventListener(type, block, true));
+      if (layer.matches(':popover-open')) layer.hidePopover?.();
+      downTarget.current = undefined;
+    };
+  }, [open, selecting]);
+  useLayoutEffect(() => {
+    if (!open) return;
+    const picked = selecting ? hover : pinned;
+    const place = () => {
+      const bounds = picked?.element.isConnected ? picked.element.getBoundingClientRect() : undefined;
+      if (outline.current && bounds) Object.assign(outline.current.style, { left: `${bounds.left}px`, top: `${bounds.top}px`, width: `${bounds.width}px`, height: `${bounds.height}px` });
+      const layer = dialog.current;
+      if (!selecting && layer) {
+        const viewport = window.visualViewport;
+        const leftEdge = viewport?.offsetLeft ?? 0, topEdge = viewport?.offsetTop ?? 0;
+        const width = viewport?.width ?? window.innerWidth, height = viewport?.height ?? window.innerHeight;
+        const size = layer.getBoundingClientRect();
+        const x = width <= 480 ? leftEdge + 10 : Math.max(leftEdge + 10, Math.min(bounds?.left ?? leftEdge + width - size.width - 24, leftEdge + width - size.width - 10));
+        let y = width <= 480 ? topEdge + 10 : bounds ? bounds.bottom + 8 : topEdge + 80;
+        if (bounds && y + size.height > topEdge + height - 10 && bounds.top - size.height - 8 >= topEdge + 10) y = bounds.top - size.height - 8;
+        y = Math.max(topEdge + 10, Math.min(y, topEdge + height - size.height - 10));
+        Object.assign(layer.style, { left: `${x}px`, top: `${y}px`, maxHeight: `${Math.max(80, height - 20)}px` });
+      }
+    };
+    place();
+    const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(place) : null;
+    if (dialog.current) observer?.observe(dialog.current);
+    if (picked?.element) observer?.observe(picked.element);
+    window.addEventListener("resize", place); window.addEventListener("scroll", place, true);
+    window.visualViewport?.addEventListener("resize", place); window.visualViewport?.addEventListener("scroll", place);
+    return () => {
+      observer?.disconnect(); window.removeEventListener("resize", place); window.removeEventListener("scroll", place, true);
+      window.visualViewport?.removeEventListener("resize", place); window.visualViewport?.removeEventListener("scroll", place);
+    };
+  }, [open, selecting, hover, pinned]);
 
   async function refresh(id = savedId) {
     try {
@@ -174,23 +270,27 @@ export function Feedback() {
     catch (cause) { setError(message(cause)); }
     finally { setSession(null); setItems([]); setCurrent(null); }
   }
-  function review() { setContext(feedbackContext(window, target)); setApproved(false); setStep("public"); setError(""); }
-  const criteria = acceptance.split("\n").map(value => value.trim()).filter(Boolean);
-  const validPublic = title.trim() && summary.trim() && criteria.length >= 1 && criteria.length <= 5 && criteria.every(value => value.length <= 200);
   async function submit() {
-    if (submitting.current || !available || !session || !approved || !validPublic || !context || !comment.trim()) return;
+    if (submitting.current || !available || !session || !comment.trim() || comment.length > 3000) return;
     submitting.current = true; setBusy(true); setError("");
-    const input: FeedbackInput = { privateComment: comment.trim(), publicTask: { title: title.trim(), summary: summary.trim(), acceptance: criteria }, publicApproval: { approved: true, policyVersion: "atlas-feedback-v1" }, context };
-    const fingerprint = JSON.stringify({ followup, input });
-    if (pending.current?.fingerprint !== fingerprint) pending.current = { fingerprint, key: client.current!.newKey() };
+    // Only an intentional note/target/follow-up edit starts a new operation. Viewport,
+    // theme, DOM movement and session renewal must not mutate an uncertain retry.
+    const fingerprint = JSON.stringify({ followup, comment, target, element: pinned?.reference });
+    if (pending.current?.fingerprint !== fingerprint) pending.current = {
+      fingerprint, key: client.current!.newKey(),
+      input: { feedback: comment, processingConsent: { approved: true, policyVersion: "atlas-feedback-simple-v1" }, context: { ...feedbackContext(window, target), ...(pinned ? { element: { ...pinned.reference } } : {}) } },
+    };
+    const { input, key } = pending.current;
     try {
       const receipt = followup
-        ? await client.current!.followup(followup.id, followup.version, input, pending.current.key)
-        : await client.current!.submit(input, pending.current.key);
+        ? await client.current!.followup(followup.id, followup.version, input, key)
+        : await client.current!.submit(input, key);
       if (!mounted.current) return;
       if (!receipt.id || !Number.isSafeInteger(receipt.version) || !labels[receipt.state]) throw new FeedbackClientError("invalid_response", "Could not confirm feedback was saved. Retry with this draft.");
-      setSavedId(receipt.id); setCurrent(null); setStep("status");
-      setComment(""); setTitle(""); setSummary(""); setAcceptance(""); setApproved(false); setFollowup(undefined); pending.current = null;
+      setSavedId(receipt.id); setCurrent(null); setStep("private");
+      setToastHost([...document.querySelectorAll<HTMLDialogElement>('dialog[open]:not([data-atlas-feedback])')].at(-1) ?? document.body);
+      setToast("Feedback saved");
+      setComment(""); setFollowup(undefined); pending.current = null; close();
       await refresh(receipt.id);
     } catch (cause) {
       if (!mounted.current) return;
@@ -199,59 +299,47 @@ export function Feedback() {
   }
   function beginFollowup() {
     if (!current) return;
-    setFollowup({ id: current.id, version: current.version }); setStep("private"); setApproved(false); setComment(""); setTitle(""); setSummary(""); setAcceptance(""); setError("");
+    setFollowup({ id: current.id, version: current.version }); setStep("private"); setComment(""); setError("");
   }
   function selectArea() {
-    setChoices([...new Set(semanticTargets(document).map(value => value.id))]);
+    const nativeModal = [...document.querySelectorAll<HTMLDialogElement>('dialog[open]:not([data-atlas-feedback])')].at(-1);
+    setSelectionHost(nativeModal ?? document.body); setHover(undefined);
     setSelecting(true); mode.current.selecting = true;
   }
-  function changePublic(setter: (value: string) => void, value: string) { setter(value); setApproved(false); }
   return <>
     <button type="button" className="atlas-feedback-launch" aria-keyshortcuts="Alt+Shift+F" title="Feedback (Alt+Shift+F, outside text fields)" onClick={() => show()}>Feedback</button>
-    {open && <dialog ref={dialog} data-atlas-feedback data-feedback-composer={!selecting ? "" : undefined} data-feedback-selection={selecting ? "" : undefined}
-      className={`atlas-feedback-layer${selecting ? " atlas-feedback-selecting" : ""}`} aria-label={selecting ? "Select feedback area" : "Atlas feedback"} aria-modal="true"
-      onCancel={event => { event.preventDefault(); event.stopPropagation(); if (selecting) finishSelection(target); else close(); }}
+    {toast && toastHost && createPortal(<div ref={toastLayer} popover="manual" data-atlas-feedback data-feedback-toast className="atlas-feedback-toast" role="status">{toast}</div>, toastHost)}
+    {open && selecting && selectionHost && createPortal(<div ref={picker} popover="manual" data-atlas-feedback data-feedback-selection className="atlas-feedback-picker" role="dialog" aria-label="Select feedback element">
+      {hover && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
+      <div className="atlas-feedback-selection-controls" data-selection-controls>
+        <p>Point to an element. Click to attach.</p>
+        <div className="atlas-feedback-actions"><button type="button" onClick={() => finishSelection()}>General page</button><button type="button" data-selection-back onClick={() => { mode.current.selecting = false; setSelecting(false); setHover(undefined); }}>Back</button></div>
+      </div>
+    </div>, selectionHost)}
+    {open && !selecting && <dialog ref={dialog} data-atlas-feedback data-feedback-composer className="atlas-feedback-layer" aria-label="Atlas feedback" aria-modal="true"
+      onCancel={event => { event.preventDefault(); event.stopPropagation(); close(); }}
       onKeyDown={event => {
         if (event.key !== "Tab") return;
         const controls = visibleFeedbackControls(event.currentTarget);
         const first = controls[0], last = controls[controls.length - 1];
-        // Let native focus reveal the target inside a vertically scrolled small-screen composer.
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
-      }}
-      onClick={event => {
-        if (selecting) {
-          if (!(event.target as HTMLElement).closest('[data-selection-controls]')) finishSelection(targetAt(document, event.clientX, event.clientY));
-        } else if (event.target === event.currentTarget) close();
-      }}
-      onPointerMove={event => { if (selecting) setHover(targetAt(document, event.clientX, event.clientY)); }}>
-      {selecting ? <div className="atlas-feedback-selection-controls" data-selection-controls>
-        <p>Choose a chart or use General page. No screenshot or text is captured.</p>
-        {hover && <p className="atlas-feedback-target">{hover}</p>}
-        <div className="atlas-feedback-actions"><button type="button" onClick={() => finishSelection()}>General page</button><button type="button" data-selection-back onClick={() => finishSelection(target)}>Back to feedback</button></div>
-        <details><summary>Choose by chart ID</summary><ul>{choices.map(id => <li key={id}><button type="button" onClick={() => finishSelection(id)}>{id}</button></li>)}</ul></details>
-      </div> : <section className="atlas-feedback-panel">
-        <header><h2>{followup ? "Follow up" : "Atlas feedback"}</h2><button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
-        <p className="atlas-feedback-note">Owner-only · private intake. No screenshots, uploads, or page text capture.</p>
-        {followup && <p className="atlas-feedback-note">Your approved follow-up builds on the existing draft PR. Incomplete publication or unverified draft history is saved for human review.</p>}
-        {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Your draft stays in this page; nothing is submitted.</p> : !config.connected ? <p role="status">Feedback is disconnected. Your draft stays here; processing is not running. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
-        {available && <div className="atlas-feedback-auth">{session ? <><span>Signed in as {session.actor.login}</span><button type="button" onClick={() => void signOut()}>Sign out</button></> : <><span>Verify the owner account to submit.</span><button type="button" disabled={authBusy} onClick={signIn}>{authBusy ? "Signing in…" : "Sign in with GitHub"}</button>{authBusy && <button type="button" onClick={() => client.current?.cancelSignIn()}>Cancel sign-in</button>}</>}</div>}
+      }}>
+      {pinned && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
+      <section className="atlas-feedback-panel">
+        <header><h2 className="atlas-feedback-target">{step === "status" ? "Feedback history" : pinned?.label ?? target ?? (followup ? "Follow up · General page" : "General page")}</h2>{step === "private" && (pinned || target) && <button type="button" disabled={busy} onClick={() => { setTarget(undefined); setPinned(undefined); }}>Clear</button>}<button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
+        {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
+        {available && !session && <div className="atlas-feedback-auth"><button type="button" disabled={authBusy} onClick={signIn}>{authBusy ? "Signing in…" : "Sign in with GitHub"}</button>{authBusy && <button type="button" onClick={() => client.current?.cancelSignIn()}>Cancel sign-in</button>}</div>}
+        {session && step === "status" && <details><summary>Account</summary><div className="atlas-feedback-auth"><span>{session.actor.login}</span><button type="button" disabled={busy} onClick={() => void signOut()}>Sign out</button></div></details>}
         {error && <p role="alert">{error}</p>}
         {step === "private" && <>
-          <label>1 · Private comment<textarea aria-label="Private comment" rows={2} maxLength={3000} placeholder="What should change?" value={comment} onChange={event => setComment(event.target.value)} /></label>
-          <div className="atlas-feedback-actions"><button type="button" onClick={selectArea}>Select area</button><span className="atlas-feedback-target">{target ?? "General page"}</span>{target && <button type="button" onClick={() => { setTarget(undefined); setApproved(false); }}>Clear area</button>}</div>
-          <p className="atlas-feedback-note">This comment stays private and is not sent to the code-writing model. Only your separately approved public task can reach the worker.</p>
-          <button type="button" disabled={!comment.trim()} onClick={review}>Review public task</button>
-        </>}
-        {step === "public" && <>
-          <h3>2 · Public PR task</h3><p className="atlas-feedback-note">Write a publishable task separately. Do not include private details. Automatic changes are limited to safe presentation CSS and selected navigation/tab labels; other requests require human review.</p>
-          <label>Title<input aria-label="Public title" maxLength={100} value={title} onChange={event => changePublic(setTitle, event.target.value)} /></label>
-          <label>Public summary<textarea aria-label="Public summary" maxLength={1500} rows={2} value={summary} onChange={event => changePublic(setSummary, event.target.value)} /></label>
-          <label>Acceptance criteria · one per line, 1–5<textarea aria-label="Acceptance criteria" rows={2} maxLength={1004} value={acceptance} onChange={event => changePublic(setAcceptance, event.target.value)} /></label>
-          {criteria.some(value => value.length > 200) && <p>Keep each criterion under 201 characters.</p>}
-          <details className="atlas-feedback-context"><summary>Public context · review before approving</summary><p>Route: {context?.route}<br />Target: {context?.targetId ?? "General page"}<br />Viewport: {context?.viewport.width} × {context?.viewport.height}<br />Theme: {context?.theme}<br />No query, fragment, scenario, or revision is attached.</p></details>
-          <label className="atlas-feedback-consent"><input data-feedback-consent type="checkbox" checked={approved} onChange={event => setApproved(event.target.checked)} /><span>I approve this task and the displayed context. This text and any resulting code diff will be public on GitHub.</span></label>
-          <div className="atlas-feedback-actions"><button type="button" disabled={busy} onClick={() => { setStep("private"); setApproved(false); }}>Back</button><button type="button" data-feedback-submit disabled={!available || !session || !approved || !validPublic || busy} onClick={() => void submit()}>{busy ? "Saving…" : followup ? "Submit follow-up" : "Submit feedback"}</button></div>
+
+          <textarea ref={textarea} aria-label="Feedback" rows={1} maxLength={3000} placeholder="What should change?" value={comment} disabled={busy} onChange={event => setComment(event.target.value)} onKeyDown={event => {
+            if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
+            event.preventDefault(); void submit();
+          }} />
+          <p className="atlas-feedback-note">Sent privately to the agent. Proposed code changes appear in a public draft PR.</p>
+          <div className="atlas-feedback-actions"><button type="button" disabled={busy} onClick={selectArea}>Select element</button>{session && <button type="button" disabled={busy} onClick={() => { setStep("status"); void refresh(); }}>History</button>}<button type="button" aria-label="Send feedback" data-feedback-submit disabled={!available || !session || !comment.trim() || busy} onClick={() => void submit()}>{busy ? "Saving…" : "↑"}</button></div>
         </>}
         {step === "status" && <section aria-live="polite"><h3>Saved · {savedId}</h3>{current ? <>
           <p>{labels[current.state] ?? "Status unavailable"} · Version {current.version}</p>
@@ -262,9 +350,9 @@ export function Feedback() {
           {current.state === "merged" && <p>Follow-ups after merge require human review; no new automatic PR.</p>}
           <button type="button" onClick={beginFollowup}>Follow up</button>
         </> : <p>Saved. Status is not yet available; no PR or preview is confirmed.</p>}<button type="button" onClick={() => void refresh()}>Refresh status</button><button type="button" onClick={() => { setStep("private"); setFollowup(undefined); }}>New feedback</button></section>}
-        {session && <details><summary>My recent feedback</summary>{items.length ? <ul className="atlas-feedback-history">{items.map(item => <li key={item.id}><button type="button" onClick={() => { setSavedId(item.id); setCurrent(item); setStep("status"); }}>{labels[item.state] ?? "Unknown"} · {item.id} · v{item.version}</button></li>)}</ul> : <p>No feedback loaded.</p>}<button type="button" onClick={() => void refresh()}>Refresh list</button></details>}
-        <footer>Alt+Shift+F outside text fields · Escape returns one layer · Drafts exist only until this page reloads.</footer>
-      </section>}
+        {session && step === "status" && <details><summary>My recent feedback</summary>{items.length ? <ul className="atlas-feedback-history">{items.map(item => <li key={item.id}><button type="button" onClick={() => { setSavedId(item.id); setCurrent(item); setStep("status"); }}>{labels[item.state] ?? "Unknown"} · {item.id} · v{item.version}</button></li>)}</ul> : <p>No feedback loaded.</p>}<button type="button" onClick={() => void refresh()}>Refresh list</button></details>}
+
+      </section>
     </dialog>}
   </>;
 }
