@@ -44,7 +44,13 @@ def geometry(width):
  assert result['left']>=0 and result['right']<=width and result['top']>=0 and result['bottom']<=result['viewportHeight'],result
  assert result['viewportWidth']==width and result['documentWidth']==result['clientWidth'],result
  assert result['width']<=320 and result['fields']==1 and result['inputs']==0,result
- if width<=480:assert result['top']<=12,result
+ anchor=js("(()=>{const e=document.querySelector('[data-feedback-outline]');if(!e)return null;const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bottom}})()")
+ result['anchor']=anchor
+ if anchor:
+  below=anchor['bottom']+8
+  above=anchor['top']-result['height']-8
+  if below+result['height']<=result['viewportHeight']-10:assert abs(result['top']-below)<=2,result
+  elif above>=10:assert abs(result['top']-above)<=2,result
  return result
 results=[]
 for width in [1440,390,320]:

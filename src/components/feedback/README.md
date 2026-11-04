@@ -1,6 +1,6 @@
 # Atlas feedback frontend
 
-Fresh **Feedback** / **Alt+Shift+F** starts cursor picking. Hover outlines the actual DOM hit; clicking pins it and opens one compact field beside it (top aligned on small screens). **General page** skips the attachment. A retained draft/target/history or a curated chart open event can reopen directly. **Select element**, **Clear**, **Back**, Close and Escape preserve the draft. Drafts and owner sessions exist only in page memory; reload loses them.
+Fresh **Feedback** / **Alt+Shift+F** starts cursor picking. Hover outlines the actual DOM hit; clicking pins it and opens one compact field beside it at every width, flipping above or clamping only when the viewport has insufficient space. **General page** skips the attachment. A retained draft/target/history or a curated chart open event can reopen directly. **Select element**, **Clear**, **Back**, Close and Escape preserve the draft. Drafts and owner sessions exist only in page memory; reload loses them.
 
 ## Native layers and selection
 
@@ -16,7 +16,7 @@ Enter sends, Shift+Enter inserts a newline, and composition/IME Enter does not s
 
 The existing `FeedbackClient` retains mounted API routing, no-store/same-origin credentials, the custom session header (not Authorization), direct-gesture OAuth popup creation and exact origin/source/state/PKCE checks. Its submit/followup methods accept the legacy/simple `FeedbackSubmission` union. No cookie or browser persistence was added.
 
-Only a valid durable 202 receipt clears the draft. Failed/disabled/disconnected/unconfirmed requests never claim success. An uncertain retry retains the **same UUID and complete input snapshot**, including element and original context, across viewport/theme/DOM movement or session renewal. An intentional note/target/followup edit starts a new fingerprint. Busy writes disable editing/reselection/history. A confirmed receipt closes the composer and shows “Feedback saved” in a real manual popover portaled into any retained chart dialog; it does not claim an agent started. History remains reachable without extra editing fields; followups use the existing ID, expectedVersion, one new private field and attached target. PR/preview links still require actual validated status DTOs.
+Only a valid durable 202 receipt clears the draft. Failed/disabled/disconnected/unconfirmed requests never claim success. An uncertain retry retains the **same UUID and complete input snapshot**, including element and original context, across viewport/theme/DOM movement or session renewal. An intentional note/target/followup edit starts a new fingerprint. Busy writes disable editing/reselection/history. A confirmed receipt closes the composer and shows “Feedback saved” in a real manual popover portaled into any retained chart dialog; it does not claim an agent started. History remains reachable without extra editing fields; followups use the existing ID/expectedVersion and one new private field, then require an explicit fresh element pick or General page. History never inherits the last unrelated pin, including after a route change or reload. PR/preview links still require actual validated status DTOs.
 
 ## Verification / replay
 

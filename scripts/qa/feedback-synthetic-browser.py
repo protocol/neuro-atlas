@@ -46,7 +46,9 @@ try:
   shortcut();wait('!!document.querySelector("[data-feedback-composer]")');bytext('History')
   wait('document.querySelector("[data-feedback-composer]").textContent.includes("Received · awaiting processing")')
   assert js('document.querySelectorAll("[data-feedback-composer] a").length')==0
-  bytext('Follow up');fill('Feedback','Private follow-up fixture');click('[data-feedback-submit]')
+  bytext('Follow up');wait('!!document.querySelector("[data-feedback-selection]:popover-open")')
+  pick('dialog[open]:not([data-atlas-feedback]) button',f'followup-target-{width}')
+  fill('Feedback','Private follow-up fixture');click('[data-feedback-submit]')
   wait('!!document.querySelector("[data-feedback-toast]:popover-open")')
   follow=js('window.__feedbackFixture.posts.at(-1)')
   assert follow['body']['expectedVersion']==1 and follow['url'].endswith('/11111111-1111-4111-8111-111111111111/followups')

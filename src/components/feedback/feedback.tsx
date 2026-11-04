@@ -212,8 +212,8 @@ export function Feedback() {
         const leftEdge = viewport?.offsetLeft ?? 0, topEdge = viewport?.offsetTop ?? 0;
         const width = viewport?.width ?? window.innerWidth, height = viewport?.height ?? window.innerHeight;
         const size = layer.getBoundingClientRect();
-        const x = width <= 480 ? leftEdge + 10 : Math.max(leftEdge + 10, Math.min(bounds?.left ?? leftEdge + width - size.width - 24, leftEdge + width - size.width - 10));
-        let y = width <= 480 ? topEdge + 10 : bounds ? bounds.bottom + 8 : topEdge + 80;
+        const x = Math.max(leftEdge + 10, Math.min(bounds?.left ?? (width <= 480 ? leftEdge + 10 : leftEdge + width - size.width - 24), leftEdge + width - size.width - 10));
+        let y = bounds ? bounds.bottom + 8 : topEdge + 80;
         if (bounds && y + size.height > topEdge + height - 10 && bounds.top - size.height - 8 >= topEdge + 10) y = bounds.top - size.height - 8;
         y = Math.max(topEdge + 10, Math.min(y, topEdge + height - size.height - 10));
         Object.assign(layer.style, { left: `${x}px`, top: `${y}px`, maxHeight: `${Math.max(80, height - 20)}px` });
@@ -300,6 +300,9 @@ export function Feedback() {
   function beginFollowup() {
     if (!current) return;
     setFollowup({ id: current.id, version: current.version }); setStep("private"); setComment(""); setError("");
+    // History can refer to a different record than the last locally pinned element.
+    // Require a fresh intentional target (or General page), never inherit that stale pin.
+    setTarget(undefined); setPinned(undefined); selectArea();
   }
   function selectArea() {
     const nativeModal = [...document.querySelectorAll<HTMLDialogElement>('dialog[open]:not([data-atlas-feedback])')].at(-1);
@@ -325,7 +328,7 @@ export function Feedback() {
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }}>
-      {pinned && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
+      {pinned && step !== "status" && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
       <section className="atlas-feedback-panel">
         <header><h2 className="atlas-feedback-target">{step === "status" ? "Feedback history" : pinned?.label ?? target ?? (followup ? "Follow up · General page" : "General page")}</h2>{step === "private" && (pinned || target) && <button type="button" disabled={busy} onClick={() => { setTarget(undefined); setPinned(undefined); }}>Clear</button>}<button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
         {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}

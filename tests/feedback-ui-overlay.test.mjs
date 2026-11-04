@@ -108,9 +108,9 @@ test('one private field sends directly, retains exact failed retry and follows u
       if (options.method === 'POST') {
         if (failures-- > 0) throw Error('synthetic network loss');
         if (url.endsWith('/followups')) version++;
-        return json({ id: 'fixture-id', state: 'needs_clarification', version }, 202);
+        return json({ id: url.endsWith('/history-other-id/followups') ? 'history-other-id' : 'fixture-id', state: 'needs_clarification', version }, 202);
       }
-      return json(url.includes('?limit=20') ? { items: [status()] } : status());
+      return json(url.includes('?limit=20') ? { items: [status(), {...status(), id:'history-other-id'}] } : url.endsWith('/history-other-id') ? {...status(), id:'history-other-id'} : status());
     };
   });
   try {
@@ -159,13 +159,30 @@ test('one private field sends directly, retains exact failed retry and follows u
     assert.equal(toast.parentElement, underlying, 'saved indication lives in retained native modal');
     assert.equal(toast.getAttribute('popover'), 'manual', 'saved indication uses the actual top layer');
     assert.match(toast.textContent, /Feedback saved/);
+    window.history.pushState(null, '', '/funding');
     await click(byText('Feedback')); await click(byText('History')); await settle();
     assert.match(document.querySelector('[data-feedback-composer]').textContent, /Please clarify/);
+    assert.equal(document.querySelector('[data-feedback-outline]'), null, 'history must not paint the last unrelated selection');
+    const recent = [...document.querySelectorAll('[data-feedback-composer] summary')].find(e => e.textContent.trim() === 'My recent feedback');
+    await click(recent);
+    const other = [...document.querySelectorAll('[data-feedback-composer] button')].find(e => e.textContent.includes('history-other-id'));
+    await click(other); await settle();
+    assert.match(document.querySelector('[data-feedback-composer]').textContent, /Saved · history-other-id/);
     await click(byText('Follow up'));
+    assert.ok(document.querySelector('[data-feedback-selection]'), 'a history follow-up must pick its target explicitly, never silently inherit the last unrelated element');
+    assert.equal(document.querySelector('[data-feedback-composer]'), null);
+    const nextTarget = document.createElement('button'); underlying.append(nextTarget);
+    nextTarget.textContent = 'Different follow-up target';
+    nextTarget.getBoundingClientRect = () => ({left:50,top:80,right:250,bottom:120,width:200,height:40});
+    document.elementFromPoint = () => nextTarget;
+    await act(async () => nextTarget.dispatchEvent(new MouseEvent('click', {bubbles:true,cancelable:true,clientX:90,clientY:100})));
     await input('Feedback', 'Private followup'); await click(document.querySelector('[data-feedback-submit]')); await settle();
-    const follow = calls.find(x => x.url.endsWith('/fixture-id/followups'));
+    const follow = calls.find(x => x.url.endsWith('/history-other-id/followups'));
     assert.equal(JSON.parse(follow.body).expectedVersion, 1);
     assert.equal(JSON.parse(follow.body).feedback, 'Private followup');
+    assert.equal(JSON.parse(follow.body).context.route, '/funding', 'the explicit new selection uses its current route, not the old record/current pin');
+    assert.equal(JSON.parse(follow.body).context.element.tagName, 'button');
+    assert.equal(document.querySelector(JSON.parse(follow.body).context.element.selector), nextTarget);
     assert.equal(JSON.parse(follow.body).publicTask, undefined);
   } finally { await cleanup(); }
 });
@@ -223,4 +240,26 @@ test('fresh untargeted launch starts hover picking; General page opens the singl
   await click(byText('Feedback'));
   assert.equal(document.querySelector('[aria-label="Feedback"]').value,'Retain draft');
  } finally {await cleanup();}
+});
+
+
+test('narrow composition anchors below the picked element when room exists and clamps after keyboard-sized resize', async () => {
+  const cleanup = await mount(React.createElement(Feedback), '', win => { win.fetch = async () => json({ enabled:false, connected:false }); });
+  try {
+    Object.defineProperty(window, 'innerWidth', {value:390, configurable:true});
+    Object.defineProperty(window, 'innerHeight', {value:1000, configurable:true});
+    const target = document.createElement('h2'); target.textContent = 'Middle of the page'; document.body.append(target);
+    target.getBoundingClientRect = () => ({left:40,top:478,right:350,bottom:522,width:310,height:44});
+    document.elementFromPoint = () => target;
+    await click(byText('Feedback'));
+    await act(async () => target.dispatchEvent(new MouseEvent('click', {bubbles:true,cancelable:true,clientX:90,clientY:500})));
+    const d = document.querySelector('[data-feedback-composer]');
+    d.getBoundingClientRect = () => { const left=parseFloat(d.style.left)||0,top=parseFloat(d.style.top)||0;return {left,top,right:left+320,bottom:top+208,width:320,height:208}; };
+    await act(async () => window.dispatchEvent(new Event('resize')));
+    assert.equal(parseFloat(d.style.top),530,'use the actual element bottom + 8 when the narrow viewport has room');
+    assert.equal(parseFloat(d.style.left),40,'horizontal placement is element-relative within viewport bounds');
+    Object.defineProperty(window, 'innerHeight', {value:320, configurable:true});
+    await act(async () => window.dispatchEvent(new Event('resize')));
+    assert.ok(parseFloat(d.style.top)>=10 && parseFloat(d.style.top)+208<=310,'keyboard-sized viewport keeps composer reachable');
+  } finally { await cleanup(); }
 });
