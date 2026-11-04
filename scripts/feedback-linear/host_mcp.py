@@ -99,18 +99,45 @@ def _ordinary(comment, issue_id):
              and comment["archivedAt"] is None and comment["quotedText"] is None, "native_comment_not_ordinary")
 
 
+def _provenance_diagnostic(comments, issue_id):
+    """Aggregate source evidence only: never a signer receipt or activation proof."""
+    fields = ("issue", "parent", "externalThread", "syncedWith", "archivedAt", "quotedText")
+    missing, ordinary, unknown, non_ordinary = {}, 0, 0, 0
+    for comment in comments:
+        absent = [field for field in fields if field not in comment]
+        if absent:
+            unknown += 1
+            for field in absent:
+                missing[field] = missing.get(field, 0) + 1
+        else:
+            try:
+                _ordinary(comment, issue_id)
+                ordinary += 1
+            except ValueError:
+                non_ordinary += 1
+    reason = ("native_comment_lane_unobserved" if not comments else
+              "native_comment_lane_unavailable" if unknown else
+              "native_comment_not_ordinary" if non_ordinary else "native_provenance_diagnostic_only")
+    return {"schema": "atlas-linear-native-provenance-diagnostic-v1", "state": "blocked",
+            "reason": reason, "sourceReadComplete": True, "commentCount": len(comments),
+            "ordinaryCount": ordinary, "unknownCount": unknown, "nonOrdinaryCount": non_ordinary,
+            "missingFieldCounts": missing}
+
+
 async def _dispatch(server, operation, payload):
-    _require(operation in ("read", "comment"), "operation_not_allowed")
+    _require(operation in ("read", "diagnose", "comment"), "operation_not_allowed")
     _require(set(payload) == SCOPE | ({"body"} if operation == "comment" else set()), "scope_fields")
     for k in SCOPE - {"workspace"}:
         _require(isinstance(payload[k], str) and UUID.fullmatch(payload[k]), "scope_uuid")
     _require(isinstance(payload["workspace"], str) and re.fullmatch(r"[a-z0-9][a-z0-9-]{0,79}", payload["workspace"]), "scope_workspace")
     workspace, issue = await _scoped(server, payload)
     first = await _comments(server, payload["issueId"])
-    if operation == "read":
+    if operation in ("read", "diagnose"):
         second = await _comments(server, payload["issueId"])
         _, latest = await _scoped(server, payload)
         _require(first == second and latest == issue, "native_changed_during_read")
+        if operation == "diagnose":
+            return _provenance_diagnostic(second, payload["issueId"])
         return {"workspace": workspace, "issue": issue, "comments": second, "complete": True}
     body = payload["body"]
     _require(isinstance(body, str) and len(body) <= 16384 and body.startswith(("atlas-linear-proposal-v1\n", "atlas-linear-decision-v1\n")), "review_comment_only")
@@ -146,16 +173,17 @@ async def _main(operation, payload):
 if __name__ == "__main__":
     # No-config OFF. Explicit smoke is read-only; writes require a separate explicit gate.
     operation = sys.argv[1] if len(sys.argv) == 2 else ""
-    if os.environ.get("ATLAS_LINEAR_HOST_ENABLED") != "true" and operation != "read-smoke":
+    if os.environ.get("ATLAS_LINEAR_HOST_ENABLED") != "true" and operation not in ("read-smoke", "provenance-smoke"):
         print('{"state":"disabled"}')
         sys.exit(0)
     logging.disable(logging.CRITICAL)  # Never emit OAuth/provider objects or raw exceptions.
     try:
-        _require(operation in ("read", "read-smoke", "comment"), "operation_not_allowed")
+        _require(operation in ("read", "read-smoke", "provenance-smoke", "comment"), "operation_not_allowed")
         _require(operation != "comment" or os.environ.get("ATLAS_LINEAR_HOST_WRITES_ENABLED") == "true", "writes_disabled")
         raw = sys.stdin.read(20001)
         _require(len(raw) <= 20000, "request_budget")
-        value = asyncio.run(_main("read" if operation == "read-smoke" else operation, json.loads(raw)))
+        native_operation = "diagnose" if operation == "provenance-smoke" else "read" if operation == "read-smoke" else operation
+        value = asyncio.run(_main(native_operation, json.loads(raw)))
         print(json.dumps(value, separators=(",", ":")))
     except Exception as error:
         # Reasons are fixed local assertions. Transport exceptions expose only their class.

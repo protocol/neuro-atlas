@@ -80,17 +80,41 @@ For a deliberate **read-only** native transport smoke (no signer/model or enable
 
 This only verifies the existing native transport/workspace/scoped issue/comment pagination. An unmanaged QA issue is intentionally **not** a usable input/candidate/review/approval.
 
+### Bounded provenance diagnostic (read-only)
+
+```sh
+/opt/hermes/.venv/bin/python3 -B scripts/feedback-linear/host_mcp.py provenance-smoke < /private/scope.json
+```
+
+This explicit smoke needs neither activation nor signing keys. It uses the same exact six-field scope, existing broker-native OAuth connection, tool filters, bounded pagination, two complete comment reads and scoped issue recheck. It calls only `get_workspace`, `get_issue` and `list_comments`. Unlike `read-smoke`, its output contains only fixed diagnostic labels and aggregate counts—not bodies, comment/actor identifiers, URLs, signatures, records or raw provider errors. The output schema is `atlas-linear-native-provenance-diagnostic-v1`:
+
+- `sourceReadComplete:true` means those bounded, stable source reads completed. It is **not** an independent history witness or deletion-resistant proof.
+- `ordinaryCount` counts comments matching the existing explicit lane predicate; `unknownCount` counts comments missing any required field; `nonOrdinaryCount` counts comments with all required fields that fail that predicate. `missingFieldCounts` names only missing members of `issue`, `parent`, `externalThread`, `syncedWith`, `archivedAt`, `quotedText`. Nothing is added to source comments.
+- `state` is **always `blocked`**, including a fully explicit ordinary fixture. `native_comment_lane_unobserved` distinguishes an empty list from positive evidence; unavailable/contradictory source fields report `native_comment_lane_unavailable` / `native_comment_not_ordinary`; a fully matching source reports `native_provenance_diagnostic_only`. No diagnostic output is a HOST receipt, managed-record verification, write permission or production-readiness claim.
+- A completed diagnostic exits zero even when it reports a source limitation. Inspect its `state`/`reason`; zero means the diagnostic ran, not that provenance passed. Incomplete/unstable reads and setup/transport errors exit nonzero with a fixed sanitized blocker.
+
+### Supported native surface: verified limit
+
+Fresh discovery of the configured Linear OAuth server on November 4, 2026 advertised 78 tools. Its actual supported schema exposes:
+
+1. `list_comments`: parent selection, `limit`, `cursor`, `orderBy` and `statusUpdateType`; **no `fields` selector** and `additionalProperties:false`. No output schema promises the missing provenance.
+2. `get_issue`: explicit issue-field selection with a fixed enum; **neither `comments` nor nested comment selections are in it**. Requested absent **issue** values returning null does not establish anything about a comment's sync/archive/thread lane.
+3. `get_attachment`: only issue attachment `id` and `format` (`content`/`url`). It is not a comment lookup; comment uploads explicitly have no issue attachment ID. The existing synthetic QA issue had an empty attachment list, so there was no supported attachment target to read.
+4. No `get_comment`, arbitrary query or GraphQL execution tool in that catalog. No undocumented argument or alternate credential transport was attempted.
+
+The existing synthetic QA issue's one real native comment had `parentId:null`, `quotedText:null`, `author` and `onBehalfOf`, but omitted **`issue`, `parent`, `externalThread`, `syncedWith` and `archivedAt`**. The actual `provenance-smoke` returned one unknown comment, zero ordinary comments, and each missing field counted once. The currently configured supported surface therefore cannot establish the verifier's required positive ordinary/non-synced provenance. This is a verified native-source limitation—not an OAuth-scope diagnosis and not proof the underlying comment is synced. Resolution requires a supported native comment response/lookup that supplies authoritative explicit evidence, followed by a reviewed mapping and fresh acceptance. This lane does not request an app, obtain another credential, export broker tokens into raw GraphQL, synthesize nulls, or weaken `PrivateHost`.
+
 ## Verification and actual coverage
 
 Authoritative docs/source were read before using the API: [Hermes MCP documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp), its [config reference](https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference), and installed `/opt/hermes/tools/mcp_tool.py` (`MCPServerTask.start/shutdown`, `_load_mcp_config`, `session.call_tool`, `mcp_field`) plus its native OAuth manager/guarded transport. These are runtime-version-sensitive APIs; missing native APIs block explicitly, not an excuse to extract a token.
 
 ```sh
-node --import tsx --test tests/feedback-linear-host*.test.mjs
+node --import tsx --test tests/feedback-linear-host*.test.mjs tests/feedback-linear-native-provenance*.test.mjs
 npm test
 npm run typecheck
 NEXT_TELEMETRY_DISABLED=1 npm run build
-./node_modules/.bin/eslint --max-warnings=0 scripts/feedback-linear/host*.ts tests/feedback-linear-host*.test.mjs
-python3 -m py_compile scripts/feedback-linear/host_mcp.py
+./node_modules/.bin/eslint --max-warnings=0 scripts/feedback-linear/host*.ts tests/feedback-linear-host*.test.mjs tests/feedback-linear-native-provenance*.test.mjs
+python3 -B -c "from pathlib import Path; p=Path('scripts/feedback-linear/host_mcp.py'); compile(p.read_bytes(),str(p),'exec')"
 npm audit --omit=dev --audit-level=high
 ```
 
