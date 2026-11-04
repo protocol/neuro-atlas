@@ -10,6 +10,7 @@
     "receivedNotStarted": true,
     "noFakePrOrPreview": true,
     "followupSameIdVersion2": true,
+    "cancelledHistoryTargetReturnsToHistory": true,
     "nativeFocusTrap": true,
     "geometry": {
       "left": 1110,
@@ -49,6 +50,7 @@
     "receivedNotStarted": true,
     "noFakePrOrPreview": true,
     "followupSameIdVersion2": true,
+    "cancelledHistoryTargetReturnsToHistory": true,
     "nativeFocusTrap": true,
     "geometry": {
       "left": 60,
@@ -88,6 +90,7 @@
     "receivedNotStarted": true,
     "noFakePrOrPreview": true,
     "followupSameIdVersion2": true,
+    "cancelledHistoryTargetReturnsToHistory": true,
     "nativeFocusTrap": true,
     "geometry": {
       "left": 10,

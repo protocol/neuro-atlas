@@ -1,5 +1,5 @@
 {
-  "runtimeSource": "a5098ff1084ceae1e4cd4f6f8a1a916faf3687d4",
+  "runtimeSource": "372cc68dd718e56a3f25e1f58d1f13c311453c96",
   "fixture": "Actual Atlas Next production build, loopback-only copied proxy guard",
   "nativeWidths": [
     1440,
@@ -20,5 +20,6 @@
   ],
   "hostedOwnerAcceptance": false,
   "physicalPhoneTouch": false,
-  "liveProviderOrPublication": false
+  "liveProviderOrPublication": false,
+  "historyCancellation": "Back and Escape return to history with zero additional synthetic POSTs at every native width"
 }
