@@ -1,4 +1,5 @@
 /** Browser-safe frozen DTOs. No database/provider credentials in this module. */
+import { draftChartAnchors, metricChartAnchors } from "../../data/draft-chart-links";
 export type FeedbackInput = {
   privateComment: string;
   publicTask: {title: string; summary: string; acceptance: string[]};
@@ -20,6 +21,12 @@ export type FeedbackSession = {session: string; expiresAt: string; actor: {githu
 export type FeedbackReceipt = Pick<FeedbackStatus, "id" | "state" | "version">;
 export const FEEDBACK_SESSION_HEADER = "X-Atlas-Feedback-Session";
 export const FEEDBACK_POLICY_VERSION = "atlas-feedback-v1" as const;
-export const FEEDBACK_TARGET_IDS = ["site-nav", "page-header", "field-velocity", "funding", "milestones", "ecosystem", "methodology", "velocity-tabs"] as const;
-export const FEEDBACK_CHART_IDS = ["papers", "patents", "funding", "trials", "companies", "performance", "recording-hours", "neurons", "google-trends"] as const;
+// Shared curated identities keep browser selection and strict server intake aligned.
+export const FEEDBACK_SELECTABLE_CHART_IDS = [
+  ...draftChartAnchors, ...metricChartAnchors,
+  "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours",
+  "idea_vintage", "latency_compression", "google-trends-neurotech", "google-trends-neuralink",
+] as const;
+export const FEEDBACK_TARGET_IDS = ["site-nav", "page-header", "field-velocity", "funding", "milestones", "ecosystem", "methodology", "velocity-tabs", ...FEEDBACK_SELECTABLE_CHART_IDS] as const;
+export const FEEDBACK_CHART_IDS = ["papers", "patents", "funding", "trials", "companies", "performance", "recording-hours", "neurons", "google-trends", ...FEEDBACK_SELECTABLE_CHART_IDS] as const;
 export const FEEDBACK_SCENARIOS = ["historical", "literature", "plateau"] as const;

@@ -1,14 +1,9 @@
 "use client";
 
-import { draftChartAnchors, metricChartAnchors } from "../../data/draft-chart-links";
 import { atlasPathname } from "../../lib/atlas-path";
-import type { FeedbackInput } from "../../lib/feedback/contracts";
+import { FEEDBACK_SELECTABLE_CHART_IDS, type FeedbackInput } from "../../lib/feedback/contracts";
 
-const chartIds = new Set<string>([
-  ...draftChartAnchors, ...metricChartAnchors,
-  "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours",
-  "idea_vintage", "latency_compression", "google-trends-neurotech", "google-trends-neuralink",
-]);
+const chartIds = new Set<string>(FEEDBACK_SELECTABLE_CHART_IDS);
 export const allowedTarget = (value: unknown): string | undefined => typeof value === "string" && chartIds.has(value) ? value : undefined;
 export type SemanticTarget = { id: string; bounds: DOMRect };
 
