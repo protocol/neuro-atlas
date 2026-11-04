@@ -80,6 +80,14 @@ async function workflowFixture(injected=false){
  const add=(user,text)=>{const root=messages[0],ts=(Date.now()/1000+0.001).toFixed(6);messages.push({channel:channelId,ts,user,text,thread_ts:root.ts,is_reply:true});root.reply_count++;return ts;};
  return {workflow,existing,review,nativeData,messages,add,counts:()=>({out,writes,threadReads,githubWrites}),cleanup:async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));await rm(dir,{recursive:true,force:true});}};
 }
+test('history-proof hold also blocks already-seeded native delivery before Slack or Linear side effects',async()=>{
+ const f=await workflowFixture();try{
+  f.workflow.controller.config.fixture=false;
+  await assert.rejects(f.workflow.deliver(ids.issue),/native_history_witness_unavailable/);
+  assert.equal(f.counts().out,0);assert.equal(f.counts().writes,0);
+ }finally{await f.cleanup();}
+});
+
 test('SYNTHETIC workflow: deliver both files plus private Linear exact readback; admission fetches actual human source; real controller.publish uses concrete live reader and blocks disagreement before GitHub',async()=>{
  const f=await workflowFixture();try{
  const {workflow:w}=f;

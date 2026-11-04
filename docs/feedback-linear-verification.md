@@ -4,6 +4,12 @@
 
 The workflow is: one-field feedback with an element reference → durable Linear intake → a private, tested candidate and genuine matched before/after images → a human decision in the designated private channel → a draft PR only after approval → manual merge. It uses no additional hosted database. Private host files are execution artifacts, locks, attempt reservations and publication receipts, not a second feedback catalogue.
 
+## Non-overridable history-integrity hold
+
+Deleting a signed tail can leave a valid older prefix. No independent monotonic intake-head/tombstone witness is implemented. Consequently `assertHistoryWitness()` mechanically blocks all non-fixture preparation/publication and HOST writes, including already-seeded delivery, before input or external effects. Only explicit isolated loopback fixtures proceed. An enable flag or operator attestation cannot lift this hold; a reviewed source/witness implementation is required. Website history alone must not be represented as complete deletion-resistant storage. This is an unresolved architecture dependency, not a completed feature.
+
+Quota saturation with no reserved attempt is different from ambiguous inference: it returns `deferred/daily_attempt_quota` before claiming/checking the job and remains eligible on a later day. Actual reserved/ambiguous attempts remain nonrefundable and nonreplayable.
+
 ## Independent enable gates
 
 - Website: select the `linear` backend explicitly, configure the exact public PKCE app/callback, owner/workspace/project/team and server-side sealing key. Missing configuration stays unavailable; it never falls through to fake persistence or another backend.

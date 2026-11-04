@@ -29,7 +29,14 @@ const hash = (value: unknown) => sha256(canonical(value));
 export class ReviewController {
   readonly files: PrivateFiles;
   constructor(readonly config: ReviewConfig) {this.files = new PrivateFiles(config.root);}
+  /** No production automation until an independent monotonic intake witness is implemented.
+   * This is not an operator attestation/enable flag. Only isolated loopback fixtures proceed. */
+  assertHistoryWitness() {
+    const origin=new URL(this.config.mainOrigin);
+    if (this.config.fixture!==true || origin.protocol!=='http:' || origin.hostname!=='127.0.0.1' || origin.origin!==this.config.mainOrigin) throw new Error('native_history_witness_unavailable');
+  }
   private enabled() {
+    this.assertHistoryWitness();
     const c = this.config;
     this.providerEnabled();
     if (c.enabled !== true || !c.channelId || !c.reviewerIds.length || new Set(c.reviewerIds).size !== c.reviewerIds.length || ![c.maxTokens,c.maxWallMs,c.proposalTtlMs].every(x => Number.isFinite(x) && x > 0) || !Number.isSafeInteger(c.maxTokens) || !Number.isSafeInteger(c.maxWallMs) || c.maxWallMs > 600000 || c.proposalTtlMs > 86400000 || !allowedOrigin(c.mainOrigin, 'https://api.github.com', c.fixture)) blocked();
@@ -164,6 +171,7 @@ export class ReviewController {
   }
   async publish(id: string, options: {enabled?: boolean; signingKey: KeyLike; github: GitHubConfig}): Promise<Job> {
     if (options.enabled !== true) return blocked();
+    this.enabled();
     return this.files.lock(async state => {
       const job = this.job(state,id);
       // Terminal/ambiguous attempts never silently resume remote writes, even after restart.
@@ -214,7 +222,7 @@ export class ReviewController {
       }
     });
   }
-  async prepare(): Promise<Job | {state: 'disabled'}> {
+  async prepare(): Promise<Job | {state: 'disabled'} | {state:'deferred';reason:'daily_attempt_quota'}> {
     if (this.config.enabled !== true) return {state: 'disabled'};
     this.enabled();
     if (this.config.provider === 'hermes-astra') new HermesAstraModel(this.config.model).assertAvailable();
@@ -226,6 +234,13 @@ export class ReviewController {
         const candidate = JSON.parse((await this.files.artifactBytes(existing.candidateDigest!)).toString()) as Candidate;
         if (candidate.baseSha !== base || candidate.policyDigest !== this.policyDigest() || candidate.expiresAt <= Date.now()) blocked();
         return existing;
+      }
+      if (this.config.provider === 'hermes-astra') {
+        const {budget}=this.config;
+        if (state.attempts.some(row=>row.timeZone!==budget.timeZone || row.job===id)) blocked();
+        const day=new Intl.DateTimeFormat('en-CA',{timeZone:budget.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(Date.now()));
+        // Known no-request deferral is not an ambiguous inference outcome. Leave no claim/fence.
+        if (state.attempts.filter(row=>row.day===day).length>=budget.maxAttemptsPerDay) return {state:'deferred' as const,reason:'daily_attempt_quota' as const};
       }
       // A claim is written before subprocesses or inference. Crashes do not retry/spend again.
       const job: Job = {state: 'preparing', fence: ++state.fence, inputHash: input.recordHash};

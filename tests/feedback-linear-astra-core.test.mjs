@@ -42,8 +42,33 @@ async function fixture(mode='') {
   }
   let current=native();
   const config={enabled:true,root,repo,provider:'hermes-astra',budget:{kind:'attempts',maxAttemptsPerDay:5,timeZone:'Europe/Berlin'},inputPolicy:{ownerId:ids.owner,workspace:'synthetic',projectId:ids.project,teamId:ids.team,hostPublicKey:host.publicKey,recordKey:key},channelId:'C_SYNTHETIC',reviewerIds:['U_SYNTHETIC'],capturePublicKey:host.publicKey,readNative:async()=>current,mainOrigin:origin,fixture:true,maxTokens:100000,maxWallMs:20000,proposalTtlMs:3600000,model:{enabled:true,account:'hermes-default-openai-codex',model:'gpt-6-astra',maxTurns:1,maxInputTokens:50000,maxOutputTokens:1000,maxBodyBytes:131072,maxResponseBytes:262144,timeoutMs:5000,fixture:true,fixtureOrigin:origin}};
-  return {config,seen,get id(){return id;},next:()=>{id=randomUUID();current=native();},close:async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));await rm(dir,{recursive:true,force:true});}};
+  return {config,seen,get id(){return id;},next:()=>{id=randomUUID();current=native();},refresh:()=>{const payload={...current.payload,readAt:Date.now()};current={payload,signature:sign(null,Buffer.from(canonical({purpose:'atlas-linear-native-read-v1',payload})),host.privateKey).toString('base64')};},close:async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));await rm(dir,{recursive:true,force:true});}};
 }
+
+test('non-fixture automation is mechanically blocked without independent monotonic history proof before any input or claim',async()=>{
+  const f=await fixture();let reads=0;
+  try {
+    const c=new ReviewController({...f.config,fixture:false,mainOrigin:'https://api.github.com',readNative:async()=>{reads++;throw Error('must not read');}});
+    await assert.rejects(c.prepare(),/native_history_witness_unavailable/);
+    assert.throws(()=>c.assertHistoryWitness(),/native_history_witness_unavailable/);
+    assert.equal(reads,0);assert.equal(f.seen.length,0);
+    await assert.rejects(readFile(path.join(f.config.root,'state.json')),/ENOENT/);
+  }finally{await f.close();}
+});
+
+test('quota-limited unattempted proposal defers before claim and remains eligible next day without refunding prior slots',async()=>{
+  const f=await fixture(),clock=Date.now;let at=clock();Date.now=()=>at;
+  try {
+    const c=new ReviewController(f.config);
+    await c.files.lock(async state=>{for(let i=0;i<5;i++)await c.files.reserveAttempt(state,{job:randomUUID(),tokens:100,budget:f.config.budget,provider:'hermes-astra',account:f.config.model.account,model:f.config.model.model,policyDigest:'a'.repeat(64)});});
+    const before=await c.files.read();
+    assert.deepEqual(await c.prepare(),{state:'deferred',reason:'daily_attempt_quota'});
+    const deferred=await c.files.read();assert.equal(deferred.jobs[f.id],undefined);assert.equal(deferred.fence,before.fence);assert.equal(f.seen.length,0);
+    at+=86400000;f.refresh();
+    const job=await new ReviewController(f.config).prepare();assert.equal(job.state,'awaiting_capture');assert.equal(f.seen.length,1);
+    const final=await c.files.read();assert.equal(final.attempts.length,6);assert.deepEqual(final.attempts.slice(0,5),before.attempts);
+  }finally{Date.now=clock;await f.close();}
+});
 
 test('five ambiguous calls consume all slots; restart/replay/sixth proposal cannot make another request',async()=>{
   const f=await fixture('ambiguous');
@@ -53,7 +78,7 @@ test('five ambiguous calls consume all slots; restart/replay/sixth proposal cann
       await assert.rejects(new ReviewController(f.config).prepare(),/review_blocked/);
       f.next();
     }
-    await assert.rejects(new ReviewController(f.config).prepare(),/review_blocked/);
+    assert.deepEqual(await new ReviewController(f.config).prepare(),{state:'deferred',reason:'daily_attempt_quota'});
     assert.equal(f.seen.length,5);
     const state=await new ReviewController(f.config).files.read();assert.equal(state.attempts.length,5);assert.equal(state.spend.length,0);
     for(const row of state.attempts){assert.equal(row.status,'reserved');assert.equal(row.chargedUsd,null);assert.equal(row.usage,undefined);}
@@ -69,12 +94,12 @@ test('actual old CSS validator rejects selector replacement in count mode; slot 
   } finally {await f.close();}
 });
 
-test('native provider surfaces the verified broker blocker without reading feedback, running checks or claiming a proposal',async()=>{
+test('native provider remains held by unresolved history without reading feedback, running checks or claiming a proposal',async()=>{
   const f=await fixture();let reads=0;
   try {
     const model={...f.config.model};delete model.fixture;delete model.fixtureOrigin;
     const c=new ReviewController({...f.config,fixture:false,mainOrigin:'https://api.github.com',model,readNative:async()=>{reads++;throw new Error('must not read');}});
-    await assert.rejects(c.prepare(),/hermes_astra_bounded_broker_unavailable/);
+    await assert.rejects(c.prepare(),/native_history_witness_unavailable/);
     assert.equal(reads,0);assert.equal(f.seen.length,0);
     await assert.rejects(readFile(path.join(f.config.root,'state.json')),/ENOENT/);
   } finally {await f.close();}

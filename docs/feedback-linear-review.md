@@ -2,13 +2,15 @@
 
 **Implementation only; off by default.** No account, key, paid plan, model request, scheduler, webhook, push, PR, merge, deployment, or live capture is enabled by these files. Linear remains the feedback/review record. The private host stores only execution artifacts, receipts, claims and spending; it is not a replacement feedback catalogue or a new hosted database.
 
+**Native automation additionally has a non-overridable history-integrity hold.** A signed surviving prefix cannot prove a deleted newer suffix never existed. `ReviewController.assertHistoryWitness()` blocks non-fixture preparation/publication and HOST writes until an independent monotonic witness is implemented; only isolated loopback fixtures run. See [activation/verification](feedback-linear-verification.md). This does not claim a completed native workflow.
+
 ## Executable path
 
 `ReviewController` in `scripts/feedback-linear/controller.ts` implements:
 
 1. `prepare()` verifies the website's HMAC-signed private record chain **and** a fresh HOST-attested native read. It checks configured owner/workspace/project/team, issue ID, exact Linear origin/workspace/identifier URL, contiguous versions, previous-record hashes, operation/request hashes, consent policy and bounded structural input.
-2. In a detached private checkout of current remote `protocol/neuro-atlas` `main`, it calls the existing `loadSnapshot`, `runTrustedChecks`, `AnthropicModel`, `validatePatch(..., 'css-only')`, `applyValidatedPatch` and `verifyAppliedPatch`. It runs real trusted baseline and candidate test/typecheck/build subprocesses. There is no general command-capable patch producer, model tool, new dependency, fallback database, or public execution route.
-3. It reserves worst-case spending durably **before** provider HTTP. Known billing settles once; unknown billing retains the full reservation. A failed/unknown preparation parks and cannot spend again automatically. Job/day dollar limits and per-request token/wall limits must be explicit positive operator configuration. Outstanding reservations count across midnight.
+2. In a detached private checkout of current remote `protocol/neuro-atlas` `main`, it calls the existing `loadSnapshot`, `runTrustedChecks`, the explicitly selected no-tools provider adapter, `validatePatch(..., 'css-only')`, `applyValidatedPatch` and `verifyAppliedPatch`. It runs real trusted baseline and candidate test/typecheck/build subprocesses. There is no general command-capable patch producer, model tool, new dependency, fallback database, or public execution route.
+3. It reserves the selected provider’s explicit budget durably **before** provider HTTP. Existing-account mode counts at most five attempts/day; unpriced dollars stay null. Known quota exhaustion before a request defers without a claim and remains next-day eligible. Reserved/ambiguous attempts are never refunded or retried. The separate legacy USD fixture mode retains conservative spending reservations. Positive token/wall limits remain. See [existing-account limits](feedback-linear-astra.md).
 4. The checked candidate is persisted privately, content-addressed, with exact input record hash/version, base, patch, source/check digests, revision and expiry. It is not pushed and has no PR. `capturePlan(id)` returns `{candidate,candidateDigest}` only while `awaiting_capture`, under the same host lock and fresh input/main/source validation.
 5. `attachCapture(id, signedReceipt, beforePng, afterPng)` requires the separately trusted parent browser capture adapter. It checks the exact candidate/base/patch/checks/revision, route/theme/viewport, PNG dimensions and both actual byte digests. Identical before/after PNG byte digests are rejected; genuine visual/pixel differences must also be checked by the trusted capture adapter. Both images and the signed receipt are copied into private content-addressed files. Only then does it create the exact channel-bound proposal digest.
 6. `delivered(id, signedReceipt)` accepts only a HOST receipt for genuine paired-image delivery/readback in the configured private thread plus a private Linear proposal-comment readback. `decide(id, signedReceipt)` accepts only a fresh, HOST-authenticated human action from an allowlisted reviewer, exact channel, delivered thread and proposal digest, with a Linear decision-comment readback. A bot, note/model text, unsigned boolean, Linear status, old reaction, wrong revision/channel/thread, replay, or outsider cannot approve. A second distinct decision makes the proposal conflicted; a rejection/conflict is terminal for automatic publication.
@@ -69,10 +71,10 @@ Config/receipt/key/image files must be regular non-symlink, same-owner, private-
 
 - `root`, `repo`, `nativeReadPath`, `hostPublicKeyPath`, `capturePublicKeyPath` (absolute paths).
 - `ownerId`, `workspace` (native workspace URL key), `projectId`, `teamId`, `channelId`, `reviewerIds` (real allowlists, no checked-in defaults).
-- Positive `maxJobUsd`, `maxDayUsd`, integer `maxTokens`, `maxWallMs <= 600000`, `proposalTtlMs <= 86400000`.
-- Explicit `provider:'anthropic'` (the only implemented adapter; other providers fail closed), and `model:{model,inputUsdPerMillion,outputUsdPerMillion,maxInputTokens,maxOutputTokens,maxBodyBytes,maxResponseBytes,timeoutMs}` under existing model bounds. No model or price is chosen for the operator.
+- Positive integer `maxTokens`, `maxWallMs <= 600000`, `proposalTtlMs <= 86400000`.
+- Explicit provider-discriminated account/model/budget: the selected `hermes-astra` count mode is described in [existing-account limits](feedback-linear-astra.md); legacy Anthropic/USD configuration stays separate. No account, model or price is chosen by default, and native execution remains held.
 
-`ATLAS_LINEAR_REVIEW_RECORD_KEY` is the broker-injected derived 32-byte key in canonical base64url, not a new token extracted from MCP or the website session key. Preparation additionally needs broker-injected `FEEDBACK_ANTHROPIC_API_KEY`. Production origins are fixed; CLI has no fixture/provider-origin override.
+`ATLAS_LINEAR_REVIEW_RECORD_KEY` is the broker-injected derived 32-byte key in canonical base64url, not a new token extracted from MCP or the website session key. Only legacy Anthropic/USD mode uses broker-injected `FEEDBACK_ANTHROPIC_API_KEY`; the selected existing-account mode does not. Production origins are fixed; CLI has no fixture/provider-origin override.
 
 **The standalone `publish` CLI is intentionally blocked**, even if its enable flags are set: a static receipt file cannot prove a fresh complete thread read. It refuses before loading publication config/secrets. The qualified HOST handler invokes the working API with its live MCP/router reader:
 
@@ -106,14 +108,13 @@ Keep one stable private root per configured owner/workflow. This is **single-hos
 ## Verification (no live peers)
 
 ```
-FEEDBACK_LINEAR_RECORDS_MODULE=file:///absolute/integrated/src/lib/feedback-linear/server/records.ts \
-  node --import tsx --test tests/feedback-linear-review.test.mjs
+node --import tsx --test tests/feedback-linear-review.test.mjs
 npm test
 npm run typecheck
 NEXT_TELEMETRY_DISABLED=1 npm run build
 ./node_modules/.bin/eslint scripts/feedback-linear/*.ts tests/feedback-linear-review.test.mjs
 ```
 
-The optional cross-lane signer probe is skipped only when that explicit backend module path is absent in the isolated controller branch. Run it against the actual integrated backend before handoff.
+The standard signer probe imports the actual backend from this checkout and does not skip behind an out-of-tree environment variable.
 
 Tests execute the actual legacy no-tools model/validator/checks/publisher, real temporary Git checkouts and npm subprocesses, filesystem persistence/restarts, SIGKILL/orphan locking, spend ambiguity, strict scoped human decisions, a nonce-bound complete-thread conflict, exact-artifact/main changes and lost replies after every publication write. All external provider/GitHub/native/router/capture signers are **explicitly synthetic loopback peers**. Capture-gate tests reuse genuine committed browser PNG bytes with synthetic capture attestations; they are **not** a rendered before/after acceptance for the generated candidate. The parent owns actual full-Atlas checks, real paired captures/delivery and independent exact-head review. No real provider request, GitHub write, PR, push, deployment or scheduled run occurred.

@@ -3,7 +3,7 @@ import {createPublicKey} from 'node:crypto';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {z} from 'zod';
-import {ReviewController, type ReviewConfig, type Job} from './controller';
+import {ReviewController, type ReviewConfig} from './controller';
 import {uuid} from './input';
 import {hermesModelSchema} from './hermes-model';
 
@@ -49,7 +49,7 @@ export async function runtimeMain(args: string[], env: NodeJS.ProcessEnv = proce
       ? {...common,provider:c.provider,budget:c.budget,model:{...c.model,enabled:true}}
       : {...common,provider:c.provider,budget:c.budget,maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY ?? ''};
     const controller = new ReviewController(config);
-    let result: Job | {state:'disabled'};
+    let result: Awaited<ReturnType<ReviewController['prepare']>>;
     if (role === 'prepare') result = await controller.prepare();
     else if (role === 'status') result = await controller.status(id);
     else if (role === 'capture') result = await controller.attachCapture(id,await privateJson(receiptPath),await privateBytes(beforePath),await privateBytes(afterPath));

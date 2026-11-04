@@ -41,7 +41,7 @@ export class HostWorkflow {
     this.journal=new PrivateFiles(path.join(review.root,'host-operations'));
   }
   private attest<T>(purpose:string,payload:T){return {payload,signature:sign(null,Buffer.from(canonical({purpose,payload})),this.config.host.signingKey).toString('base64')};}
-  private enabledWrite(){if(this.review.enabled!==true||this.config.writesEnabled!==true)blocked('writes_disabled');}
+  private enabledWrite(){if(this.review.enabled!==true||this.config.writesEnabled!==true)blocked('writes_disabled');this.controller.assertHistoryWitness();}
   private id(id:string){uuid.parse(id);if(id!==this.config.host.scope.issueId)blocked('issue_scope');}
   private async material(id:string){
     this.id(id);const job=await this.controller.status(id);
