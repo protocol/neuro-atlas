@@ -10,7 +10,7 @@ import {livePorts,type LivePorts} from './host-transport';
 import {ReviewController,type ReviewConfig,type Job} from './controller';
 import {PrivateFiles} from './files';
 import {hostPayload,validateNative,fresh,uuid,digest} from './input';
-import {captureSchema,deliverySchema,decisionSchema,threadSchema,type ThreadRequest,type Proposal} from './evidence';
+import {captureSchema,deliverySchema,decisionSchema,witnessedDeliverySchema,witnessedDecisionSchema,deliveryPurpose,decisionPurpose,readDelivery,readDecision,threadSchema,type ThreadRequest,type Proposal} from './evidence';
 
 type WithoutReaders<T> = T extends unknown ? Omit<T,'readNative'|'readReviewThread'> : never;
 export type WorkflowConfig={host:HostConfig;slack:SlackConfig;writesEnabled?:boolean;publishEnabled?:boolean}&({controller:ReviewController;review?:never}|{review:WithoutReaders<ReviewConfig>;controller?:never});
@@ -30,6 +30,7 @@ export class HostWorkflow {
   constructor(readonly config:WorkflowConfig,readonly ports:LivePorts=livePorts()){
     this.host=new PrivateHost(config.host,ports);this.slack=new HostSlack(config.slack,ports);
     const review=config.controller?.config??config.review??blocked('controller_required');
+    if(config.host.inputPolicy.authority==='witnessed-intake-v1' && (!review.historyWitness||review.historyWitness.root!==config.host.historyWitness?.root||review.historyWitness.policyDigest!==config.host.historyWitness?.policyDigest))blocked('witness_authority_mismatch');
     if(review.historyWitness && review.historyWitness.scope.workspaceId!==config.host.scope.workspaceId)blocked('witness_workspace_mismatch');
     this.review=review;
     if(review.channelId!==config.slack.channelId||canonical(review.reviewerIds)!==canonical(config.slack.verifiedHumanReviewerIds)||review.inputPolicy!==config.host.inputPolicy)blocked('workflow_trust_config');
@@ -41,6 +42,7 @@ export class HostWorkflow {
     }else this.controller=new ReviewController({...config.review!,...readers});
     this.journal=new PrivateFiles(path.join(review.root,'host-operations'));
   }
+  private witnessed(){return this.config.host.inputPolicy.authority==='witnessed-intake-v1';}
   private attest<T>(purpose:string,payload:T){return {payload,signature:sign(null,Buffer.from(canonical({purpose,payload})),this.config.host.signingKey).toString('base64')};}
   private enabledWrite(){if(this.review.enabled!==true||this.config.writesEnabled!==true)blocked('writes_disabled');this.controller.assertHistoryWitness();}
   private id(id:string){uuid.parse(id);if(id!==this.config.host.scope.issueId)blocked('issue_scope');}
@@ -53,7 +55,7 @@ export class HostWorkflow {
     if(cap.candidateDigest!==proposal.candidateDigest||cap.before.digest!==proposal.beforeDigest||cap.after.digest!==proposal.afterDigest)blocked('capture_binding');
     return {job,proposal,cap};
   }
-  private binding(proposal:Proposal,delivery:z.infer<typeof deliverySchema>,cap:z.infer<typeof captureSchema>):ReviewBinding{
+  private binding(proposal:Proposal,delivery:ReturnType<typeof readDelivery>,cap:z.infer<typeof captureSchema>):ReviewBinding{
     return {proposalDigest:delivery.proposalDigest,channelId:delivery.channelId,threadId:delivery.threadId,before:{...cap.before,messageId:delivery.messageIds[0]},after:{...cap.after,messageId:delivery.messageIds[1]}};
   }
   private exactComment(value:unknown,id:string,body:string){
@@ -74,7 +76,7 @@ export class HostWorkflow {
   }
   private async delivery(job:Job){
     if(!job.deliveryDigest)return blocked('delivery_missing');
-    return hostPayload(JSON.parse((await this.controller.files.artifactBytes(job.deliveryDigest)).toString()),'atlas-linear-review-delivery-v1',this.config.host.inputPolicy.hostPublicKey,deliverySchema);
+    return readDelivery(JSON.parse((await this.controller.files.artifactBytes(job.deliveryDigest)).toString()),this.config.host.inputPolicy);
   }
   /** Durable reservation BEFORE any external side effect. Unknown/partial attempts never retry. */
   private async once<T>(key:string,fn:(checkpoint:(value:unknown)=>Promise<void>)=>Promise<T>):Promise<T>{
@@ -104,10 +106,10 @@ export class HostWorkflow {
         const post=postSchema.parse(await this.ports.sendFile(proposal.channelId,root.ts,path.join(dir,phase+'.png'),imageCaption(phase,job.proposalDigest!,proposal[phase==='before'?'beforeDigest':'afterDigest'])));
         if(post.channel!==proposal.channelId||post.thread_ts!==root.ts||post.ts===root.ts||posts.some(p=>p.ts===post.ts))blocked('file_receipt');posts.push(post);await checkpoint({root,posts});
       }
-      const d:z.infer<typeof deliverySchema>={eventId:randomUUID(),at:Date.now(),channelId:proposal.channelId,threadId:root.ts,proposalDigest:job.proposalDigest!,beforeDigest:proposal.beforeDigest,afterDigest:proposal.afterDigest,messageIds:[posts[0].ts,posts[1].ts] as [string,string],linearCommentId:randomUUID()};
+      const d:ReturnType<typeof readDelivery>={eventId:randomUUID(),at:Date.now(),channelId:proposal.channelId,threadId:root.ts,proposalDigest:job.proposalDigest!,beforeDigest:proposal.beforeDigest,afterDigest:proposal.afterDigest,messageIds:[posts[0].ts,posts[1].ts] as [string,string],...(!this.witnessed()?{linearCommentId:randomUUID()}:{schema:'atlas-linear-witnessed-delivery-v2' as const})};
       await this.slack.readThread({nonce:randomUUID(),requestedAt:Date.now(),channelId:d.channelId,threadId:d.threadId,proposalDigest:d.proposalDigest},this.binding(proposal,d,cap));
-      d.linearCommentId=await this.comment(proposalBody(d),job.inputHash);d.at=Date.now();
-      await checkpoint(d);return this.controller.delivered(id,this.attest('atlas-linear-review-delivery-v1',deliverySchema.parse(d)));
+      if('linearCommentId' in d)d.linearCommentId=await this.comment(proposalBody(d),job.inputHash);d.at=Date.now();
+      await checkpoint(d);return this.controller.delivered(id,this.attest(deliveryPurpose(this.config.host.inputPolicy),this.witnessed()?witnessedDeliverySchema.parse(d):deliverySchema.parse(d)));
     });
   }
   async admitDecision(id:string,messageId:string){
@@ -117,14 +119,14 @@ export class HostWorkflow {
     if(!['awaiting_review','approved','rejected','conflicted'].includes(job.state)||d.proposalDigest!==job.proposalDigest)return blocked('decision_state');
     const request={nonce:randomUUID(),requestedAt:Date.now(),channelId:d.channelId,threadId:d.threadId,proposalDigest:d.proposalDigest};
     const [thread,native]=await Promise.all([this.slack.readThread(request,this.binding(proposal,d,cap)),this.host.readSource()]);
-    this.checkComment(native.comments,d.linearCommentId,proposalBody(d));
+    if('linearCommentId' in d)this.checkComment(native.comments,d.linearCommentId,proposalBody(d));
     const m=thread.messages.find(m=>m.messageId===messageId);
     if(!m||m.speakerType!=='human'||!this.config.slack.verifiedHumanReviewerIds.includes(m.speakerId)||![`approve ${d.proposalDigest}`,`reject ${d.proposalDigest}`].includes(m.text)||messageId===d.threadId||d.messageIds.includes(messageId))return blocked('not_verified_human_exact_decision');
     const at=Math.floor(Number(messageId)*1000);fresh(at);if(at<d.at)blocked('decision_predates_delivery');
-    const a:z.infer<typeof decisionSchema>={eventId:sourceEvent(d.channelId,d.threadId,messageId),at,channelId:d.channelId,threadId:d.threadId,messageId,proposalDigest:d.proposalDigest,decision:m.text.startsWith('approve ')?'approve' as const:'reject' as const,speakerId:m.speakerId,speakerType:'human' as const,linearCommentId:randomUUID()};
+    const a:ReturnType<typeof readDecision>={eventId:sourceEvent(d.channelId,d.threadId,messageId),at,channelId:d.channelId,threadId:d.threadId,messageId,proposalDigest:d.proposalDigest,decision:m.text.startsWith('approve ')?'approve' as const:'reject' as const,speakerId:m.speakerId,speakerType:'human' as const,...(!this.witnessed()?{linearCommentId:randomUUID()}:{schema:'atlas-linear-witnessed-decision-v2' as const})};
     return this.once('decision:'+a.eventId,async checkpoint=>{
-      a.linearCommentId=await this.comment(decisionBody(a),job.inputHash);await checkpoint(a);
-      return this.controller.decide(id,this.attest('atlas-linear-human-decision-v1',decisionSchema.parse(a)));
+      if('linearCommentId' in a)a.linearCommentId=await this.comment(decisionBody(a),job.inputHash);await this.controller.assertCurrentInput(job.inputHash);await checkpoint(a);
+      return this.controller.decide(id,this.attest(decisionPurpose(this.config.host.inputPolicy),this.witnessed()?witnessedDecisionSchema.parse(a):decisionSchema.parse(a)));
     });
   }
   /** Called by the current controller.publish BEFORE credentials and repeatedly at write guards. */
@@ -132,10 +134,11 @@ export class HostWorkflow {
     const {job,proposal,cap}=await this.material(this.config.host.scope.issueId),d=await this.delivery(job);
     await this.controller.assertCurrentInput(job.inputHash);
     if(!job.decisionDigest||request.proposalDigest!==job.proposalDigest)return blocked('approval_missing');
-    const a=hostPayload(JSON.parse((await this.controller.files.artifactBytes(job.decisionDigest)).toString()),'atlas-linear-human-decision-v1',this.config.host.inputPolicy.hostPublicKey,decisionSchema);
+    const a=readDecision(JSON.parse((await this.controller.files.artifactBytes(job.decisionDigest)).toString()),this.config.host.inputPolicy);
     const [thread,native]=await Promise.all([this.slack.publicationThread(request,this.binding(proposal,d,cap)),this.host.readSource()]);
     if(validateNative(native.receipt,this.config.host.inputPolicy).recordHash!==job.inputHash||!thread.messages.some(m=>m.messageId===a.messageId&&m.speakerId===a.speakerId&&m.text==='approve '+a.proposalDigest&&m.speakerType==='human'))blocked('approval_source_changed');
-    this.checkComment(native.comments,d.linearCommentId,proposalBody(d));this.checkComment(native.comments,a.linearCommentId,decisionBody(a));
+    if('linearCommentId' in d)this.checkComment(native.comments,d.linearCommentId,proposalBody(d));if('linearCommentId' in a)this.checkComment(native.comments,a.linearCommentId,decisionBody(a));
+    if(this.witnessed())await this.controller.assertCurrentInput(job.inputHash);
     fresh(request.requestedAt,15000);thread.readAt=Date.now();return this.attest('atlas-linear-review-thread-v1',threadSchema.parse(thread));
   }
   async publish(id:string,options:{enabled?:boolean;signingKey:KeyLike;github:Parameters<ReviewController['publish']>[1]['github']}){

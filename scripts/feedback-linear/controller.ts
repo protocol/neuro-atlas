@@ -3,7 +3,7 @@ import {PrivateFiles, type State, type AttemptBudget} from './files';
 import {HermesAstraModel, hermesModelSchema, type HermesModelConfig} from './hermes-model';
 import {FileIntakeWitness} from './witness-store';
 import {validateNative, hostPayload, fresh, type InputPolicy} from './input';
-import {captureSchema, assertPng, deliverySchema, decisionSchema, threadSchema, type ThreadRequest, type Proposal} from './evidence';
+import {captureSchema, assertPng, readDelivery, readDecision, threadSchema, type ThreadRequest, type Proposal} from './evidence';
 import {canonical, approvalHash} from '../feedback/engine';
 import {publishBundle, verifyBundle, type Publication} from '../feedback/publisher';
 import type {GitHubConfig} from '../feedback/github';
@@ -34,6 +34,7 @@ export class ReviewController {
    * Availability and exact latest-chain checks run again at every current-input read. */
   assertHistoryWitness() {
     const witness=this.config.historyWitness,p=this.config.inputPolicy;
+    if(p.authority==='witnessed-intake-v1' && (!(witness instanceof FileIntakeWitness)||witness.scope.workspaceId!==p.workspaceId))throw new Error('native_history_witness_unavailable');
     if (witness instanceof FileIntakeWitness && witness.scope.ownerId===p.ownerId && witness.scope.projectId===p.projectId && witness.scope.teamId===p.teamId) return;
     if (witness!==undefined) throw new Error('native_history_witness_unavailable');
     const origin=new URL(this.config.mainOrigin);
@@ -59,7 +60,7 @@ export class ReviewController {
   }
   private policyDigest() {
     const c = this.config;
-    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, provider:c.provider ?? 'anthropic', budget:c.provider === 'hermes-astra' ? c.budget : {kind:'usd',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd}, model: c.model, ...(c.historyWitness?{history:{identity:c.historyWitness.identity,policyDigest:c.historyWitness.policyDigest}}:{}), caps: [c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
+    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, provider:c.provider ?? 'anthropic', budget:c.provider === 'hermes-astra' ? c.budget : {kind:'usd',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd}, model: c.model, ...(c.inputPolicy.authority==='witnessed-intake-v1'?{inputAuthority:c.inputPolicy.authority}:{}), ...(c.historyWitness?{history:{identity:c.historyWitness.identity,policyDigest:c.historyWitness.policyDigest}}:{}), caps: [c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
   }
   private async main() {
     const response = await fetch(this.config.mainOrigin + '/repos/protocol/neuro-atlas/git/ref/heads/main', {redirect: 'error', signal: AbortSignal.timeout(15000)});
@@ -136,7 +137,7 @@ export class ReviewController {
         const job = this.job(state,id), proposal = await this.proposal(job);
         await this.revalidate(job);
         if (job.state !== 'awaiting_delivery') return blocked();
-        const delivery = hostPayload(receipt,'atlas-linear-review-delivery-v1',this.config.inputPolicy.hostPublicKey,deliverySchema);
+        const delivery = readDelivery(receipt,this.config.inputPolicy);
         fresh(delivery.at);
         if (state.events[delivery.eventId] || delivery.channelId !== proposal.channelId || delivery.proposalDigest !== job.proposalDigest || delivery.beforeDigest !== proposal.beforeDigest || delivery.afterDigest !== proposal.afterDigest || delivery.messageIds[0] === delivery.messageIds[1]) return blocked();
         job.deliveryDigest = await this.files.artifact(Buffer.from(canonical(receipt)));
@@ -148,12 +149,12 @@ export class ReviewController {
   async decide(id: string, receipt: unknown): Promise<Job> {
     return this.files.lock(async state => {
       try {
-        const decision = hostPayload(receipt,'atlas-linear-human-decision-v1',this.config.inputPolicy.hostPublicKey,decisionSchema);
+        const decision = readDecision(receipt,this.config.inputPolicy);
         fresh(decision.at);
         const job = this.job(state,id);
         await this.revalidate(job); await this.proposal(job);
         if (!job.deliveryDigest || !['awaiting_review','approved','rejected','conflicted'].includes(job.state) || state.events[decision.eventId]) return blocked();
-        const delivery = hostPayload(JSON.parse((await this.files.artifactBytes(job.deliveryDigest)).toString()),'atlas-linear-review-delivery-v1',this.config.inputPolicy.hostPublicKey,deliverySchema);
+        const delivery = readDelivery(JSON.parse((await this.files.artifactBytes(job.deliveryDigest)).toString()),this.config.inputPolicy);
         if (decision.at < delivery.at || decision.channelId !== this.config.channelId || decision.threadId !== delivery.threadId || decision.proposalDigest !== job.proposalDigest || !this.config.reviewerIds.includes(decision.speakerId) || decision.messageId === delivery.threadId || delivery.messageIds.includes(decision.messageId)) return blocked();
         const digest = await this.files.artifact(Buffer.from(canonical(receipt)));
         state.events[decision.eventId] = digest;
@@ -169,8 +170,8 @@ export class ReviewController {
   }
   private async assertThread(state: State, job: Job) {
     if (!this.config.readReviewThread || !job.deliveryDigest || !job.decisionDigest || !job.proposalDigest) return blocked();
-    const delivery = hostPayload(JSON.parse((await this.files.artifactBytes(job.deliveryDigest)).toString()),'atlas-linear-review-delivery-v1',this.config.inputPolicy.hostPublicKey,deliverySchema);
-    const decision = hostPayload(JSON.parse((await this.files.artifactBytes(job.decisionDigest)).toString()),'atlas-linear-human-decision-v1',this.config.inputPolicy.hostPublicKey,decisionSchema);
+    const delivery = readDelivery(JSON.parse((await this.files.artifactBytes(job.deliveryDigest)).toString()),this.config.inputPolicy);
+    const decision = readDecision(JSON.parse((await this.files.artifactBytes(job.decisionDigest)).toString()),this.config.inputPolicy);
     const request: ThreadRequest = {nonce:randomUUID(),requestedAt:Date.now(),channelId:this.config.channelId,threadId:delivery.threadId,proposalDigest:job.proposalDigest};
     const receipt = await this.config.readReviewThread(request);
     const thread = hostPayload(receipt,'atlas-linear-review-thread-v1',this.config.inputPolicy.hostPublicKey,threadSchema);
@@ -190,7 +191,7 @@ export class ReviewController {
       // Terminal/ambiguous attempts never silently resume remote writes, even after restart.
       if (job.state !== 'approved' || !job.decisionDigest || job.publication || job.bundleDigest) return blocked();
       const {candidate,sources} = await this.revalidate(job), proposal = await this.proposal(job);
-      const approval = hostPayload(JSON.parse((await this.files.artifactBytes(job.decisionDigest)).toString()),'atlas-linear-human-decision-v1',this.config.inputPolicy.hostPublicKey,decisionSchema);
+      const approval = readDecision(JSON.parse((await this.files.artifactBytes(job.decisionDigest)).toString()),this.config.inputPolicy);
       await this.assertThread(state,job);
       if (approval.decision !== 'approve' || approval.proposalDigest !== job.proposalDigest || approval.channelId !== proposal.channelId || state.events[approval.eventId] !== job.decisionDigest || !this.config.reviewerIds.includes(approval.speakerId)) return blocked();
       const publicKey = createPublicKey(options.signingKey);
@@ -205,8 +206,8 @@ export class ReviewController {
       const active = async (b: Bundle) => {
         if (job.state !== 'publishing' || job.fence !== fence || state.fence !== fence || hash(await this.files.read()) !== hash(state) || hash(b) !== job.bundleDigest || !this.settled(state,id)) return blocked();
         await this.revalidate(job); const currentProposal = await this.proposal(job);
-        const currentApproval = hostPayload(JSON.parse((await this.files.artifactBytes(job.decisionDigest!)).toString()),'atlas-linear-human-decision-v1',this.config.inputPolicy.hostPublicKey,decisionSchema);
-        const delivery = hostPayload(JSON.parse((await this.files.artifactBytes(job.deliveryDigest!)).toString()),'atlas-linear-review-delivery-v1',this.config.inputPolicy.hostPublicKey,deliverySchema);
+        const currentApproval = readDecision(JSON.parse((await this.files.artifactBytes(job.decisionDigest!)).toString()),this.config.inputPolicy);
+        const delivery = readDelivery(JSON.parse((await this.files.artifactBytes(job.deliveryDigest!)).toString()),this.config.inputPolicy);
         if (hash(currentApproval) !== hash(approval) || currentApproval.decision !== 'approve' || currentApproval.threadId !== delivery.threadId || currentApproval.at < delivery.at || currentApproval.proposalDigest !== job.proposalDigest || delivery.proposalDigest !== job.proposalDigest || delivery.beforeDigest !== currentProposal.beforeDigest || delivery.afterDigest !== currentProposal.afterDigest || delivery.channelId !== this.config.channelId || state.events[delivery.eventId] !== job.deliveryDigest || state.events[currentApproval.eventId] !== job.decisionDigest) return blocked();
         verifyBundle(JSON.parse((await this.files.artifactBytes(job.bundleDigest!)).toString()),publicKey,sources);
         await this.assertThread(state,job);

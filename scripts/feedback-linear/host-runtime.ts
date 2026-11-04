@@ -8,16 +8,17 @@ import {slackConfigSchema} from './host-slack';
 import {HostWorkflow} from './host-workflow';
 import {ReviewController} from './controller';
 import {livePorts} from './host-transport';
-import {uuid,validateNative} from './input';
+import {uuid,validateNative,type InputPolicy} from './input';
+import {FileIntakeWitness} from './witness-store';
 import {loadReviewController} from './runtime';
 
 const absolute=z.string().refine(path.isAbsolute),envName=z.string().regex(/^[A-Z][A-Z0-9_]{0,99}$/);
 const schema=z.object({
   root:absolute,repo:absolute,scope:hostScopeSchema,slack:slackConfigSchema,
-  reviewConfigPath:absolute.optional(),
+  reviewConfigPath:absolute.optional(),inputAuthority:z.enum(['ordinary-v1','witnessed-intake-v1']).optional(),historyWitnessRoot:absolute.optional(),
   hostPublicKeyPath:absolute,capturePublicKeyPath:absolute,hostSigningKeyEnv:envName,recordKeyEnv:envName,publisherSigningKeyEnv:envName,githubTokenEnv:envName,
   reviewerVerificationReferences:z.record(z.string(),z.string().min(1).max(1000)),syncAuditReference:z.string().min(1).max(1000),
-}).strict();
+}).strict().refine(c=>c.inputAuthority==='witnessed-intake-v1'?!!c.historyWitnessRoot:c.historyWitnessRoot===undefined);
 const blocked=(reason:string):never=>{throw new Error('host_blocked:'+reason);};
 async function bytes(file:string,max=16*1024*1024){
   if(!path.isAbsolute(file))return blocked('private_file_path');
@@ -52,9 +53,13 @@ export async function hostRuntimeMain(args:string[],env:NodeJS.ProcessEnv=proces
   if(!/^[A-Za-z0-9_-]{43}$/.test(recordKeyText)||Buffer.from(recordKeyText,'base64url').toString('base64url')!==recordKeyText)return blocked('derived_record_key');
   const hostPublicKey=createPublicKey(await bytes(c.hostPublicKeyPath,8192)),capturePublicKey=createPublicKey(await bytes(c.capturePublicKeyPath,8192)),signingKey=createPrivateKey(required(env,c.hostSigningKeyEnv));
   if(hostPublicKey.asymmetricKeyType!=='ed25519'||capturePublicKey.asymmetricKeyType!=='ed25519')return blocked('ed25519_required');
-  const inputPolicy=controller?.config.inputPolicy??{ownerId:c.scope.ownerId,workspace:c.scope.workspace,projectId:c.scope.projectId,teamId:c.scope.teamId,hostPublicKey,recordKey:Buffer.from(recordKeyText,'base64url')};
+  const configuredAuthority=c.inputAuthority??'ordinary-v1';
+  if(controller && (controller.config.inputPolicy.authority??'ordinary-v1')!==configuredAuthority)return blocked('controller_authority_binding');
+  const historyWitness=configuredAuthority==='witnessed-intake-v1'?new FileIntakeWitness({root:c.historyWitnessRoot!,scope:{workspaceId:c.scope.workspaceId,ownerId:c.scope.ownerId,projectId:c.scope.projectId,teamId:c.scope.teamId}}):undefined;
+  if(controller && historyWitness && (controller.config.historyWitness?.root!==historyWitness.root||controller.config.historyWitness?.policyDigest!==historyWitness.policyDigest))return blocked('controller_authority_binding');
+  const inputPolicy:InputPolicy=controller?.config.inputPolicy??{ownerId:c.scope.ownerId,workspace:c.scope.workspace,projectId:c.scope.projectId,teamId:c.scope.teamId,hostPublicKey,recordKey:Buffer.from(recordKeyText,'base64url'),...(configuredAuthority==='witnessed-intake-v1'?{authority:'witnessed-intake-v1' as const,workspaceId:c.scope.workspaceId,issueId:c.scope.issueId}:{authority:'ordinary-v1' as const})};
   if(!inputPolicy.recordKey.equals(Buffer.from(recordKeyText,'base64url'))||!publicDer(inputPolicy.hostPublicKey).equals(publicDer(hostPublicKey)))return blocked('controller_trust_binding');
-  const host={scope:c.scope,inputPolicy,signingKey};
+  const host={scope:c.scope,inputPolicy,signingKey,historyWitness:controller?.config.historyWitness??historyWitness};
   if(command==='native'){const verified=validateNative(await new PrivateHost(host,livePorts()).readNative(),inputPolicy);return {state:'verified',issueId:c.scope.issueId,version:verified.record.version,recordHash:verified.recordHash};}
   const common=controller!.config;
   if(common.root!==c.root||common.repo!==c.repo||common.inputPolicy.ownerId!==c.scope.ownerId||common.inputPolicy.workspace!==c.scope.workspace||common.inputPolicy.projectId!==c.scope.projectId||common.inputPolicy.teamId!==c.scope.teamId||!publicDer(common.capturePublicKey).equals(publicDer(capturePublicKey)))return blocked('controller_trust_binding');

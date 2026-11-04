@@ -4,7 +4,7 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {z} from 'zod';
 import {ReviewController, type ReviewConfig} from './controller';
-import {uuid} from './input';
+import {uuid,type InputPolicy} from './input';
 import {hermesModelSchema} from './hermes-model';
 import {FileIntakeWitness} from './witness-store';
 
@@ -12,7 +12,7 @@ const absolute = z.string().refine(path.isAbsolute);
 const positive = z.number().finite().positive();
 const commonSchema = z.object({
   root:absolute,repo:absolute,nativeReadPath:absolute,hostPublicKeyPath:absolute,capturePublicKeyPath:absolute,
-  historyWitnessRoot:absolute.optional(),workspaceId:z.string().uuid().optional(),
+  historyWitnessRoot:absolute.optional(),workspaceId:z.string().uuid().optional(),inputAuthority:z.enum(['ordinary-v1','witnessed-intake-v1']).optional(),issueId:uuid.optional(),
   ownerId:z.string(),workspace:z.string().regex(/^[a-z0-9][a-z0-9-]{0,79}$/),projectId:z.string(),teamId:z.string(),channelId:z.string().min(1),reviewerIds:z.array(z.string().min(1)).min(1),
   maxTokens:positive.int(),maxWallMs:positive.int().max(600000),proposalTtlMs:positive.int().max(86400000),
 }).strict();
@@ -21,7 +21,7 @@ const usdSchema = commonSchema.extend({
   model:z.object({model:z.string().min(1),inputUsdPerMillion:positive,outputUsdPerMillion:positive,maxInputTokens:positive.int(),maxOutputTokens:positive.int().max(8192),maxBodyBytes:positive.int().max(131072),maxResponseBytes:positive.int().max(262144),timeoutMs:positive.int().max(120000)}).strict(),
 }).strict();
 const countSchema = commonSchema.extend({provider:z.literal('hermes-astra'),budget:z.object({kind:z.literal('attempts'),maxAttemptsPerDay:positive.int().max(5),timeZone:z.string().min(1).refine(value=>{try{new Intl.DateTimeFormat('en-CA',{timeZone:value});return true;}catch{return false;}})}).strict(),model:hermesModelSchema.omit({enabled:true,fixture:true,fixtureOrigin:true}).strict()}).strict();
-const configSchema = z.discriminatedUnion('provider',[usdSchema,countSchema]).refine(c=>(c.historyWitnessRoot===undefined)===(c.workspaceId===undefined));
+const configSchema = z.discriminatedUnion('provider',[usdSchema,countSchema]).refine(c=>(c.historyWitnessRoot===undefined)===(c.workspaceId===undefined)).refine(c=>c.inputAuthority==='witnessed-intake-v1'?!!c.historyWitnessRoot&&!!c.workspaceId&&!!c.issueId:c.issueId===undefined);
 async function privateBytes(file: string): Promise<Buffer> {
   if (!path.isAbsolute(file)) throw new Error('runtime_blocked');
   const s = await lstat(file);
@@ -39,7 +39,8 @@ export async function loadReviewController(env:NodeJS.ProcessEnv=process.env):Pr
     const hostPublicKey=createPublicKey(await privateBytes(c.hostPublicKeyPath)),capturePublicKey=createPublicKey(await privateBytes(c.capturePublicKeyPath));
     if(hostPublicKey.asymmetricKeyType!=='ed25519'||capturePublicKey.asymmetricKeyType!=='ed25519')throw new Error();
     const historyWitness=c.historyWitnessRoot?new FileIntakeWitness({root:c.historyWitnessRoot,scope:{workspaceId:c.workspaceId!,ownerId:c.ownerId,projectId:c.projectId,teamId:c.teamId}}):undefined;
-    const common={enabled:true,root:c.root,repo:c.repo,inputPolicy:{ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url')},...(historyWitness?{historyWitness}:{}),channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs};
+    const inputPolicy:InputPolicy={ownerId:c.ownerId,workspace:c.workspace,projectId:c.projectId,teamId:c.teamId,hostPublicKey,recordKey:Buffer.from(key,'base64url'),...(c.inputAuthority==='witnessed-intake-v1'?{authority:c.inputAuthority,workspaceId:c.workspaceId!,issueId:c.issueId!}:{authority:'ordinary-v1' as const})};
+    const common={enabled:true,root:c.root,repo:c.repo,inputPolicy,...(historyWitness?{historyWitness}:{}),channelId:c.channelId,reviewerIds:c.reviewerIds,capturePublicKey,readNative:()=>privateJson(c.nativeReadPath),mainOrigin:'https://api.github.com',maxTokens:c.maxTokens,maxWallMs:c.maxWallMs,proposalTtlMs:c.proposalTtlMs};
     const config:ReviewConfig=c.provider==='hermes-astra'
       ?{...common,provider:c.provider,budget:c.budget,model:{...c.model,enabled:true}}
       :{...common,provider:c.provider,budget:c.budget,maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd,model:{...c.model,enabled:true,origin:'https://api.anthropic.com'},modelKey:()=>env.FEEDBACK_ANTHROPIC_API_KEY??''};

@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {digest, sha, uuid} from './input';
+import {digest, sha, uuid, hostPayload, type InputPolicy} from './input';
 import {publicContextSchema} from '../../src/lib/feedback/schema';
 export const captureSchema = z.object({
   captureId: uuid, at: z.number().int(), candidateDigest: digest, revision: z.literal(1), baseSha: sha, patchDigest: digest, checksDigest: digest,
@@ -21,3 +21,11 @@ export const decisionSchema = z.object({eventId:uuid,at:z.number().int(),channel
 export const threadRequestSchema = z.object({nonce:uuid,requestedAt:z.number().int(),channelId:z.string(),threadId:message,proposalDigest:digest}).strict();
 export type ThreadRequest = z.infer<typeof threadRequestSchema>;
 export const threadSchema = z.object({request:threadRequestSchema,readAt:z.number().int(),messages:z.array(z.object({messageId:message,speakerId:z.string().min(1),speakerType:z.enum(['human','bot']),text:z.string().max(3000)}).strict()).min(1).max(1000),messageCount:z.number().int().positive(),nextCursor:z.null()}).strict();
+
+// No fake Linear identifiers: v2 private receipts are disjoint from strict ordinary v1.
+export const witnessedDeliverySchema=deliverySchema.omit({linearCommentId:true}).extend({schema:z.literal('atlas-linear-witnessed-delivery-v2')}).strict();
+export const witnessedDecisionSchema=decisionSchema.omit({linearCommentId:true}).extend({schema:z.literal('atlas-linear-witnessed-decision-v2')}).strict();
+export const deliveryPurpose=(p:InputPolicy)=>p.authority==='witnessed-intake-v1'?'atlas-linear-witnessed-review-delivery-v2':'atlas-linear-review-delivery-v1';
+export const decisionPurpose=(p:InputPolicy)=>p.authority==='witnessed-intake-v1'?'atlas-linear-witnessed-human-decision-v2':'atlas-linear-human-decision-v1';
+export function readDelivery(value:unknown,p:InputPolicy){return p.authority==='witnessed-intake-v1'?hostPayload(value,deliveryPurpose(p),p.hostPublicKey,witnessedDeliverySchema):hostPayload(value,deliveryPurpose(p),p.hostPublicKey,deliverySchema);}
+export function readDecision(value:unknown,p:InputPolicy){return p.authority==='witnessed-intake-v1'?hostPayload(value,decisionPurpose(p),p.hostPublicKey,witnessedDecisionSchema):hostPayload(value,decisionPurpose(p),p.hostPublicKey,decisionSchema);}

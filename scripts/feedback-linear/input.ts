@@ -3,6 +3,7 @@ import {z} from 'zod';
 import {canonical} from '../feedback/engine';
 import {sha256} from '../feedback/validator';
 import {feedbackText, publicContextSchema, elementReferenceSchema} from '../../src/lib/feedback/schema';
+import {managedCommentId} from '../../src/lib/feedback-linear/server/records';
 import {LINEAR_FEEDBACK_POLICY_VERSION} from '../../src/lib/feedback-linear/contracts';
 
 export const uuid = z.string().regex(/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/);
@@ -22,7 +23,11 @@ const recordSchema = z.object({
   signature: digest,
 }).strict();
 const nativeSchema = z.object({readAt: z.number().int(), workspace: z.string().min(1).max(100), issue: z.object({id: uuid, identifier: z.string().regex(/^[A-Z][A-Z0-9]*-[1-9][0-9]*$/), url: z.string().url().max(300), projectId: actorUuid, teamId: actorUuid}).strict(), records: z.array(recordSchema).min(1).max(1000)}).strict();
-export type InputPolicy = {ownerId: string; workspace: string; projectId: string; teamId: string; hostPublicKey: KeyLike; recordKey: Buffer};
+export type InputPolicy = {ownerId: string; workspace: string; projectId: string; teamId: string; hostPublicKey: KeyLike; recordKey: Buffer} & ({authority?: 'ordinary-v1'} | {authority: 'witnessed-intake-v1'; workspaceId: string; issueId: string});
+// This is a distinct provenance authority, NOT evidence of current non-sync privacy.
+const witnessedObservationSchema = z.object({commentId:actorUuid,authorId:actorUuid,parentId:z.null(),quotedText:z.null(),issue:z.object({id:actorUuid}).strict().optional(),parent:z.null().optional(),externalThread:z.null().optional(),syncedWith:z.union([z.null(),z.array(z.unknown()).max(0)]).optional(),archivedAt:z.null().optional(),onBehalfOf:z.null().optional()}).strict();
+const witnessedNativeSchema = nativeSchema.extend({schema:z.literal('atlas-linear-witnessed-native-read-v1'),authority:z.literal('witnessed-intake-v1'),workspaceId:actorUuid,observations:z.array(witnessedObservationSchema).min(1).max(1000)}).strict();
+export const nativePurpose = (policy:InputPolicy) => policy.authority==='witnessed-intake-v1'?'atlas-linear-witnessed-native-read-v1':'atlas-linear-native-read-v1';
 export type Signed<T> = {payload: T; signature: string};
 /** Called only with a configured HOST trust key, never a key supplied in input/model/issue. */
 export function hostPayload<T>(value: unknown, purpose: string, key: KeyLike, schema: z.ZodType<T>): T {
@@ -36,7 +41,14 @@ export function fresh(at: number, maxAge = 300000) {
 }
 export function validateNative(value: unknown, policy: InputPolicy) {
   try {
-    const native = hostPayload(value, 'atlas-linear-native-read-v1', policy.hostPublicKey, nativeSchema);
+    const native = policy.authority==='witnessed-intake-v1'
+      ?hostPayload(value,nativePurpose(policy),policy.hostPublicKey,witnessedNativeSchema)
+      :hostPayload(value,nativePurpose(policy),policy.hostPublicKey,nativeSchema);
+    if(policy.authority==='witnessed-intake-v1') {
+      const observed=witnessedNativeSchema.parse(native);
+      if(observed.workspaceId!==policy.workspaceId||observed.issue.id!==policy.issueId||observed.observations.length!==observed.records.length)throw new Error();
+      for(const [i,o] of observed.observations.entries())if(o.commentId!==managedCommentId(policy.issueId,i+1)||o.authorId!==policy.ownerId||(o.issue&&o.issue.id!==policy.issueId))throw new Error();
+    }
     fresh(native.readAt);
     const url = new URL(native.issue.url), parts = url.pathname.split('/');
     if (native.workspace !== policy.workspace || native.issue.projectId !== policy.projectId || native.issue.teamId !== policy.teamId || url.origin !== 'https://linear.app' || url.username || url.password || url.search || url.hash || parts[1] !== policy.workspace || parts[2] !== 'issue' || parts[3] !== native.issue.identifier || parts.length < 4 || parts.length > 5 || (parts.length === 5 && !/^[a-z0-9-]+$/.test(parts[4]))) throw new Error();
