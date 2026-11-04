@@ -1,10 +1,10 @@
-# Astra subscription/count mode — native helper implemented, application OFF
+# Astra subscription/count mode — integrated, application OFF
 
-**Do not activate.** `astra_native.py` is an executable existing-Hermes native no-tools completion helper, not a fixture-only adapter. The TypeScript/controller still deliberately holds with `hermes_astra_bounded_broker_unavailable` until parent wiring and independent review. No scheduler, service, account, credential, deployment, provider switch, profile or global Hermes changes were made.
+**Do not activate.** `astra_native.py` is an executable existing-Hermes native no-tools completion helper, not a fixture-only adapter. The TypeScript/controller now wire the fixed helper only under explicit `nativePolicy:'attempt-count-v1'`; old/default configurations retain the hold. No scheduler, service, account, credential, deployment, provider switch, profile or global Hermes changes were made.
 
 ## Reviewed safety/budget contract
 
-- The selected budget is **existing Astra + at most5 durable attempts/day**, not dollars or a generation-token guarantee. The existing controller's durable reserve-before-effect ledger remains authoritative. The helper is not a standalone daily-quota service: parent wiring must call it only after that reservation and never refund/retry an ambiguous attempt.
+- The selected budget is **existing Astra + at most5 durable attempts/day**, not dollars or a generation-token guarantee. The existing controller's durable reserve-before-effect ledger remains authoritative. The helper is not a standalone daily-quota service: the integrated runner calls it only after that reservation and never refund/retry an ambiguous attempt.
 - **Production completion explicitly omits `max_output_tokens`. No server-enforced generation-token cap is claimed.** Platform review says that cap cannot be relied on for this native subscription endpoint. A cap echo is not independent proof of enforcement. The official [Responses create reference](https://developers.openai.com/api/reference/resources/responses/methods/create) defines generic API semantics including reasoning tokens, but that does not override the native platform capability decision.
 - Fixed `openai-codex` native broker/default account route, fixed requested `gpt-6-astra`, no automatic fallback, no custom endpoint or credential handling. Existing native broker selection is route evidence, **not** a demand for an impossible new cryptographic account receipt. Check the actual server model when returned; never stamp the requested model as a server fact.
 - Input/body/raw-response/wall bounds, one direct no-tools completion, `store:false`, partial/unknown fail-closed, CSS-only validation, genuine before/after checks, and private human approval remain. Prices are **UNPRICED / null**, never zero or invented.
@@ -45,7 +45,7 @@ Preflight returns `{authRoute:'native-hermes-openai-codex',resolvedModel:'gpt-6-
 
 The native SDK's streaming-response interface supplies raw SSE bytes; there is no second credential/HTTP client. Byte/event/deadline limits, malformed/truncated SSE, unknown/tool/refusal events, incomplete status, contradictory text/terminals, negative/missing usage and mismatched returned model fail closed. Output usage is retained as actually reported, **not clamped to a fictitious generation limit**. Delta-only, done and terminal text are reconciled; empty production text is blocked. Missing server model is reported as null rather than invented; a returned wrong model is rejected. `serverMaxOutputTokens` is the actual optional server field or null, not an attestation or required budget control. Only completed output can become a candidate. Public diagnostics may report incomplete cap-exhaustion as evidence, never as a completed proposal.
 
-Parent wiring must: run fixed no-inference preflight before source reads/claims; preserve the durable <=5-attempt reserve-before-effect ledger; supervise the fixed subprocess with a hard timeoutMs kill and bounded stdout; strictly parse actual receipt/usage; JSON-parse and run the existing CSS validator; retain genuine before/after checks, private review and human approval. Unknown outcomes never refund/retry. No new hosted database or paid account is needed. **No TypeScript/controller native wiring or new NativeAstraBroker is included in this bounded handoff.** The existing application default hold stays intact, not because of an invented cap/account requirement but because parent integration/review and the independent OAuth/intake dependencies remain outside this lane.
+The integrated supervising runner performs preflight, reserves before the completion effect, enforces subprocess/received-byte bounds and normalizes the strict native result. The controller then applies actual CSS/check/review/publication gates. No new hosted database or paid account is introduced; activation remains separate.
 
 ## Scoped evidence
 
@@ -55,62 +55,30 @@ Parent wiring must: run fixed no-inference preflight before source reads/claims;
 
 Vertical RED/GREEN logs are `/opt/data/tmp/atlas-astra-{red,green}-{1..11}.log`; final scoped/typecheck/lint evidence, helper/source hashes and exact SHA are in the private result report. Parent owns serial integrated full-suite/build/independent review; no such pass is claimed by this lane.
 
-## Implemented provider/budget contract
+## Integrated TypeScript/operator policy
 
-`ReviewController` retains its public method signatures. A host adapter can supply a constructed controller. The discriminated `ReviewConfig` supports:
+`HermesAstraModel` now has a fixed native runner (`astra-process.ts`) selected only by trusted `nativePolicy:'attempt-count-v1'`. Default/legacy configs retain their explicit hold; no boolean silently upgrades them. The ordinary loopback fixture is a separate strict protocol and cannot be combined with native mode. Operator JSON cannot name an executable, module, endpoint or runner.
 
-- Old explicit Anthropic/positive-USD fixtures and operator config, unchanged (omitted provider remains legacy programmatic compatibility). Optional `budget:{kind:'usd'}` labels that mode. This is not an approved alternative to the selected Astra account.
-- `provider:'hermes-astra'` plus `budget:{kind:'attempts',maxAttemptsPerDay:5,timeZone:'Europe/Berlin'}`. Caps may be lowered to 1–4, never raised above five. `maxJobUsd`, `maxDayUsd`, provider price fields and `modelKey` are not part of this mode and are rejected by the operator schema.
+The controller performs fixed no-inference preflight before source reads/claims, reserves a durable <=5-attempt/day Europe/Berlin slot before completion, and supervises the actual isolated Python process with absolute timeout/kill, stdout bounds and a stripped environment without signing/publishing credentials. A different active Hermes profile cannot silently read the default profile's authentication route. Only the native SDK handles authentication; no raw credential/header is exposed.
 
-Partial operator-model example only (common private roots/identities/public-key paths still required):
+Partial operator-model example (common private roots/identities/public-key paths are also required):
 
 ```json
-{
-  "provider": "hermes-astra",
-  "budget": {"kind":"attempts","maxAttemptsPerDay":5,"timeZone":"Europe/Berlin"},
-  "model": {
-    "account":"hermes-default-openai-codex",
-    "model":"gpt-6-astra",
-    "maxTurns":1,
-    "maxInputTokens":40000,
-    "maxOutputTokens":1000,
-    "maxBodyBytes":131072,
-    "maxResponseBytes":262144,
-    "timeoutMs":5000
-  }
-}
+{"provider":"hermes-astra","budget":{"kind":"attempts","maxAttemptsPerDay":5,"timeZone":"Europe/Berlin"},"model":{"account":"hermes-default-openai-codex","model":"gpt-6-astra","nativePolicy":"attempt-count-v1","maxTurns":1,"maxInputTokens":40000,"maxOutputTokens":1000,"maxBodyBytes":131072,"maxResponseBytes":262144,"timeoutMs":5000}}
 ```
 
-`hermes-default-openai-codex` is a **route/policy label**, not a server-returned account ID. The fixed native helper delegates authentication to the existing Hermes `openai-codex` resolver, with no credential inspection or account/provider substitution. Its receipt explicitly distinguishes `authRoute` and `accountIdentity` from `serverModel` and server usage. No new cryptographic account receipt is required or claimed. The application gate remains closed pending parent wiring/review; a native helper is not activation approval.
+In this explicit native policy, **legacy `maxOutputTokens` and total `maxTokens` are admission estimates, not generation ceilings**. The native request omits a generation cap. New durable attempt rows carry `tokenPolicy:'attempt-count-v1'`; actual nonnegative safe-integer usage is recorded without clamping. Old capped fixture rows retain their old strict validation; no legacy rows are reinterpreted. Account/model/policy/quota/timezone and request/time/byte bounds enter the candidate policy digest. USD fields/model keys are forbidden in count config; prices remain UNPRICED/null.
 
-Positive `maxTokens`, `maxWallMs <= 600000`, `proposalTtlMs <= 86400000` remain mandatory. The model schema requires exactly one turn, the exact selected model/route, positive token/body/time limits, output <=8192 tokens, request <=131072 bytes, response <=262144 bytes and timeout <=120000 ms. No Anthropic key is requested in count mode. The existing disabled-before-config behavior remains.
+## Durable attempts
 
-## Durable attempts, not dollars
+Every reserved row counts, including failed/ambiguous calls. Completion records usage and never refunds a slot. A job cannot replay tomorrow; five failed attempts still exhaust today. Quota-only deferral occurs before claim and can run on a later day. Atomic directory locks, fsync/rename, initialization markers, restart/concurrency checks and timezone-change rejection protect this existing single-host private root. Never clear it or restore an old backup to reset quotas. This is not protection against a malicious same-authority host operator.
 
-- The existing single-host atomic directory lock covers the entire preparation and count reservation. File/directory `fsync` and atomic manifest replacement persist each reservation **before** the model peer sees a request. Concurrent processes share this lock; there is no stale-lock takeover.
-- `state.attempts` is separate from `state.spend`. A row records job, reservation UUID, day/timezone/timestamp, token upper bound, provider/route/model, policy digest, `reserved` or `completed`, optional verified usage, **`chargedUsd:null` and `pricing:'UNPRICED'`**. Proposal counts are never placed in USD fields; no made-up rates, zero-dollar claim or dollar-limit claim exists.
-- Every reserved row counts, including failed, ambiguous, malformed and validation-rejected attempts. Completion records usage, never refunds the slot. Five failed calls still exhaust that day. A reservation/job cannot replay on a later day. Existing durable preparing/parked jobs never retry automatically.
-- The boundary is explicit Europe/Berlin operator config, not server UTC. Changing the timezone of a populated root fails closed rather than refunding slots. All count rows in that root count toward its day's cap regardless of model/account policy changes. Keep the same stable private root; do not wipe/replace it to reset quotas. This is not protection against a malicious same-authority filesystem editor, changing hosts/roots, or restoring old backups.
-- An `attempts-initialized` marker makes loss of the count field fail closed; old USD-only manifests migrate to an empty count array without relabeling old dollar charges as attempts. Loss of the initialized manifest and orphan process locks retain the existing fail-closed behavior.
-- Provider, route/account label, exact model, quota kind/cap/timezone and positive limits enter the approval-policy digest. Changing any of them invalidates existing candidates/approvals; this digest upgrade intentionally invalidates older policy digests too. No capture or prior human decision can make a stale policy publish.
+The actual old CSS validator, trusted baseline/candidate check subprocesses, genuine image requirements, private authenticated human review and separate draft-only publisher remain. Operator JSON forbids fixture origins, arbitrary executable/module hooks, Anthropic keys and dollar-budget fields for Astra. No service, scheduler, new account, real private inference or production activation was performed.
 
-## Synthetic peer boundary and verification
+## Integrated verification
 
-The existing TypeScript model remains explicitly **fixture-only** pending parent integration of the native helper: loopback `127.0.0.1` with a port, no Vercel/production environment, fixed `/v1/responses`, no credential headers, arbitrary command/module loader or persistent service. Operator JSON forbids fixture/origin fields. Its custom strict response envelope is a **synthetic test protocol**, not a claim about native broker compatibility.
+`tests/feedback-linear-astra-bridge.test.mjs` checks native policy selection, durable reserve-before-call ordering, actual usage above admission estimates and conservative ASCII-body rejection before reservation. `feedback-linear-astra-process.test.mjs` checks fixed executable/isolated Python, stripped environment, process timeout/kill, received-byte bounds, preflight, wrong-profile refusal, and real controller/filesystem/Git/check subprocesses with ONLY the native process peer synthetic. The native SDK tests above remain part of the standard suite; they never perform live inference.
 
-It sends only the bounded task/source/private instruction, one JSON CSS patch instruction, `tools:[]`, `tool_choice:'none'` and `store:false`. No agent, memory, world model, skills or MCP enters the request. Unknown keys, tools/function calls, alternate account/model/provider, incomplete output and unknown/over-limit usage fail closed with no retry. The controller applies the **actual old CSS validator**, detached checkout, baseline/candidate npm checks and existing private approval/publication gate. No old worker code or host/UI/backend/capture code changes.
+A real no-inference TypeScript→fixed Python→native resolver preflight returned ready with the selected model. This is not a real JSON-CSS generation or live website acceptance. Exactly one public diagnostic was previously spent, with real receipt described above; no second inference ran.
 
-Vertical RED→GREEN slices were executed for durable five-slot reservation, timezone non-refund, missing ledger, native unavailable gate, fixture JSON patch flow, strict response rejection, positive/model/account bounds, count-mode controller flow, quota-policy invalidation, early native preflight and runtime count parsing. Additional regression runs cover five ambiguous calls, restart/replay, independent concurrent processes, Berlin midnight/DST boundary, invalid selector, disabled defaults and old USD fixtures. Synthetic successful model usage is exactly **100 input / 100 output tokens** in the new peers; those numbers are invented fixture values, not real usage. Those are the prior integrated fixture results, not this lane’s real usage. The one public native smoke’s actual usage is19 input/5 output; dollars remain UNPRICED/null.
-
-Run:
-
-```sh
-node --import tsx --test tests/feedback-linear-astra*.test.mjs
-FEEDBACK_LINEAR_RECORDS_MODULE=file:///absolute/worktree/src/lib/feedback-linear/server/records.ts node --import tsx --test --test-name-pattern='actual backend signPrivateRecord' tests/feedback-linear-review.test.mjs
-npm test
-npm run typecheck
-NEXT_TELEMETRY_DISABLED=1 npm run build
-./node_modules/.bin/eslint scripts/feedback-linear/controller.ts scripts/feedback-linear/files.ts scripts/feedback-linear/runtime.ts scripts/feedback-linear/hermes-model.ts tests/feedback-linear-astra*.test.mjs
-```
-
-Activation still needs parent integration/independent review, real capture/private delivery acceptance and existing signer/host setup. Native route/model/usage evidence is verified above. Unsupported generation caps are explicitly omitted under the reviewed attempt-budget policy, not a new owner blocker. No Hermes changes, private inference, scheduler or production activation are authorized by this work.
+Run `npm test`, `npm run typecheck`, `npm run build`, production audit and changed-source lint at the final head. See [activation/verification](feedback-linear-verification.md) for the remaining OAuth, witness custody/connectivity, current privacy review and genuine end-to-end acceptance requirements. No output cap, dollar limit or completed live workflow is claimed.

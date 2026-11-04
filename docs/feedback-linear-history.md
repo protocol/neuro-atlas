@@ -59,6 +59,10 @@ Each event is appended as a never-overwritten numbered JSON file, linked by sequ
 
 Root is a realpath-equal, non-symlink, service-UID-owned 0700 directory; files are opened no-follow and fstat-checked as service-UID-owned regular 0600 files with one link and bounded size. Initialization checks the parent before creating a root, rejecting ancestor symlinks without writing through them. A dedicated trusted filesystem supporting atomic same-directory rename and real file/directory fsync is required; do not put this on an unverified distributed/object filesystem.
 
+## Fixed opt-in loopback runtime
+
+`scripts/feedback-linear/witness-runtime.ts` provides `initialize` and `serve`. `ATLAS_LINEAR_WITNESS_CONFIG` names a private UID-owned mode-0600 JSON file with absolute `root`, exact four-ID `scope`, fixed nonprivileged `port`, and distinct `readTokenEnv`/`writeTokenEnv` names. The values stay broker-held; no token belongs in the JSON or command line. `ATLAS_LINEAR_WITNESS_SETUP_ENABLED=true` admits explicit initialization of an empty root; `ATLAS_LINEAR_WITNESS_ENABLED=true` admits serving only an already initialized root. Neither flag is set by this branch. The runtime binds **127.0.0.1 only**, bounds connections/headers/body time and rate, and shuts down on SIGTERM/SIGINT. Port zero is test-only. An authenticated TLS ingress, dedicated service custody and recovery remain separate prerequisites; no service/listener was started for production.
+
 ## Verification and remaining activation work
 
 Witness tests run actual filesystem journals/restarts, independent Node processes for CAS, real loopback HTTP/OAuth/Linear peers, source deletion/partial/timestamp-stable exact retries, no resurrection, scope/permissions/symlink/hardlink/lock/partial/corrupt/gap failures, instrumented real filesystem interleaving and post-rename fsync failure, authenticated role isolation, redirect refusal, streamed overflow, and stalled-body timeout. Provider identities/effects are synthetic; this is not a live-account acceptance.

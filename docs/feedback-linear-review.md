@@ -2,7 +2,7 @@
 
 **Implementation only; off by default.** No account, key, paid plan, model request, scheduler, webhook, push, PR, merge, deployment, or live capture is enabled by these files. Linear remains the feedback/review record. The private host stores only execution artifacts, receipts, claims and spending; it is not a replacement feedback catalogue or a new hosted database.
 
-**Native automation additionally has a non-overridable history-integrity hold.** A signed surviving prefix cannot prove a deleted newer suffix never existed. `ReviewController.assertHistoryWitness()` blocks non-fixture preparation/publication and HOST writes until an independent monotonic witness is implemented; only isolated loopback fixtures run. See [activation/verification](feedback-linear-verification.md). This does not claim a completed native workflow.
+**Native automation requires the concrete independent history journal.** A signed surviving prefix cannot prove a deleted newer suffix never existed. `ReviewController.assertHistoryWitness()` admits only the matching initialized `FileIntakeWitness`; every fresh current-input read compares the complete validated chain. Missing/pending/deleted/corrupt/mis-scoped journals block. See [history](feedback-linear-history.md), [distinct witnessed authority](feedback-linear-witnessed-host.md) and [activation/verification](feedback-linear-verification.md). Local implementation is not live acceptance.
 
 ## Executable path
 
