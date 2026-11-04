@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {generateKeyPairSync,createHmac,createHash} from 'node:crypto';
-import {requestHash,signPrivateRecord,renderPrivateComment,managedCommentId} from '../src/lib/feedback-linear/server/records.ts';
+import {generateKeyPairSync,createHmac,createHash,randomUUID} from 'node:crypto';
+import {requestHash,signPrivateRecord,renderPrivateComment,managedCommentId,privateRecordHash} from '../src/lib/feedback-linear/server/records.ts';
 import {validateNative} from '../scripts/feedback-linear/input.ts';
 const moduleUrl=new URL('../scripts/feedback-linear/host.ts',import.meta.url);
 const ids={issue:'44444444-4444-4444-8444-444444444444',owner:'11111111-1111-4111-8111-111111111111',project:'22222222-2222-4222-8222-222222222222',team:'33333333-3333-4333-8333-333333333333',workspace:'55555555-5555-4555-8555-555555555555'};
@@ -85,6 +85,23 @@ test('history-proof hold also blocks already-seeded native delivery before Slack
   f.workflow.controller.config.fixture=false;
   await assert.rejects(f.workflow.deliver(ids.issue),/native_history_witness_unavailable/);
   assert.equal(f.counts().out,0);assert.equal(f.counts().writes,0);
+ }finally{await f.cleanup();}
+});
+
+test('independent pending correction blocks HOST delivery before the first Slack or Linear write',async()=>{
+ const f=await workflowFixture();try{
+  const {FileIntakeWitness}=await import('../scripts/feedback-linear/witness-store.ts');
+  const witness=new FileIntakeWitness({root:path.join(path.dirname(f.review.root),'witness'),scope:{workspaceId:ids.workspace,projectId:ids.project,teamId:ids.team,ownerId:ids.owner}});
+  await witness.initialize();
+  const op=r=>({feedbackId:r.feedbackId,operationId:r.operationId,version:r.version,createdAt:r.createdAt,requestHash:r.requestHash,recordHash:privateRecordHash(r),...(r.previousRecordHash?{previousRecordHash:r.previousRecordHash}:{})});
+  await witness.reserve(op(record));await witness.complete(op(record));
+  const next={...raw,version:2,operationId:randomUUID(),previousRecordHash:privateRecordHash(record),createdAt:new Date().toISOString()};
+  const correction=signPrivateRecord({ownerId:ids.owner,sessionKey:session.toString('base64url')},{...next,requestHash:requestHash(next)});
+  await witness.reserve(op(correction));
+  f.workflow.controller.config.historyWitness=witness;
+  await assert.rejects(f.workflow.deliver(ids.issue));
+  assert.equal(f.counts().out,0,'no review message or image may precede current witness admission');
+  assert.equal(f.counts().writes,0,'no Linear control comment may precede current witness admission');
  }finally{await f.cleanup();}
 });
 

@@ -1,6 +1,7 @@
 import {randomUUID, sign, createPublicKey, type KeyLike} from 'node:crypto';
 import {PrivateFiles, type State, type AttemptBudget} from './files';
 import {HermesAstraModel, hermesModelSchema, type HermesModelConfig} from './hermes-model';
+import {FileIntakeWitness} from './witness-store';
 import {validateNative, hostPayload, fresh, type InputPolicy} from './input';
 import {captureSchema, assertPng, deliverySchema, decisionSchema, threadSchema, type ThreadRequest, type Proposal} from './evidence';
 import {canonical, approvalHash} from '../feedback/engine';
@@ -15,7 +16,7 @@ import {allowedOrigin, boundedJson} from '../feedback/http';
 import {normalizeFeedback} from '../../src/lib/feedback/schema';
 import type {CheckReceipt, Bundle} from '../feedback/ports';
 
-type ReviewCommon = {enabled?: boolean; root: string; repo: string; inputPolicy: InputPolicy; channelId: string; reviewerIds: string[]; capturePublicKey: InputPolicy['hostPublicKey']; readNative: () => Promise<unknown>; readReviewThread?: (request: ThreadRequest) => Promise<unknown>; mainOrigin: string; fixture?: boolean; maxTokens: number; maxWallMs: number; proposalTtlMs: number};
+type ReviewCommon = {enabled?: boolean; root: string; repo: string; inputPolicy: InputPolicy; historyWitness?: FileIntakeWitness; channelId: string; reviewerIds: string[]; capturePublicKey: InputPolicy['hostPublicKey']; readNative: () => Promise<unknown>; readReviewThread?: (request: ThreadRequest) => Promise<unknown>; mainOrigin: string; fixture?: boolean; maxTokens: number; maxWallMs: number; proposalTtlMs: number};
 // An omitted provider is the old explicit Anthropic/positive-USD fixture contract only.
 export type ReviewConfig = ReviewCommon & (
   {provider?: 'anthropic'; budget?: {kind: 'usd'}; maxJobUsd: number; maxDayUsd: number; model: ModelConfig; modelKey: () => string} |
@@ -29,9 +30,12 @@ const hash = (value: unknown) => sha256(canonical(value));
 export class ReviewController {
   readonly files: PrivateFiles;
   constructor(readonly config: ReviewConfig) {this.files = new PrivateFiles(config.root);}
-  /** No production automation until an independent monotonic intake witness is implemented.
-   * This is not an operator attestation/enable flag. Only isolated loopback fixtures proceed. */
+  /** Concrete independent intake journal, never a caller-supplied attestation or flag.
+   * Availability and exact latest-chain checks run again at every current-input read. */
   assertHistoryWitness() {
+    const witness=this.config.historyWitness,p=this.config.inputPolicy;
+    if (witness instanceof FileIntakeWitness && witness.scope.ownerId===p.ownerId && witness.scope.projectId===p.projectId && witness.scope.teamId===p.teamId) return;
+    if (witness!==undefined) throw new Error('native_history_witness_unavailable');
     const origin=new URL(this.config.mainOrigin);
     if (this.config.fixture!==true || origin.protocol!=='http:' || origin.hostname!=='127.0.0.1' || origin.origin!==this.config.mainOrigin) throw new Error('native_history_witness_unavailable');
   }
@@ -55,7 +59,7 @@ export class ReviewController {
   }
   private policyDigest() {
     const c = this.config;
-    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, provider:c.provider ?? 'anthropic', budget:c.provider === 'hermes-astra' ? c.budget : {kind:'usd',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd}, model: c.model, caps: [c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
+    return hash({owner: c.inputPolicy.ownerId, workspace: c.inputPolicy.workspace, project: c.inputPolicy.projectId, team: c.inputPolicy.teamId, channel: c.channelId, reviewers: c.reviewerIds, provider:c.provider ?? 'anthropic', budget:c.provider === 'hermes-astra' ? c.budget : {kind:'usd',maxJobUsd:c.maxJobUsd,maxDayUsd:c.maxDayUsd}, model: c.model, ...(c.historyWitness?{history:{identity:c.historyWitness.identity,policyDigest:c.historyWitness.policyDigest}}:{}), caps: [c.maxTokens,c.maxWallMs,c.proposalTtlMs]});
   }
   private async main() {
     const response = await fetch(this.config.mainOrigin + '/repos/protocol/neuro-atlas/git/ref/heads/main', {redirect: 'error', signal: AbortSignal.timeout(15000)});
@@ -63,7 +67,16 @@ export class ReviewController {
     if (data.ref !== 'refs/heads/main' || !/^[a-f0-9]{40}$/.test(data.object?.sha ?? '')) blocked();
     return data.object!.sha!;
   }
-  private input() {return this.config.readNative().then(value => validateNative(value, this.config.inputPolicy));}
+  async assertCurrentInput(expectedHash?: string): Promise<CheckedInput> {
+    this.assertHistoryWitness();
+    const witness=this.config.historyWitness;
+    if (witness) await witness.assertAvailable();
+    const input=validateNative(await this.config.readNative(),this.config.inputPolicy);
+    if (witness) await witness.assertLatest(input.native.records);
+    if (expectedHash!==undefined && input.recordHash!==expectedHash) return blocked();
+    return input;
+  }
+  private input() {return this.assertCurrentInput();}
   private job(state: State, id: string): Job {const j = state.jobs[id] as Job | undefined; if (!j) return blocked(); return j;}
   async status(id: string) {return this.job(await this.files.read(), id);}
   private async revalidate(job: Job): Promise<{candidate: Candidate; sources: Record<string,string>}> {
