@@ -6,13 +6,14 @@ import type { TrendsData } from '@/lib/field-velocity/google-trends';
 import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
+import { ChartActions } from '@/components/chart-actions';
 import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
 const groups: Group[] = SNAPSHOT.groups;
 const colors = ['var(--accent)', '#087f8c'];
 
-function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean }) {
+function TrendPlot({ group, compact = false, link, intro }: { group: Group; compact?: boolean; link?: React.ReactNode; intro?: React.ReactNode }) {
   const plotRef = useRef<HTMLDivElement>(null);
   const [previewWidth, setPreviewWidth] = useState(560);
   useEffect(() => {
@@ -30,8 +31,8 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
   const start = Date.parse(group.start), end = Date.parse(group.end);
   const x = (date: string) => 48 + (Date.parse(date) - start) / (end - start) * (right - 48);
   const y = (value: number) => 24 + (100 - value) / 100 * 200;
-  return <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
-    {!compact && <ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
+  return <>
+    {!compact && <ChartActions anchor={`google-trends-${group.id}`} title={group.title} link={link}><ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
       svg: plotRef.current!.querySelector('svg')!, title: group.title, anchor: `google-trends-${group.id}`,
       legend: group.terms.map((term, index) => ({ label: term, color: colors[index], marker: index ? 'dashed' : 'line' })),
       notes: [
@@ -40,7 +41,9 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
         'Public attention, not technical progress or absolute search counts. Complete weeks only; partial periods excluded without rescaling. Missing values remain gaps. 0 means low or insufficient interest; <1 is plotted at the index floor.',
         `Source: Google Trends Explore · captured ${group.capturedAt}. Dated snapshot, not a live feed.`,
       ],
-    })} />}
+    })} /></ChartActions>}
+    {intro}
+    <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
     {compact && <span className="gt-preview-axis">Worldwide · Weekly index · 0–100</span>}
     <svg viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text data-trends-axis="y" x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
@@ -57,7 +60,7 @@ function TrendPlot({ group, compact = false }: { group: Group; compact?: boolean
       {!compact && rows.flatMap(row => row.values.map((value, i) => value === null ? null : <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} r={2.5} fill={colors[i]}><title>{row.date} · {group.terms[i]}: {row.displayValues[i]}</title></circle>))}
       <text data-trends-axis="x" x={48} y={254}>{group.start.slice(0, compact && width < 240 ? 4 : 7)}</text><text data-trends-axis="x" x={right} y={254} textAnchor="end">{group.end.slice(0, compact && width < 240 ? 4 : 7)}</text>
     </svg>
-  </div>;
+  </div></>;
 }
 
 function Legend({ group }: { group: Group }) {
@@ -94,8 +97,7 @@ function TrendCard({ group }: { group: Group }) {
     </div>
     <div data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
-      <p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>
-      <TrendPlot group={group} /><Legend group={group} />{latestReading}
+      <TrendPlot group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
         <p>Public attention, not technical progress, adoption, sentiment or total search counts. {normalization}</p>
@@ -112,7 +114,6 @@ function TrendCard({ group }: { group: Group }) {
         <li><a href="https://support.google.com/trends/answer/4365533?hl=en" target="_blank" rel="noreferrer">Google’s data and normalization methodology ↗</a></li>
         <li><a href="https://support.google.com/trends/answer/4359550?hl=en" target="_blank" rel="noreferrer">Search terms versus topics ↗</a></li>
       </ul>
-      {share}
       <details className="gt-values" open={valuesOpen} onToggle={event => setValuesOpen(event.currentTarget.open)}><summary tabIndex={0}>All source values · {group.rows.length} weekly rows (including partial)</summary>
         <div className="pc-table-scroll" role="region" aria-label={`${group.title} source values`} tabIndex={valuesOpen ? 0 : undefined}>
           <table><caption>Google Trends normalized index · original precision, no rescaling</caption><thead><tr><th scope="col">Week start (UTC)</th>{group.terms.map(term => <th scope="col" key={term}>{term}</th>)}<th scope="col">Period status</th></tr></thead>

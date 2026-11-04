@@ -1,0 +1,65 @@
+[
+  {
+    "anchor": "latency_compression",
+    "nativeLinkReadback": true,
+    "nativeChartClipboardPNG": {
+      "types": [
+        [
+          "text/plain",
+          "text/html",
+          "image/png"
+        ]
+      ],
+      "bytes": 727855,
+      "width": 2400,
+      "height": 2978
+    },
+    "downloadHandlerPNGBytes": 804172,
+    "downloadBoundary": "captured blob from native handler; browser download navigation suppressed in this local test",
+    "simulatedLinkFailureFallback": true,
+    "singleRowAfterFailure": true,
+    "nativeEscapeClosed": true
+  },
+  {
+    "anchor": "metric-panel-acquisition-economics",
+    "nativeLinkReadback": true,
+    "nativeChartClipboardPNG": {
+      "types": [
+        [
+          "text/plain",
+          "text/html",
+          "image/png"
+        ]
+      ],
+      "bytes": 588936,
+      "width": 2400,
+      "height": 4052
+    },
+    "downloadHandlerPNGBytes": 665864,
+    "downloadBoundary": "captured blob from native handler; browser download navigation suppressed in this local test",
+    "simulatedLinkFailureFallback": true,
+    "singleRowAfterFailure": true,
+    "nativeEscapeClosed": true
+  },
+  {
+    "anchor": "google-trends-neurotech",
+    "nativeLinkReadback": true,
+    "nativeChartClipboardPNG": {
+      "types": [
+        [
+          "text/plain",
+          "text/html",
+          "image/png"
+        ]
+      ],
+      "bytes": 400988,
+      "width": 2400,
+      "height": 2052
+    },
+    "downloadHandlerPNGBytes": 448997,
+    "downloadBoundary": "captured blob from native handler; browser download navigation suppressed in this local test",
+    "simulatedLinkFailureFallback": true,
+    "singleRowAfterFailure": true,
+    "nativeEscapeClosed": true
+  }
+]
