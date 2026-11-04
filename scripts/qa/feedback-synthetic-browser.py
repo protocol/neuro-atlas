@@ -46,6 +46,14 @@ try:
   shortcut();wait('!!document.querySelector("[data-feedback-composer]")');bytext('History')
   wait('document.querySelector("[data-feedback-composer]").textContent.includes("Received · awaiting processing")')
   assert js('document.querySelectorAll("[data-feedback-composer] a").length')==0
+  for cancellation in ['Back','Escape']:
+   bytext('Follow up');wait('!!document.querySelector("[data-feedback-selection]:popover-open")')
+   if cancellation=='Back':bytext('Back')
+   else:press_key('Escape')
+   wait('!!document.querySelector("[data-feedback-composer]")')
+   assert js('document.querySelector("[data-feedback-composer]").textContent.includes("Feedback history")')
+   assert not js('!!document.querySelector("[aria-label=Feedback]")'), 'cancellation must not silently choose General page'
+   assert js('window.__feedbackFixture.posts.length')==2
   bytext('Follow up');wait('!!document.querySelector("[data-feedback-selection]:popover-open")')
   pick('dialog[open]:not([data-atlas-feedback]) button',f'followup-target-{width}')
   fill('Feedback','Private follow-up fixture');click('[data-feedback-submit]')
@@ -60,7 +68,7 @@ try:
   capture_screenshot(path=str(out/f'synthetic-history-{width}.png'))
   press_key('Escape');wait('!document.querySelector("[data-feedback-composer]")')
   press_key('Escape');wait('document.querySelectorAll("dialog:modal").length===0')
-  results.append({'width':width,'syntheticIdentity':True,'realRenderedClient':True,'nativeCloseButtonNotActivated':True,'failedRetrySameKeyBodyAndElement':True,'onePrivateField':True,'topLayerSavedToastOverNativeChart':True,'receivedNotStarted':True,'noFakePrOrPreview':True,'followupSameIdVersion2':True,'nativeFocusTrap':True,'geometry':metrics,'toast':toast})
+  results.append({'width':width,'syntheticIdentity':True,'realRenderedClient':True,'nativeCloseButtonNotActivated':True,'failedRetrySameKeyBodyAndElement':True,'onePrivateField':True,'topLayerSavedToastOverNativeChart':True,'receivedNotStarted':True,'noFakePrOrPreview':True,'followupSameIdVersion2':True,'cancelledHistoryTargetReturnsToHistory':True,'nativeFocusTrap':True,'geometry':metrics,'toast':toast})
 finally:
  cdp('Page.removeScriptToEvaluateOnNewDocument',identifier=registration)
 (out/'synthetic-ui-results.json').write_text(json.dumps(results,indent=2)+'\n')

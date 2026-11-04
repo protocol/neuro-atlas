@@ -51,6 +51,7 @@ export function Feedback() {
   const pending = useRef<{ fingerprint: string; key: string; input: SimpleFeedbackInput } | null>(null);
   const retainedDraft = useRef(false);
   const submitting = useRef(false);
+  const unresolvedFollowupTarget = useRef(false);
   const mounted = useRef(false);
   const [open, setOpen] = useState(false);
   const [selecting, setSelecting] = useState(false);
@@ -110,8 +111,17 @@ export function Feedback() {
     setOpen(false); setSelecting(false);
   }
   function finishSelection(pick?: PickedElement) {
+    unresolvedFollowupTarget.current = false;
     setPinned(pick); setTarget(pick?.targetId); setSelecting(false); setHover(undefined);
     mode.current.selecting = false;
+  }
+  function cancelSelection() {
+    mode.current.selecting = false; setSelecting(false); setHover(undefined);
+    if (unresolvedFollowupTarget.current) {
+      // Canceling a mandatory historical target choice is not General page consent.
+      unresolvedFollowupTarget.current = false;
+      setFollowup(undefined); setStep("status");
+    }
   }
   useEffect(() => {
     mounted.current = true;
@@ -128,7 +138,7 @@ export function Feedback() {
       }
       if (event.key === "Escape" && mode.current.open) {
         event.preventDefault(); event.stopImmediatePropagation();
-        if (mode.current.selecting) { mode.current.selecting = false; setSelecting(false); }
+        if (mode.current.selecting) cancelSelection();
         else close();
         return;
       }
@@ -271,7 +281,7 @@ export function Feedback() {
     finally { setSession(null); setItems([]); setCurrent(null); }
   }
   async function submit() {
-    if (submitting.current || !available || !session || !comment.trim() || comment.length > 3000) return;
+    if (unresolvedFollowupTarget.current || submitting.current || !available || !session || !comment.trim() || comment.length > 3000) return;
     submitting.current = true; setBusy(true); setError("");
     // Only an intentional note/target/follow-up edit starts a new operation. Viewport,
     // theme, DOM movement and session renewal must not mutate an uncertain retry.
@@ -302,6 +312,7 @@ export function Feedback() {
     setFollowup({ id: current.id, version: current.version }); setStep("private"); setComment(""); setError("");
     // History can refer to a different record than the last locally pinned element.
     // Require a fresh intentional target (or General page), never inherit that stale pin.
+    unresolvedFollowupTarget.current = true;
     setTarget(undefined); setPinned(undefined); selectArea();
   }
   function selectArea() {
@@ -316,7 +327,7 @@ export function Feedback() {
       {hover && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
       <div className="atlas-feedback-selection-controls" data-selection-controls>
         <p>Point to an element. Click to attach.</p>
-        <div className="atlas-feedback-actions"><button type="button" onClick={() => finishSelection()}>General page</button><button type="button" data-selection-back onClick={() => { mode.current.selecting = false; setSelecting(false); setHover(undefined); }}>Back</button></div>
+        <div className="atlas-feedback-actions"><button type="button" onClick={() => finishSelection()}>General page</button><button type="button" data-selection-back onClick={cancelSelection}>Back</button></div>
       </div>
     </div>, selectionHost)}
     {open && !selecting && <dialog ref={dialog} data-atlas-feedback data-feedback-composer className="atlas-feedback-layer" aria-label="Atlas feedback" aria-modal="true"
