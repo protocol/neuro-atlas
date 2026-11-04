@@ -214,8 +214,8 @@ test('independent approval gate precedes every publisher credential and write; o
   } finally {await f.cleanup();}
 });
 
-test('actual backend signPrivateRecord codec is accepted without adapting its signature or hashes',{skip:!process.env.FEEDBACK_LINEAR_RECORDS_MODULE},async()=>{
-  const backend=await import(process.env.FEEDBACK_LINEAR_RECORDS_MODULE);
+test('actual backend signPrivateRecord codec is accepted without adapting its signature or hashes',async()=>{
+  const backend=await import('../src/lib/feedback-linear/server/records.ts');
   const {validateNative}=await import('../scripts/feedback-linear/input.ts');
   const session=Buffer.alloc(32,31),policy={...inputPolicy,recordKey:createHmac('sha256',session).update('atlas-linear-private-v1').digest()};
   const value=native(),raw={...value.payload.records[0],operationId:ids.feedback};delete raw.signature;
