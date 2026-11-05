@@ -105,6 +105,31 @@ test('rendered inspection is genuinely empty by default, remains usable after ho
   }
 });
 
+test('explicit mobile evidence inspection presents the selected result in a dismissible dialog', () => {
+  const { JSDOM } = require('jsdom');
+  const html = fs.readFileSync(path.join(root, 'public/mockups/cost-per-channel-evidence.html'), 'utf8');
+  const dom = new JSDOM(html, {
+    runScripts: 'dangerously', url: 'https://example.test/mockups/cost-per-channel-evidence.html',
+    beforeParse(window) {
+      Object.defineProperty(window, 'innerWidth', { value: 320 });
+      window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', ''); };
+      window.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open'); this.dispatchEvent(new window.Event('close')); };
+    },
+  });
+  const doc = dom.window.document;
+  const trigger = doc.querySelector('[data-inspect="scifi-np1-2026"]');
+  trigger.click();
+  const dialog = doc.getElementById('mobile-inspection');
+  assert.ok(dialog && dialog.open, 'explicit mobile inspection visibly presents its result');
+  assert.match(dialog.textContent, /Science SciFi 2/);
+  assert.match(dialog.textContent, /\$6\.93/);
+  doc.getElementById('mobile-inspection-close').click();
+  assert.equal(dialog.open, false);
+  assert.equal(doc.getElementById('inspector-body').textContent.trim(), '');
+  assert.equal(doc.activeElement, trigger);
+  dom.window.close();
+});
+
 test('seven evidence-backed records retain price scope, currency, bounds, and denominator', () => {
   assert.ok(fs.existsSync(datasetPath), 'the structured seven-record dataset exists');
   const { records } = JSON.parse(fs.readFileSync(datasetPath, 'utf8'));

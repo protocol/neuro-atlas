@@ -34,9 +34,9 @@ The seven records are a fixed November 5, 2026 research snapshot: NeuroRighter, 
 
 ## Verification boundary
 
-`qa/browser-report.json` records 45 passing checks from actual headed Chrome at 1440, 390 and 320 pixels: empty default inspection, exact record selection, academic/list arithmetic, currency replacement, seven-record evidence retention, native layout navigation, Escape, stable filter scroll, complete-setup emptiness, bounded document width and a visible singleton without horizontal scrolling. Screenshots in `qa/` are captures of this standalone prototype served on loopback, **not** authenticated hosted Atlas captures.
+`qa/browser-report.json` records 53 passing checks from actual headed Chrome at 1440, 390 and 320 pixels: empty default inspection, exact record selection, academic/list arithmetic, currency replacement, seven-record evidence retention, native layout navigation, Escape, stable filter scroll, complete-setup emptiness, bounded document width and a visible singleton without horizontal scrolling. Explicit mobile inspection opens a native, scrollable dialog with the selected heading visible, reachable source links, Close/Escape dismissal and focus return. Screenshots in `qa/` are captures of this standalone prototype served on loopback, **not** authenticated hosted Atlas captures.
 
-The five focused tests cover data ratios/bounds, state transitions, both generated files, actual DOM empty/hover/pin/Escape behavior and source-record completeness. The unchanged main branch baseline also passed its 632-test suite and TypeScript check in the isolated worktree before the mock was finalized. These baseline results are not labeled as a final full-suite replay. The Vercel build and preview state are reported separately in the PR.
+The six focused tests cover data ratios/bounds, state transitions, both generated files, actual DOM empty/hover/pin/Escape behavior, mobile dialog selection/dismissal and source-record completeness. The unchanged main branch baseline also passed its 632-test suite and TypeScript check in the isolated worktree before the mock was finalized. Final full-suite and Vercel build/preview results are reported separately in the PR.
 
 ## Design review
 

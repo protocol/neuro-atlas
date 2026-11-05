@@ -282,6 +282,32 @@
       "details": null
     },
     {
+      "check": "mobile inspection result visible 390",
+      "pass": true,
+      "details": {
+        "open": true,
+        "top": 151.5,
+        "bottom": 180,
+        "vh": 900,
+        "selected": "scifi-np1-2026"
+      }
+    },
+    {
+      "check": "mobile source anchors reachable 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile close returns focus and empty inspection 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile Escape dismisses dialog 390",
+      "pass": true,
+      "details": null
+    },
+    {
       "check": "no browser JS errors 390",
       "pass": true,
       "details": []
@@ -361,6 +387,32 @@
     },
     {
       "check": "mobile full evidence inventory 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile inspection result visible 320",
+      "pass": true,
+      "details": {
+        "open": true,
+        "top": 151.5,
+        "bottom": 180,
+        "vh": 900,
+        "selected": "scifi-np1-2026"
+      }
+    },
+    {
+      "check": "mobile source anchors reachable 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile close returns focus and empty inspection 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile Escape dismisses dialog 320",
       "pass": true,
       "details": null
     },

@@ -21,7 +21,7 @@
     <header class="topbar"><span class="breadcrumb">Field Velocity <span>/</span> Measurement exploration</span><span class="prototype">Discussion mock · Nov 5, 2026</span></header>
     <div class="page">
       <div class="heading-row">
-        <div><p class="eyebrow">ELECTRICAL RECORDING · HARDWARE ECONOMICS</p><h1>Cost per recording channel</h1><p class="intro">Compare the priced signal path, not the headline channel count.</p></div>
+        <div><p class="eyebrow">ELECTRICAL RECORDING · HARDWARE ECONOMICS</p><h1>Cost per recording channel</h1><p class="intro">Compare priced recording configurations.</p></div>
         <div class="page-actions"><nav class="layout-switch" aria-label="Discussion layouts"><a data-view="chart" data-testid="view-chart" href="cost-per-channel.html" @@CHART_CURRENT@@>Chart-led</a><a data-view="evidence" data-testid="view-evidence" href="cost-per-channel-evidence.html" @@EVIDENCE_CURRENT@@>Evidence-led</a></nav><button class="print-button" id="print-button" type="button">Print ↗</button></div>
       </div>
       <section class="definition" aria-label="Proposed measurement definition"><span class="definition-label">PROPOSED METRIC</span><div class="equation"><span>Price of the specified hardware</span><span>Simultaneously acquired recording channels</span></div><p>One channel ≠ one neuron.<br><span>Nominal prices · original currencies · no amortization</span></p></section>
@@ -31,7 +31,7 @@
       </section>
       <div class="workspace">
         <section class="chart-panel panel" aria-labelledby="chart-title">
-          <div class="panel-heading"><div><p class="eyebrow" id="chart-kicker">RECORDING ELECTRONICS · USD</p><h2 id="chart-title">Selected benchmarks, not a cost curve</h2></div><span class="count" id="point-count">4 observations</span></div>
+          <div class="panel-heading"><div><p class="eyebrow" id="chart-kicker">RECORDING ELECTRONICS · USD</p><h2 id="chart-title">Selected hardware-cost benchmarks</h2></div><span class="count" id="point-count">4 observations</span></div>
           <div class="chart-meta"><span id="axis-unit">USD per simultaneous channel · log scale</span><span>Lower is less expensive ↓</span></div>
           <div id="chart-content" data-testid="chart"></div>
           <div class="chart-footer"><div class="legend"><span><i class="legend-dot"></i>Specified price / build</span><span><i class="legend-bound">↓</i>Upper bound</span><span><i class="legend-approx">◇</i>Approximate</span></div><p id="chart-note">Hover or focus a point to inspect; click to pin, Esc to clear. Different accounting boundaries; no fitted line or improvement factor.</p></div>
@@ -53,6 +53,7 @@
 </div>
 <div class="sr-only" id="selection-announcement" role="status" aria-live="polite"></div>
 <template id="complete-empty"><div class="gap-state"><span class="gap-visual" aria-hidden="true">—</span><span class="eyebrow">EVIDENCE GAP · NOT ZERO</span><h3>Still need an itemized probe + readout setup</h3><p>No matched same-configuration prices in this snapshot. Add a dated parts list with a simultaneous channel count before plotting a complete setup.</p><span class="gap-example">Probe / array + compatible headstage / adapter + acquisition hardware<br>with explicit computer and accessory boundaries</span></div></template>
+<dialog class="mobile-inspection" id="mobile-inspection" aria-labelledby="mobile-inspection-title"><div class="mobile-inspection-heading"><h2 id="mobile-inspection-title">Point evidence</h2><button type="button" id="mobile-inspection-close">Close ×</button></div><div id="mobile-inspection-content"></div></dialog>
 <script id="mock-data" type="application/json">@@DATA@@</script>
 <script>@@JS@@</script>
 </body>

@@ -1,11 +1,12 @@
 {
-  "scripts/mockups/cost-per-channel.css": "d03932ad8e10792012a5804f0c410773f34431630cca08d5f1efc8e8d0cb1917",
-  "scripts/mockups/cost-per-channel.test.cjs": "d276bd2c4256e0e8ceed5d604838f601e454166018b09269210b5779c9dc2553",
-  "scripts/mockups/cost-per-channel.js": "10e0bae9abb27f97edff95005983e9f64134ef06717b7cc77c4ce0000985587c",
-  "scripts/mockups/cost-per-channel.template.html": "915fa8ab7c5691f1c419ddbad1e5ee4cfd1efe5834f72f3239ec8c2ab58a5d78",
+  "scripts/mockups/cost-per-channel.css": "2bf35432c53d154347b06441c43741b603906b961931cb71fbe8f42576148e18",
+  "scripts/mockups/cost-per-channel.test.cjs": "7fb6ad8844d00d5dda6462c0a00c8f2ee50bd4f4a9ecaf3fc3aaf857c7e421e5",
+  "scripts/mockups/cost-per-channel.js": "d51a719b1f0dd09cdad66c6856db1e7b403c06029054975902d7f751e797e857",
+  "scripts/mockups/cost-per-channel.template.html": "706ea640a00a619044fe6621c7ea7814564df55f14035449cf4efccce62693f2",
   "scripts/mockups/cost-per-channel.data.json": "a660e152d47230ff94f21b744ffcea0ef81b97da1a61dc81d30470d61cee5bd2",
   "scripts/mockups/generate-cost-per-channel.py": "7ed05581366eeff2fb54988cc02698f62449344e47a50f957995853330a22909",
-  "public/mockups/cost-per-channel.html": "9441b212afeacffad9293d2d6e5cf22bdce944a9297d52436e02521bf6a41db1",
-  "public/mockups/cost-per-channel-evidence.html": "c839f8ddce2256930ef745f0a23ecd5a64084d978b19531a1d844b31adc19b86",
-  "tests/cost-per-channel-mock.test.mjs": "a2c24069b2b49421af8c92252632d4f4d4ea405f85eab1b081d629f9e1f37633"
+  "public/mockups/cost-per-channel.html": "e16ee5c16c30630bc165d464a444bc8029cc16c429ede3a6c496bb65085ea625",
+  "public/mockups/cost-per-channel-evidence.html": "fdb0c34ea7f13fbcdffe265e231f81ae736ee591800035021cf08d38debf02c8",
+  "tests/cost-per-channel-mock.test.mjs": "a2c24069b2b49421af8c92252632d4f4d4ea405f85eab1b081d629f9e1f37633",
+  "docs/cost-per-channel-mock/browser-qa.py": "886686f1b0ca7186e6a886e88d14c745288f19c5164509b1e4b431ade26329b4"
 }

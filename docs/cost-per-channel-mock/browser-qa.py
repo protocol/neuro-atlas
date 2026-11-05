@@ -2,6 +2,7 @@
 # pyright: reportUndefinedVariable=false
 import json
 import os
+import time
 from pathlib import Path
 REPO=Path(os.environ.get('ATLAS_MOCK_QA_ROOT', Path(__file__).resolve().parents[2]))
 OUT=Path(os.environ.get('ATLAS_MOCK_QA_OUT', REPO/'docs/cost-per-channel-mock/qa'))
@@ -18,6 +19,13 @@ def hit(selector):
     point=js('const e=document.querySelector('+json.dumps(selector)+');if(!e)throw new Error("missing target");const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};')
     assert 0<=point['y']<=js('return innerHeight'),(selector,point)
     click_at_xy(point['x'],point['y'])
+def wait_closed():
+    # Native close queues the close event; wait for its focus/clear cleanup as well.
+    for _ in range(30):
+        if js('return !document.querySelector("#mobile-inspection").open && document.activeElement.dataset.inspect==="scifi-np1-2026" && document.querySelector("#inspector-body").textContent.trim()===""'):
+            return
+        time.sleep(.05)
+    raise AssertionError('native dialog close cleanup did not settle')
 def snap(name):
     capture_screenshot(path=str(OUT/name))
 def view(width,height=1080,mobile=False,variant=''):
@@ -53,6 +61,8 @@ check('empty is a sourced gap not zero',js('return document.querySelectorAll("[d
 check('scope and currency do not scroll',info()['y']==0)
 snap('complete-gap-desktop.png')
 hit('[data-view="evidence"]')
+wait_for_load()
+assert wait_for_element('body[data-layout="evidence"]', visible=True)
 check('native evidence-layout navigation',js('return document.body.dataset.layout')=='evidence')
 check('all seven evidence records survive filters',js('return document.querySelectorAll("[data-evidence-row]").length')==7)
 check('evidence layout starts empty',info()['detail']=='')
@@ -77,6 +87,21 @@ for width in [390,320]:
     view(width,900,True,variant='-evidence')
     check('mobile full evidence inventory '+str(width),js('return document.querySelectorAll("[data-evidence-row]").length')==7)
     snap('evidence-mobile-'+str(width)+'.png')
+    target='[data-inspect="scifi-np1-2026"]'
+    js('document.querySelector('+json.dumps(target)+').scrollIntoView({block:"center"});return true;')
+    hit(target)
+    geometry=js('const d=document.querySelector("#mobile-inspection");const h=d.querySelector(".detail h3").getBoundingClientRect();return {open:d.open,top:h.top,bottom:h.bottom,vh:innerHeight,selected:document.querySelector("#detail-pane").dataset.selected};')
+    check('mobile inspection result visible '+str(width),geometry['open'] and geometry['selected']=='scifi-np1-2026' and geometry['top']>=0 and geometry['bottom']<=geometry['vh'],geometry)
+    snap('inspection-mobile-'+str(width)+'.png')
+    js('document.querySelector("#mobile-inspection").scrollTop=10000;return true;')
+    check('mobile source anchors reachable '+str(width),js('const d=document.querySelector("#mobile-inspection");const a=d.querySelector(".source-buttons a");const r=a.getBoundingClientRect();return r.top>=0 && r.bottom<=innerHeight && a.href.startsWith("https://")'))
+    hit('#mobile-inspection-close')
+    wait_closed()
+    check('mobile close returns focus and empty inspection '+str(width),js('return !document.querySelector("#mobile-inspection").open && document.activeElement.dataset.inspect==="scifi-np1-2026" && document.querySelectorAll(":modal").length===0') and info()['detail']=='')
+    hit(target)
+    press_key('Escape')
+    wait_closed()
+    check('mobile Escape dismisses dialog '+str(width),js('return !document.querySelector("#mobile-inspection").open && document.querySelectorAll(":modal").length===0'))
     check('no browser JS errors '+str(width),not info()['errors'],info()['errors'])
 # Leave the source-qualified selected view visible for review.
 view(1440)

@@ -33,6 +33,31 @@
   const byId = id => records.find(r => r.id === id);
   const sourceLink = (url, label, className = '') => `<a class="${className}" href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(label)} ↗</a>`;
   const price = row => prefix(row) + money(row.price[state.tier], row.currency);
+  const mobileDialog = document.getElementById('mobile-inspection');
+  const inspectionPane = document.getElementById('detail-pane');
+  const inspectionHome = document.createComment('point-evidence-home');
+  inspectionPane.before(inspectionHome);
+  let returnSelector = null;
+  let previousOverflow = '';
+  function revealInspection(trigger) {
+    if (window.innerWidth > 760) return;
+    returnSelector = '[data-testid="' + trigger.dataset.testid + '"]';
+    document.getElementById('mobile-inspection-content').append(inspectionPane);
+    if (!mobileDialog.open) {
+      previousOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      mobileDialog.showModal();
+    }
+  }
+  mobileDialog.addEventListener('close', () => {
+    inspectionHome.after(inspectionPane);
+    document.documentElement.style.overflow = previousOverflow;
+    clear();
+    if (returnSelector) document.querySelector(returnSelector)?.focus({ preventScroll: true });
+  });
+  document.getElementById('mobile-inspection-close').addEventListener('click', () => mobileDialog.close());
+  mobileDialog.addEventListener('cancel', event => { event.preventDefault(); mobileDialog.close(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 760 && mobileDialog.open) mobileDialog.close(); });
   function calculation(row) {
     return `${price(row)}${row.quantity > 1 ? ' ÷ ' + row.quantity + ' probes' : ''} ÷ ${row.channels} channels`;
   }
@@ -125,6 +150,7 @@
         renderInspector();
       }
       document.getElementById('selection-announcement').textContent = 'Pinned evidence for ' + row.name + ', ' + row.configuration + '.';
+      revealInspection(target);
     }
   });
   function clear() {
@@ -133,7 +159,10 @@
     document.getElementById('selection-announcement').textContent = 'Evidence selection cleared.';
   }
   document.getElementById('clear-selection').addEventListener('click', clear);
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') clear(); });
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    if (mobileDialog.open) { event.preventDefault(); mobileDialog.close(); } else clear();
+  });
   document.getElementById('print-button').addEventListener('click', () => window.print());
   renderAll();
 })();
