@@ -1,0 +1,11 @@
+{
+  "scripts/mockups/cost-per-channel.css": "d03932ad8e10792012a5804f0c410773f34431630cca08d5f1efc8e8d0cb1917",
+  "scripts/mockups/cost-per-channel.test.cjs": "d276bd2c4256e0e8ceed5d604838f601e454166018b09269210b5779c9dc2553",
+  "scripts/mockups/cost-per-channel.js": "10e0bae9abb27f97edff95005983e9f64134ef06717b7cc77c4ce0000985587c",
+  "scripts/mockups/cost-per-channel.template.html": "915fa8ab7c5691f1c419ddbad1e5ee4cfd1efe5834f72f3239ec8c2ab58a5d78",
+  "scripts/mockups/cost-per-channel.data.json": "a660e152d47230ff94f21b744ffcea0ef81b97da1a61dc81d30470d61cee5bd2",
+  "scripts/mockups/generate-cost-per-channel.py": "7ed05581366eeff2fb54988cc02698f62449344e47a50f957995853330a22909",
+  "public/mockups/cost-per-channel.html": "9441b212afeacffad9293d2d6e5cf22bdce944a9297d52436e02521bf6a41db1",
+  "public/mockups/cost-per-channel-evidence.html": "c839f8ddce2256930ef745f0a23ecd5a64084d978b19531a1d844b31adc19b86",
+  "tests/cost-per-channel-mock.test.mjs": "a2c24069b2b49421af8c92252632d4f4d4ea405f85eab1b081d629f9e1f37633"
+}
