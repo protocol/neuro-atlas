@@ -29,7 +29,7 @@ test('Citation latency replaces the visible Idea vintage label while retaining i
     const modal = document.querySelector('dialog[open]');
     assert.equal(modal.querySelector('h2').textContent, 'Citation latency');
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, 27);
-    assert.equal(window.location.hash, '#idea_vintage');
+    assert.equal(window.location.hash, '#citation-latency');
     assert.doesNotMatch(modal.querySelector('[data-copy-chart]').getAttribute('aria-label'), /Idea vintage/);
   } finally { await cleanup(); }
 });

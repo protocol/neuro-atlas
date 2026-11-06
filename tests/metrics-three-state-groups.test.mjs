@@ -107,10 +107,10 @@ test('search exposes matching charts in merged groups, clear restores state, his
     await act(async () => navigatePerformance('metric-neuroai-frontier')); await settle(); await settle();
     assert.equal(group('Simulation and NeuroAI').dataset.metricState, 'full');
     await act(async () => window.history.back()); await settle(); await settle();
-    assert.equal(window.location.hash, '#metric-paired-structure-function');
+    assert.equal(window.location.hash, '#selected-structure-function-matches');
     assert.equal(document.getElementById('metric-paired-structure-function').closest('[hidden]'), null);
     await act(async () => window.history.forward()); await settle(); await settle();
-    assert.equal(window.location.hash, '#metric-neuroai-frontier');
+    assert.equal(window.location.hash, '#neuroai-performance-cost-frontier');
     assert.equal(document.getElementById('metric-neuroai-frontier').closest('[hidden]'), null);
   } finally { await cleanup(); }
 });

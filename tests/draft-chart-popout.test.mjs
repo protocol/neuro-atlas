@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
@@ -63,7 +64,7 @@ test('whole-card native button opens one URL-addressed full plot and Close retur
     await click(trigger);
     const modal = document.querySelector('dialog[open]');
     assert.ok(modal);
-    assert.equal(window.location.hash, `#${anchor}`);
+    assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(anchor)}`);
     assert.equal(window.location.pathname, '/neuro-atlas/field-velocity');
     assert.equal(window.location.search, '?review=1');
     assert.equal(window.history.state.atlasModalFrom, original);
@@ -83,7 +84,7 @@ test('whole-card native button opens one URL-addressed full plot and Close retur
     assert.equal(document.activeElement, trigger);
     await act(async () => window.history.forward());
     await until(() => document.querySelector('dialog[open]'));
-    assert.equal(window.location.hash, `#${anchor}`);
+    assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(anchor)}`);
     await act(async () => document.querySelector('dialog').dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })));
     await until(() => !document.querySelector('dialog[open]'));
     assert.equal(window.location.href, original);
@@ -165,7 +166,7 @@ for (const freshAnchor of [anchor, ...aliases, 'metric-panel-application-events'
       assert.ok(document.activeElement === dialogs[0].querySelector('.pc-modal-header button'));
       await click(dialogs[0]);
       assert.equal(document.querySelector('dialog[open]'), null);
-      assert.equal(window.location.hash, '#performance_curves');
+      assert.equal(window.location.hash, '#metrics');
     } finally { await cleanup(); }
   });
 }
@@ -177,6 +178,7 @@ test('only registered curated popup targets skip inline reveal; retired links re
   const cleanup = await mount(React.createElement(React.Fragment, null,
     React.createElement('span', { id: anchor }),
     React.createElement('span', { id: 'metric-mapping-cost' }),
+    React.createElement('span', { id: 'metric-category-1-toggle' }),
     React.createElement(DraftChartPanel, { plot, anchor, aliases })), '', win => {
       win.HTMLElement.prototype.scrollIntoView = function () { scrolled.push(this.id); };
   });
@@ -192,7 +194,7 @@ test('only registered curated popup targets skip inline reveal; retired links re
     assert.equal(window.history.state.atlasModalFrom, null);
     revealDraftTarget('metric-mapping-cost');
     await settle(); await settle();
-    assert.deepEqual(scrolled, ['metric-mapping-cost']);
+    assert.deepEqual(scrolled, ['metric-category-1-toggle']);
     assert.equal(document.querySelector('dialog[open]'), null);
   } finally { await cleanup(); }
 });
@@ -213,7 +215,7 @@ for (const hash of ['metric-recording-hours', 'draft-panel-japaneeg-scalp-eeg', 
       assert.ok(modal.querySelector('.draft-popout-detail'));
       await act(async () => modal.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })));
       await until(() => !document.querySelector('dialog[open]'));
-      assert.equal(window.location.hash, '#performance_curves');
+      assert.equal(window.location.hash, '#metrics');
       assert.equal(document.querySelector('.draft-plot-inspector'), null);
     } finally { await cleanup(); }
   });
@@ -244,12 +246,12 @@ for (const strict of [false, true]) {
       assert.equal(document.querySelectorAll('dialog[open]').length, 1);
       assert.equal(document.querySelector('dialog').querySelectorAll('[data-source-observation]').length, plot.points.length);
       await click(document.querySelector('dialog .pc-modal-header button'));
-      await until(() => window.location.hash === '#expectations' && document.activeElement === link);
+      await until(() => window.location.hash === '#inflection-points' && document.activeElement === link);
       assert.equal(document.querySelector('dialog'), null);
       await act(async () => window.history.forward());
       await until(() => document.activeElement?.getAttribute('aria-label')?.startsWith('Close '));
       await click(document.querySelector('dialog .pc-modal-header button'));
-      await until(() => window.location.hash === '#expectations' && document.activeElement === link);
+      await until(() => window.location.hash === '#inflection-points' && document.activeElement === link);
     } finally { await cleanup(); }
   });
 }

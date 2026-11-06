@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act, StrictMode } from 'react';
@@ -136,12 +137,12 @@ for (const anchor of ['neural-recording-hours', ...['draft', 'metric'].flatMap(p
       assert.equal(card().closest('[hidden]'), null);
       await act(async () => navigatePerformance('expectations'));
       await act(async () => window.history.back()); await settle(); await settle();
-      assert.equal(window.location.hash, `#${anchor}`);
+      assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(anchor)}`);
       assert.equal(card().closest('[hidden]'), null);
       await act(async () => window.history.forward()); await settle(); await settle();
-      assert.equal(window.location.hash, '#expectations');
+      assert.equal(window.location.hash, '#inflection-points');
       await act(async () => navigatePerformance(anchor)); await settle(); await settle();
-      assert.ok(window.history.state.atlasModalFrom?.endsWith('#expectations'), 'popup keeps its return history');
+      assert.ok(window.history.state.atlasModalFrom?.endsWith('#inflection-points'), 'popup keeps its return history');
       assert.equal(document.querySelectorAll('[data-performance-card="neural-recording-hours"]').length, 0);
     } finally { await cleanup(); }
   });
@@ -177,12 +178,12 @@ test('tissue-mapped opens the curated popup with seven preserved observations, n
     assert.equal(document.querySelector('#metrics-search').value, '');
     await act(async () => navigatePerformance('expectations'));
     await act(async () => window.history.back()); await settle(); await settle();
-    assert.equal(window.location.hash, '#tissue-mapped');
+    assert.equal(window.location.hash, '#selected-tissue-volume-checkpoints');
     assert.equal(tissue.closest('[hidden]'), null);
     await act(async () => window.history.forward()); await settle(); await settle();
-    assert.equal(window.location.hash, '#expectations');
+    assert.equal(window.location.hash, '#inflection-points');
     await act(async () => navigatePerformance('tissue-mapped')); await settle(); await settle();
-    assert.ok(window.history.state.atlasModalFrom?.endsWith('#expectations'));
+    assert.ok(window.history.state.atlasModalFrom?.endsWith('#inflection-points'));
     assert.equal(document.activeElement === document.querySelector('dialog[open] .pc-modal-header button'), true);
   } finally { await cleanup(); }
 });

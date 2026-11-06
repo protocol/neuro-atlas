@@ -1,4 +1,5 @@
 import { performanceUrl } from "@/lib/field-velocity/navigation";
+import { performanceTarget } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
@@ -53,7 +54,7 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
 export function chartShareUrl(current: string, anchor: string) {
   const url = new URL(performanceUrl(current, anchor));
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
-  const recordingView = anchor === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
+  const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   return url.href;

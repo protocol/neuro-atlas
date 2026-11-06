@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor, performanceTarget } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
@@ -81,7 +82,7 @@ for (const anchor of ['sectioning-loss', 'tissue-preservation', 'molecular-annot
         assert.ok(target.hasAttribute('data-retired-metric-anchor'));
         assert.equal(target.closest('[hidden]'), null);
         assert.equal(target.closest('[data-draft-chart-card]'), null);
-        assert.ok(scrolled.includes(id));
+        assert.ok(scrolled.includes(performanceTarget(id)), "Retired URL scrolls to its visible category heading");
         await search('unmatched');
         await act(async () => navigatePerformance(id));
         await settle(); await settle();
@@ -91,7 +92,7 @@ for (const anchor of ['sectioning-loss', 'tissue-preservation', 'molecular-annot
         await act(async () => navigatePerformance('metric-panel-tissue-cm3'));
         await act(async () => window.history.back());
         await settle(); await settle();
-        assert.equal(window.location.hash, `#${id}`);
+        assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(id)}`);
       } finally { await cleanup(); }
     });
   }

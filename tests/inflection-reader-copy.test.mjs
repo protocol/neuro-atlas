@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -93,7 +94,7 @@ test('forecast quotations, destinations, disclosure state, and measurement ident
         link.textContent.replace(/\s*→$/, '').trim(),
         link.closest('li').querySelector('[data-measurement-relationship]').textContent,
       ]), measurements, title);
-      assert.deepEqual(actualMeasurements.map(link => link.getAttribute('href')), measurements.map(([anchor]) => `#${anchor}`));
+      assert.deepEqual(actualMeasurements.map(link => link.getAttribute('href')), measurements.map(([anchor]) => `#${canonicalPerformanceAnchor(anchor)}`));
 
       const market = markets.find(mapping => mapping.title === title);
       const forecasts = item.querySelector('[data-related-forecasts]');

@@ -26,7 +26,7 @@ test('the original recording anchor opens three source-qualified scatter views w
     for (const view of RECORDING_VIEWS) {
       if (view.id !== 'electrical') await changeView(view.id);
       assert.equal(modal.querySelector('[data-recording-view]').dataset.recordingView, view.id);
-      assert.equal(window.location.hash, '#simultaneously-recorded-neurons');
+      assert.equal(window.location.hash, '#simultaneous-neural-recordings');
       assert.equal(modal.querySelectorAll('[data-curve-point]').length, view.points.length);
       assert.equal(modal.querySelectorAll('[data-source-observation]').length, view.points.length);
       assert.equal(modal.querySelector('[role=tooltip]'), null);
@@ -60,7 +60,7 @@ test('measurement selection roundtrips through copied URLs, fresh mount, Back/Fo
     await changeView('optical');
     await click(document.querySelector('dialog [data-copy-draft-link]'));
     assert.equal(new URL(copied).searchParams.get('recordingView'), 'optical');
-    assert.equal(new URL(copied).hash, '#simultaneously-recorded-neurons');
+    assert.equal(new URL(copied).hash, '#simultaneous-neural-recordings');
     await act(async () => { window.history.back(); await new Promise(resolve => setTimeout(resolve, 40)); });
     assert.equal(document.querySelector('[data-recording-view-select]').value, 'human-channels');
     await act(async () => { window.history.forward(); await new Promise(resolve => setTimeout(resolve, 40)); });

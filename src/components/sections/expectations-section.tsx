@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect } from "react";
+import { canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import MARKETS from "@/data/velocity/neurotech_market_signals.json";
 import INFLECTIONS from "@/data/velocity/neurotech_inflection_points.json";
@@ -19,13 +20,13 @@ export function ExpectationsSection() {
     const anchor = window.history.state?.atlasRelatedMeasurement;
     if (!Object.values(RELATED_MEASUREMENTS).flat().some(measurement => measurement.anchor === anchor)) return;
     const link = document.querySelector<HTMLAnchorElement>(`[data-related-measurement="${anchor}"]`);
-    if (!link || (hash !== "#expectations" && hash !== link.hash)) return;
+    if (!link || (hash !== "#inflection-points" && hash !== `#${canonicalPerformanceAnchor(anchor)}`)) return;
     let attempts = 0;
     let frame: number;
     const focus = () => {
       // The chart dialog owns entry focus; never move it back into its inert background.
-      if (hash !== "#expectations" && document.querySelector("dialog[open]")) return;
-      const target = hash === "#expectations" ? link : document.getElementById(hash.slice(1));
+      if (hash !== "#inflection-points" && document.querySelector("dialog[open]")) return;
+      const target = hash === "#inflection-points" ? link : document.getElementById(performanceTarget(hash.slice(1)));
       if (!target || target.closest("[hidden]")) {
         if (++attempts < 30) frame = requestAnimationFrame(focus);
         return;
@@ -68,7 +69,7 @@ export function ExpectationsSection() {
               <h4 className="text-[11px] font-semibold uppercase tracking-wider text-muted">Related measurements</h4>
               <ul className="mt-3 space-y-4">
                 {RELATED_MEASUREMENTS[point.title]?.map(measurement => <li key={measurement.anchor}>
-                  <a data-related-measurement={measurement.anchor} href={`#${measurement.anchor}`} onClick={event => {
+                  <a data-related-measurement={measurement.anchor} href={`#${canonicalPerformanceAnchor(measurement.anchor)}`} onClick={event => {
                     if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
                       event.preventDefault();
                       // Bind return focus to this history entry, not the latest clicked link.

@@ -17,7 +17,7 @@ test('the default recording card opens one source-qualified detail popup at its 
     trigger.focus(); await click(trigger); await settle();
     const modal = document.querySelector('dialog[open]');
     assert.ok(modal);
-    assert.equal(window.location.hash, '#metric-recording-hours');
+    assert.equal(window.location.hash, '#neural-recording-hours-selected-datasets');
     assert.equal(modal.querySelectorAll('svg.draft-plot-svg').length, 1);
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, 12);
     assert.equal(modal.querySelectorAll('.draft-plot-inspector').length, 0);
@@ -45,7 +45,7 @@ test('related measurement links leave focus inside the popup and restore their o
     assert.ok(modal);
     assert.equal(document.activeElement === modal.querySelector('.pc-modal-header button'), true, 'background heading must not steal popup focus');
     await click(modal.querySelector('.pc-modal-header button')); await settle(); await settle();
-    assert.equal(window.location.hash, '#expectations');
+    assert.equal(window.location.hash, '#inflection-points');
     assert.equal(document.activeElement === link, true);
     await act(async () => window.history.forward()); await settle(); await settle();
     modal = document.querySelector('dialog[open]');

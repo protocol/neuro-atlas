@@ -1,5 +1,7 @@
 "use client";
 
+import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useTrendsView } from '@/components/google-trends-provider';
 import type { TrendsData } from '@/lib/field-velocity/google-trends';
@@ -82,7 +84,7 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const id = `google-trends-${group.id}`;
-  const open = hash === `#${id}`;
+  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
   const [copyStatus, setCopyStatus] = useState('');
   const [copyFallback, setCopyFallback] = useState('');
   const [valuesOpen, setValuesOpen] = useState(false);

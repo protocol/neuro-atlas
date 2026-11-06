@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
@@ -66,7 +67,7 @@ test('denied or missing clipboard reveals a selectable native URL fallback only 
         assert.ok(fallback, 'Denied copy must reveal a native, keyboard-selectable URL field');
         assert.equal(fallback.readOnly, true);
         assert.equal(fallback.getAttribute('aria-label'), `Chart URL for ${title}`);
-        assert.equal(fallback.value, `https://atlas.example/field-velocity?review=1#google-trends-${id}`);
+        assert.equal(fallback.value, `https://atlas.example/field-velocity?review=1#${canonicalPerformanceAnchor(`google-trends-${id}`)}`);
         assert.match(share.querySelector('[role=status]').textContent, /select and copy.*URL/i);
         await act(async () => fallback.focus());
         assert.equal(document.activeElement, fallback);
@@ -79,7 +80,7 @@ test('denied or missing clipboard reveals a selectable native URL fallback only 
         assert.equal(copied, fallback.value);
         assert.equal(share.querySelector('input'), null);
         assert.equal(share.querySelector('[role=status]').textContent, 'Link copied');
-        assert.equal(window.location.hash, modal ? `#google-trends-${id}` : '', 'Copying must not navigate');
+        assert.equal(window.location.hash, modal ? `#${canonicalPerformanceAnchor(`google-trends-${id}`)}` : '', 'Copying must not navigate');
       } finally { await cleanup(); }
     }
   } finally {
@@ -103,7 +104,7 @@ test('flat Trends preserves trigger focus, chart hashes, dismissal and history t
       const trigger = document.querySelector('button[aria-haspopup="dialog"]');
       await act(async () => trigger.focus());
       await click(trigger);
-      assert.equal(window.location.hash, `#google-trends-${id}`);
+      assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(`google-trends-${id}`)}`);
       let modal = document.querySelector('dialog[open]');
       assert.ok(modal);
       assert.equal(trigger.getAttribute('aria-expanded'), 'true');

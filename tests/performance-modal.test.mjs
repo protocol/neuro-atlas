@@ -20,7 +20,7 @@ test('chart opens in a named modal, locks scroll, traps focus, closes visibly an
     const dialog = document.querySelector('dialog[open]');
     assert.ok(dialog);
     assert.ok(dialog.getAttribute('aria-labelledby'));
-    assert.equal(window.location.hash, '#tissue-mapped');
+    assert.equal(window.location.hash, '#selected-tissue-volume-checkpoints');
     assert.equal(document.body.style.overflow, 'hidden');
     const close = dialog.querySelector('button[aria-label^="Close"]');
     assert.equal(document.activeElement, close);
@@ -32,7 +32,10 @@ test('chart opens in a named modal, locks scroll, traps focus, closes visibly an
     assert.equal(document.activeElement, trigger);
     assert.equal(document.body.style.overflow, '');
     assert.equal(window.location.href, 'https://atlas.example/field-velocity?review=1');
-    await act(async () => window.history.forward()); await settle();
+    await act(async () => window.history.forward());
+    // History events are asynchronous in jsdom. Wait for the retained modal
+    // state rather than one fixed settle window under parallel suite load.
+    for (let attempt = 0; attempt < 60 && !document.querySelector('dialog[open]'); attempt++) await settle();
     assert.ok(document.querySelector('dialog[open]'), 'Forward restores modal');
     await act(async () => document.querySelector('dialog[open]').dispatchEvent(new Event('cancel', { cancelable: true })));
     await settle();
@@ -52,7 +55,7 @@ for (const [id, count] of [['simultaneously-recorded-neurons', 3], ['tissue-mapp
     if (id === 'tissue-mapped') assert.match(dialog.textContent, /0.00819/);
     await click(dialog);
     assert.equal(document.querySelector('dialog[open]'), null);
-    assert.equal(window.location.hash, '#performance_curves');
+    assert.equal(window.location.hash, '#metrics');
     assert.equal(document.activeElement, document.querySelector(`[data-performance-card="${id}"] .pc-trigger`));
   } finally { await cleanup(); }
 });
