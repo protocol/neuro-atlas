@@ -184,7 +184,7 @@ test('overlap rings use the common base without implying a quantitative magnitud
       const note = document.querySelector('[data-overlap-note]');
       assert.ok(note, 'Explain rings even in the preview, before any point inspection');
       assert.equal(note.closest('details, svg, [hidden]'), null);
-      assert.match(note.textContent, /Rings distinguish overlapping observations, not larger values/);
+      assert.match(note.textContent, /Rings keep overlapping observations visible at their source positions/);
       if (!preview) {
         for (const [index, mark] of marks.entries()) {
           await act(async () => mark.focus());

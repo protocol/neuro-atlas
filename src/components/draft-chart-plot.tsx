@@ -118,7 +118,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const markerRadius = (index: number) => baseRadius + baseRadius * plot.points.slice(index + 1)
     .filter(point => overlaps[index].includes(point)).length;
   const overlapNote = overlaps.some(points => points.length > 0)
-    ? "Rings distinguish overlapping observations, not larger values." : undefined;
+    ? "Rings keep overlapping observations visible at their source positions." : undefined;
   // Only callouts move. Search bounded slots for the closest free 20px badge;
   // leave clearance from both source glyphs and already placed badges.
   const placedKeys: { x: number; y: number }[] = [];
