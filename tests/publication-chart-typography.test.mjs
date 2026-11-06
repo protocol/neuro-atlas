@@ -39,3 +39,17 @@ for (const anchor of ['publication-output', 'publication-growth', 'researcher-se
     if (prior === undefined) delete globalThis.ResizeObserver; else globalThis.ResizeObserver = prior;
   }
 });
+
+// Native 390/320px replay caught the last year extending 4.3/7.2px outside
+// the SVG and the long government/facility preview label extending 8.3px.
+test('preview endpoint labels point inward and the long facility label uses a bounded abbreviation', async () => {
+ const cleanup = await mount(React.createElement(PublicationCharts, {snapshot:fixture(),allowTestFixture:true}));
+ try {
+  const svg=document.querySelector('[data-publication-card="publication-output"] .publication-preview svg');
+  const texts=[...svg.querySelectorAll('text')];
+  assert.equal(texts.find(e=>e.textContent==='2010').getAttribute('text-anchor'),'start');
+  assert.equal(texts.find(e=>e.textContent==='2025').getAttribute('text-anchor'),'end');
+  const preview=document.querySelector('[data-publication-card="publication-growth"] .publication-preview');
+  assert.ok(preview.textContent.includes('Govt. / research facilities'));
+ } finally {await cleanup();}
+});

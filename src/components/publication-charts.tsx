@@ -41,7 +41,7 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
     <polyline fill="none" stroke={blue} strokeWidth="3" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>
     {data.annual.map(row => <circle key={row.year} data-publication-mark data-export-r={CHART_PRESENTATION.expandedRadius} data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} r={radius} fill={blue} {...pointEvents(`${row.year}: ${number(row.papers)} neurotech papers`, inspect)}><title>{`${row.year}: ${number(row.papers)} papers`}</title></circle>)}
     {inspect && data.baseline.map(row => <circle key={row.year} data-publication-mark data-export-r={CHART_PRESENTATION.expandedRadius} cx={x(row.year)} cy={y(row.all)} r={radius} fill={teal} {...pointEvents(`${row.year}: all-research growth equivalent ${number(row.all)} papers; four-domain band ${number(row.low)}–${number(row.high)}. Anchored to the 2022 neurotech count.`, inspect)}/>)}
-    {(compact?[2010,2018,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={compact?bottom+fontSize*1.8:300} textAnchor="middle">{year}</text>)}
+    {(compact?[2010,2018,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={compact?bottom+fontSize*1.8:300} textAnchor={year===2010?"start":year===2025?"end":"middle"}>{year}</text>)}
   </svg>;
 }
 type GrowthRow = PublicationChartData["growth"][number];
@@ -74,7 +74,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
       {data.growth.filter(row=>row.table===section.table).map((row,index)=>{
         const y=heading+(1.6+index*4.5)*fontSize;
         return <g key={row.id}>
-          <text x="12" y={y}>{row.id==="government-facility"?"Government / research facilities":short(row.group).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
+          <text x="12" y={y}>{row.id==="government-facility"?"Govt. / research facilities":short(row.group).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
           <GrowthMarks row={row} x={x} y={y+fontSize*1.1}/>
           <text x="390" y={y+fontSize*1.1} textAnchor="end">● {row.growth===null?"—":percent(row.growth)}</text>
           {row.baselineStatus==="unavailable"?<text data-reference-unavailable x="12" y={y+fontSize*2.8}>Reference unavailable</text>:<text x="390" y={y+fontSize*2.8} textAnchor="end">◇ {row.referenceGrowth===null?"No 2022 base":percent(row.referenceGrowth)}</text>}

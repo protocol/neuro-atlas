@@ -71,6 +71,8 @@ function assertGeometry() {
     const caption = normalized.querySelector('text');
     assert.match(caption.textContent, / · (linear|log) scale$/);
     caption.setAttribute('y', '16');
+    assert.equal(caption.getAttribute('x'), '0', 'The unit caption shares the heading content edge');
+    caption.setAttribute('x', '64'); // Restore only its former internal-gutter anchor for the independent geometry golden.
     // Marker radius/outline and grid paint are intentionally normalized by the
     // presentation cleanup. Restore only those baseline styles for this hash;
     // every original center, tick, interval, label and color stays independently pinned.

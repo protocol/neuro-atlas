@@ -19,8 +19,9 @@ def settle():
  raise AssertionError('Layout not stable')
 def snap(name):return capture_screenshot(path=str(OUT/(name+'.png')))
 def click_point(selector):
- r=probe('const e=document.querySelector('+json.dumps(selector)+');e.scrollIntoView({block:"center",inline:"nearest",behavior:"instant"});return e.getBoundingClientRect().toJSON();')
- cdp('Page.bringToFront');click_at_xy(r['x']+r['width']/2,r['y']+r['height']/2)
+ r=probe('''const e=document.querySelector('''+json.dumps(selector)+''');e.scrollIntoView({block:"center",inline:"nearest",behavior:"instant"});const r=e.getBoundingClientRect();const xy=[[r.x+r.width/2,r.y+r.height/2],[r.right-.2,r.y+r.height/2],[r.left+.2,r.y+r.height/2],[r.x+r.width/2,r.top+.2],[r.x+r.width/2,r.bottom-.2]].find(([x,y])=>{const hit=document.elementFromPoint(x,y);return hit===e||e.contains(hit)});return {x:xy?.[0],y:xy?.[1],painted:!!xy};''')
+ assert r['painted'], ('No painted hit target',selector,r)
+ cdp('Page.bringToFront');click_at_xy(r['x'],r['y'])
 def wait_popup():
  for _ in range(40):
   if probe('return !!document.querySelector("dialog [data-point-tooltip]");'):return

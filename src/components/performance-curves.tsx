@@ -27,7 +27,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[] };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -176,7 +176,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare key={inspectOnActivate ? data.title : undefined} anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
-      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor,
+      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes,
         legend: data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })),
         notes: [
           ...(data.exportNotes ?? []),
@@ -245,7 +245,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}
-        {!compact && <text x={(g.width + g.left - g.right) / 2} y={g.height - 3} textAnchor="middle">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>}
+        {!compact && <text x={0} y={g.height - 3} textAnchor="start">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>}
       </svg>
     </div>
     {compact && <span className="pc-preview-axis">{data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies")}</span>}
@@ -335,6 +335,11 @@ function recordingPlot(view: RecordingView): PlotData {
     title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
     xLabel: "Source publication / disclosure date · not experiment date",
     tracks: [{ id: view.id, label: view.label }],
+    exportCaptionNotes: [
+      view.description,
+      ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit} · ${p.preparation.split(" · ")[0]} · ${pointDate(p)} (${p.dateBasis}). ${p.sourceLabel}.`),
+      `Selected individual sessions · source-specific quality criteria · source checked ${RECORDING_CHECKED_AT}. Full evidence and methods at the chart link.`,
+    ],
     exportNotes: [
       `Source checked ${RECORDING_CHECKED_AT}. Source publication and disclosure dates, not experiment or implantation dates. Year coordinates are plotting anchors; no interpolation or extrapolation.`,
       ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} Source: ${p.sourceLabel} — ${p.sourceUrl}`),

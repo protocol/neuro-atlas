@@ -25,6 +25,8 @@ const svgSha = text => sha(text
   // Unit/scale caption alone now starts at the common content edge.
   // point-source-tooltip.test.mjs independently requires x=0; all marks/axes stay pinned.
   .replace(/(<svg[^>]*>)<text x="0" y="16">/, '$1<text x="100" y="16">')
+  // Only the explicit date-axis caption has moved to the shared left edge.
+  .replace('<text x="0" y="297" text-anchor="start">', '<text x="399" y="297" text-anchor="middle">')
   // Exact new root typography only; independent geometry/content hashes stay fixed.
   .replace(/^<svg style="font-size: ?[0-9.e+-]+px;?" data-export-font-size="12"/, '<svg')
   .replaceAll(' data-export-r="5"', '')

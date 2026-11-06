@@ -187,7 +187,7 @@ test('export removes pointer-only emphasis without mutating the actual plotted m
     const spec = { svg, title: 'Tissue', anchor: 'tissue-mapped', notes: [] };
     const baseline = buildChartImage(spec, window.location.href).svg;
     const point = svg.querySelector('[data-curve-point]');
-    await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
+    await act(async () => point.dispatchEvent(new window.MouseEvent('mousemove', { bubbles: true, clientX: 60, clientY: 80 })));
     assert.equal(point.getAttribute('r'), '7', 'Real hover changed the source DOM');
     assert.equal(buildChartImage(spec, window.location.href).svg, baseline, 'Export must not freeze random hover styling');
     assert.equal(point.getAttribute('r'), '7', 'Export never mutates the live chart');
@@ -269,4 +269,16 @@ test('recording image URLs retain only an exact single allowlisted measurement v
   for (const query of ['recordingView=unknown', 'recordingView=OPTICAL', 'recordingView=optical%20', 'recordingView=', 'recordingView=optical&recordingView=human-channels', 'recordingView=optical&recordingView=optical', 'recordingView=%3Cscript%3E', 'recordingView=%E0%A4%A']) {
     assert.equal(chartShareUrl(`${clean}?token=private&${query}`, anchor), `${clean}#${anchor}`, query);
   }
+});
+
+test('an editorial export caption replaces repeated method prose while the complete evidence is retained in SVG metadata', () => {
+ const dom=new JSDOM('<svg viewBox="0 0 720 300"><circle cx="100" cy="100" r="5"/></svg>');
+ const notes=['Full methodology paragraph with every archived source detail.'];
+ const image=buildChartImage({svg:dom.window.document.querySelector('svg'),title:'Caption test',anchor:'tissue-mapped',notes,captionNotes:['741 putative single neurons · Jun et al., 2017 · publication date']},'https://atlas.example/field-velocity');
+ const out=parse(image.svg);
+ const visible=[...out.window.document.querySelectorAll('text')].map(e=>e.textContent).join(' ');
+ assert.ok(visible.includes('741 putative single neurons'));
+ assert.ok(!visible.includes(notes[0]));
+ assert.ok(out.window.document.querySelector('desc').textContent.includes(notes[0]));
+ dom.window.close();out.window.close();
 });

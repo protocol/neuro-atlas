@@ -54,6 +54,9 @@ test('all chart families share 16px preview headings and 12px supporting type', 
     for (const heading of document.querySelectorAll('.pc-card-title, figcaption, .gt-card h3')) assert.equal(font(heading), CHART_PRESENTATION.previewTitleFontSize);
     for (const label of document.querySelectorAll('.pc-preview text, .draft-plot-tick, .draft-plot-axis-title, .gt-preview text, .gt-preview-axis, .gt-legend')) assert.equal(font(label), CHART_PRESENTATION.supportingFontSize, label.outerHTML);
     assert.equal(document.querySelector('.draft-plot-inspector'), null);
+    for (const caption of document.querySelectorAll('.pc-preview-axis')) assert.equal(getComputedStyle(caption).textAlign, 'left', 'Date captions share the heading edge');
+    const draftDate=document.querySelector('.draft-plot-svg .draft-plot-axis-title:last-of-type');
+    assert.equal(draftDate.getAttribute('x'),'0', 'Draft date caption shares the common edge');
   } finally { if (cleanup) await cleanup(); h.restore(); }
 });
 
@@ -63,6 +66,7 @@ for (const family of ['curve', 'trends']) test(`${family} full chart type is 12 
     const node = family === 'curve' ? React.createElement(CurveCard, { id: 'tissue-mapped', title: curve.title, eyebrow: 'Fixture', coverage: 'Scope', plot: curve }) : React.createElement(GoogleTrends, { flat: true, selection: ['neurotech'] });
     cleanup = await mount(node, family === 'curve' ? '#tissue-mapped' : '#google-trends-neurotech', h.configure);
     const svg = document.querySelector('dialog svg');
+    if (family==='curve') assert.equal([...svg.children].filter(e=>e.localName==='text').at(-1).getAttribute('x'),'0', 'Full date caption shares the heading edge');
     const spec = { svg, title: plot.title, anchor: family === 'curve' ? 'tissue-mapped' : 'google-trends-neurotech', notes: [] };
     let canonical;
     for (const scale of [560 / 720, 410 / 300, 1.25]) {

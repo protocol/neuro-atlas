@@ -161,12 +161,13 @@ test('styled markers preserve inspection by keyboard, pointer and persistent lab
 test('mixed coincident markers keep outlined outer glyphs, true centers and bounded callouts on resize', async () => {
   const styled = styledPlot();
   styled.points = styled.points.map(point => ({ ...point, x: 2, y: 20 }));
-  let resize;
+  const observers = [];
   globalThis.ResizeObserver = class {
-    constructor(callback) { resize = callback; }
-    observe() {}
-    disconnect() {}
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe(target) { this.target = target; }
+    disconnect() { this.disconnected = true; }
   };
+  const resize = entries => { for (const observer of observers) if (!observer.disconnected && observer.target?.classList.contains('draft-plot')) observer.callback(entries); };
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot: styled }));
   try {
     for (const width of [560, 280, 200, 560]) {
