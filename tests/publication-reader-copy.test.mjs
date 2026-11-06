@@ -10,7 +10,7 @@ globalThis.React = React;
 
 for (const [index, anchor] of PUBLICATION_ANCHORS.entries()) test(`${anchor}: source tables and download payload stay intact`, async () => {
   const snapshot = { ...syntheticPublicationSnapshot(), matchedGrowth: syntheticMatchedGrowth() };
-  const names = index === 0 ? ['nt_yearly'] : index === 1 ? PUBLICATION_GROWTH_GROUPS.map(group => group.table) : index === 2 ? ['nt_talent_table'] : ['nt_talent_moves'];
+  const names = index === 0 ? ['nt_yearly'] : index === 1 ? ['nt_yearly', ...PUBLICATION_GROWTH_GROUPS.map(group => group.table)] : index === 2 ? ['nt_talent_table'] : ['nt_talent_moves'];
   const cleanup = await mount(React.createElement(PublicationCharts, { snapshot, allowTestFixture: true }), '#' + anchor);
   try {
     const modal = document.querySelector('dialog[open]');
@@ -70,12 +70,17 @@ test('growth inspection names its cohort while provenance retains exact source m
   try {
     const modal = document.querySelector('dialog[open]');
     const svg = modal.querySelector('.publication-full-plot svg');
+    await act(async () => {
+      const baseline = modal.querySelector('[data-growth-baseline]');
+      baseline.value = 'matched';
+      baseline.dispatchEvent(new window.Event('change', { bubbles: true }));
+    });
     await act(async () => svg.querySelector('[data-growth-row="asia"]').dispatchEvent(new window.MouseEvent('click', { bubbles: true })));
     const readout = modal.querySelector('[data-publication-inspector]').textContent;
     assert.match(readout, /two-topic corpus \(P2\)/);
     for (const expected of ['2022', '2025', '10 → 15', '+50%', '1,000 → 1,200', '+20%', '30 percentage points', '+25%', 'OpenAlex work ID']) assert.ok(readout.includes(expected), expected);
     assert.equal(svg.querySelectorAll('[data-growth-row]').length, 21);
-    assert.equal(svg.querySelectorAll('[data-growth-series="reference"]').length, 9);
+    assert.equal(svg.querySelectorAll('[data-growth-reference-tick]').length, 9);
     assert.equal(svg.querySelectorAll('[data-reference-unavailable]').length, 12);
     const tableRows = [...modal.querySelectorAll('[aria-label="Growth numerator and matched reference values"] tbody tr')];
     for (const row of data.growth) {

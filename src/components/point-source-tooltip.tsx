@@ -47,6 +47,8 @@ export function usePointTooltip<T>(points?: readonly T[]) {
   });
   return {
     active: current?.point ?? null,
+    // Display-mode changes clear stale values without moving native-control focus.
+    clear: () => dismiss(false),
     pointProps: (point: T, getAnchor?: (trigger: Element) => Element | null) => {
       const selection = (trigger: Element) => ({ point, anchor: getAnchor?.(trigger) ?? trigger, trigger });
       const toggle = (trigger: Element) => {
