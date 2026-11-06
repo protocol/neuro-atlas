@@ -78,9 +78,12 @@ function GrowthContext({data,x,top,bottom}:{data:PublicationChartData;x:(n:numbe
   </g>;
 }
 function GrowthCaptions({data,fontSize=13}:{data:PublicationChartData;fontSize?:number}) {
-  return <g>
-    <text x="8" y={fontSize*1.5}>{data.scienceGrowth?`Gray: all-science ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}`:"All-science context unavailable"}</text>
-    <text x="8" y={fontSize*3.1}>{`Dashed: all neurotech ${percent(data.neurotechGrowth)}`}</text>
+  const labelX=8+fontSize*2.4;
+  return <g data-growth-context-legend aria-label="Chart legend">
+    {data.scienceGrowth&&<rect data-growth-legend-swatch="science" x="8" y={fontSize*.8} width={fontSize*1.4} height={fontSize*.75} fill={gray} fillOpacity=".28"/>}
+    <text x={data.scienceGrowth?labelX:8} y={fontSize*1.5}>{data.scienceGrowth?`All-science ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}`:"All-science context unavailable"}</text>
+    {data.neurotechGrowth!==null&&<line data-growth-legend-swatch="neurotech-total" x1="8" x2={8+fontSize*1.4} y1={fontSize*2.75} y2={fontSize*2.75} stroke="var(--foreground)" strokeWidth="1.5" strokeDasharray="5 5"/>}
+    <text x={data.neurotechGrowth!==null?labelX:8} y={fontSize*3.1}>{`All neurotech ${percent(data.neurotechGrowth)}`}</text>
   </g>;
 }
 function GrowthAxis({x,low,high,fontSize=13,y=0}:{x:(n:number)=>number;low:number;high:number;fontSize?:number;y?:number}) {

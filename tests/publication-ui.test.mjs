@@ -85,6 +85,20 @@ test('growth lollipops have horizontal zero-based stems and percentages attached
  } finally {await cleanup();}
 });
 
+test('growth context uses actual band and dashed-line legend keys instead of color-name captions',async()=>{
+ const cleanup=await mount(chart(fixture()),'#publication-growth');
+ try {
+  for(const svg of [document.querySelector('dialog [data-growth-export]'),document.querySelector('[data-publication-card="publication-growth"] .publication-preview svg')]) {
+   const legend=svg.querySelector('[data-growth-context-legend]');assert.ok(legend);
+   assert.equal(legend.querySelector('[data-growth-legend-swatch="science"]').localName,'rect');
+   const total=legend.querySelector('[data-growth-legend-swatch="neurotech-total"]');
+   assert.equal(total.localName,'line');assert.ok(total.getAttribute('stroke-dasharray'));
+   assert.match(legend.textContent,/All-science/);assert.match(legend.textContent,/All neurotech/);
+   assert.doesNotMatch(legend.textContent,/Gray:|Dashed:/i);
+  }
+ }finally{await cleanup();}
+});
+
 test('endpoint labels remain legible where benchmark lines cross them',async()=>{
  const cleanup=await mount(chart(fixture()),'#publication-growth');
  try {
@@ -127,7 +141,10 @@ test('growth has aligned sticky axes in both scrollers while full SVG retains it
   const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');
   assert.equal(exported.querySelector('parsererror'),null);
   assert.equal(exported.querySelectorAll('svg svg').length,1,'Export uses only the complete plot, not the sticky duplicate');
-  assert.match(image.svg,/Growth, 2022–2025/);assert.match(image.svg,/Gray: all-science/);assert.match(image.svg,/Dashed: all neurotech/);
+  assert.match(image.svg,/Growth, 2022–2025/);assert.match(image.svg,/All-science/);assert.match(image.svg,/All neurotech/);
+  const legend=exported.querySelector('svg svg > g');
+  assert.ok(legend.querySelector('rect'));assert.ok(legend.querySelector('line[stroke-dasharray="5 5"]'));
+  assert.doesNotMatch(legend.textContent,/Gray:|Dashed:/i);
   assert.equal(exported.querySelectorAll('svg svg circle').length,21);
  } finally {await cleanup();}
 });
