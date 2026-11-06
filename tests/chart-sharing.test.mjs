@@ -359,6 +359,14 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
     for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Unconnected observations']) assert.ok(text.includes(phrase), phrase);
     for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
+    const keyed = [...doc.querySelectorAll('[data-export-note]')].filter(note => note.querySelector('[data-export-note-key]'));
+    const plot = METRIC_CHART_EVIDENCE['Neural recording hours collected over time'].plots[0];
+    assert.equal(keyed.length, 5, 'Each dataset explanation is a separate footnote paragraph');
+    assert.deepEqual(keyed.map(note => note.querySelector('[data-export-note-key]').getAttribute('fill')), plot.legend.map(entry => entry.color));
+    for (let i = 0; i < keyed.length; i++) {
+      assert.ok([...keyed[i].querySelectorAll('text')].map(node => node.textContent).join(' ').startsWith(plot.legend[i].label + ':'), 'Color key retains its actual dataset identity');
+      for (const node of keyed[i].querySelectorAll('text')) assert.deepEqual([node.getAttribute('font-size'), node.getAttribute('fill')], ['14', '#667085']);
+    }
     assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
     exported.window.close();
   } finally { await cleanup(); boundary.restore(); }

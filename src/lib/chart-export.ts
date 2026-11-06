@@ -200,10 +200,10 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const palette = exportPalette(source);
   const body: string[] = [`<rect data-export-signature="blue" x="48" y="0" width="84" height="9" fill="${EXPORT_BLUE}"/>`];
   let cursor = 40;
-  const text = (content: string, size = 18, bold = false, left = inset) => {
+  const text = (content: string, size = 18, bold = false, left = inset, paint = ink) => {
     for (const line of wrap(content, Math.floor((width - inset - left) / (size * .62)))) {
       cursor += size * 1.45;
-      body.push(`<text x="${left}" y="${cursor}" fill="${escape(ink)}" font-family="${EXPORT_FONT}" font-size="${size}"${bold ? ' font-weight="700"' : ""}>${escape(line)}</text>`);
+      body.push(`<text x="${left}" y="${cursor}" fill="${escape(paint)}" font-family="${EXPORT_FONT}" font-size="${size}"${bold ? ' font-weight="700"' : ""}>${escape(line)}</text>`);
     }
   };
   text(title, 30, true);
@@ -237,19 +237,38 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
       : `<circle cx="56" cy="${cy}" r="6" fill="${color}"/>`;
     body.push(marker); text(entry.label, 18, false, 82);
   }
-  cursor += 12;
-  for (const note of (chart.captionNotes ?? chart.notes).filter(Boolean)) { text(note); cursor += 8; }
   cursor += 20;
   const footerY = cursor + 20;
   const footerLink = wrap(url, 85);
   const footerHeight = Math.max(54, 26 + footerLink.length * 22);
   body.push(`<g data-export-footer="true"><line x1="${inset}" x2="${width - inset}" y1="${cursor}" y2="${cursor}" stroke="#dfe5ec" stroke-width="1"/><svg data-export-brand="pl-rd" x="${inset}" y="${footerY}" width="124" height="54" viewBox="0 0 406 176">${PL_RESEARCH_LOGO}</svg><text x="${width - inset}" y="${footerY + 19}" text-anchor="end" fill="${ink}" font-family="${EXPORT_FONT}" font-size="20" font-weight="700">Neuro Atlas</text>${footerLink.map((line, i) => `<text x="${width - inset}" y="${footerY + 44 + i * 22}" text-anchor="end" fill="#52647d" font-family="${EXPORT_FONT}" font-size="16">${escape(line)}</text>`).join("")}</g>`);
   cursor = footerY + footerHeight;
+  // The branded chart is complete here. Supporting notes sit below a white
+  // breathing gap so a user can crop them without losing the logo or permalink.
+  const cropBottom = Math.ceil(cursor + 16);
+  cursor += 36;
+  body.push('<g data-export-footnotes="true">');
+  for (const note of chart.captionNotes ?? chart.notes) {
+    // Source notes already carry paragraph boundaries. Do not flatten distinct
+    // datasets into one block; only explicit legend-label prefixes get a key.
+    for (const paragraph of note.split(/\r?\n/).map(part => part.trim()).filter(Boolean)) {
+      const entry = chart.legend?.find(item => paragraph.startsWith(`${item.label}:`));
+      body.push('<g data-export-note="true">');
+      if (entry) {
+        const color = escape(exportPaint(entry.color, source, palette) || ink);
+        body.push(`<circle data-export-note-key="true" cx="54" cy="${cursor + 16}" r="4" fill="${color}"/>`);
+      }
+      text(paragraph, 14, false, entry ? 68 : inset, "#667085");
+      body.push('</g>');
+      cursor += 12;
+    }
+  }
+  body.push('</g>');
   const height = Math.ceil(cursor + 40);
   const evidence = chart.captionNotes ? `<desc>${escape(chart.notes.join("\n"))}</desc>` : "";
   // Fail explicitly rather than silently clipping scientific scope or overflowing a canvas.
   if (height > 6000 || body.join("").length + evidence.length > 4_000_000) throw new Error("Chart export exceeds safe image bounds");
-  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
+  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" data-export-crop-bottom="${cropBottom}">${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
 }
 
 export async function chartPng(image: ChartImage): Promise<Blob> {
