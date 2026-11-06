@@ -21,12 +21,13 @@
 .draft-plot > figcaption { font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: .5rem; }
 .draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
 .draft-plot-qualifications { margin: 10px 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
+.draft-plot-overlap-note { margin: .45rem 0; font-size: .7rem; line-height: 1.5; color: var(--muted); }
 .draft-plot-tick { font-size: 11px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
 .draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
-.draft-plot-svg [data-source-observation] { cursor: pointer; stroke-width: 2; }
-.draft-plot-svg [data-source-observation]:is(:hover, :focus-visible) { stroke: var(--foreground); stroke-width: 3; outline: none; }
+.draft-plot-svg [data-source-observation] { cursor: pointer; }
+.draft-plot-svg [data-source-observation]:is(:hover, :focus-visible) { stroke: var(--foreground); outline: none; }
 .draft-annotation-key { pointer-events: none; }
 .draft-annotation-leader { stroke-width: 1; pointer-events: none; }
 .draft-annotation-key rect { fill: var(--surface); stroke-width: 1; }
@@ -145,6 +146,9 @@
 .metric-preview-context p + p { margin-top: .5rem; }
 .metric-chart-rail .pc-coverage { min-height: 0; }
 .metric-chart-rail .pc-card-title { min-height: 0; }
+.metric-chart-rail .pc-card-title,
+.metric-chart-rail .gt-card .pc-trigger h3,
+.metric-chart-rail .draft-popout-preview .draft-plot > figcaption { font-size: .875rem; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; margin-top: 0; }
 .metric-chart-rail .pc-preview { margin-left: 0; margin-right: 0; }
 .metrics-index :is(button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .metric-anchor { display: block; scroll-margin-top: 6rem; }

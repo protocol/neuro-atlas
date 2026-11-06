@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent, type SVGAttribu
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
 import { ChartActions } from "@/components/chart-actions";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -54,7 +55,7 @@ function usePlotWidth() {
     const observer = new ResizeObserver(entries => {
       const measured = entries[0]?.contentRect.width;
       // A hidden tab has no width. Keep the last usable coordinate system until reveal.
-      if (measured > 0) setWidth(Math.max(120, Math.round(measured)));
+      if (Number.isFinite(measured) && measured > 0) setWidth(Math.max(120, Math.round(measured)));
     });
     observer.observe(figure.current);
     return () => observer.disconnect();
@@ -113,8 +114,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   // rings, so subsequent filled marks cannot paint them out of the chart.
   const overlaps = plot.points.map(point => plot.points.filter(other => other.id !== point.id
     && Math.hypot(x(point.x) - x(other.x), y(point.y) - y(other.y)) < 14));
-  const markerRadius = (index: number) => 6 + 6 * plot.points.slice(index + 1)
+  const baseRadius = preview ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius;
+  const markerRadius = (index: number) => baseRadius + baseRadius * plot.points.slice(index + 1)
     .filter(point => overlaps[index].includes(point)).length;
+  const overlapNote = overlaps.some(points => points.length > 0)
+    ? "Rings distinguish overlapping observations, not larger values." : undefined;
   // Only callouts move. Search bounded slots for the closest free 20px badge;
   // leave clearance from both source glyphs and already placed badges.
   const placedKeys: { x: number; y: number }[] = [];
@@ -158,6 +162,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,
       notes: [plot.scope, plot.seriesNote ?? "",
+        ...(overlapNote ? [overlapNote] : []),
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
         `${observationBasis} · ${log ? "Log" : "Linear"} scale · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
@@ -168,7 +173,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     <svg className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
       {yTicks.map(tick => <g key={tick}>
-        <line className="draft-plot-gridline" x1={left} x2={right} y1={y(tick)} y2={y(tick)} />
+        <line className="draft-plot-gridline" x1={left} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
         <text className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{tickLabel(tick)}</text>
       </g>)}
       <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />
@@ -181,11 +186,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <text x={labelX} y={labelY + 4} textAnchor="middle">{index + 1}</text>
       </g>)}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
-        fill={markerRadius(index) > 6 ? "none" : groupColor(point)} stroke={markerRadius(index) > 6 ? groupColor(point) : "var(--surface)"}
-        data-export-stroke-width={2} pointerEvents={markerRadius(index) > 6 ? "stroke" : undefined}
+        fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
+        strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
+        data-export-stroke-width={CHART_PRESENTATION.markerStrokeWidth} pointerEvents={markerRadius(index) > baseRadius ? "stroke" : undefined}
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
+    {overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
     {!preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
       <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
         <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
@@ -263,9 +270,9 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
       {stages.map(stage => <g key={stage}>
         <text className="draft-plot-axis-title" x={0} y={y(stage) - 45}>{wrapLabel(stage, width - 12).map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < wrapLabel(stage, width - 12).length - 1 ? " " : ""}</tspan>)}</text>
-        <line className="draft-plot-gridline" x1={28} x2={width - 28} y1={y(stage)} y2={y(stage)} />
+        <line className="draft-plot-gridline" x1={28} x2={width - 28} y1={y(stage)} y2={y(stage)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
       </g>)}
-      {timeline.events.map(event => <circle key={event.id} data-source-event={event.id} cx={x(event.year)} cy={y(event.stage)} r={7} fill="var(--accent)"><title>{`${event.label} · ${event.dateLabel} · ${event.stage}`}</title></circle>)}
+      {timeline.events.map(event => <circle key={event.id} data-source-event={event.id} cx={x(event.year)} cy={y(event.stage)} r={preview ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius} fill="var(--accent)" stroke="var(--surface)" strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"><title>{`${event.label} · ${event.dateLabel} · ${event.stage}`}</title></circle>)}
       {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={baseHeight - 45} textAnchor="middle">{year}</text>)}
       <text className="draft-plot-axis-title" x={width / 2} y={baseHeight - 16} textAnchor="middle">{xTitle.map((line, index) => <tspan key={index} x={width / 2} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
     </svg>

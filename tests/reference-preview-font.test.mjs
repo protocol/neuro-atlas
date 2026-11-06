@@ -68,6 +68,19 @@ function assertGeometry() {
     const caption = normalized.querySelector('text');
     assert.match(caption.textContent, / · (linear|log) scale$/);
     caption.setAttribute('y', '16');
+    // Marker radius/outline and grid paint are intentionally normalized by the
+    // presentation cleanup. Restore only those baseline styles for this hash;
+    // every original center, tick, interval, label and color stays independently pinned.
+    for (const mark of normalized.querySelectorAll('circle')) {
+      mark.setAttribute('r', '5');
+      mark.removeAttribute('vector-effect');
+    }
+    for (const line of normalized.querySelectorAll('.pc-gridline')) {
+      line.removeAttribute('class');
+      line.removeAttribute('stroke-width');
+      line.removeAttribute('vector-effect');
+      line.setAttribute('stroke', 'var(--border-strong)');
+    }
     if (card.dataset.performanceCard === 'simultaneously-recorded-neurons') {
       assert.equal(normalized.querySelector('polyline'), null);
       assert.equal(normalized.querySelectorAll('circle').length, 3);
@@ -76,7 +89,7 @@ function assertGeometry() {
       continue;
     }
     assert.equal(createHash('sha256').update(normalized.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
-      'All scientific geometry/content remain unchanged apart from the separately tested caption baseline');
+      'All scientific geometry/content remain unchanged apart from separately tested presentation styles');
   }
   assert.equal(JSON.stringify(feed), sourceBefore, 'Source objects remain unchanged');
 }
@@ -116,7 +129,7 @@ function resizeHarness() {
   return {
     observers,
     resize: async width => act(async () => {
-      for (const observer of observers) {
+      for (const observer of observers.filter(observer => observer.target.matches('.pc-preview svg'))) {
         observer.callback([{ target: observer.target, contentRect: { width } }]);
       }
     }),
@@ -127,13 +140,14 @@ function resizeHarness() {
   };
 }
 
-test('resizing each reference and Pace preview normalizes only its typography, never its geometry or the open full chart', async () => {
+test('resizing each reference and Pace preview normalizes typography and marks, never scientific geometry or the open full chart', async () => {
   const harness = resizeHarness();
   let cleanup;
   try {
     cleanup = await mount(charts(), '#idea_vintage', configureWidth(355));
-    assert.equal(harness.observers.length, 5, 'Observe each preview SVG, not the full modal');
-    assert.ok(harness.observers.every(observer => observer.target.matches('.pc-preview svg')));
+    assert.equal(harness.observers.length, 6, 'One presentation observer per preview plus one for expanded screen-space marks');
+    assert.equal(harness.observers.filter(observer => observer.target.matches('.pc-preview svg')).length, 5);
+    assert.equal(harness.observers.filter(observer => observer.target.matches('dialog .pc-plot svg')).length, 1);
     const modal = document.querySelector('dialog .pc-plot svg');
     const fullBefore = modal.outerHTML;
     assert.equal(modal.style.fontSize, '', 'Full-chart/export typography must not be overridden');
