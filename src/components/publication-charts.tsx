@@ -7,6 +7,8 @@ import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { usePreviewFont } from "@/components/use-preview-font";
+import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
 import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS, PUBLICATION_GROWTH_GROUPS, PUBLICATION_SECTORS, type PublicationSnapshot, type PublicationAnchor, type PublicationChartData, type PublicationTable } from "@/lib/publication-data";
@@ -17,19 +19,16 @@ const titles = ["Neurotech papers per year", "Publication growth by group", "Res
 export const PUBLICATION_SEARCH_TEXT = `${titles.join(" ")} publication papers output science baseline OpenAlex bioRxiv growth method brain-computer interface BCI venue region institution career citation researchers sectors universities companies hospitals labs nonprofits first latest affiliation changes`;
 const blue = "#4b4df2", teal = "#138a7a", gray = "#a6b0bf";
 const short = (s: string) => s.replace(/ \(.*\)$/, "");
-type Inspect = (text: string) => void;
+type Inspect = (text: string) => ReturnType<ReturnType<typeof usePointTooltip<string>>["pointProps"]>;
 /** Real movement, keyboard focus and touch/click select points; a stationary pointer never preselects. */
 function pointEvents(label: string, inspect?: Inspect) {
-  return inspect ? { tabIndex: 0, role: "button", "aria-label": label,
-    onPointerMove: (event: React.PointerEvent<SVGElement>) => { if (event.movementX || event.movementY) inspect(label); },
-    onFocus: () => inspect(label), onClick: () => inspect(label), onKeyDown: (event: React.KeyboardEvent<SVGElement>) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); inspect(label); } },
-  } : {};
+  return inspect ? { tabIndex: 0, role: "button", "aria-label": label, ...inspect(label) } : {};
 }
 const annualScienceAvailable = (data: PublicationChartData) => data.baseline.length > 0 && data.annual.some(row => row.year === 2022 && row.papers > 0);
-function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
-  const { ref, fontSize: previewFont } = usePreviewFont(840, !!compact);
-  const fontSize = compact ? previewFont : 13;
+function AnnualPlot({ data, compact, inspect, activeInspection }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null }) {
+  const selectedYear = activeInspection ? Number(activeInspection.slice(0, 4)) : null;
+  const { ref, fontSize, unitsPerPixel } = usePreviewFont(840, true);
+  const radius = (compact ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel;
   const left = compact ? fontSize * 3.6 + 12 : 80, right = compact ? 840 - fontSize * 2.2 - 12 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? top + fontSize * 9 : 280;
   const anchor = data.annual.find(row => row.year === 2022)!.papers;
   const hasScience = annualScienceAvailable(data);
@@ -51,41 +50,41 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
     const actual = data.annual.find(row => row.year === year)!, science = scienceAt(year);
     return `${year}: Neurotech papers ${number(actual.papers)}; ${science ? `All research index ${number(index(science.all))}; Four-domain index band ${number(index(science.low))}–${number(index(science.high))} (2022 = 100).` : "Science index unavailable for this year."}`;
   };
-  const selectYear = (year: number) => { setSelectedYear(year); inspect?.(inspection(year)); };
-  const yearEvents = (year: number) => pointEvents(inspection(year), inspect ? () => selectYear(year) : undefined);
-  const selected = data.annual.find(row => row.year === selectedYear), science = selected && scienceAt(selected.year);
-  const tooltipRows = selected ? [{ label: "Neurotech papers", value: number(selected.papers), color: blue }, ...(science ? [
-    { label: "All research index", value: number(index(science.all)), color: teal },
-    { label: "Four-domain index", value: `${number(index(science.low))}–${number(index(science.high))}`, color: gray },
-  ] : [])] : [];
-  const tooltipWidth = 380, tooltipX = selected ? Math.max(left, Math.min(right - tooltipWidth, x(selected.year) > (left + right) / 2 ? x(selected.year) - tooltipWidth - 16 : x(selected.year) + 16)) : left;
-  return <svg ref={ref} viewBox={`0 0 840 ${bottom + fontSize * 4.2}`} role="img" aria-label={hasScience ? "Annual neurotech paper counts and science index, 2022 = 100, on locked axes" : "Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
+  const yearEvents = (year: number) => {
+    const events = inspect?.(inspection(year));
+    return { ...pointEvents(inspection(year), inspect), onPointerMove: (event: React.PointerEvent<SVGElement>) => {
+      if (event.movementX || event.movementY) events?.onMouseMove(event);
+    }};
+  };
+  const selected = data.annual.find(row => row.year === selectedYear);
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 840 ${bottom + fontSize * 4.2}`} role="img" aria-label={hasScience ? "Annual neurotech paper counts and science index, 2022 = 100, on locked axes" : "Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
     <title>{hasScience ? "Neurotech papers, 2010–2025; science index anchored to the actual 2022 count" : "Neurotech papers, 2010–2025"}</title>
-    <text data-annual-axis="neurotech" x={compact ? 0 : left} y={fontSize * 1.5} fill={blue} style={{fill:blue}}>{compact ? "Papers" : "Neurotech papers"}</text>
+    <text data-annual-axis="neurotech" x={0} y={fontSize * 1.5} fill={blue} style={{fill:blue}}>{compact ? "Papers" : "Neurotech papers"}</text>
     {hasScience && <><text data-annual-axis="science" x={compact ? 840 : right} y={fontSize * 1.5} textAnchor="end" fill={teal} style={{fill:teal}}>{compact ? "Science index" : "Science index · 2022 = 100"}</text>{compact && <text data-annual-index-unit x={840} y={fontSize * 2.8} textAnchor="end" style={{fill:teal}}>2022 = 100</text>}</>}
     {[0,1,2,3,4].map(i => <g key={i}><line x1={left} x2={right} y1={y(i*step)} y2={y(i*step)} stroke="var(--border)"/><text data-annual-paper-tick={i*step} x={left-12} y={y(i*step)+4} textAnchor="end" style={{fill:blue}}>{number(i*step)}</text></g>)}
     {indexTicks.map(tick=><text key={tick} data-annual-index-tick={tick} x={right+12} y={scienceY(tick)+4} style={{fill:teal}}>{number(tick)}</text>)}
     {hasScience && <polygon data-science-context fill={gray} fillOpacity=".3" points={[...data.baseline.map(row => `${x(row.year)},${scienceY(index(row.high))}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${scienceY(index(row.low))}`)].join(" ")}/>}
     {hasScience && <polyline data-science-context fill="none" stroke={teal} strokeWidth="3" points={line(data.baseline.map(row => ({year:row.year,value:index(row.all)})), scienceY)}/>}
     <polyline fill="none" stroke={blue} strokeWidth="3" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>
-    {data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} r="5" fill={blue} {...yearEvents(row.year)}/>)}
-    {inspect && hasScience && data.baseline.map(row => <circle key={row.year} data-publication-mark data-science-year={row.year} cx={x(row.year)} cy={scienceY(index(row.all))} r="5" fill={teal} {...yearEvents(row.year)}/>)}
-    {(compact?[2010,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={bottom+fontSize*1.6} textAnchor="middle">{year}</text>)}
+    {data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={blue} {...yearEvents(row.year)}/>)}
+    {inspect && hasScience && data.baseline.map(row => <circle key={row.year} data-publication-mark data-science-year={row.year} cx={x(row.year)} cy={scienceY(index(row.all))} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={teal} {...yearEvents(row.year)}/>)}
+    {(compact?[2010,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={bottom+fontSize*1.6} textAnchor={year===2010?"start":year===2025?"end":"middle"}>{year}</text>)}
     {hasScience && <g data-annual-anchor pointerEvents="none"><circle cx={x(2022)} cy={y(anchor)} r="8" fill="none" stroke="var(--foreground)" strokeWidth="1.5"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor="middle">{compact ? "2022 anchor · index 100" : `2022 anchor · ${number(anchor)} papers = science index 100`}</text></g>}
-    {inspect && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden="true" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill="transparent" onPointerMove={event=>{if(event.movementX||event.movementY) selectYear(row.year);}} onClick={()=>selectYear(row.year)}/>)}
-    {selected && <>
-      <line data-annual-year-guide data-export-exclude x1={x(selected.year)} x2={x(selected.year)} y1={top} y2={bottom} stroke="var(--muted)" strokeDasharray="5 4" pointerEvents="none"/>
-      <g data-annual-tooltip={selected.year} role="tooltip" pointerEvents="none" transform={`translate(${tooltipX} ${top+12})`}>
-        <rect width={tooltipWidth} height={(tooltipRows.length*1.6+4.2)*fontSize} rx="7" fill="var(--surface)" stroke="var(--border)"/>
-        <text x="14" y={fontSize*1.6} fontWeight="700">{selected.year}</text>
-        {tooltipRows.map((row,i)=><g key={row.label}>
-          <circle data-annual-tooltip-key={row.label} cx="14" cy={(3.2+i*1.6)*fontSize-4} r="4" fill={row.color}/>
-          <text x="26" y={(3.2+i*1.6)*fontSize}>{row.label}</text><text x={tooltipWidth-14} y={(3.2+i*1.6)*fontSize} textAnchor="end">{row.value}</text>
-        </g>)}
-        <text x="14" y={(tooltipRows.length*1.6+3.5)*fontSize}>{science ? "Science index · 2022 = 100" : "Science index unavailable for this year"}</text>
-      </g>
-    </>}
+    {inspect && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden="true" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill="transparent" {...yearEvents(row.year)} tabIndex={-1}/>)}
+    {selected && <line data-annual-year-guide data-export-exclude x1={x(selected.year)} x2={x(selected.year)} y1={top} y2={bottom} stroke="var(--muted)" strokeDasharray="5 4" pointerEvents="none"/>}
   </svg>;
+}
+function AnnualTooltipContent({ data, active }: { data:PublicationChartData; active:string|null }) {
+  const selected=data.annual.find(row=>active?.startsWith(`${row.year}:`));
+  if(!selected) return null;
+  const anchor=data.annual.find(row=>row.year===2022)!.papers;
+  const science=annualScienceAvailable(data)?data.baseline.find(row=>row.year===selected.year):undefined;
+  const index=(value:number)=>value/anchor*100;
+  const rows=[{label:"Neurotech papers",value:number(selected.papers),color:blue},...(science?[
+    {label:"All research index",value:number(index(science.all)),color:teal},
+    {label:"Four-domain index",value:`${number(index(science.low))}–${number(index(science.high))}`,color:gray},
+  ]:[])];
+  return <div data-annual-tooltip={selected.year}><strong>{selected.year}</strong>{rows.map(row=><p key={row.label}><svg width="12" height="12" aria-hidden="true"><circle data-annual-tooltip-key={row.label} cx="6" cy="6" r="4" fill={row.color}/></svg> {row.label}: {row.value}</p>)}<p>{science?"Science index · 2022 = 100":"Science index unavailable for this year"}</p></div>;
 }
 type GrowthRow = PublicationChartData["growth"][number];
 const growthLabel=(row:GrowthRow)=>row.id==="bci"||row.id==="not-bci"?`${short(row.group)} (${number(row.end)} papers)`:short(row.group);
@@ -162,7 +161,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   const sections=PUBLICATION_GROWTH_GROUPS.map((section,index)=>({section,heading:fontSize*3.2+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((total,item)=>total+(item.groups.length*3.6+2.4)*fontSize,0)}));
   const cursor=sections.at(-1)!.heading+(2+3*3.6)*fontSize,footer=fontSize*(fontSize>23||!data.scienceGrowth?8:6.5),height=cursor+footer;
   return <span className="publication-growth-preview-canvas">
-    <svg ref={ref} viewBox={`0 0 400 ${height}`} role="img" aria-label="21 growth groups; neurotech, global science baseline and all-neurotech growth; scroll vertically" style={{fontSize}}>
+    <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 400 ${height}`} role="img" aria-label="21 growth groups; neurotech, global science baseline and all-neurotech growth; scroll vertically" style={{fontSize}}>
       <GrowthContext data={data} x={x} top={fontSize*1.5} bottom={cursor} fontSize={fontSize} compact/>
       {sections.map(({section,heading},sectionIndex)=><g key={section.table}>
         {sectionIndex>0&&<line data-growth-section-separator x1="8" x2="392" y1={heading-fontSize*1.1} y2={heading-fontSize*1.1} stroke="var(--border)" strokeWidth=".75" vectorEffect="non-scaling-stroke" aria-hidden="true" pointerEvents="none"/>}
@@ -170,7 +169,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
         {data.growth.filter(row=>row.table===section.table).map((row,index)=>{
           const y=heading+(1.6+index*3.6)*fontSize;
           return <g key={row.id}>
-            <text x="8" y={y}>{row.id==="government-facility"?"Government / research facilities":growthLabel(row).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
+            <text x="8" y={y}>{row.id==="government-facility"?"Govt. / research facilities":growthLabel(row).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
             <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2}/>
           </g>;
         })}
@@ -183,17 +182,18 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   </span>;
 }
 function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData;inspect?:Inspect;baseline?:GrowthBaseline}) {
+  const {ref,fontSize}=usePreviewFont(820,true);
   const {low,high}=growthExtent(data,baseline),left=280,right=740,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
-  const rowHeight=32,fontSize=14.5,footer=100;
+  const rowHeight=32,footer=100;
   const layout=PUBLICATION_GROWTH_GROUPS.map((section,index)=>{
     const heading=48+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((sum,item)=>sum+36+item.groups.length*rowHeight,0);
     return {section,heading,items:data.growth.filter(row=>row.table===section.table).map((row,i)=>({...row,y:heading+30+i*rowHeight}))};
   });
   const cursor=layout.at(-1)!.items.at(-1)!.y+18,height=cursor+footer;
   return <div className="publication-growth-canvas">
-    <svg data-growth-export data-baseline-mode={baseline} viewBox={`0 0 820 ${height}`} role="img" aria-label={`Publication growth 2022–2025; ${baseline==="science"?"general science baseline":"category-specific baselines; unavailable comparisons shown as hollow dots"}; all-neurotech growth`} style={{fontSize}}>
+    <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} data-growth-export data-baseline-mode={baseline} viewBox={`0 0 820 ${height}`} role="img" aria-label={`Publication growth 2022–2025; ${baseline==="science"?"general science baseline":"category-specific baselines; unavailable comparisons shown as hollow dots"}; all-neurotech growth`} style={{fontSize}}>
       <title>{`Neurotech publication growth; ${baseline==="science"?"general science baseline":"matched category baselines"}`}</title>
-      <GrowthContext data={data} x={x} top={28} bottom={cursor} baseline={baseline}/>
+      <GrowthContext data={data} x={x} top={28} bottom={cursor} fontSize={fontSize} baseline={baseline}/>
       {growthTicks(low,high).map(tick=><line key={tick} x1={x(tick)} x2={x(tick)} y1="28" y2={cursor} stroke="var(--border)"/>)}
       {layout.map(({section,heading,items},sectionIndex)=><g key={section.table}>
         {sectionIndex>0&&<line data-growth-section-separator x1="8" x2="808" y1={heading-18} y2={heading-18} stroke="var(--border)" strokeWidth=".75" vectorEffect="non-scaling-stroke" aria-hidden="true" pointerEvents="none"/>}
@@ -203,10 +203,10 @@ function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData
           <GrowthMarks row={row} data={data} x={x} y={row.y} inspect={inspect} baseline={baseline}/>
         </g>)}
       </g>)}
-      <GrowthAxis data={data} x={x} low={low} high={high} y={cursor} baseline={baseline}/>
+      <GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} y={cursor} baseline={baseline}/>
     </svg>
     <div className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-footer/820*100}%`}}>
-      <svg viewBox={`0 0 820 ${footer}`} focusable="false" style={{fontSize}}><GrowthAxis data={data} x={x} low={low} high={high} baseline={baseline}/></svg>
+      <svg viewBox={`0 0 820 ${footer}`} focusable="false" style={{fontSize}}><GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} baseline={baseline}/></svg>
     </div>
   </div>;
 }
@@ -233,7 +233,8 @@ function useGrowthViewport(ref:React.RefObject<HTMLDivElement|null>,enabled:bool
   },[ref,enabled]);
 }
 function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  return <svg viewBox={compact?"0 0 330 330":"0 0 740 370"} role="img" aria-label="Researchers by publication sector; 100 squares" style={{fontSize:13}}>
+  const {ref,fontSize}=usePreviewFont(compact?330:740,true);
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={compact?"0 0 330 330":"0 0 740 370"} role="img" aria-label="Researchers by publication sector; 100 squares" style={{fontSize}}>
     <title>{`${number(data.totalResearchers)} researchers with papers in ${data.authorEndYear}; each square ≈ 1%`}</title>
     {data.waffle.map((cell,i)=><rect key={i} data-publication-mark data-sector={cell.sector} x={8+(i%10)*32} y={8+Math.floor(i/10)*32} width="28" height="28" rx="3" fill={cell.color} {...pointEvents(`${data.sectors.find(row=>row.sector===cell.sector)!.label}: ${number(data.sectors.find(row=>row.sector===cell.sector)!.count)} researchers with papers in ${data.authorEndYear}`,inspect)}/>)}
     {!compact&&data.sectors.map((row,i)=><g key={row.sector} data-publication-mark {...pointEvents(`${row.label}: ${number(row.count)} researchers, ${number(row.share)}%`,inspect)}>
@@ -248,10 +249,10 @@ function changesSubtitle(data: PublicationChartData) {
 }
 function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
   const width = compact ? 400 : 740, left = 12, usable = width - left * 2;
-  const { ref, fontSize: previewFont } = usePreviewFont(width, compact);
-  const fontSize = compact ? previewFont : 14, block = compact ? fontSize * 9.8 : 160;
+  const { ref, fontSize } = usePreviewFont(width, true);
+  const block = compact ? fontSize * 9.8 : 160;
   const barTop = compact ? fontSize * 2.2 : 36, barHeight = compact ? fontSize * 1.6 : 40;
-  return <svg ref={ref} viewBox={`0 0 ${width} ${block * 2}`} role="img" aria-label="First-to-latest publication-affiliation sector changes, shares within each origin’s changers" style={{ fontSize }}>
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${width} ${block * 2}`} role="img" aria-label="First-to-latest publication-affiliation sector changes, shares within each origin’s changers" style={{ fontSize }}>
     <title>First and latest two-topic publication affiliations; first papers since 2016, different-sector cohort</title>
     {data.transitions.map((row, i) => <g key={row.from} transform={`translate(0 ${i * block})`}>
       <text x={left} y={fontSize * 1.3} fontWeight="700">From {row.label.toLowerCase()}</text>
@@ -277,7 +278,7 @@ function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChar
     </g>)}
   </svg>;
 }
-function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline }) {
+function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline; activeInspection?:string|null }) {
   return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:<ChangesPlot {...props}/>;
 }
 function scope(index:number,snapshot:PublicationSnapshot) {
@@ -310,7 +311,7 @@ function SourceTable({name,table}:{name:string;table:PublicationTable}) {
   return <div className="pc-table-scroll" role="region" aria-label={`${name} source values`} tabIndex={0}><table><caption>{name}</caption><thead><tr>{table.columns.map(col=><th key={col.name} scope="col">{col.name}</th>)}</tr></thead><tbody>{table.rows.map((row,i)=><tr key={i}>{row.map((cell,j)=><td key={j}>{cell===null?"—":String(cell)}</td>)}</tr>)}</tbody></table></div>;
 }
 function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData;anchor:PublicationAnchor}) {
-  const [inspection,setInspection]=useState("");
+  const tooltip=usePointTooltip<string>();
   const [baseline,setBaseline]=useState<GrowthBaseline>("science");
   const available=data.growth.filter(row=>row.referenceGrowth!==null).length;
   const plot=useRef<HTMLDivElement>(null);
@@ -324,12 +325,13 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}
     {index===1&&<>
-      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>{setBaseline(event.target.value as GrowthBaseline);setInspection("");}}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
+      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>{setBaseline(event.target.value as GrowthBaseline);tooltip.clear();}}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
       {baseline==="matched"&&<p className="publication-scope" data-growth-coverage>{available} category baselines available; {data.growth.length-available} unavailable (hollow dots). Gray ticks mark each group’s baseline; no general-science fallback.</p>}
     </>}
-    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection} baseline={baseline}/></div>
+    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps} baseline={baseline} activeInspection={tooltip.active}/></div>
     {index===2&&<section className="publication-sector-key" data-publication-sector-key aria-label="Researcher publication-sector key"><p>{number(data.totalResearchers)} unique researchers · {data.authorEndYear}</p><ul>{data.sectors.map(row=><li key={row.sector}><span aria-hidden="true" style={{background:row.color}}/><span>{row.label}: <strong>{number(row.count)}</strong> ({number(row.share)}%)</span></li>)}</ul></section>}
-    <div className="pc-point-readout" data-publication-inspector role="status" aria-live="polite">{inspection}</div>
+    <div className="sr-only" data-publication-inspector role="status" aria-live="polite">{tooltip.active??""}</div>
+    <PointTooltip {...tooltip.tooltipProps}>{index===0?<AnnualTooltipContent data={data} active={tooltip.active}/>:<p>{tooltip.active}</p>}<p><a href={snapshot.source.url} target="_blank" rel="noreferrer">Source: OpenAlex ↗</a></p></PointTooltip>
     <p className="pc-chart-note">Hover, focus or tap a mark for exact values.</p>
     <section className="pc-methodology"><h4>Methodology</h4>
       {notes.filter(note=>!note.startsWith("Source counts: ")).map(note=><p key={note}>{note}</p>)}
@@ -364,7 +366,7 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}
     </div>
     <div data-metric-card-footer><DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/></div>
-    {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
+    {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
   </article>;
 }
 /** Anonymous compiled aggregates only. No network access, author records or production fallback. */

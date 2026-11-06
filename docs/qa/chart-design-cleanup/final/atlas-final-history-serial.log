@@ -1,0 +1,14 @@
+✔ chart opens in a named modal, locks scroll, traps focus, closes visibly and restores trigger without scrolling (812.527571ms)
+✔ simultaneously-recorded-neurons fresh URL mounts only its selected source observations; backdrop closes (95.657024ms)
+✔ tissue-mapped fresh URL mounts only its selected source observations; backdrop closes (102.63735ms)
+✔ neural-recording-hours fresh URL mounts only its selected source observations; backdrop closes (94.825624ms)
+✔ modal navigation disables browser automatic history scrolling while mounted (60.797525ms)
+✔ close returns to the original fragment and opening preserves framework history state (99.610497ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2789.375926

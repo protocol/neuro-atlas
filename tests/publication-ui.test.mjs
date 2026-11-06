@@ -69,17 +69,22 @@ test('growth selects one baseline per group without a second numerator or silent
  } finally {await cleanup();}
 });
 
-test('changing the comparison baseline clears stale selected-baseline inspection for matched and unavailable rows',async()=>{
+test('changing the comparison baseline clears stale selected-baseline inspection without stealing selector focus',async()=>{
  const cleanup=await mount(chart(fixture()),'#publication-growth');
  try {
   const modal=document.querySelector('dialog'),readout=modal.querySelector('[data-publication-inspector]');
+  const select=modal.querySelector('[data-growth-baseline]');
   for(const id of ['asia','early']) {
    for(const [from,to] of [['science','matched'],['matched','science']]) {
     await chooseBaseline(modal,from);
     await act(async()=>modal.querySelector(`[data-growth-row="${id}"]`).dispatchEvent(new window.MouseEvent('click',{bubbles:true})));
     assert.ok(readout.textContent.length>0,'Inspect a real mark first');
+    assert.ok(modal.querySelector('[data-point-tooltip]'),'A real source popup is pinned before switching');
+    await act(async()=>select.focus());
     await chooseBaseline(modal,to);
     assert.equal(readout.textContent,'','A changed baseline requires a fresh, correctly qualified inspection');
+    assert.equal(modal.querySelector('[data-point-tooltip]'),null,'The stale source popup is dismissed');
+    assert.equal(document.activeElement,select,'Changing a native select must not restore focus to the old mark');
    }
   }
  } finally {await cleanup();}
@@ -174,7 +179,7 @@ test('growth follows reference colors, section geometry, direct benchmark annota
    assert.doesNotMatch(svg.textContent,/Gray:|Dashed:/i);
   }
   const svg=document.querySelector('dialog [data-growth-export]');
-  assert.ok(parseFloat(svg.style.fontSize)>=14.5);
+  assert.equal(parseFloat(svg.style.fontSize),12,'Unscaled labels use the shared 12px contract');
   const headings=[...svg.querySelectorAll('[data-growth-section]')];assert.equal(headings.length,7);
   for(const heading of headings){assert.equal(heading.textContent,heading.textContent.toUpperCase());assert.equal(heading.style.fill,'var(--muted)');}
   const method=[...svg.querySelectorAll('[data-growth-row]')].slice(0,4);
@@ -221,7 +226,10 @@ test('endpoint labels remain legible where benchmark lines cross them',async()=>
 });
 
 test('the zero tick remains inside the initial narrow viewport instead of beyond the label gutter',async()=>{
- const cleanup=await mount(chart(fixture()),'#publication-growth');
+ const cleanup=await mount(chart(fixture()),'#publication-growth',win=>{
+  const bounds=win.SVGElement.prototype.getBoundingClientRect;
+  win.SVGElement.prototype.getBoundingClientRect=function(){return this.hasAttribute('data-growth-export')?{width:640,height:100}:bounds.call(this);};
+ });
  try {
   const {readFileSync}=await import('node:fs');const style=document.createElement('style');
   style.textContent=readFileSync(new URL('../src/components/publication-charts.css',import.meta.url),'utf8');document.head.append(style);
@@ -229,7 +237,7 @@ test('the zero tick remains inside the initial narrow viewport instead of beyond
   const width=Number(svg.getAttribute('viewBox').split(' ')[2]);
   const minWidth=parseFloat(getComputedStyle(canvas).minWidth);assert.equal(minWidth,640);
   assert.equal(parseFloat(getComputedStyle(svg).minWidth),640);
-  assert.ok(parseFloat(svg.style.fontSize)*minWidth/width>=11,'Keep the reference labels readable on narrow screens');
+  assert.ok(Math.abs(parseFloat(svg.style.fontSize)*minWidth/width-12)<.001,'Measured labels stay 12 CSS px on narrow screens');
   const tick=document.querySelector('dialog [data-growth-sticky-axis] [data-growth-tick]');
   assert.ok(Number(tick.getAttribute('x'))*minWidth/width<=240,'A 240px narrow plot must show the zero tick without horizontal scrolling');
   const select=document.querySelector('dialog [data-growth-baseline]');assert.equal(getComputedStyle(select).maxWidth,'100%');
@@ -260,7 +268,8 @@ test('growth has aligned sticky axes in both scrollers while full SVG retains it
   const image=buildChartImage({svg,title:'Publication growth',anchor:'publication-growth',notes:publicationExportNotes(1,parsed,data)},'https://atlas.example/field-velocity');
   const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');
   assert.equal(exported.querySelector('parsererror'),null);
-  assert.equal(exported.querySelectorAll('svg svg').length,1,'Export uses only the complete plot, not the sticky duplicate');
+  assert.equal(exported.querySelectorAll('svg svg:not([data-export-brand])').length,1,'Export uses only the complete plot, not the sticky duplicate');
+  assert.equal(exported.querySelectorAll('svg[data-export-brand="pl-rd"]').length,1,'The separate nested SVG is the approved PL R&D signature');
   assert.match(image.svg,/Growth, 2022–2025/);assert.match(image.svg,/All-science/);assert.match(image.svg,/All neurotech/);
   const plot=exported.querySelector('svg svg');
   assert.ok(plot.querySelector('rect'));assert.ok(plot.querySelector('line[stroke-dasharray="5 5"]'));

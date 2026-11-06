@@ -54,8 +54,8 @@ function renderedFont(label, renderedWidth) {
 }
 function assertFonts(width) {
   for (const label of document.querySelectorAll('.pc-preview svg text')) {
-    assert.ok(Math.abs(renderedFont(label, width) - 11) < 0.001,
-      `${label.closest('[data-performance-card]').dataset.performanceCard}: ${label.textContent} should render at 11px, not ${renderedFont(label, width)}px`);
+    assert.ok(Math.abs(renderedFont(label, width) - 12) < 0.001,
+      `${label.closest('[data-performance-card]').dataset.performanceCard}: ${label.textContent} should render at 12px, not ${renderedFont(label, width)}px`);
   }
 }
 function assertGeometry() {
@@ -71,6 +71,21 @@ function assertGeometry() {
     const caption = normalized.querySelector('text');
     assert.match(caption.textContent, / · (linear|log) scale$/);
     caption.setAttribute('y', '16');
+    assert.equal(caption.getAttribute('x'), '0', 'The unit caption shares the heading content edge');
+    caption.setAttribute('x', '64'); // Restore only its former internal-gutter anchor for the independent geometry golden.
+    // Marker radius/outline and grid paint are intentionally normalized by the
+    // presentation cleanup. Restore only those baseline styles for this hash;
+    // every original center, tick, interval, label and color stays independently pinned.
+    for (const mark of normalized.querySelectorAll('circle')) {
+      mark.setAttribute('r', '5');
+      mark.removeAttribute('vector-effect');
+    }
+    for (const line of normalized.querySelectorAll('.pc-gridline')) {
+      line.removeAttribute('class');
+      line.removeAttribute('stroke-width');
+      line.removeAttribute('vector-effect');
+      line.setAttribute('stroke', 'var(--border-strong)');
+    }
     if (card.dataset.performanceCard === 'simultaneously-recorded-neurons') {
       assert.equal(normalized.querySelector('polyline'), null);
       assert.equal(normalized.querySelectorAll('circle').length, 3);
@@ -79,7 +94,7 @@ function assertGeometry() {
       continue;
     }
     assert.equal(createHash('sha256').update(normalized.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
-      'All scientific geometry/content remain unchanged apart from the separately tested caption baseline');
+      'All scientific geometry/content remain unchanged apart from separately tested presentation styles');
   }
   assert.equal(JSON.stringify(feed), sourceBefore, 'Source objects remain unchanged');
 }
@@ -98,7 +113,7 @@ test('preview unit and scale captions reserve their full readable ascent inside 
   }
 });
 
-test('reference and Pace previews measure their SVG width to render 11px labels without changing plot geometry', async () => {
+test('reference and Pace previews measure their SVG width to render 12px labels without changing plot geometry', async () => {
   for (const width of [230, 520]) {
     const cleanup = await mount(charts(), '', configureWidth(width));
     try {
@@ -119,7 +134,7 @@ function resizeHarness() {
   return {
     observers,
     resize: async width => act(async () => {
-      for (const observer of observers) {
+      for (const observer of observers.filter(observer => observer.target.matches('.pc-preview svg'))) {
         observer.callback([{ target: observer.target, contentRect: { width } }]);
       }
     }),
@@ -130,17 +145,17 @@ function resizeHarness() {
   };
 }
 
-test('resizing each reference and Pace preview normalizes only its typography, never its geometry or the open full chart', async () => {
+test('resizing each reference and Pace preview normalizes typography and marks, never scientific geometry or the open full chart', async () => {
   const harness = resizeHarness();
   let cleanup;
   try {
     cleanup = await mount(charts(), '#idea_vintage', configureWidth(355));
-    assert.equal(harness.observers.length, 5, 'Observe each preview SVG, not the full modal');
-    assert.ok(harness.observers.every(observer => observer.target.matches('.pc-preview svg')));
+    assert.equal(harness.observers.length, 6, 'One presentation observer per preview plus one for expanded screen-space marks');
+    assert.equal(harness.observers.filter(observer => observer.target.matches('.pc-preview svg')).length, 5);
+    assert.equal(harness.observers.filter(observer => observer.target.matches('dialog .pc-plot svg')).length, 1);
     const modal = document.querySelector('dialog .pc-plot svg');
     const fullBefore = modal.outerHTML;
-    assert.equal(modal.style.fontSize, '', 'Full-chart/export typography must not be overridden');
-    assert.equal(getComputedStyle(modal.querySelector('text')).fontSize, '12px');
+    assert.ok(Math.abs(Number.parseFloat(modal.style.fontSize) * 355 / 720 - 12) < 0.001, 'Full-chart type is normalized to the same 12 screen pixels');
     for (const width of [720, 224, 519.5]) {
       await harness.resize(width);
       assertFonts(width);
@@ -173,8 +188,8 @@ test('hidden or invalid preview widths retain the last usable font size and reco
     cleanup = undefined;
     harness.observers.length = 0;
     cleanup = await mount(charts(), '', configureWidth(0));
-    assert.ok([...document.querySelectorAll('.pc-preview svg')].every(svg => svg.style.fontSize === '11px'),
-      'Initially hidden previews retain a finite 11px coordinate fallback until measurable');
+    assert.ok([...document.querySelectorAll('.pc-preview svg')].every(svg => svg.style.fontSize === '12px'),
+      'Initially hidden previews retain a finite 12px coordinate fallback until measurable');
     await harness.resize(519.5);
     assertFonts(519.5);
     assertGeometry();

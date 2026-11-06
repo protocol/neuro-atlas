@@ -7,6 +7,9 @@ import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
 import { ChartActions } from '@/components/chart-actions';
+import { usePreviewFont } from '@/components/use-preview-font';
+import { PointTooltip, usePointTooltip } from '@/components/point-source-tooltip';
+import { CHART_PRESENTATION } from '@/lib/chart-presentation';
 import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
@@ -15,6 +18,7 @@ const colors = ['var(--accent)', '#087f8c'];
 
 function TrendPlot({ group, compact = false, link, intro }: { group: Group; compact?: boolean; link?: React.ReactNode; intro?: React.ReactNode }) {
   const plotRef = useRef<HTMLDivElement>(null);
+  const tooltip = usePointTooltip<string>();
   const [previewWidth, setPreviewWidth] = useState(560);
   useEffect(() => {
     if (!compact || !plotRef.current || typeof ResizeObserver === 'undefined') return;
@@ -26,6 +30,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     return () => observer.disconnect();
   }, [compact]);
   const width = compact ? previewWidth : 600;
+  const { ref: presentationRef, fontSize, unitsPerPixel } = usePreviewFont(width, !compact, 270);
   const right = width - 20;
   const rows = group.rows.filter(row => !row.partial);
   const start = Date.parse(group.start), end = Date.parse(group.end);
@@ -45,7 +50,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     {intro}
     <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
     {compact && <span className="gt-preview-axis">Worldwide · Weekly index · 0–100</span>}
-    <svg viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
+    <svg ref={presentationRef} style={compact ? undefined : { fontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text data-trends-axis="y" x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
       {group.terms.map((term, index) => {
         let gap = true;
@@ -57,10 +62,16 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
         }).join(' ');
         return <path key={term} data-trend-line={term} d={path} fill="none" stroke={colors[index]} strokeWidth={2.5} strokeDasharray={index ? '7 3' : undefined} />;
       })}
-      {!compact && rows.flatMap(row => row.values.map((value, i) => value === null ? null : <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} r={2.5} fill={colors[i]}><title>{row.date} · {group.terms[i]}: {row.displayValues[i]}</title></circle>))}
+      {!compact && rows.flatMap(row => row.values.map((value, i) => {
+        if (value === null) return null;
+        const label = `${row.date} · ${group.terms[i]}: ${row.displayValues[i]}`;
+        return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} data-export-r={CHART_PRESENTATION.denseLineRadius} r={(tooltip.active === label ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.denseLineRadius) * unitsPerPixel} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
+      }))}
       <text data-trends-axis="x" x={48} y={254}>{group.start.slice(0, compact && width < 240 ? 4 : 7)}</text><text data-trends-axis="x" x={right} y={254} textAnchor="end">{group.end.slice(0, compact && width < 240 ? 4 : 7)}</text>
     </svg>
-  </div></>;
+  </div>
+  {!compact && <PointTooltip {...tooltip.tooltipProps}><strong>{tooltip.active}</strong><p>Google Trends weekly index · 0–100 · captured {group.capturedAt}</p><p><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open source query ↗</a></p></PointTooltip>}
+  </>;
 }
 
 function Legend({ group }: { group: Group }) {
@@ -91,13 +102,13 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
     <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
-      <TrendPlot group={group} compact />
+      <TrendPlot key={group.rawSha256} group={group} compact />
     </button>
     <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Independently normalized brand-search interest.</p>}</div>
     </div>
     <div data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
-      <TrendPlot group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
+      <TrendPlot key={group.rawSha256} group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
         <p>Worldwide Google search interest. {normalization} Google uses broad term matching.</p>

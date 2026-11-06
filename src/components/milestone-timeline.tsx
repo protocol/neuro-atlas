@@ -50,7 +50,7 @@ const MARKER = 34;
 const LOGO = 24;
 const LANE_PAD_BOTTOM = 14;
 const LANE_GAP = 8;
-const MIN_GAP_PCT = 2.8;
+const MARKER_GAP = 4;
 const FOCUS_W = 78; // focused year column width (% of the columns area)
 const NARROW_W = 9; // collapsed year column width (%)
 const FULL_W = 1360; // px width of the 2026 full-year plot (scrolls inside its column)
@@ -141,10 +141,27 @@ export function MilestoneTimeline() {
   };
 
   const plotRef = useRef<HTMLDivElement>(null);
+  const [plotWidth, setPlotWidth] = useState(FULL_W);
   const dragStart = useRef<number | null>(null);
   const dragged = useRef(false);
 
   useEffect(() => setNow(Date.now()), []);
+
+  // Pack in rendered pixels, but retain the exact date-derived x coordinate.
+  // The folded plot changes width; extra rows grow each lane instead of shrinking logos.
+  useEffect(() => {
+    const el = plotRef.current;
+    if (!el) return;
+    const measure = () => {
+      const width = el.getBoundingClientRect().width;
+      if (width > 0) setPlotWidth(width);
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [focusYear, railOpen]);
 
   const matches = (m: Milestone) => {
     if (scopeFilter === "bci" && (m as { scope?: string }).scope !== "bci") return false;
@@ -159,7 +176,7 @@ export function MilestoneTimeline() {
       const rowLast: number[] = [];
       const placed = evs.map((m) => {
         const left = pctIn(m.date!, boundsOf(focusYear).t0, boundsOf(focusYear).t1);
-        let row = rowLast.findIndex((last) => left - last >= MIN_GAP_PCT);
+        let row = rowLast.findIndex((last) => ((left - last) / 100) * plotWidth >= MARKER + MARKER_GAP);
         if (row === -1) { row = rowLast.length; rowLast.push(left); } else { rowLast[row] = left; }
         return { m, left, row };
       });
@@ -172,7 +189,7 @@ export function MilestoneTimeline() {
     const undated = MILESTONES.filter((m) => !m.date && matches(m));
     return { lanes, totalH: Math.max(y, PLOT_TOP + 120), undated };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sel, focusYear, scopeFilter]);
+  }, [sel, focusYear, scopeFilter, plotWidth]);
 
   const agg = useMemo(() => {
     const { t0, t1: yearEnd } = boundsOf(focusYear);
@@ -287,7 +304,7 @@ export function MilestoneTimeline() {
         <button
           type="button"
           onClick={() => scrollPlotTo("end")}
-          className="absolute right-2 -top-6 z-20 flex items-center gap-1 rounded-full border border-border-strong bg-surface px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-sm hover:border-accent"
+          className="absolute right-2 -top-6 z-20 flex items-center gap-1 rounded-full border border-border-strong bg-surface px-2 py-0.5 text-[12px] font-semibold text-foreground shadow-sm hover:border-accent"
         >
           Later months
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -297,7 +314,7 @@ export function MilestoneTimeline() {
         <button
           type="button"
           onClick={() => scrollPlotTo("start")}
-          className="absolute left-2 -top-6 z-20 flex items-center gap-1 rounded-full border border-border-strong bg-surface px-2 py-0.5 text-[10px] font-semibold text-foreground shadow-sm hover:border-accent"
+          className="absolute left-2 -top-6 z-20 flex items-center gap-1 rounded-full border border-border-strong bg-surface px-2 py-0.5 text-[12px] font-semibold text-foreground shadow-sm hover:border-accent"
         >
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
           Earlier months
@@ -336,7 +353,7 @@ export function MilestoneTimeline() {
                   <polyline points={cap.solid} fill="none" stroke={l.stage.color} strokeWidth={1} opacity={0.4} vectorEffect="non-scaling-stroke" />
                 </svg>
               )}
-              <span className="absolute left-2.5 top-1.5 text-[10px] font-semibold uppercase tracking-wider" style={{ color: l.stage.color }}>{l.stage.label}</span>
+              <span className="absolute left-2.5 top-1.5 text-[12px] font-semibold text-foreground">{l.stage.label}</span>
             </div>
           );
         })}
@@ -351,7 +368,7 @@ export function MilestoneTimeline() {
           return (
             <div key={mo.label} className="absolute bottom-0 top-0" style={{ left: `${left}%`, zIndex: 1 }}>
               <div className="absolute bottom-0 top-5 border-l border-border/70" />
-              <div className="absolute top-0 -translate-x-1/2 text-[10px] font-medium uppercase tracking-wider text-faint">{mo.label}</div>
+              <div className={`absolute top-0 whitespace-nowrap text-[12px] font-medium text-muted ${left === 0 ? "" : "-translate-x-1/2"}`}>{mo.label}</div>
             </div>
           );
         })}
@@ -363,7 +380,7 @@ export function MilestoneTimeline() {
           return (
             <div className="pointer-events-none absolute bottom-0 top-0" style={{ left: `${p}%`, zIndex: 2 }}>
               <div className="absolute bottom-0 top-5 border-l-2 border-dashed" style={{ borderColor: "var(--accent)" }} />
-              <div className="absolute top-5 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider" style={{ color: "var(--accent-foreground)" }}>today</div>
+              <div className="absolute top-5 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent px-1.5 py-0.5 text-[12px] font-semibold" style={{ color: "var(--accent-foreground)" }}>today</div>
             </div>
           );
         })()}
@@ -419,7 +436,7 @@ export function MilestoneTimeline() {
         </button>
       )}
       {canScrollLater && (
-        <div className="mt-1.5 flex items-center justify-between gap-3 text-[10px] text-faint">
+        <div className="mt-1.5 flex items-center justify-between gap-3 text-[12px] text-muted">
           <span>
             {scrolledLater ? "Earlier months are off to the left." : "Later months are off to the right. Use the bar"}
             <span className="hidden lg:inline">, or fold the side panel</span>.
@@ -470,17 +487,17 @@ export function MilestoneTimeline() {
           const open = openStage === s.key;
           const noneOn = selected.size === 0;
           return (
-            <div key={s.key} className="flex items-center gap-1.5">
+            <div key={s.key} className={`flex min-w-0 flex-wrap items-center gap-1.5 ${open ? "w-full" : ""}`}>
               <button type="button" onClick={() => clickGroup(s.key)} aria-expanded={open}
                 className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-all ${open ? "border-border-strong bg-surface-raised" : noneOn ? "border-border opacity-40" : "border-border-strong"}`}>
                 <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
                 {s.label}
-                <span className="tnum text-faint">{total}</span>
-                {!open && <span className="text-[9px] text-faint" aria-hidden>▸</span>}
+                <span className="tnum text-muted">{total}</span>
+                {!open && <span className="text-[12px] text-muted" aria-hidden>▸</span>}
               </button>
-              <div className={`grid transition-all duration-300 ease-out ${open ? "grid-cols-[1fr] opacity-100" : "grid-cols-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  <div className="flex items-center gap-1.5 pr-1">
+              <div className={`grid min-w-0 max-w-full transition-all duration-300 ease-out ${open ? "flex-1 basis-full grid-cols-[1fr] opacity-100 sm:basis-auto" : "grid-cols-[0fr] opacity-0"}`}>
+                <div className="min-w-0 overflow-hidden">
+                  <div className="flex flex-wrap items-center gap-1.5 pr-1">
                     <span className="mx-0.5 h-5 w-px shrink-0 bg-border-strong" aria-hidden />
                     {subs.map((sub) => {
                       const on = selected.has(sub);
@@ -490,15 +507,15 @@ export function MilestoneTimeline() {
                         <button key={sub} type="button" onClick={() => toggleSub(s.key, sub)}
                           onMouseEnter={(e) => { if (!expansion) return; const r = e.currentTarget.getBoundingClientRect(); setPillTip({ text: expansion, x: clampCenteredTooltipX(r.left + r.width / 2, Math.min(280, expansion.length * 7 + 24)), y: r.top - 6 }); }}
                           onMouseLeave={() => setPillTip(null)} aria-pressed={on}
-                          className={`flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium transition-all ${on ? "border-border-strong" : "border-border opacity-40"}`}
+                          className={`flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[12px] font-medium transition-all ${on ? "border-border-strong" : "border-border opacity-40"}`}
                           style={on ? { borderColor: s.color } : undefined}>
                           {subcatLabel(sub)}
-                          <span className="tnum text-faint">{count}</span>
+                          <span className="tnum text-muted">{count}</span>
                         </button>
                       );
                     })}
                     <button type="button" onClick={() => setOpenStage(null)} aria-label={`Collapse ${s.label}`} title="Collapse"
-                      className="ml-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border text-faint transition-colors hover:border-border-strong hover:text-foreground">
+                      className="ml-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-border-strong hover:text-foreground">
                       <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                     </button>
                   </div>
@@ -507,18 +524,18 @@ export function MilestoneTimeline() {
             </div>
           );
         })}
-        <span className="ml-auto hidden text-[11px] text-faint md:block">click a year to focus · drag across to summarize · hover a logo for details</span>
+        <span className="ml-auto hidden text-[12px] text-muted md:block">click a year to focus · drag across to summarize · hover a logo for details</span>
       </div>
 
       <div className="flex gap-4">
         {/* Year columns */}
         <div className="min-w-0 flex-1">
-          <div className="flex gap-2">
+          <div className="milestone-year-strip -mt-7 flex gap-2 overflow-x-auto pb-2 pt-7">
             {YEARS.map((year) => {
               const focused = focusYear === year;
               const w = `${focused ? FOCUS_W : NARROW_W}%`;
               if (focused) {
-                return <div key={year} className="shrink-0" style={{ width: w, transition: YEAR_EASE }}>{plot}</div>;
+                return <div key={year} className="milestone-focused-year shrink-0" style={{ width: w, minWidth: 240, transition: YEAR_EASE }}>{plot}</div>;
               }
               const raised = capitalRaisedInYear(year, scopeFilter);
               return (
@@ -527,14 +544,14 @@ export function MilestoneTimeline() {
                   type="button"
                   onClick={() => setFocusYear(year)}
                   aria-label={`Focus ${year}: ${fmtUsd(raised)} raised`}
-                  className="group relative shrink-0 overflow-hidden rounded-xl border border-dashed border-border-strong bg-surface-raised text-left hover:border-border"
-                  style={{ width: w, height: totalH, transition: YEAR_EASE }}
+                  className="milestone-collapsed-year group relative shrink-0 overflow-hidden rounded-xl border border-dashed border-border-strong bg-surface-raised text-left hover:border-border"
+                  style={{ width: w, minWidth: 72, height: totalH, transition: YEAR_EASE }}
                 >
                   {scatter(0.18)}
                   <div className="absolute inset-x-0 top-5 px-2 text-center">
-                    <div className="text-[10px] font-semibold uppercase tracking-wider text-muted">{year}</div>
+                    <div className="text-[12px] font-semibold text-muted">{year}</div>
                     <div className="tnum text-sm font-semibold tracking-tight">{fmtUsd(raised)}</div>
-                    <div className="mt-0.5 text-[10px] leading-tight text-faint">raised</div>
+                    <div className="mt-0.5 text-[12px] leading-tight text-muted">raised</div>
                   </div>
                 </button>
               );
@@ -543,7 +560,7 @@ export function MilestoneTimeline() {
 
           {focusYear === 2026 && undated.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-dashed border-border pt-3">
-              <span className="mr-1 text-[10px] font-semibold uppercase tracking-wider text-faint">date TBD</span>
+              <span className="mr-1 text-[12px] font-semibold text-muted">date TBD</span>
               {undated.map((m) => (
                 <a key={`${m.company}-${m.activity}-${m.date ?? "undated"}`} href={m.sourceUrl ?? undefined} target="_blank" rel="noreferrer"
                   onMouseEnter={(e) => showTip(e, m)} onMouseLeave={() => setTip(null)}
@@ -560,9 +577,9 @@ export function MilestoneTimeline() {
         {railOpen ? (
           <aside className="hidden w-48 shrink-0 lg:block">
             <div className="mb-3 flex items-center justify-between gap-2">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-faint">Capital raised</span>
+              <span className="text-[12px] font-semibold text-muted">Capital raised</span>
               <button type="button" onClick={() => setRailOpen(false)} aria-label="Fold side panel to show the full year" title="Fold panel — show the full year"
-                className="flex shrink-0 items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[10px] font-medium text-faint transition-colors hover:border-border-strong hover:text-foreground">
+                className="flex shrink-0 items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[12px] font-medium text-muted transition-colors hover:border-border-strong hover:text-foreground">
                 Fold
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
               </button>
@@ -577,40 +594,40 @@ export function MilestoneTimeline() {
                 {year === 2026 && cumulativeCapital(2026, scopeFilter).length > 1 && <span className="mt-0.5 block"><Sparkline series={cumulativeCapital(2026, scopeFilter)} width={166} height={22} /></span>}
               </button>
             ))}
-            <div className="mt-1 px-1 text-[10px] leading-snug text-faint">Sourced round sizes on this lane — not valuations or market cap. Fold this panel to see a full year without scrolling.</div>
+            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Sourced round sizes on this lane — not valuations or market cap. Fold this panel to see a full year without scrolling.</div>
             <div className="mt-3 border-t border-border pt-3">
-              <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-faint">Memo cut</div>
+              <div className="mb-1 text-[12px] font-semibold text-muted">Memo cut</div>
               {MEMO_CAPITAL.map((c) => (
                 <div key={c.year} className="tnum flex items-baseline justify-between px-1 text-[12px] text-muted">
                   <span>{c.year}</span>
                   <span>{fmtUsd(c.usdM)}</span>
                 </div>
               ))}
-              <div className="mt-1 px-1 text-[10px] leading-snug text-faint">Naveen’s Q1+ 2026 chart. Independent of the dots.</div>
+              <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Naveen’s Q1+ 2026 chart. Independent of the dots.</div>
             </div>
 
             <div className="mt-4 border-t border-border pt-3">
               <div className="mb-1 flex items-center justify-between">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-faint">{selRange ? "Selected window" : "Full period"}</span>
-                {selRange && <button type="button" onClick={() => setSelRange(null)} className="text-[10px] font-medium text-accent hover:underline">clear</button>}
+                <span className="text-[12px] font-semibold text-muted">{selRange ? "Selected window" : "Full period"}</span>
+                {selRange && <button type="button" onClick={() => setSelRange(null)} className="text-[12px] font-medium text-accent hover:underline">clear</button>}
               </div>
-              <div className="tnum mb-3 text-[11px] text-muted">{fmtDate(agg.t1)} – {fmtDate(agg.t2)}, {focusYear}</div>
+              <div className="tnum mb-3 text-[12px] text-muted">{fmtDate(agg.t1)} – {fmtDate(agg.t2)}, {focusYear}</div>
               <div className="space-y-3">
                 {agg.rows.map((r) => (
                   <div key={r.stage.key}>
                     <div className="mb-0.5 flex items-center gap-1.5">
                       <span className="h-2 w-2 rounded-full" style={{ background: r.stage.color }} />
-                      <span className="text-[11px] font-semibold">{r.stage.label}</span>
+                      <span className="text-[12px] font-semibold">{r.stage.label}</span>
                     </div>
                     {r.stage.key === "capital" ? (
                       <>
                         <div className="tnum text-[15px] font-semibold">{fmtUsd(r.usd)}</div>
-                        <div className="text-[10px] text-faint">{r.rounds} round{r.rounds === 1 ? "" : "s"} raised{r.count > r.rounds ? ` · ${r.count - r.rounds} grant` : ""}</div>
+                        <div className="text-[12px] text-muted">{r.rounds} round{r.rounds === 1 ? "" : "s"} raised{r.count > r.rounds ? ` · ${r.count - r.rounds} grant` : ""}</div>
                       </>
                     ) : (
                       <>
-                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[11px] font-medium text-muted">· {fmtUsd(r.usd)}</span>}</div>
-                        <div className="text-[10px] leading-snug text-faint">{r.breakdown || "—"}</div>
+                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)}</span>}</div>
+                        <div className="text-[12px] leading-snug text-muted">{r.breakdown || "—"}</div>
                       </>
                     )}
                   </div>
@@ -620,15 +637,15 @@ export function MilestoneTimeline() {
           </aside>
         ) : (
           <button type="button" onClick={() => setRailOpen(true)} aria-label="Open side panel" title="Open side panel"
-            className="hidden shrink-0 flex-col items-center gap-2 rounded-lg border border-border pt-3 text-faint transition-colors hover:border-border-strong hover:text-foreground lg:flex" style={{ width: 28 }}>
+            className="hidden shrink-0 flex-col items-center gap-2 rounded-lg border border-border pt-3 text-muted transition-colors hover:border-border-strong hover:text-foreground lg:flex" style={{ width: 28 }}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
-            <span className="text-[9px] font-semibold uppercase tracking-wider [writing-mode:vertical-rl]">Panel</span>
+            <span className="text-[12px] font-semibold [writing-mode:vertical-rl]">Panel</span>
           </button>
         )}
       </div>
 
       {pillTip && (
-        <div className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-[10px] font-medium text-background shadow-lg" style={{ left: pillTip.x, top: pillTip.y }}>{pillTip.text}</div>
+        <div className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-[12px] font-medium text-background shadow-lg" style={{ left: pillTip.x, top: pillTip.y }}>{pillTip.text}</div>
       )}
 
       {tip && (
@@ -637,8 +654,8 @@ export function MilestoneTimeline() {
             <FirmLogo src={tip.m.logo} name={tip.m.company} size={18} />
             <span className="text-[13px] font-semibold text-background">{tip.m.company}</span>
             <span className="ml-auto flex items-center gap-1">
-              <span className="rounded-full bg-background/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-background/80">{(tip.m as { scope?: string }).scope === "bci" ? "BCI" : "Neuro"}</span>
-              <span className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-background/90" style={{ background: stageColor(tip.m.stage) }}>{tip.m.stage}</span>
+              <span className="rounded-full bg-background/15 px-1.5 py-0.5 text-[12px] font-semibold text-background/80">{(tip.m as { scope?: string }).scope === "bci" ? "BCI" : "Neuro"}</span>
+              <span className="rounded-full px-1.5 py-0.5 text-[12px] font-semibold text-background/90" style={{ background: stageColor(tip.m.stage) }}>{tip.m.stage}</span>
             </span>
           </div>
           <div className="tnum text-[12px] font-medium text-background/90">
@@ -646,10 +663,10 @@ export function MilestoneTimeline() {
             <span className="text-background/60">{" · "}{tip.m.date ? fmtDateFull(tip.m.date) : "exact date TBD"}</span>
           </div>
           {expandActivity(tip.m.activity).filter(([, ex]) => ex).length > 0 && (
-            <div className="mt-1 text-[10px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>
+            <div className="mt-1 text-[12px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>
           )}
-          <div className="mt-1.5 text-[11px] leading-relaxed text-background/75">{tip.m.note ?? "Details coming soon."}</div>
-          {tip.m.sourceUrl && <div className="mt-1.5 text-[10px] font-medium text-background/50">click to open source ↗</div>}
+          <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{tip.m.note ?? "Details coming soon."}</div>
+          {tip.m.sourceUrl && <div className="mt-1.5 text-[12px] font-medium text-background/50">click to open source ↗</div>}
         </div>
       )}
     </div>

@@ -33,7 +33,7 @@ test('a single optical observation is revealed in a narrow plot without selectin
     const svg = plot.querySelector('svg');
     const geometry = svg.outerHTML;
     assert.equal(plot.scrollLeft, (dimensions.scroll - dimensions.client) / 2, 'Reveal the one source mark instead of opening an empty left-hand slice');
-    assert.equal(document.querySelector('dialog .pc-point-readout').textContent, '', 'Revealing a mark is not inspecting it');
+    assert.equal(document.querySelector('dialog [role=tooltip]'), null, 'Revealing a mark is not inspecting it');
     assert.equal(svg.querySelector('[data-curve-point]').dataset.value, '1136223');
     const observer = observers.find(item => item.target === plot);
     assert.ok(observer, 'Viewport changes keep the single mark reachable');

@@ -29,7 +29,7 @@ test('the original recording anchor opens three source-qualified scatter views w
       assert.equal(window.location.hash, '#simultaneously-recorded-neurons');
       assert.equal(modal.querySelectorAll('[data-curve-point]').length, view.points.length);
       assert.equal(modal.querySelectorAll('[data-source-observation]').length, view.points.length);
-      assert.equal(modal.querySelector('.pc-point-readout').textContent, '');
+      assert.equal(modal.querySelector('[role=tooltip]'), null);
       assert.equal(modal.querySelector('[role=switch], [data-frontier-line], [data-extrapolation-line], [data-fit-diagnostics]'), null);
       assert.match(modal.textContent, /Dates identify source publication or disclosure.*stated precision/i);
       assert.ok(modal.querySelector('svg').textContent.includes(view.unit));
@@ -72,7 +72,7 @@ test('measurement selection roundtrips through copied URLs, fresh mount, Back/Fo
     await cleanup(); cleanup = undefined;
     cleanup = await mount(chart(), '', win => win.history.replaceState(null, '', copied));
     assert.equal(document.querySelector('[data-recording-view-select]').value, 'optical');
-    assert.equal(document.querySelector('.pc-point-readout').textContent, '');
+    assert.equal(document.querySelector('[role=tooltip]'), null);
   } finally {
     if (cleanup) await cleanup();
     if (saved) Object.defineProperty(globalThis, 'navigator', saved); else delete globalThis.navigator;
@@ -129,24 +129,24 @@ test('tap/click and keyboard expose the same recording evidence; changing view o
   try {
     let point = document.querySelector('dialog [data-curve-point]');
     await act(async () => point.dispatchEvent(new MouseEvent('click', { bubbles: true })));
-    assert.equal(document.querySelector('.pc-point-readout').textContent, point.getAttribute('aria-label'), 'Touch-generated click explicitly inspects a point');
+    assert.equal(document.querySelector('[data-point-description]').textContent, point.getAttribute('aria-label'), 'Touch-generated click explicitly inspects a point');
     assert.equal(point.getAttribute('role'), 'button');
     const control = document.querySelector('[data-recording-view-select]');
     await act(async () => control.focus());
     await changeView('human-channels');
     assert.ok(document.activeElement === control, 'Native selector retains focus after a keyboard or touch view change');
-    assert.equal(document.querySelector('.pc-point-readout').textContent, '');
+    assert.equal(document.querySelector('[role=tooltip]'), null);
     point = document.querySelector('dialog [data-curve-point]');
     await act(async () => point.focus());
     const label = point.getAttribute('aria-label');
-    assert.equal(document.querySelector('.pc-point-readout').textContent, label);
+    assert.equal(document.querySelector('[data-point-description]').textContent, label);
     await act(async () => point.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true })));
-    assert.equal(document.querySelector('.pc-point-readout').textContent, label);
+    assert.equal(document.querySelector('[data-point-description]').textContent, label);
     await changeView('electrical');
-    assert.equal(document.querySelector('.pc-point-readout').textContent, '');
+    assert.equal(document.querySelector('[role=tooltip]'), null);
     await click(document.querySelector('.pc-modal-header button')); await settle();
     await click(document.querySelector('.pc-trigger'));
-    assert.equal(document.querySelector('.pc-point-readout').textContent, '');
+    assert.equal(document.querySelector('[role=tooltip]'), null);
     const style = document.createElement('style'); style.textContent = readFileSync('src/components/performance-curves.css', 'utf8'); document.head.append(style);
     const select = document.querySelector('[data-recording-view-select]');
     assert.equal(getComputedStyle(select).minHeight, '44px');
