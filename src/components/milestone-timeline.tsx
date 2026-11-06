@@ -530,12 +530,12 @@ export function MilestoneTimeline() {
       <div className="flex gap-4">
         {/* Year columns */}
         <div className="min-w-0 flex-1">
-          <div className="-mt-7 flex gap-2 overflow-x-auto pb-2 pt-7">
+          <div className="milestone-year-strip -mt-7 flex gap-2 overflow-x-auto pb-2 pt-7">
             {YEARS.map((year) => {
               const focused = focusYear === year;
               const w = `${focused ? FOCUS_W : NARROW_W}%`;
               if (focused) {
-                return <div key={year} className="shrink-0" style={{ width: w, minWidth: 240, transition: YEAR_EASE }}>{plot}</div>;
+                return <div key={year} className="milestone-focused-year shrink-0" style={{ width: w, minWidth: 240, transition: YEAR_EASE }}>{plot}</div>;
               }
               const raised = capitalRaisedInYear(year, scopeFilter);
               return (
@@ -544,7 +544,7 @@ export function MilestoneTimeline() {
                   type="button"
                   onClick={() => setFocusYear(year)}
                   aria-label={`Focus ${year}: ${fmtUsd(raised)} raised`}
-                  className="group relative shrink-0 overflow-hidden rounded-xl border border-dashed border-border-strong bg-surface-raised text-left hover:border-border"
+                  className="milestone-collapsed-year group relative shrink-0 overflow-hidden rounded-xl border border-dashed border-border-strong bg-surface-raised text-left hover:border-border"
                   style={{ width: w, minWidth: 72, height: totalH, transition: YEAR_EASE }}
                 >
                   {scatter(0.18)}
