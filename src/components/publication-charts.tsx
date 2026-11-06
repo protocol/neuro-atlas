@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartActions } from "@/components/chart-actions";
 import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { usePreviewFont } from "@/components/use-preview-font";
+import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
@@ -18,13 +19,10 @@ const titles = ["Neurotech papers per year", "Publication growth by group", "Res
 export const PUBLICATION_SEARCH_TEXT = `${titles.join(" ")} publication papers output science baseline OpenAlex bioRxiv growth method brain-computer interface BCI venue region institution career citation researchers sectors universities companies hospitals labs nonprofits first latest affiliation changes`;
 const blue = "#4b4df2", teal = "#138a7a", gray = "#a6b0bf";
 const short = (s: string) => s.replace(/ \(.*\)$/, "");
-type Inspect = (text: string) => void;
+type Inspect = (text: string) => ReturnType<ReturnType<typeof usePointTooltip<string>>["pointProps"]>;
 /** Real movement, keyboard focus and touch/click select points; a stationary pointer never preselects. */
 function pointEvents(label: string, inspect?: Inspect) {
-  return inspect ? { tabIndex: 0, role: "button", "aria-label": label,
-    onPointerMove: (event: React.PointerEvent<SVGElement>) => { if (event.movementX || event.movementY) inspect(label); },
-    onFocus: () => inspect(label), onClick: () => inspect(label), onKeyDown: (event: React.KeyboardEvent<SVGElement>) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); inspect(label); } },
-  } : {};
+  return inspect ? { tabIndex: 0, role: "button", "aria-label": label, ...inspect(label) } : {};
 }
 function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
   const { ref, fontSize, unitsPerPixel } = usePreviewFont(720, true);
@@ -172,7 +170,7 @@ function SourceTable({name,table}:{name:string;table:PublicationTable}) {
   return <div className="pc-table-scroll" role="region" aria-label={`${name} source values`} tabIndex={0}><table><caption>{name}</caption><thead><tr>{table.columns.map(col=><th key={col.name} scope="col">{col.name}</th>)}</tr></thead><tbody>{table.rows.map((row,i)=><tr key={i}>{row.map((cell,j)=><td key={j}>{cell===null?"—":String(cell)}</td>)}</tr>)}</tbody></table></div>;
 }
 function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData;anchor:PublicationAnchor}) {
-  const [inspection,setInspection]=useState("");
+  const tooltip=usePointTooltip<string>();
   const plot=useRef<HTMLDivElement>(null);
   const notes=publicationExportNotes(index,snapshot,data);
   const selected=Object.fromEntries(tableNames(index).map(name=>[name,snapshot.tables[name]]));
@@ -183,9 +181,10 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     {index===3&&<p className="publication-scope">Different-sector publication-affiliation cohort · employment transitions unverified</p>}
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span>{data.baseline.length>0&&<><span style={{color:teal}}>● All research</span><span>■ Global science context · four-domain band</span><span>Anchored to 2022</span></>}</p>}
     {index===1&&<p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span><span style={{color:teal}}>◇ Same-category research</span><span>Reference unavailable where a comparable baseline is missing</span></p>}
-    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection}/></div>
+    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps}/></div>
     {index===2&&<section className="publication-sector-key" data-publication-sector-key aria-label="Researcher publication-sector key"><p>{number(data.totalResearchers)} unique researchers · {data.authorEndYear}</p><ul>{data.sectors.map(row=><li key={row.sector}><span aria-hidden="true" style={{background:row.color}}/><span>{row.label}: <strong>{number(row.count)}</strong> ({number(row.share)}%)</span></li>)}</ul></section>}
-    <div className="pc-point-readout" data-publication-inspector role="status" aria-live="polite">{inspection}</div>
+    <div className="sr-only" data-publication-inspector role="status" aria-live="polite">{tooltip.active??""}</div>
+    <PointTooltip {...tooltip.tooltipProps}><p>{tooltip.active}</p><p><a href={snapshot.source.url} target="_blank" rel="noreferrer">Source: OpenAlex ↗</a></p></PointTooltip>
     <p className="pc-chart-note">Move over, focus or tap a mark to inspect its exact source values.</p>
     <section className="pc-methodology"><h4>Definition and methodology</h4>
       {notes.map(note=><p key={note}>{note}</p>)}
@@ -220,7 +219,7 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
       {index===3&&<p className="publication-preview-note">First and latest observed publication affiliations · employment transitions unverified</p>}
     </div>
     <div data-metric-card-footer><DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/></div>
-    {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
+    {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
   </article>;
 }
 /** Anonymous compiled aggregates only. No network access, author records or production fallback. */
