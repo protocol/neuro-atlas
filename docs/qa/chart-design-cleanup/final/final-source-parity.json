@@ -1,0 +1,9 @@
+{
+  "codeRevision": "cf14f32109ebe5434ca015d307390d9bcee0671d",
+  "upstreamBase": "6f475a2ab6342ce948431e25c58effc20c095672",
+  "comparedSourceFiles": 182,
+  "codeAndAssetParity": true,
+  "aggregateSha256": "2737a4bfdabe037fceed8c82f44861bc001a9b9d043137792b78c3a8ac54a72e",
+  "qaOnlyModifiedFile": "src/proxy.ts",
+  "qaFixtureCommitted": false
+}

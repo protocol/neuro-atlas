@@ -86,7 +86,7 @@ test('annual preview fits its card with readable axes while the enlarged plot sc
     const svg = preview.querySelector('svg');
     const width = Number(svg.getAttribute('viewBox').split(' ')[2]);
     assert.ok(parseFloat(svg.style.fontSize) * 157 / width >= 11 - 1e-9);
-    assert.ok(parseFloat(annualSvg().style.fontSize) >= 13);
+    assert.ok(parseFloat(annualSvg().style.fontSize) >= 12);
     const grids=[...svg.querySelectorAll('line')];
     assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*157/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
     assert.ok(+grids[4].getAttribute('y1')/parseFloat(svg.style.fontSize)>=4.4-1e-9, 'Top index tick clears the second heading line');
@@ -126,9 +126,9 @@ test('selecting either series shows one shared-year tooltip, colored keys and a 
     const svg = annualSvg();
     const mark = svg.querySelector('circle[data-year="2023"][data-value]');
     await act(async () => mark.dispatchEvent(new window.MouseEvent('click', { bubbles: true })));
-    const tooltip = svg.querySelector('[data-annual-tooltip]');
+    const tooltip = document.querySelector('dialog [data-annual-tooltip]');
     assert.ok(tooltip, 'A selected year needs one tooltip containing all available series');
-    assert.equal(svg.querySelectorAll('[role="tooltip"]').length, 1);
+    assert.equal(document.querySelectorAll('dialog [role="tooltip"]').length, 1);
     assert.equal(tooltip.dataset.annualTooltip, '2023');
     for (const expected of ['2023', 'Neurotech papers', '230', 'All research index', '103.6', 'Four-domain index', '102.3–105.5', '2022 = 100']) assert.ok(tooltip.textContent.includes(expected), expected);
     const keys = [...tooltip.querySelectorAll('[data-annual-tooltip-key]')];
@@ -140,7 +140,7 @@ test('selecting either series shows one shared-year tooltip, colored keys and a 
     assert.match(document.querySelector('dialog [data-publication-inspector]').textContent, /2023.*230.*103.6.*102.3–105.5/);
     const science = [...svg.querySelectorAll('circle[data-publication-mark]')].find(point => point.getAttribute('fill') === '#138a7a' && point.getAttribute('cx') === mark.getAttribute('cx'));
     await act(async () => science.dispatchEvent(new window.MouseEvent('click', { bubbles: true })));
-    assert.equal(svg.querySelector('[data-annual-tooltip]').textContent, tooltip.textContent);
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').textContent, tooltip.textContent);
     assert.equal(svg.querySelectorAll('circle > title').length, 0, 'Per-series native popovers must not compete with the year tooltip');
     const parsed = parsePublicationSnapshot(snapshot, fixtureOptions);
     const image = buildChartImage({ svg, title: 'Annual test', anchor: 'publication-output', notes: publicationExportNotes(0, parsed, selectPublicationCharts(parsed)) }, window.location.href);
@@ -158,7 +158,7 @@ test('year-wide hit areas require real pointer movement and share focus, keyboar
     const target = svg.querySelector('[data-annual-year-target="2022"]');
     assert.ok(target, 'A year is selectable throughout its plot column, not only on tiny dots');
     assert.equal(readout.textContent, '');
-    assert.equal(svg.querySelector('[data-annual-tooltip]'), null);
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]'), null);
     const move = async (element, movementX, movementY) => act(async () => {
       const event = new window.MouseEvent('pointermove', { bubbles: true });
       Object.defineProperties(event, { movementX: { value: movementX }, movementY: { value: movementY } });
@@ -167,23 +167,23 @@ test('year-wide hit areas require real pointer movement and share focus, keyboar
     await act(async () => target.dispatchEvent(new window.MouseEvent('pointerover', { bubbles: true })));
     await move(target, 0, 0);
     assert.equal(readout.textContent, '', 'A stationary pointer over a newly opened modal stays unselected');
-    assert.equal(svg.querySelector('[data-annual-tooltip]'), null);
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]'), null);
     await move(target, 1, 0);
-    assert.equal(svg.querySelector('[data-annual-tooltip]').dataset.annualTooltip, '2022');
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').dataset.annualTooltip, '2022');
     assert.match(readout.textContent, /2022.*220.*100.*100–100/);
     const focusMark = svg.querySelector('circle[data-year="2015"]');
     await act(async () => focusMark.dispatchEvent(new window.FocusEvent('focusin', { bubbles: true })));
-    assert.equal(svg.querySelector('[data-annual-tooltip]').dataset.annualTooltip, '2015');
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').dataset.annualTooltip, '2015');
     assert.match(readout.textContent, /2015.*150.*unavailable/);
-    assert.equal(svg.querySelectorAll('[data-annual-tooltip-key]').length, 1, 'Legacy baseline years are not backfilled in the inspector');
+    assert.equal(document.querySelectorAll('dialog [data-annual-tooltip-key]').length, 1, 'Legacy baseline years are not backfilled in the inspector');
     const keyboardMark = svg.querySelector('circle[data-year="2025"]');
     await act(async () => keyboardMark.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true })));
-    assert.equal(svg.querySelector('[data-annual-tooltip]').dataset.annualTooltip, '2025');
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').dataset.annualTooltip, '2025');
     await act(async () => svg.querySelector('[data-annual-year-target="2024"]').dispatchEvent(new window.MouseEvent('click', { bubbles: true })));
-    assert.equal(svg.querySelector('[data-annual-tooltip]').dataset.annualTooltip, '2024');
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').dataset.annualTooltip, '2024');
     await act(async () => keyboardMark.dispatchEvent(new window.KeyboardEvent('keydown', { key: ' ', bubbles: true })));
-    assert.equal(svg.querySelector('[data-annual-tooltip]').dataset.annualTooltip, '2025');
-    assert.equal(svg.querySelectorAll('[data-annual-tooltip]').length, 1);
+    assert.equal(document.querySelector('dialog [data-annual-tooltip]').dataset.annualTooltip, '2025');
+    assert.equal(document.querySelectorAll('dialog [data-annual-tooltip]').length, 1);
   } finally { await cleanup(); }
 });
 
@@ -217,4 +217,21 @@ test('axis colors remain tied to their series despite shared SVG text theme rule
    assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="science"]')).fill,'rgb(19, 138, 122)');
   }
  } finally {await cleanup();}
+});
+
+
+test('shared-year source inspection stays floating and Escape also clears its year guide',async()=>{
+ const cleanup=await mount(chart(syntheticPublicationSnapshot()),'#publication-output');
+ try{
+  const mark=annualSvg().querySelector('circle[data-year="2023"]');
+  await act(async()=>mark.dispatchEvent(new window.FocusEvent('focusin',{bubbles:true})));
+  const popup=document.querySelector('dialog [data-point-tooltip]');
+  assert.ok(popup && !popup.closest('.publication-full-plot'),'A year tooltip escapes the horizontal plot scroller');
+  assert.equal(document.querySelectorAll('dialog [role="tooltip"]').length,1,'A single shared-year tooltip replaces per-series popovers');
+  assert.ok(annualSvg().querySelector('[data-annual-year-guide]'),'The shared hover retains its guide');
+  await act(async()=>mark.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
+  assert.ok(!document.querySelector('[data-point-tooltip]'));
+  assert.ok(!annualSvg().querySelector('[data-annual-year-guide]'));
+  assert.ok(document.querySelector('dialog[open]'));
+ }finally{await cleanup();}
 });

@@ -1,0 +1,46 @@
+{
+  "exports": [
+    {
+      "view": "electrical",
+      "points": 3,
+      "width": 2400,
+      "height": 2278,
+      "whiteBackground": true,
+      "blueSignature": true,
+      "file": "recording-electrical-native.png"
+    },
+    {
+      "view": "human-channels",
+      "points": 2,
+      "width": 2400,
+      "height": 2122,
+      "whiteBackground": true,
+      "blueSignature": true,
+      "file": "recording-human-channels-native.png"
+    },
+    {
+      "view": "optical",
+      "points": 1,
+      "width": 2400,
+      "height": 1950,
+      "whiteBackground": true,
+      "blueSignature": true,
+      "file": "recording-optical-native.png"
+    }
+  ],
+  "clipboard": [
+    {
+      "types": [
+        "text/plain",
+        "text/html",
+        "image/png"
+      ],
+      "image": {
+        "width": 2400,
+        "height": 2278
+      }
+    }
+  ],
+  "clipboardStatus": "Chart copied. Paste support varies: your app may choose the image or link, not both.",
+  "physicalPhoneTested": false
+}

@@ -1,26 +1,37 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 
-/** Keep fixed-viewBox preview labels at 11 CSS pixels without moving marks. */
-export function usePreviewFont(viewBoxWidth: number, enabled: boolean) {
+/** One measurement keeps fixed-viewBox labels and marks in screen-space units. */
+export function usePreviewFont(viewBoxWidth: number, enabled: boolean, viewBoxHeight?: number) {
   const ref = useRef<SVGSVGElement>(null);
-  const [renderedWidth, setRenderedWidth] = useState(viewBoxWidth);
+  const [unitsPerPixel, setUnitsPerPixel] = useState(1);
 
   useLayoutEffect(() => {
     if (!enabled || !ref.current) return;
-    const updateWidth = (width: number) => {
-      if (Number.isFinite(width) && width > 0) setRenderedWidth(width);
+    const svg = ref.current;
+    const updateSize = (width: number, height?: number) => {
+      if (!Number.isFinite(width) || width <= 0) return;
+      // A capped height can letterbox a full chart: its outer width is not the
+      // scale of the plotted coordinate frame. Prefer the browser's actual CTM.
+      const matrix = svg.getScreenCTM?.();
+      const screenScale = matrix ? Math.hypot(matrix.a, matrix.b) : Number.NaN;
+      const fallbackScale = Math.min(width / viewBoxWidth,
+        viewBoxHeight && height && Number.isFinite(height) && height > 0 ? height / viewBoxHeight : Number.POSITIVE_INFINITY);
+      const scale = Number.isFinite(screenScale) && screenScale > 0 ? screenScale : fallbackScale;
+      if (Number.isFinite(scale) && scale > 0) setUnitsPerPixel(1 / scale);
     };
-    updateWidth(ref.current.getBoundingClientRect().width);
+    const bounds = svg.getBoundingClientRect();
+    updateSize(bounds.width, bounds.height);
     if (typeof ResizeObserver === "undefined") return;
     let active = true;
     const observer = new ResizeObserver(([entry]) => {
-      if (active) updateWidth(entry.contentRect.width);
+      if (active) updateSize(entry.contentRect.width, entry.contentRect.height);
     });
-    observer.observe(ref.current);
+    observer.observe(svg);
     return () => { active = false; observer.disconnect(); };
-  }, [enabled]);
+  }, [enabled, viewBoxWidth, viewBoxHeight]);
 
-  return { ref, fontSize: 11 * viewBoxWidth / renderedWidth };
+  return { ref, fontSize: CHART_PRESENTATION.labelFontSize * unitsPerPixel, unitsPerPixel };
 }

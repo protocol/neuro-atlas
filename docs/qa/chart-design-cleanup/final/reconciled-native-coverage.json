@@ -1,0 +1,460 @@
+{
+  "runtimeRevision": "cf14f32109ebe5434ca015d307390d9bcee0671d",
+  "correctlyIdentifiedViewportChartPairs": 72,
+  "rawDialogRecords": 72,
+  "correctiveDetailReplays": 3,
+  "originalMismatchesPreserved": [
+    {
+      "width": 1440,
+      "expectedTitle": "Citation latency",
+      "actualTitle": "Neurotech search terms",
+      "receipt": "all-chart-native-report.json /0/dialogs/1"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Publication growth by group",
+      "actualTitle": "Neurotech papers per year",
+      "receipt": "all-chart-native-report.json /0/dialogs/5"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected EM acquisition rates",
+      "actualTitle": "Selected published maps \u2014 synapse counts",
+      "receipt": "all-chart-native-report.json /0/dialogs/15"
+    }
+  ],
+  "coverage": [
+    {
+      "width": 1440,
+      "expectedTitle": "Neurotech search terms",
+      "actualTitle": "Neurotech search terms",
+      "receipt": "all-chart-native-report.json /0/dialogs/0"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Citation latency",
+      "actualTitle": "Citation latency",
+      "receipt": "desktop-corrective-native-report.json idea_vintage"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Latency compression",
+      "actualTitle": "Latency compression",
+      "receipt": "all-chart-native-report.json /0/dialogs/2"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Implanted BCI participants over time",
+      "actualTitle": "Implanted BCI participants over time",
+      "receipt": "all-chart-native-report.json /0/dialogs/3"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Neurotech papers per year",
+      "actualTitle": "Neurotech papers per year",
+      "receipt": "all-chart-native-report.json /0/dialogs/4"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Publication growth by group",
+      "actualTitle": "Publication growth by group",
+      "receipt": "desktop-corrective-native-report.json publication-growth"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Researchers by publication sector",
+      "actualTitle": "Researchers by publication sector",
+      "receipt": "all-chart-native-report.json /0/dialogs/6"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Publication-affiliation sector changes",
+      "actualTitle": "Publication-affiliation sector changes",
+      "receipt": "all-chart-native-report.json /0/dialogs/7"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Neural recording hours \u2014 selected datasets",
+      "actualTitle": "Neural recording hours \u2014 selected datasets",
+      "receipt": "all-chart-native-report.json /0/dialogs/8"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected chronic intracortical recipients",
+      "actualTitle": "Selected chronic intracortical recipients",
+      "receipt": "all-chart-native-report.json /0/dialogs/9"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Simultaneous neural recordings",
+      "actualTitle": "Simultaneous neural recordings",
+      "receipt": "all-chart-native-report.json /0/dialogs/10"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected public image/resource footprints",
+      "actualTitle": "Selected public image/resource footprints",
+      "receipt": "all-chart-native-report.json /0/dialogs/11"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected tissue-volume checkpoints",
+      "actualTitle": "Selected tissue-volume checkpoints",
+      "receipt": "all-chart-native-report.json /0/dialogs/12"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected published connectomes \u2014 neuron counts",
+      "actualTitle": "Selected published connectomes \u2014 neuron counts",
+      "receipt": "all-chart-native-report.json /0/dialogs/13"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected published maps \u2014 synapse counts",
+      "actualTitle": "Selected published maps \u2014 synapse counts",
+      "receipt": "all-chart-native-report.json /0/dialogs/14"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected EM acquisition rates",
+      "actualTitle": "Selected EM acquisition rates",
+      "receipt": "desktop-corrective-native-report.json metric-panel-acquisition-rates"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected structure\u2013function matches",
+      "actualTitle": "Selected structure\u2013function matches",
+      "receipt": "all-chart-native-report.json /0/dialogs/16"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "actualTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "receipt": "all-chart-native-report.json /0/dialogs/17"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "actualTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "receipt": "all-chart-native-report.json /0/dialogs/18"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Reported project proofreading effort",
+      "actualTitle": "Reported project proofreading effort",
+      "receipt": "all-chart-native-report.json /0/dialogs/19"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "PATHFINDER v1: axon tracing benchmark",
+      "actualTitle": "PATHFINDER v1: axon tracing benchmark",
+      "receipt": "all-chart-native-report.json /0/dialogs/20"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "NeuroAI performance\u2013cost frontier",
+      "actualTitle": "NeuroAI performance\u2013cost frontier",
+      "receipt": "all-chart-native-report.json /0/dialogs/21"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "FlyVis: correct contrast preference",
+      "actualTitle": "FlyVis: correct contrast preference",
+      "receipt": "all-chart-native-report.json /0/dialogs/22"
+    },
+    {
+      "width": 1440,
+      "expectedTitle": "Selected application events",
+      "actualTitle": "Selected application events",
+      "receipt": "all-chart-native-report.json /0/dialogs/23"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Neurotech search terms",
+      "actualTitle": "Neurotech search terms",
+      "receipt": "all-chart-native-report.json /1/dialogs/0"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Citation latency",
+      "actualTitle": "Citation latency",
+      "receipt": "all-chart-native-report.json /1/dialogs/1"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Latency compression",
+      "actualTitle": "Latency compression",
+      "receipt": "all-chart-native-report.json /1/dialogs/2"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Implanted BCI participants over time",
+      "actualTitle": "Implanted BCI participants over time",
+      "receipt": "all-chart-native-report.json /1/dialogs/3"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Neurotech papers per year",
+      "actualTitle": "Neurotech papers per year",
+      "receipt": "all-chart-native-report.json /1/dialogs/4"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Publication growth by group",
+      "actualTitle": "Publication growth by group",
+      "receipt": "all-chart-native-report.json /1/dialogs/5"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Researchers by publication sector",
+      "actualTitle": "Researchers by publication sector",
+      "receipt": "all-chart-native-report.json /1/dialogs/6"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Publication-affiliation sector changes",
+      "actualTitle": "Publication-affiliation sector changes",
+      "receipt": "all-chart-native-report.json /1/dialogs/7"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Neural recording hours \u2014 selected datasets",
+      "actualTitle": "Neural recording hours \u2014 selected datasets",
+      "receipt": "all-chart-native-report.json /1/dialogs/8"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected chronic intracortical recipients",
+      "actualTitle": "Selected chronic intracortical recipients",
+      "receipt": "all-chart-native-report.json /1/dialogs/9"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Simultaneous neural recordings",
+      "actualTitle": "Simultaneous neural recordings",
+      "receipt": "all-chart-native-report.json /1/dialogs/10"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected public image/resource footprints",
+      "actualTitle": "Selected public image/resource footprints",
+      "receipt": "all-chart-native-report.json /1/dialogs/11"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected tissue-volume checkpoints",
+      "actualTitle": "Selected tissue-volume checkpoints",
+      "receipt": "all-chart-native-report.json /1/dialogs/12"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected published connectomes \u2014 neuron counts",
+      "actualTitle": "Selected published connectomes \u2014 neuron counts",
+      "receipt": "all-chart-native-report.json /1/dialogs/13"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected published maps \u2014 synapse counts",
+      "actualTitle": "Selected published maps \u2014 synapse counts",
+      "receipt": "all-chart-native-report.json /1/dialogs/14"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected EM acquisition rates",
+      "actualTitle": "Selected EM acquisition rates",
+      "receipt": "all-chart-native-report.json /1/dialogs/15"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected structure\u2013function matches",
+      "actualTitle": "Selected structure\u2013function matches",
+      "receipt": "all-chart-native-report.json /1/dialogs/16"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "actualTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "receipt": "all-chart-native-report.json /1/dialogs/17"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "actualTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "receipt": "all-chart-native-report.json /1/dialogs/18"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Reported project proofreading effort",
+      "actualTitle": "Reported project proofreading effort",
+      "receipt": "all-chart-native-report.json /1/dialogs/19"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "PATHFINDER v1: axon tracing benchmark",
+      "actualTitle": "PATHFINDER v1: axon tracing benchmark",
+      "receipt": "all-chart-native-report.json /1/dialogs/20"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "NeuroAI performance\u2013cost frontier",
+      "actualTitle": "NeuroAI performance\u2013cost frontier",
+      "receipt": "all-chart-native-report.json /1/dialogs/21"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "FlyVis: correct contrast preference",
+      "actualTitle": "FlyVis: correct contrast preference",
+      "receipt": "all-chart-native-report.json /1/dialogs/22"
+    },
+    {
+      "width": 390,
+      "expectedTitle": "Selected application events",
+      "actualTitle": "Selected application events",
+      "receipt": "all-chart-native-report.json /1/dialogs/23"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Neurotech search terms",
+      "actualTitle": "Neurotech search terms",
+      "receipt": "all-chart-native-report.json /2/dialogs/0"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Citation latency",
+      "actualTitle": "Citation latency",
+      "receipt": "all-chart-native-report.json /2/dialogs/1"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Latency compression",
+      "actualTitle": "Latency compression",
+      "receipt": "all-chart-native-report.json /2/dialogs/2"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Implanted BCI participants over time",
+      "actualTitle": "Implanted BCI participants over time",
+      "receipt": "all-chart-native-report.json /2/dialogs/3"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Neurotech papers per year",
+      "actualTitle": "Neurotech papers per year",
+      "receipt": "all-chart-native-report.json /2/dialogs/4"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Publication growth by group",
+      "actualTitle": "Publication growth by group",
+      "receipt": "all-chart-native-report.json /2/dialogs/5"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Researchers by publication sector",
+      "actualTitle": "Researchers by publication sector",
+      "receipt": "all-chart-native-report.json /2/dialogs/6"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Publication-affiliation sector changes",
+      "actualTitle": "Publication-affiliation sector changes",
+      "receipt": "all-chart-native-report.json /2/dialogs/7"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Neural recording hours \u2014 selected datasets",
+      "actualTitle": "Neural recording hours \u2014 selected datasets",
+      "receipt": "all-chart-native-report.json /2/dialogs/8"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected chronic intracortical recipients",
+      "actualTitle": "Selected chronic intracortical recipients",
+      "receipt": "all-chart-native-report.json /2/dialogs/9"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Simultaneous neural recordings",
+      "actualTitle": "Simultaneous neural recordings",
+      "receipt": "all-chart-native-report.json /2/dialogs/10"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected public image/resource footprints",
+      "actualTitle": "Selected public image/resource footprints",
+      "receipt": "all-chart-native-report.json /2/dialogs/11"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected tissue-volume checkpoints",
+      "actualTitle": "Selected tissue-volume checkpoints",
+      "receipt": "all-chart-native-report.json /2/dialogs/12"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected published connectomes \u2014 neuron counts",
+      "actualTitle": "Selected published connectomes \u2014 neuron counts",
+      "receipt": "all-chart-native-report.json /2/dialogs/13"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected published maps \u2014 synapse counts",
+      "actualTitle": "Selected published maps \u2014 synapse counts",
+      "receipt": "all-chart-native-report.json /2/dialogs/14"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected EM acquisition rates",
+      "actualTitle": "Selected EM acquisition rates",
+      "receipt": "all-chart-native-report.json /2/dialogs/15"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected structure\u2013function matches",
+      "actualTitle": "Selected structure\u2013function matches",
+      "receipt": "all-chart-native-report.json /2/dialogs/16"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "actualTitle": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "receipt": "all-chart-native-report.json /2/dialogs/17"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "actualTitle": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "receipt": "all-chart-native-report.json /2/dialogs/18"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Reported project proofreading effort",
+      "actualTitle": "Reported project proofreading effort",
+      "receipt": "all-chart-native-report.json /2/dialogs/19"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "PATHFINDER v1: axon tracing benchmark",
+      "actualTitle": "PATHFINDER v1: axon tracing benchmark",
+      "receipt": "all-chart-native-report.json /2/dialogs/20"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "NeuroAI performance\u2013cost frontier",
+      "actualTitle": "NeuroAI performance\u2013cost frontier",
+      "receipt": "all-chart-native-report.json /2/dialogs/21"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "FlyVis: correct contrast preference",
+      "actualTitle": "FlyVis: correct contrast preference",
+      "receipt": "all-chart-native-report.json /2/dialogs/22"
+    },
+    {
+      "width": 320,
+      "expectedTitle": "Selected application events",
+      "actualTitle": "Selected application events",
+      "receipt": "all-chart-native-report.json /2/dialogs/23"
+    }
+  ]
+}

@@ -20,8 +20,8 @@ test('the default recording card opens one source-qualified detail popup at its 
     assert.equal(window.location.hash, '#metric-recording-hours');
     assert.equal(modal.querySelectorAll('svg.draft-plot-svg').length, 1);
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, 12);
-    assert.equal(modal.querySelectorAll('.draft-plot-inspector').length, 1);
-    assert.equal(modal.querySelector('.draft-plot-inspector').textContent, '');
+    assert.equal(modal.querySelectorAll('.draft-plot-inspector').length, 0);
+    assert.equal(modal.querySelector('[role=tooltip]'), null);
     assert.equal(modal.querySelectorAll('[data-copy-chart="metric-recording-hours"]').length, 1);
     assert.match(modal.querySelector('.draft-plot-data').textContent, />50,000/);
     assert.match(modal.querySelector('.draft-plot-data').textContent, />100/);

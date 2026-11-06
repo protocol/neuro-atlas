@@ -17,11 +17,23 @@ const mount = (node, hash) => mountDOM(node, hash, window => {
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 const sha = text => createHash('sha256').update(text).digest('hex');
-// Clipboard sharing adds only this nonvisual export hint to the original SVG.
-// Preserve the independently captured golden hashes: no geometry/style/value,
-// other data attributes, or different export-radius values are normalized away.
-// Normalize the exact edited accessibility sentence only; scientific geometry and values keep their original golden hashes.
-const svgSha = text => sha(text.replaceAll(' data-export-r="5"', '').replace('Separate source observations.', 'Separate observations; no connecting growth line.'));
+// Preserve the independently captured scientific geometry/content goldens.
+// Normalize only the exact export hint and deliberate presentation changes;
+// radius/coordinates, source values, labels, intervals and other paint stay pinned.
+// The new styling is independently asserted in chart-presentation.test.mjs.
+const svgSha = text => sha(text
+  // Unit/scale caption alone now starts at the common content edge.
+  // point-source-tooltip.test.mjs independently requires x=0; all marks/axes stay pinned.
+  .replace(/(<svg[^>]*>)<text x="0" y="16">/, '$1<text x="100" y="16">')
+  // Only the explicit date-axis caption has moved to the shared left edge.
+  .replace('<text x="0" y="297" text-anchor="start">', '<text x="399" y="297" text-anchor="middle">')
+  // Exact new root typography only; independent geometry/content hashes stay fixed.
+  .replace(/^<svg style="font-size: ?[0-9.e+-]+px;?" data-export-font-size="12"/, '<svg')
+  .replaceAll(' data-export-r="5"', '')
+  .replace('Separate source observations.', 'Separate observations; no connecting growth line.')
+  .replaceAll(' vector-effect="non-scaling-stroke"', '')
+  .replaceAll(' class="pc-gridline"', '')
+  .replaceAll('stroke="var(--border)" stroke-width="1" stroke-dasharray="3 5"', 'stroke="var(--border-strong)" stroke-dasharray="3 5"'));
 // Captured from untouched 58dd8c2 before adding the controls, not the new off-state itself.
 const baseline = {
   'simultaneously-recorded-neurons': 'b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d',
@@ -128,7 +140,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     const point = dialog.querySelector('[data-curve-point]');
     await act(async () => point.focus());
     assert.equal(document.activeElement, point);
-    assert.match(dialog.querySelector('.pc-point-readout').textContent, /TUSZ v1.0.0/);
+    assert.match(dialog.querySelector('[data-point-description]').textContent, /TUSZ v1.0.0/);
     assert.ok(point.getAttribute('aria-describedby'));
     await act(async () => { point.blur(); select.value = ''; select.dispatchEvent(new Event('change', { bubbles: true })); });
     await click(toggle);
