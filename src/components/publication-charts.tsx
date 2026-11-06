@@ -2,6 +2,7 @@
 
 import React, { useMemo, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
+import { PublicationSankey } from "@/components/publication-sankey";
 import { ChartActions } from "@/components/chart-actions";
 import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
@@ -13,7 +14,7 @@ import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS,
 
 const number = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 1 });
 const percent = (n: number | null) => n === null ? "No 2022 denominator" : `${n > 0 ? "+" : ""}${number(n)}%`;
-const titles = ["Neurotech papers per year", "Publication growth by group", "Researchers by publication sector", "Publication-affiliation sector changes"];
+const titles = ["Neurotech papers per year", "Publication growth by group", "Researchers by publication sector", "Researchers’ first and latest affiliations"];
 export const PUBLICATION_SEARCH_TEXT = `${titles.join(" ")} publication papers output science baseline OpenAlex bioRxiv growth method brain-computer interface BCI venue region institution career citation researchers sectors universities companies hospitals labs nonprofits first latest affiliation changes`;
 const blue = "#4b4df2", teal = "#138a7a", gray = "#a6b0bf";
 const short = (s: string) => s.replace(/ \(.*\)$/, "");
@@ -117,38 +118,10 @@ function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; co
   </svg>;
 }
 function changesSubtitle(data: PublicationChartData) {
-  return `First neurotech papers in 2016–${data.authorEndYear}; latest paper in a different affiliation sector. Shares are within each starting sector’s changers.`;
+  return `First and latest observed paper affiliations for researchers entering the two-topic cohort in 2016–${data.authorEndYear}, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included.`;
 }
-function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  const width = compact ? 400 : 740, left = 12, usable = width - left * 2;
-  const { ref, fontSize: previewFont } = usePreviewFont(width, compact);
-  const fontSize = compact ? previewFont : 14, block = compact ? fontSize * 9.8 : 160;
-  const barTop = compact ? fontSize * 2.2 : 36, barHeight = compact ? fontSize * 1.6 : 40;
-  return <svg ref={ref} viewBox={`0 0 ${width} ${block * 2}`} role="img" aria-label="First-to-latest publication-affiliation sector changes, shares within each origin’s changers" style={{ fontSize }}>
-    <title>First and latest observed neurotech publication affiliations, first papers since 2016; different-sector cohort</title>
-    {data.transitions.map((row, i) => <g key={row.from} transform={`translate(0 ${i * block})`}>
-      <text x={left} y={fontSize * 1.3} fontWeight="700">From {row.label.toLowerCase()}</text>
-      <text x={width - left} y={fontSize * 1.3} textAnchor="end">{number(row.total)} people</text>
-      {row.total === 0 ? <text x={left} y={barTop + fontSize}>No observed sector changes</text> : row.destinations.map((dest, j) => {
-        const start = left + dest.offset / 100 * usable, segmentWidth = dest.share / 100 * usable;
-        const labelX = j === 2 ? width - left : start;
-        const nameLines = dest.label === "No listed affiliation" ? ["No listed", "affiliation"] : dest.label === "Other institutions" ? ["Other", "institutions"] : [dest.label];
-        return <g key={dest.sector} data-change-destination data-from={row.from} data-to={dest.sector}>
-          {dest.count > 0 && <rect data-publication-mark data-from={row.from} data-to={dest.sector} data-value={dest.count} x={start} y={barTop} width={segmentWidth} height={barHeight} fill={dest.color} stroke="var(--surface)" {...pointEvents(`${row.label} → ${dest.label}: ${number(dest.count)} of ${number(row.total)} people (${number(dest.share)}%). First/latest publication affiliations.`, inspect)}/>}
-          <text data-change-label x={labelX} y={compact ? fontSize * 5.2 : 100} textAnchor={j === 2 ? "end" : "start"}>
-            {compact ? <>
-              {nameLines.map((line, k) => <tspan key={line} x={labelX} dy={k ? fontSize * 1.15 : 0} fontWeight="600">{line}</tspan>)}
-              <tspan x={labelX} y={fontSize * 7.6} fontWeight="700">{number(dest.share)}%</tspan>
-              <tspan x={labelX} y={fontSize * 8.9}>{number(dest.count)}</tspan>
-            </> : <>
-              <tspan fontWeight="600">{dest.label} {number(dest.share)}%</tspan>
-              <tspan x={labelX} dy="23">{number(dest.count)} people</tspan>
-            </>}
-          </text>
-        </g>;
-      })}
-    </g>)}
-  </svg>;
+function ChangesPlot(props: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
+  return <PublicationSankey {...props}/>;
 }
 function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect }) {
   return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:<ChangesPlot {...props}/>;
@@ -170,10 +143,14 @@ export function publicationExportNotes(index:number,snapshot:PublicationSnapshot
     for(const row of data.growth.filter(row=>row.baselineStatus==="matched")) notes.push(`${row.group}: N (${row.numeratorUniverse}) ${number(row.start)} → ${number(row.end)}, ${percent(row.growth)}; reference ${number(row.referenceStart!)} → ${number(row.referenceEnd!)}, ${percent(row.referenceGrowth)}. Unit: ${row.countUnit}. D: ${row.denominatorUniverse}.`);
   }
   if(index===2) notes.push(`Total: ${number(data.totalResearchers)} unique researchers. One sector per author from that year's papers; 100 squares use largest-remainder allocation. Exact counts: ${data.sectors.map(s=>`${s.label} ${number(s.count)} (${number(s.share)}%)`).join("; ")}.`);
-  if(index===3) notes.push(changesSubtitle(data), "Different first/latest publication-affiliation sectors; first selected-topic papers since 2016. Each displayed origin is normalized to 100%. Employment transitions are unverified. No listed affiliation is retained.");
+  if(index===3) {
+    notes.push(changesSubtitle(data), "One shared people-count scale across all four origin and destination sectors. Same-sector ribbons mean equal sectors at the first/latest observed paper; intervening changes are not measured. Employment transitions are unverified. No listed affiliation means missing paper-affiliation metadata.");
+    if (data.endpointTransitions) for (const row of data.endpointTransitions) notes.push(`From ${row.label} (${number(row.total)} people): ${row.destinations.map(dest => `${dest.label} ${number(dest.count)} (${number(dest.share)}%)${dest.sector === row.from ? " — same sector at first/latest paper" : ""}`).join("; ")}.`);
+    else notes.push("Complete endpoint counts unavailable in this snapshot; the archived changes-only matrix has no measured same-sector diagonal.");
+  }
   return notes;
 }
-const tableNames=(index:number)=>index===0?["nt_yearly"]:index===1?PUBLICATION_GROWTH_GROUPS.map(section=>section.table):index===2?["nt_talent_table"]:["nt_talent_moves"];
+const tableNames=(index:number)=>index===0?["nt_yearly"]:index===1?PUBLICATION_GROWTH_GROUPS.map(section=>section.table):index===2?["nt_talent_table"]:["nt_talent_moves", "nt_talent_endpoints"];
 function SourceTable({name,table}:{name:string;table:PublicationTable}) {
   return <div className="pc-table-scroll" role="region" aria-label={`${name} source values`} tabIndex={0}><table><caption>{name}</caption><thead><tr>{table.columns.map(col=><th key={col.name} scope="col">{col.name}</th>)}</tr></thead><tbody>{table.rows.map((row,i)=><tr key={i}>{row.map((cell,j)=><td key={j}>{cell===null?"—":String(cell)}</td>)}</tr>)}</tbody></table></div>;
 }
@@ -181,10 +158,10 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   const [inspection,setInspection]=useState("");
   const plot=useRef<HTMLDivElement>(null);
   const notes=publicationExportNotes(index,snapshot,data);
-  const selected=Object.fromEntries(tableNames(index).map(name=>[name,snapshot.tables[name]]));
+  const selected=Object.fromEntries(tableNames(index).filter(name=>snapshot.tables[name]).map(name=>[name,snapshot.tables[name]]));
   const download={chart:anchor,snapshotSchemaVersion:snapshot.schemaVersion,source:snapshot.source,tables:selected,audit:snapshot.audit,...(index===1&&snapshot.matchedGrowth?{matchedGrowth:snapshot.matchedGrowth}:{})};
   return <>
-    <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech papers",color:blue},...(data.baseline.length?[{label:"All research · growth equivalent",color:teal},{label:"Global science context · four-domain growth equivalent",color:gray}]:[])]:index===1?[{label:"Neurotech · filled circle",color:blue},{label:"Same-category research · outlined diamond",color:teal}]:[]})}/></ChartActions>
+    <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} disabled={index===3&&!data.endpointTransitions} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech papers",color:blue},...(data.baseline.length?[{label:"All research · growth equivalent",color:teal},{label:"Global science context · four-domain growth equivalent",color:gray}]:[])]:index===1?[{label:"Neurotech · filled circle",color:blue},{label:"Same-category research · outlined diamond",color:teal}]:[]})}/></ChartActions>
     <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span>{data.baseline.length>0&&<><span style={{color:teal}}>● All research</span><span>■ Global science context · four-domain band</span><span>Anchored to 2022</span></>}</p>}
     {index===1&&<p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span><span style={{color:teal}}>◇ Same-category research</span><span>Reference unavailable where a comparable baseline is missing</span></p>}
@@ -197,7 +174,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
       {(index===0||index===1)&&<p>NT10 wider papers cover brain-computer interfaces and EEG, neural engineering, and transcranial magnetic stimulation. Seven broader OpenAlex topics qualify through selected neurotechnology and neural-context expressions. Each reconciled indexed work ID contributes once; distinct preprint and publication IDs remain distinct. Five types: articles, reviews, conference papers, book chapters and preprints.</p>}
       {index===1&&<><p>P2 covers brain-computer interfaces and EEG, and neural engineering (T10429 and T11601). Region and institution comparisons count whole works with category involvement on both sides. Groups overlap. US and Canada is the explicit two-country group; government agencies and research facilities is the government/facility union.</p><p>Method priority: invasive; ultrasound, TMS and MEG; EEG; no technique named. BCI is a separate flag. Career ages are 1–5, 6–15 and 16+ years since first publication. Citation rank uses prior-five-year citations among P2-active researchers in the current or preceding five years. Native author output splits each work across its full byline, rescales known quarterly coverage and rounds annual totals ties-to-even.</p></>}
       {index>=2&&<p>Each identified author receives one sector per active publication year. Education maps to Universities; company to Companies; government, facility, healthcare, nonprofit, archive, funder and other known types to Other institutions. No listed affiliation retains missing metadata. Known sector votes take priority; the most frequent sector wins, with alphabetical tie-breaking. Multiple affiliations use the versioned frequency and lexical tie rules.</p>}
-      {index===3&&<p>The plot displays university and company origins; source values preserve all four origins and twelve different-sector cells. First/latest observations require distinct active years. Same-sector diagonals are null. Sector changes describe publication affiliations across the observed 2000–2025 P2 history, with entrant cohorts starting in 2016.</p>}
+      {index===3&&<p>The Sankey displays all four origin and destination sectors, including equal first/latest endpoint sectors, on one shared people-count scale. Eligibility requires first selected-topic publication in 2016 or later and at least two distinct active years through 2025. It compares endpoints rather than reconstructing every intermediate move. The archived nt_talent_moves table retains its original null diagonals; nt_talent_endpoints contains the complete sixteen-cell endpoint cohort.</p>}
       <ul className="pc-sources"><li><a href={snapshot.source.url} target="_blank" rel="noreferrer">OpenAlex · primary source API ↗</a></li><li><a href="https://docs.openalex.org" target="_blank" rel="noreferrer">OpenAlex data definitions ↗</a></li></ul>
       <details className="pc-provenance"><summary>Source values, coverage and provenance</summary>
         <p>Method: {snapshot.source.methodologyVersion} · method SHA-256 {snapshot.source.methodSha256}</p><p>Input aggregate source hash: {snapshot.source.sourceHash}. Latest indexed work update: {snapshot.source.worksMaxUpdatedDate??"unavailable"}; author update: {snapshot.source.authorsMaxUpdatedDate??"unavailable"}. Acquisition receipt captured {snapshot.source.capturedAt}.</p>

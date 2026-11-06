@@ -251,10 +251,10 @@ export function selectPublicationCharts(snapshot: PublicationSnapshot) {
     if (remaining-- > 0) sector.cells++;
   }
   const waffle = allocation.flatMap(sector => Array.from({ length: sector.cells }, () => ({ sector: sector.sector, color: sector.color })));
-  const transitions = (["Academic", "Industry"] as const).map(from => {
-    const row = snapshot.tables.nt_talent_moves.rows.find(row => row[0] === from)!;
+  const selectTransitions = (table: PublicationTable, includeSameSector: boolean) => PUBLICATION_SECTORS.map(from => {
+    const row = table.rows.find(row => row[0] === from)!;
     const total = row.slice(1).reduce<number>((sum, count) => sum + Number(count ?? 0), 0);
-    const order: PublicationSector[] = from === "Academic" ? ["No listed affiliation", "Other institutions", "Industry"] : ["Academic", "No listed affiliation", "Other institutions"];
+    const order = (["Academic", "No listed affiliation", "Other institutions", "Industry"] as const).filter(sector => includeSameSector || sector !== from);
     let offset = 0;
     const destinations = order.map(sector => {
       const count = Number(row[PUBLICATION_SECTORS.indexOf(sector) + 1]);
@@ -265,6 +265,8 @@ export function selectPublicationCharts(snapshot: PublicationSnapshot) {
     });
     return { from, label: SECTOR_LABELS[from], total, destinations };
   });
-  return { baselineYear: snapshot.source.baselineYear, paperEndYear: snapshot.source.paperEndYear, authorEndYear: snapshot.source.authorEndYear, annual, baseline, scienceGrowth, neurotechGrowth, growth, sectors, totalResearchers, waffle, transitions };
+  const transitions = selectTransitions(snapshot.tables.nt_talent_moves, false);
+  const endpointTransitions = snapshot.tables.nt_talent_endpoints ? selectTransitions(snapshot.tables.nt_talent_endpoints, true) : null;
+  return { baselineYear: snapshot.source.baselineYear, paperEndYear: snapshot.source.paperEndYear, authorEndYear: snapshot.source.authorEndYear, annual, baseline, scienceGrowth, neurotechGrowth, growth, sectors, totalResearchers, waffle, transitions, endpointTransitions };
 }
 export type PublicationChartData = ReturnType<typeof selectPublicationCharts>;

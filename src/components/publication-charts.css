@@ -8,8 +8,8 @@
 .publication-preview-1 svg { min-width: 0; }
 .publication-preview-2 svg { max-width: 235px; margin: 0 auto; }
 .publication-preview-3 { display: flex; align-items: center; overscroll-behavior: contain; }
-/* Three direct-label columns need readable room on the narrowest rail cards. */
-.publication-preview-3 .publication-preview-trigger { min-width: 320px; }
+/* Four labeled origin/destination nodes retain readable text inside the narrow rails. */
+.publication-preview-3 .publication-preview-trigger { min-width: 480px; }
 .publication-preview-3 svg { min-width: 0; }
 .publication-preview-note { margin: .7rem 1.25rem 1rem; font-size: .7rem; color: var(--muted); line-height: 1.6; }
 .publication-preview-sectors { margin: .65rem 1.25rem 1rem; font-size: .7rem; line-height: 1.6; display: grid; gap: .25rem; }
@@ -18,6 +18,7 @@
 .publication-full-plot { max-width: 100%; overflow: auto; max-height: 68vh; margin: 1rem 0; }
 .publication-full-plot svg { display: block; width: 100%; min-width: 650px; height: auto; }
 .publication-plot-1 svg { min-width: 860px; }
+.publication-plot-3 svg { min-width: 900px; }
 .publication-plot-1 { overscroll-behavior: contain; }
 .publication-full-plot svg text, .publication-preview svg text { fill: var(--foreground); font-size: inherit; }
 .publication-full-plot [data-publication-mark][tabindex]:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -32,3 +33,8 @@
   .publication-sector-key li { display: flex; align-items: baseline; gap: .5rem; }
   .publication-sector-key li > span:first-child { width: .65rem; height: .65rem; flex: 0 0 auto; border-radius: 2px; }
 }
+
+.publication-sankey-flow { transition: fill-opacity .12s ease; }
+.publication-sankey[data-has-active="true"] .publication-sankey-flow { fill-opacity: .12; }
+.publication-sankey[data-has-active="true"] .publication-sankey-flow.is-emphasized { fill-opacity: .8; }
+@media (prefers-reduced-motion: reduce) { .publication-sankey-flow { transition: none; } }
