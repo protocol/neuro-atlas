@@ -28,6 +28,8 @@
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
 .draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
+.draft-plot-axis-break { stroke: var(--muted); stroke-width: 1.5; }
+.draft-plot-break-note { font-size: 12px; fill: var(--muted); }
 .draft-plot-svg [data-source-observation] { cursor: pointer; }
 .draft-plot-svg [data-source-observation]:is(:hover, :focus-visible) { stroke: var(--foreground); outline: none; }
 .draft-annotation-key { pointer-events: none; }
