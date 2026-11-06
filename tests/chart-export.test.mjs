@@ -42,42 +42,27 @@ test('selected A export is white with the official blue signature and a small au
   } finally { dom.window.close(); }
 });
 
-test('the branded footer closes the chart before supporting notes, leaving a clean crop boundary', () => {
-  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle data-value="1074" cx="100" cy="200" r="5" fill="#238e91"/></svg>');
+test('every exported chart replaces long notes with one Neuro Atlas referral and the existing direct link', () => {
+  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle data-value="741" cx="100.123" cy="200.456" r="5" fill="#115ef7"/></svg>');
   try {
-    const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Selected datasets', anchor: 'metric-recording-hours', legend: [{ label: 'TUSZ', color: '#238e91' }], notes: ['Optional source explanation.'] }, 'https://atlas.example/field-velocity');
-    const out = parse(image.svg), doc = out.window.document;
-    const footer = doc.querySelector('[data-export-footer]');
-    const footerBottom = Number(footer.querySelector('[data-export-brand]').getAttribute('y')) + 54;
-    const note = [...doc.querySelectorAll('text')].find(node => node.textContent === 'Optional source explanation.');
-    assert.ok(Number(note.getAttribute('y')) > footerBottom + 24, 'All note text begins after a white crop gap below the logo');
-    assert.ok(Number(doc.documentElement.getAttribute('data-export-crop-bottom')) > footerBottom);
-    assert.ok(Number(doc.documentElement.getAttribute('data-export-crop-bottom')) < Number(note.getAttribute('y')));
-    assert.equal(doc.querySelector('[data-value]').getAttribute('data-value'), '1074');
-    out.window.close();
-  } finally { dom.window.close(); }
-});
-
-test('footnotes preserve dataset paragraphs in smaller gray type with only existing semantic color keys', () => {
-  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle data-value="50000" cx="100" cy="200" r="5" fill="#9275ca"/></svg>');
-  try {
-    const paragraphs = ['Neuralink: Company-held human intracortical recordings; source rules unspecified.', 'TUSZ: Controlled-access EEG releases overlap.'];
-    const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Selected datasets', anchor: 'metric-recording-hours', legend: [{ label: 'Neuralink', color: '#9275ca' }, { label: 'TUSZ', color: '#238e91' }], notes: ['Selected observations.', paragraphs.join('\n\n'), 'Sources: A; B.'] }, 'https://atlas.example/field-velocity');
-    const out = parse(image.svg), doc = out.window.document;
-    const notes = [...doc.querySelectorAll('[data-export-note]')];
-    assert.equal(notes.length, 4, 'Explicit paragraph boundaries never collapse into a run-on block');
-    for (const text of doc.querySelectorAll('[data-export-note] text')) {
-      assert.equal(text.getAttribute('font-size'), '14');
-      assert.equal(text.getAttribute('fill'), '#667085', 'Footnote prose is quiet gray, not series-colored');
+    const svg = dom.window.document.querySelector('svg'), before = svg.outerHTML;
+    const base = { svg, title: 'Selected chart', anchor: 'tissue-mapped', notes: [] };
+    const empty = buildChartImage(base, 'https://atlas.example/neuro-atlas/field-velocity');
+    for (const notes of [[], ['Long methodology and scope that should remain on the site.'], Array.from({ length: 30 }, (_, i) => `Detailed source ${i}: the original evidence is retained.`)]) {
+      const image = buildChartImage({ ...base, notes, captionNotes: ['Previous editorial footnote.'] }, 'https://atlas.example/neuro-atlas/field-velocity');
+      const out = parse(image.svg), doc = out.window.document;
+      const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
+      assert.equal((visible.match(/More information on Neuro Atlas\./g) ?? []).length, 1);
+      assert.ok(visible.includes('https://atlas.example/neuro-atlas/field-velocity#tissue-mapped'));
+      for (const note of [...notes, 'Previous editorial footnote.']) assert.ok(!visible.includes(note), 'No long or legacy caption notes are painted into the image');
+      assert.equal(doc.querySelectorAll('[data-export-footnotes], [data-export-note]').length, 0);
+      assert.equal(doc.querySelector('desc').textContent, notes.join('\n'), 'Full source evidence may remain nonvisual; native PNG/clipboard have no footnote block');
+      assert.equal(image.height, empty.height, 'Image size no longer grows with footnotes');
+      assert.ok(doc.querySelector('[data-export-brand="pl-rd"]'));
+      assert.deepEqual(['cx', 'cy', 'data-value'].map(key => doc.querySelector('[data-value]').getAttribute(key)), ['100.123', '200.456', '741']);
+      out.window.close();
     }
-    const keyed = notes.filter(node => node.querySelector('[data-export-note-key]'));
-    assert.deepEqual(keyed.map(node => node.textContent), paragraphs);
-    assert.deepEqual(keyed.map(node => node.querySelector('[data-export-note-key]').getAttribute('fill')), ['#9275ca', '#238e91']);
-    for (let i = 1; i < notes.length; i++) {
-      assert.ok(Number(notes[i].querySelector('text').getAttribute('y')) - Number(notes[i - 1].querySelector('text:last-of-type').getAttribute('y')) >= 30, 'A paragraph gap separates the next dataset');
-    }
-    assert.equal(doc.querySelector('[data-value]').getAttribute('fill'), '#9275ca', 'Existing plotted colors are unchanged');
-    out.window.close();
+    assert.equal(svg.outerHTML, before);
   } finally { dom.window.close(); }
 });
 
@@ -146,7 +131,7 @@ test('the shared 48px editorial edge contains y tick glyphs with an internal gut
     }
     const title = doc.querySelector('svg > text');
     assert.equal(title.getAttribute('x'), '48');
-    assert.equal([...doc.querySelectorAll('[data-export-footnotes] text')].find(n => n.textContent.startsWith('Sources:')).getAttribute('x'), '48');
+    assert.equal(doc.querySelector('[data-export-info]').getAttribute('text-anchor'), 'end');
     const point = plot.querySelector('[data-source-observation]');
     assert.equal(point.getAttribute('cx'), '100.123456789');
     assert.equal(point.getAttribute('cy'), '200.987654321');
@@ -274,14 +259,14 @@ test('SVG export is inert and local: drops active markup, external resources, to
   } finally { dom.window.close(); }
 });
 
-test('large/dynamic dimensions include all notes or fail explicitly rather than clipping, and source DOM stays unchanged', () => {
+test('large chart dimensions remain bounded while supporting notes are nonvisual and do not resize the image', () => {
   const dom = new JSDOM('<svg viewBox="0 0 720 1400"><text>Entire tall chart</text></svg>');
   try {
     const svg = dom.window.document.querySelector('svg');
     const source = svg.outerHTML;
     const spec = { svg, title: 'A dynamic chart', anchor: 'tissue-mapped', notes: Array.from({ length: 20 }, (_, i) => `Scope note ${i}: must remain readable.`) };
     const image = buildChartImage(spec, 'https://atlas.example/field-velocity');
-    assert.ok(image.height > 2500);
+    assert.equal(image.height, buildChartImage({ ...spec, notes: [] }, 'https://atlas.example/field-velocity').height, 'Notes do not add a tall block to the exported image');
     assert.match(image.svg, /Scope note 19/);
     assert.equal(svg.outerHTML, source);
     svg.setAttribute('viewBox', '0 0 1 100000');
@@ -310,13 +295,14 @@ test('recording image URLs retain only an exact single allowlisted measurement v
   }
 });
 
-test('an editorial export caption replaces repeated method prose while the complete evidence is retained in SVG metadata', () => {
+test('legacy caption inputs do not restore painted footnotes while complete source evidence remains nonvisual', () => {
  const dom=new JSDOM('<svg viewBox="0 0 720 300"><circle cx="100" cy="100" r="5"/></svg>');
  const notes=['Full methodology paragraph with every archived source detail.'];
  const image=buildChartImage({svg:dom.window.document.querySelector('svg'),title:'Caption test',anchor:'tissue-mapped',notes,captionNotes:['741 putative single neurons · Jun et al., 2017 · publication date']},'https://atlas.example/field-velocity');
  const out=parse(image.svg);
  const visible=[...out.window.document.querySelectorAll('text')].map(e=>e.textContent).join(' ');
- assert.ok(visible.includes('741 putative single neurons'));
+ assert.ok(!visible.includes('741 putative single neurons'));
+ assert.ok(visible.includes('More information on Neuro Atlas.'));
  assert.ok(!visible.includes(notes[0]));
  assert.ok(out.window.document.querySelector('desc').textContent.includes(notes[0]));
  dom.window.close();out.window.close();

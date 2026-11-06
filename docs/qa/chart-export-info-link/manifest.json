@@ -1,0 +1,26 @@
+{
+  "runtimeRevision": "11b38cf56da3f777645ed773af15487279ae8e2a",
+  "buildId": "kakh59182UYbywDfOkcAb",
+  "sourceParityExcludingDisposableProxy": true,
+  "fileSha256": {
+    "recording-hours-390.png": "7f446a1b14197e9efafbd9bf732e0cc64e462e0329fb4e3db3c2f8de4faddcc6",
+    "publication-growth.svg": "1d55ee96e92d9d80897a50cbaac8c6f41db5793a37c19b0621df7d9b4ffa55bb",
+    "sankey.png": "270f6a594ff103d06077e8835256ad06e184121fc19c1deb87107885cc88ca94",
+    "optical.png": "b5dc1d8f50dd2870c0b9ded353098ce74be1ea55db6d8d366a588d12d5d18eb5",
+    "test-summary.txt": "98c89c5c71ea7cc69309a7ac4e2b3485605158a78583c5e1e40c7eb5e32b2ff9",
+    "trends.png": "91df56f04511597529f2081c2c443acc1590fc72e9befcdb6e4b5f3e30d60321",
+    "publication-growth.png": "381a061c34afc53d2ba56aa92e12a3d95e66b03c05a74e94d701e7b58084753a",
+    "results.json": "ae542c96c13cfdd616e93359e489a59ed4e69c6ef71ead9f92df84d49b0fc319",
+    "sankey.svg": "64ea448526fb26af96fea6f3da7cf87a4c5af2f43724d68e265bfe1a1a6c7bc1",
+    "trends.svg": "6bb871b4adf1e2fa53eeaec7387b1dfc9e31fa74ad556cd2a33d318ba32cfe85",
+    "recording-hours-390.svg": "34d155f0962770b27f610b540777c377e96f4a716c6114c6c437361192b3eb45",
+    "neuroai.svg": "b6f10e126f949e06881fbc62208532f4e080527dcba10a6760e24157728a28bc",
+    "recording-hours.svg": "51be30c1fdcbedab3575e74a383ce80d6863b8e1d3a29f3afa89679a2b63c847",
+    "native-history.json": "cc399fb4f6c9006b0997201bfaea2ef46b390c69a34988e934d3926244ff160f",
+    "clipboard.png": "e3e984d20dc10fe95266be4c89d347cf0c28fd15aca62e04b0940101b8ea3126",
+    "recording-hours.png": "5883867b624cb5960d0c4bfa493df0b7ee431bfeb589673f4baffcf6360e9cc7",
+    "neuroai.png": "36fd486d31d9e63f5f4c794522dae591b94d6425e93579c0ecd61835ca2767ad",
+    "optical.svg": "15cac65b30f06b6d23aa81efb597d2b7cb19a1a1bd80b8407b32cf085a5d6047",
+    "build.txt": "29aebcc897d393eab5e9e32f85466a4025820acf30e6c9ecdb1ada7cac5de3d7"
+  }
+}
