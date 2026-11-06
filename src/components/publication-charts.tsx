@@ -7,6 +7,7 @@ import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { usePreviewFont } from "@/components/use-preview-font";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
 import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS, PUBLICATION_GROWTH_GROUPS, PUBLICATION_SECTORS, type PublicationSnapshot, type PublicationAnchor, type PublicationChartData, type PublicationTable } from "@/lib/publication-data";
@@ -26,21 +27,22 @@ function pointEvents(label: string, inspect?: Inspect) {
   } : {};
 }
 function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  const { ref, fontSize } = usePreviewFont(720, !!compact);
+  const { ref, fontSize, unitsPerPixel } = usePreviewFont(720, true);
+  const radius = (compact ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel;
   const left = compact ? Math.max(90, fontSize * 6) : 80, right = 690, top = compact ? Math.max(28, fontSize) : 28, bottom = 270;
   const max = Math.max(...data.annual.map(row => row.papers), ...data.baseline.map(row => row.high));
   const step = Math.max(1, Math.ceil(max / 4 / 1000) * 1000), ceiling = step * 4;
   const x = (year: number) => left + (year - 2010) / 15 * (right - left);
   const y = (value: number) => bottom - value / ceiling * (bottom - top);
   const line = (rows: {year: number; value: number}[]) => rows.map(row => `${x(row.year)},${y(row.value)}`).join(" ");
-  return <svg ref={ref} viewBox={`0 0 720 ${compact ? bottom+fontSize*2.4 : 315}`} role="img" aria-label={data.baseline.length?"Annual neurotech papers, with global science context anchored to 2022":"Annual neurotech indexed papers, 2010–2025"} style={{ fontSize: compact ? fontSize : 13 }}>
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 720 ${compact ? bottom+fontSize*2.4 : 315}`} role="img" aria-label={data.baseline.length?"Annual neurotech papers, with global science context anchored to 2022":"Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
     <title>{data.baseline.length?"Neurotech papers, 2010–2025; global science context anchored to the 2022 count":"Neurotech papers, 2010–2025"}</title>
     {[0,1,2,3,4].map(i => <g key={i}><line x1={left} x2={right} y1={y(i*step)} y2={y(i*step)} stroke="var(--border)"/><text x={left-12} y={y(i*step)+4} textAnchor="end">{number(i*step)}</text></g>)}
     {data.baseline.length>0&&<polygon data-science-context fill={gray} fillOpacity=".3" points={[...data.baseline.map(row => `${x(row.year)},${y(row.high)}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${y(row.low)}`)].join(" ")}/>}
     {data.baseline.length>0&&<polyline data-science-context fill="none" stroke={teal} strokeWidth="3" points={line(data.baseline.map(row => ({year:row.year,value:row.all})))}/>}
     <polyline fill="none" stroke={blue} strokeWidth="3" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>
-    {data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} r="5" fill={blue} {...pointEvents(`${row.year}: ${number(row.papers)} neurotech papers`, inspect)}><title>{`${row.year}: ${number(row.papers)} papers`}</title></circle>)}
-    {inspect && data.baseline.map(row => <circle key={row.year} data-publication-mark cx={x(row.year)} cy={y(row.all)} r="5" fill={teal} {...pointEvents(`${row.year}: all-research growth equivalent ${number(row.all)} papers; four-domain band ${number(row.low)}–${number(row.high)}. Anchored to the 2022 neurotech count.`, inspect)}/>)}
+    {data.annual.map(row => <circle key={row.year} data-publication-mark data-export-r={CHART_PRESENTATION.expandedRadius} data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} r={radius} fill={blue} {...pointEvents(`${row.year}: ${number(row.papers)} neurotech papers`, inspect)}><title>{`${row.year}: ${number(row.papers)} papers`}</title></circle>)}
+    {inspect && data.baseline.map(row => <circle key={row.year} data-publication-mark data-export-r={CHART_PRESENTATION.expandedRadius} cx={x(row.year)} cy={y(row.all)} r={radius} fill={teal} {...pointEvents(`${row.year}: all-research growth equivalent ${number(row.all)} papers; four-domain band ${number(row.low)}–${number(row.high)}. Anchored to the 2022 neurotech count.`, inspect)}/>)}
     {(compact?[2010,2018,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={compact?bottom+fontSize*1.8:300} textAnchor="middle">{year}</text>)}
   </svg>;
 }
@@ -84,13 +86,14 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   </svg>;
 }
 function GrowthPlot({data,inspect}:{data:PublicationChartData;compact?:boolean;inspect?:Inspect}) {
+  const {ref,fontSize}=usePreviewFont(860,true);
   const {low,high}=growthExtent(data), left=285,right=625,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
   const layout=PUBLICATION_GROWTH_GROUPS.map((section,index)=>{
     const heading=38+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((sum,item)=>sum+48+item.groups.length*48,0);
     return {section,heading,items:data.growth.filter(row=>row.table===section.table).map((row,i)=>({...row,y:heading+32+i*48}))};
   });
   const cursor=layout.at(-1)!.items.at(-1)!.y+30,height=cursor+55;
-  return <svg viewBox={`0 0 860 ${height}`} role="img" aria-label="Publication growth 2022–2025 with individually matched category references" style={{fontSize:13}}>
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 860 ${height}`} role="img" aria-label="Publication growth 2022–2025 with individually matched category references" style={{fontSize}}>
     <title>{`Neurotech and same-category research growth; ${data.growth.filter(row=>row.baselineStatus==="unavailable").length} reference groups unavailable`}</title>
     {Array.from({length:5},(_,i)=>low+(high-low)*i/4).map(tick=><g key={tick}><line x1={x(tick)} x2={x(tick)} y1="24" y2={cursor} stroke="var(--border)"/><text x={x(tick)} y={cursor+24} textAnchor="middle">{percent(tick)}</text></g>)}
     {layout.map(({section,heading,items})=><g key={section.table}>
@@ -106,7 +109,8 @@ function GrowthPlot({data,inspect}:{data:PublicationChartData;compact?:boolean;i
   </svg>;
 }
 function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  return <svg viewBox={compact?"0 0 330 330":"0 0 740 370"} role="img" aria-label="100-square researcher publication-sector waffle" style={{fontSize:13}}>
+  const {ref,fontSize}=usePreviewFont(compact?330:740,true);
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={compact?"0 0 330 330":"0 0 740 370"} role="img" aria-label="100-square researcher publication-sector waffle" style={{fontSize}}>
     <title>{`${number(data.totalResearchers)} researchers in ${data.authorEndYear} · squares approximate 1% each`}</title>
     {data.waffle.map((cell,i)=><rect key={i} data-publication-mark data-sector={cell.sector} x={8+(i%10)*32} y={8+Math.floor(i/10)*32} width="28" height="28" rx="3" fill={cell.color} {...pointEvents(`${cell.sector}: ${number(data.sectors.find(row=>row.sector===cell.sector)!.count)} researchers in ${data.authorEndYear}`,inspect)}/>)}
     {!compact&&data.sectors.map((row,i)=><g key={row.sector} data-publication-mark {...pointEvents(`${row.label}: ${number(row.count)} researchers, ${number(row.share)}%`,inspect)}>
@@ -129,7 +133,8 @@ function ChangesPreview({data}:{data:PublicationChartData}) {
 }
 function ChangesPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
   const width = compact?400:740, left=12, usable=width-24, block=compact?105:185;
-  return <svg viewBox={`0 0 ${width} ${block*2+25}`} role="img" aria-label="Normalized first-to-latest publication-affiliation sector changes" style={{fontSize:compact?12:13}}>
+  const {ref,fontSize}=usePreviewFont(width,true);
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${width} ${block*2+25}`} role="img" aria-label="Normalized first-to-latest publication-affiliation sector changes" style={{fontSize}}>
     <title>First and latest observed neurotech publication affiliations, first papers since 2016; different-sector cohort</title>
     {data.transitions.map((row,i)=><g key={row.from}>
       <text x={left} y={22+i*block} fontWeight="700">From {row.label.toLowerCase()}</text><text x={width-left} y={22+i*block} textAnchor="end">{number(row.total)} people</text>
