@@ -27,7 +27,7 @@ function verifyBrokenGeometry(document) {
     const mark = marks.find(mark => mark.getAttribute('data-source-observation') === point.id);
     const expectedX = point.x <= 6
       ? lower.start + point.x / 6 * (lower.end - lower.start)
-      : upper.start + (point.x - 40) / 4 * (upper.end - upper.start);
+      : upper.start + (point.x - 40) / 2 * (upper.end - upper.start);
     near(Number(mark.getAttribute('cx')), expectedX, `${point.id} keeps its exact x within a linear segment`);
   }
   const bottom = Number(segments[0].getAttribute('y1'));
@@ -38,7 +38,8 @@ function verifyBrokenGeometry(document) {
   assert.equal(breakMark?.querySelectorAll('line').length, 2, 'Show an explicit // discontinuity');
   const note = svg.querySelector('[data-x-axis-break-note]');
   assert.match(note?.textContent ?? '', /6–40 mJ\/image omitted \(no observations\)/);
-  assert.match(note.textContent, /[Ll]inear segments; different scales/);
+  assert.match(note.textContent, /[Ss]ame linear scale/);
+  near((lower.end-lower.start)/6,(upper.end-upper.start)/2,'One pixel-per-unit scale on both sides of the break');
   assert.ok(svg.getAttribute('aria-describedby')?.split(' ').includes(note.id), 'Expose the same visible explanation accessibly');
   return { svg, segments, lower, upper, ticks, note };
 }
@@ -125,7 +126,7 @@ test('all six exact source coordinates survive in the table and focused tooltip;
 });
 
 test('any new observation in the omitted interval or outside the supported segments restores the ordinary full-range axis', () => {
-  for (const value of [6.01, 20, 39.99, -1, 44.01]) {
+  for (const value of [6.01, 20, 39.99, -1, 42.01]) {
     const changed = { ...plot, points: [...plot.points, { ...plot.points[0], id: 'future-energy-observation', x: value }] };
     assert.equal(neuroaiEnergyAxis(changed, 46, 536), null, `Never hide x=${value}`);
     const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: changed })));
