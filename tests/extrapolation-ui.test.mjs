@@ -22,6 +22,9 @@ const sha = text => createHash('sha256').update(text).digest('hex');
 // radius/coordinates, source values, labels, intervals and other paint stay pinned.
 // The new styling is independently asserted in chart-presentation.test.mjs.
 const svgSha = text => sha(text
+  // Unit/scale caption alone now starts at the common content edge.
+  // point-source-tooltip.test.mjs independently requires x=0; all marks/axes stay pinned.
+  .replace(/(<svg[^>]*>)<text x="0" y="16">/, '$1<text x="100" y="16">')
   // Exact new root typography only; independent geometry/content hashes stay fixed.
   .replace(/^<svg style="font-size: ?[0-9.e+-]+px;?" data-export-font-size="12"/, '<svg')
   .replaceAll(' data-export-r="5"', '')
@@ -134,7 +137,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     const point = dialog.querySelector('[data-curve-point]');
     await act(async () => point.focus());
     assert.equal(document.activeElement, point);
-    assert.match(dialog.querySelector('.pc-point-readout').textContent, /TUSZ v1.0.0/);
+    assert.match(dialog.querySelector('[data-point-description]').textContent, /TUSZ v1.0.0/);
     assert.ok(point.getAttribute('aria-describedby'));
     await act(async () => { point.blur(); select.value = ''; select.dispatchEvent(new Event('change', { bubbles: true })); });
     await click(toggle);

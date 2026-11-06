@@ -5,6 +5,7 @@ import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
 import { ChartActions } from "@/components/chart-actions";
+import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import { usePreviewFont } from "@/components/use-preview-font";
@@ -25,7 +26,7 @@ export function pointValue(point: MeasurementPoint) {
   return `${point.qualifier ? prefix[point.qualifier] : ""}${number(point.value)}`;
 }
 
-type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string };
+type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
 export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
@@ -122,12 +123,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const [track, setTrack] = useState("");
   const [extrapolate, setExtrapolate] = useState(false);
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
-  const [hovered, setHovered] = useState<PlotPoint | null>(null);
-  const [focused, setFocused] = useState<PlotPoint | null>(null);
-  // A measurement change invalidates inspected points without remounting the
-  // native selector (which must retain keyboard focus).
-  const active = inspectOnActivate ? [focused, hovered].find(p => p && data.points.includes(p)) ?? null : focused ?? hovered;
-  const readoutId = useId();
+  // Validate against the visible source set so measurement/track changes clear
+  // stale inspection without remounting the native selector.
+  const tooltip = usePointTooltip(data.points.filter(point => !track || point.track === track));
+  const active = tooltip.active;
   const extrapolationHint = useId();
   const progress = useExtrapolationMotion(!compact && !!extrapolation && extrapolate);
   const scenario = !compact && (extrapolate || progress > 0) && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
@@ -217,7 +216,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
       <svg ref={presentationRef} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
-        <text x={g.left} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
+        <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
@@ -235,10 +234,8 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
         </g>}
         {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
         {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={(compact ? CHART_PRESENTATION.previewRadius : active === p ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
-          data-export-r={CHART_PRESENTATION.expandedRadius} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
-          onClick={!compact && inspectOnActivate ? event => { event.currentTarget.focus(); setFocused(p); } : undefined}
-          onKeyDown={!compact && inspectOnActivate ? event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocused(p); } } : undefined}
-          onFocus={compact ? undefined : () => setFocused(p)} onBlur={compact ? undefined : () => setFocused(null)} onMouseEnter={compact ? undefined : () => setHovered(p)} onMouseLeave={compact ? undefined : () => setHovered(null)} />)}
+          data-export-r={CHART_PRESENTATION.expandedRadius} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label}
+          {...(!compact ? tooltip.pointProps(p) : {})} />)}
         {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
         {moving && future ? <>
           <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
@@ -252,7 +249,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       </svg>
     </div>
     {compact && <span className="pc-preview-axis">{data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies")}</span>}
-    {!compact && <p className="pc-point-readout" id={readoutId} role="status">{active?.label}</p>}
+    {!compact && <PointTooltip {...tooltip.tooltipProps}>{active && <>
+      <p data-point-description>{active.label}</p>
+      {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
+    </>}</PointTooltip>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>

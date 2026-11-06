@@ -19,8 +19,8 @@ test('recording hours renders one populated log scatter with five labeled series
     const el = document.querySelector('dialog[open]');
     assert.equal(el.querySelectorAll('svg.draft-plot-svg').length, 1, 'one shared chart, not per-dataset plots');
     assert.equal(card().querySelectorAll('[data-draft-panel]').length, 1);
-    assert.equal(el.querySelectorAll('.draft-plot-inspector').length, 1);
-    assert.equal(el.querySelector('.draft-plot-inspector').textContent, '');
+    assert.equal(el.querySelectorAll('.draft-plot-inspector').length, 0);
+    assert.equal(el.querySelector('[role=tooltip]'), null);
     assert.equal(el.querySelectorAll('[data-copy-chart]').length, 1);
     assert.equal(el.querySelectorAll('[data-download-chart]').length, 1);
     assert.equal(el.querySelectorAll('[data-copy-draft-link="metric-recording-hours"]').length, 1);
@@ -58,7 +58,7 @@ test('recording hours renders one populated log scatter with five labeled series
     await act(async () => pos('poyo-primate-training-2023-10-24').dispatchEvent(new Event('focusin', { bubbles: true })));
     assert.match(el.querySelector('[role=tooltip]').textContent, />100/);
     await act(async () => pos('poyo-primate-training-2023-10-24').dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
-    assert.equal(el.querySelector('.draft-plot-inspector').textContent, '');
+    assert.equal(el.querySelector('[role=tooltip]'), null);
   } finally { await cleanup(); }
 });
 

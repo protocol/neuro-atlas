@@ -116,7 +116,7 @@ test('expanded marks share a 5px screen-space base and 1.5px non-scaling outline
       if (mark.closest('[data-draft-preview]')) assert.equal(mark.getAttribute('r'), '4');
       else assert.ok(Math.abs(screenRadius(mark, mark.closest('.pc-plot') ? 680 : Math.round(680)) - 5) < 1e-9);
     }
-    assert.equal(document.querySelector('.draft-plot:not([data-draft-preview]) .draft-plot-inspector').textContent, '');
+    assert.equal(document.querySelector('[role=tooltip]'), null);
     for (const width of [230, 520]) {
       // The compact-only observer must not alter full-chart or export geometry.
       await act(async () => {

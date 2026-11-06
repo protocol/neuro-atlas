@@ -66,7 +66,7 @@ test('flat curated cards keep essential scope visible and move complete definiti
       assert.ok(modal.textContent.includes(chart.definition));
       assert.ok(modal.textContent.includes(chart.constraint));
       assert.ok(modal.textContent.includes(METRIC_CHART_EVIDENCE[chart.title].summary));
-      assert.equal(modal.querySelector('.draft-plot-inspector').textContent, '');
+      assert.equal(modal.querySelector('[role=tooltip]'), null);
       assert.ok(modal.querySelector('[data-copy-chart]'));
       assert.ok(modal.querySelector('[data-download-chart]'));
       await click(modal.querySelector('.pc-modal-header button'));

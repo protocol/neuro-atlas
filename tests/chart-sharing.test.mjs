@@ -408,8 +408,8 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
     const expected = geometry(modal);
     // Pointer-only detail must not become an arbitrary frozen tooltip in PNG.
     const point = modal.querySelector('[data-curve-point]');
-    await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
-    assert.ok(modal.querySelector('.pc-point-readout').textContent);
+    await act(async () => point.dispatchEvent(new MouseEvent('mousemove', { bubbles: true })));
+    assert.ok(modal.querySelector('[data-point-description]').textContent);
     await click(modal.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes.length, 1, modal.textContent);
     const url = `https://atlas.example/field-velocity?recordingView=${view.id}#simultaneously-recorded-neurons`;

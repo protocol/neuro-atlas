@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type SVGAttributes } from "react";
+import { useEffect, useId, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
 import { ChartActions } from "@/components/chart-actions";
+import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
@@ -73,7 +74,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     const point = plot.points.find(point => (point.group ?? "Other observations") === group);
     return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
   }) : []);
-  const [active, setActive] = useState<DraftObservation | null>(null);
+  const tooltip = usePointTooltip(plot.points);
+  const active = tooltip.active;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
   const { width, figure } = usePlotWidth();
   const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
@@ -148,13 +150,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
     "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
-    "aria-describedby": active?.id === point.id ? `${id}-tooltip` : undefined,
-    // A newly opened modal can appear under a stationary pointer; inspect only on actual movement.
-    onFocus: () => setActive(point), onMouseMove: () => setActive(point), onClick: () => setActive(point),
-    onKeyDown: (event: KeyboardEvent) => {
-      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActive(point); }
-      if (event.key === "Escape") setActive(null);
-    },
+    ...tooltip.pointProps(point, trigger => Array.from(trigger.closest("figure")?.querySelectorAll("[data-source-observation]") ?? [])
+      .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null),
   });
 
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
@@ -213,16 +210,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       </>}
     </p>}
     {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {log ? "Log scale" : "Linear scale"} · Unconnected observations</p>}
-    {!preview && <><div className="draft-plot-inspector">
-      {active ? <div role="tooltip" id={`${id}-tooltip`}>
+    {!preview && <><PointTooltip {...tooltip.tooltipProps}>
+      {active ? <>
         <strong>{active.label}</strong>
         {active.group && <p>{active.group}</p>}
         <p>{active.dateLabel}{numericX && ` · ${plot.xLabel}: ${exactNumber(active.x)}`}</p>
         <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
         <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a>
         {active.note && <p>{active.note}</p>}
-      </div> : null}
-    </div>
+      </> : null}
+    </PointTooltip>
     <details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{plot.scope}</p>
