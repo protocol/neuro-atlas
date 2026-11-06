@@ -1,6 +1,6 @@
 # Complete affiliation Sankey — native verification
 
-Runtime source: `fddf3cf76ba037da2229ecdfb42583e6c4934c89`, based on owner-merged PR86 (`6f475a2ab6342ce948431e25c58effc20c095672`). These are real headed-Chrome captures of the production build with the actual bundled anonymous OpenAlex observations. The disposable clone replaces only the access proxy with a loopback/explicit-flag-only fixture; the release branch's auth proxy is unchanged. No hosted authentication or production update is claimed.
+Runtime source: `aca9e1d763c6008f476ce185ba37d92368bc1e22`, based on owner-merged PR90 (`8d42d07654107002ba9dd53e435ea07c25adac59`), preserving PR88 copy cleanup and PR86 science history. These are real headed-Chrome captures of the production build with the actual bundled anonymous OpenAlex observations. The disposable clone replaces only the access proxy with a loopback/explicit-flag-only fixture; the release branch's auth proxy is unchanged. No hosted authentication or production update is claimed.
 
 ## Data and interpretation
 
@@ -12,12 +12,12 @@ Runtime source: `fddf3cf76ba037da2229ecdfb42583e6c4934c89`, based on owner-merge
 
 ## Executed gates
 
-- 145 focused publication Node tests passed with bounded concurrency, zero failures/cancellations.
+- 237 focused publication, shared-export/typography/tooltip and reader-copy Node tests passed with bounded concurrency, zero failures/cancellations.
 - 50 Python publication/acquisition/refresh tests passed.
 - Typecheck, changed-source ESLint, diff whitespace check and production build passed.
-- Native browser replay at 1440, 390 and 320 CSS pixels: exact 16-cell source identity; four origins/four destinations; source/target totals; common pixel/count ratio; eight nonoverlapping in-bounds labels; full labels at least 13px and preview labels 11px; no document overflow; narrow plot's horizontal scroll reaches the destination labels.
-- Native keyboard focus/Tab/inspection, Escape close, source JSON exact table identity and archived null diagonals passed.
-- The **actual Download PNG control** generated `export.png` (912,271 bytes); it retains the full chart, all sixteen flow values in notes and endpoint/missing-metadata qualifications even when a flow is selected. This is the native PNG, not a screenshot/print substitute. Its footer names the loopback source because this is local QA evidence.
+- Native browser replay at 1440, 390 and 320 CSS pixels: exact 16-cell source identity; four origins/four destinations; source/target totals; common pixel/count ratio; eight nonoverlapping in-bounds labels; all full/preview labels at the canonical 12px; no document overflow; narrow plot's horizontal scroll reaches the destination labels.
+- Native floating source popup/source link within the viewport at every width, keyboard focus/Tab, first-Escape popup dismissal/second-Escape chart close, source JSON exact table identity and archived null diagonals passed.
+- The **actual Download PNG control** generated `export.png` (970,014 bytes); it retains the full chart, separate first/total/latest column headings, the PR90 PL R&D blue tab/logo, all sixteen flow values in notes and endpoint/missing-metadata qualifications even when a flow is selected. This is the native PNG, not a screenshot/print substitute. Its footer names the loopback source because this is local QA evidence.
 - The final subtitle was read back in Chrome and names brain–computer interfaces/EEG and neural engineering rather than leaving the cohort unexplained.
 
 The full unrelated Node suite is not claimed here. Native touch hardware and positive hosted password login are not tested. Narrow screens intentionally scroll inside the plot rather than shrinking the count labels. Very small flows remain proportionally thin and are accessible through widened transparent pointer targets, keyboard focus, source JSON and complete export notes.
@@ -29,7 +29,8 @@ The full unrelated Node suite is not claimed here. Native touch hardware and pos
 - `full-320.png`, `full-320-right.png`: narrowest view and destination-side scroll.
 - `preview-320.png`: compact rail preview.
 - `geometry.json`: actual source/target counts, all ribbons, label rectangles/font sizes and document bounds at each width.
-- `export.png`: actual native PNG download.
+- `export.png`: actual native branded PNG download.
+- `floating-source-1440.png`, `floating-source-390.png`, `floating-source-320.png`: actual source popup, contained in the viewport and outside the chart scroller.
 
 Replay through the existing browser-harness window, from the repository root:
 
