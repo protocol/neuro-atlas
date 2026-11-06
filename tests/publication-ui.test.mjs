@@ -420,6 +420,25 @@ test('a zero matched reference denominator is unavailable rather than a global f
  }finally{await cleanup();}
 });
 
+test('narrow growth previews keep ticks, direct caption and the complete legend readable',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const s=JSON.parse(readFileSync(new URL('../src/data/publications/publication-charts.snapshot.json',import.meta.url),'utf8'));
+ const cleanup=await mount(chart(s),'#publication-growth',w=>{
+  w.SVGElement.prototype.getBoundingClientRect=()=>({width:158,height:100,top:0,left:0,right:158,bottom:100});
+ });
+ try {
+  const card=document.querySelector('[data-publication-card="publication-growth"]'),svg=card.querySelector('.publication-preview svg');
+  const font=parseFloat(svg.style.fontSize);assert.ok(font>23);
+  const texts=[...svg.querySelector('[data-growth-legend]').querySelectorAll('text')];
+  const below=texts.find(t=>t.textContent==='Below'),within=texts.find(t=>t.textContent==='Within');
+  assert.ok(Number(below.getAttribute('y'))>Number(within.getAttribute('y')),'Narrow legend wraps instead of clipping its Below key');
+  assert.ok(svg.querySelectorAll('[data-growth-tick]').length<=2,'Narrow percent ticks must not collide');
+  assert.ok(Number(svg.querySelector('[data-growth-tick]').getAttribute('x'))>=font*.8);
+  const caption=svg.querySelector('[data-growth-science-label]');assert.equal(caption.getAttribute('text-anchor'),'start');assert.equal(caption.getAttribute('x'),'8');
+  assert.doesNotMatch(card.querySelector('.publication-preview-note').textContent,/gray|dashed/i,'Do not repeat a prose pseudo-legend below the actual legend');
+ }finally{await cleanup();}
+});
+
 test('exactly equal matched growth is within its scalar baseline with a visible local tick',async()=>{
  const s=fixture();const row=s.matchedGrowth.rows.find(r=>r.id==='asia');
  row.numeratorCounts={'2022':10,'2025':12};row.neuroGrowthPct=20;row.shares={'2022':.01,'2025':.01};row.relativeShareGrowthPct=0;row.growthGapPercentagePoints=0;
