@@ -85,7 +85,7 @@ export function PointTooltip({ id, anchor, children, pinned, onDismiss, ...event
   onMouseEnter: () => void; onMouseLeave: () => void; onFocus: () => void; onBlur: (event: FocusEvent<HTMLDivElement>) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ left: 0, top: 0 });
+  const [position, setPosition] = useState<{ left: number; top: number; maxHeight?: number }>({ left: 0, top: 0 });
   useLayoutEffect(() => {
     if (!anchor || !ref.current) return;
     const view = anchor.ownerDocument.defaultView!;
@@ -99,11 +99,30 @@ export function PointTooltip({ id, anchor, children, pinned, onDismiss, ...event
       const rightEdge = leftEdge + (viewport?.width ?? view.innerWidth) - 16;
       const bottomEdge = topEdge + (viewport?.height ?? view.innerHeight) - 16;
       const width = Math.min(popup.width, rightEdge - leftEdge);
-      const height = Math.min(popup.height, bottomEdge - topEdge);
-      const preferredLeft = rect.right + 12 + width <= rightEdge ? rect.right + 12 : rect.left - width - 12;
+      const defaultMaxHeight = Math.min(24 * Number.parseFloat(view.getComputedStyle(anchor.ownerDocument.documentElement).fontSize || "16"), bottomEdge - topEdge);
+      const naturalHeight = Math.min(Math.max(popup.height, ref.current!.scrollHeight + 2), defaultMaxHeight);
+      const fitsRight = rect.right + 12 + width <= rightEdge;
+      const fitsLeft = rect.left - width - 12 >= leftEdge;
+      let maxHeight = defaultMaxHeight;
+      let preferredLeft: number, preferredTop: number;
+      if (fitsRight || fitsLeft) {
+        preferredLeft = fitsRight ? rect.right + 12 : rect.left - width - 12;
+        preferredTop = (rect.top + rect.bottom - naturalHeight) / 2;
+      } else {
+        // A narrow popup must not cover the mark between pointer-down and -up.
+        // Otherwise Chrome retargets that click to the dialog/backdrop.
+        const below = Math.max(0, bottomEdge - rect.bottom - 12);
+        const above = Math.max(0, rect.top - topEdge - 12);
+        const placeBelow = below >= above;
+        maxHeight = Math.min(defaultMaxHeight, Math.max(below, above));
+        const height = Math.min(naturalHeight, maxHeight);
+        preferredLeft = (rect.left + rect.right - width) / 2;
+        preferredTop = placeBelow ? rect.bottom + 12 : rect.top - height - 12;
+      }
+      const height = Math.min(naturalHeight, maxHeight);
       const left = Math.max(leftEdge, Math.min(rightEdge - width, preferredLeft));
-      const top = Math.max(topEdge, Math.min(bottomEdge - height, (rect.top + rect.bottom - height) / 2));
-      setPosition(previous => previous.left === left && previous.top === top ? previous : { left, top });
+      const top = Math.max(topEdge, Math.min(bottomEdge - height, preferredTop));
+      setPosition(previous => previous.left === left && previous.top === top && previous.maxHeight === maxHeight ? previous : { left, top, maxHeight });
     };
     update();
     // Scroll capture includes internal chart/modal scrollers; RAF also follows

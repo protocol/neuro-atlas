@@ -116,11 +116,11 @@ test('popup clamps to narrow viewport edges and reanchors after chart scroll/vie
     await move(point);
     let popup = document.querySelector('[role="tooltip"]');
     assert.equal(popup.style.left, '8px', 'Popup never extends the narrow document');
-    assert.equal(popup.style.top, '292px', 'Bottom edge stays inside the viewport');
+    assert.equal(popup.style.top, '258px', 'When neither side fits, place above the mark instead of covering its click target');
     markRect = { left: 20, right: 40, top: 40, bottom: 60, width: 20, height: 20 };
     await act(async () => window.dispatchEvent(new Event('scroll')));
     popup = document.querySelector('[role="tooltip"]');
-    assert.equal(popup.style.top, '8px', 'Scroll recomputes the correct mark position');
+    assert.equal(popup.style.top, '72px', 'After scroll, available space below the mark keeps its target clear');
     Object.defineProperty(window, 'innerWidth', { value: 1000 });
     await act(async () => window.dispatchEvent(new Event('resize')));
     assert.equal(popup.style.left, '52px', 'Resize restores point-adjacent placement');
