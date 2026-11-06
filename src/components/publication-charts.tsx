@@ -122,7 +122,7 @@ function changesSubtitle(data: PublicationChartData) {
 function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
   const width = compact ? 400 : 740, left = 12, usable = width - left * 2;
   const { ref, fontSize: previewFont } = usePreviewFont(width, compact);
-  const fontSize = compact ? previewFont : 14, block = compact ? fontSize * 10.7 : 170;
+  const fontSize = compact ? previewFont : 14, block = compact ? fontSize * 9.8 : 160;
   const barTop = compact ? fontSize * 2.2 : 36, barHeight = compact ? fontSize * 1.6 : 40;
   return <svg ref={ref} viewBox={`0 0 ${width} ${block * 2}`} role="img" aria-label="First-to-latest publication-affiliation sector changes, shares within each origin’s changers" style={{ fontSize }}>
     <title>First and latest observed neurotech publication affiliations, first papers since 2016; different-sector cohort</title>
@@ -131,16 +131,15 @@ function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChar
       <text x={width - left} y={fontSize * 1.3} textAnchor="end">{number(row.total)} people</text>
       {row.total === 0 ? <text x={left} y={barTop + fontSize}>No observed sector changes</text> : row.destinations.map((dest, j) => {
         const start = left + dest.offset / 100 * usable, segmentWidth = dest.share / 100 * usable;
-        const labelX = left + usable * (j + .5) / 3;
+        const labelX = j === 2 ? width - left : start;
         const nameLines = dest.label === "No listed affiliation" ? ["No listed", "affiliation"] : dest.label === "Other institutions" ? ["Other", "institutions"] : [dest.label];
         return <g key={dest.sector} data-change-destination data-from={row.from} data-to={dest.sector}>
           {dest.count > 0 && <rect data-publication-mark data-from={row.from} data-to={dest.sector} data-value={dest.count} x={start} y={barTop} width={segmentWidth} height={barHeight} fill={dest.color} stroke="var(--surface)" {...pointEvents(`${row.label} → ${dest.label}: ${number(dest.count)} of ${number(row.total)} people (${number(dest.share)}%). First/latest publication affiliations.`, inspect)}/>}
-          {dest.count > 0 && <path data-change-leader d={`M ${start + segmentWidth / 2} ${barTop + barHeight} V ${barTop + barHeight + fontSize * .35} L ${labelX} ${compact ? fontSize * 4.7 : 95}`} fill="none" stroke="var(--muted)" strokeWidth="1"/>}
-          <text data-change-label x={labelX} y={compact ? fontSize * 5.9 : 117} textAnchor="middle">
+          <text data-change-label x={labelX} y={compact ? fontSize * 5.2 : 100} textAnchor={j === 2 ? "end" : "start"}>
             {compact ? <>
               {nameLines.map((line, k) => <tspan key={line} x={labelX} dy={k ? fontSize * 1.15 : 0} fontWeight="600">{line}</tspan>)}
-              <tspan x={labelX} y={fontSize * 8.5} fontWeight="700">{number(dest.share)}%</tspan>
-              <tspan x={labelX} y={fontSize * 9.8}>{number(dest.count)}</tspan>
+              <tspan x={labelX} y={fontSize * 7.6} fontWeight="700">{number(dest.share)}%</tspan>
+              <tspan x={labelX} y={fontSize * 8.9}>{number(dest.count)}</tspan>
             </> : <>
               <tspan fontWeight="600">{dest.label} {number(dest.share)}%</tspan>
               <tspan x={labelX} dy="23">{number(dest.count)} people</tspan>

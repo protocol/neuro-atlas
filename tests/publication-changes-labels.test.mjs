@@ -25,6 +25,15 @@ test('sector-change destinations are directly attached to their segments in prev
         assert.ok(label.textContent.includes(String(dest.count)));
       }
       assert.equal(svg.querySelectorAll('[data-change-label]').length, 6);
+      assert.equal(svg.querySelectorAll('[data-change-leader]').length, 0, 'No connectors, matching the reference');
+      for (const row of data.transitions) {
+        const labels = [...svg.querySelectorAll(`[data-change-destination][data-from="${row.from}"]`)];
+        labels.forEach((group, index) => {
+          const label = group.querySelector('[data-change-label]');
+          assert.equal(label.getAttribute('text-anchor'), index === 2 ? 'end' : 'start');
+          if (index < 2) assert.equal(label.getAttribute('x'), group.querySelector('rect').getAttribute('x'));
+        });
+      }
     }
     const modal = document.querySelector('dialog');
     const subtitle = modal.querySelector('[data-change-subtitle]');
