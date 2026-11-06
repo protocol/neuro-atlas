@@ -15,7 +15,7 @@ import { useMetricCardHeight } from "@/components/use-metric-card-height";
 
 const neuronText = JSON.stringify([SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), "Simultaneously recorded neurons"]).toLocaleLowerCase();
 const engagementPreviewText = JSON.stringify([TRENDS.groups.filter(group => group.id === "neurotech"), "Google Trends Public attention"]).toLocaleLowerCase();
-const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), SNAPSHOT.measurementSeries.filter(series => series.id === "bci-implants"), PARTICIPANT_ADDITIONS, TRANSLATION_EVIDENCE, TRENDS.groups.filter(group => group.id === "neuralink"), "Citation latency Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
+const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), SNAPSHOT.measurementSeries.filter(series => series.id === "bci-implants"), PARTICIPANT_ADDITIONS, TRANSLATION_EVIDENCE, "Citation latency Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
 
 type GroupState = "collapsed" | "full";
 function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {

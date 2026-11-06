@@ -16,6 +16,6 @@ function collect(node, names, found = []) {
 
 test('the actual Metrics page requests peer-card output from every supplemental chart family', () => {
   const cards = collect(Page(), new Set(['GoogleTrends', 'PaceReadings', 'PerformanceCurves']));
-  assert.equal(cards.length, 4);
+  assert.equal(cards.length, 3);
   for (const card of cards) assert.equal(card.props.flat, true, `${card.type.name}: flat output must be enabled by the real route`);
 });

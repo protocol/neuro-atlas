@@ -9,7 +9,7 @@ const cards = rail => [...rail.querySelectorAll('article')].filter(card => !card
 const identity = card => card.querySelector('[data-draft-popout]')?.dataset.draftPopout ?? card.dataset.performanceCard ?? card.dataset.trendsCard ?? card.dataset.metricReading;
 // Established native rail identities, with the owner-requested Nov. 3 Cost order.
 const existingOrder = [
-  ['neurotech', 'idea_vintage', 'latency_compression', 'neuralink', 'revealed_commitments'],
+  ['neurotech', 'idea_vintage', 'latency_compression', 'revealed_commitments'],
   ['metric-recording-hours', 'metric-panel-neuralink-cumulative', 'simultaneously-recorded-neurons'],
   ['metric-panel-public-data-size', 'metric-panel-tissue-cm3', 'metric-panel-largest-connectome-neurons', 'metric-panel-largest-connectome-synapses', 'metric-panel-acquisition-rates', 'metric-panel-paired-manual'],
   ['metric-panel-acquisition-economics', 'metric-panel-connectomics-roboem-human-split-merge', 'metric-panel-proofreading-effort', 'metric-panel-pathfinder-nerl'],
