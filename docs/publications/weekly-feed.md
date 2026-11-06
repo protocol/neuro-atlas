@@ -42,7 +42,7 @@ The positive known-share threshold is explicit, **configurable policy**. `0.5` a
 `atlas.openalex-baseline-acquisition.v1` is pinned to the exact ordered eleven
 `matched_baselines.acquisition_plan()` queries and five `refresh.science_plan()`
 queries, with **no parameter/type/filter/corpus normalization**. Its canonical
-contract SHA-256 is `2e6df1df88c090332684011a5c2746931078408ce16a95ac116ecbb4f9b3dbad`.
+contract SHA-256 is `516ff3d3003d0305d59e170d6ab915c5959fa1c68b77a6e9031ae52fba2d645f`. This reviewed extension changes only the science-history filter to 2010–2025; its normalization base remains 2022. The initial four-year contract remains archived in the earlier revision.
 A changed source selection, method, query or contract version requires PR review.
 Matched queries intentionally retain the reviewed default-core semantics; science
 queries explicitly request `corpus=core`. Complete-through stays **2025-12-31**.
@@ -93,7 +93,7 @@ Unknown method/author matched denominators are not filled or inferred.
 
 ### Science and matched contracts
 
-Science input is the actual five pairs of `{all,life,social,physical,health}.request.json` and `.response.json` files. Request identity, core corpus, five types, four complete years, raw response SHA-256 and reconciled group totals are verified. An unattested `rows.json` export is not accepted as source proof. Each original response hash and acquisition time remains in the release manifest.
+Science input is the actual five pairs of `{all,life,social,physical,health}.request.json` and `.response.json` files. Request identity, core corpus, five types, sixteen complete years (2010–2025), raw response SHA-256 and reconciled group totals are verified. An unattested `rows.json` export is not accepted as source proof. Each original response hash and acquisition time remains in the release manifest.
 
 Matched input is the original 11-envelope directory or combined `receipts` object supported by `matched_baselines.load_receipts`. Output is attached at **top-level `matchedGrowth`**. The obsolete `derive.apply_matched_baseline()` all-21-parity interface is never called.
 
