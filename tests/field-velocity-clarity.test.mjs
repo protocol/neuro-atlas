@@ -55,3 +55,23 @@ test('inflection evidence roles precede measurement links and forecast disclosur
   assert.equal(doc.defaultView.getComputedStyle(role).fontSize,'12px');
   assert.equal(doc.defaultView.getComputedStyle(doc.querySelector('[data-related-forecasts] summary')).minHeight,'32px');
 });
+
+
+test('native annual exports keep the two axis titles separated at their own sides',async()=>{
+  const {mount}=await import('./modal-helpers.mjs');
+  const {buildChartImage}=await import('../src/lib/chart-export.ts');
+  const imported=await import('../src/app/field-velocity/page.tsx');
+  const Page=imported.default.default??imported.default;
+  const cleanup=await mount(React.createElement(Page),'#neurotech-papers-per-year');
+  try {
+    const svg=document.querySelector('dialog[open] .publication-full-plot svg');
+    assert.ok(svg);
+    const image=buildChartImage({svg,title:'Neurotech papers per year',anchor:'publication-output',notes:[]},'https://atlas.example/neuro-atlas/field-velocity');
+    const doc=new JSDOM(image.svg).window.document;
+    const labels=[...doc.querySelectorAll('text')];
+    const left=labels.find(t=>t.textContent==='Neurotech papers'),right=labels.find(t=>t.textContent==='Science index · 2022 = 100');
+    assert.ok(left&&right,'Both exact axis titles survive the export sanitizer');
+    assert.ok(Number(right.getAttribute('x'))>Number(left.getAttribute('x'))+500,'Export normalization must not flatten both axis titles to one left anchor');
+    assert.equal(right.getAttribute('text-anchor'),'end');
+  } finally {await cleanup();}
+});
