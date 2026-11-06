@@ -32,7 +32,7 @@ for width in [1440,390,320]:
   # The direct key remains visible without horizontally scrolling the large plot.
   key=js('''return (()=>{const e=document.querySelector('[data-publication-sector-key]');return {text:e.innerText,display:getComputedStyle(e).display}})()''')
   assert key['display']!='none' and '24,228' in key['text'] and '347' in key['text'],key
-  js("const p=document.querySelector('dialog .publication-plot-2');p.scrollLeft=p.scrollWidth;return p.scrollLeft")
+  js("const p=document.querySelector('dialog .publication-plot-2'),t=p.querySelector('svg text');p.scrollLeft+=t.getBoundingClientRect().left-p.getBoundingClientRect().left-8;return p.scrollLeft")
   capture_screenshot(str(OUT/f'sector-type-{width}-labels.png'))
  js("document.querySelector('dialog .publication-plot-2 g[data-publication-mark]').focus();return true")
  press_key('Enter')
