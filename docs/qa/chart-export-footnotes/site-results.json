@@ -1,0 +1,570 @@
+{
+  "revision": "65f92607d885c2db605cb297717111da459312f5",
+  "cases": [
+    {
+      "size": "12px",
+      "color": "rgb(107, 107, 116)",
+      "viewport": 1440,
+      "client": 1440,
+      "scroll": 1440,
+      "rows": [
+        {
+          "text": "Neuralink \u00b7 human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.",
+          "color": "rgb(146, 117, 202)",
+          "box": {
+            "x": 241,
+            "y": 378.40625,
+            "width": 943,
+            "height": 39.59375,
+            "top": 378.40625,
+            "right": 1184,
+            "bottom": 418,
+            "left": 241
+          },
+          "textBox": {
+            "x": 257,
+            "y": 378.40625,
+            "width": 927,
+            "height": 39.59375,
+            "top": 378.40625,
+            "right": 1184,
+            "bottom": 418,
+            "left": 257
+          },
+          "client": 927,
+          "scroll": 927
+        },
+        {
+          "text": "TUSZ \u00b7 human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.",
+          "color": "rgb(35, 142, 145)",
+          "box": {
+            "x": 241,
+            "y": 430,
+            "width": 943,
+            "height": 39.59375,
+            "top": 430,
+            "right": 1184,
+            "bottom": 469.59375,
+            "left": 241
+          },
+          "textBox": {
+            "x": 257,
+            "y": 430,
+            "width": 927,
+            "height": 39.59375,
+            "top": 430,
+            "right": 1184,
+            "bottom": 469.59375,
+            "left": 257
+          },
+          "client": 927,
+          "scroll": 927
+        },
+        {
+          "text": "AJILE12 \u00b7 human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.",
+          "color": "rgb(205, 115, 47)",
+          "box": {
+            "x": 241,
+            "y": 481.59375,
+            "width": 943,
+            "height": 39.59375,
+            "top": 481.59375,
+            "right": 1184,
+            "bottom": 521.1875,
+            "left": 241
+          },
+          "textBox": {
+            "x": 257,
+            "y": 481.59375,
+            "width": 927,
+            "height": 39.59375,
+            "top": 481.59375,
+            "right": 1184,
+            "bottom": 521.1875,
+            "left": 257
+          },
+          "client": 927,
+          "scroll": 927
+        },
+        {
+          "text": "POYO-1 \u00b7 primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.",
+          "color": "rgb(100, 125, 61)",
+          "box": {
+            "x": 241,
+            "y": 533.1875,
+            "width": 943,
+            "height": 39.59375,
+            "top": 533.1875,
+            "right": 1184,
+            "bottom": 572.78125,
+            "left": 241
+          },
+          "textBox": {
+            "x": 257,
+            "y": 533.1875,
+            "width": 927,
+            "height": 39.59375,
+            "top": 533.1875,
+            "right": 1184,
+            "bottom": 572.78125,
+            "left": 257
+          },
+          "client": 927,
+          "scroll": 927
+        },
+        {
+          "text": "JapanEEG \u00b7 human scalp EEG, open release claim: Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+          "color": "rgb(203, 98, 133)",
+          "box": {
+            "x": 241,
+            "y": 584.78125,
+            "width": 943,
+            "height": 39.59375,
+            "top": 584.78125,
+            "right": 1184,
+            "bottom": 624.375,
+            "left": 241
+          },
+          "textBox": {
+            "x": 257,
+            "y": 584.78125,
+            "width": 927,
+            "height": 39.59375,
+            "top": 584.78125,
+            "right": 1184,
+            "bottom": 624.375,
+            "left": 257
+          },
+          "client": 927,
+          "scroll": 927
+        }
+      ],
+      "file": "site-recording-notes-1440-light.png",
+      "theme": "light"
+    },
+    {
+      "size": "12px",
+      "color": "rgb(107, 107, 116)",
+      "viewport": 390,
+      "client": 390,
+      "scroll": 390,
+      "rows": [
+        {
+          "text": "Neuralink \u00b7 human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.",
+          "color": "rgb(146, 117, 202)",
+          "box": {
+            "x": 25,
+            "y": 160.0625,
+            "width": 325,
+            "height": 98.984375,
+            "top": 160.0625,
+            "right": 350,
+            "bottom": 259.046875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 160.0625,
+            "width": 309,
+            "height": 98.984375,
+            "top": 160.0625,
+            "right": 350,
+            "bottom": 259.046875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "TUSZ \u00b7 human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.",
+          "color": "rgb(35, 142, 145)",
+          "box": {
+            "x": 25,
+            "y": 271.046875,
+            "width": 325,
+            "height": 79.1875,
+            "top": 271.046875,
+            "right": 350,
+            "bottom": 350.234375,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 271.046875,
+            "width": 309,
+            "height": 79.1875,
+            "top": 271.046875,
+            "right": 350,
+            "bottom": 350.234375,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "AJILE12 \u00b7 human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.",
+          "color": "rgb(205, 115, 47)",
+          "box": {
+            "x": 25,
+            "y": 362.234375,
+            "width": 325,
+            "height": 98.984375,
+            "top": 362.234375,
+            "right": 350,
+            "bottom": 461.21875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 362.234375,
+            "width": 309,
+            "height": 98.984375,
+            "top": 362.234375,
+            "right": 350,
+            "bottom": 461.21875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "POYO-1 \u00b7 primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.",
+          "color": "rgb(100, 125, 61)",
+          "box": {
+            "x": 25,
+            "y": 473.21875,
+            "width": 325,
+            "height": 98.984375,
+            "top": 473.21875,
+            "right": 350,
+            "bottom": 572.203125,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 473.21875,
+            "width": 309,
+            "height": 98.984375,
+            "top": 473.21875,
+            "right": 350,
+            "bottom": 572.203125,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "JapanEEG \u00b7 human scalp EEG, open release claim: Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+          "color": "rgb(203, 98, 133)",
+          "box": {
+            "x": 25,
+            "y": 584.203125,
+            "width": 325,
+            "height": 98.984375,
+            "top": 584.203125,
+            "right": 350,
+            "bottom": 683.1875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 584.203125,
+            "width": 309,
+            "height": 98.984375,
+            "top": 584.203125,
+            "right": 350,
+            "bottom": 683.1875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        }
+      ],
+      "file": "site-recording-notes-390-light.png",
+      "theme": "light"
+    },
+    {
+      "size": "12px",
+      "color": "rgb(107, 107, 116)",
+      "viewport": 320,
+      "client": 320,
+      "scroll": 320,
+      "rows": [
+        {
+          "text": "Neuralink \u00b7 human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.",
+          "color": "rgb(146, 117, 202)",
+          "box": {
+            "x": 25,
+            "y": 100.90625,
+            "width": 255,
+            "height": 138.578125,
+            "top": 100.90625,
+            "right": 280,
+            "bottom": 239.484375,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 100.90625,
+            "width": 239,
+            "height": 138.578125,
+            "top": 100.90625,
+            "right": 280,
+            "bottom": 239.484375,
+            "left": 41
+          },
+          "client": 239,
+          "scroll": 239
+        },
+        {
+          "text": "TUSZ \u00b7 human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.",
+          "color": "rgb(35, 142, 145)",
+          "box": {
+            "x": 25,
+            "y": 251.484375,
+            "width": 255,
+            "height": 98.984375,
+            "top": 251.484375,
+            "right": 280,
+            "bottom": 350.46875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 251.484375,
+            "width": 239,
+            "height": 98.984375,
+            "top": 251.484375,
+            "right": 280,
+            "bottom": 350.46875,
+            "left": 41
+          },
+          "client": 239,
+          "scroll": 239
+        },
+        {
+          "text": "AJILE12 \u00b7 human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.",
+          "color": "rgb(205, 115, 47)",
+          "box": {
+            "x": 25,
+            "y": 362.46875,
+            "width": 255,
+            "height": 118.78125,
+            "top": 362.46875,
+            "right": 280,
+            "bottom": 481.25,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 362.46875,
+            "width": 239,
+            "height": 118.78125,
+            "top": 362.46875,
+            "right": 280,
+            "bottom": 481.25,
+            "left": 41
+          },
+          "client": 239,
+          "scroll": 239
+        },
+        {
+          "text": "POYO-1 \u00b7 primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.",
+          "color": "rgb(100, 125, 61)",
+          "box": {
+            "x": 25,
+            "y": 493.25,
+            "width": 255,
+            "height": 118.78125,
+            "top": 493.25,
+            "right": 280,
+            "bottom": 612.03125,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 493.25,
+            "width": 239,
+            "height": 118.78125,
+            "top": 493.25,
+            "right": 280,
+            "bottom": 612.03125,
+            "left": 41
+          },
+          "client": 239,
+          "scroll": 239
+        },
+        {
+          "text": "JapanEEG \u00b7 human scalp EEG, open release claim: Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+          "color": "rgb(203, 98, 133)",
+          "box": {
+            "x": 25,
+            "y": 624.03125,
+            "width": 255,
+            "height": 118.78125,
+            "top": 624.03125,
+            "right": 280,
+            "bottom": 742.8125,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 624.03125,
+            "width": 239,
+            "height": 118.78125,
+            "top": 624.03125,
+            "right": 280,
+            "bottom": 742.8125,
+            "left": 41
+          },
+          "client": 239,
+          "scroll": 239
+        }
+      ],
+      "file": "site-recording-notes-320-light.png",
+      "theme": "light"
+    },
+    {
+      "size": "12px",
+      "color": "rgb(161, 161, 170)",
+      "viewport": 390,
+      "client": 390,
+      "scroll": 390,
+      "rows": [
+        {
+          "text": "Neuralink \u00b7 human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.",
+          "color": "rgb(146, 117, 202)",
+          "box": {
+            "x": 25,
+            "y": 160.0625,
+            "width": 325,
+            "height": 98.984375,
+            "top": 160.0625,
+            "right": 350,
+            "bottom": 259.046875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 160.0625,
+            "width": 309,
+            "height": 98.984375,
+            "top": 160.0625,
+            "right": 350,
+            "bottom": 259.046875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "TUSZ \u00b7 human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.",
+          "color": "rgb(35, 142, 145)",
+          "box": {
+            "x": 25,
+            "y": 271.046875,
+            "width": 325,
+            "height": 79.1875,
+            "top": 271.046875,
+            "right": 350,
+            "bottom": 350.234375,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 271.046875,
+            "width": 309,
+            "height": 79.1875,
+            "top": 271.046875,
+            "right": 350,
+            "bottom": 350.234375,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "AJILE12 \u00b7 human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.",
+          "color": "rgb(205, 115, 47)",
+          "box": {
+            "x": 25,
+            "y": 362.234375,
+            "width": 325,
+            "height": 98.984375,
+            "top": 362.234375,
+            "right": 350,
+            "bottom": 461.21875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 362.234375,
+            "width": 309,
+            "height": 98.984375,
+            "top": 362.234375,
+            "right": 350,
+            "bottom": 461.21875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "POYO-1 \u00b7 primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.",
+          "color": "rgb(100, 125, 61)",
+          "box": {
+            "x": 25,
+            "y": 473.21875,
+            "width": 325,
+            "height": 98.984375,
+            "top": 473.21875,
+            "right": 350,
+            "bottom": 572.203125,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 473.21875,
+            "width": 309,
+            "height": 98.984375,
+            "top": 473.21875,
+            "right": 350,
+            "bottom": 572.203125,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        },
+        {
+          "text": "JapanEEG \u00b7 human scalp EEG, open release claim: Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+          "color": "rgb(203, 98, 133)",
+          "box": {
+            "x": 25,
+            "y": 584.203125,
+            "width": 325,
+            "height": 98.984375,
+            "top": 584.203125,
+            "right": 350,
+            "bottom": 683.1875,
+            "left": 25
+          },
+          "textBox": {
+            "x": 41,
+            "y": 584.203125,
+            "width": 309,
+            "height": 98.984375,
+            "top": 584.203125,
+            "right": 350,
+            "bottom": 683.1875,
+            "left": 41
+          },
+          "client": 309,
+          "scroll": 309
+        }
+      ],
+      "file": "site-recording-notes-390-dark.png",
+      "theme": "dark"
+    }
+  ],
+  "physicalPhoneTested": false
+}
