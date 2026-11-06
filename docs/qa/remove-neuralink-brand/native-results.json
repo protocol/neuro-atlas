@@ -1,0 +1,55 @@
+{
+  "result": "PASS",
+  "fixture": "Loopback static production HTML/assets from exact source; production authentication unchanged; mobile viewport emulation, not physical touch.",
+  "cases": [
+    {
+      "width": 1440,
+      "cards": [
+        "neurotech",
+        "idea_vintage",
+        "latency_compression",
+        "revealed_commitments"
+      ],
+      "bounds": {
+        "width": 1440,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "collapseReopen": true,
+      "retainedTrendsModal": true
+    },
+    {
+      "width": 390,
+      "cards": [
+        "neurotech",
+        "idea_vintage",
+        "latency_compression",
+        "revealed_commitments"
+      ],
+      "bounds": {
+        "width": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "collapseReopen": true,
+      "retainedTrendsModal": true
+    },
+    {
+      "width": 320,
+      "cards": [
+        "neurotech",
+        "idea_vintage",
+        "latency_compression",
+        "revealed_commitments"
+      ],
+      "bounds": {
+        "width": 320,
+        "client": 320,
+        "scroll": 320
+      },
+      "collapseReopen": true,
+      "retainedTrendsModal": true
+    }
+  ],
+  "removedHashOpensNoModal": true
+}

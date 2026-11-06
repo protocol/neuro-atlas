@@ -48,7 +48,7 @@ test('the actual Field velocity page contains readings, not Markets or channel-c
     const doc = dom.window.document;
     assert.equal(doc.querySelectorAll('[data-coming-soon], #markets').length, 0);
     assert.equal(doc.querySelectorAll('[data-performance-card]').length, 4, 'Unique neuron capability chart, two pace cards and participant timeline');
-    assert.equal(doc.querySelectorAll('[data-trends-card]').length, 2);
+    assert.equal(doc.querySelectorAll('[data-trends-card]').length, 1);
     assert.equal(doc.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 78);
     assert.equal(doc.querySelector('#metric-category-0 [data-performance-card="tissue-mapped"]'), null);
