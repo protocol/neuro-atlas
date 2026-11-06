@@ -368,7 +368,7 @@ for(const [index,anchor] of ['publication-output','publication-growth','research
   assert.match(image.svg,/2026-11-06/);assert.match(image.svg,/2025-12-31/);
   assert.doesNotMatch(image.svg,/token=excluded|Artio|bioRxiv|2026-10-14|Model synthetic/i);
   if(index===1){const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');const text=[...exported.querySelectorAll('text')].map(node=>node.textContent).join(' ');assert.match(text,/OpenAlex work ID/);assert.match(text,/N = P2 two-topic whole-work involvement/);assert.match(text,/Asia: N \(P2\) 10/);assert.match(text,/author-fractional works/);}
-  if(index===3){assert.match(image.svg,/Employment transitions are unverified/);assert.match(image.svg,/2016/);}
+  if(index===3){assert.match(image.svg,/first and latest publication affiliations in different sectors/i);assert.match(image.svg,/2016/);}
   const first=svg.querySelector('[data-publication-mark][tabindex="0"]');
   await act(async()=>first.dispatchEvent(new window.MouseEvent('mouseover',{bubbles:true})));
   assert.equal(inspector.textContent,'','Stationary appearance does not preselect');

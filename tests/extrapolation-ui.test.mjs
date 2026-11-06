@@ -20,7 +20,8 @@ const sha = text => createHash('sha256').update(text).digest('hex');
 // Clipboard sharing adds only this nonvisual export hint to the original SVG.
 // Preserve the independently captured golden hashes: no geometry/style/value,
 // other data attributes, or different export-radius values are normalized away.
-const svgSha = text => sha(text.replaceAll(' data-export-r="5"', ''));
+// Normalize the exact edited accessibility sentence only; scientific geometry and values keep their original golden hashes.
+const svgSha = text => sha(text.replaceAll(' data-export-r="5"', '').replace('Separate source observations.', 'Separate observations; no connecting growth line.'));
 // Captured from untouched 58dd8c2 before adding the controls, not the new off-state itself.
 const baseline = {
   'simultaneously-recorded-neurons': 'b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d',

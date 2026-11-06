@@ -37,13 +37,13 @@ test('sector-change destinations are directly attached to their segments in prev
     }
     const modal = document.querySelector('dialog');
     const subtitle = modal.querySelector('[data-change-subtitle]');
-    assert.match(subtitle.textContent, /first neurotech papers in 2016–2025/i);
-    assert.match(subtitle.textContent, /latest paper.*different affiliation sector/i);
+    assert.match(subtitle.textContent, /Two-topic entrants, 2016–2025/i);
+    assert.match(subtitle.textContent, /first and latest publication affiliations in different sectors/i);
     assert.match(subtitle.textContent, /shares.*starting sector.*changers/i);
     const { buildChartImage } = await import('../src/lib/chart-export.ts');
     const image = buildChartImage({ svg: modal.querySelector('.publication-full-plot svg'), title: 'Publication-affiliation sector changes', anchor: 'researcher-sector-changes', notes: publicationExportNotes(3, parsed, data) }, 'https://atlas.example/field-velocity');
     assert.match(image.svg, /Companies/);
     assert.match(image.svg, /3%/);
-    assert.match(image.svg, /first neurotech papers in 2016–2025/i);
+    assert.match(image.svg, /Two-topic entrants, 2016–2025/i);
   } finally { await cleanup(); }
 });

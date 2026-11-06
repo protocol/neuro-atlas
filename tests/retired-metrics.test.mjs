@@ -27,7 +27,7 @@ test('retired panels are unmounted, with every other source observation retained
     await click(document.querySelector('[data-draft-popout-trigger="metric-panel-paired-manual"]'));
     const detail = document.querySelector('dialog[open] .draft-popout-detail');
     assert.ok(detail, 'the retained paired-data chart opens real detail');
-    assert.match(detail.textContent, /37,364 at 83% precision/);
+    assert.match(detail.textContent, /37,364 matches at 83% precision/);
     const paired = DRAFT_CHART_EVIDENCE['Paired structure–function dataset scale over time'].plots.find(plot => plot.id === 'paired-manual');
     assert.deepEqual([...detail.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation), paired.points.map(point => point.id));
     for (const point of paired.points) assert.ok(detail.textContent.includes(point.note), `${point.id}: source qualifier retained`);
@@ -49,7 +49,7 @@ test('search and default full-rail inventories describe only the retained panels
     for (const term of ['GAUSS-EM', 'MICrONS selected-region section loss', 'Precision · temporary', 'Comparative connectomics cohort size']) {
       await search(term);
       assert.equal(visible('[data-metric-toggle]').length, 0, term);
-      assert.match(document.querySelector('[role=status]').textContent, /No metrics match/);
+      assert.match(document.querySelector('[role=status]').textContent, /Try another title, species or dataset/);
     }
     await click(document.querySelector('[data-clear-metrics]'));
     assert.equal(document.querySelector('[data-metric-more]'), null);
