@@ -23,7 +23,7 @@ test('growth defaults to source-derived global context with same-category compar
   assert.equal(svg.querySelectorAll('[data-growth-series="reference"]').length,0,'Alternatives are off by default');
   const alternatives=modal.querySelector('input[type="checkbox"]');assert.ok(alternatives);assert.equal(alternatives.checked,false);
   assert.match(alternatives.closest('label').textContent,/Show alternative comparisons \(9 available\)/);
-  assert.match(modal.querySelector('[data-growth-legend]').textContent,/Neurotech.*All-science context.*All neurotech/);
+  assert.equal(modal.querySelector('[data-growth-legend]').textContent,'● Neurotech','Benchmark captions belong to the plot once, not twice');
   assert.match(modal.querySelector('.pc-methodology').textContent,/9 same-category comparisons available; 12 unavailable/);
   await click(alternatives);
   assert.equal(alternatives.checked,true);
@@ -83,6 +83,26 @@ test('growth lollipops have horizontal zero-based stems and percentages attached
    assert.ok(Math.abs(Number(label.getAttribute('x'))-x)<=13);assert.equal(Number(label.getAttribute('y')),y+6);
   }
  } finally {await cleanup();}
+});
+
+test('endpoint labels remain legible where benchmark lines cross them',async()=>{
+ const cleanup=await mount(chart(fixture()),'#publication-growth');
+ try {
+  await click(document.querySelector('dialog [data-growth-alternatives]'));
+  for(const label of document.querySelectorAll('[data-growth-label]')) {
+   assert.equal(label.getAttribute('stroke'),'var(--surface)');
+   assert.ok(Number(label.getAttribute('stroke-width'))>=3);
+   assert.equal(label.getAttribute('paint-order'),'stroke');
+  }
+ }finally{await cleanup();}
+});
+
+test('the zero tick remains inside the initial narrow viewport instead of beyond the label gutter',async()=>{
+ const cleanup=await mount(chart(fixture()),'#publication-growth');
+ try {
+  const tick=document.querySelector('dialog [data-growth-sticky-axis] [data-growth-tick]');
+  assert.ok(Number(tick.getAttribute('x'))<=200,'A 240px narrow plot must show the zero tick without horizontal scrolling');
+ }finally{await cleanup();}
 });
 
 test('growth has aligned sticky axes in both scrollers while full SVG retains its own export axis',async()=>{

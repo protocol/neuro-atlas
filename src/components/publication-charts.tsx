@@ -58,12 +58,12 @@ function GrowthMarks({row,x,y,inspect,alternatives=false}:{row:GrowthRow;x:(n:nu
     {row.growth===null?<text data-growth-label="neurotech" x={x(0)+12} y={y} dominantBaseline="middle">No 2022 base</text>:<>
       <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={blue} strokeWidth="2"/>
       <circle data-growth-series="neurotech" cx={x(row.growth)} cy={y} r="5" fill={blue} stroke="var(--surface)" strokeWidth="1.5"/>
-      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" style={{fill:blue}}>{percent(row.growth)}</text>
+      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:blue}}>{percent(row.growth)}</text>
     </>}
     {alternatives&&(row.referenceGrowth===null?<text data-reference-unavailable x={x(0)} y={referenceY} dominantBaseline="middle">{row.baselineStatus==="matched"?"Reference: no 2022 base":"Reference unavailable"}</text>:<>
       <line data-growth-stem="reference" x1={x(0)} x2={x(row.referenceGrowth)} y1={referenceY} y2={referenceY} stroke={teal} strokeWidth="1.5"/>
       <path data-growth-series="reference" d={`M ${x(row.referenceGrowth)} ${referenceY-6} l 6 6 l -6 6 l -6 -6 Z`} fill="var(--surface)" stroke={teal} strokeWidth="2"/>
-      <text data-growth-label="reference" x={x(row.referenceGrowth)+12} y={referenceY} dominantBaseline="middle" style={{fill:teal}}>{percent(row.referenceGrowth)}</text>
+      <text data-growth-label="reference" x={x(row.referenceGrowth)+12} y={referenceY} dominantBaseline="middle" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:teal}}>{percent(row.referenceGrowth)}</text>
     </>)}
   </g>;
 }
@@ -119,7 +119,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   </span>;
 }
 function GrowthPlot({data,inspect,alternatives=false}:{data:PublicationChartData;inspect?:Inspect;alternatives?:boolean}) {
-  const {low,high}=growthExtent(data,alternatives),left=255,right=630,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
+  const {low,high}=growthExtent(data,alternatives),left=200,right=630,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
   const rowHeight=alternatives?56:40;
   const layout=PUBLICATION_GROWTH_GROUPS.map((section,index)=>{
     const heading=80+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((sum,item)=>sum+40+item.groups.length*rowHeight,0);
@@ -246,7 +246,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     {index===3&&<p className="publication-scope">Different-sector publication-affiliation cohort · employment transitions unverified</p>}
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span>{data.baseline.length>0&&<><span style={{color:teal}}>● All research</span><span>■ Global science context · four-domain band</span><span>Anchored to 2022</span></>}</p>}
     {index===1&&<>
-      <p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span>{data.scienceGrowth&&<span>■ All-science context {percent(data.scienceGrowth.low)} to {percent(data.scienceGrowth.high)}</span>}<span>┊ All neurotech {percent(data.neurotechGrowth)}</span>{alternatives&&<span style={{color:teal}}>◇ Same-category research</span>}</p>
+      <p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span>{alternatives&&<span style={{color:teal}}>◇ Same-category research</span>}</p>
       <label className="publication-growth-options"><input data-growth-alternatives type="checkbox" checked={alternatives} disabled={!available} onChange={event=>setAlternatives(event.target.checked)}/> Show alternative comparisons ({available} available)</label>
     </>}
     <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection} alternatives={alternatives}/></div>
