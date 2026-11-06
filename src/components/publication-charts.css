@@ -9,8 +9,8 @@
 .publication-preview-1 svg { min-width: 0; }
 .publication-preview-2 svg { max-width: 235px; margin: 0 auto; }
 .publication-preview-3 { display: flex; align-items: center; overscroll-behavior: contain; }
-/* Three direct-label columns need readable room on the narrowest rail cards. */
-.publication-preview-3 .publication-preview-trigger { min-width: 320px; }
+/* Four labeled origin/destination nodes retain readable text inside the narrow rails. */
+.publication-preview-3 .publication-preview-trigger { min-width: 480px; }
 .publication-preview-3 svg { min-width: 0; }
 .publication-preview-note { margin: .7rem 1.25rem 1rem; font-size: 12px; color: var(--muted); line-height: 1.6; }
 .publication-preview-sectors { margin: .65rem 1.25rem 1rem; font-size: 12px; line-height: 1.6; display: grid; gap: .25rem; }
@@ -22,6 +22,7 @@
 .publication-full-plot svg { display: block; width: 100%; min-width: 650px; height: auto; }
 .publication-plot-0 svg { min-width: 840px; }
 .publication-plot-1 svg { min-width: 640px; }
+.publication-plot-3 svg { min-width: 900px; }
 .publication-growth-options { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .65rem; margin-top: .5rem; font-size: .8rem; line-height: 1.6; }
 .publication-growth-options select { min-width: 0; max-width: 100%; border: 1px solid var(--border); border-radius: .35rem; background: var(--surface); color: var(--foreground); padding: .35rem .5rem; font: inherit; }
 .publication-plot-1 { overscroll-behavior: contain; max-height: min(68dvh, var(--publication-growth-max-height, calc(100dvh - 25rem))); }
@@ -42,3 +43,8 @@
   .publication-sector-key li { display: flex; align-items: baseline; gap: .5rem; }
   .publication-sector-key li > span:first-child { width: .65rem; height: .65rem; flex: 0 0 auto; border-radius: 2px; }
 }
+
+.publication-sankey-flow { transition: fill-opacity .12s ease; stroke: transparent; stroke-width: 6px; vector-effect: non-scaling-stroke; cursor: pointer; }
+.publication-sankey[data-has-active="true"] .publication-sankey-flow { fill-opacity: .12; }
+.publication-sankey[data-has-active="true"] .publication-sankey-flow.is-emphasized { fill-opacity: .8; }
+@media (prefers-reduced-motion: reduce) { .publication-sankey-flow { transition: none; } }

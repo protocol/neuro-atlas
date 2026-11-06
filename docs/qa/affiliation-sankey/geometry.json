@@ -1,0 +1,929 @@
+{
+  "eligibleAuthors": 26493,
+  "audit": {
+    "methodId": "atlas-publication-affiliation-endpoints-v1",
+    "firstYearMin": 2016,
+    "lastYearMax": 2025,
+    "minActiveYears": 2,
+    "eligibleAuthors": 26493,
+    "sameSectorAuthors": 21718,
+    "changedSectorAuthors": 4775
+  },
+  "states": [
+    {
+      "width": 1440,
+      "full": {
+        "w": 1440,
+        "client": 1440,
+        "scroll": 1440,
+        "width": 943,
+        "height": 607.703125,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0.006195068359375,
+            "right": 79.01873779296875,
+            "top": 175.09307861328125,
+            "bottom": 205.49307250976562,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "No listed affiliation3,022 people",
+            "left": 0.006195068359375,
+            "right": 108.09994506835938,
+            "top": 361.00469970703125,
+            "bottom": 391.4046630859375,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "Other institutions2,469 people",
+            "left": 0.006195068359375,
+            "right": 101.331787109375,
+            "top": 440.634765625,
+            "bottom": 471.0347900390625,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0.006195068359375,
+            "right": 64.8106689453125,
+            "top": 520.264892578125,
+            "bottom": 550.6649169921875,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 748.1096801757812,
+            "right": 827.122314453125,
+            "top": 175.09307861328125,
+            "bottom": 205.49307250976562,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "No listed affiliation2,428 people",
+            "left": 748.1096801757812,
+            "right": 856.2034912109375,
+            "top": 363.6905517578125,
+            "bottom": 394.090576171875,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "Other institutions2,600 people",
+            "left": 748.1096801757812,
+            "right": 849.435302734375,
+            "top": 443.3206787109375,
+            "bottom": 473.72064208984375,
+            "pixels": 12.000041190732757
+          },
+          {
+            "text": "Companies329 people",
+            "left": 748.1096801757812,
+            "right": 812.9140625,
+            "top": 522.9507446289062,
+            "bottom": 553.3507690429688,
+            "pixels": 12.000041190732757
+          }
+        ],
+        "nodes": [
+          {
+            "side": "source",
+            "sector": "Academic",
+            "count": 20706
+          },
+          {
+            "side": "source",
+            "sector": "No listed affiliation",
+            "count": 3022
+          },
+          {
+            "side": "source",
+            "sector": "Other institutions",
+            "count": 2469
+          },
+          {
+            "side": "source",
+            "sector": "Industry",
+            "count": 296
+          },
+          {
+            "side": "target",
+            "sector": "Academic",
+            "count": 21136
+          },
+          {
+            "side": "target",
+            "sector": "No listed affiliation",
+            "count": 2428
+          },
+          {
+            "side": "target",
+            "sector": "Other institutions",
+            "count": 2600
+          },
+          {
+            "side": "target",
+            "sector": "Industry",
+            "count": 329
+          }
+        ],
+        "marks": [
+          {
+            "from": "Academic",
+            "to": "Academic",
+            "count": 18781,
+            "width": 223.92183951551857,
+            "same": "true"
+          },
+          {
+            "from": "Academic",
+            "to": "No listed affiliation",
+            "count": 1091,
+            "width": 13.007759273277822,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Other institutions",
+            "count": 740,
+            "width": 8.822861468584406,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Industry",
+            "count": 94,
+            "width": 1.120741862225587,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Academic",
+            "count": 1624,
+            "width": 19.362604087812265,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "No listed affiliation",
+            "count": 1132,
+            "width": 13.496593489780471,
+            "same": "true"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Other institutions",
+            "count": 243,
+            "width": 2.8972369417108257,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Industry",
+            "count": 23,
+            "width": 0.27422407267221804,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Academic",
+            "count": 688,
+            "width": 8.202876608629827,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "No listed affiliation",
+            "count": 156,
+            "width": 1.8599545798637398,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Other institutions",
+            "count": 1609,
+            "width": 19.183762301286905,
+            "same": "true"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Industry",
+            "count": 16,
+            "width": 0.1907645722937169,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Academic",
+            "count": 43,
+            "width": 0.5126797880393642,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "No listed affiliation",
+            "count": 49,
+            "width": 0.584216502649508,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Other institutions",
+            "count": 8,
+            "width": 0.09538228614685845,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Industry",
+            "count": 196,
+            "width": 2.336866010598032,
+            "same": "true"
+          }
+        ],
+        "inspector": "",
+        "subtitle": "First and latest observed paper affiliations for researchers first seen in brain\u2013computer interfaces/EEG or neural engineering in 2016\u20132025, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included."
+      },
+      "preview": {
+        "width": 597.078125,
+        "height": 240,
+        "marks": 16,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0.00299072265625,
+            "right": 79.0155029296875,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "No listedaffiliation3,022 people",
+            "left": 0.00299072265625,
+            "right": 71.81549072265625,
+            "top": 91.17745971679688,
+            "bottom": 135.97747802734375,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "Otherinstitutions2,469 people",
+            "left": 0.00299072265625,
+            "right": 71.81549072265625,
+            "top": 139.177490234375,
+            "bottom": 183.9774169921875,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0.00299072265625,
+            "right": 64.80743408203125,
+            "top": 194.37744140625,
+            "bottom": 224.7774658203125,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 473.68017578125,
+            "right": 552.69287109375,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "No listedaffiliation2,428 people",
+            "left": 473.68017578125,
+            "right": 545.49267578125,
+            "top": 91.79998779296875,
+            "bottom": 136.5999755859375,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "Otherinstitutions2,600 people",
+            "left": 473.68017578125,
+            "right": 545.49267578125,
+            "top": 139.79998779296875,
+            "bottom": 184.5999755859375,
+            "pixels": 12.000022561890065
+          },
+          {
+            "text": "Companies329 people",
+            "left": 473.68017578125,
+            "right": 538.484619140625,
+            "top": 195,
+            "bottom": 225.39996337890625,
+            "pixels": 12.000022561890065
+          }
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "full": {
+        "w": 390,
+        "client": 390,
+        "scroll": 390,
+        "width": 900,
+        "height": 580,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0,
+            "right": 79.01254272460938,
+            "top": 166.39999389648438,
+            "bottom": 196.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "No listed affiliation3,022 people",
+            "left": 0,
+            "right": 108.09375,
+            "top": 343.83660888671875,
+            "bottom": 374.236572265625,
+            "pixels": 12
+          },
+          {
+            "text": "Other institutions2,469 people",
+            "left": 0,
+            "right": 101.32559204101562,
+            "top": 419.83660888671875,
+            "bottom": 450.236572265625,
+            "pixels": 12
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0,
+            "right": 64.80445861816406,
+            "top": 495.83660888671875,
+            "bottom": 526.2366333007812,
+            "pixels": 12
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 714,
+            "right": 793.0125732421875,
+            "top": 166.39999389648438,
+            "bottom": 196.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "No listed affiliation2,428 people",
+            "left": 714,
+            "right": 822.09375,
+            "top": 346.4000244140625,
+            "bottom": 376.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "Other institutions2,600 people",
+            "left": 714,
+            "right": 815.3255615234375,
+            "top": 422.4000244140625,
+            "bottom": 452.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "Companies329 people",
+            "left": 714,
+            "right": 778.804443359375,
+            "top": 498.4000244140625,
+            "bottom": 528.7999877929688,
+            "pixels": 12
+          }
+        ],
+        "nodes": [
+          {
+            "side": "source",
+            "sector": "Academic",
+            "count": 20706
+          },
+          {
+            "side": "source",
+            "sector": "No listed affiliation",
+            "count": 3022
+          },
+          {
+            "side": "source",
+            "sector": "Other institutions",
+            "count": 2469
+          },
+          {
+            "side": "source",
+            "sector": "Industry",
+            "count": 296
+          },
+          {
+            "side": "target",
+            "sector": "Academic",
+            "count": 21136
+          },
+          {
+            "side": "target",
+            "sector": "No listed affiliation",
+            "count": 2428
+          },
+          {
+            "side": "target",
+            "sector": "Other institutions",
+            "count": 2600
+          },
+          {
+            "side": "target",
+            "sector": "Industry",
+            "count": 329
+          }
+        ],
+        "marks": [
+          {
+            "from": "Academic",
+            "to": "Academic",
+            "count": 18781,
+            "width": 223.92183951551857,
+            "same": "true"
+          },
+          {
+            "from": "Academic",
+            "to": "No listed affiliation",
+            "count": 1091,
+            "width": 13.007759273277822,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Other institutions",
+            "count": 740,
+            "width": 8.822861468584406,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Industry",
+            "count": 94,
+            "width": 1.120741862225587,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Academic",
+            "count": 1624,
+            "width": 19.362604087812265,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "No listed affiliation",
+            "count": 1132,
+            "width": 13.496593489780471,
+            "same": "true"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Other institutions",
+            "count": 243,
+            "width": 2.8972369417108257,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Industry",
+            "count": 23,
+            "width": 0.27422407267221804,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Academic",
+            "count": 688,
+            "width": 8.202876608629827,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "No listed affiliation",
+            "count": 156,
+            "width": 1.8599545798637398,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Other institutions",
+            "count": 1609,
+            "width": 19.183762301286905,
+            "same": "true"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Industry",
+            "count": 16,
+            "width": 0.1907645722937169,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Academic",
+            "count": 43,
+            "width": 0.5126797880393642,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "No listed affiliation",
+            "count": 49,
+            "width": 0.584216502649508,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Other institutions",
+            "count": 8,
+            "width": 0.09538228614685845,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Industry",
+            "count": 196,
+            "width": 2.336866010598032,
+            "same": "true"
+          }
+        ],
+        "inspector": "",
+        "subtitle": "First and latest observed paper affiliations for researchers first seen in brain\u2013computer interfaces/EEG or neural engineering in 2016\u20132025, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included."
+      },
+      "preview": {
+        "width": 480,
+        "height": 240,
+        "marks": 16,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0,
+            "right": 79.01254272460938,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "No listedaffiliation3,022 people",
+            "left": 0,
+            "right": 71.81248474121094,
+            "top": 91.17745971679688,
+            "bottom": 135.97747802734375,
+            "pixels": 12
+          },
+          {
+            "text": "Otherinstitutions2,469 people",
+            "left": 0,
+            "right": 71.81248474121094,
+            "top": 139.17745971679688,
+            "bottom": 183.97747802734375,
+            "pixels": 12
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0,
+            "right": 64.80445861816406,
+            "top": 194.37744140625,
+            "bottom": 224.7774658203125,
+            "pixels": 12
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 380.79998779296875,
+            "right": 459.8125,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "No listedaffiliation2,428 people",
+            "left": 380.79998779296875,
+            "right": 452.6124267578125,
+            "top": 91.79998779296875,
+            "bottom": 136.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "Otherinstitutions2,600 people",
+            "left": 380.79998779296875,
+            "right": 452.6124267578125,
+            "top": 139.79998779296875,
+            "bottom": 184.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "Companies329 people",
+            "left": 380.79998779296875,
+            "right": 445.6044921875,
+            "top": 195,
+            "bottom": 225.4000244140625,
+            "pixels": 12
+          }
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "full": {
+        "w": 320,
+        "client": 320,
+        "scroll": 320,
+        "width": 900,
+        "height": 580,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0,
+            "right": 79.01254272460938,
+            "top": 166.4000244140625,
+            "bottom": 196.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "No listed affiliation3,022 people",
+            "left": 0,
+            "right": 108.09375,
+            "top": 343.83660888671875,
+            "bottom": 374.236572265625,
+            "pixels": 12
+          },
+          {
+            "text": "Other institutions2,469 people",
+            "left": 0,
+            "right": 101.32559204101562,
+            "top": 419.83660888671875,
+            "bottom": 450.236572265625,
+            "pixels": 12
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0,
+            "right": 64.80445861816406,
+            "top": 495.83660888671875,
+            "bottom": 526.2366333007812,
+            "pixels": 12
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 714,
+            "right": 793.0125732421875,
+            "top": 166.4000244140625,
+            "bottom": 196.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "No listed affiliation2,428 people",
+            "left": 714,
+            "right": 822.09375,
+            "top": 346.4000244140625,
+            "bottom": 376.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "Other institutions2,600 people",
+            "left": 714,
+            "right": 815.3255615234375,
+            "top": 422.4000244140625,
+            "bottom": 452.79998779296875,
+            "pixels": 12
+          },
+          {
+            "text": "Companies329 people",
+            "left": 714,
+            "right": 778.804443359375,
+            "top": 498.4000244140625,
+            "bottom": 528.7999877929688,
+            "pixels": 12
+          }
+        ],
+        "nodes": [
+          {
+            "side": "source",
+            "sector": "Academic",
+            "count": 20706
+          },
+          {
+            "side": "source",
+            "sector": "No listed affiliation",
+            "count": 3022
+          },
+          {
+            "side": "source",
+            "sector": "Other institutions",
+            "count": 2469
+          },
+          {
+            "side": "source",
+            "sector": "Industry",
+            "count": 296
+          },
+          {
+            "side": "target",
+            "sector": "Academic",
+            "count": 21136
+          },
+          {
+            "side": "target",
+            "sector": "No listed affiliation",
+            "count": 2428
+          },
+          {
+            "side": "target",
+            "sector": "Other institutions",
+            "count": 2600
+          },
+          {
+            "side": "target",
+            "sector": "Industry",
+            "count": 329
+          }
+        ],
+        "marks": [
+          {
+            "from": "Academic",
+            "to": "Academic",
+            "count": 18781,
+            "width": 223.92183951551857,
+            "same": "true"
+          },
+          {
+            "from": "Academic",
+            "to": "No listed affiliation",
+            "count": 1091,
+            "width": 13.007759273277822,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Other institutions",
+            "count": 740,
+            "width": 8.822861468584406,
+            "same": "false"
+          },
+          {
+            "from": "Academic",
+            "to": "Industry",
+            "count": 94,
+            "width": 1.120741862225587,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Academic",
+            "count": 1624,
+            "width": 19.362604087812265,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "No listed affiliation",
+            "count": 1132,
+            "width": 13.496593489780471,
+            "same": "true"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Other institutions",
+            "count": 243,
+            "width": 2.8972369417108257,
+            "same": "false"
+          },
+          {
+            "from": "No listed affiliation",
+            "to": "Industry",
+            "count": 23,
+            "width": 0.27422407267221804,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Academic",
+            "count": 688,
+            "width": 8.202876608629827,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "No listed affiliation",
+            "count": 156,
+            "width": 1.8599545798637398,
+            "same": "false"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Other institutions",
+            "count": 1609,
+            "width": 19.183762301286905,
+            "same": "true"
+          },
+          {
+            "from": "Other institutions",
+            "to": "Industry",
+            "count": 16,
+            "width": 0.1907645722937169,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Academic",
+            "count": 43,
+            "width": 0.5126797880393642,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "No listed affiliation",
+            "count": 49,
+            "width": 0.584216502649508,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Other institutions",
+            "count": 8,
+            "width": 0.09538228614685845,
+            "same": "false"
+          },
+          {
+            "from": "Industry",
+            "to": "Industry",
+            "count": 196,
+            "width": 2.336866010598032,
+            "same": "true"
+          }
+        ],
+        "inspector": "",
+        "subtitle": "First and latest observed paper affiliations for researchers first seen in brain\u2013computer interfaces/EEG or neural engineering in 2016\u20132025, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included."
+      },
+      "preview": {
+        "width": 480,
+        "height": 240,
+        "marks": 16,
+        "labels": [
+          {
+            "text": "Universities20,706 people",
+            "left": 0,
+            "right": 79.01254272460938,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "No listedaffiliation3,022 people",
+            "left": 0,
+            "right": 71.81248474121094,
+            "top": 91.17745971679688,
+            "bottom": 135.97747802734375,
+            "pixels": 12
+          },
+          {
+            "text": "Otherinstitutions2,469 people",
+            "left": 0,
+            "right": 71.81248474121094,
+            "top": 139.17745971679688,
+            "bottom": 183.97747802734375,
+            "pixels": 12
+          },
+          {
+            "text": "Companies296 people",
+            "left": 0,
+            "right": 64.80445861816406,
+            "top": 194.37744140625,
+            "bottom": 224.7774658203125,
+            "pixels": 12
+          },
+          {
+            "text": "Universities21,136 people",
+            "left": 380.79998779296875,
+            "right": 459.8125,
+            "top": 40.20001220703125,
+            "bottom": 70.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "No listedaffiliation2,428 people",
+            "left": 380.79998779296875,
+            "right": 452.6124267578125,
+            "top": 91.79998779296875,
+            "bottom": 136.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "Otherinstitutions2,600 people",
+            "left": 380.79998779296875,
+            "right": 452.6124267578125,
+            "top": 139.79998779296875,
+            "bottom": 184.60000610351562,
+            "pixels": 12
+          },
+          {
+            "text": "Companies329 people",
+            "left": 380.79998779296875,
+            "right": 445.6044921875,
+            "top": 195,
+            "bottom": 225.4000244140625,
+            "pixels": 12
+          }
+        ]
+      }
+    }
+  ]
+}

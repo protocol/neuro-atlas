@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { PublicationCharts, publicationExportNotes } from '../src/components/publication-charts.tsx';
 import { parsePublicationSnapshot, selectPublicationCharts } from '../src/lib/publication-data.ts';
-import { syntheticPublicationSnapshot, syntheticMatchedGrowth, fixtureOptions } from './fixtures/publication-synthetic.mjs';
+import { syntheticPublicationSnapshot, syntheticPublicationEndpointSnapshot, syntheticMatchedGrowth, fixtureOptions } from './fixtures/publication-synthetic.mjs';
 import { mount, click } from './modal-helpers.mjs';
 globalThis.React=React;
-const fixture=()=>({...syntheticPublicationSnapshot(),matchedGrowth:syntheticMatchedGrowth()});
+const fixture=()=>({...syntheticPublicationEndpointSnapshot(),matchedGrowth:syntheticMatchedGrowth()});
 const chart=s=>React.createElement(PublicationCharts,{snapshot:s,allowTestFixture:true});
 
 const chooseBaseline=async(modal,value)=>act(async()=>{
@@ -372,12 +372,12 @@ for(const [index,anchor] of ['publication-output','publication-growth','research
   const inspector=modal.querySelector('[data-publication-inspector]');assert.equal(inspector.textContent,'');
   assert.deepEqual([...modal.querySelector('[data-chart-actions]').querySelectorAll('button')].map(b=>b.textContent),['Copy link','Copy chart','Download PNG']);
   const svg=modal.querySelector('.publication-full-plot svg');
-  assert.equal(svg.querySelectorAll('[data-publication-mark]').length,[20,21,104,6][index]);
+  assert.equal(svg.querySelectorAll('[data-publication-mark]').length,[20,21,104,15][index]);
   const image=buildChartImage({svg,title:'Synthetic primary export',anchor,notes:publicationExportNotes(index,parsed,selectPublicationCharts(parsed))},'https://atlas.example/field-velocity?token=excluded');
   assert.match(image.svg,/2026-11-06/);assert.match(image.svg,/2025-12-31/);
   assert.doesNotMatch(image.svg,/token=excluded|Artio|bioRxiv|2026-10-14|Model synthetic/i);
   if(index===1){const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');const text=[...exported.querySelectorAll('text')].map(node=>node.textContent).join(' ');assert.match(text,/OpenAlex work ID/);assert.match(text,/N = P2 two-topic whole-work involvement/);assert.match(text,/Asia: N \(P2\) 10/);assert.match(text,/author-fractional works/);}
-  if(index===3){assert.match(image.svg,/first and latest publication affiliations in different sectors/i);assert.match(image.svg,/2016/);}
+  if(index===3){assert.match(image.svg,/first and latest observed paper affiliations/i);assert.match(image.svg,/2016/);}
   const first=svg.querySelector('[data-publication-mark][tabindex="0"]');
   await act(async()=>first.dispatchEvent(new window.MouseEvent('mouseover',{bubbles:true})));
   assert.equal(inspector.textContent,'','Stationary appearance does not preselect');

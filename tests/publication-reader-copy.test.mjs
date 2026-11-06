@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { PublicationCharts, publicationExportNotes } from '../src/components/publication-charts.tsx';
 import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS, PUBLICATION_GROWTH_GROUPS } from '../src/lib/publication-data.ts';
-import { syntheticPublicationSnapshot, syntheticMatchedGrowth, fixtureOptions } from './fixtures/publication-synthetic.mjs';
+import { syntheticPublicationSnapshot, syntheticPublicationEndpointSnapshot, syntheticMatchedGrowth, fixtureOptions } from './fixtures/publication-synthetic.mjs';
 import { mount } from './modal-helpers.mjs';
 
 globalThis.React = React;
@@ -37,7 +37,7 @@ test('publication previews state readable corpus scopes before technical provena
     assert.match(scopes[0], /2010–2025.*wider neurotech corpus.*2026-11-05/i);
     assert.match(scopes[1], /2022–2025.*wider corpus and two-topic output/i);
     assert.match(scopes[2], /2025.*two-topic researcher cohort.*2026-11-06/i);
-    assert.match(scopes[3], /two-topic.*2016–2025/i);
+    assert.match(scopes[3], /first.*latest paper affiliations.*first observed 2016–2025/i);
     for (const scope of scopes) assert.doesNotMatch(scope, /\bNT10\b|\bP2\b/, 'Explain corpus codes in methodology, not preview labels');
     assert.equal(document.querySelectorAll('.publication-preview [data-growth-row]').length, 21);
   } finally { await cleanup(); }
@@ -96,8 +96,8 @@ test('growth inspection names its cohort while provenance retains exact source m
   } finally { await cleanup(); }
 });
 
-test('sector-change copy identifies the two-topic cohort and within-origin denominator in preview, detail and export', async () => {
-  const snapshot = syntheticPublicationSnapshot();
+test('complete affiliation copy preserves topic scope, full-origin denominator and source payload', async () => {
+  const snapshot = syntheticPublicationEndpointSnapshot();
   const parsed = parsePublicationSnapshot(snapshot, fixtureOptions);
   const data = selectPublicationCharts(parsed);
   const cleanup = await mount(React.createElement(PublicationCharts, { snapshot, allowTestFixture: true }), '#researcher-sector-changes');
@@ -106,21 +106,24 @@ test('sector-change copy identifies the two-topic cohort and within-origin denom
     const modal = document.querySelector('dialog[open]');
     const detail = modal.querySelector('[data-change-subtitle]').textContent;
     const notes = publicationExportNotes(3, parsed, data).join(' ');
-    for (const text of [preview, detail, notes]) {
-      assert.match(text, /two-topic/i, 'Name the measured cohort without an unexplained code');
-      assert.match(text, /2016–2025/);
-      assert.match(text, /first.*latest.*publication affiliation/i);
-      assert.match(text, /shares.*starting sector.*changers/i, 'The share denominator is each origin’s different-sector cohort');
-      assert.doesNotMatch(text, /employment transitions are unverified/i);
-    }
-    assert.match(modal.querySelector('.pc-methodology').textContent, /T10429 and T11601/, 'Retain the exact topic definition');
-    assert.match(modal.textContent, /all four origins and twelve different-sector cells/);
+    for (const text of [preview, detail, notes]) assert.match(text, /2016–2025/);
+    assert.match(preview, /first.*latest paper affiliations/i);
+    assert.match(detail, /brain–computer interfaces\/EEG or neural engineering/);
+    assert.match(detail, /two active publication years.*widths show people.*same-sector/i);
+    assert.match(notes, /two-topic cohort \(P2\).*T10429 and T11601/i);
+    assert.match(notes, /one shared people-count scale.*all four origin and destination sectors/i);
+    assert.match(notes, /same-sector ribbons.*intervening changes are not measured/i);
+    assert.doesNotMatch(notes, /starting sector.*changers|employment transitions are unverified/i);
+    const first = modal.querySelector('[data-publication-mark]');
+    assert.match(first.getAttribute('aria-label'), /starting sector’s cohort/);
+    assert.match(modal.querySelector('.pc-methodology').textContent, /T10429 and T11601/);
+    assert.match(modal.textContent, /complete sixteen-cell endpoint cohort/);
     assert.match(modal.textContent, /distinct active years/);
     const download = JSON.parse(decodeURIComponent(modal.querySelector('a[download$="-source.json"]').href.split(',')[1]));
     assert.deepEqual(download, {
       chart: 'researcher-sector-changes', snapshotSchemaVersion: snapshot.schemaVersion,
-      source: snapshot.source, tables: { nt_talent_moves: snapshot.tables.nt_talent_moves }, audit: snapshot.audit,
-    }, 'Editorial changes preserve the complete source-download payload');
+      source: snapshot.source, tables: { nt_talent_moves: snapshot.tables.nt_talent_moves, nt_talent_endpoints: snapshot.tables.nt_talent_endpoints }, audit: snapshot.audit,
+    });
   } finally { await cleanup(); }
 });
 

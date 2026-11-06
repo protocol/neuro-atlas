@@ -10,7 +10,7 @@
     "paperEndYear": 2025,
     "authorEndYear": 2025,
     "methodologyVersion": "atlas-primary-publications-v1",
-    "methodSha256": "e6eb6815d000fe75e05e9995548d6ecc7ad26ff49f4b87953a39b1dac53ef679",
+    "methodSha256": "4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9",
     "sourceHash": "b3674078d0813a9958babae42dc4e5f23fc5655920a0239258e4ac2aa5b52303",
     "testOnly": false,
     "corpus": "core",
@@ -824,6 +824,60 @@
           23,
           243,
           null
+        ]
+      ]
+    },
+    "nt_talent_endpoints": {
+      "columns": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to0",
+          "type": "number"
+        },
+        {
+          "name": "to1",
+          "type": "number"
+        },
+        {
+          "name": "to2",
+          "type": "number"
+        },
+        {
+          "name": "to3",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "Academic",
+          18781,
+          94,
+          740,
+          1091
+        ],
+        [
+          "Industry",
+          43,
+          196,
+          8,
+          49
+        ],
+        [
+          "Other institutions",
+          688,
+          16,
+          1609,
+          156
+        ],
+        [
+          "No listed affiliation",
+          1624,
+          23,
+          243,
+          1132
         ]
       ]
     }
@@ -5569,7 +5623,16 @@
       }
     ],
     "baselineStatus": "primary-four-domain-context",
-    "matchedBaselineStatus": "partial-primary-matched-inventory"
+    "matchedBaselineStatus": "partial-primary-matched-inventory",
+    "affiliationEndpointCohort": {
+      "methodId": "atlas-publication-affiliation-endpoints-v1",
+      "firstYearMin": 2016,
+      "lastYearMax": 2025,
+      "minActiveYears": 2,
+      "eligibleAuthors": 26493,
+      "sameSectorAuthors": 21718,
+      "changedSectorAuthors": 4775
+    }
   },
   "matchedGrowth": {
     "schemaVersion": 1,

@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { PublicationCharts } from '../src/components/publication-charts.tsx';
-import { syntheticPublicationSnapshot, syntheticMatchedGrowth } from './fixtures/publication-synthetic.mjs';
+import { syntheticPublicationEndpointSnapshot, syntheticMatchedGrowth } from './fixtures/publication-synthetic.mjs';
 import { mount } from './modal-helpers.mjs';
 globalThis.React = React;
-const fixture = () => ({ ...syntheticPublicationSnapshot(), matchedGrowth: syntheticMatchedGrowth() });
+const fixture = () => ({ ...syntheticPublicationEndpointSnapshot(), matchedGrowth: syntheticMatchedGrowth() });
 for (const anchor of ['publication-output', 'publication-growth', 'researcher-sectors', 'researcher-sector-changes']) test(`${anchor}: expanded chart labels stay 12 CSS px across rendered scales`, async () => {
   const prior = globalThis.ResizeObserver;
   const observers = [];

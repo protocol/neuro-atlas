@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { PublicationCharts } from '../src/components/publication-charts.tsx';
-import { syntheticPublicationSnapshot, syntheticMatchedGrowth } from './fixtures/publication-synthetic.mjs';
+import { syntheticPublicationEndpointSnapshot, syntheticMatchedGrowth } from './fixtures/publication-synthetic.mjs';
 import { mount } from './modal-helpers.mjs';
 globalThis.React = React;
 for (const anchor of ['publication-output','publication-growth','researcher-sectors','researcher-sector-changes']) test(`${anchor}: source values float beside a selected mark, without a below-chart placeholder`, async () => {
- const cleanup = await mount(React.createElement(PublicationCharts, {snapshot:{...syntheticPublicationSnapshot(),matchedGrowth:syntheticMatchedGrowth()},allowTestFixture:true}), `#${anchor}`);
+ const cleanup = await mount(React.createElement(PublicationCharts, {snapshot:{...syntheticPublicationEndpointSnapshot(),matchedGrowth:syntheticMatchedGrowth()},allowTestFixture:true}), `#${anchor}`);
  try {
   const modal = document.querySelector('dialog');
   assert.ok(!modal.querySelector('.pc-point-readout'), 'Gray below-chart panel is retired');
