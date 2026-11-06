@@ -6,6 +6,7 @@ import { DraftChartsSection } from '../src/components/sections/draft-charts-sect
 
 // Only browser raster/clipboard boundaries are fixtures. Real components, SVG
 // geometry, export serialization and MIME payload construction run unchanged.
+const exportEvidence = doc => (doc.querySelector('svg > desc')?.textContent ?? '').replace(/\s+/g, ' ');
 const pngBytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQAAAABJRU5ErkJggg==', 'base64');
 function browserBoundaries(win, { rejectWrite = false, unsupported = false } = {}) {
   const writes = [], svgs = [], downloads = [], objects = new Map();
@@ -227,7 +228,7 @@ test('multi-panel definitions render separate tiles with one unambiguous panel c
   } finally { await cleanup(); }
 });
 
-test('all 14 visible curated panels export their exact mark geometry and scientific scope, not a neighboring panel', async () => {
+test('all 14 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
@@ -248,7 +249,9 @@ test('all 14 visible curated panels export their exact mark geometry and scienti
       const text = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ');
       assert.ok(text.includes(panel.querySelector('figcaption').textContent), panel.id);
       const scope = panel.querySelector('.draft-plot-scope').textContent.replace(/\s+/g, ' ');
-      assert.ok(text.includes(scope), `Scope retained: ${panel.id}`);
+      assert.ok(exportEvidence(out.window.document).includes(scope), `Source evidence retained: ${panel.id}`);
+      assert.ok(!text.includes(scope), `Long scope is not painted into the image: ${panel.id}`);
+      assert.ok(text.includes('More information on Neuro Atlas.'), panel.id);
       out.window.close();
     }
   } finally { await cleanup(); boundary.restore(); }
@@ -281,14 +284,16 @@ test('filtered performance export retains the selected track definition and ever
     const { JSDOM } = await import('jsdom');
     const out = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
     const text = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ');
-    assert.ok(text.includes(definition), 'Selected track definition must survive standalone export');
+    assert.ok(exportEvidence(out.window.document).includes(definition), 'Selected track evidence remains nonvisual and available on Atlas');
+    assert.ok(!text.includes(definition));
+    assert.ok(text.includes('More information on Neuro Atlas.'));
     assert.deepEqual([...out.window.document.querySelectorAll('[data-curve-point]')].map(p => p.getAttribute('data-curve-point')), [...modal.querySelectorAll('[data-curve-point]')].map(p => p.dataset.curvePoint));
     out.window.close();
   } finally { await cleanup(); boundary.restore(); }
 });
 
 
-test('curated exports visibly preserve every source-qualified value with its observation identity', async () => {
+test('curated exports keep source-qualified evidence and identity without adding visible notes', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
@@ -304,11 +309,11 @@ test('curated exports visibly preserve every source-qualified value with its obs
       if (!rows.length) continue;
       await click(button);
       const exported = new JSDOM(boundary.svgs.at(-1), { contentType: 'image/svg+xml' });
-      const visible = [...exported.window.document.querySelectorAll('text')].map(e => e.textContent).join(' ').replace(/\s+/g, ' ');
+      const evidence = exportEvidence(exported.window.document);
       for (const row of rows) {
         const label = row.querySelector('th').firstChild.textContent;
         const qualified = row.querySelectorAll('td')[1].textContent;
-        assert.ok(visible.includes(`${label}: ${qualified}`), `${panel.id}: missing visible association ${label}: ${qualified}`);
+        assert.ok(evidence.includes(`${label}: ${qualified}`), `${panel.id}: missing source association ${label}: ${qualified}`);
         qualifiedCount++;
       }
       exported.window.close();
@@ -317,7 +322,7 @@ test('curated exports visibly preserve every source-qualified value with its obs
   } finally { await cleanup(); boundary.restore(); }
 });
 
-test('filtered POYO reference export visibly retains More than 100 hours without hidden accessibility metadata', async () => {
+test('filtered POYO image keeps its selected point and nonvisual lower-bound evidence with a clean referral', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance }), '#neural-recording-hours', win => { boundary = browserBoundaries(win); });
@@ -331,7 +336,8 @@ test('filtered POYO reference export visibly retains More than 100 hours without
     await click(modal.querySelector('[data-copy-chart]'));
     const exported=new JSDOM(boundary.svgs.at(-1), {contentType:'image/svg+xml'});
     const visible=[...exported.window.document.querySelectorAll('text')].map(e=>e.textContent).join(' ');
-    assert.match(visible,/POYO[^;]*More than 100 hours/);
+    assert.match(exportEvidence(exported.window.document),/POYO[^;]*More than 100 hours/);
+    assert.ok(visible.includes('More information on Neuro Atlas.'));
     assert.equal(exported.window.document.querySelectorAll('[data-curve-point]').length,1);
     exported.window.close();
   } finally { await cleanup(); boundary.restore(); }
@@ -355,18 +361,14 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     const doc = exported.window.document;
     assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
-    const text = [...doc.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
+    const text = exportEvidence(doc);
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
     for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Unconnected observations']) assert.ok(text.includes(phrase), phrase);
     for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
-    const keyed = [...doc.querySelectorAll('[data-export-note]')].filter(note => note.querySelector('[data-export-note-key]'));
-    const plot = METRIC_CHART_EVIDENCE['Neural recording hours collected over time'].plots[0];
-    assert.equal(keyed.length, 5, 'Each dataset explanation is a separate footnote paragraph');
-    assert.deepEqual(keyed.map(note => note.querySelector('[data-export-note-key]').getAttribute('fill')), plot.legend.map(entry => entry.color));
-    for (let i = 0; i < keyed.length; i++) {
-      assert.ok([...keyed[i].querySelectorAll('text')].map(node => node.textContent).join(' ').startsWith(plot.legend[i].label + ':'), 'Color key retains its actual dataset identity');
-      for (const node of keyed[i].querySelectorAll('text')) assert.deepEqual([node.getAttribute('font-size'), node.getAttribute('fill')], ['14', '#667085']);
-    }
+    assert.equal(doc.querySelectorAll('[data-export-note], [data-export-footnotes]').length, 0);
+    const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
+    assert.ok(visible.includes('More information on Neuro Atlas.'));
+    assert.equal(card.querySelectorAll('[data-chart-note]').length, 5, 'On-site dataset notes are unchanged');
     assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
     exported.window.close();
   } finally { await cleanup(); boundary.restore(); }
@@ -390,7 +392,7 @@ test('NeuroAI clipboard export uses the corrected performance–cost title with 
 
 import {METRIC_CHART_EVIDENCE} from '../src/data/metric-chart-visibility.ts';
 import {DraftChartPlot} from '../src/components/draft-chart-plot.tsx';
-test('actual public-data PNG payload retains measurement date, existing specimen and encoded-product scope', async () => {
+test('public-data export keeps plotted units and source evidence without painting long notes', async () => {
  globalThis.React=React;let boundary;
  const plot=Object.values(METRIC_CHART_EVIDENCE).flatMap(e=>e.plots).find(p=>p.id==='public-data-size');
  const cleanup=await mount(React.createElement(DraftChartPlot,{plot,shareAnchor:'metric-panel-public-data-size'}),'',win=>{boundary=browserBoundaries(win)});
@@ -398,7 +400,8 @@ test('actual public-data PNG payload retains measurement date, existing specimen
   await click(document.querySelector('[data-download-chart]'));
   assert.equal(boundary.downloads.length,1);
   const {JSDOM}=await import('jsdom');const doc=new JSDOM(boundary.svgs[0],{contentType:'image/svg+xml'});const text=[...doc.window.document.querySelectorAll('text')].map(e=>e.children.length?[...e.children].map(line=>line.textContent).join(' '):e.textContent).join('\n').replace(/\s+/g,' ');
-  for(const required of [/2026-11-03/,/initial release October 2025/,/same specimen/i,/11 JPEG image resolution levels/,/50,910,260,068,834/,/N5.*segmentation.*meshes.*tables.*excluded/])assert.match(text,required);
+  for(const required of [/2026-11-03/,/initial release October 2025/,/same specimen/i,/11 JPEG image resolution levels/,/50,910,260,068,834/,/N5.*segmentation.*meshes.*tables.*excluded/])assert.match(exportEvidence(doc.window.document),required);
+  assert.ok(text.includes('More information on Neuro Atlas.'));assert.ok(!text.includes('11 JPEG image resolution levels'));
   assert.match(text,/Resource size \(PB\)/);assert.doesNotMatch(text,/decimal PB/);assert.equal(doc.window.document.querySelectorAll('[data-source-observation]').length,6);doc.window.close();
  }finally{await cleanup();boundary.restore()}
 });
@@ -431,16 +434,16 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
       assert.deepEqual(geometry(out.window.document), expected);
       const visible = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
       assert.ok(visible.includes(view.label));
-      assert.match(visible, /2026-11-04/);
-      assert.ok(visible.includes(view.description), 'Raster retains the selected measurement scope and quality/sampling qualification');
       const evidence = out.window.document.querySelector('desc')?.textContent ?? '';
+      assert.match(evidence, /2026-11-04/);
+      assert.ok(evidence.includes(view.description), 'Source scope remains available in evidence and on the site');
+      assert.ok(!visible.includes(view.description), 'The copied image no longer paints methodology footnotes');
+      assert.ok(visible.includes('More information on Neuro Atlas.'));
       for (const p of view.points) {
-        assert.ok(visible.includes(p.preparation.split(' · ')[0]), 'Preparation/species remains in the concise raster caption');
-        assert.ok(visible.includes(p.unit), p.unit);
-        assert.ok(visible.includes(p.date) && visible.includes(`(${p.dateBasis})`), 'Exact displayed source date and its basis remain visible');
-        assert.ok(visible.includes(p.sourceLabel), 'Readable primary-source citation stays on the raster');
-        // The editorial raster does not repeat the full methods/archive prose.
-        // Preserve it intact in the inert SVG evidence and the validated chart link.
+        assert.ok(evidence.includes(p.unit), p.unit);
+        assert.ok(evidence.includes(p.dateBasis), 'Date basis stays in evidence and linked source details');
+        assert.ok(evidence.includes(p.sourceLabel));
+        // Long methods and citations stay on the linked chart, not the PNG.
         for (const original of [p.preparation, p.sourceUrl, p.note, `${p.datePrecision} precision, ${p.dateBasis}`]) assert.ok(evidence.includes(original), original);
       }
       assert.equal(out.window.document.querySelector('[role=status], [data-extrapolation-line], polyline'), null);

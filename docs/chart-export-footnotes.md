@@ -1,4 +1,20 @@
-# Crop-friendly chart footnotes
+# Chart export information footer
+
+## Current behavior — supersedes the crop-off-note layout
+
+The shared Copy chart / Download PNG image contains the title, plotted data and
+legend, official PL R&D branding, the line **“More information on Neuro Atlas.”**,
+and the existing direct chart link. Long supporting notes and legacy caption
+notes are no longer painted into the image. Every chart uses this same path.
+
+Source notes and dataset explanations remain unchanged on the site, with their
+paragraph/legend-key separation. The intermediate inert SVG may retain source
+notes in nonvisual `<desc>` evidence; the native raster PNG and clipboard image
+contain no footnote block. Chart units, plotted annotations/qualifiers, exact
+geometry, selected state, legend, URL sanitization and clipboard formats stay
+unchanged. This request does not authorize merge or deployment.
+
+## Historical layout — PR91 (superseded for images)
 
 Follow-up to PR90, using the owner's Nov. 6 supplied recording-hours reference.
 

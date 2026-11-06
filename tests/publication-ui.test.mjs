@@ -331,8 +331,10 @@ test('native growth exports snapshot the selected baseline with one self-contain
    for(const label of ['Above baseline','Within','Below'])assert.equal([...exported.querySelectorAll('text')].filter(text=>text.textContent===label).length,1);
    assert.equal([...exported.documentElement.children].filter(node=>['circle','line'].includes(node.localName)).length,0,'No second appended legend');
    const text=[...exported.querySelectorAll('text')].map(node=>node.textContent).join(' ');
-   assert.match(text,new RegExp(`Selected comparison baseline: ${baseline==='science'?'General science':'Matched to each group'}`));
-   assert.match(text,/OpenAlex work ID/);assert.match(text,/P2 two-topic whole-work involvement/);assert.match(text,/author-fractional works/);
+   const evidence=exported.querySelector('svg > desc').textContent;
+   assert.match(evidence,new RegExp(`Selected comparison baseline: ${baseline==='science'?'General science':'Matched to each group'}`));
+   assert.match(evidence,/OpenAlex work ID/);assert.match(evidence,/P2 two-topic whole-work involvement/);assert.match(evidence,/author-fractional works/);
+   assert.match(text,/More information on Neuro Atlas\./);assert.doesNotMatch(text,/Selected comparison baseline:|OpenAlex work ID/);
    assert.doesNotMatch(image,/outlined diamond|Optional alternatives/);
    if(baseline==='matched') {
     assert.match(plot.textContent,/Baseline unavailable/);assert.match(plot.textContent,/Category baseline/);
@@ -376,7 +378,7 @@ for(const [index,anchor] of ['publication-output','publication-growth','research
   const image=buildChartImage({svg,title:'Synthetic primary export',anchor,notes:publicationExportNotes(index,parsed,selectPublicationCharts(parsed))},'https://atlas.example/field-velocity?token=excluded');
   assert.match(image.svg,/2026-11-06/);assert.match(image.svg,/2025-12-31/);
   assert.doesNotMatch(image.svg,/token=excluded|Artio|bioRxiv|2026-10-14|Model synthetic/i);
-  if(index===1){const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');const text=[...exported.querySelectorAll('text')].map(node=>node.textContent).join(' ');assert.match(text,/OpenAlex work ID/);assert.match(text,/N = P2 two-topic whole-work involvement/);assert.match(text,/Asia: N \(P2\) 10/);assert.match(text,/author-fractional works/);}
+  if(index===1){const exported=new window.DOMParser().parseFromString(image.svg,'image/svg+xml');const evidence=exported.querySelector('svg > desc').textContent;assert.match(evidence,/OpenAlex work ID/);assert.match(evidence,/N = P2 two-topic whole-work involvement/);assert.match(evidence,/Asia: N \(P2\) 10/);assert.match(evidence,/author-fractional works/);assert.match(exported.querySelector('[data-export-info]').textContent,/More information on Neuro Atlas\./);}
   if(index===3){assert.match(image.svg,/first and latest observed paper affiliations/i);assert.match(image.svg,/2016/);}
   const first=svg.querySelector('[data-publication-mark][tabindex="0"]');
   await act(async()=>first.dispatchEvent(new window.MouseEvent('mouseover',{bubbles:true})));
