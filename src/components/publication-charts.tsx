@@ -30,7 +30,7 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const { ref, fontSize: previewFont } = usePreviewFont(840, !!compact);
   const fontSize = compact ? previewFont : 13;
-  const left = compact ? fontSize * 4 : 80, right = compact ? 840 - fontSize * 2.2 : 760, top = fontSize * 3.2, bottom = compact ? top + fontSize * 9 : 280;
+  const left = compact ? fontSize * 4 : 80, right = compact ? 840 - fontSize * 2.2 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? top + fontSize * 9 : 280;
   const anchor = data.annual.find(row => row.year === 2022)!.papers;
   const hasScience = annualScienceAvailable(data);
   const max = Math.max(1, ...data.annual.map(row => row.papers), ...(hasScience ? data.baseline.flatMap(row => [row.all, row.high]) : []));
@@ -264,7 +264,7 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
     <div data-metric-card-body>
       <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span><span className="pc-coverage">{index===3?changesSubtitle(data):scope(index,snapshot)}</span></button>
       <div className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact/></button></div>
-      {index===0&&<p className="publication-preview-note">{hasScience?"Neurotech papers · science index (2022 = 100)":data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
+      {index===0&&<p className="publication-preview-note publication-preview-legend" data-annual-preview-key={hasScience?"":undefined}>{hasScience?<><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span><span data-series-key="all-research" style={{color:teal}}>● All research</span><span data-series-key="four-domain"><span aria-hidden="true" style={{color:gray}}>■</span> Four-domain range</span></>:data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
       {index===1&&<p className="publication-preview-note">● Neurotech · ◇ same-category research · 21 groups; scroll for all</p>}
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}
     </div>

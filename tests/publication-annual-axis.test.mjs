@@ -57,7 +57,7 @@ test('preview, modal and image export label absolute papers versus science-index
     assert.match(legend, /four-domain.*index/i);
     assert.match(legend, /2022 = 100/);
     const preview = document.querySelector('.publication-preview-0 + .publication-preview-note').textContent;
-    assert.match(preview, /papers.*index.*2022 = 100/i);
+    assert.match(preview, /Neurotech.*All research.*Four-domain range/i);
     const notes = publicationExportNotes(0, parsed, selectPublicationCharts(parsed));
     const image = buildChartImage({ svg: annualSvg(), title: 'Annual test', anchor: 'publication-output', notes }, window.location.href);
     assert.match(image.svg, /Neurotech papers/);
@@ -89,6 +89,7 @@ test('annual preview fits its card with readable axes while the enlarged plot sc
     assert.ok(parseFloat(annualSvg().style.fontSize) >= 13);
     const grids=[...svg.querySelectorAll('line')];
     assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*157/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
+    assert.ok(+grids[4].getAttribute('y1')/parseFloat(svg.style.fontSize)>=4.4-1e-9, 'Top index tick clears the second heading line');
     assert.equal(+svg.querySelector('[data-annual-axis="neurotech"]').getAttribute('x'),0);
     assert.equal(+svg.querySelector('[data-annual-axis="science"]').getAttribute('x'),width);
     assert.ok(svg.querySelector('[data-annual-anchor] text').textContent.length <= 28, 'Compact anchor text fits at readable font sizes');

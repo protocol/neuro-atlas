@@ -13,6 +13,8 @@
 .publication-preview-3 .publication-preview-trigger { min-width: 320px; }
 .publication-preview-3 svg { min-width: 0; }
 .publication-preview-note { margin: .7rem 1.25rem 1rem; font-size: .7rem; color: var(--muted); line-height: 1.6; }
+.publication-preview-legend { display: flex; flex-wrap: wrap; gap: .15rem .6rem; }
+.publication-preview-legend > span { white-space: nowrap; }
 .publication-preview-sectors { margin: .65rem 1.25rem 1rem; font-size: .7rem; line-height: 1.6; display: grid; gap: .25rem; }
 .publication-preview-sectors li { display: flex; align-items: baseline; gap: .4rem; }
 .publication-preview-sectors li > span { width: .55rem; height: .55rem; flex: 0 0 auto; border-radius: 2px; }
