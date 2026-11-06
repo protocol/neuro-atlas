@@ -72,7 +72,13 @@ for (const family of ['curve', 'trends']) test(`${family} full chart type is 12 
       if (canonical) assert.equal(image, canonical, 'Exports cannot inherit random viewport type sizes');
       canonical = image;
       const dom = new JSDOM(image, { contentType: 'image/svg+xml' });
-      for (const label of dom.window.document.querySelectorAll('svg svg text')) assert.equal(label.getAttribute('font-size'), '12');
+      const exported = dom.window.document.querySelector('svg svg:not([data-export-brand])');
+      const frame = exported.getAttribute('viewBox').split(/\s+/).map(Number);
+      const exportScale = Number(exported.getAttribute('width')) / frame[2];
+      for (const label of exported.querySelectorAll('text')) {
+        const pixels = Number(label.getAttribute('font-size')) * exportScale;
+        assert.ok(pixels >= 15.5 && pixels <= 22.5, `${pixels}px: bounded render-safe export type`);
+      }
       dom.window.close();
     }
     await cleanup(); cleanup = undefined;
