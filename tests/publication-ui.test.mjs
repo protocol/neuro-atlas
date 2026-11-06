@@ -69,6 +69,22 @@ test('growth selects one baseline per group without a second numerator or silent
  } finally {await cleanup();}
 });
 
+test('changing the comparison baseline clears stale selected-baseline inspection for matched and unavailable rows',async()=>{
+ const cleanup=await mount(chart(fixture()),'#publication-growth');
+ try {
+  const modal=document.querySelector('dialog'),readout=modal.querySelector('[data-publication-inspector]');
+  for(const id of ['asia','early']) {
+   for(const [from,to] of [['science','matched'],['matched','science']]) {
+    await chooseBaseline(modal,from);
+    await act(async()=>modal.querySelector(`[data-growth-row="${id}"]`).dispatchEvent(new window.MouseEvent('click',{bubbles:true})));
+    assert.ok(readout.textContent.length>0,'Inspect a real mark first');
+    await chooseBaseline(modal,to);
+    assert.equal(readout.textContent,'','A changed baseline requires a fresh, correctly qualified inspection');
+   }
+  }
+ } finally {await cleanup();}
+});
+
 test('current snapshot keeps exact values, source-derived order and reference BCI count labels',async()=>{
  const {readFileSync}=await import('node:fs');
  const s=JSON.parse(readFileSync(new URL('../src/data/publications/publication-charts.snapshot.json',import.meta.url),'utf8'));
@@ -164,6 +180,32 @@ test('growth follows reference colors, section geometry, direct benchmark annota
   const method=[...svg.querySelectorAll('[data-growth-row]')].slice(0,4);
   assert.equal(Number(method[1].querySelector('circle').getAttribute('cy'))-Number(method[0].querySelector('circle').getAttribute('cy')),32);
  }finally{await cleanup();}
+});
+
+test('thin horizontal rules separate the seven growth sections in preview, both baseline modes and export',async()=>{
+ const cleanup=await mount(chart(fixture()),'#publication-growth');
+ try {
+  for(const mode of ['science','matched']) {
+   await chooseBaseline(document.querySelector('dialog'),mode);
+   for(const svg of [document.querySelector('dialog [data-growth-export]'),document.querySelector('[data-publication-card="publication-growth"] .publication-preview svg')]) {
+    const sections=[...svg.querySelectorAll('[data-growth-section]')];
+    const rules=[...svg.querySelectorAll('[data-growth-section-separator]')];
+    assert.equal(rules.length,6,'One separator between adjacent sections, no extra top rule');
+    for(const [index,rule] of rules.entries()) {
+     assert.equal(rule.getAttribute('y1'),rule.getAttribute('y2'));
+     assert.equal(rule.getAttribute('stroke'),'var(--border)');
+     assert.ok(Number(rule.getAttribute('stroke-width'))<=1);
+     assert.equal(rule.getAttribute('vector-effect'),'non-scaling-stroke');
+     assert.equal(rule.getAttribute('aria-hidden'),'true');
+     assert.ok(Number(rule.getAttribute('x1'))<20);
+     assert.ok(Number(rule.getAttribute('x2'))>Number(svg.getAttribute('viewBox').split(' ')[2])*.95);
+     assert.ok(Number(rule.getAttribute('y1'))<Number(sections[index+1].getAttribute('y')));
+     const precedingDots=[...sections[index].parentElement.querySelectorAll('[data-growth-series="neurotech"]')];
+     assert.ok(Number(rule.getAttribute('y1'))>Math.max(...precedingDots.map(dot=>Number(dot.getAttribute('cy')))));
+    }
+   }
+  }
+ } finally {await cleanup();}
 });
 
 test('endpoint labels remain legible where benchmark lines cross them',async()=>{

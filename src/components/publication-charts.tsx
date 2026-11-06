@@ -163,7 +163,8 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   return <span className="publication-growth-preview-canvas">
     <svg ref={ref} viewBox={`0 0 400 ${height}`} role="img" aria-label="21 growth groups; neurotech, global science baseline and all-neurotech growth; scroll vertically" style={{fontSize}}>
       <GrowthContext data={data} x={x} top={fontSize*1.5} bottom={cursor} fontSize={fontSize} compact/>
-      {sections.map(({section,heading})=><g key={section.table}>
+      {sections.map(({section,heading},sectionIndex)=><g key={section.table}>
+        {sectionIndex>0&&<line data-growth-section-separator x1="8" x2="392" y1={heading-fontSize*1.1} y2={heading-fontSize*1.1} stroke="var(--border)" strokeWidth=".75" vectorEffect="non-scaling-stroke" aria-hidden="true" pointerEvents="none"/>}
         <text data-growth-section x="8" y={heading} fontWeight="700" style={{fill:"var(--muted)"}}>{section.label.toUpperCase()}</text>
         {data.growth.filter(row=>row.table===section.table).map((row,index)=>{
           const y=heading+(1.6+index*3.6)*fontSize;
@@ -193,7 +194,8 @@ function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData
       <title>{`Neurotech publication growth; ${baseline==="science"?"general science baseline":"matched category baselines"}`}</title>
       <GrowthContext data={data} x={x} top={28} bottom={cursor} baseline={baseline}/>
       {growthTicks(low,high).map(tick=><line key={tick} x1={x(tick)} x2={x(tick)} y1="28" y2={cursor} stroke="var(--border)"/>)}
-      {layout.map(({section,heading,items})=><g key={section.table}>
+      {layout.map(({section,heading,items},sectionIndex)=><g key={section.table}>
+        {sectionIndex>0&&<line data-growth-section-separator x1="8" x2="808" y1={heading-18} y2={heading-18} stroke="var(--border)" strokeWidth=".75" vectorEffect="non-scaling-stroke" aria-hidden="true" pointerEvents="none"/>}
         <text data-growth-section x="8" y={heading} fontWeight="700" letterSpacing="1" style={{fill:"var(--muted)"}}>{section.label.toUpperCase()}</text>
         {items.map(row=><g key={row.id}>
           <text data-growth-name x={left-15} y={row.y+4} textAnchor="end">{row.id==="government-facility"?<><tspan x={left-15} dy="-4">Government agencies</tspan><tspan x={left-15} dy="16">and research facilities</tspan></>:growthLabel(row)}</text>
@@ -318,7 +320,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}
     {index===1&&<>
-      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>setBaseline(event.target.value as GrowthBaseline)}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
+      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>{setBaseline(event.target.value as GrowthBaseline);setInspection("");}}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
       {baseline==="matched"&&<p className="publication-scope" data-growth-coverage>{available} category baselines available; {data.growth.length-available} unavailable (hollow dots). Gray ticks mark each group’s baseline; no general-science fallback.</p>}
     </>}
     <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection} baseline={baseline}/></div>
