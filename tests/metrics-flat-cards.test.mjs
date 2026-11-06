@@ -62,7 +62,8 @@ test('flat curated cards keep essential scope visible and move complete definiti
       assert.match(card.textContent, /Hemibrain|MICrONS|FlyWire/);
       await click(card.querySelector('[data-draft-popout-trigger]'));
       const modal = card.querySelector('dialog[open]');
-      assert.equal(modal.querySelector('[data-draft-methodology] dd').textContent, chart.axes);
+      const plot = METRIC_CHART_EVIDENCE[chart.title].plots[cards.indexOf(card)];
+      assert.equal(modal.querySelector('[data-draft-methodology] dd').textContent, `x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`);
       assert.ok(modal.textContent.includes(chart.definition));
       assert.ok(modal.textContent.includes(chart.constraint));
       assert.ok(modal.textContent.includes(METRIC_CHART_EVIDENCE[chart.title].summary));
