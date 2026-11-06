@@ -424,13 +424,16 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
       const visible = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
       assert.ok(visible.includes(view.label));
       assert.match(visible, /2026-11-04/);
-      assert.match(visible, /not experiment or implantation dates/);
+      assert.ok(visible.includes(view.description), 'Raster retains the selected measurement scope and quality/sampling qualification');
+      const evidence = out.window.document.querySelector('desc')?.textContent ?? '';
       for (const p of view.points) {
-        assert.ok(visible.includes(p.preparation), p.preparation);
+        assert.ok(visible.includes(p.preparation.split(' · ')[0]), 'Preparation/species remains in the concise raster caption');
         assert.ok(visible.includes(p.unit), p.unit);
-        assert.ok(visible.includes(`${p.datePrecision} precision, ${p.dateBasis}`));
-        assert.ok(visible.includes(p.sourceUrl), p.sourceUrl);
-        assert.ok(visible.includes(p.note), p.note);
+        assert.ok(visible.includes(p.date) && visible.includes(`(${p.dateBasis})`), 'Exact displayed source date and its basis remain visible');
+        assert.ok(visible.includes(p.sourceLabel), 'Readable primary-source citation stays on the raster');
+        // The editorial raster does not repeat the full methods/archive prose.
+        // Preserve it intact in the inert SVG evidence and the validated chart link.
+        for (const original of [p.preparation, p.sourceUrl, p.note, `${p.datePrecision} precision, ${p.dateBasis}`]) assert.ok(evidence.includes(original), original);
       }
       assert.equal(out.window.document.querySelector('[role=status], [data-extrapolation-line], polyline'), null);
       assert.doesNotMatch(visible, /review=1|token=/);
