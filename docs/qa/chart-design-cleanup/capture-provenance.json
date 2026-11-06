@@ -1,5 +1,5 @@
 {
-  "runtime_code_revision": "fb8e9fd8ee7b5dc40e6692e8c36aa6531f4cd677",
+  "runtime_code_revision": "9b1b61bb9e3d65659198180fc38a9aabbffb99d4",
   "source_files_compared": 149,
   "qa_source_mismatches": [],
   "qa_exception": "loopback-only proxy, not committed or deployed",
@@ -11,5 +11,12 @@
     "transfer": "page-local Blob capture, no shared download setting change",
     "visually_inspected": true
   },
-  "screenshots": "real headed Chrome; candidate uses optimized Next production build; viewport emulation for phone widths"
+  "screenshots": "real headed Chrome; candidate uses optimized Next production build; viewport emulation for phone widths",
+  "qa_host_checks": {
+    "loopback_status": 200,
+    "unrelated_raw_host_status": 403,
+    "runtime_flag_required": true,
+    "listener": "127.0.0.1:35961"
+  },
+  "singleton_visibility_asserted_at_all_three_widths": true
 }

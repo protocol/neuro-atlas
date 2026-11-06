@@ -67,6 +67,8 @@ for width in [1440,390,320]:
         assert probe('return document.querySelectorAll("dialog [data-curve-point]").length;')==count
         assert probe('return document.querySelector("dialog .pc-point-readout").textContent==="";')
         assert not probe('return !!document.querySelector("dialog [data-extrapolation-line],dialog [role=switch]");')
+        if count==1:
+            assert probe('const p=document.querySelector("dialog [data-curve-point]"),r=p.getBoundingClientRect(),v=p.closest(".pc-chart-scroll").getBoundingClientRect();return r.right>Math.max(0,v.left) && r.left<Math.min(innerWidth,v.right) && r.bottom>Math.max(0,v.top) && r.top<Math.min(innerHeight,v.bottom);'), 'Singleton source mark must be visibly inside its scrolling viewport'
     snap(f'optical-{width}')
     press_key('Escape');settle()
     assert not probe('return !!document.querySelector("dialog[open]");')
