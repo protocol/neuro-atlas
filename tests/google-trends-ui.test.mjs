@@ -17,9 +17,9 @@ test('deployed /neuro-atlas source downloads keep the basePath and exact query m
     const cleanup = await mount(React.createElement(GoogleTrends), '#google-trends-neurotech');
     try {
       const downloads = [...document.querySelectorAll('dialog a[download]')].map(a => a.getAttribute('href'));
-      assert.deepEqual(downloads, ['/neuro-atlas/data/google-trends/neurotech.csv', '/neuro-atlas/data/google-trends/google-trends.json']);
+      assert.deepEqual(downloads, ['/neuro-atlas/api/google-trends/7574619a0ea64efbf482d31d57916857f97b966d/neurotech.csv', '/neuro-atlas/api/google-trends/7574619a0ea64efbf482d31d57916857f97b966d/google-trends.json']);
       const url = new URL(document.querySelector('dialog a[href^="https://trends.google.com/trends/explore?"]').href);
-      assert.equal(url.searchParams.get('date'), '2023-10-15 2026-10-15');
+      assert.equal(url.searchParams.get('date'), '2023-11-06 2026-11-06');
       assert.equal(url.searchParams.get('q'), 'neurotechnology,brain-computer interface');
       assert.equal(url.searchParams.has('geo'), false);
     } finally { await cleanup(); }
@@ -33,21 +33,21 @@ for (const flat of [false, true]) for (const id of ['neurotech', 'neuralink']) t
   const cleanup = await mount(React.createElement(GoogleTrends, { flat }), `#google-trends-${id}`);
   try {
     const modal = document.querySelector('dialog[open]'); assert.ok(modal, 'Attention modal must open from a fresh URL');
-    const group = JSON.parse(readFileSync('public/data/google-trends/google-trends.json', 'utf8')).groups.find(g => g.id === id);
+    const group = JSON.parse(readFileSync('public/data/google-trends/bundled-20261106/google-trends.json', 'utf8')).groups.find(g => g.id === id);
     const expected = group.rows.filter(r => !r.partial).flatMap(row => row.values.map((value, i) => ({ date: row.date, value, term: group.terms[i] }))).filter(p => p.value !== null);
     const plotted = [...modal.querySelectorAll('[data-trend-point]')].map(p => ({ date: p.dataset.date, value: Number(p.dataset.value), term: p.dataset.term }));
     assert.deepEqual(plotted, expected);
-    assert.equal(modal.querySelector('[data-date="2026-10-11"]'), null);
+    assert.equal(modal.querySelector('[data-date="2026-11-01"]'), null);
     assert.equal(modal.querySelectorAll('[data-trends-row]').length, 157);
     assert.deepEqual([...modal.querySelectorAll('[data-trends-row]')].map(row => [...row.querySelectorAll('td')].slice(0, -1).map(cell => cell.textContent)), group.rows.map(row => row.displayValues), 'Every original source value and missing/low-interest qualifier remains verbatim');
     const latest = group.rows.filter(row => !row.partial).at(-1);
     const latestReading = modal.querySelector(`[data-trends-latest="${latest.date}"]`);
     assert.ok(latestReading, 'Latest complete reading remains available inside the modal');
     assert.ok(latestReading.textContent.endsWith(group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')));
-    assert.match(modal.querySelector('[data-trends-row="2026-10-11"]').textContent, /Partial · excluded/);
-    assert.match(modal.textContent, /2023-10-15–2026-10-15/);
+    assert.match(modal.querySelector('[data-trends-row="2026-11-01"]').textContent, /Partial · excluded/);
+    assert.match(modal.textContent, /2023-11-06–2026-11-06/);
     assert.match(modal.textContent, /Worldwide.*Web Search.*All categories/);
-    assert.match(modal.textContent, /Captured 2026-10-15.*snapshot, not a live connection/);
+    assert.match(modal.textContent, /Captured 2026-11-06.*snapshot is pinned to the source revision/);
     assert.match(modal.textContent, /sample/);
     assert.match(modal.textContent, /not topics/);
     assert.match(modal.textContent, /not zero searches/);
@@ -74,7 +74,7 @@ test('Metrics renders two real 36-month attention previews with distinct normali
   for (const card of doc.querySelectorAll('[data-trends-card]')) {
     assert.equal(card.querySelectorAll('h3').length, 1);
     assert.equal(card.querySelectorAll('.gt-range').length, 1);
-    assert.equal(card.querySelector('.gt-range').textContent, 'Past 36 months · 2023-10–2026-10');
+    assert.equal(card.querySelector('.gt-range').textContent, 'Past 36 months · 2023-11–2026-11');
     assert.equal(card.querySelector('.gt-preview-dates'), null, 'The compact date range is not repeated below the plot');
     assert.match(card.textContent, /Worldwide.*0–100/);
     assert.doesNotMatch(card.textContent, /Shared scale|shared scale|Latest complete week|2026-10-04|neurotechnology: 7|Neuralink: 4|Expand chart|source values ↗/);

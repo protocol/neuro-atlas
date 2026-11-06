@@ -1,0 +1,970 @@
+{
+  "receipts": {
+    "02_asia_2022_2025": {
+      "retrieved_at": "2026-11-06T09:28:19.230729+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.continent%3Aasia&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,authorships.institutions.continent:asia",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:28:19 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 6375641,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 3743357
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 2632284
+          }
+        ]
+      },
+      "sourceSha256": "e885dc276870c45cd9c6dfd4888fdbb170ce582ce20b9e0ee98e8069bb0dfcb8"
+    },
+    "03_europe_2022_2025": {
+      "retrieved_at": "2026-11-06T09:28:34.345677+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.continent%3Aeurope&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,authorships.institutions.continent:europe",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:28:34 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 3404446,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 1758415
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 1646031
+          }
+        ]
+      },
+      "sourceSha256": "19d59ecc24053e1c9ced30631078ca2d03b04a137d677326ee68e8e641d9d22d"
+    },
+    "04_us_ca_2022_2025": {
+      "retrieved_at": "2026-11-06T09:28:34.700863+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.countries%3Aus%7Cca&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,authorships.countries:us|ca",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:28:34 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 1954327,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 1028663
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 925664
+          }
+        ]
+      },
+      "sourceSha256": "6f432ef6becdeec5002f66fb16a34d544db9f7c40b9d90cdc8790b2c123f024e"
+    },
+    "06_exact_venue_cells": {
+      "retrieved_at": "2026-11-06T09:29:08.166826+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint&group_by=publication_year%2Ctype%2Cprimary_location.source.type%3Ainclude_unknown&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint",
+        "group_by": "publication_year,type,primary_location.source.type:include_unknown",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:08 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 17003466,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 9578890,
+            "groups": [
+              {
+                "key": "https://openalex.org/types/article",
+                "key_display_name": "article",
+                "count": 7040310,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 6367042
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 572903
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 90531
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 5411
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 2891
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 1499
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 30
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/metadata",
+                    "key_display_name": "metadata",
+                    "count": 3
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/conference-paper",
+                "key_display_name": "conference-paper",
+                "count": 969329,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 584785
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 135697
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 100302
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 99990
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 44412
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 4143
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/book-chapter",
+                "key_display_name": "book-chapter",
+                "count": 876423,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 625481
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 91951
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 60095
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 58213
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 20305
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 20251
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 127
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/preprint",
+                "key_display_name": "preprint",
+                "count": 445793,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 384592
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 55134
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 6061
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 6
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/review",
+                "key_display_name": "review",
+                "count": 247035,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 235796
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 8254
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 1492
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 946
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 275
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 263
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 9
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 7424576,
+            "groups": [
+              {
+                "key": "https://openalex.org/types/article",
+                "key_display_name": "article",
+                "count": 5417906,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 4956124
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 428999
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 25830
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 3297
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 2027
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 1624
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 5
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/book-chapter",
+                "key_display_name": "book-chapter",
+                "count": 941051,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 705598
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 129805
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 39296
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 33959
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 17952
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 13732
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 709
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/conference-paper",
+                "key_display_name": "conference-paper",
+                "count": 666535,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 407853
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 87114
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 79521
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 62522
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 26477
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 3048
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/preprint",
+                "key_display_name": "preprint",
+                "count": 205130,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 156999
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 47250
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 881
+                  }
+                ]
+              },
+              {
+                "key": "https://openalex.org/types/review",
+                "key_display_name": "review",
+                "count": 193954,
+                "groups": [
+                  {
+                    "key": "https://openalex.org/source-types/journal",
+                    "key_display_name": "journal",
+                    "count": 187876
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/repository",
+                    "key_display_name": "repository",
+                    "count": 4385
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/conference",
+                    "key_display_name": "conference",
+                    "count": 753
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/unknown",
+                    "key_display_name": "unknown",
+                    "count": 528
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/book%20series",
+                    "key_display_name": "book series",
+                    "count": 236
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/ebook%20platform",
+                    "key_display_name": "ebook platform",
+                    "count": 172
+                  },
+                  {
+                    "key": "https://openalex.org/source-types/other",
+                    "key_display_name": "other",
+                    "count": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceSha256": "e3b3536fbd3f6811de54819804547bed9b1cce21f235ab15734d07de1ab3f88f"
+    },
+    "07_institution_types": {
+      "retrieved_at": "2026-11-06T09:29:08.706845+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint&group_by=publication_year%2Cauthorships.institutions.type%3Ainclude_unknown&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint",
+        "group_by": "publication_year,authorships.institutions.type:include_unknown",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:08 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 17003466,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 9578890,
+            "groups": [
+              {
+                "key": "education",
+                "key_display_name": "education",
+                "count": 6151131
+              },
+              {
+                "key": "unknown",
+                "key_display_name": "unknown",
+                "count": 2922004
+              },
+              {
+                "key": "healthcare",
+                "key_display_name": "healthcare",
+                "count": 930242
+              },
+              {
+                "key": "facility",
+                "key_display_name": "facility",
+                "count": 890399
+              },
+              {
+                "key": "government",
+                "key_display_name": "government",
+                "count": 548895
+              },
+              {
+                "key": "company",
+                "key_display_name": "company",
+                "count": 213800
+              },
+              {
+                "key": "nonprofit",
+                "key_display_name": "nonprofit",
+                "count": 173820
+              },
+              {
+                "key": "other",
+                "key_display_name": "other",
+                "count": 72714
+              },
+              {
+                "key": "funder",
+                "key_display_name": "funder",
+                "count": 54741
+              },
+              {
+                "key": "archive",
+                "key_display_name": "archive",
+                "count": 28378
+              }
+            ]
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 7424576,
+            "groups": [
+              {
+                "key": "education",
+                "key_display_name": "education",
+                "count": 4788725
+              },
+              {
+                "key": "unknown",
+                "key_display_name": "unknown",
+                "count": 2154562
+              },
+              {
+                "key": "facility",
+                "key_display_name": "facility",
+                "count": 878413
+              },
+              {
+                "key": "healthcare",
+                "key_display_name": "healthcare",
+                "count": 807155
+              },
+              {
+                "key": "government",
+                "key_display_name": "government",
+                "count": 502218
+              },
+              {
+                "key": "company",
+                "key_display_name": "company",
+                "count": 185364
+              },
+              {
+                "key": "nonprofit",
+                "key_display_name": "nonprofit",
+                "count": 157437
+              },
+              {
+                "key": "other",
+                "key_display_name": "other",
+                "count": 66801
+              },
+              {
+                "key": "funder",
+                "key_display_name": "funder",
+                "count": 48857
+              },
+              {
+                "key": "archive",
+                "key_display_name": "archive",
+                "count": 24600
+              }
+            ]
+          }
+        ]
+      },
+      "sourceSha256": "bdcde41272f1177a73d56be7c0f992c02761bae5a4533a7dab20c9b69843339e"
+    },
+    "10_government_facility_union": {
+      "retrieved_at": "2026-11-06T09:29:49.346327+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.type%3Agovernment%7Cfacility&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,authorships.institutions.type:government|facility",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:49 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 2232202,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 1140323
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 1091879
+          }
+        ]
+      },
+      "sourceSha256": "574d187aaf7a6066a2be60ece32f96611df9d31b685714bb6f8637a99ed7c94a"
+    },
+    "11_nt2_asia": {
+      "retrieved_at": "2026-11-06T09:29:49.686301+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.continent%3Aasia&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.id:T10429|T11601,authorships.institutions.continent:asia",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:49 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 8886,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 5581
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 3305
+          }
+        ]
+      },
+      "sourceSha256": "e6e9e74c2f13860adb2792cfe9853bb318559e601da824d322428f1e6bd26cfb"
+    },
+    "12_nt2_europe": {
+      "retrieved_at": "2026-11-06T09:29:49.876126+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.continent%3Aeurope&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.id:T10429|T11601,authorships.institutions.continent:europe",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:50 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 3891,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 2094
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 1797
+          }
+        ]
+      },
+      "sourceSha256": "80a261105e17578b5ed405f3ce73e323a687d88a9ce232a6f54ba7d931eeb25e"
+    },
+    "13_nt2_usca": {
+      "retrieved_at": "2026-11-06T09:29:50.063605+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.countries%3Aus%7Cca&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.id:T10429|T11601,authorships.countries:us|ca",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:50 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 2588,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 1487
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 1101
+          }
+        ]
+      },
+      "sourceSha256": "d45504d95b5b8edf7a41e32c79803a90a35602a735d5b01d28ed4847d1c4a655"
+    },
+    "14_nt2_institution_types": {
+      "retrieved_at": "2026-11-06T09:29:50.195609+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601&group_by=publication_year%2Cauthorships.institutions.type%3Ainclude_unknown&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.id:T10429|T11601",
+        "group_by": "publication_year,authorships.institutions.type:include_unknown",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:50 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 16417,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 9980,
+            "groups": [
+              {
+                "key": "education",
+                "key_display_name": "education",
+                "count": 8335
+              },
+              {
+                "key": "unknown",
+                "key_display_name": "unknown",
+                "count": 1408
+              },
+              {
+                "key": "facility",
+                "key_display_name": "facility",
+                "count": 1360
+              },
+              {
+                "key": "healthcare",
+                "key_display_name": "healthcare",
+                "count": 1332
+              },
+              {
+                "key": "government",
+                "key_display_name": "government",
+                "count": 655
+              },
+              {
+                "key": "company",
+                "key_display_name": "company",
+                "count": 224
+              },
+              {
+                "key": "nonprofit",
+                "key_display_name": "nonprofit",
+                "count": 180
+              },
+              {
+                "key": "other",
+                "key_display_name": "other",
+                "count": 70
+              },
+              {
+                "key": "funder",
+                "key_display_name": "funder",
+                "count": 43
+              },
+              {
+                "key": "archive",
+                "key_display_name": "archive",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 6437,
+            "groups": [
+              {
+                "key": "education",
+                "key_display_name": "education",
+                "count": 5622
+              },
+              {
+                "key": "facility",
+                "key_display_name": "facility",
+                "count": 1151
+              },
+              {
+                "key": "healthcare",
+                "key_display_name": "healthcare",
+                "count": 903
+              },
+              {
+                "key": "unknown",
+                "key_display_name": "unknown",
+                "count": 623
+              },
+              {
+                "key": "government",
+                "key_display_name": "government",
+                "count": 446
+              },
+              {
+                "key": "company",
+                "key_display_name": "company",
+                "count": 163
+              },
+              {
+                "key": "nonprofit",
+                "key_display_name": "nonprofit",
+                "count": 131
+              },
+              {
+                "key": "other",
+                "key_display_name": "other",
+                "count": 56
+              },
+              {
+                "key": "funder",
+                "key_display_name": "funder",
+                "count": 47
+              },
+              {
+                "key": "archive",
+                "key_display_name": "archive",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      "sourceSha256": "f3d2f22ce367d2c1abba1b91e737228ee00f3afe595484e4c5ce4fddfaa42684"
+    },
+    "15_nt2_government_facility": {
+      "retrieved_at": "2026-11-06T09:29:50.352090+00:00",
+      "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.type%3Agovernment%7Cfacility&group_by=publication_year&per_page=100",
+      "request_parameters": {
+        "filter": "publication_year:2022|2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.id:T10429|T11601,authorships.institutions.type:government|facility",
+        "group_by": "publication_year",
+        "per_page": 100
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Date": "Fri, 06 Nov 2026 09:29:50 GMT",
+        "X-RateLimit-Credits-Used": "1"
+      },
+      "response": {
+        "meta": {
+          "count": 2774,
+          "groups_count": 2,
+          "per_page": 100
+        },
+        "group_by": [
+          {
+            "key": "2025",
+            "key_display_name": "2025",
+            "count": 1523
+          },
+          {
+            "key": "2022",
+            "key_display_name": "2022",
+            "count": 1251
+          }
+        ]
+      },
+      "sourceSha256": "06c4c21e6c40dffd00a18e4e0b61211aad2a43e177692604779df90a8c657829"
+    }
+  }
+}

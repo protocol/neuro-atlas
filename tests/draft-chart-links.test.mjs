@@ -150,7 +150,7 @@ test("candidate and panel copy controls copy without navigating; failure is visi
   try {
     await click(document.querySelector("[data-expand-metrics]"));
     const buttons = [...document.querySelectorAll('[data-copy-draft-link]')];
-    assert.equal(buttons.length, 16, 'One Copy link per actual plot or timeline, including the participant time plot, not per alias');
+    assert.equal(buttons.length, 20, 'One Copy link per actual plot or timeline, including participants and four publication charts, not per alias');
     for (const button of buttons) {
       const canonical = button.dataset.copyDraftLink;
       assert.ok(document.getElementById(canonical) ?? document.querySelector(`[data-performance-card="${canonical}"]`), `Share target ${canonical} exists as an inline anchor or modal chart`);

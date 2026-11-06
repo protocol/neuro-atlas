@@ -16,7 +16,10 @@ const responseSchema = z.object({ default: z.object({ timelineData: z.array(z.ob
 export function parseGoogleTrends(raw: string, options: TrendsOptions): TrendsData {
   const validDate = (s: string) => /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s;
   const start = Date.parse(options.start), end = Date.parse(options.end), captured = Date.parse(options.capturedAt);
-  if (!validDate(options.start) || !validDate(options.end) || options.start.slice(5) !== options.end.slice(5) || Number(options.end.slice(0, 4)) - Number(options.start.slice(0, 4)) !== 3 || !Number.isFinite(captured) || captured < end || !options.terms.length || new Set(options.terms).size !== options.terms.length) {
+  const endDate = new Date(end);
+  const year = endDate.getUTCFullYear() - 3, month = endDate.getUTCMonth();
+  const clampedStart = Date.UTC(year, month, Math.min(endDate.getUTCDate(), new Date(Date.UTC(year, month + 1, 0)).getUTCDate()));
+  if (!validDate(options.start) || !validDate(options.end) || start !== clampedStart || !Number.isFinite(captured) || captured < end || !options.terms.length || new Set(options.terms).size !== options.terms.length) {
     throw new Error('Invalid Google Trends 36-month window or metadata');
   }
   const parsed = responseSchema.safeParse(JSON.parse(raw.replace(/^\)\]\}',?\r?\n/, '')));

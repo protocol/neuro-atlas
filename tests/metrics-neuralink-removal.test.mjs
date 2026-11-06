@@ -12,7 +12,7 @@ const identities = () => [...engagement().querySelectorAll('article')].map(card 
 test('field engagement omits only the Neuralink brand-context chart across expand and collapse', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
-    const expected = ['neurotech', 'idea_vintage', 'latency_compression', 'revealed_commitments'];
+    const expected = ['neurotech', 'idea_vintage', 'latency_compression', 'revealed_commitments', 'publication-output', 'publication-growth', 'researcher-sectors', 'researcher-sector-changes'];
     assert.deepEqual(identities(), expected);
     await click(engagement().querySelector('[data-metric-toggle]'));
     await click(engagement().querySelector('[data-metric-toggle]'));
