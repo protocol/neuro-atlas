@@ -83,7 +83,7 @@ test('synthetic production loads require an explicit fixture allowance on every 
 });
 
 test('legacy reference data is deliberately not an independent primary production source',()=>{
- const reference=syntheticPublicationSnapshot();reference.schemaVersion=1;reference.source.url='https://www.artio.so/polaris/pages/publication-boom';
+ const reference=syntheticPublicationSnapshot();reference.schemaVersion=1;reference.source.url='https://example.invalid/reference-report';
  assert.throws(()=>data.parsePublicationSnapshot(reference,fixtureOptions));
 });
 

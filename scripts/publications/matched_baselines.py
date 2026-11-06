@@ -264,13 +264,13 @@ def derive(receipts, venue_numerator=None, numerators=None):
                 status = 'matched'
                 reason = 'Complete independently selected NT10 raw indexed works and exhaustive all-science venue cells under identical venue/identity rules.'
         elif dimension == 'method':
-            universe = 'Unselected: exact global local-regex class or explicitly chosen ungated P10 parent reference, using identical classifier'
-            reason = 'Reference-universe choice and complete identically classified primary counts missing; no global Methods field exists for this purpose.'
+            universe = 'Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules'
+            reason = 'Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.'
             evidence = []
         else:
             method = 'unestablished-author-fractional-matched-cohort'
-            universe = 'Proposed: all-field five-type fractional output of the same P2-active author cohort, same historical career/citation-rank bin'
-            reason = 'Matched all-field fractional cohort denominator missing. Author histories alone are insufficient; paper citation percentiles are not author rank.'
+            universe = 'Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy'
+            reason = 'Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.'
             evidence = []
         row = {'id': gid, 'label': label, 'dimension': dimension, 'baselineStatus': status,
                'reason': reason, 'countingMethod': method, 'denominatorUniverse': universe,
