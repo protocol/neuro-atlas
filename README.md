@@ -42,7 +42,7 @@ src/
 ## Design language
 
 - Surfaces: soft neutral background, white/near-black cards, 1px borders, `rounded-2xl`-ish radii, restrained shadows
-- Accent: neural violet (`--accent`)
+- Accent: official PL R&D logo blue (`#115EF7`, `--accent`), with a readable light-blue variant in dark mode; shared with chart-export branding.
 - Numbers: always tabular (`.tnum`)
 - All tokens are CSS variables — restyle in one file
 

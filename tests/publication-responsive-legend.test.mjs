@@ -24,6 +24,6 @@ test('annual legend matches the blue neurotech series',async()=>{
  try {
   const key=document.querySelector('dialog .publication-legend [data-series-key="neurotech"]');
   assert.ok(key,'The neurotech legend needs its own matching series color');
-  assert.equal(key.style.color,'rgb(75, 77, 242)');
+  assert.equal(key.style.color,'rgb(17, 94, 247)');
  }finally{await cleanup();}
 });

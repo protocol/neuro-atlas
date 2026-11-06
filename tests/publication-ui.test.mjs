@@ -156,7 +156,7 @@ test('growth follows reference colors, section geometry, direct benchmark annota
   for(const svg of [document.querySelector('dialog [data-growth-export]'),document.querySelector('[data-publication-card="publication-growth"] .publication-preview svg')]) {
    const legend=svg.querySelector('[data-growth-legend]');assert.ok(legend);
    assert.deepEqual([...legend.querySelectorAll('text')].map(text=>text.textContent),svg.hasAttribute('data-growth-export')?['Above baseline','Within','Below']:['Above','Within','Below']);
-   const colors={above:'#4b4df2',within:'#98a2b3',below:'#e8a132'};
+   const colors={above:'#115ef7',within:'#98a2b3',below:'#e8a132'};
    for(const [id,status] of [['eeg','above'],['invasive','within'],['high','below']]) {
     const mark=svg.querySelector(`[data-growth-row="${id}"]`);assert.equal(mark.dataset.baselineStatus,status);
     assert.equal(mark.querySelector('circle').getAttribute('fill'),colors[status]);
@@ -455,7 +455,7 @@ test('matched scalar thresholds use exact above and below comparisons with no to
  const cleanup=await mount(chart(s),'#publication-growth');
  try {
   await chooseBaseline(document.querySelector('dialog'),'matched');
-  for(const [id,status,color] of [['asia','below','#e8a132'],['conference','above','#4b4df2']]) {
+  for(const [id,status,color] of [['asia','below','#e8a132'],['conference','above','#115ef7']]) {
    const mark=document.querySelector(`dialog [data-growth-row="${id}"]`);
    assert.equal(mark.dataset.baselineStatus,status);assert.equal(mark.querySelector('circle').getAttribute('fill'),color);
   }

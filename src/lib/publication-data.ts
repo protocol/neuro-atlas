@@ -239,7 +239,7 @@ export const SECTOR_LABELS: Record<PublicationSector, string> = {
   Academic: "Universities", Industry: "Companies", "Other institutions": "Other institutions", "No listed affiliation": "No listed affiliation",
 };
 export const SECTOR_COLORS: Record<PublicationSector, string> = {
-  Academic: "#4b4df2", Industry: "#e5a438", "Other institutions": "#7c48d5", "No listed affiliation": "#a6b0bf",
+  Academic: "#115ef7", Industry: "#e5a438", "Other institutions": "#7c48d5", "No listed affiliation": "#a6b0bf",
 };
 export function selectPublicationCharts(snapshot: PublicationSnapshot) {
   const annual = snapshot.tables.nt_yearly.rows.filter(row => row[1] === "Neurotech papers")

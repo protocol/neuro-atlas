@@ -18,7 +18,7 @@ const number = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits:
 const percent = (n: number | null) => n === null ? "No 2022 denominator" : `${n > 0 ? "+" : ""}${number(n)}%`;
 const titles = ["Neurotech papers per year", "Publication growth by group", "Researchers by publication sector", "Researchers’ first and latest affiliations"];
 export const PUBLICATION_SEARCH_TEXT = `${titles.join(" ")} publication papers output science baseline OpenAlex bioRxiv growth method brain-computer interface BCI venue region institution career citation researchers sectors universities companies hospitals labs nonprofits first latest affiliation changes`;
-const blue = "#4b4df2", teal = "#138a7a", gray = "#a6b0bf";
+const blue = "#115ef7", teal = "#138a7a", gray = "#a6b0bf";
 const short = (s: string) => s.replace(/ \(.*\)$/, "");
 type Inspect = (text: string) => ReturnType<ReturnType<typeof usePointTooltip<string>>["pointProps"]>;
 /** Real movement, keyboard focus and touch/click select points; a stationary pointer never preselects. */
