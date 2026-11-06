@@ -1,0 +1,20 @@
+[
+  {
+    "baseline": "science",
+    "path": "growth-default-export.png",
+    "bytes": 1603779,
+    "width": 2400,
+    "height": 6102,
+    "sha256": "60993abbb96a582e6a89ce9bd3e5dbec2bb976355f27e8058dcb02d671282b6d",
+    "generation": "actual Download PNG handler; selected-mode programmatic setup (native selection checked separately); page-local transfer intercept"
+  },
+  {
+    "baseline": "matched",
+    "path": "growth-matched-export.png",
+    "bytes": 1587820,
+    "width": 2400,
+    "height": 6034,
+    "sha256": "17bd2dd31443a4d3ac598f17dbd79b8fba1f5d620a9fdec15fa847764a099b05",
+    "generation": "actual Download PNG handler; selected-mode programmatic setup (native selection checked separately); page-local transfer intercept"
+  }
+]

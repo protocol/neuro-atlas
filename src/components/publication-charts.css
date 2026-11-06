@@ -21,9 +21,15 @@
 .publication-full-plot { max-width: 100%; overflow: auto; max-height: 68vh; margin: 1rem 0; }
 .publication-full-plot svg { display: block; width: 100%; min-width: 650px; height: auto; }
 .publication-plot-0 svg { min-width: 840px; }
-.publication-plot-1 svg { min-width: 860px; }
+.publication-plot-1 svg { min-width: 640px; }
 .publication-plot-3 svg { min-width: 900px; }
-.publication-plot-1 { overscroll-behavior: contain; }
+.publication-growth-options { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .65rem; margin-top: .5rem; font-size: .8rem; line-height: 1.6; }
+.publication-growth-options select { min-width: 0; max-width: 100%; border: 1px solid var(--border); border-radius: .35rem; background: var(--surface); color: var(--foreground); padding: .35rem .5rem; font: inherit; }
+.publication-plot-1 { overscroll-behavior: contain; max-height: min(68dvh, var(--publication-growth-max-height, calc(100dvh - 25rem))); }
+.publication-growth-canvas { width: 100%; min-width: 640px; }
+.publication-growth-preview-canvas { display: block; width: 100%; }
+.publication-growth-sticky-axis { display: block; position: sticky; bottom: 0; z-index: 1; background: var(--surface); border-top: 1px solid var(--border); pointer-events: none; }
+.publication-growth-sticky-axis svg { width: 100%; height: auto; }
 .publication-full-plot svg text, .publication-preview svg text { fill: var(--foreground); font-size: inherit; }
 .publication-full-plot [data-publication-mark][tabindex]:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
 .publication-scope, .publication-legend { font-size: .8rem; line-height: 1.7; color: var(--muted); overflow-wrap: anywhere; }
