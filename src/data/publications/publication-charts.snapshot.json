@@ -10,7 +10,7 @@
     "paperEndYear": 2025,
     "authorEndYear": 2025,
     "methodologyVersion": "atlas-primary-publications-v1",
-    "methodSha256": "250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da",
+    "methodSha256": "4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9",
     "sourceHash": "b3674078d0813a9958babae42dc4e5f23fc5655920a0239258e4ac2aa5b52303",
     "testOnly": false,
     "corpus": "core",
@@ -30,8 +30,8 @@
     },
     "scienceBaseline": {
       "methodId": "openalex-primary-domain-work-count-v1",
-      "acquiredAt": "2026-11-06T09:57:20.183418+00:00",
-      "sourceHash": "1f87691fdb7fe785f7beca63b08a434a9ee85ffe5cc1f8d99c723fe5663aabd5",
+      "acquiredAt": "2026-11-06T12:47:02.184070+00:00",
+      "sourceHash": "b1369ceb581b101d2722b136d898c7ec3b3049ac145f2fee69de2ad4dc5f9d4d",
       "url": "https://api.openalex.org"
     }
   },
@@ -133,6 +133,186 @@
           16057
         ],
         [
+          "2010",
+          "All research",
+          8213
+        ],
+        [
+          "2010",
+          "Science baseline, low",
+          7519
+        ],
+        [
+          "2010",
+          "Science baseline, high",
+          8588
+        ],
+        [
+          "2011",
+          "All research",
+          8566
+        ],
+        [
+          "2011",
+          "Science baseline, low",
+          7818
+        ],
+        [
+          "2011",
+          "Science baseline, high",
+          8989
+        ],
+        [
+          "2012",
+          "All research",
+          8967
+        ],
+        [
+          "2012",
+          "Science baseline, low",
+          8181
+        ],
+        [
+          "2012",
+          "Science baseline, high",
+          9495
+        ],
+        [
+          "2013",
+          "All research",
+          9396
+        ],
+        [
+          "2013",
+          "Science baseline, low",
+          8534
+        ],
+        [
+          "2013",
+          "Science baseline, high",
+          10109
+        ],
+        [
+          "2014",
+          "All research",
+          9705
+        ],
+        [
+          "2014",
+          "Science baseline, low",
+          8800
+        ],
+        [
+          "2014",
+          "Science baseline, high",
+          10620
+        ],
+        [
+          "2015",
+          "All research",
+          9840
+        ],
+        [
+          "2015",
+          "Science baseline, low",
+          9036
+        ],
+        [
+          "2015",
+          "Science baseline, high",
+          10835
+        ],
+        [
+          "2016",
+          "All research",
+          10196
+        ],
+        [
+          "2016",
+          "Science baseline, low",
+          9184
+        ],
+        [
+          "2016",
+          "Science baseline, high",
+          10934
+        ],
+        [
+          "2017",
+          "All research",
+          9934
+        ],
+        [
+          "2017",
+          "Science baseline, low",
+          9247
+        ],
+        [
+          "2017",
+          "Science baseline, high",
+          10796
+        ],
+        [
+          "2018",
+          "All research",
+          9962
+        ],
+        [
+          "2018",
+          "Science baseline, low",
+          9161
+        ],
+        [
+          "2018",
+          "Science baseline, high",
+          10801
+        ],
+        [
+          "2019",
+          "All research",
+          10333
+        ],
+        [
+          "2019",
+          "Science baseline, low",
+          9674
+        ],
+        [
+          "2019",
+          "Science baseline, high",
+          11144
+        ],
+        [
+          "2020",
+          "All research",
+          10762
+        ],
+        [
+          "2020",
+          "Science baseline, low",
+          10320
+        ],
+        [
+          "2020",
+          "Science baseline, high",
+          11675
+        ],
+        [
+          "2021",
+          "All research",
+          10181
+        ],
+        [
+          "2021",
+          "Science baseline, low",
+          9974
+        ],
+        [
+          "2021",
+          "Science baseline, high",
+          10591
+        ],
+        [
           "2022",
           "All research",
           9726
@@ -170,7 +350,7 @@
         [
           "2024",
           "Science baseline, low",
-          10711
+          10712
         ],
         [
           "2024",
@@ -185,7 +365,7 @@
         [
           "2025",
           "Science baseline, low",
-          12101
+          12100
         ],
         [
           "2025",
@@ -733,15 +913,6 @@
       "unidentifiedBylineSlots": 29846,
       "duplicateIdentifiedBylineSlots": 166,
       "worksWithoutBylines": 1118
-    },
-    "affiliationEndpointCohort": {
-      "methodId": "atlas-publication-affiliation-endpoints-v1",
-      "firstYearMin": 2016,
-      "lastYearMax": 2025,
-      "minActiveYears": 2,
-      "eligibleAuthors": 26493,
-      "sameSectorAuthors": 21718,
-      "changedSectorAuthors": 4775
     },
     "coverage": [
       {
@@ -5452,7 +5623,16 @@
       }
     ],
     "baselineStatus": "primary-four-domain-context",
-    "matchedBaselineStatus": "partial-primary-matched-inventory"
+    "matchedBaselineStatus": "partial-primary-matched-inventory",
+    "affiliationEndpointCohort": {
+      "methodId": "atlas-publication-affiliation-endpoints-v1",
+      "firstYearMin": 2016,
+      "lastYearMax": 2025,
+      "minActiveYears": 2,
+      "eligibleAuthors": 26493,
+      "sameSectorAuthors": 21718,
+      "changedSectorAuthors": 4775
+    }
   },
   "matchedGrowth": {
     "schemaVersion": 1,

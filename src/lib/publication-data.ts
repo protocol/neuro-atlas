@@ -187,13 +187,14 @@ export function parsePublicationSnapshot(input: unknown, options: { allowTestFix
   if (value.audit.matchedBaselineStatus === "partial-primary-matched-inventory") requireCondition(value.matchedGrowth, "partial matched status requires its inventory");
   if (value.matchedGrowth) validateMatchedGrowth(value.matchedGrowth);
   const annual = value.tables.nt_yearly.rows;
+  const scienceFirstYear = annual.some(row => row[1] !== "Neurotech papers" && Number(row[0]) < 2022) ? 2010 : 2022;
   exactKeys(annual.map(row => `${row[0]}:${row[1]}`), [
     ...Array.from({ length: 16 }, (_, i) => `${2010 + i}:Neurotech papers`),
-    ...(value.source.scienceBaseline ? ["All research", "Science baseline, low", "Science baseline, high"].flatMap(series => Array.from({ length: 4 }, (_, i) => `${2022 + i}:${series}`)) : []),
+    ...(value.source.scienceBaseline ? ["All research", "Science baseline, low", "Science baseline, high"].flatMap(series => Array.from({ length: 2026 - scienceFirstYear }, (_, i) => `${scienceFirstYear + i}:${series}`)) : []),
   ], "nt_yearly");
   const baseline = annual.find(row => row[0] === "2022" && row[1] === "Neurotech papers")![2];
   for (const row of annual.filter(row => row[0] === "2022")) requireCondition(row[2] === baseline, "science baseline must be anchored to neurotech in 2022");
-  for (let year = 2022; value.source.scienceBaseline && year <= 2025; year++) {
+  for (let year = scienceFirstYear; value.source.scienceBaseline && year <= 2025; year++) {
     const low = annual.find(row => row[0] === String(year) && row[1] === "Science baseline, low")![2];
     const high = annual.find(row => row[0] === String(year) && row[1] === "Science baseline, high")![2];
     requireCondition(Number(low) <= Number(high), "science band inverted");
@@ -227,6 +228,12 @@ export function parsePublicationSnapshot(input: unknown, options: { allowTestFix
   return value;
 }
 
+/** Legacy data remains readable, but cannot truncate a full-history last-good release. */
+export function assertPublicationScienceCoverage(next: unknown, previous: unknown) {
+  const firstYear = (value: unknown) => Math.min(2022, ...((value as PublicationSnapshot | undefined)?.tables?.nt_yearly?.rows ?? []).filter(row => row[1] === "All research").map(row => Number(row[0])));
+  requireCondition(firstYear(next) <= firstYear(previous), "science history coverage regressed");
+}
+
 export type PublicationSector = typeof PUBLICATION_SECTORS[number];
 export const SECTOR_LABELS: Record<PublicationSector, string> = {
   Academic: "Universities", Industry: "Companies", "Other institutions": "Other institutions", "No listed affiliation": "No listed affiliation",
@@ -239,8 +246,10 @@ export function selectPublicationCharts(snapshot: PublicationSnapshot) {
     .map(row => ({ year: Number(row[0]), papers: Number(row[2]) })).sort((a, b) => a.year - b.year);
   const countAt = (year: number, series: string) => Number(snapshot.tables.nt_yearly.rows.find(row => row[0] === String(year) && row[1] === series)![2]);
   const anchor = countAt(2022, "Neurotech papers");
-  const baseline = Array.from({ length: snapshot.source.scienceBaseline ? 4 : 0 }, (_, i) => ({ year: 2022 + i, low: countAt(2022 + i, "Science baseline, low"), high: countAt(2022 + i, "Science baseline, high"), all: countAt(2022 + i, "All research") }));
-  const scienceGrowth = baseline.length && anchor > 0 ? { low: (baseline[3].low / anchor - 1) * 100, high: (baseline[3].high / anchor - 1) * 100, all: (baseline[3].all / anchor - 1) * 100 } : null;
+  const scienceFirstYear = snapshot.tables.nt_yearly.rows.some(row => row[1] !== "Neurotech papers" && Number(row[0]) < 2022) ? 2010 : 2022;
+  const baseline = Array.from({ length: snapshot.source.scienceBaseline ? 2026 - scienceFirstYear : 0 }, (_, i) => ({ year: scienceFirstYear + i, low: countAt(scienceFirstYear + i, "Science baseline, low"), high: countAt(scienceFirstYear + i, "Science baseline, high"), all: countAt(scienceFirstYear + i, "All research") }));
+  const endpoint = baseline.at(-1);
+  const scienceGrowth = endpoint && anchor > 0 ? { low: (endpoint.low / anchor - 1) * 100, high: (endpoint.high / anchor - 1) * 100, all: (endpoint.all / anchor - 1) * 100 } : null;
   const neurotechGrowth = growthPct(anchor, annual.at(-1)!.papers);
   const groupNames: readonly string[] = PUBLICATION_GROWTH_GROUPS.flatMap(group => [...group.groups]);
   const growth = PUBLICATION_GROWTH_GROUPS.flatMap(section => snapshot.tables[section.table].rows.map(row => {

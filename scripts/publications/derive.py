@@ -312,10 +312,15 @@ def science_context(baseline, annual):
         integer(row['papers'])
         require(key not in values, 'duplicate baseline count')
         values[key] = row['papers']
-    require(set(values)=={(g,y) for g in domains+('All science',) for y in range(BASE,LAST+1)}, 'missing baseline coverage')
-    require(all(values[g,BASE]>0 for g in domains+('All science',)), 'zero science baseline anchor')
+    # Retain legacy four-year snapshots while new acquisitions cover the full plot.
+    groups = domains + ('All science',)
+    full = {(g,y) for g in groups for y in range(2010,LAST+1)}
+    legacy = {(g,y) for g in groups for y in range(BASE,LAST+1)}
+    require(set(values) in (full, legacy), 'missing baseline coverage')
+    require(all(values[g,BASE]>0 for g in groups), 'zero science baseline anchor')
     rows = []
-    for y in range(BASE,LAST+1):
+    first = 2010 if set(values) == full else BASE
+    for y in range(first,LAST+1):
         rates = [Fraction(values[g,y],values[g,BASE]) for g in domains]
         rows += [[str(y),'All research',round(annual[BASE]*Fraction(values['All science',y],values['All science',BASE]))],
                  [str(y),'Science baseline, low',round(annual[BASE]*min(rates))],

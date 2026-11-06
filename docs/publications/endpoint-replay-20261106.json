@@ -49,10 +49,10 @@
   "rawReceiptCount": 5516,
   "authorWorks": 111345,
   "identifiedAuthors": 168577,
-  "snapshotSha256": "ecea23c62673bdd539f703968d54434649ff8259f8ccff8b8fcda3483c4440f4",
-  "derivationMethodSha256": "250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da",
-  "legacySnapshotSha256": "45b5befea15612f0a34f639022e575f51386faa384821b2405811eb9f2eaca5b",
-  "legacyMethodSha256": "9b2bba7e2b18e098ee53f6b59311f9dd29ba1c8e7d82d88674c372aee623e34e",
+  "snapshotSha256": "2a06d39911b08f50a695070f0fb53073cdc4c9cd08d86daa50cf77d764b2d30c",
+  "derivationMethodSha256": "4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9",
+  "legacySnapshotSha256": "d5991bca0441b496e7703dcd17b6b9f97d5152f316b9b723fc8924b4fac71c55",
+  "legacyMethodSha256": "e6eb6815d000fe75e05e9995548d6ecc7ad26ff49f4b87953a39b1dac53ef679",
   "legacySourceHash": "b3674078d0813a9958babae42dc4e5f23fc5655920a0239258e4ac2aa5b52303",
   "inputByteHashes": {
     "works": "c8dc2828488d7f4697b42e46114980bf3539307592944cde943cc17895989d61",
@@ -96,5 +96,15 @@
         "retrievedAt": "2026-11-06T09:57:20.118766+00:00"
       }
     }
+  },
+  "originalReplaySnapshotSha256": "ecea23c62673bdd539f703968d54434649ff8259f8ccff8b8fcda3483c4440f4",
+  "originalReplayDerivationMethodSha256": "250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da",
+  "originalReplayLegacySnapshotSha256": "45b5befea15612f0a34f639022e575f51386faa384821b2405811eb9f2eaca5b",
+  "originalReplayLegacyMethodSha256": "9b2bba7e2b18e098ee53f6b59311f9dd29ba1c8e7d82d88674c372aee623e34e",
+  "integration": {
+    "baseCommit": "6f475a2ab6342ce948431e25c58effc20c095672",
+    "scienceHistory": "Inherited unchanged from owner-merged PR86; original primary input byte hashes and all twelve off-diagonal counts match the completed endpoint replay.",
+    "primaryInputByteHashesUnchanged": true,
+    "allBaseSnapshotBytesPreservedExceptMethodAndAdditions": true
   }
 }

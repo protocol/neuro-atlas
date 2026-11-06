@@ -21,12 +21,13 @@ Destination order is Academic, Industry, Other institutions, No listed affiliati
 
 The checked-in [anonymous receipt](endpoint-replay-20261106.json) retains the source proof, real input byte hashes, implementation hash, matrix and cohort totals. No raw author/work identifiers, names or source payloads are emitted.
 
-- New bundled snapshot SHA-256: `ecea23c62673bdd539f703968d54434649ff8259f8ccff8b8fcda3483c4440f4`.
-- Derivation implementation SHA-256: `250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da`.
-- Original bundled snapshot SHA-256: `45b5befea15612f0a34f639022e575f51386faa384821b2405811eb9f2eaca5b`.
-- Removing only `tables.nt_talent_endpoints` and `audit.affiliationEndpointCohort`, and restoring the old method hash, reproduces **every original snapshot byte**. All original table counts, null move diagonals, twelve off-diagonals, fractional audit, matched comparisons, source hashes, acquisition dates and science context remain unchanged.
+- Integrated bundled snapshot SHA-256: `2a06d39911b08f50a695070f0fb53073cdc4c9cd08d86daa50cf77d764b2d30c`.
+- Integrated derivation implementation SHA-256: `4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9`.
+- Owner-merged PR86 base (`6f475a2ab6342ce948431e25c58effc20c095672`) snapshot SHA-256: `d5991bca0441b496e7703dcd17b6b9f97d5152f316b9b723fc8924b4fac71c55`.
+- Removing only `tables.nt_talent_endpoints` and `audit.affiliationEndpointCohort`, and restoring that base method hash, reproduces **every PR86-base snapshot byte**. Its 2010–2025 science history, dual-axis source values, dates, original null move diagonals, twelve off-diagonals, fractional audit and matched comparisons are preserved.
+- The initial endpoint replay was completed against the prior PR85 base. Its snapshot/method/base hashes are retained in `originalReplay*` receipt fields; its original raw `sourceProof` describes that replay, not a second full combined-feed replay. Integration verifies the PR86 base has identical primary input byte hashes, primary acquisition time and move table before reusing the independently replayed sixteen endpoint cells. The merged derivation hash is computed from the actual combined producer file. No new acquisition or feed publication occurs in this integration.
 
-The full primary replay initially used a later separately acquired science receipt set. That was caught before integration. The original science receipts were then verified and re-applied through the existing `read_science` and `science_context` producers, their real source proof regenerated, and the complete production staging gate rerun. Neither source timestamps nor baseline values were copied from the old snapshot to manufacture equality.
+The initial full primary replay first used a later separately acquired science receipt set. That was caught before integration. The original PR85 science receipts were verified and re-applied through the existing `read_science` and `science_context` producers, their real source proof regenerated, and the complete production staging gate rerun. The subsequent PR86 integration above deliberately preserves its owner-merged extended science capture unchanged; it does not relabel the original replay proof as covering that later capture.
 
 ## Contract and source compatibility
 

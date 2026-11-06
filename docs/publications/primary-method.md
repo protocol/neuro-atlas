@@ -150,7 +150,7 @@ Manifests are assertions made by the acquisition lane, not proof created by deri
 
 JSON object keys: `schema_version:1`, `source_url:"https://api.openalex.org"`, `corpus:"core"`, `types:[the five types in the order above]`, `acquired_at`, `observed_through`, `complete:true`, `method_id:"openalex-primary-domain-work-count-v1"`, and `rows:[{group,year,papers}]`.
 
-Require all 2022–2025 × Life sciences/Social sciences/Physical sciences/Health sciences/All science rows exactly once, nonnegative integer counts, and positive 2022 anchors. Domain IDs for acquisition are 1/2/3/4 respectively. All science is separately acquired, not assumed to equal a sum excluding unclassified works. Annual low/high are min/max domain growth ratios, scaled to the neurotech 2022 annual count; All research is scaled from All science. Values are growth-equivalent counts, not raw worldwide science totals. The raw baseline input hash/method/acquisition time are retained. This interface does not implement primary title-dedup worldwide; that scope difference is explicit.
+New acquisitions require all 2010–2025 × Life sciences/Social sciences/Physical sciences/Health sciences/All science rows exactly once; the pure derivation/parser also retain complete legacy 2022–2025 inputs. They require nonnegative integer counts, and positive 2022 anchors. Domain IDs for acquisition are 1/2/3/4 respectively. All science is separately acquired, not assumed to equal a sum excluding unclassified works. Annual low/high are min/max domain growth ratios, scaled to the neurotech 2022 annual count; All research is scaled from All science. Values are growth-equivalent counts, not raw worldwide science totals. The raw baseline input hash/method/acquisition time are retained. This interface does not implement primary title-dedup worldwide; that scope difference is explicit.
 
 ### Independently established matched growth
 
@@ -165,7 +165,7 @@ The ten original table names/columns match the useful shape of the initial UI, i
 
 1. Accept `schemaVersion:2`, OpenAlex source URL, source/method SHA-256 and actual acquisition/observation dates; remove Artio model/revision identity requirements and the `authorAsOf <= paperAsOf` acquisition-order assumption.
 2. Accept null growth and undefined percentage cells. Empty cohorts are undefined, not 0%. Missing benchmark `place` is null. Current v1 enums/numeric-only percentages cannot honestly represent these cases.
-3. Accept `audit` and optional `matchedGrowth`, and distinguish global-context benchmark from group-matched comparisons. Without a science input `nt_yearly` has only the 16 observed annual rows; do not fabricate the other 12 baseline rows.
+3. Accept `audit` and optional `matchedGrowth`, and distinguish global-context benchmark from group-matched comparisons. Without a science input `nt_yearly` has only the 16 observed annual rows; do not fabricate baseline rows. Current full-history context adds 48 reference/band rows; legacy four-year context has 12.
 4. Keep omitted-but-known segments and raw Unknown fractions available in method/audit disclosure. Preserve separate wider-paper and two-topic author cohorts and the full four-origin transition matrix.
 5. Relabel all source freshness to actual successful acquisition time; source `updated_date` maxima and observation cutoff are separately named. Re-running identical source files does not advance any evidence date. Code hash changes imply method review even with the same method ID.
 

@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "source": "https://api.openalex.org/works",
+  "corpus": "core",
+  "types": [
+    "article",
+    "preprint",
+    "review",
+    "book-chapter",
+    "conference-paper"
+  ],
+  "observationYears": [
+    2010,
+    2025
+  ],
+  "indexBaseYear": 2022,
+  "indexBaseValue": 100,
+  "formula": "science index(y) = 100 \u00d7 science count(y) / science count(2022); plotted y position uses neurotech count(2022) \u00d7 index(y) / 100",
+  "acquiredAt": "2026-11-06T12:47:02.184070+00:00",
+  "baselineSha256": "b1369ceb581b101d2722b136d898c7ec3b3049ac145f2fee69de2ad4dc5f9d4d",
+  "queries": {
+    "all": {
+      "url": "https://api.openalex.org/works",
+      "params": {
+        "corpus": "core",
+        "filter": "publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint",
+        "group_by": "publication_year",
+        "per_page": "100"
+      },
+      "retrievedAt": "2026-11-06T12:47:00.360020+00:00",
+      "responseSha256": "4b5756d8682e96ba399610084ee23d209585265eed6433024e08ee76e3291bcd"
+    },
+    "life": {
+      "url": "https://api.openalex.org/works",
+      "params": {
+        "corpus": "core",
+        "filter": "publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.domain.id:1",
+        "group_by": "publication_year",
+        "per_page": "100"
+      },
+      "retrievedAt": "2026-11-06T12:47:01.150054+00:00",
+      "responseSha256": "02170fbcbb73bdabb673435c48828419e2b8b818af5a17ace9388a8d35ba782c"
+    },
+    "social": {
+      "url": "https://api.openalex.org/works",
+      "params": {
+        "corpus": "core",
+        "filter": "publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.domain.id:2",
+        "group_by": "publication_year",
+        "per_page": "100"
+      },
+      "retrievedAt": "2026-11-06T12:47:01.452391+00:00",
+      "responseSha256": "076bee1f1d01ae1c9060d5accd20a6485775852cb82980ba48db1ab96e72bd3f"
+    },
+    "physical": {
+      "url": "https://api.openalex.org/works",
+      "params": {
+        "corpus": "core",
+        "filter": "publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.domain.id:3",
+        "group_by": "publication_year",
+        "per_page": "100"
+      },
+      "retrievedAt": "2026-11-06T12:47:01.799807+00:00",
+      "responseSha256": "afe6faf20a4f1ff1c0e1462505728a6e20a4410a917008afe8d8aa5367ea8c60"
+    },
+    "health": {
+      "url": "https://api.openalex.org/works",
+      "params": {
+        "corpus": "core",
+        "filter": "publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint,primary_topic.domain.id:4",
+        "group_by": "publication_year",
+        "per_page": "100"
+      },
+      "retrievedAt": "2026-11-06T12:47:02.184070+00:00",
+      "responseSha256": "6f9c0ed228990e167cf7340fa78f5dad16e69a960ce101f341f0b7f262dd5ff0"
+    }
+  },
+  "rows": [
+    {
+      "group": "All science",
+      "year": 2010,
+      "papers": 6269459
+    },
+    {
+      "group": "All science",
+      "year": 2011,
+      "papers": 6538433
+    },
+    {
+      "group": "All science",
+      "year": 2012,
+      "papers": 6845246
+    },
+    {
+      "group": "All science",
+      "year": 2013,
+      "papers": 7172235
+    },
+    {
+      "group": "All science",
+      "year": 2014,
+      "papers": 7407838
+    },
+    {
+      "group": "All science",
+      "year": 2015,
+      "papers": 7510958
+    },
+    {
+      "group": "All science",
+      "year": 2016,
+      "papers": 7782853
+    },
+    {
+      "group": "All science",
+      "year": 2017,
+      "papers": 7583298
+    },
+    {
+      "group": "All science",
+      "year": 2018,
+      "papers": 7604432
+    },
+    {
+      "group": "All science",
+      "year": 2019,
+      "papers": 7887809
+    },
+    {
+      "group": "All science",
+      "year": 2020,
+      "papers": 8215052
+    },
+    {
+      "group": "All science",
+      "year": 2021,
+      "papers": 7771604
+    },
+    {
+      "group": "All science",
+      "year": 2022,
+      "papers": 7424249
+    },
+    {
+      "group": "All science",
+      "year": 2023,
+      "papers": 7813505
+    },
+    {
+      "group": "All science",
+      "year": 2024,
+      "papers": 8406543
+    },
+    {
+      "group": "All science",
+      "year": 2025,
+      "papers": 9578676
+    },
+    {
+      "group": "Health sciences",
+      "year": 2010,
+      "papers": 1169925
+    },
+    {
+      "group": "Health sciences",
+      "year": 2011,
+      "papers": 1216429
+    },
+    {
+      "group": "Health sciences",
+      "year": 2012,
+      "papers": 1272902
+    },
+    {
+      "group": "Health sciences",
+      "year": 2013,
+      "papers": 1327892
+    },
+    {
+      "group": "Health sciences",
+      "year": 2014,
+      "papers": 1369188
+    },
+    {
+      "group": "Health sciences",
+      "year": 2015,
+      "papers": 1405970
+    },
+    {
+      "group": "Health sciences",
+      "year": 2016,
+      "papers": 1428987
+    },
+    {
+      "group": "Health sciences",
+      "year": 2017,
+      "papers": 1438749
+    },
+    {
+      "group": "Health sciences",
+      "year": 2018,
+      "papers": 1425492
+    },
+    {
+      "group": "Health sciences",
+      "year": 2019,
+      "papers": 1505299
+    },
+    {
+      "group": "Health sciences",
+      "year": 2020,
+      "papers": 1620047
+    },
+    {
+      "group": "Health sciences",
+      "year": 2021,
+      "papers": 1595893
+    },
+    {
+      "group": "Health sciences",
+      "year": 2022,
+      "papers": 1513347
+    },
+    {
+      "group": "Health sciences",
+      "year": 2023,
+      "papers": 1554460
+    },
+    {
+      "group": "Health sciences",
+      "year": 2024,
+      "papers": 1680784
+    },
+    {
+      "group": "Health sciences",
+      "year": 2025,
+      "papers": 1888346
+    },
+    {
+      "group": "Life sciences",
+      "year": 2010,
+      "papers": 674159
+    },
+    {
+      "group": "Life sciences",
+      "year": 2011,
+      "papers": 687727
+    },
+    {
+      "group": "Life sciences",
+      "year": 2012,
+      "papers": 717831
+    },
+    {
+      "group": "Life sciences",
+      "year": 2013,
+      "papers": 736826
+    },
+    {
+      "group": "Life sciences",
+      "year": 2014,
+      "papers": 758533
+    },
+    {
+      "group": "Life sciences",
+      "year": 2015,
+      "papers": 770406
+    },
+    {
+      "group": "Life sciences",
+      "year": 2016,
+      "papers": 792649
+    },
+    {
+      "group": "Life sciences",
+      "year": 2017,
+      "papers": 771409
+    },
+    {
+      "group": "Life sciences",
+      "year": 2018,
+      "papers": 762751
+    },
+    {
+      "group": "Life sciences",
+      "year": 2019,
+      "papers": 796126
+    },
+    {
+      "group": "Life sciences",
+      "year": 2020,
+      "papers": 815762
+    },
+    {
+      "group": "Life sciences",
+      "year": 2021,
+      "papers": 798414
+    },
+    {
+      "group": "Life sciences",
+      "year": 2022,
+      "papers": 768101
+    },
+    {
+      "group": "Life sciences",
+      "year": 2023,
+      "papers": 780033
+    },
+    {
+      "group": "Life sciences",
+      "year": 2024,
+      "papers": 845938
+    },
+    {
+      "group": "Life sciences",
+      "year": 2025,
+      "papers": 955551
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2010,
+      "papers": 2077765
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2011,
+      "papers": 2186203
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2012,
+      "papers": 2256461
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2013,
+      "papers": 2349160
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2014,
+      "papers": 2383973
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2015,
+      "papers": 2380946
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2016,
+      "papers": 2528791
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2017,
+      "papers": 2420473
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2018,
+      "papers": 2449972
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2019,
+      "papers": 2547891
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2020,
+      "papers": 2593102
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2021,
+      "papers": 2506172
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2022,
+      "papers": 2443915
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2023,
+      "papers": 2600588
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2024,
+      "papers": 2866828
+    },
+    {
+      "group": "Physical sciences",
+      "year": 2025,
+      "papers": 3242635
+    },
+    {
+      "group": "Social sciences",
+      "year": 2010,
+      "papers": 2181180
+    },
+    {
+      "group": "Social sciences",
+      "year": 2011,
+      "papers": 2283193
+    },
+    {
+      "group": "Social sciences",
+      "year": 2012,
+      "papers": 2411562
+    },
+    {
+      "group": "Social sciences",
+      "year": 2013,
+      "papers": 2567701
+    },
+    {
+      "group": "Social sciences",
+      "year": 2014,
+      "papers": 2697307
+    },
+    {
+      "group": "Social sciences",
+      "year": 2015,
+      "papers": 2752085
+    },
+    {
+      "group": "Social sciences",
+      "year": 2016,
+      "papers": 2777203
+    },
+    {
+      "group": "Social sciences",
+      "year": 2017,
+      "papers": 2742228
+    },
+    {
+      "group": "Social sciences",
+      "year": 2018,
+      "papers": 2743390
+    },
+    {
+      "group": "Social sciences",
+      "year": 2019,
+      "papers": 2830459
+    },
+    {
+      "group": "Social sciences",
+      "year": 2020,
+      "papers": 2965489
+    },
+    {
+      "group": "Social sciences",
+      "year": 2021,
+      "papers": 2690147
+    },
+    {
+      "group": "Social sciences",
+      "year": 2022,
+      "papers": 2470348
+    },
+    {
+      "group": "Social sciences",
+      "year": 2023,
+      "papers": 2649539
+    },
+    {
+      "group": "Social sciences",
+      "year": 2024,
+      "papers": 2821820
+    },
+    {
+      "group": "Social sciences",
+      "year": 2025,
+      "papers": 3326893
+    }
+  ]
+}
