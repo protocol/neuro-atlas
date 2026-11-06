@@ -17,6 +17,12 @@ key; the prose stays gray. Thus the five recording-hours datasets retain their
 actual existing palette without recoloring plotted observations or adding new
 series meanings. Generic caveats and source lists remain unkeyed.
 
+The main Atlas site uses the same paragraph/legend-identity helper in curated
+chart dataset notes. Data-and-sources disclosures retain their existing place
+and source tables. Reference-chart track definitions use separate one-column
+rows with their existing legend keys and quiet 12px supporting text; preview
+card heights, chart geometry, dialogs and source interactions are unchanged.
+
 Source coordinates, marker colors, scientific wording/qualifiers, complete
 metadata, PNG/HTML/plain-link clipboard formats, clean URLs, image limits and
 production authentication are unchanged. Cropping is a user action and removes

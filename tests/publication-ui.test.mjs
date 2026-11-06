@@ -70,7 +70,10 @@ for(const [index,anchor] of ['publication-output','publication-growth','research
   const image=buildChartImage({svg,title:'Synthetic primary export',anchor,notes:publicationExportNotes(index,parsed,selectPublicationCharts(parsed))},'https://atlas.example/field-velocity?token=excluded');
   assert.match(image.svg,/2026-11-06/);assert.match(image.svg,/2025-12-31/);
   assert.doesNotMatch(image.svg,/token=excluded|Artio|bioRxiv|2026-10-14|Model synthetic/i);
-  if(index===1){assert.match(image.svg,/OpenAlex work ID/);assert.match(image.svg,/N = P2 two-topic whole-work involvement/);assert.match(image.svg,/Asia: N \(P2\) 10/);assert.match(image.svg,/author-fractional works/);}
+  const {JSDOM}=await import('jsdom'); const exported=new JSDOM(image.svg,{contentType:'image/svg+xml'});
+  const visible=[...exported.window.document.querySelectorAll('text')].map(node=>node.textContent).join(' ').replace(/\s+/g,' ');
+  if(index===1){assert.match(visible,/OpenAlex work ID/);assert.match(visible,/N = P2 two-topic whole-work involvement/);assert.match(visible,/Asia: N \(P2\) 10/);assert.match(visible,/author-fractional works/);}
+  exported.window.close();
   if(index===3){assert.match(image.svg,/first and latest publication affiliations in different sectors/i);assert.match(image.svg,/2016/);}
   const first=svg.querySelector('[data-publication-mark][tabindex="0"]');
   await act(async()=>first.dispatchEvent(new window.MouseEvent('mouseover',{bubbles:true})));

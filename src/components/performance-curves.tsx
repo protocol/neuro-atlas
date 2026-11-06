@@ -310,7 +310,7 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
       <p>{series.description}</p>
       <p className="pc-caveat">{series.caveat}</p>
       <p>Source checked {series.checkedAt}. Dates retain their stated year, month or day precision; each marker is a source observation.</p>
-      <dl>{series.tracks.map(t => <div key={t.id}><dt>{t.label}</dt><dd>{t.definition}</dd></div>)}</dl>
+      <dl className="pc-track-notes">{series.tracks.map((t, index) => <div key={t.id} data-track-note><dt><span data-track-note-key aria-hidden="true" style={{ backgroundColor: colors[index % colors.length] }} />{t.label}</dt><dd>{t.definition}</dd></div>)}</dl>
     </section>
     <div className="pc-table-scroll" role="region" aria-label={`${series.title} source data`} tabIndex={0}>
       <table>

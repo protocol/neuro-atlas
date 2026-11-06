@@ -57,6 +57,10 @@
 .pc-methodology dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem 1.5rem; margin: 1rem 0; }
 .pc-methodology dt { color: var(--foreground); font-weight: 550; }
 .pc-methodology dd { font-size: .75rem; }
+.pc-methodology .pc-track-notes { grid-template-columns: 1fr; gap: .85rem; font-size: 12px; }
+.pc-track-notes dt { display: flex; align-items: baseline; gap: .5rem; color: var(--muted); }
+.pc-track-notes [data-track-note-key] { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; }
+.pc-track-notes dd { margin: .15rem 0 0 16px; color: var(--muted); }
 .pc-table-scroll { max-width: 100%; overflow-x: auto; margin: 1rem 0; border: 1px solid var(--border); border-radius: .6rem; }
 .pc-table-scroll table { width: 100%; min-width: 700px; border-collapse: collapse; font-size: .75rem; text-align: left; }
 .pc-table-scroll caption { text-align: left; padding: .9rem; font-weight: 650; }

@@ -1,6 +1,7 @@
 import { performanceUrl } from "@/lib/field-velocity/navigation";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
+import { chartNoteParagraphs } from "@/lib/chart-notes";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "line" | "dashed" };
 export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; legend?: ChartLegendEntry[] };
@@ -248,20 +249,15 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const cropBottom = Math.ceil(cursor + 16);
   cursor += 36;
   body.push('<g data-export-footnotes="true">');
-  for (const note of chart.captionNotes ?? chart.notes) {
-    // Source notes already carry paragraph boundaries. Do not flatten distinct
-    // datasets into one block; only explicit legend-label prefixes get a key.
-    for (const paragraph of note.split(/\r?\n/).map(part => part.trim()).filter(Boolean)) {
-      const entry = chart.legend?.find(item => paragraph.startsWith(`${item.label}:`));
-      body.push('<g data-export-note="true">');
-      if (entry) {
-        const color = escape(exportPaint(entry.color, source, palette) || ink);
-        body.push(`<circle data-export-note-key="true" cx="54" cy="${cursor + 16}" r="4" fill="${color}"/>`);
-      }
-      text(paragraph, 14, false, entry ? 68 : inset, "#667085");
-      body.push('</g>');
-      cursor += 12;
+  for (const note of chartNoteParagraphs(chart.captionNotes ?? chart.notes, chart.legend)) {
+    body.push('<g data-export-note="true">');
+    if (note.color) {
+      const color = escape(exportPaint(note.color, source, palette) || ink);
+      body.push(`<circle data-export-note-key="true" cx="54" cy="${cursor + 16}" r="4" fill="${color}"/>`);
     }
+    text(note.text, 14, false, note.color ? 68 : inset, "#667085");
+    body.push('</g>');
+    cursor += 12;
   }
   body.push('</g>');
   const height = Math.ceil(cursor + 40);
