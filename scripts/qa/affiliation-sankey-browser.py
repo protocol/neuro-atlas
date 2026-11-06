@@ -9,7 +9,7 @@ total=sum(expected.values());assert total==audit['eligibleAuthors']
 results=[]
 for width in [1440,390,320]:
   cdp('Emulation.setDeviceMetricsOverride',width=width,height=1000 if width==1440 else 900,deviceScaleFactor=1,mobile=False)
-  goto_url(BASE+f'/neuro-atlas/field-velocity?sankeyQA=fddf3cf-{width}#researcher-sector-changes');wait_for_load();assert wait_for_element('dialog[open] [data-sankey-node]',visible=True)
+  goto_url(BASE+f'/neuro-atlas/field-velocity?sankeyQA=fa951b4-{width}#researcher-sector-changes');wait_for_load();assert wait_for_element('dialog[open] [data-sankey-node]',visible=True)
   cdp('Page.bringToFront')
   state=js('''return (()=>{const svg=document.querySelector('dialog .publication-sankey'),r=svg.getBoundingClientRect();return {w:innerWidth,client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,width:r.width,height:r.height,labels:[...svg.querySelectorAll('[data-sankey-label]')].map(t=>{const b=t.getBoundingClientRect();return {text:t.textContent,left:b.left-r.left,right:b.right-r.left,top:b.top-r.top,bottom:b.bottom-r.top,pixels:parseFloat(getComputedStyle(t).fontSize)*t.getScreenCTM().a}}),nodes:[...svg.querySelectorAll('[data-sankey-node]')].map(n=>({side:n.dataset.side,sector:n.dataset.sector,count:Number(n.dataset.count)})),marks:[...svg.querySelectorAll('[data-publication-mark]')].map(p=>({from:p.dataset.from,to:p.dataset.to,count:Number(p.dataset.value),width:Number(p.dataset.sankeyWidth),same:p.dataset.sameSector})),inspector:document.querySelector('[data-publication-inspector]').textContent,subtitle:document.querySelector('[data-change-subtitle]').textContent}})()''')
   assert state['w']==width and state['scroll']<=state['client']
@@ -22,7 +22,7 @@ for width in [1440,390,320]:
   assert state['inspector']==''
   for a in state['labels']:
     assert a['left']>=-1 and a['right']<=state['width']+1 and a['top']>=0 and a['bottom']<=state['height']+1,a
-    assert a['pixels']>=13,a
+    assert abs(a['pixels']-12)<.15,a
   for i,a in enumerate(state['labels']):
     for b in state['labels'][i+1:]:
       assert not(min(a['right'],b['right'])>max(a['left'],b['left'])+1 and min(a['bottom'],b['bottom'])>max(a['top'],b['top'])+1),(a,b)
@@ -39,6 +39,8 @@ for width in [1440,390,320]:
   download=js("return JSON.parse(decodeURIComponent(document.querySelector('dialog a[download$=\"-source.json\"]').href.split(',')[1]))")
   assert download['tables']['nt_talent_endpoints']==snapshot['tables']['nt_talent_endpoints']
   assert download['tables']['nt_talent_moves']==snapshot['tables']['nt_talent_moves']
+  press_key('Escape');assert not js("return !!document.querySelector('[data-point-tooltip]')")
+  assert js("return !!document.querySelector('dialog[open]')")
   press_key('Escape');assert not js("return !!document.querySelector('dialog[open]')")
   js("document.querySelector('[data-publication-card=\"researcher-sector-changes\"] .publication-preview').scrollIntoView({block:'center',inline:'center'})")
   time.sleep(.2)
@@ -46,7 +48,7 @@ for width in [1440,390,320]:
   assert preview['marks']==len(actual)
   for a in preview['labels']:
     assert a['left']>=-1 and a['right']<=preview['width']+1 and a['bottom']<=preview['height']+1,a
-    assert abs(a['pixels']-11)<.15,a
+    assert abs(a['pixels']-12)<.15,a
   for i,a in enumerate(preview['labels']):
     for b in preview['labels'][i+1:]:
       assert not(min(a['right'],b['right'])>max(a['left'],b['left'])+1 and min(a['bottom'],b['bottom'])>max(a['top'],b['top'])+1),(a,b)
@@ -55,7 +57,7 @@ for width in [1440,390,320]:
 (ROOT/'geometry.json').write_text(json.dumps({'eligibleAuthors':total,'audit':audit,'states':results},indent=2))
 # Full PNG through the actual native Download PNG click. Base paints must survive selected flow styling.
 cdp('Emulation.setDeviceMetricsOverride',width=1440,height=1000,deviceScaleFactor=1,mobile=False)
-goto_url(BASE+'/neuro-atlas/field-velocity?sankeyQA=fddf3cf-png#researcher-sector-changes');wait_for_load();assert wait_for_element('dialog[open] [data-sankey-node]',visible=True)
+goto_url(BASE+'/neuro-atlas/field-velocity?sankeyQA=fa951b4-png#researcher-sector-changes');wait_for_load();assert wait_for_element('dialog[open] [data-sankey-node]',visible=True)
 js("document.querySelector('dialog [data-same-sector=\"true\"]').focus();window.__pngs=[];window.__oldCreate=URL.createObjectURL;URL.createObjectURL=(blob)=>{if(blob.type==='image/png')window.__pngs.push(blob);return window.__oldCreate(blob)}")
 box=js("return (()=>{const b=document.querySelector('dialog [data-download-chart]').getBoundingClientRect();return {x:b.x+b.width/2,y:b.y+b.height/2}})()")
 click_at_xy(box['x'],box['y'])

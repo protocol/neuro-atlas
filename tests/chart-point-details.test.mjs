@@ -15,37 +15,38 @@ const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.sn
 const performanceIds = ['simultaneously-recorded-neurons', 'tissue-mapped', 'neural-recording-hours'];
 
 for (const id of [...performanceIds, 'idea_vintage', 'latency_compression']) {
-  test(`${id}: detail box starts empty and retains existing focus/hover inspection`, async () => {
+  test(`${id}: source popup starts absent and preserves focus/hover inspection without a below-chart box`, async () => {
     const node = performanceIds.includes(id)
       ? React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance })
       : React.createElement(PaceReadings, { data: selectPace(feed) });
     const cleanup = await mount(node, `#${id}`);
     try {
       const dialog = document.querySelector('dialog[open]');
-      const readout = dialog.querySelector('.pc-point-readout');
       const [a, b] = dialog.querySelectorAll('[data-curve-point]');
       const sources = [...dialog.querySelectorAll('a[href^="http"]')].map(link => link.href);
-      assert.ok(readout, 'Keep the reserved box mounted');
-      const style = document.createElement('style');
-      style.textContent = readFileSync('src/components/performance-curves.css', 'utf8');
-      document.head.append(style);
-      assert.equal(getComputedStyle(readout).minHeight, '56px');
-      assert.equal(readout.textContent, '', 'No point or placeholder before interaction');
+      const description = () => dialog.querySelector('[data-point-description]')?.textContent ?? '';
+      assert.ok(!dialog.querySelector('.pc-point-readout'), 'Retire the reserved gray panel');
+      assert.ok(!dialog.querySelector('[data-point-tooltip]'), 'No point or placeholder before interaction');
       assert.equal(a.getAttribute('aria-describedby'), null);
       assert.ok(sources.length, 'Source links are available without inspecting a point');
 
       await act(async () => a.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
-      assert.equal(readout.textContent, a.getAttribute('aria-label'));
-      assert.equal(a.getAttribute('aria-describedby'), readout.id);
+      assert.equal(description(), '', 'Layout-only mouseover never preselects');
+      await act(async () => a.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 60, clientY: 80 })));
+      assert.equal(description(), a.getAttribute('aria-label'));
+      assert.equal(a.getAttribute('aria-describedby'), dialog.querySelector('[data-point-tooltip]').id);
       await act(async () => b.focus());
-      assert.equal(readout.textContent, b.getAttribute('aria-label'), 'Keyboard focus retains priority over hover');
+      assert.equal(description(), b.getAttribute('aria-label'), 'Keyboard focus retains priority over hover');
       await act(async () => b.blur());
-      assert.equal(readout.textContent, a.getAttribute('aria-label'), 'Pointer inspection resumes after blur');
-      await act(async () => a.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body })));
-      assert.equal(readout.textContent, '', 'Existing transient inspection returns to an empty box');
+      assert.equal(description(), a.getAttribute('aria-label'), 'Pointer inspection resumes after blur');
+      await act(async () => {
+        a.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body }));
+        await new Promise(resolve => setTimeout(resolve, 350));
+      });
+      assert.equal(description(), '', 'Transient source popup dismisses after pointer leaves');
       assert.equal(a.getAttribute('aria-describedby'), null);
       assert.equal(b.getAttribute('aria-describedby'), null);
-      assert.equal(dialog.querySelector('.pc-point-readout'), readout, 'Do not remove the box on dismissal');
+      assert.ok(!dialog.querySelector('[data-point-tooltip]'));
       assert.deepEqual([...dialog.querySelectorAll('a[href^="http"]')].map(link => link.href), sources);
     } finally { await cleanup(); }
   });

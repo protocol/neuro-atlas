@@ -20,18 +20,12 @@ export const plot = {
   ],
 };
 
-test('point detail box starts empty without placeholder text or a preselected observation', async () => {
+test('point details start absent without a gray placeholder or preselected observation', async () => {
   const DraftChartPlot = await renderer();
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
   try {
-    const inspector = document.querySelector('.draft-plot-inspector');
-    assert.ok(inspector, 'Keep the reserved detail box mounted');
-    const style = document.createElement('style');
-    style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
-    document.head.append(style);
-    assert.equal(getComputedStyle(inspector).height, '144px');
-    assert.equal(inspector.textContent, '');
-    assert.equal(inspector.childElementCount, 0);
+    assert.equal(document.querySelector('.draft-plot-inspector'), null);
+    assert.equal(document.querySelector('[role="tooltip"]'), null);
     assert.equal(document.querySelector('[aria-describedby]'), null);
   } finally { await cleanup(); }
 });
@@ -41,34 +35,24 @@ test('a modal appearing beneath a stationary pointer does not preselect an obser
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
   try {
     const point = document.querySelector('[data-source-observation]');
-    const inspector = document.querySelector('.draft-plot-inspector');
-    // Native pop-out layout causes mouseover even without a new pointer movement.
     await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
-    assert.equal(inspector.textContent, '', 'Layout-only entry is not an inspection request');
+    assert.equal(document.querySelector('[role="tooltip"]'), null, 'Layout-only entry is not an inspection request');
     await act(async () => point.dispatchEvent(new MouseEvent('mousemove', { bubbles: true })));
-    assert.match(inspector.textContent, /Fixture A/);
+    assert.match(document.querySelector('[role="tooltip"]').textContent, /Fixture A/);
   } finally { await cleanup(); }
 });
 
-test('inspection stays selected after hover, focus or tap so the source link remains usable', async () => {
+test('pinned source inspection stays usable after leaving its mark and Escape dismisses it', async () => {
   const DraftChartPlot = await renderer();
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot }));
   try {
-    const points = document.querySelectorAll('[data-source-observation]');
-    const inspector = document.querySelector('.draft-plot-inspector');
-    for (const [index, type] of ['mousemove', 'focus', 'click'].entries()) {
-      const point = points[index];
+    for (const [index, point] of [...document.querySelectorAll('[data-source-observation]')].entries()) {
+      await act(async () => point.dispatchEvent(new MouseEvent('click', { bubbles: true })));
       await act(async () => {
-        if (type === 'focus') point.focus();
-        else point.dispatchEvent(new MouseEvent(type, { bubbles: true }));
+        point.blur(); point.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body }));
       });
-      assert.equal(inspector.querySelector('a').href, plot.points[index].sourceUrl);
-      await act(async () => {
-        point.blur();
-        point.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body }));
-      });
-      const link = inspector.querySelector('a');
-      assert.equal(link.href, plot.points[index].sourceUrl, 'Keep existing sticky inspection after actual interaction');
+      const link = document.querySelector('[role="tooltip"] a');
+      assert.equal(link.href, plot.points[index].sourceUrl);
       await act(async () => link.focus());
       assert.equal(document.activeElement, link);
       let activated = false;
@@ -76,7 +60,7 @@ test('inspection stays selected after hover, focus or tap so the source link rem
       await act(async () => link.click());
       assert.equal(activated, true);
       await act(async () => point.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
-      assert.equal(inspector.textContent, '', 'Existing Escape dismissal returns to an empty box');
+      assert.equal(document.querySelector('[role="tooltip"]'), null);
       assert.equal(document.querySelector('[aria-describedby]'), null);
     }
   } finally { await cleanup(); }

@@ -71,7 +71,7 @@ test('whole-card native button opens one URL-addressed full plot and Close retur
     assert.equal(document.activeElement, modal.querySelector('.pc-modal-header button'));
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, plot.points.length);
     assert.equal(modal.querySelectorAll('tbody tr').length, plot.points.length);
-    assert.equal(modal.querySelector('.draft-plot-inspector').textContent, '');
+    assert.equal(modal.querySelector('[role=tooltip]'), null);
     assert.ok(modal.querySelector('[data-copy-chart]'));
     assert.ok(modal.querySelector('[data-download-chart]'));
     assert.ok(modal.querySelector(`[data-copy-draft-link="${anchor}"]`));

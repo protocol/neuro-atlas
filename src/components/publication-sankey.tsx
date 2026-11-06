@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import type { usePointTooltip } from "./point-source-tooltip";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { usePreviewFont } from "./use-preview-font";
 import { buildPublicationSankey } from "@/lib/publication-sankey";
 import { SECTOR_LABELS, type PublicationChartData } from "@/lib/publication-data";
@@ -8,16 +10,15 @@ import { SECTOR_LABELS, type PublicationChartData } from "@/lib/publication-data
 const number = (value: number) => value.toLocaleString("en-US", { maximumFractionDigits: 1 });
 
 /** A shared count-scaled Sankey; the archived changes-only matrix is never zero-filled. */
-export function PublicationSankey({ data, compact = false, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: (value: string) => void }) {
-  const { ref, fontSize: previewFont } = usePreviewFont(900, compact);
-  const fontSize = compact ? previewFont : 14;
-  const [active, setActive] = useState<string | null>(null);
+type Inspect = (text: string) => ReturnType<ReturnType<typeof usePointTooltip<string>>["pointProps"]>;
+export function PublicationSankey({ data, compact = false, inspect, activeInspection }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null }) {
+  const { ref, fontSize } = usePreviewFont(900, true);
   const available = data.endpointTransitions !== null;
   const options = compact ? { top: fontSize * 2.1, height: fontSize * 17.1, gap: fontSize * .7, labelHeight: fontSize * 3.3 } : undefined;
   const layout = buildPublicationSankey(data.endpointTransitions ?? data.transitions.map(row => ({ ...row, total: 0, destinations: row.destinations.map(dest => ({ ...dest, count: 0, share: 0 })) })), options);
   const height = compact ? fontSize * 20 : 580;
   const nodes = [...layout.sources, ...layout.targets];
-  return <svg ref={ref} className="publication-sankey" viewBox={`0 0 900 ${height}`} role="img" aria-label="First-to-latest publication affiliations, all four origins and destinations, shared people-count scale" data-has-active={active !== null ? "true" : undefined} style={{ fontSize }}>
+  return <svg ref={ref} className="publication-sankey" data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 900 ${height}`} role="img" aria-label="First-to-latest publication affiliations, all four origins and destinations, shared people-count scale" data-has-active={activeInspection ? "true" : undefined} style={{ fontSize }}>
     <title>First and latest publication-affiliation sectors, including same-sector endpoints</title>
     {!available ? <text x="12" y={fontSize * 3}>Complete endpoint counts unavailable in this snapshot.</text> : layout.total === 0 ? <text x="12" y={fontSize * 3}>No researchers qualify for the first/latest publication cohort.</text> : <>
       <text x="0" y={fontSize * 1.1} fontWeight="700">First paper</text>
@@ -26,8 +27,8 @@ export function PublicationSankey({ data, compact = false, inspect }: { data: Pu
       {layout.links.map(link => {
         const id = `${link.from}:${link.to}`;
         const description = `${SECTOR_LABELS[link.from]} → ${SECTOR_LABELS[link.to]}: ${number(link.count)} of ${number(link.originTotal)} people (${number(link.share)}% of this starting sector’s cohort). ${link.sameSector ? link.from === "No listed affiliation" ? "Affiliation metadata missing at both first and latest paper." : "Same sector at first and latest paper." : "Different affiliation categories at first and latest paper."}`;
-        const choose = () => { setActive(id); inspect?.(description); };
-        return <path key={id} className={`publication-sankey-flow${active === id ? " is-emphasized" : ""}`} data-publication-mark data-from={link.from} data-to={link.to} data-value={link.count} data-same-sector={String(link.sameSector)} data-sankey-width={link.width} d={link.path} fill={link.color} fillOpacity=".42" stroke="none" {...(inspect ? { tabIndex: 0, role: "button", "aria-label": description, onPointerMove: (event: React.PointerEvent<SVGPathElement>) => { if (event.movementX || event.movementY) choose(); }, onFocus: choose, onClick: choose, onKeyDown: (event: React.KeyboardEvent<SVGPathElement>) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); choose(); } } } : {})}><title>{description}</title></path>;
+        const events = inspect?.(description);
+        return <path key={id} className={`publication-sankey-flow${activeInspection === description ? " is-emphasized" : ""}`} data-publication-mark data-from={link.from} data-to={link.to} data-value={link.count} data-same-sector={String(link.sameSector)} data-sankey-width={link.width} d={link.path} fill={link.color} fillOpacity=".42" stroke="none" {...(inspect ? { tabIndex: 0, role: "button", "aria-label": description, ...events } : {})}><title>{description}</title></path>;
       })}
       {nodes.map(node => {
         const x = node.side === "source" ? 0 : 714;

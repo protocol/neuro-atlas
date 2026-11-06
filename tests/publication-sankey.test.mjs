@@ -67,7 +67,7 @@ test('rendered Sankey includes complete same/different-sector ribbons and eight 
   snapshot.tables.nt_talent_endpoints = { columns: snapshot.tables.nt_talent_moves.columns,
     rows: snapshot.tables.nt_talent_moves.rows.map((row, i) => row.map((cell, j) => j === i + 1 ? 10 + i : cell)) };
   const data = selectPublicationCharts(snapshot); let inspected = '';
-  const cleanup = await mount(React.createElement(PublicationSankey, { data, inspect: text => inspected = text }));
+  const cleanup = await mount(React.createElement(PublicationSankey, { data, inspect: text => ({ onFocus: () => { inspected = text; } }) }));
   try {
     const svg = document.querySelector('svg');
     assert.equal(svg.querySelectorAll('[data-sankey-node]').length, 8);

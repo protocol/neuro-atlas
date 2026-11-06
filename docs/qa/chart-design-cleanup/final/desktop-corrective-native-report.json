@@ -1,0 +1,29 @@
+[
+  {
+    "width": 1440,
+    "anchor": "idea_vintage",
+    "expectedTitle": "Citation latency",
+    "actualTitle": "Citation latency",
+    "sourceMarkCount": 27,
+    "sourcePopup": "\u00d72000: 6 years; source interval 5\u20137 years. OpenAlex (CC0); scripts/velocity/field_velocity_openalex.py",
+    "screenshot": "desktop-corrective-idea_vintage.png"
+  },
+  {
+    "width": 1440,
+    "anchor": "publication-growth",
+    "expectedTitle": "Publication growth by group",
+    "actualTitle": "Publication growth by group",
+    "sourceMarkCount": 21,
+    "sourcePopup": "\u00d7Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.Source: OpenAlex \u2197",
+    "screenshot": "desktop-corrective-publication-growth.png"
+  },
+  {
+    "width": 1440,
+    "anchor": "metric-panel-acquisition-rates",
+    "expectedTitle": "Selected EM acquisition rates",
+    "actualTitle": "Selected EM acquisition rates",
+    "sourceMarkCount": 2,
+    "sourcePopup": "\u00d7Enhanced FIB-SEM, Drosophila optic lobeFIB-SEM \u00b7 8 nm isotropic2017 \u00b7 paper publication yearAcquired volume (mm\u00b3/day \u00b7 log): \u22480.000009Enhanced FIB-SEM systems for large-volume 3D imaging \u2197Real 100-day acquisition, includes documented interruptions. Approximate final bounding volume, NOT quality-mask volume. Excludes upstream preparation and downstream reconstruction; one instrument; 8\u00d78\u00d78 nm voxels. Derivation: {\"formula\": \"180*100*50 / 1e9 / 100\", \"input_units\": \"um3 / um3-per-mm3 / days\", \"basis\": \"reported final dimensions and actual elapsed acquisition period\"}",
+    "screenshot": "desktop-corrective-metric-panel-acquisition-rates.png"
+  }
+]

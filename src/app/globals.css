@@ -137,3 +137,11 @@ body {
   height: 0;
   width: 0;
 }
+
+/* Keep only the month timeline horizontally scrolling on phones. Year choices
+   become compact selectors above it instead of clipping the focused year. */
+@media (max-width: 639px) {
+  .milestone-year-strip { flex-wrap: wrap; overflow-x: visible; }
+  .milestone-year-strip > .milestone-focused-year { order: 1; width: 100% !important; min-width: 0 !important; }
+  .milestone-year-strip > .milestone-collapsed-year { width: calc(50% - 4px) !important; min-width: 0 !important; height: 88px !important; }
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "width": 1440,
+    "preview_mark_radii": [
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4.000367647058823,
+      4,
+      4,
+      4
+    ],
+    "recording_detail": [
+      {
+        "id": "electrical:2017-11-09",
+        "r": 5,
+        "value": "741"
+      },
+      {
+        "id": "electrical:2019-04-18",
+        "r": 5,
+        "value": "2668"
+      },
+      {
+        "id": "electrical:2025-06-23",
+        "r": 5,
+        "value": "1012"
+      }
+    ],
+    "initial_empty_readout": true,
+    "native_inspection": true,
+    "measurement_views": true,
+    "escape_focus_return": true,
+    "no_page_overflow": true
+  },
+  {
+    "width": 390,
+    "preview_mark_radii": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "recording_detail": [
+      {
+        "id": "electrical:2017-11-09",
+        "r": 5,
+        "value": "741"
+      },
+      {
+        "id": "electrical:2019-04-18",
+        "r": 5,
+        "value": "2668"
+      },
+      {
+        "id": "electrical:2025-06-23",
+        "r": 5,
+        "value": "1012"
+      }
+    ],
+    "initial_empty_readout": true,
+    "native_inspection": true,
+    "measurement_views": true,
+    "escape_focus_return": true,
+    "no_page_overflow": true
+  },
+  {
+    "width": 320,
+    "preview_mark_radii": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "recording_detail": [
+      {
+        "id": "electrical:2017-11-09",
+        "r": 5,
+        "value": "741"
+      },
+      {
+        "id": "electrical:2019-04-18",
+        "r": 5,
+        "value": "2668"
+      },
+      {
+        "id": "electrical:2025-06-23",
+        "r": 5,
+        "value": "1012"
+      }
+    ],
+    "initial_empty_readout": true,
+    "native_inspection": true,
+    "measurement_views": true,
+    "escape_focus_return": true,
+    "no_page_overflow": true
+  }
+]

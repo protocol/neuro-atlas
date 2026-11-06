@@ -1,0 +1,50 @@
+npm warn Unknown env config "jobs". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> neuro-atlas@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.4.1 (webpack)
+✓ Running next.config.ts took 101ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 70s
+  Running TypeScript ...
+  Finished TypeScript in 37.3s ...
+  Collecting page data using 24 workers ...
+  Generating static pages using 24 workers (0/10) ...
+  Generating static pages using 24 workers (2/10) 
+  Generating static pages using 24 workers (4/10) 
+  Generating static pages using 24 workers (7/10) 
+✓ Generating static pages using 24 workers (10/10) in 6.6s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/citation-latency/[revision]/[file]
+├ ƒ /api/citation-latency/latest
+├ ƒ /api/feedback
+├ ƒ /api/feedback/[id]
+├ ƒ /api/feedback/[id]/followups
+├ ƒ /api/feedback/auth/callback
+├ ƒ /api/feedback/auth/finish
+├ ƒ /api/feedback/auth/session
+├ ƒ /api/feedback/auth/start
+├ ƒ /api/feedback/config
+├ ƒ /api/google-trends/[revision]/[file]
+├ ƒ /api/google-trends/latest
+├ ƒ /api/publications
+├ ○ /ecosystem
+├ ○ /field-velocity
+├ ○ /funding
+├ ○ /methodology
+├ ○ /milestones
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

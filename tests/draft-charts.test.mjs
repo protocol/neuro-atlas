@@ -141,11 +141,12 @@ test("a Draft chart link records its exact return focus target", () => {
   }
 });
 
-test('the wired gallery stylesheet makes two readable columns, mobile single columns, and fixed-height point inspection', () => {
+test('the wired gallery stylesheet makes two readable columns, mobile single columns, and floating point inspection', () => {
   const css = (() => { try { return readFileSync('src/components/draft-chart-plot.css', 'utf8'); } catch { return ''; } })();
   assert.match(css, /\.draft-charts-gallery \.draft-chart-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(css, /\.draft-plot-svg\s*\{[^}]*min-height:\s*300px/);
-  assert.match(css, /\.draft-plot-inspector\s*\{[^}]*height:\s*\d+(?:\.\d+)?rem[^}]*overflow-y:\s*auto/);
+  assert.match(css, /@import "\.\/point-source-tooltip\.css"/);
+  assert.doesNotMatch(css, /\.draft-plot-inspector\s*\{/);
   assert.match(css, /@media\s*\(max-width:\s*900px\)[\s\S]*grid-template-columns:\s*1fr/);
   assert.match(readFileSync('src/app/globals.css', 'utf8'), /@import "\.\.\/components\/draft-chart-plot\.css"/);
 });

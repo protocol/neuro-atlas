@@ -176,7 +176,7 @@ test('an optional per-point annotation is persistent, source-linked by a true-po
     assert.equal(document.querySelector('[role="tooltip"] a').href, point.sourceUrl);
     await act(async () => label.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
     assert.equal(document.querySelector('[role="tooltip"]'), null);
-    await act(async () => label.focus());
+    await act(async () => { label.blur(); label.focus(); });
     assert.ok(document.querySelector('[role="tooltip"]').textContent.includes(point.label));
     assert.equal(label.getAttribute('aria-describedby'), document.querySelector('[role="tooltip"]').id);
     await act(async () => label.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
