@@ -31,11 +31,15 @@ test('both themes keep readable accent text, filled controls and tinted selectio
 });
 
 test('runtime brand surfaces do not retain the former violet accent palette', () => {
-  const oldPalette = /#(?:6d5bff|8b7dff|efedff|1d1a33|b8afff|d0caff|c7bfff|aa9fff|6e678e|4b4df2)\b|rgba?\(\s*(?:109\s*,\s*91\s*,\s*255|139\s*,\s*125\s*,\s*255)/i;
+  const oldPalette = /#(?:6d5bff|8b7dff|efedff|1d1a33|b8afff|d0caff|c7bfff|aa9fff|6e678e|4b4df2)(?:[a-f0-9]{2})?\b|rgba?\(\s*(?:109\s*,\s*91\s*,\s*255|139\s*,\s*125\s*,\s*255)/i;
   const walk = dir => readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(join(dir, entry.name)) : [join(dir, entry.name)]);
   for (const path of walk(new URL('../src', import.meta.url).pathname)) {
     if (/\.(?:css|tsx?|svg)$/.test(path)) assert.doesNotMatch(readFileSync(path, 'utf8'), oldPalette, path);
   }
+});
+
+test('plate accent badges use the theme-aware foreground rather than white in dark mode', () => {
+  assert.match(read('src/components/plate-header.tsx'), /bg-accent[^"\n]*text-accent-foreground/);
 });
 
 test('publication primary series use PL R&D blue without erasing categorical colors', () => {
