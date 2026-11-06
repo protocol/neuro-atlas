@@ -126,7 +126,7 @@ test('evidence gaps are explicit compact disclosures outside the plotted gallery
 
 test("Draft charts is a stable non-modal tab location", () => {
   assert.ok(performanceAnchors.includes("draft-charts"));
-  assert.equal(performanceUrl("https://atlas.example/field-velocity?review=1#old", "draft-charts"), "https://atlas.example/field-velocity?review=1#draft-charts");
+  assert.equal(performanceUrl("https://atlas.example/field-velocity?review=1#old", "draft-charts"), "https://atlas.example/field-velocity?review=1#metrics");
 });
 
 test("a Draft chart link records its exact return focus target", () => {

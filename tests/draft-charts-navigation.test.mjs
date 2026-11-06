@@ -52,16 +52,16 @@ for (const strict of [false, true]) {
         await click(link);
         assert.ok(document.querySelector('dialog[open]'));
         await click(document.querySelector('dialog .pc-modal-header button'));
-        await until(() => window.location.hash === '#draft-charts' && document.activeElement === link);
-        assert.equal(window.location.hash, '#draft-charts');
+        await until(() => window.location.hash === '#metrics' && document.activeElement === link);
+        assert.equal(window.location.hash, '#metrics');
         assert.equal(document.activeElement === link, true, 'Close restores exact chart trigger');
         assert.equal(link.closest('[hidden]'), null);
         await act(async () => window.history.forward());
         await until(() => !!document.querySelector('dialog[open]'));
         assert.ok(document.querySelector('dialog[open]'));
         await click(document.querySelector('dialog .pc-modal-header button'));
-        await until(() => window.location.hash === '#draft-charts' && document.activeElement === link);
-        assert.equal(window.location.hash, '#draft-charts');
+        await until(() => window.location.hash === '#metrics' && document.activeElement === link);
+        assert.equal(window.location.hash, '#metrics');
         assert.equal(document.activeElement === link, true, 'Forward then Close restores exact chart trigger');
       }
     } finally { await cleanup(); }

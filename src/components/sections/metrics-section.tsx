@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { fieldVelocityLink, performanceTarget, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { usePerformanceHash, revealDraftTarget } from "@/lib/field-velocity/navigation";
 import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, METRIC_GROUPS, RETIRED_METRIC_PLOT_IDS, isVisibleMetric, metricCategoryFor } from "@/data/metric-chart-visibility";
@@ -43,14 +44,15 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   const hash = usePerformanceHash();
   useLayoutEffect(() => {
     const reveal = () => {
-      const anchor = hash.slice(1);
+      const anchor = performanceTarget(hash.slice(1));
       pendingReveal.current = anchor;
       const legacy = anchor.replace(/^metric-/, "draft-");
       const link = DRAFT_CHART_LINKS.find(link => link.id === legacy || link.panels.some(panel => panel.id === legacy));
-      const target = document.getElementById(anchor);
+      const linkTarget = fieldVelocityLink(hash.slice(1));
+      const target = document.getElementById(anchor) ?? (linkTarget?.fallback ? document.getElementById(linkTarget.fallback) : null);
       const sourceTitle = link?.title ?? target?.closest<HTMLElement>("[data-draft-chart-card]")?.dataset.draftChartCard;
       const candidate = METRIC_CHARTS.find(chart => chart.title === sourceTitle);
-      const card = [...document.querySelectorAll<HTMLElement>("[data-performance-card], [data-trends-card]")].find(card => card.dataset.performanceCard === anchor || `google-trends-${card.dataset.trendsCard}` === anchor);
+      const card = [...document.querySelectorAll<HTMLElement>("[data-performance-card], [data-trends-card]")].find(card => canonicalPerformanceAnchor(card.dataset.performanceCard ?? `google-trends-${card.dataset.trendsCard}`) === hash.slice(1));
       const category = candidate ? metricCategoryFor(candidate) : (card ?? target)?.closest<HTMLElement>("[data-metrics-category]")?.dataset.metricsCategory;
       const group = METRIC_GROUPS.find(group => group.name === category);
       if (group) {
@@ -68,7 +70,8 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   }, [hash]);
   useLayoutEffect(() => {
     const anchor = pendingReveal.current;
-    const target = anchor ? document.getElementById(anchor) : null;
+    const fallback = anchor ? fieldVelocityLink(anchor)?.fallback : undefined;
+    const target = anchor ? document.getElementById(anchor) ?? (fallback ? document.getElementById(fallback) : null) : null;
     if (!anchor || !target || target.closest("[hidden]")) return;
     pendingReveal.current = null;
     cancelReveal.current?.();

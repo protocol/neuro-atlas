@@ -1,5 +1,7 @@
 "use client";
 
+import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+
 import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
@@ -280,7 +282,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
 export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
-  const open = hash === `#${id}`;
+  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>

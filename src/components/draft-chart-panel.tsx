@@ -1,5 +1,7 @@
 "use client";
 
+import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+
 import { useRef, type ReactNode } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
@@ -14,7 +16,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
 }) {
   const trigger = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash().slice(1);
-  const open = hash === anchor || aliases.includes(hash);
+  const open = [anchor, ...aliases].some(id => hash === canonicalPerformanceAnchor(id));
   return <div className="draft-popout" data-draft-popout={anchor} data-draft-popout-aliases={aliases.join(" ")}>
     <div className="draft-popout-card" data-metric-card-body>
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>

@@ -7,7 +7,7 @@ import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/na
 
 export function VelocityTabs({ performance, references, engagementPreview }: { performance: React.ReactNode; references?: MetricReferences; engagementPreview?: React.ReactNode }) {
   const hash = usePerformanceHash();
-  return <SubTabs selectedKey={hash === "#expectations" ? "expectations" : "instruments"}
+  return <SubTabs selectedKey={hash === "#inflection-points" ? "expectations" : "instruments"}
     onSelect={key => navigatePerformance(key === "expectations" ? "expectations" : "performance_curves")}
     tabs={[
       { key: "instruments", label: "Metrics", node: <MetricsSection performance={performance} references={references} engagementPreview={engagementPreview} /> },

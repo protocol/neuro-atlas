@@ -140,7 +140,7 @@ test('each chart has only Copy link at rest, with selectable URL fallback only a
     const button = document.querySelector('[data-copy-draft-link="metric-recording-hours"]');
     const before = window.location.href;
     await click(button);
-    assert.equal(copied, 'https://atlas.example/field-velocity?review=1#metric-recording-hours');
+    assert.equal(copied, 'https://atlas.example/field-velocity?review=1#neural-recording-hours-selected-datasets');
     assert.equal(window.location.href, before, 'Copy does not navigate');
     Object.defineProperty(globalThis.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('denied'); } } });
     await click(button);

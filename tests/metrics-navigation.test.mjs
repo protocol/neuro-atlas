@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
@@ -101,21 +102,21 @@ test('clean and legacy links override search/collapse, reveal exact target and r
     assert.equal(document.getElementById('draft-panel-tissue-cm3').closest('[hidden]'), null);
     assert.equal(scrolled.includes('metric-panel-tissue-cm3'), false);
     assert.ok(document.querySelector('dialog[open]'));
-    assert.ok(window.history.state.atlasModalFrom?.endsWith('#draft-charts'));
+    assert.ok(window.history.state.atlasModalFrom?.endsWith('#metrics'));
     await act(async () => navigatePerformance('draft-mapping-cost'));
     await settle(); await settle();
     assert.equal(document.querySelector('#draft-mapping-cost').closest('[data-metrics-category]').dataset.metricsCategory, 'Cost and automation');
     assert.equal(document.querySelector('[data-metric-toggle="Cost and automation"]').getAttribute('aria-expanded'), 'true');
     assert.equal(document.querySelector('#draft-mapping-cost').closest('[data-draft-chart-card]'), null);
-    assert.ok(scrolled.includes('draft-mapping-cost'));
+    assert.ok(scrolled.includes('metric-category-1-toggle'));
     await act(async () => window.history.back()); await settle(); await settle();
-    assert.equal(window.location.hash, '#metric-panel-tissue-cm3');
+    assert.equal(window.location.hash, '#selected-tissue-volume-checkpoints');
     assert.ok(document.querySelector('dialog[open] .draft-popout-detail [data-source-observation]'));
     assert.equal(document.getElementById('metric-panel-tissue-cm3').closest('[hidden]'), null);
     await act(async () => window.history.forward()); await settle(); await settle();
-    assert.equal(window.location.hash, '#draft-mapping-cost');
+    assert.equal(window.location.hash, '#cost-and-automation');
     assert.equal(document.querySelector('dialog[open]'), null);
-    assert.equal(performanceUrl('https://example.org/base/field-velocity?x=1&x=2', 'metric-panel-tissue-cm3'), 'https://example.org/base/field-velocity?x=1&x=2#metric-panel-tissue-cm3');
+    assert.equal(performanceUrl('https://example.org/base/field-velocity?x=1&x=2', 'metric-panel-tissue-cm3'), 'https://example.org/base/field-velocity?x=1&x=2#selected-tissue-volume-checkpoints');
   } finally { await cleanup(); }
 });
 
@@ -163,7 +164,7 @@ test('archived source snapshots and provenance remain byte-identical to base', (
 test('every canonical share link has exactly one legacy alias and an independently addressable target', () => {
   assert.equal(metricChartAnchors.length, 46);
   assert.equal(new Set([...metricChartAnchors, ...draftChartAnchors]).size, 92);
-  for (const id of metricChartAnchors) assert.equal(performanceUrl('https://atlas.example/base/field-velocity?a=1&a=2', id), `https://atlas.example/base/field-velocity?a=1&a=2#${id}`);
+  for (const id of metricChartAnchors) assert.equal(performanceUrl('https://atlas.example/base/field-velocity?a=1&a=2', id), `https://atlas.example/base/field-velocity?a=1&a=2#${canonicalPerformanceAnchor(id)}`);
   assert.equal(DRAFT_CHART_LINKS.length, 20);
 });
 

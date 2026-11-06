@@ -1,5 +1,7 @@
 "use client";
 
+import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { PublicationSankey } from "@/components/publication-sankey";
@@ -332,7 +334,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   </>;
 }
 function PublicationCard({index,snapshot,data}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData}) {
-  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${anchor}`, trigger=useRef<HTMLButtonElement>(null);
+  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${canonicalPerformanceAnchor(anchor)}`, trigger=useRef<HTMLButtonElement>(null);
   const hasScience=annualScienceAvailable(data);
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>

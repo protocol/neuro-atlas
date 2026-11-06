@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
@@ -29,7 +30,7 @@ test('deployed /neuro-atlas source downloads keep the basePath and exact query m
 
 for (const flat of [false, true]) for (const id of ['neurotech', 'neuralink']) test(`${id} ${flat ? 'flat' : 'standalone'} deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values`, async () => {
   const { GoogleTrends } = await import('../src/components/google-trends.tsx');
-  assert.equal(performanceUrl('https://example.org/neuro-atlas/field-velocity?view=all', `google-trends-${id}`), `https://example.org/neuro-atlas/field-velocity?view=all#google-trends-${id}`);
+  assert.equal(performanceUrl('https://example.org/neuro-atlas/field-velocity?view=all', `google-trends-${id}`), `https://example.org/neuro-atlas/field-velocity?view=all#${canonicalPerformanceAnchor(`google-trends-${id}`)}`);
   const cleanup = await mount(React.createElement(GoogleTrends, { flat }), `#google-trends-${id}`);
   try {
     const modal = document.querySelector('dialog[open]'); assert.ok(modal, 'Attention modal must open from a fresh URL');

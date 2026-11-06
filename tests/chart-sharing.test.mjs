@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { StrictMode } from 'react';
@@ -74,7 +75,7 @@ test('each curated numeric panel offers a single-item PNG + absolute chart URL +
     assert.deepEqual(items[0].types.sort(), ['image/png', 'text/html', 'text/plain']);
     for (const mime of items[0].types) assert.equal((await items[0].getType(mime)).type, mime);
     const link = await (await items[0].getType('text/plain')).text();
-    assert.equal(link, `https://atlas.example/neuro-atlas/field-velocity#${panel.querySelector('.metric-anchor').id}`);
+    assert.equal(link, `https://atlas.example/neuro-atlas/field-velocity#${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}`);
     const html = await (await items[0].getType('text/html')).text();
     assert.match(html, /<img[^>]+src="data:image\/png;base64,/);
     assert.ok(html.includes(`href="${link}"`));
@@ -122,7 +123,7 @@ for (const id of ['simultaneously-recorded-neurons', 'tissue-mapped', 'neural-re
       assert.match(exported.window.document.documentElement.textContent, /Sources?:/);
       assert.match(exported.window.document.documentElement.textContent, id.startsWith('google-trends') ? /0–100.*weekly|weekly.*0–100/i : /scale/);
       assert.ok(exported.window.document.documentElement.textContent.includes(modal.querySelector('h2').textContent));
-      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), `https://atlas.example/field-velocity#${id}`);
+      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), `https://atlas.example/field-velocity#${canonicalPerformanceAnchor(id)}`);
       assert.ok(modal.querySelector('[aria-label^="Copy link"]'));
       exported.window.close();
     } finally { await cleanup(); boundary.restore(); }
@@ -166,10 +167,10 @@ for (const failure of ['unsupported', 'permission']) test(`${failure}: recover w
     await click(panel.querySelector('[data-download-chart]'));
     assert.equal(boundary.downloads.length, 1);
     assert.equal(boundary.downloads[0].blob.type, 'image/png');
-    assert.equal(boundary.downloads[0].filename, `neuro-atlas-${panel.querySelector('.metric-anchor').id}.png`);
+    assert.equal(boundary.downloads[0].filename, `neuro-atlas-${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}.png`);
     assert.deepEqual(new Uint8Array(await boundary.downloads[0].blob.arrayBuffer()), new Uint8Array(pngBytes));
     await click(panel.querySelector('[data-copy-draft-link]'));
-    assert.match(boundary.writes.at(-1), /field-velocity\?review=1#metric-/);
+    assert.equal(boundary.writes.at(-1), `https://atlas.example/field-velocity?review=1#${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}`);
   } finally { await cleanup(); boundary.restore(); }
 });
 
@@ -356,7 +357,7 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     assert.deepEqual([...card.querySelectorAll('[data-copy-draft-link]')].map(button => button.dataset.copyDraftLink), ['metric-recording-hours']);
     assert.equal(card.querySelectorAll('.draft-chart-share a').length, 0, 'Copy link replaces duplicate Direct link');
     await click(card.querySelector('[data-copy-chart]'));
-    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-recording-hours');
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#neural-recording-hours-selected-datasets');
     const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
     const doc = exported.window.document;
     assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
@@ -386,7 +387,7 @@ test('NeuroAI clipboard export uses the corrected performance–cost title with 
     assert.equal(boundary.writes.length, 1);
     assert.match(boundary.svgs[0], /NeuroAI performance–cost frontier/);
     assert.doesNotMatch(boundary.svgs[0], /frontier over time/);
-    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#metric-panel-neuroai-imagenet');
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#neuroai-performance-cost-frontier');
   } finally { await cleanup(); boundary.restore(); }
 });
 
@@ -423,7 +424,7 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
     assert.ok(modal.querySelector('[data-point-description]').textContent);
     await click(modal.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes.length, 1, modal.textContent);
-    const url = `https://atlas.example/field-velocity?recordingView=${view.id}#simultaneously-recorded-neurons`;
+    const url = `https://atlas.example/field-velocity?recordingView=${view.id}#simultaneous-neural-recordings`;
     assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), url);
     await click(modal.querySelector('[data-download-chart]'));
     assert.equal(boundary.downloads.length, 1);

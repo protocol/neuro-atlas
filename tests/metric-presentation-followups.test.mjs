@@ -1,3 +1,4 @@
+import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
@@ -61,10 +62,10 @@ for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics 
     assert.equal(panel.closest('[hidden]'), null);
     await act(async () => navigatePerformance('metric-panel-acquisition-rates'));
     await act(async () => window.history.back()); await settle(); await settle();
-    assert.equal(window.location.hash, `#${anchor}`);
+    assert.equal(window.location.hash, `#${canonicalPerformanceAnchor(anchor)}`);
     assert.equal(panel.closest('[hidden]'), null);
     await act(async () => window.history.forward()); await settle(); await settle();
-    assert.equal(window.location.hash, '#metric-panel-acquisition-rates');
+    assert.equal(window.location.hash, '#selected-em-acquisition-rates');
     await click(document.querySelector('dialog[open] .pc-modal-header button')); await settle(); await settle();
     const input = document.querySelector('#metrics-search');
     await act(async () => { Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, 'cost efficiency'); input.dispatchEvent(new Event('input', { bubbles: true })); });
