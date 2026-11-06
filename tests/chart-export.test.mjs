@@ -54,7 +54,11 @@ test('every exported chart replaces long notes with one Neuro Atlas referral and
       const out = parse(image.svg), doc = out.window.document;
       const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
       assert.equal((visible.match(/More information on Neuro Atlas\./g) ?? []).length, 1);
-      assert.ok(visible.includes('https://atlas.example/neuro-atlas/field-velocity#tissue-mapped'));
+      const expectedLink = 'https://atlas.example/neuro-atlas/field-velocity#selected-tissue-volume-checkpoints';
+      assert.equal(image.url, expectedLink);
+      // Long title-aligned URLs can span several SVG text rows; concatenating
+      // the footer preserves their exact bytes without inserting artificial spaces.
+      assert.ok(doc.querySelector('[data-export-footer]').textContent.includes(expectedLink), 'The complete canonical chart URL remains in the image footer');
       for (const note of [...notes, 'Previous editorial footnote.']) assert.ok(!visible.includes(note), 'No long or legacy caption notes are painted into the image');
       assert.equal(doc.querySelectorAll('[data-export-footnotes], [data-export-note]').length, 0);
       assert.equal(doc.querySelector('desc').textContent, notes.join('\n'), 'Full source evidence may remain nonvisual; native PNG/clipboard have no footnote block');

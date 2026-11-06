@@ -32,7 +32,10 @@ test('chart opens in a named modal, locks scroll, traps focus, closes visibly an
     assert.equal(document.activeElement, trigger);
     assert.equal(document.body.style.overflow, '');
     assert.equal(window.location.href, 'https://atlas.example/field-velocity?review=1');
-    await act(async () => window.history.forward()); await settle();
+    await act(async () => window.history.forward());
+    // History events are asynchronous in jsdom. Wait for the retained modal
+    // state rather than one fixed settle window under parallel suite load.
+    for (let attempt = 0; attempt < 60 && !document.querySelector('dialog[open]'); attempt++) await settle();
     assert.ok(document.querySelector('dialog[open]'), 'Forward restores modal');
     await act(async () => document.querySelector('dialog[open]').dispatchEvent(new Event('cancel', { cancelable: true })));
     await settle();
