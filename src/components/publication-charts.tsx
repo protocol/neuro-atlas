@@ -103,7 +103,7 @@ function growthInspection(row: GrowthRow) {
 }
 type GrowthBaseline = "science" | "matched";
 const growthColors = { above: blue, within: "#98a2b3", below: "#e8a132", unavailable: "#98a2b3" };
-function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;data:PublicationChartData;x:(n:number)=>number;y:number;inspect?:Inspect;baseline?:GrowthBaseline}) {
+function GrowthMarks({row,data,x,y,inspect,baseline="science",compact=false}:{row:GrowthRow;data:PublicationChartData;x:(n:number)=>number;y:number;inspect?:Inspect;baseline?:GrowthBaseline;compact?:boolean}) {
   const range=baseline==="science"?data.scienceGrowth:row.referenceGrowth===null?null:{low:row.referenceGrowth,high:row.referenceGrowth};
   const status=row.growth===null||!range?"unavailable":row.growth>range.high?"above":row.growth<range.low?"below":"within";
   const color=growthColors[status];
@@ -114,7 +114,7 @@ function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;da
     {baseline==="matched"&&row.referenceGrowth!==null&&<line data-growth-reference-tick data-value={row.referenceGrowth} x1={x(row.referenceGrowth)} x2={x(row.referenceGrowth)} y1={y-10} y2={y+10} stroke={gray} strokeWidth="3"><title>{`Category baseline: ${percent(row.referenceGrowth)}`}</title></line>}
     {row.growth===null?<text data-growth-label="neurotech" x={x(0)+12} y={y} dominantBaseline="middle">No 2022 base</text>:<>
       <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={color} strokeWidth="2"/>
-      <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r="5" fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
+      <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r={5 * (compact ? CHART_PRESENTATION.previewMarkerScale : 1)} fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
       <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:status==="within"||status==="unavailable"?"var(--foreground)":color}}>{percent(row.growth)}</text>
     </>}
   </g>;
@@ -176,7 +176,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
           const y=heading+(1.6+index*3.6)*fontSize;
           return <g key={row.id}>
             <text x="8" y={y}>{row.id==="government-facility"?"Govt. / research facilities":growthLabel(row).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
-            <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2}/>
+            <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2} compact/>
           </g>;
         })}
       </g>)}
