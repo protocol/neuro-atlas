@@ -161,7 +161,7 @@ function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; co
   </svg>;
 }
 function changesSubtitle(data: PublicationChartData) {
-  return `First and latest observed paper affiliations for researchers entering the two-topic cohort in 2016–${data.authorEndYear}, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included.`;
+  return `First and latest observed paper affiliations for researchers first seen in brain–computer interfaces/EEG or neural engineering in 2016–${data.authorEndYear}, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included.`;
 }
 function ChangesPlot(props: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
   return <PublicationSankey {...props}/>;

@@ -28,6 +28,7 @@ test('first/latest affiliations use every full-cohort cell in preview, detail, s
     }
     const modal = document.querySelector('dialog');
     assert.match(modal.querySelector('[data-change-subtitle]').textContent, /2016–2025.*two active publication years.*widths show people.*same-sector/i);
+    assert.match(modal.querySelector('[data-change-subtitle]').textContent, /brain–computer interfaces\/EEG or neural engineering/);
     const download = JSON.parse(decodeURIComponent(modal.querySelector('a[download$="-source.json"]').href.split(',')[1]));
     assert.deepEqual(download.tables.nt_talent_endpoints, snapshot.tables.nt_talent_endpoints);
     assert.deepEqual(download.tables.nt_talent_moves, snapshot.tables.nt_talent_moves);
