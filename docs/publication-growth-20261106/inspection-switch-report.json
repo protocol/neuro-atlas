@@ -1,0 +1,30 @@
+{
+  "switches": [
+    {
+      "row": "asia",
+      "from": "science",
+      "to": "matched",
+      "cleared": true
+    },
+    {
+      "row": "asia",
+      "from": "matched",
+      "to": "science",
+      "cleared": true
+    },
+    {
+      "row": "early",
+      "from": "science",
+      "to": "matched",
+      "cleared": true
+    },
+    {
+      "row": "early",
+      "from": "matched",
+      "to": "science",
+      "cleared": true
+    }
+  ],
+  "sectionSeparators": 6,
+  "nativeInput": true
+}
