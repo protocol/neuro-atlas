@@ -30,7 +30,7 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const { ref, fontSize: previewFont } = usePreviewFont(840, !!compact);
   const fontSize = compact ? previewFont : 13;
-  const left = compact ? fontSize * 4 : 80, right = compact ? 840 - fontSize * 2.2 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? top + fontSize * 9 : 280;
+  const left = compact ? fontSize * 3.6 + 12 : 80, right = compact ? 840 - fontSize * 2.2 - 12 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? top + fontSize * 9 : 280;
   const anchor = data.annual.find(row => row.year === 2022)!.papers;
   const hasScience = annualScienceAvailable(data);
   const max = Math.max(1, ...data.annual.map(row => row.papers), ...(hasScience ? data.baseline.flatMap(row => [row.all, row.high]) : []));
