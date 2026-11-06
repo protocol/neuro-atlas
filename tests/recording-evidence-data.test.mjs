@@ -19,13 +19,13 @@ test('recording evidence separates audited electrical units, human implant chann
   assert.equal(card.datePrecision, 'day');
   assert.equal(card.date, '2026-06-15');
   assert.equal(card.dateBasis, 'publication');
-  assert.match(card.note, /512.*features.*not.*channels/i);
+  assert.match(card.note, /256 implanted electrodes.*512 decoder features/i);
   assert.match(card.note, /same implant.*2024/i);
   assert.equal(neuralink.qualifier, 'approximate');
   assert.equal(neuralink.date, '2026-09-18');
   assert.equal(neuralink.dateBasis, 'disclosure');
   assert.equal(neuralink.sourceUrl, 'https://www.youtube.com/watch?v=_j806JHhCRo&t=170s');
-  assert.match(neuralink.note, /company-reported.*active.*not specified/i);
+  assert.match(neuralink.note, /company-reported.*active.*unverified/i);
   assert.equal(optical.points.length, 1);
   assert.equal(optical.points[0].value, 1136223);
   assert.match(optical.points[0].note, /2\.2 volumes\/s/);
@@ -33,7 +33,7 @@ test('recording evidence separates audited electrical units, human implant chann
   for (const view of RECORDING_VIEWS) {
     assert.equal(view.chartKind, 'scatter');
     assert.equal(view.extrapolation, false);
-    assert.match(view.caveat, /not.*(record|neurons|spikes)/i);
+    assert.ok(view.caveat.trim(), 'Measurement-specific scope remains stated');
     for (const p of view.points) {
       assert.ok(Number.isFinite(p.value) && p.value > 0);
       assert.ok(['publication', 'disclosure'].includes(p.dateBasis));
@@ -42,6 +42,9 @@ test('recording evidence separates audited electrical units, human implant chann
       assert.ok(![2998, 3072, 512, 3880, 1127, 3029].includes(p.value));
     }
   }
+  assert.match(electrical.caveat, /one animal and session.*study-specific quality criteria/i);
+  assert.match(human.caveat, /hardware.*active channel yield.*isolated-neuron yield/i);
+  assert.match(optical.caveat, /calcium-sensor kinetics.*volume-sampling rate/i);
   // Historical provider data/provenance remain byte-for-byte originals. New
   // curated evidence must never masquerade as a refreshed provider snapshot.
   for (const [file, hash] of [

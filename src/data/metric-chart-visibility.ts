@@ -12,7 +12,7 @@ const recordingHoursPlot: DraftPlot = {
   xKind: "year",
   yLabel: "Recording hours",
   scale: "log",
-  scope: "Release, publication and disclosure dates are distinct from acquisition dates. No sums across overlapping releases, datasets, modalities or model reuse; no pooled fit or connecting lines.",
+  scope: "Selected reported recording durations, dated by release, publication or disclosure; acquisition timing may differ. Releases overlap within datasets, while modalities and reused training corpora retain separate identities.",
   seriesNote: recordingHours.plots.map(plot => `${plot.title}: ${plot.scope}`).join("\n\n"),
   points: recordingHours.plots.flatMap((plot, index) => plot.points.map(point => ({
     ...point, group: point.group ?? plot.title, color: recordingColors[index],
@@ -27,12 +27,12 @@ const acquisitionEconomics: DraftPlot = {
   title: "Estimated acquisition cost per 10M voxels — optical and EM",
   yLabel: "Approx. $/10M voxels (log)",
   valueSignificantDigits: 3,
-  seriesNote: "Each displayed cost is 10,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ. Excludes the unresolved ExA-SPIM 2024 citation and X-ray.",
+  seriesNote: "Estimated cost per 10M voxels is 10,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ; the chart uses Table A1.",
   points: acquisitionSource.points.map(point => ({
     ...point,
     y: point.y * 10_000_000,
     dateLabel: `${point.x} · year as printed in Table A1`,
-    note: point.note?.replace(/Display transformation:.*$/, `Display conversion: ${Number((point.y * 10_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/10M voxels.`)
+    note: point.note?.replace(/Display transformation:.*$/, `Estimated acquisition cost: ${Number((point.y * 10_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/10M voxels.`)
       .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
       .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
       .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
@@ -43,7 +43,7 @@ const costEfficiency: DraftChart = {
   category: "Cost and automation",
   title: "Connectomics imaging cost efficiency",
   axes: `${acquisitionEconomics.xLabel} · ${acquisitionEconomics.yLabel}`,
-  definition: "Compare source-estimated acquisition costs per 10M voxels at each stated resolution and protocol.",
+  definition: "Source-estimated acquisition costs per 10M voxels at each protocol's stated resolution and scope.",
   constraint: acquisitionEconomics.scope,
 };
 export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency];

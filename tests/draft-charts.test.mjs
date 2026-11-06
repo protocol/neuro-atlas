@@ -63,7 +63,8 @@ test("Reconstruction accuracy uses time on x with a fixed benchmark version", ()
 
 test("Draft chart manifest is a stable, sanitized technical definition set", () => {
   const digest = createHash("sha256").update(JSON.stringify(DRAFT_CHARTS)).digest("hex");
-  assert.equal(digest, "d9552334284ab6663bdccabbdf7a6cfe2720d057ab88de92c7f1fcbb6db1360e");
+  // Editorial wording changed; chart identities, categories and comparison requirements are checked independently above and in curated-reader-copy.test.mjs.
+  assert.equal(digest, "4cbb9022264a09f0b3fdff638b3730e58e5f80e96abe9049c15d567850470913");
   const serialized = JSON.stringify(DRAFT_CHARTS);
   assert.doesNotMatch(serialized, /https?:\/\//i);
   assert.doesNotMatch(serialized, /\b(?:meeting|discussion|participant|comment|private URL)\b/i);

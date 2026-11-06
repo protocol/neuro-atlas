@@ -14,6 +14,6 @@ test('Trends preview omits the search-interest slogan while methodology remains 
   } finally { dom.window.close(); }
   const cleanup = await mount(React.createElement(GoogleTrends, { flat: true, selection: ['neurotech'] }), '#google-trends-neurotech');
   try {
-    assert.match(document.querySelector('dialog[open] .pc-methodology').textContent, /Public attention, not technical progress/);
+    assert.match(document.querySelector('dialog[open] .pc-methodology').textContent, /Worldwide Google search interest.*shared 0–100 scale/);
   } finally { await cleanup(); }
 });

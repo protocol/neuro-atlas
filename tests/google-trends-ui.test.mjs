@@ -47,10 +47,10 @@ for (const flat of [false, true]) for (const id of ['neurotech', 'neuralink']) t
     assert.match(modal.querySelector('[data-trends-row="2026-11-01"]').textContent, /Partial · excluded/);
     assert.match(modal.textContent, /2023-11-06–2026-11-06/);
     assert.match(modal.textContent, /Worldwide.*Web Search.*All categories/);
-    assert.match(modal.textContent, /Captured 2026-11-06.*snapshot is pinned to the source revision/);
+    assert.match(modal.textContent, /Captured 2026-11-06.*Source revision:/);
     assert.match(modal.textContent, /sample/);
-    assert.match(modal.textContent, /not topics/);
-    assert.match(modal.textContent, /not zero searches/);
+    assert.match(modal.textContent, /English.*(?:search terms|brand-search interest)/);
+    assert.match(modal.textContent, /0 indicates low or insufficient interest/);
     assert.ok(modal.querySelector(`a[download][href$="/${id}.csv"]`));
     assert.ok(modal.querySelector('a[href^="https://trends.google.com/trends/explore?"]'));
     assert.match(modal.textContent, new RegExp(group.rawSha256));
@@ -82,6 +82,6 @@ test('Metrics renders two real 36-month attention previews with distinct normali
     assert.ok(card.querySelector('.gt-legend'));
   }
   assert.doesNotMatch(doc.querySelector('[data-trends-card="neurotech"]').textContent, /Search interest, not progress/);
-  assert.match(doc.querySelector('[data-trends-card="neuralink"]').textContent, /Brand context.*independently normalized.*not comparable/);
+  assert.match(doc.querySelector('[data-trends-card="neuralink"]').textContent, /Independently normalized brand-search interest/);
   assert.match(readFileSync('src/app/field-velocity/page.tsx', 'utf8'), /<GoogleTrends/);
 });

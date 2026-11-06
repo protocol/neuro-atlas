@@ -5,6 +5,7 @@ import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/na
 import MARKETS from "@/data/velocity/neurotech_market_signals.json";
 import INFLECTIONS from "@/data/velocity/neurotech_inflection_points.json";
 import { RELATED_MEASUREMENTS } from "@/data/related-measurements";
+import { INFLECTION_COPY } from "@/data/inflection-copy";
 
 const PLATFORM_LABEL: Record<string, string> = {
   kalshi: "Kalshi",
@@ -40,8 +41,7 @@ export function ExpectationsSection() {
   }, [hash]);
   return <section aria-label="Inflection points and related measurements">
     <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted">
-      Observable signals and the measurements that help put them in context.
-      Related measurements track supporting capabilities or adoption—not completion of an inflection point.
+      Inflection signals describe observable milestones; related measurements track supporting capabilities and adoption.
     </p>
     <div className="flex flex-col gap-4">
       {INFLECTIONS.points.map((point, index) => {
@@ -52,10 +52,10 @@ export function ExpectationsSection() {
           <div className="grid gap-5 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:gap-8">
             <div className="min-w-0">
               <h3 id={`inflection-${index}-title`} className="text-base font-semibold tracking-tight">{point.title}</h3>
-              <p data-inflection-signal className="mt-2 text-sm leading-relaxed text-muted">{point.signal}</p>
+              <p data-inflection-signal className="mt-2 text-sm leading-relaxed text-muted">{INFLECTION_COPY[point.title]?.signal ?? point.signal}</p>
               {primary && <details data-related-forecasts className="mt-4 text-xs text-muted">
                 <summary className="w-fit cursor-pointer rounded-sm font-medium text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Related forecasts</summary>
-                <p className="mt-2 leading-relaxed">External forecast questions are proxies, not measurements of this signal.</p>
+                <p className="mt-2 leading-relaxed">{INFLECTION_COPY[point.title]?.forecastScope ?? "External forecasts address related proxy questions."}</p>
                 <a href={primary.url} target="_blank" rel="noreferrer" className="mt-2 block rounded-sm leading-relaxed text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
                   {PLATFORM_LABEL[primary.platform] ?? primary.platform}: “{primary.question}” ↗
                 </a>
