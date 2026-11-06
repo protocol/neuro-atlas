@@ -20,7 +20,9 @@ const baseline = {
   'simultaneously-recorded-neurons': null,
   'tissue-mapped': '4381ff79385d5b1375b516b77b21840bd1601497e8cac0eeab3143bd45678d89',
   'neural-recording-hours': '4089d4a140e99d8703af2f956e032218e9d3965a7e7051aaf8d6ac38d884d266',
-  idea_vintage: '158b7a9b48047b6ff64c84ea9982b55ba0f655f0fa346117ac16145f90d74f47',
+  // November 6 independently acquired citation data intentionally replaces the archived coordinates.
+  // All other original scientific geometry remains independently pinned.
+  idea_vintage: '7ef8ba1c79edbd70c15da002d4abe34b37afaf85f8ff3b7bb4902acf00a77397',
   // Reviewed replacement of the withdrawn animal-event series: five sourced report intervals.
   latency_compression: '3528e6676217983e6ffeebba28b29466ea2e344f878ad7d8c5cb5864af713826',
 };
@@ -57,6 +59,7 @@ function assertFonts(width) {
   }
 }
 function assertGeometry() {
+  assert.equal(createHash('sha256').update(readFileSync('src/data/field-velocity/citation-latency.bundled-20261106.json')).digest('hex'), '0e43c72e2176e21d5418ff88948f3e61396e36a381dc70b8ccb2cbb2a0866611', 'The new citation geometry is tied to the independently verified November 6 source');
   const cards = [...document.querySelectorAll('[data-performance-card]')];
   assert.deepEqual(cards.map(card => card.dataset.performanceCard), Object.keys(baseline));
   for (const card of cards) {

@@ -57,7 +57,7 @@ for (const id of ['neurotech', 'neuralink']) {
     try {
       const dialog = document.querySelector('dialog[open]');
       assert.equal(dialog.querySelector('[role="tooltip"], .pc-point-readout, .draft-plot-inspector'), null);
-      const group = JSON.parse(readFileSync('public/data/google-trends/google-trends.json', 'utf8')).groups.find(group => group.id === id);
+      const group = JSON.parse(readFileSync('public/data/google-trends/bundled-20261106/google-trends.json', 'utf8')).groups.find(group => group.id === id);
       const latest = group.rows.filter(row => !row.partial).at(-1);
       const summary = dialog.querySelector('[data-trends-latest]');
       assert.equal(summary.dataset.trendsLatest, latest.date);

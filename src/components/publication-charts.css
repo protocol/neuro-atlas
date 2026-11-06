@@ -1,0 +1,32 @@
+.publication-card [data-metric-card-body] { min-width: 0; }
+.publication-card .pc-trigger { display: block; width: 100%; text-align: left; }
+.metric-chart-rail .publication-card .pc-trigger::after { display: none; }
+.publication-preview { margin: 0 1.25rem; min-width: 0; height: 235px; overflow: auto; scrollbar-width: thin; }
+.publication-preview svg { display: block; width: 100%; height: auto; }
+.publication-preview-trigger { display: block; width: 100%; text-align: left; cursor: zoom-in; flex-shrink: 0; }
+.publication-preview-0 { display: flex; align-items: center; }
+.publication-preview-1 svg { min-width: 0; }
+.publication-preview-2 svg { max-width: 235px; margin: 0 auto; }
+.publication-preview-3 { display: flex; align-items: center; }
+.publication-preview-3 svg { min-width: 0; }
+.publication-preview-note { margin: .7rem 1.25rem 1rem; font-size: .7rem; color: var(--muted); line-height: 1.6; }
+.publication-preview-sectors { margin: .65rem 1.25rem 1rem; font-size: .7rem; line-height: 1.6; display: grid; gap: .25rem; }
+.publication-preview-sectors li { display: flex; align-items: baseline; gap: .4rem; }
+.publication-preview-sectors li > span { width: .55rem; height: .55rem; flex: 0 0 auto; border-radius: 2px; }
+.publication-full-plot { max-width: 100%; overflow: auto; max-height: 68vh; margin: 1rem 0; }
+.publication-full-plot svg { display: block; width: 100%; min-width: 650px; height: auto; }
+.publication-plot-1 svg { min-width: 860px; }
+.publication-plot-1 { overscroll-behavior: contain; }
+.publication-full-plot svg text, .publication-preview svg text { fill: var(--foreground); font-size: inherit; }
+.publication-full-plot [data-publication-mark][tabindex]:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+.publication-scope, .publication-legend { font-size: .8rem; line-height: 1.7; color: var(--muted); overflow-wrap: anywhere; }
+.publication-legend { display: flex; flex-wrap: wrap; gap: .4rem; }
+.publication-card .pc-coverage { min-height: 0; }
+.publication-card .pc-card-title { margin-top: 0; }
+.publication-sector-key { display: none; }
+@media (max-width: 700px) {
+  .publication-sector-key { display: block; margin: .5rem 0 1rem; font-size: .8rem; line-height: 1.6; }
+  .publication-sector-key ul { display: grid; gap: .4rem; margin-top: .5rem; }
+  .publication-sector-key li { display: flex; align-items: baseline; gap: .5rem; }
+  .publication-sector-key li > span:first-child { width: .65rem; height: .65rem; flex: 0 0 auto; border-radius: 2px; }
+}

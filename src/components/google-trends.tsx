@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import SNAPSHOT from '../../public/data/google-trends/google-trends.json';
+import { useTrendsView } from '@/components/google-trends-provider';
 import type { TrendsData } from '@/lib/field-velocity/google-trends';
 import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
@@ -12,7 +12,7 @@ import { CHART_PRESENTATION } from '@/lib/chart-presentation';
 import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
-const groups: Group[] = SNAPSHOT.groups;
+
 const colors = ['var(--accent)', '#087f8c'];
 
 function TrendPlot({ group, compact = false, link, intro }: { group: Group; compact?: boolean; link?: React.ReactNode; intro?: React.ReactNode }) {
@@ -42,7 +42,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
         `Weekly UTC Google Trends index · 0–100 · ${group.start}–${group.end}. Worldwide · Web Search · All categories.`,
         group.id === 'neurotech' ? 'Both English search terms compared in one request; shared scale.' : 'Neuralink: independently normalized brand context; not comparable with the other chart.',
         'Public attention, not technical progress or absolute search counts. Complete weeks only; partial periods excluded without rescaling. Missing values remain gaps. 0 means low or insufficient interest; <1 is plotted at the index floor.',
-        `Source: Google Trends Explore · captured ${group.capturedAt}. Dated snapshot, not a live feed.`,
+        `Source: Google Trends Explore · captured ${group.capturedAt}. Complete 36-month snapshot.`,
       ],
     })} /></ChartActions>}
     {intro}
@@ -70,7 +70,7 @@ function Legend({ group }: { group: Group }) {
   return <ul className="gt-legend">{group.terms.map((term, i) => <li key={term}><span aria-hidden="true" style={{ borderColor: colors[i], borderTopStyle: i ? 'dashed' : 'solid' }} />{term}</li>)}</ul>;
 }
 
-function TrendCard({ group }: { group: Group }) {
+function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const id = `google-trends-${group.id}`;
@@ -89,7 +89,7 @@ function TrendCard({ group }: { group: Group }) {
     }}>Copy link</button><span role="status">{copyStatus}</span>
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
-  return <article className="pc-card card gt-card" data-trends-card={group.id}>
+  return <article className="pc-card card gt-card" data-trends-card={group.id} data-trends-revision={revision}>
     <div data-metric-card-body>
     <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
       <h3>{group.title}</h3>
@@ -108,12 +108,12 @@ function TrendCard({ group }: { group: Group }) {
         <p>These are search terms, not topics: the literal English strings shown above, without quotes, using Google’s broad term matching. They do not pool multilingual topic equivalents, synonyms or all neurotech searches. The ambiguous acronym BCI is deliberately excluded. Neuralink is brand/news context, not a field-wide measure.</p>
         <p>0 means low or insufficient interest, not zero searches. “&lt;1” is retained in source values and plotted at the index floor; unavailable data remain gaps, never interpolated. Lines connect available weekly samples, not a fitted trend.</p>
         <p>Incomplete boundary weeks and Google-flagged partial periods are excluded from the graph and latest reading, but retained and labeled in the table and CSV. Week dates are UTC starts; each complete week spans seven days. Excluding partial values does not rescale Google’s original index.</p>
-        <p>Captured {group.capturedAt} from Google Trends’ public Explore widget. A checked-in snapshot, not a live connection; manual refresh only.</p>
+        <p>Captured {group.capturedAt} from Google Trends’ public Explore widget. This complete 36-month snapshot is pinned to the source revision below.</p>
       </section>
       <ul className="pc-sources">
         <li><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open exact Google Trends query ↗</a></li>
-        <li><a href={atlasPath(`/data/google-trends/${group.id}.csv`)} download>Download source values CSV</a></li>
-        <li><a href={atlasPath('/data/google-trends/google-trends.json')} download>Download snapshot &amp; provenance JSON</a></li>
+        <li><a href={atlasPath(`/api/google-trends/${revision}/${group.id}.csv`)} download>Download source values CSV</a></li>
+        <li><a href={atlasPath(`/api/google-trends/${revision}/google-trends.json`)} download>Download snapshot &amp; provenance JSON</a></li>
         <li><a href="https://support.google.com/trends/answer/4365533?hl=en" target="_blank" rel="noreferrer">Google’s data and normalization methodology ↗</a></li>
         <li><a href="https://support.google.com/trends/answer/4359550?hl=en" target="_blank" rel="noreferrer">Search terms versus topics ↗</a></li>
       </ul>
@@ -124,13 +124,14 @@ function TrendCard({ group }: { group: Group }) {
           </table>
         </div>
       </details>
-      <p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Raw captures, request metadata and refresh instructions are versioned in docs/google-trends.</p>
+      <p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Source revision: <code>{revision}</code>. Raw captures and request metadata are retained with this immutable source revision; refresh instructions are in docs/google-trends.</p>
     </ChartModal>}
   </article>;
 }
 
 export function GoogleTrends({ selection, flat = false }: { selection?: readonly string[]; flat?: boolean } = {}) {
-  const cards = groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} />);
+  const { revision, snapshot: { groups } } = useTrendsView();
+  const cards = groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} revision={revision} />);
   if (flat) return <>{cards}</>;
   const sectionId = selection ? `google-trends-${selection.join("-")}-section` : "google-trends";
   return <section id={sectionId} className="performance-curves gt-section" aria-label="Google Trends search interest">

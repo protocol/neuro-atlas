@@ -1,8 +1,10 @@
-# Google Trends: public attention, not field progress
+# Google Trends public attention
+
+The runtime and weekly data-only publication contract is in [weekly-feed.md](weekly-feed.md). The initial reviewed implementation now bundles the genuine November 6 capture as its last-good fallback; see [bundled-source-proof.md](bundled-source-proof.md). The source details below describe the unchanged October 15 archive, including its historical chart inventory. The Neuralink brand chart remains retired from the current page; retaining its source group does not remount it. Weekly releases replace the complete rolling window while preserving normalization and chart methodology; they do not overwrite either archive.
 
 ## Captured source and scope
 
-The Field velocity **Metrics** tab includes two populated, URL-addressed attention charts:
+The original October 15 implementation included two populated, URL-addressed attention charts:
 
 - `#google-trends-neurotech`: `neurotechnology` and `brain-computer interface`, compared in one request on a **shared** index.
 - `#google-trends-neuralink`: `Neuralink` queried separately as brand/news context. Its **independent** index is not comparable in magnitude with the first chart.
@@ -30,9 +32,9 @@ References:
 - https://support.google.com/trends/answer/4365533?hl=en
 - https://support.google.com/trends/answer/4359550?hl=en
 
-## Reproduce and manually refresh
+## Reproduce the current bundle and original archive
 
-The deployed page uses a checked-in snapshot, **not live requests from visitors**. No cron, monitoring or automatic refresh is configured.
+The runtime integration initially renders the verified November 6 bundle, then loads one validated data release per document. Visitors make no Google requests. The application installs no recurring job. Initial human code merge/deployment and parent-controlled activation remain separate steps. The default commands below reproduce the November 6 bundle; use `trends:feed` for weekly data-only staging/publication.
 
 ```sh
 npm ci
@@ -40,7 +42,7 @@ npm run trends:verify  # reconstructs all outputs and checks exact byte equality
 npm run trends:refresh # regenerates from the committed raw source/metadata
 ```
 
-Outputs are `public/data/google-trends/google-trends.json`, `neurotech.csv` and `neuralink.csv`. Download links use Atlas's build-time basePath and remain within the existing gate. JSON carries original source hashes, complete metadata and rows. CSV includes request/capture metadata and explicit partial flags.
+Current bundled outputs are under `public/data/google-trends/bundled-20261106/`; accepted source strings are under `docs/google-trends/bundled-20261106/source/`. Current chart downloads pin their displayed revision through the API, use Atlas's build-time basePath and remain within the existing gate. The original static files at `public/data/google-trends/` retain the October 15 bytes. Verify that archive explicitly with `npm run trends:verify -- --source docs/google-trends/source --out public/data/google-trends`. JSON carries original source hashes, complete metadata and rows. CSV includes request/capture metadata and explicit partial flags.
 
 For a new capture, use an owned canonical browser-harness window and lock. Run from this checkout; choose a fresh staging output directory. The following uses the currently pinned period; to change it, set both `TRENDS_CAPTURE_START` and `TRENDS_CAPTURE_END` to a new exact 36-month interval ending no later than today.
 
@@ -51,13 +53,13 @@ PY
 npm run trends:refresh -- --source .qa/trends-capture --out .qa/trends-generated
 ```
 
-The acquisition script was actually exercised against Google on 2026-10-15; both newly staged captures passed the same validator. That second retrieval was a refresh-path check, not a silent replacement of the pinned first capture. Review the entire new capture before replacing `docs/google-trends/source`, regenerate, inspect the diff, rerun tests/build, and commit. Never append normalized values from another request to an existing series: re-query and replace the **whole window together**. Keep the previous verified snapshot if acquisition or validation fails. An HTML response, HTTP429, invalid dates/values, changed term order/type, property, region, category or incomplete coverage must not become a chart.
+The acquisition script was exercised against Google on 2026-10-15; both newly staged captures passed the same validator. That second retrieval was a refresh-path check and left the pinned first capture intact. Changes to the bundled archive require separate review: inspect the entire capture, regenerate, inspect the diff, rerun tests/build, and commit. Weekly data-only publication keeps `docs/google-trends/source` and bundled exports unchanged. Re-query and replace the **whole normalized window together**; never append values from another request. Keep the previous verified snapshot if acquisition or validation fails. An HTML response, HTTP429, invalid dates/values, changed term order/type, property, region, category or incomplete coverage must not become a chart.
 
-The validator enforces 36-month calendar boundaries, ordered weekly UTC timestamps and complete source coverage, valid 0–100 integer values, aligned display/availability arrays, request identity, and partial-week rules. Both sources are validated before any output is written. Output files use temporary-file renames. Refresh is manual and local, not an external state-changing action.
+The validator enforces 36-month calendar boundaries (including leap-day clamping), ordered weekly UTC timestamps and complete source coverage, valid 0–100 integer values, aligned display/availability arrays, request identity, and partial-week rules. Metadata is recursively allowlisted; unknown fields abort before capture files are written. Both sources are validated before any output is written. Archive output files use temporary-file renames. `trends:refresh` is local generation; the separate weekly CLI requires an explicit publication flag and expected ref.
 
 ## Implementation and verification
 
-- `src/components/google-trends.tsx` and `.css`: responsive previews with fixed-size HTML labels, expanded plots, accessible values, methodology, source/CSV/JSON links, stable fragment/direct/copy links using the existing modal/history/focus implementation.
+- `src/components/google-trends.tsx` and `.css`: responsive previews with 11px axes, expanded plots, accessible values, methodology, revision-pinned CSV/JSON links, existing chart actions and Copy link/modal/history/focus implementation.
 - `src/lib/field-velocity/google-trends.ts`: strict parser and period selection.
 - `scripts/capture-google-trends.py`: browser-origin acquisition; `scripts/refresh-google-trends.ts`: validated deterministic generation.
 - `tests/google-trends*.test.mjs`: real-response parity, invalid values/scope/dates, gaps, partial exclusion, latest readings, modal point/table parity and deployed `/neuro-atlas` downloads.

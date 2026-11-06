@@ -1,8 +1,10 @@
 # Run with an owned canonical browser-harness window; never standalone Python.
 # No cookies, headers or transient widget tokens are logged or saved.
 import datetime
+import calendar
 import json
 import os
+import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
@@ -13,7 +15,8 @@ assert not OUT.exists(), 'Use a fresh staging directory; do not overwrite prior 
 START = os.environ.get('TRENDS_CAPTURE_START', '2023-10-15')
 END = os.environ.get('TRENDS_CAPTURE_END', '2026-10-15')
 start, end = datetime.date.fromisoformat(START), datetime.date.fromisoformat(END)
-assert end.year - start.year == 3 and (end.month, end.day) == (start.month, start.day), 'Exactly 36 calendar months required'
+expected_start = datetime.date(end.year - 3, end.month, min(end.day, calendar.monthrange(end.year - 3, end.month)[1]))
+assert start == expected_start, 'Exactly 36 calendar months required'
 assert end <= datetime.datetime.now(datetime.timezone.utc).date(), 'No future end date'
 
 goto_url('https://trends.google.com/trends/explore?date=' + quote(START + ' ' + END) + '&q=neurotechnology,brain-computer%20interface&hl=en-US')
@@ -37,6 +40,13 @@ for ident, terms in [('neurotech', ['neurotechnology', 'brain-computer interface
     assert len(parsed['default']['timelineData']) > 0, 'No timeline data'
     meta = {'capturedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'exploreRequest': request, 'widgetRequest': widget['request']}
     captures.append((ident, timeline, meta))
+# Enforce the same strict public-data contract before unknown metadata can reach disk.
+bundle = {'version': 1, 'sources': {ident: {'raw': timeline, 'request': json.dumps(meta, indent=2) + '\n'} for ident, timeline, meta in captures}}
+validation = subprocess.run(
+    ['node', '--import', 'tsx', 'scripts/validate-google-trends-capture.ts'],
+    cwd=ROOT, input=json.dumps(bundle), text=True, capture_output=True, timeout=30,
+)
+assert validation.returncode == 0, 'Source contract rejected capture; no files were written'
 OUT.mkdir(parents=True)
 for ident, timeline, meta in captures:
     (OUT / (ident + '.raw.json')).write_text(timeline)

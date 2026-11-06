@@ -13,11 +13,14 @@ import TRANSLATION_EVIDENCE from "@/data/field-velocity/bci-translation-evidence
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { RECORDING_VIEWS } from "@/data/recording-evidence";
 import { useMetricCardHeight } from "@/components/use-metric-card-height";
+import PUBLICATIONS from "@/data/publications/publication-charts.snapshot.json";
+import { PublicationCharts, PUBLICATION_SEARCH_TEXT } from "@/components/publication-charts";
 
 const neuronText = JSON.stringify([SNAPSHOT.records.filter(row => row.instrument === "performance_curves"), RECORDING_VIEWS, "Simultaneous neural recordings", "Simultaneously recorded neurons"]).toLocaleLowerCase();
 const engagementPreviewText = JSON.stringify([TRENDS.groups.filter(group => group.id === "neurotech"), "Google Trends Public attention"]).toLocaleLowerCase();
 const engagementMoreText = JSON.stringify([SNAPSHOT.records.filter(row => row.state === "reading" && ["idea_vintage", "latency_compression", "revealed_commitments"].includes(row.instrument)), SNAPSHOT.measurementSeries.filter(series => series.id === "bci-implants"), PARTICIPANT_ADDITIONS, TRANSLATION_EVIDENCE, "Citation latency Idea vintage Latency compression Google Trends Public attention Revealed commitments"]).toLocaleLowerCase();
 
+const publicationText = JSON.stringify([PUBLICATIONS.tables, PUBLICATION_SEARCH_TEXT]).toLocaleLowerCase();
 type GroupState = "collapsed" | "full";
 function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {
   // Dialogs never move the background; pressed pointer targets must stay put until click.
@@ -73,7 +76,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   }, [hash, states, query]);
   const term = query.trim().toLocaleLowerCase();
   const matches = METRIC_CHARTS.filter(chart => isVisibleMetric(chart) && JSON.stringify([chart, METRIC_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(term));
-  const supplementalMatch = (id: number) => id === 3 ? neuronText.includes(term) : id === 6 && (engagementPreviewText.includes(term) || engagementMoreText.includes(term));
+  const supplementalMatch = (id: number) => id === 3 ? neuronText.includes(term) : id === 6 && (engagementPreviewText.includes(term) || engagementMoreText.includes(term) || publicationText.includes(term));
   const categoryMatch = (group: typeof METRIC_GROUPS[number]) => group.name.toLocaleLowerCase().includes(term) || matches.some(chart => metricCategoryFor(chart) === group.name) || supplementalMatch(group.id);
   const matchingCategories = METRIC_GROUPS.filter(categoryMatch).length;
   const changeGroup = (name: string, state: GroupState, control: HTMLButtonElement) => {
@@ -124,6 +127,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
             {group.id === 6 ? <>
               <div className="metric-chart-fragment" {...metricSizingVisibility(!!groupQuery && !engagementPreviewText.includes(groupQuery))}>{engagementPreview}</div>
               <div className="metric-chart-fragment" {...metricSizingVisibility(!!groupQuery && !engagementMoreText.includes(groupQuery))}><VelocityInstrumentsSection performance={performance} flat /></div>
+              <PublicationCharts snapshot={PUBLICATIONS} query={groupQuery} />
             </> : <DraftChartsSection flat category={group.name} query={groupQuery} showGaps={false} featuredTitle={group.preview ?? undefined} />}
             {group.id === 3 && <div className="metric-chart-fragment" {...metricSizingVisibility(!!groupQuery && !neuronText.includes(groupQuery))}>{references?.recording}</div>}
           </div>

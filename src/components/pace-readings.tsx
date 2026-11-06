@@ -4,9 +4,14 @@ import React from "react";
 import type { PaceData } from "@/lib/field-velocity/performance";
 import { CurveCard, type PlotData } from "@/components/performance-curves";
 import { LatencyEvidenceCard } from "@/components/latency-evidence-card";
+import { useCitationView } from "@/components/citation-latency-provider";
+import { projectCitationRecord } from "@/lib/field-velocity/citation-latency-feed";
+import { atlasPath } from "@/lib/atlas-path";
 
 export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: boolean }) {
-  const cards = data.records.map(record => {
+  const citation = useCitationView();
+  const cards = data.records.map(sourceRecord => {
+      const record = sourceRecord.instrument === "idea_vintage" && sourceRecord.state === "reading" && citation.data ? projectCitationRecord(citation.data, sourceRecord) : sourceRecord;
       const definition = data.definitions.find(d => d.id === record.instrument)!;
       const reading = record.state === "reading";
       const vintage = record.instrument === "idea_vintage";
@@ -30,6 +35,10 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
             <p className="pc-caveat">{vintage ? "Reference age is not research quality. Source intervals are shown as whiskers; under-indexed years remain visible as hollow markers, not a new trend claim. Patent vintage is a separate evidence slot." : "Four selected BCI modalities, not every translation pathway. The x-axis is the pivotal preclinical demonstration year; the y-axis is the lag in years to first-in-human implant. Animal models differ, including sheep for Synchron. No connecting growth curve or new cohort averages are inferred."}</p>
             <p>Source window: {record.window}. Observed {record.measuredAt}. Source checked {record.checkedAt}.</p>
             {record.provenance && <p>Source query: {record.provenance.query}. Source generated: {record.provenance.generated}.</p>}
+            {vintage && <p data-citation-revision={citation.revision}>
+              <a download="citation-latency.csv" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.csv`)}>Download source CSV</a>{" · "}
+              <a download="citation-latency.json" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.json`)}>Download JSON &amp; provenance</a>
+            </p>}
             <p>{data.methodology.stocksAndFlows}</p>
           </> : <p>{record.candidateMetric ?? record.reason} {record.blocker}</p>}
         </section>
