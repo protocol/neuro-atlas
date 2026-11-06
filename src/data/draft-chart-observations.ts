@@ -189,6 +189,16 @@ for (const point of source["Connectomics imaging throughput over time"].plots.fi
   pointNotes[point.id] = `${point.note!.split(". Verbatim numeric column")[0]}. Crowdsourced acquisition-cost estimate. Table A1 labels cost “Total Cost ($/h)”; composition, amortization, utilization, labor, maintenance and price-year are unspecified. ${costDetails[point.id]} Display transformation:${point.note!.split("Display transformation:")[1]}`;
 }
 
+// Display labels state the date basis; archived dates and publication timing remain intact.
+const displayDate = (label: string) => label
+  .replace("; not a temporal observation", " · benchmark operating point")
+  .replace("; not asserted first release date", "")
+  .replace("; not verified acquisition/launch year", "")
+  .replace("; not an independently dated evaluation event", "")
+  .replace("; release date not established", "")
+  .replace("; first release not established", "")
+  .replace(", not first release", "");
+
 /** Curated public-source evidence with reader-facing prose; annual observations remain source-defined. */
 export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.fromEntries(
   Object.entries(source).map(([title, evidence]) => [title, {
@@ -197,7 +207,7 @@ export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.f
     plots: evidence.plots.map(plot => plotCopy[plot.id] ? {
       ...plot,
       ...plotCopy[plot.id],
-      points: plot.points.map(point => pointNotes[point.id] ? { ...point, note: pointNotes[point.id] } : point),
+      points: plot.points.map(point => ({ ...point, dateLabel: displayDate(point.dateLabel), ...(pointNotes[point.id] ? { note: pointNotes[point.id] } : {}) })),
     } : plot),
     ...(evidence.timeline ? { timeline: {
       ...evidence.timeline,

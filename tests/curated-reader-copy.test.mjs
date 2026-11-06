@@ -22,20 +22,24 @@ const digest = value => createHash('sha256').update(value).digest('hex');
 function scientificFields(evidence) {
   return Object.fromEntries(Object.entries(evidence).map(([title, item]) => [title, {
     ...omit(item, ['summary', 'gapReason', 'plots', 'timeline']),
-    plots: item.plots.map(item => ({ ...omit(item, ['scope', 'seriesNote', 'points']), points: item.points.map(item => omit(item, ['note', 'exportNote'])) })),
+    plots: item.plots.map(item => ({ ...omit(item, ['scope', 'seriesNote', 'points']), points: item.points.map(item => omit(item, ['note', 'exportNote', 'dateLabel'])) })),
     ...(item.timeline ? { timeline: { events: item.timeline.events.map(item => omit(item, ['note'])) } } : {}),
   }]));
 }
 
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
   assert.equal(digest(bytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
-  assert.equal(digest(JSON.stringify(scientificFields(DRAFT_CHART_EVIDENCE))), 'd476c922ad89dd80af8a7a34e2a45471e9fb53bf0431cc086c6640656523a3e9');
-  assert.equal(digest(JSON.stringify(scientificFields(METRIC_CHART_EVIDENCE))), '47b2ad7f80c7ef07d95a82df0c17b712890007cb0a7f343872d861134dd0951b');
+  assert.equal(digest(JSON.stringify(scientificFields(DRAFT_CHART_EVIDENCE))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
+  assert.equal(digest(JSON.stringify(scientificFields(METRIC_CHART_EVIDENCE))), 'cbe28e7f7fff6aed35c27af8702b0fc827bb1c5817510ca0ac5d7d94afc499df');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 7], ['largest-connectome-neurons', 5], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],
     ['recording-hours', 12], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 9],
   ]);
+  for (const item of plots) for (const observation of item.points) {
+    const archived = Object.values(raw).flatMap(e => e.plots).flatMap(p => p.points).find(p => p.id === observation.id);
+    assert.deepEqual(observation.dateLabel.match(/\d{4}(?:-\d{2}){0,2}/g), archived.dateLabel.match(/\d{4}(?:-\d{2}){0,2}/g), `${observation.id}: display dates stay exact`);
+  }
   assert.equal(charts.length, 13);
   assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 78);
   assert.deepEqual(METRIC_CHART_EVIDENCE['Demonstrated applications enabled by connectomics over time'].timeline.events.map(item => item.id), ['application-0', 'application-2']);
@@ -59,7 +63,7 @@ test('all visible curated descriptions state the measure positively and imperson
     for (const key of ['summary', 'gapReason']) if (evidence[key]) fields.push([`${chart.title}.${key}`, evidence[key]]);
     for (const item of evidence.plots) {
       for (const key of ['scope', 'seriesNote']) if (item[key]) fields.push([`${item.id}.${key}`, item[key]]);
-      for (const point of item.points) for (const key of ['note', 'exportNote']) if (point[key]) fields.push([`${point.id}.${key}`, point[key]]);
+      for (const point of item.points) for (const key of ['note', 'exportNote', 'dateLabel']) if (point[key]) fields.push([`${point.id}.${key}`, point[key]]);
     }
     if (evidence.timeline) {
       fields.push(['timeline.scope', evidence.timeline.scope]);

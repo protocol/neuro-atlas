@@ -32,12 +32,12 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
           <h4>Definition and methodology</h4>
           {vintage ? <>
             <p>Idea vintage is the median age of references cited by new papers, measured when the citing paper was published. A falling median means papers cite more recent work; a rising median means they cite older work. A two-segment fit estimates the recent trend, with a direction shown only when statistically clear.</p>
-            <p>Reference age tends to rise as a literature ages or gains researchers bringing older foundational citations from adjacent fields. OpenAlex’s indexing lag means the latest reliable reading is about two years old.</p>
+            <p>Reference age tends to rise as a literature ages or gains researchers bringing older foundational citations from adjacent fields.</p>
           </> : <p>{definition.description}</p>}
           {reading ? <>
             <p className="pc-reading">{record.value}</p>
             <p className="pc-caveat">{vintage ? "Whiskers show source intervals. Hollow markers show under-indexed years; the trend uses the reliable years." : "Selected BCI pathways retain their animal models and human endpoints. The axes show the preclinical report year and the interval to the human milestone."}</p>
-            <p>Source years: {record.window}. Source checked {record.checkedAt}.</p>
+            <p>{vintage ? <>OpenAlex’s reliable source years: {record.window}. Newer years remain under-indexed. </> : <>Source years: {record.window}. </>}Source checked {record.checkedAt}.</p>
             {record.provenance && <p>Source query: {record.provenance.query}. Source generated: {record.provenance.generated}.</p>}
             {vintage && <p data-citation-revision={citation.revision}>
               <a download="citation-latency.csv" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.csv`)}>Download source CSV</a>{" · "}

@@ -80,7 +80,7 @@ test('growth inspection names its cohort while provenance retains exact source m
     const tableRows = [...modal.querySelectorAll('[aria-label="Growth numerator and matched reference values"] tbody tr')];
     for (const row of data.growth) {
       const rendered = tableRows.find(el => el.querySelector('th').textContent === row.group);
-      assert.equal(rendered.querySelectorAll('td')[3].textContent, row.denominatorUniverse ?? row.reason);
+      assert.equal(rendered.querySelectorAll('td')[3].textContent, row.denominatorUniverse ?? "Reference unavailable");
     }
     const notes = publicationExportNotes(1, parsed, data).join(' ');
     assert.match(notes, /venue N = wider-corpus \(NT10\).*region\/institution N = P2 two-topic whole-work involvement/i);
