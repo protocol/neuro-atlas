@@ -1,20 +1,20 @@
 [
   {
-    "alternatives": false,
+    "baseline": "science",
     "path": "growth-default-export.png",
-    "bytes": 1611000,
-    "width": 2344,
-    "height": 6826,
-    "sha256": "c170f49358c44dba651e8bd3cf69263113844de30bf2f7c2b9ba2748f6bb1c69",
-    "generation": "actual Download PNG handler; page-local transfer intercept, no shared download-setting change"
+    "bytes": 1565208,
+    "width": 2400,
+    "height": 5974,
+    "sha256": "a0af48022ae1c05d9632a732f4fb3330d87826fdcc8f38adc4247301e5c10a56",
+    "generation": "actual Download PNG handler; selected-mode programmatic setup (native selection checked separately); page-local transfer intercept"
   },
   {
-    "alternatives": true,
-    "path": "growth-alternatives-export.png",
-    "bytes": 1715821,
-    "width": 2182,
-    "height": 7333,
-    "sha256": "ac3cc8e60af391cc0b20cd21369b65b9cc7143de8d58264a5699d8d516f31dad",
-    "generation": "actual Download PNG handler; page-local transfer intercept, no shared download-setting change"
+    "baseline": "matched",
+    "path": "growth-matched-export.png",
+    "bytes": 1624382,
+    "width": 2400,
+    "height": 6078,
+    "sha256": "31572789128419853b2359e598cfb5f150ea5cf30506c379e9f47c65d8506394",
+    "generation": "actual Download PNG handler; selected-mode programmatic setup (native selection checked separately); page-local transfer intercept"
   }
 ]

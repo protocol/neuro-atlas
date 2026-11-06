@@ -1,42 +1,46 @@
-# Publication growth — reference-layout cleanup
+# Publication growth — reference-faithful chart
 
 ## Scope
 
-The `#publication-growth` chart now uses horizontal zero-to-dot lollipops with percentages beside their endpoints. The default shows the gray four-domain all-science context band and a dashed all-neurotech total-growth line. Nine calculated same-category comparisons are available through an off-by-default checkbox; twelve category-specific references remain unavailable. All 21 numerator rows and original values are retained.
+The `#publication-growth` chart follows the supplied reference: horizontal zero-to-dot lollipops, endpoint-adjacent percentages, muted uppercase sections, blue/gray/orange above/within/below colors, the gray all-science band, a dashed all-neurotech total and an actual dot legend. The percentage axis stays visible during chart scrolling.
 
-The total is calculated from the NT10 annual counts (9,726 in 2022 and 16,057 in 2025), not by averaging subgroup rates. The gray range is independently acquired global context; category numerator universes and count units still vary. Detailed counting/provenance is unchanged. The growth source JSON now also includes `nt_yearly`, so the restored band and aggregate can be reproduced from the download.
+The added baseline selector defaults to **General science** and can switch to **Same-category reference**. That mode uses the nine acquired group-specific comparisons; the remaining twelve references are explicitly unavailable (hollow neutral dots), not silently replaced with the general baseline. The 21 measured values, coordinates and ordering remain unchanged. Matched references use scalar local ticks, not invented confidence bands or a second numerator series.
 
-No primary data, acquisition code, method contract, feed, authentication, public routing or unrelated chart renderer changes are included.
+The total is calculated from the NT10 annual counts (9,726 in 2022 and 16,057 in 2025), not by averaging subgroup rates. The gray range is independently acquired four-domain global context. Category numerator universes and count units still vary; source qualifications and inspection detail remain. Growth source JSON now includes `nt_yearly` so both context and aggregate can be reproduced.
+
+No primary data, acquisition code, method contract, feed, authentication, public routing or unrelated chart renderer changes are included. This is a PR for review, not a production release.
 
 ## Evidence identity
 
 - Before: `fb77f9592459dc8d37a89f50608137cca0dc3b61`.
-- After: runtime `85e523e09b15c23bb7b66067b2488c8e3fe2a431`.
-- Images are actual headed-Chrome captures of isolated local production builds, with a disposable loopback-only QA proxy. The listener was bound to `127.0.0.1`, required an explicit QA flag and rejected a non-loopback Host with HTTP 403. The QA proxy is not committed or deployed.
-- Hosted absent-password checks still return HTTP 401/noindex. Local positive UI evidence is not a successful hosted-password sign-in claim.
+- After runtime: `9fe17a5db376692277fd6ad6456382a2a2236c17`. Subsequent changes are test assertion and evidence documentation only; runtime identity is checked before handoff.
+- Images are actual headed-Chrome captures of an isolated local production build, using a disposable loopback-only QA proxy. The proxy requires an explicit QA flag and rejects non-loopback Host values. It is not committed or deployed.
+- Local positive UI evidence is not a successful hosted-password sign-in claim. Hosted preview access gates remain intact.
 
 ## Native checks
 
-`native-report.json` records actual 1440×1000, 390×844 and 320×844 cases:
+`native-report.json` records 1440×1000, 390×844 and 320×844 cases:
 
-- Exact 21-row equality with the primary snapshot; source-derived gray range and aggregate checked independently from annual source counts.
-- Horizontal stems, endpoint-adjacent percentages, readable effective fonts and in-view SVG text bounds.
-- Sticky axis geometry at the top, middle and bottom of the chart; aligned axis/plot coordinates during local horizontal scrolling; numeric scale visible initially.
-- Real wheel scrolling, optional nine-reference/twelve-unavailable mode, exact restoration and complete immutable source JSON.
-- Initially empty inspection, keyboard point selection, Escape, actual trigger opening, browser Back/Forward and focus return.
+- All 21 row values checked against the primary snapshot; gray range and total independently checked against annual counts.
+- Horizontal stems, endpoint-adjacent percentages, readable fonts and text bounds.
+- Sticky scale at top/middle/bottom, aligned during internal horizontal scrolling; numeric zero visible initially.
+- Native baseline selection, nine distinct acquired references and twelve unavailable references, value/geometry preservation, and full immutable source JSON.
+- Empty initial inspection, keyboard point selection, Escape, actual trigger opening, Back/Forward and focus return.
 - No document-level horizontal overflow.
 
-At narrow widths the full plot deliberately scrolls horizontally inside the dialog. `after-mobile-initial.png` and `after-mobile-scrolled.png` show both states; the entire plot is not squeezed into unreadably small labels.
+`preview-short-report.json` covers compact chart previews plus 1440×650, 1440×1000, 390×844 and 320×844 layouts. Compact captions, scale and dot legend remain readable; mode setup in this particular geometry replay is programmatic, while native selection is independently checked in `native-report.json`.
 
-The full SVG retains its own axis for image export. An aria-hidden sticky copy overlaps that axis at the scroll bottom, rather than showing two axes, and is not part of the exported SVG. Percentage labels have a background halo so grid/benchmark lines do not pass through their text.
+On narrow screens the full chart deliberately pans horizontally within its own region rather than squeezing scientific labels into tiny type. Mobile initial/scrolled screenshots show this tradeoff. The full SVG retains its own axis for export; the aria-hidden live sticky copy overlaps that axis at the bottom instead of displaying a second scale.
 
-## Export checks
+## Native PNG checks
 
-`export-report.json` records two actual native Download PNG runs: default and optional-comparison modes. The page-local anchor transfer was intercepted to avoid changing the shared Chrome download destination. Both files have valid decoded PNG dimensions and include the complete chart, axis and source-qualified notes; this is not a receiving-editor clipboard-paste claim.
+`export-report.json` records two real Download PNG handler runs: general science and matched mode. The page-local anchor transfer was intercepted to avoid changing the shared browser download destination. The files were decoded and visually inspected; they include the complete chart, selected-mode colors/baseline/legend/axis and source notes. These are actual exports, not screenshot stand-ins or receiving-editor clipboard tests.
 
 - `growth-default-export.png`
-- `growth-alternatives-export.png`
+- `growth-matched-export.png`
 
 ## Automated checks
 
-The focused publication UI/legend suite passes 19 tests, including source-reproducible context, horizontal marks, endpoint labels, zero/absent denominators, opt-in alternatives, sticky/export axes, viewport reservation, stable links, inspection and PNG legend requests. Changed-component ESLint and `git diff --check` pass. Full-suite/typecheck/build receipts are reported separately in the PR after their final run.
+- The focused publication UI/legend plus performance-modal replay passes **31/31** tests after aligning the compact-caption assertion with its clipping fix.
+- Typecheck, production build, changed-component ESLint and `git diff --check` pass.
+- The broad 916-test run returned **914 passed / 2 failed**: the now-corrected compact-caption assertion, plus an unrelated history-close timing assertion in `performance-modal.test.mjs`. All six performance-modal cases passed on an isolated baseline replay and on the candidate focused replay. The broad suite is not claimed fully green; the unchanged modal source and successful native history/focus checks distinguish that timing result from an introduced runtime change.

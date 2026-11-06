@@ -144,7 +144,13 @@ test('growth follows reference colors, section geometry, direct benchmark annota
    }
    const science=svg.querySelector('[data-growth-science-label]');assert.equal(science.textContent,'Science baseline');
    const band=svg.querySelector('[data-science-context]');
-   assert.equal(Number(science.getAttribute('x')),Number(band.getAttribute('x'))+Number(band.getAttribute('width'))/2);
+   if(svg.hasAttribute('data-growth-export')) {
+    assert.equal(Number(science.getAttribute('x')),Number(band.getAttribute('x'))+Number(band.getAttribute('width'))/2);
+    assert.equal(science.getAttribute('text-anchor'),'middle');
+   } else {
+    assert.equal(Number(science.getAttribute('x')),8,'Compact caption stays inside the readable viewport');
+    assert.equal(science.getAttribute('text-anchor'),'start');
+   }
    assert.ok(Number(science.getAttribute('y'))<Number(band.getAttribute('y')));
    const total=svg.querySelector('[data-growth-total-label]');assert.match(total.textContent,/All neurotech \+13.6%/);assert.equal(total.getAttribute('font-weight'),'700');
    assert.ok(svg.querySelector('[data-growth-axis]').contains(total));assert.ok(svg.querySelector('[data-growth-axis]').contains(legend));

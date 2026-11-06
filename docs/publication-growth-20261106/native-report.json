@@ -2,568 +2,3358 @@
   {
     "width": 1440,
     "height": 1000,
-    "default": {
-      "rows": 21,
-      "minFontPx": 16.754185267857142,
+    "general": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "above",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "above",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "above",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "above",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "above",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "above",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected science baseline: +24.4% to +34.7%.+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected science baseline: +24.4% to +34.7%.+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected science baseline: +24.4% to +34.7%.+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected science baseline: +24.4% to +34.7%.+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected science baseline: +24.4% to +34.7%.+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "below",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected science baseline: +24.4% to +34.7%.+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected science baseline: +24.4% to +34.7%.+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected science baseline: +24.4% to +34.7%.+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "below",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected science baseline: +24.4% to +34.7%.+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "above",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "above",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "above",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "above",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "above",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "above",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+38.4%"
+        }
+      ],
+      "minFontPx": 16.409628980513308,
       "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 1440,
-        "client": 1440,
-        "scroll": 1440
-      }
+      "classificationParity": true
     },
-    "context": {
-      "low": 24.419082870655973,
-      "high": 34.66995681677976,
-      "total": 65.09356364384125,
-      "color": "rgb(166, 176, 191)",
-      "dash": "5 5",
-      "x1": "339.95116183425864",
-      "x2": "339.95116183425864"
+    "matched": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "unavailable",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "unavailable",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "unavailable",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "unavailable",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "unavailable",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "unavailable",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected category baseline: +61%.Category baseline: +61%+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected category baseline: +43.8%.Category baseline: +43.8%+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected category baseline: +29.5%.Category baseline: +29.5%+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected category baseline: +42.2%.Category baseline: +42.2%+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected category baseline: +11.1%.Category baseline: +11.1%+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "above",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected category baseline: +6.8%.Category baseline: +6.8%+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected category baseline: +28.5%.Category baseline: +28.5%+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected category baseline: +15.3%.Category baseline: +15.3%+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "above",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected category baseline: +4.4%.Category baseline: +4.4%+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "unavailable",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "unavailable",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "unavailable",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "unavailable",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "unavailable",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "unavailable",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+38.4%"
+        }
+      ],
+      "minFontPx": 16.409628980513308,
+      "sourceParity": true,
+      "classificationParity": true
     },
     "axes": [
       {
         "plot": {
           "x": 241,
-          "y": 243.515625,
+          "y": 233.484375,
           "width": 943,
           "height": 680,
-          "top": 243.515625,
+          "top": 233.484375,
           "right": 1184,
-          "bottom": 923.515625,
+          "bottom": 913.484375,
           "left": 241
         },
         "axis": {
           "x": 241,
-          "y": 850.34375,
+          "y": 799.328125,
           "width": 928,
-          "height": 73.171875,
-          "top": 850.34375,
+          "height": 114.15625,
+          "top": 799.328125,
           "right": 1169,
-          "bottom": 923.515625,
+          "bottom": 913.484375,
           "left": 241
         },
-        "viewport": 1000,
-        "scrollTop": 0,
-        "scrollLeft": 0,
+        "scroll": 0,
         "ticks": [
           {
-            "x": 498.7946428571429,
-            "expected": 498.7785481239804
+            "text": "0%",
+            "actual": 557.896875,
+            "expected": 557.8791884505704,
+            "box": {
+              "x": 546.4046630859375,
+              "y": 811.4007568359375,
+              "width": 22.984375,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 569.3890380859375,
+              "bottom": 832.4007568359375,
+              "left": 546.4046630859375
+            }
           },
           {
-            "x": 637.3388671875,
-            "expected": 637.3335861031811
+            "text": "+50%",
+            "actual": 706.6165178571429,
+            "expected": 706.6167122148289,
+            "box": {
+              "x": 685.6321411132812,
+              "y": 811.4007568359375,
+              "width": 41.96875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 727.6008911132812,
+              "bottom": 832.4007568359375,
+              "left": 685.6321411132812
+            }
           },
           {
-            "x": 775.8830915178572,
-            "expected": 775.8886240823817
+            "text": "+100%",
+            "actual": 855.3361607142857,
+            "expected": 855.3542359790874,
+            "box": {
+              "x": 829.4376831054688,
+              "y": 811.4007568359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 881.2345581054688,
+              "bottom": 832.4007568359375,
+              "left": 829.4376831054688
+            }
           },
           {
-            "x": 914.4273158482143,
-            "expected": 914.4436620615824
-          },
-          {
-            "x": 1052.9715401785716,
-            "expected": 1052.998700040783
+            "text": "+150%",
+            "actual": 1004.0558035714284,
+            "expected": 1004.091759743346,
+            "box": {
+              "x": 978.1573486328125,
+              "y": 811.4007568359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 1029.9542236328125,
+              "bottom": 832.4007568359375,
+              "left": 978.1573486328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 241,
-          "y": 243.515625,
+          "y": 233.484375,
           "width": 943,
           "height": 680,
-          "top": 243.515625,
+          "top": 233.484375,
           "right": 1184,
-          "bottom": 923.515625,
+          "bottom": 913.484375,
           "left": 241
         },
         "axis": {
           "x": 241,
-          "y": 850.34375,
+          "y": 799.328125,
           "width": 928,
-          "height": 73.171875,
-          "top": 850.34375,
+          "height": 114.15625,
+          "top": 799.328125,
           "right": 1169,
-          "bottom": 923.515625,
+          "bottom": 913.484375,
           "left": 241
         },
-        "viewport": 1000,
-        "scrollTop": 451,
-        "scrollLeft": 0,
+        "scroll": 256,
         "ticks": [
           {
-            "x": 498.7946428571429,
-            "expected": 498.7785481239804
+            "text": "0%",
+            "actual": 557.896875,
+            "expected": 557.8791884505704,
+            "box": {
+              "x": 546.4046630859375,
+              "y": 811.4007568359375,
+              "width": 22.984375,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 569.3890380859375,
+              "bottom": 832.4007568359375,
+              "left": 546.4046630859375
+            }
           },
           {
-            "x": 637.3388671875,
-            "expected": 637.3335861031811
+            "text": "+50%",
+            "actual": 706.6165178571429,
+            "expected": 706.6167122148289,
+            "box": {
+              "x": 685.6321411132812,
+              "y": 811.4007568359375,
+              "width": 41.96875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 727.6008911132812,
+              "bottom": 832.4007568359375,
+              "left": 685.6321411132812
+            }
           },
           {
-            "x": 775.8830915178572,
-            "expected": 775.8886240823817
+            "text": "+100%",
+            "actual": 855.3361607142857,
+            "expected": 855.3542359790874,
+            "box": {
+              "x": 829.4376831054688,
+              "y": 811.4007568359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 881.2345581054688,
+              "bottom": 832.4007568359375,
+              "left": 829.4376831054688
+            }
           },
           {
-            "x": 914.4273158482143,
-            "expected": 914.4436620615824
-          },
-          {
-            "x": 1052.9715401785716,
-            "expected": 1052.998700040783
+            "text": "+150%",
+            "actual": 1004.0558035714284,
+            "expected": 1004.091759743346,
+            "box": {
+              "x": 978.1573486328125,
+              "y": 811.4007568359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 811.4007568359375,
+              "right": 1029.9542236328125,
+              "bottom": 832.4007568359375,
+              "left": 978.1573486328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 241,
-          "y": 243.515625,
+          "y": 233.484375,
           "width": 943,
           "height": 680,
-          "top": 243.515625,
+          "top": 233.484375,
           "right": 1184,
-          "bottom": 923.515625,
+          "bottom": 913.484375,
           "left": 241
         },
         "axis": {
           "x": 241,
-          "y": 850.34375,
+          "y": 798.875,
           "width": 928,
-          "height": 73.171875,
-          "top": 850.34375,
+          "height": 114.15625,
+          "top": 798.875,
           "right": 1169,
-          "bottom": 923.515625,
+          "bottom": 913.03125,
           "left": 241
         },
-        "viewport": 1000,
-        "scrollTop": 901,
-        "scrollLeft": 0,
+        "scroll": 512,
         "ticks": [
           {
-            "x": 498.7946428571429,
-            "expected": 498.7785481239804
+            "text": "0%",
+            "actual": 557.896875,
+            "expected": 557.8791884505704,
+            "box": {
+              "x": 546.4046630859375,
+              "y": 810.9476318359375,
+              "width": 22.984375,
+              "height": 21,
+              "top": 810.9476318359375,
+              "right": 569.3890380859375,
+              "bottom": 831.9476318359375,
+              "left": 546.4046630859375
+            }
           },
           {
-            "x": 637.3388671875,
-            "expected": 637.3335861031811
+            "text": "+50%",
+            "actual": 706.6165178571429,
+            "expected": 706.6167122148289,
+            "box": {
+              "x": 685.6321411132812,
+              "y": 810.9476318359375,
+              "width": 41.96875,
+              "height": 21,
+              "top": 810.9476318359375,
+              "right": 727.6008911132812,
+              "bottom": 831.9476318359375,
+              "left": 685.6321411132812
+            }
           },
           {
-            "x": 775.8830915178572,
-            "expected": 775.8886240823817
+            "text": "+100%",
+            "actual": 855.3361607142857,
+            "expected": 855.3542359790874,
+            "box": {
+              "x": 829.4376831054688,
+              "y": 810.9476318359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 810.9476318359375,
+              "right": 881.2345581054688,
+              "bottom": 831.9476318359375,
+              "left": 829.4376831054688
+            }
           },
           {
-            "x": 914.4273158482143,
-            "expected": 914.4436620615824
-          },
-          {
-            "x": 1052.9715401785716,
-            "expected": 1052.998700040783
+            "text": "+150%",
+            "actual": 1004.0558035714284,
+            "expected": 1004.091759743346,
+            "box": {
+              "x": 978.1573486328125,
+              "y": 810.9476318359375,
+              "width": 51.796875,
+              "height": 21,
+              "top": 810.9476318359375,
+              "right": 1029.9542236328125,
+              "bottom": 831.9476318359375,
+              "left": 978.1573486328125
+            }
           }
         ]
       }
     ],
-    "horizontal": {
-      "offset": 0,
-      "width": 928,
-      "client": 928,
-      "delta": 0
-    },
-    "alternatives": {
-      "rows": 21,
-      "minFontPx": 16.754185267857142,
-      "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 1440,
-        "client": 1440,
-        "scroll": 1440
-      }
-    },
+    "sourceJsonComplete": true,
+    "reversibleSVG": true,
     "wheel": true,
-    "historyFocus": true,
-    "sourceJsonComplete": true
+    "historyFocus": true
   },
   {
     "width": 390,
     "height": 844,
-    "default": {
-      "rows": 21,
-      "minFontPx": 13,
+    "general": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "above",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "above",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "above",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "above",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "above",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "above",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected science baseline: +24.4% to +34.7%.+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected science baseline: +24.4% to +34.7%.+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected science baseline: +24.4% to +34.7%.+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected science baseline: +24.4% to +34.7%.+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected science baseline: +24.4% to +34.7%.+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "below",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected science baseline: +24.4% to +34.7%.+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected science baseline: +24.4% to +34.7%.+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected science baseline: +24.4% to +34.7%.+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "below",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected science baseline: +24.4% to +34.7%.+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "above",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "above",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "above",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "above",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "above",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "above",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+38.4%"
+        }
+      ],
+      "minFontPx": 11.316926093155894,
       "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 390,
-        "client": 390,
-        "scroll": 390
-      }
+      "classificationParity": true
     },
-    "context": {
-      "low": 24.419082870655973,
-      "high": 34.66995681677976,
-      "total": 65.09356364384125,
-      "color": "rgb(166, 176, 191)",
-      "dash": "5 5",
-      "x1": "339.95116183425864",
-      "x2": "339.95116183425864"
+    "matched": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "unavailable",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "unavailable",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "unavailable",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "unavailable",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "unavailable",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "unavailable",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected category baseline: +61%.Category baseline: +61%+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected category baseline: +43.8%.Category baseline: +43.8%+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected category baseline: +29.5%.Category baseline: +29.5%+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected category baseline: +42.2%.Category baseline: +42.2%+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected category baseline: +11.1%.Category baseline: +11.1%+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "above",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected category baseline: +6.8%.Category baseline: +6.8%+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected category baseline: +28.5%.Category baseline: +28.5%+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected category baseline: +15.3%.Category baseline: +15.3%+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "above",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected category baseline: +4.4%.Category baseline: +4.4%+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "unavailable",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "unavailable",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "unavailable",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "unavailable",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "unavailable",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "unavailable",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+38.4%"
+        }
+      ],
+      "minFontPx": 11.316926093155894,
+      "sourceParity": true,
+      "classificationParity": true
     },
     "axes": [
       {
         "plot": {
           "x": 25,
-          "y": 249.265625,
+          "y": 266.09375,
           "width": 325,
-          "height": 570,
-          "top": 249.265625,
+          "height": 553,
+          "top": 266.09375,
           "right": 350,
-          "bottom": 819.265625,
+          "bottom": 819.09375,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.265625,
-          "width": 720,
-          "height": 57,
-          "top": 747.265625,
-          "right": 745,
-          "bottom": 804.265625,
+          "y": 725.046875,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.046875,
+          "right": 665,
+          "bottom": 804.09375,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 0,
-        "scrollLeft": 0,
+        "scroll": 0,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 733.7196044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 251.4609375,
+              "bottom": 747.7196044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 733.7196044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 360.5758972167969,
+              "bottom": 747.7196044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 733.7196044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 466.5423278808594,
+              "bottom": 747.7196044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 733.7196044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 569.1182250976562,
+              "bottom": 747.7196044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 25,
-          "y": 249.265625,
+          "y": 266.09375,
           "width": 325,
-          "height": 570,
-          "top": 249.265625,
+          "height": 553,
+          "top": 266.09375,
           "right": 350,
-          "bottom": 819.265625,
+          "bottom": 819.09375,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.265625,
-          "width": 720,
-          "height": 57,
-          "top": 747.265625,
-          "right": 745,
-          "bottom": 804.265625,
+          "y": 725.046875,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.046875,
+          "right": 665,
+          "bottom": 804.09375,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 336,
-        "scrollLeft": 0,
+        "scroll": 142,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 733.7196044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 251.4609375,
+              "bottom": 747.7196044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 733.7196044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 360.5758972167969,
+              "bottom": 747.7196044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 733.7196044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 466.5423278808594,
+              "bottom": 747.7196044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 733.7196044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 569.1182250976562,
+              "bottom": 747.7196044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 25,
-          "y": 249.265625,
+          "y": 266.09375,
           "width": 325,
-          "height": 570,
-          "top": 249.265625,
+          "height": 553,
+          "top": 266.09375,
           "right": 350,
-          "bottom": 819.265625,
+          "bottom": 819.09375,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.265625,
-          "width": 720,
-          "height": 57,
-          "top": 747.265625,
-          "right": 745,
-          "bottom": 804.265625,
+          "y": 725.046875,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.046875,
+          "right": 665,
+          "bottom": 804.09375,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 672,
-        "scrollLeft": 0,
+        "scroll": 284,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 733.7196044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 251.4609375,
+              "bottom": 747.7196044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 733.7196044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 360.5758972167969,
+              "bottom": 747.7196044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 733.7196044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 466.5423278808594,
+              "bottom": 747.7196044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 733.7196044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 733.7196044921875,
+              "right": 569.1182250976562,
+              "bottom": 747.7196044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       }
     ],
-    "horizontal": {
-      "offset": 410,
-      "width": 720,
-      "client": 310,
-      "delta": 0
-    },
-    "alternatives": {
-      "rows": 21,
-      "minFontPx": 13,
-      "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 390,
-        "client": 390,
-        "scroll": 390
-      }
-    },
+    "sourceJsonComplete": true,
+    "reversibleSVG": true,
     "wheel": true,
-    "historyFocus": true,
-    "sourceJsonComplete": true
+    "historyFocus": true
   },
   {
     "width": 320,
     "height": 844,
-    "default": {
-      "rows": 21,
-      "minFontPx": 13,
+    "general": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "above",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "above",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "above",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "above",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "above",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "above",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected science baseline: +24.4% to +34.7%.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected science baseline: +24.4% to +34.7%.+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected science baseline: +24.4% to +34.7%.+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected science baseline: +24.4% to +34.7%.+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected science baseline: +24.4% to +34.7%.+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected science baseline: +24.4% to +34.7%.+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "below",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected science baseline: +24.4% to +34.7%.+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected science baseline: +24.4% to +34.7%.+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected science baseline: +24.4% to +34.7%.+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "below",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(232, 161, 50)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected science baseline: +24.4% to +34.7%.+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "above",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "above",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "above",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "above",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "above",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "above",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected science baseline: +24.4% to +34.7%.+38.4%"
+        }
+      ],
+      "minFontPx": 11.316926093155894,
       "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 320,
-        "client": 320,
-        "scroll": 320
-      }
+      "classificationParity": true
     },
-    "context": {
-      "low": 24.419082870655973,
-      "high": 34.66995681677976,
-      "total": 65.09356364384125,
-      "color": "rgb(166, 176, 191)",
-      "dash": "5 5",
-      "x1": "339.95116183425864",
-      "x2": "339.95116183425864"
+    "matched": {
+      "rows": [
+        {
+          "id": "high",
+          "value": "85.17474633596392",
+          "status": "unavailable",
+          "cx": 503.8879046545337,
+          "cy": 78,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 515.8879046545337,
+            "y": 78
+          },
+          "stems": [
+            {
+              "y1": "78",
+              "y2": "78"
+            }
+          ],
+          "text": "Ultrasound, TMS and MEG: neurotech 1,774 in 2022 \u2192 3,285 in 2025 (+85.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+85.2%"
+        },
+        {
+          "id": "eeg",
+          "value": "67.43083003952569",
+          "status": "unavailable",
+          "cx": 457.2467532467532,
+          "cy": 110,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 469.2467532467532,
+            "y": 110
+          },
+          "stems": [
+            {
+              "y1": "110",
+              "y2": "110"
+            }
+          ],
+          "text": "EEG: neurotech 3,795 in 2022 \u2192 6,354 in 2025 (+67.4%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+67.4%"
+        },
+        {
+          "id": "no-technique",
+          "value": "55.10591210875751",
+          "status": "unavailable",
+          "cx": 424.8498261144483,
+          "cy": 142,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 436.8498261144483,
+            "y": 142
+          },
+          "stems": [
+            {
+              "y1": "142",
+              "y2": "142"
+            }
+          ],
+          "text": "No technique named: neurotech 3,163 in 2022 \u2192 4,906 in 2025 (+55.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+55.1%"
+        },
+        {
+          "id": "invasive",
+          "value": "52.11267605633803",
+          "status": "unavailable",
+          "cx": 416.98189134808854,
+          "cy": 174,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 428.98189134808854,
+            "y": 174
+          },
+          "stems": [
+            {
+              "y1": "174",
+              "y2": "174"
+            }
+          ],
+          "text": "Invasive: neurotech 994 in 2022 \u2192 1,512 in 2025 (+52.1%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+52.1%"
+        },
+        {
+          "id": "not-bci",
+          "value": "65.16490354698196",
+          "status": "unavailable",
+          "cx": 451.2906036092097,
+          "cy": 242,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 463.2906036092097,
+            "y": 242
+          },
+          "stems": [
+            {
+              "y1": "242",
+              "y2": "242"
+            }
+          ],
+          "text": "Not about BCI: neurotech 8,035 in 2022 \u2192 13,271 in 2025 (+65.2%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+65.2%"
+        },
+        {
+          "id": "bci",
+          "value": "64.75458308693081",
+          "status": "unavailable",
+          "cx": 450.21204697136096,
+          "cy": 274,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 462.21204697136096,
+            "y": 274
+          },
+          "stems": [
+            {
+              "y1": "274",
+              "y2": "274"
+            }
+          ],
+          "text": "About BCI: neurotech 1,691 in 2022 \u2192 2,786 in 2025 (+64.8%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-primary-publications-v1. Reference unavailable. Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired. Selected baseline unavailable; no general-science fallback.+64.8%"
+        },
+        {
+          "id": "preprint",
+          "value": "159.47075208913648",
+          "status": "above",
+          "cx": 699.1802626343016,
+          "cy": 342,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 711.1802626343016,
+            "y": 342
+          },
+          "stems": [
+            {
+              "y1": "342",
+              "y2": "342"
+            }
+          ],
+          "text": "Preprint: neurotech 718 in 2022 \u2192 1,863 in 2025 (+159.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 759,587 \u2192 1,222,742 (+61%). Reference universe: All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback. Growth gap: 98.5 percentage points; relative share growth: +61.2%. Selected category baseline: +61%.Category baseline: +61%+159.5%"
+        },
+        {
+          "id": "conference",
+          "value": "67.48051948051948",
+          "status": "above",
+          "cx": 457.3773654916512,
+          "cy": 374,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 469.3773654916512,
+            "y": 374
+          },
+          "stems": [
+            {
+              "y1": "374",
+              "y2": "374"
+            }
+          ],
+          "text": "Conference: neurotech 1,925 in 2022 \u2192 3,224 in 2025 (+67.5%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 582,910 \u2192 838,142 (+43.8%). Reference universe: All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback. Growth gap: 23.7 percentage points; relative share growth: +16.5%. Selected category baseline: +43.8%.Category baseline: +43.8%+67.5%"
+        },
+        {
+          "id": "journal",
+          "value": "58.608114268348274",
+          "status": "above",
+          "cx": 434.0556146482297,
+          "cy": 406,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 446.0556146482297,
+            "y": 406
+          },
+          "stems": [
+            {
+              "y1": "406",
+              "y2": "406"
+            }
+          ],
+          "text": "Journal: neurotech 6,581 in 2022 \u2192 10,438 in 2025 (+58.6%). Unit: OpenAlex work ID; numerator universe: NT10; method: atlas-matched-indexed-works-v1. Same-category reference 5,171,986 \u2192 6,699,738 (+29.5%). Reference universe: All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback. Growth gap: 29.1 percentage points; relative share growth: +22.4%. Selected category baseline: +29.5%.Category baseline: +29.5%+58.6%"
+        },
+        {
+          "id": "asia",
+          "value": "68.86535552193646",
+          "status": "above",
+          "cx": 461.01750594337585,
+          "cy": 474,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 473.01750594337585,
+            "y": 474
+          },
+          "stems": [
+            {
+              "y1": "474",
+              "y2": "474"
+            }
+          ],
+          "text": "Asia: neurotech 3,305 in 2022 \u2192 5,581 in 2025 (+68.9%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 2,632,284 \u2192 3,743,357 (+42.2%). Reference universe: All five-type core indexed works with Asia affiliation involvement; OR union for government/facility. Growth gap: 26.7 percentage points; relative share growth: +18.7%. Selected category baseline: +42.2%.Category baseline: +42.2%+68.9%"
+        },
+        {
+          "id": "us-canada",
+          "value": "35.05903723887375",
+          "status": "above",
+          "cx": 372.15518359932526,
+          "cy": 506,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 384.15518359932526,
+            "y": 506
+          },
+          "stems": [
+            {
+              "y1": "506",
+              "y2": "506"
+            }
+          ],
+          "text": "US and Canada: neurotech 1,101 in 2022 \u2192 1,487 in 2025 (+35.1%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 925,664 \u2192 1,028,663 (+11.1%). Reference universe: All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility. Growth gap: 23.9 percentage points; relative share growth: +21.5%. Selected category baseline: +11.1%.Category baseline: +11.1%+35.1%"
+        },
+        {
+          "id": "europe",
+          "value": "16.52754590984975",
+          "status": "above",
+          "cx": 323.4438349630336,
+          "cy": 538,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 335.4438349630336,
+            "y": 538
+          },
+          "stems": [
+            {
+              "y1": "538",
+              "y2": "538"
+            }
+          ],
+          "text": "Europe: neurotech 1,797 in 2022 \u2192 2,094 in 2025 (+16.5%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,646,031 \u2192 1,758,415 (+6.8%). Reference universe: All five-type core indexed works with Europe affiliation involvement; OR union for government/facility. Growth gap: 9.7 percentage points; relative share growth: +9.1%. Selected category baseline: +6.8%.Category baseline: +6.8%+16.5%"
+        },
+        {
+          "id": "education",
+          "value": "48.25684809676272",
+          "status": "above",
+          "cx": 406.846572140062,
+          "cy": 606,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 418.846572140062,
+            "y": 606
+          },
+          "stems": [
+            {
+              "y1": "606",
+              "y2": "606"
+            }
+          ],
+          "text": "Universities: neurotech 5,622 in 2022 \u2192 8,335 in 2025 (+48.3%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 4,788,725 \u2192 6,151,131 (+28.5%). Reference universe: All five-type core indexed works with Universities affiliation involvement; OR union for government/facility. Growth gap: 19.8 percentage points; relative share growth: +15.4%. Selected category baseline: +28.5%.Category baseline: +28.5%+48.3%"
+        },
+        {
+          "id": "company",
+          "value": "37.423312883435585",
+          "status": "above",
+          "cx": 378.36985100788786,
+          "cy": 638,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 390.36985100788786,
+            "y": 638
+          },
+          "stems": [
+            {
+              "y1": "638",
+              "y2": "638"
+            }
+          ],
+          "text": "Companies: neurotech 163 in 2022 \u2192 224 in 2025 (+37.4%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 185,364 \u2192 213,800 (+15.3%). Reference universe: All five-type core indexed works with Companies affiliation involvement; OR union for government/facility. Growth gap: 22.1 percentage points; relative share growth: +19.1%. Selected category baseline: +15.3%.Category baseline: +15.3%+37.4%"
+        },
+        {
+          "id": "government-facility",
+          "value": "21.742605915267784",
+          "status": "above",
+          "cx": 337.151992691561,
+          "cy": 670,
+          "fill": "rgb(75, 77, 242)",
+          "stroke": "rgb(255, 255, 255)",
+          "label": {
+            "x": 349.151992691561,
+            "y": 670
+          },
+          "stems": [
+            {
+              "y1": "670",
+              "y2": "670"
+            }
+          ],
+          "text": "Government agencies and research facilities: neurotech 1,251 in 2022 \u2192 1,523 in 2025 (+21.7%). Unit: OpenAlex work ID; numerator universe: P2; method: atlas-matched-indexed-works-v1. Same-category reference 1,091,879 \u2192 1,140,323 (+4.4%). Reference universe: All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility. Growth gap: 17.3 percentage points; relative share growth: +16.6%. Selected category baseline: +4.4%.Category baseline: +4.4%+21.7%"
+        },
+        {
+          "id": "early",
+          "value": "64.1785742709162",
+          "status": "unavailable",
+          "cx": 448.6979666549797,
+          "cy": 738,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 460.6979666549797,
+            "y": 738
+          },
+          "stems": [
+            {
+              "y1": "738",
+              "y2": "738"
+            }
+          ],
+          "text": "Early career (1-5 years): neurotech 1,258.1 in 2022 \u2192 2,065.5 in 2025 (+64.2%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+64.2%"
+        },
+        {
+          "id": "late",
+          "value": "61.87267468471593",
+          "status": "unavailable",
+          "cx": 442.63674488553903,
+          "cy": 770,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 454.63674488553903,
+            "y": 770
+          },
+          "stems": [
+            {
+              "y1": "770",
+              "y2": "770"
+            }
+          ],
+          "text": "Late career (16+ years): neurotech 2,876.2 in 2022 \u2192 4,655.8 in 2025 (+61.9%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+61.9%"
+        },
+        {
+          "id": "mid",
+          "value": "41.516081462168906",
+          "status": "unavailable",
+          "cx": 389.1279855577011,
+          "cy": 802,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 401.1279855577011,
+            "y": 802
+          },
+          "stems": [
+            {
+              "y1": "802",
+              "y2": "802"
+            }
+          ],
+          "text": "Mid career (6-15 years): neurotech 2,302.7 in 2022 \u2192 3,258.7 in 2025 (+41.5%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+41.5%"
+        },
+        {
+          "id": "top-1",
+          "value": "80.65188043688624",
+          "status": "unavailable",
+          "cx": 491.9992285769581,
+          "cy": 870,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 503.9992285769581,
+            "y": 870
+          },
+          "stems": [
+            {
+              "y1": "870",
+              "y2": "870"
+            }
+          ],
+          "text": "Top 1%: neurotech 78.2 in 2022 \u2192 141.2 in 2025 (+80.7%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+80.7%"
+        },
+        {
+          "id": "top-10-50",
+          "value": "48.98394218802563",
+          "status": "unavailable",
+          "cx": 408.75779089423884,
+          "cy": 902,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 420.75779089423884,
+            "y": 902
+          },
+          "stems": [
+            {
+              "y1": "902",
+              "y2": "902"
+            }
+          ],
+          "text": "Top 10-50%: neurotech 2,881.5 in 2022 \u2192 4,293 in 2025 (+49%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+49%"
+        },
+        {
+          "id": "top-1-10",
+          "value": "38.361766384266915",
+          "status": "unavailable",
+          "cx": 380.8366430672159,
+          "cy": 934,
+          "fill": "rgb(255, 255, 255)",
+          "stroke": "rgb(152, 162, 179)",
+          "label": {
+            "x": 392.8366430672159,
+            "y": 934
+          },
+          "stems": [
+            {
+              "y1": "934",
+              "y2": "934"
+            }
+          ],
+          "text": "Top 1-10%: neurotech 799.8 in 2022 \u2192 1,106.6 in 2025 (+38.4%). Unit: author-fractional works; numerator universe: P2 author-fractional; method: atlas-primary-publications-v1:quarterly-known-scaled-exact. Reference unavailable. Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator. Selected baseline unavailable; no general-science fallback.+38.4%"
+        }
+      ],
+      "minFontPx": 11.316926093155894,
+      "sourceParity": true,
+      "classificationParity": true
     },
     "axes": [
       {
         "plot": {
           "x": 25,
-          "y": 280.546875,
+          "y": 276.90625,
           "width": 255,
-          "height": 539,
-          "top": 280.546875,
+          "height": 543,
+          "top": 276.90625,
           "right": 280,
-          "bottom": 819.546875,
+          "bottom": 819.90625,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.546875,
-          "width": 720,
-          "height": 57,
-          "top": 747.546875,
-          "right": 745,
-          "bottom": 804.546875,
+          "y": 725.859375,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.859375,
+          "right": 665,
+          "bottom": 804.90625,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 0,
-        "scrollLeft": 0,
+        "scroll": 0,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 734.5321044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 251.4609375,
+              "bottom": 748.5321044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 734.5321044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 360.5758972167969,
+              "bottom": 748.5321044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 734.5321044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 466.5423278808594,
+              "bottom": 748.5321044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 734.5321044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 569.1182250976562,
+              "bottom": 748.5321044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 25,
-          "y": 280.546875,
+          "y": 276.90625,
           "width": 255,
-          "height": 539,
-          "top": 280.546875,
+          "height": 543,
+          "top": 276.90625,
           "right": 280,
-          "bottom": 819.546875,
+          "bottom": 819.90625,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.546875,
-          "width": 720,
-          "height": 57,
-          "top": 747.546875,
-          "right": 745,
-          "bottom": 804.546875,
+          "y": 725.859375,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.859375,
+          "right": 665,
+          "bottom": 804.90625,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 352,
-        "scrollLeft": 0,
+        "scroll": 147,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 734.5321044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 251.4609375,
+              "bottom": 748.5321044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 734.5321044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 360.5758972167969,
+              "bottom": 748.5321044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 734.5321044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 466.5423278808594,
+              "bottom": 748.5321044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 734.5321044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 569.1182250976562,
+              "bottom": 748.5321044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       },
       {
         "plot": {
           "x": 25,
-          "y": 280.546875,
+          "y": 276.90625,
           "width": 255,
-          "height": 539,
-          "top": 280.546875,
+          "height": 543,
+          "top": 276.90625,
           "right": 280,
-          "bottom": 819.546875,
+          "bottom": 819.90625,
           "left": 25
         },
         "axis": {
           "x": 25,
-          "y": 747.546875,
-          "width": 720,
-          "height": 57,
-          "top": 747.546875,
-          "right": 745,
-          "bottom": 804.546875,
+          "y": 725.859375,
+          "width": 640,
+          "height": 79.046875,
+          "top": 725.859375,
+          "right": 665,
+          "bottom": 804.90625,
           "left": 25
         },
-        "viewport": 844,
-        "scrollTop": 703,
-        "scrollLeft": 0,
+        "scroll": 294,
         "ticks": [
           {
-            "x": 225,
-            "expected": 225
+            "text": "0%",
+            "actual": 243.53906250000003,
+            "expected": 243.53790399239543,
+            "box": {
+              "x": 235.6171875,
+              "y": 734.5321044921875,
+              "width": 15.84375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 251.4609375,
+              "bottom": 748.5321044921875,
+              "left": 235.6171875
+            }
           },
           {
-            "x": 332.5,
-            "expected": 332.5
+            "text": "+50%",
+            "actual": 346.1149553571429,
+            "expected": 346.1149680879957,
+            "box": {
+              "x": 331.65399169921875,
+              "y": 734.5321044921875,
+              "width": 28.921905517578125,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 360.5758972167969,
+              "bottom": 748.5321044921875,
+              "left": 331.65399169921875
+            }
           },
           {
-            "x": 440,
-            "expected": 440
+            "text": "+100%",
+            "actual": 448.6908482142858,
+            "expected": 448.69203218359587,
+            "box": {
+              "x": 430.8392333984375,
+              "y": 734.5321044921875,
+              "width": 35.703094482421875,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 466.5423278808594,
+              "bottom": 748.5321044921875,
+              "left": 430.8392333984375
+            }
           },
           {
-            "x": 547.5,
-            "expected": 547.5
-          },
-          {
-            "x": 655,
-            "expected": 655
+            "text": "+150%",
+            "actual": 551.2667410714286,
+            "expected": 551.269096279196,
+            "box": {
+              "x": 533.4151611328125,
+              "y": 734.5321044921875,
+              "width": 35.70306396484375,
+              "height": 14,
+              "top": 734.5321044921875,
+              "right": 569.1182250976562,
+              "bottom": 748.5321044921875,
+              "left": 533.4151611328125
+            }
           }
         ]
       }
     ],
-    "horizontal": {
-      "offset": 480,
-      "width": 720,
-      "client": 240,
-      "delta": 0
-    },
-    "alternatives": {
-      "rows": 21,
-      "minFontPx": 13,
-      "sourceParity": true,
-      "horizontalStems": true,
-      "endpointLabels": true,
-      "overflow": {
-        "inner": 320,
-        "client": 320,
-        "scroll": 320
-      }
-    },
+    "sourceJsonComplete": true,
+    "reversibleSVG": true,
     "wheel": true,
-    "historyFocus": true,
-    "sourceJsonComplete": true
+    "historyFocus": true
   }
 ]

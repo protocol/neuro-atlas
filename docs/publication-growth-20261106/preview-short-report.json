@@ -1,0 +1,310 @@
+[
+  {
+    "width": 1440,
+    "height": 1000,
+    "preview": [
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 433.078125,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 433.078125,
+          "right": 1122.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      },
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 433.078125,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 433.078125,
+          "right": 1122.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      },
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 432.75,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 432.75,
+          "right": 1122.46875,
+          "bottom": 505.234375,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      }
+    ],
+    "baselineModeGeometry": true,
+    "controlSetup": "programmatic; native keyboard selection is independently covered by native-report.json"
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "preview": [
+      {
+        "region": {
+          "x": 74,
+          "y": 280.1875,
+          "width": 227,
+          "height": 235,
+          "top": 280.1875,
+          "right": 301,
+          "bottom": 515.1875,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 442.6875,
+          "width": 217,
+          "height": 72.5,
+          "top": 442.6875,
+          "right": 291,
+          "bottom": 515.1875,
+          "left": 74
+        },
+        "font": 10.99987803339228
+      },
+      {
+        "region": {
+          "x": 74,
+          "y": 280.1875,
+          "width": 227,
+          "height": 235,
+          "top": 280.1875,
+          "right": 301,
+          "bottom": 515.1875,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 442.6875,
+          "width": 217,
+          "height": 72.5,
+          "top": 442.6875,
+          "right": 291,
+          "bottom": 515.1875,
+          "left": 74
+        },
+        "font": 10.99987803339228
+      },
+      {
+        "region": {
+          "x": 74,
+          "y": 280.1875,
+          "width": 227,
+          "height": 235,
+          "top": 280.1875,
+          "right": 301,
+          "bottom": 515.1875,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 442.375,
+          "width": 217,
+          "height": 72.5,
+          "top": 442.375,
+          "right": 291,
+          "bottom": 514.875,
+          "left": 74
+        },
+        "font": 10.99987803339228
+      }
+    ],
+    "baselineModeGeometry": true,
+    "controlSetup": "programmatic; native keyboard selection is independently covered by native-report.json"
+  },
+  {
+    "width": 320,
+    "height": 844,
+    "preview": [
+      {
+        "region": {
+          "x": 74,
+          "y": 301.9375,
+          "width": 157,
+          "height": 235,
+          "top": 301.9375,
+          "right": 231,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 447.9375,
+          "width": 147,
+          "height": 89,
+          "top": 447.9375,
+          "right": 221,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "font": 10.999889230710865
+      },
+      {
+        "region": {
+          "x": 74,
+          "y": 301.9375,
+          "width": 157,
+          "height": 235,
+          "top": 301.9375,
+          "right": 231,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 447.9375,
+          "width": 147,
+          "height": 89,
+          "top": 447.9375,
+          "right": 221,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "font": 10.999889230710865
+      },
+      {
+        "region": {
+          "x": 74,
+          "y": 301.9375,
+          "width": 157,
+          "height": 235,
+          "top": 301.9375,
+          "right": 231,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "axis": {
+          "x": 74,
+          "y": 447.9375,
+          "width": 147,
+          "height": 89,
+          "top": 447.9375,
+          "right": 221,
+          "bottom": 536.9375,
+          "left": 74
+        },
+        "font": 10.999889230710865
+      }
+    ],
+    "baselineModeGeometry": true,
+    "controlSetup": "programmatic; native keyboard selection is independently covered by native-report.json"
+  },
+  {
+    "width": 1440,
+    "height": 650,
+    "preview": [
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 433.078125,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 433.078125,
+          "right": 1122.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      },
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 433.078125,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 433.078125,
+          "right": 1122.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      },
+      {
+        "region": {
+          "x": 525.390625,
+          "y": 270.5625,
+          "width": 607.078125,
+          "height": 235,
+          "top": 270.5625,
+          "right": 1132.46875,
+          "bottom": 505.5625,
+          "left": 525.390625
+        },
+        "axis": {
+          "x": 525.390625,
+          "y": 432.75,
+          "width": 597.078125,
+          "height": 72.484375,
+          "top": 432.75,
+          "right": 1122.46875,
+          "bottom": 505.234375,
+          "left": 525.390625
+        },
+        "font": 10.99759637273518
+      }
+    ],
+    "baselineModeGeometry": true,
+    "controlSetup": "programmatic; native keyboard selection is independently covered by native-report.json"
+  }
+]
