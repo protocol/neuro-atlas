@@ -19,7 +19,7 @@ def settle():
  raise AssertionError('Layout not stable')
 def snap(name):return capture_screenshot(path=str(OUT/(name+'.png')))
 def click_point(selector):
- r=probe('''const e=document.querySelector('''+json.dumps(selector)+''');e.scrollIntoView({block:"center",inline:"nearest",behavior:"instant"});const r=e.getBoundingClientRect();const xy=[[r.x+r.width/2,r.y+r.height/2],[r.right-.2,r.y+r.height/2],[r.left+.2,r.y+r.height/2],[r.x+r.width/2,r.top+.2],[r.x+r.width/2,r.bottom-.2]].find(([x,y])=>{const hit=document.elementFromPoint(x,y);return hit===e||e.contains(hit)});return {x:xy?.[0],y:xy?.[1],painted:!!xy};''')
+ r=probe('''const original=document.querySelector('''+json.dumps(selector)+''');const year=original.getAttribute('data-year');const e=(year&&original.closest('svg')?.querySelector('[data-annual-year-target="'+year+'"]'))||original;e.scrollIntoView({block:"center",inline:"nearest",behavior:"instant"});const r=e.getBoundingClientRect();const xy=[[r.x+r.width/2,r.y+r.height/2],[r.right-.2,r.y+r.height/2],[r.left+.2,r.y+r.height/2],[r.x+r.width/2,r.top+.2],[r.x+r.width/2,r.bottom-.2]].find(([x,y])=>{const hit=document.elementFromPoint(x,y);return hit===e||e.contains(hit)});return {x:xy?.[0],y:xy?.[1],painted:!!xy};''')
  assert r['painted'], ('No painted hit target',selector,r)
  cdp('Page.bringToFront');click_at_xy(r['x'],r['y'])
 def wait_popup():
@@ -30,7 +30,7 @@ def wait_popup():
 report=[]
 for width in [1440,390,320]:
  cdp('Emulation.setDeviceMetricsOverride',width=width,height=1000,deviceScaleFactor=1,mobile=width<600)
- goto_url(BASE+'/field-velocity');wait_for_load();assert wait_for_element('[data-performance-card="simultaneously-recorded-neurons"]',visible=True);settle()
+ goto_url('about:blank');wait_for_load();goto_url(BASE+'/field-velocity');wait_for_load();assert wait_for_element('[data-performance-card="simultaneously-recorded-neurons"]',visible=True);settle()
  previews=probe('''return [...document.querySelectorAll('[data-metric-rail] article')].filter(e=>!e.closest('[hidden],[inert]')).map(e=>{const h=e.querySelector('h3,.pc-card-title,figcaption'),s=e.querySelector('svg'),r=s?.getBoundingClientRect(),hr=h.getBoundingClientRect();const texts=[...e.querySelectorAll('svg text')].map(t=>{const b=t.getBoundingClientRect(),m=t.getScreenCTM();return {text:t.textContent,px:parseFloat(getComputedStyle(t).fontSize)*Math.hypot(m.a,m.b),x:b.left-r.left,right:b.right-r.right,top:b.top-r.top,bottom:b.bottom-r.bottom,leftOfHeading:b.left-hr.left};});return {title:h.textContent,height:e.getBoundingClientRect().height,texts};});''')
  assert [p['title'] for p in previews]==[p['title'] for p in EXPECTED], 'Changed chart inventory/order'
  for p in previews:

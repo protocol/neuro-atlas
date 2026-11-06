@@ -218,3 +218,20 @@ test('axis colors remain tied to their series despite shared SVG text theme rule
   }
  } finally {await cleanup();}
 });
+
+
+test('shared-year source inspection stays floating and Escape also clears its year guide',async()=>{
+ const cleanup=await mount(chart(syntheticPublicationSnapshot()),'#publication-output');
+ try{
+  const mark=annualSvg().querySelector('circle[data-year="2023"]');
+  await act(async()=>mark.dispatchEvent(new window.FocusEvent('focusin',{bubbles:true})));
+  const popup=document.querySelector('dialog [data-point-tooltip]');
+  assert.ok(popup && !popup.closest('.publication-full-plot'),'A year tooltip escapes the horizontal plot scroller');
+  assert.equal(document.querySelectorAll('dialog [role="tooltip"]').length,1,'A single shared-year tooltip replaces per-series popovers');
+  assert.ok(annualSvg().querySelector('[data-annual-year-guide]'),'The shared hover retains its guide');
+  await act(async()=>mark.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
+  assert.ok(!document.querySelector('[data-point-tooltip]'));
+  assert.ok(!annualSvg().querySelector('[data-annual-year-guide]'));
+  assert.ok(document.querySelector('dialog[open]'));
+ }finally{await cleanup();}
+});
