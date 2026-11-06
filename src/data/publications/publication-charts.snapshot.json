@@ -10,7 +10,7 @@
     "paperEndYear": 2025,
     "authorEndYear": 2025,
     "methodologyVersion": "atlas-primary-publications-v1",
-    "methodSha256": "9b2bba7e2b18e098ee53f6b59311f9dd29ba1c8e7d82d88674c372aee623e34e",
+    "methodSha256": "250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da",
     "sourceHash": "b3674078d0813a9958babae42dc4e5f23fc5655920a0239258e4ac2aa5b52303",
     "testOnly": false,
     "corpus": "core",
@@ -646,6 +646,60 @@
           null
         ]
       ]
+    },
+    "nt_talent_endpoints": {
+      "columns": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to0",
+          "type": "number"
+        },
+        {
+          "name": "to1",
+          "type": "number"
+        },
+        {
+          "name": "to2",
+          "type": "number"
+        },
+        {
+          "name": "to3",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "Academic",
+          18781,
+          94,
+          740,
+          1091
+        ],
+        [
+          "Industry",
+          43,
+          196,
+          8,
+          49
+        ],
+        [
+          "Other institutions",
+          688,
+          16,
+          1609,
+          156
+        ],
+        [
+          "No listed affiliation",
+          1624,
+          23,
+          243,
+          1132
+        ]
+      ]
     }
   },
   "audit": {
@@ -679,6 +733,15 @@
       "unidentifiedBylineSlots": 29846,
       "duplicateIdentifiedBylineSlots": 166,
       "worksWithoutBylines": 1118
+    },
+    "affiliationEndpointCohort": {
+      "methodId": "atlas-publication-affiliation-endpoints-v1",
+      "firstYearMin": 2016,
+      "lastYearMax": 2025,
+      "minActiveYears": 2,
+      "eligibleAuthors": 26493,
+      "sameSectorAuthors": 21718,
+      "changedSectorAuthors": 4775
     },
     "coverage": [
       {

@@ -16,7 +16,7 @@ export const PUBLICATION_GROWTH_GROUPS = [
   { table: "neurotech_career_table", label: "Career stage", groups: ["Early career (1-5 years)", "Mid career (6-15 years)", "Late career (16+ years)"], authorBased: true },
   { table: "neurotech_pedigree_table", label: "Citation rank", groups: ["Top 1%", "Top 1-10%", "Top 10-50%"], authorBased: true },
 ] as const;
-export const PUBLICATION_TABLE_NAMES = ["nt_yearly", ...PUBLICATION_GROWTH_GROUPS.map(group => group.table), "nt_talent_table", "nt_talent_moves"] as const;
+export const PUBLICATION_TABLE_NAMES = ["nt_yearly", ...PUBLICATION_GROWTH_GROUPS.map(group => group.table), "nt_talent_table", "nt_talent_moves", "nt_talent_endpoints"] as const;
 const count = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 const percent = z.number().finite().min(-100).max(1e7);
 const day = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(s => Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s, "Invalid calendar date");
@@ -39,9 +39,22 @@ const nonnegative = z.number().finite().min(0).max(1e15);
 const fractionalGroup = z.enum(["Asia", "North America", "Europe", "Rest of world", "Universities", "Companies", "National institutes", "Other institutions", "Early career (1-5 years)", "Mid career (6-15 years)", "Late career (16+ years)", "Top 1%", "Top 1-10%", "Top 10-50%", "Bottom 50%", "Unknown"]);
 const exactInteger = z.union([count, z.string().max(4096).regex(/^(?:0|[1-9]\d*)$/)]);
 const ratio = z.tuple([exactInteger, exactInteger]).refine(([, denominator]) => BigInt(denominator) > BigInt(0), "Positive exact denominator required");
+const affiliationEndpointCohortSchema = z.object({
+  methodId: z.literal("atlas-publication-affiliation-endpoints-v1"), firstYearMin: z.literal(2016), lastYearMax: z.literal(2025), minActiveYears: z.literal(2),
+  eligibleAuthors: count, sameSectorAuthors: count, changedSectorAuthors: count,
+}).strict();
+const endpointTableSchema = tableSchema(MOVE_COLUMNS, z.tuple([z.enum(PUBLICATION_SECTORS), count, count, count, count]));
+const endpointCapabilitySchema = z.object({ tables: z.object({ nt_talent_endpoints: endpointTableSchema }), audit: z.object({ affiliationEndpointCohort: affiliationEndpointCohortSchema }) });
+/** After ordinary validation, reject capability regression; never splice acquisitions. */
+export function assertPublicationEndpointCompatibility(previous: unknown, candidate: unknown): void {
+  if (endpointCapabilitySchema.safeParse(previous).success && !endpointCapabilitySchema.safeParse(candidate).success) {
+    throw new Error("Publication source lacks the complete affiliation endpoint cohort; retaining last-good acquisition");
+  }
+}
 const auditSchema = z.object({
   paperCohort: z.object({ topics: z.tuple([z.literal("T10429"), z.literal("T11601"), z.literal("T10614"), z.literal("T10958"), z.literal("T12015"), z.literal("T11993"), z.literal("T10094"), z.literal("T10581"), z.literal("T10241"), z.literal("T10919")]), firstYear: z.literal(2010), lastYear: z.literal(2025), works: count, counting: z.literal("one-openalex-work-id") }).strict(),
   authorCohort: z.object({ topics: z.tuple([z.literal("T10429"), z.literal("T11601")]), firstYear: z.literal(2000), lastYear: z.literal(2025), works: count, authors: count, unidentifiedBylineSlots: count, duplicateIdentifiedBylineSlots: count.optional(), worksWithoutBylines: count }).strict(),
+  affiliationEndpointCohort: affiliationEndpointCohortSchema.optional(),
   coverage: z.array(z.object({ dimension, year: z.number().int().min(2022).max(2025), quarter: z.number().int().min(1).max(4), total: nonnegative, known: nonnegative, unknown: nonnegative, knownShare: z.number().min(0).max(1), scale: nonnegative.nullable() }).strict()).max(64),
   quarterlyFractionalOutput: z.array(z.object({ dimension, year: z.number().int().min(2022).max(2025), quarter: z.number().int().min(1).max(4), group: fractionalGroup, rawFraction: ratio, scaledFraction: ratio.nullable() }).strict()).max(1024),
   baselineStatus: z.enum(["not-supplied", "primary-four-domain-context"]),
@@ -100,6 +113,7 @@ const contract = z.object({ schemaVersion: z.literal(2), source: z.object({
   ...growthSchemas,
   nt_talent_table: tableSchema(TALENT_COLUMNS, z.tuple([z.enum(PUBLICATION_SECTORS), count, count, percent.nullable(), count, z.number().min(0).max(100).nullable(), z.number().min(0).max(100).nullable()])),
   nt_talent_moves: tableSchema(MOVE_COLUMNS, z.tuple([z.enum(PUBLICATION_SECTORS), count.nullable(), count.nullable(), count.nullable(), count.nullable()])),
+  nt_talent_endpoints: endpointTableSchema.optional(),
 }).strict(), audit: auditSchema, matchedGrowth: matchedGrowthSchema.optional() }).strict();
 export type PublicationSnapshot = Omit<z.infer<typeof contract>, "tables"> & { tables: Record<string, PublicationTable> };
 function requireCondition(condition: unknown, message: string): asserts condition {
@@ -189,6 +203,25 @@ export function parsePublicationSnapshot(input: unknown, options: { allowTestFix
   for (const row of value.tables.nt_talent_moves.rows) {
     const index = PUBLICATION_SECTORS.indexOf(row[0] as typeof PUBLICATION_SECTORS[number]);
     row.slice(1).forEach((cell, i) => requireCondition(i === index ? cell === null : cell !== null, "moves diagonal must be null; off-diagonal counts explicit"));
+  }
+  const endpoints = value.tables.nt_talent_endpoints, endpointCohort = value.audit.affiliationEndpointCohort;
+  requireCondition(Boolean(endpoints) === Boolean(endpointCohort), "full endpoint table and cohort audit must be supplied together");
+  if (endpoints && endpointCohort) {
+    exactKeys(endpoints.rows.map(row => String(row[0])), PUBLICATION_SECTORS, "nt_talent_endpoints");
+    let same = 0, changed = 0;
+    for (const row of endpoints.rows) {
+      const index = PUBLICATION_SECTORS.indexOf(row[0] as typeof PUBLICATION_SECTORS[number]);
+      const moves = value.tables.nt_talent_moves.rows.find(move => move[0] === row[0])!;
+      row.slice(1).forEach((cell, i) => {
+        if (i === index) same += Number(cell);
+        else {
+          requireCondition(cell === moves[i + 1], "endpoint off-diagonal disagrees with changed-sector matrix");
+          changed += Number(cell);
+        }
+      });
+    }
+    requireCondition(endpointCohort.sameSectorAuthors === same && endpointCohort.changedSectorAuthors === changed && endpointCohort.eligibleAuthors === same + changed, "endpoint cohort totals disagree with matrix");
+    requireCondition(endpointCohort.eligibleAuthors <= value.audit.authorCohort.authors, "endpoint cohort exceeds all identified authors");
   }
   requireCondition(value.tables.nt_talent_table.rows.reduce((sum, row) => sum + Number(row[2]), 0) > 0, "researcher population is empty");
   return value;

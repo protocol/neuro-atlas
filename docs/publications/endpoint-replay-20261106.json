@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "fullRawReceiptReplayVerified": true,
+  "independentAll16CellsIdentical": true,
+  "legacySnapshotBytesPreservedExceptMethodAndAdditions": true,
+  "sourceReadOnly": true,
+  "endpointRows": [
+    [
+      "Academic",
+      18781,
+      94,
+      740,
+      1091
+    ],
+    [
+      "Industry",
+      43,
+      196,
+      8,
+      49
+    ],
+    [
+      "Other institutions",
+      688,
+      16,
+      1609,
+      156
+    ],
+    [
+      "No listed affiliation",
+      1624,
+      23,
+      243,
+      1132
+    ]
+  ],
+  "affiliationEndpointCohort": {
+    "methodId": "atlas-publication-affiliation-endpoints-v1",
+    "firstYearMin": 2016,
+    "lastYearMax": 2025,
+    "minActiveYears": 2,
+    "eligibleAuthors": 26493,
+    "sameSectorAuthors": 21718,
+    "changedSectorAuthors": 4775
+  },
+  "candidateWorks": 403266,
+  "authorHistories": 117060,
+  "primaryTopicYearSlices": 180,
+  "rawReceiptCount": 5516,
+  "authorWorks": 111345,
+  "identifiedAuthors": 168577,
+  "snapshotSha256": "ecea23c62673bdd539f703968d54434649ff8259f8ccff8b8fcda3483c4440f4",
+  "derivationMethodSha256": "250ef7ab75f1008ce5ef1bc42fff20e1dd413f87cb277e1bf8aa695ad305b0da",
+  "legacySnapshotSha256": "45b5befea15612f0a34f639022e575f51386faa384821b2405811eb9f2eaca5b",
+  "legacyMethodSha256": "9b2bba7e2b18e098ee53f6b59311f9dd29ba1c8e7d82d88674c372aee623e34e",
+  "legacySourceHash": "b3674078d0813a9958babae42dc4e5f23fc5655920a0239258e4ac2aa5b52303",
+  "inputByteHashes": {
+    "works": "c8dc2828488d7f4697b42e46114980bf3539307592944cde943cc17895989d61",
+    "author_histories": "2ebbe70c3be302b3954fdc644053e3565674b0cc6a618a2347c8f099da821573"
+  },
+  "sourceProof": {
+    "acquisitionManifestSha256": "2c97d98a5decbbd53b96cb6087ac647d28d6f33d979c48ea0bb80e00c9357b85",
+    "normalizedSha256": "28947bcc51f23c3ce039c9b41ccd57ae583b9ce41ccfbc4f0d532a8145cb2187",
+    "acquisitionMethodSha256": "0e388e4f7001179e8a0c2760689f2bb58317f5149e009a64af0a2f4f049df249",
+    "historyCoverageSha256": "4cbb92c811d8f99ee7bc484115812c19c5107a901b6b6baa03c9ecc6f0eb0cec",
+    "acquisitionStartedAt": "2026-11-06T10:01:16.677921+00:00",
+    "acquisitionCompletedAt": "2026-11-06T10:45:51.759874+00:00",
+    "rawReceiptCount": 5516,
+    "scienceInputSha256": "a7e574c0fa36a4855fdc5888aaa4b37388b2371ed2af6e51dd9b34d765e96236",
+    "matchedInputSha256": "162fddea1765d1e38cceecf73c579dbbb3870226b56466263c1edc4144b895a3",
+    "derivationManifestSha256": "35a83862feba7dcfa1663b595c468a6fa11bb23c9544cc31eef23a1bd827e8db",
+    "scienceEvidence": {
+      "all": {
+        "responseSha256": "e9093a505ca04ef425079d4e17c43fd041c0a1948f542cff5d71abac9f4cc8cc",
+        "requestSha256": "6ab26a727bfa0d1c6d36868c1045511d2a1fcb9f727e94fde791e00b1575a6e4",
+        "retrievedAt": "2026-11-06T09:57:20.183418+00:00"
+      },
+      "life": {
+        "responseSha256": "3b4223e3646a0590c54786e55466a4a5866dac846983658d82e80de54f05cf4f",
+        "requestSha256": "1ad9c30367733d2a9c4ea8709bf2fd0490f77cea573e8fcfc9b0077f25756dc3",
+        "retrievedAt": "2026-11-06T09:57:20.116382+00:00"
+      },
+      "social": {
+        "responseSha256": "46f792627703c9e9539192c21b1fb219d262f23f787e585a01e8001e9f20b016",
+        "requestSha256": "72015aece399358dfe5c1e3a43ca4637a1f8c68bd77cc738130c640130f41c8c",
+        "retrievedAt": "2026-11-06T09:57:20.130217+00:00"
+      },
+      "physical": {
+        "responseSha256": "3301c15b07f6d3fb50ed5b56dc7197c85cf8b9d05341e8675cfe17f21e3b65d5",
+        "requestSha256": "3299779cc0ff9a1c8c6a45f43922b6626ab2f8df8cb5745bc41e17b895a413a3",
+        "retrievedAt": "2026-11-06T09:57:20.129742+00:00"
+      },
+      "health": {
+        "responseSha256": "f1f51ecc0acf71c378fa3e9eda5f2c325c75c4bed6db07e785b4429e820a710c",
+        "requestSha256": "eb0961f6ac24e75f9cf462a84147cea78766f4d6262e92f2ceb0108f86f7de12",
+        "retrievedAt": "2026-11-06T09:57:20.118766+00:00"
+      }
+    }
+  }
+}

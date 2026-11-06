@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {parseArgs} from 'node:util';
 import {z} from 'zod';
+import {assertPublicationEndpointCompatibility} from '../src/lib/publication-data';
 
 const ROOT=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export const PUBLICATION_BRANCH='data/openalex-publications-feed';
@@ -141,7 +142,7 @@ export async function fetchLatestPublication(fetcher:PublicationFetch=fetch,opti
 }
 export function retainingPublicationReader<T extends {snapshot:{source:{capturedAt:string}}}>(load:()=>Promise<T>,fallback:T) {
  let lastGood=fallback;
- return async()=>{try{const next=await load();if(Date.parse(next.snapshot.source.capturedAt)>=Date.parse(lastGood.snapshot.source.capturedAt))lastGood=next;}catch{/* Retain actual last-good, not an error-shaped replacement. */}return lastGood;};
+ return async()=>{try{const next=await load();assertPublicationEndpointCompatibility(lastGood.snapshot,next.snapshot);if(Date.parse(next.snapshot.source.capturedAt)>=Date.parse(lastGood.snapshot.source.capturedAt))lastGood=next;}catch{/* Retain actual last-good, not an error-shaped replacement. */}return lastGood;};
 }
 
 

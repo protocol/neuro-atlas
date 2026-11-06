@@ -1,4 +1,5 @@
 // SYNTHETIC schema-v2 contract/interaction fixture. Never application/refresh data.
+// 250 total authors can contain the 206 changed endpoints plus 44 same endpoints.
 export const fixtureOptions = { allowTestFixture: true };
 export function syntheticPublicationSnapshot() {
  const table=(names,rows)=>({columns:names.map(name=>({name,type:['year','series','group','place','from'].includes(name)?'string':'number'})),rows});
@@ -15,7 +16,17 @@ export function syntheticPublicationSnapshot() {
  neurotech_pedigree_table:growth(['Top 1%','Top 1-10%','Top 10-50%']),
  nt_talent_table:table(['group','a2022','alast','growth','new','other','back'],[['Academic',60,72,20,20,50,30],['Industry',1,1,0,1,0,0],['Other institutions',10,13,30,5,60,40],['No listed affiliation',10,14,40,4,50,20]]),
  nt_talent_moves:table(['from','to0','to1','to2','to3'],[['Academic',null,3,40,57],['Industry',36,null,13,51],['Other institutions',2,0,null,1],['No listed affiliation',1,1,1,null]])
- },audit:{paperCohort:{topics:['T10429','T11601','T10614','T10958','T12015','T11993','T10094','T10581','T10241','T10919'],firstYear:2010,lastYear:2025,works:2800,counting:'one-openalex-work-id'},authorCohort:{topics:['T10429','T11601'],firstYear:2000,lastYear:2025,works:1200,authors:150,unidentifiedBylineSlots:2,worksWithoutBylines:0},coverage:[{dimension:'region',year:2025,quarter:1,total:100,known:80,unknown:20,knownShare:.8,scale:1.25}],quarterlyFractionalOutput:[{dimension:'region',year:2025,quarter:1,group:'Asia',rawFraction:[20,1],scaledFraction:[25,1]},{dimension:'region',year:2025,quarter:1,group:'Unknown',rawFraction:[20,1],scaledFraction:null}],baselineStatus:'primary-four-domain-context',matchedBaselineStatus:'not-supplied'}};
+ },audit:{paperCohort:{topics:['T10429','T11601','T10614','T10958','T12015','T11993','T10094','T10581','T10241','T10919'],firstYear:2010,lastYear:2025,works:2800,counting:'one-openalex-work-id'},authorCohort:{topics:['T10429','T11601'],firstYear:2000,lastYear:2025,works:1200,authors:250,unidentifiedBylineSlots:2,worksWithoutBylines:0},coverage:[{dimension:'region',year:2025,quarter:1,total:100,known:80,unknown:20,knownShare:.8,scale:1.25}],quarterlyFractionalOutput:[{dimension:'region',year:2025,quarter:1,group:'Asia',rawFraction:[20,1],scaledFraction:[25,1]},{dimension:'region',year:2025,quarter:1,group:'Unknown',rawFraction:[20,1],scaledFraction:null}],baselineStatus:'primary-four-domain-context',matchedBaselineStatus:'not-supplied'}};
+}
+
+// Separate additive endpoint fixture; the legacy fixture intentionally lacks it.
+export function syntheticPublicationEndpointSnapshot() {
+ const snapshot=syntheticPublicationSnapshot();
+ const diagonals=[10,20,5,9];
+ snapshot.tables.nt_talent_endpoints=structuredClone(snapshot.tables.nt_talent_moves);
+ snapshot.tables.nt_talent_endpoints.rows.forEach((row,i)=>{row[i+1]=diagonals[i];});
+ snapshot.audit.affiliationEndpointCohort={methodId:'atlas-publication-affiliation-endpoints-v1',firstYearMin:2016,lastYearMax:2025,minActiveYears:2,eligibleAuthors:250,sameSectorAuthors:44,changedSectorAuthors:206};
+ return snapshot;
 }
 
 // Synthetic matched adapter output, preserving the real adapter's exact contract.

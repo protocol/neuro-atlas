@@ -16,6 +16,7 @@ import re
 import sys
 
 METHOD_ID = 'atlas-primary-publications-v1'
+ENDPOINT_METHOD_ID = 'atlas-publication-affiliation-endpoints-v1'
 FIRST, BASE, LAST = 2000, 2022, 2025
 TYPES = ('article', 'preprint', 'review', 'book-chapter', 'conference-paper')
 AUTHOR_TOPICS = ('T10429', 'T11601')
@@ -395,6 +396,7 @@ def derive(works, author_histories, manifest, science_baseline=None, matched_bas
         known = {s:n for s,n in counts.items() if s != 'No listed affiliation'}
         assigned[k] = min(known, key=lambda s:(-known[s],s)) if known else 'No listed affiliation'
     active, entrants, other, returns, moves = Counter(),Counter(),Counter(),Counter(),Counter()
+    endpoints = Counter()
     origins_unknown = Counter()
     for (aid,y), sec in assigned.items():
         active[sec,y] += 1
@@ -413,6 +415,10 @@ def derive(works, author_histories, manifest, science_baseline=None, matched_bas
                 returns[origin,fy] += 1
         if fy>=2016 and ly>fy and origin!=destination:
             moves[origin,destination] += 1
+        # Full endpoint cohort, independently retaining same-sector endpoints.
+        # Equal endpoints do not imply continuous employment or sector retention.
+        if fy>=2016 and ly>fy:
+            endpoints[origin,destination] += 1
     rows = []
     for sec in SECTORS:
         start,end = active[sec,BASE],active[sec,LAST]
@@ -421,6 +427,8 @@ def derive(works, author_histories, manifest, science_baseline=None, matched_bas
         rows.append([sec,start,end,pct(end,start),n,other_share,share(returns[sec,LAST-3],entrants[sec,LAST-3])])
     tables['nt_talent_table'] = table(('group','a2022','alast','growth','new','other','back'),rows)
     tables['nt_talent_moves'] = table(('from','to0','to1','to2','to3'),[[s]+[None if s==t else moves[s,t] for t in SECTORS] for s in SECTORS])
+    tables['nt_talent_endpoints'] = table(('from','to0','to1','to2','to3'),[[s]+[endpoints[s,t] for t in SECTORS] for s in SECTORS])
+    same_sector = sum(endpoints[s,s] for s in SECTORS)
     result = {'schemaVersion':2,'source':{'url':'https://api.openalex.org','capturedAt':max((manifest['works']['acquired_at'],manifest['author_histories']['acquired_at']),key=timestamp),
                'paperAsOf':manifest['works']['acquired_at'][:10], 'authorAsOf':manifest['author_histories']['acquired_at'][:10],
                'observedThrough':manifest['observed_through'],'baselineYear':BASE,'paperEndYear':LAST,'authorEndYear':LAST,
@@ -429,6 +437,8 @@ def derive(works, author_histories, manifest, science_baseline=None, matched_bas
                'testOnly':manifest['test_only'],'corpus':'core'},'tables':tables,
                'audit':{'paperCohort':{'topics':list(FULL_TOPICS+GATED_TOPICS),'firstYear':2010,'lastYear':LAST,'works':len(papers),'counting':'one-openalex-work-id'},
                         'authorCohort':{'topics':list(AUTHOR_TOPICS),'firstYear':FIRST,'lastYear':LAST,'works':len(author_works),'authors':len(author_years),'unidentifiedBylineSlots':unknown_slots,'duplicateIdentifiedBylineSlots':duplicate_slots,'worksWithoutBylines':sum(not w['authorships'] for w in author_works)},
+                        'affiliationEndpointCohort':{'methodId':ENDPOINT_METHOD_ID,'firstYearMin':2016,'lastYearMax':LAST,'minActiveYears':2,
+                                                     'eligibleAuthors':sum(endpoints.values()),'sameSectorAuthors':same_sector,'changedSectorAuthors':sum(moves.values())},
                         'coverage':coverage,'baselineStatus':'not-supplied','matchedBaselineStatus':'not-supplied'}}
     result['audit']['quarterlyFractionalOutput'] = [
         {'dimension':dim,'year':y,'quarter':q,'group':label,'rawFraction':[str(value.numerator),str(value.denominator)],

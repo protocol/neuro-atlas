@@ -3,10 +3,39 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
+import {syntheticPublicationEndpointSnapshot,syntheticPublicationSnapshot} from './fixtures/publication-synthetic.mjs';
 const fixture=()=>({schemaVersion:2,source:{url:'https://api.openalex.org',testOnly:true,
  capturedAt:'2026-11-06T09:00:00Z',paperAsOf:'2026-11-06',authorAsOf:'2026-11-06',methodSha256:'a'.repeat(64)},
  tables:{},audit:{},matchedGrowth:{rows:[],evidence:{}}});
 const options={parser:v=>v,allowTestOnly:true,now:()=>new Date('2026-11-07T09:00:00Z')};
+
+test('server never replaces a complete endpoint cohort with a newer or equal-date old-shape acquisition',async()=>{
+ const m=await import(resolve('src/lib/publication-feed-server.ts'));
+ const initial=syntheticPublicationEndpointSnapshot(),old=syntheticPublicationSnapshot();
+ old.source.capturedAt='2026-11-07T08:00:00Z';old.source.sourceHash='e'.repeat(64);
+ let candidate=old;
+ const server=m.createPublicationSourceServer(initial,async()=>({revision:'b'.repeat(40),snapshot:candidate}),options);
+ const retained=await server();assert.deepEqual(retained.snapshot,initial);assert.equal(retained.revision,'bundled');
+ candidate=structuredClone(old);candidate.source.capturedAt=initial.source.capturedAt;
+ assert.deepEqual((await server()).snapshot,initial);
+ const next=syntheticPublicationEndpointSnapshot();next.source.capturedAt=old.source.capturedAt;next.source.sourceHash='f'.repeat(64);
+ candidate=next;assert.deepEqual((await server()).snapshot,next,'replace the whole accepted acquisition, never mix matrices');
+ candidate=old;assert.deepEqual((await server()).snapshot,next);
+});
+
+test('client retains bundled full endpoints when an older-shape API response is fresh and hash-valid',async()=>{
+ const m=await import(resolve('src/components/publication-source-provider.tsx'));
+ const initial=syntheticPublicationEndpointSnapshot(),old=syntheticPublicationSnapshot();
+ old.source.capturedAt='2026-11-07T08:00:00Z';old.source.sourceHash='e'.repeat(64);
+ let candidate=old;
+ const fetcher=async()=>new Response(JSON.stringify({revision:'b'.repeat(40),snapshot:candidate,
+  snapshotSha256:createHash('sha256').update(JSON.stringify(candidate,null,2)+'\n').digest('hex')}),{headers:{'Content-Type':'application/json'}});
+ const document={};
+ assert.deepEqual(await m.loadNavigationPublication(document,'/old',initial,fetcher,options),initial);
+ const next=syntheticPublicationEndpointSnapshot();next.source.capturedAt=old.source.capturedAt;next.source.sourceHash='f'.repeat(64);
+ candidate=next;assert.deepEqual(await m.loadNavigationPublication(document,'/complete',initial,fetcher,options),next);
+ candidate=old;assert.deepEqual(await m.loadNavigationPublication(document,'/old-again',initial,fetcher,options),next);
+});
 
 test('server uses bounded feed seam, retains actual dates/last-good and API fails closed without a real v2 initial snapshot',async()=>{
  const path=resolve('src/lib/publication-feed-server.ts');assert.ok(existsSync(path),'production server seam missing');
