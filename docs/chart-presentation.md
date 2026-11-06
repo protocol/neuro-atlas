@@ -7,7 +7,7 @@ The shared role contract lives in `src/lib/chart-presentation.ts`; the family CS
 - Numeric/date ticks, units and axis captions: **12 actual CSS px** in both previews and full charts.
 - Legends and essential supporting labels: **12 CSS px**, with wrapping retained.
 - Existing Atlas semantic colors, scientific marks, source positions/scales/qualifiers and measurement definitions are unchanged.
-- Existing preview/expanded/focus marker radii remain 4/5/7 screen px, with 1.5px non-scaling outlines.
+- Ordinary scatter preview/expanded/focus marker radii are 4/5/7 screen px, with 1.5px non-scaling outlines. Dense weekly Trends lines deliberately use 2.5px sample dots (7px during source inspection), also in constant screen space; enlarging hundreds of resting samples to scatter-dot size would obscure the line. Its export resets transient inspection emphasis to the canonical 2.5-unit sample radius. Funding bubble areas retain their quantitative encoding.
 
 `usePreviewFont` is the shared screen-space presentation hook despite its historical name. Fixed-viewBox Curve/Pace/reference previews and full Curve/Trends plots use the actual screen CTM (including height-capped letterboxing), with width/height fallback, invalid/hidden measurement retention and observer cleanup. Width-adaptive Draft/timeline and compact Trends plots retain their natural coordinate frames and 12px family CSS. Do not constrain plot height to equalize cards; the existing rail sizing owns equal card heights.
 

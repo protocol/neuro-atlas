@@ -30,7 +30,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     return () => observer.disconnect();
   }, [compact]);
   const width = compact ? previewWidth : 600;
-  const { ref: presentationRef, fontSize } = usePreviewFont(width, !compact, 270);
+  const { ref: presentationRef, fontSize, unitsPerPixel } = usePreviewFont(width, !compact, 270);
   const right = width - 20;
   const rows = group.rows.filter(row => !row.partial);
   const start = Date.parse(group.start), end = Date.parse(group.end);
@@ -65,7 +65,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
       {!compact && rows.flatMap(row => row.values.map((value, i) => {
         if (value === null) return null;
         const label = `${row.date} · ${group.terms[i]}: ${row.displayValues[i]}`;
-        return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} r={2.5} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
+        return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} data-export-r={CHART_PRESENTATION.denseLineRadius} r={(tooltip.active === label ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.denseLineRadius) * unitsPerPixel} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
       }))}
       <text data-trends-axis="x" x={48} y={254}>{group.start.slice(0, compact && width < 240 ? 4 : 7)}</text><text data-trends-axis="x" x={right} y={254} textAnchor="end">{group.end.slice(0, compact && width < 240 ? 4 : 7)}</text>
     </svg>

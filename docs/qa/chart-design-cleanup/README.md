@@ -4,7 +4,7 @@
 
 Ordinary observation markers now use a shared visual scale: 4 CSS pixels in previews, 5 in expanded charts, with 7px inspection emphasis in the reference renderer. The reference renderer measures its actual SVG screen transform, including height-constrained letterboxing, rather than allowing its fixed viewBox to enlarge/shrink dots with the card. Adaptive draft plots and event previews use the same base sizes.
 
-Preview titles share a restrained 14px hierarchy. Plot guides and marker outlines share quieter, non-scaling strokes. Scope/coverage copy sits below reference previews, matching the draft-card hierarchy. Overlap rings retain quantitative centers and are explicitly explained.
+Preview titles share a restrained 16px hierarchy. The initial marker-only evidence below predates the broader type, alignment, tooltip and export pass; see `../../chart-presentation.md` for the current contract. Plot guides and marker outlines share quieter, non-scaling strokes. Scope/coverage copy sits below reference previews, matching the draft-card hierarchy. Overlap rings retain quantitative centers and are explicitly explained.
 
 Scientific source files, values, dates, scales, color/shape meanings, source links, measurement views, routing, auth, feed jobs and deployment settings are unchanged. Uniform preview heights, horizontal rails, intentional peer peeks and the saved theme choice are retained.
 
@@ -29,12 +29,12 @@ The partially visible peer at a rail edge is intentional, matching the existing 
 Use the task-owned loopback fixture and browser-harness:
 
 ```bash
-ATLAS_QA_ORIGIN=http://127.0.0.1:35961 ATLAS_QA_MODE=after browser-harness <<'PY'
-exec(compile(open('scripts/qa/chart-design-browser.py').read(), 'chart-design-browser.py', 'exec'))
+BU_NAME=<task-owned-window> ATLAS_QA_ORIGIN=http://127.0.0.1:35963 browser-harness <<'PY'
+exec(compile(open('scripts/qa/all-chart-design-browser.py').read(), 'all-chart-design-browser.py', 'exec'))
 PY
 ```
 
-The fixture must already be running and owned by the task. The replay does not change hosted auth or Chrome's shared download directory. PNG bytes are captured from the real native Download PNG handler at its local download-anchor boundary.
+The fixture must already be running and owned by the task. `chart-design-browser.py` is retained as a historical baseline/marker-only replay and is not the current post-tooltip acceptance recipe. The current replay does not change hosted auth or Chrome's shared download directory. PNG bytes are captured from the real native Download PNG handler at its local download-anchor boundary.
 
 ## Test qualification
 

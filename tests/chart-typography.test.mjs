@@ -4,7 +4,7 @@ import React, { act } from 'react';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { CurveCard } from '../src/components/performance-curves.tsx';
-import { DraftChartPlot } from '../src/components/draft-chart-plot.tsx';
+import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-chart-plot.tsx';
 import { GoogleTrends } from '../src/components/google-trends.tsx';
 import { CHART_PRESENTATION } from '../src/lib/chart-presentation.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
@@ -88,4 +88,27 @@ for (const family of ['curve', 'trends']) test(`${family} full chart type is 12 
     await cleanup(); cleanup = undefined;
     assert.ok(h.observers.every(o => o.disconnected));
   } finally { if (cleanup) await cleanup(); h.restore(); }
+});
+
+for (const preview of [true, false]) test(`event date caption shares the left edge (preview=${preview})`, async () => {
+ const timeline={scope:'Synthetic event fixture.',events:[{id:'a',year:2020,dateLabel:'2020',label:'Fixture',stage:'Research',sourceTitle:'Fixture',sourceUrl:'https://example.org',quote:'Fixture',note:'Fixture'}]};
+ const cleanup=await mount(React.createElement(DraftEventTimeline,{timeline,preview}));
+ try {const c=[...document.querySelectorAll('[data-draft-event-timeline] .draft-plot-axis-title')].at(-1);assert.equal(c.getAttribute('x'),'0');assert.equal(c.getAttribute('text-anchor'),'start');for(const s of c.querySelectorAll('tspan'))assert.equal(s.getAttribute('x'),'0');}finally{await cleanup();}
+});
+test('dense Trends samples stay 2.5 screen px with 7px source inspection; exports drop transient emphasis',async()=>{
+ const h=harness();let cleanup;
+ try{
+  cleanup=await mount(React.createElement(GoogleTrends,{flat:true,selection:['neurotech']}),'#google-trends-neurotech',h.configure);
+  const svg=document.querySelector('dialog svg'),point=svg.querySelector('[data-trend-point]');let canonical;
+  for(const scale of [.9333,1,1.5733]){
+   await h.resize(scale);assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-2.5)<.001,'Resting dense sample radius');
+   await act(async()=>point.dispatchEvent(new window.FocusEvent('focusin',{bubbles:true})));
+   assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-7)<.001);
+   const image=buildChartImage({svg,title:'Trends fixture',anchor:'google-trends-neurotech',notes:[]},window.location.href).svg;
+   if(canonical)assert.equal(image,canonical);canonical=image;
+   const d=new JSDOM(image,{contentType:'image/svg+xml'});assert.equal(d.window.document.querySelector('[data-trend-point]').getAttribute('r'),'2.5');d.window.close();
+   await act(async()=>document.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
+   assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-2.5)<.001,'Resting dense sample radius');
+  }
+ }finally{if(cleanup)await cleanup();h.restore();}
 });
