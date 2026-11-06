@@ -66,7 +66,13 @@ test('product scope and reported-versus-measured basis stay visible across chart
 
 test('all five historical values, dates, quotations and source identities remain exact', () => {
  const before=JSON.parse(readFileSync('tests/fixtures/public-data-size-before-20261103.json','utf8'));
- for(const old of before){const actual=plot.points.find(p=>p.id===old.id);for(const field of ['id','x','y','sourceUrl','sourceTitle','quote','dateLabel','qualifier'])assert.equal(actual[field],old[field],`${old.id}: ${field}`);}
+ const archived=Object.values(JSON.parse(readFileSync('src/data/draft-chart-evidence.json','utf8'))).flatMap(item=>item.plots).flatMap(plot=>plot.points);
+ for(const old of before){
+  const actual=plot.points.find(p=>p.id===old.id);
+  for(const field of ['id','x','y','sourceUrl','sourceTitle','quote','qualifier'])assert.equal(actual[field],old[field],`${old.id}: ${field}`);
+  assert.equal(archived.find(p=>p.id===old.id).dateLabel,old.dateLabel,`${old.id}: archived date label`);
+  assert.equal(actual.dateLabel,old.dateLabel.replace('; first release not established','').replace(', not first release',''),`${old.id}: positively stated display date basis`);
+ }
 });
 
 test('exported dataset keys include size and the MaleCNS measurement date', () => {

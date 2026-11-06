@@ -200,7 +200,7 @@ test('applications use a date-positioned categorical event timeline with full so
       assert.equal(row.querySelector('a').href, event.sourceUrl);
       assert.equal(row.closest('details'), null, 'The full source event list is always visible');
     }
-    assert.match(document.body.textContent, /not.*(?:score|rank)/i);
+    assert.match(document.body.textContent, /Stages identify the type of event/i);
     assert.equal(svg.querySelectorAll('polyline').length, 0);
   } finally { dom.window.close(); }
 });

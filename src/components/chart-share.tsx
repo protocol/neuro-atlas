@@ -15,8 +15,8 @@ export function ChartShare({ anchor, title, getChart, disabled = false }: {
     pending.current = true; setBusy(true); setStatus(download ? "Preparing PNG…" : "Preparing chart…");
     try {
       const image = buildChartImage(getChart(), window.location.href);
-      if (download) { await downloadChartImage(image); setStatus("PNG downloaded. Use Copy link to share its source."); }
-      else { await copyChartImage(image); setStatus("Chart copied. Paste support varies: your app may choose the image or link, not both."); }
+      if (download) { await downloadChartImage(image); setStatus("PNG downloaded."); }
+      else { await copyChartImage(image); setStatus("Chart copied. The receiving app chooses which clipboard formats to paste."); }
     } catch {
       setStatus(download ? "PNG unavailable. Try again, or use Copy link." : "Chart copy unavailable. Use Download PNG and Copy link instead.");
     } finally { pending.current = false; setBusy(false); }

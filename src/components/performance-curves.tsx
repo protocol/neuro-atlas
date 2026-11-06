@@ -185,7 +185,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
             .filter(node => !track || node.querySelector("dt")?.textContent === data.tracks.find(t => t.id === track)?.label)
             .map(node => `${node.querySelector("dt")?.textContent}: ${node.querySelector("dd")?.textContent}`),
-          data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved.",
+          data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates.",
           ...(data.points.some(p => p.lo != null) ? ["Whiskers: source intervals. Hollow markers: under-indexed observations."] : []),
           ...(scenario ? [`Scenario: ${root.querySelector<HTMLSelectElement>("[data-scenario-select]")?.selectedOptions[0]?.textContent ?? mode}. Conditional continuation, not a forecast.`,
             ...Array.from(root.querySelectorAll(".pc-scenario-warning, .pc-extrapolation-notes > p, .pc-fit-diagnostics > strong, .pc-fit-diagnostics > span"), node => node.textContent ?? "")] : []),
@@ -215,7 +215,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg ref={presentationRef} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+      <svg ref={presentationRef} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
         <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
@@ -253,7 +253,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       <p data-point-description>{active.label}</p>
       {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
     </>}</PointTooltip>}
-    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints, not annual observations." : "Source checkpoints · no pooled growth curve. Nearby markers are counted, never moved."}</p>}
+    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>
       <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records stop in 2014. Neuron-count equivalence is not successful whole-brain live recording." : "TUSZ corpus only — not worldwide human data. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
@@ -309,7 +309,7 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
       <h4>Definitions &amp; methodology</h4>
       <p>{series.description}</p>
       <p className="pc-caveat">{series.caveat}</p>
-      <p>Source checked {series.checkedAt}. Year/month coordinates are plotting anchors, not exact event dates. No sums or interpolated observations.</p>
+      <p>Source checked {series.checkedAt}. Dates retain their stated year, month or day precision; each marker is a source observation.</p>
       <dl>{series.tracks.map(t => <div key={t.id}><dt>{t.label}</dt><dd>{t.definition}</dd></div>)}</dl>
     </section>
     <div className="pc-table-scroll" role="region" aria-label={`${series.title} source data`} tabIndex={0}>
@@ -333,7 +333,7 @@ const recordingTitle = "Simultaneous neural recordings";
 function recordingPlot(view: RecordingView): PlotData {
   return {
     title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
-    xLabel: "Source publication / disclosure date · not experiment date",
+    xLabel: "Source publication / disclosure date",
     tracks: [{ id: view.id, label: view.label }],
     exportCaptionNotes: [
       view.description,
@@ -341,7 +341,7 @@ function recordingPlot(view: RecordingView): PlotData {
       `Selected individual sessions · source-specific quality criteria · source checked ${RECORDING_CHECKED_AT}. Full evidence and methods at the chart link.`,
     ],
     exportNotes: [
-      `Source checked ${RECORDING_CHECKED_AT}. Source publication and disclosure dates, not experiment or implantation dates. Year coordinates are plotting anchors; no interpolation or extrapolation.`,
+      `Source checked ${RECORDING_CHECKED_AT}. Dates identify source publication or disclosure, with the stated precision. Selected observed values.`,
       ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} Source: ${p.sourceLabel} — ${p.sourceUrl}`),
     ],
     points: view.points.map(p => ({ ...p, track: view.id, trackIndex: 0,
@@ -367,8 +367,8 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
   const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "electrical");
   const view = RECORDING_VIEWS.find(v => v.id === viewId)!;
   return <CurveCard id={recordingAnchor} title={recordingTitle} eyebrow="Recording evidence"
-    coverage="Three separate measurement views: electrical units, human implant channels and optical cellular signals. Selected studies, not a world-record curve."
-    previewNote="Preview: in-vivo electrical units · expand to compare measurement definitions."
+    coverage="Selected studies: electrical units, human implant channels and optical cellular signals."
+    previewNote="Preview: in-vivo electrical units per session."
     plot={recordingPlot(RECORDING_VIEWS[0])}
     modalPlot={<div data-recording-view={view.id}>
       <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
@@ -380,9 +380,9 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
       } />
     </div>}>
     <section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
-      <h4>Definitions &amp; methodology · {view.label}</h4>
+      <h4>Definition and methodology · {view.label}</h4>
       <p>{view.description}</p><p className="pc-caveat">{view.caveat}</p>
-      <p>Source publication and disclosure dates, not experiment or implantation dates. Source checked {RECORDING_CHECKED_AT}. Year coordinates are plotting anchors, not exact event dates. Observed data only: no interpolated points, fitted growth curve or extrapolation.</p>
+      <p>Dates identify source publication or disclosure, with the stated precision. Source checked {RECORDING_CHECKED_AT}.</p>
     </section>
     <div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
       <table><caption>Sources &amp; chart data · {view.points.length} observations</caption>
@@ -397,15 +397,15 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
     </div>
     <ul className="pc-sources">{view.points.map(p => <li key={p.id}><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a></li>)}</ul>
     {historical.state === "reading" && <details className="pc-provenance" data-recording-history>
-      <summary>Historical benchmarks · 1957–2014 · separate mixed-preparation reference</summary>
-      <p>Unchanged inherited tracker values with year precision; experiment dates not established. This is not a current maximum or a human-only BCI series, and is not pooled into the in-vivo electrical plot. No historical fit or extrapolation is shown.</p>
+      <summary>Historical benchmarks · 1957–2014</summary>
+      <p>Historical tracker values with year precision and mixed preparations, retained as a separate reference. Experiment dates and unit-quality criteria remain unverified.</p>
       <div className="pc-table-scroll" role="region" aria-label="Historical recording benchmarks" tabIndex={0}>
         <table><caption>Historical provider data · {historical.series!.length} retained checkpoints</caption>
           <thead><tr><th scope="col">Tracker year</th><th scope="col">Reported neurons</th><th scope="col">Preparation / qualification</th></tr></thead>
           <tbody>{historical.series!.map(p => <tr key={String(p.x)} data-historical-year={p.x} data-historical-value={p.y}>
             <th scope="row">{p.x}<small>year precision · inherited tracker date</small></th>
             <td>{p.x === 2014 ? "Approximately " : ""}{number(p.y)}</td>
-            <td>{p.x === 2014 ? <>Isolated neonatal mouse retina · ex vivo · approximate tracker estimate, not a human brain recording. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3979611/" target="_blank" rel="noreferrer">Maccione et al. (2014) ↗</a></> : "Preparation and unit-quality criteria are not specified in the inherited snapshot; not assumed comparable to modern brain recordings."}</td>
+            <td>{p.x === 2014 ? <>Isolated neonatal mouse retina · ex vivo · approximate tracker estimate. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3979611/" target="_blank" rel="noreferrer">Maccione et al. (2014) ↗</a></> : "Preparation and unit-quality criteria remain unverified in this historical tracker."}</td>
           </tr>)}</tbody>
         </table>
       </div>
@@ -419,8 +419,8 @@ type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: s
 export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
   const includes = (id: string) => !selection || selection.includes(id);
   const provenanceDetails = <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
-      <p>Bounded, committed PL R&amp;D snapshot. Refreshed deliberately from a validated provider export, not an automatically updating feed.</p>
-      <p>Export assembled <time dateTime={provenance.exportGeneratedAt}>{provenance.exportGeneratedAt}</time>. Observation and source-check dates above remain separate.</p>
+      <p>Archived PL R&amp;D source snapshot.</p>
+      <p>Export assembled <time dateTime={provenance.exportGeneratedAt}>{provenance.exportGeneratedAt}</time>.</p>
       <p><a href={`${provenance.source.repository}/tree/${provenance.providerCommit}`} target="_blank" rel="noreferrer">Provider revision {provenance.providerCommit} ↗</a></p>
       <p>Export SHA-256: <code>{provenance.sha256}</code></p>
     </details>;

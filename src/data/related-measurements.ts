@@ -5,14 +5,14 @@ export type RelatedMeasurement = {
   scope: string;
 };
 
-/** Links to existing measured evidence, not a progress score or resolution rule. */
+/** Links to measured supporting capabilities and adoption. */
 export const RELATED_MEASUREMENTS: Record<string, readonly RelatedMeasurement[]> = {
   "The BCI app store": [
     {
       anchor: "metric-implanted-bci-humans",
       label: "Implanted BCI recipients",
       relationship: "Adoption proxy",
-      scope: "Research recipients, not third-party app users.",
+      scope: "Selected chronic intracortical research recipients.",
     },
   ],
   "Neural distillation": [
@@ -20,7 +20,7 @@ export const RELATED_MEASUREMENTS: Record<string, readonly RelatedMeasurement[]>
       anchor: "metric-recording-hours",
       label: "Neural recording hours",
       relationship: "Data supply",
-      scope: "Human EEG and intracranial tracks; datasets stay separate.",
+      scope: "Human scalp EEG and intracranial recordings, plus nonhuman-primate training data; datasets shown separately.",
     },
   ],
   "The neuromorphic energy pivot": [
@@ -28,7 +28,7 @@ export const RELATED_MEASUREMENTS: Record<string, readonly RelatedMeasurement[]>
       anchor: "metric-panel-neuroai-imagenet",
       label: "NeuroAI performance–energy",
       relationship: "Performance–energy",
-      scope: "ImageNet comparison with estimated inference energy.",
+      scope: "ImageNet accuracy versus estimated inference energy.",
     },
   ],
   "Memory retrieval in simulation": [
@@ -36,13 +36,13 @@ export const RELATED_MEASUREMENTS: Record<string, readonly RelatedMeasurement[]>
       anchor: "metric-paired-structure-function",
       label: "Paired structure–function datasets",
       relationship: "Enabling capability",
-      scope: "Anatomy and activity from the same mouse specimen.",
+      scope: "Anatomy and activity matched in the same mouse specimen.",
     },
     {
       anchor: "metric-panel-flyvis-contrast",
       label: "Simulation fidelity",
       relationship: "Functional validation",
-      scope: "Fly visual responses, not learned mouse behavior.",
+      scope: "Fly visual-system contrast preference.",
     },
   ],
 };

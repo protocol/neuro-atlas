@@ -18,7 +18,7 @@ const feed = parseFeed(SNAPSHOT);
 export default function FieldVelocityPage() {
   return (
     <>
-      <PlateHero kicker="Pace" meta={["PL R&D metrics"]} title="Field velocity" description="Explore neurotech measurements and expectations." stats={[]} />
+      <PlateHero kicker="Pace" meta={["PL R&D metrics"]} title="Field velocity" description="Measurements and inflection points across neurotechnology." stats={[]} />
       <GoogleTrendsProvider><CitationLatencyProvider><PublicationSourceProvider>
         <div className="mt-8">
           <VelocityTabs engagementPreview={<GoogleTrends flat selection={["neurotech"]} />} references={{

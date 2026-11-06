@@ -280,12 +280,12 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
   return <figure ref={figure} className="draft-plot draft-event-timeline" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title="Selected application events"><ChartShare anchor={shareAnchor} title="Selected application events" getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: "Selected application events", anchor: shareAnchor,
-      notes: [timeline.scope, "Categorical stages, not an impact score or ranking",
+      notes: [timeline.scope, "Stages identify the type of reported event.",
         ...timeline.events.map(event => `${event.dateLabel} · ${event.stage} · ${event.label} — ${event.sourceTitle}`)],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>Selected application events</figcaption>
     {!preview && <p className="draft-plot-scope">{timeline.scope}</p>}
-    <p className="draft-plot-legend">● Source-backed event · Categorical stages, not an impact score or ranking</p>
+    <p className="draft-plot-legend">● Reported event · Stages identify the type of event</p>
     <svg className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
       {stages.map(stage => <g key={stage}>

@@ -42,9 +42,9 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
       legend: group.terms.map((term, index) => ({ label: term, color: colors[index], marker: index ? 'dashed' : 'line' })),
       notes: [
         `Weekly UTC Google Trends index · 0–100 · ${group.start}–${group.end}. Worldwide · Web Search · All categories.`,
-        group.id === 'neurotech' ? 'Both English search terms compared in one request; shared scale.' : 'Neuralink: independently normalized brand context; not comparable with the other chart.',
-        'Public attention, not technical progress or absolute search counts. Complete weeks only; partial periods excluded without rescaling. Missing values remain gaps. 0 means low or insufficient interest; <1 is plotted at the index floor.',
-        `Source: Google Trends Explore · captured ${group.capturedAt}. Complete 36-month snapshot.`,
+        group.id === 'neurotech' ? 'English search terms compared in one request on a shared scale.' : 'Neuralink: independently normalized brand-search interest.',
+        'Relative search interest. Complete weeks use the original index; partial periods are retained in source values. Missing values appear as gaps. 0 indicates low or insufficient interest; <1 appears at the index floor.',
+        `Source: Google Trends Explore · captured ${group.capturedAt}.`,
       ],
     })} /></ChartActions>}
     {intro}
@@ -87,13 +87,13 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const [copyFallback, setCopyFallback] = useState('');
   const [valuesOpen, setValuesOpen] = useState(false);
   const latest = group.rows.filter(row => !row.partial).at(-1)!;
-  const normalization = group.id === 'neurotech' ? 'Both terms compared in one request; shared 0–100 scale.' : 'Neuralink is independently normalized; its index cannot be compared with the other chart.';
+  const normalization = group.id === 'neurotech' ? 'English search terms compared in one request on a shared 0–100 scale.' : 'Independently normalized English brand-search interest.';
   const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
   const share = <div className="pc-share">
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
       const url = performanceUrl(window.location.href, id);
       try { await navigator.clipboard.writeText(url); setCopyFallback(''); setCopyStatus('Link copied'); }
-      catch { setCopyFallback(url); setCopyStatus('Copy unavailable — select and copy the chart URL below.'); }
+      catch { setCopyFallback(url); setCopyStatus('Select and copy the chart URL below.'); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
@@ -104,19 +104,18 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
       <TrendPlot key={group.rawSha256} group={group} compact />
     </button>
-    <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Brand context · independently normalized; not comparable across charts.</p>}</div>
+    <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Independently normalized brand-search interest.</p>}</div>
     </div>
     <div data-metric-card-footer>{share}</div>
     {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
       <TrendPlot key={group.rawSha256} group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
-        <p>Public attention, not technical progress, adoption, sentiment or total search counts. {normalization}</p>
-        <p>Google Trends uses a sample of searches, divided by all searches in each time and location, then scaled relative to the peak in the request. 100 is that request’s peak, not 100 searches or a percentage of people. Sampling and statistical noise can change values on later retrievals, especially for low-volume terms.</p>
-        <p>These are search terms, not topics: the literal English strings shown above, without quotes, using Google’s broad term matching. They do not pool multilingual topic equivalents, synonyms or all neurotech searches. The ambiguous acronym BCI is deliberately excluded. Neuralink is brand/news context, not a field-wide measure.</p>
-        <p>0 means low or insufficient interest, not zero searches. “&lt;1” is retained in source values and plotted at the index floor; unavailable data remain gaps, never interpolated. Lines connect available weekly samples, not a fitted trend.</p>
-        <p>Incomplete boundary weeks and Google-flagged partial periods are excluded from the graph and latest reading, but retained and labeled in the table and CSV. Week dates are UTC starts; each complete week spans seven days. Excluding partial values does not rescale Google’s original index.</p>
-        <p>Captured {group.capturedAt} from Google Trends’ public Explore widget. This complete 36-month snapshot is pinned to the source revision below.</p>
+        <p>Worldwide Google search interest. {normalization} Google uses broad term matching.</p>
+        <p>The index uses a sample of searches, normalized by all searches in each time and location. 100 marks the request’s peak relative interest. Sampling can change later readings, especially for low-volume terms.</p>
+        <p>0 indicates low or insufficient interest. “&lt;1” appears at the index floor; missing data appear as gaps. Lines connect weekly samples.</p>
+        <p>Only complete weeks appear in the chart. The table and CSV retain partial periods. Dates are UTC week starts; complete weeks span seven days. The original index is preserved.</p>
+        <p>Captured {group.capturedAt} from Google Trends Explore.</p>
       </section>
       <ul className="pc-sources">
         <li><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open exact Google Trends query ↗</a></li>
@@ -127,12 +126,12 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
       </ul>
       <details className="gt-values" open={valuesOpen} onToggle={event => setValuesOpen(event.currentTarget.open)}><summary tabIndex={0}>All source values · {group.rows.length} weekly rows (including partial)</summary>
         <div className="pc-table-scroll" role="region" aria-label={`${group.title} source values`} tabIndex={valuesOpen ? 0 : undefined}>
-          <table><caption>Google Trends normalized index · original precision, no rescaling</caption><thead><tr><th scope="col">Week start (UTC)</th>{group.terms.map(term => <th scope="col" key={term}>{term}</th>)}<th scope="col">Period status</th></tr></thead>
+          <table><caption>Google Trends index · original source precision</caption><thead><tr><th scope="col">Week start (UTC)</th>{group.terms.map(term => <th scope="col" key={term}>{term}</th>)}<th scope="col">Period status</th></tr></thead>
             <tbody>{group.rows.map(row => <tr key={row.date} data-trends-row={row.date}><th scope="row">{row.date}</th>{row.displayValues.map((value, i) => <td key={i}>{value}</td>)}<td>{row.partial ? 'Partial · excluded' : 'Complete'}</td></tr>)}</tbody>
           </table>
         </div>
       </details>
-      <p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Source revision: <code>{revision}</code>. Raw captures and request metadata are retained with this immutable source revision; refresh instructions are in docs/google-trends.</p>
+      <p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Source revision: <code>{revision}</code>.</p>
     </ChartModal>}
   </article>;
 }

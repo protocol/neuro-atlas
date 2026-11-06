@@ -35,7 +35,7 @@ test('latency uses explicitly defined report-to-human intervals with direct endp
   const identity=modal.querySelector('[data-latency-identity]');
   assert.ok(identity,'Opening view must identify the substituted metric before the plot');
   assert.match(identity.textContent,/Selected report-to-human intervals/);
-  assert.match(identity.textContent,/Fieldwide acceleration remains unmeasured/);
+  assert.match(identity.textContent,/selected public preclinical reports.*human implants or temporary placements/i);
   assert.ok(identity.compareDocumentPosition(modal.querySelector('.pc-plot')) & 4,'Scope must precede the plotted points');
   assert.doesNotMatch(modal.textContent,/Median ~3\.3|Early cohort|recent \(>2010\)|A falling lag means/);
   assert.equal(modal.querySelectorAll('[data-curve-point]').length,5);

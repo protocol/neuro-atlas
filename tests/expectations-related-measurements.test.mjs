@@ -5,6 +5,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { ExpectationsSection } from '../src/components/sections/expectations-section.tsx';
+import { INFLECTION_COPY } from '../src/data/inflection-copy.ts';
 import { act } from 'react';
 import { VelocityTabs } from '../src/components/sections/velocity-tabs.tsx';
 import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
@@ -12,14 +13,14 @@ import { mount, click, settle } from './modal-helpers.mjs';
 globalThis.React = React;
 const points = JSON.parse(readFileSync('src/data/velocity/neurotech_inflection_points.json', 'utf8')).points;
 
-test('Expectations presents each exact source inflection signal, preserving compound conditions', () => {
+test('Inflections preserve source identities and consume the reviewed signal copy', () => {
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(ExpectationsSection)));
   try {
     const entries = [...dom.window.document.querySelectorAll('[data-inflection]')];
     assert.deepEqual(entries.map(node => node.dataset.inflection), points.map(point => point.title));
     for (const point of points) {
       const entry = entries.find(node => node.dataset.inflection === point.title);
-      assert.equal(entry.querySelector('[data-inflection-signal]').textContent, point.signal);
+      assert.equal(entry.querySelector('[data-inflection-signal]').textContent, INFLECTION_COPY[point.title].signal);
     }
   } finally { dom.window.close(); }
 });

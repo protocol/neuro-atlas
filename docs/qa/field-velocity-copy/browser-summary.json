@@ -1,0 +1,143 @@
+{
+  "baseline": "c247dc0c90fff9604e6095c32f210dbd79d471e5",
+  "runtime": "374ebaa5a028420c6d537c9d4fc13556e25b66f2",
+  "test_revision": "bc39d9ad0da9f064441495bea6001f6be2087901",
+  "charts": 24,
+  "inflection_points": 4,
+  "layouts": [
+    {
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "tiles": 23
+    },
+    {
+      "width": 1440,
+      "anchor": "#idea_vintage",
+      "left": 220,
+      "right": 1220,
+      "top": 16,
+      "bottom": 984,
+      "close": true
+    },
+    {
+      "width": 1440,
+      "anchor": "#simultaneously-recorded-neurons",
+      "left": 220,
+      "right": 1220,
+      "top": 16,
+      "bottom": 984,
+      "close": true
+    },
+    {
+      "width": 1440,
+      "anchor": "#publication-output",
+      "left": 220,
+      "right": 1220,
+      "top": 16,
+      "bottom": 984,
+      "close": true
+    },
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375,
+      "tiles": 23
+    },
+    {
+      "width": 390,
+      "anchor": "#idea_vintage",
+      "left": 8,
+      "right": 382,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    },
+    {
+      "width": 390,
+      "anchor": "#simultaneously-recorded-neurons",
+      "left": 8,
+      "right": 382,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    },
+    {
+      "width": 390,
+      "anchor": "#publication-output",
+      "left": 8,
+      "right": 382,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    },
+    {
+      "width": 320,
+      "client": 305,
+      "scroll": 305,
+      "tiles": 23
+    },
+    {
+      "width": 320,
+      "anchor": "#idea_vintage",
+      "left": 8,
+      "right": 312,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    },
+    {
+      "width": 320,
+      "anchor": "#simultaneously-recorded-neurons",
+      "left": 8,
+      "right": 312,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    },
+    {
+      "width": 320,
+      "anchor": "#publication-output",
+      "left": 8,
+      "right": 312,
+      "top": 8,
+      "bottom": 992,
+      "close": true
+    }
+  ],
+  "source_links_equal": true,
+  "quotes_equal": true,
+  "unchanged_geometry": [
+    "google-trends-neurotech",
+    "idea_vintage",
+    "latency_compression",
+    "revealed_commitments",
+    "publication-growth",
+    "researcher-sectors",
+    "researcher-sector-changes",
+    "metric-recording-hours",
+    "metric-panel-neuralink-cumulative",
+    "simultaneously-recorded-neurons",
+    "metric-panel-public-data-size",
+    "metric-panel-tissue-cm3",
+    "metric-panel-largest-connectome-neurons",
+    "metric-panel-largest-connectome-synapses",
+    "metric-panel-acquisition-rates",
+    "metric-panel-paired-manual",
+    "metric-panel-acquisition-economics",
+    "metric-panel-connectomics-roboem-human-split-merge",
+    "metric-panel-proofreading-effort",
+    "metric-panel-pathfinder-nerl",
+    "metric-panel-neuroai-imagenet",
+    "metric-panel-flyvis-contrast",
+    "metric-panel-application-events"
+  ],
+  "geometry_delta": [
+    "publication-output"
+  ],
+  "prose_word_counts": {
+    "before": 10217,
+    "after": 7421
+  },
+  "prose_reduction_percent": 27.4
+}

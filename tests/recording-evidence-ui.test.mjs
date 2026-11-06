@@ -31,7 +31,7 @@ test('the original recording anchor opens three source-qualified scatter views w
       assert.equal(modal.querySelectorAll('[data-source-observation]').length, view.points.length);
       assert.equal(modal.querySelector('[role=tooltip]'), null);
       assert.equal(modal.querySelector('[role=switch], [data-frontier-line], [data-extrapolation-line], [data-fit-diagnostics]'), null);
-      assert.match(modal.textContent, /publication.*disclosure.*not.*experiment/i);
+      assert.match(modal.textContent, /Dates identify source publication or disclosure.*stated precision/i);
       assert.ok(modal.querySelector('svg').textContent.includes(view.unit));
       assert.equal(modal.querySelector('svg').outerHTML.includes('NaN'), false, 'Single-point optical plot is finite');
       for (const p of view.points) {
@@ -111,8 +111,8 @@ test('recording presentation names the measurement family, keeps actions first a
     assert.equal(history.open, true);
     assert.deepEqual([...history.querySelectorAll('tbody tr')].map(row => [Number(row.dataset.historicalYear), Number(row.dataset.historicalValue)]), data.record.series.map(p => [p.x, p.y]));
     assert.match(history.textContent, /Approximately 3,200.*isolated.*mouse retina.*ex vivo/is);
-    assert.match(history.textContent, /not.*human/i);
-    assert.match(history.textContent, /inherited.*year.*experiment dates not established/i);
+    assert.match(history.textContent, /Isolated neonatal mouse retina.*ex vivo/i);
+    assert.match(history.textContent, /Historical tracker values with year precision and mixed preparations.*Experiment dates.*unverified/is);
     assert.match(history.textContent, /Export SHA-256/);
     assert.equal(modal.querySelectorAll('[data-curve-point]').length, 3, 'Historical mixed-preparation values are never pooled into modern brain-unit points');
     await changeView('human-channels');

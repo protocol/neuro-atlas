@@ -30,6 +30,7 @@ const svgSha = text => sha(text
   // Exact new root typography only; independent geometry/content hashes stay fixed.
   .replace(/^<svg style="font-size: ?[0-9.e+-]+px;?" data-export-font-size="12"/, '<svg')
   .replaceAll(' data-export-r="5"', '')
+  .replace('Separate source observations.', 'Separate observations; no connecting growth line.')
   .replaceAll(' vector-effect="non-scaling-stroke"', '')
   .replaceAll(' class="pc-gridline"', '')
   .replaceAll('stroke="var(--border)" stroke-width="1" stroke-dasharray="3 5"', 'stroke="var(--border-strong)" stroke-dasharray="3 5"'));
