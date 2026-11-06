@@ -17,6 +17,8 @@ def click(selector):
     click_at_xy(rect['x'] + rect['width']/2, rect['y'] + min(rect['height']/2, 24))
 def snap(name): return capture_screenshot(path=str(OUT / f'{MODE}-{name}.png'))
 def settle():
+    # Other task windows can suspend ResizeObserver/animation frames in a background tab.
+    cdp('Page.bringToFront')
     # Font hydration and equalized card sizing must finish before measuring/capturing.
     js('return document.fonts.ready.then(()=>true)')
     previous=None; stable=0

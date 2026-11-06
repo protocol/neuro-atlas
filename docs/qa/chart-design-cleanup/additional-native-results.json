@@ -1,0 +1,36 @@
+{
+  "ordinary_preview_marks_checked": 113,
+  "all_preview_radii_css_px": 4,
+  "draft_detail_points": [
+    {
+      "r": 5,
+      "id": "braingate-documented-cohort-2023-01-13"
+    },
+    {
+      "r": 5,
+      "id": "neuralink-cumulative-2024-01-01"
+    },
+    {
+      "r": 5,
+      "id": "neuralink-cumulative-2024-07-01"
+    },
+    {
+      "r": 5,
+      "id": "neuralink-cumulative-2025-02-05"
+    },
+    {
+      "r": 5,
+      "id": "neuralink-cumulative-2025-06-02"
+    },
+    {
+      "r": 5,
+      "id": "neuralink-cumulative-2026-01-28"
+    },
+    {
+      "r": 5,
+      "id": "paradromics-connect-one-2026-06-17"
+    }
+  ],
+  "draft_native_inspection": true,
+  "dark_rendered_preference_unchanged": true
+}

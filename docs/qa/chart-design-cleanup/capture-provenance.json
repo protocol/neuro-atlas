@@ -1,0 +1,15 @@
+{
+  "runtime_code_revision": "fb8e9fd8ee7b5dc40e6692e8c36aa6531f4cd677",
+  "source_files_compared": 149,
+  "qa_source_mismatches": [],
+  "qa_exception": "loopback-only proxy, not committed or deployed",
+  "native_png": {
+    "width": 2400,
+    "height": 3068,
+    "sha256": "56a027ee1664aa850d3e52f9fef98705be9c2d172de867b6ce43dc39ec0771ab",
+    "generated_by": "actual native Download PNG handler",
+    "transfer": "page-local Blob capture, no shared download setting change",
+    "visually_inspected": true
+  },
+  "screenshots": "real headed Chrome; candidate uses optimized Next production build; viewport emulation for phone widths"
+}
