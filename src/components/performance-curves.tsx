@@ -145,7 +145,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const moving = !!future && progress < 1;
   // Share the existing typography observer; full-chart marks also need the
   // fitted screen scale when the modal's max-height letterboxes its SVG.
-  const previewFont = usePreviewFont(g.width, true, g.height);
+  const { ref: presentationRef, fontSize: previewFontSize, unitsPerPixel } = usePreviewFont(g.width, true, g.height);
   // Values outside the old domain enter at its edge, not millions of SVG units away.
   const clamp = (value: number, low: number, high: number) => Math.max(low, Math.min(high, value));
   const enteringY = (value: number) => future ? mix(clamp(original.y(value), 28, original.height - 44), future.y(value)) : original.y(value);
@@ -216,8 +216,8 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg ref={previewFont.ref} style={compact ? { fontSize: previewFont.fontSize } : undefined} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
-        <text x={g.left} y={compact ? Math.max(16, previewFont.fontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
+      <svg ref={presentationRef} style={compact ? { fontSize: previewFontSize } : undefined} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate observations; no connecting growth line."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+        <text x={g.left} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
@@ -234,7 +234,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           {scenario.samples.length > 0 && <polyline data-extrapolation-line={scenario.kind} points={scenario.samples.map(p => `${enteringX(p.year)},${enteringY(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeDasharray="8 5" />}
         </g>}
         {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
-        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={(compact ? CHART_PRESENTATION.previewRadius : active === p ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.expandedRadius) * previewFont.unitsPerPixel} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
+        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={(compact ? CHART_PRESENTATION.previewRadius : active === p ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
           data-export-r={CHART_PRESENTATION.expandedRadius} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
           onClick={!compact && inspectOnActivate ? event => { event.currentTarget.focus(); setFocused(p); } : undefined}
           onKeyDown={!compact && inspectOnActivate ? event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocused(p); } } : undefined}

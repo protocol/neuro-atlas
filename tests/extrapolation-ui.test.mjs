@@ -17,10 +17,15 @@ const mount = (node, hash) => mountDOM(node, hash, window => {
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 const sha = text => createHash('sha256').update(text).digest('hex');
-// Clipboard sharing adds only this nonvisual export hint to the original SVG.
-// Preserve the independently captured golden hashes: no geometry/style/value,
-// other data attributes, or different export-radius values are normalized away.
-const svgSha = text => sha(text.replaceAll(' data-export-r="5"', ''));
+// Preserve the independently captured scientific geometry/content goldens.
+// Normalize only the exact export hint and deliberate presentation changes;
+// radius/coordinates, source values, labels, intervals and other paint stay pinned.
+// The new styling is independently asserted in chart-presentation.test.mjs.
+const svgSha = text => sha(text
+  .replaceAll(' data-export-r="5"', '')
+  .replaceAll(' vector-effect="non-scaling-stroke"', '')
+  .replaceAll(' class="pc-gridline"', '')
+  .replaceAll('stroke="var(--border)" stroke-width="1" stroke-dasharray="3 5"', 'stroke="var(--border-strong)" stroke-dasharray="3 5"'));
 // Captured from untouched 58dd8c2 before adding the controls, not the new off-state itself.
 const baseline = {
   'simultaneously-recorded-neurons': 'b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d',
