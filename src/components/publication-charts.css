@@ -15,11 +15,11 @@
 .publication-preview-sectors li > span { width: .55rem; height: .55rem; flex: 0 0 auto; border-radius: 2px; }
 .publication-full-plot { max-width: 100%; overflow: auto; max-height: 68vh; margin: 1rem 0; }
 .publication-full-plot svg { display: block; width: 100%; min-width: 650px; height: auto; }
-.publication-plot-1 svg { min-width: 720px; }
-.publication-growth-options { display: flex; align-items: baseline; gap: .5rem; margin-top: .5rem; font-size: .8rem; line-height: 1.6; }
-.publication-growth-options input { accent-color: var(--accent); }
+.publication-plot-1 svg { min-width: 640px; }
+.publication-growth-options { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .65rem; margin-top: .5rem; font-size: .8rem; line-height: 1.6; }
+.publication-growth-options select { min-width: 0; max-width: 100%; border: 1px solid var(--border); border-radius: .35rem; background: var(--surface); color: var(--foreground); padding: .35rem .5rem; font: inherit; }
 .publication-plot-1 { overscroll-behavior: contain; max-height: min(68dvh, var(--publication-growth-max-height, calc(100dvh - 25rem))); }
-.publication-growth-canvas { width: 100%; min-width: 720px; }
+.publication-growth-canvas { width: 100%; min-width: 640px; }
 .publication-growth-preview-canvas { display: block; width: 100%; }
 .publication-growth-sticky-axis { display: block; position: sticky; bottom: 0; z-index: 1; background: var(--surface); border-top: 1px solid var(--border); pointer-events: none; }
 .publication-growth-sticky-axis svg { width: 100%; height: auto; }

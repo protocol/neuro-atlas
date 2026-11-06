@@ -45,107 +45,120 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
   </svg>;
 }
 type GrowthRow = PublicationChartData["growth"][number];
+const growthLabel=(row:GrowthRow)=>row.id==="bci"||row.id==="not-bci"?`${short(row.group)} (${number(row.end)} papers)`:short(row.group);
 function growthInspection(row: GrowthRow) {
   const n = `${row.group}: neurotech ${number(row.start)} in 2022 → ${number(row.end)} in 2025 (${percent(row.growth)}). Unit: ${row.countUnit}; numerator universe: ${row.numeratorUniverse}; method: ${row.countingMethod}.`;
   return row.baselineStatus === "matched"
     ? `${n} Same-category reference ${number(row.referenceStart!)} → ${number(row.referenceEnd!)} (${percent(row.referenceGrowth)}). Reference universe: ${row.denominatorUniverse}. Growth gap: ${row.growthGapPercentagePoints === null ? "undefined" : `${number(row.growthGapPercentagePoints)} percentage points`}; relative share growth: ${percent(row.relativeShareGrowthPct)}.`
     : `${n} Reference unavailable. ${row.reason}`;
 }
-function GrowthMarks({row,x,y,inspect,alternatives=false}:{row:GrowthRow;x:(n:number)=>number;y:number;inspect?:Inspect;alternatives?:boolean}) {
-  const referenceY=y+18;
-  return <g data-publication-mark data-growth-row={row.id} data-group={row.group} data-value={row.growth ?? "unavailable"} {...pointEvents(growthInspection(row),inspect)}>
-    <title>{growthInspection(row)}</title>
+type GrowthBaseline = "science" | "matched";
+const growthColors = { above: blue, within: "#98a2b3", below: "#e8a132", unavailable: "#98a2b3" };
+function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;data:PublicationChartData;x:(n:number)=>number;y:number;inspect?:Inspect;baseline?:GrowthBaseline}) {
+  const range=baseline==="science"?data.scienceGrowth:row.referenceGrowth===null?null:{low:row.referenceGrowth,high:row.referenceGrowth};
+  const status=row.growth===null||!range?"unavailable":row.growth>range.high?"above":row.growth<range.low?"below":"within";
+  const color=growthColors[status];
+  const selected=baseline==="matched"?(range?`Selected category baseline: ${percent(row.referenceGrowth)}.`:"Selected baseline unavailable; no general-science fallback."):(range?`Selected science baseline: ${percent(range.low)} to ${percent(range.high)}.`:"Selected science baseline unavailable.");
+  const inspection=`${growthInspection(row)} ${selected}`;
+  return <g data-publication-mark data-growth-row={row.id} data-group={row.group} data-value={row.growth ?? "unavailable"} data-baseline-status={status} {...pointEvents(inspection,inspect)}>
+    <title>{inspection}</title>
+    {baseline==="matched"&&row.referenceGrowth!==null&&<line data-growth-reference-tick data-value={row.referenceGrowth} x1={x(row.referenceGrowth)} x2={x(row.referenceGrowth)} y1={y-10} y2={y+10} stroke={gray} strokeWidth="3"><title>{`Category baseline: ${percent(row.referenceGrowth)}`}</title></line>}
     {row.growth===null?<text data-growth-label="neurotech" x={x(0)+12} y={y} dominantBaseline="middle">No 2022 base</text>:<>
-      <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={blue} strokeWidth="2"/>
-      <circle data-growth-series="neurotech" cx={x(row.growth)} cy={y} r="5" fill={blue} stroke="var(--surface)" strokeWidth="1.5"/>
-      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:blue}}>{percent(row.growth)}</text>
+      <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={color} strokeWidth="2"/>
+      <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r="5" fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
+      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:color}}>{percent(row.growth)}</text>
     </>}
-    {alternatives&&(row.referenceGrowth===null?<text data-reference-unavailable x={x(0)} y={referenceY} dominantBaseline="middle">{row.baselineStatus==="matched"?"Reference: no 2022 base":"Reference unavailable"}</text>:<>
-      <line data-growth-stem="reference" x1={x(0)} x2={x(row.referenceGrowth)} y1={referenceY} y2={referenceY} stroke={teal} strokeWidth="1.5"/>
-      <path data-growth-series="reference" d={`M ${x(row.referenceGrowth)} ${referenceY-6} l 6 6 l -6 6 l -6 -6 Z`} fill="var(--surface)" stroke={teal} strokeWidth="2"/>
-      <text data-growth-label="reference" x={x(row.referenceGrowth)+12} y={referenceY} dominantBaseline="middle" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:teal}}>{percent(row.referenceGrowth)}</text>
-    </>)}
   </g>;
 }
-function growthExtent(data:PublicationChartData,alternatives=false) {
-  const values=[...data.growth.flatMap(row=>[row.growth,...(alternatives?[row.referenceGrowth]:[])]),data.neurotechGrowth,...(data.scienceGrowth?[data.scienceGrowth.low,data.scienceGrowth.high]:[])].filter((value):value is number=>value!==null);
-  return {low:Math.floor(Math.min(0,...values)/25)*25,high:Math.ceil(Math.max(50,...values)/50)*50};
+function growthExtent(data:PublicationChartData,baseline:GrowthBaseline="science") {
+  const values=[...data.growth.flatMap(row=>[row.growth,...(baseline==="matched"?[row.referenceGrowth]:[])]),data.neurotechGrowth,...(baseline==="science"&&data.scienceGrowth?[data.scienceGrowth.low,data.scienceGrowth.high]:[])].filter((value):value is number=>value!==null);
+  return {low:Math.floor(Math.min(0,...values)/25)*25,high:Math.ceil(Math.max(50,...values)/25)*25};
 }
-function GrowthContext({data,x,top,bottom}:{data:PublicationChartData;x:(n:number)=>number;top:number;bottom:number}) {
+function growthTicks(low:number,high:number) {
+  const step=high-low>100?50:25;
+  return Array.from({length:Math.floor(high/step)-Math.ceil(low/step)+1},(_,i)=>(Math.ceil(low/step)+i)*step);
+}
+function GrowthContext({data,x,top,bottom,baseline="science",fontSize=14.5}:{data:PublicationChartData;x:(n:number)=>number;top:number;bottom:number;baseline?:GrowthBaseline;fontSize?:number}) {
   return <g>
-    {data.scienceGrowth&&<rect data-science-context data-low={data.scienceGrowth.low} data-high={data.scienceGrowth.high} x={x(data.scienceGrowth.low)} y={top} width={x(data.scienceGrowth.high)-x(data.scienceGrowth.low)} height={bottom-top} fill={gray} fillOpacity=".28"><title>{`All-science context: four-domain growth range ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}; independently acquired global context`}</title></rect>}
+    {baseline==="science"&&data.scienceGrowth&&<>
+      <rect data-science-context data-low={data.scienceGrowth.low} data-high={data.scienceGrowth.high} x={x(data.scienceGrowth.low)} y={top} width={x(data.scienceGrowth.high)-x(data.scienceGrowth.low)} height={bottom-top} fill={gray} fillOpacity=".28"><title>{`All-science context: four-domain growth range ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}; independently acquired global context`}</title></rect>
+      <text data-growth-science-label x={x(data.scienceGrowth.low)+(x(data.scienceGrowth.high)-x(data.scienceGrowth.low))/2} y={top-fontSize*.55} textAnchor="middle" fontWeight="600" style={{fill:"var(--muted)"}}>Science baseline</text>
+    </>}
     {data.neurotechGrowth!==null&&<line data-neurotech-average data-value={data.neurotechGrowth} x1={x(data.neurotechGrowth)} x2={x(data.neurotechGrowth)} y1={top} y2={bottom} stroke="var(--foreground)" strokeWidth="1.5" strokeDasharray="5 5"><title>{`All neurotech: ${percent(data.neurotechGrowth)}; NT10 wider paper corpus`}</title></line>}
   </g>;
 }
-function GrowthCaptions({data,fontSize=13}:{data:PublicationChartData;fontSize?:number}) {
-  const labelX=8+fontSize*2.4;
-  return <g data-growth-context-legend aria-label="Chart legend">
-    {data.scienceGrowth&&<rect data-growth-legend-swatch="science" x="8" y={fontSize*.8} width={fontSize*1.4} height={fontSize*.75} fill={gray} fillOpacity=".28"/>}
-    <text x={data.scienceGrowth?labelX:8} y={fontSize*1.5}>{data.scienceGrowth?`All-science ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}`:"All-science context unavailable"}</text>
-    {data.neurotechGrowth!==null&&<line data-growth-legend-swatch="neurotech-total" x1="8" x2={8+fontSize*1.4} y1={fontSize*2.75} y2={fontSize*2.75} stroke="var(--foreground)" strokeWidth="1.5" strokeDasharray="5 5"/>}
-    <text x={data.neurotechGrowth!==null?labelX:8} y={fontSize*3.1}>{`All neurotech ${percent(data.neurotechGrowth)}`}</text>
+function GrowthLegend({fontSize,compact=false,unavailable=false,matched=false}:{fontSize:number;compact?:boolean;unavailable?:boolean;matched?:boolean}) {
+  const entries=[{status:"above" as const,label:compact?"Above":"Above baseline"},{status:"within" as const,label:"Within"},{status:"below" as const,label:"Below"},...(unavailable?[{status:"unavailable" as const,label:"Baseline unavailable"}]:[])];
+  return <g data-growth-legend aria-label="Chart legend">
+    {entries.map(({status,label},i)=>{
+      const x=compact?(i===3?8:8+i*fontSize*8):[8,198,300,400][i],y=fontSize*(5.1+(compact&&i===3?1.5:0));
+      return <g key={status}><circle data-growth-legend-swatch={status} cx={x+5} cy={y-4} r="5.5" fill={status==="unavailable"?"var(--surface)":growthColors[status]} stroke={status==="unavailable"?growthColors[status]:"none"} strokeWidth="1.5"/><text x={x+18} y={y}>{label}</text></g>;
+    })}
+    {matched&&<g data-growth-reference-key><line x1="630" x2="630" y1={fontSize*5.1-12} y2={fontSize*5.1+2} stroke={gray} strokeWidth="3"/><text x="644" y={fontSize*5.1}>Category baseline</text></g>}
   </g>;
 }
-function GrowthAxis({x,low,high,fontSize=13,y=0}:{x:(n:number)=>number;low:number;high:number;fontSize?:number;y?:number}) {
+function GrowthAxis({data,x,low,high,fontSize=14.5,y=0,compact=false,baseline="science"}:{data:PublicationChartData;x:(n:number)=>number;low:number;high:number;fontSize?:number;y?:number;compact?:boolean;baseline?:GrowthBaseline}) {
+  const unavailable=baseline==="matched"?data.growth.some(row=>row.referenceGrowth===null):!data.scienceGrowth;
+  const totalX=data.neurotechGrowth===null?8:x(data.neurotechGrowth);
   return <g data-growth-axis transform={`translate(0 ${y})`}>
-    {Array.from({length:5},(_,i)=>low+(high-low)*i/4).map(tick=><g key={tick}>
+    <title>Growth, 2022–2025</title>
+    {growthTicks(low,high).map(tick=><g key={tick}>
       <line x1={x(tick)} x2={x(tick)} y1="0" y2={fontSize*.45} stroke="var(--border)"/>
-      <text data-growth-tick x={x(tick)} y={fontSize*1.65} textAnchor="middle">{percent(tick)}</text>
+      <text data-growth-tick x={x(tick)} y={fontSize*1.65} textAnchor="middle" style={{fill:"var(--muted)"}}>{percent(tick)}</text>
     </g>)}
-    <text x="8" y={fontSize*3.3}>Growth, 2022–2025</text>
+    <text data-growth-total-label x={data.neurotechGrowth===null?8:compact?Math.max(fontSize*5.3,Math.min(400-fontSize*5.3,totalX)):totalX} y={fontSize*3.3} textAnchor={data.neurotechGrowth===null?"start":"middle"} fontWeight="700">{data.neurotechGrowth===null?"All neurotech: no 2022 base":`All neurotech ${percent(data.neurotechGrowth)}`}</text>
+    <GrowthLegend fontSize={fontSize} compact={compact} unavailable={unavailable} matched={baseline==="matched"}/>
   </g>;
 }
 function GrowthPreview({data}:{data:PublicationChartData}) {
   const {ref,fontSize}=usePreviewFont(400,true);
   const {low,high}=growthExtent(data),x=(value:number)=>12+(value-low)/(high-low)*(376-fontSize*5);
-  const sections=PUBLICATION_GROWTH_GROUPS.map((section,index)=>({section,heading:fontSize*5.5+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((total,item)=>total+(item.groups.length*3.6+2.4)*fontSize,0)}));
-  const cursor=sections.at(-1)!.heading+(2+3*3.6)*fontSize,height=cursor+fontSize*4.3;
+  const sections=PUBLICATION_GROWTH_GROUPS.map((section,index)=>({section,heading:fontSize*3.2+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((total,item)=>total+(item.groups.length*3.6+2.4)*fontSize,0)}));
+  const cursor=sections.at(-1)!.heading+(2+3*3.6)*fontSize,footer=fontSize*(data.scienceGrowth?6.5:8),height=cursor+footer;
   return <span className="publication-growth-preview-canvas">
-    <svg ref={ref} viewBox={`0 0 400 ${height}`} role="img" aria-label="21 growth groups; neurotech, global science context and all-neurotech growth; scroll vertically" style={{fontSize}}>
-      <GrowthCaptions data={data} fontSize={fontSize}/>
-      <GrowthContext data={data} x={x} top={fontSize*4} bottom={cursor}/>
+    <svg ref={ref} viewBox={`0 0 400 ${height}`} role="img" aria-label="21 growth groups; neurotech, global science baseline and all-neurotech growth; scroll vertically" style={{fontSize}}>
+      <GrowthContext data={data} x={x} top={fontSize*1.5} bottom={cursor} fontSize={fontSize}/>
       {sections.map(({section,heading})=><g key={section.table}>
-        <text x="8" y={heading} fontWeight="700">{section.label}</text>
+        <text data-growth-section x="8" y={heading} fontWeight="700" style={{fill:"var(--muted)"}}>{section.label.toUpperCase()}</text>
         {data.growth.filter(row=>row.table===section.table).map((row,index)=>{
           const y=heading+(1.6+index*3.6)*fontSize;
           return <g key={row.id}>
-            <text x="8" y={y}>{row.id==="government-facility"?"Government / research facilities":short(row.group).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
-            <GrowthMarks row={row} x={x} y={y+fontSize*1.2}/>
+            <text x="8" y={y}>{row.id==="government-facility"?"Government / research facilities":growthLabel(row).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
+            <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2}/>
           </g>;
         })}
       </g>)}
-      <GrowthAxis x={x} low={low} high={high} fontSize={fontSize} y={cursor}/>
+      <GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} y={cursor} compact/>
     </svg>
-    <span className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-fontSize*4.3/400*100}%`}}>
-      <svg viewBox={`0 0 400 ${fontSize*4.3}`} focusable="false" style={{fontSize}}><GrowthAxis x={x} low={low} high={high} fontSize={fontSize}/></svg>
+    <span className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-footer/400*100}%`}}>
+      <svg viewBox={`0 0 400 ${footer}`} focusable="false" style={{fontSize}}><GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} compact/></svg>
     </span>
   </span>;
 }
-function GrowthPlot({data,inspect,alternatives=false}:{data:PublicationChartData;inspect?:Inspect;alternatives?:boolean}) {
-  const {low,high}=growthExtent(data,alternatives),left=200,right=630,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
-  const rowHeight=alternatives?56:40;
+function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData;inspect?:Inspect;baseline?:GrowthBaseline}) {
+  const {low,high}=growthExtent(data,baseline),left=280,right=740,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
+  const rowHeight=32,fontSize=14.5,footer=100;
   const layout=PUBLICATION_GROWTH_GROUPS.map((section,index)=>{
-    const heading=80+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((sum,item)=>sum+40+item.groups.length*rowHeight,0);
+    const heading=48+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((sum,item)=>sum+36+item.groups.length*rowHeight,0);
     return {section,heading,items:data.growth.filter(row=>row.table===section.table).map((row,i)=>({...row,y:heading+30+i*rowHeight}))};
   });
-  const cursor=layout.at(-1)!.items.at(-1)!.y+(alternatives?34:20),height=cursor+56;
+  const cursor=layout.at(-1)!.items.at(-1)!.y+18,height=cursor+footer;
   return <div className="publication-growth-canvas">
-    <svg data-growth-export viewBox={`0 0 720 ${height}`} role="img" aria-label="Publication growth 2022–2025 with global science context and all-neurotech growth" style={{fontSize:13}}>
-      <title>{`Neurotech growth; global science context; ${data.growth.filter(row=>row.baselineStatus==="unavailable").length} reference groups unavailable`}</title>
-      <GrowthCaptions data={data}/>
-      <GrowthContext data={data} x={x} top={60} bottom={cursor}/>
-      {Array.from({length:5},(_,i)=>low+(high-low)*i/4).map(tick=><line key={tick} x1={x(tick)} x2={x(tick)} y1="60" y2={cursor} stroke="var(--border)"/>)}
+    <svg data-growth-export data-baseline-mode={baseline} viewBox={`0 0 820 ${height}`} role="img" aria-label={`Publication growth 2022–2025; ${baseline==="science"?"general science baseline":"category-specific baselines; unavailable comparisons shown as hollow dots"}; all-neurotech growth`} style={{fontSize}}>
+      <title>{`Neurotech publication growth; ${baseline==="science"?"general science baseline":"matched category baselines"}`}</title>
+      <GrowthContext data={data} x={x} top={28} bottom={cursor} baseline={baseline}/>
+      {growthTicks(low,high).map(tick=><line key={tick} x1={x(tick)} x2={x(tick)} y1="28" y2={cursor} stroke="var(--border)"/>)}
       {layout.map(({section,heading,items})=><g key={section.table}>
-        <text x="8" y={heading} fontWeight="700">{section.label}</text>
+        <text data-growth-section x="8" y={heading} fontWeight="700" letterSpacing="1" style={{fill:"var(--muted)"}}>{section.label.toUpperCase()}</text>
         {items.map(row=><g key={row.id}>
-          <text x={left-15} y={row.y+4} textAnchor="end">{row.id==="government-facility"?<><tspan x={left-15} dy="-4">Government agencies</tspan><tspan x={left-15} dy="16">and research facilities</tspan></>:short(row.group)}</text>
-          <GrowthMarks row={row} x={x} y={row.y} inspect={inspect} alternatives={alternatives}/>
+          <text data-growth-name x={left-15} y={row.y+4} textAnchor="end">{row.id==="government-facility"?<><tspan x={left-15} dy="-4">Government agencies</tspan><tspan x={left-15} dy="16">and research facilities</tspan></>:growthLabel(row)}</text>
+          <GrowthMarks row={row} data={data} x={x} y={row.y} inspect={inspect} baseline={baseline}/>
         </g>)}
       </g>)}
-      <GrowthAxis x={x} low={low} high={high} y={cursor}/>
+      <GrowthAxis data={data} x={x} low={low} high={high} y={cursor} baseline={baseline}/>
     </svg>
-    <div className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-56/720*100}%`}}>
-      <svg viewBox="0 0 720 56" focusable="false" style={{fontSize:13}}><GrowthAxis x={x} low={low} high={high}/></svg>
+    <div className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-footer/820*100}%`}}>
+      <svg viewBox={`0 0 820 ${footer}`} focusable="false" style={{fontSize}}><GrowthAxis data={data} x={x} low={low} high={high} baseline={baseline}/></svg>
     </div>
   </div>;
 }
@@ -205,7 +218,7 @@ function ChangesPlot({ data, compact, inspect }: { data: PublicationChartData; c
     </g>)}
   </svg>;
 }
-function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; alternatives?:boolean }) {
+function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline }) {
   return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:props.compact?<ChangesPreview data={props.data}/>:<ChangesPlot {...props}/>;
 }
 function scope(index:number,snapshot:PublicationSnapshot) {
@@ -213,13 +226,13 @@ function scope(index:number,snapshot:PublicationSnapshot) {
   if(index===1) return `${snapshot.source.baselineYear}–${snapshot.source.paperEndYear} · NT10 papers and P2 output · units vary by group`;
   return `P2 two-topic researcher cohort · acquired ${snapshot.source.authorAsOf} · ${index===2?`${snapshot.source.authorEndYear} publication affiliations`:`first/latest publication affiliations, 2016–${snapshot.source.authorEndYear}`}`;
 }
-export function publicationExportNotes(index:number,snapshot:PublicationSnapshot,data:PublicationChartData) {
+export function publicationExportNotes(index:number,snapshot:PublicationSnapshot,data:PublicationChartData,baseline:GrowthBaseline="science") {
   const notes=[scope(index,snapshot),`Source: OpenAlex core · ${snapshot.source.url}`,`Works acquired ${snapshot.source.paperAsOf}; author histories acquired ${snapshot.source.authorAsOf}; observed through ${snapshot.source.observedThrough}.`,`Method: ${snapshot.source.methodologyVersion}.`];
   if(index===0) notes.push(data.baseline.length?`Global science context acquired ${snapshot.source.scienceBaseline!.acquiredAt}. All research and the four-domain band show growth since 2022, anchored to neurotech's 2022 count; values are growth-equivalent paper counts.`:"Global science context unavailable in this acquisition.");
   if(index===1) {
-    const available=data.growth.filter(row=>row.baselineStatus==="matched").length;
-    notes.push(`${available} same-category comparisons available; ${data.growth.length-available} unavailable. Optional alternatives retain their category-specific denominators.`,data.scienceGrowth?`All-science context: four-domain growth range ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}; acquired ${snapshot.source.scienceBaseline!.acquiredAt}. Global context across groups; row numerator universes and count units vary.`:"Global science context unavailable in this acquisition.",`All neurotech: ${percent(data.neurotechGrowth)}; total growth in the NT10 wider paper corpus, 2022–2025.`);
-    notes.push("● Neurotech; ◇ same-category research. Matched venue rows: N = NT10 wider papers; matched region/institution rows: N = P2 two-topic whole-work involvement. D = all-field works in the identical category. Count unit: OpenAlex work ID; groups overlap.","Method/BCI numerator: NT10 indexed works. Career/citation numerator: P2 author-fractional works, quarterly coverage-scaled. Their comparable references remain unavailable.");
+    const available=data.growth.filter(row=>row.referenceGrowth!==null).length;
+    notes.push(`Selected comparison baseline: ${baseline==="science"?"General science. The gray band is the four-domain growth range.":"Matched to each group. Each gray tick is that row’s category-specific growth threshold; hollow dots have no usable baseline and never fall back to general science. Exact equality is within; no tolerance interval is applied."}`,`${available} same-category comparisons available; ${data.growth.length-available} unavailable. Category-specific denominators are preserved.`,data.scienceGrowth?`All-science context${baseline==="matched"?" (not selected)":""}: four-domain growth range ${percent(data.scienceGrowth.low)} to ${percent(data.scienceGrowth.high)}; acquired ${snapshot.source.scienceBaseline!.acquiredAt}. Global context across groups; row numerator universes and count units vary.`:"Global science context unavailable in this acquisition.",`All neurotech: ${percent(data.neurotechGrowth)}; total growth in the NT10 wider paper corpus, 2022–2025.`);
+    notes.push("Matched venue rows: N = NT10 wider papers; matched region/institution rows: N = P2 two-topic whole-work involvement. D = all-field works in the identical category. Count unit: OpenAlex work ID; groups overlap.","Method/BCI numerator: NT10 indexed works. Career/citation numerator: P2 author-fractional works, quarterly coverage-scaled. Their comparable references remain unavailable.");
     if(snapshot.matchedGrowth) {
       const dates=Object.values(snapshot.matchedGrowth.evidence).flatMap(e=>"retrievedAt" in e?[e.retrievedAt]:[]).sort();
       if(dates.length) notes.push(`Matched API evidence acquired ${dates[0]}–${dates.at(-1)}. Method: ${snapshot.matchedGrowth.method}.`);
@@ -236,23 +249,23 @@ function SourceTable({name,table}:{name:string;table:PublicationTable}) {
 }
 function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData;anchor:PublicationAnchor}) {
   const [inspection,setInspection]=useState("");
-  const [alternatives,setAlternatives]=useState(false);
-  const available=data.growth.filter(row=>row.baselineStatus==="matched").length;
+  const [baseline,setBaseline]=useState<GrowthBaseline>("science");
+  const available=data.growth.filter(row=>row.referenceGrowth!==null).length;
   const plot=useRef<HTMLDivElement>(null);
   useGrowthViewport(plot,index===1);
-  const notes=publicationExportNotes(index,snapshot,data);
+  const notes=publicationExportNotes(index,snapshot,data,baseline);
   const selected=Object.fromEntries(tableNames(index).map(name=>[name,snapshot.tables[name]]));
   const download={chart:anchor,snapshotSchemaVersion:snapshot.schemaVersion,source:snapshot.source,tables:selected,audit:snapshot.audit,...(index===1&&snapshot.matchedGrowth?{matchedGrowth:snapshot.matchedGrowth}:{})};
   return <>
-    <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech papers",color:blue},...(data.baseline.length?[{label:"All research · growth equivalent",color:teal},{label:"Global science context · four-domain growth equivalent",color:gray}]:[])]:index===1?[{label:"Neurotech · filled circle",color:blue},...(data.scienceGrowth?[{label:"All-science context · four-domain band",color:gray,marker:"square" as const}]:[]),{label:"All neurotech · dashed line",color:"#596273",marker:"dashed" as const},...(alternatives?[{label:"Same-category research · outlined diamond",color:teal}]:[])]:[]})}/></ChartActions>
+    <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech papers",color:blue},...(data.baseline.length?[{label:"All research · growth equivalent",color:teal},{label:"Global science context · four-domain growth equivalent",color:gray}]:[])]:[]})}/></ChartActions>
     <p className="publication-scope">{scope(index,snapshot)}</p>
     {index===3&&<p className="publication-scope">Different-sector publication-affiliation cohort · employment transitions unverified</p>}
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span>{data.baseline.length>0&&<><span style={{color:teal}}>● All research</span><span>■ Global science context · four-domain band</span><span>Anchored to 2022</span></>}</p>}
     {index===1&&<>
-      <p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span>{alternatives&&<span style={{color:teal}}>◇ Same-category research</span>}</p>
-      <label className="publication-growth-options"><input data-growth-alternatives type="checkbox" checked={alternatives} disabled={!available} onChange={event=>setAlternatives(event.target.checked)}/> Show alternative comparisons ({available} available)</label>
+      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>setBaseline(event.target.value as GrowthBaseline)}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
+      {baseline==="matched"&&<p className="publication-scope" data-growth-coverage>{available} category baselines available; {data.growth.length-available} unavailable (hollow dots). Gray ticks mark each group’s baseline; no general-science fallback.</p>}
     </>}
-    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection} alternatives={alternatives}/></div>
+    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection} baseline={baseline}/></div>
     {index===2&&<section className="publication-sector-key" data-publication-sector-key aria-label="Researcher publication-sector key"><p>{number(data.totalResearchers)} unique researchers · {data.authorEndYear}</p><ul>{data.sectors.map(row=><li key={row.sector}><span aria-hidden="true" style={{background:row.color}}/><span>{row.label}: <strong>{number(row.count)}</strong> ({number(row.share)}%)</span></li>)}</ul></section>}
     <div className="pc-point-readout" data-publication-inspector role="status" aria-live="polite">{inspection}</div>
     <p className="pc-chart-note">Move over, focus or tap a mark to inspect its exact source values.</p>
