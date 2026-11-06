@@ -74,21 +74,23 @@ test('annual preview fits its card with readable axes while the enlarged plot sc
   const { readFile } = await import('node:fs/promises');
   const css = await readFile(new URL('../src/components/publication-charts.css', import.meta.url), 'utf8');
   const cleanup = await mount(chart(syntheticPublicationSnapshot()), '#publication-output', window => {
-    window.SVGElement.prototype.getBoundingClientRect = () => ({ width: 232, height: 210, left: 0, top: 0 });
+    window.SVGElement.prototype.getBoundingClientRect = () => ({ width: 157, height: 210, left: 0, top: 0 });
   });
   try {
     const style = document.createElement('style'); style.textContent = css; document.head.append(style);
     const preview = document.querySelector('.publication-preview-0');
     const button = preview.querySelector('.publication-preview-trigger');
-    assert.ok(parseFloat(getComputedStyle(button).minWidth) <= 232, 'The preview keeps both axes in the card instead of adding a second horizontal scroller');
+    assert.ok(parseFloat(getComputedStyle(button).minWidth) <= 157, 'The preview keeps both axes in the card instead of adding a second horizontal scroller');
     assert.equal(getComputedStyle(preview).overflow, 'auto');
     assert.ok(parseFloat(getComputedStyle(annualSvg()).minWidth) >= 840, 'The complete plot keeps its readable full-width axis/tooltip layout');
     const svg = preview.querySelector('svg');
     const width = Number(svg.getAttribute('viewBox').split(' ')[2]);
-    assert.ok(parseFloat(svg.style.fontSize) * 232 / width >= 11 - 1e-9);
+    assert.ok(parseFloat(svg.style.fontSize) * 157 / width >= 11 - 1e-9);
     assert.ok(parseFloat(annualSvg().style.fontSize) >= 13);
     const grids=[...svg.querySelectorAll('line')];
-    assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*232/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
+    assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*157/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
+    assert.equal(+svg.querySelector('[data-annual-axis="neurotech"]').getAttribute('x'),0);
+    assert.equal(+svg.querySelector('[data-annual-axis="science"]').getAttribute('x'),width);
     assert.ok(svg.querySelector('[data-annual-anchor] text').textContent.length <= 28, 'Compact anchor text fits at readable font sizes');
   } finally { await cleanup(); }
 });
