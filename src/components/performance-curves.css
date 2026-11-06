@@ -27,7 +27,10 @@
    Existing stateful controls stay intact; only their layout wrappers dissolve. */
 .chart-actions { display: grid; grid-template-columns: repeat(3, max-content); align-items: center; gap: .35rem; width: 100%; min-width: 0; margin: .25rem 0 1rem; }
 .chart-actions > .pc-share, .chart-actions > .draft-chart-share { display: contents; }
-.chart-actions > :is(.pc-share, .draft-chart-share) button { text-decoration: none; grid-row: 1; white-space: nowrap; cursor: pointer; color: var(--accent); border: 1px solid var(--border-strong); border-radius: .5rem; padding: .4rem .45rem; font-size: .75rem; line-height: 1.4; }
+.chart-actions > :is(.pc-share, .draft-chart-share) button { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; text-decoration: none; grid-row: 1; white-space: nowrap; cursor: pointer; color: var(--foreground); border: 1px solid var(--border-strong); border-radius: 999px; padding: .4rem .45rem; font-size: .75rem; font-weight: 500; line-height: 1.4; }
+.chart-actions > :is(.pc-share, .draft-chart-share) [data-copy-chart] { background: var(--accent-soft); color: var(--accent); }
+.chart-actions button:hover { border-color: var(--accent); }
+@media (max-width: 560px) { .chart-actions > :is(.pc-share, .draft-chart-share) button { min-height: 44px; } }
 .chart-actions [data-copy-chart] { grid-column: 2; }
 .chart-actions [data-download-chart] { grid-column: 3; }
 .chart-actions [role=status], .chart-actions .chart-link-fallback, .chart-actions .gt-copy-fallback { grid-column: 1 / -1; width: 0; min-width: 100%; color: var(--muted); font-size: .7rem; overflow-wrap: anywhere; }

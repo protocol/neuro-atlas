@@ -40,7 +40,7 @@ export function ExpectationsSection() {
     frame = requestAnimationFrame(focus);
     return () => cancelAnimationFrame(frame);
   }, [hash]);
-  return <section aria-label="Inflection points and related measurements">
+  return <section className="inflection-index" aria-label="Inflection points and related measurements">
     <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted">
       Inflection signals describe observable milestones; related measurements track supporting capabilities and adoption.
     </p>
@@ -69,6 +69,7 @@ export function ExpectationsSection() {
               <h4 className="text-[11px] font-semibold uppercase tracking-wider text-muted">Related measurements</h4>
               <ul className="mt-3 space-y-4">
                 {RELATED_MEASUREMENTS[point.title]?.map(measurement => <li key={measurement.anchor}>
+                  <p data-measurement-relationship>{measurement.relationship}</p>
                   <a data-related-measurement={measurement.anchor} href={`#${canonicalPerformanceAnchor(measurement.anchor)}`} onClick={event => {
                     if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
                       event.preventDefault();
@@ -79,7 +80,6 @@ export function ExpectationsSection() {
                   }} className="inline-block rounded-sm text-sm font-semibold leading-relaxed text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
                     {measurement.label} <span aria-hidden="true">→</span>
                   </a>
-                  <p data-measurement-relationship className="mt-1 text-[11px] font-medium text-muted">{measurement.relationship}</p>
                   <p className="mt-1 text-xs leading-relaxed text-muted">{measurement.scope}</p>
                 </li>)}
               </ul>

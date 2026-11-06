@@ -1,0 +1,767 @@
+[
+  {
+    "width": 1440,
+    "rows": [
+      {
+        "name": "Neurotech field engagement",
+        "height": 702.390625,
+        "cards": [
+          {
+            "title": "Neurotech search terms",
+            "height": 617,
+            "gap": 123.03125,
+            "body": 443.1875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "31a72b67b96cd36ad98ba889d0f256b6ffcde97e4518efd711b6df3223281580"
+          },
+          {
+            "title": "Citation latency",
+            "height": 617,
+            "gap": 69.734375,
+            "body": 496.484375,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "bcb2b77719a1a7bf676e44925453693841a16ff0c55d6e793bc662fb4774fc9d"
+          },
+          {
+            "title": "Latency compression",
+            "height": 617,
+            "gap": 42.875,
+            "body": 496.484375,
+            "footer": 75.640625,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "c192bbf100161d09df7a6c2bd0a7ca98683a4e3b71b5017f7520dd41fbba636b"
+          },
+          {
+            "title": "Implanted BCI participants over time",
+            "height": 617,
+            "gap": 42.140625,
+            "body": 524.078125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "c321144b8dfcff63cfc039de693e750bd47397ddf3ae7c4eb7668b2fab324c1f"
+          },
+          {
+            "title": "Neurotech papers per year",
+            "height": 617,
+            "gap": 194.9375,
+            "body": 371.28125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "0b629fddd250b2cf804904cb50fc08a24134cb982baf1839687542fad876ef2e"
+          },
+          {
+            "title": "Publication growth by group",
+            "height": 617,
+            "gap": 194.9375,
+            "body": 371.28125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "6316c9151e9e3c9fd23bf8e3f9e342f659baa1789487acb99c9f5b0fa3a9f79f"
+          },
+          {
+            "title": "Researchers by publication sector",
+            "height": 617,
+            "gap": 126.171875,
+            "body": 440.046875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "fb023cefd8da2639ccae22645ceb09ed3cedbe81e8638a68abb87e3aade393ff"
+          },
+          {
+            "title": "Researchers\u2019 first and latest affiliations",
+            "height": 617,
+            "gap": 241.3125,
+            "body": 324.90625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "6a07c17fe7f663514b13a844239906b5efa6f71d151b519b26a92df340ad38c6"
+          }
+        ]
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "height": 727.390625,
+        "cards": [
+          {
+            "title": "Neural recording hours \u2014 selected datasets",
+            "height": 617,
+            "gap": 13.203125,
+            "body": 567.796875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "5794639d08b62df0c15e5e837f55e59f6c32e1afaded0ca27e4b8e4d0a17c74d"
+          },
+          {
+            "title": "Selected chronic intracortical recipients",
+            "height": 617,
+            "gap": 88.578125,
+            "body": 492.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "62e63eccba66161a23918b348c444b21b8a251aeabbc3ba274042e23bd062cfd"
+          },
+          {
+            "title": "Simultaneous neural recordings",
+            "height": 617,
+            "gap": 42.140625,
+            "body": 524.078125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "ed6a31e3e43f6cc662825477b016fadaf096669c8053ba6bbc267dfb5fca9072"
+          }
+        ]
+      },
+      {
+        "name": "Mapping Scale",
+        "height": 727.390625,
+        "cards": [
+          {
+            "title": "Selected public image/resource footprints",
+            "height": 617,
+            "gap": 69.578125,
+            "body": 511.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "cf7d0b20cbea05962fe925f0f21170f042584794fd50de81c65b6d305c4bf31a"
+          },
+          {
+            "title": "Selected tissue-volume checkpoints",
+            "height": 617,
+            "gap": 0.546875,
+            "body": 580.453125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "6f887c4bbbd84db502953cf37ea46a4d76606be0a2fd535d37e2b4fc141d8236"
+          },
+          {
+            "title": "Selected published connectomes \u2014 neuron counts",
+            "height": 617,
+            "gap": 43.734375,
+            "body": 537.265625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "5356d0a5c79d9e149107d934aae4e77172ad5740894b72143e37af0255025e7e"
+          },
+          {
+            "title": "Selected published maps \u2014 synapse counts",
+            "height": 617,
+            "gap": 43.734375,
+            "body": 537.265625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "912bb3739c3dd6abc6602a320d61cdd7b339dde0f8c64639f60bd071c475e95e"
+          },
+          {
+            "title": "Selected EM acquisition rates",
+            "height": 617,
+            "gap": 70.578125,
+            "body": 510.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "cab1ae69917253cc717e558059d022fbdd5dd19f6d4cff37b09c1555bd65a699"
+          },
+          {
+            "title": "Selected structure\u2013function matches",
+            "height": 617,
+            "gap": 90.15625,
+            "body": 490.84375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "23d199b67c8c2030d0430ed46cf8dcb75f8fd40f588cfed6ce8b7e2898294b87"
+          }
+        ]
+      },
+      {
+        "name": "Cost and automation",
+        "height": 727.390625,
+        "cards": [
+          {
+            "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+            "height": 617,
+            "gap": 88.578125,
+            "body": 492.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "0f41b2fa31d1605f9473742cdcc8984af4b03b41928e340af99e59b8eba42a75"
+          },
+          {
+            "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+            "height": 617,
+            "gap": 115.578125,
+            "body": 465.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "5dd7c3c3183d36650ff6353368d0dcf6bc4fab95c9307aa9222609ddb78cf32c"
+          },
+          {
+            "title": "Reported project proofreading effort",
+            "height": 617,
+            "gap": 88.578125,
+            "body": 492.421875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "db397fa19bfff52620d7ba65ca127f74f2e20993903e5365f826ae98e8af3f74"
+          },
+          {
+            "title": "PATHFINDER v1: axon tracing benchmark",
+            "height": 617,
+            "gap": 123.34375,
+            "body": 457.65625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "fc0aac26c612b46ab4e5f6c891d9ecb6340305fad50e78bc5d4cb205a17bf176"
+          }
+        ]
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "height": 727.390625,
+        "cards": [
+          {
+            "title": "NeuroAI performance\u2013cost frontier",
+            "height": 617,
+            "gap": 54.140625,
+            "body": 526.859375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "948c7f502669f1f79a2aa3b250a021b067db73285606c84068abb1587817239a"
+          },
+          {
+            "title": "FlyVis: correct contrast preference",
+            "height": 617,
+            "gap": 141.765625,
+            "body": 439.234375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "ab2bd2de5244e63072cb1c9d876fd159bbebff318d732e1d31652955c5f9ba6f"
+          },
+          {
+            "title": "Selected application events",
+            "height": 617,
+            "gap": 118.1875,
+            "body": 462.8125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "d2ab04e28007025b49c8f28c7762b921ff36368e14c6ca372de922b4c34863c5"
+          }
+        ]
+      }
+    ],
+    "documentBounds": {
+      "w": 1425,
+      "sw": 1425
+    }
+  },
+  {
+    "width": 390,
+    "rows": [
+      {
+        "name": "Neurotech field engagement",
+        "height": 940.390625,
+        "cards": [
+          {
+            "title": "Neurotech search terms",
+            "height": 855,
+            "gap": 345.46875,
+            "body": 458.75,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "e3a780a138ab9f79893d8ad6b08c69868e75b2c8962746991f237bd9290770c2"
+          },
+          {
+            "title": "Citation latency",
+            "height": 855,
+            "gap": 536.71875,
+            "body": 267.5,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "b5cd29bd77423765b3d0ad46d21740462ad343e3714c01980f6096cddb0b74fb"
+          },
+          {
+            "title": "Latency compression",
+            "height": 855,
+            "gap": 469.078125,
+            "body": 285.421875,
+            "footer": 98.5,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "61cd565865f93464fc404c5fe088ad8aede2d35f6c4df5effe6c2541bf833c2c"
+          },
+          {
+            "title": "Implanted BCI participants over time",
+            "height": 855,
+            "gap": 432.8125,
+            "body": 371.40625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "6bf0c69e914ab3e78e26f34c412b216b391811520a512744a3f91cd6a541b8f8"
+          },
+          {
+            "title": "Neurotech papers per year",
+            "height": 855,
+            "gap": 401.4375,
+            "body": 402.78125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "d802b3d476ac4d21460cedc7db5ea94a32f8c48be0cc9233e7d81648aae847c3"
+          },
+          {
+            "title": "Publication growth by group",
+            "height": 855,
+            "gap": 423.015625,
+            "body": 381.203125,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "4bbb2f7ee7a3dbf65fd7f11695b3107f925381d1bc1c3488c0aa7bd2d8406401"
+          },
+          {
+            "title": "Researchers by publication sector",
+            "height": 855,
+            "gap": 331.859375,
+            "body": 472.359375,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "ece24d9a4cf0c73cb38526685c612ae576047ecfd91443787a2998f55c9e32a3"
+          },
+          {
+            "title": "Researchers\u2019 first and latest affiliations",
+            "height": 855,
+            "gap": 447,
+            "body": 357.21875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "c19f64c87a99271475d00b0220e102681132ee2b3ef44e70d0ffa3553f91712d"
+          }
+        ]
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "height": 965.390625,
+        "cards": [
+          {
+            "title": "Neural recording hours \u2014 selected datasets",
+            "height": 855,
+            "gap": 0.8125,
+            "body": 818.1875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "7cabb087dc77560f6a18d0f580a40a5709a8152c508379fbbeec34a4f9ea0f64"
+          },
+          {
+            "title": "Selected chronic intracortical recipients",
+            "height": 855,
+            "gap": 209.78125,
+            "body": 609.21875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "3e0caa03dfdb2c2f8b3dfdb4c41ee66af227bbe535a22e031fd839e11f98115e"
+          },
+          {
+            "title": "Simultaneous neural recordings",
+            "height": 855,
+            "gap": 473.203125,
+            "body": 331.015625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "9fb468c06a699f9cffc218204c63b945d598aa1f30379f2ab2aad657bda293c3"
+          }
+        ]
+      },
+      {
+        "name": "Mapping Scale",
+        "height": 965.390625,
+        "cards": [
+          {
+            "title": "Selected public image/resource footprints",
+            "height": 855,
+            "gap": 127.1875,
+            "body": 691.8125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "8ad3380b62c19c0c2dcbfc7c5c969652f70d43957140e75a9ad32621722d8066"
+          },
+          {
+            "title": "Selected tissue-volume checkpoints",
+            "height": 855,
+            "gap": 52.5,
+            "body": 766.5,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "2563a9091c55ca05ae49936a00aa8f4fff112e396a484771c079e6d73ad83232"
+          },
+          {
+            "title": "Selected published connectomes \u2014 neuron counts",
+            "height": 855,
+            "gap": 134.53125,
+            "body": 684.46875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "5e4a1b784b67911e99e3b4befa1d729c85acba95aaad448b180965a8c14b7178"
+          },
+          {
+            "title": "Selected published maps \u2014 synapse counts",
+            "height": 855,
+            "gap": 175.34375,
+            "body": 643.65625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "c8d5c606a3aadf449d5d49019b8535a9b993bfcf7d0fa4639509491d14f0c22c"
+          },
+          {
+            "title": "Selected EM acquisition rates",
+            "height": 855,
+            "gap": 196.59375,
+            "body": 622.40625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "566151a3863a5a9912211ef0545e53e8995483e7b373d7e876c16dbe198ddb57"
+          },
+          {
+            "title": "Selected structure\u2013function matches",
+            "height": 855,
+            "gap": 192.515625,
+            "body": 626.484375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "9c7be1bee9a3b43c66f3db476499a7652620f4906868f64cf29626513d789b16"
+          }
+        ]
+      },
+      {
+        "name": "Cost and automation",
+        "height": 965.390625,
+        "cards": [
+          {
+            "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+            "height": 855,
+            "gap": 221.390625,
+            "body": 597.609375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "5e2d6f21d1e108aa01e9422a17861a45a9d7d29a70b97f0db4cdc45e786595f3"
+          },
+          {
+            "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+            "height": 855,
+            "gap": 170,
+            "body": 649,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "ed9502e25bf253c8b24a15576412de75fbce31681055f606516ada6be4bae168"
+          },
+          {
+            "title": "Reported project proofreading effort",
+            "height": 855,
+            "gap": 231.375,
+            "body": 587.625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "c34f4d18204efce693e58fbd5dc6deb382df9d1766ad5dfbb3dec1a67c103e9f"
+          },
+          {
+            "title": "PATHFINDER v1: axon tracing benchmark",
+            "height": 855,
+            "gap": 302.140625,
+            "body": 516.859375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "c5124af6fd2a66455627703a36b48e8f270d98530a51c2470d1aed4b847c56c0"
+          }
+        ]
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "height": 965.390625,
+        "cards": [
+          {
+            "title": "NeuroAI performance\u2013cost frontier",
+            "height": 855,
+            "gap": 118.171875,
+            "body": 700.828125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "4c5a6933c4433064388033d0684569a8b8e58c986338407e2151bc287f389716"
+          },
+          {
+            "title": "FlyVis: correct contrast preference",
+            "height": 855,
+            "gap": 320.5625,
+            "body": 498.4375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "a0beaa7eecd20db930a1cf451e35f7dd446bbc6337a4c4a08036bb854cb1f296"
+          },
+          {
+            "title": "Selected application events",
+            "height": 855,
+            "gap": 285.375,
+            "body": 533.625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "b10114eb0f18e9101533bbd104e95f18723bdbe3b5c897fe58e9d38c66739b29"
+          }
+        ]
+      }
+    ],
+    "documentBounds": {
+      "w": 375,
+      "sw": 375
+    }
+  },
+  {
+    "width": 320,
+    "rows": [
+      {
+        "name": "Neurotech field engagement",
+        "height": 1090.765625,
+        "cards": [
+          {
+            "title": "Neurotech search terms",
+            "height": 999,
+            "gap": 428.703125,
+            "body": 519.515625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "50f48e10bd1a6b09f3bf4afda8eebfc66fca10d31006e5462797e73f09f20629"
+          },
+          {
+            "title": "Citation latency",
+            "height": 999,
+            "gap": 723.5,
+            "body": 224.71875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "2e0d80c7ffdc561a130d2e9c3214640e0fb7e62e960e8954d83e7945873b2dac"
+          },
+          {
+            "title": "Latency compression",
+            "height": 999,
+            "gap": 579.15625,
+            "body": 296.484375,
+            "footer": 121.359375,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "095065ab1dee90c9f16233523cb4726f96b0ccee81085d560a3f6a0c419cc9cc"
+          },
+          {
+            "title": "Implanted BCI participants over time",
+            "height": 999,
+            "gap": 619.59375,
+            "body": 328.625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "173ee256cb2c201e54439f6fd2aa8b4a024089540a61873e0a8adcdd2ee5f56f"
+          },
+          {
+            "title": "Neurotech papers per year",
+            "height": 999,
+            "gap": 501.46875,
+            "body": 446.75,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "c52388eb5647d85e4ae37f4260bd1c5372903b84fb850516eab31cfbe47d3c34"
+          },
+          {
+            "title": "Publication growth by group",
+            "height": 999,
+            "gap": 544.625,
+            "body": 403.59375,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "e5a9509753ca4c5db74ffe1f59b4cab881f3059cf726e2c3a82335a0aec28de4"
+          },
+          {
+            "title": "Researchers by publication sector",
+            "height": 999,
+            "gap": 418.296875,
+            "body": 529.921875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "6c0cd7ec024ebe4dc3af16de4d2a68b4e52d20b48f63b15454f71fdc7d9b3811"
+          },
+          {
+            "title": "Researchers\u2019 first and latest affiliations",
+            "height": 999,
+            "gap": 573.078125,
+            "body": 375.140625,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "c19f64c87a99271475d00b0220e102681132ee2b3ef44e70d0ffa3553f91712d"
+          }
+        ]
+      },
+      {
+        "name": "Human interfaces and recordings",
+        "height": 1115.765625,
+        "cards": [
+          {
+            "title": "Neural recording hours \u2014 selected datasets",
+            "height": 999,
+            "gap": 0,
+            "body": 963,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "ae043530ce12e3ec3e56fcf5a45986d7091c16a8179c8da943422256055886d5"
+          },
+          {
+            "title": "Selected chronic intracortical recipients",
+            "height": 999,
+            "gap": 262.96875,
+            "body": 700.03125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "ff219a0438401d0951b12bdb5af54c890cf91269fde999aadaf3e3ccec1fb849"
+          },
+          {
+            "title": "Simultaneous neural recordings",
+            "height": 999,
+            "gap": 601.671875,
+            "body": 346.546875,
+            "footer": 48.78125,
+            "footerButtonHeight": 32.78125,
+            "svgHash": "55a03a58316f0bd7979686c45f12545eb97824297bf35b0cac392b11c6705388"
+          }
+        ]
+      },
+      {
+        "name": "Mapping Scale",
+        "height": 1109.390625,
+        "cards": [
+          {
+            "title": "Selected public image/resource footprints",
+            "height": 999,
+            "gap": 143.953125,
+            "body": 819.046875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "f514d5a6ca8f2440686f0c19ced97b5a8c29d0ff0a5b6af3b05dfd32f50484fb"
+          },
+          {
+            "title": "Selected tissue-volume checkpoints",
+            "height": 999,
+            "gap": 13.640625,
+            "body": 949.359375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "3150e3651b0aa2d83556182dcb64d5b9121b717ef83c6bc67635578b717f8031"
+          },
+          {
+            "title": "Selected published connectomes \u2014 neuron counts",
+            "height": 999,
+            "gap": 181.671875,
+            "body": 781.328125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "494c288767f417ea0f8554fb0279ccb66793de98a534e25eb0ea804b0ca3df45"
+          },
+          {
+            "title": "Selected published maps \u2014 synapse counts",
+            "height": 999,
+            "gap": 184.09375,
+            "body": 778.90625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "60db581cba8602b63bb651657a98eff91c6d3e92b28d9dcc8b37b01a42790b7e"
+          },
+          {
+            "title": "Selected EM acquisition rates",
+            "height": 999,
+            "gap": 263.78125,
+            "body": 699.21875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "d864c21ca507841cfb7f76a5a90af501b04fc5685f99ae02a18872e59f327bec"
+          },
+          {
+            "title": "Selected structure\u2013function matches",
+            "height": 999,
+            "gap": 299.671875,
+            "body": 663.328125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "c21676432c4ea08893cb719abceb2c76349efdf14332f797416128fd2b026ec7"
+          }
+        ]
+      },
+      {
+        "name": "Cost and automation",
+        "height": 1109.390625,
+        "cards": [
+          {
+            "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+            "height": 999,
+            "gap": 189.796875,
+            "body": 773.203125,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "7006ff890c1c288c1fdf746f1abcadac1af5f96a8a8dfe2f4b9d4637240a74c5"
+          },
+          {
+            "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+            "height": 999,
+            "gap": 218.765625,
+            "body": 744.234375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "ff7731e0ee18d308ab39889f5e1ea3d619d02fcabdc20ec7656754ee6cc437fc"
+          },
+          {
+            "title": "Reported project proofreading effort",
+            "height": 999,
+            "gap": 338.953125,
+            "body": 624.046875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "29df1b0dc11e65fa05157aec8d3d47dd16a38e0a55f3afe7a807bd23b3478ca0"
+          },
+          {
+            "title": "PATHFINDER v1: axon tracing benchmark",
+            "height": 999,
+            "gap": 405.328125,
+            "body": 557.671875,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "7aadf87d7c536cda251b504b98f72b5ba1f3a86b4b84bdb3fa9183a8400dece3"
+          }
+        ]
+      },
+      {
+        "name": "Simulation and NeuroAI",
+        "height": 1109.390625,
+        "cards": [
+          {
+            "title": "NeuroAI performance\u2013cost frontier",
+            "height": 999,
+            "gap": 168.9375,
+            "body": 794.0625,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "be870295717909d58b76d90192ff74791752c23e7b0282c289cdc03f274bff26"
+          },
+          {
+            "title": "FlyVis: correct contrast preference",
+            "height": 999,
+            "gap": 430.140625,
+            "body": 532.859375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "a2944725b7cbc25a6ef52c2172e4c313e69e08781a9f83858a364f98c2349e90"
+          },
+          {
+            "title": "Selected application events",
+            "height": 999,
+            "gap": 370.140625,
+            "body": 592.859375,
+            "footer": 34,
+            "footerButtonHeight": 18,
+            "svgHash": "b3561f38a983ba1a73c0f0c1acbdb75b8801f8120e1d49feba79dc1244fc39c5"
+          }
+        ]
+      }
+    ],
+    "documentBounds": {
+      "w": 305,
+      "sw": 305
+    }
+  }
+]

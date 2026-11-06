@@ -160,3 +160,31 @@ test('every real Metrics chart has separately measurable natural content and a f
     }
   } finally { await cleanup(); }
 });
+
+
+test('equal cards allocate spare space to one preview without feeding expansion back into natural sizing', async () => {
+  const cleanup = await mount(React.createElement(Page), '', window => {
+    const style = window.document.createElement('style');
+    style.textContent = 'article { border: 0px solid; padding: 0; }';
+    window.document.head.append(style);
+    window.HTMLElement.prototype.getBoundingClientRect = function () {
+      const extra = Number(this.querySelector('[data-metric-preview-extra]')?.getAttribute('data-metric-preview-extra') ?? 0);
+      const tall = this.closest('[data-performance-card="idea_vintage"]');
+      return {height:this.hasAttribute('data-metric-card-body') ? (tall ? 520 : 400) + extra : 40,width:500};
+    };
+  });
+  try {
+    const catalog=document.querySelector('.metrics-index');
+    const bodies=[...catalog.querySelectorAll('[data-metric-card-body]')];
+    assert.equal(bodies.length,24);
+    assert.equal(catalog.querySelectorAll('[data-metric-preview-extra]').length,24,'One fillable preview per unopened card');
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'),'560px');
+    for(const body of bodies) {
+      const extra=Number.parseFloat(body.closest('article').style.getPropertyValue('--metric-preview-extra'));
+      assert.equal(extra,body.closest('[data-performance-card="idea_vintage"]') ? 0 : 120);
+    }
+    await click(document.querySelector('[data-collapse-metrics]'));
+    await click(document.querySelector('[data-expand-metrics]'));
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'),'560px','Expansion is subtracted before choosing a natural maximum');
+  } finally {await cleanup();}
+});

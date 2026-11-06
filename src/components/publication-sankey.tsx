@@ -11,12 +11,12 @@ const number = (value: number) => value.toLocaleString("en-US", { maximumFractio
 
 /** A shared count-scaled Sankey; the archived changes-only matrix is never zero-filled. */
 type Inspect = (text: string) => ReturnType<ReturnType<typeof usePointTooltip<string>>["pointProps"]>;
-export function PublicationSankey({ data, compact = false, inspect, activeInspection }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null }) {
-  const { ref, fontSize } = usePreviewFont(900, true);
+export function PublicationSankey({ data, compact = false, inspect, activeInspection, previewHeight }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null; previewHeight?: number }) {
+  const { ref, fontSize, unitsPerPixel } = usePreviewFont(900, true);
   const available = data.endpointTransitions !== null;
-  const options = compact ? { top: fontSize * 2.1, height: fontSize * 17.1, gap: fontSize * .7, labelHeight: fontSize * 3.3 } : undefined;
+  const height = compact ? Math.max(fontSize * 20, (previewHeight ?? 0) * unitsPerPixel) : 580;
+  const options = compact ? { top: fontSize * 2.1, height: height - fontSize * 2.9, gap: fontSize * .7, labelHeight: fontSize * 3.3 } : undefined;
   const layout = buildPublicationSankey(data.endpointTransitions ?? data.transitions.map(row => ({ ...row, total: 0, destinations: row.destinations.map(dest => ({ ...dest, count: 0, share: 0 })) })), options);
-  const height = compact ? fontSize * 20 : 580;
   const nodes = [...layout.sources, ...layout.targets];
   return <svg ref={ref} className="publication-sankey" data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 900 ${height}`} role="img" aria-label="First-to-latest publication affiliations, all four origins and destinations, shared people-count scale" data-has-active={activeInspection ? "true" : undefined} style={{ fontSize }}>
     <title>First and latest publication-affiliation sectors, including same-sector endpoints</title>

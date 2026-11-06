@@ -7,7 +7,7 @@
 .publication-preview-0 { display: flex; align-items: center; }
 .publication-preview-0 .publication-preview-trigger { min-width: 0; }
 .publication-preview-1 svg { min-width: 0; }
-.publication-preview-2 svg { max-width: 235px; margin: 0 auto; }
+.publication-preview-2 svg { margin: 0 auto; }
 .publication-preview-3 { display: flex; align-items: center; overscroll-behavior: contain; }
 /* Four labeled origin/destination nodes retain readable text inside the narrow rails. */
 .publication-preview-3 .publication-preview-trigger { min-width: 480px; }

@@ -35,6 +35,8 @@ function assertActions(modal, supportsImage = true) {
   for (const button of row.querySelectorAll('button')) {
     assert.equal(getComputedStyle(button).gridRow, '1', 'All three full-label buttons stay on the same first row');
     assert.equal(getComputedStyle(button).whiteSpace, 'nowrap');
+    assert.equal(getComputedStyle(button).borderRadius, '999px', 'Chart actions use the site’s pill-shaped control language');
+    assert.equal(getComputedStyle(button).minHeight, '36px');
   }
   for (const message of row.querySelectorAll('[role=status]')) assert.equal(getComputedStyle(message).gridColumn, '1 / -1', 'Messages span below the buttons, never between them');
   const labels = [...row.querySelectorAll('button')].map(button => button.textContent);

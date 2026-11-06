@@ -102,9 +102,11 @@ export function MetricsSection({ performance, references, engagementPreview }: {
     <div className="metrics-tools">
       <label htmlFor="metrics-search">Search charts</label>
       <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder="Try H01, mouse, recording hours…" />
-      <button type="button" data-clear-metrics onClick={() => setQuery("")}>Clear search</button>
+      <div className="metrics-utilities" role="group" aria-label="Chart catalog controls">
+      <button type="button" data-clear-metrics disabled={!query} onClick={() => setQuery("")}>Clear search</button>
       <button type="button" data-expand-metrics onClick={event => setAll("full", event.currentTarget)}>Expand all</button>
       <button type="button" data-collapse-metrics onClick={event => setAll("collapsed", event.currentTarget)}>Collapse all</button>
+      </div>
     </div>
     {term && <p role="status">{matchingCategories ? `${matchingCategories} matching categories. Clear search to change groups.` : "Try another title, species or dataset, or clear search."}</p>}
     {METRIC_GROUPS.map(group => {
