@@ -21,9 +21,11 @@ export function PublicationSankey({ data, compact = false, inspect, activeInspec
   return <svg ref={ref} className="publication-sankey" data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 900 ${height}`} role="img" aria-label="First-to-latest publication affiliations, all four origins and destinations, shared people-count scale" data-has-active={activeInspection ? "true" : undefined} style={{ fontSize }}>
     <title>First and latest publication-affiliation sectors, including same-sector endpoints</title>
     {!available ? <text x="12" y={fontSize * 3}>Complete endpoint counts unavailable in this snapshot.</text> : layout.total === 0 ? <text x="12" y={fontSize * 3}>No researchers qualify for the first/latest publication cohort.</text> : <>
-      <text x="0" y={fontSize * 1.1} fontWeight="700">First paper</text>
-      <text x="450" y={fontSize * 1.1} textAnchor="middle">{number(layout.total)} people</text>
-      <text x="714" y={fontSize * 1.1} fontWeight="700">Latest paper</text>
+      <g data-sankey-headers>
+        <text x="0" y={fontSize * 1.1} fontWeight="700">First paper</text>
+        <text x="450" y={fontSize * 1.1} textAnchor="middle">{number(layout.total)} people</text>
+        <text x="714" y={fontSize * 1.1} fontWeight="700">Latest paper</text>
+      </g>
       {layout.links.map(link => {
         const id = `${link.from}:${link.to}`;
         const description = `${SECTOR_LABELS[link.from]} → ${SECTOR_LABELS[link.to]}: ${number(link.count)} of ${number(link.originTotal)} people (${number(link.share)}% of this starting sector’s cohort). ${link.sameSector ? link.from === "No listed affiliation" ? "Affiliation metadata missing at both first and latest paper." : "Same sector at first and latest paper." : "Different affiliation categories at first and latest paper."}`;

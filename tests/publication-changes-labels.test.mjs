@@ -35,6 +35,11 @@ test('first/latest affiliations use every full-cohort cell in preview, detail, s
     const { buildChartImage } = await import('../src/lib/chart-export.ts');
     const image = buildChartImage({ svg: modal.querySelector('.publication-full-plot svg'), title: 'First and latest affiliations', anchor: 'researcher-sector-changes', notes: publicationExportNotes(3, parsed, data) }, 'https://atlas.example/field-velocity');
     assert.match(image.svg, /One shared people-count scale/);
+    const exported = new window.DOMParser().parseFromString(image.svg, 'image/svg+xml');
+    for (const [label, x] of [['First paper', '0'], ['Latest paper', '714']]) {
+      const heading = [...exported.querySelectorAll('text')].find(node => node.textContent === label);
+      assert.equal(heading.getAttribute('x'), x, 'Endpoint column headings retain their distinct export positions');
+    }
     assert.match(image.svg, /same sector at first\/latest paper/);
     for (const row of data.endpointTransitions) assert.ok(image.svg.includes(`From ${row.label} (${row.total} people)`));
     assert.doesNotMatch(image.svg, /Each displayed origin is normalized|university and company origins/);
