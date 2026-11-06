@@ -1,0 +1,28 @@
+Runtime11b38cf56da3f777645ed773af15487279ae8e2a
+Command: node --import tsx --test --test-concurrency=4 tests/*.test.mjs
+ℹ tests 1071
+ℹ suites 0
+ℹ pass 1070
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 283904.206818
+
+One failure: unchanged performance-modal.test.mjs fixed-settle Forward restores modal assertion. This is NOT a clean all-suite pass.
+
+Isolated serial file:
+✔ chart opens in a named modal, locks scroll, traps focus, closes visibly and restores trigger without scrolling (591.599863ms)
+✔ simultaneously-recorded-neurons fresh URL mounts only its selected source observations; backdrop closes (77.829495ms)
+✔ tissue-mapped fresh URL mounts only its selected source observations; backdrop closes (77.738984ms)
+✔ neural-recording-hours fresh URL mounts only its selected source observations; backdrop closes (81.985664ms)
+✔ modal navigation disables browser automatic history scrolling while mounted (40.547568ms)
+✔ close returns to the original fragment and opening preserves framework history state (95.428933ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2077.111547

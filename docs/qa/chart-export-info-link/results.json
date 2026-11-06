@@ -1,0 +1,99 @@
+{
+  "revision": "11b38cf56da3f777645ed773af15487279ae8e2a",
+  "downloads": [
+    {
+      "file": "recording-hours.png",
+      "dimensions": [
+        2400,
+        1546
+      ],
+      "plotShapeCount": 14,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "optical.png",
+      "dimensions": [
+        2400,
+        1512
+      ],
+      "plotShapeCount": 1,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "neuroai.png",
+      "dimensions": [
+        2400,
+        1460
+      ],
+      "plotShapeCount": 6,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "trends.png",
+      "dimensions": [
+        2400,
+        1606
+      ],
+      "plotShapeCount": 309,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "publication-growth.png",
+      "dimensions": [
+        2400,
+        3340
+      ],
+      "plotShapeCount": 25,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "sankey.png",
+      "dimensions": [
+        2400,
+        1932
+      ],
+      "plotShapeCount": 24,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    },
+    {
+      "file": "recording-hours-390.png",
+      "dimensions": [
+        2400,
+        3078
+      ],
+      "plotShapeCount": 17,
+      "referralCount": 1,
+      "footnoteBlockCount": 0,
+      "footerIsLastPaintedElement": true,
+      "sourceGeometryMatchedDuringDownloadReplay": true
+    }
+  ],
+  "nativeClipboardTypes": [
+    "text/plain",
+    "text/html",
+    "image/png"
+  ],
+  "clipboardPixelsEqualDownload": true,
+  "siteDatasetNotesUnchanged": true,
+  "siteDatasetParagraphCount": 5,
+  "physicalPhoneTested": false,
+  "replayQualification": "Seven native downloads and source-geometry assertions completed before a sticky-header-occluded Copy button. The helper now centers the actual button; this separate resumed native clipboard phase passed."
+}
