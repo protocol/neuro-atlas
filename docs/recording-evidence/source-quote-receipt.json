@@ -1,0 +1,50 @@
+[
+  {
+    "id": "jun-2017",
+    "quote_verbatim": true,
+    "value": 741,
+    "unit": "putative single neurons",
+    "date": "2017-11-09",
+    "basis": "publication"
+  },
+  {
+    "id": "stringer-2019",
+    "quote_verbatim": true,
+    "value": 2668,
+    "unit": "stable electrical units",
+    "date": "2019-04-18",
+    "basis": "publication"
+  },
+  {
+    "id": "trautmann-2025",
+    "quote_verbatim": true,
+    "value": 1012,
+    "unit": "reported neurons",
+    "date": "2025-06-23",
+    "basis": "publication"
+  },
+  {
+    "id": "card-2026",
+    "quote_verbatim": true,
+    "value": 256,
+    "unit": "implanted electrodes",
+    "date": "2026-06-15",
+    "basis": "publication"
+  },
+  {
+    "id": "neuralink-voice-2026",
+    "quote_verbatim": true,
+    "value": 3000,
+    "unit": "implant channels",
+    "date": "2026-09-18",
+    "basis": "disclosure"
+  },
+  {
+    "id": "manley-2024",
+    "quote_verbatim": true,
+    "value": 1136223,
+    "unit": "neuronal signals",
+    "date": "2024-03-06",
+    "basis": "publication"
+  }
+]

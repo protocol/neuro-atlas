@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useId, useRef, useState } from "react";
+import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
 import { ChartActions } from "@/components/chart-actions";
@@ -8,6 +9,7 @@ import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import { usePreviewFont } from "@/components/use-preview-font";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
+import { RECORDING_VIEWS, RECORDING_CHECKED_AT, type RecordingView } from "@/data/recording-evidence";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { decimalYear, extrapolationScenario, type Crossing, type ExtrapolationKind, type ExtrapolationMode, type ExtrapolationScenario } from "@/lib/extrapolation";
@@ -23,7 +25,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[] };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -100,14 +102,30 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
   </section>;
 }
 
-function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode }) {
+function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
   const plotRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const singleObservation = data.points.length === 1;
+  useLayoutEffect(() => {
+    if (!inspectOnActivate || !scrollRef.current) return;
+    const viewport = scrollRef.current;
+    // Reveal the sole source mark in a narrow horizontal viewport, without
+    // selecting it, moving its coordinates, or changing the exported SVG.
+    const reveal = () => { viewport.scrollLeft = singleObservation ? Math.max(0, (viewport.scrollWidth - viewport.clientWidth) / 2) : 0; };
+    reveal();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(reveal);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [inspectOnActivate, singleObservation, data.title]);
   const [track, setTrack] = useState("");
   const [extrapolate, setExtrapolate] = useState(false);
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
   const [hovered, setHovered] = useState<PlotPoint | null>(null);
   const [focused, setFocused] = useState<PlotPoint | null>(null);
-  const active = focused ?? hovered;
+  // A measurement change invalidates inspected points without remounting the
+  // native selector (which must retain keyboard focus).
+  const active = inspectOnActivate ? [focused, hovered].find(p => p && data.points.includes(p)) ?? null : focused ?? hovered;
   const readoutId = useId();
   const extrapolationHint = useId();
   const progress = useExtrapolationMotion(!compact && !!extrapolation && extrapolate);
@@ -140,18 +158,25 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }:
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
   const points = data.points.filter(p => !track || p.track === track);
+  const recordingDateTicks = inspectOnActivate ? [...new Set([g.minTime, g.maxTime])].map(time => ({
+    date: new Date(time).toISOString(),
+    label: g.minTime !== g.maxTime && new Date(g.minTime).getUTCFullYear() === new Date(g.maxTime).getUTCFullYear()
+      ? new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" }).format(time)
+      : String(new Date(time).getUTCFullYear()),
+  })) : null;
   const clusters: PlotPoint[][] = [];
   for (const point of points) {
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
     if (group) group.push(point); else clusters.push([point]);
   }
   return <>
-    {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
+    {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare key={inspectOnActivate ? data.title : undefined} anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
       return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor,
         legend: data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })),
         notes: [
+          ...(data.exportNotes ?? []),
         ...points.flatMap(point => point.qualifiedValueLabel ? [point.qualifiedValueLabel] : []),
           ...Array.from(detail.querySelectorAll(".pc-methodology > p:first-of-type, .pc-caveat"), node => node.textContent ?? ""),
           ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
@@ -183,7 +208,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }:
       </select>
       <span>Isolate a track · axes stay fixed</span>
     </label>}
-    <div className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
+    <div ref={scrollRef} className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
@@ -206,14 +231,16 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }:
         </g>}
         {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
         {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={active === p ? 7 : 5} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={1.5}
-          data-export-r={5} tabIndex={compact ? undefined : 0} role={compact ? undefined : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
+          data-export-r={5} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label} aria-describedby={!compact && active === p ? readoutId : undefined}
+          onClick={!compact && inspectOnActivate ? event => { event.currentTarget.focus(); setFocused(p); } : undefined}
+          onKeyDown={!compact && inspectOnActivate ? event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocused(p); } } : undefined}
           onFocus={compact ? undefined : () => setFocused(p)} onBlur={compact ? undefined : () => setFocused(null)} onMouseEnter={compact ? undefined : () => setHovered(p)} onMouseLeave={compact ? undefined : () => setHovered(null)} />)}
         {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
         {moving && future ? <>
           <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
           <text x={mix(g.width - g.right, future.x(new Date(original.maxTime).toISOString().slice(0, 10)))} y={g.height - 20} textAnchor="end" opacity={1 - progress}>{new Date(original.maxTime).getUTCFullYear()}</text>
           {future.yearTicks.map(year => <text key={year} x={enteringX(year)} y={g.height - 20} textAnchor="middle" opacity={tickReveal}>{year}</text>)}
-        </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : <>
+        </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : recordingDateTicks ? recordingDateTicks.map(tick => <text key={tick.date} x={g.x(tick.date)} y={g.height - 20} textAnchor="middle">{tick.label}</text>) : <>
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}
@@ -246,7 +273,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro }:
   </div></>;
 }
 
-export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode }) {
+export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${id}`;
@@ -264,7 +291,7 @@ export function CurveCard({ id, title, coverage, plot, children, sourceLinks, pr
       {share}
     </div>
     {open && <ChartModal id={id} title={title} returnFocus={ref}>
-      {plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "simultaneously-recorded-neurons" ? "neurons" : id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>}
+      {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
       {children}
     </ChartModal>}
   </article>;
@@ -297,16 +324,91 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
   </CurveCard>;
 }
 
+const recordingAnchor = "simultaneously-recorded-neurons";
+const recordingTitle = "Simultaneous neural recordings";
+function recordingPlot(view: RecordingView): PlotData {
+  return {
+    title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
+    xLabel: "Source publication / disclosure date · not experiment date",
+    tracks: [{ id: view.id, label: view.label }],
+    exportNotes: [
+      `Source checked ${RECORDING_CHECKED_AT}. Source publication and disclosure dates, not experiment or implantation dates. Year coordinates are plotting anchors; no interpolation or extrapolation.`,
+      ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} Source: ${p.sourceLabel} — ${p.sourceUrl}`),
+    ],
+    points: view.points.map(p => ({ ...p, track: view.id, trackIndex: 0,
+      label: `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} ${p.sourceLabel}`,
+    })),
+  };
+}
+function subscribeRecordingView(callback: () => void) {
+  const events = ["popstate", "hashchange", "atlas-performance-location"];
+  events.forEach(event => window.addEventListener(event, callback));
+  return () => events.forEach(event => window.removeEventListener(event, callback));
+}
+const recordingViewSnapshot = () => recordingViewToken(new URL(window.location.href)) ?? "electrical";
+function selectRecordingView(id: RecordingViewId) {
+  const url = new URL(window.location.href);
+  url.searchParams.set(recordingViewQuery, id);
+  // A view change gets its own Back/Forward entry. Close must dismiss the modal,
+  // not just back into its previous view; direct-link close uses the same rule.
+  window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+  window.dispatchEvent(new Event("atlas-performance-location"));
+}
+function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "electrical");
+  const view = RECORDING_VIEWS.find(v => v.id === viewId)!;
+  return <CurveCard id={recordingAnchor} title={recordingTitle} eyebrow="Recording evidence"
+    coverage="Three separate measurement views: electrical units, human implant channels and optical cellular signals. Selected studies, not a world-record curve."
+    previewNote="Preview: in-vivo electrical units · expand to compare measurement definitions."
+    plot={recordingPlot(RECORDING_VIEWS[0])}
+    modalPlot={<div data-recording-view={view.id}>
+      <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
+        <label className="pc-track-select pc-recording-view">Measurement view
+          <select data-recording-view-select value={view.id} onChange={event => selectRecordingView(event.target.value as RecordingViewId)}>
+            {RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
+          </select>
+        </label>
+      } />
+    </div>}>
+    <section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
+      <h4>Definitions &amp; methodology · {view.label}</h4>
+      <p>{view.description}</p><p className="pc-caveat">{view.caveat}</p>
+      <p>Source publication and disclosure dates, not experiment or implantation dates. Source checked {RECORDING_CHECKED_AT}. Year coordinates are plotting anchors, not exact event dates. Observed data only: no interpolated points, fitted growth curve or extrapolation.</p>
+    </section>
+    <div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
+      <table><caption>Sources &amp; chart data · {view.points.length} observations</caption>
+        <thead><tr><th scope="col">Study / preparation</th><th scope="col">Date &amp; basis</th><th scope="col">Value &amp; units</th><th scope="col">Source &amp; context</th></tr></thead>
+        <tbody>{view.points.map(p => <tr key={p.id} data-source-observation={p.id}>
+          <th scope="row">{p.label}<small>{p.preparation}</small></th>
+          <td>{pointDate(p)}<small>{p.datePrecision} precision · {p.dateBasis}</small></td>
+          <td>{pointValue(p)} {p.unit}</td>
+          <td><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a><p>{p.note}</p><p>Source excerpt: “{p.quote}”</p></td>
+        </tr>)}</tbody>
+      </table>
+    </div>
+    <ul className="pc-sources">{view.points.map(p => <li key={p.id}><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a></li>)}</ul>
+    {historical.state === "reading" && <details className="pc-provenance" data-recording-history>
+      <summary>Historical benchmarks · 1957–2014 · separate mixed-preparation reference</summary>
+      <p>Unchanged inherited tracker values with year precision; experiment dates not established. This is not a current maximum or a human-only BCI series, and is not pooled into the in-vivo electrical plot. No historical fit or extrapolation is shown.</p>
+      <div className="pc-table-scroll" role="region" aria-label="Historical recording benchmarks" tabIndex={0}>
+        <table><caption>Historical provider data · {historical.series!.length} retained checkpoints</caption>
+          <thead><tr><th scope="col">Tracker year</th><th scope="col">Reported neurons</th><th scope="col">Preparation / qualification</th></tr></thead>
+          <tbody>{historical.series!.map(p => <tr key={String(p.x)} data-historical-year={p.x} data-historical-value={p.y}>
+            <th scope="row">{p.x}<small>year precision · inherited tracker date</small></th>
+            <td>{p.x === 2014 ? "Approximately " : ""}{number(p.y)}</td>
+            <td>{p.x === 2014 ? <>Isolated neonatal mouse retina · ex vivo · approximate tracker estimate, not a human brain recording. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3979611/" target="_blank" rel="noreferrer">Maccione et al. (2014) ↗</a></> : "Preparation and unit-quality criteria are not specified in the inherited snapshot; not assumed comparable to modern brain recordings."}</td>
+          </tr>)}</tbody>
+        </table>
+      </div>
+      <ul>{historical.sources!.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a></li>)}</ul>
+      {historicalProvenance}
+    </details>}
+  </CurveCard>;
+}
+
 type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: string; source: { repository: string } };
 export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
   const includes = (id: string) => !selection || selection.includes(id);
-  const r = data.record;
-  const reading = r.state === "reading";
-  const neuronPlot: PlotData | undefined = reading ? {
-    title: r.metric!, unit: "neurons", scale: r.seriesScale!, line: true,
-    tracks: [{ id: "neuron-frontier", label: "Selected simultaneous-recording frontier" }],
-    points: r.series!.map(p => ({ date: `${p.x}-01-01`, value: p.y, track: "neuron-frontier", trackIndex: 0, label: `${p.x}: ${number(p.y)} neurons (year precision); shared Stevenson sources below` })),
-  } : undefined;
   const provenanceDetails = <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
       <p>Bounded, committed PL R&amp;D snapshot. Refreshed deliberately from a validated provider export, not an automatically updating feed.</p>
       <p>Export assembled <time dateTime={provenance.exportGeneratedAt}>{provenance.exportGeneratedAt}</time>. Observation and source-check dates above remain separate.</p>
@@ -314,26 +416,7 @@ export function PerformanceCurves({ data, provenance, selection, flat = false }:
       <p>Export SHA-256: <code>{provenance.sha256}</code></p>
     </details>;
   const cards = <>
-      {includes("simultaneously-recorded-neurons") && <CurveCard id="simultaneously-recorded-neurons" title={reading ? r.metric! : "Simultaneously recorded neurons"} eyebrow={reading ? "Historical series" : r.state.replaceAll("_", " ")} coverage={reading ? `${r.window} · selected recording frontier, not a current maximum or a human-only BCI series.` : (r.blocker ?? r.reason ?? "No reading available.")} plot={neuronPlot}>
-        {reading ? <>
-          <section className="pc-methodology" aria-label="Neuron curve definitions and methodology">
-            <h4>Definitions &amp; methodology</h4><p>{data.definition.description}</p>
-            <p className="pc-reading">{r.value}</p>
-            <p>Historical trend: {r.trend}. This retained series does not establish the current frontier or current acceleration.</p>
-            <p className="pc-caveat">Simultaneously recorded neurons are not electrode channels, participant counts or recording-hours. The source supplies year-level frontier checkpoints, not an annual series. No post-2014 observations have been added.</p>
-            <p>Last observation {r.measuredAt} (year precision). Source checked {r.checkedAt}. Historical series; observation date is not the export date.</p>
-            <p>{data.methodology.stocksAndFlows}</p>
-          </section>
-          <div className="pc-table-scroll" role="region" aria-label="Neuron frontier source data" tabIndex={0}>
-            <table><caption>Sources &amp; chart data · {r.series!.length} observations</caption>
-              <thead><tr><th scope="col">Year</th><th scope="col">Simultaneously recorded neurons</th><th scope="col">Source basis</th></tr></thead>
-              <tbody>{r.series!.map(p => <tr key={String(p.x)} data-source-observation={`neuron-frontier:${p.x}`}><th scope="row">{p.x}</th><td className="tnum">{number(p.y)}</td><td>Selected frontier checkpoint · year precision</td></tr>)}</tbody>
-            </table>
-          </div>
-          <ul className="pc-sources">{r.sources!.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a></li>)}</ul>
-        </> : <p>{r.candidateMetric ?? r.reason}</p>}
-        {flat && provenanceDetails}
-      </CurveCard>}
+      {includes("simultaneously-recorded-neurons") && <RecordingCard historical={data.record} historicalProvenance={provenanceDetails} />}
       {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} provenance={flat ? provenanceDetails : undefined} />)}
       {!flat && includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>

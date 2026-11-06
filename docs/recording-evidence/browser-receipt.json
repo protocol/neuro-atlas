@@ -1,0 +1,258 @@
+{
+  "status": "PASS",
+  "runtime_sha": "fe9b870470e780c1cb57cf86f14c36d34cd6957c",
+  "cases": [
+    {
+      "width": 1440,
+      "view": "electrical",
+      "values": [
+        741,
+        2668,
+        1012
+      ],
+      "geometry": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440,
+        "modal": {
+          "x": 220,
+          "y": 16,
+          "width": 1000,
+          "height": 968,
+          "top": 16,
+          "right": 1220,
+          "bottom": 984,
+          "left": 220
+        }
+      },
+      "initial_visible_marks": 3,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true,
+      "clipboard_png_bytes": 775074,
+      "download_callback_png_bytes": 852914,
+      "download_name": "neuro-atlas-simultaneously-recorded-neurons.png",
+      "download_qualification": "native callback + browser-produced PNG; final download link intercepted"
+    },
+    {
+      "width": 1440,
+      "view": "human-channels",
+      "values": [
+        256,
+        3000
+      ],
+      "geometry": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440,
+        "modal": {
+          "x": 220,
+          "y": 16,
+          "width": 1000,
+          "height": 968,
+          "top": 16,
+          "right": 1220,
+          "bottom": 984,
+          "left": 220
+        }
+      },
+      "initial_visible_marks": 2,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true,
+      "clipboard_png_bytes": 707263,
+      "download_callback_png_bytes": 781894,
+      "download_name": "neuro-atlas-simultaneously-recorded-neurons.png",
+      "download_qualification": "native callback + browser-produced PNG; final download link intercepted"
+    },
+    {
+      "width": 1440,
+      "view": "optical",
+      "values": [
+        1136223
+      ],
+      "geometry": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440,
+        "modal": {
+          "x": 220,
+          "y": 16,
+          "width": 1000,
+          "height": 968,
+          "top": 16,
+          "right": 1220,
+          "bottom": 984,
+          "left": 220
+        }
+      },
+      "initial_visible_marks": 1,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true,
+      "clipboard_png_bytes": 498141,
+      "download_callback_png_bytes": 552740,
+      "download_name": "neuro-atlas-simultaneously-recorded-neurons.png",
+      "download_qualification": "native callback + browser-produced PNG; final download link intercepted"
+    },
+    {
+      "width": 390,
+      "view": "electrical",
+      "values": [
+        741,
+        2668,
+        1012
+      ],
+      "geometry": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 374,
+          "height": 984,
+          "top": 8,
+          "right": 382,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 2,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    },
+    {
+      "width": 390,
+      "view": "human-channels",
+      "values": [
+        256,
+        3000
+      ],
+      "geometry": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 374,
+          "height": 984,
+          "top": 8,
+          "right": 382,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 1,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    },
+    {
+      "width": 390,
+      "view": "optical",
+      "values": [
+        1136223
+      ],
+      "geometry": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 374,
+          "height": 984,
+          "top": 8,
+          "right": 382,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 1,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    },
+    {
+      "width": 320,
+      "view": "electrical",
+      "values": [
+        741,
+        2668,
+        1012
+      ],
+      "geometry": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 304,
+          "height": 984,
+          "top": 8,
+          "right": 312,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 2,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    },
+    {
+      "width": 320,
+      "view": "human-channels",
+      "values": [
+        256,
+        3000
+      ],
+      "geometry": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 304,
+          "height": 984,
+          "top": 8,
+          "right": 312,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 1,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    },
+    {
+      "width": 320,
+      "view": "optical",
+      "values": [
+        1136223
+      ],
+      "geometry": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320,
+        "modal": {
+          "x": 8,
+          "y": 8,
+          "width": 304,
+          "height": 984,
+          "top": 8,
+          "right": 312,
+          "bottom": 992,
+          "left": 8
+        }
+      },
+      "initial_visible_marks": 1,
+      "keyboard_point_details": true,
+      "no_scenario_or_joined_curve": true
+    }
+  ],
+  "F1_denied_copy_view_switch_recipient": "PASS; explicitly injected clipboard rejection, native controls and recipient reload",
+  "view_link_reload_and_history": true,
+  "search_manley": true,
+  "dark_render": true,
+  "surface": "loopback viewer of exact production-built native route; hosted auth unchanged",
+  "download_qualification": "real Download PNG callback and PNG generation, final link intercepted to avoid shared download-context mutation"
+}

@@ -92,7 +92,10 @@ test('the real page retires only the duplicate hours reference, its self-link an
       await search(term);
       assert.equal(card().closest('[hidden]'), null, term);
       assert.equal(card().querySelectorAll('svg.draft-plot-svg').length, 1);
-      assert.equal(visible('#metric-category-3 [data-performance-card]').length, 0, 'search does not revive old reference or match unrelated neuron view');
+      // Neuralink now legitimately matches the separate human implant-channel
+      // view in the refreshed recording card; it still never revives old hours.
+      assert.equal(visible('#metric-category-3 [data-performance-card]').length, term === 'Neuralink' ? 1 : 0, 'only the newly source-qualified recording match is allowed');
+      if (term === 'Neuralink') assert.equal(visible('#metric-category-3 [data-performance-card]')[0].dataset.performanceCard, 'simultaneously-recorded-neurons');
     }
     await click(document.querySelector('[data-clear-metrics]'));
     await click(document.querySelector('[data-collapse-metrics]'));

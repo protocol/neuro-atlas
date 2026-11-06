@@ -394,3 +394,48 @@ test('actual public-data PNG payload retains measurement date, existing specimen
   assert.match(text,/Resource size \(PB\)/);assert.doesNotMatch(text,/decimal PB/);assert.equal(doc.window.document.querySelectorAll('[data-source-observation]').length,6);doc.window.close();
  }finally{await cleanup();boundary.restore()}
 });
+
+
+import { RECORDING_VIEWS } from '../src/data/recording-evidence.ts';
+for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link`, async () => {
+  let boundary;
+  const cleanup = await mount(React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance }), '#simultaneously-recorded-neurons', win => { boundary = browserBoundaries(win); });
+  try {
+    const modal = document.querySelector('dialog');
+    const select = modal.querySelector('[data-recording-view-select]');
+    await act(async () => { select.value = view.id; select.dispatchEvent(new Event('change', { bubbles: true })); });
+    const geometry = root => [...root.querySelectorAll('[data-curve-point]')].map(p => ['data-curve-point', 'data-value', 'cx', 'cy'].map(a => p.getAttribute(a)));
+    const expected = geometry(modal);
+    // Pointer-only detail must not become an arbitrary frozen tooltip in PNG.
+    const point = modal.querySelector('[data-curve-point]');
+    await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
+    assert.ok(modal.querySelector('.pc-point-readout').textContent);
+    await click(modal.querySelector('[data-copy-chart]'));
+    assert.equal(boundary.writes.length, 1, modal.textContent);
+    const url = `https://atlas.example/field-velocity?recordingView=${view.id}#simultaneously-recorded-neurons`;
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), url);
+    await click(modal.querySelector('[data-download-chart]'));
+    assert.equal(boundary.downloads.length, 1);
+    assert.equal(boundary.svgs.length, 2);
+    for (const serialized of boundary.svgs) {
+      const { JSDOM } = await import('jsdom');
+      const out = new JSDOM(serialized, { contentType: 'image/svg+xml' });
+      assert.deepEqual(geometry(out.window.document), expected);
+      const visible = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
+      assert.ok(visible.includes(view.label));
+      assert.match(visible, /2026-11-04/);
+      assert.match(visible, /not experiment or implantation dates/);
+      for (const p of view.points) {
+        assert.ok(visible.includes(p.preparation), p.preparation);
+        assert.ok(visible.includes(p.unit), p.unit);
+        assert.ok(visible.includes(`${p.datePrecision} precision, ${p.dateBasis}`));
+        assert.ok(visible.includes(p.sourceUrl), p.sourceUrl);
+        assert.ok(visible.includes(p.note), p.note);
+      }
+      assert.equal(out.window.document.querySelector('[role=status], [data-extrapolation-line], polyline'), null);
+      assert.doesNotMatch(visible, /review=1|token=/);
+      out.window.close();
+    }
+    if (view.id === 'human-channels') assert.match(boundary.svgs[0], /Approximately 3,000/);
+  } finally { await cleanup(); boundary.restore(); }
+});

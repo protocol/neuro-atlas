@@ -18,7 +18,9 @@ test("performance UI offers three compact dialog triggers and share controls wit
   assert.equal((html.match(/data-performance-card=/g) ?? []).length, 3);
   assert.equal((html.match(/data-source-observation=/g) ?? []).length, 0);
   assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 3);
-  assert.match(html, /1957 → 2014/);
-  assert.match(html, /not a current maximum or a human-only BCI series/);
+  // This card now previews audited modern electrical observations, not the
+  // retired pooled historical frontier. The original data live in its disclosure.
+  assert.match(html, /Three separate measurement views/);
+  assert.match(html, /Preview: in-vivo electrical units/);
   assert.doesNotMatch(html, /<dialog|bci-implants|<details[^>]*data-performance-card/);
 });

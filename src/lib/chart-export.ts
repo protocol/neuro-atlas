@@ -1,4 +1,5 @@
 import { performanceUrl } from "@/lib/field-velocity/navigation";
+import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "line" | "dashed" };
 export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; legend?: ChartLegendEntry[] };
@@ -9,12 +10,15 @@ const attributes = new Set(["viewBox", "preserveAspectRatio", "x", "y", "x1", "x
 const styles = ["fill", "fill-opacity", "fill-rule", "stroke", "stroke-width", "stroke-opacity", "stroke-dasharray", "stroke-dashoffset", "stroke-linecap", "stroke-linejoin", "opacity", "font-size", "font-weight", "font-style", "text-anchor", "dominant-baseline", "paint-order", "letter-spacing"];
 const escape = (text: string) => text.replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!);
 
-/** Share only the stable origin/path/validated fragment, never credentials or query tokens.
- * Navigation and the existing Copy link controls retain their original URL contract. */
+/** Share stable chart identity, never credentials or arbitrary query tokens.
+ * Only this chart's exact, single enum may carry measurement-view state.
+ * Navigation and existing Copy link controls retain their original URL contract. */
 export function chartShareUrl(current: string, anchor: string) {
   const url = new URL(performanceUrl(current, anchor));
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
+  const recordingView = anchor === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
   url.username = ""; url.password = ""; url.search = "";
+  if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   return url.href;
 }
 

@@ -46,7 +46,9 @@ test('Milestones plots sourced cumulative capital only, scaled to observations i
 const snapshot = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8'));
 const data = selectPerformance(snapshot);
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
-for (const id of ['simultaneously-recorded-neurons', 'neural-recording-hours']) {
+// Recording evidence no longer offers an extrapolation switch at all; its
+// three-view regression is in recording-evidence-ui.test.mjs. Hours retain PR78.
+for (const id of ['neural-recording-hours']) {
   test(`${id} starts and reopens with extrapolation Off`, async () => {
     const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#' + id, window => {
       window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });

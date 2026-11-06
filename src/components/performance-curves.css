@@ -43,6 +43,9 @@
 .pc-track-select { display: flex; gap: .65rem; flex-wrap: wrap; align-items: center; font-size: .75rem; margin: .8rem 0; }
 .pc-track-select select { min-width: 0; max-width: 100%; border: 1px solid var(--border-strong); border-radius: .5rem; padding: .55rem .7rem; background: var(--surface); color: var(--foreground); }
 .pc-track-select > span { color: var(--muted); font-size: .65rem; }
+/* The bounded native measurement selector wraps below its label even at 320px. */
+.pc-recording-view { display: grid; grid-template-columns: minmax(0, 1fr); }
+.pc-recording-view select { min-width: 0; width: 100%; max-width: 100%; min-height: 44px; }
 .pc-legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin: .8rem 0 1.1rem; font-size: .65rem; color: var(--muted); }
 .pc-legend li { display: flex; align-items: center; gap: .4rem; }
 .pc-legend li > span { height: .5rem; width: .5rem; border-radius: 50%; flex-shrink: 0; }

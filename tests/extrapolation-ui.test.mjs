@@ -41,26 +41,22 @@ test('canonical source bytes and unmodified tissue chart are preserved', async (
   } finally { await cleanup(); }
 });
 
-for (const [name, transform, expected] of [
-  ['flat', () => 651, /No fit: insufficient comparable history or invalid\/non-growing data/],
-  ['decreasing', (_, i) => 100 - i, /No fit: insufficient comparable history or invalid\/non-growing data/],
-  ['slow', (_, i) => 2 + i / 100, /beyond 2200 display range/],
-]) test(`${name} neuron history shows no invented crossing date`, async () => {
+// The refreshed recording card deliberately removes the historical growth UI.
+// Pure legacy-fit math is still covered by extrapolation*.test.mjs. A changed
+// inherited reference can never become a fit over new mixed measurements.
+for (const [name, transform] of [['flat', () => 651], ['decreasing', (_, i) => 100 - i], ['slow', (_, i) => 2 + i / 100]]) test(`${name} inherited neuron history never enables a fit in modern recording views`, async () => {
   const changed = structuredClone(data);
   changed.record.series = changed.record.series.map((p, i) => ({ ...p, y: transform(p.y, i) }));
   const cleanup = await mount(React.createElement(PerformanceCurves, { data: changed, provenance }), '#simultaneously-recorded-neurons');
   try {
-    await click(document.querySelector('[role="switch"]'));
     const dialog = document.querySelector('dialog');
-    assert.equal(dialog.querySelectorAll('[data-target-line]').length, 2);
-    assert.match(dialog.querySelector('[data-extrapolation-summary]').textContent, expected);
-    for (const label of dialog.querySelectorAll('[data-crossing-label]')) assert.doesNotMatch(label.textContent, /≈\d{4}/);
-    if (name !== 'slow') assert.equal(dialog.querySelector('[data-extrapolation-line]'), null);
+    assert.equal(dialog.querySelector('[role=switch], [data-extrapolation-line], [data-target-line], [data-fit-diagnostics]'), null);
+    assert.deepEqual([...dialog.querySelectorAll('[data-curve-point]')].map(p => Number(p.dataset.value)), [741, 2668, 1012]);
   } finally { await cleanup(); }
 });
 
 test('forecast layout reserves readable label rows and 720px internal scrolling without changing off sizing', async () => {
-  const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#simultaneously-recorded-neurons');
+  const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#neural-recording-hours');
   try {
     const style = document.createElement('style');
     style.textContent = readFileSync('src/components/performance-curves.css', 'utf8');
@@ -141,78 +137,9 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
   } finally { await cleanup(); }
 });
 
-test('neuron modal opt-in adds a connected dashed continuation and restores exact baseline SVG when off', async () => {
-  const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#simultaneously-recorded-neurons');
-  try {
-    const dialog = document.querySelector('dialog[open]');
-    const toggle = dialog.querySelector('button[role="switch"]');
-    assert.ok(toggle, 'Extrapolation needs an accessible expanded-chart switch');
-    assert.equal(toggle.getAttribute('aria-checked'), 'false');
-    assert.match(toggle.textContent, /Extrapolation/);
-    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
-    const source = dialog.querySelector('table').outerHTML;
-    const previews = [...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML);
-    const url = window.location.href;
-    await click(toggle);
-    assert.equal(toggle.getAttribute('aria-checked'), 'true');
-    assert.equal(document.querySelectorAll('[role="switch"]').length, 1, 'No preview-card switch');
-    assert.equal(dialog.querySelectorAll('[data-target-line]').length, 2);
-    const model = dialog.querySelector('[data-extrapolation-line]');
-    assert.ok(model);
-    assert.match(model.getAttribute('stroke-dasharray'), /\d+ \d+/);
-    const lastActual = [...dialog.querySelectorAll('[data-curve-point]')].at(-1);
-    assert.equal(model.getAttribute('points').split(' ')[0], `${lastActual.getAttribute('cx')},${lastActual.getAttribute('cy')}`);
-    assert.equal(dialog.querySelectorAll('[data-curve-point]').length, 7);
-    assert.equal(dialog.querySelectorAll('[data-source-observation]').length, 7);
-    const summary = dialog.querySelector('[data-extrapolation-summary]');
-    assert.match(summary.textContent, /Historical exponential continuation/);
-    assert.match(summary.textContent, /not a current forecast/i);
-    assert.match(summary.textContent, /2094/);
-    assert.match(summary.textContent, /2150/);
-    assert.match(summary.textContent, /5\.5.*7 selected points/);
-    assert.match(summary.textContent, /not.*7.year.*literature/i);
-    assert.match(summary.textContent, /mixed.species/i);
-    assert.match(summary.textContent, /spatial.*temporal/i);
-    assert.match(dialog.querySelector('svg').textContent, /2080/);
-    assert.match(dialog.querySelector('svg').textContent, /2120/);
-    assert.equal(dialog.querySelector('table').outerHTML, source);
-    assert.deepEqual([...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML), previews);
-    assert.equal(window.location.href, url, 'Toggling never changes share/history state');
-    await click(toggle);
-    assert.equal(toggle.getAttribute('aria-checked'), 'false');
-    assert.equal(dialog.querySelector('[data-extrapolation-summary]'), null);
-    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['simultaneously-recorded-neurons']);
-    assert.equal(dialog.querySelector('table').outerHTML, source);
-    await click(dialog.querySelector('.pc-modal-header button')); await settle();
-    await click(document.querySelector('[data-performance-card="simultaneously-recorded-neurons"] .pc-trigger'));
-    assert.equal(document.querySelector('[role="switch"]').getAttribute('aria-checked'), 'false', 'New modal opens opt-out');
-  } finally { await cleanup(); }
-});
-
-test('scenario controls expose log R², real alternative dates and count-equivalent references', async () => {
- const cleanup=await mount(React.createElement(PerformanceCurves,{data,provenance}),'#simultaneously-recorded-neurons');
- try {
-  const dialog=document.querySelector('dialog');
-  assert.equal(dialog.querySelector('[data-scenario-select]'),null);
-  await click(dialog.querySelector('[role="switch"]'));
-  const select=dialog.querySelector('[data-scenario-select]');
-  assert.ok(select,'Scenario selector is visible only when enabled');
-  assert.match(dialog.querySelector('[data-fit-diagnostics]').textContent,/0\.929/);
-  assert.match(dialog.textContent,/not.*probability|not.*forecast confidence/i);
-  assert.match(dialog.querySelector('svg').textContent,/Mouse brain neuron-count equivalent/);
-  assert.doesNotMatch(dialog.querySelector('svg').textContent,/whole-brain live target/);
-  const before=dialog.querySelector('[data-extrapolation-line]').getAttribute('points');
-  for(const [mode,year,n] of [['recent','2085','4'],['literature','2115','7']]) {
-   await act(async()=>{select.value=mode;select.dispatchEvent(new Event('change',{bubbles:true}));});
-   assert.match(dialog.querySelector('[data-extrapolation-summary]').textContent,new RegExp(year));
-   assert.match(dialog.querySelector('[data-fit-diagnostics]').textContent,new RegExp(`${n} observations`));
-   assert.notEqual(dialog.querySelector('[data-extrapolation-line]').getAttribute('points'),before);
-  }
-  assert.match(dialog.textContent,/No post-2014 observations have been added/);
-  await click(dialog.querySelector('[role="switch"]'));
-  assert.equal(svgSha(dialog.querySelector('svg').outerHTML),baseline['simultaneously-recorded-neurons']);
- } finally {await cleanup();}
-});
+// Historical neuron opt-in/fit-control UI assertions were superseded by the
+// observed-only three-view recording contract (recording-evidence-ui.test.mjs).
+// No changes to the shared extrapolation math or the hours UI are authorized.
 test('hours scenarios expose the old flat tail beside the chart and remove optimistic dates under plateau',async()=>{
  const cleanup=await mount(React.createElement(PerformanceCurves,{data,provenance}),'#neural-recording-hours');
  try{
