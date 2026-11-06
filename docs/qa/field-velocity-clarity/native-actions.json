@@ -1,0 +1,121 @@
+[
+  {
+    "clipboardTypes": [
+      [
+        "text/plain",
+        "text/html",
+        "image/png"
+      ]
+    ],
+    "status": " Chart copied. The receiving app chooses which clipboard formats to paste.",
+    "permissionRestoredTo": "prompt"
+  },
+  {
+    "width": 1440,
+    "actions": [
+      {
+        "label": "Copy link",
+        "left": 241,
+        "right": 310.0625,
+        "top": 107.96875,
+        "height": 36,
+        "radius": "999px"
+      },
+      {
+        "label": "Copy chart",
+        "left": 315.65625,
+        "right": 393.421875,
+        "top": 107.96875,
+        "height": 36,
+        "radius": "999px"
+      },
+      {
+        "label": "Download PNG",
+        "left": 399.015625,
+        "right": 499.53125,
+        "top": 107.96875,
+        "height": 36,
+        "radius": "999px"
+      }
+    ],
+    "inflectionCards": 4,
+    "relatedMeasurement": "Selected chronic intracortical recipients"
+  },
+  {
+    "width": 390,
+    "actions": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "right": 94.0625,
+        "top": 91.96875,
+        "height": 44,
+        "radius": "999px"
+      },
+      {
+        "label": "Copy chart",
+        "left": 99.65625,
+        "right": 177.421875,
+        "top": 91.96875,
+        "height": 44,
+        "radius": "999px"
+      },
+      {
+        "label": "Download PNG",
+        "left": 183.015625,
+        "right": 283.53125,
+        "top": 91.96875,
+        "height": 44,
+        "radius": "999px"
+      }
+    ],
+    "inflectionCards": 4,
+    "relatedMeasurement": "Selected chronic intracortical recipients"
+  },
+  {
+    "width": 320,
+    "actions": [
+      {
+        "label": "Copy link",
+        "left": 25,
+        "right": 94.0625,
+        "top": 108.375,
+        "height": 44,
+        "radius": "999px"
+      },
+      {
+        "label": "Copy chart",
+        "left": 99.65625,
+        "right": 177.421875,
+        "top": 108.375,
+        "height": 44,
+        "radius": "999px"
+      },
+      {
+        "label": "Download PNG",
+        "left": 183.015625,
+        "right": 283.53125,
+        "top": 108.375,
+        "height": 44,
+        "radius": "999px"
+      }
+    ],
+    "inflectionCards": 4,
+    "relatedMeasurement": "Selected chronic intracortical recipients"
+  },
+  {
+    "resizeWithoutReload": 390,
+    "height": 897,
+    "maxGap": 0.234375
+  },
+  {
+    "resizeWithoutReload": 320,
+    "height": 1053,
+    "maxGap": 0.0625
+  },
+  {
+    "resizeWithoutReload": 1440,
+    "height": 647,
+    "maxGap": 0.015625
+  }
+]
