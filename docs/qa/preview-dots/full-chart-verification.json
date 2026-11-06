@@ -1,0 +1,578 @@
+[
+  {
+    "anchor": "neurotech-papers-per-year",
+    "title": "Neurotech papers per year",
+    "marks": [
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 5.000141785144242,
+        "screenRadius": 4.99997829418929,
+        "exportRadius": "5"
+      }
+    ]
+  },
+  {
+    "anchor": "publication-growth",
+    "title": "Publication growth by group",
+    "marks": [
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 3.9023883079847907,
+        "exportRadius": null
+      }
+    ]
+  },
+  {
+    "anchor": "citation-latency",
+    "title": "Citation latency",
+    "marks": [
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      },
+      {
+        "tag": "circle",
+        "r": 6.428714926672471,
+        "screenRadius": 5,
+        "exportRadius": "5"
+      }
+    ]
+  },
+  {
+    "anchor": "neural-recording-hours",
+    "title": "Neural recording hours \u2014 selected datasets",
+    "marks": [
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 10,
+        "screenRadius": 10,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 15,
+        "screenRadius": 15,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 10,
+        "screenRadius": 10,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 15,
+        "screenRadius": 15,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 10,
+        "screenRadius": 10,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      },
+      {
+        "tag": "circle",
+        "r": 5,
+        "screenRadius": 5,
+        "exportRadius": null
+      }
+    ]
+  }
+]

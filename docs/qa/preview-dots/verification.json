@@ -1,0 +1,15 @@
+{
+  "baselineRuntime": "c940a1343e6d9c4dd52ebae805f59458e6026ea5 (source-equivalent to main 592c039; diff verified)",
+  "candidateRuntime": "7a36dbafcbd1cded805ccf3395e051f760d05f59",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "cards": 24,
+  "marksPerWidth": 167,
+  "checks": 501,
+  "radiusRatio": 1.8,
+  "cardHeights": "unchanged",
+  "pointCentersAndData": "unchanged"
+}
