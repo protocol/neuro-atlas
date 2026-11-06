@@ -42,3 +42,9 @@ exec(open('scripts/qa/affiliation-sankey-browser.py').read())
 ```
 
 Serve an isolated production build bound only to loopback with the existing documented local QA fixture; never change hosted auth or copy that fixture into the release branch. `NEXT_PUBLIC_BASE_PATH=/neuro-atlas` is the actual build setting. Fresh task-specific query values avoid reusing a same-URL document from a previous revision.
+
+## PR87 conflict reconciliation
+
+The subsequent growth-chart merge (`633ca1a`) landed after the earlier clean handoff. Neutral reconciliation commit `899f8e9c9b6f9ff3e5f78f88506f49b48cb0a4a5` combines both chart intents. Fresh focused publication/shared-export/tooltip tests, typecheck and a production build passed. The incoming annual, sector and all growth rendering/viewport functions remain byte-identical to current main; Sankey component/layout/data remain byte-identical to the prior reviewed feature head. Auth, shared typography, source popover and branded exporter remain unchanged.
+
+The real browser Sankey replay passed again at 1440/390/320, including all sixteen cells, labels, same-sector endpoints, source JSON/popover and native PNG. The new native PNG is byte-identical to the reviewed 970,014-byte export retained here. Native growth controls were also exercised in both directions: General science → Matched (nine reference ticks) → General science (zero ticks), with all 21 rows and native selector focus preserved. Retained screenshots keep their original capture provenance; the fresh replay confirms the Sankey rendering is unchanged after the growth integration.

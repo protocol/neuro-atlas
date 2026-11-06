@@ -18,7 +18,7 @@ The producer and contract validation own the additive complete matrix and cohort
 
 `src/lib/publication-sankey.ts` places both columns using one common count scale. Minimum **label slots** reserve readable text space, but do not inflate node heights or ribbon widths. Every positive ribbon has width `count × scale`; explicit zero cells remain in the source table but have no fabricated ribbon.
 
-`src/components/publication-sankey.tsx` shares that geometry between compact preview and full detail. Preview labels stay at 11 CSS pixels; the full graph retains a 900px internal plotting width, with local scrolling on narrow displays. Node names and counts are directly labeled. Each ribbon supports pointer movement, focus, Enter/Space and tap/click for exact counts, within-origin share and endpoint interpretation. A stationary pointer does not preselect inspection.
+`src/components/publication-sankey.tsx` shares that geometry between compact preview and full detail. Preview and expanded labels use the shared 12 CSS pixel type contract; the full graph retains a 900px internal plotting width, with local scrolling on narrow displays. Node names and counts are directly labeled. Each ribbon supports pointer movement, focus, Enter/Space and tap/click for exact counts, within-origin share and endpoint interpretation. A stationary pointer does not preselect inspection.
 
 Copy chart / Download PNG use the complete viewBox, source notes and per-origin values for all sixteen cells. Explicit base SVG paints keep transient ribbon emphasis out of exported images. Source JSON retains the full endpoint matrix, cohort audit and archived changed-only matrix.
 
