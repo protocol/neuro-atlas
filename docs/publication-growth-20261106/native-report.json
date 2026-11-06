@@ -1,0 +1,569 @@
+[
+  {
+    "width": 1440,
+    "height": 1000,
+    "default": {
+      "rows": 21,
+      "minFontPx": 16.754185267857142,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440
+      }
+    },
+    "context": {
+      "low": 24.419082870655973,
+      "high": 34.66995681677976,
+      "total": 65.09356364384125,
+      "color": "rgb(166, 176, 191)",
+      "dash": "5 5",
+      "x1": "339.95116183425864",
+      "x2": "339.95116183425864"
+    },
+    "axes": [
+      {
+        "plot": {
+          "x": 241,
+          "y": 243.515625,
+          "width": 943,
+          "height": 680,
+          "top": 243.515625,
+          "right": 1184,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "axis": {
+          "x": 241,
+          "y": 850.34375,
+          "width": 928,
+          "height": 73.171875,
+          "top": 850.34375,
+          "right": 1169,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "viewport": 1000,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 498.7946428571429,
+            "expected": 498.7785481239804
+          },
+          {
+            "x": 637.3388671875,
+            "expected": 637.3335861031811
+          },
+          {
+            "x": 775.8830915178572,
+            "expected": 775.8886240823817
+          },
+          {
+            "x": 914.4273158482143,
+            "expected": 914.4436620615824
+          },
+          {
+            "x": 1052.9715401785716,
+            "expected": 1052.998700040783
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 241,
+          "y": 243.515625,
+          "width": 943,
+          "height": 680,
+          "top": 243.515625,
+          "right": 1184,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "axis": {
+          "x": 241,
+          "y": 850.34375,
+          "width": 928,
+          "height": 73.171875,
+          "top": 850.34375,
+          "right": 1169,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "viewport": 1000,
+        "scrollTop": 451,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 498.7946428571429,
+            "expected": 498.7785481239804
+          },
+          {
+            "x": 637.3388671875,
+            "expected": 637.3335861031811
+          },
+          {
+            "x": 775.8830915178572,
+            "expected": 775.8886240823817
+          },
+          {
+            "x": 914.4273158482143,
+            "expected": 914.4436620615824
+          },
+          {
+            "x": 1052.9715401785716,
+            "expected": 1052.998700040783
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 241,
+          "y": 243.515625,
+          "width": 943,
+          "height": 680,
+          "top": 243.515625,
+          "right": 1184,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "axis": {
+          "x": 241,
+          "y": 850.34375,
+          "width": 928,
+          "height": 73.171875,
+          "top": 850.34375,
+          "right": 1169,
+          "bottom": 923.515625,
+          "left": 241
+        },
+        "viewport": 1000,
+        "scrollTop": 901,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 498.7946428571429,
+            "expected": 498.7785481239804
+          },
+          {
+            "x": 637.3388671875,
+            "expected": 637.3335861031811
+          },
+          {
+            "x": 775.8830915178572,
+            "expected": 775.8886240823817
+          },
+          {
+            "x": 914.4273158482143,
+            "expected": 914.4436620615824
+          },
+          {
+            "x": 1052.9715401785716,
+            "expected": 1052.998700040783
+          }
+        ]
+      }
+    ],
+    "horizontal": {
+      "offset": 0,
+      "width": 928,
+      "client": 928,
+      "delta": 0
+    },
+    "alternatives": {
+      "rows": 21,
+      "minFontPx": 16.754185267857142,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440
+      }
+    },
+    "wheel": true,
+    "historyFocus": true,
+    "sourceJsonComplete": true
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "default": {
+      "rows": 21,
+      "minFontPx": 13,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    "context": {
+      "low": 24.419082870655973,
+      "high": 34.66995681677976,
+      "total": 65.09356364384125,
+      "color": "rgb(166, 176, 191)",
+      "dash": "5 5",
+      "x1": "339.95116183425864",
+      "x2": "339.95116183425864"
+    },
+    "axes": [
+      {
+        "plot": {
+          "x": 25,
+          "y": 249.265625,
+          "width": 325,
+          "height": 570,
+          "top": 249.265625,
+          "right": 350,
+          "bottom": 819.265625,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.265625,
+          "width": 720,
+          "height": 57,
+          "top": 747.265625,
+          "right": 745,
+          "bottom": 804.265625,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 25,
+          "y": 249.265625,
+          "width": 325,
+          "height": 570,
+          "top": 249.265625,
+          "right": 350,
+          "bottom": 819.265625,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.265625,
+          "width": 720,
+          "height": 57,
+          "top": 747.265625,
+          "right": 745,
+          "bottom": 804.265625,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 336,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 25,
+          "y": 249.265625,
+          "width": 325,
+          "height": 570,
+          "top": 249.265625,
+          "right": 350,
+          "bottom": 819.265625,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.265625,
+          "width": 720,
+          "height": 57,
+          "top": 747.265625,
+          "right": 745,
+          "bottom": 804.265625,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 672,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      }
+    ],
+    "horizontal": {
+      "offset": 410,
+      "width": 720,
+      "client": 310,
+      "delta": 0
+    },
+    "alternatives": {
+      "rows": 21,
+      "minFontPx": 13,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    "wheel": true,
+    "historyFocus": true,
+    "sourceJsonComplete": true
+  },
+  {
+    "width": 320,
+    "height": 844,
+    "default": {
+      "rows": 21,
+      "minFontPx": 13,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    },
+    "context": {
+      "low": 24.419082870655973,
+      "high": 34.66995681677976,
+      "total": 65.09356364384125,
+      "color": "rgb(166, 176, 191)",
+      "dash": "5 5",
+      "x1": "339.95116183425864",
+      "x2": "339.95116183425864"
+    },
+    "axes": [
+      {
+        "plot": {
+          "x": 25,
+          "y": 280.546875,
+          "width": 255,
+          "height": 539,
+          "top": 280.546875,
+          "right": 280,
+          "bottom": 819.546875,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.546875,
+          "width": 720,
+          "height": 57,
+          "top": 747.546875,
+          "right": 745,
+          "bottom": 804.546875,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 0,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 25,
+          "y": 280.546875,
+          "width": 255,
+          "height": 539,
+          "top": 280.546875,
+          "right": 280,
+          "bottom": 819.546875,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.546875,
+          "width": 720,
+          "height": 57,
+          "top": 747.546875,
+          "right": 745,
+          "bottom": 804.546875,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 352,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      },
+      {
+        "plot": {
+          "x": 25,
+          "y": 280.546875,
+          "width": 255,
+          "height": 539,
+          "top": 280.546875,
+          "right": 280,
+          "bottom": 819.546875,
+          "left": 25
+        },
+        "axis": {
+          "x": 25,
+          "y": 747.546875,
+          "width": 720,
+          "height": 57,
+          "top": 747.546875,
+          "right": 745,
+          "bottom": 804.546875,
+          "left": 25
+        },
+        "viewport": 844,
+        "scrollTop": 703,
+        "scrollLeft": 0,
+        "ticks": [
+          {
+            "x": 225,
+            "expected": 225
+          },
+          {
+            "x": 332.5,
+            "expected": 332.5
+          },
+          {
+            "x": 440,
+            "expected": 440
+          },
+          {
+            "x": 547.5,
+            "expected": 547.5
+          },
+          {
+            "x": 655,
+            "expected": 655
+          }
+        ]
+      }
+    ],
+    "horizontal": {
+      "offset": 480,
+      "width": 720,
+      "client": 240,
+      "delta": 0
+    },
+    "alternatives": {
+      "rows": 21,
+      "minFontPx": 13,
+      "sourceParity": true,
+      "horizontalStems": true,
+      "endpointLabels": true,
+      "overflow": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    },
+    "wheel": true,
+    "historyFocus": true,
+    "sourceJsonComplete": true
+  }
+]
