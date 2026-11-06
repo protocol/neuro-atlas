@@ -12,6 +12,7 @@ export function usePointTooltip<T>(points?: readonly T[]) {
   const [focused, setFocused] = useState<Selection<T> | null>(null);
   const [pinned, setPinned] = useState<Selection<T> | null>(null);
   const suppressFocus = useRef(false);
+  const dismissed = useRef(false);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cancelLeave = () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); };
   const leave = () => {
@@ -24,6 +25,7 @@ export function usePointTooltip<T>(points?: readonly T[]) {
   useEffect(() => () => cancelLeave(), []);
   const current = [focused, pinned, hovered].find(selection => selection && (!points || points.includes(selection.point))) ?? null;
   const dismiss = (restoreFocus = false) => {
+    dismissed.current = true;
     cancelLeave();
     setHovered(null); setFocused(null); setPinned(null);
     if (restoreFocus && current) {
@@ -35,7 +37,7 @@ export function usePointTooltip<T>(points?: readonly T[]) {
   useEffect(() => {
     if (!current) return;
     const escape = (event: globalThis.KeyboardEvent) => {
-      if (event.key !== "Escape") return;
+      if (event.key !== "Escape" || dismissed.current) return;
       event.preventDefault(); event.stopPropagation();
       dismiss(true);
     };
@@ -49,13 +51,13 @@ export function usePointTooltip<T>(points?: readonly T[]) {
       const selection = (trigger: Element) => ({ point, anchor: getAnchor?.(trigger) ?? trigger, trigger });
       const toggle = (trigger: Element) => {
         if (pinned?.point === point) dismiss();
-        else { setFocused(null); setPinned(selection(trigger)); }
+        else { dismissed.current = false; setFocused(null); setPinned(selection(trigger)); }
       };
       return {
         "aria-describedby": current?.point === point ? id : undefined,
-        onMouseMove: (event: MouseEvent<Element>) => { cancelLeave(); setHovered(selection(event.currentTarget)); },
+        onMouseMove: (event: MouseEvent<Element>) => { dismissed.current = false; cancelLeave(); setHovered(selection(event.currentTarget)); },
         onMouseLeave: leave,
-        onFocus: (event: FocusEvent<Element>) => { if (!suppressFocus.current) setFocused(selection(event.currentTarget)); },
+        onFocus: (event: FocusEvent<Element>) => { if (!suppressFocus.current) { dismissed.current = false; setFocused(selection(event.currentTarget)); } },
         onBlur: (event: FocusEvent<Element>) => {
           const target = event.relatedTarget as Element | null;
           if (target?.closest?.("[data-point-tooltip]")?.id !== id) setFocused(null);

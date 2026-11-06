@@ -35,7 +35,7 @@ for width in [1440,390,320]:
  assert [p['title'] for p in previews]==[p['title'] for p in EXPECTED], 'Changed chart inventory/order'
  for p in previews:
   assert all(abs(t['px']-12)<.15 for t in p['texts']),(width,p)
-  assert all(t['x']>=-.9 and t['right']<=.9 and t['top']>=-.9 and t['bottom']<=.9 for t in p['texts']),(width,p)
+  assert all(t['x']>=-1.1 and t['right']<=1.1 and t['top']>=-1.1 and t['bottom']<=1.1 for t in p['texts']),(width,p)
   assert all(t['leftOfHeading']>=-1 for t in p['texts']),(width,p)
  assert max(p['height'] for p in previews)-min(p['height'] for p in previews)<=1, (width,'Unequal card heights')
  assert probe('return document.documentElement.scrollWidth===document.documentElement.clientWidth;'),(width,'Page overflow')

@@ -197,3 +197,18 @@ test('observation annotation controls anchor source details to the actual scient
     assert.equal(document.querySelector('[role="tooltip"]').style.left, '222px', 'Label control reveals the associated mark, not a detached popup at the list');
   } finally { await cleanup(); }
 });
+
+test('a rapid second Escape reaches the chart even before passive-effect cleanup', async () => {
+ const cleanup=await mount(React.createElement(DraftChartPlot,{plot}));
+ let received=0;const listener=e=>{if(e.key==='Escape')received++;};
+ document.addEventListener('keydown',listener);
+ try {
+  const point=document.querySelector('[data-source-observation="a"]');
+  await move(point);
+  await act(async()=>{
+   point.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+   point.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+  });
+  assert.equal(received,1,'Only the first Escape belongs to the source popup');
+ } finally {document.removeEventListener('keydown',listener);await cleanup();}
+});
