@@ -66,7 +66,7 @@ function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;da
     {row.growth===null?<text data-growth-label="neurotech" x={x(0)+12} y={y} dominantBaseline="middle">No 2022 base</text>:<>
       <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={color} strokeWidth="2"/>
       <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r="5" fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
-      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:color}}>{percent(row.growth)}</text>
+      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:status==="within"||status==="unavailable"?"var(--foreground)":color}}>{percent(row.growth)}</text>
     </>}
   </g>;
 }

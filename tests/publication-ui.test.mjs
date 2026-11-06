@@ -428,6 +428,7 @@ test('exactly equal matched growth is within its scalar baseline with a visible 
   await chooseBaseline(document.querySelector('dialog'),'matched');
   const mark=document.querySelector('dialog [data-growth-row="asia"]');
   assert.equal(mark.dataset.baselineStatus,'within');assert.equal(mark.querySelector('circle').getAttribute('fill'),'#98a2b3');
+  assert.equal(mark.querySelector('[data-growth-label]').style.fill,'var(--foreground)','Reference keeps neutral-marker percentages dark and legible');
   const circle=mark.querySelector('circle'),tick=mark.querySelector('[data-growth-reference-tick]');
   assert.equal(circle.getAttribute('cx'),tick.getAttribute('x1'));
   assert.ok(Number(tick.getAttribute('y2'))-Number(tick.getAttribute('y1'))>2*Number(circle.getAttribute('r')),'Tick remains visible above and below the endpoint');
