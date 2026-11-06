@@ -159,31 +159,42 @@ function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; co
     </g>)}
   </svg>;
 }
-function ChangesPreview({data}:{data:PublicationChartData}) {
-  const {ref,fontSize}=usePreviewFont(400,true);
-  const block=fontSize*6.5;
-  return <svg ref={ref} viewBox={`0 0 400 ${block*2+fontSize}`} role="img" aria-label="First-to-latest publication affiliation changes, normalized by origin sector" style={{fontSize}}>
-    {data.transitions.map((row,index)=><g key={row.from}>
-      <text x="12" y={fontSize*1.7+index*block} fontWeight="700">From {row.label.toLowerCase()}</text>
-      <text x="12" y={fontSize*3.1+index*block}>{number(row.total)} people · 100% of row</text>
-      {row.destinations.filter(dest=>dest.count>0).map(dest=><rect key={dest.sector} data-publication-mark data-from={row.from} data-to={dest.sector} data-value={dest.count} x={12+dest.offset*3.76} y={fontSize*4+index*block} width={dest.share*3.76} height={fontSize*1.5} fill={dest.color} stroke="var(--surface)"/>)}
-    </g>)}
-  </svg>;
+function changesSubtitle(data: PublicationChartData) {
+  return `First neurotech papers in 2016–${data.authorEndYear}; latest paper in a different affiliation sector. Shares are within each starting sector’s changers.`;
 }
-function ChangesPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  const width = compact?400:740, left=12, usable=width-24, block=compact?105:185;
-  return <svg viewBox={`0 0 ${width} ${block*2+25}`} role="img" aria-label="Normalized first-to-latest publication-affiliation sector changes" style={{fontSize:compact?12:13}}>
+function ChangesPlot({ data, compact = false, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
+  const width = compact ? 400 : 740, left = 12, usable = width - left * 2;
+  const { ref, fontSize: previewFont } = usePreviewFont(width, compact);
+  const fontSize = compact ? previewFont : 14, block = compact ? fontSize * 9.8 : 160;
+  const barTop = compact ? fontSize * 2.2 : 36, barHeight = compact ? fontSize * 1.6 : 40;
+  return <svg ref={ref} viewBox={`0 0 ${width} ${block * 2}`} role="img" aria-label="First-to-latest publication-affiliation sector changes, shares within each origin’s changers" style={{ fontSize }}>
     <title>First and latest observed neurotech publication affiliations, first papers since 2016; different-sector cohort</title>
-    {data.transitions.map((row,i)=><g key={row.from}>
-      <text x={left} y={22+i*block} fontWeight="700">From {row.label.toLowerCase()}</text><text x={width-left} y={22+i*block} textAnchor="end">{number(row.total)} people</text>
-      {row.total===0?<text x={left} y={60+i*block}>No observed sector changes</text>:row.destinations.filter(d=>d.count>0).map(dest=><rect key={dest.sector} data-publication-mark data-from={row.from} data-to={dest.sector} data-value={dest.count} x={left+dest.offset/100*usable} y={37+i*block} width={dest.share/100*usable} height="36" fill={dest.color} stroke="var(--surface)" {...pointEvents(`${row.label} → ${dest.label}: ${number(dest.count)} of ${number(row.total)} people (${number(dest.share)}%). First/latest publication affiliations.`,inspect)}/>)}
-      {!compact&&row.destinations.map((dest,j)=><g key={dest.sector}><rect x={left} y={89+i*block+j*25} width="10" height="10" fill={dest.color}/><text x={left+18} y={99+i*block+j*25}>{dest.label}: {number(dest.count)} ({number(dest.share)}%)</text></g>)}
-      {compact&&<text x={left} y={96+i*block}>Latest observed publication affiliation · 100% per row</text>}
+    {data.transitions.map((row, i) => <g key={row.from} transform={`translate(0 ${i * block})`}>
+      <text x={left} y={fontSize * 1.3} fontWeight="700">From {row.label.toLowerCase()}</text>
+      <text x={width - left} y={fontSize * 1.3} textAnchor="end">{number(row.total)} people</text>
+      {row.total === 0 ? <text x={left} y={barTop + fontSize}>No observed sector changes</text> : row.destinations.map((dest, j) => {
+        const start = left + dest.offset / 100 * usable, segmentWidth = dest.share / 100 * usable;
+        const labelX = j === 2 ? width - left : start;
+        const nameLines = dest.label === "No listed affiliation" ? ["No listed", "affiliation"] : dest.label === "Other institutions" ? ["Other", "institutions"] : [dest.label];
+        return <g key={dest.sector} data-change-destination data-from={row.from} data-to={dest.sector}>
+          {dest.count > 0 && <rect data-publication-mark data-from={row.from} data-to={dest.sector} data-value={dest.count} x={start} y={barTop} width={segmentWidth} height={barHeight} fill={dest.color} stroke="var(--surface)" {...pointEvents(`${row.label} → ${dest.label}: ${number(dest.count)} of ${number(row.total)} people (${number(dest.share)}%). First/latest publication affiliations.`, inspect)}/>}
+          <text data-change-label x={labelX} y={compact ? fontSize * 5.2 : 100} textAnchor={j === 2 ? "end" : "start"}>
+            {compact ? <>
+              {nameLines.map((line, k) => <tspan key={line} x={labelX} dy={k ? fontSize * 1.15 : 0} fontWeight="600">{line}</tspan>)}
+              <tspan x={labelX} y={fontSize * 7.6} fontWeight="700">{number(dest.share)}%</tspan>
+              <tspan x={labelX} y={fontSize * 8.9}>{number(dest.count)}</tspan>
+            </> : <>
+              <tspan fontWeight="600">{dest.label} {number(dest.share)}%</tspan>
+              <tspan x={labelX} dy="23">{number(dest.count)} people</tspan>
+            </>}
+          </text>
+        </g>;
+      })}
     </g>)}
   </svg>;
 }
 function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect }) {
-  return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:props.compact?<ChangesPreview data={props.data}/>:<ChangesPlot {...props}/>;
+  return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:<ChangesPlot {...props}/>;
 }
 function scope(index:number,snapshot:PublicationSnapshot) {
   if(index===0) return `2010–${snapshot.source.paperEndYear} · NT10 wider paper corpus · acquired ${snapshot.source.paperAsOf}`;
@@ -202,7 +213,7 @@ export function publicationExportNotes(index:number,snapshot:PublicationSnapshot
     for(const row of data.growth.filter(row=>row.baselineStatus==="matched")) notes.push(`${row.group}: N (${row.numeratorUniverse}) ${number(row.start)} → ${number(row.end)}, ${percent(row.growth)}; reference ${number(row.referenceStart!)} → ${number(row.referenceEnd!)}, ${percent(row.referenceGrowth)}. Unit: ${row.countUnit}. D: ${row.denominatorUniverse}.`);
   }
   if(index===2) notes.push(`Total: ${number(data.totalResearchers)} unique researchers. One sector per author from that year's papers; 100 squares use largest-remainder allocation. Exact counts: ${data.sectors.map(s=>`${s.label} ${number(s.count)} (${number(s.share)}%)`).join("; ")}.`);
-  if(index===3) notes.push("Different first/latest publication-affiliation sectors; first selected-topic papers since 2016. Each displayed origin is normalized to 100%. Employment transitions are unverified. No listed affiliation is retained.");
+  if(index===3) notes.push(changesSubtitle(data), "Different first/latest publication-affiliation sectors; first selected-topic papers since 2016. Each displayed origin is normalized to 100%. Employment transitions are unverified. No listed affiliation is retained.");
   return notes;
 }
 const tableNames=(index:number)=>index===0?["nt_yearly"]:index===1?PUBLICATION_GROWTH_GROUPS.map(section=>section.table):index===2?["nt_talent_table"]:["nt_talent_moves"];
@@ -218,8 +229,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   const download={chart:anchor,snapshotSchemaVersion:snapshot.schemaVersion,source:snapshot.source,tables:selected,audit:snapshot.audit,...(index===1&&snapshot.matchedGrowth?{matchedGrowth:snapshot.matchedGrowth}:{})};
   return <>
     <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech · left axis: papers",color:blue},...(hasScience?[{label:"All research · right axis: science index (2022 = 100)",color:teal},{label:"Global science context · four-domain band: science index (2022 = 100)",color:gray}]:[])]:index===1?[{label:"Neurotech · filled circle",color:blue},{label:"Same-category research · outlined diamond",color:teal}]:[]})}/></ChartActions>
-    <p className="publication-scope">{scope(index,snapshot)}</p>
-    {index===3&&<p className="publication-scope">Different-sector publication-affiliation cohort · employment transitions unverified</p>}
+    <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}
     {index===1&&<p className="publication-legend" data-growth-legend><span style={{color:blue}}>● Neurotech</span><span style={{color:teal}}>◇ Same-category research</span><span>Reference unavailable where a comparable baseline is missing</span></p>}
     <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={setInspection}/></div>
@@ -252,12 +262,11 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
   const hasScience=annualScienceAvailable(data);
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>
-      <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span><span className="pc-coverage">{scope(index,snapshot)}</span></button>
+      <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span><span className="pc-coverage">{index===3?changesSubtitle(data):scope(index,snapshot)}</span></button>
       <div className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact/></button></div>
       {index===0&&<p className="publication-preview-note">{hasScience?"Neurotech papers · science index (2022 = 100)":data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
       {index===1&&<p className="publication-preview-note">● Neurotech · ◇ same-category research · 21 groups; scroll for all</p>}
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}
-      {index===3&&<p className="publication-preview-note">First and latest observed publication affiliations · employment transitions unverified</p>}
     </div>
     <div data-metric-card-footer><DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/></div>
     {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
