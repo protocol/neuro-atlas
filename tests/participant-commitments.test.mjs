@@ -14,7 +14,7 @@ test('the final engagement count is an over-time participant chart with source-q
   const group=document.querySelector('[data-metrics-category="Neurotech field engagement"]');
   const card=group.querySelector('[data-performance-card="revealed_commitments"]');
   assert.ok(card, 'Replace the scalar with a real chronological chart at its retained fragment');
-  assert.equal([...group.querySelectorAll('[data-metric-rail] article')].at(-1),card);
+  assert.equal([...group.querySelectorAll('[data-metric-rail] article')].at(-5),card, 'Original final card stays immediately before the four appended publication charts');
   assert.ok(card.querySelector('svg circle'), 'Actual sourced observations appear in the preview');
   await click(card.querySelector('.pc-trigger'));
   const modal=document.querySelector('dialog[open]');

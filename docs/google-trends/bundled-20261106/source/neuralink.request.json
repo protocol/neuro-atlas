@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-11-06T09:07:37.110227+00:00",
+  "exploreRequest": {
+    "comparisonItem": [
+      {
+        "keyword": "Neuralink",
+        "geo": "",
+        "time": "2023-11-06 2026-11-06"
+      }
+    ],
+    "category": 0,
+    "property": ""
+  },
+  "widgetRequest": {
+    "time": "2023-11-06 2026-11-06",
+    "resolution": "WEEK",
+    "locale": "en-US",
+    "comparisonItem": [
+      {
+        "geo": {},
+        "complexKeywordsRestriction": {
+          "keyword": [
+            {
+              "type": "BROAD",
+              "value": "Neuralink"
+            }
+          ]
+        }
+      }
+    ],
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 0
+    },
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  }
+}

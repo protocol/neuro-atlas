@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "data/google-trends-feed": false,
+      "data/openalex-citation-latency-feed": false,
+      "data/openalex-publications-feed": false
+    }
+  }
+}

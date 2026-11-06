@@ -79,7 +79,7 @@ test('only the unique capability chart remains alongside curated measurements', 
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(VelocityTabs, { performance: null, references: refs })));
   try {
     const doc = dom.window.document;
-    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 2, 'Unique capability chart plus the participant timeline');
+    assert.equal(doc.querySelectorAll('[data-performance-card]').length, 6, 'Unique capability chart, participant timeline and four publication charts');
     assert.equal(doc.querySelectorAll('[data-coming-soon]').length, 0);
     assert.equal(doc.querySelector('[data-performance-card="tissue-mapped"], [data-performance-card="neural-recording-hours"]'), null);
     assert.ok(doc.querySelector('#metric-category-3 [data-performance-card="simultaneously-recorded-neurons"]'));

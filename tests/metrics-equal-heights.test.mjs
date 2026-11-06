@@ -56,8 +56,8 @@ test('natural-size observers can grow and shrink all cards and ignore deliveries
       };
     });
     const catalog = document.querySelector('.metrics-index');
-    const observer = observers.findLast(observer => observer.targets.length === 40);
-    assert.ok(observer, 'Watch natural content and footers for all 20 charts, not the equalized outer boxes');
+    const observer = observers.findLast(observer => observer.targets.length === 48);
+    assert.ok(observer, 'Watch natural content and footers for all 24 charts, not the equalized outer boxes');
     for (const next of [600, 250]) {
       height = next;
       await act(async () => observer.callback([]));
@@ -152,7 +152,7 @@ test('every real Metrics chart has separately measurable natural content and a f
   try {
     await click(document.querySelector('[data-expand-metrics]'));
     const cards = [...document.querySelectorAll('[data-metric-rail] article')].filter(card => card.querySelector('[data-draft-popout-trigger], .pc-trigger'));
-    assert.equal(cards.length, 20);
+    assert.equal(cards.length, 24);
     for (const card of cards) {
       assert.equal(card.querySelectorAll('[data-metric-card-body]').length, 1, card.textContent.slice(0, 100));
       assert.equal(card.querySelectorAll('[data-metric-card-footer]').length, 1);

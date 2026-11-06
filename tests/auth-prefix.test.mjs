@@ -7,7 +7,7 @@ import { config, proxy } from '../src/proxy.ts';
 
 for (const basePath of ['', '/neuro-atlas']) {
   test(`Basic gate covers root and content routes with basePath=${basePath || '(root)'}`, () => {
-    for (const suffix of ['', '/', '/milestones', '/funding', '/field-velocity', '/methodology', '/sitemap.xml', '/logos/example.svg']) {
+    for (const suffix of ['', '/', '/milestones', '/funding', '/field-velocity', '/methodology', '/sitemap.xml', '/logos/example.svg', '/api/google-trends/latest', '/api/google-trends/c5a18cfb03746c0e048e425fac82259488d089a4/neurotech.csv']) {
       const url = (basePath + suffix) || '/';
       assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: { basePath }, url }), true, url);
       for (const authorization of [undefined, 'Basic invalid', 'Bearer not-a-password']) {

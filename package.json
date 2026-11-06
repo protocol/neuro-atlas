@@ -12,8 +12,13 @@
     "performance:sync": "tsx scripts/sync-performance-curves.ts",
     "performance:verify": "tsx scripts/verify-performance-parity.ts",
     "data:generate": "node scripts/generate-derived.mjs",
+    "citation:feed": "tsx scripts/weekly-citation-latency-feed.ts",
+    "publications:feed": "tsx scripts/weekly-publications-feed.ts",
+    "publications:stage": "python3 scripts/publications/refresh.py stage",
+    "citation:test": "python3 tests/citation-acquisition.test.py && node --import tsx --test tests/citation-*.test.mjs",
     "trends:refresh": "tsx scripts/refresh-google-trends.ts",
-    "trends:verify": "tsx scripts/refresh-google-trends.ts --check"
+    "trends:verify": "tsx scripts/refresh-google-trends.ts --check",
+    "trends:feed": "tsx scripts/weekly-google-trends-feed.ts"
   },
   "dependencies": {
     "next": "16.4.1",

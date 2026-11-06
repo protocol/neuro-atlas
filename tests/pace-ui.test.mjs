@@ -7,6 +7,8 @@ import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
 import { mount, click } from './modal-helpers.mjs';
 import { selectPace } from '../src/lib/field-velocity/performance.ts';
+import { bundledCitationData } from '../src/lib/field-velocity/citation-latency-bundled.ts';
+import { projectCitationRecord } from '../src/lib/field-velocity/citation-latency-feed.ts';
 const feed = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8'));
 // Latency's withdrawn animal-event series is covered by latency-evidence.test.mjs.
 for (const [id, count] of [['idea_vintage', 27]]) test(`${id} shared modal renders exact source years and qualified readings`, async () => {
@@ -18,7 +20,8 @@ for (const [id, count] of [['idea_vintage', 27]]) test(`${id} shared modal rende
     assert.ok(modal);
     assert.equal(modal.querySelectorAll('[data-source-observation]').length, count);
     assert.equal(modal.querySelectorAll('[data-curve-point]').length, count);
-    const source = feed.records.find(r => r.instrument === id);
+    const archived = feed.records.find(r => r.instrument === id);
+    const source = id === 'idea_vintage' ? projectCitationRecord(bundledCitationData, archived) : archived;
     for (const p of source.series) assert.ok(modal.querySelector(`[data-source-observation="${id}:${p.x}"]`).textContent.includes(String(p.y)));
     assert.ok(modal.textContent.includes(source.metric));
     assert.ok(modal.textContent.includes(source.measuredAt));
