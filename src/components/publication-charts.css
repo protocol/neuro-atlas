@@ -34,7 +34,7 @@
   .publication-sector-key li > span:first-child { width: .65rem; height: .65rem; flex: 0 0 auto; border-radius: 2px; }
 }
 
-.publication-sankey-flow { transition: fill-opacity .12s ease; }
+.publication-sankey-flow { transition: fill-opacity .12s ease; stroke: transparent; stroke-width: 6px; vector-effect: non-scaling-stroke; cursor: pointer; }
 .publication-sankey[data-has-active="true"] .publication-sankey-flow { fill-opacity: .12; }
 .publication-sankey[data-has-active="true"] .publication-sankey-flow.is-emphasized { fill-opacity: .8; }
 @media (prefers-reduced-motion: reduce) { .publication-sankey-flow { transition: none; } }
