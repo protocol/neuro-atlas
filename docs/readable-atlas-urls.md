@@ -59,7 +59,7 @@ Each listed legacy alias resolves to the canonical slug. Both historical `draft-
 Regression coverage checks the complete frozen legacy registry, canonical/legacy entries, StrictMode, category retirement, per-entry router state, repeated queries, same-target history, Back/Forward, focus, actual Copy link callbacks/fallbacks and export URLs.
 The standard test suite retains original scientific observations, URL alias inputs, modal behavior and evidence checks; only deliberately changed public URL/derived PNG-filename expectations are updated.
 
-Verified locally: `npm test` passed all 1,098 tests (zero failures, cancellations or skips); `npm run typecheck`, scoped runtime ESLint and `git diff --check` passed.
+Initial implementation verification (before reconciling merged PRs #93/#94): `npm test` passed all 1,098 tests (zero failures, cancellations or skips); `npm run typecheck`, scoped runtime ESLint and `git diff --check` passed. The PR handoff records the final integrated checks separately.
 
 RED/GREEN evidence: the first six URL regressions failed on legacy output, then passed with the explicit registry. Fresh-entry/rendered-link regressions failed before canonical navigation and then passed. Separate regressions caught the unmounted-brand category reveal and canonical recording-view export; both were fixed and passed. All 107 legacy aliases remain covered, including the original 92 draft/metric-prefixed identities.
 This is local automated verification, not native-browser or hosted QA. No push, PR, deploy or merge is part of this implementation.
