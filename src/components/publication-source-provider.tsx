@@ -3,7 +3,7 @@ import React,{createContext,useContext,useEffect,useState} from 'react';
 import {usePathname} from 'next/navigation';
 import {z} from 'zod';
 import {atlasPath} from '@/lib/atlas-path';
-import {parsePublicationSnapshot,type PublicationSnapshot} from '@/lib/publication-data';
+import {assertPublicationScienceCoverage,parsePublicationSnapshot,type PublicationSnapshot} from '@/lib/publication-data';
 import BUNDLED from '@/data/publications/publication-charts.snapshot.json';
 
 const MAX_BYTES=2_100_000;
@@ -52,6 +52,7 @@ export function loadNavigationPublication(document:object,key:string,fallback:Pu
  if(state.key!==key||!state.pending){
   state.key=key;const current=state;
   current.pending=latest(fetcher,options).then(next=>{
+   assertPublicationScienceCoverage(next,current.lastGood??fallback);
    if(!current.lastGood||Date.parse(next.source.capturedAt)>=Date.parse(current.lastGood.source.capturedAt))current.lastGood=next;
    return current.lastGood;
   }).catch(()=>current.lastGood??fallback);

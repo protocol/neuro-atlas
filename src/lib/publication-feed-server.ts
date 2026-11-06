@@ -1,4 +1,5 @@
 import BUNDLED from '../data/publications/publication-charts.snapshot.json';
+import {assertPublicationScienceCoverage} from './publication-data';
 import {fetchLatestPublication,retainingPublicationReader,validatePublicationSnapshot,publicationHash,
  type PublicationData,type ValidationOptions} from '../../scripts/weekly-publications-feed';
 
@@ -20,6 +21,7 @@ export function createPublicationSourceServer(initial:unknown,load:()=>Promise<P
     if(!/^[a-f0-9]{40}$/.test(next.revision))throw new Error('Invalid publication revision');
     const snapshot=await validatePublicationSnapshot(next.snapshot,options);
     assertPublicationFreshness(snapshot,options.now?.()??new Date());
+    assertPublicationScienceCoverage(snapshot,initial);
     return {revision:next.revision,snapshot};
    },{revision:'bundled',snapshot});
   })();

@@ -69,8 +69,8 @@ class FixtureSource:
         q = self.queries[len(self.calls) - 2]
         assert (path, params) == (q['path'], q['params'])
         if q['id'].startswith('science-'):
-            body = {'meta': {'count': 400, 'per_page': 100, 'groups_count': 4},
-                    'group_by': [{'key': str(y), 'count': 100} for y in range(2022, 2026)]}
+            body = {'meta': {'count': 1600, 'per_page': 100, 'groups_count': 16},
+                    'group_by': [{'key': str(y), 'count': 100} for y in range(2010, 2026)]}
         else:
             body = self.responses[q['id']]['response']
         # Deliberately noncanonical: exact original bytes must survive.
