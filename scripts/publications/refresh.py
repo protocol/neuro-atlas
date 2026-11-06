@@ -145,7 +145,7 @@ DOMAINS = (('all', 'All science', None), ('life', 'Life sciences', '1'),
 
 
 def science_plan():
-    return [(ident, label, {'filter': 'publication_year:2022-2025,type:article|review|conference-paper|book-chapter|preprint' +
+    return [(ident, label, {'filter': 'publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint' +
              (',primary_topic.domain.id:' + domain if domain else ''),
              'group_by': 'publication_year', 'per_page': '100', 'corpus': 'core'})
             for ident, label, domain in DOMAINS]
@@ -162,8 +162,9 @@ def read_science(source):
         derive.timestamp(receipt['retrievedAt'])
         body = derive.parse_json(response_bytes.decode())
         groups = body['group_by']
-        derive.require(body['meta']['groups_count'] == 4 and body['meta']['per_page'] == 100 and
-                       len(groups) == 4 and {g['key'] for g in groups} == {'2022', '2023', '2024', '2025'}, 'incomplete science year cells')
+        expected_years = {str(year) for year in range(2010, 2026)}
+        derive.require(body['meta']['groups_count'] == 16 and body['meta']['per_page'] == 100 and
+                       len(groups) == 16 and {g['key'] for g in groups} == expected_years, 'incomplete science year cells')
         for group in groups:
             derive.integer(group['count'])
             rows.append({'group': label, 'year': int(group['key']), 'papers': group['count']})

@@ -1,0 +1,545 @@
+[
+  {
+    "phase": "before",
+    "width": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "svgWidth": 943,
+    "labels": [],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "inspector": ""
+  },
+  {
+    "phase": "after",
+    "width": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "svgWidth": 943,
+    "labels": [
+      {
+        "text": "No listed affiliation 56.7%1,091 people",
+        "left": 15.294708251953125,
+        "right": 232.09161376953125,
+        "top": 109.431640625,
+        "bottom": 161.74090576171875
+      },
+      {
+        "text": "Other institutions 38.4%740 people",
+        "left": 532.4063720703125,
+        "right": 738.6094360351562,
+        "top": 109.431640625,
+        "bottom": 161.74090576171875
+      },
+      {
+        "text": "Companies 4.9%94 people",
+        "left": 786.8770751953125,
+        "right": 927.7052001953125,
+        "top": 109.431640625,
+        "bottom": 161.74090576171875
+      },
+      {
+        "text": "Universities 43%43 people",
+        "left": 15.294708251953125,
+        "right": 157.01345825195312,
+        "top": 313.322265625,
+        "bottom": 365.63153076171875
+      },
+      {
+        "text": "No listed affiliation 49%49 people",
+        "left": 407.6312255859375,
+        "right": 609.2874755859375,
+        "top": 313.322265625,
+        "bottom": 365.63153076171875
+      },
+      {
+        "text": "Other institutions 8%8 people",
+        "left": 747.7676391601562,
+        "right": 927.7052001953125,
+        "top": 313.322265625,
+        "bottom": 365.63153076171875
+      }
+    ],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "subtitle": "First neurotech papers in 2016\u20132025; latest paper in a different affiliation sector. Shares are within each starting sector\u2019s changers.",
+    "inspector": ""
+  },
+  {
+    "phase": "preview",
+    "width": 607.078125,
+    "height": 215.59375,
+    "labels": [
+      {
+        "text": "No listedaffiliation56.7%1,091",
+        "left": 18.2205810546875,
+        "right": 67.7205810546875,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.999679022732838
+      },
+      {
+        "text": "Otherinstitutions38.4%740",
+        "left": 341.6309814453125,
+        "right": 401.4434814453125,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.999679022732838
+      },
+      {
+        "text": "Companies4.9%94",
+        "left": 529.8575439453125,
+        "right": 589.2606201171875,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.999679022732838
+      },
+      {
+        "text": "Universities43%43",
+        "left": 18.2205810546875,
+        "right": 80.2362060546875,
+        "top": 153.9952392578125,
+        "bottom": 208.69403076171875,
+        "pixels": 10.999679022732838
+      },
+      {
+        "text": "No listedaffiliation49%49",
+        "left": 263.594482421875,
+        "right": 313.094482421875,
+        "top": 153.9952392578125,
+        "bottom": 208.69403076171875,
+        "pixels": 10.999679022732838
+      },
+      {
+        "text": "Otherinstitutions8%8",
+        "left": 529.0450439453125,
+        "right": 589.353759765625,
+        "top": 153.9952392578125,
+        "bottom": 208.69403076171875,
+        "pixels": 10.999679022732838
+      }
+    ]
+  },
+  {
+    "phase": "before",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "svgWidth": 650,
+    "labels": [],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "inspector": ""
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "svgWidth": 650,
+    "labels": [
+      {
+        "text": "No listed affiliation 56.7%1,091 people",
+        "left": 10.543846130371094,
+        "right": 159.8875961303711,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Other institutions 38.4%740 people",
+        "left": 366.98193359375,
+        "right": 509.02880859375,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Companies 4.9%94 people",
+        "left": 542.4561767578125,
+        "right": 639.5619506835938,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Universities 43%43 people",
+        "left": 10.543846130371094,
+        "right": 108.16885375976562,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      },
+      {
+        "text": "No listed affiliation 49%49 people",
+        "left": 280.97613525390625,
+        "right": 419.88238525390625,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      },
+      {
+        "text": "Other institutions 8%8 people",
+        "left": 515.5030517578125,
+        "right": 639.5619506835938,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      }
+    ],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "subtitle": "First neurotech papers in 2016\u20132025; latest paper in a different affiliation sector. Shares are within each starting sector\u2019s changers.",
+    "inspector": ""
+  },
+  {
+    "phase": "preview",
+    "width": 320,
+    "height": 215.59375,
+    "labels": [
+      {
+        "text": "No listedaffiliation56.7%1,091",
+        "left": 9.604362487792969,
+        "right": 59.10435485839844,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Otherinstitutions38.4%740",
+        "left": 180.07879638671875,
+        "right": 239.89129638671875,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Companies4.9%94",
+        "left": 251.39566040039062,
+        "right": 310.798828125,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Universities43%43",
+        "left": 9.604362487792969,
+        "right": 71.6199951171875,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "No listedaffiliation49%49",
+        "left": 138.94461059570312,
+        "right": 188.44461059570312,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Otherinstitutions8%8",
+        "left": 250.58316040039062,
+        "right": 310.89190673828125,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      }
+    ]
+  },
+  {
+    "phase": "before",
+    "width": 320,
+    "client": 320,
+    "scroll": 320,
+    "svgWidth": 650,
+    "labels": [],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "inspector": ""
+  },
+  {
+    "phase": "after",
+    "width": 320,
+    "client": 320,
+    "scroll": 320,
+    "svgWidth": 650,
+    "labels": [
+      {
+        "text": "No listed affiliation 56.7%1,091 people",
+        "left": 10.543846130371094,
+        "right": 159.8875961303711,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Other institutions 38.4%740 people",
+        "left": 366.98193359375,
+        "right": 509.02880859375,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Companies 4.9%94 people",
+        "left": 542.4561767578125,
+        "right": 639.5619506835938,
+        "top": 75.8369140625,
+        "bottom": 112.03939819335938
+      },
+      {
+        "text": "Universities 43%43 people",
+        "left": 10.543846130371094,
+        "right": 108.16885375976562,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      },
+      {
+        "text": "No listed affiliation 49%49 people",
+        "left": 280.97613525390625,
+        "right": 419.88238525390625,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      },
+      {
+        "text": "Other institutions 8%8 people",
+        "left": 515.5030517578125,
+        "right": 639.5619506835938,
+        "top": 216.3759765625,
+        "bottom": 252.57846069335938
+      }
+    ],
+    "marks": [
+      {
+        "from": "Academic",
+        "to": "No listed affiliation",
+        "count": 1091
+      },
+      {
+        "from": "Academic",
+        "to": "Other institutions",
+        "count": 740
+      },
+      {
+        "from": "Academic",
+        "to": "Industry",
+        "count": 94
+      },
+      {
+        "from": "Industry",
+        "to": "Academic",
+        "count": 43
+      },
+      {
+        "from": "Industry",
+        "to": "No listed affiliation",
+        "count": 49
+      },
+      {
+        "from": "Industry",
+        "to": "Other institutions",
+        "count": 8
+      }
+    ],
+    "subtitle": "First neurotech papers in 2016\u20132025; latest paper in a different affiliation sector. Shares are within each starting sector\u2019s changers.",
+    "inspector": ""
+  },
+  {
+    "phase": "preview",
+    "width": 320,
+    "height": 215.59375,
+    "labels": [
+      {
+        "text": "No listedaffiliation56.7%1,091",
+        "left": 9.604362487792969,
+        "right": 59.10435485839844,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Otherinstitutions38.4%740",
+        "left": 180.07879638671875,
+        "right": 239.89129638671875,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Companies4.9%94",
+        "left": 251.39566040039062,
+        "right": 310.798828125,
+        "top": 46.198333740234375,
+        "bottom": 100.89715576171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Universities43%43",
+        "left": 9.604362487792969,
+        "right": 71.6199951171875,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "No listedaffiliation49%49",
+        "left": 138.94461059570312,
+        "right": 188.44461059570312,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      },
+      {
+        "text": "Otherinstitutions8%8",
+        "left": 250.58316040039062,
+        "right": 310.89190673828125,
+        "top": 153.99520874023438,
+        "bottom": 208.69403076171875,
+        "pixels": 10.99968112244898
+      }
+    ]
+  }
+]
