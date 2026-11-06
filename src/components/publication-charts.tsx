@@ -10,6 +10,7 @@ import { ChartShare } from "@/components/chart-share";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { usePreviewFont } from "@/components/use-preview-font";
+import { useMetricPreviewSpace } from "@/components/use-metric-preview-space";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
@@ -28,11 +29,11 @@ function pointEvents(label: string, inspect?: Inspect) {
   return inspect ? { tabIndex: 0, role: "button", "aria-label": label, ...inspect(label) } : {};
 }
 const annualScienceAvailable = (data: PublicationChartData) => data.baseline.length > 0 && data.annual.some(row => row.year === 2022 && row.papers > 0);
-function AnnualPlot({ data, compact, inspect, activeInspection }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null }) {
+function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null; previewHeight?: number }) {
   const selectedYear = activeInspection ? Number(activeInspection.slice(0, 4)) : null;
   const { ref, fontSize, unitsPerPixel } = usePreviewFont(840, true);
   const radius = (compact ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel;
-  const left = compact ? fontSize * 3.6 + 12 : 80, right = compact ? 840 - fontSize * 2.2 - 12 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? top + fontSize * 9 : 280;
+  const left = compact ? fontSize * 3.6 + 12 : 80, right = compact ? 840 - fontSize * 2.2 - 12 : 760, top = fontSize * (compact ? 4.4 : 3.2), bottom = compact ? Math.max(top + fontSize * 9, (previewHeight ?? 0) * unitsPerPixel - fontSize * 4.2) : 280;
   const anchor = data.annual.find(row => row.year === 2022)!.papers;
   const hasScience = annualScienceAvailable(data);
   const max = Math.max(1, ...data.annual.map(row => row.papers), ...(hasScience ? data.baseline.flatMap(row => [row.all, row.high]) : []));
@@ -235,11 +236,14 @@ function useGrowthViewport(ref:React.RefObject<HTMLDivElement|null>,enabled:bool
     return ()=>{view.cancelAnimationFrame(frame);observer?.disconnect();view.removeEventListener("resize",update);view.visualViewport?.removeEventListener("resize",update);};
   },[ref,enabled]);
 }
-function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect }) {
-  const {ref,fontSize}=usePreviewFont(compact?330:740,true);
-  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={compact?"0 0 330 330":"0 0 740 370"} role="img" aria-label="Researchers by publication sector; 100 squares" style={{fontSize}}>
+function SectorPlot({ data, compact, inspect, previewHeight }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; previewHeight?: number }) {
+  const {ref,fontSize,unitsPerPixel}=usePreviewFont(compact?330:740,true);
+  const height=compact&&previewHeight?previewHeight*unitsPerPixel:330;
+  const columns=compact&&previewHeight&&previewHeight>330/unitsPerPixel*1.4?5:10;
+  const cellWidth=320/columns, cellHeight=(height-10)/(100/columns);
+  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={compact?`0 0 330 ${height}`:"0 0 740 370"} role="img" aria-label="Researchers by publication sector; 100 squares" style={{fontSize}}>
     <title>{`${number(data.totalResearchers)} researchers with papers in ${data.authorEndYear}; each square ≈ 1%`}</title>
-    {data.waffle.map((cell,i)=><rect key={i} data-publication-mark data-sector={cell.sector} x={8+(i%10)*32} y={8+Math.floor(i/10)*32} width="28" height="28" rx="3" fill={cell.color} {...pointEvents(`${data.sectors.find(row=>row.sector===cell.sector)!.label}: ${number(data.sectors.find(row=>row.sector===cell.sector)!.count)} researchers with papers in ${data.authorEndYear}`,inspect)}/>)}
+    {data.waffle.map((cell,i)=><rect key={i} data-publication-mark data-sector={cell.sector} x={compact?8+(i%columns)*cellWidth:8+(i%10)*32} y={compact?8+Math.floor(i/columns)*cellHeight:8+Math.floor(i/10)*32} width={compact?cellWidth-4:28} height={compact?cellHeight-4:28} rx="3" fill={cell.color} {...pointEvents(`${data.sectors.find(row=>row.sector===cell.sector)!.label}: ${number(data.sectors.find(row=>row.sector===cell.sector)!.count)} researchers with papers in ${data.authorEndYear}`,inspect)}/>)}
     {!compact&&data.sectors.map((row,i)=><g key={row.sector} data-publication-mark {...pointEvents(`${row.label}: ${number(row.count)} researchers, ${number(row.share)}%`,inspect)}>
       <rect x="350" y={25+i*82} width="12" height="12" rx="2" fill={row.color}/>
       <text x="375" y={37+i*82} fontWeight="700" data-export-font-size="24" style={{fontSize:fontSize*2}}>{number(row.count)} · {number(row.share)}%</text>
@@ -250,10 +254,10 @@ function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; co
 function changesSubtitle(data: PublicationChartData) {
   return `First and latest observed paper affiliations for researchers first seen in brain–computer interfaces/EEG or neural engineering in 2016–${data.authorEndYear}, with at least two active publication years. Ribbon widths show people; same-sector endpoints are included.`;
 }
-function ChangesPlot(props: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null }) {
+function ChangesPlot(props: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null; previewHeight?: number }) {
   return <PublicationSankey {...props}/>;
 }
-function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline; activeInspection?:string|null }) {
+function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline; activeInspection?:string|null; previewHeight?:number }) {
   return index===0?<AnnualPlot {...props}/>:index===1?(props.compact?<GrowthPreview data={props.data}/>:<GrowthPlot {...props}/>):index===2?<SectorPlot {...props}/>:<ChangesPlot {...props}/>;
 }
 function scope(index:number,snapshot:PublicationSnapshot) {
@@ -336,10 +340,13 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
 function PublicationCard({index,snapshot,data}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData}) {
   const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${canonicalPerformanceAnchor(anchor)}`, trigger=useRef<HTMLButtonElement>(null);
   const hasScience=annualScienceAvailable(data);
+  const preview=useRef<HTMLDivElement>(null);
+  const previewExtra=useMetricPreviewSpace(preview,true);
+  const previewHeight=235+previewExtra;
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>
       <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span><span className="pc-coverage">{index===3?`First → latest paper affiliations · first observed 2016–${data.authorEndYear} · people`:scope(index,snapshot)}</span></button>
-      <div className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact/></button></div>
+      <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button></div>
       {index===0&&<p className="publication-preview-note publication-preview-legend" data-annual-preview-key={hasScience?"":undefined}>{hasScience?<><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span><span data-series-key="all-research" style={{color:teal}}>● All research</span><span data-series-key="four-domain"><span aria-hidden="true" style={{color:gray}}>■</span> Four-domain range</span></>:data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
       {index===1&&<p className="publication-preview-note">21 groups · scroll for all</p>}
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}

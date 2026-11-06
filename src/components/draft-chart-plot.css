@@ -117,11 +117,14 @@
 .metrics-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .65rem; }
 .metrics-tools label { flex-basis: 100%; font-size: .8rem; font-weight: 600; }
 .metrics-tools input { flex: 1 1 20rem; min-width: 0; padding: .65rem .8rem; border: 1px solid var(--border-strong); border-radius: .5rem; background: var(--surface); color: var(--foreground); }
-.metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid var(--border); border-radius: .5rem; color: var(--accent); font-size: .8rem; cursor: pointer; }
+.metrics-utilities { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem; }
+.metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid transparent; border-radius: 999px; color: var(--muted); font-size: .8rem; cursor: pointer; }
+.metrics-tools button:hover:not(:disabled) { color: var(--foreground); border-color: var(--border-strong); }
+.metrics-tools button:disabled { opacity: .45; cursor: default; }
 .metrics-index > [role=status] { color: var(--muted); font-size: .75rem; margin-bottom: 1rem; }
 .metric-category { position: relative; margin: 1.5rem 0 2rem; min-width: 0; overflow-wrap: anywhere; }
 .metric-category:not([hidden]) ~ .metric-category:not([hidden]) { border-top: 1px solid var(--border); padding-top: 1.5rem; }
-.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
+.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 18px; line-height: 1.4; letter-spacing: -.02em; font-weight: 650; cursor: pointer; }
 .metric-category-name { min-width: 0; }
 .metric-category h2 > button:disabled { cursor: default; }
 .metric-category h2 small { margin-left: auto; color: var(--muted); font-size: .7rem; font-weight: 400; }
@@ -144,10 +147,13 @@
 .metric-chart-rail .draft-popout-card { position: static; padding: 1.25rem; border: 0; border-radius: 0; box-shadow: none; background: none; }
 .metric-chart-rail [data-metric-card-footer] { position: relative; z-index: 1; flex: 0 0 auto; min-width: 0; margin-top: auto; padding: 0 1.25rem 1rem; }
 .metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { margin: 0; }
+.metric-chart-rail [data-metric-card-footer] button { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; padding: .35rem .7rem; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--muted); background: var(--surface); font-size: 12px; font-weight: 500; line-height: 1.4; text-decoration: none; cursor: pointer; }
+.metric-chart-rail [data-metric-card-footer] button:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 560px) { .metric-chart-rail [data-metric-card-footer] button { min-height: 44px; } }
 .metric-chart-rail .pc-trigger::after { content: ""; position: absolute; inset: 0; cursor: zoom-in; }
 .metric-chart-rail .metric-chart-card:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
 .metric-chart-rail .metric-chart-card .draft-popout-trigger:focus-visible { outline-offset: -2px; }
-.metric-preview-context { color: var(--muted); font-size: .72rem; line-height: 1.6; margin-top: .65rem; }
+.metric-preview-context { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: .65rem; padding-top: .65rem; border-top: 1px solid var(--border); }
 .metric-preview-context p + p { margin-top: .5rem; }
 .metric-chart-rail .pc-coverage { min-height: 0; }
 .metric-chart-rail .pc-card-title { min-height: 0; }
@@ -163,3 +169,10 @@
   .metric-category h2 small { grid-column: 2; margin-left: 0; }
   .metrics-tools input { flex-basis: 100%; }
 }
+
+/* The evidence role is more useful than a repeated generic label. */
+.inflection-index [data-measurement-relationship] { font-size: 12px; font-weight: 600; line-height: 1.6; margin: 0 0 .25rem; color: var(--muted); }
+.inflection-index [data-related-measurements] h4 { font-weight: 500; }
+.inflection-index [data-related-forecasts] summary { display: flex; align-items: center; gap: .4rem; min-height: 32px; padding-block: .25rem; font-size: 12px; }
+.inflection-index [data-related-forecasts] summary::before { content: "▸"; font-size: 11px; }
+.inflection-index [data-related-forecasts][open] summary::before { content: "▾"; }

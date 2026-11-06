@@ -1,5 +1,7 @@
 "use client";
 
+import { useMetricPreviewSpace } from "./use-metric-preview-space";
+
 import { useEffect, useId, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
@@ -22,6 +24,18 @@ const tickLabel = (value: number) => {
   const label = exactNumber(rounded);
   return label.length <= 10 ? label : rounded.toExponential(2).replace("e+", "e");
 };
+
+/** Round landmarks inside the existing domain; observation coordinates and bounds stay exact. */
+function readerTicks(min: number, max: number) {
+  if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min) return [min];
+  const raw = (max - min) / 4;
+  const magnitude = 10 ** Math.floor(Math.log10(raw));
+  const factor = [1, 2, 2.5, 5, 10].find(value => value * magnitude >= raw)!;
+  const step = factor * magnitude;
+  const first = Math.ceil(min / step), last = Math.floor(max / step);
+  return Array.from({ length: Math.max(0, last - first + 1) }, (_, index) => Number(((first + index) * step).toPrecision(12)));
+}
+const previewTickLabel = (value: number) => value !== 0 && Math.abs(value) < .001 ? value.toExponential(0).replace("e+", "e") : tickLabel(value);
 
 function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttributes<SVGElement> & {
   marker?: DraftObservation["marker"]; cx: number; cy: number; r: number;
@@ -80,11 +94,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const active = tooltip.active;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
   const { width, figure } = usePlotWidth();
+  const previewExtra = useMetricPreviewSpace(figure, preview);
   const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const top = 28 + yTitle.length * 16;
-  const bottom = top + 232;
+  const bottom = top + 232 + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
   const ys = plot.points.map(point => point.y);
@@ -102,14 +117,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yMax = log ? 10 ** maxPower : integerAxis ? Math.ceil(rawYMax / integerStep) * integerStep : rawYMax;
   const yMin = log ? 10 ** minPower : Math.min(0, ...ys);
   const powerStep = Math.max(1, Math.ceil((maxPower - minPower) / 5));
-  const yTicks = log
+  const naturalYTicks = log
     ? [...new Set([...Array.from({ length: Math.floor((maxPower - minPower) / powerStep) + 1 }, (_, i) => 10 ** (minPower + i * powerStep)), yMax])]
     : integerAxis
       ? Array.from({ length: Math.round((yMax - yMin) / integerStep) + 1 }, (_, i) => yMin + i * integerStep)
       : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
-  const xTicks = [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
-  const left = Math.max(46, ...yTicks.map(tick => tickLabel(tick).length * 6.5 + 12));
-  const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? tickLabel(tick) : String(tick)).length * 3.5 + 4));
+  const yTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
+  const xTicks = preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
+  const axisLabel = preview ? previewTickLabel : tickLabel;
+  const left = Math.max(46, ...yTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
+  const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
   const energyAxis = neuroaiEnergyAxis(plot, left, right);
   const x = energyAxis?.x ?? ((value: number) => left + (value - xMin) / (xMax - xMin) * (right - left));
   const breakNote = energyAxis ? wrapLabel(energyAxis.note, width - 12) : [];
@@ -183,11 +200,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
-    <svg className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}>
+    <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
       {yTicks.map(tick => <g key={tick}>
         {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
-        <text className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{tickLabel(tick)}</text>
+        <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
       </g>)}
       {energyAxis ? <>
         {energyAxis.segments.map((segment, index) => <line key={index} className="draft-plot-axis" data-x-axis-segment={index} x1={segment.start} x2={segment.end} y1={bottom} y2={bottom} />)}
@@ -195,14 +212,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
           {[-3, 3].map(offset => <line key={offset} x1={energyAxis.center + offset - 2} x2={energyAxis.center + offset + 2} y1={bottom + 4} y2={bottom - 4} />)}
         </g>
       </> : <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />}
-      {(energyAxis?.ticks ?? xTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? tickLabel(tick) : String(tick)}</text>)}
+      {(energyAxis?.ticks ?? xTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
       <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
       </text>}
-      {annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
+      {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
-      {annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
+      {!preview && annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
         <rect x={labelX - 10} y={labelY - 10} width={20} height={20} rx={4} stroke={groupColor(point)} />
         <text x={labelX} y={labelY + 4} textAnchor="middle">{index + 1}</text>
       </g>)}
@@ -213,7 +230,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
+    {!preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
     {!preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
       <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
         <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
@@ -233,6 +250,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </span>)}
       </>}
     </p>}
+    {preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
     {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {scaleNote} · Unconnected observations</p>}
     {!preview && <><PointTooltip {...tooltip.tooltipProps}>
       {active ? <>
@@ -268,15 +286,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
 export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: { timeline: NonNullable<DraftChartEvidence["timeline"]>; preview?: boolean; shareAnchor?: string }) {
   const id = useId();
   const { width, figure } = usePlotWidth();
+  const previewExtra = useMetricPreviewSpace(figure, preview);
   const stages = [...new Set(timeline.events.map(event => event.stage))];
   const years = timeline.events.map(event => event.year);
   const first = Math.floor(Math.min(...years));
   const last = Math.max(first + 1, Math.ceil(Math.max(...years)));
   const xTitle = wrapLabel("Publication / demonstration year", width - 12);
-  const baseHeight = Math.max(320, stages.length * 100 + 100);
+  const baseHeight = Math.max(320, stages.length * 100 + 100) + previewExtra;
   const height = baseHeight + (xTitle.length - 1) * 16;
   const x = (year: number) => 28 + (year - first) / (last - first) * (width - 56);
-  const y = (stage: string) => 90 + stages.indexOf(stage) * 100;
+  const y = (stage: string) => 90 + stages.indexOf(stage) * 100 + previewExtra * (stages.length > 1 ? stages.indexOf(stage) / (stages.length - 1) : .5);
   const ticks = [...new Set([first, Math.round((first + last) / 2), last])];
   return <figure ref={figure} className="draft-plot draft-event-timeline" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title="Selected application events"><ChartShare anchor={shareAnchor} title="Selected application events" getChart={() => ({
@@ -287,7 +306,7 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
     <figcaption id={`${id}-title`}>Selected application events</figcaption>
     {!preview && <p className="draft-plot-scope">{timeline.scope}</p>}
     <p className="draft-plot-legend">● Reported event · Stages identify the type of event</p>
-    <svg className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
+    <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
       {stages.map(stage => <g key={stage}>
         <text className="draft-plot-axis-title" x={0} y={y(stage) - 45}>{wrapLabel(stage, width - 12).map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < wrapLabel(stage, width - 12).length - 1 ? " " : ""}</tspan>)}</text>

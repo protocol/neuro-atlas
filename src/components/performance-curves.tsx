@@ -1,5 +1,7 @@
 "use client";
 
+import { useMetricPreviewSpace } from "./use-metric-preview-space";
+
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
 import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
@@ -49,9 +51,9 @@ export function chartGeometry(data: PlotData) {
 }
 
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
-function compactChartGeometry(data: PlotData) {
+function compactChartGeometry(data: PlotData, extraHeight = 0) {
   const full = chartGeometry(data);
-  const width = 360, height = 220, left = 64, right = 16, top = 32, bottom = 52;
+  const width = 360, height = 220 + extraHeight, left = 64, right = 16, top = 32, bottom = 52;
   return { ...full, width, height, left, right,
     x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
     y: (value: number) => top + (full.y(value) - 28) / (full.height - 28 - 44) * (height - top - bottom),
@@ -108,6 +110,7 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
 
 function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
   const plotRef = useRef<HTMLDivElement>(null);
+  const previewExtra = useMetricPreviewSpace(plotRef, compact, 360);
   const scrollRef = useRef<HTMLDivElement>(null);
   const singleObservation = data.points.length === 1;
   useLayoutEffect(() => {
@@ -134,7 +137,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const scenario = !compact && (extrapolate || progress > 0) && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
   // Filtering suppresses unsupported model output, but never moves source markers.
   const future = scenario && extrapolation ? extrapolationGeometry(data, extrapolationScenario(extrapolation, data.points, "", mode)) : null;
-  const original = compact ? compactChartGeometry(data) : chartGeometry(data);
+  const original = compact ? compactChartGeometry(data, previewExtra) : chartGeometry(data);
 
   const mix = (from: number, to: number) => progress === 0 ? from : progress === 1 ? to : from + (to - from) * progress;
   const g = !future || progress === 0 ? original : progress === 1 ? future : {
@@ -217,7 +220,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg ref={presentationRef} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+      <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
         <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
