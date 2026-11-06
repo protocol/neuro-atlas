@@ -23,13 +23,13 @@ for (const [id, count] of [['idea_vintage', 27]]) test(`${id} shared modal rende
     const archived = feed.records.find(r => r.instrument === id);
     const source = id === 'idea_vintage' ? projectCitationRecord(bundledCitationData, archived) : archived;
     for (const p of source.series) assert.ok(modal.querySelector(`[data-source-observation="${id}:${p.x}"]`).textContent.includes(String(p.y)));
-    assert.ok(modal.textContent.includes(source.metric));
-    assert.ok(modal.textContent.includes(source.measuredAt));
+    assert.match(modal.textContent, /median age of references/);
+    assert.ok(modal.textContent.includes(source.window));
     assert.ok(modal.textContent.includes(source.checkedAt));
     assert.match(modal.textContent, /years/);
     if (id === 'idea_vintage') {
       assert.match(modal.textContent, /Under-indexed/);
-      assert.match(modal.textContent, /PatentsView bulk ingestion is not built/);
+      assert.doesNotMatch(modal.textContent, /Patent vintage|PatentsView|staleness flag/);
       assert.equal(modal.querySelectorAll('[data-confidence]').length, 27);
       assert.equal(modal.querySelectorAll('[data-under-indexed="true"]').length, 3);
     } else assert.match(modal.textContent, /sheep/);

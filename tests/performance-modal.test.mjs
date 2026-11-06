@@ -47,7 +47,7 @@ for (const [id, count] of [['simultaneously-recorded-neurons', 3], ['tissue-mapp
     assert.ok(dialog);
     assert.equal(dialog.querySelectorAll('[data-source-observation]').length, count);
     assert.equal(document.querySelectorAll('[data-curve-point]').length, count);
-    assert.match(dialog.textContent, /Definitions & methodology/);
+    assert.match(dialog.textContent, /Definition(?:s)? (?:&|and) methodology/);
     if (id === 'neural-recording-hours') assert.match(dialog.textContent, /More than 100 hours/);
     if (id === 'tissue-mapped') assert.match(dialog.textContent, /0.00819/);
     await click(dialog);

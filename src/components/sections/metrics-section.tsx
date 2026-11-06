@@ -97,13 +97,13 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   return <section ref={cardHeightRef} className="metrics-index" aria-label="Metrics catalog">
     <p className="pc-intro">Open a chart for methodology and downloadable source values.</p>
     <div className="metrics-tools">
-      <label htmlFor="metrics-search">Search metrics, panels, species or datasets</label>
+      <label htmlFor="metrics-search">Search charts</label>
       <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder="Try H01, mouse, recording hours…" />
       <button type="button" data-clear-metrics onClick={() => setQuery("")}>Clear search</button>
       <button type="button" data-expand-metrics onClick={event => setAll("full", event.currentTarget)}>Expand all</button>
       <button type="button" data-collapse-metrics onClick={event => setAll("collapsed", event.currentTarget)}>Collapse all</button>
     </div>
-    {term && <p role="status">{matchingCategories ? `${matchingCategories} matching categories · matching metrics and context groups shown. Clear search to toggle groups.` : "No metrics match. Try a different title, species or dataset, or clear search."}</p>}
+    {term && <p role="status">{matchingCategories ? `${matchingCategories} matching categories. Clear search to change groups.` : "Try another title, species or dataset, or clear search."}</p>}
     {METRIC_GROUPS.map(group => {
       const retiredAnchors = METRIC_CHARTS.filter(chart => metricCategoryFor(chart) === group.name).flatMap(chart => {
         const link = DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;

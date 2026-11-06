@@ -357,7 +357,7 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
     const text = [...doc.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
-    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'not a new unique-data release', 'seven nonhuman primates', 'Log scale', 'Unconnected observations']) assert.ok(text.includes(phrase), phrase);
+    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Unconnected observations']) assert.ok(text.includes(phrase), phrase);
     for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
     assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
     exported.window.close();
@@ -424,7 +424,7 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
       const visible = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ').replace(/\s+/g, ' ');
       assert.ok(visible.includes(view.label));
       assert.match(visible, /2026-11-04/);
-      assert.match(visible, /not experiment or implantation dates/);
+      assert.match(visible, /Dates identify source publication or disclosure/);
       for (const p of view.points) {
         assert.ok(visible.includes(p.preparation), p.preparation);
         assert.ok(visible.includes(p.unit), p.unit);

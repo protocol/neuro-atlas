@@ -91,8 +91,8 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
       <span className="pc-bounded" data-draft-chart-counts>{plotted.length} plotted · {gaps.length} evidence gaps</span>
     </header>}
     {!selectedCategory && <p className="draft-charts-intro">
-      Selected published measurements, not a field-wide progress score. Each panel keeps its own
-      units and scope; unconnected points do not imply a comparable trend. Inspect any point or open its source table.
+      Selected published measurements with panel-specific units and scope. Inspect any point or open
+      its source table for measurement conditions and provenance.
     </p>}
     <div className="draft-charts-groups">
       {METRIC_CHART_CATEGORIES.filter(category => (!selectedCategory || category === selectedCategory) && plotted.some(chart => metricCategoryFor(chart) === category)).map(category => {

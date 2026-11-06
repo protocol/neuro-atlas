@@ -29,17 +29,21 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
       } : undefined;
       return <CurveCard key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "No reading available")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
         <section className="pc-methodology" aria-label={`${title} definitions and methodology`}>
-          <h4>Definitions &amp; methodology</h4><p>{definition.description}</p>
+          <h4>Definition and methodology</h4>
+          {vintage ? <>
+            <p>Idea vintage is the median age of references cited by new papers, measured when the citing paper was published. A falling median means papers cite more recent work; a rising median means they cite older work. A two-segment fit estimates the recent trend, with a direction shown only when statistically clear.</p>
+            <p>Reference age tends to rise as a literature ages or gains researchers bringing older foundational citations from adjacent fields. OpenAlex’s indexing lag means the latest reliable reading is about two years old.</p>
+          </> : <p>{definition.description}</p>}
           {reading ? <>
-            <p>{record.metric}</p><p className="pc-reading">{record.value}</p><p>{record.trend}</p>
-            <p className="pc-caveat">{vintage ? "Reference age is not research quality. Source intervals are shown as whiskers; under-indexed years remain visible as hollow markers, not a new trend claim. Patent vintage is a separate evidence slot." : "Four selected BCI modalities, not every translation pathway. The x-axis is the pivotal preclinical demonstration year; the y-axis is the lag in years to first-in-human implant. Animal models differ, including sheep for Synchron. No connecting growth curve or new cohort averages are inferred."}</p>
-            <p>Source window: {record.window}. Observed {record.measuredAt}. Source checked {record.checkedAt}.</p>
+            <p className="pc-reading">{record.value}</p>
+            <p className="pc-caveat">{vintage ? "Whiskers show source intervals. Hollow markers show under-indexed years; the trend uses the reliable years." : "Selected BCI pathways retain their animal models and human endpoints. The axes show the preclinical report year and the interval to the human milestone."}</p>
+            <p>Source years: {record.window}. Source checked {record.checkedAt}.</p>
             {record.provenance && <p>Source query: {record.provenance.query}. Source generated: {record.provenance.generated}.</p>}
             {vintage && <p data-citation-revision={citation.revision}>
               <a download="citation-latency.csv" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.csv`)}>Download source CSV</a>{" · "}
               <a download="citation-latency.json" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.json`)}>Download JSON &amp; provenance</a>
             </p>}
-            <p>{data.methodology.stocksAndFlows}</p>
+
           </> : <p>{record.candidateMetric ?? record.reason} {record.blocker}</p>}
         </section>
         {reading && <>
@@ -52,14 +56,14 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
             </table>
           </div>
           <ul className="pc-sources">{record.sources!.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a></li>)}</ul>
-          {record.patentVintage && <section className="pc-methodology" aria-label="Patent vintage"><h4>Patent vintage · {record.patentVintage.state.replaceAll("_", " ")}</h4><p>{record.patentVintage.state === "reading" ? record.patentVintage.value : record.patentVintage.candidateMetric ?? record.patentVintage.reason}</p>{record.patentVintage.state !== "reading" && <p>{record.patentVintage.blocker}</p>}</section>}
+
         </>}
       </CurveCard>;
     });
   if (flat) return <>{cards}</>;
   return <section className="performance-curves" aria-label="Citation latency and latency compression">
     <header className="pc-section-header"><h2>Citation latency &amp; latency compression</h2></header>
-    <p className="pc-intro">How old are the ideas new work draws on, and how long does translation take? Separate, sourced readings in years — not a combined field score.</p>
+    <p className="pc-intro">Reference ages and selected report-to-human intervals, measured in years.</p>
     <div className="pc-grid">{cards}</div>
   </section>;
 }
