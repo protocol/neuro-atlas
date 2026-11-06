@@ -25,7 +25,7 @@ test('annual dual axes lock the science index to the actual 2022 count with an e
       assert.match(svg.textContent, /2022 = 100/);
       const anchor = svg.querySelector('[data-annual-anchor]');
       assert.ok(anchor, 'The common 2022 position must be visible without interaction');
-      assert.match(anchor.textContent, /2022.*220.*100/);
+      assert.match(anchor.textContent, svg === annualSvg() ? /2022.*220.*100/ : /2022.*100/);
       const actual = svg.querySelector('circle[data-year="2022"][data-value="220"]');
       const science = points(svg.querySelector('polyline[data-science-context]'))[0];
       assert.equal(science[0], Number(actual.getAttribute('cx')));
@@ -70,23 +70,26 @@ test('preview, modal and image export label absolute papers versus science-index
 });
 
 
-test('annual plots keep readable measured preview axes and scroll their minimum widths internally', async () => {
+test('annual preview fits its card with readable axes while the enlarged plot scrolls internally', async () => {
   const { readFile } = await import('node:fs/promises');
   const css = await readFile(new URL('../src/components/publication-charts.css', import.meta.url), 'utf8');
   const cleanup = await mount(chart(syntheticPublicationSnapshot()), '#publication-output', window => {
-    window.SVGElement.prototype.getBoundingClientRect = () => ({ width: 600, height: 210, left: 0, top: 0 });
+    window.SVGElement.prototype.getBoundingClientRect = () => ({ width: 232, height: 210, left: 0, top: 0 });
   });
   try {
     const style = document.createElement('style'); style.textContent = css; document.head.append(style);
     const preview = document.querySelector('.publication-preview-0');
     const button = preview.querySelector('.publication-preview-trigger');
-    assert.ok(parseFloat(getComputedStyle(button).minWidth) >= 600, 'The annual preview must scroll instead of compressing two axes');
+    assert.ok(parseFloat(getComputedStyle(button).minWidth) <= 232, 'The preview keeps both axes in the card instead of adding a second horizontal scroller');
     assert.equal(getComputedStyle(preview).overflow, 'auto');
     assert.ok(parseFloat(getComputedStyle(annualSvg()).minWidth) >= 840, 'The complete plot keeps its readable full-width axis/tooltip layout');
     const svg = preview.querySelector('svg');
     const width = Number(svg.getAttribute('viewBox').split(' ')[2]);
-    assert.ok(parseFloat(svg.style.fontSize) * 600 / width >= 11 - 1e-9);
+    assert.ok(parseFloat(svg.style.fontSize) * 232 / width >= 11 - 1e-9);
     assert.ok(parseFloat(annualSvg().style.fontSize) >= 13);
+    const grids=[...svg.querySelectorAll('line')];
+    assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*232/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
+    assert.ok(svg.querySelector('[data-annual-anchor] text').textContent.length <= 28, 'Compact anchor text fits at readable font sizes');
   } finally { await cleanup(); }
 });
 
@@ -199,4 +202,16 @@ test('compact axis headings stay short and keep the 2022 index unit visible sepa
     assert.equal(svg.querySelector('[data-annual-axis="science"]').textContent, 'Science index');
     assert.equal(svg.querySelector('[data-annual-index-unit]').textContent, '2022 = 100');
   } finally { await cleanup(); }
+});
+
+
+test('axis colors remain tied to their series despite shared SVG text theme rules',async()=>{
+ const cleanup=await mount(chart(syntheticPublicationSnapshot()),'#publication-output');
+ try {
+  const style=document.createElement('style');style.textContent='.publication-full-plot svg text, .publication-preview svg text {fill:var(--foreground)}';document.head.append(style);
+  for(const svg of [annualSvg(),document.querySelector('.publication-preview-0 svg')]) {
+   assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="neurotech"]')).fill,'rgb(75, 77, 242)');
+   assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="science"]')).fill,'rgb(19, 138, 122)');
+  }
+ } finally {await cleanup();}
 });

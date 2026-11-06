@@ -30,7 +30,7 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const { ref, fontSize: previewFont } = usePreviewFont(840, !!compact);
   const fontSize = compact ? previewFont : 13;
-  const left = Math.max(80, fontSize * 4.5), right = 840 - left, top = fontSize * 3.2, bottom = compact ? 230 : 280;
+  const left = Math.max(80, fontSize * 4.5), right = 840 - left, top = fontSize * 3.2, bottom = compact ? top + fontSize * 9 : 280;
   const anchor = data.annual.find(row => row.year === 2022)!.papers;
   const hasScience = annualScienceAvailable(data);
   const max = Math.max(1, ...data.annual.map(row => row.papers), ...(hasScience ? data.baseline.flatMap(row => [row.all, row.high]) : []));
@@ -61,17 +61,17 @@ function AnnualPlot({ data, compact, inspect }: { data: PublicationChartData; co
   const tooltipWidth = 380, tooltipX = selected ? Math.max(left, Math.min(right - tooltipWidth, x(selected.year) > (left + right) / 2 ? x(selected.year) - tooltipWidth - 16 : x(selected.year) + 16)) : left;
   return <svg ref={ref} viewBox={`0 0 840 ${bottom + fontSize * 4.2}`} role="img" aria-label={hasScience ? "Annual neurotech paper counts and science index, 2022 = 100, on locked axes" : "Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
     <title>{hasScience ? "Neurotech papers, 2010–2025; science index anchored to the actual 2022 count" : "Neurotech papers, 2010–2025"}</title>
-    <text data-annual-axis="neurotech" x={left} y={fontSize * 1.5} fill={blue}>{compact ? "Papers" : "Neurotech papers"}</text>
-    {hasScience && <><text data-annual-axis="science" x={right} y={fontSize * 1.5} textAnchor="end" fill={teal}>{compact ? "Science index" : "Science index · 2022 = 100"}</text>{compact && <text data-annual-index-unit x={right} y={fontSize * 2.8} textAnchor="end">2022 = 100</text>}</>}
-    {[0,1,2,3,4].map(i => <g key={i}><line x1={left} x2={right} y1={y(i*step)} y2={y(i*step)} stroke="var(--border)"/><text data-annual-paper-tick={i*step} x={left-12} y={y(i*step)+4} textAnchor="end">{number(i*step)}</text></g>)}
-    {indexTicks.map(tick=><text key={tick} data-annual-index-tick={tick} x={right+12} y={scienceY(tick)+4}>{number(tick)}</text>)}
+    <text data-annual-axis="neurotech" x={left} y={fontSize * 1.5} fill={blue} style={{fill:blue}}>{compact ? "Papers" : "Neurotech papers"}</text>
+    {hasScience && <><text data-annual-axis="science" x={right} y={fontSize * 1.5} textAnchor="end" fill={teal} style={{fill:teal}}>{compact ? "Science index" : "Science index · 2022 = 100"}</text>{compact && <text data-annual-index-unit x={right} y={fontSize * 2.8} textAnchor="end" style={{fill:teal}}>2022 = 100</text>}</>}
+    {[0,1,2,3,4].map(i => <g key={i}><line x1={left} x2={right} y1={y(i*step)} y2={y(i*step)} stroke="var(--border)"/><text data-annual-paper-tick={i*step} x={left-12} y={y(i*step)+4} textAnchor="end" style={{fill:blue}}>{number(i*step)}</text></g>)}
+    {indexTicks.map(tick=><text key={tick} data-annual-index-tick={tick} x={right+12} y={scienceY(tick)+4} style={{fill:teal}}>{number(tick)}</text>)}
     {hasScience && <polygon data-science-context fill={gray} fillOpacity=".3" points={[...data.baseline.map(row => `${x(row.year)},${scienceY(index(row.high))}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${scienceY(index(row.low))}`)].join(" ")}/>}
     {hasScience && <polyline data-science-context fill="none" stroke={teal} strokeWidth="3" points={line(data.baseline.map(row => ({year:row.year,value:index(row.all)})), scienceY)}/>}
     <polyline fill="none" stroke={blue} strokeWidth="3" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>
     {data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} r="5" fill={blue} {...yearEvents(row.year)}/>)}
     {inspect && hasScience && data.baseline.map(row => <circle key={row.year} data-publication-mark data-science-year={row.year} cx={x(row.year)} cy={scienceY(index(row.all))} r="5" fill={teal} {...yearEvents(row.year)}/>)}
     {(compact?[2010,2018,2022,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={bottom+fontSize*1.6} textAnchor="middle">{year}</text>)}
-    {hasScience && <g data-annual-anchor pointerEvents="none"><circle cx={x(2022)} cy={y(anchor)} r="8" fill="none" stroke="var(--foreground)" strokeWidth="1.5"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor="middle">2022 anchor · {number(anchor)} papers = science index 100</text></g>}
+    {hasScience && <g data-annual-anchor pointerEvents="none"><circle cx={x(2022)} cy={y(anchor)} r="8" fill="none" stroke="var(--foreground)" strokeWidth="1.5"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor="middle">{compact ? "2022 anchor · index 100" : `2022 anchor · ${number(anchor)} papers = science index 100`}</text></g>}
     {inspect && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden="true" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill="transparent" onPointerMove={event=>{if(event.movementX||event.movementY) selectYear(row.year);}} onClick={()=>selectYear(row.year)}/>)}
     {selected && <>
       <line data-annual-year-guide data-export-exclude x1={x(selected.year)} x2={x(selected.year)} y1={top} y2={bottom} stroke="var(--muted)" strokeDasharray="5 4" pointerEvents="none"/>
