@@ -14,11 +14,11 @@ const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["pathfinder-nerl", 3],
 ]);
 
-function Methodology({ chart, context }: { chart: DraftChart; context?: string }) {
+function Methodology({ chart, context, axes }: { chart: DraftChart; context?: string; axes?: string }) {
   return <details className="draft-chart-methodology" data-draft-methodology>
     <summary>Definition and comparability</summary>
     <dl>
-      <div><dt>Candidate axes</dt><dd>{chart.metricsAnchor === "neural-recording-hours" ? "x-axis: release / publication / disclosure date · y-axis: recording hours, log scale" : chart.axes}</dd></div>
+      <div><dt>Axes</dt><dd>{axes ?? chart.axes}</dd></div>
       <div><dt>Definition</dt><dd>{chart.definition}</dd></div>
       <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>
       {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}
@@ -55,7 +55,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                 <p data-metric-scope>{plot.scope.split(/\.(?:\s|$)/)[0]}.</p>
                 {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
               </div>}
-              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} /></>} />
             <div data-metric-card-footer><DraftChartShare anchor={anchor} label={displayPlot.title} /></div>
           </div>
         </article>;
@@ -71,7 +71,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
               previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
-              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} /></>} />
+              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} axes="x-axis: Publication date · y-axis: Reported event stage" /></>} />
             <div data-metric-card-footer><DraftChartShare anchor={anchor} label="Selected application events" /></div>
           </div>
         </article>);
@@ -91,8 +91,8 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
       <span className="pc-bounded" data-draft-chart-counts>{plotted.length} plotted · {gaps.length} evidence gaps</span>
     </header>}
     {!selectedCategory && <p className="draft-charts-intro">
-      Selected published measurements, not a field-wide progress score. Each panel keeps its own
-      units and scope; unconnected points do not imply a comparable trend. Inspect any point or open its source table.
+      Selected published measurements with panel-specific units and scope. Inspect any point or open
+      its source table for measurement conditions and provenance.
     </p>}
     <div className="draft-charts-groups">
       {METRIC_CHART_CATEGORIES.filter(category => (!selectedCategory || category === selectedCategory) && plotted.some(chart => metricCategoryFor(chart) === category)).map(category => {
@@ -138,7 +138,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                   ]} />
                   <DraftChartShare anchor={linksFor(chart).panels.find(panel => panel.plotId === null)!.id} label="Selected application events" />
                 </div>}
-                <Methodology chart={chart} context={evidence.gapReason} />
+                <Methodology chart={chart} context={evidence.gapReason} axes={evidence.plots.map(plot => `${plot.title}: x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`).join("; ") || "x-axis: Publication date · y-axis: Reported event stage"} />
               </article>;
             })}
           </div> : <p className="draft-chart-category-gap">No plotted observations yet. See the evidence gaps below.</p>}

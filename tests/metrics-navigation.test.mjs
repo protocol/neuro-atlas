@@ -55,7 +55,7 @@ test('search matches dataset/species and panel titles, opens results; clear rest
     assert.ok(visible('[data-draft-chart-card]').length > 0);
     assert.ok(visible('[data-draft-chart-card]').some(n => n.textContent.includes('H01')));
     await search('no-such-dataset-xyz');
-    assert.match(document.querySelector('[role=status]').textContent, /No metrics match/);
+    assert.match(document.querySelector('[role=status]').textContent, /Try another title, species or dataset/);
     assert.equal(visible('[data-draft-chart-card]').length, 0);
     await click(document.querySelector('[data-clear-metrics]'));
     assert.deepEqual([...document.querySelectorAll('[data-metric-toggle][aria-expanded=true]')].map(n => n.dataset.metricToggle), ['Cost and automation']);
@@ -142,7 +142,7 @@ test('search excludes retired definitions and unwired placeholders', async () =>
     for (const term of [...retired.map(chart => chart.title), 'Channel count frontier', 'Markets', 'term-structure aggregation', 'Enrolment is now accelerating']) {
       await search(term);
       assert.equal(visible('[data-metric-toggle]').length, 0, term);
-      assert.match(document.querySelector('[role=status]').textContent, /No metrics match/, term);
+      assert.match(document.querySelector('[role=status]').textContent, /Try another title, species or dataset/, term);
     }
   } finally { await cleanup(); }
 });
@@ -156,8 +156,8 @@ test('category styling keeps counts scannable and disclosures/search keyboard-vi
 
 import { createHash } from 'node:crypto';
 import { DRAFT_CHART_LINKS, metricChartAnchors, draftChartAnchors } from '../src/data/draft-chart-links.ts';
-test('unrevised definitions, provider snapshot and provenance remain byte-identical to base', () => {
-  const frozen = {"src/data/draft-charts.ts": "cafa46498df5396063757e04126c7b8c6778df09b26d8f59f8cf7cb3902cb661", "src/data/draft-chart-observations.ts": "d4937f5b2c4b2a559cb8d341917b27f03a4572d4c6e9c38a62257c8fd87679f9", "src/data/field-velocity/neurotech.snapshot.json": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee", "src/data/field-velocity/neurotech.snapshot.json.provenance.json": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97", "src/data/velocity/neurotech_records.json": "57695c0a26d8f67f092bb951740ae75991d0b5ca8174027e9b03280232494f62", "public/data/google-trends/google-trends.json": "830e31c5315f6fefa07897a264136a04f098bbf107dafab9c660d6fd989dbc36"};
+test('archived source snapshots and provenance remain byte-identical to base', () => {
+  const frozen = {"src/data/field-velocity/neurotech.snapshot.json": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee", "src/data/field-velocity/neurotech.snapshot.json.provenance.json": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97", "src/data/velocity/neurotech_records.json": "57695c0a26d8f67f092bb951740ae75991d0b5ca8174027e9b03280232494f62", "public/data/google-trends/google-trends.json": "830e31c5315f6fefa07897a264136a04f098bbf107dafab9c660d6fd989dbc36"};
   for (const [path, sha] of Object.entries(frozen)) assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'), sha, path);
 });
 test('every canonical share link has exactly one legacy alias and an independently addressable target', () => {

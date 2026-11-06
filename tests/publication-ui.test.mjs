@@ -71,7 +71,7 @@ for(const [index,anchor] of ['publication-output','publication-growth','research
   assert.match(image.svg,/2026-11-06/);assert.match(image.svg,/2025-12-31/);
   assert.doesNotMatch(image.svg,/token=excluded|Artio|bioRxiv|2026-10-14|Model synthetic/i);
   if(index===1){assert.match(image.svg,/OpenAlex work ID/);assert.match(image.svg,/N = P2 two-topic whole-work involvement/);assert.match(image.svg,/Asia: N \(P2\) 10/);assert.match(image.svg,/author-fractional works/);}
-  if(index===3){assert.match(image.svg,/Employment transitions are unverified/);assert.match(image.svg,/2016/);}
+  if(index===3){assert.match(image.svg,/first and latest observed paper affiliations/i);assert.match(image.svg,/2016/);}
   const first=svg.querySelector('[data-publication-mark][tabindex="0"]');
   await act(async()=>first.dispatchEvent(new window.MouseEvent('mouseover',{bubbles:true})));
   assert.equal(inspector.textContent,'','Stationary appearance does not preselect');

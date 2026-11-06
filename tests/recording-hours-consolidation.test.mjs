@@ -85,7 +85,9 @@ test('the real page retires only the duplicate hours reference, its self-link an
     assert.equal(card().querySelector('a[href="#neural-recording-hours"]'), null, 'no self-referential related chart');
     assert.equal(card().querySelector('.draft-chart-methodology'), null, 'Definitions are modal-only at rest');
     await click(card().querySelector('[data-draft-popout-trigger]'));
-    assert.match(document.querySelector('dialog .draft-chart-methodology').textContent, /disclosure date.*log scale/);
+    const shared = METRIC_CHART_EVIDENCE[title].plots[0];
+    assert.equal(document.querySelector('dialog .draft-chart-methodology dd').textContent, `x-axis: ${shared.xLabel} · y-axis: ${shared.yLabel}`);
+    assert.match(document.querySelector('dialog .draft-plot-legend').textContent, /Log scale/);
     await click(document.querySelector('dialog .pc-modal-header button')); await settle(); await settle();
     assert.equal(document.querySelectorAll('#metric-category-3 [data-metric-tile]').length, 3);
     for (const term of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO', 'JapanEEG']) {
