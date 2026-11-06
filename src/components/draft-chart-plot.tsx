@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
+import { ChartNoteList } from "@/components/chart-note-list";
 import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
@@ -246,7 +247,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     <details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{plot.scope}</p>
-      {plot.seriesNote && <p>{plot.seriesNote}</p>}
+      {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
           <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>

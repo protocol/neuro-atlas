@@ -1,0 +1,33 @@
+{
+  "runtimeRevision": "65f92607d885c2db605cb297717111da459312f5",
+  "sourceParityExceptDisposableProxy": true,
+  "sourceDifferencesExcludingProxy": [],
+  "buildId": "-BfuYxKPxpYVAtXdWFvRo",
+  "nativeExportCount": 6,
+  "nativeSiteCaseCount": 4,
+  "clipboardPixelsEqualDownload": true,
+  "annualPaperValueCount": 16,
+  "sha256": {
+    "annual.png": "e1680ae7f2864d1a8bd6fada1ed9f13b856fff07344cb411cc6680b292179cff",
+    "annual.svg": "93342a8d7b9e1ae09e69ba02791b17b8954a80d998b3a5c6426e181ae27ee75a",
+    "mobile-dialog.png": "39a225cb15f16de77515c0db30f75c20f46a3a2d05420126a1df5ccda7993b50",
+    "neuroai.png": "8cb7f5e35152e24e2aa37a03907b5bbc0d41f92f195a480c0cb559d9f1b5dfe6",
+    "neuroai.svg": "4e6bd2a3916ed3e0efe08a92259a78d7601e4f887e75b1f8421732ff82f86d3e",
+    "recording-hours-390.png": "e37220e6576a4d3b9221cb045ee353a25e530d0f60a17400e399371bc239f0c0",
+    "recording-hours-390.svg": "d6a7958b9a7404819007cbd760a5ae76a7d98fea191e2c2c993fa9fbfdceab9b",
+    "recording-hours-clipboard.png": "194a88c78080d5282b5247cc04e4ef249dc3da1ee8bc29348a913ca8b17841dd",
+    "recording-hours-crop-example.png": "b5e50eeee887d1abcad94e91967c93af7d01e272a63097f6e08a9ad0302f82af",
+    "recording-hours-desktop.png": "ed90da699b8352a3e5029cf0f9a71da619ad2eea416b2b6cc6efa5fabf87a6f4",
+    "recording-hours-desktop.svg": "f5d25706ab4b7b31fdcd6cef01b4f49b7922e5ba7d3079bfac2fc9b4a123a5f6",
+    "recording-optical.png": "47a00687c07c302a3f00f126ed10fc17880648e580c42e95039989212d0a7c0d",
+    "recording-optical.svg": "0e76cb61c7f631fa2628f39eacc5c98cea86ee6b5cd733dea31c008fb8358343",
+    "results.json": "53e77cdefb79a5c78a34665b72a02058567aae95c143fff00123d333d77cef95",
+    "site-recording-notes-1440-light.png": "ab71317566e9400926a1e53e192d78d9a1374b344f350f328603e43e5fa5e029",
+    "site-recording-notes-320-light.png": "e71a4b17c52d3d29ca590744133864fda70dd60a7349fd089efb5b80514caa65",
+    "site-recording-notes-390-dark.png": "1eeee7c019a721cdffdadbed6c7cc3693619e1182960c669b4f7738c13bfc7cf",
+    "site-recording-notes-390-light.png": "8efffeee00aed59286381115b7698e09e15fb447297e743ed0ac13c70223e52c",
+    "site-results.json": "41ea7821e485effce652edbf9aca0ee4854887723e542f0c33b44602e1fae8fb",
+    "trends.png": "f62de06ef157384e9799e749d0f15387178b4338dbc97af69bc9b79ebbf90560",
+    "trends.svg": "14c505ae3299bfe5d0f0b5ea0919c481ba7bca4865d19c85c861f6771a27f188"
+  }
+}

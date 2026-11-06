@@ -1,0 +1,54 @@
+npm warn Unknown env config "jobs". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> neuro-atlas@0.1.0 build
+> next build
+
+▲ Next.js 16.4.1 (Turbopack)
+✓ Running next.config.ts took 64ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 13.3s
+  Running TypeScript ...
+  Finished TypeScript in 12.1s ...
+  Collecting page data using 24 workers ...
+  Generating static pages using 24 workers (0/10) ...
+  Generating static pages using 24 workers (2/10) 
+  Generating static pages using 24 workers (4/10) 
+  Generating static pages using 24 workers (7/10) 
+✓ Generating static pages using 24 workers (10/10) in 1906ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/citation-latency/[revision]/[file]
+├ ƒ /api/citation-latency/latest
+├ ƒ /api/feedback
+├ ƒ /api/feedback/[id]
+├ ƒ /api/feedback/[id]/followups
+├ ƒ /api/feedback/auth/callback
+├ ƒ /api/feedback/auth/finish
+├ ƒ /api/feedback/auth/session
+├ ƒ /api/feedback/auth/start
+├ ƒ /api/feedback/config
+├ ƒ /api/google-trends/[revision]/[file]
+├ ƒ /api/google-trends/latest
+├ ƒ /api/publications
+├ ○ /ecosystem
+├ ○ /field-velocity
+├ ○ /funding
+├ ○ /methodology
+├ ○ /milestones
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

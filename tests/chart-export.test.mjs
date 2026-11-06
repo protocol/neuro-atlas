@@ -42,6 +42,45 @@ test('selected A export is white with the official blue signature and a small au
   } finally { dom.window.close(); }
 });
 
+test('the branded footer closes the chart before supporting notes, leaving a clean crop boundary', () => {
+  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle data-value="1074" cx="100" cy="200" r="5" fill="#238e91"/></svg>');
+  try {
+    const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Selected datasets', anchor: 'metric-recording-hours', legend: [{ label: 'TUSZ', color: '#238e91' }], notes: ['Optional source explanation.'] }, 'https://atlas.example/field-velocity');
+    const out = parse(image.svg), doc = out.window.document;
+    const footer = doc.querySelector('[data-export-footer]');
+    const footerBottom = Number(footer.querySelector('[data-export-brand]').getAttribute('y')) + 54;
+    const note = [...doc.querySelectorAll('text')].find(node => node.textContent === 'Optional source explanation.');
+    assert.ok(Number(note.getAttribute('y')) > footerBottom + 24, 'All note text begins after a white crop gap below the logo');
+    assert.ok(Number(doc.documentElement.getAttribute('data-export-crop-bottom')) > footerBottom);
+    assert.ok(Number(doc.documentElement.getAttribute('data-export-crop-bottom')) < Number(note.getAttribute('y')));
+    assert.equal(doc.querySelector('[data-value]').getAttribute('data-value'), '1074');
+    out.window.close();
+  } finally { dom.window.close(); }
+});
+
+test('footnotes preserve dataset paragraphs in smaller gray type with only existing semantic color keys', () => {
+  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle data-value="50000" cx="100" cy="200" r="5" fill="#9275ca"/></svg>');
+  try {
+    const paragraphs = ['Neuralink: Company-held human intracortical recordings; source rules unspecified.', 'TUSZ: Controlled-access EEG releases overlap.'];
+    const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Selected datasets', anchor: 'metric-recording-hours', legend: [{ label: 'Neuralink', color: '#9275ca' }, { label: 'TUSZ', color: '#238e91' }], notes: ['Selected observations.', paragraphs.join('\n\n'), 'Sources: A; B.'] }, 'https://atlas.example/field-velocity');
+    const out = parse(image.svg), doc = out.window.document;
+    const notes = [...doc.querySelectorAll('[data-export-note]')];
+    assert.equal(notes.length, 4, 'Explicit paragraph boundaries never collapse into a run-on block');
+    for (const text of doc.querySelectorAll('[data-export-note] text')) {
+      assert.equal(text.getAttribute('font-size'), '14');
+      assert.equal(text.getAttribute('fill'), '#667085', 'Footnote prose is quiet gray, not series-colored');
+    }
+    const keyed = notes.filter(node => node.querySelector('[data-export-note-key]'));
+    assert.deepEqual(keyed.map(node => node.textContent), paragraphs);
+    assert.deepEqual(keyed.map(node => node.querySelector('[data-export-note-key]').getAttribute('fill')), ['#9275ca', '#238e91']);
+    for (let i = 1; i < notes.length; i++) {
+      assert.ok(Number(notes[i].querySelector('text').getAttribute('y')) - Number(notes[i - 1].querySelector('text:last-of-type').getAttribute('y')) >= 30, 'A paragraph gap separates the next dataset');
+    }
+    assert.equal(doc.querySelector('[data-value]').getAttribute('fill'), '#9275ca', 'Existing plotted colors are unchanged');
+    out.window.close();
+  } finally { dom.window.close(); }
+});
+
 test('dark source neutral paints become a readable white export on the clone while series colors and uncertainty survive', () => {
   const dom = new JSDOM(`<style>.label { fill: var(--foreground); } .muted {fill:#a1a1aa} .grid {stroke:var(--border)}</style><div style="--surface:#111113;--foreground:#f4f4f5;--muted:#a1a1aa;--faint:#63636b;--border:#232328;--accent:#8b7dff"><svg viewBox="0 0 720 300"><text class="label" x="0" y="18">Units · log scale</text><g fill="var(--foreground)"><text x="55" y="80">1,000</text></g><text fill="white" x="10" y="100">Explicit white label</text><text class="muted" x="10" y="120">Source publication date</text><line class="grid" x1="70" x2="700" y1="80" y2="80"/><circle data-curve-point="observed" data-value="10" cx="100" cy="200" r="5" fill="var(--accent)" stroke="var(--surface)"/><circle data-under-indexed="true" data-curve-point="partial" cx="200" cy="100" r="5" fill="var(--surface)" stroke="#22c55e"/><polyline data-extrapolation-line="neurons" points="100,200 200,100" stroke="var(--accent)" stroke-dasharray="8 5" fill="none"/><text x="10" y="140" stroke="var(--surface)" stroke-width="4" paint-order="stroke">Conditional target</text></svg></div>`);
   try {
@@ -107,7 +146,7 @@ test('the shared 48px editorial edge contains y tick glyphs with an internal gut
     }
     const title = doc.querySelector('svg > text');
     assert.equal(title.getAttribute('x'), '48');
-    assert.equal([...doc.querySelectorAll('svg > text')].find(n => n.textContent.startsWith('Sources:')).getAttribute('x'), '48');
+    assert.equal([...doc.querySelectorAll('[data-export-footnotes] text')].find(n => n.textContent.startsWith('Sources:')).getAttribute('x'), '48');
     const point = plot.querySelector('[data-source-observation]');
     assert.equal(point.getAttribute('cx'), '100.123456789');
     assert.equal(point.getAttribute('cy'), '200.987654321');
