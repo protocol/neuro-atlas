@@ -240,8 +240,8 @@ function SectorPlot({ data, compact, inspect }: { data: PublicationChartData; co
     {data.waffle.map((cell,i)=><rect key={i} data-publication-mark data-sector={cell.sector} x={8+(i%10)*32} y={8+Math.floor(i/10)*32} width="28" height="28" rx="3" fill={cell.color} {...pointEvents(`${data.sectors.find(row=>row.sector===cell.sector)!.label}: ${number(data.sectors.find(row=>row.sector===cell.sector)!.count)} researchers with papers in ${data.authorEndYear}`,inspect)}/>)}
     {!compact&&data.sectors.map((row,i)=><g key={row.sector} data-publication-mark {...pointEvents(`${row.label}: ${number(row.count)} researchers, ${number(row.share)}%`,inspect)}>
       <rect x="350" y={25+i*82} width="12" height="12" rx="2" fill={row.color}/>
-      <text x="375" y={37+i*82} fontWeight="700">{number(row.count)} · {number(row.share)}%</text>
-      <text x="375" y={62+i*82}>{row.label}</text>
+      <text x="375" y={37+i*82} fontWeight="700" data-export-font-size="24" style={{fontSize:fontSize*2}}>{number(row.count)} · {number(row.share)}%</text>
+      <text x="375" y={70+i*82} data-export-font-size="16" style={{fontSize:fontSize*4/3}}>{row.label}</text>
     </g>)}
   </svg>;
 }
