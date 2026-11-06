@@ -1,0 +1,81 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import React, { act } from 'react';
+import { readFileSync } from 'node:fs';
+import { JSDOM } from 'jsdom';
+import { CurveCard } from '../src/components/performance-curves.tsx';
+import { DraftChartPlot } from '../src/components/draft-chart-plot.tsx';
+import { GoogleTrends } from '../src/components/google-trends.tsx';
+import { CHART_PRESENTATION } from '../src/lib/chart-presentation.ts';
+import { buildChartImage } from '../src/lib/chart-export.ts';
+import { mount } from './modal-helpers.mjs';
+globalThis.React = React;
+const plot = { id: 'type-fixture', title: 'Synthetic chart', xLabel: 'Publication year', yLabel: 'Fixture units', scale: 'linear', scope: 'Synthetic only.', points: [2000, 2020].map((x, i) => ({ id: `p${i}`, x, y: i + 1, label: `Fixture ${i}`, dateLabel: `${x}`, sourceTitle: 'Synthetic source', sourceUrl: 'https://example.org', quote: 'Fixture' })) };
+const curve = { title: plot.title, unit: plot.yLabel, scale: 'linear', line: false, tracks: [{ id: 'fixture', label: 'Fixture' }], points: plot.points.map(p => ({ date: `${p.x}-01-01`, value: p.y, label: p.label, track: 'fixture', trackIndex: 0 })) };
+const css = ['performance-curves', 'draft-chart-plot', 'draft-chart-panel', 'google-trends'].map(n => readFileSync(`src/components/${n}.css`, 'utf8')).join('\n');
+function font(node) {
+  for (; node; node = node.parentElement) {
+    const size = Number.parseFloat(getComputedStyle(node).fontSize);
+    if (Number.isFinite(size)) return size;
+  }
+  return NaN;
+}
+function harness() {
+  const previous = globalThis.ResizeObserver, observers = [];
+  let scale = 1;
+  globalThis.ResizeObserver = class {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe(target) { this.target = target; }
+    disconnect() { this.disconnected = true; }
+  };
+  return {
+    observers,
+    configure(window) {
+      const style = window.document.createElement('style'); style.textContent = css; window.document.head.append(style);
+      window.SVGElement.prototype.getScreenCTM = () => ({ a: scale, b: 0 });
+      window.SVGElement.prototype.getBoundingClientRect = () => ({ width: 720, height: 300 });
+    },
+    async resize(next) {
+      scale = next;
+      await act(async () => { for (const o of observers.filter(o => !o.disconnected && o.target.localName === 'svg')) o.callback([{ contentRect: { width: 1000, height: 410 } }]); });
+    },
+    restore() { if (previous === undefined) delete globalThis.ResizeObserver; else globalThis.ResizeObserver = previous; },
+  };
+}
+
+test('all chart families share 16px preview headings and 12px supporting type', async () => {
+  assert.equal(CHART_PRESENTATION.labelFontSize, 12);
+  const h = harness(); let cleanup;
+  try {
+    cleanup = await mount(React.createElement('div', { className: 'metric-chart-rail' },
+      React.createElement(CurveCard, { id: 'tissue-mapped', title: curve.title, eyebrow: 'Fixture', coverage: 'Scope', plot: curve }),
+      React.createElement('div', { className: 'draft-popout-preview' }, React.createElement(DraftChartPlot, { plot, preview: true })),
+      React.createElement(GoogleTrends, { flat: true, selection: ['neurotech'] })), '', h.configure);
+    for (const heading of document.querySelectorAll('.pc-card-title, figcaption, .gt-card h3')) assert.equal(font(heading), CHART_PRESENTATION.previewTitleFontSize);
+    for (const label of document.querySelectorAll('.pc-preview text, .draft-plot-tick, .draft-plot-axis-title, .gt-preview text, .gt-preview-axis, .gt-legend')) assert.equal(font(label), CHART_PRESENTATION.supportingFontSize, label.outerHTML);
+    assert.equal(document.querySelector('.draft-plot-inspector'), null);
+  } finally { if (cleanup) await cleanup(); h.restore(); }
+});
+
+for (const family of ['curve', 'trends']) test(`${family} full chart type is 12 actual CSS pixels at narrow, wide and height-capped scales; export is canonical`, async () => {
+  const h = harness(); let cleanup;
+  try {
+    const node = family === 'curve' ? React.createElement(CurveCard, { id: 'tissue-mapped', title: curve.title, eyebrow: 'Fixture', coverage: 'Scope', plot: curve }) : React.createElement(GoogleTrends, { flat: true, selection: ['neurotech'] });
+    cleanup = await mount(node, family === 'curve' ? '#tissue-mapped' : '#google-trends-neurotech', h.configure);
+    const svg = document.querySelector('dialog svg');
+    const spec = { svg, title: plot.title, anchor: family === 'curve' ? 'tissue-mapped' : 'google-trends-neurotech', notes: [] };
+    let canonical;
+    for (const scale of [560 / 720, 410 / 300, 1.25]) {
+      await h.resize(scale);
+      for (const label of svg.querySelectorAll('text')) assert.ok(Math.abs(font(label) * scale - 12) < 0.001, `${label.textContent}: ${font(label) * scale}`);
+      const image = buildChartImage(spec, window.location.href).svg;
+      if (canonical) assert.equal(image, canonical, 'Exports cannot inherit random viewport type sizes');
+      canonical = image;
+      const dom = new JSDOM(image, { contentType: 'image/svg+xml' });
+      for (const label of dom.window.document.querySelectorAll('svg svg text')) assert.equal(label.getAttribute('font-size'), '12');
+      dom.window.close();
+    }
+    await cleanup(); cleanup = undefined;
+    assert.ok(h.observers.every(o => o.disconnected));
+  } finally { if (cleanup) await cleanup(); h.restore(); }
+});

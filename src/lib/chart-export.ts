@@ -59,6 +59,10 @@ function safePlot(source: Element): Element | null {
     const value = source.getAttribute(`data-export-${name}`);
     if (value && /^\d+(\.\d+)?$/.test(value)) result.setAttribute(name, value);
   }
+  // Screen-space UI labels use canonical coordinate-size type in the full-width
+  // export, independent of the browser viewport/height cap that produced it.
+  const exportFont = source.closest("svg[data-export-font-size]")?.getAttribute("data-export-font-size");
+  if (exportFont && /^\d+(\.\d+)?$/.test(exportFont)) result.setAttribute("font-size", exportFont);
   // Use a portable font, not an unavailable external webfont in an SVG image.
   if (["text", "tspan"].includes(source.localName)) result.setAttribute("font-family", "Arial, Helvetica, sans-serif");
   for (const child of source.childNodes) {

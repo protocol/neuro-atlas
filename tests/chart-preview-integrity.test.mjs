@@ -46,7 +46,7 @@ test('preview SVG keeps native text scale and adopts narrow card width without a
     assert.equal(getComputedStyle(svg).height, 'auto');
     await act(async () => resize([{ contentRect: { width: 172 } }]));
     assert.equal(Number(svg.getAttribute('viewBox').split(' ')[2]), 172);
-    assert.equal(getComputedStyle(svg.querySelector('.draft-plot-tick')).fontSize, '11px');
+    assert.equal(getComputedStyle(svg.querySelector('.draft-plot-tick')).fontSize, '12px');
   } finally { await cleanup(); delete globalThis.ResizeObserver; }
 });
 

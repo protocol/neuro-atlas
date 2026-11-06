@@ -52,8 +52,8 @@ function renderedFont(label, renderedWidth) {
 }
 function assertFonts(width) {
   for (const label of document.querySelectorAll('.pc-preview svg text')) {
-    assert.ok(Math.abs(renderedFont(label, width) - 11) < 0.001,
-      `${label.closest('[data-performance-card]').dataset.performanceCard}: ${label.textContent} should render at 11px, not ${renderedFont(label, width)}px`);
+    assert.ok(Math.abs(renderedFont(label, width) - 12) < 0.001,
+      `${label.closest('[data-performance-card]').dataset.performanceCard}: ${label.textContent} should render at 12px, not ${renderedFont(label, width)}px`);
   }
 }
 function assertGeometry() {
@@ -108,7 +108,7 @@ test('preview unit and scale captions reserve their full readable ascent inside 
   }
 });
 
-test('reference and Pace previews measure their SVG width to render 11px labels without changing plot geometry', async () => {
+test('reference and Pace previews measure their SVG width to render 12px labels without changing plot geometry', async () => {
   for (const width of [230, 520]) {
     const cleanup = await mount(charts(), '', configureWidth(width));
     try {
@@ -150,8 +150,7 @@ test('resizing each reference and Pace preview normalizes typography and marks, 
     assert.equal(harness.observers.filter(observer => observer.target.matches('dialog .pc-plot svg')).length, 1);
     const modal = document.querySelector('dialog .pc-plot svg');
     const fullBefore = modal.outerHTML;
-    assert.equal(modal.style.fontSize, '', 'Full-chart/export typography must not be overridden');
-    assert.equal(getComputedStyle(modal.querySelector('text')).fontSize, '12px');
+    assert.ok(Math.abs(Number.parseFloat(modal.style.fontSize) * 355 / 720 - 12) < 0.001, 'Full-chart type is normalized to the same 12 screen pixels');
     for (const width of [720, 224, 519.5]) {
       await harness.resize(width);
       assertFonts(width);
@@ -184,8 +183,8 @@ test('hidden or invalid preview widths retain the last usable font size and reco
     cleanup = undefined;
     harness.observers.length = 0;
     cleanup = await mount(charts(), '', configureWidth(0));
-    assert.ok([...document.querySelectorAll('.pc-preview svg')].every(svg => svg.style.fontSize === '11px'),
-      'Initially hidden previews retain a finite 11px coordinate fallback until measurable');
+    assert.ok([...document.querySelectorAll('.pc-preview svg')].every(svg => svg.style.fontSize === '12px'),
+      'Initially hidden previews retain a finite 12px coordinate fallback until measurable');
     await harness.resize(519.5);
     assertFonts(519.5);
     assertGeometry();

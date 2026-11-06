@@ -7,6 +7,8 @@ import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
 import { ChartActions } from '@/components/chart-actions';
+import { usePreviewFont } from '@/components/use-preview-font';
+import { CHART_PRESENTATION } from '@/lib/chart-presentation';
 import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
@@ -26,6 +28,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     return () => observer.disconnect();
   }, [compact]);
   const width = compact ? previewWidth : 600;
+  const { ref: presentationRef, fontSize } = usePreviewFont(width, !compact, 270);
   const right = width - 20;
   const rows = group.rows.filter(row => !row.partial);
   const start = Date.parse(group.start), end = Date.parse(group.end);
@@ -45,7 +48,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     {intro}
     <div ref={plotRef} className={compact ? 'gt-preview' : 'gt-plot'} role={compact ? undefined : 'region'} aria-label={compact ? undefined : `${group.title} plot`} tabIndex={compact ? undefined : 0}>
     {compact && <span className="gt-preview-axis">Worldwide · Weekly index · 0–100</span>}
-    <svg viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
+    <svg ref={presentationRef} style={compact ? undefined : { fontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${width} 270`} role="img" aria-label={`${group.title}: weekly Google Trends index, 0–100. Complete weeks only; source values available in the expanded chart.`}>
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text data-trends-axis="y" x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
       {group.terms.map((term, index) => {
         let gap = true;

@@ -1,14 +1,14 @@
 /* Attention charts keep HTML preview labels readable at narrow card widths. */
 .gt-scope { color: var(--muted); font-size: .75rem; line-height: 1.7; margin: .75rem 0 1.1rem; }
 .gt-card .pc-trigger h3 { font-size: 1rem; font-weight: 650; margin: 0; line-height: 1.4; }
-.gt-range { display: block; margin-top: .5rem; color: var(--muted); font-size: .7rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.gt-range { display: block; margin-top: .5rem; color: var(--muted); font-size: 12px; line-height: 1.6; font-variant-numeric: tabular-nums; }
 .gt-preview { display: block; margin: .8rem 0; }
 .gt-preview svg, .gt-plot svg { width: 100%; height: auto; display: block; }
-.gt-card .gt-preview svg text { font-size: 11px; fill: var(--muted); }
-.gt-preview-axis { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); }
+.gt-card .gt-preview svg text { font-size: 12px; fill: var(--muted); }
+.gt-preview-axis { display: block; font-size: 12px; line-height: 1.6; color: var(--muted); }
 .gt-plot { max-width: 100%; overflow-x: auto; }
 .gt-plot svg { min-width: 560px; }
-.gt-plot svg text { font-size: 16px; fill: var(--muted); }
+.gt-plot svg text { font-size: inherit; fill: var(--muted); }
 .gt-legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; padding: 0; margin: .8rem 0; list-style: none; font-size: .75rem; color: var(--foreground); }
 .gt-legend li { display: flex; align-items: center; gap: .4rem; min-width: 0; overflow-wrap: anywhere; }
 .gt-legend li span { width: 1.2rem; flex-shrink: 0; border-top-width: 3px; }

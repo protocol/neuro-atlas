@@ -21,8 +21,8 @@
 .draft-plot > figcaption { font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: .5rem; }
 .draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
 .draft-plot-qualifications { margin: 10px 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
-.draft-plot-overlap-note { margin: .45rem 0; font-size: .7rem; line-height: 1.5; color: var(--muted); }
-.draft-plot-tick { font-size: 11px; font-variant-numeric: tabular-nums; fill: var(--muted); }
+.draft-plot-overlap-note { margin: .45rem 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.draft-plot-tick { font-size: 12px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
 .draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
@@ -31,15 +31,15 @@
 .draft-annotation-key { pointer-events: none; }
 .draft-annotation-leader { stroke-width: 1; pointer-events: none; }
 .draft-annotation-key rect { fill: var(--surface); stroke-width: 1; }
-.draft-annotation-key text { fill: var(--foreground); font-size: 11px; font-weight: 600; }
+.draft-annotation-key text { fill: var(--foreground); font-size: 12px; font-weight: 600; }
 .draft-point-annotations { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .25rem .75rem; list-style: none; margin: .5rem 0; padding: 0; }
 .draft-point-annotations button { display: flex; align-items: baseline; gap: .45rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .72rem; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
 .draft-point-annotations button:is(:hover, :focus-visible) > span:last-child { text-decoration: underline; text-underline-offset: 2px; }
 .draft-point-annotations button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.draft-annotation-number { flex: 0 0 1.5em; border: 1px solid currentColor; border-radius: 4px; text-align: center; font-size: 11px; font-weight: 600; }
-.draft-plot-legend { display: flex; flex-wrap: wrap; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: .66rem; line-height: 1.5; }
+.draft-annotation-number { flex: 0 0 1.5em; border: 1px solid currentColor; border-radius: 4px; text-align: center; font-size: 12px; font-weight: 600; }
+.draft-plot-legend { display: flex; flex-wrap: wrap; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .draft-plot-legend > span { color: var(--accent); }
-.draft-group-legend { display: flex; flex-wrap: wrap; gap: .35rem .85rem; list-style: none; margin: .45rem 0; padding: 0; color: var(--muted); font-size: .7rem; line-height: 1.5; }
+.draft-group-legend { display: flex; flex-wrap: wrap; gap: .35rem .85rem; list-style: none; margin: .45rem 0; padding: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .draft-group-legend li { display: flex; align-items: baseline; gap: .3rem; }
 .draft-plot-inspector { height: 9rem; overflow-y: auto; scrollbar-gutter: stable; margin: .6rem 0 .8rem; padding: .65rem .75rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--surface-raised); font-size: .74rem; line-height: 1.5; overflow-wrap: anywhere; }
 .draft-plot-inspector p { margin-top: .15rem; color: var(--muted); }
@@ -148,7 +148,7 @@
 .metric-chart-rail .pc-card-title { min-height: 0; }
 .metric-chart-rail .pc-card-title,
 .metric-chart-rail .gt-card .pc-trigger h3,
-.metric-chart-rail .draft-popout-preview .draft-plot > figcaption { font-size: .875rem; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; margin-top: 0; }
+.metric-chart-rail .draft-popout-preview .draft-plot > figcaption { font-size: 16px; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; margin-top: 0; }
 .metric-chart-rail .pc-preview { margin-left: 0; margin-right: 0; }
 .metrics-index :is(button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .metric-anchor { display: block; scroll-margin-top: 6rem; }

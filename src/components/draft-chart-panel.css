@@ -19,7 +19,7 @@
 .draft-popout-preview { pointer-events: none; min-width: 0; }
 .draft-popout-preview .draft-plot-svg { height: auto; min-height: 0; overflow: visible; }
 .draft-popout-preview .draft-plot > figcaption { padding-right: 8px; }
-.draft-popout-preview .draft-group-legend { font-size: .68rem; }
+.draft-popout-preview .draft-group-legend { font-size: 12px; }
 .draft-popout-trigger {
   position: absolute;
   inset: 0;

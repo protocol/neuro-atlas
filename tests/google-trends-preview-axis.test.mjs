@@ -25,13 +25,13 @@ test('Google Trends mini previews keep numeric and date axes visible inside thei
   dom.window.close();
 });
 
-test('Google Trends preview tick labels use the same 11px coordinate font as curated previews', async () => {
+test('Google Trends preview tick labels use the same 12px coordinate font as curated previews', async () => {
   globalThis.React = React;
   const { GoogleTrends } = await import('../src/components/google-trends.tsx');
   const css = readFileSync('src/components/google-trends.css', 'utf8');
   const dom = new JSDOM(`<style>${css}</style>${renderToStaticMarkup(React.createElement(GoogleTrends, { flat: true }))}`);
   for (const label of dom.window.document.querySelectorAll('.gt-preview svg text')) {
-    assert.equal(dom.window.getComputedStyle(label).fontSize, '11px', 'Preview numeric/date tick typography must match curated charts');
+    assert.equal(dom.window.getComputedStyle(label).fontSize, '12px', 'Preview numeric/date tick typography must match curated charts');
   }
   const source = readFileSync('src/components/google-trends.tsx', 'utf8');
   assert.match(source, /ResizeObserver/, 'A fixed SVG viewBox must not scale the tick font as cards widen');
@@ -55,7 +55,7 @@ test('Google Trends preview coordinate width follows card resize and retains the
     const svg = document.querySelector('.gt-preview svg');
     for (const width of [520, 224]) {
       await act(async () => observed[0].callback([{ target: observed[0].target, contentRect: { width } }]));
-      assert.equal(Number(svg.getAttribute('viewBox').split(/\s+/)[2]), width, 'Preview coordinates must match rendered CSS width so 11px ticks do not scale');
+      assert.equal(Number(svg.getAttribute('viewBox').split(/\s+/)[2]), width, 'Preview coordinates must match rendered CSS width so 12px ticks do not scale');
       const labels = [...svg.querySelectorAll('text')].slice(-2).map(label => label.textContent);
       assert.ok(labels.every(label => width < 240 ? /^\d{4}$/.test(label) : /^\d{4}-\d{2}$/.test(label)), 'Narrow timeline labels shorten to years instead of overlapping');
     }

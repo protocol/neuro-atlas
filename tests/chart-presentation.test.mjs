@@ -210,7 +210,7 @@ test('rail previews share title typography, caveats-below hierarchy and quiet no
     assert.equal(headings.length, 3);
     for (const heading of headings) {
       const style = getComputedStyle(heading);
-      assert.equal(style.fontSize, '14px');
+      assert.equal(style.fontSize, '16px');
       assert.equal(style.fontWeight, '600');
       assert.equal(style.lineHeight, '1.4');
       assert.equal(style.marginTop, '0px');

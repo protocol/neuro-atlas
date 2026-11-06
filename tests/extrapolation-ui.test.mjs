@@ -22,6 +22,8 @@ const sha = text => createHash('sha256').update(text).digest('hex');
 // radius/coordinates, source values, labels, intervals and other paint stay pinned.
 // The new styling is independently asserted in chart-presentation.test.mjs.
 const svgSha = text => sha(text
+  // Exact new root typography only; independent geometry/content hashes stay fixed.
+  .replace(/^<svg style="font-size: ?[0-9.e+-]+px;?" data-export-font-size="12"/, '<svg')
   .replaceAll(' data-export-r="5"', '')
   .replaceAll(' vector-effect="non-scaling-stroke"', '')
   .replaceAll(' class="pc-gridline"', '')

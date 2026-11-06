@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 
 /** One measurement keeps fixed-viewBox labels and marks in screen-space units. */
 export function usePreviewFont(viewBoxWidth: number, enabled: boolean, viewBoxHeight?: number) {
@@ -32,5 +33,5 @@ export function usePreviewFont(viewBoxWidth: number, enabled: boolean, viewBoxHe
     return () => { active = false; observer.disconnect(); };
   }, [enabled, viewBoxWidth, viewBoxHeight]);
 
-  return { ref, fontSize: 11 * unitsPerPixel, unitsPerPixel };
+  return { ref, fontSize: CHART_PRESENTATION.labelFontSize * unitsPerPixel, unitsPerPixel };
 }
