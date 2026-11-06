@@ -1,0 +1,11 @@
+{
+  "runtimeCommit": "aadfaed2f86aa40ea2a5700d7554dbd87e9f91c8",
+  "baselineCommit": "da47c18254457824aff5107821debb0bac69227c",
+  "fileCount": 184,
+  "matchingRuntimeFiles": true,
+  "excluded": [
+    "src/proxy.ts (disposable loopback fixture only)"
+  ],
+  "sourceTreeSha256": "bbff70595984240a1064a20d3f504bef19d76ce881880a09ace574270e2d5c4d",
+  "snapshotSha256": "2a06d39911b08f50a695070f0fb53073cdc4c9cd08d86daa50cf77d764b2d30c"
+}

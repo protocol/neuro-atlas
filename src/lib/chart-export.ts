@@ -105,8 +105,12 @@ function safePlot(source: Element, palette: Map<string, string>): Element | null
   // Screen-space UI labels use canonical coordinate-size type in the full-width
   // export, independent of the browser viewport/height cap that produced it.
   if (source.getAttribute("vector-effect") === "non-scaling-stroke") result.setAttribute("vector-effect", "non-scaling-stroke");
-  const exportFont = Number(source.closest("svg[data-export-font-size]")?.getAttribute("data-export-font-size") ?? 12);
-  result.setAttribute("font-size", String(Number.isFinite(exportFont) && exportFont >= 8 && exportFont <= 24 ? exportFont : 12));
+  const explicitFont = source.getAttribute("data-export-font-size");
+  const exportFont = Number(explicitFont ?? source.closest("svg[data-export-font-size]")?.getAttribute("data-export-font-size") ?? 12);
+  const validFont = Number.isFinite(exportFont) && exportFont >= 8 && exportFont <= 24;
+  result.setAttribute("font-size", String(validFont ? exportFont : 12));
+  // A per-label role preserves count/label hierarchy in canonical chart units.
+  if (explicitFont !== null && validFont && ["text", "tspan"].includes(source.localName)) result.setAttribute("data-export-font-size", String(exportFont));
   // Use a portable font, not an unavailable external webfont in an SVG image.
   if (["text", "tspan"].includes(source.localName)) result.setAttribute("font-family", EXPORT_FONT);
   if (source.localName === "text") {
@@ -216,6 +220,7 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   for (let pass = 0; pass < 3; pass++) {
     const scale = plotWidth / frame[2];
     for (const label of clone.querySelectorAll("text, tspan")) {
+      if (label.hasAttribute("data-export-font-size")) continue;
       const size = Number(label.getAttribute("font-size"));
       label.setAttribute("font-size", String(Math.max(16 / scale, Math.min(22 / scale, size))));
     }
