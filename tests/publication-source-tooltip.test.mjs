@@ -15,7 +15,12 @@ for (const anchor of ['publication-output','publication-growth','researcher-sect
   await act(async()=>mark.dispatchEvent(new window.FocusEvent('focusin',{bubbles:true})));
   const popup = modal.querySelector('[data-point-tooltip]');
   assert.ok(popup, 'Keyboard focus reveals source values in the anchored popup');
-  assert.ok(popup.textContent.includes(mark.getAttribute('aria-label')), 'Exact source-bearing mark label is retained');
+  if (anchor === 'publication-output') {
+   assert.ok(popup.textContent.includes(mark.dataset.year), 'Shared-year popup retains the selected observation year');
+   assert.ok(popup.textContent.includes(Number(mark.dataset.value).toLocaleString('en-US')), 'Shared-year popup retains the exact paper count');
+   assert.ok(popup.textContent.includes('Neurotech papers'), 'Paper-count units remain explicit');
+   assert.ok(popup.querySelector('a[href]'), 'The floating shared-year popup retains a source link');
+  } else assert.ok(popup.textContent.includes(mark.getAttribute('aria-label')), 'Exact source-bearing mark label is retained');
   assert.ok(!popup.closest('.publication-full-plot'), 'Source popup escapes the internally scrolling plot');
   await act(async()=>mark.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
   assert.equal(modal.querySelector('[data-point-tooltip]'), null, 'Escape dismisses source popup first');

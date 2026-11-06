@@ -60,11 +60,11 @@ def synthetic_science(root):
     for ident, label, domain in [('all', 'All science', None), ('life', 'Life sciences', '1'),
                                   ('social', 'Social sciences', '2'), ('physical', 'Physical sciences', '3'),
                                   ('health', 'Health sciences', '4')]:
-        params = {'filter': 'publication_year:2022-2025,type:article|review|conference-paper|book-chapter|preprint' +
+        params = {'filter': 'publication_year:2010-2025,type:article|review|conference-paper|book-chapter|preprint' +
                   (',primary_topic.domain.id:' + domain if domain else ''),
                   'group_by': 'publication_year', 'per_page': '100', 'corpus': 'core'}
-        body = json.dumps({'meta': {'count': 460, 'groups_count': 4, 'per_page': 100},
-                           'group_by': [{'key': str(y), 'count': 100 + (y - 2022) * 10} for y in range(2022, 2026)]}).encode()
+        body = json.dumps({'meta': {'count': 2800, 'groups_count': 16, 'per_page': 100},
+                           'group_by': [{'key': str(y), 'count': 100 + (y - 2010) * 10} for y in range(2010, 2026)]}).encode()
         (root / (ident + '.response.json')).write_bytes(body)
         (root / (ident + '.request.json')).write_text(json.dumps({
             'url': 'https://api.openalex.org/works', 'params': params, 'complete': True,
@@ -72,6 +72,10 @@ def synthetic_science(root):
 
 
 class RefreshTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        (ROOT / '.qa').mkdir(exist_ok=True)
+
     def test_private_reconstruction_ledger_must_exactly_match_offline_replay(self):
         r = refresh()
         with tempfile.TemporaryDirectory(dir=ROOT / '.qa') as directory:
@@ -185,7 +189,7 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(author['countUnit'], 'author-fractional works')
             self.assertEqual(author['numeratorCounts'], {'2022': '3/2', '2025': '1'})
             self.assertIsNone(author['relativeShareGrowthPct'])
-            self.assertEqual(len(result['tables']['nt_yearly']['rows']), 28)
+            self.assertEqual(len(result['tables']['nt_yearly']['rows']), 64)
             self.assertIn('scienceInputSha256', proof)
             self.assertIn('matchedInputSha256', proof)
             self.assertNotIn('https://openalex.org/A', json.dumps(result))

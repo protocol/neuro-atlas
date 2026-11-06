@@ -50,7 +50,7 @@ export function usePointTooltip<T>(points?: readonly T[]) {
     pointProps: (point: T, getAnchor?: (trigger: Element) => Element | null) => {
       const selection = (trigger: Element) => ({ point, anchor: getAnchor?.(trigger) ?? trigger, trigger });
       const toggle = (trigger: Element) => {
-        if (pinned?.point === point) dismiss();
+        if (pinned?.point === point && pinned.trigger === trigger) dismiss();
         else { dismissed.current = false; setFocused(null); setPinned(selection(trigger)); }
       };
       return {
