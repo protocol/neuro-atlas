@@ -15,7 +15,7 @@
   z-index: -1;
   content: "";
   inset: 0;
-  background: radial-gradient(ellipse at 100% 0%, #6d5bff26, transparent 65%);
+  background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 65%);
   pointer-events: none;
 }
 .landing-eyebrow {
@@ -24,7 +24,7 @@
   font-weight: 600;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: #b8afff;
+  color: var(--accent-on-dark);
 }
 .landing-title {
   font-size: clamp(2.35rem, 5.5cqi, 4.5rem);
@@ -35,8 +35,8 @@
 .landing-intro { margin-top: 1rem; color: #c8c9d0; font-size: 1rem; line-height: 1.6; }
 .landing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.5rem; }
 .landing-explore, .landing-contribute { display: inline-flex; min-height: 2.875rem; align-items: center; justify-content: center; gap: 1.5rem; padding: .75rem 1rem; border-radius: .5rem; font-size: .8125rem; font-weight: 600; }
-.landing-explore { background: #b8afff; color: #101217; border: 1px solid #b8afff; }
-.landing-explore:hover { background: #d0caff; }
+.landing-explore { background: var(--accent-on-dark); color: #101217; border: 1px solid var(--accent-on-dark); }
+.landing-explore:hover { background: var(--accent-on-dark-hover); }
 .landing-contribute { border: 1px solid #ffffff40; color: #fff; }
 .landing-contribute:hover { background: #ffffff12; border-color: #ffffff80; }
 .landing-feedback { margin-top: 1rem; color: #a8a9b3; font-size: .75rem; line-height: 1.6; }
@@ -58,11 +58,11 @@
 .landing-tile-header { overflow: hidden; border-radius: .8125rem .8125rem 0 0; background: #171920; color: #fff; }
 .landing-tile-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.125rem 1.25rem 0; }
 .landing-tile-heading h3 { font-size: 1.25rem; font-weight: 550; line-height: 1.2; letter-spacing: -.035em; }
-.landing-tile-arrow { display: grid; place-items: center; width: 1.875rem; height: 1.875rem; flex-shrink: 0; border: 1px solid #ffffff30; border-radius: 50%; color: #c7bfff; transition: background .2s ease, color .2s ease; }
+.landing-tile-arrow { display: grid; place-items: center; width: 1.875rem; height: 1.875rem; flex-shrink: 0; border: 1px solid #ffffff30; border-radius: 50%; color: var(--accent-on-dark-hover); transition: background .2s ease, color .2s ease; }
 .landing-visual { display: block; width: 100%; height: 7.25rem; margin: .25rem 0 .5rem; }
 .landing-tile-description { flex: 1; padding: 1rem 1.25rem; color: var(--muted); font-size: .8125rem; line-height: 1.55; }
-.landing-tile:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 24px -16px #6d5bff66; }
-.landing-tile:hover .landing-tile-arrow { background: #b8afff; color: #101217; }
+.landing-tile:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 24px -16px color-mix(in srgb, var(--accent) 40%, transparent); }
+.landing-tile:hover .landing-tile-arrow { background: var(--accent-on-dark); color: #101217; }
 .landing :is(a, button):focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .landing-methodology { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; margin-top: .75rem; font-size: .75rem; color: var(--muted); }
 .landing-methodology:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 4px; }

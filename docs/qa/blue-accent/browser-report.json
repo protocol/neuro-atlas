@@ -1,0 +1,280 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#115ef7",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#115ef7",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#115ef7",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#115ef7",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#115ef7",
+      "h1": "Methodology"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#78a6ff",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#78a6ff",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#78a6ff",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#78a6ff",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "accent": "#78a6ff",
+      "h1": "Methodology"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#115ef7",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "light",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#115ef7",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "light",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#115ef7",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "light",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#115ef7",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "light",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#115ef7",
+      "h1": "Methodology"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#78a6ff",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "dark",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#78a6ff",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "dark",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#78a6ff",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "dark",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#78a6ff",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "dark",
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "accent": "#78a6ff",
+      "h1": "Methodology"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#115ef7",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "light",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#115ef7",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "light",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#115ef7",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "light",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#115ef7",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "light",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#115ef7",
+      "h1": "Methodology"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#78a6ff",
+      "h1": "Neurotechnology, mapped."
+    },
+    {
+      "route": "/milestones",
+      "theme": "dark",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#78a6ff",
+      "h1": "Milestones"
+    },
+    {
+      "route": "/field-velocity",
+      "theme": "dark",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#78a6ff",
+      "h1": "Field velocity"
+    },
+    {
+      "route": "/funding",
+      "theme": "dark",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#78a6ff",
+      "h1": "BCI Funding Index"
+    },
+    {
+      "route": "/methodology",
+      "theme": "dark",
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "accent": "#78a6ff",
+      "h1": "Methodology"
+    }
+  ],
+  "keyboardFocus": "PASS",
+  "publicationPlot": "PL R&D blue",
+  "nativePngExport": "PASS",
+  "modalEscape": "PASS",
+  "runtime_revision": "711833ec91fb568963af83c6a56d5582a3b8900b",
+  "boundary": "Headed Chrome against exact-source isolated loopback production build; fixture-only proxy; not authenticated hosted acceptance."
+}

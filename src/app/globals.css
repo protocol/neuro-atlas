@@ -23,10 +23,15 @@
   --muted: #6b6b74;
   --faint: #9a9aa3;
 
-  /* Accent — neural violet */
-  --accent: #6d5bff;
-  --accent-soft: #efedff;
+  /* Accent — official PL R&D logo blue; shared with chart exports. */
+  --accent: #115ef7;
+  --accent-soft: #edf3ff;
   --accent-foreground: #ffffff;
+
+  /* Fixed ink-dark landing panels need the light blue in either theme. */
+  --accent-on-dark: #78a6ff;
+  --accent-on-dark-hover: #adc8ff;
+  --accent-on-dark-muted: #42618f;
 
   /* Semantic */
   --positive: #0bab64;
@@ -36,7 +41,7 @@
   --warning: #d97706;
   --warning-soft: #fbf1df;
 
-  --ring: rgba(109, 91, 255, 0.35);
+  --ring: rgba(17, 94, 247, 0.35);
   --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.04), 0 8px 24px -12px rgba(9, 9, 11, 0.08);
 }
 
@@ -53,8 +58,8 @@
   --muted: #a1a1aa;
   --faint: #63636b;
 
-  --accent: #8b7dff;
-  --accent-soft: #1d1a33;
+  --accent: #78a6ff;
+  --accent-soft: #14213a;
   --accent-foreground: #0c0c0e;
 
   --positive: #2ee6a8;
@@ -64,7 +69,7 @@
   --warning: #f5b942;
   --warning-soft: #2e2410;
 
-  --ring: rgba(139, 125, 255, 0.4);
+  --ring: rgba(120, 166, 255, 0.4);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
 }
 

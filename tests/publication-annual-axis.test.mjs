@@ -132,7 +132,7 @@ test('selecting either series shows one shared-year tooltip, colored keys and a 
     assert.equal(tooltip.dataset.annualTooltip, '2023');
     for (const expected of ['2023', 'Neurotech papers', '230', 'All research index', '103.6', 'Four-domain index', '102.3–105.5', '2022 = 100']) assert.ok(tooltip.textContent.includes(expected), expected);
     const keys = [...tooltip.querySelectorAll('[data-annual-tooltip-key]')];
-    assert.deepEqual(keys.map(key => key.getAttribute('fill')), ['#4b4df2', '#138a7a', '#a6b0bf']);
+    assert.deepEqual(keys.map(key => key.getAttribute('fill')), ['#115ef7', '#138a7a', '#a6b0bf']);
     const guide = svg.querySelector('[data-annual-year-guide]');
     assert.equal(guide.getAttribute('x1'), mark.getAttribute('cx'));
     assert.equal(guide.getAttribute('x2'), mark.getAttribute('cx'));
@@ -213,7 +213,7 @@ test('axis colors remain tied to their series despite shared SVG text theme rule
  try {
   const style=document.createElement('style');style.textContent='.publication-full-plot svg text, .publication-preview svg text {fill:var(--foreground)}';document.head.append(style);
   for(const svg of [annualSvg(),document.querySelector('.publication-preview-0 svg')]) {
-   assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="neurotech"]')).fill,'rgb(75, 77, 242)');
+   assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="neurotech"]')).fill,'rgb(17, 94, 247)');
    assert.equal(getComputedStyle(svg.querySelector('[data-annual-axis="science"]')).fill,'rgb(19, 138, 122)');
   }
  } finally {await cleanup();}
