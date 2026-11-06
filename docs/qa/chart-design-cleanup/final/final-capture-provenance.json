@@ -1,0 +1,148 @@
+{
+  "codeRevision": "cf14f32109ebe5434ca015d307390d9bcee0671d",
+  "upstreamBase": "6f475a2ab6342ce948431e25c58effc20c095672",
+  "comparedSourceFiles": 182,
+  "codeAndAssetParity": true,
+  "aggregateSha256": "2737a4bfdabe037fceed8c82f44861bc001a9b9d043137792b78c3a8ac54a72e",
+  "qaOnlyModifiedFile": "src/proxy.ts",
+  "qaFixtureCommitted": false,
+  "runtimeRevisionHeader": "cf14f32109ebe5434ca015d307390d9bcee0671d",
+  "qaBuildId": "kqUMl5I0Xtj5BUDiDysP0",
+  "productionBuildExit": 0,
+  "nativeBrowser": "existing headed Chrome via task-owned browser-harness window",
+  "viewportWidths": [
+    1440,
+    390,
+    320
+  ],
+  "fieldVelocityCharts": 24,
+  "fieldVelocityDialogVisits": 75,
+  "nativeRecordingViews": {
+    "electrical": 3,
+    "human-channels": 2,
+    "optical": 1
+  },
+  "nativePngHandlersVerified": 5,
+  "nativeClipboardReadback": true,
+  "physicalPhoneTested": false,
+  "hostedAuthenticationVerified": false,
+  "localProxyNotCommittedOrDeployed": true,
+  "nonLoopbackHostStatus": 403,
+  "artifacts": {
+    "all-chart-native-report.json": {
+      "sha256": "f1669438767f1a2c3ae5ac624a3ce7184eab0f67d3522e5b86eedcec10327a7e",
+      "bytes": 810166
+    },
+    "milestones-funding-native-report.json": {
+      "sha256": "36d538ff7dfc8d498bd988600f9453539202d338860b673bc30180d301d8117b",
+      "bytes": 7721
+    },
+    "native-export-results.json": {
+      "sha256": "5b0fbbce0aaf37a2b212bc292d79c04f27ff30ccc43aa242f683c29fc4e94666",
+      "bytes": 992
+    },
+    "neuroai-publications-native-report.json": {
+      "sha256": "ccca8cfc4382623384a5690824b89610c5bb80d80e7b42c26209fa039080b3f9",
+      "bytes": 2064
+    },
+    "design-contact-sheet.png": {
+      "sha256": "8d73f3dbcc8633f46b716cd396ca2bc5769e666377c246b393f65e78544f321e",
+      "bytes": 146302
+    },
+    "recording-branded-native.png": {
+      "sha256": "cc7483ef0c2a84dfb34242c790b53fd7457db0d1e1422bd092e4f58edb92489e",
+      "bytes": 463806
+    },
+    "recording-human-channels-native.png": {
+      "sha256": "f23fb064e107754af76683b98fcba1bb97f51380cc9b2560c5d6504f90480674",
+      "bytes": 441176
+    },
+    "recording-optical-native.png": {
+      "sha256": "84444a7705ce74c7400ff5815d97d33b3a1cdf984442584bfca13382609cb00d",
+      "bytes": 366573
+    },
+    "recording-floating-source-desktop.png": {
+      "sha256": "f01425628bea04c2d7e4bc23c8990ecb927402ff9dabe252101cba5a60c8cb33",
+      "bytes": 139313
+    },
+    "neuroai-detail-desktop.png": {
+      "sha256": "3f735c266c817f433e92261dec76e95421772e7dfb78bb7b2650f0ddbacb3ad9",
+      "bytes": 115102
+    },
+    "neuroai-detail-390.png": {
+      "sha256": "de446a291df3e7c118a249cc0975c5c154cc38752e2e114abf91827b0ed80bd7",
+      "bytes": 64569
+    },
+    "neuroai-detail-320.png": {
+      "sha256": "a68d3846815375492931b2d1d6f102b4a55e5c6bb13b6c0d3f76ada03422ee4b",
+      "bytes": 59375
+    },
+    "neuroai-native.png": {
+      "sha256": "302eb04bfcc8decd8ba944f2fcf2604487904576bec8fae7c505b590917b722a",
+      "bytes": 343985
+    },
+    "annual-shared-tooltip-desktop.png": {
+      "sha256": "d3469f405a4a2b30c461e380de48edcca82db4d6018c0f4762c5107cc2cb8741",
+      "bytes": 176392
+    },
+    "annual-desktop.png": {
+      "sha256": "900386ff85b468b80bd5482748da69fd2eb625f01096269e011f2311ec297481",
+      "bytes": 165171
+    },
+    "annual-native.png": {
+      "sha256": "3a42b57f271e64046089f3d5a016d5929de633358b4c95fb005370fdb69b9676",
+      "bytes": 528407
+    },
+    "milestones-1440.png": {
+      "sha256": "88b746175c7239058fb48ef44e9f579b143fcc60f40dcc11db6b85addbea6950",
+      "bytes": 177341
+    },
+    "milestones-390.png": {
+      "sha256": "ed6fe565a3bdb102e8355e22d400451858f1bc1dfc2f6dd6260b8737eac9c081",
+      "bytes": 66915
+    },
+    "milestones-320.png": {
+      "sha256": "a69aec180bdaaee6bd72357902e31e494fbca795256d26cc373db91fdd121389",
+      "bytes": 55048
+    },
+    "funding-1440.png": {
+      "sha256": "d27ba89e7bbf10e36d9c89f516ff0fbae3f2bdb5feddf93d8559e257f9d7eb47",
+      "bytes": 158450
+    },
+    "funding-390.png": {
+      "sha256": "53612e817ad5ddf210c76a56871bd96a8710011d52b47963617f69305c3d9bce",
+      "bytes": 61429
+    },
+    "funding-320.png": {
+      "sha256": "15a3b982cb3471449991e9bd781cce599a8680836ddfc3fea080cb74f1bb21a7",
+      "bytes": 53391
+    },
+    "desktop-corrective-native-report.json": {
+      "sha256": "e515c02f895a13e01a7c3411012de7a2696ccbc9ffe04ff115a5ffbfa7cd8d7b",
+      "bytes": 1968
+    },
+    "reconciled-native-coverage.json": {
+      "sha256": "d2a9995a29b335f07e12fd45c70a0c1fa0fff33e2ce3eed3eb6fb453c13c1324",
+      "bytes": 16668
+    },
+    "native-history-result.json": {
+      "sha256": "5515ef56623486d1e89ec0b2586c3645065362a3d141f370f909b04bcbd40ac5",
+      "bytes": 167
+    },
+    "desktop-corrective-idea_vintage.png": {
+      "sha256": "ca67613fff50319852c616ea989649499bb0b9dd6474f4d58bf748a0338ef813",
+      "bytes": 160462
+    },
+    "desktop-corrective-publication-growth.png": {
+      "sha256": "5eda7614994f50c787ca8f69bfcc5355c8a02d7e2d66946c2b59fdc2f1c6fe96",
+      "bytes": 138222
+    },
+    "desktop-corrective-metric-panel-acquisition-rates.png": {
+      "sha256": "e255b3c91a534111c878b4bca81a45523983628533167789503c1759e37664d1",
+      "bytes": 166343
+    }
+  },
+  "correctlyIdentifiedViewportChartPairs": 72,
+  "correctiveDesktopVisits": 3,
+  "coverageQualification": "Original report has three wrong desktop identities; supplemental strict-identity replays close them. Original records retained."
+}

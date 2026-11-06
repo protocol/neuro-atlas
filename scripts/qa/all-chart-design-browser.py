@@ -47,6 +47,7 @@ for width in [1440,390,320]:
   assert not probe('return !!document.querySelector("dialog [data-point-tooltip]");'),(width,p['title'],'Popup preselected')
   assert not probe('return !!document.querySelector("dialog .draft-plot-inspector,dialog .pc-point-readout");'),(width,p['title'],'Old gray source panel')
   values=probe('''const d=document.querySelector('dialog'),s=d.querySelector('.draft-plot-svg,.pc-plot svg,.publication-full-plot svg,.gt-plot svg');return {title:d.querySelector('h2').textContent,hasPlot:!!s,marks:s?[...s.querySelectorAll('[data-source-observation],[data-curve-point],[data-publication-mark],[data-trend-point]')].map(e=>({id:e.getAttribute('data-source-observation')??e.getAttribute('data-curve-point'),value:e.getAttribute('data-value'),date:e.getAttribute('data-date'),label:e.getAttribute('aria-label')})):[],labels:s?[...s.querySelectorAll('text')].map(e=>({text:e.textContent,px:parseFloat(getComputedStyle(e).fontSize)*Math.hypot(e.getScreenCTM().a,e.getScreenCTM().b)})):[]};''')
+  assert values['title']==p['title'],(width,p['title'],'Wrong dialog identity',values['title'])
   if values['hasPlot']:
    assert all(abs(t['px']-12)<.15 for t in values['labels']),(width,p['title'],'Modal type',values['labels'])
   mark='dialog [data-source-observation][tabindex="0"],dialog [data-curve-point][tabindex="0"],dialog [data-publication-mark][tabindex="0"],dialog [data-trend-point][tabindex="0"]'
@@ -57,11 +58,17 @@ for width in [1440,390,320]:
    assert tip['text'].strip() and tip['x']>=7 and tip['right']<=width-7 and tip['y']>=7 and tip['bottom']<=1000-7,(width,p['title'],tip)
    assert tip['scrollWidth']==tip['clientWidth'],(width,'Tooltip overflow')
    if index in [0,8,10]:snap('tooltip-'+str(width)+'-'+str(index))
-   press_key('Escape');time.sleep(.08)
+   press_key('Escape')
+   for _ in range(60):
+    if not probe('return !!document.querySelector("dialog [data-point-tooltip]");'):break
+    time.sleep(.05)
    assert not probe('return !!document.querySelector("dialog [data-point-tooltip]");')
    assert probe('return !!document.querySelector("dialog[open]");'),'Tooltip Escape closed chart'
    values['sourcePopup']=tip['text']
-  press_key('Escape');time.sleep(.08)
+  press_key('Escape')
+  for _ in range(60):
+   if not probe('return !!document.querySelector("dialog[open]");'):break
+   time.sleep(.05)
   assert not probe('return !!document.querySelector("dialog[open]");'),(width,p['title'],'Chart failed to close')
   dialogs.append(values)
  report.append({'width':width,'previews':previews,'dialogs':dialogs,'noPageOverflow':True})

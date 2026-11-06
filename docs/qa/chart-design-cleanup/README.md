@@ -29,7 +29,7 @@ The partially visible peer at a rail edge is intentional, matching the existing 
 Use the task-owned loopback fixture and browser-harness:
 
 ```bash
-BU_NAME=<task-owned-window> ATLAS_QA_ORIGIN=http://127.0.0.1:35963 browser-harness <<'PY'
+BU_NAME=chart-design-qa ATLAS_QA_ORIGIN=http://127.0.0.1:35963 browser-harness <<'PY'
 exec(compile(open('scripts/qa/all-chart-design-browser.py').read(), 'all-chart-design-browser.py', 'exec'))
 PY
 ```

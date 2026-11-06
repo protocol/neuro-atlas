@@ -1,0 +1,39 @@
+{
+  "neuroai": [
+    {
+      "width": 1440,
+      "points": 6,
+      "slopes": [
+        107,
+        107
+      ],
+      "note": "X-axis break: 6\u201340 mJ/image omitted (no observations). Same linear scale on both sides.",
+      "outlierSourcePopup": "\u00d7Non-spiking Transformer 8-512Non-spiking baseline2023 \u00b7 publication year \u00b7 Estimated inference energy (mJ/image): 41.77Top-1 accuracy (%): 80.8Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023) \u2197Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224\u00d7224 inference."
+    },
+    {
+      "width": 390,
+      "points": 6,
+      "slopes": [
+        29.75,
+        29.75
+      ],
+      "note": "X-axis break: 6\u201340 mJ/image omitted (no observations). Same linear scale on both sides.",
+      "outlierSourcePopup": "\u00d7Non-spiking Transformer 8-512Non-spiking baseline2023 \u00b7 publication year \u00b7 Estimated inference energy (mJ/image): 41.77Top-1 accuracy (%): 80.8Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023) \u2197Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224\u00d7224 inference."
+    },
+    {
+      "width": 320,
+      "points": 6,
+      "slopes": [
+        21,
+        21
+      ],
+      "note": "X-axis break: 6\u201340 mJ/image omitted (no observations). Same linear scale on both sides.",
+      "outlierSourcePopup": "\u00d7Non-spiking Transformer 8-512Non-spiking baseline2023 \u00b7 publication year \u00b7 Estimated inference energy (mJ/image): 41.77Top-1 accuracy (%): 80.8Spike-driven Transformer (arXiv v1, 4 July 2023; NeurIPS 2023) \u2197Accuracy is experimentally evaluated; inference energy is estimated from operation counts. All included rows use 224\u00d7224 inference."
+    }
+  ],
+  "annualSharedYear": "2022 Neurotech papers: 9,726 All research index: 100 Four-domain index: 100\u2013100Science index \u00b7 2022 = 100",
+  "exported": [
+    "neuroai-native.png",
+    "annual-native.png"
+  ]
+}
