@@ -1,0 +1,111 @@
+# Executed inside browser-harness, which injects the browser primitives.
+# pyright: reportUndefinedVariable=false
+import json
+import os
+import time
+from pathlib import Path
+REPO=Path(os.environ.get('ATLAS_MOCK_QA_ROOT', Path(__file__).resolve().parents[2]))
+OUT=Path(os.environ.get('ATLAS_MOCK_QA_OUT', REPO/'docs/cost-per-channel-mock/qa'))
+OUT.mkdir(parents=True,exist_ok=True)
+BASE=os.environ.get('ATLAS_MOCK_QA_BASE', 'http://127.0.0.1:3537/mockups/')
+checks=[]
+cdp('Page.addScriptToEvaluateOnNewDocument', source="window.__mockQaErrors=[];window.addEventListener('error',e=>window.__mockQaErrors.push(String(e.message)));window.addEventListener('unhandledrejection',e=>window.__mockQaErrors.push(String(e.reason)));")
+def check(label,condition,details=None):
+    checks.append({'check':label,'pass':bool(condition),'details':details})
+    assert condition,(label,details)
+def info():
+    return js('return {w:innerWidth,cw:document.documentElement.clientWidth,sw:document.documentElement.scrollWidth,y:scrollY,detail:document.querySelector("#inspector-body").textContent.trim(),count:document.querySelector("#point-count").textContent,errors:window.__mockQaErrors||[]}')
+def hit(selector):
+    point=js('const e=document.querySelector('+json.dumps(selector)+');if(!e)throw new Error("missing target");const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};')
+    assert 0<=point['y']<=js('return innerHeight'),(selector,point)
+    click_at_xy(point['x'],point['y'])
+def wait_closed():
+    # Native close queues the close event; wait for its focus/clear cleanup as well.
+    for _ in range(30):
+        if js('return !document.querySelector("#mobile-inspection").open && document.activeElement.dataset.inspect==="scifi-np1-2026" && document.querySelector("#inspector-body").textContent.trim()===""'):
+            return
+        time.sleep(.05)
+    raise AssertionError('native dialog close cleanup did not settle')
+def snap(name):
+    capture_screenshot(path=str(OUT/name))
+def view(width,height=1080,mobile=False,variant=''):
+    cdp('Emulation.setDeviceMetricsOverride',width=width,height=height,deviceScaleFactor=1,mobile=mobile)
+    goto_url(BASE+'cost-per-channel'+variant+'.html')
+    wait_for_load()
+    state=info();check('fresh inspection empty '+str(width)+variant,state['detail']=='',state)
+    check('document width bounded '+str(width)+variant,state['w']==width and state['cw']<=width and state['sw']<=width,state)
+view(1440)
+check('four USD electronics marks',js('return document.querySelectorAll("[data-point]").length')==4)
+snap('chart-desktop.png')
+hit('[data-point="scifi-np1-2026"]')
+check('native Science selection',js('return document.querySelector("#detail-pane").dataset.selected')=='scifi-np1-2026')
+check('academic arithmetic rendered',js('return document.querySelector("#inspector-body").textContent.includes("$6.93")'))
+snap('science-selected-desktop.png')
+hit('[data-tier="list"]')
+check('list arithmetic changes same pinned record',js('return document.querySelector("#detail-pane").dataset.pinned==="true" && document.querySelector("#inspector-body").textContent.includes("$27.56")'))
+check('tier does not scroll',info()['y']==0)
+snap('science-list-desktop.png')
+press_key('Escape')
+check('native Escape clears inspection',info()['detail']=='')
+hit('[data-scope="probes"]')
+check('probe scope clears and shows single USD mark',js('return document.querySelectorAll("[data-point]").length===1 && document.querySelector("[data-point]").dataset.point==="utah-2016"') and info()['detail']=='')
+hit('[data-point="utah-2016"]')
+check('approximate Utah price and scope',js('return document.querySelector("#inspector-body").textContent.includes("≈$62.50") && document.querySelector("#inspector-body").textContent.includes("other necessary equipment")'))
+hit('[data-currency="EUR"]')
+check('currency replacement not conversion',js('return document.querySelectorAll("[data-point]").length===1 && document.querySelector("[data-point]").dataset.point==="neuropixels2-2026"') and info()['detail']=='')
+hit('[data-point="neuropixels2-2026"]')
+check('NP2 price allocation and minimum retained',js('return document.querySelector("#inspector-body").textContent.includes("€3.91") && document.querySelector("#inspector-body").textContent.includes("7,500") && document.querySelector("#inspector-body").textContent.includes("5 probes")'))
+snap('probe-eur-desktop.png')
+hit('[data-scope="complete"]')
+check('empty is a sourced gap not zero',js('return document.querySelectorAll("[data-point]").length===0 && document.querySelector("#chart-content").textContent.includes("Still need an itemized probe + readout setup")'))
+check('scope and currency do not scroll',info()['y']==0)
+snap('complete-gap-desktop.png')
+hit('[data-view="evidence"]')
+wait_for_load()
+assert wait_for_element('body[data-layout="evidence"]', visible=True)
+check('native evidence-layout navigation',js('return document.body.dataset.layout')=='evidence')
+check('all seven evidence records survive filters',js('return document.querySelectorAll("[data-evidence-row]").length')==7)
+check('evidence layout starts empty',info()['detail']=='')
+snap('evidence-desktop.png')
+ids=js('return [...document.querySelectorAll("[data-inspect]")].map(e=>e.dataset.inspect)')
+for rid in ids:
+    sel='[data-inspect="'+rid+'"]'
+    js('document.querySelector('+json.dumps(sel)+').scrollIntoView({block:"center"});return true;')
+    hit(sel)
+    selected=js('return {id:document.querySelector("#detail-pane").dataset.selected,links:[...document.querySelectorAll("#inspector-body a")].map(e=>e.href),records:document.querySelectorAll("[data-evidence-row]").length}')
+    check('native inspect exact evidence '+rid,selected['id']==rid and selected['records']==7 and all(u.startswith('https://') for u in selected['links']),selected)
+for width in [390,320]:
+    view(width,900,True)
+    snap('chart-mobile-'+str(width)+'.png')
+    hit('[data-scope="probes"]');hit('[data-currency="EUR"]')
+    rects=js('const p=document.querySelector("[data-point]").getBoundingClientRect();const c=document.querySelector(".chart-scroll").getBoundingClientRect();return{px:p.x,pw:p.width,cx:c.x,cw:c.width,left:document.querySelector(".chart-scroll").scrollLeft};')
+    check('singleton visible without horizontal scroll '+str(width),rects['left']==0 and rects['px']>=rects['cx'] and rects['px']+rects['pw']<=rects['cx']+rects['cw'],rects)
+    check('mobile filters do not scroll '+str(width),info()['y']==0)
+    scroll(width/2,700,dy=500)
+    snap('probe-mobile-'+str(width)+'.png')
+    check('mobile singleton source mark stays real '+str(width),js('return document.querySelector("[data-point]").dataset.point')=='neuropixels2-2026')
+    view(width,900,True,variant='-evidence')
+    check('mobile full evidence inventory '+str(width),js('return document.querySelectorAll("[data-evidence-row]").length')==7)
+    snap('evidence-mobile-'+str(width)+'.png')
+    target='[data-inspect="scifi-np1-2026"]'
+    js('document.querySelector('+json.dumps(target)+').scrollIntoView({block:"center"});return true;')
+    hit(target)
+    geometry=js('const d=document.querySelector("#mobile-inspection");const h=d.querySelector(".detail h3").getBoundingClientRect();return {open:d.open,top:h.top,bottom:h.bottom,vh:innerHeight,selected:document.querySelector("#detail-pane").dataset.selected};')
+    check('mobile inspection result visible '+str(width),geometry['open'] and geometry['selected']=='scifi-np1-2026' and geometry['top']>=0 and geometry['bottom']<=geometry['vh'],geometry)
+    snap('inspection-mobile-'+str(width)+'.png')
+    js('document.querySelector("#mobile-inspection").scrollTop=10000;return true;')
+    check('mobile source anchors reachable '+str(width),js('const d=document.querySelector("#mobile-inspection");const a=d.querySelector(".source-buttons a");const r=a.getBoundingClientRect();return r.top>=0 && r.bottom<=innerHeight && a.href.startsWith("https://")'))
+    hit('#mobile-inspection-close')
+    wait_closed()
+    check('mobile close returns focus and empty inspection '+str(width),js('return !document.querySelector("#mobile-inspection").open && document.activeElement.dataset.inspect==="scifi-np1-2026" && document.querySelectorAll(":modal").length===0') and info()['detail']=='')
+    hit(target)
+    press_key('Escape')
+    wait_closed()
+    check('mobile Escape dismisses dialog '+str(width),js('return !document.querySelector("#mobile-inspection").open && document.querySelectorAll(":modal").length===0'))
+    check('no browser JS errors '+str(width),not info()['errors'],info()['errors'])
+# Leave the source-qualified selected view visible for review.
+view(1440)
+hit('[data-point="scifi-np1-2026"]')
+check('no browser JS errors desktop',not info()['errors'],info()['errors'])
+(OUT/'browser-report.json').write_text(json.dumps({'origin':BASE,'checks':checks,'note':'Native headed Chrome; static prototype only, not a hosted authenticated Atlas roundtrip.'},indent=2))
+print(json.dumps({'passed':len(checks),'failures':[c for c in checks if not c['pass']],'out':str(OUT)}))
