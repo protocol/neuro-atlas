@@ -1,0 +1,43 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,writeFile,rm,lstat} from 'node:fs/promises';
+import {randomBytes} from 'node:crypto';
+import {ids} from './feedback-linear-server-fixture.test.mjs';
+import {createHttpIntakeWitness} from '../src/lib/feedback-linear/server/witness-client.ts';
+import {spawn} from 'node:child_process';
+import {once} from 'node:events';
+import {connect} from 'node:net';
+
+test('fixed witness runtime stays OFF by default and separately initializes a new private store without opening a listener',async t=>{
+ const runtime=await import('../scripts/feedback-linear/witness-runtime.ts').catch(()=>({}));
+ assert.equal(typeof runtime.witnessRuntimeMain,'function','a fixed executable witness runtime is required');
+ assert.deepEqual(await runtime.witnessRuntimeMain(['serve'],{}),{state:'disabled'});
+ const dir=await mkdtemp('/opt/data/tmp/atlas-witness-runtime-');t.after(()=>rm(dir,{recursive:true,force:true}));
+ const config={root:dir+'/state',scope:ids,port:0,readTokenEnv:'SYNTHETIC_READ_TOKEN',writeTokenEnv:'SYNTHETIC_WRITE_TOKEN'};
+ await writeFile(dir+'/config.json',JSON.stringify(config),{mode:0o600});
+ const env={NODE_ENV:'test',ATLAS_LINEAR_WITNESS_CONFIG:dir+'/config.json',ATLAS_LINEAR_WITNESS_SETUP_ENABLED:'true'};
+ assert.equal((await runtime.witnessRuntimeMain(['initialize'],env)).state,'initialized');
+ assert.equal((await lstat(config.root)).isDirectory(),true);
+ await assert.rejects(runtime.witnessRuntimeMain(['initialize'],env));
+ assert.deepEqual(await runtime.witnessRuntimeMain(['serve'],env),{state:'disabled'});
+ const readToken=randomBytes(32).toString('base64url'),writeToken=randomBytes(32).toString('base64url');
+ const result=await runtime.witnessRuntimeMain(['serve'],{...env,ATLAS_LINEAR_WITNESS_ENABLED:'true',SYNTHETIC_READ_TOKEN:readToken,SYNTHETIC_WRITE_TOKEN:writeToken});
+ t.after(()=>new Promise(resolve=>{result.server.closeAllConnections();result.server.close(resolve);}));
+ assert.equal(result.host,'127.0.0.1');assert.ok(result.port>0);
+ const client=createHttpIntakeWitness({url:`http://127.0.0.1:${result.port}/v1/intake-witness`,token:readToken,scope:ids,testMode:true});
+ await client.assertAvailable();
+ assert.equal(result.server.headersTimeout,3000);assert.equal(result.server.requestTimeout,5000);
+ assert.equal(result.server.maxConnections,10);
+ assert.deepEqual(Object.keys(result).sort(),['host','port','server','state']);
+ const child=spawn(process.execPath,['--import','tsx','scripts/feedback-linear/witness-runtime.ts','serve'],{cwd:process.cwd(),env:{NODE_ENV:'test',PATH:'/usr/bin:/bin',HOME:'/nonexistent',ATLAS_LINEAR_WITNESS_ENABLED:'true',ATLAS_LINEAR_WITNESS_CONFIG:dir+'/config.json',SYNTHETIC_READ_TOKEN:readToken,SYNTHETIC_WRITE_TOKEN:writeToken},stdio:['ignore','pipe','pipe']});
+ const exited=once(child,'exit');t.after(()=>{if(child.exitCode===null)child.kill('SIGKILL');});
+ const ready=await new Promise((resolve,reject)=>{
+  let text='';const timer=setTimeout(()=>{child.kill('SIGKILL');reject(Error('witness CLI readiness timeout'));},15000);
+  child.stdout.on('data',chunk=>{text+=chunk;if(text.length>4096){clearTimeout(timer);reject(Error('unexpected CLI output'));}else if(text.includes('\n')){clearTimeout(timer);try{resolve(JSON.parse(text.split('\n')[0]));}catch(error){reject(error);}}});
+  child.once('error',error=>{clearTimeout(timer);reject(error);});
+ });
+ assert.deepEqual(Object.keys(ready).sort(),['host','port','state']);assert.equal(ready.state,'listening');assert.equal(ready.host,'127.0.0.1');
+ await createHttpIntakeWitness({url:`http://127.0.0.1:${ready.port}/v1/intake-witness`,token:readToken,scope:ids,testMode:true}).assertAvailable();
+ child.kill('SIGTERM');await exited;
+ await new Promise((resolve,reject)=>{const socket=connect(ready.port,'127.0.0.1');socket.once('connect',()=>{socket.destroy();reject(Error('owned CLI port survived shutdown'));});socket.once('error',error=>error.code==='ECONNREFUSED'?resolve():reject(error));});
+});
