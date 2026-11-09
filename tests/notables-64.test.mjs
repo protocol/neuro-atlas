@@ -23,6 +23,8 @@ const sources = {
 };
 
 const additions = [sources.newronika, sources.neuralink, sources.inbrain];
+// Later reviewed issues are independently frozen by their own exact-delta tests.
+const laterSources = JSON.parse(readFileSync(new URL('./fixtures/notables-65.json', import.meta.url))).milestones.map(row => row.sourceUrl);
 const baseline = {
   canonicalRows: 81,
   canonicalSha256: '77d68a2db3bafc43faf4dced3517cce12a664623fcc3dcb54854660d470e8d0e',
@@ -80,14 +82,15 @@ function sha256(value) {
 }
 
 test('Notables 64 is exactly the permitted three-row delta from the frozen pre-issue baseline', () => {
-  const canonicalRows = parseCSV(canonical);
+  const canonicalRows = parseCSV(canonical).filter(row => !laterSources.includes(row.source_url));
+  const scopedMilestones = milestones.filter(row => !laterSources.includes(row.sourceUrl));
   const canonicalAdditions = canonicalRows.filter(row => additions.includes(row.source_url));
   const generatedAdditions = milestones.filter(row => additions.includes(row.sourceUrl));
   const canonicalBaseline = canonicalRows.filter(row => !additions.includes(row.source_url));
-  const generatedBaseline = milestones.filter(row => !additions.includes(row.sourceUrl));
+  const generatedBaseline = scopedMilestones.filter(row => !additions.includes(row.sourceUrl));
 
   assert.equal(canonicalRows.length, baseline.canonicalRows + additions.length);
-  assert.equal(milestones.length, baseline.generatedRows + additions.length);
+  assert.equal(scopedMilestones.length, baseline.generatedRows + additions.length);
   assert.deepEqual(canonicalAdditions.map(row => row.source_url).sort(), [...additions].sort());
   assert.deepEqual(generatedAdditions.map(row => row.sourceUrl).sort(), [...additions].sort());
   assert.equal(sha256(canonicalBaseline), baseline.canonicalSha256);

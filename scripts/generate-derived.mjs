@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildFundingIndex, loadFundingIndexSources } from "./lib/funding-index.mjs";
+import { historicalFxFor } from "./lib/historical-fx.mjs";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const DATA = path.join(ROOT, "data");
@@ -42,17 +43,21 @@ const logoBySlug = Object.fromEntries(
 
 // ── Milestones ────────────────────────────────────────────────────────────────
 const msRows = parseCSV(fs.readFileSync(path.join(DATA, "market-memo-q1-2026", "milestones.csv"), "utf8"));
+const fxConversions = JSON.parse(fs.readFileSync(path.join(DATA, "funding-index", "fx-conversions.json"), "utf8"));
 const usedLogos = new Set();
 const milestones = msRows.map((r) => {
   const slug = slugify(r.company);
   const logoFile = logoBySlug[slug];
   if (logoFile) usedLogos.add(logoFile);
+  const converted = historicalFxFor(r.source_url, r.date, fxConversions);
+  if (converted && r.amount_usd_m) throw new Error(`Conflicting historical FX milestone: ${r.source_url}`);
   return {
     company: r.company,
     slug,
     activity: r.activity,
     stage: r.stage,
-    amountUsdM: r.amount_usd_m ? Number(r.amount_usd_m) : null,
+    amountUsdM: converted?.amountUsdM ?? (r.amount_usd_m ? Number(r.amount_usd_m) : null),
+    ...(converted ? { fx: converted.fx } : {}),
     date: r.date || null,
     datePrecision: r.date_precision || "window",
     note: r.note || null,
@@ -119,7 +124,7 @@ fundingIndex.summary = {
 fundingIndex.methodology = {
   thresholdUsdM: 2,
   scope: "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
-  coverage: "Publicly disclosed indexed rounds, not an exhaustive funding-to-date total. Company histories remain partial. Amounts are announcement values; reported cumulative totals, grants, and approximate currency conversions are not added into the indexed sum.",
+  coverage: "Publicly disclosed indexed rounds, not an exhaustive funding-to-date total. Company histories remain partial. Amounts are reported financing values or explicitly sourced historical FX estimates; new conversions use the investment date when disclosed, otherwise a labeled announcement-date fallback. Rates and native amounts are pinned, not revalued at current rates. Legacy reported USD values are retained; unsourced conversions, cumulative totals and standalone grants are not added.",
 };
 fs.writeFileSync(path.join(OUT, "funding-index.json"), JSON.stringify(fundingIndex));
 

@@ -1,0 +1,67 @@
+{
+  "baseSha": "592c039b6bf21198e177bafe0f81e267b4415ff7",
+  "milestones": [
+    {
+      "sourceUrl": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+      "company": "Coherence Neuro",
+      "activity": "$45m",
+      "stage": "capital",
+      "amountUsdM": 45.0,
+      "date": "2026-10-21"
+    },
+    {
+      "sourceUrl": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+      "company": "NeuroXess",
+      "activity": "Series B",
+      "stage": "capital",
+      "amountUsdM": 105.00735051453601,
+      "date": "2026-10-28"
+    },
+    {
+      "sourceUrl": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+      "company": "Paradromics",
+      "activity": "partner",
+      "stage": "commercial",
+      "amountUsdM": null,
+      "date": "2026-10-19"
+    },
+    {
+      "sourceUrl": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+      "company": "Paradromics",
+      "activity": "IDE",
+      "stage": "clinical",
+      "amountUsdM": null,
+      "date": "2026-10-26"
+    },
+    {
+      "sourceUrl": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+      "company": "Precision Neuroscience",
+      "activity": "partner",
+      "stage": "clinical",
+      "amountUsdM": null,
+      "date": "2026-10-21"
+    },
+    {
+      "sourceUrl": "https://x.com/neuralink/status/2115534593147187397",
+      "company": "Neuralink",
+      "activity": "research",
+      "stage": "clinical",
+      "amountUsdM": null,
+      "date": "2026-10-28"
+    }
+  ],
+  "baselineMilestonesSha256": "e4c65fd7c8f3bb3ecfae59bbf8c612c91c936e1981c35610d6793d06552886db",
+  "baselineSummary": {
+    "excludedBelowThreshold": 0,
+    "selectedCompanies": 25,
+    "indexedRounds": 39,
+    "regulatoryMilestones": 15,
+    "observedCapitalUsdM": 3003.95,
+    "firstYear": 2017,
+    "lastYear": 2026,
+    "asOf": "2026-09-30"
+  },
+  "baselineFundingRoundsSha256": "1d067efd235d18c634e407fe05d4272e32c2f590140584600b87d811351cfd79",
+  "baselineCompaniesSha256": "ec66480d240ae1a07455030fae93576f2f3bc139d6369cc4b26df37c1b6c30b2",
+  "baselineRegulatorySha256": "be52bb3b16ed90bc9df83fe64d7c2f7a9075a78998e9d98c7b88fe78d6e0748f"
+}
