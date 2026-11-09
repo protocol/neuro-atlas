@@ -73,10 +73,14 @@ function fmtDateFull(dateStr: string): string {
 function fmtUsd(m: number): string {
   return m >= 1000 ? `$${(m / 1000).toFixed(m % 1000 === 0 ? 0 : 1)}b` : `$${Math.round(m)}m`;
 }
+function isGrant(m: Milestone): boolean {
+  return m.stage === "capital" && m.activity.trim().toLowerCase() === "grant";
+}
 function capitalRaisedInYear(year: number, scope: "all" | "bci" = "all"): number {
   return MILESTONES.filter(
     (m) =>
       m.stage === "capital" &&
+      !isGrant(m) &&
       m.amountUsdM &&
       m.date &&
       yearOf(m.date) === year &&
@@ -110,6 +114,7 @@ function cumulativeCapital(year: number, scope: "all" | "bci" = "all") {
   const caps = MILESTONES.filter(
     (m) =>
       m.stage === "capital" &&
+      !isGrant(m) &&
       m.amountUsdM &&
       m.date &&
       yearOf(m.date) === year &&
@@ -198,8 +203,8 @@ export function MilestoneTimeline() {
       : [t0, yearEnd];
     const rows = STAGES.filter((s) => sel[s.key].size > 0).map((stage) => {
       const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m) && dateOf(m.date) >= t1 && dateOf(m.date) <= t2);
-      const usd = evs.reduce((s, m) => s + (m.amountUsdM ?? 0), 0);
-      const rounds = evs.filter((m) => m.amountUsdM).length;
+      const usd = evs.filter((m) => !isGrant(m)).reduce((s, m) => s + (m.amountUsdM ?? 0), 0);
+      const rounds = evs.filter((m) => m.stage === "capital" && !isGrant(m)).length;
       const byType: Record<string, number> = {};
       evs.forEach((m) => subcatsOf(m).forEach((sub) => { if (sub !== "$") byType[sub] = (byType[sub] ?? 0) + 1; }));
       const breakdown = Object.entries(byType).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${v} ${k}`).join(" · ");
