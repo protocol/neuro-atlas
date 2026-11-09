@@ -18,9 +18,7 @@ export function historicalFxFor(sourceUrl, eventDate, conversions = []) {
       !['announcement_date', 'investment_date'].includes(fx.dateBasis) ||
       (fx.dateBasis === 'announcement_date' && fx.investmentDate !== null) ||
       (fx.dateBasis === 'investment_date' && fx.investmentDate > fx.announcedOn) ||
-      fx.rateDate > basisDate || fx.reviewedOn < fx.announcedOn ||
-      (fx.rateDate !== basisDate && (fx.rateDateBasis !== 'previous_business_day' ||
-        Date.parse(basisDate) - Date.parse(fx.rateDate) > 7 * 86400000))) {
+      fx.rateDate !== basisDate || fx.rateDateBasis !== undefined || fx.reviewedOn < fx.announcedOn) {
     throw new Error(`Invalid historical FX provenance: ${sourceUrl}`);
   }
   const amountUsdM = fx.amountNativeM / fx.nativePerUsd;

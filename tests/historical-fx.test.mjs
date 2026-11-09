@@ -60,13 +60,13 @@ test('the reviewed NeuroXess round and timeline share the same historical conver
   assert.match(funding.methodology.coverage, /historical.*exchange|historical.*FX/i);
 });
 
-test('a disclosed investment date drives FX while any earlier business-day rate is explicit and bounded', () => {
+test('a disclosed investment date drives FX and unsupported previous-business-day claims fail closed', () => {
   const known = { ...conversion, investmentDate: '2026-10-26', dateBasis: 'investment_date', rateDate: '2026-10-26' };
   assert.deepEqual(buildFundingIndex(fixture(known)).rounds[0].fx, known);
-  const prior = { ...known, rateDate: '2026-10-23', rateDateBasis: 'previous_business_day' };
-  assert.deepEqual(buildFundingIndex(fixture(prior)).rounds[0].fx, prior);
-  assert.throws(() => buildFundingIndex(fixture({ ...prior, rateDate: '2026-10-16' })), /historical FX/i);
   assert.throws(() => buildFundingIndex(fixture({ ...known, rateDate: '2026-10-28' })), /historical FX/i);
+  for (const rateDate of ['2026-10-21', '2026-10-25', '2026-10-28']) {
+    assert.throws(() => buildFundingIndex(fixture({ ...conversion, rateDate, rateDateBasis: 'previous_business_day' })), /historical FX/i);
+  }
 });
 
 
