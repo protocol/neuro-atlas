@@ -1,32 +1,29 @@
-# Notables #65 rendered evidence
+# Notables #65 — reviewed financing and historical FX evidence
 
-Actual headed Chrome screenshots from isolated local production builds; **not live production or hosted-authentication screenshots**.
+These are genuine headed-Chrome captures of isolated local production builds, **not live production or a hosted-authentication test**. Hosted anonymous requests still return 401 with noindex. The final PR leaves access, base-path and noindex sources unchanged.
 
-- Baseline source: `592c039b6bf21198e177bafe0f81e267b4415ff7`.
-- Candidate data/runtime source: `be096e1c9fa6b3e338a2089ea9ce5a769ff48a29`.
-- Loopback origins: before `http://127.0.0.1:35791/neuro-atlas`; after `http://127.0.0.1:35792/neuro-atlas`.
-- Both copies replace only their disposable local proxy with a raw-Host-guarded, explicit-QA-flag fixture and bind to 127.0.0.1. The actual PR and production access gate, noindex and base-path sources are unchanged. Wrong-host requests return 401.
-- Source/data/public file hashes were compared. Candidate copy is identical to the candidate source except its loopback fixture. Each copy's only tracked local change is `src/proxy.ts`. No fixture is included in this PR.
+## Source binding
 
-## Captures and scope
+- Baseline: `592c039b6bf21198e177bafe0f81e267b4415ff7` (current `main` when reviewed).
+- Captured candidate app/data: `675ce445adad05c135c01b88741bd3abf44dc16e`.
+- Final validation correction: `88401a1` removes unsupported earlier-business-day FX acceptance. It changes only the generator helper and its tests; the captured app/data/public source is byte-identical. Regeneration produces the same 49 generated/logo files. A final unmodified-auth production build validates that revision separately.
+- Loopback origins: baseline `http://127.0.0.1:35791/neuro-atlas`, candidate `http://127.0.0.1:35794/neuro-atlas`.
+- Only a disposable detached QA tree replaces its proxy with an explicit-QA-flag/raw-Host guarded loopback fixture. Wrong Host returns 401. No fixture goes into the PR; the application source is unchanged in that copy.
 
-`before-timeline-1440.png` / `after-timeline-1440.png`: same October-visible Milestone timeline state. It is a horizontally scrolled actual timeline, not a recreated chart. The six new source links were asserted absent on baseline and exactly once on candidate at 1440 and 390px.
+## Matched captures and assertions
 
-`before-funding-detail-1440.png` / `after-funding-detail-1440.png`: native Coherence company detail opened through the Funding index. Candidate visibly shows the Oct. 21 $45m Series A, direct source and Nov. 9 row-level review; indexed capital changes from $10m to $55m because the older indexed seed remains. This is not a new verification of every historical financing.
+- `before-timeline-1440.png` / `after-timeline-1440.png` and their `390` counterparts show the actual horizontally scrolled Milestone timeline. All six reviewed source links are absent on baseline and exactly once on candidate at both widths.
+- Candidate 2026 summary: **15 rounds raised · 1 grant**, with $1,209.507350514536m financing before the existing $1.2b display rounding. Grants are classified from the event, not a missing USD amount; disclosed grants stay out of financing totals and the cumulative line.
+- `after-neuroxess-tooltip-1440.png` / `390.png` show the real hovered NeuroXess Series B marker. Its native **RMB 700m**, approximately **$105m** historical estimate, Fed **CNY 6.6662 per USD on October 28, 2026**, and **announcement-date fallback; actual investment date undisclosed** are visible. This is not an issuer-reported USD amount.
+- `before-neuroxess-funding-1440.png` / `after-neuroxess-funding-1440.png` and `390` counterparts show the native Funding index company dialog. Series B is present once only on candidate, alongside the retained 2022 financing. Both views derive the same conversion from one pinned observation. They are separate view totals, not additive datasets.
+- Coherence’s $45m Series A, the other four qualified milestone events and sole indication correction remain protected by exact-source/exact-delta tests; all original baseline hashes are unchanged. No implant-count or other Field Velocity chart is updated.
 
-`after-detail-neuroxess-Series-B.png`: genuine hovered October 28 capital marker; RMB700m is preserved and the lack of any USD amount/conversion is explicit. This event does not contribute to USD totals or a new Funding index round.
+## Verification
 
-`after-funding-detail-390.png`: actual narrow company-detail state. New round is visible; the rest of the financing card is below the viewport and remains scrollable.
+- Fresh frozen `npm ci`, typecheck and production build with the real `/neuro-atlas` prefix passed.
+- Full suite: **1,117 tests passed**, zero failures/cancellations/skips, with bounded worker concurrency. The first unbounded default run exhausted its test workers and was replaced by a complete successful replay; it was not called passing.
+- Focused RED→GREEN regressions prove native/undisclosed rounds are not grants; disclosed grants stay excluded; both generated views use pinned historical FX; missing/future/stale/duplicate/contradictory metadata and unsupported previous-business-day claims fail closed.
+- Re-running data generation is deterministic across 49 generated/logo files. Historical USD values and global coverage/as-of dates were not silently advanced.
+- Native browser replay passed eight before/after × width × surface states, plus both tooltips; screenshots were opened and visually inspected. Positive hosted login was not exercised.
 
-All six candidate timeline markers were natively hovered and their exact canonical note text read back. Additional private captures and machine-readable browser results remain outside the repository. Existing timeline Leadership and older data are unchanged; separate open PR #55 owns the Science appointment removal.
-
-## Checks
-
-- Frozen `npm ci`: passed.
-- Data generation: passed and deterministic across 49 generated/logo files.
-- Full `npm test`: 1,109 passed, zero failures, cancellations or skips.
-- Typecheck and unmodified-auth production build: passed; build repeated with the actual `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`.
-- Isolated before/after production fixture builds: passed; real routes, six source links, native tooltips and Coherence detail at 1440/390 passed.
-- Existing Notables #64 frozen-delta test originally rejected any future rows (90 versus 84). It now explicitly excludes the six separately frozen #65 source URLs while retaining both original baseline hashes. New #65 tests freeze all 84 prior records, all historical funding rounds, regulatory markers and the sole indication correction.
-
-No application UI/code, auth, methodology, dependencies, field-velocity data or global coverage date is changed. No merge or production promotion.
+No merge, auto-merge or production promotion is part of this PR. The actual investment day is still unknown. This change does not claim a retrospective audit of legacy conversions.
