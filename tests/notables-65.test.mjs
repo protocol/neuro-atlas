@@ -35,11 +35,11 @@ test('Notables 65 adds only six reviewed source-bound milestones; all pre-65 gen
     assert.equal(raw.length, 1);
     assert.equal(row.note, raw[0].note);
     assert.equal(row.date, raw[0].date);
-    assert.equal(row.amountUsdM, raw[0].amount_usd_m ? Number(raw[0].amount_usd_m) : null);
+    assert.equal(row.amountUsdM, row.fx ? row.fx.amountNativeM / row.fx.nativePerUsd : (raw[0].amount_usd_m ? Number(raw[0].amount_usd_m) : null));
   }
 });
 
-test('Notables 65 adds Coherence Series A once in the Funding index, without USD conversion or regulatory inflation', () => {
+test('Notables 65 adds Coherence and historically converted NeuroXess once, without regulatory inflation', () => {
   const source = fixture.milestones.find(row => row.company === 'Coherence Neuro').sourceUrl;
   const rounds = funding.rounds.filter(round => round.sourceUrl === source);
   assert.equal(rounds.length, 1);
@@ -49,16 +49,16 @@ test('Notables 65 adds Coherence Series A once in the Funding index, without USD
   assert.equal(rounds[0].announcedOn, '2026-10-21');
   assert.equal(rounds[0].sourceKind, 'primary');
   assert.equal(rounds[0].reviewedOn, '2026-11-09');
-  assert.equal(digest(funding.rounds.filter(round => round.sourceUrl !== source)), fixture.baselineFundingRoundsSha256);
+  assert.equal(digest(funding.rounds.filter(round => !sources.includes(round.sourceUrl))), fixture.baselineFundingRoundsSha256);
   assert.equal(digest(funding.milestones), fixture.baselineRegulatorySha256);
   const nx = one(fixture.milestones.find(row => row.company === 'NeuroXess').sourceUrl);
-  assert.equal(nx.amountUsdM, null);
+  assert.equal(nx.amountUsdM, 700 / 6.6662);
   assert.match(nx.note, /RMB 700m/);
-  assert.match(nx.note, /Excluded from USD capital totals/);
-  assert.equal(funding.rounds.some(round => round.sourceUrl === nx.sourceUrl), false);
+  assert.match(nx.note, /announcement-date fallback/);
+  assert.equal(funding.rounds.filter(round => round.sourceUrl === nx.sourceUrl).length, 1);
   assert.equal(funding.summary.asOf, fixture.baselineSummary.asOf);
-  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 1);
-  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45).toFixed(2)));
+  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 2);
+  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45 + nx.amountUsdM).toFixed(2)));
 });
 
 test('Notables 65 corrects only the existing Coherence indication and keeps the company roster unchanged', () => {

@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { historicalFxFor } from "./historical-fx.mjs";
 
 export const MINIMUM_ROUND_USD_M = 2;
 const SOURCE_KINDS = new Set(["primary", "reporting"]);
@@ -30,16 +31,17 @@ export function parseCsv(text) {
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones, foundings] = await Promise.all([
+  const [companies, rounds, milestones, foundings, fxConversions] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
     load("foundings.csv"),
+    readFile(path.join(directory, "fx-conversions.json"), "utf8").then(JSON.parse),
   ]);
-  return { companies, rounds, milestones, foundings };
+  return { companies, rounds, milestones, foundings, fxConversions };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones, foundings }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [] }) {
   const roster = new Set(companies.map((company) => company.slug));
   if (roster.size !== companies.length) throw new Error("Duplicate company slug");
   const foundingBySlug = new Map();
@@ -90,7 +92,12 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings }) 
     const sourceKind = round.source_kind?.trim();
     if (sourceKind && !SOURCE_KINDS.has(sourceKind)) throw new Error(`Invalid source_kind: ${sourceKind}`);
     const rawAmount = round.amount_usd_m?.trim() ?? "";
-    const amountUsdM = rawAmount ? Number(rawAmount) : Number.NaN;
+    const converted = historicalFxFor(round.source_url, round.announced_on, fxConversions);
+    if (converted && (rawAmount || converted.fx.companySlug !== round.company_slug ||
+        converted.fx.currency !== round.currency || converted.fx.amountNativeM !== Number(round.amount_native_m))) {
+      throw new Error(`Conflicting historical FX round: ${round.source_url}`);
+    }
+    const amountUsdM = converted?.amountUsdM ?? (rawAmount ? Number(rawAmount) : Number.NaN);
     if (rawAmount && (!Number.isFinite(amountUsdM) || amountUsdM < 0)) throw new Error(`Invalid disclosed amount: ${rawAmount}`);
     return {
       companySlug: round.company_slug,
@@ -98,6 +105,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings }) 
       datePrecision: round.date_precision,
       stage: round.stage,
       amountUsdM,
+      ...(converted ? { fx: converted.fx } : {}),
       amountNativeM: round.amount_native_m ? Number(round.amount_native_m) : null,
       currency: round.currency,
       displayAmount: round.display_amount,
