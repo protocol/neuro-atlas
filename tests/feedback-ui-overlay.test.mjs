@@ -110,7 +110,8 @@ test('one visitor field sends without sign-in, retains exact failed retry and cl
     await click(byText('Feedback'));await click(byText('General page'));await settle();
     const composer=document.querySelector('[data-feedback-composer]');
     assert.equal(composer.querySelectorAll('textarea').length,1);assert.equal(composer.querySelectorAll('input').length,0);
-    assert.match(composer.textContent,/logged in Linear/i);assert.match(composer.textContent,/workspace\/team members/i);
+    assert.equal(Boolean(composer.querySelector('.atlas-feedback-note')),false,'requested helper paragraph is absent');
+    assert.doesNotMatch(composer.textContent,/On Send, feedback is logged|workspace\/team members|No automatic code changes/i);
     assert.doesNotMatch(composer.textContent,/sign in|GitHub|draft PR|History|Account/i);
     const heading=document.createElement('h1');document.body.append(heading);
     heading.getBoundingClientRect=()=>({left:50,top:80,right:350,bottom:120,width:300,height:40});

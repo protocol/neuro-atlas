@@ -21,7 +21,7 @@ Fixed, parent-verified Nov. 10, 2026 target (not visitor/env-selectable):
 | Priority / assignee | `0` / `null` |
 | Default template / labels / subscribers | `false` / `[]` / `[]` |
 
-Backlog logs the note for later human queueing; it is not active work or approval to process it. PL-R&D is workspace-visible, not project-private. Disclosure: “On Send, feedback is logged in Linear with structural context, visible to Protocol Labs workspace/team members. No automatic code changes.”
+Backlog logs the note for later human queueing; it is not active work or approval to process it. PL-R&D remains workspace-visible, not project-private. The composer omits the helper paragraph at the owner's request; this copy-only change does not alter storage, visibility or processing behavior.
 
 ## API and privacy contract
 

@@ -267,7 +267,6 @@ export function Feedback() {
           if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
           event.preventDefault(); void submit();
         }} />
-        <p className="atlas-feedback-note">On Send, feedback is logged in Linear with structural context, visible to Protocol Labs workspace/team members. No automatic code changes.</p>
         <div className="atlas-feedback-actions"><button type="button" disabled={busy} onClick={selectArea}>Select element</button><button type="button" aria-label="Send feedback" data-feedback-submit disabled={!available || !comment.trim() || busy} onClick={() => void submit()}>{busy ? "Saving…" : "↑"}</button></div>
 
       </section>

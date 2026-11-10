@@ -12,7 +12,7 @@ The picker uses a pointer-pass-through manual popover, portaled into an existing
 
 ## Send and retry
 
-`PublicFeedbackClient` sends `{feedback, context}` to the mounted `/api/feedback/public`. Enter sends; Shift+Enter and IME/composition Enter do not. The disclosure identifies Linear, structural context and workspace/team members, with no automatic code changes. Only exact `202 {saved:true}` clears the note/target and shows a top-layer “Logged in Linear” toast above the retained native modal.
+`PublicFeedbackClient` sends `{feedback, context}` to the mounted `/api/feedback/public`. Enter sends; Shift+Enter and IME/composition Enter do not. The composer omits the helper paragraph at the owner's request; backend storage and workspace/team visibility are unchanged. Only exact `202 {saved:true}` clears the note/target and shows a top-layer “Logged in Linear” toast above the retained native modal.
 
 Failure keeps the draft and complete input snapshot with the same random request UUID. Reopening, viewport/theme changes, DOM movement or connection retry do not change an uncertain submission. Intentional note/target edits start a new operation. Busy requests disable editing/reselection and fence duplicate Send gestures. Requests have a 15-second client deadline and are aborted on unmount; there is no automatic retry or polling. A confirmed new note starts with fresh selection instead of inheriting the last saved note's pin.
 
