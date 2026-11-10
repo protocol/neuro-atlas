@@ -1,0 +1,99 @@
+{
+  "allPassed": true,
+  "revision": "3ea0ebf324caf0edfe0eac48a5b0308f42c717d5",
+  "cases": [
+    {
+      "width": 1440,
+      "actualNextApp": true,
+      "actualPublicHTTPRoute": true,
+      "syntheticLinearOnly": true,
+      "noVisitorSignInOrPopup": true,
+      "singleFieldAndStructuralPicker": true,
+      "failedDraftAndExactRetryRetained": true,
+      "realRouteSavedOneSyntheticRecord": true,
+      "newNoteNewKey": true,
+      "nativeFocusTrap": true,
+      "geometry": {
+        "left": 1110,
+        "right": 1430,
+        "top": 78.96875,
+        "bottom": 242.734375,
+        "width": 320,
+        "height": 163.765625,
+        "viewportWidth": 1440,
+        "viewportHeight": 1000,
+        "documentWidth": 1440,
+        "clientWidth": 1440,
+        "fields": 1,
+        "inputs": 0,
+        "anchor": {
+          "top": 37,
+          "bottom": 70.96875
+        }
+      }
+    },
+    {
+      "width": 390,
+      "actualNextApp": true,
+      "actualPublicHTTPRoute": true,
+      "syntheticLinearOnly": true,
+      "noVisitorSignInOrPopup": true,
+      "singleFieldAndStructuralPicker": true,
+      "failedDraftAndExactRetryRetained": true,
+      "realRouteSavedOneSyntheticRecord": true,
+      "newNoteNewKey": true,
+      "nativeFocusTrap": true,
+      "geometry": {
+        "left": 60,
+        "right": 380,
+        "top": 66.96875,
+        "bottom": 230.734375,
+        "width": 320,
+        "height": 163.765625,
+        "viewportWidth": 390,
+        "viewportHeight": 1000,
+        "documentWidth": 390,
+        "clientWidth": 390,
+        "fields": 1,
+        "inputs": 0,
+        "anchor": {
+          "top": 25,
+          "bottom": 58.96875
+        }
+      }
+    },
+    {
+      "width": 320,
+      "actualNextApp": true,
+      "actualPublicHTTPRoute": true,
+      "syntheticLinearOnly": true,
+      "noVisitorSignInOrPopup": true,
+      "singleFieldAndStructuralPicker": true,
+      "failedDraftAndExactRetryRetained": true,
+      "realRouteSavedOneSyntheticRecord": true,
+      "newNoteNewKey": true,
+      "nativeFocusTrap": true,
+      "geometry": {
+        "left": 10,
+        "right": 310,
+        "top": 66.96875,
+        "bottom": 230.734375,
+        "width": 300,
+        "height": 163.765625,
+        "viewportWidth": 320,
+        "viewportHeight": 600,
+        "documentWidth": 320,
+        "clientWidth": 320,
+        "fields": 1,
+        "inputs": 0,
+        "anchor": {
+          "top": 25,
+          "bottom": 58.96875
+        }
+      }
+    }
+  ],
+  "syntheticLinearMutations": 6,
+  "actualExternalProviderCalls": 0,
+  "realHostedOAuthOrBrowserAcceptance": false
+}
