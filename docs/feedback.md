@@ -1,4 +1,6 @@
-# Atlas feedback → tested draft PR
+# Historical owner-only feedback → tested draft PR
+
+**Current mounted flow:** [every visitor can log feedback in Linear without sign-in](feedback-public-linear.md). The rest of this document describes the separate legacy/proposal lane, which remains disabled. It is not the visitor contract or permission to activate processing.
 
 **Status: owner-only implementation, disabled by default.** This code neither activates live processing nor merges/deploys itself. The real owner/provider/database/GitHub App roundtrip has not been run. Local integrations below use explicitly synthetic external peers.
 

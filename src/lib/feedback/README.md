@@ -1,4 +1,6 @@
-# Private feedback API (disabled until configured)
+# Legacy private feedback API (disabled until configured)
+
+The mounted visitor UI instead uses the separate [public Linear logging API](../../../docs/feedback-public-linear.md), without account/sign-in. None of the authenticated read/list/history paths documented below becomes public.
 
 This code implements intake/authentication only. It does **not** provision or activate OAuth, PostgreSQL, a worker, a GitHub App, paid inference, a PR, or a deployment. A local fixture is not a live end-to-end acceptance receipt.
 
