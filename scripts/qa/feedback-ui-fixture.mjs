@@ -29,7 +29,7 @@ const server = http.createServer((req,res) => {
   if (req.headers.host !== '127.0.0.1:35642') {res.writeHead(403).end();return;}
   res.setHeader('Cache-Control','no-store');
   if (req.url === '/fixture.js') {res.setHeader('Content-Type','text/javascript');res.end(result.outputFiles[0].text);return;}
-  if (req.url?.endsWith('/api/feedback/config')) {res.setHeader('Content-Type','application/json');res.end(JSON.stringify({enabled:false,connected:false}));return;}
+  if (req.url?.endsWith('/api/feedback/public/config')) {res.setHeader('Content-Type','application/json');res.end(JSON.stringify({enabled:false,connected:false}));return;}
   res.setHeader('Content-Type','text/html');res.end(html);
 });
 server.listen(35642,'127.0.0.1',()=>console.log('Native component fixture ready: http://127.0.0.1:35642/neuro-atlas/field-velocity'));

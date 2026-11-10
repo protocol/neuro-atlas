@@ -1,4 +1,6 @@
-# One-field feedback native QA
+# Historical one-field feedback native QA
+
+These captures predate the corrected no-login Linear logging flow. See [current contract](../../feedback-public-linear.md); the old owner/auth/history acceptance below is historical evidence only, not current visitor acceptance. Picker/native-layer geometry remains relevant. Updated public replay helpers require a fresh parent-run exact-revision replay.
 
 Runtime source: `372cc68dd718e56a3f25e1f58d1f13c311453c96`. The final evidence-only head is runtime-equivalent; exact-head tests/review receipts are in the PR.
 
