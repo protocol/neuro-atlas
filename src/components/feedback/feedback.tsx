@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FeedbackClient, FeedbackClientError, type FeedbackConfig } from "../../lib/feedback-client";
 import type { SimpleFeedbackInput, FeedbackSession, FeedbackStatus } from "../../lib/feedback/contracts";
+import { LINEAR_FEEDBACK_POLICY_VERSION, type LinearFeedbackInput } from "../../lib/feedback-linear/contracts";
 import { allowedTarget, feedbackContext, semanticTargets, elementAt, pickElement, type PickedElement } from "./selection";
 
 /** PR77/chart actions can dispatch this with optional {targetId}; unknown IDs are ignored. */
@@ -48,7 +49,7 @@ export function Feedback() {
   const downTarget = useRef<PickedElement | undefined>(undefined);
   const returnFocus = useRef<HTMLElement | null>(null);
   const mode = useRef({ open: false, selecting: false });
-  const pending = useRef<{ fingerprint: string; key: string; input: SimpleFeedbackInput } | null>(null);
+  const pending = useRef<{ fingerprint: string; key: string; input: SimpleFeedbackInput | LinearFeedbackInput } | null>(null);
   const retainedDraft = useRef(false);
   const submitting = useRef(false);
   const unresolvedFollowupTarget = useRef(false);
@@ -286,10 +287,15 @@ export function Feedback() {
     // Only an intentional note/target/follow-up edit starts a new operation. Viewport,
     // theme, DOM movement and session renewal must not mutate an uncertain retry.
     const fingerprint = JSON.stringify({ followup, comment, target, element: pinned?.reference });
-    if (pending.current?.fingerprint !== fingerprint) pending.current = {
-      fingerprint, key: client.current!.newKey(),
-      input: { feedback: comment, processingConsent: { approved: true, policyVersion: "atlas-feedback-simple-v1" }, context: { ...feedbackContext(window, target), ...(pinned ? { element: { ...pinned.reference } } : {}) } },
-    };
+    if (pending.current?.fingerprint !== fingerprint) {
+      const input = { feedback: comment, context: { ...feedbackContext(window, target), ...(pinned ? { element: { ...pinned.reference } } : {}) } };
+      pending.current = {
+        fingerprint, key: client.current!.newKey(),
+        input: config?.provider === "linear"
+          ? { ...input, processingConsent: { approved: true, policyVersion: LINEAR_FEEDBACK_POLICY_VERSION } }
+          : { ...input, processingConsent: { approved: true, policyVersion: "atlas-feedback-simple-v1" } },
+      };
+    }
     const { input, key } = pending.current;
     try {
       const receipt = followup
@@ -343,7 +349,7 @@ export function Feedback() {
       <section className="atlas-feedback-panel">
         <header><h2 className="atlas-feedback-target">{step === "status" ? "Feedback history" : pinned?.label ?? target ?? (followup ? "Follow up · General page" : "General page")}</h2>{step === "private" && (pinned || target) && <button type="button" disabled={busy} onClick={() => { setTarget(undefined); setPinned(undefined); }}>Clear</button>}<button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
         {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
-        {available && !session && <div className="atlas-feedback-auth"><button type="button" disabled={authBusy} onClick={signIn}>{authBusy ? "Signing in…" : "Sign in with GitHub"}</button>{authBusy && <button type="button" onClick={() => client.current?.cancelSignIn()}>Cancel sign-in</button>}</div>}
+        {available && !session && <div className="atlas-feedback-auth"><button type="button" disabled={authBusy} onClick={signIn}>{authBusy ? "Signing in…" : config?.provider === "linear" ? "Sign in with Linear" : "Sign in with GitHub"}</button>{authBusy && <button type="button" onClick={() => client.current?.cancelSignIn()}>Cancel sign-in</button>}</div>}
         {session && step === "status" && <details><summary>Account</summary><div className="atlas-feedback-auth"><span>{session.actor.login}</span><button type="button" disabled={busy} onClick={() => void signOut()}>Sign out</button></div></details>}
         {error && <p role="alert">{error}</p>}
         {step === "private" && <>
@@ -352,7 +358,7 @@ export function Feedback() {
             if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
             event.preventDefault(); void submit();
           }} />
-          <p className="atlas-feedback-note">Sent privately to the agent. Proposed code changes appear in a public draft PR.</p>
+          <p className="atlas-feedback-note">{config?.provider === "linear" ? "Sent to Linear members with issue access and the designated private review channel. A draft PR is created only after human approval; code changes may be public." : "Sent privately to the agent. Proposed code changes appear in a public draft PR."}</p>
           <div className="atlas-feedback-actions"><button type="button" disabled={busy} onClick={selectArea}>Select element</button>{session && <button type="button" disabled={busy} onClick={() => { setStep("status"); void refresh(); }}>History</button>}<button type="button" aria-label="Send feedback" data-feedback-submit disabled={!available || !session || !comment.trim() || busy} onClick={() => void submit()}>{busy ? "Saving…" : "↑"}</button></div>
         </>}
         {step === "status" && <section aria-live="polite"><h3>Saved · {savedId}</h3>{current ? <>

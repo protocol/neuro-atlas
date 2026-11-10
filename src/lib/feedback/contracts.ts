@@ -31,7 +31,9 @@ export type FeedbackStatus = {
   reasonCode?: string; clarification?: string; pr?: {number: number; url: string; headSha: string};
   preview?: {url: string; verifiedSha: string}; mergedSha?: string; liveSha?: string;
 };
-export type FeedbackSession = {session: string; expiresAt: string; actor: {githubId: number; login: string}};
+export type FeedbackSession =
+  | {session: string; expiresAt: string; provider?: 'github'; actor: {githubId: number; login: string}}
+  | {session: string; expiresAt: string; provider: 'linear'; actor: {linearId: string; workspaceId: string; login: string}};
 export type FeedbackReceipt = Pick<FeedbackStatus, "id" | "state" | "version">;
 export const FEEDBACK_SESSION_HEADER = "X-Atlas-Feedback-Session";
 export const FEEDBACK_POLICY_VERSION = "atlas-feedback-v1" as const;
