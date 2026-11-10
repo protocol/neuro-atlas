@@ -1,0 +1,457 @@
+{
+  "origin": "http://127.0.0.1:3537/mockups/",
+  "checks": [
+    {
+      "check": "fresh inspection empty 1440",
+      "pass": true,
+      "details": {
+        "w": 1440,
+        "cw": 1425,
+        "sw": 1425,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 1440",
+      "pass": true,
+      "details": {
+        "w": 1440,
+        "cw": 1425,
+        "sw": 1425,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "four USD electronics marks",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "native Science selection",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "academic arithmetic rendered",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "list arithmetic changes same pinned record",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "tier does not scroll",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "native Escape clears inspection",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "probe scope clears and shows single USD mark",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "approximate Utah price and scope",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "currency replacement not conversion",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "NP2 price allocation and minimum retained",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "empty is a sourced gap not zero",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "scope and currency do not scroll",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "native evidence-layout navigation",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "all seven evidence records survive filters",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "evidence layout starts empty",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "native inspect exact evidence neurorighter-2009",
+      "pass": true,
+      "details": {
+        "id": "neurorighter-2009",
+        "links": [
+          "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif",
+          "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif",
+          "https://www.frontiersin.org/journals/neuroengineering/articles/10.3389/neuro.16.012.2009/full",
+          "https://www.frontiersin.org/journals/neuroengineering/articles/10.3389/neuro.16.012.2009/full",
+          "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence open-ephys-2017",
+      "pass": true,
+      "details": {
+        "id": "open-ephys-2017",
+        "links": [
+          "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea",
+          "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea",
+          "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence scifi-np1-2026",
+      "pass": true,
+      "details": {
+        "id": "scifi-np1-2026",
+        "links": [
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/technologies/scifi/",
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/technologies/scifi/"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence scifi-cereport-2026",
+      "pass": true,
+      "details": {
+        "id": "scifi-cereport-2026",
+        "links": [
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/docs/d/adapt-cereport/index",
+          "https://science.xyz/foundry/api/products",
+          "https://science.xyz/docs/d/adapt-cereport/index"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence open-ephys-2026",
+      "pass": true,
+      "details": {
+        "id": "open-ephys-2026",
+        "links": [
+          "https://open-ephys.org/acquisition-system/starter-bundles?format=json",
+          "https://open-ephys.org/acquisition-system/starter-bundles?format=json",
+          "https://open-ephys.org/acquisition-system/starter-bundles",
+          "https://open-ephys.org/acquisition-system/starter-bundles?format=json",
+          "https://open-ephys.org/acquisition-system/starter-bundles"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence utah-2016",
+      "pass": true,
+      "details": {
+        "id": "utah-2016",
+        "links": [
+          "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID",
+          "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID",
+          "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "native inspect exact evidence neuropixels2-2026",
+      "pass": true,
+      "details": {
+        "id": "neuropixels2-2026",
+        "links": [
+          "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf",
+          "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf",
+          "https://www.neuropixels.org/_files/ugd/328966_2b39661f072d405b8d284c3c73588bc6.pdf",
+          "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf",
+          "https://www.neuropixels.org/_files/ugd/328966_2b39661f072d405b8d284c3c73588bc6.pdf"
+        ],
+        "records": 7
+      }
+    },
+    {
+      "check": "fresh inspection empty 390",
+      "pass": true,
+      "details": {
+        "w": 390,
+        "cw": 390,
+        "sw": 390,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 390",
+      "pass": true,
+      "details": {
+        "w": 390,
+        "cw": 390,
+        "sw": 390,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "singleton visible without horizontal scroll 390",
+      "pass": true,
+      "details": {
+        "px": 157,
+        "pw": 44,
+        "cx": 15,
+        "cw": 360,
+        "left": 0
+      }
+    },
+    {
+      "check": "mobile filters do not scroll 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile singleton source mark stays real 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "fresh inspection empty 390-evidence",
+      "pass": true,
+      "details": {
+        "w": 390,
+        "cw": 390,
+        "sw": 390,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 390-evidence",
+      "pass": true,
+      "details": {
+        "w": 390,
+        "cw": 390,
+        "sw": 390,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "mobile full evidence inventory 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile inspection result visible 390",
+      "pass": true,
+      "details": {
+        "open": true,
+        "top": 151.5,
+        "bottom": 180,
+        "vh": 900,
+        "selected": "scifi-np1-2026"
+      }
+    },
+    {
+      "check": "mobile source anchors reachable 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile close returns focus and empty inspection 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile Escape dismisses dialog 390",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "no browser JS errors 390",
+      "pass": true,
+      "details": []
+    },
+    {
+      "check": "fresh inspection empty 320",
+      "pass": true,
+      "details": {
+        "w": 320,
+        "cw": 320,
+        "sw": 320,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 320",
+      "pass": true,
+      "details": {
+        "w": 320,
+        "cw": 320,
+        "sw": 320,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "singleton visible without horizontal scroll 320",
+      "pass": true,
+      "details": {
+        "px": 157,
+        "pw": 44,
+        "cx": 15,
+        "cw": 290,
+        "left": 0
+      }
+    },
+    {
+      "check": "mobile filters do not scroll 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile singleton source mark stays real 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "fresh inspection empty 320-evidence",
+      "pass": true,
+      "details": {
+        "w": 320,
+        "cw": 320,
+        "sw": 320,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 320-evidence",
+      "pass": true,
+      "details": {
+        "w": 320,
+        "cw": 320,
+        "sw": 320,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "mobile full evidence inventory 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile inspection result visible 320",
+      "pass": true,
+      "details": {
+        "open": true,
+        "top": 151.5,
+        "bottom": 180,
+        "vh": 900,
+        "selected": "scifi-np1-2026"
+      }
+    },
+    {
+      "check": "mobile source anchors reachable 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile close returns focus and empty inspection 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "mobile Escape dismisses dialog 320",
+      "pass": true,
+      "details": null
+    },
+    {
+      "check": "no browser JS errors 320",
+      "pass": true,
+      "details": []
+    },
+    {
+      "check": "fresh inspection empty 1440",
+      "pass": true,
+      "details": {
+        "w": 1440,
+        "cw": 1425,
+        "sw": 1425,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "document width bounded 1440",
+      "pass": true,
+      "details": {
+        "w": 1440,
+        "cw": 1425,
+        "sw": 1425,
+        "y": 0,
+        "detail": "",
+        "count": "4 observations",
+        "errors": []
+      }
+    },
+    {
+      "check": "no browser JS errors desktop",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "note": "Native headed Chrome; static prototype only, not a hosted authenticated Atlas roundtrip."
+}
