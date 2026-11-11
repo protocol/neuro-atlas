@@ -191,6 +191,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     placedKeys.push(position);
     return [{ point, text, ...position }];
   });
+  // Point keys are part of the chart, independent of the shortened information footer.
+  // Keep product/date identity visible in images whose source scope depends on it.
+  const exportPointKeys = ["public-data-size", "acquisition-economics", "largest-connectome-neurons"].includes(plot.id)
+    ? plot.points.map(point => {
+      const annotationIndex = annotations.findIndex(annotation => annotation.point.id === point.id);
+      const key = annotationIndex >= 0 ? `${annotationIndex + 1}. ` : "";
+      return { label: `${key}${point.annotation || point.label} · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
+    }) : [];
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
     "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
@@ -201,7 +209,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
-      legend,
+      legend: [...legend, ...exportPointKeys],
       notes: [plot.scope, plot.seriesNote ?? "",
         ...(humanTargets.length ? [HUMAN_ACQUISITION_SCENARIO.scope,
           "N = 1,200 × 10²¹ / (4 × 4 × 40) = 1.875 × 10²¹ voxels; guide = acquisition budget × 10,000,000 / N $/10M voxels.",
