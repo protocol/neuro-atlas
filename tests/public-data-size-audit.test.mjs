@@ -34,14 +34,14 @@ test('MaleCNS uses an exactly inventoried JPEG image pyramid with a measurement 
   assert.match(point.note, /44,428,865,656,516/);
   assert.match(point.note, /segmentation.*meshes.*tables/);
   assert.equal(point.qualifier, '');
-  assert.equal(plot.points.length, 6);
+  assert.equal(plot.points.length, 7);
   const expected = {'hildebrand-zebrafish-public-images-2017':0.0027,'fafb-image-download-2018':0.012,'hemibrain-v1':0.026,'h01-2021':1.4,'microns-2025-size':1.6};
   for (const [id,y] of Object.entries(expected)) assert.equal(plot.points.find(p => p.id===id).y,y,id);
 });
 
 test('product scope and reported-versus-measured basis stay visible across chart consumers', () => {
   assert.equal(plot.observationBasis, 'Published / measured');
-  assert.equal(plot.xLabel, 'Report / measurement year');
+  assert.equal(plot.xLabel, 'Release / report / measurement year');
   assert.match(plot.scope, /sample size, resolution, encoding and included products/);
   assert.match(plot.scope, /1 PB = 1,000 TB/);
   assert.deepEqual([...new Set(plot.points.map(p=>p.group))].sort(), ['Measured image size','Published image sizes','Published resource sizes']);
@@ -55,11 +55,11 @@ test('product scope and reported-versus-measured basis stay visible across chart
   for(const preview of [true,false]) {
     const doc=rendered(preview);
     for(const name of ['Published image sizes','Published resource sizes','Measured image size']) assert.match(doc.querySelector('[data-draft-group-legend]').textContent,new RegExp(name));
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length,6);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length,7);
     if(!preview) {
       assert.match(doc.querySelector('.draft-plot-legend').textContent,/Published \/ measured/);
       assert.match(doc.querySelector('caption').textContent,/Published \/ measured/);
-      assert.equal(doc.querySelectorAll('[data-point-annotation]').length,6);
+      assert.equal(doc.querySelectorAll('[data-point-annotation]').length,7);
     }
   }
 });

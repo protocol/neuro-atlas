@@ -113,7 +113,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const bottom = top + (humanTargets.length ? 360 : 232) + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
-  const ys = [...plot.points.map(point => point.y), ...humanTargets.map(target => target.dollarsPer10MVoxels)];
+  const references = (plot.references ?? []).filter(reference => Number.isFinite(reference.y) && reference.y > 0);
+  const ys = [...plot.points.map(point => point.y), ...humanTargets.map(target => target.dollarsPer10MVoxels), ...references.map(reference => reference.y)];
   const numericX = plot.xKind === "number";
   let xMin = numericX ? Math.min(...xs) : Math.floor(Math.min(...xs));
   let xMax = numericX ? Math.max(...xs) : Math.ceil(Math.max(...xs));
@@ -211,6 +212,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `${observationBasis} · ${scaleNote} · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         ...plot.points.filter(point => point.exportNote).map(point => `${point.label} · ${point.dateLabel}. ${point.exportNote}`),
+        ...references.map(reference => `Anatomical neuron-count context: ${reference.label} (${exactNumber(reference.y)} neurons). ${reference.note} Source: ${reference.sourceTitle}. ${reference.quote}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
@@ -241,6 +243,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <title>{target.label} hypothetical whole-human acquisition budget · 1,200 cm³ · 4 × 4 × 40 nm</title>
         <line x1={left} x2={right} y1={y(target.dollarsPer10MVoxels)} y2={y(target.dollarsPer10MVoxels)} stroke="var(--muted)" strokeWidth={1.5} strokeDasharray="8 5" vectorEffect="non-scaling-stroke" />
         <text className="draft-plot-tick" x={right + 8} y={y(target.dollarsPer10MVoxels) + 4}>{target.label}</text>
+      </g>)}
+      {references.map(reference => <g key={reference.id} data-anatomical-reference={reference.id}>
+        <line x1={left} x2={right} y1={y(reference.y)} y2={y(reference.y)} stroke="var(--muted)" strokeWidth={1}
+          strokeDasharray="5 5" opacity={0.45} vectorEffect="non-scaling-stroke" />
+        <text className="draft-plot-tick" x={left + 6} y={y(reference.y) - 6}>{reference.label}</text>
       </g>)}
       {energyAxis ? <>
         {energyAxis.segments.map((segment, index) => <line key={index} className="draft-plot-axis" data-x-axis-segment={index} x1={segment.start} x2={segment.end} y1={bottom} y2={bottom} />)}
@@ -317,6 +324,20 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     </details>
     {["acquisition-economics", "proofreading-effort"].includes(plot.id) && <ConnectomicsCostEvidence />}
     {plot.id === "recording-hours" && <p className="pc-chart-note">Related measurement: <a data-related-bci-participants href={`#${canonicalPerformanceAnchor("revealed_commitments")}`} onClick={event => { event.preventDefault(); navigatePerformance("revealed_commitments"); }}>Implanted BCI participants over time</a> · separately reported cohorts.</p>}</>}
+    {!preview && plot.relatedChart && <p className="draft-plot-scope">
+      <a href={`#${canonicalPerformanceAnchor(plot.relatedChart.anchor)}`} data-related-chart
+        onClick={event => { event.preventDefault(); navigatePerformance(plot.relatedChart!.anchor); }}>{plot.relatedChart.label} ↗</a>
+      {" "}{plot.relatedChart.note}
+    </p>}
+    {!preview && references.length > 0 && <details className="draft-plot-data" data-anatomical-reference-sources>
+      <summary>Anatomical neuron counts — scale references</summary>
+      <p className="draft-plot-scope">Dashed lines give anatomical count context. Whole and partial connectomes retain their study-specific coverage and reconstruction completeness.</p>
+      <ul>{references.map(reference => <li key={reference.id}>
+        <strong>{reference.label}</strong> · {exactNumber(reference.y)} neurons
+        <p><a href={reference.sourceUrl} target="_blank" rel="noreferrer">{reference.sourceTitle} ↗</a></p>
+        <blockquote>{reference.quote}</blockquote><p>{reference.note}</p>
+      </li>)}</ul>
+    </details>}
   </figure>;
 }
 

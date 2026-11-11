@@ -1,5 +1,7 @@
 # Public connectomics data sizes — source audit, November 3, 2026
 
+November 11 follow-up: [release-date and anatomical-scale context](public-connectomics-release-context.md) adds a separately sourced July 2021 MICrONS image-product checkpoint and a related neuron-count comparison. The six observations and byte inventory audited below remain unchanged in the source archive.
+
 The chart uses **PB**. Reported TB figures are converted with **1 PB = 1,000 TB = 10¹⁵ bytes**; a publisher's rounded TB/PB claim remains a reported value. Only the MaleCNS entry is an integer-byte object inventory.
 
 The six points describe separate products. Image sizes, loosely scoped resource totals, specimen sizes, sampling and encodings differ. The chart distinguishes their evidence/product basis, keeps the observations unconnected, and dates the new storage measurement explicitly.
