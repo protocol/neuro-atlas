@@ -30,6 +30,7 @@
 .draft-plot-svg { display: block; width: 100%; height: auto; min-height: 300px; overflow: visible; }
 .draft-plot-qualifications { margin: 10px 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
 .draft-plot-overlap-note { margin: .45rem 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.draft-plot-related { margin: .65rem 0; font-size: 12px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
 .draft-plot-tick { font-size: 12px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }

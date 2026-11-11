@@ -323,8 +323,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       </div>
     </details>
     {["acquisition-economics", "proofreading-effort"].includes(plot.id) && <ConnectomicsCostEvidence />}
-    {plot.id === "recording-hours" && <p className="pc-chart-note">Related measurement: <a data-related-bci-participants href={`#${canonicalPerformanceAnchor("revealed_commitments")}`} onClick={event => { event.preventDefault(); navigatePerformance("revealed_commitments"); }}>Implanted BCI participants over time</a> · separately reported cohorts.</p>}</>}
-    {!preview && plot.relatedChart && <p className="draft-plot-scope">
+    {plot.id === "recording-hours" && <p className="draft-plot-related">Related measurement: <a data-related-bci-participants href={`#${canonicalPerformanceAnchor("revealed_commitments")}`} onClick={event => { event.preventDefault(); navigatePerformance("revealed_commitments"); }}>Implanted BCI participants over time</a> · separately reported cohorts.</p>}</>}
+    {!preview && plot.relatedChart && <p className="draft-plot-related">
       <a href={`#${canonicalPerformanceAnchor(plot.relatedChart.anchor)}`} data-related-chart
         onClick={event => { event.preventDefault(); navigatePerformance(plot.relatedChart!.anchor); }}>{plot.relatedChart.label} ↗</a>
       {" "}{plot.relatedChart.note}
