@@ -10,6 +10,8 @@ import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
+import { navigatePerformance } from "@/lib/field-velocity/navigation";
+import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 import { HUMAN_ACQUISITION_SCENARIO, humanAcquisitionTargets } from "@/lib/human-acquisition-targets";
 import { ConnectomicsCostEvidence } from "@/components/connectomics-cost-evidence";
 
@@ -313,7 +315,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </table>
       </div>
     </details>
-    {["acquisition-economics", "proofreading-effort"].includes(plot.id) && <ConnectomicsCostEvidence />}</>}
+    {["acquisition-economics", "proofreading-effort"].includes(plot.id) && <ConnectomicsCostEvidence />}
+    {plot.id === "recording-hours" && <p className="pc-chart-note">Related measurement: <a data-related-bci-participants href={`#${canonicalPerformanceAnchor("revealed_commitments")}`} onClick={event => { event.preventDefault(); navigatePerformance("revealed_commitments"); }}>Implanted BCI participants over time</a> · separately reported cohorts.</p>}</>}
   </figure>;
 }
 
