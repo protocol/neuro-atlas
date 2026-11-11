@@ -1,0 +1,56 @@
+[
+  {
+    "file": "funding-before-desktop.png",
+    "sourceRevision": "05a314c3889836230d179d7bb5b1f626b6804193",
+    "sha256": "ff298aaaf3ccb7ef6a6bac4d25b67763da862f18069505ca089c20f5c5ef6b74",
+    "kind": "headed-browser screenshot"
+  },
+  {
+    "file": "funding-after-desktop.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "6c592e9147eaf2fbea51128f13164a072dc309b218bd5ef731b1e0f9de408c40",
+    "kind": "headed-browser screenshot"
+  },
+  {
+    "file": "funding-after-mobile.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "cf3fb57ba1256bf6f0ca06334c895afadfa3d135f2fbe3994871c446e5d2e469",
+    "kind": "headed-browser screenshot"
+  },
+  {
+    "file": "funding-regulatory-lanes.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "81d808b0639f352b9c05eed48190684c010c450da30b9b730cdea58c3e596c75",
+    "kind": "headed-browser screenshot"
+  },
+  {
+    "file": "public-resources-native-export.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "235b2f958736fc8ceb5732af046ef451510f7d74054b81e3242c7f64d253121d",
+    "kind": "native Download PNG"
+  },
+  {
+    "file": "neuron-scale-native-export.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "2b4181f35ffbcc2473b2ce83ab5b0aa3e36cddf264b9c3057b8a97fe6a0ac5b2",
+    "kind": "native Download PNG"
+  },
+  {
+    "file": "budget-targets-native-export.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "bca64d43f43d1c07e73192a67d76e086f25f8b181c806c5ed46238daa0e24d55",
+    "kind": "native Download PNG"
+  },
+  {
+    "file": "budget-targets-mobile.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "80f81dbf630b7a73688b2baf08f7b6d533ffd0f69f58e26be9b6a495e9ae94b6",
+    "kind": "headed-browser screenshot"
+  },
+  {
+    "file": "affiliation-cohort-desktop.png",
+    "sourceRevision": "542c7195a565f9986a7183ce4ed0ec1ec709483e",
+    "sha256": "4845a3426877ddcaea28a16e6d29fc834327c15f703fcc68be91fff29442d983",
+    "kind": "headed-browser screenshot"
+  }
+]
