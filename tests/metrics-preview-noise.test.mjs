@@ -13,7 +13,9 @@ test('preview cards avoid generic source-status labels while retaining scope, qu
   try {
     assert.equal(dom.window.document.querySelector('.pc-trigger .pc-eyebrow'), null, 'Shared source reading / Historical series are redundant preview eyebrows');
     assert.equal(dom.window.document.querySelector('[data-draft-preview]:not(.draft-event-timeline) .draft-plot-legend'), null, 'Do not repeat generic Source-reported / Log scale / Unconnected labels below every numeric preview');
-    assert.equal(dom.window.document.querySelectorAll('[data-source-observation]').length, 78);
+    assert.equal(dom.window.document.querySelectorAll('[data-source-observation]').length, 79);
+    assert.equal(dom.window.document.querySelectorAll('[data-source-observation="microns-v117-public-images-2021"]').length, 1);
+    assert.equal(dom.window.document.querySelectorAll('[data-source-observation]:not([data-source-observation="microns-v117-public-images-2021"])').length, 78, 'All original observations remain');
   } finally { dom.window.close(); }
   const cleanup = await mount(React.createElement(Page));
   try {

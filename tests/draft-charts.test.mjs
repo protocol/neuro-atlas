@@ -156,15 +156,44 @@ test('plot previews open source-qualified detail without a paragraph wall above 
   const { mount, click, settle } = await import('./modal-helpers.mjs');
   const cleanup = await mount(React.createElement(DraftChartsSection));
   try {
+    let acquisitionControls = 0;
     for (const preview of document.querySelectorAll('.draft-plot:not(.draft-event-timeline)')) {
       assert.equal(preview.querySelectorAll(':scope > .draft-plot-scope').length, 0);
       assert.equal(preview.querySelector('details'), null);
-      await click(preview.closest('[data-draft-popout]').querySelector('[data-draft-popout-trigger]'));
+      assert.equal(preview.querySelector('[data-human-acquisition-toggle]'), null);
+      const panel = preview.closest('[data-draft-popout]');
+      await click(panel.querySelector('[data-draft-popout-trigger]'));
       const figure = document.querySelector('dialog[open] .draft-plot');
       assert.ok(figure.querySelector('details .draft-plot-scope'));
-      assert.equal(figure.querySelector('svg').previousElementSibling.tagName, 'FIGCAPTION');
+      const svg = figure.querySelector(':scope > svg.draft-plot-svg');
+      const caption = figure.querySelector(':scope > figcaption');
+      const children = [...figure.children];
+      const aboveSvg = children.slice(children.indexOf(caption) + 1, children.indexOf(svg));
+      if (panel.dataset.draftPopout === 'metric-panel-acquisition-economics') {
+        acquisitionControls++;
+        const scenario = figure.querySelector(':scope > .human-acquisition-scenario');
+        assert.ok(scenario, 'Only the acquisition-cost chart has an optional bounded control');
+        assert.deepEqual(aboveSvg, [scenario], 'The sole addition between the caption and SVG is the scenario control');
+        assert.equal(scenario.previousElementSibling, caption);
+        assert.equal(svg.previousElementSibling, scenario);
+        assert.deepEqual([...scenario.children].map(node => node.tagName), ['LABEL', 'DETAILS'], 'No default paragraph wall above the plot');
+        const toggle = scenario.querySelector('label > input[type="checkbox"][data-human-acquisition-toggle]');
+        assert.ok(toggle);
+        assert.equal(toggle.checked, false, 'Source-only default keeps hypothetical guides off');
+        assert.equal(toggle.closest('label').textContent.trim(), 'Show human acquisition-budget targets');
+        const method = scenario.querySelector('details[data-human-acquisition-method]');
+        assert.ok(method);
+        assert.equal(method.open, false, 'Long assumptions stay inside a closed disclosure');
+        assert.equal(method.querySelector('summary').textContent, 'Target assumptions and calculation');
+        assert.equal(svg.querySelector('[data-human-acquisition-target], [data-human-acquisition-assumptions]'), null);
+      } else {
+        assert.deepEqual(aboveSvg, [], 'Other chart captions still immediately precede their SVG');
+        assert.equal(svg.previousElementSibling.tagName, 'FIGCAPTION');
+        assert.equal(figure.querySelector('.human-acquisition-scenario, [data-human-acquisition-toggle]'), null);
+      }
       await click(document.querySelector('dialog[open] .pc-modal-header button')); await settle(); await settle();
     }
+    assert.equal(acquisitionControls, 1, 'Exactly one source-qualified acquisition chart gets the optional control');
   } finally { await cleanup(); }
 });
 

@@ -155,9 +155,17 @@ test('detail/source-table rendering consumes the concise projection and preserve
     try {
       const doc = dom.window.document;
       assert.equal(doc.querySelector('.draft-plot-scope').textContent, item.scope, item.id);
-      const rows = [...doc.querySelectorAll('tbody tr')];
-      assert.equal(rows.length, item.points.length);
+      // Supplemental compute-cost evidence has its own table, not chart points.
+      const sourceTables = [...doc.querySelectorAll('[role="region"]')]
+        .filter(region => region.getAttribute('aria-label') === `${item.title} source table`);
+      assert.equal(sourceTables.length, 1, `${item.id}: exactly one observation source table`);
+      const details = sourceTables[0].closest('details');
+      assert.equal(details.querySelector(':scope > summary').textContent, `Data and sources (${item.points.length})`);
+      assert.equal(details.hasAttribute('data-connectomics-cost-evidence'), false);
+      const rows = [...sourceTables[0].querySelectorAll('tbody tr')];
+      assert.equal(rows.length, item.points.length, `${item.id}: one source row per plotted observation`);
       rows.forEach((row, index) => {
+        assert.equal(row.querySelector('td:last-child > a').getAttribute('href'), item.points[index].sourceUrl);
         assert.equal(row.querySelector('blockquote').textContent, item.points[index].quote);
         assert.equal(row.querySelector('td:last-child > p')?.textContent, item.points[index].note);
       });

@@ -135,8 +135,11 @@ test('preview is a visibly bounded card with a full-area native trigger and comp
 
 test('modal keyboard trap includes a closed source summary, not its hidden source controls', async () => {
   const { ChartModal } = await import('../src/components/chart-modal.tsx');
-  const cleanup = await mount(React.createElement(ChartModal, { id: 'source-trap', title: plot.title, returnFocus: { current: null } },
-    React.createElement(DraftChartPlot, { plot, shareAnchor: anchor })), `#${anchor}`);
+  // An unlinked chart still ends at its source disclosure; linked charts have
+  // separately pinned visible final controls below, not hidden source links.
+  const sourcePlot = METRIC_CHART_EVIDENCE['Paired structure–function dataset scale over time'].plots.find(item => item.id === 'paired-manual');
+  const cleanup = await mount(React.createElement(ChartModal, { id: 'source-trap', title: sourcePlot.title, returnFocus: { current: null } },
+    React.createElement(DraftChartPlot, { plot: sourcePlot, shareAnchor: 'metric-panel-paired-manual' })), '#metric-panel-paired-manual');
   try {
     const dialog = document.querySelector('dialog');
     const close = dialog.querySelector('.pc-modal-header button');
@@ -149,6 +152,55 @@ test('modal keyboard trap includes a closed source summary, not its hidden sourc
     await act(async () => { details.open = true; close.focus(); });
     await act(async () => close.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true })));
     assert.equal(document.activeElement, [...details.querySelectorAll('a')].at(-1), 'Expanded source links become reachable');
+  } finally { await cleanup(); }
+});
+
+for (const { id, finalSelector, finalText, target } of [
+  { id: 'recording-hours', finalSelector: '[data-related-bci-participants]', finalText: 'Implanted BCI participants over time', target: 'revealed_commitments' },
+  { id: 'public-data-size', finalSelector: '[data-related-chart]', finalText: 'Neuron-count view with mouse, macaque and human scale ↗', target: 'metric-panel-largest-connectome-neurons' },
+  { id: 'acquisition-economics', finalSelector: '[data-connectomics-cost-evidence] > summary', finalText: 'Reconstruction and proofreading cost evidence' },
+  { id: 'largest-connectome-neurons', finalSelector: '[data-anatomical-reference-sources] > summary', finalText: 'Anatomical neuron counts — scale references' },
+]) test(`${id}: modal Tab wraps through the actual final visible control, excluding closed disclosure descendants`, async () => {
+  const { ChartModal } = await import('../src/components/chart-modal.tsx');
+  const currentPlot = Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots).find(item => item.id === id);
+  assert.ok(currentPlot);
+  const shareAnchor = id === 'recording-hours' ? anchor : `metric-panel-${id}`;
+  const cleanup = await mount(React.createElement(ChartModal, { id: `${id}-trap`, title: currentPlot.title, returnFocus: { current: null } },
+    React.createElement(DraftChartPlot, { plot: currentPlot, shareAnchor })), `#${shareAnchor}`);
+  try {
+    const dialog = document.querySelector('dialog[open]');
+    const close = dialog.querySelector('.pc-modal-header button');
+    const sourceDetails = [...dialog.querySelectorAll('details')].find(details => details.querySelector(':scope > summary').textContent === `Data and sources (${currentPlot.points.length})`);
+    assert.ok(sourceDetails);
+    const finalControl = dialog.querySelector(finalSelector);
+    assert.ok(finalControl);
+    assert.equal(finalControl.textContent.trim(), finalText);
+    if (target) assert.equal(finalControl.getAttribute('href'), `#${canonicalPerformanceAnchor(target)}`);
+    assert.ok([...dialog.querySelectorAll('details')].every(details => !details.open), 'Every disclosure starts closed');
+    const hiddenSourceLinks = [...dialog.querySelectorAll('details a')];
+    assert.ok(hiddenSourceLinks.length > 0, 'The trap must exclude real hidden source controls');
+    for (const sourceOpen of [false, true]) {
+      await act(async () => { sourceDetails.open = sourceOpen; close.focus(); });
+      const reverse = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true });
+      await act(async () => close.dispatchEvent(reverse));
+      assert.equal(reverse.defaultPrevented, true);
+      assert.equal(document.activeElement, finalControl, `Source disclosure open=${sourceOpen}: reverse Tab reaches the actual visible final control`);
+      assert.equal(hiddenSourceLinks.includes(document.activeElement), false, 'A source link cannot replace the visible final control');
+      const forward = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+      await act(async () => finalControl.dispatchEvent(forward));
+      assert.equal(forward.defaultPrevented, true);
+      assert.equal(document.activeElement, close, 'Forward Tab wraps from the actual final control');
+    }
+    if (finalControl.tagName === 'SUMMARY') {
+      const lastDisclosure = finalControl.parentElement;
+      await act(async () => { lastDisclosure.open = true; close.focus(); });
+      const finalSource = [...lastDisclosure.querySelectorAll('a[href]')].at(-1);
+      assert.ok(finalSource);
+      await act(async () => close.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true })));
+      assert.equal(document.activeElement, finalSource, 'Opening the final disclosure makes its last source link reachable');
+      await act(async () => finalSource.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true })));
+      assert.equal(document.activeElement, close, 'The newly visible final source also wraps forward');
+    }
   } finally { await cleanup(); }
 });
 
