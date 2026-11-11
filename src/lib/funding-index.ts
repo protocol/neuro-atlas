@@ -90,6 +90,20 @@ export function getTimelinePosition(announcedOn: string, firstYear: number, last
   if (!Number.isFinite(point) || end <= start) return 0;
   return Math.min(100, Math.max(0, ((point - start) / (end - start)) * 100));
 }
+
+/**
+ * One shared area scale for the complete index, including the size key.
+ * The largest round has a 40px diameter: area = π × 20² × amount / largest.
+ * Taking the square root for diameter keeps area proportional to USD amount.
+ * There is no minimum diameter, additive offset, or per-round size cap.
+ * Unavailable/nonpositive amounts have no quantitative area; the UI uses an
+ * unscaled symbol. This fallback does not expand the source index's screen.
+ */
+export function getFinancingDotDiameter(amountUsdM: number | null | undefined, largestAmountUsdM: number): number | null {
+  if (typeof amountUsdM !== "number" || !Number.isFinite(amountUsdM) || amountUsdM <= 0 || !Number.isFinite(largestAmountUsdM) || largestAmountUsdM <= 0) return null;
+  return 40 * Math.sqrt(amountUsdM / largestAmountUsdM);
+}
+
 export type FundingMilestone = {
   companySlug: string;
   announcedOn: string;

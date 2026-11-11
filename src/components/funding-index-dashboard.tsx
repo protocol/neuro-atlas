@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type FocusEvent, type MouseEvent } from "react";
 import { FirmLogo } from "@/components/firm-logo";
 import { lookupAcronym } from "@/components/abbr";
 import {
   buildCompanyRows,
   formatCapital,
   formatFundingDate,
+  getFinancingDotDiameter,
   getTimelinePosition,
   type FundingCompanyRow,
   type FundingIndexData,
+  type FundingRound,
 } from "@/lib/funding-index";
 import { clampCenteredTooltipX } from "@/lib/tooltip-position";
 
@@ -37,7 +39,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
   const [scope, setScope] = useState("All");
   const [modality, setModality] = useState("All");
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-  const [markerTip, setMarkerTip] = useState<{ title: string; body: string; x: number; y: number } | null>(null);
+  const [markerTip, setMarkerTip] = useState<{ title: string; body: string; x: number; y: number; financingKey?: string } | null>(null);
+  const markerTipId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const modalities = useMemo(
@@ -93,6 +96,9 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
     (_, index) => data.summary.firstYear + index,
   );
   const maxInvestorRounds = Math.max(...data.investors.map((investor) => investor.roundCount), 1);
+  const largestRoundUsdM = Math.max(0, ...data.rounds.map((round) => Number.isFinite(round.amountUsdM) ? round.amountUsdM : 0));
+  const sizeKeyAmounts = [...new Set([10, 100, largestRoundUsdM])].filter((amount) => amount > 0 && amount <= largestRoundUsdM);
+  const hasUnknownAmounts = data.rounds.some((round) => getFinancingDotDiameter(round.amountUsdM, largestRoundUsdM) === null);
 
   const showMarkerTip = (event: MouseEvent<HTMLElement>, marker: string, indication?: string) => {
     const entry = lookupAcronym(marker);
@@ -102,6 +108,17 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
       body: [entry?.definition, indication].filter(Boolean).join(" · "),
       x: clampCenteredTooltipX(r.left + r.width / 2, 256),
       y: r.top - 6,
+    });
+  };
+
+  const showFinancingTip = (event: MouseEvent<HTMLElement> | FocusEvent<HTMLElement>, name: string, round: FundingRound, financingKey: string) => {
+    const r = event.currentTarget.getBoundingClientRect();
+    setMarkerTip({
+      title: `${name} · ${round.stage}`,
+      body: [formatFundingDate(round.announcedOn, round.datePrecision), round.displayAmount, round.note].filter(Boolean).join(" · "),
+      x: clampCenteredTooltipX(r.left + r.width / 2, 256),
+      y: r.top - 6,
+      financingKey,
     });
   };
 
@@ -184,7 +201,21 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
       <section className="py-8 lg:py-10">
         <div className="mx-auto max-w-[1480px]">
           {primaryView === "companies" && companyView === "timeline" && (
-            <div className="overflow-x-auto rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
+            <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
+                <div role="group" aria-label="Financing size key" className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-border bg-nav/40 px-5 py-3 text-xs text-muted">
+                  <div className="w-full leading-relaxed">Circle area shows indexed USD financing. Same scale across companies and filters.</div>
+                  {sizeKeyAmounts.map((amount) => {
+                    const diameter = getFinancingDotDiameter(amount, largestRoundUsdM) ?? 0;
+                    return (
+                      <span key={amount} className="inline-flex h-10 items-center gap-2 tabular-nums">
+                        <span aria-hidden="true" data-financing-size-usd-m={amount} className="inline-block shrink-0 rounded-full bg-accent/65" style={{ width: `${diameter}px`, height: `${diameter}px` }} />
+                        {formatCapital(amount)}
+                      </span>
+                    );
+                  })}
+                  {hasUnknownAmounts && <span className="inline-flex h-10 items-center gap-2"><span aria-hidden="true" className="inline-block h-2 w-2 rotate-45 border border-muted" />Amount unavailable · unscaled</span>}
+                </div>
+              <div className="overflow-x-auto">
               <div className="grid min-w-[1055px] grid-cols-[220px_minmax(700px,1fr)_110px] sm:min-w-[1120px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] border-b border-border bg-nav px-5 py-3 text-xs font-bold text-muted">
                 <div><span className="hidden sm:inline">Company · click for detail</span><span className="sm:hidden">Tap company · swipe years →</span></div>
                 <div className="relative h-4">
@@ -204,20 +235,19 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 {rows.map((row, rowIndex) => {
                   const milestones = data.milestones.filter((milestone) => milestone.companySlug === row.slug);
                   return (
-                    <button
+                    <div
                       key={row.slug}
-                      type="button"
-                      onClick={() => setSelectedSlug(row.slug)}
-                      className={`grid w-full grid-cols-[220px_minmax(700px,1fr)_110px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] items-center px-5 py-3.5 text-left transition hover:bg-nav/60 focus:bg-nav/60 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent ${rowIndex ? "border-t border-border" : ""}`}
+                      data-funding-company={row.slug}
+                      className={`grid w-full grid-cols-[220px_minmax(700px,1fr)_110px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] items-center px-5 py-3.5 text-left transition hover:bg-nav/60 focus-within:bg-nav/60 ${rowIndex ? "border-t border-border" : ""}`}
                     >
-                      <div className="flex min-w-0 items-center gap-3 pr-5">
+                      <button type="button" onClick={() => setSelectedSlug(row.slug)} className="flex min-w-0 items-center gap-3 pr-5 text-left outline-none focus-visible:ring-2 focus-visible:ring-accent">
                         <FirmLogo name={row.name} src={row.logo} size={38} />
                         <div className="min-w-0">
                           <div className="truncate text-sm font-semibold tracking-[-0.01em]">{row.name}</div>
                           <div className="mt-0.5 text-xs text-muted" data-founding-year={row.slug}>Founding year · <span className="font-medium tabular-nums text-foreground">{row.founding?.year ?? "Unknown"}</span></div>
                           <div className="mt-0.5 truncate text-xs text-muted" title={`${row.modality} · ${row.latestStage}`}>{row.modality} · {row.latestStage}</div>
                         </div>
-                      </div>
+                      </button>
                       <div className="min-w-0">
                       <div className="relative h-14 border-x border-border">
                         {years.map((year, yearIndex) => (
@@ -229,14 +259,34 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         ))}
                         {row.rounds.map((round, index) => {
                           const position = getTimelinePosition(round.announcedOn, data.summary.firstYear, data.summary.lastYear);
-                          const width = Math.min(76, 20 + Math.sqrt(round.amountUsdM) * 2.1);
+                          const diameter = getFinancingDotDiameter(round.amountUsdM, largestRoundUsdM);
+                          const markSize = diameter ?? 8;
+                          const hitSize = Math.max(24, markSize);
+                          const financingKey = `${row.slug}-${round.announcedOn}-${round.stage}`;
                           return (
-                            <span
-                              key={`${round.announcedOn}-${round.stage}`}
-                              className="absolute z-10 h-5 rounded-full border border-accent/20 bg-accent shadow-sm"
-                              style={{ left: `calc(${position}% - ${width / 2}px)`, top: `${4 + (index % 2) * 22}px`, width: `${width}px` }}
-                              title={`${row.name} · ${round.stage} · ${round.displayAmount}`}
-                            />
+                            <button
+                              key={financingKey}
+                              type="button"
+                              data-financing-target
+                              aria-label={`${row.name} · ${round.stage} · ${round.displayAmount} · ${formatFundingDate(round.announcedOn, round.datePrecision)}`}
+                              aria-describedby={markerTip?.financingKey === financingKey ? markerTipId : undefined}
+                              className="absolute z-10 rounded-full outline-none hover:z-30 focus:z-30 focus-visible:ring-2 focus-visible:ring-accent"
+                              style={{ left: `calc(${position}% - ${hitSize / 2}px)`, top: `${20 + (index % 2) * 16 - hitSize / 2}px`, width: `${hitSize}px`, height: `${hitSize}px` }}
+                              onMouseEnter={(event) => showFinancingTip(event, row.name, round, financingKey)}
+                              onMouseLeave={() => setMarkerTip(null)}
+                              onFocus={(event) => showFinancingTip(event, row.name, round, financingKey)}
+                              onBlur={() => setMarkerTip(null)}
+                              onKeyDown={(event) => { if (event.key === "Escape") { event.stopPropagation(); setMarkerTip(null); } }}
+                              onClick={() => { setMarkerTip(null); setSelectedSlug(row.slug); }}
+                            >
+                              <span
+                                data-financing-dot={diameter !== null ? "" : undefined}
+                                data-financing-unknown={diameter === null ? "" : undefined}
+                                className={`pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${diameter === null ? "rotate-45 border border-muted" : "rounded-full bg-accent/65"}`}
+                                style={{ width: `${markSize}px`, height: `${markSize}px` }}
+                                title={`${row.name} · ${round.stage} · ${round.displayAmount}`}
+                              />
+                            </button>
                           );
                         })}
                         {milestones.map((milestone, index) => (
@@ -266,13 +316,13 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         {row.rounds.some((round) => round.sourceKind) && <div className="mt-1 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.sourceKind ? [sourceKindLabel(round.sourceKind)] : []))].join(" · ")}</div>}
                         {row.rounds.some((round) => round.reviewedOn) && <div className="mt-0.5 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.reviewedOn ? [sourceReviewLabel(round.reviewedOn)] : []))].join(" · ")}</div>}
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
                 {rows.length === 0 && <div className="px-6 py-20 text-center text-sm text-muted">No companies match these filters.</div>}
               </div>
-              <div className="flex flex-wrap items-center gap-5 border-t border-border bg-nav/40 px-5 py-3 text-xs text-muted">
-                <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full bg-accent align-middle" />Financing (width scales with disclosed amount)</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border bg-nav/40 px-5 py-3 text-xs text-muted">
                 <span className="inline-flex items-center"><b className="mr-1.5 cursor-help rounded bg-[#151821] px-1 py-0.5 text-xs text-white" onMouseEnter={(event) => showMarkerTip(event, "IDE")} onMouseLeave={() => setMarkerTip(null)}>IDE</b>Regulatory marker</span>
                 <span className="ml-auto">{rows.length} of {data.summary.selectedCompanies} companies</span>
               </div>
@@ -366,6 +416,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
 
       {markerTip && (
         <div
+          id={markerTipId}
+          role="tooltip"
           className="pointer-events-none fixed z-[80] w-64 -translate-x-1/2 -translate-y-full rounded-lg bg-foreground px-3 py-2 text-left shadow-lg"
           style={{ left: markerTip.x, top: markerTip.y }}
         >
