@@ -17,9 +17,11 @@ for(const id of ['public-data-size','acquisition-economics','largest-connectome-
   const doc=new window.DOMParser().parseFromString(await snapshots[0].text(),'image/svg+xml');
   const visible=[...doc.querySelectorAll('text')].map(n=>n.textContent).join(' ');
   for(const point of plot.points){
-   assert.ok(visible.includes(point.annotation||point.label),`Visible source identity: ${point.id}`);
+   assert.ok(visible.includes(point.label),`Visible source identity: ${point.id}`);
+   assert.ok(visible.includes(point.qualifier+point.y.toLocaleString('en-US',{maximumSignificantDigits:6})),`Visible qualified value: ${point.id}`);
    assert.ok(visible.includes(point.dateLabel),`Visible date/product basis: ${point.id}`);
   }
+  if(id==='largest-connectome-neurons')assert.match(visible,/excitatory neuronal targets.*boundary-truncated/);
   assert.match(visible,/More information on Neuro Atlas/);
   assert.ok(!visible.includes(plot.scope),'Long scope prose stays in on-site methodology/nonvisual evidence');
   assert.equal(document.querySelector('figure > svg').outerHTML,liveSVG,'Export keys never mutate live plot geometry');

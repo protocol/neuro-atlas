@@ -197,7 +197,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     ? plot.points.map(point => {
       const annotationIndex = annotations.findIndex(annotation => annotation.point.id === point.id);
       const key = annotationIndex >= 0 ? `${annotationIndex + 1}. ` : "";
-      return { label: `${key}${point.annotation || point.label} · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
+      const unit = plot.id === "acquisition-economics" ? "$/10M voxels" : plot.id === "public-data-size" ? "PB" : "neurons";
+      const coverage = point.id === "lee-reid-2016-neuronal-targets" ? " · boundary-truncated" : "";
+      return { label: `${key}${point.label}${coverage} · ${point.qualifier ?? ""}${Number(point.y.toPrecision(6)).toLocaleString("en-US", { maximumSignificantDigits: 6 })} ${unit} · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
     }) : [];
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",

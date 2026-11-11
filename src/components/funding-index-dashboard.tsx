@@ -249,7 +249,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         </div>
                       </button>
                       <div className="min-w-0">
-                      <div className="relative h-14 border-x border-border">
+                      <div className={`relative border-x border-border ${milestones.length ? "h-28" : "h-14"}`}>
                         {years.map((year, yearIndex) => (
                           <span
                             key={year}
@@ -293,7 +293,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                           <span
                             key={`${milestone.announcedOn}-${milestone.marker}`}
                             className="absolute z-20 -translate-x-1/2 cursor-help rounded bg-[#151821] px-1.5 py-0.5 text-xs font-bold text-white shadow-sm"
-                            style={{ left: `${getTimelinePosition(milestone.announcedOn, data.summary.firstYear, data.summary.lastYear)}%`, top: `${29 - (index % 2) * 22}px` }}
+                            style={{ left: `${getTimelinePosition(milestone.announcedOn, data.summary.firstYear, data.summary.lastYear)}%`, top: `${64 + (index % 2) * 22}px` }}
                             onMouseEnter={(event) => { event.stopPropagation(); showMarkerTip(event, milestone.marker, milestone.indication); }}
                             onMouseLeave={() => setMarkerTip(null)}
                             aria-label={markerTitle(milestone.marker, milestone.indication)}
