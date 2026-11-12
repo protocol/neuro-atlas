@@ -2,7 +2,7 @@
 
 ## Current chat/selection acceptance (Nov. 12)
 
-The current UI contract is [visitor feedback → Linear logging](../../feedback-public-linear.md) and [frontend behavior/selectors](../../../src/components/feedback/README.md). Parent integration owns the new exact-revision `native-qa.py` replay against actual Next + actual HTTP with an explicitly synthetic Linear peer; its receipts/screenshots are the current acceptance artifacts, not the old captures below. The source-writer run performed component/transport/type/lint checks only and did not use a browser.
+The current UI contract is [visitor feedback → Linear logging](../../feedback-public-linear.md) and [frontend behavior/selectors](../../../src/components/feedback/README.md). The [current exact-revision replay and evidence](../feedback-chat-20261112/README.md) exercise actual Next + actual HTTP with an explicitly synthetic Linear peer; those receipts/screenshots are current acceptance, not the old captures below. The source-writer run performed component/transport/type/lint checks only and did not use a browser.
 
 Required native checks: matching PR-adjacent visible triggers at desktop/390/320 and short viewport; no floating launcher or visible picker toolbar/helper; highlight/click selection; Escape/trigger cancel; true exit clears pin and reopened retained text requires selection; Enter versus Shift+Enter; full original UUID/body retry and pending fence; exact confirmed receipt only; persistent in-place confirmation and usable Close/Done/New feedback; native chart top layer/focus/Escape; light/dark contrast and anchored/clamped geometry. Multiple responsive triggers require visible-element selection.
 

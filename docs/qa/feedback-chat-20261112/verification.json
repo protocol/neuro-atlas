@@ -1,0 +1,45 @@
+{
+  "runtimeRevision": "b386df48b84bf3571bb91938cbca9a3eeaf71246",
+  "baseRevision": "05a314c3889836230d179d7bb5b1f626b6804193",
+  "standardSuite": {
+    "tests": 1162,
+    "pass": 1162,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "newChangedSourceLintErrors": 0,
+  "retainedBaselineLintErrors": [
+    {
+      "file": "src/components/milestone-timeline.tsx",
+      "rule": "react-hooks/set-state-in-effect",
+      "line": 148
+    },
+    {
+      "file": "src/components/milestone-timeline.tsx",
+      "rule": "react-hooks/immutability",
+      "line": 186
+    }
+  ],
+  "productionVulnerabilities": 0,
+  "independentClosureTestExecutions": 78,
+  "independentClosureRuns": [
+    5,
+    68,
+    5
+  ],
+  "nativeWidths": [
+    1440,
+    390,
+    320
+  ],
+  "nativeHTTP": "actual Next and HTTP; synthetic Linear only",
+  "reviewFindingClosure": {
+    "R1": "PASS: native keyboard retry",
+    "P2-001": "PASS: moved original node retains full retry",
+    "P2-002": "PASS: held real HTTP success after close preserves unrelated focus"
+  },
+  "externalProviderCalls": 0
+}

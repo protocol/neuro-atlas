@@ -1,0 +1,201 @@
+{
+  "allPassed": true,
+  "revision": "b386df48b84bf3571bb91938cbca9a3eeaf71246",
+  "actualNextUIAndHTTP": true,
+  "syntheticLinearOnly": true,
+  "externalProviderCalls": 0,
+  "cases": [
+    {
+      "width": 1440,
+      "milestones": {
+        "copy": "Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and neurotechnology. Filter by BCI only or view the broader neurotech ecosystem. Click a year to put it into focus.",
+        "filterHeight": 30,
+        "introGap": 20,
+        "memo": false,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "matchingActionPairs": [
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "13px",
+          "otherFont": "13px",
+          "radius": "8px",
+          "otherRadius": "8px",
+          "border": "1px",
+          "otherBorder": "1px"
+        },
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "11px",
+          "otherFont": "11px",
+          "radius": "3.35544e+07px",
+          "otherRadius": "3.35544e+07px",
+          "border": "1px",
+          "otherBorder": "1px"
+        }
+      ],
+      "actualHttpSyntheticProvider": true,
+      "sameKeyBodyRetry": true,
+      "chat": {
+        "left": 285,
+        "top": 60,
+        "right": 605,
+        "bottom": 230.1875,
+        "width": 320,
+        "height": 170.1875,
+        "viewportWidth": 1440,
+        "viewportHeight": 1000,
+        "clientWidth": 1425,
+        "documentWidth": 1425,
+        "fields": 1
+      },
+      "confirmation": {
+        "left": 285,
+        "top": 60,
+        "right": 605,
+        "bottom": 235.28125,
+        "width": 320,
+        "height": 175.28125,
+        "viewportWidth": 1440,
+        "viewportHeight": 1000,
+        "clientWidth": 1425,
+        "documentWidth": 1425,
+        "fields": 0
+      },
+      "exitClearsPin": true
+    },
+    {
+      "width": 390,
+      "milestones": {
+        "copy": "Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and neurotechnology. Filter by BCI only or view the broader neurotech ecosystem. Click a year to put it into focus.",
+        "filterHeight": 98,
+        "introGap": 20,
+        "memo": false,
+        "client": 390,
+        "scroll": 390
+      },
+      "matchingActionPairs": [
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "12px",
+          "otherFont": "12px",
+          "radius": "3.35544e+07px",
+          "otherRadius": "3.35544e+07px",
+          "border": "1px",
+          "otherBorder": "1px"
+        },
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "11px",
+          "otherFont": "11px",
+          "radius": "3.35544e+07px",
+          "otherRadius": "3.35544e+07px",
+          "border": "1px",
+          "otherBorder": "1px"
+        }
+      ],
+      "actualHttpSyntheticProvider": true,
+      "sameKeyBodyRetry": true,
+      "chat": {
+        "left": 33,
+        "top": 724.203125,
+        "right": 353,
+        "bottom": 894.390625,
+        "width": 320,
+        "height": 170.1875,
+        "viewportWidth": 390,
+        "viewportHeight": 1000,
+        "clientWidth": 390,
+        "documentWidth": 390,
+        "fields": 1
+      },
+      "confirmation": {
+        "left": 33,
+        "top": 724.203125,
+        "right": 353,
+        "bottom": 899.484375,
+        "width": 320,
+        "height": 175.28125,
+        "viewportWidth": 390,
+        "viewportHeight": 1000,
+        "clientWidth": 390,
+        "documentWidth": 390,
+        "fields": 0
+      },
+      "exitClearsPin": true
+    },
+    {
+      "width": 320,
+      "milestones": {
+        "copy": "Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and neurotechnology. Filter by BCI only or view the broader neurotech ecosystem. Click a year to put it into focus.",
+        "filterHeight": 98,
+        "introGap": 20,
+        "memo": false,
+        "client": 320,
+        "scroll": 320
+      },
+      "matchingActionPairs": [
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "12px",
+          "otherFont": "12px",
+          "radius": "3.35544e+07px",
+          "otherRadius": "3.35544e+07px",
+          "border": "1px",
+          "otherBorder": "1px"
+        },
+        {
+          "hasPair": true,
+          "position": "static",
+          "font": "11px",
+          "otherFont": "11px",
+          "radius": "3.35544e+07px",
+          "otherRadius": "3.35544e+07px",
+          "border": "1px",
+          "otherBorder": "1px"
+        }
+      ],
+      "actualHttpSyntheticProvider": true,
+      "sameKeyBodyRetry": true,
+      "chat": {
+        "left": 10,
+        "top": 414.765625,
+        "right": 310,
+        "bottom": 584.953125,
+        "width": 300,
+        "height": 170.1875,
+        "viewportWidth": 320,
+        "viewportHeight": 600,
+        "clientWidth": 320,
+        "documentWidth": 320,
+        "fields": 1
+      },
+      "confirmation": {
+        "left": 10,
+        "top": 388.671875,
+        "right": 310,
+        "bottom": 563.953125,
+        "width": 300,
+        "height": 175.28125,
+        "viewportWidth": 320,
+        "viewportHeight": 600,
+        "clientWidth": 320,
+        "documentWidth": 320,
+        "fields": 0
+      },
+      "exitClearsPin": true
+    }
+  ],
+  "nativeChartLayerAndActivationSuppression": true,
+  "reviewFindingsNativeClosure": {
+    "R1": "PASS: native keyboard retry",
+    "P2-001": "PASS: moved original node retains full retry",
+    "P2-002": "PASS: held real HTTP success after close preserves unrelated focus"
+  }
+}

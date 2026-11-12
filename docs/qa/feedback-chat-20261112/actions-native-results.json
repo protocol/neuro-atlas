@@ -1,0 +1,65 @@
+{
+  "allPassed": true,
+  "cases": [
+    {
+      "pair": true,
+      "b": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "a": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "innerWidth": 1440,
+      "client": 1425,
+      "scroll": 1425
+    },
+    {
+      "pair": true,
+      "b": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "a": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "innerWidth": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "pair": true,
+      "b": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "a": {
+        "font": "13px",
+        "padding": "12px 16px",
+        "radius": "8px",
+        "border": "1px",
+        "height": 46
+      },
+      "innerWidth": 320,
+      "client": 320,
+      "scroll": 320
+    }
+  ]
+}
