@@ -97,7 +97,10 @@ test('pending save fences duplicate sends and reselection; exit cannot attach it
   const cleanup=await mount(React.createElement(Feedback),'',win=>{connected(win);win.fetch=async(url,options)=>{if(url.endsWith('/config'))return Response.json({enabled:true,connected:true});posts.push(options);return new Promise(done=>{resolve=done;});};});
   try{
     await open();await pin();await fill('An uncertain note');await key('Enter');await key('Enter');
-    assert.equal(posts.length,1);assert.equal(document.querySelector('[aria-label="Feedback"]').disabled,true);
+    const field=document.querySelector('[aria-label="Feedback"]');
+    assert.equal(posts.length,1);assert.equal(field.disabled,false,'pending Enter must not blur the native field');
+    assert.equal(field.readOnly,true,'pending note stays immutable without losing keyboard focus');
+    assert.equal(document.activeElement,field);
     assert.equal(button('Select element').disabled,true);
     await click(document.querySelector('[data-feedback-close]'));await open();
     assert.equal(document.querySelector('[data-feedback-selection]'),null,'reopening cannot race an in-flight operation');

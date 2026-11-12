@@ -258,7 +258,7 @@ export function Feedback() {
         </> : <>
         {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
         {error && <p role="alert">{error}</p>}
-        <textarea ref={textarea} aria-label="Feedback" rows={1} maxLength={3000} placeholder="What should change?" value={comment} disabled={busy} onChange={event => setComment(event.target.value)} onKeyDown={event => {
+        <textarea ref={textarea} aria-label="Feedback" rows={1} maxLength={3000} placeholder="What should change?" value={comment} readOnly={busy} aria-busy={busy} onChange={event => setComment(event.target.value)} onKeyDown={event => {
           if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
           event.preventDefault(); void submit();
         }} />
