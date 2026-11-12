@@ -69,6 +69,10 @@ test('120–800px preview and full plots retain readable ticks, complete glyphs 
           const { svg, segments, lower, upper, ticks, note } = verifyBrokenGeometry(document);
           const height = Number(svg.getAttribute('viewBox').split(' ')[3]);
           assert.equal(Number(svg.getAttribute('viewBox').split(' ')[2]), width);
+          const top = 28 + svg.querySelector('.draft-plot-axis-title').querySelectorAll('tspan').length * 16;
+          const bottom = Number(segments[0].getAttribute('y1'));
+          const previewExtra = Number(svg.getAttribute('data-metric-preview-extra') ?? 0);
+          assert.equal(bottom - top, (preview ? 200 : 232) + previewExtra, 'Only the preview plotting height is deliberately shorter');
           const orderedTicks = ticks.map(tick => ({ center: Number(tick.getAttribute('x')), halfWidth: tick.textContent.length * 3.5 })).sort((a, b) => a.center - b.center);
           for (const [index, tick] of orderedTicks.entries()) {
             assert.ok(tick.center - tick.halfWidth >= 0 && tick.center + tick.halfWidth <= width, `Tick stays inside ${width}px frame`);
@@ -78,7 +82,9 @@ test('120–800px preview and full plots retain readable ticks, complete glyphs 
             const cx = Number(mark.getAttribute('cx')), cy = Number(mark.getAttribute('cy')), r = Number(mark.getAttribute('r'));
             assert.ok(cx - r >= 0 && cx + r <= width && cy - r >= 0 && cy + r <= height, `Complete glyph at ${width}px`);
             const point = plot.points.find(point => point.id === mark.getAttribute('data-source-observation'));
-            near(cy, Number(segments[0].getAttribute('y1')) - point.y / 80.8 * 232, `${point.id}: unchanged y-axis at ${width}px`);
+            // Compare normalized coordinates in the original 232-unit frame,
+            // retaining the existing 1e-8 bound rather than loosening it to a fraction.
+            near((bottom - cy) / (bottom - top) * 232, point.y / 80.8 * 232, `${point.id}: unchanged normalized 0–80.8% linear y-axis at ${width}px`);
           }
           for (const line of svg.querySelectorAll('line:not([data-x-axis-break] line)')) {
             const ends = [Number(line.getAttribute('x1')), Number(line.getAttribute('x2'))].sort((a, b) => a - b);
