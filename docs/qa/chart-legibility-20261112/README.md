@@ -26,10 +26,12 @@ Requested: bigger dots, vertical year divisions, connected genuinely related obs
 - Real Download PNG handlers: **24 exact PNG Blobs**, decoded and visually inspected. Files `final/export-0.png`…`export-23.png` follow inventory order. These are native downloads, not screenshots of an SVG substitute. Local origin in footer is intentional and not a hosted capture.
 - Additional native CTM probe:87 fixed-size circles per width at5px, all21 growth percentage labels retain6px clearance, actual horizontal-wheel scrolling succeeds.
 - Before/after native source-mark identity matched across all24 previews. Count-proportional Sankey reflow retains one common scale across all16 ribbons. Independent source probes checked14 curated plots/78 observations and112 width/mode combinations.
-- Independent full review located C1/C2, both reproduced RED and fixed GREEN; original report is retained. Bounded closure is recorded separately, with exact revision/limitations.
+- Independent full review located C1/C2, both reproduced RED and fixed GREEN; original report is retained. Bounded closure **PASS** at the same runtime pin is recorded in `final/review-closure.md`; both original C1/C2 findings are closed. Two wider reviewer test attempts timed out and are not counted as passes; the reviewer’s terminal 8/8 direct closure plus the parent’s terminal full suite are the passing evidence.
 
 ## Evidence and limits
 
 `final/all-chart-native-report.json`, `final/final-acceptance.json`, `final/native-final-extra.json`, `final/native-source-delta-final.json`, `final/before-after-geometry.json`, and `final/gates.json` carry machine-readable receipts. Representative matched screenshots, all24 PNGs, replay scripts and a SHA-256 ledger are included.
 
 Actual app/routes/data/export code ran locally. Only the loopback-only access proxy and unused feedback provider boundary were synthetic. No real feedback was submitted or live Linear write tested in this chart task. Hosted preview remains password-gated/noindex. Viewport-emulated pointer behavior is not physical-phone touch testing. PR102's production deployment was separately verified; it does not deploy this chart PR.
+
+The maintained `scripts/qa/all-chart-design-browser.py` was also exercised after its role/stability correction: all 24 charts × three widths passed. That helper/evidence-only follow-up has an empty `src/`, `tests/`, package/lock and Next-config delta from the reviewed runtime.

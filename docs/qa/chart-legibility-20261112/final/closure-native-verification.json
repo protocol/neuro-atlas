@@ -1,0 +1,348 @@
+{
+  "runtimeRevision": "a220bbb55eea471bacc623513e5809efada000e3",
+  "runtimeBinding": "Parent-operated native replay; parent reports actual HTTP source-header pin enforcement. Reviewer inspected receipts/images and exact disposable source, not browser or HTTP header.",
+  "matrix": [
+    {
+      "width": 1440,
+      "previews": 24,
+      "dialogs": 24,
+      "allExactTitles": true,
+      "allPopulated": true,
+      "sourcePopupReceiptCount": 23,
+      "C1C2SourcePopupReceipts": true,
+      "noPageOverflow": true,
+      "C1Connection": [
+        "idea_vintage"
+      ],
+      "C2Connection": [
+        "neuralink-cumulative"
+      ],
+      "C2Values": [
+        1,
+        2,
+        3,
+        5,
+        21
+      ]
+    },
+    {
+      "width": 390,
+      "previews": 24,
+      "dialogs": 24,
+      "allExactTitles": true,
+      "allPopulated": true,
+      "sourcePopupReceiptCount": 23,
+      "C1C2SourcePopupReceipts": true,
+      "noPageOverflow": true,
+      "C1Connection": [
+        "idea_vintage"
+      ],
+      "C2Connection": [
+        "neuralink-cumulative"
+      ],
+      "C2Values": [
+        1,
+        2,
+        3,
+        5,
+        21
+      ]
+    },
+    {
+      "width": 320,
+      "previews": 24,
+      "dialogs": 24,
+      "allExactTitles": true,
+      "allPopulated": true,
+      "sourcePopupReceiptCount": 23,
+      "C1C2SourcePopupReceipts": true,
+      "noPageOverflow": true,
+      "C1Connection": [
+        "idea_vintage"
+      ],
+      "C2Connection": [
+        "neuralink-cumulative"
+      ],
+      "C2Values": [
+        1,
+        2,
+        3,
+        5,
+        21
+      ]
+    }
+  ],
+  "dialogVisits": 72,
+  "previewMeasurements": 72,
+  "exports": [
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-0.png",
+      "width": 2400,
+      "height": 1606,
+      "sha256": "386e89909d9e4217de3cc252f8bf1d2a5a15d29de2c4fd51ba43cacff1db478a"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-1.png",
+      "width": 2400,
+      "height": 1480,
+      "sha256": "567d3409c6051e9c1e7bbd0702933cbc270934e47ef12ebb2dac3ac666741224"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-2.png",
+      "width": 2400,
+      "height": 1532,
+      "sha256": "d1606645ec7b8a2d0f54c910fff4a2758a4697f4341d5261ac1d1f2de4adeb96"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-3.png",
+      "width": 2400,
+      "height": 1774,
+      "sha256": "2aef1968714b56c084cbcc5f23304a058f1e5ee776837517a5a5150edd60e0a0"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-4.png",
+      "width": 2400,
+      "height": 1514,
+      "sha256": "5483df1e1937ea7c18b9e4f8baea31575ed84b67c23d97a4c137c53b0b09dea0"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-5.png",
+      "width": 2400,
+      "height": 3340,
+      "sha256": "b27092e7778a2371904ae60f993d208da17a510498d812f278e5ef66950d1565"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-6.png",
+      "width": 2400,
+      "height": 1612,
+      "sha256": "2a7a906caf55669f4e6323ecd783bbb37bcea7bb7f274b2e8d699d0b41f92673"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-7.png",
+      "width": 2400,
+      "height": 1964,
+      "sha256": "2806765991bb67077a8a9a810de18dbbbfe5c2abf79f600058c493c04d9a60c3"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-8.png",
+      "width": 2400,
+      "height": 1578,
+      "sha256": "ee1233d75180e4112d5ae8d1eedb0816c05eed40ebe08161b188ae9afa21d9f7"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-9.png",
+      "width": 2400,
+      "height": 1480,
+      "sha256": "bc181336d2be6c175de508f3abc58a77af14df32e55f754a4b6299f234d4eaf2"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-10.png",
+      "width": 2400,
+      "height": 1568,
+      "sha256": "c93d42fc5159965da6c52ac2e2c53a2c31b923135192b4e90658179b7f498132"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-11.png",
+      "width": 2400,
+      "height": 1478,
+      "sha256": "6cc3777ef7b70c9e2d09ed85f53a2bd6b08407982d69bda02aaf575e28bb6ca9"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-12.png",
+      "width": 2400,
+      "height": 1440,
+      "sha256": "11e93a47223b17c8f9800570808355dd92945962d9d71499714efd87c125af16"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-13.png",
+      "width": 2400,
+      "height": 1528,
+      "sha256": "dce689607a85379e35a4c1ba9cb48b07af833e5b9e29fe7ec0b1def041b76507"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-14.png",
+      "width": 2400,
+      "height": 1526,
+      "sha256": "15e984fe17eebc6f54ac74dc13fb0a530dc4da3a3dbe5650ff71c63f0a988d16"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-15.png",
+      "width": 2400,
+      "height": 1390,
+      "sha256": "ac4aef194f285cc283193f927617d377db83e957a3226297a5cf4b7316d8e4a4"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-16.png",
+      "width": 2400,
+      "height": 1390,
+      "sha256": "24771aa440b1c70eb58ef57961c681629a55073cf0c6b8b6bb968e1f436bdfa9"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-17.png",
+      "width": 2400,
+      "height": 1476,
+      "sha256": "3bbe4f16204d8c2aef0b457b4ffe05fab444649e55e32316eaa9f7651c0bc20e"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-18.png",
+      "width": 2400,
+      "height": 1474,
+      "sha256": "bad2edb4e3324a48420b2a6b087602f9524c6d3434f969d409f5d39a7fc01760"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-19.png",
+      "width": 2400,
+      "height": 1428,
+      "sha256": "ed7ea1074613f8943cf5e3345a10677532e84e9089b216982da15b600920d9d3"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-20.png",
+      "width": 2400,
+      "height": 1322,
+      "sha256": "e0a850c940dfd03252d25f97aebead0f682aee5d0892297d65d6192eca5efb92"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-21.png",
+      "width": 2400,
+      "height": 1460,
+      "sha256": "a14afc42ebf5e4f6f9186c82bc9f5a93b2e745cdc6cde4cbb84cfa59f6a919ae"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-22.png",
+      "width": 2400,
+      "height": 1292,
+      "sha256": "004180219b47c66a287d1da61e8353b636a4a6247ce5c0b7d65ea63f70e72979"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-23.png",
+      "width": 2400,
+      "height": 1258,
+      "sha256": "50f0dbd9e9abca6673ba06e0699ccaa1658f5985f58f74d4b79c19f346d43fa6"
+    }
+  ],
+  "geometry": [
+    {
+      "label": "before",
+      "viewport": 1440,
+      "cardWidth": 649.078125,
+      "heightMin": 647,
+      "heightMax": 647,
+      "heightSpread": 0,
+      "growthHeadingRightOverflow": -406.15155029296875
+    },
+    {
+      "label": "before",
+      "viewport": 390,
+      "cardWidth": 284,
+      "heightMin": 879,
+      "heightMax": 879.078125,
+      "heightSpread": 0.078125,
+      "growthHeadingRightOverflow": -58.17463302612305
+    },
+    {
+      "label": "before",
+      "viewport": 320,
+      "cardWidth": 214,
+      "heightMin": 1016,
+      "heightMax": 1016,
+      "heightSpread": 0,
+      "growthHeadingRightOverflow": 10.424762725830078
+    },
+    {
+      "label": "after",
+      "viewport": 1440,
+      "cardWidth": 856.796875,
+      "heightMin": 615,
+      "heightMax": 615,
+      "heightSpread": 0,
+      "growthHeadingRightOverflow": -609.7164916992188
+    },
+    {
+      "label": "after",
+      "viewport": 390,
+      "cardWidth": 300,
+      "heightMin": 829,
+      "heightMax": 829.109375,
+      "heightSpread": 0.109375,
+      "growthHeadingRightOverflow": -73.85564041137695
+    },
+    {
+      "label": "after",
+      "viewport": 320,
+      "cardWidth": 230,
+      "heightMin": 938,
+      "heightMax": 938,
+      "heightSpread": 0,
+      "growthHeadingRightOverflow": -5.254978179931641
+    }
+  ],
+  "nativeExtra": [
+    {
+      "width": 1440,
+      "previewFixedCircleCount": 87,
+      "radiusMin": 4.999999999999999,
+      "radiusMax": 5.000025659135392,
+      "growthValueLabels": 21,
+      "growthMinimumGap": 6.000030790962406,
+      "nativeWheelScrollLeft": 340
+    },
+    {
+      "width": 390,
+      "previewFixedCircleCount": 87,
+      "radiusMin": 4.999869701902261,
+      "radiusMax": 5.000012765604595,
+      "growthValueLabels": 21,
+      "growthMinimumGap": 6.000015318725505,
+      "nativeWheelScrollLeft": 346
+    },
+    {
+      "width": 320,
+      "previewFixedCircleCount": 87,
+      "radiusMin": 4.999999999999999,
+      "radiusMax": 5.000025017011567,
+      "growthValueLabels": 21,
+      "growthMinimumGap": 6.000030020413882,
+      "nativeWheelScrollLeft": 350
+    }
+  ],
+  "parentGatesVerified": true,
+  "retainedSourceIdentityReceiptVerified": true,
+  "evidenceLedger": [
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/all-chart-native-report.json",
+      "sha256": "83789cec81fc8746ced1fe7a017f9e43f2409ae2f684cc47048480537eed8351"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/native-progress.json",
+      "sha256": "c9268ef550ecfbc71c796f11b237b4aeeeba4d7d2f2f221ad362a842fce504c3"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/comparison-final/geometry.json",
+      "sha256": "510630f8ff9219f5de975c20fb24bec4c7f3fce5fdf83fd998e760a4b046d19b"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/comparison-final/after-growth-320.png",
+      "sha256": "e78e16211ae67e45d1f254353c678cb0d829be053081a0fd7c03b4b6b14080ee"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/dialog-1440-1.png",
+      "sha256": "01914faef4a3a0adfc28e5ac1029fce389d73b911c30e6343d5899cb9fd75288"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final/export-3.png",
+      "sha256": "2aef1968714b56c084cbcc5f23304a058f1e5ee776837517a5a5150edd60e0a0"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-final-extra.json",
+      "sha256": "dce46518afbe088a9aeb0057c0722f35ab7bbfef71cb7ccfb4099500dd6f5fc7"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/gates-final/gates.json",
+      "sha256": "19e3f3c75f69ffb497110420466a7c881be4b86acbe5ec3110f0d74da5f31c9b"
+    },
+    {
+      "path": "/opt/data/tmp/atlas-chart-legibility-20261112/native-source-delta.json",
+      "sha256": "27e722b4b89bf2ca233718be5eb0973dd7090ae7b174c920e563a8ca97c4f60f"
+    }
+  ]
+}
