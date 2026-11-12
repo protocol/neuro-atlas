@@ -1,0 +1,124 @@
+{
+  "runtime": "5c0b4db",
+  "origin": "loopback-only production-build fixture; hosted authentication unchanged",
+  "viewportCoverage": "1440/390/320px pointer emulation, not physical-phone touch",
+  "records": [
+    {
+      "width": 1440,
+      "client": 1440,
+      "scroll": 1440,
+      "dialog": {
+        "left": 220,
+        "right": 1220,
+        "top": 105.09375,
+        "bottom": 894.90625
+      },
+      "references": [
+        {
+          "id": "mouse-whole-brain-neurons",
+          "label": "Mouse \u224870.9M",
+          "y": "135.3330356857911"
+        },
+        {
+          "id": "macaque-whole-brain-neurons",
+          "label": "Macaque \u22486.38B",
+          "y": "78.66778301202987"
+        },
+        {
+          "id": "human-whole-brain-neurons",
+          "label": "Human \u224886.1B",
+          "y": "45.88490860784401"
+        }
+      ],
+      "observations": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons"
+      ],
+      "sourceCount": "Data and sources (5)",
+      "unrelatedTargets": 0
+    },
+    {
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "top": 65.296875,
+        "bottom": 934.703125
+      },
+      "references": [
+        {
+          "id": "mouse-whole-brain-neurons",
+          "label": "Mouse \u224870.9M",
+          "y": "135.3330356857911"
+        },
+        {
+          "id": "macaque-whole-brain-neurons",
+          "label": "Macaque \u22486.38B",
+          "y": "78.66778301202987"
+        },
+        {
+          "id": "human-whole-brain-neurons",
+          "label": "Human \u224886.1B",
+          "y": "45.88490860784401"
+        }
+      ],
+      "observations": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons"
+      ],
+      "sourceCount": "Data and sources (5)",
+      "unrelatedTargets": 0
+    },
+    {
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "dialog": {
+        "left": 8,
+        "right": 312,
+        "top": 34.65625,
+        "bottom": 965.34375
+      },
+      "references": [
+        {
+          "id": "mouse-whole-brain-neurons",
+          "label": "Mouse \u224870.9M",
+          "y": "135.3330356857911"
+        },
+        {
+          "id": "macaque-whole-brain-neurons",
+          "label": "Macaque \u22486.38B",
+          "y": "78.66778301202987"
+        },
+        {
+          "id": "human-whole-brain-neurons",
+          "label": "Human \u224886.1B",
+          "y": "45.88490860784401"
+        }
+      ],
+      "observations": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons"
+      ],
+      "sourceCount": "Data and sources (5)",
+      "unrelatedTargets": 0
+    }
+  ],
+  "nativePNG": {
+    "bytes": 395436,
+    "sha256": "def4c05ee32a017e8b86b32295b8542c2f1be85990eddf4de4bf8ca27dc49c53",
+    "actualDownloadClicked": true
+  },
+  "unrelatedByteAndCostChartsRestored": true
+}

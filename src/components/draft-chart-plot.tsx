@@ -102,7 +102,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const bottom = top + 232 + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
-  const ys = plot.points.map(point => point.y);
+  const references = (plot.references ?? []).filter(reference => Number.isFinite(reference.y) && reference.y > 0);
+  const ys = [...plot.points.map(point => point.y), ...references.map(reference => reference.y)];
   const numericX = plot.xKind === "number";
   let xMin = numericX ? Math.min(...xs) : Math.floor(Math.min(...xs));
   let xMax = numericX ? Math.max(...xs) : Math.ceil(Math.max(...xs));
@@ -179,6 +180,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     placedKeys.push(position);
     return [{ point, text, ...position }];
   });
+  // Retain the screenshot's observation/date key only for the neuron-count export.
+  const exportPointKeys = plot.id === "largest-connectome-neurons"
+    ? plot.points.map(point => {
+      const annotationIndex = annotations.findIndex(annotation => annotation.point.id === point.id);
+      const key = annotationIndex >= 0 ? `${annotationIndex + 1}. ` : "";
+      const coverage = point.id === "lee-reid-2016-neuronal-targets" ? " · boundary-truncated" : "";
+      return { label: `${key}${point.label}${coverage} · ${point.qualifier ?? ""}${Number(point.y.toPrecision(6)).toLocaleString("en-US", { maximumSignificantDigits: 6 })} neurons · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
+    }) : [];
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
     "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
@@ -189,7 +198,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
-      legend,
+      legend: [...legend, ...exportPointKeys],
       notes: [plot.scope, plot.seriesNote ?? "",
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
@@ -197,6 +206,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `${observationBasis} · ${scaleNote} · Unconnected observations`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         ...plot.points.filter(point => point.exportNote).map(point => `${point.label} · ${point.dateLabel}. ${point.exportNote}`),
+        ...references.map(reference => `Anatomical neuron-count context: ${reference.label} (${exactNumber(reference.y)} neurons). ${reference.note} Source: ${reference.sourceTitle}. ${reference.quote}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
@@ -205,6 +215,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       {yTicks.map(tick => <g key={tick}>
         {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
         <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
+      </g>)}
+      {references.map(reference => <g key={reference.id} data-anatomical-reference={reference.id}>
+        <line x1={left} x2={right} y1={y(reference.y)} y2={y(reference.y)} stroke="var(--muted)" strokeWidth={1}
+          strokeDasharray="5 5" opacity={0.45} vectorEffect="non-scaling-stroke" />
+        <text className="draft-plot-tick" x={left + 6} y={y(reference.y) - 6}>{reference.label}</text>
       </g>)}
       {energyAxis ? <>
         {energyAxis.segments.map((segment, index) => <line key={index} className="draft-plot-axis" data-x-axis-segment={index} x1={segment.start} x2={segment.end} y1={bottom} y2={bottom} />)}
@@ -279,6 +294,15 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </table>
       </div>
     </details></>}
+    {!preview && references.length > 0 && <details className="draft-plot-data" data-anatomical-reference-sources>
+      <summary>Anatomical neuron counts — scale references</summary>
+      <p className="draft-plot-scope">Dashed lines give anatomical count context. Whole and partial connectomes retain their study-specific coverage and reconstruction completeness.</p>
+      <ul>{references.map(reference => <li key={reference.id}>
+        <strong>{reference.label}</strong> · {exactNumber(reference.y)} neurons
+        <p><a href={reference.sourceUrl} target="_blank" rel="noreferrer">{reference.sourceTitle} ↗</a></p>
+        <blockquote>{reference.quote}</blockquote><p>{reference.note}</p>
+      </li>)}</ul>
+    </details>}
   </figure>;
 }
 

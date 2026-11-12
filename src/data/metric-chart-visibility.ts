@@ -1,6 +1,7 @@
 import { DRAFT_CHARTS, type DraftChart } from "./draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
+import { WHOLE_BRAIN_NEURON_REFERENCES } from "./public-connectomics-context";
 
 // Shared axes change presentation, not source records, dates or measured values.
 const recordingHours = DRAFT_CHART_EVIDENCE["Neural recording hours collected over time"];
@@ -60,7 +61,13 @@ export const RETIRED_METRIC_PLOT_IDS: ReadonlySet<string> = new Set([
 export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.fromEntries(
   Object.entries(DRAFT_CHART_EVIDENCE).map(([title, evidence]) => [title, {
     ...evidence,
-    plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots.filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics"),
+    plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots
+      .filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics")
+      .map(plot => plot.id === "largest-connectome-neurons" ? {
+        ...plot,
+        references: WHOLE_BRAIN_NEURON_REFERENCES,
+        seriesNote: "Dashed lines show anatomical neuron-count estimates for mouse, rhesus macaque and human brains. These counts provide scale context alongside selected whole and partial connectomes, whose reconstruction completeness varies. Source methods and specimen boundaries remain with each reference.",
+      } : plot),
     ...(title === "Connectomics imaging throughput over time" ? {
       summary: "Selected source-reported EM acquisition rates at each protocol's stated resolution.",
     } : {}),

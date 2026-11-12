@@ -21,6 +21,17 @@ export type DraftObservation = {
   exportNote?: string;
 };
 
+/** Anatomical context on the same unit axis; separate from dated map observations. */
+export type DraftReference = {
+  id: string;
+  y: number;
+  label: string;
+  sourceUrl: string;
+  sourceTitle: string;
+  quote: string;
+  note: string;
+};
+
 export type DraftPlot = {
   id: string;
   title: string;
@@ -37,6 +48,7 @@ export type DraftPlot = {
   seriesNote?: string;
   /** Optional evidence basis; default preserves source-reported charts. */
   observationBasis?: string;
+  references?: readonly DraftReference[];
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

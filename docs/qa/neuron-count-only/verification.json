@@ -1,0 +1,21 @@
+{
+  "runtime": "5c0b4db32b73738299e516c5ae10ab9e0d18e766",
+  "tests": {
+    "tests": 1143,
+    "pass": 1143,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "testCommand": "node --import tsx --test --test-concurrency=4 tests/*.test.mjs",
+  "typecheck": "npm run typecheck: exit 0",
+  "productionBuild": "npm run build: exit 0",
+  "changedSourceESLint": "exit 0",
+  "runtimeDeltaAfterScreenshots": false,
+  "independentReview": {
+    "scopeSecurityLogicAndVisual": "PASS",
+    "initialFinding": "stale projected scientific golden",
+    "closure": "PASS: original golden retained; remove only intended anatomical context; independent replay 9 passed",
+    "fullSuiteAfterFix": "1143 passed, 0 failures"
+  }
+}

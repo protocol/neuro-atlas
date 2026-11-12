@@ -1,0 +1,23 @@
+{
+  "otherPlotsIdentical": 13,
+  "identicalPreviewAndDetailIds": [
+    "tissue-cm3",
+    "largest-connectome-synapses",
+    "acquisition-rates",
+    "pathfinder-nerl",
+    "connectomics-roboem-human-split-merge",
+    "proofreading-effort",
+    "neuralink-cumulative",
+    "recording-hours",
+    "paired-manual",
+    "public-data-size",
+    "flyvis-contrast",
+    "neuroai-imagenet",
+    "acquisition-economics"
+  ],
+  "changedEvidenceEntries": [
+    "Largest published connectome over time"
+  ],
+  "base": "05a314c",
+  "runtime": "5c0b4db"
+}

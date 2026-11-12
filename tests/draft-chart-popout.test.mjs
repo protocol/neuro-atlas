@@ -152,6 +152,52 @@ test('modal keyboard trap includes a closed source summary, not its hidden sourc
   } finally { await cleanup(); }
 });
 
+for (const { id, finalSelector, finalText, target } of [
+  { id: 'largest-connectome-neurons', finalSelector: '[data-anatomical-reference-sources] > summary', finalText: 'Anatomical neuron counts — scale references' },
+]) test(`${id}: modal Tab wraps through the actual final visible control, excluding closed disclosure descendants`, async () => {
+  const { ChartModal } = await import('../src/components/chart-modal.tsx');
+  const currentPlot = Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots).find(item => item.id === id);
+  assert.ok(currentPlot);
+  const shareAnchor = id === 'recording-hours' ? anchor : `metric-panel-${id}`;
+  const cleanup = await mount(React.createElement(ChartModal, { id: `${id}-trap`, title: currentPlot.title, returnFocus: { current: null } },
+    React.createElement(DraftChartPlot, { plot: currentPlot, shareAnchor })), `#${shareAnchor}`);
+  try {
+    const dialog = document.querySelector('dialog[open]');
+    const close = dialog.querySelector('.pc-modal-header button');
+    const sourceDetails = [...dialog.querySelectorAll('details')].find(details => details.querySelector(':scope > summary').textContent === `Data and sources (${currentPlot.points.length})`);
+    assert.ok(sourceDetails);
+    const finalControl = dialog.querySelector(finalSelector);
+    assert.ok(finalControl);
+    assert.equal(finalControl.textContent.trim(), finalText);
+    if (target) assert.equal(finalControl.getAttribute('href'), `#${canonicalPerformanceAnchor(target)}`);
+    assert.ok([...dialog.querySelectorAll('details')].every(details => !details.open), 'Every disclosure starts closed');
+    const hiddenSourceLinks = [...dialog.querySelectorAll('details a')];
+    assert.ok(hiddenSourceLinks.length > 0, 'The trap must exclude real hidden source controls');
+    for (const sourceOpen of [false, true]) {
+      await act(async () => { sourceDetails.open = sourceOpen; close.focus(); });
+      const reverse = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true });
+      await act(async () => close.dispatchEvent(reverse));
+      assert.equal(reverse.defaultPrevented, true);
+      assert.equal(document.activeElement, finalControl, `Source disclosure open=${sourceOpen}: reverse Tab reaches the actual visible final control`);
+      assert.equal(hiddenSourceLinks.includes(document.activeElement), false, 'A source link cannot replace the visible final control');
+      const forward = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+      await act(async () => finalControl.dispatchEvent(forward));
+      assert.equal(forward.defaultPrevented, true);
+      assert.equal(document.activeElement, close, 'Forward Tab wraps from the actual final control');
+    }
+    if (finalControl.tagName === 'SUMMARY') {
+      const lastDisclosure = finalControl.parentElement;
+      await act(async () => { lastDisclosure.open = true; close.focus(); });
+      const finalSource = [...lastDisclosure.querySelectorAll('a[href]')].at(-1);
+      assert.ok(finalSource);
+      await act(async () => close.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true })));
+      assert.equal(document.activeElement, finalSource, 'Opening the final disclosure makes its last source link reachable');
+      await act(async () => finalSource.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true })));
+      assert.equal(document.activeElement, close, 'The newly visible final source also wraps forward');
+    }
+  } finally { await cleanup(); }
+});
+
 for (const freshAnchor of [anchor, ...aliases, 'metric-panel-application-events', 'draft-panel-application-events']) {
   test(`fresh ${freshAnchor} opens only its own real modal; backdrop uses the existing fallback`, async () => {
     const { DraftChartPanel, DraftTimelinePanel } = await panels();

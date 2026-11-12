@@ -1,0 +1,37 @@
+[
+  {
+    "file": "README.md",
+    "bytes": 2880,
+    "sha256": "1ff65693825d8d41f49e578cd37211cfa5f62fa6354e98bbb04595524def07ea"
+  },
+  {
+    "file": "browser-receipt.json",
+    "bytes": 3175,
+    "sha256": "5645eb4598286f1ceaaf321160392e2d88a8092fb1cf21973040f1b3dc984ae8"
+  },
+  {
+    "file": "neuron-count-1440.png",
+    "bytes": 120758,
+    "sha256": "1baedadd10e163a6f0e2660dadddb0a207e0996abb23c18da5dca55462c48566"
+  },
+  {
+    "file": "neuron-count-320.png",
+    "bytes": 66559,
+    "sha256": "cd06e9cc8815ba528aff257b02640fcb8ac495b22ab843ea4318751a4de8aa85"
+  },
+  {
+    "file": "neuron-count-native-export.png",
+    "bytes": 395436,
+    "sha256": "def4c05ee32a017e8b86b32295b8542c2f1be85990eddf4de4bf8ca27dc49c53"
+  },
+  {
+    "file": "scope-equivalence.json",
+    "bytes": 541,
+    "sha256": "52e4493811879181c7c7856e69954cdac2ee40d17d72b9710895b3a1b694aa3a"
+  },
+  {
+    "file": "verification.json",
+    "bytes": 718,
+    "sha256": "580e19bcc6ee38341fddb2482f36734ebc22d8d998ae8b36535da5593e58f279"
+  }
+]
