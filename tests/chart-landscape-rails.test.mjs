@@ -13,7 +13,7 @@ globalThis.React = React;
 const points = [2018,2023].map((x,i)=>({id:`p${i}`,x,y:i+1,label:`Fixture ${i}`,dateLabel:`${x}`,sourceTitle:'Synthetic source',sourceUrl:'https://example.org',quote:'Fixture'}));
 const plot = {id:'fixture',title:'Fixture',xKind:'year',xLabel:'Publication year',yLabel:'Units',scale:'linear',scope:'Synthetic only.',points};
 
-test('desktop rails use broader landscape cards while retaining a visible next tile and the existing mobile affordance', () => {
+test('desktop rails use broader landscape cards while narrow rails trade excess peek for readable content', () => {
   const css = readFileSync('src/components/draft-chart-plot.css','utf8');
   const dom = new JSDOM(`<style>${css}</style>`, {url: 'https://example.org'});
   try {
@@ -27,7 +27,7 @@ test('desktop rails use broader landscape cards while retaining a visible next t
       assert.ok(card / 220 > 2, 'Landscape plot, without reducing typography');
     }
     const mobile = rules.filter(rule => rule.conditionText === '(max-width: 560px)').flatMap(rule => [...rule.cssRules]).find(rule => rule.selectorText === '.metric-category-content');
-    assert.equal(mobile.style.getPropertyValue('--metric-card-width'), 'calc(100% - 2.5rem)');
+    assert.equal(mobile.style.getPropertyValue('--metric-card-width'), 'calc(100% - 1.5rem)');
     const rail = rules.find(rule => rule.selectorText === '.metric-chart-rail');
     assert.equal(rail.style.getPropertyValue('overflow-x'), 'auto');
     assert.equal(rail.style.getPropertyValue('scroll-snap-type'), 'x proximity');

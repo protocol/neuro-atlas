@@ -40,18 +40,27 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
   } finally { dom.window.close(); }
 });
 
-test('narrow rails keep a full card and a 24px next-card peek inside their own width budget', () => {
+test('narrow rails reclaim 16px of excess peek for unclipped growth headings at the native 320px width', () => {
   const { dom, rules: css } = rules();
   try {
     const media = css.find(rule => rule.conditionText === '(max-width: 560px)' && [...rule.cssRules].some(rule => rule.selectorText === '.metric-category-content'));
     assert.ok(media, 'Narrow screens need a different rail width budget, not a stacked grid');
     const content = [...media.cssRules].find(rule => rule.selectorText === '.metric-category-content');
-    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc(100% - 2.5rem)');
+    const budget = content.style.getPropertyValue('--metric-card-width');
+    const match = /^calc\(100% - ([\d.]+)rem\)$/.exec(budget);
+    assert.ok(match, 'The mobile width budget remains a rail-relative subtraction');
+    const reserved = Number(match[1]) * 16;
     for (const width of [254, 324, 494]) {
-      const card = width - 40;
+      const card = width - reserved;
       const peek = width - card - 16;
-      assert.equal(peek, 24);
-      assert.ok(card >= 214);
+      assert.equal(peek, 8, 'Keep a visible affordance without sacrificing 24px of chart content');
+      assert.ok(card >= 230);
+      if (width === 254) {
+        // Native 320px replay: the former 214px card had a 172px SVG;
+        // its BRAIN-COMPUTER INTERFACE heading overran by 10.4px.
+        const svgWidth = card - 42;
+        assert.ok(svgWidth >= 172 + 10.4, 'The actual heading fits without changing its text or font');
+      }
     }
   } finally { dom.window.close(); }
 });
