@@ -19,6 +19,7 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
       if (reading && !vintage) return <LatencyEvidenceCard key={record.instrument} />;
       const plot: PlotData | undefined = reading ? {
         title, unit: "years", scale: "linear", line: false,
+        ...(vintage ? { connectTracks: [record.instrument] } : {}),
         xLabel: vintage ? "Publication year" : "Pivotal preclinical demonstration year",
         tracks: [{ id: record.instrument, label: vintage ? "Median reference age" : "Preclinical to first-in-human lag" }],
         points: record.series!.map(point => ({

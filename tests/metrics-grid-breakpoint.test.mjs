@@ -16,7 +16,7 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
   try {
     const content = css.find(rule => rule.selectorText === '.metric-category-content');
     assert.ok(content, 'The complete rail uses one width budget');
-    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 1rem)/1.65)');
+    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 1rem)/1.25)');
     const rail = css.find(rule => rule.selectorText === '.metric-chart-rail');
     assert.equal(rail.style.getPropertyValue('grid-auto-columns'), 'var(--metric-card-width)');
     assert.equal(rail.style.getPropertyValue('grid-auto-flow'), 'column');
@@ -28,7 +28,7 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
     assert.equal(rail.style.getPropertyValue('overscroll-behavior-x'), 'contain');
     assert.equal(rail.style.getPropertyValue('scrollbar-width'), 'auto', 'Do not hide the native scrollbar');
     for (const width of [671, 927, 1087, 1248]) {
-      const card = (width - 16) / 1.65;
+      const card = (width - 16) / 1.25;
       const peek = width - card - 16;
       assert.ok(card > (width - 32) / 3 * 1.6, 'Meaningfully wider than the old three-column tiles');
       assert.ok(card >= 390, 'Medium sidebar layouts retain readable card widths');

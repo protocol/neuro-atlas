@@ -35,6 +35,8 @@ export type DraftPlot = {
   points: DraftObservation[];
   xKind?: "year" | "number";
   seriesNote?: string;
+  /** Explicit source-supported identities only; never infer a path from color/category. */
+  connections?: { id: string; label: string; pointIds: string[] }[];
   /** Optional evidence basis; default preserves source-reported charts. */
   observationBasis?: string;
   /** Optional dataset key; use the same colors and markers as the observations. */

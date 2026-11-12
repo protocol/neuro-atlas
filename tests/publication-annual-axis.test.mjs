@@ -87,7 +87,7 @@ test('annual preview fits its card with readable axes while the enlarged plot sc
     const width = Number(svg.getAttribute('viewBox').split(' ')[2]);
     assert.ok(parseFloat(svg.style.fontSize) * 157 / width >= 11 - 1e-9);
     assert.ok(parseFloat(annualSvg().style.fontSize) >= 12);
-    const grids=[...svg.querySelectorAll('line')];
+    const grids=[...svg.querySelectorAll('line:not([data-year-guide])')];
     assert.ok(Math.abs(+grids[0].getAttribute('y1')- +grids[4].getAttribute('y1'))*157/width >= 95, 'Preview reserves a meaningful 95px+ plot height');
     assert.ok(+grids[4].getAttribute('y1')/parseFloat(svg.style.fontSize)>=4.4-1e-9, 'Top index tick clears the second heading line');
     assert.equal(+svg.querySelector('[data-annual-axis="neurotech"]').getAttribute('x'),0);

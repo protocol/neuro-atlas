@@ -17,6 +17,8 @@ const recordingHoursPlot: DraftPlot = {
   points: recordingHours.plots.flatMap((plot, index) => plot.points.map(point => ({
     ...point, group: point.group ?? plot.title, color: recordingColors[index],
   }))),
+  // Successive releases of the same corpus; overlapping releases are not additive.
+  connections: [{ id: "tusz-releases", label: "TUSZ releases (overlapping, not summed)", pointIds: recordingHours.plots.find(plot => plot.id === "tusz-scalp-eeg")!.points.map(point => point.id) }],
   legend: recordingHours.plots.map((plot, index) => ({ label: plot.title, color: recordingColors[index] })),
 };
 
@@ -60,7 +62,12 @@ export const RETIRED_METRIC_PLOT_IDS: ReadonlySet<string> = new Set([
 export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.fromEntries(
   Object.entries(DRAFT_CHART_EVIDENCE).map(([title, evidence]) => [title, {
     ...evidence,
-    plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots.filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics"),
+    plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots.filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics").map(plot => plot.id === "neuralink-cumulative" ? {
+      ...plot,
+      // The source names these company checkpoints as cumulative recipients.
+      // BrainGate and Paradromics are different cohorts and remain unconnected.
+      connections: [{ id: "neuralink-recipients", label: "Neuralink cumulative recipients", pointIds: plot.points.filter(point => point.group === "Neuralink").map(point => point.id) }],
+    } : plot),
     ...(title === "Connectomics imaging throughput over time" ? {
       summary: "Selected source-reported EM acquisition rates at each protocol's stated resolution.",
     } : {}),

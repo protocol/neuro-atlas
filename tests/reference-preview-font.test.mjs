@@ -68,6 +68,16 @@ function assertGeometry() {
     // Only the readable unit/scale caption may move down to reserve its ascent.
     // Its content/x plus every tick, point, interval and other label remain pinned.
     const normalized = svg.cloneNode(true);
+    // Added calendar guides and the separately tested citation series path are
+    // presentation additions. Keep the preexisting center/axis golden intact.
+    for (const guide of normalized.querySelectorAll('[data-year-guide]')) guide.parentElement.remove();
+    for (const path of normalized.querySelectorAll('[data-curve-series]')) {
+      if (!path.hasAttribute('data-frontier-line')) { path.remove(); continue; }
+      path.removeAttribute('data-curve-series');
+      path.removeAttribute('vector-effect');
+      path.removeAttribute('pointer-events');
+      path.setAttribute('stroke-width', '2.5');
+    }
     const caption = normalized.querySelector('text');
     assert.match(caption.textContent, / · (linear|log) scale$/);
     caption.setAttribute('y', '16');
@@ -78,6 +88,7 @@ function assertGeometry() {
     // every original center, tick, interval, label and color stays independently pinned.
     for (const mark of normalized.querySelectorAll('circle')) {
       mark.setAttribute('r', '5');
+      mark.setAttribute('data-export-r', '5'); // Restore the former canonical presentation radius only.
       mark.removeAttribute('vector-effect');
     }
     for (const line of normalized.querySelectorAll('.pc-gridline')) {

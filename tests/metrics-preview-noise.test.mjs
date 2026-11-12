@@ -19,7 +19,7 @@ test('preview cards avoid generic source-status labels while retaining scope, qu
   try {
     await click(document.querySelector('[data-draft-popout-trigger="metric-recording-hours"]'));
     const modal = document.querySelector('dialog[open]');
-    assert.match(modal.querySelector('.draft-plot-legend').textContent, /Source-reported.*Log scale.*Unconnected observations/);
+    assert.match(modal.querySelector('.draft-plot-legend').textContent, /Source-reported.*Log scale.*Lines connect only TUSZ releases \(overlapping, not summed\); other observations remain separate/);
     assert.match(modal.querySelector('[data-visible-qualifications]').textContent, />50,000/);
     assert.match(modal.querySelector('[data-visible-qualifications]').textContent, />100/);
   } finally { await cleanup(); }

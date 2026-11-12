@@ -5,7 +5,9 @@ from urllib.parse import urlparse
 BASE=os.environ.get('ATLAS_QA_ORIGIN','http://127.0.0.1:35963')
 assert urlparse(BASE).hostname=='127.0.0.1'
 OUT=Path(os.environ.get('ATLAS_QA_OUTPUT','/opt/data/tmp/atlas-allchart-final-evidence'));OUT.mkdir(parents=True,exist_ok=True)
-EXPECTED=json.loads(Path(os.environ.get('ATLAS_QA_INVENTORY', '/opt/data/projects/atlas-chart-design-20261106/tests/fixtures/chart-design-inventory.json')).read_text())
+# Run from the task-owned checkout, or pass ATLAS_QA_INVENTORY explicitly.
+# Never silently read a retired worktree's stale title inventory.
+EXPECTED=json.loads(Path(os.environ.get('ATLAS_QA_INVENTORY', 'tests/fixtures/chart-design-inventory.json')).read_text())
 def probe(body): return js('(() => {'+body+'})()')
 def settle():
  cdp('Page.bringToFront');js('return document.fonts.ready.then(()=>true)')

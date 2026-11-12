@@ -38,9 +38,10 @@ test('recording hours renders one populated log scatter with five labeled series
     const legend = [...el.querySelectorAll('[data-draft-group-legend] li')];
     assert.deepEqual(legend.map(n => n.textContent.trim()), raw.plots.map(p => p.title));
     assert.equal(new Set(legend.map(n => n.querySelector('span').style.color)).size, 5);
-    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Unconnected observations/);
+    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Lines connect only TUSZ releases \(overlapping, not summed\); other observations remain separate/);
     const svg = el.querySelector('svg.draft-plot-svg');
-    assert.equal(svg.querySelectorAll('path, polyline').length, 0, 'no connecting lines or pooled fit');
+    assert.equal(svg.querySelectorAll('path, polyline').length, 1, 'Only the explicit TUSZ release path; no pooled fit');
+    assert.equal(svg.querySelector('polyline').dataset.observationSeries, 'tusz-releases');
     const ticks = [...svg.querySelectorAll('.draft-plot-tick')].map(n => n.textContent);
     for (const tick of ['100', '1,000', '10,000', '100,000', '2017', '2027']) assert.ok(ticks.includes(tick), tick);
     const pos = id => marks.find(n => n.dataset.sourceObservation === id);

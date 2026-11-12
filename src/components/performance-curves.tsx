@@ -1,6 +1,7 @@
 "use client";
 
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
+import { useMetricPreviewWidth } from "./use-metric-preview-width";
 
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
@@ -13,6 +14,7 @@ import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { useExtrapolationMotion } from "@/components/use-extrapolation-motion";
 import { usePreviewFont } from "@/components/use-preview-font";
+import { ChartYearGuides, annualDateYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
 import { RECORDING_VIEWS, RECORDING_CHECKED_AT, type RecordingView } from "@/data/recording-evidence";
@@ -31,7 +33,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[] };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[] };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -51,9 +53,9 @@ export function chartGeometry(data: PlotData) {
 }
 
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
-function compactChartGeometry(data: PlotData, extraHeight = 0) {
+function compactChartGeometry(data: PlotData, extraHeight = 0, width = 360) {
   const full = chartGeometry(data);
-  const width = 360, height = 220 + extraHeight, left = 64, right = 16, top = 32, bottom = 52;
+  const height = 220 + extraHeight, left = 64, right = 16, top = 32, bottom = 52;
   return { ...full, width, height, left, right,
     x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
     y: (value: number) => top + (full.y(value) - 28) / (full.height - 28 - 44) * (height - top - bottom),
@@ -110,7 +112,8 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
 
 function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
   const plotRef = useRef<HTMLDivElement>(null);
-  const previewExtra = useMetricPreviewSpace(plotRef, compact, 360);
+  const previewWidth = useMetricPreviewWidth(plotRef, compact);
+  const previewExtra = useMetricPreviewSpace(plotRef, compact, previewWidth);
   const scrollRef = useRef<HTMLDivElement>(null);
   const singleObservation = data.points.length === 1;
   useLayoutEffect(() => {
@@ -137,7 +140,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const scenario = !compact && (extrapolate || progress > 0) && extrapolation ? extrapolationScenario(extrapolation, data.points, track, mode) : null;
   // Filtering suppresses unsupported model output, but never moves source markers.
   const future = scenario && extrapolation ? extrapolationGeometry(data, extrapolationScenario(extrapolation, data.points, "", mode)) : null;
-  const original = compact ? compactChartGeometry(data, previewExtra) : chartGeometry(data);
+  const original = compact ? compactChartGeometry(data, previewExtra, previewWidth) : chartGeometry(data);
 
   const mix = (from: number, to: number) => progress === 0 ? from : progress === 1 ? to : from + (to - from) * progress;
   const g = !future || progress === 0 ? original : progress === 1 ? future : {
@@ -172,6 +175,11 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       ? new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" }).format(time)
       : String(new Date(time).getUTCFullYear()),
   })) : null;
+  const connectedTracks = data.connectTracks ?? (data.line ? data.tracks.map(track => track.id) : []);
+  const connections = data.tracks.filter(track => connectedTracks.includes(track.id)).map(track => ({
+    id: track.id,
+    points: points.filter(point => point.track === track.id && point.reliable !== false).sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
+  })).filter(series => series.points.length > 1);
   const clusters: PlotPoint[][] = [];
   for (const point of points) {
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
@@ -190,7 +198,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
             .filter(node => !track || node.querySelector("dt")?.textContent === data.tracks.find(t => t.id === track)?.label)
             .map(node => `${node.querySelector("dt")?.textContent}: ${node.querySelector("dd")?.textContent}`),
-          data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates.",
+          data.connectTracks ? "Lines connect successive reliable observations within the same measurement series; not a fitted trend." : data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates.",
           ...(data.points.some(p => p.lo != null) ? ["Whiskers: source intervals. Hollow markers: under-indexed observations."] : []),
           ...(scenario ? [`Scenario: ${root.querySelector<HTMLSelectElement>("[data-scenario-select]")?.selectedOptions[0]?.textContent ?? mode}. Conditional continuation, not a forecast.`,
             ...Array.from(root.querySelectorAll(".pc-scenario-warning, .pc-extrapolation-notes > p, .pc-fit-diagnostics > strong, .pc-fit-diagnostics > span"), node => node.textContent ?? "")] : []),
@@ -220,13 +228,14 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+      <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.connectTracks ? "Lines connect successive reliable observations within each measurement series." : data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
         <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
+        <ChartYearGuides years={annualDateYears(original.minTime, original.maxTime)} x={year => g.x(`${year}-01-01`)} top={g.y(g.ticks.at(-1)!)} bottom={g.y(g.ticks[0])} />
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
-        {data.line && <polyline data-frontier-line="true" points={points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} />}
+        {connections.map(series => <polyline key={series.id} data-curve-series={series.id} data-frontier-line={data.line || undefined} points={series.points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke={colors[series.points[0].trackIndex % colors.length]} strokeWidth={1.5} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
         {scenario && future && <g className="pc-extrapolation-overlay" opacity={moving ? reveal : undefined}>
           {scenario.targets.map(target => <g key={target.id}>
             <line data-target-line={target.id} x1={g.left} x2={g.width - g.right} y1={enteringY(target.value)} y2={enteringY(target.value)} stroke="var(--muted)" strokeDasharray="4 4" />
