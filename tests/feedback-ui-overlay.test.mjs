@@ -9,7 +9,14 @@ globalThis.window = bootstrap.window; globalThis.document = bootstrap.window.doc
 const { mount, click, settle } = await import('./modal-helpers.mjs');
 bootstrap.window.close();
 import { ChartModal } from '../src/components/chart-modal.tsx';
-import { Feedback } from '../src/components/feedback/feedback.tsx';
+import { Feedback as FeedbackController } from '../src/components/feedback/feedback.tsx';
+import { FeedbackTrigger } from '../src/components/feedback/feedback-trigger.tsx';
+function Feedback(){return React.createElement(React.Fragment,null,React.createElement(FeedbackTrigger),React.createElement(FeedbackController));}
+async function pickFixture(){
+ const element=document.createElement('p');element.textContent='Fresh fixture target';(document.querySelector('.pc-modal')??document.body).append(element);
+ element.getBoundingClientRect=()=>({left:40,top:80,right:200,bottom:110,width:160,height:30});document.elementFromPoint=()=>element;
+ await act(async()=>element.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,clientX:80,clientY:90})));
+}
 globalThis.React = React;
 const json = (x, status = 200) => new Response(JSON.stringify(x), { status, headers: { 'content-type': 'application/json' } });
 const byText = text => [...document.querySelectorAll('button')].find(x => x.textContent === text);
@@ -34,7 +41,7 @@ test('native chart survives selection → composer → chart Escape ordering, fo
     const origin = document.activeElement;
     await key('f', { altKey: true, shiftKey: true });
     assert.ok(document.querySelector('[data-feedback-selection]'));
-    await click(byText('General page'));
+    await pickFixture();
     Object.defineProperty(document.querySelector('[aria-label="Feedback"]'), 'scrollHeight', {value:95, configurable:true});
     await input('Feedback', 'Keep this private');
     assert.equal(document.querySelector('[aria-label="Feedback"]').style.height, '95px', 'one field grows for longer feedback');
@@ -48,6 +55,7 @@ test('native chart survives selection → composer → chart Escape ordering, fo
     await key('Escape');
     assert.ok(chart.open); assert.equal(document.activeElement, origin);
     await key('f', { altKey: true, shiftKey: true });
+    assert.ok(document.querySelector('[data-feedback-selection]'));await pickFixture();
     assert.equal(document.querySelector('[aria-label="Feedback"]').value, 'Keep this private');
     assert.equal(document.querySelector('[data-feedback-submit]').disabled, true);
     assert.equal(window.location.hash, '#tissue-mapped');
@@ -68,10 +76,8 @@ test('picker hovers exact DOM, intercepts full activation sequence and pins abov
     assert.notEqual(picker.tagName, 'DIALOG', 'picker must not make the real page inert');
     assert.equal(picker.parentElement, chart, 'picker controls live in the native modal so they remain interactive');
     assert.equal(document.querySelector('[data-feedback-composer]'), null);
-    await key('Tab');
-    assert.equal(document.activeElement.textContent, 'General page', 'picker Tab stays in toolbar, not native chart controls');
-    await key('Tab', {shiftKey:true});
-    assert.equal(document.activeElement.textContent, 'Back');
+    assert.equal(picker.querySelectorAll('button').length,0,'no floating picker toolbar');
+    assert.equal(document.activeElement===picker,true,'screen reader receives hidden selection instructions');
     await act(async () => button.dispatchEvent(new window.MouseEvent('pointermove', {bubbles:true,clientX:80,clientY:80})));
     const outline = document.querySelector('[data-feedback-outline]');
     assert.ok(outline, 'hover draws a real DOM outline');
@@ -88,9 +94,11 @@ test('picker hovers exact DOM, intercepts full activation sequence and pins abov
     assert.equal(document.activeElement.getAttribute('aria-label'), 'Feedback');
     await click(byText('Select element')); await key('Escape');
     assert.match(document.querySelector('.atlas-feedback-target').textContent, /button/, 'cancel keeps pinned reference');
-    await click(byText('Clear'));
-    assert.equal(document.querySelector('.atlas-feedback-target').textContent, 'General page');
     await key('Escape'); assert.ok(chart.open);
+    await key('f',{altKey:true,shiftKey:true});
+    assert.ok(document.querySelector('[data-feedback-selection]'),'exit discarded the old button pin');
+    assert.equal(document.querySelector('[data-feedback-outline]'),null);
+    await key('Escape');assert.equal(document.querySelector('[data-feedback-composer]'),null);assert.ok(chart.open);
   } finally { await cleanup(); }
 });
 
@@ -107,16 +115,17 @@ test('one visitor field sends without sign-in, retains exact failed retry and cl
     };
   });
   try {
-    await click(byText('Feedback'));await click(byText('General page'));await settle();
+    await click(byText('Feedback'));await pickFixture();await settle();
     const composer=document.querySelector('[data-feedback-composer]');
     assert.equal(composer.querySelectorAll('textarea').length,1);assert.equal(composer.querySelectorAll('input').length,0);
-    assert.match(composer.textContent,/logged in Linear/i);assert.match(composer.textContent,/workspace\/team members/i);
+    assert.doesNotMatch(composer.innerHTML,/On Send, feedback|workspace\/team members|No automatic code changes/);
     assert.doesNotMatch(composer.textContent,/sign in|GitHub|draft PR|History|Account/i);
     const heading=document.createElement('h1');document.body.append(heading);
     heading.getBoundingClientRect=()=>({left:50,top:80,right:350,bottom:120,width:300,height:40});
     document.elementFromPoint=()=>heading;
     await click(byText('Select element'));
     await act(async()=>heading.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,clientX:90,clientY:100})));
+    const activeComposer=document.querySelector('[data-feedback-composer]');
     await input('Feedback','PRIVATE CANARY');document.querySelector('[aria-label="Feedback"]').focus();
     assert.equal(document.querySelector('[data-feedback-submit]').disabled,false,'visitor can send immediately');
     await key('Enter',{shiftKey:true});await key('Enter',{isComposing:true});await key('Enter',{keyCode:229});
@@ -134,11 +143,16 @@ test('one visitor field sends without sign-in, retains exact failed retry and cl
     assert.equal(body.feedback,'PRIVATE CANARY');assert.equal(body.context.route,'/field-velocity');
     assert.equal(body.context.element.tagName,'h1');assert.equal(body.context.element.selector,'html:nth-of-type(1) > body:nth-of-type(1) > h1:nth-of-type(1)');
     assert.equal(body.context.element.label,undefined);assert.equal(JSON.stringify(body.context).includes('review=1'),false);
-    assert.equal(document.querySelector('[data-feedback-composer]'),null);
-    const toast=document.querySelector('[data-feedback-toast]');assert.ok(toast);assert.equal(toast.parentElement,underlying);assert.equal(toast.getAttribute('popover'),'manual');assert.match(toast.textContent,/Logged in Linear/i);
-    await click(byText('Feedback'));await click(byText('General page'));
+    assert.equal(document.querySelector('[data-feedback-composer]'),activeComposer,'confirmation replaces content in the same native dialog');
+    assert.ok(activeComposer.open);assert.ok(underlying.open,'underlying native chart stays open');
+    const status=activeComposer.querySelector('[role="status"]');
+    assert.equal(status.textContent,'Thanks for your feedback.It’s under review. Check back soon.');
+    assert.equal(activeComposer.querySelector('textarea'),null);assert.equal(activeComposer.querySelector('[data-feedback-submit]'),null);
+    assert.equal(document.querySelector('[data-feedback-toast]'),null,'confirmation is not a transient toast');
+    assert.equal(document.activeElement,byText('Done'),'focus moves to an accessible completion control');
+    await click(byText('New feedback'));assert.ok(document.querySelector('[data-feedback-selection]'));
+    assert.equal(document.querySelector('[data-feedback-outline]'),null,'next note does not retain a previous saved note target');await pickFixture();
     assert.equal(document.querySelector('[aria-label="Feedback"]').value,'');
-    assert.equal(document.querySelector('[data-feedback-outline]'),null,'next note does not retain a previous saved note target');
     assert.ok(calls.every(c=>c.url==='/api/feedback/public'||c.url==='/api/feedback/public/config'));
   } finally {await cleanup();}
 });
@@ -164,7 +178,7 @@ test('public composer never loads history or polls another visitor feedback', as
     win.fetch=async(url,options)=>{calls.push({url,...options});return json({enabled:true,connected:true});};
   });
   try {
-    await click(byText('Feedback'));await click(byText('General page'));await settle();
+    await click(byText('Feedback'));await pickFixture();await settle();
     assert.doesNotMatch(document.querySelector('[data-feedback-composer]').textContent,/sign in|history|account|PR ready/i);
     const before=calls.length;await act(async()=>t.mock.timers.tick(15000));
     assert.equal(calls.length,before);assert.ok(calls.every(c=>c.url==='/api/feedback/public/config'));
@@ -172,16 +186,17 @@ test('public composer never loads history or polls another visitor feedback', as
   }finally{await cleanup();}
 });
 
-test('fresh untargeted launch starts hover picking; General page opens the single field', async () => {
+test('fresh and reopened launches require an element even when unsent text is retained', async () => {
  const cleanup=await mount(React.createElement(Feedback),'',win=>{win.fetch=async()=>json({enabled:false,connected:false});});
  try {
   await click(byText('Feedback'));
   assert.ok(document.querySelector('[data-feedback-selection]'), 'fresh note starts with hover picker');
   assert.equal(document.querySelector('[data-feedback-composer]'),null);
-  await click(byText('General page'));
+  await pickFixture();
   assert.ok(document.querySelector('[aria-label="Feedback"]'));
   await input('Feedback','Retain draft'); await key('Escape');
   await click(byText('Feedback'));
+  assert.ok(document.querySelector('[data-feedback-selection]'));assert.equal(document.querySelector('[data-feedback-outline]'),null);await pickFixture();
   assert.equal(document.querySelector('[aria-label="Feedback"]').value,'Retain draft');
  } finally {await cleanup();}
 });

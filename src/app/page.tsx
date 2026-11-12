@@ -2,6 +2,7 @@ import Link from "next/link";
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { LandingVisual } from "@/components/landing-visual";
+import { FeedbackTrigger } from "@/components/feedback/feedback-trigger";
 
 export const metadata = atlasMetadata("/", "Neuro Atlas");
 
@@ -26,6 +27,7 @@ export default function Home() {
           <a href="https://github.com/protocol/neuro-atlas/compare" target="_blank" rel="noreferrer" className="landing-contribute">
             Contribute via PR <span aria-hidden="true">↗</span>
           </a>
+          <FeedbackTrigger className="landing-contribute" />
         </div>
         <p className="landing-feedback">Feedback, corrections, or new data? Help improve the atlas.</p>
       </section>

@@ -1,3 +1,4 @@
+# HISTORICAL: pre-chat toolbar/toast replay; not current acceptance. See docs/qa/feedback/README.md.
 # Run via browser-harness on an owned window. Loopback only; no hosted auth bypass.
 import json,time,os
 from pathlib import Path

@@ -1,3 +1,4 @@
+# HISTORICAL: pre-chat toolbar/toast replay; not current acceptance. See docs/qa/feedback/README.md.
 # Additional native icon-button/outline and dark-mode checks on the real loopback app.
 from pathlib import Path
 import os
