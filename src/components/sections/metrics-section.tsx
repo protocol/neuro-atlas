@@ -1,6 +1,7 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { installChartExportApi } from "@/lib/chart-export-api";
 import { fieldVelocityLink, performanceTarget, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-links";
 import { usePerformanceHash, revealDraftTarget } from "@/lib/field-velocity/navigation";
@@ -42,6 +43,8 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   const pendingReveal = useRef<string | null>(null);
   const cancelReveal = useRef<(() => void) | undefined>(undefined);
   const hash = usePerformanceHash();
+  // Publish window.neuroAtlas up front so automation can call exportAll before opening any chart.
+  useEffect(() => { installChartExportApi(); }, []);
   useLayoutEffect(() => {
     const reveal = () => {
       const anchor = performanceTarget(hash.slice(1));

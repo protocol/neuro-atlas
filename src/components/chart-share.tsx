@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { buildChartImage, copyChartImage, downloadChartImage, type ChartExport } from "@/lib/chart-export";
+import { registerChart, unregisterChart } from "@/lib/chart-export-api";
 
 /** Only explicit clicks snapshot/export. Mounting, hovering and permission failure never write. */
 export function ChartShare({ anchor, title, getChart, disabled = false }: {
@@ -10,6 +11,12 @@ export function ChartShare({ anchor, title, getChart, disabled = false }: {
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
+  // Expose this chart's exact export (same svg/notes/legend) on window.neuroAtlas while mounted.
+  useEffect(() => {
+    if (disabled) return;
+    registerChart(anchor, { title, getChart });
+    return () => unregisterChart(anchor);
+  }, [anchor, title, getChart, disabled]);
   async function run(download: boolean) {
     if (pending.current) return;
     pending.current = true; setBusy(true); setStatus(download ? "Preparing PNG…" : "Preparing chart…");
