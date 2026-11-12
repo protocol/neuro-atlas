@@ -139,7 +139,9 @@ export function Feedback() {
   }, [open, selecting]);
   useEffect(() => {
     if (!open) {
-      if (returnFocus.current?.isConnected) returnFocus.current.focus({ preventScroll: true });
+      const origin = returnFocus.current;
+      returnFocus.current = null;
+      if (origin?.isConnected) origin.focus({ preventScroll: true });
       return;
     }
     const focus = selecting ? picker.current : saved ? done.current : textarea.current;
@@ -214,7 +216,9 @@ export function Feedback() {
     submitting.current = true; setBusy(true); setError("");
     // Only intentional note/target edits start a new operation. Viewport, theme and
     // DOM movement must not mutate an uncertain retry or create duplicate issues.
-    const fingerprint = JSON.stringify({ comment, target, element: pinned?.reference });
+    // Selection already fences node/route identity. Incidental selector/class
+    // movement on that same chosen node must not split an uncertain retry.
+    const fingerprint = JSON.stringify({ comment, target });
     try {
       if (pending.current?.fingerprint !== fingerprint) pending.current = {
         fingerprint, key: client.current!.newKey(), element: pinned?.element,

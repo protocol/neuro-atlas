@@ -141,3 +141,33 @@ test('explicitly choosing the unchanged original element after exit preserves th
     assert.equal(JSON.parse(posts[1].body).context.theme,'system');
   }finally{await cleanup();}
 });
+
+test('same original node after harmless DOM movement preserves the complete uncertain retry',async()=>{
+  const posts=[];
+  const cleanup=await mount(React.createElement(Feedback),'',win=>{connected(win);win.fetch=async(url,options)=>{if(url.endsWith('/config'))return Response.json({enabled:true,connected:true});posts.push(options);return Response.json({saved:false},{status:202});};});
+  try{
+    await open();const original=await pin();await fill('Original retry after layout movement');await key('Enter');
+    await click(document.querySelector('[data-feedback-close]'));
+    const sibling=document.createElement('h1');original.before(sibling);
+    original.classList.add('new-static-layout-class');
+    await open();document.elementFromPoint=()=>original;
+    await act(async()=>original.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,clientX:90,clientY:220})));
+    await key('Enter');
+    assert.equal(posts.length,2);assert.equal(posts[0].headers['Idempotency-Key'],posts[1].headers['Idempotency-Key']);
+    assert.equal(posts[0].body,posts[1].body,'incidental selector/class movement cannot split the original operation');
+  }finally{await cleanup();}
+});
+
+test('successful save after Close cannot steal focus from subsequent page work',async()=>{
+  let resolve;
+  const cleanup=await mount(React.createElement(Feedback),'',win=>{connected(win);win.fetch=async(url)=>url.endsWith('/config')?Response.json({enabled:true,connected:true}):new Promise(done=>{resolve=done;});});
+  try{
+    const origin=document.createElement('button');origin.textContent='Feedback origin';document.body.append(origin);origin.focus();
+    await open();await pin();await fill('Finish this save after exit');await key('Enter');
+    await click(document.querySelector('[data-feedback-close]'));assert.equal(document.activeElement,origin);
+    const other=document.createElement('input');document.body.append(other);other.focus();
+    await act(async()=>resolve(Response.json({saved:true},{status:202})));
+    assert.equal(document.querySelector('[data-feedback-composer]'),null);
+    assert.equal(document.activeElement===other,true,'late hidden success cannot restore the previous trigger again');
+  }finally{await cleanup();}
+});
