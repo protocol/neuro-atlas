@@ -41,9 +41,7 @@ test("2024–25 capital lane includes mega-rounds; year bars stay independent", 
   assert.match(timeline, />raised</);
   assert.doesNotMatch(timeline, /Jan–Apr/);
   assert.doesNotMatch(timeline, /new capital\{y\.year === 2026/);
-  // Memo cut stays as a labeled comparison, sourced from capital.json.
-  assert.match(timeline, /MEMO_CAPITAL/);
-  assert.match(timeline, /Naveen/);
+  // Removing the visible Memo cut does not alter its archived source data.
   const capitalJson = JSON.parse(await readFile(path.join(here, "..", "src", "data", "capital.json"), "utf8"));
   assert.deepEqual(
     capitalJson.map((row) => [row.year, row.usdM]),

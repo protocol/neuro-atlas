@@ -11,7 +11,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import MILESTONES from "@/data/milestones.json";
-import CAPITAL from "@/data/capital.json";
 import { FirmLogo } from "@/components/firm-logo";
 import { Sparkline } from "@/components/sparkline";
 import { lookupAcronym } from "@/components/abbr";
@@ -38,10 +37,6 @@ type StageKey = (typeof STAGES)[number]["key"];
 // *raised* that year (sum of capital-lane round sizes) — never valuation
 // or market cap. Neuralink $650m is a Series E raise.
 const YEARS = [2024, 2025, 2026] as const;
-
-// Naveen's Q1+ 2026 memo chart (capital.json). Independent comparison cut —
-// not a sum of the dots, and not shown as the year-column hero.
-const MEMO_CAPITAL = CAPITAL;
 
 const PLOT_TOP = 24;
 const LANE_LABEL_H = 20;
@@ -500,7 +495,8 @@ export function MilestoneTimeline() {
                 <span className="tnum text-muted">{total}</span>
                 {!open && <span className="text-[12px] text-muted" aria-hidden>▸</span>}
               </button>
-              <div className={`grid min-w-0 max-w-full transition-all duration-300 ease-out ${open ? "flex-1 basis-full grid-cols-[1fr] opacity-100 sm:basis-auto" : "grid-cols-[0fr] opacity-0"}`}>
+              {/* Zero-width grids still wrap into tall invisible stacks; closed controls must leave layout. */}
+              <div className={`min-w-0 max-w-full ${open ? "grid flex-1 basis-full grid-cols-[1fr] sm:basis-auto" : "hidden"}`}>
                 <div className="min-w-0 overflow-hidden">
                   <div className="flex flex-wrap items-center gap-1.5 pr-1">
                     <span className="mx-0.5 h-5 w-px shrink-0 bg-border-strong" aria-hidden />
@@ -600,16 +596,6 @@ export function MilestoneTimeline() {
               </button>
             ))}
             <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Sourced round sizes on this lane — not valuations or market cap. Fold this panel to see a full year without scrolling.</div>
-            <div className="mt-3 border-t border-border pt-3">
-              <div className="mb-1 text-[12px] font-semibold text-muted">Memo cut</div>
-              {MEMO_CAPITAL.map((c) => (
-                <div key={c.year} className="tnum flex items-baseline justify-between px-1 text-[12px] text-muted">
-                  <span>{c.year}</span>
-                  <span>{fmtUsd(c.usdM)}</span>
-                </div>
-              ))}
-              <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Naveen’s Q1+ 2026 chart. Independent of the dots.</div>
-            </div>
 
             <div className="mt-4 border-t border-border pt-3">
               <div className="mb-1 flex items-center justify-between">
