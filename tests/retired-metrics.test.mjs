@@ -17,14 +17,8 @@ test('retired panels are unmounted, with every other source observation retained
     await click(document.querySelector('[data-expand-metrics]'));
     for (const id of retiredPoints) assert.equal(!!document.querySelector(`[data-source-observation="${id}"]`), false, id);
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
+    assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), expected);
     assert.equal(expected.length, 78);
-    const observed = [...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort();
-    const addedId = 'microns-v117-public-images-2021'; // Approved release-manifest addition, independent of the current projection.
-    assert.equal(expected.includes(addedId), false, 'The original archive stays unchanged');
-    assert.deepEqual(observed.filter(id => id !== addedId), expected, 'Every original retained observation appears exactly once');
-    assert.deepEqual(observed, [...expected, addedId].sort(), 'Only the approved new release point is additive');
-    assert.equal(observed.length, 79);
-    assert.equal(observed.filter(id => id === addedId).length, 1);
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15);
     assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 15); // 14 numeric + timeline
     assert.equal(document.querySelector('[data-metric-toggle="Tissue quality and annotation"]'), null);

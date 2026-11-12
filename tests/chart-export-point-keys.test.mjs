@@ -5,7 +5,7 @@ import { DraftChartPlot } from '../src/components/draft-chart-plot.tsx';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 import { mount, click } from './modal-helpers.mjs';
 globalThis.React=React;
-for(const id of ['public-data-size','acquisition-economics','largest-connectome-neurons'])test(`${id}: exported chart visibly identifies every observation and date without a prose footnote`,async()=>{
+for(const id of ['largest-connectome-neurons'])test(`${id}: exported chart visibly identifies every observation and date without a prose footnote`,async()=>{
  const plot=Object.values(METRIC_CHART_EVIDENCE).flatMap(e=>e.plots).find(p=>p.id===id);
  const snapshots=[],original=URL.createObjectURL;
  const cleanup=await mount(React.createElement(DraftChartPlot,{plot,shareAnchor:'metric-panel-'+id}));

@@ -6,9 +6,6 @@ import {JSDOM} from 'jsdom';
 import {METRIC_CHART_EVIDENCE} from '../src/data/metric-chart-visibility.ts';
 import {DRAFT_CHART_EVIDENCE} from '../src/data/draft-chart-observations.ts';
 import {DraftChartPlot} from '../src/components/draft-chart-plot.tsx';
-import {DraftChartsSection} from '../src/components/sections/draft-charts-section.tsx';
-import {canonicalPerformanceAnchor} from '../src/data/field-velocity-links.ts';
-import {mount, click, settle} from './modal-helpers.mjs';
 
 globalThis.React = React;
 const neuronPlot = METRIC_CHART_EVIDENCE['Largest published connectome over time'].plots[0];
@@ -67,21 +64,4 @@ test('preview and detail render faint dashed reference lines on the same neuron-
       }
     } finally { dom.window.close(); }
   }
-});
-
-test('the public-byte detail links to the existing source-qualified neuron-count view', async () => {
-  const cleanup = await mount(React.createElement(DraftChartsSection), '#selected-public-image-resource-footprints');
-  try {
-    const link = document.querySelector('dialog[open] [data-related-chart]');
-    assert.ok(link, 'An explicit related view makes the scale comparison reachable');
-    assert.equal(link.getAttribute('href'), '#' + canonicalPerformanceAnchor('metric-panel-largest-connectome-neurons'));
-    assert.match(link.textContent, /Neuron-count view/);
-    assert.match(link.parentElement.textContent, /separate measurement/);
-    await click(link);
-    await settle();
-    const dialog = document.querySelector('dialog[open]');
-    assert.equal(dialog.querySelector('h2').textContent, neuronPlot.title);
-    assert.equal(dialog.querySelectorAll('[data-anatomical-reference]').length, 3);
-    assert.equal(dialog.querySelectorAll('[data-source-observation]').length, 5);
-  } finally { await cleanup(); }
 });

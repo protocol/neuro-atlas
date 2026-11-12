@@ -49,7 +49,6 @@ export type DraftPlot = {
   /** Optional evidence basis; default preserves source-reported charts. */
   observationBasis?: string;
   references?: readonly DraftReference[];
-  relatedChart?: { anchor: string; label: string; note: string };
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

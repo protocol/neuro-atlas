@@ -45,9 +45,7 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
     assert.equal(visible('[data-draft-chart-card]').length, 15, 'Each of the 14 numeric plots and the timeline is a peer tile');
     assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 14);
-    assert.equal(visible('[data-source-observation]').length, 79);
-    assert.equal(visible('[data-source-observation="microns-v117-public-images-2021"]').length, 1);
-    assert.equal(visible('[data-source-observation]:not([data-source-observation="microns-v117-public-images-2021"])').length, 78, 'All original observations remain after reopening');
+    assert.equal(visible('[data-source-observation]').length, 78);
     assert.equal(visible('[data-trends-card]').length, 1);
     assert.equal(visible('[data-performance-card]').length, 8);
     const ids = [...document.querySelectorAll('[id]')].map(n => n.id);

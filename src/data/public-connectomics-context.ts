@@ -1,22 +1,4 @@
-import type { DraftObservation, DraftReference } from "@/lib/draft-chart-types";
-
-/** A release-manifest product, distinct from the later, broader 1.6 PB resource report. */
-export const MICRONS_V117_PUBLIC_IMAGES: DraftObservation = {
-  id: "microns-v117-public-images-2021",
-  x: 2021,
-  y: (117 + 55) / 1_000,
-  label: "MICrONS v117: public fine-aligned EM imagery",
-  dateLabel: "2021-07 · first public release (month precision)",
-  sourceUrl: "https://www.microns-explorer.org/manifests/mm3-v117",
-  sourceTitle: "MICrONS Explorer — Release Notes v117, July 2021",
-  quote: "This document contains detailed information about the first public data released on the cubic millimeter dataset in July 2021.\nPrecompute Image Data (117 TB)\nPrecomputed Image (55 TB)",
-  qualifier: "≈",
-  group: "Published image sizes",
-  marker: "circle",
-  note: "The v117 release manifest reports 117 TB for Minnie65 and 55 TB for Minnie35 fine-aligned EM image products: 117 + 55 = 172 TB = 0.172 PB. The manifest identifies the first public release as July 2021, at month precision. Minnie65 imagery includes the multiresolution pyramid from 8 × 8 × 40 nm. AWS and Google mirror the same specimen; each image product is counted once. Segmentation, meshes, synapse tables and functional data have separate footprints. The 2025 1.6 PB headline describes a broader resource report for this same specimen, with different product membership. These are producer-reported release-manifest sizes, rather than an exact archived byte inventory.",
-  annotation: "MICrONS v117 · Jul. 2021 · ≈0.172 PB EM imagery",
-  exportNote: "July 2021 first public release, month precision. The manifest lists 117 TB + 55 TB of fine-aligned EM image products. Same specimen as the broader April 2025 1.6 PB resource report; mirrors and derived products are excluded from this sum.",
-};
+import type { DraftReference } from "@/lib/draft-chart-types";
 
 /** Anatomical neuron counts, not completed-connectome targets or byte conversions. */
 export const WHOLE_BRAIN_NEURON_REFERENCES: readonly DraftReference[] = [

@@ -135,11 +135,8 @@ test('preview is a visibly bounded card with a full-area native trigger and comp
 
 test('modal keyboard trap includes a closed source summary, not its hidden source controls', async () => {
   const { ChartModal } = await import('../src/components/chart-modal.tsx');
-  // An unlinked chart still ends at its source disclosure; linked charts have
-  // separately pinned visible final controls below, not hidden source links.
-  const sourcePlot = METRIC_CHART_EVIDENCE['Paired structure–function dataset scale over time'].plots.find(item => item.id === 'paired-manual');
-  const cleanup = await mount(React.createElement(ChartModal, { id: 'source-trap', title: sourcePlot.title, returnFocus: { current: null } },
-    React.createElement(DraftChartPlot, { plot: sourcePlot, shareAnchor: 'metric-panel-paired-manual' })), '#metric-panel-paired-manual');
+  const cleanup = await mount(React.createElement(ChartModal, { id: 'source-trap', title: plot.title, returnFocus: { current: null } },
+    React.createElement(DraftChartPlot, { plot, shareAnchor: anchor })), `#${anchor}`);
   try {
     const dialog = document.querySelector('dialog');
     const close = dialog.querySelector('.pc-modal-header button');
@@ -156,9 +153,6 @@ test('modal keyboard trap includes a closed source summary, not its hidden sourc
 });
 
 for (const { id, finalSelector, finalText, target } of [
-  { id: 'recording-hours', finalSelector: '[data-related-bci-participants]', finalText: 'Implanted BCI participants over time', target: 'revealed_commitments' },
-  { id: 'public-data-size', finalSelector: '[data-related-chart]', finalText: 'Neuron-count view with mouse, macaque and human scale ↗', target: 'metric-panel-largest-connectome-neurons' },
-  { id: 'acquisition-economics', finalSelector: '[data-connectomics-cost-evidence] > summary', finalText: 'Reconstruction and proofreading cost evidence' },
   { id: 'largest-connectome-neurons', finalSelector: '[data-anatomical-reference-sources] > summary', finalText: 'Anatomical neuron counts — scale references' },
 ]) test(`${id}: modal Tab wraps through the actual final visible control, excluding closed disclosure descendants`, async () => {
   const { ChartModal } = await import('../src/components/chart-modal.tsx');

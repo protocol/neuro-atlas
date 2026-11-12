@@ -1,22 +1,7 @@
 import { DRAFT_CHARTS, type DraftChart } from "./draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
-import { MICRONS_V117_PUBLIC_IMAGES, WHOLE_BRAIN_NEURON_REFERENCES } from "./public-connectomics-context";
-
-// Add release-manifest evidence without moving later reports or byte measurements.
-const publicDataSource = DRAFT_CHART_EVIDENCE["Open-access connectomics data over time"].plots[0];
-const publicDataPlot: DraftPlot = {
-  ...publicDataSource,
-  xLabel: "Release / report / measurement year",
-  scope: publicDataSource.scope.replace("Dates identify reports or storage measurements.", "Dates identify release manifests, reports or storage measurements."),
-  relatedChart: {
-    anchor: "metric-panel-largest-connectome-neurons",
-    label: "Neuron-count view with mouse, macaque and human scale",
-    note: "Selected connectome counts are a separate measurement of mapping scope; the anatomical references supply count-scale context. Byte footprints also depend on sampling, encoding and included products.",
-  },
-  seriesNote: "H01's June 1, 2021 release already reported 1.4 PB of imagery. MICrONS v117's July 2021 release manifest reports 117 TB and 55 TB of EM imagery (0.172 PB together). Its April 2025 1.6 PB report covers broader resource scope for the same specimen. MaleCNS's JPEG footprint was measured November 3, 2026; its initial dataset release was October 2025. Reported release products and later measurements retain their own dates and scopes.",
-  points: [...publicDataSource.points.slice(0, 4), MICRONS_V117_PUBLIC_IMAGES, ...publicDataSource.points.slice(4)],
-};
+import { WHOLE_BRAIN_NEURON_REFERENCES } from "./public-connectomics-context";
 
 // Shared axes change presentation, not source records, dates or measured values.
 const recordingHours = DRAFT_CHART_EVIDENCE["Neural recording hours collected over time"];
@@ -78,12 +63,11 @@ export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.
     ...evidence,
     plots: evidence === recordingHours ? [recordingHoursPlot] : evidence.plots
       .filter(plot => !RETIRED_METRIC_PLOT_IDS.has(plot.id) && plot.id !== "acquisition-economics")
-      .map(plot => plot.id === "public-data-size" ? publicDataPlot
-        : plot.id === "largest-connectome-neurons" ? {
-          ...plot,
-          references: WHOLE_BRAIN_NEURON_REFERENCES,
-          seriesNote: "Dashed lines show anatomical neuron-count estimates for mouse, rhesus macaque and human brains. These counts provide scale context alongside selected whole and partial connectomes, whose reconstruction completeness varies. Source methods and specimen boundaries remain with each reference.",
-        } : plot),
+      .map(plot => plot.id === "largest-connectome-neurons" ? {
+        ...plot,
+        references: WHOLE_BRAIN_NEURON_REFERENCES,
+        seriesNote: "Dashed lines show anatomical neuron-count estimates for mouse, rhesus macaque and human brains. These counts provide scale context alongside selected whole and partial connectomes, whose reconstruction completeness varies. Source methods and specimen boundaries remain with each reference.",
+      } : plot),
     ...(title === "Connectomics imaging throughput over time" ? {
       summary: "Selected source-reported EM acquisition rates at each protocol's stated resolution.",
     } : {}),

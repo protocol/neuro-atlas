@@ -23,30 +23,24 @@ test('mounted funding views keep supporting type at least 12px with calm label t
   } finally { await cleanup(); }
 });
 
-test('financing circles encode USD amount by area while preserving every visible source readout', async () => {
+test('every financing amount has a readable visible readout without expanding the quantitative capsule', async () => {
   const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }));
   try {
     const rows = buildCompanyRows(data.companies, data.rounds, { query: '', scope: 'All', modality: 'All' });
     assert.equal(document.querySelectorAll('[data-financing-readout]').length, data.rounds.length, 'every financing has a visible readout');
     for (const row of rows) {
-      const company = [...document.querySelectorAll('button')].find(el => el.textContent.includes(row.name)).closest('[data-funding-company]');
+      const company = [...document.querySelectorAll('button')].find(el => el.textContent.includes(row.name));
       const readouts = [...company.querySelectorAll('[data-financing-readout]')];
       assert.equal(readouts.length, row.rounds.length);
       row.rounds.forEach((round, index) => {
         const mark = [...company.querySelectorAll('[title]')].find(el => el.title === `${row.name} · ${round.stage} · ${round.displayAmount}`);
-        const diameter = 40 * Math.sqrt(round.amountUsdM / Math.max(...data.rounds.map(item => item.amountUsdM)));
-        assert.equal(mark.style.width, `${diameter}px`, 'diameter is proportional to the square root of indexed USD amount');
-        assert.equal(mark.style.height, mark.style.width, 'financing marks are circles');
-        const areaPerUsdM = Math.PI * (parseFloat(mark.style.width) / 2) ** 2 / round.amountUsdM;
-        assert.ok(Math.abs(areaPerUsdM - Math.PI * 20 ** 2 / Math.max(...data.rounds.map(item => item.amountUsdM))) < 1e-9, 'every financing uses the same area per USD million');
+        const width = Math.min(76, 20 + Math.sqrt(round.amountUsdM) * 2.1);
+        assert.equal(mark.style.width, `${width}px`, 'amount-encoded width is unchanged');
         const expected = document.createElement('span');
-        const target = mark.closest('[data-financing-target]');
-        expected.style.left = `calc(${getTimelinePosition(round.announcedOn, data.summary.firstYear, data.summary.lastYear)}% - ${Math.max(24, diameter) / 2}px)`;
-        assert.equal(target.style.left, expected.style.left);
-        assert.equal(mark.textContent, '', 'financing dots keep the readable amounts outside the mark');
-        assert.match(mark.className, /rounded-full/);
-        assert.match(mark.className, /bg-accent\/65/, 'transparent fill reveals overlapping financing dots');
-        assert.doesNotMatch(mark.className, /border|shadow/, 'outlines do not add a fixed amount to encoded area');
+        expected.style.left = `calc(${getTimelinePosition(round.announcedOn, data.summary.firstYear, data.summary.lastYear)}% - ${width / 2}px)`;
+        assert.equal(mark.style.left, expected.style.left);
+        assert.equal(mark.textContent, '', 'narrow marks do not contain enlarged overflowing text');
+        assert.match(mark.className, /bg-accent/);
         const readout = readouts[index];
         assert.ok(readout.textContent.includes(round.displayAmount));
         assert.ok(readout.textContent.includes(round.stage));

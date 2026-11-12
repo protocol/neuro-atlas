@@ -403,7 +403,7 @@ test('public-data export keeps plotted units and source evidence without paintin
   const {JSDOM}=await import('jsdom');const doc=new JSDOM(boundary.svgs[0],{contentType:'image/svg+xml'});const text=[...doc.window.document.querySelectorAll('text')].map(e=>e.children.length?[...e.children].map(line=>line.textContent).join(' '):e.textContent).join('\n').replace(/\s+/g,' ');
   for(const required of [/2026-11-03/,/initial release October 2025/,/same specimen/i,/11 JPEG image resolution levels/,/50,910,260,068,834/,/N5.*segmentation.*meshes.*tables.*excluded/])assert.match(exportEvidence(doc.window.document),required);
   assert.ok(text.includes('More information on Neuro Atlas.'));assert.ok(!text.includes('11 JPEG image resolution levels'));
-  assert.match(text,/Resource size \(PB\)/);assert.doesNotMatch(text,/decimal PB/);assert.equal(doc.window.document.querySelectorAll('[data-source-observation]').length,7);doc.window.close();
+  assert.match(text,/Resource size \(PB\)/);assert.doesNotMatch(text,/decimal PB/);assert.equal(doc.window.document.querySelectorAll('[data-source-observation]').length,6);doc.window.close();
  }finally{await cleanup();boundary.restore()}
 });
 

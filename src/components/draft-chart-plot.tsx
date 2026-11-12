@@ -10,10 +10,6 @@ import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
-import { navigatePerformance } from "@/lib/field-velocity/navigation";
-import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
-import { HUMAN_ACQUISITION_SCENARIO, humanAcquisitionTargets } from "@/lib/human-acquisition-targets";
-import { ConnectomicsCostEvidence } from "@/components/connectomics-cost-evidence";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -86,9 +82,6 @@ function usePlotWidth() {
 
 export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
-  const [showHumanTargets, setShowHumanTargets] = useState(false);
-  const supportsHumanTargets = !preview && plot.id === "acquisition-economics" && plot.yLabel === "Approx. $/10M voxels (log)";
-  const humanTargets = supportsHumanTargets && showHumanTargets ? humanAcquisitionTargets() : [];
   const observationBasis = plot.observationBasis ?? "Source-reported";
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
@@ -105,16 +98,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
-  const scenarioLabels = humanTargets.length ? [
-    ...wrapLabel("Human acquisition-budget targets · hypothetical", width - 12),
-    ...wrapLabel("1,200 cm³ · 4 × 4 × 40 nm · anisotropic", width - 12),
-  ] : [];
-  const top = 28 + yTitle.length * 16 + (scenarioLabels.length ? scenarioLabels.length * 16 + 8 : 0);
-  const bottom = top + (humanTargets.length ? 360 : 232) + previewExtra;
+  const top = 28 + yTitle.length * 16;
+  const bottom = top + 232 + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
   const references = (plot.references ?? []).filter(reference => Number.isFinite(reference.y) && reference.y > 0);
-  const ys = [...plot.points.map(point => point.y), ...humanTargets.map(target => target.dollarsPer10MVoxels), ...references.map(reference => reference.y)];
+  const ys = [...plot.points.map(point => point.y), ...references.map(reference => reference.y)];
   const numericX = plot.xKind === "number";
   let xMin = numericX ? Math.min(...xs) : Math.floor(Math.min(...xs));
   let xMax = numericX ? Math.max(...xs) : Math.ceil(Math.max(...xs));
@@ -138,7 +127,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const xTicks = preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
   const axisLabel = preview ? previewTickLabel : tickLabel;
   const left = Math.max(46, ...yTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
-  const right = width - Math.max(humanTargets.length ? 66 : 24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
+  const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
   const energyAxis = neuroaiEnergyAxis(plot, left, right);
   const x = energyAxis?.x ?? ((value: number) => left + (value - xMin) / (xMax - xMin) * (right - left));
   const breakNote = energyAxis ? wrapLabel(energyAxis.note, width - 12) : [];
@@ -191,15 +180,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     placedKeys.push(position);
     return [{ point, text, ...position }];
   });
-  // Point keys are part of the chart, independent of the shortened information footer.
-  // Keep product/date identity visible in images whose source scope depends on it.
-  const exportPointKeys = ["public-data-size", "acquisition-economics", "largest-connectome-neurons"].includes(plot.id)
+  // Retain the screenshot's observation/date key only for the neuron-count export.
+  const exportPointKeys = plot.id === "largest-connectome-neurons"
     ? plot.points.map(point => {
       const annotationIndex = annotations.findIndex(annotation => annotation.point.id === point.id);
       const key = annotationIndex >= 0 ? `${annotationIndex + 1}. ` : "";
-      const unit = plot.id === "acquisition-economics" ? "$/10M voxels" : plot.id === "public-data-size" ? "PB" : "neurons";
       const coverage = point.id === "lee-reid-2016-neuronal-targets" ? " · boundary-truncated" : "";
-      return { label: `${key}${point.label}${coverage} · ${point.qualifier ?? ""}${Number(point.y.toPrecision(6)).toLocaleString("en-US", { maximumSignificantDigits: 6 })} ${unit} · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
+      return { label: `${key}${point.label}${coverage} · ${point.qualifier ?? ""}${Number(point.y.toPrecision(6)).toLocaleString("en-US", { maximumSignificantDigits: 6 })} neurons · ${point.dateLabel}`, color: groupColor(point), marker: point.marker };
     }) : [];
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
@@ -213,9 +200,6 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend: [...legend, ...exportPointKeys],
       notes: [plot.scope, plot.seriesNote ?? "",
-        ...(humanTargets.length ? [HUMAN_ACQUISITION_SCENARIO.scope,
-          "N = 1,200 × 10²¹ / (4 × 4 × 40) = 1.875 × 10²¹ voxels; guide = acquisition budget × 10,000,000 / N $/10M voxels.",
-          `Scenario sources: ${HUMAN_ACQUISITION_SCENARIO.volumeSource.url} ; ${HUMAN_ACQUISITION_SCENARIO.voxelSource.url}`] : []),
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
@@ -226,33 +210,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
-    {supportsHumanTargets && <div className="human-acquisition-scenario">
-      <label><input type="checkbox" data-human-acquisition-toggle checked={showHumanTargets} onChange={event => {
-        tooltip.clear();
-        setShowHumanTargets(event.target.checked);
-      }} /> Show human acquisition-budget targets</label>
-      {humanTargets.length > 0 && <p>Hypothetical acquisition-only budgets for 1,200 cm³ at 4 × 4 × 40 nm (anisotropic). Each source point retains its original protocol and resolution.</p>}
-      <details data-human-acquisition-method>
-        <summary>Target assumptions and calculation</summary>
-        <p>{HUMAN_ACQUISITION_SCENARIO.scope}</p>
-        <p>Voxel count N = 1,200 × 10²¹ / (4 × 4 × 40) = 1.875 × 10²¹. For acquisition budget B, the guide is B × 10,000,000 / N dollars per 10M voxels. Guides extend the logarithmic axis below the source estimates.</p>
-        <p>Volume planning assumption: <a href={HUMAN_ACQUISITION_SCENARIO.volumeSource.url} target="_blank" rel="noreferrer">{HUMAN_ACQUISITION_SCENARIO.volumeSource.title} ↗</a>. Voxel sampling and section thickness: <a href={HUMAN_ACQUISITION_SCENARIO.voxelSource.url} target="_blank" rel="noreferrer">{HUMAN_ACQUISITION_SCENARIO.voxelSource.title} ↗</a>.</p>
-        <ul>{humanAcquisitionTargets().map(target => <li key={target.label}>{target.label}: {target.dollarsPer10MVoxels.toExponential(3)} $/10M voxels</li>)}</ul>
-      </details>
-    </div>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
-      {scenarioLabels.length > 0 && <g data-human-acquisition-assumptions><text className="draft-plot-axis-title" x={0} y={20 + yTitle.length * 16}>
-        {scenarioLabels.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < scenarioLabels.length - 1 ? " " : ""}</tspan>)}
-      </text></g>}
       {yTicks.map(tick => <g key={tick}>
         {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
         <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
-      </g>)}
-      {humanTargets.map(target => <g key={target.label} data-human-acquisition-target={target.budgetDollars} data-target-cost-per-10m={target.dollarsPer10MVoxels}>
-        <title>{target.label} hypothetical whole-human acquisition budget · 1,200 cm³ · 4 × 4 × 40 nm</title>
-        <line x1={left} x2={right} y1={y(target.dollarsPer10MVoxels)} y2={y(target.dollarsPer10MVoxels)} stroke="var(--muted)" strokeWidth={1.5} strokeDasharray="8 5" vectorEffect="non-scaling-stroke" />
-        <text className="draft-plot-tick" x={right + 8} y={y(target.dollarsPer10MVoxels) + 4}>{target.label}</text>
       </g>)}
       {references.map(reference => <g key={reference.id} data-anatomical-reference={reference.id}>
         <line x1={left} x2={right} y1={y(reference.y)} y2={y(reference.y)} stroke="var(--muted)" strokeWidth={1}
@@ -331,14 +293,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
           </tr>)}</tbody>
         </table>
       </div>
-    </details>
-    {["acquisition-economics", "proofreading-effort"].includes(plot.id) && <ConnectomicsCostEvidence />}
-    {plot.id === "recording-hours" && <p className="draft-plot-related">Related measurement: <a data-related-bci-participants href={`#${canonicalPerformanceAnchor("revealed_commitments")}`} onClick={event => { event.preventDefault(); navigatePerformance("revealed_commitments"); }}>Implanted BCI participants over time</a> · separately reported cohorts.</p>}</>}
-    {!preview && plot.relatedChart && <p className="draft-plot-related">
-      <a href={`#${canonicalPerformanceAnchor(plot.relatedChart.anchor)}`} data-related-chart
-        onClick={event => { event.preventDefault(); navigatePerformance(plot.relatedChart!.anchor); }}>{plot.relatedChart.label} ↗</a>
-      {" "}{plot.relatedChart.note}
-    </p>}
+    </details></>}
     {!preview && references.length > 0 && <details className="draft-plot-data" data-anatomical-reference-sources>
       <summary>Anatomical neuron counts — scale references</summary>
       <p className="draft-plot-scope">Dashed lines give anatomical count context. Whole and partial connectomes retain their study-specific coverage and reconstruction completeness.</p>

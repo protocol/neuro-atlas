@@ -2,10 +2,6 @@
 
 Only public scientific sources are represented here. This is a curation record, not a claim of new experimental measurements or integrated browser verification.
 
-## Public resource release dates and anatomical scale
-
-The [November 11 follow-up](public-connectomics-release-context.md) distinguishes July 2021 MICrONS v117 image-product availability from its broader 2025 resource report and the later MaleCNS byte inventory. It adds separately sourced mouse, rhesus macaque and human anatomical neuron-count references to the existing count view. Archived observations, quotes and publication dates remain intact; no heterogeneous growth fit or assumed whole-brain byte target is introduced.
-
 ## Tissue and neuronal counts
 
 H01 and MICrONS retain their existing raw x/y coordinates. The annotations distinguish approximately 1 mm³ human tissue released June 1, 2021 ([Google Research](https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/)) and mouse tissue released July 2021 ([MICrONS v117](https://microns-explorer.org/manifests/mm3-v117)). Later publications are not independent tissue acquisitions.

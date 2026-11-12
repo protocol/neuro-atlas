@@ -303,15 +303,11 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   useGrowthViewport(plot,index===1);
   const notes=publicationExportNotes(index,snapshot,data,baseline);
   const hasScience=annualScienceAvailable(data);
-  const europe=data.growth.find(row=>row.id==="europe");
   const selected=Object.fromEntries(tableNames(index).filter(name=>snapshot.tables[name]).map(name=>[name,snapshot.tables[name]]));
   const download={chart:anchor,snapshotSchemaVersion:snapshot.schemaVersion,source:snapshot.source,tables:selected,audit:snapshot.audit,...(index===1&&snapshot.matchedGrowth?{matchedGrowth:snapshot.matchedGrowth}:{})};
   return <>
     <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} disabled={index===3&&!data.endpointTransitions} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech · left axis: papers",color:blue},...(hasScience?[{label:"All research · right axis: science index (2022 = 100)",color:teal},{label:"Global science context · four-domain band: science index (2022 = 100)",color:gray}]:[])]:[]})}/></ChartActions>
     <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
-    {index>=2&&<p className="publication-scope" data-author-cohort-context>{index===2
-      ? `${number(data.totalResearchers)} unique OpenAlex authors with papers in ${data.authorEndYear} in the selected BCI/EEG and neural-engineering topics. Universities is a paper-affiliation category. Census coverage and employment histories are unmeasured.`
-      : `${data.endpointTransitions ? `${number(data.endpointTransitions.reduce((sum,row)=>sum+row.total,0))} unique OpenAlex authors` : "Selected OpenAlex authors (complete cohort count unavailable)"} in the selected BCI/EEG and neural-engineering topics; first observed in 2016–${data.authorEndYear}, with at least two active publication years. Census coverage and employment histories are unmeasured.`}</p>}
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}
     {index===1&&<>
       <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>{setBaseline(event.target.value as GrowthBaseline);tooltip.clear();}}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
@@ -321,7 +317,6 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     {index===2&&<section className="publication-sector-key" data-publication-sector-key aria-label="Researcher publication-sector key"><p>{number(data.totalResearchers)} unique researchers · {data.authorEndYear}</p><ul>{data.sectors.map(row=><li key={row.sector}><span aria-hidden="true" style={{background:row.color}}/><span>{row.label}: <strong>{number(row.count)}</strong> ({number(row.share)}%)</span></li>)}</ul></section>}
     <div className="sr-only" data-publication-inspector role="status" aria-live="polite">{tooltip.active??""}</div>
     <PointTooltip {...tooltip.tooltipProps}>{index===0?<AnnualTooltipContent data={data} active={tooltip.active}/>:<p>{tooltip.active}</p>}<p><a href={snapshot.source.url} target="_blank" rel="noreferrer">Source: OpenAlex ↗</a></p></PointTooltip>
-    {index===1&&europe&&<p className="publication-scope" data-regional-reading>Europe: {number(europe.start)} → {number(europe.end)} indexed works ({percent(europe.growth)}), {snapshot.source.baselineYear}–{snapshot.source.paperEndYear}.{europe.referenceGrowth!==null&&<> Comparable all-field European output grew {percent(europe.referenceGrowth)}.</>} This describes two-endpoint output growth; causes and within-period acceleration require separate evidence.</p>}
     <p className="pc-chart-note">Hover, focus or tap a mark for exact values.</p>
     <section className="pc-methodology"><h4>Methodology</h4>
       {notes.filter(note=>!note.startsWith("Source counts: ")).map(note=><p key={note}>{note}</p>)}
