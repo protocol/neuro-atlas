@@ -55,3 +55,13 @@ At 1440/390/320px in light and dark:
 5. Paste into an unsubmitted local rich/text editor to characterize selection of representations. Never claim social-site image support from MIME presence alone. Social receiver behavior is separately parent-tested; no automatic post/upload.
 
 Commands: `node --import tsx --test tests/chart-export.test.mjs tests/chart-sharing.test.mjs`; full `npm test`; `npm run typecheck`; `npm run build`.
+
+## Programmatic export (`window.neuroAtlas`)
+
+The `Download PNG` / `Copy chart` controls live inside each chart's top-layer `<dialog>` and emit through a blob `<a download>` or clipboard write — neither of which a headless or CDP-driven browser can open or capture. For automation (and any script), the identical, already-built image is exposed as retrievable data on `window.neuroAtlas`, available on the Field velocity page. No second rendering path: it calls `buildChartImage`/`chartPng` verbatim (`src/lib/chart-export-api.ts`), so every export-contract guarantee above still holds.
+
+- `window.neuroAtlas.charts()` → `[{ anchor, title, open }]` for the curated chart panels (the `kind: "chart"` entries in `field-velocity-links.ts`). `open` reflects whether that panel's share control is currently mounted.
+- `await window.neuroAtlas.exportChart(anchor)` → `{ anchor, title, filename, url, width, height, pngBase64 }` for a chart whose panel is open. Open one by setting `location.hash` to its slug (e.g. `#citation-latency`).
+- `await window.neuroAtlas.exportAll()` → `{ exported: ExportedChart[], skipped: string[] }`. Opens each chart panel in turn by hash, exports it, and restores the original location. `neuralink-brand-context` is reported in `skipped` because it is not mounted in Field velocity.
+
+A chart's `anchor` is its canonical slug (also its modal hash). The `pngBase64` is the raw PNG with no data-URI prefix. Only mounted `ChartShare` controls register, so a returned chart always had a laid-out, exportable SVG. The API is read-only and exposes nothing the UI did not already generate.
