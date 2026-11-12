@@ -1,0 +1,57 @@
+{
+  "runtime": "a220bbb55eea471bacc623513e5809efada000e3",
+  "route": "http://127.0.0.1:35642/neuro-atlas/field-velocity",
+  "sourceHeader": "a220bbb55eea471bacc623513e5809efada000e3",
+  "buildId": "3NLChUNnmf7ashbUnhkvX",
+  "assetCount": 12,
+  "identicalAssetHashes": [
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0-o74znen4827.js",
+      "sha256": "1c53a591011ecf8972f21353ad184772d0d75a987fb02fe1907104a16541e717"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/01s_f_3qlcqtb.js",
+      "sha256": "e941c350531e6a7b183634809cea8acabb9a28738fa42bb7fce0cc8ee9158dce"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0j9u2_hici83y.js",
+      "sha256": "0a9d44864095400eda0d26275ad8d88acf0826e5d21d92052b4b24bfe67c18aa"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0kj6v1t6q884x.js",
+      "sha256": "8d8f3266e889542cb443ac816232dce1ba3d7c7a665f9fb5ebb8e50cd0cc5dad"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/0umf92h1sb77c.js",
+      "sha256": "c410d0f2543e080768fc14f73b2bd1fdf103e26956e9730390b5e41c4fb5ff8b"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/1i-qgth2nl5g9.js",
+      "sha256": "5d39195c43a0397df5950f4db2e111fb2a87406eb393292baae542343b90f782"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/389iyzdcxo8n3.css",
+      "sha256": "19a89c1f2fb74bfa35feed837a1a0071761d73a9ffaa390b2ae3bd231151a19c"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/3srfjz42u14tx.js",
+      "sha256": "c9dbc9d74b2ea0fefb8491e70ab13111e063fb197ce025dd15898a61ee5a1adb"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/turbopack-0hgxe7m8t4pnj.js",
+      "sha256": "3ea635ffec6ccefad25c57c3dd1bc9599209071b7b1b3a77181a24e5bdaf3f70"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608"
+    }
+  ]
+}

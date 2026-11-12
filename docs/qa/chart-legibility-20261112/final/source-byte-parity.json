@@ -1,0 +1,12 @@
+{
+  "base": "cc1ceaa41e0547144be462068496449ee284fa6b",
+  "runtime": "a220bbb55eea471bacc623513e5809efada000e3",
+  "identicalFiles": {
+    "src/data/draft-chart-evidence.json": "cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd",
+    "src/data/draft-chart-observations.ts": "ebd0f48e7d50fb5ba8b155039ab7f537b6d908093c55e34594bf38912707f2be",
+    "src/data/field-velocity/neurotech.snapshot.json": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee",
+    "src/data/field-velocity/neurotech.snapshot.json.provenance.json": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97",
+    "src/data/field-velocity/citation-latency.bundled-20261106.json": "0e43c72e2176e21d5418ff88948f3e61396e36a381dc70b8ccb2cbb2a0866611",
+    "package-lock.json": "6955d072df12ed6257a003e1c99c1963f04a6b32390b059c7c8e3a3168be0c96"
+  }
+}

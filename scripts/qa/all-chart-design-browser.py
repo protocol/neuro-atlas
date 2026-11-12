@@ -14,7 +14,7 @@ def settle():
  # Wait for actual CTM-backed type and chart sizing rather than capturing first paint.
  last=None;stable=0
  for _ in range(80):
-  v=probe('return [...document.querySelectorAll("[data-metric-rail] article")].map(e=>[Math.round(e.getBoundingClientRect().height),e.querySelector("svg")?.getAttribute("style")]);')
+  v=probe('return [...document.querySelectorAll("[data-metric-rail] article")].map(e=>[Math.round(e.getBoundingClientRect().height),Math.round((e.querySelector("svg")?.getBoundingClientRect().width||0)*10)]);')
   stable=stable+1 if v==last else 0
   if stable>=4:return
   last=v;time.sleep(.08)
@@ -48,10 +48,10 @@ for width in [1440,390,320]:
   assert probe('return !!document.querySelector("dialog[open]");'),(width,p['title'],'Dialog not open')
   assert not probe('return !!document.querySelector("dialog [data-point-tooltip]");'),(width,p['title'],'Popup preselected')
   assert not probe('return !!document.querySelector("dialog .draft-plot-inspector,dialog .pc-point-readout");'),(width,p['title'],'Old gray source panel')
-  values=probe('''const d=document.querySelector('dialog'),s=d.querySelector('.draft-plot-svg,.pc-plot svg,.publication-full-plot svg,.gt-plot svg');return {title:d.querySelector('h2').textContent,hasPlot:!!s,marks:s?[...s.querySelectorAll('[data-source-observation],[data-curve-point],[data-publication-mark],[data-trend-point]')].map(e=>({id:e.getAttribute('data-source-observation')??e.getAttribute('data-curve-point'),value:e.getAttribute('data-value'),date:e.getAttribute('data-date'),label:e.getAttribute('aria-label')})):[],labels:s?[...s.querySelectorAll('text')].map(e=>({text:e.textContent,px:parseFloat(getComputedStyle(e).fontSize)*Math.hypot(e.getScreenCTM().a,e.getScreenCTM().b)})):[]};''')
+  values=probe('''const d=document.querySelector('dialog'),s=d.querySelector('.draft-plot-svg,.pc-plot svg,.publication-full-plot svg,.gt-plot svg');return {title:d.querySelector('h2').textContent,hasPlot:!!s,marks:s?[...s.querySelectorAll('[data-source-observation],[data-curve-point],[data-publication-mark],[data-trend-point]')].map(e=>({id:e.getAttribute('data-source-observation')??e.getAttribute('data-curve-point'),value:e.getAttribute('data-value'),date:e.getAttribute('data-date'),label:e.getAttribute('aria-label')})):[],labels:s?[...s.querySelectorAll('text')].map(e=>({text:e.textContent,expected:Number(e.getAttribute('data-export-font-size')||12),px:parseFloat(getComputedStyle(e).fontSize)*Math.hypot(e.getScreenCTM().a,e.getScreenCTM().b)})):[]};''')
   assert values['title']==p['title'],(width,p['title'],'Wrong dialog identity',values['title'])
   if values['hasPlot']:
-   assert all(abs(t['px']-12)<.15 for t in values['labels']),(width,p['title'],'Modal type',values['labels'])
+   assert all(abs(t['px']-t['expected'])<.15 for t in values['labels']),(width,p['title'],'Modal type',values['labels'])
   mark='dialog [data-source-observation][tabindex="0"],dialog [data-curve-point][tabindex="0"],dialog [data-publication-mark][tabindex="0"],dialog [data-trend-point][tabindex="0"]'
   hasmark=probe('return !!document.querySelector('+json.dumps(mark)+');')
   if hasmark:
