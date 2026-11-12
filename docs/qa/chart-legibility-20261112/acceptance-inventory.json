@@ -86,8 +86,8 @@
         "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
       },
       "series_connections": {
-        "applicability": "not_applicable",
-        "decision": "Program/clinical/review cohorts have different inclusion rules and overlaps; do not infer cumulative continuity."
+        "applicability": "applies",
+        "decision": "Connect only the five explicitly cumulative Neuralink checkpoints, identical to the recipient chart. Other program/clinical/review cohorts remain separate; preserve mixed date bases and overlapping-cohort caveats."
       },
       "wider_ratio": {
         "applicability": "applies",

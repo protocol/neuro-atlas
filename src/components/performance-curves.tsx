@@ -267,7 +267,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       <p data-point-description>{active.label}</p>
       {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
     </>}</PointTooltip>}
-    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
+    {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : data.connectTracks?.length ? "Lines connect successive reliable observations within each measurement series; other source observations remain separate." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>
       <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records stop in 2014. Neuron-count equivalence is not successful whole-brain live recording." : "TUSZ corpus only — not worldwide human data. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
@@ -315,9 +315,9 @@ export function CurveCard({ id, title, coverage, plot, children, sourceLinks, pr
   </article>;
 }
 
-export function MeasurementCard({ series, provenance, anchor = series.id, previewNote }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string }) {
+export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
-  const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks };
+  const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks, connectTracks };
   return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
       <h4>Definitions &amp; methodology</h4>

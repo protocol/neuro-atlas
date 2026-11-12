@@ -47,7 +47,7 @@ Identity: `revealed_commitments` · renderer: curve
 
 - [x] **Point size — Applies.** Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding.
 - [x] **Annual guides — Applies.** Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied.
-- [x] **Series connections — Not applicable.** Program/clinical/review cohorts have different inclusion rules and overlaps; do not infer cumulative continuity.
+- [x] **Series connections — Applies.** Connect only the five explicitly cumulative Neuralink checkpoints, identical to the recipient chart. Other program/clinical/review cohorts remain separate; preserve mixed date bases and overlapping-cohort caveats.
 - [x] **Wider ratio — Applies.** Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile keeps its 24px next-card peek. Natural plot reflow and one measured outer-height contract remain; no label shrinking.
 - [ ] Parent native QA: settled desktop/narrow geometry, no clipping, source interaction, actual image readability.
 
