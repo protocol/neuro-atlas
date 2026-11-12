@@ -87,9 +87,12 @@ test('compact composer CSS is content-sized and picker is a transparent pointer 
  assert.equal(panel.position,'relative');
  const picker=Object.fromEntries(rules('.atlas-feedback-picker'));
  assert.equal(picker['pointer-events'],'none');
- const toolbar=Object.fromEntries(rules('.atlas-feedback-selection-controls'));
- assert.equal(toolbar.bottom,'10px','picker toolbar leaves native chart close controls exposed');
- assert.equal(toolbar.left,'10px');
+ assert.equal(rules('.atlas-feedback-selection-controls').length,0,'no old floating instructional card');
+ assert.equal(rules('.atlas-feedback-launch').length,0,'no fixed floating launcher');
+ const instructions=Object.fromEntries(rules('.atlas-feedback-sr-only'));
+ assert.equal(instructions.width,'1px');assert.equal(instructions['clip-path'],'inset(50%)','picker instructions are accessible but not visible');
+ const submit=Object.fromEntries(rules('.atlas-feedback-panel [data-feedback-submit], .atlas-feedback-panel [data-feedback-done]'));
+ assert.equal(submit['min-height'],'32px');assert.equal(submit['flex-shrink'],'0','send and done stay usable on narrow screens');
  const backdrop=Object.fromEntries(rules('.atlas-feedback-layer::backdrop'));
  assert.equal(backdrop.background,'transparent');
 });

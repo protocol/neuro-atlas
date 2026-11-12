@@ -8,13 +8,14 @@ const result = await build({
 import React, {useEffect,useRef,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Feedback} from './src/components/feedback/feedback';
+import {FeedbackTrigger} from './src/components/feedback/feedback-trigger';
 import {ChartModal} from './src/components/chart-modal';
 function Fixture(){
  const [hash,setHash]=useState(location.hash), origin=useRef(null);
  useEffect(()=>{const changed=()=>setHash(location.hash);addEventListener('hashchange',changed);addEventListener('atlas-performance-location',changed);return()=>{removeEventListener('hashchange',changed);removeEventListener('atlas-performance-location',changed)}},[]);
  const probe=event=>{window.__nativeEvents.push(event.type)};
  const chart=<><h2 className="fixture-chart-title">Synthetic chart heading</h2><button className="fixture-action" onPointerDown={probe} onPointerUp={probe} onClick={probe}><span><svg width="20" height="20" aria-hidden="true"><path d="M2 2h16v16H2z" fill="currentColor"/></svg>Copy chart</span></button><label>Range <input type="range" onPointerDown={probe} onInput={probe}/></label><label>Checkbox <input type="checkbox" onChange={probe}/></label><svg className="fixture-chart" width="400" height="180" viewBox="0 0 400 180"><g><path d="M20 150L120 90L220 110L360 25" stroke="#587def" strokeWidth="12" fill="none"/></g></svg></>;
- return <><main><p>Native component QA · synthetic page content</p><h1 className="fixture-heading">A useful heading to select</h1><button ref={origin} onClick={()=>location.hash='tissue-mapped'}>Open chart</button><article data-performance-card="tissue-mapped">{hash==='#tissue-mapped'?<ChartModal id="tissue-mapped" title="Fixture chart" returnFocus={origin}>{chart}</ChartModal>:chart}</article></main><Feedback/></>;
+ return <><main><div style={{display:"flex",gap:12}}><a href="https://github.com/protocol/neuro-atlas/pulls">Contribute via PR</a><FeedbackTrigger/></div><p>Native component QA · synthetic page content</p><h1 className="fixture-heading">A useful heading to select</h1><button ref={origin} onClick={()=>location.hash='tissue-mapped'}>Open chart</button><article data-performance-card="tissue-mapped">{hash==='#tissue-mapped'?<ChartModal id="tissue-mapped" title="Fixture chart" returnFocus={origin}>{chart}</ChartModal>:chart}</article></main><Feedback/></>;
 }
 window.__nativeEvents=[];createRoot(document.getElementById('root')).render(<Fixture/>);
 `, resolveDir: process.cwd(), sourcefile: 'feedback-native-fixture.tsx', loader: 'tsx' },

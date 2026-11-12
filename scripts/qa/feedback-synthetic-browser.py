@@ -1,3 +1,4 @@
+# HISTORICAL: pre-chat toolbar/toast replay; not current acceptance. See docs/qa/feedback/README.md.
 # Real public component/client with SYNTHETIC network only. No visitor identity/provider or external write.
 from pathlib import Path
 import os

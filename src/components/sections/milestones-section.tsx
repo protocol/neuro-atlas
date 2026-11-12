@@ -6,13 +6,8 @@ export function MilestonesSection() {
     <>
       <SectionIntro title="Milestone timeline">
         Tracked deals, partnerships, first-in-human trials, and regulatory milestones across
-        neural interfaces and neurotechnology, on one shared time axis — color marks the
-        stage. Filter by BCI only or view the broader neurotech ecosystem.
-        Click a year to focus it. The focused year is wider than the column: a bar under the lanes, and Later months, reach the rest of the year. On desktop, fold the side panel to see the whole year without scrolling.
-        Click a stage in the legend to expand its subcategories and filter by any subset;
-        hover any logo for details, including spelled-out regulatory markers; click to open the
-        primary source. Anything without a confirmed date sits in the &apos;date TBD&apos; shelf
-        rather than being faked onto the axis.
+        neural interfaces and neurotechnology. Filter by BCI only or view the broader
+        neurotech ecosystem. Click a year to put it into focus.
       </SectionIntro>
       <MilestoneTimeline />
       <p className="mt-4 text-xs leading-relaxed text-faint">
