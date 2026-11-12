@@ -12,6 +12,7 @@ import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/na
 import { usePreviewFont } from "@/components/use-preview-font";
 import { useMetricPreviewSpace } from "@/components/use-metric-preview-space";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
+import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
@@ -67,6 +68,7 @@ function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight }:
     <text data-annual-axis="neurotech" x={0} y={fontSize * 1.5} fill={blue} style={{fill:blue}}>{compact ? "Papers" : "Neurotech papers"}</text>
     {hasScience && <><text data-annual-axis="science" x={compact ? 840 : right} y={fontSize * 1.5} textAnchor="end" fill={teal} style={{fill:teal}}>{compact ? "Science index" : "Science index · 2022 = 100"}</text>{compact && <text data-annual-index-unit x={840} y={fontSize * 2.8} textAnchor="end" style={{fill:teal}}>2022 = 100</text>}</>}
     </g>
+    <ChartYearGuides years={annualYears(2010, 2025)} x={x} top={top} bottom={bottom} />
     {[0,1,2,3,4].map(i => <g key={i}><line x1={left} x2={right} y1={y(i*step)} y2={y(i*step)} stroke="var(--border)"/><text data-annual-paper-tick={i*step} x={left-12} y={y(i*step)+4} textAnchor="end" style={{fill:blue}}>{number(i*step)}</text></g>)}
     {indexTicks.map(tick=><text key={tick} data-annual-index-tick={tick} x={right+12} y={scienceY(tick)+4} style={{fill:teal}}>{number(tick)}</text>)}
     {hasScience && <polygon data-science-context fill={gray} fillOpacity=".3" points={[...data.baseline.map(row => `${x(row.year)},${scienceY(index(row.high))}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${scienceY(index(row.low))}`)].join(" ")}/>}
@@ -103,7 +105,7 @@ function growthInspection(row: GrowthRow) {
 }
 type GrowthBaseline = "science" | "matched";
 const growthColors = { above: blue, within: "#98a2b3", below: "#e8a132", unavailable: "#98a2b3" };
-function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;data:PublicationChartData;x:(n:number)=>number;y:number;inspect?:Inspect;baseline?:GrowthBaseline}) {
+function GrowthMarks({row,data,x,y,radius,labelGap,inspect,baseline="science"}:{row:GrowthRow;data:PublicationChartData;x:(n:number)=>number;y:number;radius:number;labelGap:number;inspect?:Inspect;baseline?:GrowthBaseline}) {
   const range=baseline==="science"?data.scienceGrowth:row.referenceGrowth===null?null:{low:row.referenceGrowth,high:row.referenceGrowth};
   const status=row.growth===null||!range?"unavailable":row.growth>range.high?"above":row.growth<range.low?"below":"within";
   const color=growthColors[status];
@@ -114,8 +116,8 @@ function GrowthMarks({row,data,x,y,inspect,baseline="science"}:{row:GrowthRow;da
     {baseline==="matched"&&row.referenceGrowth!==null&&<line data-growth-reference-tick data-value={row.referenceGrowth} x1={x(row.referenceGrowth)} x2={x(row.referenceGrowth)} y1={y-10} y2={y+10} stroke={gray} strokeWidth="3"><title>{`Category baseline: ${percent(row.referenceGrowth)}`}</title></line>}
     {row.growth===null?<text data-growth-label="neurotech" x={x(0)+12} y={y} dominantBaseline="middle">No 2022 base</text>:<>
       <line data-growth-stem="neurotech" x1={x(0)} x2={x(row.growth)} y1={y} y2={y} stroke={color} strokeWidth="2"/>
-      <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r="5" fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
-      <text data-growth-label="neurotech" x={x(row.growth)+12} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:status==="within"||status==="unavailable"?"var(--foreground)":color}}>{percent(row.growth)}</text>
+      <circle data-growth-series="neurotech" data-reference-unavailable={!range?"":undefined} cx={x(row.growth)} cy={y} r={radius} data-export-r={CHART_PRESENTATION.expandedRadius} vectorEffect="non-scaling-stroke" fill={status==="unavailable"?"var(--surface)":color} stroke={status==="unavailable"?color:"var(--surface)"} strokeWidth="1.5"/>
+      <text data-growth-label="neurotech" x={x(row.growth)+radius+labelGap} y={y} dominantBaseline="middle" fontWeight="600" stroke="var(--surface)" strokeWidth="4" paintOrder="stroke" style={{fill:status==="within"||status==="unavailable"?"var(--foreground)":color}}>{percent(row.growth)}</text>
     </>}
   </g>;
 }
@@ -162,7 +164,7 @@ function GrowthAxis({data,x,low,high,fontSize=14.5,y=0,compact=false,baseline="s
   </g>;
 }
 function GrowthPreview({data}:{data:PublicationChartData}) {
-  const {ref,fontSize}=usePreviewFont(400,true);
+  const {ref,fontSize,unitsPerPixel}=usePreviewFont(400,true);
   const {low,high}=growthExtent(data),left=Math.max(18,fontSize*.8),right=388-fontSize*5,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
   const sections=PUBLICATION_GROWTH_GROUPS.map((section,index)=>({section,heading:fontSize*3.2+PUBLICATION_GROWTH_GROUPS.slice(0,index).reduce((total,item)=>total+(item.groups.length*3.6+2.4)*fontSize,0)}));
   const cursor=sections.at(-1)!.heading+(2+3*3.6)*fontSize,footer=fontSize*(fontSize>23||!data.scienceGrowth?8:6.5),height=cursor+footer;
@@ -176,7 +178,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
           const y=heading+(1.6+index*3.6)*fontSize;
           return <g key={row.id}>
             <text x="8" y={y}>{row.id==="government-facility"?"Govt. / research facilities":growthLabel(row).replace("Ultrasound, TMS and MEG","Ultrasound, TMS, MEG")}</text>
-            <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2}/>
+            <GrowthMarks row={row} data={data} x={x} y={y+fontSize*1.2} radius={CHART_PRESENTATION.previewRadius*unitsPerPixel} labelGap={6*unitsPerPixel}/>
           </g>;
         })}
       </g>)}
@@ -188,7 +190,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
   </span>;
 }
 function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData;inspect?:Inspect;baseline?:GrowthBaseline}) {
-  const {ref,fontSize}=usePreviewFont(820,true);
+  const {ref,fontSize,unitsPerPixel}=usePreviewFont(820,true);
   const {low,high}=growthExtent(data,baseline),left=280,right=740,x=(value:number)=>left+(value-low)/(high-low)*(right-left);
   const rowHeight=32,footer=100;
   const layout=PUBLICATION_GROWTH_GROUPS.map((section,index)=>{
@@ -206,7 +208,7 @@ function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData
         <text data-growth-section x="8" y={heading} fontWeight="700" letterSpacing="1" style={{fill:"var(--muted)"}}>{section.label.toUpperCase()}</text>
         {items.map(row=><g key={row.id}>
           <text data-growth-name x={left-15} y={row.y+4} textAnchor="end">{row.id==="government-facility"?<><tspan x={left-15} dy="-4">Government agencies</tspan><tspan x={left-15} dy="16">and research facilities</tspan></>:growthLabel(row)}</text>
-          <GrowthMarks row={row} data={data} x={x} y={row.y} inspect={inspect} baseline={baseline}/>
+          <GrowthMarks row={row} data={data} x={x} y={row.y} radius={CHART_PRESENTATION.expandedRadius*unitsPerPixel} labelGap={6*unitsPerPixel} inspect={inspect} baseline={baseline}/>
         </g>)}
       </g>)}
       <GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} y={cursor} baseline={baseline}/>

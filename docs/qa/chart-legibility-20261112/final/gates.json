@@ -1,0 +1,94 @@
+{
+  "pin": "a220bbb55eea471bacc623513e5809efada000e3",
+  "base": "cc1ceaa41e0547144be462068496449ee284fa6b",
+  "gates": {
+    "tests": {
+      "exit": 0,
+      "summary": [
+        "\u2714 the existing toggle persists each explicit choice across navigation and reload (124.467466ms)",
+        "\u2714 existing explicit choices survive navigation and reload without following the OS (163.013015ms)",
+        "\u2714 left-edge tooltip stays fully on screen (1.126758ms)",
+        "\u2714 timeline, funding index, and glossary clamp centered tooltips (48.539858ms)",
+        "\u2714 Trends preview omits the search-interest slogan while methodology remains in the expanded chart (572.261193ms)",
+        "\u2714 Trends exact source values are reachable by focus and tap in the shared floating popup (579.236306ms)",
+        "\u2139 tests 1187",
+        "\u2139 suites 0",
+        "\u2139 pass 1187",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 370611.42022"
+      ]
+    },
+    "typecheck": {
+      "exit": 0,
+      "summary": [
+        "npm warn Unknown env config \"jobs\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.",
+        "",
+        "> neuro-atlas@0.1.0 typecheck",
+        "> next typegen && tsc --noEmit",
+        "",
+        "Generating route types...",
+        "\u2713 Types generated successfully"
+      ]
+    },
+    "build": {
+      "exit": 0,
+      "summary": [
+        "\u251c \u0192 /api/publications",
+        "\u251c \u25cb /ecosystem",
+        "\u251c \u25cb /field-velocity",
+        "\u251c \u25cb /funding",
+        "\u251c \u25cb /methodology",
+        "\u251c \u25cb /milestones",
+        "\u2514 \u25cb /sitemap.xml",
+        "",
+        "",
+        "\u0192 Proxy (Middleware)",
+        "",
+        "\u25cb  (Static)   prerendered as static content",
+        "\u0192  (Dynamic)  server-rendered on demand",
+        ""
+      ]
+    },
+    "changedSourceLint": {
+      "newErrors": [],
+      "retainedBaselineErrors": [],
+      "files": [
+        "src/components/chart-year-guides.tsx",
+        "src/components/draft-chart-plot.tsx",
+        "src/components/google-trends.tsx",
+        "src/components/pace-readings.tsx",
+        "src/components/participant-commitments.tsx",
+        "src/components/performance-curves.tsx",
+        "src/components/publication-charts.tsx",
+        "src/components/use-metric-preview-width.ts",
+        "src/data/metric-chart-visibility.ts",
+        "src/lib/chart-presentation.ts",
+        "src/lib/draft-chart-types.ts",
+        "tests/chart-annual-guides.test.mjs",
+        "tests/chart-connection-review.test.mjs",
+        "tests/chart-landscape-rails.test.mjs",
+        "tests/chart-legibility-inventory.test.mjs",
+        "tests/chart-legibility.test.mjs",
+        "tests/chart-presentation.test.mjs",
+        "tests/chart-series-connections.test.mjs",
+        "tests/chart-sharing.test.mjs",
+        "tests/curated-reader-copy.test.mjs",
+        "tests/draft-chart-marker-styles.test.mjs",
+        "tests/draft-chart-popout.test.mjs",
+        "tests/extrapolation-ui.test.mjs",
+        "tests/metrics-grid-breakpoint.test.mjs",
+        "tests/metrics-preview-noise.test.mjs",
+        "tests/neuroai-axis-break.test.mjs",
+        "tests/publication-annual-axis.test.mjs",
+        "tests/publication-chart-typography.test.mjs",
+        "tests/recording-hours-consolidation.test.mjs",
+        "tests/reference-preview-font.test.mjs"
+      ]
+    }
+  },
+  "finalHead": "a220bbb55eea471bacc623513e5809efada000e3",
+  "finalStatus": ""
+}

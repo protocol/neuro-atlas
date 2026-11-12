@@ -8,6 +8,7 @@ import { ChartShare } from "@/components/chart-share";
 import { ChartNoteList } from "@/components/chart-note-list";
 import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
+import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 
@@ -99,7 +100,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const top = 28 + yTitle.length * 16;
-  const bottom = top + 232 + previewExtra;
+  const bottom = top + (preview ? 200 : 232) + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
   const ys = plot.points.map(point => point.y);
@@ -124,6 +125,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
   const yTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
   const xTicks = preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
+  const connections = numericX ? [] : (plot.connections ?? []).map(series => ({
+    ...series,
+    points: series.pointIds.map(id => plot.points.find(point => point.id === id)).filter((point): point is DraftObservation => !!point).sort((a, b) => a.x - b.x),
+  })).filter(series => series.points.length > 1);
+  const connectionNote = connections.length ? `Lines connect only ${connections.map(series => series.label).join("; ")}; other observations remain separate.` : "Unconnected observations";
   const axisLabel = preview ? previewTickLabel : tickLabel;
   const left = Math.max(46, ...yTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
@@ -194,7 +200,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
-        `${observationBasis} · ${scaleNote} · Unconnected observations`,
+        `${observationBasis} · ${scaleNote} · ${connectionNote}`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         ...plot.points.filter(point => point.exportNote).map(point => `${point.label} · ${point.dateLabel}. ${point.exportNote}`),
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
@@ -202,6 +208,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      {!numericX && <ChartYearGuides years={annualYears(xMin, xMax)} x={x} top={top} bottom={bottom} />}
       {yTicks.map(tick => <g key={tick}>
         {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
         <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
@@ -223,6 +230,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <rect x={labelX - 10} y={labelY - 10} width={20} height={20} rx={4} stroke={groupColor(point)} />
         <text x={labelX} y={labelY + 4} textAnchor="middle">{index + 1}</text>
       </g>)}
+      {connections.map(series => <polyline key={series.id} data-observation-series={series.id} points={series.points.map(point => `${x(point.x)},${y(point.y)}`).join(" ")}
+        fill="none" stroke={groupColor(series.points[0])} strokeWidth={1.5} vectorEffect="non-scaling-stroke" pointerEvents="none" aria-hidden="true" />)}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
         strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
@@ -251,7 +260,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       </>}
     </p>}
     {preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
-    {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {scaleNote} · Unconnected observations</p>}
+    {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {scaleNote} · {connectionNote}</p>}
     {!preview && <><PointTooltip {...tooltip.tooltipProps}>
       {active ? <>
         <strong>{active.label}</strong>
@@ -292,10 +301,11 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
   const first = Math.floor(Math.min(...years));
   const last = Math.max(first + 1, Math.ceil(Math.max(...years)));
   const xTitle = wrapLabel("Publication / demonstration year", width - 12);
-  const baseHeight = Math.max(320, stages.length * 100 + 100) + previewExtra;
+  const stageStep = preview ? 72 : 100;
+  const baseHeight = Math.max(preview ? 276 : 320, stages.length * stageStep + 100) + previewExtra;
   const height = baseHeight + (xTitle.length - 1) * 16;
   const x = (year: number) => 28 + (year - first) / (last - first) * (width - 56);
-  const y = (stage: string) => 90 + stages.indexOf(stage) * 100 + previewExtra * (stages.length > 1 ? stages.indexOf(stage) / (stages.length - 1) : .5);
+  const y = (stage: string) => 90 + stages.indexOf(stage) * stageStep + previewExtra * (stages.length > 1 ? stages.indexOf(stage) / (stages.length - 1) : .5);
   const ticks = [...new Set([first, Math.round((first + last) / 2), last])];
   return <figure ref={figure} className="draft-plot draft-event-timeline" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title="Selected application events"><ChartShare anchor={shareAnchor} title="Selected application events" getChart={() => ({
@@ -308,6 +318,7 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
     <p className="draft-plot-legend">● Reported event · Stages identify the type of event</p>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
+      <ChartYearGuides years={annualYears(first, last)} x={x} top={45} bottom={baseHeight - 70} />
       {stages.map(stage => <g key={stage}>
         <text className="draft-plot-axis-title" x={0} y={y(stage) - 45}>{wrapLabel(stage, width - 12).map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < wrapLabel(stage, width - 12).length - 1 ? " " : ""}</tspan>)}</text>
         <line className="draft-plot-gridline" x1={28} x2={width - 28} y1={y(stage)} y2={y(stage)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />

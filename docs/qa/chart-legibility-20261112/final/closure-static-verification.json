@@ -1,0 +1,73 @@
+{
+  "sha": "a220bbb55eea471bacc623513e5809efada000e3",
+  "contracts": [
+    {
+      "file": "tests/curated-reader-copy.test.mjs",
+      "unchangedGoldenCount": 3,
+      "allOriginalLiteralTestTitlesRetained": true,
+      "skipTodoOnlyDirectives": 0
+    },
+    {
+      "file": "tests/extrapolation-ui.test.mjs",
+      "unchangedGoldenCount": 5,
+      "allOriginalLiteralTestTitlesRetained": true,
+      "skipTodoOnlyDirectives": 0
+    },
+    {
+      "file": "tests/neuroai-axis-break.test.mjs",
+      "unchangedGoldenCount": 0,
+      "allOriginalLiteralTestTitlesRetained": true,
+      "skipTodoOnlyDirectives": 0
+    }
+  ],
+  "unchangedNearBound": "1e-8 in original 232-unit frame",
+  "unchangedSources": [
+    {
+      "file": "src/data/draft-chart-evidence.json",
+      "sha256": "cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/draft-chart-observations.ts",
+      "sha256": "ebd0f48e7d50fb5ba8b155039ab7f537b6d908093c55e34594bf38912707f2be",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/field-velocity/neurotech.snapshot.json",
+      "sha256": "2b16a8ebf5ada867a79129243fc3f3afada7ad6e75a639ca0d005849607815ee",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/field-velocity/neurotech.snapshot.json.provenance.json",
+      "sha256": "66df3d351fd6318ed289b1d0e8299ad8da9a7f6399becda046d17baf49f48b97",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/field-velocity/citation-latency.bundled-20261106.json",
+      "sha256": "0e43c72e2176e21d5418ff88948f3e61396e36a381dc70b8ccb2cbb2a0866611",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/publications/publication-charts.snapshot.json",
+      "sha256": "2a06d39911b08f50a695070f0fb53073cdc4c9cd08d86daa50cf77d764b2d30c",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/field-velocity/bci-participants.additions.json",
+      "sha256": "803b68d68bacfc6c7a50daa5b3cab401e0fa2da50b7c9346e41db6ab831d77ff",
+      "byteIdenticalToMain": true
+    },
+    {
+      "file": "src/data/participant-reader-copy.ts",
+      "sha256": "75f70659441501b7a9166b8399e83475b92d107c1e2012e2b043a67442ccc986",
+      "byteIdenticalToMain": true
+    }
+  ],
+  "productionChanged": [
+    "src/components/draft-chart-plot.css",
+    "src/components/participant-commitments.tsx",
+    "src/components/performance-curves.tsx",
+    "src/components/publication-charts.tsx"
+  ],
+  "cleanSourceSnapshot": true
+}

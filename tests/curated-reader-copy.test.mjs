@@ -22,7 +22,9 @@ const digest = value => createHash('sha256').update(value).digest('hex');
 function scientificFields(evidence) {
   return Object.fromEntries(Object.entries(evidence).map(([title, item]) => [title, {
     ...omit(item, ['summary', 'gapReason', 'plots', 'timeline']),
-    plots: item.plots.map(item => ({ ...omit(item, ['scope', 'seriesNote', 'points']), points: item.points.map(item => omit(item, ['note', 'exportNote', 'dateLabel'])) })),
+    // Source-scoped connection metadata is presentation only; its complete,
+    // exact contract is asserted separately below, never rehashed into the data golden.
+    plots: item.plots.map(item => ({ ...omit(item, ['scope', 'seriesNote', 'points', 'connections']), points: item.points.map(item => omit(item, ['note', 'exportNote', 'dateLabel'])) })),
     ...(item.timeline ? { timeline: { events: item.timeline.events.map(item => omit(item, ['note'])) } } : {}),
   }]));
 }
@@ -43,6 +45,22 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
   assert.equal(charts.length, 13);
   assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 78);
   assert.deepEqual(METRIC_CHART_EVIDENCE['Demonstrated applications enabled by connectomics over time'].timeline.events.map(item => item.id), ['application-0', 'application-2']);
+});
+
+test('only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata', () => {
+  const connections = evidence => Object.fromEntries(Object.values(evidence).flatMap(item => item.plots)
+    .filter(item => Object.hasOwn(item, 'connections')).map(item => [item.id, item.connections]));
+  assert.deepEqual(connections(DRAFT_CHART_EVIDENCE), {}, 'Archived source observations gain no presentation metadata');
+  assert.deepEqual(connections(METRIC_CHART_EVIDENCE), {
+    'neuralink-cumulative': [{ id: 'neuralink-recipients', label: 'Neuralink cumulative recipients', pointIds: [
+      'neuralink-cumulative-2024-01-01', 'neuralink-cumulative-2024-07-01', 'neuralink-cumulative-2025-02-05',
+      'neuralink-cumulative-2025-06-02', 'neuralink-cumulative-2026-01-28',
+    ] }],
+    'recording-hours': [{ id: 'tusz-releases', label: 'TUSZ releases (overlapping, not summed)', pointIds: [
+      'tusz-scalp-eeg-2017-04-17', 'tusz-scalp-eeg-2017-08-04', 'tusz-scalp-eeg-2018-04-15', 'tusz-scalp-eeg-2018-08-16',
+      'tusz-scalp-eeg-2018-11-14', 'tusz-scalp-eeg-2019-07-22', 'tusz-scalp-eeg-2020-04-23', 'tusz-scalp-eeg-2020-05-09',
+    ] }],
+  });
 });
 
 test('unsupported and retired evidence remains archived verbatim and unrendered', () => {

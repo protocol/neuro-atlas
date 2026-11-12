@@ -1,0 +1,14 @@
+{
+  "helperSourceRevision": "cdc752581b6f2fe9bd72e5f5f0f783df7a7904ea",
+  "runtimeRevision": "a220bbb55eea471bacc623513e5809efada000e3",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "chartCount": 24,
+  "dialogVisits": 72,
+  "exitCode": 0,
+  "reportPathInternal": "/opt/data/tmp/atlas-chart-legibility-20261112/standard-helper/all-chart-native-report.json",
+  "reportSha256": "7db8901c5fa90cbabcd97b95b36029812151f4091568b35bfd1b2c437815f02f"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "width": 1440,
+    "previewFixedCircleCount": 87,
+    "radiusMin": 4.999999999999999,
+    "radiusMax": 5.000025659135392,
+    "growthValueLabels": 21,
+    "growthMinimumGap": 6.000030790962406,
+    "nativeWheelScrollLeft": 340
+  },
+  {
+    "width": 390,
+    "previewFixedCircleCount": 87,
+    "radiusMin": 4.999869701902261,
+    "radiusMax": 5.000012765604595,
+    "growthValueLabels": 21,
+    "growthMinimumGap": 6.000015318725505,
+    "nativeWheelScrollLeft": 346
+  },
+  {
+    "width": 320,
+    "previewFixedCircleCount": 87,
+    "radiusMin": 4.999999999999999,
+    "radiusMax": 5.000025017011567,
+    "growthValueLabels": 21,
+    "growthMinimumGap": 6.000030020413882,
+    "nativeWheelScrollLeft": 350
+  }
+]

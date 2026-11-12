@@ -31,7 +31,7 @@ for (const anchor of ['publication-output', 'publication-growth', 'researcher-se
       assert.ok(Math.abs(parseFloat(svg.style.fontSize) * scale - 12) < .001, `Expected 12 rendered px; got ${svg.style.fontSize} × ${scale}`);
     }
     if (anchor === 'publication-output') {
-      for (const dot of svg.querySelectorAll('circle[data-publication-mark]')) assert.ok(Math.abs(Number(dot.getAttribute('r')) * scale - 5) < .001, 'Annual observations use the shared 5 CSS px expanded radius');
+      for (const dot of svg.querySelectorAll('circle[data-publication-mark]')) assert.ok(Math.abs(Number(dot.getAttribute('r')) * scale - 6) < .001, 'Annual observations use the shared 6 CSS px expanded radius');
     }
     assert.equal(svg.getAttribute('data-export-font-size'), '12', 'Standalone export retains canonical type');
   } finally {

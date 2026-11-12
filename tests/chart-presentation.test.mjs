@@ -65,7 +65,7 @@ function screenRadius(mark, width) {
 }
 const centers = svg => [...svg.querySelectorAll('circle')].map(mark => ['cx', 'cy'].map(name => mark.getAttribute(name)));
 
-test('reference and draft preview circles remain 4 screen pixels across narrow and wide cards without moving observations', async () => {
+test('reference and draft preview circles remain 5 screen pixels across narrow and wide cards without moving observations', async () => {
   const before = JSON.stringify({ plot, curve });
   const harness = resizeHarness();
   let cleanup;
@@ -78,8 +78,8 @@ test('reference and draft preview circles remain 4 screen pixels across narrow a
       for (const mark of document.querySelectorAll('.pc-preview circle, [data-draft-preview] [data-source-observation]')) {
         // The draft plot rounds its measured coordinate width, as before.
         const renderedWidth = mark.closest('.draft-plot') ? Math.round(width) : width;
-        assert.ok(Math.abs(screenRadius(mark, renderedWidth) - 4) < 1e-9,
-          `${mark.closest('.pc-preview') ? 'Reference' : 'Draft'} radius should render at 4px, not ${screenRadius(mark, renderedWidth)}px (card ${width}px)`);
+        assert.ok(Math.abs(screenRadius(mark, renderedWidth) - 5) < 1e-9,
+          `${mark.closest('.pc-preview') ? 'Reference' : 'Draft'} radius should render at 5px, not ${screenRadius(mark, renderedWidth)}px (card ${width}px)`);
         assert.equal(mark.getAttribute('tabindex'), null, 'Preview marks never gain inspection/focus styling');
       }
       assert.deepEqual(centers(reference), pinned, 'Only marker presentation changes, never source centers');
@@ -97,7 +97,7 @@ test('reference and draft preview circles remain 4 screen pixels across narrow a
 });
 
 
-test('expanded marks share a 5px screen-space base and 1.5px non-scaling outlines; preview resizing never changes the expanded curve', async () => {
+test('expanded marks share a 6px screen-space base and 1.5px non-scaling outlines; preview resizing never changes the expanded curve', async () => {
   const harness = resizeHarness();
   let cleanup;
   try {
@@ -113,8 +113,8 @@ test('expanded marks share a 5px screen-space base and 1.5px non-scaling outline
       // jsdom does not apply SVG presentation attributes in computed styles.
       const strokeWidth = mark.style.strokeWidth || mark.getAttribute('stroke-width');
       assert.equal(Number.parseFloat(strokeWidth), 1.5, 'One quiet marker-outline weight across families');
-      if (mark.closest('[data-draft-preview]')) assert.equal(mark.getAttribute('r'), '4');
-      else assert.ok(Math.abs(screenRadius(mark, mark.closest('.pc-plot') ? 680 : Math.round(680)) - 5) < 1e-9);
+      if (mark.closest('[data-draft-preview]')) assert.equal(mark.getAttribute('r'), '5');
+      else assert.ok(Math.abs(screenRadius(mark, mark.closest('.pc-plot') ? 680 : Math.round(680)) - 6) < 1e-9);
     }
     assert.equal(document.querySelector('[role=tooltip]'), null);
     for (const width of [230, 520]) {
@@ -130,7 +130,7 @@ test('expanded marks share a 5px screen-space base and 1.5px non-scaling outline
     const mark = expanded.querySelector('[data-curve-point]');
     await act(async () => mark.focus());
     assert.ok(Math.abs(screenRadius(mark, 680) - 7) < 1e-9, 'Inspection emphasis stays confined to expanded charts');
-    assert.equal(mark.getAttribute('data-export-r'), '5', 'Exports never freeze focus enlargement');
+    assert.equal(mark.getAttribute('data-export-r'), '6', 'Exports never freeze focus enlargement');
     assert.equal(Number.parseFloat(mark.getAttribute('stroke-width')), 1.5);
   } finally { if (cleanup) await cleanup(); harness.restore(); }
 });
@@ -156,7 +156,7 @@ test('expanded curve radius follows the actual SVG screen transform including ma
       scale = nextScale;
       await harness.resize(1000); // same bounding width; the effective fitted scale differs.
       const mark = svg.querySelector('[data-curve-point]');
-      assert.ok(Math.abs(Number(mark.getAttribute('r')) * scale - 5) < 1e-9,
+      assert.ok(Math.abs(Number(mark.getAttribute('r')) * scale - 6) < 1e-9,
         'Use screenCTM, not the 1000px outer SVG width, when a height cap letterboxes the plot');
       assert.deepEqual(centers(svg), pinned, 'Screen-sized styling never remaps measurements');
       assert.equal(buildChartImage(spec, window.location.href).svg, exported, 'Export radius stays canonical rather than depending on viewport');
@@ -176,7 +176,7 @@ test('overlap rings use the common base without implying a quantitative magnitud
     const cleanup = await mount(React.createElement(DraftChartPlot, { plot: overlapping, preview }));
     try {
       const marks = [...document.querySelectorAll('[data-source-observation]')];
-      const base = preview ? 4 : 5;
+      const base = preview ? 5 : 6;
       assert.deepEqual(marks.map(mark => Number(mark.getAttribute('r'))), [base * 3, base * 2, base]);
       assert.equal(new Set(marks.map(mark => `${mark.getAttribute('cx')},${mark.getAttribute('cy')}`)).size, 1);
       assert.deepEqual(marks.map(mark => mark.getAttribute('fill')), ['none', 'none', 'var(--accent)']);

@@ -1,0 +1,4565 @@
+{
+  "rows": [
+    {
+      "port": 35641,
+      "charts": [
+        {
+          "title": "Neurotech search terms",
+          "guides": 0,
+          "marks": []
+        },
+        {
+          "title": "Citation latency",
+          "guides": 0,
+          "marks": []
+        },
+        {
+          "title": "Latency compression",
+          "guides": 0,
+          "marks": []
+        },
+        {
+          "title": "Implanted BCI participants over time",
+          "guides": 0,
+          "marks": []
+        },
+        {
+          "title": "Neurotech papers per year",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2010",
+                "data-value": "4901"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2011",
+                "data-value": "5401"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2012",
+                "data-value": "5421"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2013",
+                "data-value": "6871"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2014",
+                "data-value": "6562"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2015",
+                "data-value": "7235"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2016",
+                "data-value": "7874"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2017",
+                "data-value": "8544"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2018",
+                "data-value": "8805"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2019",
+                "data-value": "10043"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2020",
+                "data-value": "9315"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2021",
+                "data-value": "10265"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2022",
+                "data-value": "9726"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2023",
+                "data-value": "11369"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2024",
+                "data-value": "12238"
+              },
+              "tag": "circle",
+              "r": 4
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2025",
+                "data-value": "16057"
+              },
+              "tag": "circle",
+              "r": 4
+            }
+          ]
+        },
+        {
+          "title": "Publication growth by group",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "high",
+                "data-group": "Ultrasound, TMS and MEG",
+                "data-value": "85.17474633596392",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "eeg",
+                "data-group": "EEG",
+                "data-value": "67.43083003952569",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "no-technique",
+                "data-group": "No technique named",
+                "data-value": "55.10591210875751",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "invasive",
+                "data-group": "Invasive",
+                "data-value": "52.11267605633803",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "not-bci",
+                "data-group": "Not about BCI",
+                "data-value": "65.16490354698196",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "bci",
+                "data-group": "About BCI",
+                "data-value": "64.75458308693081",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "preprint",
+                "data-group": "Preprint",
+                "data-value": "159.47075208913648",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "conference",
+                "data-group": "Conference",
+                "data-value": "67.48051948051948",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "journal",
+                "data-group": "Journal",
+                "data-value": "58.608114268348274",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "asia",
+                "data-group": "Asia",
+                "data-value": "68.86535552193646",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "us-canada",
+                "data-group": "US and Canada",
+                "data-value": "35.05903723887375",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "europe",
+                "data-group": "Europe",
+                "data-value": "16.52754590984975",
+                "data-baseline-status": "below"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "education",
+                "data-group": "Universities",
+                "data-value": "48.25684809676272",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "company",
+                "data-group": "Companies",
+                "data-value": "37.423312883435585",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "government-facility",
+                "data-group": "Government agencies and research facilities",
+                "data-value": "21.742605915267784",
+                "data-baseline-status": "below"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "early",
+                "data-group": "Early career (1-5 years)",
+                "data-value": "64.1785742709162",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "late",
+                "data-group": "Late career (16+ years)",
+                "data-value": "61.87267468471593",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "mid",
+                "data-group": "Mid career (6-15 years)",
+                "data-value": "41.516081462168906",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-1",
+                "data-group": "Top 1%",
+                "data-value": "80.65188043688624",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-10-50",
+                "data-group": "Top 10-50%",
+                "data-value": "48.98394218802563",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-1-10",
+                "data-group": "Top 1-10%",
+                "data-value": "38.361766384266915",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 7.463459902848398
+            }
+          ]
+        },
+        {
+          "title": "Researchers by publication sector",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Industry"
+              },
+              "tag": "rect",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Researchers\u2019 first and latest affiliations",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Academic",
+                "data-value": "18781",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "No listed affiliation",
+                "data-value": "1091",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Other institutions",
+                "data-value": "740",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Industry",
+                "data-value": "94",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Academic",
+                "data-value": "1624",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "No listed affiliation",
+                "data-value": "1132",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Other institutions",
+                "data-value": "243",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Industry",
+                "data-value": "23",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Academic",
+                "data-value": "688",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "No listed affiliation",
+                "data-value": "156",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Other institutions",
+                "data-value": "1609",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Industry",
+                "data-value": "16",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Academic",
+                "data-value": "43",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "No listed affiliation",
+                "data-value": "49",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Other institutions",
+                "data-value": "8",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Industry",
+                "data-value": "196",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "neuralink-reported-hours-2026-10-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2017-04-17",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2017-08-04",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-04-15",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-08-16",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 8.000705747430638
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-11-14",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2019-07-22",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2020-04-23",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 8.000705747430638
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2020-05-09",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "ajile12-intracranial-2022-01-27",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "poyo-primate-training-2023-10-24",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            },
+            {
+              "data": {
+                "data-source-observation": "japaneeg-scalp-eeg-2026-05-31",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000352873715319
+            }
+          ]
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "braingate-documented-cohort-2023-01-13",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2024-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2024-07-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2025-02-05",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2025-06-02",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2026-01-28",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "paradromics-connect-one-2026-06-17",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            }
+          ]
+        },
+        {
+          "title": "Simultaneous neural recordings",
+          "guides": 0,
+          "marks": []
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hildebrand-zebrafish-public-images-2017",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000475624256837
+            },
+            {
+              "data": {
+                "data-source-observation": "fafb-image-download-2018",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000475624256837
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-v1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "h01-2021",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000475624256837
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-2025-size",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "malecns-jpeg-inventory-2026",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "bock-mouse-imaged-2011-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-fly-bounds-2020-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            },
+            {
+              "data": {
+                "data-source-observation": "h01-human-imaged-2021-06-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 8.000735192758352
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-mouse-imaged-2021-07-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-fly-neuropil-2024-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            },
+            {
+              "data": {
+                "data-source-observation": "liconn-mouse-native-2025-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            },
+            {
+              "data": {
+                "data-source-observation": "malecns-fly-imaged-2025-10-03",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000367596379176
+            }
+          ]
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "lee-reid-2016-neuronal-targets",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "larval-brain-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            }
+          ]
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hemibrain-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "larval-brain-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004857119728
+            }
+          ]
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "fib-sem-2017",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004524545660205
+            },
+            {
+              "data": {
+                "data-source-observation": "autotem-2020",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004524545660205
+            }
+          ]
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "lee2016-paired",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000432806751785
+            },
+            {
+              "data": {
+                "data-source-observation": "turner2022-paired",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000432806751785
+            },
+            {
+              "data": {
+                "data-source-observation": "microns2025-manual",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000432806751785
+            }
+          ]
+        },
+        {
+          "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "exm2015",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "sem2018",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "exllsm2019",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "exaspim2023",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "multisem506",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "multisem706",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "mesospim2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "peem2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "bdtem2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            }
+          ]
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000425924611344
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000425924611344
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000425924611344
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000425924611344
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-5",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-6",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-7",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-8",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hemibrain-proofreading",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-proofreading",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000433620004336
+            }
+          ]
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "pathfinder-nerl-2025",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.0004020100502515
+            }
+          ]
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "sdt-0",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-5",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000424959274736
+            }
+          ]
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "flyvis-0",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000386137658075
+            },
+            {
+              "data": {
+                "data-source-observation": "flyvis-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.000386137658075
+            }
+          ]
+        },
+        {
+          "title": "Selected application events",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-event": "application-0"
+              },
+              "tag": "circle",
+              "r": 4.00042419314928
+            },
+            {
+              "data": {
+                "data-source-event": "application-2"
+              },
+              "tag": "circle",
+              "r": 4.00042419314928
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "port": 35642,
+      "charts": [
+        {
+          "title": "Neurotech search terms",
+          "guides": 3,
+          "marks": []
+        },
+        {
+          "title": "Citation latency",
+          "guides": 27,
+          "marks": []
+        },
+        {
+          "title": "Latency compression",
+          "guides": 30,
+          "marks": []
+        },
+        {
+          "title": "Implanted BCI participants over time",
+          "guides": 3,
+          "marks": []
+        },
+        {
+          "title": "Neurotech papers per year",
+          "guides": 16,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2010",
+                "data-value": "4901"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2011",
+                "data-value": "5401"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2012",
+                "data-value": "5421"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2013",
+                "data-value": "6871"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2014",
+                "data-value": "6562"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2015",
+                "data-value": "7235"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2016",
+                "data-value": "7874"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2017",
+                "data-value": "8544"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2018",
+                "data-value": "8805"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2019",
+                "data-value": "10043"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2020",
+                "data-value": "9315"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2021",
+                "data-value": "10265"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2022",
+                "data-value": "9726"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2023",
+                "data-value": "11369"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2024",
+                "data-value": "12238"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-year": "2025",
+                "data-value": "16057"
+              },
+              "tag": "circle",
+              "r": 5.000000000000001
+            }
+          ]
+        },
+        {
+          "title": "Publication growth by group",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "high",
+                "data-group": "Ultrasound, TMS and MEG",
+                "data-value": "85.17474633596392",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "eeg",
+                "data-group": "EEG",
+                "data-value": "67.43083003952569",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "no-technique",
+                "data-group": "No technique named",
+                "data-value": "55.10591210875751",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "invasive",
+                "data-group": "Invasive",
+                "data-value": "52.11267605633803",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "not-bci",
+                "data-group": "Not about BCI",
+                "data-value": "65.16490354698196",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "bci",
+                "data-group": "About BCI",
+                "data-value": "64.75458308693081",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "preprint",
+                "data-group": "Preprint",
+                "data-value": "159.47075208913648",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "conference",
+                "data-group": "Conference",
+                "data-value": "67.48051948051948",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "journal",
+                "data-group": "Journal",
+                "data-value": "58.608114268348274",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "asia",
+                "data-group": "Asia",
+                "data-value": "68.86535552193646",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "us-canada",
+                "data-group": "US and Canada",
+                "data-value": "35.05903723887375",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "europe",
+                "data-group": "Europe",
+                "data-value": "16.52754590984975",
+                "data-baseline-status": "below"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "education",
+                "data-group": "Universities",
+                "data-value": "48.25684809676272",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "company",
+                "data-group": "Companies",
+                "data-value": "37.423312883435585",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "government-facility",
+                "data-group": "Government agencies and research facilities",
+                "data-value": "21.742605915267784",
+                "data-baseline-status": "below"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "early",
+                "data-group": "Early career (1-5 years)",
+                "data-value": "64.1785742709162",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "late",
+                "data-group": "Late career (16+ years)",
+                "data-value": "61.87267468471593",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "mid",
+                "data-group": "Mid career (6-15 years)",
+                "data-value": "41.516081462168906",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-1",
+                "data-group": "Top 1%",
+                "data-value": "80.65188043688624",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-10-50",
+                "data-group": "Top 10-50%",
+                "data-value": "48.98394218802563",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-growth-row": "top-1-10",
+                "data-group": "Top 1-10%",
+                "data-value": "38.361766384266915",
+                "data-baseline-status": "above"
+              },
+              "tag": "g",
+              "r": null
+            },
+            {
+              "data": {
+                "data-growth-series": "neurotech"
+              },
+              "tag": "circle",
+              "r": 5.000025659135392
+            }
+          ]
+        },
+        {
+          "title": "Researchers by publication sector",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Academic"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Other institutions"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "No listed affiliation"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-sector": "Industry"
+              },
+              "tag": "rect",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Researchers\u2019 first and latest affiliations",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Academic",
+                "data-value": "18781",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "No listed affiliation",
+                "data-value": "1091",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Other institutions",
+                "data-value": "740",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Academic",
+                "data-to": "Industry",
+                "data-value": "94",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Academic",
+                "data-value": "1624",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "No listed affiliation",
+                "data-value": "1132",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Other institutions",
+                "data-value": "243",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "No listed affiliation",
+                "data-to": "Industry",
+                "data-value": "23",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Academic",
+                "data-value": "688",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "No listed affiliation",
+                "data-value": "156",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Other institutions",
+                "data-value": "1609",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Other institutions",
+                "data-to": "Industry",
+                "data-value": "16",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Academic",
+                "data-value": "43",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "No listed affiliation",
+                "data-value": "49",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Other institutions",
+                "data-value": "8",
+                "data-same-sector": "false"
+              },
+              "tag": "path",
+              "r": null
+            },
+            {
+              "data": {
+                "data-publication-mark": "true",
+                "data-from": "Industry",
+                "data-to": "Industry",
+                "data-value": "196",
+                "data-same-sector": "true"
+              },
+              "tag": "path",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Neural recording hours \u2014 selected datasets",
+          "guides": 11,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "neuralink-reported-hours-2026-10-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2017-04-17",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2017-08-04",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-04-15",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-08-16",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2018-11-14",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2019-07-22",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2020-04-23",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 9.997297905877055
+            },
+            {
+              "data": {
+                "data-source-observation": "tusz-scalp-eeg-2020-05-09",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "ajile12-intracranial-2022-01-27",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "poyo-primate-training-2023-10-24",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            },
+            {
+              "data": {
+                "data-source-observation": "japaneeg-scalp-eeg-2026-05-31",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998648952938527
+            }
+          ]
+        },
+        {
+          "title": "Selected chronic intracortical recipients",
+          "guides": 5,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "braingate-documented-cohort-2023-01-13",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2024-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2024-07-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2025-02-05",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2025-06-02",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "neuralink-cumulative-2026-01-28",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "paradromics-connect-one-2026-06-17",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            }
+          ]
+        },
+        {
+          "title": "Simultaneous neural recordings",
+          "guides": 8,
+          "marks": []
+        },
+        {
+          "title": "Selected public image/resource footprints",
+          "guides": 10,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hildebrand-zebrafish-public-images-2017",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998566748566748
+            },
+            {
+              "data": {
+                "data-source-observation": "fafb-image-download-2018",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998566748566748
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-v1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "h01-2021",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998566748566748
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-2025-size",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "malecns-jpeg-inventory-2026",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Selected tissue-volume checkpoints",
+          "guides": 16,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "bock-mouse-imaged-2011-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-fly-bounds-2020-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            },
+            {
+              "data": {
+                "data-source-observation": "h01-human-imaged-2021-06-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 9.997464760166311
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-mouse-imaged-2021-07-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-fly-neuropil-2024-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            },
+            {
+              "data": {
+                "data-source-observation": "liconn-mouse-native-2025-01-01",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            },
+            {
+              "data": {
+                "data-source-observation": "malecns-fly-imaged-2025-10-03",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998732380083156
+            }
+          ]
+        },
+        {
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "guides": 10,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "lee-reid-2016-neuronal-targets",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "hemibrain-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "larval-brain-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-neurons",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            }
+          ]
+        },
+        {
+          "title": "Selected published maps \u2014 synapse counts",
+          "guides": 6,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hemibrain-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "larval-brain-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            },
+            {
+              "data": {
+                "data-source-observation": "microns-synapses",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998744507219083
+            }
+          ]
+        },
+        {
+          "title": "Selected EM acquisition rates",
+          "guides": 4,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "fib-sem-2017",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.9985704950171534
+            },
+            {
+              "data": {
+                "data-source-observation": "autotem-2020",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.9985704950171534
+            }
+          ]
+        },
+        {
+          "title": "Selected structure\u2013function matches",
+          "guides": 10,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "lee2016-paired",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998637496107132
+            },
+            {
+              "data": {
+                "data-source-observation": "turner2022-paired",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998637496107132
+            },
+            {
+              "data": {
+                "data-source-observation": "microns2025-manual",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998637496107132
+            }
+          ]
+        },
+        {
+          "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+          "guides": 11,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "exm2015",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "sem2018",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "exllsm2019",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "exaspim2023",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "multisem506",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "multisem706",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "mesospim2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "peem2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "bdtem2024",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            }
+          ]
+        },
+        {
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998720947229937
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998720947229937
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998720947229937
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-human-multisem-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998720947229937
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-multisem-5",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "rect",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-6",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-7",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            },
+            {
+              "data": {
+                "data-source-observation": "roboem-2024-mouse-sbem-8",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "polygon",
+              "r": null
+            }
+          ]
+        },
+        {
+          "title": "Reported project proofreading effort",
+          "guides": 5,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "hemibrain-proofreading",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            },
+            {
+              "data": {
+                "data-source-observation": "flywire-proofreading",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998634732407552
+            }
+          ]
+        },
+        {
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "guides": 3,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "pathfinder-nerl-2025",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998622636961537
+            }
+          ]
+        },
+        {
+          "title": "NeuroAI performance\u2013cost frontier",
+          "guides": 0,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "sdt-0",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-2",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-3",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-4",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            },
+            {
+              "data": {
+                "data-source-observation": "sdt-5",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.998664071147754
+            }
+          ]
+        },
+        {
+          "title": "FlyVis: correct contrast preference",
+          "guides": 3,
+          "marks": [
+            {
+              "data": {
+                "data-source-observation": "flyvis-0",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.9986225895316805
+            },
+            {
+              "data": {
+                "data-source-observation": "flyvis-1",
+                "data-export-stroke-width": "1.5"
+              },
+              "tag": "circle",
+              "r": 4.9986225895316805
+            }
+          ]
+        },
+        {
+          "title": "Selected application events",
+          "guides": 2,
+          "marks": [
+            {
+              "data": {
+                "data-source-event": "application-0"
+              },
+              "tag": "circle",
+              "r": 4.9986667174583825
+            },
+            {
+              "data": {
+                "data-source-event": "application-2"
+              },
+              "tag": "circle",
+              "r": 4.9986667174583825
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exactNativeSourceMarkIdentity": true
+}

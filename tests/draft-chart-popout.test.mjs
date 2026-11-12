@@ -21,7 +21,11 @@ test('numeric preview keeps real glyph coordinates/colors but mounts no nested c
   assert.equal(doc.querySelector('button, a, [tabindex], [role="button"], details, .draft-plot-inspector, [data-chart-share]'), null);
   for (const point of plot.points) {
     const selector = `[data-source-observation="${point.id}"]`;
-    for (const attr of ['cx', 'cy', 'fill', 'stroke', 'points', 'x', 'y']) assert.equal(doc.querySelector(selector).getAttribute(attr), full.querySelector(selector).getAttribute(attr));
+    for (const attr of ['cx', 'fill', 'stroke', 'points', 'x', 'y']) assert.equal(doc.querySelector(selector).getAttribute(attr), full.querySelector(selector).getAttribute(attr));
+    // The same log value is projected into a 200px rather than 232px preview area.
+    const previewY = Number(doc.querySelector(selector).getAttribute('cy'));
+    const fullY = Number(full.querySelector(selector).getAttribute('cy'));
+    assert.ok(Math.abs((previewY - 44) / 200 - (fullY - 44) / 232) < 1e-9, point.id);
   }
   assert.ok(doc.querySelector('[data-draft-preview]'));
 });

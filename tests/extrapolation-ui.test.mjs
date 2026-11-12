@@ -19,9 +19,34 @@ const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.sn
 const sha = text => createHash('sha256').update(text).digest('hex');
 // Preserve the independently captured scientific geometry/content goldens.
 // Normalize only the exact export hint and deliberate presentation changes;
-// radius/coordinates, source values, labels, intervals and other paint stay pinned.
+// coordinates, source values, labels, intervals and other paint stay pinned.
 // The new styling is independently asserted in chart-presentation.test.mjs.
-const svgSha = text => sha(text
+const svgSha = svg => {
+  const normalized = svg.cloneNode(true);
+  // Calendar guides and the 6px expanded/export radius are intentional
+  // presentation changes. Assert them before restoring the old hash input;
+  // never normalize a source center, value, interval, tick or label.
+  const marks = [...svg.querySelectorAll('[data-curve-point]')];
+  for (const mark of marks) {
+    assert.equal(mark.getAttribute('r'), '6');
+    assert.equal(mark.getAttribute('data-export-r'), '6');
+  }
+  const dates = marks.map(mark => Date.parse(mark.dataset.curvePoint.split(':').at(-1)));
+  const firstYear = new Date(Math.min(...dates)).getUTCFullYear();
+  const lastYear = new Date(Math.max(...dates)).getUTCFullYear();
+  const years = Array.from({ length: lastYear - firstYear + 1 }, (_, i) => firstYear + i)
+    .filter(year => Date.UTC(year, 0, 1) >= Math.min(...dates) && Date.UTC(year, 0, 1) <= Math.max(...dates));
+  assert.deepEqual([...svg.querySelectorAll('[data-year-guide]')].map(line => Number(line.dataset.yearGuide)), years);
+  for (const guide of normalized.querySelectorAll('[data-year-guide]')) {
+    const group = guide.parentElement;
+    guide.remove();
+    if (!group.childNodes.length) group.remove(); // Never discard any preexisting content beside a guide.
+  }
+  for (const mark of normalized.querySelectorAll('[data-curve-point]')) {
+    mark.setAttribute('r', '5');
+    mark.setAttribute('data-export-r', '5');
+  }
+  return sha(normalized.outerHTML
   // Unit/scale caption alone now starts at the common content edge.
   // point-source-tooltip.test.mjs independently requires x=0; all marks/axes stay pinned.
   .replace(/(<svg[^>]*>)<text x="0" y="16">/, '$1<text x="100" y="16">')
@@ -34,6 +59,7 @@ const svgSha = text => sha(text
   .replaceAll(' vector-effect="non-scaling-stroke"', '')
   .replaceAll(' class="pc-gridline"', '')
   .replaceAll('stroke="var(--border)" stroke-width="1" stroke-dasharray="3 5"', 'stroke="var(--border-strong)" stroke-dasharray="3 5"'));
+};
 // Captured from untouched 58dd8c2 before adding the controls, not the new off-state itself.
 const baseline = {
   'simultaneously-recorded-neurons': 'b0b0235052650e0f586bff88e75935e0e28cd6295698dd29455b0fff6ca77a6d',
@@ -48,7 +74,7 @@ test('canonical source bytes and unmodified tissue chart are preserved', async (
   try {
     assert.equal(document.querySelector('[role="switch"]'), null);
     assert.equal(document.querySelector('[data-extrapolation-line]'), null);
-    assert.equal(svgSha(document.querySelector('dialog svg').outerHTML), baseline['tissue-mapped']);
+    assert.equal(svgSha(document.querySelector('dialog svg')), baseline['tissue-mapped']);
     assert.equal(document.querySelectorAll('[data-curve-point]').length, 7);
     assert.equal(document.querySelectorAll('[data-source-observation]').length, 7);
   } finally { await cleanup(); }
@@ -100,7 +126,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     const toggle = dialog.querySelector('[role="switch"]');
     assert.ok(toggle, 'Hours modal needs its own opt-in switch');
     assert.equal(toggle.getAttribute('aria-checked'), 'false');
-    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
+    assert.equal(svgSha(dialog.querySelector('svg')), baseline['neural-recording-hours']);
     const table = dialog.querySelector('table').outerHTML;
     const previews = [...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML);
     await click(toggle);
@@ -144,7 +170,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     assert.ok(point.getAttribute('aria-describedby'));
     await act(async () => { point.blur(); select.value = ''; select.dispatchEvent(new Event('change', { bubbles: true })); });
     await click(toggle);
-    assert.equal(svgSha(dialog.querySelector('svg').outerHTML), baseline['neural-recording-hours']);
+    assert.equal(svgSha(dialog.querySelector('svg')), baseline['neural-recording-hours']);
     assert.equal(dialog.querySelector('table').outerHTML, table);
     assert.deepEqual([...document.querySelectorAll('.pc-preview')].map(el => el.outerHTML), previews);
   } finally { await cleanup(); }
@@ -165,6 +191,6 @@ test('hours scenarios expose the old flat tail beside the chart and remove optim
   assert.ok([...dialog.querySelectorAll('[data-crossing-label]')].every(e=>e.textContent.includes('not reached if plateau continues')));
   assert.doesNotMatch(dialog.querySelector('[data-extrapolation-summary]').textContent,/≈2029|≈2043|Infinity/);
   await click(dialog.querySelector('[role="switch"]'));
-  assert.equal(svgSha(dialog.querySelector('svg').outerHTML),baseline['neural-recording-hours']);
+  assert.equal(svgSha(dialog.querySelector('svg')),baseline['neural-recording-hours']);
  }finally{await cleanup();}
 });

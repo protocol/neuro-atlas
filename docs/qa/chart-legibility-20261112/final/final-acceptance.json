@@ -1,0 +1,1041 @@
+{
+  "scope": "Field Velocity Metrics chart presentation only",
+  "baseline": "cc1ceaa41e0547144be462068496449ee284fa6b",
+  "inventory_basis": "Actual current Field Velocity route statically reconciled against the parent native inventory; 24 visible charts in rail order. Early sampled card heights are not settled equal-height evidence.",
+  "native_acceptance": "Passed actual production-built loopback app at1440,390,320;24 charts per viewport,72 exact-title dialogs;24 nativePNGdownloads. Synthetic local proxy/provider only; hosted positive UI not claimed.",
+  "charts": [
+    {
+      "id": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "family": "trends",
+      "point_size": {
+        "applicability": "not_applicable",
+        "decision": "Dense weekly line samples deliberately retain 2.5 CSS-pixel radii and 7px inspection emphasis; no scatter-sized dilation."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Preserve term-specific weekly paths and missing-value gaps; do not connect different terms."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Neurotech search terms",
+          "populated": true,
+          "actualPNG": "export-0.png"
+        },
+        {
+          "width": 390,
+          "title": "Neurotech search terms",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Neurotech search terms",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "idea_vintage",
+      "title": "Citation latency",
+      "family": "curve",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Connect successive reliable annual medians within idea_vintage only; hollow under-indexed points remain separate. No fitted trend is added."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Citation latency",
+          "populated": true,
+          "actualPNG": "export-1.png"
+        },
+        {
+          "width": 390,
+          "title": "Citation latency",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Citation latency",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "latency_compression",
+      "title": "Latency compression",
+      "family": "curve",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different preclinical/device pathways and clinical endpoints are not a repeated series."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Latency compression",
+          "populated": true,
+          "actualPNG": "export-2.png"
+        },
+        {
+          "width": 390,
+          "title": "Latency compression",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Latency compression",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "revealed_commitments",
+      "title": "Implanted BCI participants over time",
+      "family": "curve",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Connect only the five explicitly cumulative Neuralink checkpoints, identical to the recipient chart. Other program/clinical/review cohorts remain separate; preserve mixed date bases and overlapping-cohort caveats."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Implanted BCI participants over time",
+          "populated": true,
+          "actualPNG": "export-3.png"
+        },
+        {
+          "width": 390,
+          "title": "Implanted BCI participants over time",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Implanted BCI participants over time",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "publication-output",
+      "title": "Neurotech papers per year",
+      "family": "publication",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Preserve neurotech-count and science-index series paths separately; keep the four-domain range band."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Neurotech papers per year",
+          "populated": true,
+          "actualPNG": "export-4.png"
+        },
+        {
+          "width": 390,
+          "title": "Neurotech papers per year",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Neurotech papers per year",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "publication-growth",
+      "title": "Publication growth by group",
+      "family": "publication",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "not_applicable",
+        "decision": "Growth percentage is the x-axis, not calendar time."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Existing lollipop stems encode growth from zero, not a time trajectory. Do not join category rows."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking. Preserve internal scrolling and the count/area geometry."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Publication growth by group",
+          "populated": true,
+          "actualPNG": "export-5.png"
+        },
+        {
+          "width": 390,
+          "title": "Publication growth by group",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Publication growth by group",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "researcher-sectors",
+      "title": "Researchers by publication sector",
+      "family": "publication",
+      "point_size": {
+        "applicability": "not_applicable",
+        "decision": "Preserve 100-square area/count encoding; squares are not fixed-size scatter dots."
+      },
+      "annual_guides": {
+        "applicability": "not_applicable",
+        "decision": "A 100-square publication-sector composition, not a temporal axis."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Each square remains one percent of the sector composition; there is no longitudinal line."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking. Preserve internal scrolling and the count/area geometry."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Researchers by publication sector",
+          "populated": true,
+          "actualPNG": "export-6.png"
+        },
+        {
+          "width": 390,
+          "title": "Researchers by publication sector",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Researchers by publication sector",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "researcher-sector-changes",
+      "title": "Researchers\u2019 first and latest affiliations",
+      "family": "publication",
+      "point_size": {
+        "applicability": "not_applicable",
+        "decision": "Preserve count-proportional ribbon widths and node heights; not a fixed-size point chart."
+      },
+      "annual_guides": {
+        "applicability": "not_applicable",
+        "decision": "Origin/destination people-count Sankey, not a temporal axis."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Preserve the actual count-scaled Sankey ribbons, not arbitrary point-to-point lines."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking. Preserve internal scrolling and the count/area geometry."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Researchers\u2019 first and latest affiliations",
+          "populated": true,
+          "actualPNG": "export-7.png"
+        },
+        {
+          "width": 390,
+          "title": "Researchers\u2019 first and latest affiliations",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Researchers\u2019 first and latest affiliations",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Add only the eight named TUSZ release checkpoints. Releases overlap; do not sum them or connect the other four datasets."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Neural recording hours \u2014 selected datasets",
+          "populated": true,
+          "actualPNG": "export-8.png"
+        },
+        {
+          "width": 390,
+          "title": "Neural recording hours \u2014 selected datasets",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Neural recording hours \u2014 selected datasets",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-neuralink-cumulative",
+      "title": "Selected chronic intracortical recipients",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "applies",
+        "decision": "Add only five Neuralink cumulative-recipient checkpoints. BrainGate and Paradromics remain separate cohorts."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected chronic intracortical recipients",
+          "populated": true,
+          "actualPNG": "export-9.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected chronic intracortical recipients",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected chronic intracortical recipients",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "family": "curve",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied. Single-day recording views do not invent an annual span."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Selected studies/session-quality definitions are independent, even within a measurement view."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Simultaneous neural recordings",
+          "populated": true,
+          "actualPNG": "export-10.png"
+        },
+        {
+          "width": 390,
+          "title": "Simultaneous neural recordings",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Simultaneous neural recordings",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-public-data-size",
+      "title": "Selected public image/resource footprints",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different projects/resources, storage definitions, and dates must not be pooled or connected."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected public image/resource footprints",
+          "populated": true,
+          "actualPNG": "export-11.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected public image/resource footprints",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected public image/resource footprints",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-tissue-cm3",
+      "title": "Selected tissue-volume checkpoints",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Species and preparation colors do not make different tissue projects a longitudinal series."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected tissue-volume checkpoints",
+          "populated": true,
+          "actualPNG": "export-12.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected tissue-volume checkpoints",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected tissue-volume checkpoints",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-largest-connectome-neurons",
+      "title": "Selected published connectomes \u2014 neuron counts",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different connectomes, preparations and scope; no line inferred from species."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "populated": true,
+          "actualPNG": "export-13.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected published connectomes \u2014 neuron counts",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-largest-connectome-synapses",
+      "title": "Selected published maps \u2014 synapse counts",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different maps, detection scopes and completeness criteria; no pooled trend."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected published maps \u2014 synapse counts",
+          "populated": true,
+          "actualPNG": "export-14.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected published maps \u2014 synapse counts",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected published maps \u2014 synapse counts",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-acquisition-rates",
+      "title": "Selected EM acquisition rates",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "FIB-SEM and autoTEM rates are different protocols/resolutions, not a longitudinal series."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected EM acquisition rates",
+          "populated": true,
+          "actualPNG": "export-15.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected EM acquisition rates",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected EM acquisition rates",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-paired-manual",
+      "title": "Selected structure\u2013function matches",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different projects and manual/EM-assisted matching scope; not a repeated dataset series."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected structure\u2013function matches",
+          "populated": true,
+          "actualPNG": "export-16.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected structure\u2013function matches",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected structure\u2013function matches",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-acquisition-economics",
+      "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Optical/EM are categories, not technique identities; all acquisition-technique points remain unconnected, including prospective PEEM."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+          "populated": true,
+          "actualPNG": "export-17.png"
+        },
+        {
+          "width": 390,
+          "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Estimated acquisition cost per 10M voxels \u2014 optical and EM",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-connectomics-roboem-human-split-merge",
+      "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "not_applicable",
+        "decision": "Split error versus merge error is a non-temporal scatterplot."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Shared preparations do not make method/threshold scatter observations a chronology."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "populated": true,
+          "actualPNG": "export-18.png"
+        },
+        {
+          "width": 390,
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Human and mouse cortex: split\u2013merge error trade-offs",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-proofreading-effort",
+      "title": "Reported project proofreading effort",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Different project completeness targets and work-year conventions; no joined trend."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Reported project proofreading effort",
+          "populated": true,
+          "actualPNG": "export-19.png"
+        },
+        {
+          "width": 390,
+          "title": "Reported project proofreading effort",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Reported project proofreading effort",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-pathfinder-nerl",
+      "title": "PATHFINDER v1: axon tracing benchmark",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "One axon-tracing benchmark checkpoint; no series to join."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "populated": true,
+          "actualPNG": "export-20.png"
+        },
+        {
+          "width": 390,
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "PATHFINDER v1: axon tracing benchmark",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-neuroai-imagenet",
+      "title": "NeuroAI performance\u2013cost frontier",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "not_applicable",
+        "decision": "Performance versus energy is a non-temporal, piecewise linear scatterplot."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Keep model variants and non-spiking baseline as scatter observations; no invented temporal frontier."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "NeuroAI performance\u2013cost frontier",
+          "populated": true,
+          "actualPNG": "export-21.png"
+        },
+        {
+          "width": 390,
+          "title": "NeuroAI performance\u2013cost frontier",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "NeuroAI performance\u2013cost frontier",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-flyvis-contrast",
+      "title": "FlyVis: correct contrast preference",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Two model/ensemble observations at one publication year, not successive releases."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "FlyVis: correct contrast preference",
+          "populated": true,
+          "actualPNG": "export-22.png"
+        },
+        {
+          "width": 390,
+          "title": "FlyVis: correct contrast preference",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "FlyVis: correct contrast preference",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    },
+    {
+      "id": "metric-panel-application-events",
+      "title": "Selected application events",
+      "family": "draft",
+      "point_size": {
+        "applicability": "applies",
+        "decision": "Use shared 5 CSS-pixel preview / 6px expanded fixed-size marks. Overlap rings keep original centers and remain a visibility device, not a magnitude encoding."
+      },
+      "annual_guides": {
+        "applicability": "applies",
+        "decision": "Thin 1px non-scaling vertical January 1 / integer-year divisions use the exact existing date/year projection, behind data marks. No new date precision is implied."
+      },
+      "series_connections": {
+        "applicability": "not_applicable",
+        "decision": "Events in categorical stages are not one continuous outcome series."
+      },
+      "wider_ratio": {
+        "applicability": "applies",
+        "decision": "Broader desktop/medium rail columns use (100% - 1rem) / 1.25; mobile now retains an 8px next-card peek plus the 16px rail gap. Natural plot reflow and one measured outer-height contract remain; no label shrinking."
+      },
+      "implementation": "covered_by_source_and_regressions",
+      "native_qa": "passed",
+      "native_evidence": [
+        {
+          "width": 1440,
+          "title": "Selected application events",
+          "populated": true,
+          "actualPNG": "export-23.png"
+        },
+        {
+          "width": 390,
+          "title": "Selected application events",
+          "populated": true,
+          "actualPNG": null
+        },
+        {
+          "width": 320,
+          "title": "Selected application events",
+          "populated": true,
+          "actualPNG": null
+        }
+      ]
+    }
+  ],
+  "runtime_revision": "a220bbb55eea471bacc623513e5809efada000e3"
+}

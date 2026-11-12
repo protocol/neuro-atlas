@@ -203,7 +203,7 @@ test('omitting styles retains existing circle selectors and palette colors', () 
     assert.equal(document.querySelectorAll('circle[data-source-observation]').length, defaults.points.length);
     for (const [index, point] of defaults.points.entries()) {
       const circle = marker(document, point.id);
-      assert.equal(circle.getAttribute('r'), '5', 'Expanded circles use the shared presentation base');
+      assert.equal(circle.getAttribute('r'), '6', 'Expanded circles use the shared presentation base');
       assert.equal(circle.getAttribute('fill'), ['#9275ca', '#3b8b62', '#9275ca'][index]);
       assert.equal(circle.getAttribute('stroke'), 'var(--surface)');
       assert.equal(circle.getAttribute('role'), 'button');

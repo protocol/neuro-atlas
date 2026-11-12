@@ -29,7 +29,7 @@ export function ParticipantCommitments() {
     const qualified = track.points.filter(point => point.qualifier);
     return qualified.length ? [`${track.label.split(" · ")[0]} ${qualified.map(point => `${point.qualifier === "at-least" ? "≥" : point.qualifier === "greater-than" ? ">" : "≈"}${point.value.toLocaleString("en-US")} (${point.datePrecision === "year" ? point.date.slice(0, 4) : point.datePrecision === "month" ? point.date.slice(0, 7) : point.date})`).join(", ")}`] : [];
   }).join("; ");
-  return <MeasurementCard series={participants} anchor="revealed_commitments" previewNote={bounds} provenance={
+  return <MeasurementCard series={participants} anchor="revealed_commitments" connectTracks={["neuralink-cumulative"]} previewNote={bounds} provenance={
     <section className="pc-methodology" aria-label="Recent participant-count literature">
       <h4>Recent participant-count literature</h4>
       <p>Review counts use each paper’s eligibility criteria and remain separate from program cohorts.</p>
