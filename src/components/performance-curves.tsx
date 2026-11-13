@@ -21,9 +21,6 @@ import { RECORDING_VIEWS, RECORDING_CHECKED_AT, type RecordingView } from "@/dat
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { decimalYear, extrapolationScenario, type Crossing, type ExtrapolationKind, type ExtrapolationMode, type ExtrapolationScenario } from "@/lib/extrapolation";
-import { MetricCardScope } from "@/components/metric-card-scope";
-import { CardPngButton } from "@/components/card-png-button";
-import { useCardExporting } from "@/lib/field-velocity/card-export";
 
 const number = (value: number) => new Intl.NumberFormat("en", { maximumSignificantDigits: 7 }).format(value);
 const colors = ["var(--accent)", "#087f8c", "#c16b0b", "#cc507b", "#438537", "#8a62bc", "#447dc4"];
@@ -298,22 +295,20 @@ export function CurveCard({ id, title, coverage, plot, children, sourceLinks, pr
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${canonicalPerformanceAnchor(id)}`;
-  const exporting = useCardExporting(id);
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
 
       <span className="pc-card-title">{title}</span>
       {plot && <CurvePlot data={plot} compact />}
+      <span className="pc-coverage">{coverage}</span>
+      {previewNote && <span className="pc-preview-qualification">{previewNote}</span>}
     </button>
     <div className="pc-card-share" data-metric-card-footer>
       {sourceLinks?.length ? <div className="pc-preview-sources">{sourceLinks.map(source => <a key={source.url} data-curve-source-link href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>)}</div> : null}
-      {/* Coverage stays complete; in the footer a capped preview can never clip it. */}
-      <MetricCardScope><span className="pc-coverage">{coverage}</span>{previewNote && <span className="pc-preview-qualification">{previewNote}</span>}</MetricCardScope>
       {share}
-      {plot && <CardPngButton anchor={id} title={title} />}
     </div>
-    {(open || exporting) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>
+    {open && <ChartModal id={id} title={title} returnFocus={ref}>
       {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
       {children}
     </ChartModal>}

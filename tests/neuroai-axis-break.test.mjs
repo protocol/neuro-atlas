@@ -72,7 +72,7 @@ test('120–800px preview and full plots retain readable ticks, complete glyphs 
           const top = 28 + svg.querySelector('.draft-plot-axis-title').querySelectorAll('tspan').length * 16;
           const bottom = Number(segments[0].getAttribute('y1'));
           const previewExtra = Number(svg.getAttribute('data-metric-preview-extra') ?? 0);
-          assert.equal(bottom - top, (preview ? 130 : 232) + previewExtra, 'Only the preview plotting height is deliberately shorter');
+          assert.equal(bottom - top, (preview ? 200 : 232) + previewExtra, 'Only the preview plotting height is deliberately shorter');
           const orderedTicks = ticks.map(tick => ({ center: Number(tick.getAttribute('x')), halfWidth: tick.textContent.length * 3.5 })).sort((a, b) => a.center - b.center);
           for (const [index, tick] of orderedTicks.entries()) {
             assert.ok(tick.center - tick.halfWidth >= 0 && tick.center + tick.halfWidth <= width, `Tick stays inside ${width}px frame`);

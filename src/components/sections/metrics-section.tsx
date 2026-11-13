@@ -36,8 +36,6 @@ function revealFocusedTile(event: React.FocusEvent<HTMLDivElement>) {
   if (bounds.left < viewportLeft) rail.scrollLeft += bounds.left - viewportLeft;
   else if (bounds.right > viewportRight) rail.scrollLeft += bounds.right - viewportRight;
 }
-/** One signature tone per group, in reading order; used for the group badge, edge and card tabs. */
-const METRIC_GROUP_TONES = ["#115ef7", "#238e91", "#9275ca", "#cd732f", "#cb6285"] as const;
 export type MetricReferences = { recording: React.ReactNode };
 export function MetricsSection({ performance, references, engagementPreview }: { performance: React.ReactNode; references?: MetricReferences; engagementPreview?: React.ReactNode }) {
   const [states, setStates] = useState<Record<string, GroupState>>({});
@@ -102,32 +100,11 @@ export function MetricsSection({ performance, references, engagementPreview }: {
     setStates(Object.fromEntries(METRIC_GROUPS.map(group => [group.name, state])));
   };
   const cardHeightRef = useMetricCardHeight();
-  // Counts come from the rendered rails, so they always match the cards readers can open.
-  const [chartCounts, setChartCounts] = useState<Record<string, number>>({});
-  useLayoutEffect(() => {
-    const root = cardHeightRef.current;
-    if (!root) return;
-    const count = () => {
-      const next = Object.fromEntries([...root.querySelectorAll<HTMLElement>("[data-metrics-category]")]
-        .map(category => [category.dataset.metricsCategory!, category.querySelectorAll("[data-metric-rail] article").length]));
-      setChartCounts(previous => METRIC_GROUPS.every(group => previous[group.name] === next[group.name]) ? previous : next);
-    };
-    count();
-    if (typeof MutationObserver === "undefined") return;
-    // Providers can add cards after mount; recount at most once per frame.
-    let frame = 0;
-    const observer = new MutationObserver(() => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => { frame = 0; count(); });
-    });
-    root.querySelectorAll("[data-metric-rail]").forEach(rail => observer.observe(rail, { childList: true, subtree: true }));
-    return () => { observer.disconnect(); window.cancelAnimationFrame(frame); };
-  }, [cardHeightRef]);
-  const totalCharts = Object.values(chartCounts).reduce((sum, count) => sum + count, 0);
   return <section ref={cardHeightRef} className="metrics-index" aria-label="Metrics catalog">
+    <p className="pc-intro">Open a chart for methodology and downloadable source values.</p>
     <div className="metrics-tools">
-      <label htmlFor="metrics-search" className="sr-only">Search charts</label>
-      <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder={totalCharts ? `Search ${totalCharts} charts — try H01, mouse, recording hours…` : "Search charts — try H01, mouse, recording hours…"} />
+      <label htmlFor="metrics-search">Search charts</label>
+      <input id="metrics-search" type="search" value={query} onInput={event => setQuery(event.currentTarget.value)} placeholder="Try H01, mouse, recording hours…" />
       <div className="metrics-utilities" role="group" aria-label="Chart catalog controls">
       <button type="button" data-clear-metrics disabled={!query} onClick={() => setQuery("")}>Clear search</button>
       <button type="button" data-expand-metrics onClick={event => setAll("full", event.currentTarget)}>Expand all</button>
@@ -135,7 +112,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
       </div>
     </div>
     {term && <p role="status">{matchingCategories ? `${matchingCategories} matching categories. Clear search to change groups.` : "Try another title, species or dataset, or clear search."}</p>}
-    {METRIC_GROUPS.map((group, index) => {
+    {METRIC_GROUPS.map(group => {
       const retiredAnchors = METRIC_CHARTS.filter(chart => metricCategoryFor(chart) === group.name).flatMap(chart => {
         const link = DRAFT_CHART_LINKS.find(link => link.title === chart.title)!;
         const ids = isVisibleMetric(chart)
@@ -148,18 +125,11 @@ export function MetricsSection({ performance, references, engagementPreview }: {
       const state: GroupState = term && matched ? "full" : states[group.name] ?? "full";
       const open = state !== "collapsed";
       const contentId = `metric-category-${group.id}`;
-      const count = chartCounts[group.name];
-      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} style={{ "--metric-tone": METRIC_GROUP_TONES[index % METRIC_GROUP_TONES.length] } as React.CSSProperties} {...metricSizingVisibility(!!term && !matched)}>
+      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} {...metricSizingVisibility(!!term && !matched)}>
         {retiredAnchors.map(id => <span key={id} id={id} className="metric-anchor" data-retired-metric-anchor aria-hidden="true" />)}
-        <header className="metric-category-head">
-          <span className="metric-category-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-          <h2><button type="button" disabled={!!term} id={`${contentId}-toggle`} data-metric-toggle={group.name} aria-expanded={open} aria-controls={contentId} onClick={event => changeGroup(group.name, open ? "collapsed" : "full", event.currentTarget)}>
-            <span className="metric-category-name">{group.name}</span>
-          </button></h2>
-          <p className="metric-category-summary">{group.summary}</p>
-          {count ? <span className="metric-category-count" aria-hidden="true">{count} {count === 1 ? "chart" : "charts"}</span> : null}
-          <span className="metric-category-icon" aria-hidden="true">{open ? "−" : "+"}</span>
-        </header>
+        <h2><button type="button" disabled={!!term} id={`${contentId}-toggle`} data-metric-toggle={group.name} aria-expanded={open} aria-controls={contentId} onClick={event => changeGroup(group.name, open ? "collapsed" : "full", event.currentTarget)}>
+          <span aria-hidden="true">{open ? "−" : "+"}</span><span className="metric-category-name">{group.name}</span>
+        </button></h2>
         <div id={contentId} className="metric-category-content" {...metricSizingVisibility(!open)} aria-labelledby={`${contentId}-toggle`}>
           <div id={`${contentId}-charts`} className="metric-chart-rail" data-metric-rail role="region" aria-label={`${group.name} charts`} tabIndex={0} onFocusCapture={revealFocusedTile}>
             {group.id === 6 ? <>

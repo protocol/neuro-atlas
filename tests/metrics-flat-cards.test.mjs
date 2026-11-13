@@ -27,7 +27,7 @@ test('flat reference renderers return only individual chart-card peers, without 
 });
 
 import { DraftChartsSection } from '../src/components/sections/draft-charts-section.tsx';
-import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, METRIC_GROUPS, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
+import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
 
 test('flat curated rendering gives each real plot and timeline its own peer article', () => {
   const doc = documentFor(React.createElement(DraftChartsSection, { flat: true, showGaps: false }));
@@ -85,11 +85,11 @@ test('all chart families start in one native horizontal rail and remain intact t
     style.textContent = readFileSync('src/components/draft-chart-plot.css', 'utf8');
     document.head.append(style);
     assert.equal(document.querySelectorAll('[data-metric-rail]').length, 5);
-    assert.equal(document.body.textContent.split('Open a chart for methodology and downloadable source values.').length - 1, 0, 'The card affordance replaces the instruction line');
+    assert.equal(document.body.textContent.split('Open a chart for methodology and downloadable source values.').length - 1, 1);
     assert.doesNotMatch(document.querySelector('.metrics-index > [role=status]')?.textContent ?? '', /5 groups|featured chart/);
     for (const category of document.querySelectorAll('[data-metrics-category]')) {
       assert.equal(category.classList.contains('card'), false, 'Category is a heading, not an enclosing padded card');
-      assert.equal(category.querySelector('.metric-category-summary')?.textContent, METRIC_GROUPS.find(group => group.name === category.dataset.metricsCategory).summary, 'Each numbered chapter carries its one-line summary');
+      assert.equal(category.querySelector('.metric-category-summary'), null);
       const grid = category.querySelector('[data-metric-rail]');
       assert.equal(getComputedStyle(grid).gridAutoFlow, 'column');
       assert.equal(getComputedStyle(grid).overflowX, 'auto');

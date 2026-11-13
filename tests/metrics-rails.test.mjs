@@ -14,27 +14,27 @@ function addStyles() {
   return style;
 }
 
-test('each of the five sections is its own bordered chapter, separated by spacing even when headline-only', async () => {
+test('thin dividers separate the five sections even when every section is headline-only', async () => {
   const cleanup = await mount(React.createElement(Page));
   try {
     const stylesheet = addStyles();
-    const rules = [...stylesheet.sheet.cssRules];
-    assert.equal(rules.some(rule => /~ \.metric-category(?![\w-])/.test(rule.selectorText ?? '')), false, 'Chapters replace sibling divider rules');
-    const chapter = rules.find(rule => rule.selectorText === '.metric-category');
-    assert.equal(chapter.style.getPropertyValue('border'), '1px solid var(--border)');
-    assert.equal(chapter.style.getPropertyValue('border-radius'), '14px');
+    const divider = [...stylesheet.sheet.cssRules].find(rule => rule.selectorText?.includes('~ .metric-category'));
+    assert.ok(divider, 'Dividers must be on section siblings, outside the collapsible charts');
+    assert.equal(divider.style.getPropertyValue('border-top'), '1px solid var(--border)');
     const categories = [...document.querySelectorAll('[data-metrics-category]')];
     for (const headlineOnly of [false, true]) {
       if (headlineOnly) await click(document.querySelector('[data-collapse-metrics]'));
-      categories.forEach((category, index) => {
-        assert.equal(getComputedStyle(category).marginBottom, '14px');
-        const badge = category.querySelector('.metric-category-index');
-        assert.equal(badge?.textContent, String(index + 1).padStart(2, '0'), 'Chapters are numbered in reading order');
-        assert.equal(badge.getAttribute('aria-hidden'), 'true', 'The number is visual; the toggle name stays the group name');
-        assert.ok(category.style.getPropertyValue('--metric-tone'), 'Every chapter declares its signature tone');
+      assert.equal(categories[0].matches(divider.selectorText), false, 'No rule before the first section');
+      for (const category of categories.slice(1)) {
+        assert.equal(category.matches(divider.selectorText), true);
+        assert.equal(getComputedStyle(category).paddingTop, '24px');
         if (headlineOnly) assert.equal(category.dataset.metricState, 'collapsed');
-      });
+      }
     }
+    // jsdom cannot compute border shorthand containing a theme variable; native QA measures its paint.
+    categories[0].hidden = true;
+    assert.equal(categories[1].matches(divider.selectorText), false, 'No orphan rule before the first search result');
+    assert.equal(categories[2].matches(divider.selectorText), true);
   } finally { await cleanup(); }
 });
 

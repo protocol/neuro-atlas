@@ -41,13 +41,11 @@ export function restoreFocusAfterPaneReveal(target: HTMLElement | null) {
 }
 
 /** Native top-layer dialog makes the rest of the page inert, without moving it. */
-export function ChartModal({ id, title, children, returnFocus, offscreen = false }: { id: string; title: string; children: React.ReactNode; returnFocus: React.RefObject<HTMLButtonElement | null>; offscreen?: boolean }) {
+export function ChartModal({ id, title, children, returnFocus }: { id: string; title: string; children: React.ReactNode; returnFocus: React.RefObject<HTMLButtonElement | null> }) {
   const ref = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const originRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    // An off-screen export mount is not a dialog: no focus, scroll lock or history.
-    if (offscreen) return;
     const dialog = ref.current!;
     const previous = document.activeElement;
     const trigger = returnFocus.current;
@@ -76,11 +74,7 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
         restoreFocusAfterPaneReveal(originRef.current);
       }
     };
-  }, [returnFocus, offscreen]);
-  // Card PNG export: the same chart tree, laid out invisibly so its share control can register.
-  if (offscreen) return <div className="chart-export-host" data-chart-export-host={id} aria-hidden="true" inert>
-    <div className="pc-modal-panel"><div className="pc-detail">{children}</div></div>
-  </div>;
+  }, [returnFocus]);
   return <dialog ref={ref} className="pc-modal" aria-modal="true" aria-labelledby={`${id}-title`}
     onCancel={event => { event.preventDefault(); closePerformance(); }}
     onClick={event => { if (event.target === event.currentTarget) closePerformance(); }}

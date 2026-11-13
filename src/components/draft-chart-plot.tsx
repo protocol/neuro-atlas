@@ -100,7 +100,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const top = 28 + yTitle.length * 16;
-  const bottom = top + (preview ? 130 : 232) + previewExtra;
+  const bottom = top + (preview ? 200 : 232) + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
   const ys = plot.points.map(point => point.y);

@@ -90,12 +90,6 @@ function install() {
   };
 }
 
-/** Resolve a chart's registration once its share control mounts (or undefined after the frame budget). */
-export async function whenChartRegistered(anchor: string, frames = 60): Promise<Registration | undefined> {
-  const slug = canonicalPerformanceAnchor(anchor);
-  return await waitForRegistration(slug, frames) ? registry.get(slug) : undefined;
-}
-
 /** Make window.neuroAtlas available before any chart panel opens, so exportAll can bootstrap. */
 export function installChartExportApi() {
   install();

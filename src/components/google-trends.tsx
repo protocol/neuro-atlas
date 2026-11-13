@@ -11,9 +11,6 @@ import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
 import { ChartActions } from '@/components/chart-actions';
-import { MetricCardScope } from '@/components/metric-card-scope';
-import { CardPngButton } from '@/components/card-png-button';
-import { useCardExporting } from '@/lib/field-velocity/card-export';
 import { usePreviewFont } from '@/components/use-preview-font';
 import { PointTooltip, usePointTooltip } from '@/components/point-source-tooltip';
 import { ChartYearGuides, annualDateYears } from '@/components/chart-year-guides';
@@ -27,7 +24,7 @@ const colors = ['var(--accent)', '#087f8c'];
 function TrendPlot({ group, compact = false, link, intro }: { group: Group; compact?: boolean; link?: React.ReactNode; intro?: React.ReactNode }) {
   const plotRef = useRef<HTMLDivElement>(null);
   const previewExtra = useMetricPreviewSpace(plotRef, compact);
-  const baseHeight = compact ? 180 : 270;
+  const baseHeight = compact ? 238 : 270;
   const height = baseHeight + previewExtra;
   const tooltip = usePointTooltip<string>();
   const [previewWidth, setPreviewWidth] = useState(560);
@@ -95,7 +92,6 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const hash = usePerformanceHash();
   const id = `google-trends-${group.id}`;
   const open = hash === `#${canonicalPerformanceAnchor(id)}`;
-  const exporting = useCardExporting(id);
   const [copyStatus, setCopyStatus] = useState('');
   const [copyFallback, setCopyFallback] = useState('');
   const [valuesOpen, setValuesOpen] = useState(false);
@@ -119,12 +115,8 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
     </button>
     <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Independently normalized brand-search interest.</p>}</div>
     </div>
-    <div data-metric-card-footer>
-      <MetricCardScope><p data-metric-scope>Google Trends · worldwide · weekly index 0–100</p></MetricCardScope>
-      {share}
-      <CardPngButton anchor={id} title={group.title} />
-    </div>
-    {(open || exporting) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
+    <div data-metric-card-footer>{share}</div>
+    {open && <ChartModal id={id} title={group.title} returnFocus={ref}>
       <TrendPlot key={group.rawSha256} group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>

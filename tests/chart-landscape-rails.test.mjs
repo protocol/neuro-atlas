@@ -13,20 +13,19 @@ globalThis.React = React;
 const points = [2018,2023].map((x,i)=>({id:`p${i}`,x,y:i+1,label:`Fixture ${i}`,dateLabel:`${x}`,sourceTitle:'Synthetic source',sourceUrl:'https://example.org',quote:'Fixture'}));
 const plot = {id:'fixture',title:'Fixture',xKind:'year',xLabel:'Publication year',yLabel:'Units',scale:'linear',scope:'Synthetic only.',points};
 
-test('desktop rails show three compact cards and a peek, mid-width plates two, while narrow rails trade excess peek for readable content', () => {
+test('desktop rails use broader landscape cards while narrow rails trade excess peek for readable content', () => {
   const css = readFileSync('src/components/draft-chart-plot.css','utf8');
   const dom = new JSDOM(`<style>${css}</style>`, {url: 'https://example.org'});
   try {
     const rules = [...dom.window.document.styleSheets[0].cssRules];
     const content = rules.find(rule => rule.selectorText === '.metric-category-content');
-    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 2.625rem)/3.34)');
-    for (const rail of [1087,1248]) {
-      const card = (rail - 42) / 3.34, next = rail - 3 * card - 3 * 14;
-      assert.ok(card >= 300, 'Compact cards stay wide enough for screen-space ticks and titles');
-      assert.ok(next >= 90 && next < card, 'Three full cards and a real slice of the fourth signal horizontal scrolling');
+    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 1rem)/1.25)');
+    for (const rail of [800,1087,1248]) {
+      const card = (rail - 16) / 1.25, next = rail - card - 16;
+      assert.ok(card / rail >= .78 && card / rail <= .8);
+      assert.ok(next >= 120, 'A real slice of the following card still signals horizontal scrolling');
+      assert.ok(card / 220 > 2, 'Landscape plot, without reducing typography');
     }
-    // Mid-width plates (a container query jsdom does not evaluate) fall back to two cards and a peek.
-    assert.match(css, /@container \(min-width: 521px\) and \(max-width: 820px\) \{\s*\.metric-chart-rail \{ --metric-card-width: calc\(\(100% - 1\.75rem\)\/2\.2\); \}/);
     const mobile = rules.filter(rule => rule.conditionText === '(max-width: 560px)').flatMap(rule => [...rule.cssRules]).find(rule => rule.selectorText === '.metric-category-content');
     assert.equal(mobile.style.getPropertyValue('--metric-card-width'), 'calc(100% - 1.5rem)');
     const rail = rules.find(rule => rule.selectorText === '.metric-chart-rail');
@@ -43,7 +42,7 @@ test('draft previews are shorter without altering the expanded scientific chart 
     try { return Number(dom.window.document.querySelector('.draft-plot-svg').getAttribute('viewBox').split(' ')[3]); } finally {dom.window.close();}
   };
   assert.equal(height(false), 340, 'Expanded chart stays at its original height');
-  assert.equal(height(true), 238, 'Only the compact rail preview plotting band is reduced, by 102px');
+  assert.equal(height(true), 308, 'Only preview plotting height is reduced, by 32px');
   const timeline = {scope:'Synthetic only.',events:['Research','Prototype','Demonstration'].map((stage,i)=>({...points[i%2],id:`e${i}`,year:2018+i,stage,note:'Fixture'}))};
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftEventTimeline,{timeline,preview:true})));
   try {
@@ -71,7 +70,7 @@ test('rail curve previews reflow to the measured content width, rather than grow
 test('Trends previews reserve a shorter plotting region without changing the expanded time-series geometry', async () => {
   const cleanup = await mount(React.createElement(GoogleTrends,{flat:true,selection:['neurotech']}),'#google-trends-neurotech');
   try {
-    assert.equal(document.querySelector('.gt-preview svg').getAttribute('viewBox'),'0 0 560 180');
+    assert.equal(document.querySelector('.gt-preview svg').getAttribute('viewBox'),'0 0 560 238');
     assert.equal(document.querySelector('dialog svg').getAttribute('viewBox'),'0 0 600 270');
   } finally {await cleanup();}
 });

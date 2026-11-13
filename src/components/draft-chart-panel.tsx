@@ -7,7 +7,6 @@ import { ChartModal } from "@/components/chart-modal";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
-import { useCardExporting } from "@/lib/field-velocity/card-export";
 
 type PanelLocation = { anchor: string; aliases?: readonly string[]; methodology?: ReactNode; previewContext?: ReactNode };
 
@@ -18,7 +17,6 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
   const trigger = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash().slice(1);
   const open = [anchor, ...aliases].some(id => hash === canonicalPerformanceAnchor(id));
-  const exporting = useCardExporting(anchor);
   return <div className="draft-popout" data-draft-popout={anchor} data-draft-popout-aliases={aliases.join(" ")}>
     <div className="draft-popout-card" data-metric-card-body>
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>
@@ -27,7 +25,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
         aria-label={`Enlarge ${title}`} aria-haspopup="dialog" aria-expanded={open}
         onClick={() => navigatePerformance(anchor)} />
     </div>
-    {(open || exporting) && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger} offscreen={!open}>
+    {open && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger}>
       <div className="draft-popout-detail">{children}{methodology}</div>
     </ChartModal>}
   </div>;
