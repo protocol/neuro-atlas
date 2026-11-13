@@ -98,7 +98,7 @@
 }
 
 /* Unified metrics navigation; legacy plot classes remain stable compatibility hooks. */
-.metrics-index { --metric-card-max-height: 340px; position: relative; max-width: 78rem; min-width: 0; }
+.metrics-index { --metric-card-max-height: 300px; position: relative; max-width: 78rem; min-width: 0; }
 .metrics-index [hidden] { display: none !important; }
 /* Important declarations must share Tailwind's base layer to beat its hidden reset. */
 @layer base {
@@ -132,7 +132,7 @@
 .metric-category[data-metric-state="collapsed"] .metric-category-head { border-radius: 13px; }
 .metric-category-index { grid-row: 1 / span 2; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--metric-tone); color: #fff; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .metric-category h2 { grid-column: 2; grid-row: 1; min-width: 0; margin: 0; }
-.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 0; width: 100%; min-height: 44px; margin-block: -6px -4px; padding: 0; align-content: center; text-align: left; font-size: 18px; line-height: 1.3; letter-spacing: -.02em; font-weight: 600; color: var(--foreground); cursor: pointer; }
+.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 0; width: 100%; min-height: 44px; margin-block: -11px -9px; padding: 0; align-content: center; text-align: left; font-size: 18px; line-height: 1.3; letter-spacing: -.02em; font-weight: 600; color: var(--foreground); cursor: pointer; }
 /* The whole header is the hit area; the button itself stays the only interactive element. */
 .metric-category h2 > button::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .metric-category h2 > button:focus-visible { outline: none; }

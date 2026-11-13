@@ -83,7 +83,7 @@ test('reference and draft preview circles remain 5 screen pixels across narrow a
         assert.equal(mark.getAttribute('tabindex'), null, 'Preview marks never gain inspection/focus styling');
       }
       assert.deepEqual(centers(reference), pinned, 'Only marker presentation changes, never source centers');
-      assert.equal(reference.getAttribute('viewBox'), '0 0 360 220');
+      assert.equal(reference.getAttribute('viewBox'), '0 0 360 160');
       assert.equal(document.querySelector('.draft-plot-inspector'), null);
     }
     const usable = [...document.querySelectorAll('.pc-preview circle')].map(mark => mark.getAttribute('r'));

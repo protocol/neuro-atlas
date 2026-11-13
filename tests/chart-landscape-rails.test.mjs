@@ -43,7 +43,7 @@ test('draft previews are shorter without altering the expanded scientific chart 
     try { return Number(dom.window.document.querySelector('.draft-plot-svg').getAttribute('viewBox').split(' ')[3]); } finally {dom.window.close();}
   };
   assert.equal(height(false), 340, 'Expanded chart stays at its original height');
-  assert.equal(height(true), 238, 'Only the compact rail preview plotting band is reduced, by 102px');
+  assert.equal(height(true), 192, 'Only the compact rail preview plotting band is reduced, by 148px');
   const timeline = {scope:'Synthetic only.',events:['Research','Prototype','Demonstration'].map((stage,i)=>({...points[i%2],id:`e${i}`,year:2018+i,stage,note:'Fixture'}))};
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftEventTimeline,{timeline,preview:true})));
   try {
@@ -61,7 +61,7 @@ test('rail curve previews reflow to the measured content width, rather than grow
   });
   try {
     const preview = document.querySelector('.pc-preview svg'), full = document.querySelector('dialog svg');
-    assert.equal(preview.getAttribute('viewBox'),'0 0 780 220', 'Landscape geometry uses content pixels, not scaled 360×220');
+    assert.equal(preview.getAttribute('viewBox'),'0 0 780 160', 'Landscape geometry uses content pixels, not scaled 360×160');
     assert.equal(full.getAttribute('viewBox'),'0 0 720 300', 'Expanded/export frame is not changed by the rail');
     assert.equal(preview.style.fontSize,'12px');
     for (const mark of preview.querySelectorAll('circle')) assert.equal(Number(mark.getAttribute('r')),5);
@@ -71,7 +71,7 @@ test('rail curve previews reflow to the measured content width, rather than grow
 test('Trends previews reserve a shorter plotting region without changing the expanded time-series geometry', async () => {
   const cleanup = await mount(React.createElement(GoogleTrends,{flat:true,selection:['neurotech']}),'#google-trends-neurotech');
   try {
-    assert.equal(document.querySelector('.gt-preview svg').getAttribute('viewBox'),'0 0 560 180');
+    assert.equal(document.querySelector('.gt-preview svg').getAttribute('viewBox'),'0 0 560 150');
     assert.equal(document.querySelector('dialog svg').getAttribute('viewBox'),'0 0 600 270');
   } finally {await cleanup();}
 });

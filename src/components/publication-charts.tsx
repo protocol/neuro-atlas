@@ -350,7 +350,7 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
   const hasScience=annualScienceAvailable(data);
   const preview=useRef<HTMLDivElement>(null);
   const previewExtra=useMetricPreviewSpace(preview,true);
-  const previewHeight=235+previewExtra;
+  const previewHeight=170+previewExtra;
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>
       <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span></button>
