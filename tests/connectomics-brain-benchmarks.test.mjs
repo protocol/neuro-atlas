@@ -16,7 +16,7 @@ test('whole-brain benchmarks use source-qualified volumes and demonstrated 4×4�
   }
   assert.equal(context.toggleLabel, 'Whole-brain scale');
   assert.deepEqual(context.references.map(ref => ref.label), ['Mouse ≈700 PB', 'Macaque ≈120K PB', 'Human ≈1.9M PB']);
-  assert.match(context.scopeLabel, /8-bit raw images/);
+  assert.match(context.scopeLabel, /^Model:.*8-bit raw/);
   assert.match(context.disclosure, /image-equivalent/i);
   assert.match(context.disclosure, /compressed/i);
   assert.match(context.disclosure, /Rhesus macaque/);

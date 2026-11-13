@@ -36,7 +36,7 @@ const imageBasis = `Dense ${sampling} nm sampling at ${BRAIN_IMAGE_MODEL.bytesPe
 export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | undefined {
   if (plotId === "public-data-size") return {
     toggleLabel: "Whole-brain scale",
-    scopeLabel: `${sampling} nm · 8-bit raw images`,
+    scopeLabel: `Model: ${sampling} nm · 8-bit raw`,
     disclosure: `Whole-brain image-equivalent capacity scenarios. ${volumeBasis} ${imageBasis} Stored compressed public resources have heterogeneous resolution, encoding and included products; modeled image capacity is separate from connectome completion.`,
     sources: [mouseSource, volumeSource, samplingSource, macaqueSource],
     references: Object.entries(BRAIN_IMAGE_MODEL.volumesMm3).map(([id, volumeMm3]) => {
