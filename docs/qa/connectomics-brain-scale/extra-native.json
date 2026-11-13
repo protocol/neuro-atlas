@@ -1,0 +1,44 @@
+[
+  {
+    "chart": "selected-public-image-resource-footprints",
+    "clipboard": {
+      "count": 1,
+      "types": [
+        "text/plain",
+        "text/html",
+        "image/png"
+      ],
+      "pngBytes": 225356,
+      "targetMatches": true
+    },
+    "restoredPermission": "prompt",
+    "dark": {
+      "fill": "rgb(161, 161, 170)",
+      "stroke": "rgb(17, 17, 19)",
+      "background": "rgb(17, 17, 19)"
+    },
+    "triggerRestoresFocus": true,
+    "reopenDefaultOff": true
+  },
+  {
+    "chart": "estimated-acquisition-cost-per-10m-voxels-optical-and-em",
+    "clipboard": {
+      "count": 1,
+      "types": [
+        "text/plain",
+        "text/html",
+        "image/png"
+      ],
+      "pngBytes": 252618,
+      "targetMatches": true
+    },
+    "restoredPermission": "prompt",
+    "dark": {
+      "fill": "rgb(161, 161, 170)",
+      "stroke": "rgb(17, 17, 19)",
+      "background": "rgb(17, 17, 19)"
+    },
+    "triggerRestoresFocus": true,
+    "reopenDefaultOff": true
+  }
+]

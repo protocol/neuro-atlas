@@ -1,0 +1,44 @@
+{
+  "runtime_revision": "9345401064d2f4e851be06d91ad71788a9f70b27",
+  "baseline_revision": "5015d2cc27a2c63babbdc0ad93d975724a25b84b",
+  "origin": "http://127.0.0.1:36475",
+  "evidence_class": "native local production build, disposable loopback-only proxy fixture; hosted auth and physical touch not claimed",
+  "artifacts": {
+    "candidate-on-selected-public-image-resource-footprints-1440.png": {
+      "bytes": 169460,
+      "sha256": "8b5cb54949c4a6d8c80df2816c872c80904925d006cdbcc80dc7492f02e15016"
+    },
+    "candidate-on-selected-public-image-resource-footprints-320.png": {
+      "bytes": 67142,
+      "sha256": "93e13f10104337d3855113fa78ee11c683267dfef00053475783a8358336cc7d"
+    },
+    "native-export-selected-public-image-resource-footprints.png": {
+      "bytes": 257268,
+      "sha256": "694b37ddc646505a762e1c9ff1846d0ab98479dde7b623e673d8acaada2d9a53"
+    },
+    "candidate-on-estimated-acquisition-cost-per-10m-voxels-optical-and-em-1440.png": {
+      "bytes": 161911,
+      "sha256": "18bbcc95035e13e81c2c56dfe92c72570f8feeb08f1153abb96bd55c1d607188"
+    },
+    "candidate-on-estimated-acquisition-cost-per-10m-voxels-optical-and-em-320.png": {
+      "bytes": 67678,
+      "sha256": "461bc890f5208a7b2de96be78f23b02fca88aac26c23ad0eb2ac445b92f9e762"
+    },
+    "native-export-estimated-acquisition-cost-per-10m-voxels-optical-and-em.png": {
+      "bytes": 285390,
+      "sha256": "aad266b8e952dcb80a473f877495db77fa685f9ff91279953ccafd3dd9bdfe8e"
+    },
+    "candidate-motion.json": {
+      "bytes": 335623,
+      "sha256": "dab986e493ca3474a49371b0714f584c638b2e5173c4e8fddd53f342cf8cb19c"
+    },
+    "extra-native.json": {
+      "bytes": 984,
+      "sha256": "fa88458adce065d10f77f515e58bc01778559b9f8beaf892ffe8ab23428593a0"
+    },
+    "independent-arithmetic.json": {
+      "bytes": 1121,
+      "sha256": "87c85c6347f7b8166b2c1021421e9aa3843363acea07528944ea1cafb396993f"
+    }
+  }
+}

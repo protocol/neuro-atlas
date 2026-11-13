@@ -1,0 +1,46 @@
+{
+  "sampling_nm": [
+    4,
+    4,
+    40
+  ],
+  "volumes": {
+    "mouse": {
+      "volume_mm3": "450",
+      "voxels": "703125000000000000",
+      "PB": "703.125"
+    },
+    "rhesus-macaque": {
+      "volume_mm3": "78550",
+      "voxels": "122734375000000000000",
+      "PB": "122734.375"
+    },
+    "human": {
+      "volume_mm3": "1200000",
+      "voxels": "1875000000000000000000",
+      "PB": "1875000"
+    }
+  },
+  "budgets": [
+    {
+      "human_acquisition_budget_usd": 1000000000,
+      "USD_per_10M_voxels": "0.000005333333333333333333333333333333333333333"
+    },
+    {
+      "human_acquisition_budget_usd": 100000000,
+      "USD_per_10M_voxels": "5.333333333333333333333333333333333333333E-7"
+    },
+    {
+      "human_acquisition_budget_usd": 10000000,
+      "USD_per_10M_voxels": "5.333333333333333333333333333333333333333E-8"
+    },
+    {
+      "human_acquisition_budget_usd": 1000000,
+      "USD_per_10M_voxels": "5.333333333333333333333333333333333333333E-9"
+    },
+    {
+      "human_acquisition_budget_usd": 100000,
+      "USD_per_10M_voxels": "5.333333333333333333333333333333333333333E-10"
+    }
+  ]
+}
