@@ -12,6 +12,8 @@ import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip
 import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
+import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
+import { useBrainScaleMotion } from "./use-brain-scale-motion";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -84,6 +86,11 @@ function usePlotWidth() {
 
 export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
+  const benchmark = preview ? undefined : brainBenchmarkContext(plot.id);
+  const [benchmarkEnabled, setBenchmarkEnabled] = useState(false);
+  const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
+  const benchmarkMoving = !!benchmark && benchmarkProgress !== (benchmarkEnabled ? 1 : 0);
+  const benchmarkReveal = benchmarkProgress === 1 ? 1 : Math.max(0, (benchmarkProgress - .8) / .2);
   const observationBasis = plot.observationBasis ?? "Source-reported";
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
@@ -110,7 +117,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   let xMax = numericX ? Math.max(...xs) : Math.ceil(Math.max(...xs));
   if (xMin === xMax) { xMin -= 1; xMax += 1; }
   const log = plot.scale === "log";
-  const minPower = Math.floor(Math.log10(Math.min(...ys)));
+  let minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
   if (maxPower === minPower) maxPower += 1;
   const rawYMax = Math.max(...ys) || 1;
@@ -124,7 +131,19 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     : integerAxis
       ? Array.from({ length: Math.round((yMax - yMin) / integerStep) + 1 }, (_, i) => yMin + i * integerStep)
       : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
-  const yTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
+  const baselineYTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
+  // Interpolate the bounds in log space, never the underlying observations.
+  // Padding leaves room for direct labels at the extremes of the expanded view.
+  const referencePowers = benchmark?.references.map(ref => Math.log10(ref.value)) ?? [];
+  const targetMinPower = referencePowers.length ? Math.min(minPower, Math.floor(Math.min(...referencePowers) - .15)) : minPower;
+  const targetMaxPower = referencePowers.length ? Math.max(maxPower, Math.ceil(Math.max(...referencePowers) + .15)) : maxPower;
+  const targetPowerStep = Math.max(1, Math.ceil((targetMaxPower - targetMinPower) / 5));
+  const targetYTicks = referencePowers.length ? [...new Set([...Array.from({ length: Math.floor((targetMaxPower - targetMinPower) / targetPowerStep) + 1 }, (_, i) => 10 ** (targetMinPower + i * targetPowerStep)), 10 ** targetMaxPower])] : baselineYTicks;
+  const yTicks = benchmarkProgress > 0 ? [...new Set([...baselineYTicks, ...targetYTicks])].sort((a, b) => a - b) : baselineYTicks;
+  if (benchmarkProgress > 0) {
+    minPower += (targetMinPower - minPower) * benchmarkProgress;
+    maxPower += (targetMaxPower - maxPower) * benchmarkProgress;
+  }
   const xTicks = preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
   const connections = numericX ? [] : (plot.connections ?? []).map(series => ({
     ...series,
@@ -132,7 +151,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   })).filter(series => series.points.length > 1);
   const connectionNote = connections.length ? `Lines connect only ${connections.map(series => series.label).join("; ")}; other observations remain separate.` : "Unconnected observations";
   const axisLabel = preview ? previewTickLabel : tickLabel;
-  const left = Math.max(46, ...yTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
+  const baselineLeft = Math.max(46, ...baselineYTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
+  const targetLeft = Math.max(46, ...targetYTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
+  const left = baselineLeft + (targetLeft - baselineLeft) * benchmarkProgress;
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
   const energyAxis = neuroaiEnergyAxis(plot, left, right);
   const x = energyAxis?.x ?? ((value: number) => left + (value - xMin) / (xMax - xMin) * (right - left));
@@ -153,9 +174,18 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     ? "Rings keep overlapping observations visible at their source positions." : undefined;
   // Only callouts move. Search bounded slots for the closest free 20px badge;
   // leave clearance from both source glyphs and already placed badges.
+  // Reserve the direct benchmark labels before placing movable annotation badges.
+  // Source marks stay at their quantitative centers; only their numbered keys move.
+  const benchmarkLabelRegions = benchmark && benchmarkProgress > .8 ? benchmark.references.map(ref => ({
+    left: right - 4 - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
+    right,
+    top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
+    bottom: y(ref.value),
+  })) : [];
   const placedKeys: { x: number; y: number }[] = [];
-  const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / 24) + 1) }, (_, column) =>
-    Array.from({ length: Math.floor((bottom - top - 24) / 24) + 1 }, (_, row) => ({ x: left + 12 + column * 24, y: top + 12 + row * 24 }))).flat();
+  const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;
+  const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / keySlotStep) + 1) }, (_, column) =>
+    Array.from({ length: Math.floor((bottom - top - 24) / keySlotStep) + 1 }, (_, row) => ({ x: left + 12 + column * keySlotStep, y: top + 12 + row * keySlotStep }))).flat();
   const annotations = plot.points.flatMap((point, index) => {
     const text = point.annotation?.trim() || (overlaps[index].length
       ? [point.label, point.group, qualifiedValue(point)].filter(Boolean).join(" · ") : "");
@@ -179,6 +209,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     const position = [preferred, ...segmentSlots]
       .sort((a, b) => Math.hypot(a.x - preferred.x, a.y - preferred.y) - Math.hypot(b.x - preferred.x, b.y - preferred.y))
       .find(candidate => placedKeys.every(other => Math.abs(candidate.x - other.x) >= 23 || Math.abs(candidate.y - other.y) >= 23)
+        && benchmarkLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right
+          || candidate.y + 12 < region.top || candidate.y - 12 > region.bottom)
         && plot.points.every((other, otherIndex) => Math.hypot(
           Math.max(0, Math.abs(candidate.x - x(other.x)) - 10),
           Math.max(0, Math.abs(candidate.y - y(other.y)) - 10),
@@ -193,11 +225,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null),
   });
 
-  return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} aria-labelledby={`${id}-title`}>
-    {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} getChart={() => ({
+  return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
+    {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend,
       notes: [plot.scope, plot.seriesNote ?? "",
+        ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
@@ -207,10 +240,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{plot.title}</figcaption>
-    <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}>
+    <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
+      data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
+        <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
+      </g>}
       {!numericX && <ChartYearGuides years={annualYears(xMin, xMax)} x={x} top={top} bottom={bottom} />}
-      {yTicks.map(tick => <g key={tick}>
+      {yTicks.map(tick => <g key={tick} opacity={benchmarkProgress > 0 ? (Math.log10(tick) < minPower || Math.log10(tick) > maxPower ? 0 : baselineYTicks.includes(tick) && targetYTicks.includes(tick) ? 1 : baselineYTicks.includes(tick) ? 1 - benchmarkProgress : Math.max(0, (benchmarkProgress - .4) / .6)) : undefined}>
         {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
         <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
       </g>)}
@@ -233,6 +270,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       </g>)}
       {connections.map(series => <polyline key={series.id} data-observation-series={series.id} points={series.points.map(point => `${x(point.x)},${y(point.y)}`).join(" ")}
         fill="none" stroke={groupColor(series.points[0])} strokeWidth={1.5} vectorEffect="non-scaling-stroke" pointerEvents="none" aria-hidden="true" />)}
+      {benchmark && benchmarkProgress > 0 && benchmark.references.map(ref => {
+        const position = y(ref.value);
+        const room = Math.max(0, Math.min(1, (Math.min(position - top, bottom - position) - 12) / 4));
+        return <g key={ref.id} opacity={room * benchmarkReveal} pointerEvents="none">
+          <line data-brain-scale-reference={ref.id} data-value={ref.value} x1={left} x2={right} y1={position} y2={position}
+            stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} strokeDasharray="2 5" vectorEffect="non-scaling-stroke" />
+          <text x={right - 4} y={position - 6} textAnchor="end" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}
+            fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{ref.label}</text>
+        </g>;
+      })}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
         strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
@@ -240,7 +287,19 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {!preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
+    {benchmark && <div className="brain-scale-controls">
+      <button type="button" role="switch" data-brain-scale-toggle aria-checked={benchmarkEnabled}
+        onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>
+      <details data-brain-scale-assumptions>
+        <summary>Benchmark assumptions &amp; sources</summary>
+        <p>{benchmark.disclosure}</p>
+        <ul>{benchmark.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></li>)}</ul>
+      </details>
+    </div>}
+    {!preview && (overlapNote || benchmark) && <p className="draft-plot-overlap-note" data-overlap-note={overlapNote ? true : undefined}
+      style={benchmark && !overlapNote ? { visibility: "hidden" } : undefined}>
+      {overlapNote ?? "Rings keep overlapping observations visible at their source positions."}
+    </p>}
     {!preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
       <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
         <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
