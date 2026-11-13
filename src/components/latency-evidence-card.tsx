@@ -1,4 +1,5 @@
 import { CurveCard } from "@/components/performance-curves";
+import { ModalReading, ModalSources, ModalTable } from "@/components/chart-modal-slots";
 import { TRANSLATION_EVIDENCE as evidence, reportInterval, translationPlot } from "@/lib/field-velocity/translation-evidence";
 
 const intervalContext: Record<string, string> = {
@@ -27,12 +28,20 @@ export function LatencyEvidenceCard() {
       <h3>Selected report-to-human intervals</h3>
       <p>Intervals from selected public preclinical reports to human implants or temporary placements. Each pathway retains its species and endpoint.</p>
     </section>}>
-    <section className="pc-methodology" aria-label="Latency evidence definitions and methodology">
+    <ModalReading><section className="pc-methodology" aria-label="Latency evidence definitions and methodology">
       <h4>How these intervals are defined</h4>
       <p>Elapsed time from a selected public preclinical report or demonstration to a documented human milestone. Earlier experimental work may predate the selected report.</p>
       <p>Dots mark midpoints of date-precision ranges; whiskers show their full spans. Table dates retain source precision. Study designs and human endpoints vary by pathway.</p>
     </section>
-    <div className="pc-table-scroll" role="region" aria-label="Translation interval source data" tabIndex={0}>
+    <section className="pc-methodology" aria-label="Additional company translation pathways">
+      <h4>Other reviewed pathways</h4>
+      <p>Comparable endpoint dates remain unresolved for these device lineages.</p>
+      {evidence.additionalPathways.map(pathway => <section key={pathway.id} data-latency-pathway={pathway.id}>
+        <h4>{pathway.label} · {pathway.status}</h4><p>{pathwayNotes[pathway.id] ?? pathway.note}</p>
+        <ul className="pc-sources">{pathway.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a></li>)}</ul>
+      </section>)}
+    </section></ModalReading>
+    <ModalTable summary={<>Direct sources for every plotted interval · {evidence.intervals.length} selected pairs</>}><div className="pc-table-scroll" role="region" aria-label="Translation interval source data" tabIndex={0}>
       <table>
         <caption>Direct sources for every plotted interval · {evidence.intervals.length} selected pairs</caption>
         <thead><tr><th scope="col">Device lineage</th><th scope="col">Preclinical report / demo</th><th scope="col">Human milestone</th><th scope="col">Elapsed years / scope</th></tr></thead>
@@ -46,16 +55,10 @@ export function LatencyEvidenceCard() {
           </tr>;
         })}</tbody>
       </table>
-    </div>
-    <section className="pc-methodology" aria-label="Additional company translation pathways">
-      <h4>Other reviewed pathways</h4>
-      <p>Comparable endpoint dates remain unresolved for these device lineages.</p>
-      {evidence.additionalPathways.map(pathway => <section key={pathway.id} data-latency-pathway={pathway.id}>
-        <h4>{pathway.label} · {pathway.status}</h4><p>{pathwayNotes[pathway.id] ?? pathway.note}</p>
-        <ul className="pc-sources">{pathway.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a></li>)}</ul>
-      </section>)}
-    </section>
-    <ul className="pc-sources"><li><a href={evidence.corpusUrl} target="_blank" rel="noreferrer">Endpoint evidence review ↗</a></li></ul>
-    <p className="pc-chart-note">Sources checked {evidence.checkedAt}.</p>
+    </div></ModalTable>
+    <ModalSources>
+      <ul className="pc-sources"><li><a href={evidence.corpusUrl} target="_blank" rel="noreferrer">Endpoint evidence review ↗</a></li></ul>
+      <p className="pc-chart-note">Sources checked {evidence.checkedAt}.</p>
+    </ModalSources>
   </CurveCard>;
 }

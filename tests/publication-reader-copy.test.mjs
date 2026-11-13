@@ -71,9 +71,7 @@ test('growth inspection names its cohort while provenance retains exact source m
     const modal = document.querySelector('dialog[open]');
     const svg = modal.querySelector('.publication-full-plot svg');
     await act(async () => {
-      const baseline = modal.querySelector('[data-growth-baseline]');
-      baseline.value = 'matched';
-      baseline.dispatchEvent(new window.Event('change', { bubbles: true }));
+      modal.querySelector('[data-baseline-option="matched"]').click();
     });
     await act(async () => svg.querySelector('[data-growth-row="asia"]').dispatchEvent(new window.MouseEvent('click', { bubbles: true })));
     const readout = modal.querySelector('[data-publication-inspector]').textContent;

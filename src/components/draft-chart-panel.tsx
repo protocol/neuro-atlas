@@ -8,6 +8,7 @@ import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plo
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import { useCardExporting } from "@/lib/field-velocity/card-export";
+import { ModalReading } from "@/components/chart-modal-slots";
 
 type PanelLocation = { anchor: string; aliases?: readonly string[]; methodology?: ReactNode; previewContext?: ReactNode };
 
@@ -28,7 +29,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
         onClick={() => navigatePerformance(anchor)} />
     </div>
     {(open || exporting) && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger} offscreen={!open}>
-      <div className="draft-popout-detail">{children}{methodology}</div>
+      <div className="draft-popout-detail">{children}{methodology && <ModalReading>{methodology}</ModalReading>}</div>
     </ChartModal>}
   </div>;
 }

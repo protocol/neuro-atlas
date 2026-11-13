@@ -18,6 +18,8 @@ import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
 import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS, PUBLICATION_GROWTH_GROUPS, PUBLICATION_SECTORS, type PublicationSnapshot, type PublicationAnchor, type PublicationChartData, type PublicationTable } from "@/lib/publication-data";
 import { MetricCardScope } from "@/components/metric-card-scope";
+import { useChartMeasure } from "@/components/chart-measure";
+import { ModalData, ModalReading, ModalSources } from "@/components/chart-modal-slots";
 import { CardPngButton } from "@/components/card-png-button";
 import { useCardExporting } from "@/lib/field-velocity/card-export";
 
@@ -65,7 +67,9 @@ function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight }:
     }};
   };
   const selected = data.annual.find(row => row.year === selectedYear);
-  return <svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 840 ${bottom + fontSize * 4.2}`} role="img" aria-label={hasScience ? "Annual neurotech paper counts and science index, 2022 = 100, on locked axes" : "Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
+  const measure = useChartMeasure({ svgRef: ref, enabled: !compact, annual: true, unit: " papers", frame: { left, right, top, bottom },
+    series: [{ id: "neurotech", name: "Neurotech papers", color: blue, points: data.annual.map(row => ({ x: x(row.year), y: y(row.papers), value: row.papers, year: row.year, label: String(row.year) })) }] });
+  return <><svg ref={ref} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 840 ${bottom + fontSize * 4.2}`} role="img" aria-label={hasScience ? "Annual neurotech paper counts and science index, 2022 = 100, on locked axes" : "Annual neurotech indexed papers, 2010–2025"} style={{ fontSize }}>
     <title>{hasScience ? "Neurotech papers, 2010–2025; science index anchored to the actual 2022 count" : "Neurotech papers, 2010–2025"}</title>
     <g data-annual-axis-titles>
     <text data-annual-axis="neurotech" x={0} y={fontSize * 1.5} fill={blue} style={{fill:blue}}>{compact ? "Papers" : "Neurotech papers"}</text>
@@ -82,8 +86,9 @@ function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight }:
     {(compact?[2010,2025]:[2010,2013,2016,2019,2022,2025]).map(year => <text key={year} x={x(year)} y={bottom+fontSize*1.6} textAnchor={year===2010?"start":year===2025?"end":"middle"}>{year}</text>)}
     {hasScience && <g data-annual-anchor pointerEvents="none"><circle cx={x(2022)} cy={y(anchor)} r="8" fill="none" stroke="var(--foreground)" strokeWidth="1.5"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor="middle">{compact ? "2022 anchor · index 100" : `2022 anchor · ${number(anchor)} papers = science index 100`}</text></g>}
     {inspect && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden="true" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill="transparent" {...yearEvents(row.year)} tabIndex={-1}/>)}
-    {selected && <line data-annual-year-guide data-export-exclude x1={x(selected.year)} x2={x(selected.year)} y1={top} y2={bottom} stroke="var(--muted)" strokeDasharray="5 4" pointerEvents="none"/>}
-  </svg>;
+    {selected && !measure.active && <line data-annual-year-guide data-export-exclude x1={x(selected.year)} x2={x(selected.year)} y1={top} y2={bottom} stroke="var(--muted)" strokeDasharray="5 4" pointerEvents="none"/>}
+    {measure.marks}{measure.readout}
+  </svg>{measure.hint}</>;
 }
 function AnnualTooltipContent({ data, active }: { data:PublicationChartData; active:string|null }) {
   const selected=data.annual.find(row=>active?.startsWith(`${row.year}:`));
@@ -187,9 +192,7 @@ function GrowthPreview({data}:{data:PublicationChartData}) {
       </g>)}
       <GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} y={cursor} compact/>
     </svg>
-    <span className="publication-growth-sticky-axis" data-growth-sticky-axis data-export-exclude aria-hidden="true" style={{marginTop:`${-footer/400*100}%`}}>
-      <svg viewBox={`0 0 400 ${footer}`} focusable="false" style={{fontSize}}><GrowthAxis data={data} x={x} low={low} high={high} fontSize={fontSize} compact/></svg>
-    </span>
+    {/* The card preview simply shows the first groups; only the expanded chart keeps a frozen axis row. */}
   </span>;
 }
 function GrowthPlot({data,inspect,baseline="science"}:{data:PublicationChartData;inspect?:Inspect;baseline?:GrowthBaseline}) {
@@ -312,25 +315,28 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   const download={chart:anchor,snapshotSchemaVersion:snapshot.schemaVersion,source:snapshot.source,tables:selected,audit:snapshot.audit,...(index===1&&snapshot.matchedGrowth?{matchedGrowth:snapshot.matchedGrowth}:{})};
   return <>
     <ChartActions anchor={anchor} title={titles[index]}><ChartShare anchor={anchor} title={titles[index]} disabled={index===3&&!data.endpointTransitions} getChart={()=>({svg:plot.current!.querySelector("svg")!,title:titles[index],anchor,notes,legend:index===0?[{label:"Neurotech · left axis: papers",color:blue},...(hasScience?[{label:"All research · right axis: science index (2022 = 100)",color:teal},{label:"Global science context · four-domain band: science index (2022 = 100)",color:gray}]:[])]:[]})}/></ChartActions>
-    <p className="publication-scope" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p>
+    <ModalSources><p className="publication-scope mx-scope-line" data-change-subtitle={index===3?"":undefined}>{index===3?changesSubtitle(data):scope(index,snapshot)}</p></ModalSources>
     {index===0&&<p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}
     {index===1&&<>
-      <label className="publication-growth-options">Comparison baseline<select data-growth-baseline value={baseline} onChange={event=>{setBaseline(event.target.value as GrowthBaseline);tooltip.clear();}}><option value="science">General science</option><option value="matched">Matched to each group ({available} available)</option></select></label>
+      <div className="publication-growth-options" role="radiogroup" aria-label="Comparison baseline" data-growth-baseline={baseline}>
+        <span className="publication-growth-options-label" aria-hidden="true">Comparison baseline</span>
+        {([["science","General science"],["matched",`Matched to each group (${available} available)`]] as const).map(([value,label])=><button key={value} type="button" role="radio" aria-checked={baseline===value} data-baseline-option={value} onClick={()=>{if(baseline!==value){setBaseline(value);tooltip.clear();}}}>{label}</button>)}
+      </div>
       {baseline==="matched"&&<p className="publication-scope" data-growth-coverage>{available} category baselines available; {data.growth.length-available} unavailable (hollow dots). Gray ticks mark each group’s baseline; no general-science fallback.</p>}
     </>}
     <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps} baseline={baseline} activeInspection={tooltip.active}/></div>
     {index===2&&<section className="publication-sector-key" data-publication-sector-key aria-label="Researcher publication-sector key"><p>{number(data.totalResearchers)} unique researchers · {data.authorEndYear}</p><ul>{data.sectors.map(row=><li key={row.sector}><span aria-hidden="true" style={{background:row.color}}/><span>{row.label}: <strong>{number(row.count)}</strong> ({number(row.share)}%)</span></li>)}</ul></section>}
     <div className="sr-only" data-publication-inspector role="status" aria-live="polite">{tooltip.active??""}</div>
     <PointTooltip {...tooltip.tooltipProps}>{index===0?<AnnualTooltipContent data={data} active={tooltip.active}/>:<p>{tooltip.active}</p>}<p><a href={snapshot.source.url} target="_blank" rel="noreferrer">Source: OpenAlex ↗</a></p></PointTooltip>
-    <p className="pc-chart-note">Hover, focus or tap a mark for exact values.</p>
-    <section className="pc-methodology"><h4>Methodology</h4>
+    <ModalReading><section className="pc-methodology"><h4>Methodology</h4>
       {notes.filter(note=>!note.startsWith("Source counts: ")).map(note=><p key={note}>{note}</p>)}
       {(index===0||index===1)&&<p>The wider corpus (NT10) covers brain-computer interfaces and electroencephalography (EEG), neural engineering, and transcranial magnetic stimulation (TMS), plus seven broader OpenAlex topics gated by both neurotechnology and neural-context terms. Each reconciled OpenAlex work ID counts once; preprint and publication IDs stay separate. Types: articles, reviews, conference papers, book chapters and preprints.</p>}
       {index===1&&<><p>Region and institution comparisons count each work once per involved category on both sides. Groups overlap. US and Canada covers those two countries; government agencies and research facilities uses the government/facility union.</p><p>Title/abstract technique priority: invasive; ultrasound, TMS and magnetoencephalography (MEG); EEG; no technique named. Brain-computer interface (BCI) is a separate flag. Career stages: 1–5, 6–15 and 16+ years since first publication. Citation rank uses citations received in the prior five years among two-topic researchers active in the current or preceding five years. Each work is split across its full byline; known output scales quarterly by total/known output. Source tables round annual totals ties-to-even; plotted career/citation endpoints use unrounded fractions.</p></>}
       {index>=2&&<p>Each identified author has one sector per active publication year. Education maps to Universities; company to Companies; government, facility, healthcare, nonprofit, archive, funder and other known types to Other institutions. No listed affiliation records missing metadata. Known sector votes take priority; frequency, then alphabetical source-label order, determines the sector. Multiple affiliations use institution-type frequency, then type, institution ID and country-code order.</p>}
       {index===3&&<p>The Sankey displays all four origin and destination sectors, including equal first/latest endpoint sectors, on one shared people-count scale. Eligibility requires first selected-topic publication in 2016 or later and at least two distinct active years through 2025. It compares endpoints rather than reconstructing every intermediate move. The archived nt_talent_moves table retains its original null diagonals; nt_talent_endpoints contains the complete sixteen-cell endpoint cohort.</p>}
-      <ul className="pc-sources"><li><a href={snapshot.source.url} target="_blank" rel="noreferrer">OpenAlex API ↗</a></li><li><a href="https://docs.openalex.org" target="_blank" rel="noreferrer">OpenAlex data definitions ↗</a></li></ul>
-      <details className="pc-provenance"><summary>Source values, coverage and provenance</summary>
+    </section></ModalReading>
+    <ModalSources><ul className="pc-sources"><li><a href={snapshot.source.url} target="_blank" rel="noreferrer">OpenAlex API ↗</a></li><li><a href="https://docs.openalex.org" target="_blank" rel="noreferrer">OpenAlex data definitions ↗</a></li></ul></ModalSources>
+      <ModalData><details className="pc-provenance"><summary>Source values, coverage and provenance</summary>
         <p>Method: {snapshot.source.methodologyVersion} · SHA-256 {snapshot.source.methodSha256}</p><p>Source hash: {snapshot.source.sourceHash}. Latest OpenAlex updates: works {snapshot.source.worksMaxUpdatedDate??"unavailable"}; authors {snapshot.source.authorsMaxUpdatedDate??"unavailable"}. Receipt captured {snapshot.source.capturedAt}.</p>
         {snapshot.source.testOnly&&<p>Synthetic fixture · test use only</p>}
         {index===1&&<div className="pc-table-scroll" role="region" aria-label="Growth numerator and matched reference values" tabIndex={0}><table><caption>Plotted comparisons · 2022 → 2025</caption><thead><tr>{["Group","Neurotech N","Reference D","Unit / neurotech cohort","Reference scope / status"].map(label=><th key={label} scope="col">{label}</th>)}</tr></thead><tbody>{data.growth.map(row=><tr key={row.id}><th scope="row">{row.group}</th><td>{number(row.start)} → {number(row.end)} ({percent(row.growth)})</td><td>{row.baselineStatus==="matched"?`${number(row.referenceStart!)} → ${number(row.referenceEnd!)} (${percent(row.referenceGrowth)})`:"Unavailable"}</td><td>{row.countUnit} · {row.numeratorUniverse}</td><td>{row.denominatorUniverse??"Reference unavailable"}</td></tr>)}</tbody></table></div>}
@@ -340,8 +346,7 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
         <p>Coverage: wider corpus {number(snapshot.audit.paperCohort.works)} indexed works, 2010–2025; two-topic cohort {number(snapshot.audit.authorCohort.works)} works and {number(snapshot.audit.authorCohort.authors)} identified authors, 2000–2025. Unidentified byline slots: {number(snapshot.audit.authorCohort.unidentifiedBylineSlots)}.</p>
         {index===1&&<div className="pc-table-scroll" role="region" aria-label="Quarterly affiliation and profile coverage" tabIndex={0}><table><caption>Quarterly known coverage · author-fractional output</caption><thead><tr><th scope="col">Dimension / quarter</th><th scope="col">Total</th><th scope="col">Unknown</th><th scope="col">Known share</th><th scope="col">Scale</th></tr></thead><tbody>{snapshot.audit.coverage.map(row=><tr key={`${row.dimension}:${row.year}:${row.quarter}`}><th scope="row">{row.dimension} {row.year} Q{row.quarter}</th><td>{number(row.total)}</td><td>{number(row.unknown)}</td><td>{number(row.knownShare*100)}%</td><td>{row.scale===null?"—":number(row.scale)}</td></tr>)}</tbody></table><p>Source JSON includes raw and scaled author fractions, omitted known groups and Unknown.</p></div>}
         <a download={`neuro-atlas-${anchor}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(download,null,2))}`}>Download source JSON</a>
-      </details>
-    </section>
+      </details></ModalData>
   </>;
 }
 function PublicationCard({index,snapshot,data}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData}) {

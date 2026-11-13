@@ -7,6 +7,7 @@ import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draf
 import { ChartShare } from "@/components/chart-share";
 import { ChartNoteList } from "@/components/chart-note-list";
 import { ChartActions } from "@/components/chart-actions";
+import { ModalData, ModalSources } from "@/components/chart-modal-slots";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
@@ -271,7 +272,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {active.note && <p>{active.note}</p>}
       </> : null}
     </PointTooltip>
-    <details className="draft-plot-data">
+    <ModalSources modalOnly>
+      <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
+      <ul className="pc-sources">{[...new Map(plot.points.map(point => [point.sourceUrl, point.sourceTitle])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
+    </ModalSources>
+    <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{plot.scope}</p>
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
@@ -287,7 +292,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
           </tr>)}</tbody>
         </table>
       </div>
-    </details></>}
+    </details></ModalData></>}
   </figure>;
 }
 
@@ -314,7 +319,7 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
         ...timeline.events.map(event => `${event.dateLabel} · ${event.stage} · ${event.label} — ${event.sourceTitle}`)],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>Selected application events</figcaption>
-    {!preview && <p className="draft-plot-scope">{timeline.scope}</p>}
+    {!preview && <ModalSources><p className="draft-plot-scope mx-scope-line">{timeline.scope}</p></ModalSources>}
     <p className="draft-plot-legend">● Reported event · Stages identify the type of event</p>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" data-draft-event-timeline viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-title ${id}-description`}>
       <desc id={`${id}-description`}>Events positioned by year. Full dates, stage labels and sources are listed below.</desc>
@@ -327,6 +332,9 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
       {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={baseHeight - 45} textAnchor="middle">{year}</text>)}
       <text className="draft-plot-axis-title" x={0} y={baseHeight - 16} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
     </svg>
+    {!preview && <ModalSources modalOnly>
+      <ul className="pc-sources">{[...new Map(timeline.events.map(event => [event.sourceUrl, event.sourceTitle])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
+    </ModalSources>}
     {!preview && <ul className="draft-event-list">{timeline.events.map(event => <li key={event.id} data-draft-event={event.id}>
       <p className="draft-event-date">{event.dateLabel} · {event.stage}</p>
       <strong>{event.label}</strong>

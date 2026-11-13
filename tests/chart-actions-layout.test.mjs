@@ -42,13 +42,11 @@ function assertActions(modal, supportsImage = true) {
   const labels = [...row.querySelectorAll('button')].map(button => button.textContent);
   assert.deepEqual(labels, supportsImage ? ['Copy link', 'Copy chart', 'Download PNG'] : ['Copy link']);
   assert.equal(modal.querySelectorAll('button[aria-label^="Copy link"], button[data-copy-chart], button[data-download-chart]').length, labels.length, 'No duplicate or separated chart actions');
-  const firstContent = modal.querySelector('.pc-detail');
-  // Wrappers are fine, but no plot, scope, intro or methodology may precede the row.
-  let node = row;
-  while (node !== firstContent) {
-    assert.equal(node.previousElementSibling, null, 'Actions immediately follow the modal heading, before all chart content');
-    node = node.parentElement;
-  }
+  // The row lives in the modal header, beside the title, never inside the chart content.
+  const header = modal.querySelector('.pc-modal-header');
+  assert.ok(header.contains(row), 'Actions sit in the header row next to the title');
+  assert.equal(modal.querySelector('.pc-detail').contains(row), false, 'No chart content hosts the actions');
+  assert.equal(header.querySelector('button'), header.querySelector('.pc-modal-close'), 'Close stays the first header control');
   return row;
 }
 

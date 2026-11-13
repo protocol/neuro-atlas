@@ -22,7 +22,7 @@ test('citation description states reference age, preserves plotted data and omit
     assert.match(methodology.textContent, /when the citing paper was published/);
     assert.match(methodology.textContent, /two-segment fit.*statistically clear/);
     assert.match(methodology.textContent, /older foundational citations from adjacent fields/);
-    assert.ok(methodology.textContent.includes(`OpenAlex’s reliable source years: ${projected.window}. Newer years remain under-indexed.`));
+    assert.ok(modal.querySelector('.mx-sources').textContent.includes(`OpenAlex’s reliable source years: ${projected.window}. Newer years remain under-indexed.`), 'Coverage sits in the Sources & data column');
     assert.doesNotMatch(methodology.textContent, /about two years old/);
     assert.doesNotMatch(modal.textContent, /\b(?:we|our)\b|Patent vintage|freshness rules|staleness flag|Reference age is not research quality|fresher ideas|accelerat|decelerat/i);
     assert.equal(modal.querySelectorAll('[data-curve-point]').length, projected.series.length);

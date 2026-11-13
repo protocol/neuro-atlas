@@ -12,6 +12,8 @@ import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
 import { ChartActions } from '@/components/chart-actions';
 import { MetricCardScope } from '@/components/metric-card-scope';
+import { useChartMeasure } from '@/components/chart-measure';
+import { ModalData, ModalReading, ModalSources } from '@/components/chart-modal-slots';
 import { CardPngButton } from '@/components/card-png-button';
 import { useCardExporting } from '@/lib/field-velocity/card-export';
 import { usePreviewFont } from '@/components/use-preview-font';
@@ -47,6 +49,12 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
   const start = Date.parse(group.start), end = Date.parse(group.end);
   const x = (date: string) => 48 + (Date.parse(date) - start) / (end - start) * (right - 48);
   const y = (value: number) => 24 + (100 - value) / 100 * (baseHeight - 70 + previewExtra);
+  const weekLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const measure = useChartMeasure({
+    svgRef: presentationRef, enabled: !compact, frame: { left: 48, right, top: y(100), bottom: y(0) },
+    series: group.terms.map((term, index) => ({ id: term, name: term, color: colors[index],
+      points: rows.flatMap(row => row.values[index] === null ? [] : [{ x: x(row.date), y: y(row.values[index]!), value: row.values[index]!, label: weekLabel(row.date) }]) })),
+  });
   return <>
     {!compact && <ChartActions anchor={`google-trends-${group.id}`} title={group.title} link={link}><ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
       svg: plotRef.current!.querySelector('svg')!, title: group.title, anchor: `google-trends-${group.id}`,
@@ -77,11 +85,13 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
       {!compact && rows.flatMap(row => row.values.map((value, i) => {
         if (value === null) return null;
         const label = `${row.date} · ${group.terms[i]}: ${row.displayValues[i]}`;
-        return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} data-export-r={CHART_PRESENTATION.denseLineRadius} r={(tooltip.active === label ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.denseLineRadius) * unitsPerPixel} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
+        return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} data-export-r={CHART_PRESENTATION.denseLineRadius} r={CHART_PRESENTATION.denseLineRadius * unitsPerPixel} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
       }))}
+      {measure.marks}
       <text data-trends-axis="x" x={48} y={baseHeight - 16 + previewExtra}>{group.start.slice(0, compact && width < 240 ? 4 : 7)}</text><text data-trends-axis="x" x={right} y={baseHeight - 16 + previewExtra} textAnchor="end">{group.end.slice(0, compact && width < 240 ? 4 : 7)}</text>
     </svg>
   </div>
+  {measure.readout}{measure.hint}
   {!compact && <PointTooltip {...tooltip.tooltipProps}><strong>{tooltip.active}</strong><p>Google Trends weekly index · 0–100 · captured {group.capturedAt}</p><p><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open source query ↗</a></p></PointTooltip>}
   </>;
 }
@@ -125,30 +135,32 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
       <CardPngButton anchor={id} title={group.title} />
     </div>
     {(open || exporting) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
-      <TrendPlot key={group.rawSha256} group={group} link={share} intro={<p className="gt-scope">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p>} /><Legend group={group} />{latestReading}
+      <TrendPlot key={group.rawSha256} group={group} link={share} intro={<ModalSources><p className="gt-scope mx-scope-line">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p></ModalSources>} /><Legend group={group} />
+      <ModalReading>{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
         <p>Worldwide Google search interest. {normalization} Google uses broad term matching.</p>
         <p>The index uses a sample of searches, normalized by all searches in each time and location. 100 marks the request’s peak relative interest. Sampling can change later readings, especially for low-volume terms.</p>
         <p>0 indicates low or insufficient interest. “&lt;1” appears at the index floor; missing data appear as gaps. Lines connect weekly samples.</p>
         <p>Only complete weeks appear in the chart. The table and CSV retain partial periods. Dates are UTC week starts; complete weeks span seven days. The original index is preserved.</p>
-        <p>Captured {group.capturedAt} from Google Trends Explore.</p>
-      </section>
-      <ul className="pc-sources">
+      </section></ModalReading>
+      <ModalSources><ul className="pc-sources">
         <li><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open exact Google Trends query ↗</a></li>
         <li><a href={atlasPath(`/api/google-trends/${revision}/${group.id}.csv`)} download>Download source values CSV</a></li>
         <li><a href={atlasPath(`/api/google-trends/${revision}/google-trends.json`)} download>Download snapshot &amp; provenance JSON</a></li>
         <li><a href="https://support.google.com/trends/answer/4365533?hl=en" target="_blank" rel="noreferrer">Google’s data and normalization methodology ↗</a></li>
         <li><a href="https://support.google.com/trends/answer/4359550?hl=en" target="_blank" rel="noreferrer">Search terms versus topics ↗</a></li>
       </ul>
-      <details className="gt-values" open={valuesOpen} onToggle={event => setValuesOpen(event.currentTarget.open)}><summary tabIndex={0}>All source values · {group.rows.length} weekly rows (including partial)</summary>
+      <p className="gt-captured">Captured {group.capturedAt} from Google Trends Explore.</p>
+      <details className="mx-prov"><summary>Provenance</summary><p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Source revision: <code>{revision}</code>.</p></details>
+      </ModalSources>
+      <ModalData><details className="gt-values" open={valuesOpen} onToggle={event => setValuesOpen(event.currentTarget.open)}><summary tabIndex={0}>All source values · {group.rows.length} weekly rows (including partial)</summary>
         <div className="pc-table-scroll" role="region" aria-label={`${group.title} source values`} tabIndex={valuesOpen ? 0 : undefined}>
           <table><caption>Google Trends index · original source precision</caption><thead><tr><th scope="col">Week start (UTC)</th>{group.terms.map(term => <th scope="col" key={term}>{term}</th>)}<th scope="col">Period status</th></tr></thead>
             <tbody>{group.rows.map(row => <tr key={row.date} data-trends-row={row.date}><th scope="row">{row.date}</th>{row.displayValues.map((value, i) => <td key={i}>{value}</td>)}<td>{row.partial ? 'Partial · excluded' : 'Complete'}</td></tr>)}</tbody>
           </table>
         </div>
-      </details>
-      <p className="gt-hash">Raw response SHA-256: <code>{group.rawSha256}</code>. Source revision: <code>{revision}</code>.</p>
+      </details></ModalData>
     </ChartModal>}
   </article>;
 }

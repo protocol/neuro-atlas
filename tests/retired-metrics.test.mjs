@@ -26,7 +26,7 @@ test('retired panels are unmounted, with every other source observation retained
     assert.equal(document.querySelectorAll('[data-source-observation^="roboem-"]').length, 12);
     assert.ok(document.getElementById('draft-panel-paired-manual'), 'Legacy panel anchor remains addressable');
     await click(document.querySelector('[data-draft-popout-trigger="metric-panel-paired-manual"]'));
-    const detail = document.querySelector('dialog[open] .draft-popout-detail');
+    const detail = document.querySelector('dialog[open] .pc-detail');
     assert.ok(detail, 'the retained paired-data chart opens real detail');
     assert.match(detail.textContent, /37,364 matches at 83% precision/);
     const paired = DRAFT_CHART_EVIDENCE['Paired structure–function dataset scale over time'].plots.find(plot => plot.id === 'paired-manual');

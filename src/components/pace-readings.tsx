@@ -7,6 +7,7 @@ import { LatencyEvidenceCard } from "@/components/latency-evidence-card";
 import { useCitationView } from "@/components/citation-latency-provider";
 import { projectCitationRecord } from "@/lib/field-velocity/citation-latency-feed";
 import { atlasPath } from "@/lib/atlas-path";
+import { ModalReading, ModalSources, ModalTable } from "@/components/chart-modal-slots";
 
 export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: boolean }) {
   const citation = useCitationView();
@@ -19,7 +20,7 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
       if (reading && !vintage) return <LatencyEvidenceCard key={record.instrument} />;
       const plot: PlotData | undefined = reading ? {
         title, unit: "years", scale: "linear", line: false,
-        ...(vintage ? { connectTracks: [record.instrument] } : {}),
+        ...(vintage ? { connectTracks: [record.instrument], yearLabels: true } : {}),
         xLabel: vintage ? "Publication year" : "Pivotal preclinical demonstration year",
         tracks: [{ id: record.instrument, label: vintage ? "Median reference age" : "Preclinical to first-in-human lag" }],
         points: record.series!.map(point => ({
@@ -29,7 +30,7 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
         })),
       } : undefined;
       return <CurveCard key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "No reading available")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
-        <section className="pc-methodology" aria-label={`${title} definitions and methodology`}>
+        <ModalReading><section className="pc-methodology" aria-label={`${title} definitions and methodology`}>
           <h4>Definition and methodology</h4>
           {vintage ? <>
             <p>Idea vintage is the median age of references cited by new papers, measured when the citing paper was published. A falling median means papers cite more recent work; a rising median means they cite older work. A two-segment fit estimates the recent trend, with a direction shown only when statistically clear.</p>
@@ -38,26 +39,26 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
           {reading ? <>
             <p className="pc-reading">{record.value}</p>
             <p className="pc-caveat">{vintage ? "Whiskers show source intervals. Hollow markers show under-indexed years; the trend uses the reliable years." : "Selected BCI pathways retain their animal models and human endpoints. The axes show the preclinical report year and the interval to the human milestone."}</p>
+          </> : <p>{record.candidateMetric ?? record.reason} {record.blocker}</p>}
+        </section></ModalReading>
+        {reading && <ModalSources>
             <p>{vintage ? <>OpenAlex’s reliable source years: {record.window}. Newer years remain under-indexed. </> : <>Source years: {record.window}. </>}Source checked {record.checkedAt}.</p>
             {record.provenance && <p>Source query: {record.provenance.query}. Source generated: {record.provenance.generated}.</p>}
             {vintage && <p data-citation-revision={citation.revision}>
               <a download="citation-latency.csv" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.csv`)}>Download source CSV</a>{" · "}
               <a download="citation-latency.json" href={atlasPath(`/api/citation-latency/${citation.revision}/citation-latency.json`)}>Download JSON &amp; provenance</a>
             </p>}
-
-          </> : <p>{record.candidateMetric ?? record.reason} {record.blocker}</p>}
-        </section>
+            <ul className="pc-sources">{record.sources!.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a></li>)}</ul>
+        </ModalSources>}
         {reading && <>
-          <div className="pc-table-scroll" role="region" aria-label={`${title} source data`} tabIndex={0}>
+          <ModalTable summary={<>Sources &amp; chart data · {record.series!.length} observations</>}><div className="pc-table-scroll" role="region" aria-label={`${title} source data`} tabIndex={0}>
             <table><caption>Sources &amp; chart data · {record.series!.length} observations</caption>
               <thead><tr><th scope="col">{vintage ? "Publication year" : "Preclinical year"}</th><th scope="col">{vintage ? "Median reference age (years)" : "Lag to first-in-human (years)"}</th>{vintage && <th scope="col">Source interval (years)</th>}<th scope="col">Coverage</th></tr></thead>
               <tbody>{record.series!.map(point => <tr key={String(point.x)} data-source-observation={`${record.instrument}:${point.x}`}>
                 <th scope="row">{point.x}</th><td>{point.y} years</td>{vintage && <td>{point.lo ?? "Not supplied"}–{point.hi ?? "Not supplied"}</td>}<td>{point.reliable === false ? "Under-indexed" : "Source observation"} · year precision</td>
               </tr>)}</tbody>
             </table>
-          </div>
-          <ul className="pc-sources">{record.sources!.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a></li>)}</ul>
-
+          </div></ModalTable>
         </>}
       </CurveCard>;
     });

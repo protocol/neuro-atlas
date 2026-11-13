@@ -22,6 +22,8 @@ import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/s
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { decimalYear, extrapolationScenario, type Crossing, type ExtrapolationKind, type ExtrapolationMode, type ExtrapolationScenario } from "@/lib/extrapolation";
 import { MetricCardScope } from "@/components/metric-card-scope";
+import { useChartMeasure } from "@/components/chart-measure";
+import { ModalData, ModalReading, ModalSources, ModalTable } from "@/components/chart-modal-slots";
 import { CardPngButton } from "@/components/card-png-button";
 import { useCardExporting } from "@/lib/field-velocity/card-export";
 
@@ -36,7 +38,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[] };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -53,6 +55,14 @@ export function chartGeometry(data: PlotData) {
   const x = (date: string) => left + (Date.parse(date) - minTime + padding) / (maxTime - minTime + 2 * padding) * (width - left - right);
   const y = (value: number) => top + (1 - (data.scale === "log" ? (Math.log10(value) - low) / (high - low) : value / (step * 4))) * (height - top - bottom);
   return { width, height, left, right, minTime, maxTime, ticks, x, y };
+}
+
+/** Interior multiples of five, kept clear of the two endpoint labels. */
+export function fiveYearLabels(first: number, last: number) {
+  if (last - first < 12) return [];
+  const years: number[] = [];
+  for (let year = Math.ceil((first + 3) / 5) * 5; year <= last - 3; year += 5) years.push(year);
+  return years;
 }
 
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
@@ -183,6 +193,21 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     id: track.id,
     points: points.filter(point => point.track === track.id && point.reliable !== false).sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
   })).filter(series => series.points.length > 1);
+  // Drag-to-measure on connected series in the expanded chart; off while a model continuation is shown.
+  const yearOnly = data.points.every(point => point.date.endsWith("-01-01"));
+  const measure = useChartMeasure({
+    svgRef: presentationRef, enabled: !compact && !scenario && connections.length > 0,
+    frame: { left: g.left, right: g.width - g.right, top: g.y(g.ticks.at(-1)!), bottom: g.y(g.ticks[0]) },
+    unit: ` ${data.unit}`,
+    series: connections.map(series => {
+      const track = data.tracks.find(item => item.id === series.id)!;
+      return { id: series.id, name: track.label, color: colors[data.tracks.indexOf(track) % colors.length],
+        points: points.filter(point => point.track === series.id).sort((a, b) => Date.parse(a.date) - Date.parse(b.date)).map(point => ({
+          x: g.x(point.date), y: g.y(point.value), value: point.value, year: Number(point.date.slice(0, 4)),
+          label: yearOnly ? point.date.slice(0, 4) : point.date.slice(0, 10),
+        })) };
+    }),
+  });
   const clusters: PlotPoint[][] = [];
   for (const point of points) {
     const group = clusters.find(c => Math.abs(g.x(c[0].date) - g.x(point.date)) < 12 && Math.abs(g.y(c[0].value) - g.y(point.value)) < 12);
@@ -250,9 +275,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           {scenario.samples.length > 0 && <polyline data-extrapolation-line={scenario.kind} points={scenario.samples.map(p => `${enteringX(p.year)},${enteringY(p.value)}`).join(" ")} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeDasharray="8 5" />}
         </g>}
         {points.filter(p => p.lo != null && p.hi != null).map(p => <line key={`interval:${p.date}`} data-confidence={compact ? undefined : p.date} x1={g.x(p.date)} x2={g.x(p.date)} y1={g.y(p.lo!)} y2={g.y(p.hi!)} stroke="var(--accent)" strokeWidth={compact ? 2 : 3} opacity={.4} />)}
-        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={(compact ? CHART_PRESENTATION.previewRadius : active === p ? CHART_PRESENTATION.focusRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
+        {points.map((p, i) => <circle key={`${p.track}:${p.date}:${i}`} data-curve-point={compact ? undefined : `${p.track}:${p.date}`} data-value={compact ? undefined : p.value} cx={g.x(p.date)} cy={g.y(p.value)} r={(compact ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius) * unitsPerPixel} data-under-indexed={p.reliable === false || undefined} fill={p.reliable === false ? "var(--surface)" : colors[p.trackIndex % colors.length]} stroke={p.reliable === false ? colors[p.trackIndex % colors.length] : "var(--surface)"} strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
           data-export-r={CHART_PRESENTATION.expandedRadius} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label}
           {...(!compact ? tooltip.pointProps(p) : {})} />)}
+        {measure.marks}
         {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
         {moving && future ? <>
           <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
@@ -260,11 +286,14 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           {future.yearTicks.map(year => <text key={year} x={enteringX(year)} y={g.height - 20} textAnchor="middle" opacity={tickReveal}>{year}</text>)}
         </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : recordingDateTicks ? recordingDateTicks.map(tick => <text key={tick.date} x={g.x(tick.date)} y={g.height - 20} textAnchor="middle">{tick.label}</text>) : <>
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
+          {/* Expanded multi-decade charts get five-year labels between the endpoints. */}
+          {!compact && data.yearLabels && fiveYearLabels(new Date(g.minTime).getUTCFullYear(), new Date(g.maxTime).getUTCFullYear()).map(year => <text key={year} data-year-label={year} x={g.x(`${year}-01-01`)} y={g.height - 20} textAnchor="middle">{year}</text>)}
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}
         {!compact && <text x={0} y={g.height - 3} textAnchor="start">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>}
       </svg>
     </div>
+    {measure.readout}{measure.hint}
     {compact && <span className="pc-preview-axis">{data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies")}</span>}
     {!compact && <PointTooltip {...tooltip.tooltipProps}>{active && <>
       <p data-point-description>{active.label}</p>
@@ -324,14 +353,14 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks, connectTracks };
   return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
-    <section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
+    <ModalReading><section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
       <h4>Definitions &amp; methodology</h4>
       <p>{series.description}</p>
       <p className="pc-caveat">{series.caveat}</p>
       <p>Source checked {series.checkedAt}. Dates retain their stated year, month or day precision; each marker is a source observation.</p>
       <dl className="pc-track-notes">{series.tracks.map((t, index) => <div key={t.id} data-track-note><dt><span data-track-note-key aria-hidden="true" style={{ backgroundColor: colors[index % colors.length] }} />{t.label}</dt><dd>{t.definition}</dd></div>)}</dl>
-    </section>
-    <div className="pc-table-scroll" role="region" aria-label={`${series.title} source data`} tabIndex={0}>
+    </section></ModalReading>
+    <ModalTable summary={<>Sources &amp; chart data · {points.length} observations</>}><div className="pc-table-scroll" role="region" aria-label={`${series.title} source data`} tabIndex={0}>
       <table>
         <caption>Sources &amp; chart data · {points.length} observations</caption>
         <thead><tr><th scope="col">Dataset / release</th><th scope="col">Date &amp; basis</th><th scope="col">Value ({series.unit})</th><th scope="col">Source &amp; context</th></tr></thead>
@@ -342,8 +371,8 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
           <td><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a><p>{p.note}</p></td>
         </tr>))}</tbody>
       </table>
-    </div>
-    {provenance}
+    </div></ModalTable>
+    {provenance && <ModalSources>{provenance}</ModalSources>}
   </CurveCard>;
 }
 
@@ -398,12 +427,12 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
         </label>
       } />
     </div>}>
-    <section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
+    <ModalReading><section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
       <h4>Definition and methodology · {view.label}</h4>
       <p>{view.description}</p><p className="pc-caveat">{view.caveat}</p>
       <p>Dates identify source publication or disclosure, with the stated precision. Source checked {RECORDING_CHECKED_AT}.</p>
-    </section>
-    <div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
+    </section></ModalReading>
+    <ModalTable summary={<>Sources &amp; chart data · {view.points.length} observations</>}><div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
       <table><caption>Sources &amp; chart data · {view.points.length} observations</caption>
         <thead><tr><th scope="col">Study / preparation</th><th scope="col">Date &amp; basis</th><th scope="col">Value &amp; units</th><th scope="col">Source &amp; context</th></tr></thead>
         <tbody>{view.points.map(p => <tr key={p.id} data-source-observation={p.id}>
@@ -413,9 +442,9 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
           <td><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a><p>{p.note}</p><p>Source excerpt: “{p.quote}”</p></td>
         </tr>)}</tbody>
       </table>
-    </div>
-    <ul className="pc-sources">{view.points.map(p => <li key={p.id}><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a></li>)}</ul>
-    {historical.state === "reading" && <details className="pc-provenance" data-recording-history>
+    </div></ModalTable>
+    <ModalSources><ul className="pc-sources">{view.points.map(p => <li key={p.id}><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a></li>)}</ul></ModalSources>
+    {historical.state === "reading" && <ModalData><details className="pc-provenance" data-recording-history>
       <summary>Historical benchmarks · 1957–2014</summary>
       <p>Historical tracker values with year precision and mixed preparations, retained as a separate reference. Experiment dates and unit-quality criteria remain unverified.</p>
       <div className="pc-table-scroll" role="region" aria-label="Historical recording benchmarks" tabIndex={0}>
@@ -430,7 +459,7 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
       </div>
       <ul>{historical.sources!.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a></li>)}</ul>
       {historicalProvenance}
-    </details>}
+    </details></ModalData>}
   </CurveCard>;
 }
 

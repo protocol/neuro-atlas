@@ -95,7 +95,7 @@ for (const preview of [true, false]) test(`event date caption shares the left ed
  const cleanup=await mount(React.createElement(DraftEventTimeline,{timeline,preview}));
  try {const c=[...document.querySelectorAll('[data-draft-event-timeline] .draft-plot-axis-title')].at(-1);assert.equal(c.getAttribute('x'),'0');assert.equal(c.getAttribute('text-anchor'),'start');for(const s of c.querySelectorAll('tspan'))assert.equal(s.getAttribute('x'),'0');}finally{await cleanup();}
 });
-test('dense Trends samples stay 2.5 screen px with 7px source inspection; exports drop transient emphasis',async()=>{
+test('dense Trends samples stay 2.5 screen px, including during source inspection; exports drop transient emphasis',async()=>{
  const h=harness();let cleanup;
  try{
   cleanup=await mount(React.createElement(GoogleTrends,{flat:true,selection:['neurotech']}),'#google-trends-neurotech',h.configure);
@@ -103,7 +103,7 @@ test('dense Trends samples stay 2.5 screen px with 7px source inspection; export
   for(const scale of [.9333,1,1.5733]){
    await h.resize(scale);assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-2.5)<.001,'Resting dense sample radius');
    await act(async()=>point.dispatchEvent(new window.FocusEvent('focusin',{bubbles:true})));
-   assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-7)<.001);
+   assert.ok(Math.abs(Number(point.getAttribute('r'))*scale-2.5)<.001,'Inspection emphasises with a stroke, never a larger dot');assert.ok(point.hasAttribute('aria-describedby'));
    const image=buildChartImage({svg,title:'Trends fixture',anchor:'google-trends-neurotech',notes:[]},window.location.href).svg;
    if(canonical)assert.equal(image,canonical);canonical=image;
    const d=new JSDOM(image,{contentType:'image/svg+xml'});assert.equal(d.window.document.querySelector('[data-trend-point]').getAttribute('r'),'2.5');d.window.close();
