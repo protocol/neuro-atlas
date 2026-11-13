@@ -1,0 +1,104 @@
+{
+  "source": "358d6811ec421c0d245893bf7000041aa56da5c4",
+  "localNext": true,
+  "syntheticLoopbackGate": true,
+  "noLiveWrites": true,
+  "checks": [
+    {
+      "width": 1440,
+      "route": "/milestones",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "route": "/field-velocity",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "route": "/funding",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "route": "/milestones",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "route": "/field-velocity",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "route": "/funding",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "route": "/milestones",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "route": "/field-velocity",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "route": "/funding",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "route": "/",
+      "oneVisibleFeedback": true,
+      "noContributionAction": true,
+      "noHeaderHeroFeedback": true,
+      "noOverflow": true
+    }
+  ]
+}
