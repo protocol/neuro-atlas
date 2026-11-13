@@ -1,4 +1,5 @@
 import { AtlasCookieSettings } from "@/components/atlas-analytics";
+import { FeedbackTrigger } from "./feedback/feedback-trigger";
 
 const linkGroups = [
   {
@@ -29,6 +30,9 @@ export function SiteFooter() {
   return (
     <footer className="px-3 pb-6 sm:px-4 lg:pl-2 lg:pr-4">
       <div className="px-5 pt-5 sm:px-7 lg:px-9">
+        <div className="mb-5 flex justify-start lg:hidden">
+          <FeedbackTrigger className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-[13px] font-medium text-muted transition-colors hover:border-border-strong hover:bg-surface hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
+        </div>
         <div className="flex flex-col gap-7 pb-5 xl:flex-row xl:justify-between xl:gap-10">
           <div>
             <p className="text-sm font-semibold tracking-tight">Neuro Atlas</p>

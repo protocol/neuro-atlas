@@ -8,7 +8,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { FeedbackTrigger } from "./feedback/feedback-trigger";
 
 const sideAction = "flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-[13px] font-medium text-muted transition-colors hover:border-border-strong hover:bg-surface hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const mobileAction = "flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-xs font-medium text-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const TABS: { href: string; label: string }[] = [
   { href: "/milestones", label: "Milestones" },
@@ -106,17 +105,6 @@ export function SideNav() {
           ))}
         </div>
         <div className="mt-auto flex flex-col gap-2 pt-4">
-          <a
-            href="https://github.com/protocol/neuro-atlas/pulls"
-            target="_blank"
-            rel="noreferrer"
-            className={sideAction}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className="shrink-0 text-faint">
-              <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
-            </svg>
-            <span>Contribute via PR</span>
-          </a>
           <FeedbackTrigger className={sideAction} />
         </div>
       </nav>
@@ -132,18 +120,6 @@ export function MobileBar() {
       <div className="flex flex-wrap items-center justify-between gap-y-2 px-1 py-3">
         <BrandMark />
         <div className="ml-auto flex items-center gap-2 pr-2">
-          <a
-            href="https://github.com/protocol/neuro-atlas/pulls"
-            target="_blank"
-            rel="noreferrer"
-            className={mobileAction}
-          >
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
-            </svg>
-            <span>PR</span>
-          </a>
-          <FeedbackTrigger className={mobileAction} />
           <ThemeToggle />
         </div>
       </div>

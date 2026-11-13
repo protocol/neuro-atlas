@@ -66,17 +66,11 @@ test("milestone timeline UI supports BCI filter toggle and non-exclusive copy", 
   assert.doesNotMatch(section, /implanted-BCI field/);
 });
 
-test("contribute via PR button is present across plates and navigation", async () => {
-  const hero = await readFile(path.join(root, "src", "components", "plate-header.tsx"), "utf8");
-  const nav = await readFile(path.join(root, "src", "components", "site-nav.tsx"), "utf8");
+test("contribution actions are removed without deleting the methodology documentation link", async () => {
+  for (const file of ["plate-header.tsx", "site-nav.tsx"]) {
+    const source = await readFile(path.join(root, "src", "components", file), "utf8");
+    assert.doesNotMatch(source, /Contribute via PR|github\.com\/protocol\/neuro-atlas\/pulls/);
+  }
   const methodology = await readFile(path.join(root, "src", "app", "methodology", "page.tsx"), "utf8");
-
-  assert.match(hero, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
-  assert.match(hero, /Contribute via PR/);
-
-  assert.match(nav, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
-  assert.match(nav, /Contribute via PR/);
-
-  assert.match(methodology, /https:\/\/github\.com\/protocol\/neuro-atlas\/pulls/);
   assert.match(methodology, /Open a Pull Request on GitHub/);
 });

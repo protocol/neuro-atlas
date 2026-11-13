@@ -1,7 +1,3 @@
-import { FeedbackTrigger } from "./feedback/feedback-trigger";
-
-const plateAction = "inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] font-medium normal-case tracking-normal text-white/80 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
-
 const STATUS: Record<string, { label: string; cls: string }> = {
   live: { label: "Live", cls: "bg-white/12 text-white" },
   partial: { label: "Partial public coverage", cls: "bg-white/12 text-white" },
@@ -37,21 +33,6 @@ export function PlateHero({
           <span aria-hidden="true">•</span>
           <span className={`rounded-full px-3 py-1.5 ${s.cls}`}>{s.label}</span>
         </>}
-        <div className="ml-auto flex flex-wrap items-center gap-2">
-          <a
-            href="https://github.com/protocol/neuro-atlas/pulls"
-            target="_blank"
-            rel="noreferrer"
-            className={plateAction}
-            title="Contribute data or corrections via GitHub Pull Request"
-          >
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
-            </svg>
-            Contribute via PR
-          </a>
-          <FeedbackTrigger className={plateAction} />
-        </div>
       </div>
       <div className="grid gap-7 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)] lg:items-start">
         <div>
