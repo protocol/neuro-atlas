@@ -289,7 +289,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     </svg>
     {benchmark && <div className="brain-scale-controls">
       <button type="button" role="switch" data-brain-scale-toggle aria-checked={benchmarkEnabled}
-        onClick={() => setBenchmarkEnabled(enabled => !enabled)}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>
+        onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>
       <details data-brain-scale-assumptions>
         <summary>Benchmark assumptions &amp; sources</summary>
         <p>{benchmark.disclosure}</p>
