@@ -1,3 +1,5 @@
+import { AtlasCookieSettings } from "@/components/atlas-analytics";
+
 const linkGroups = [
   {
     label: "Explore",
@@ -17,7 +19,7 @@ const linkGroups = [
   {
     label: "Legal",
     links: [
-      { label: "Privacy Policy", href: "https://www.protocol.ai/legal/#privacy-policy" },
+      { label: "Privacy Policy", href: "https://www.plneuro.xyz/privacy-policy/" },
       { label: "Terms of Service", href: "https://www.protocol.ai/legal/#terms-conditions" },
     ],
   },
@@ -51,6 +53,7 @@ export function SiteFooter() {
                       </a>
                     </li>
                   ))}
+                  {group.label === "Legal" && <li><AtlasCookieSettings /></li>}
                 </ul>
               </div>
             ))}

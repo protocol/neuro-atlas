@@ -14,12 +14,14 @@ for (const [label, settings, noindex] of [
       const config = configModule.default ?? configModule;
       import { proxy } from './src/proxy.ts';
       import { NextRequest } from 'next/server.js';
-      const res = proxy(new NextRequest('https://example.test/'));
+      Date.now = () => Date.parse('2026-11-18T14:00:00Z');
+      const res = await proxy(new NextRequest('https://example.test/'));
       console.log(JSON.stringify({ routes: await config.headers?.() ?? [], status: res.status, robots: res.headers.get('x-robots-tag') }));
     `], { env, encoding: 'utf8' });
     const result = JSON.parse(output);
     assert.equal(result.status, 401);
-    assert.equal(result.robots, noindex ? 'noindex, nofollow' : null);
+    // The launch gate itself is never indexable, regardless of eventual site policy.
+    assert.equal(result.robots, 'noindex, nofollow, noarchive');
     assert.deepEqual(result.routes, noindex ? [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }] : []);
   });
 }
