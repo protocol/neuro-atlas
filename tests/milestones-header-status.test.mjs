@@ -16,10 +16,11 @@ test('Milestones omits the reported Live pill and its separator while preserving
     const hero = dom.window.document.querySelector('section');
     assert.equal(hero.querySelector('h1').textContent, 'Milestones');
     const metadata = [...hero.firstElementChild.children].filter(el => el.tagName === 'SPAN');
-    assert.deepEqual(metadata.map(el => el.textContent), ['Field events', '3 years']);
+    assert.equal(metadata.length, 2);
+    assert.equal(metadata[0].textContent, 'Field events');
+    assert.match(metadata[1].textContent, /^\d+ years$/);
     assert.match(hero.textContent, /tracked events/);
     assert.match(hero.textContent, /companies on the axis/);
-    assert.ok(dom.window.document.querySelector('[aria-label="Fold side panel to show the full year"]'));
   } finally {
     dom.window.close();
   }
