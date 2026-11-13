@@ -12,7 +12,13 @@ export function AtlasAnalytics({ children }: { children: React.ReactNode }) {
   const controller = useRef<ReturnType<typeof getAtlasAnalytics> | null>(null);
   useEffect(() => {
     controller.current = getAtlasAnalytics(window);
-    return controller.current.connect(setState);
+    let mounted = true;
+    // Next commits history inside an insertion effect. Keep controller policy and
+    // event handling synchronous, but publish React UI state after that commit.
+    const disconnect = controller.current.connect((nextState) => {
+      queueMicrotask(() => { if (mounted) setState(nextState); });
+    });
+    return () => { mounted = false; disconnect(); };
   }, []);
 
   return (
