@@ -188,3 +188,30 @@ test('equal cards allocate spare space to one preview without feeding expansion 
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'),'560px','Expansion is subtracted before choosing a natural maximum');
   } finally {await cleanup();}
 });
+
+test('a CSS height cap keeps rail cards compact and marks only taller previews as clipped', async () => {
+  const cleanup = await mount(React.createElement(Page), '', window => {
+    const style = window.document.createElement('style');
+    style.textContent = 'article { border: 0px solid; padding: 0; } .metrics-index { --metric-card-max-height: 450px; }';
+    window.document.head.append(style);
+    window.HTMLElement.prototype.getBoundingClientRect = function () {
+      const isBody = this.hasAttribute('data-metric-card-body');
+      const isFooter = this.hasAttribute('data-metric-card-footer');
+      const peer = this.closest('[data-performance-card="idea_vintage"]');
+      return { height: isBody ? (peer ? 520 : 400) : isFooter ? 40 : 0, width: 500 };
+    };
+  });
+  try {
+    const catalog = document.querySelector('.metrics-index');
+    assert.equal(catalog.style.getPropertyValue('--metric-card-height'), '450px', 'The cap wins over the 560px natural maximum');
+    const tall = document.querySelector('[data-performance-card="idea_vintage"]');
+    assert.equal(tall.hasAttribute('data-metric-clipped'), true, 'Only the taller preview fades under the cap');
+    assert.equal(tall.style.getPropertyValue('--metric-preview-extra'), '0', 'A clipped card is never padded');
+    const others = [...catalog.querySelectorAll('[data-metric-rail] article')].filter(card => card !== tall && card.querySelector('[data-metric-card-body]'));
+    assert.ok(others.length > 10);
+    for (const card of others) {
+      assert.equal(card.hasAttribute('data-metric-clipped'), false);
+      assert.equal(card.style.getPropertyValue('--metric-preview-extra'), '10', '400 body + 40 footer fills to the 450px cap');
+    }
+  } finally { await cleanup(); }
+});

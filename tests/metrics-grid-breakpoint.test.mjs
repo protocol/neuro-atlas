@@ -11,12 +11,12 @@ function rules() {
   return { dom, rules: [...dom.window.document.styleSheets[0].cssRules] };
 }
 
-test('wide and medium rails use wider fixed peer columns, never the retired wrapping grid', () => {
+test('wide rails use fixed compact peer columns with a visible peek, never the retired wrapping grid', () => {
   const { dom, rules: css } = rules();
   try {
     const content = css.find(rule => rule.selectorText === '.metric-category-content');
     assert.ok(content, 'The complete rail uses one width budget');
-    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 1rem)/1.25)');
+    assert.equal(content.style.getPropertyValue('--metric-card-width'), 'calc((100% - 2.625rem)/3.34)');
     const rail = css.find(rule => rule.selectorText === '.metric-chart-rail');
     assert.equal(rail.style.getPropertyValue('grid-auto-columns'), 'var(--metric-card-width)');
     assert.equal(rail.style.getPropertyValue('grid-auto-flow'), 'column');
@@ -27,12 +27,17 @@ test('wide and medium rails use wider fixed peer columns, never the retired wrap
     assert.equal(rail.style.getPropertyValue('scroll-snap-type'), 'x proximity');
     assert.equal(rail.style.getPropertyValue('overscroll-behavior-x'), 'contain');
     assert.equal(rail.style.getPropertyValue('scrollbar-width'), 'auto', 'Do not hide the native scrollbar');
-    for (const width of [671, 927, 1087, 1248]) {
-      const card = (width - 16) / 1.25;
-      const peek = width - card - 16;
-      assert.ok(card > (width - 32) / 3 * 1.6, 'Meaningfully wider than the old three-column tiles');
-      assert.ok(card >= 390, 'Medium sidebar layouts retain readable card widths');
-      assert.ok(peek > 100 && peek < card, 'One full card and an unmistakably partial next card');
+    for (const width of [1087, 1248]) {
+      const card = (width - 42) / 3.34;
+      const peek = width - 3 * card - 3 * 14;
+      assert.ok(card >= 300, 'Desktop cards keep a readable frame for screen-space ticks');
+      assert.ok(peek > 90 && peek < card, 'Three full cards and an unmistakably partial fourth');
+    }
+    // Medium plates switch to two cards and a peek through a container query (not evaluated by jsdom).
+    for (const width of [560, 671, 800]) {
+      const card = (width - 28) / 2.2;
+      const peek = width - 2 * card - 2 * 14;
+      assert.ok(card >= 240 && peek > 40 && peek < card);
     }
     assert.equal(css.some(rule => rule.selectorText === '.metric-chart-grid'), false);
     assert.equal(css.some(rule => rule.selectorText?.includes('data-metric-state') && rule.style.getPropertyValue('--metric-card-width')), false,
