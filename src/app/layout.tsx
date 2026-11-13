@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { atlasDescription } from "@/lib/atlas-metadata";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AtlasAnalytics } from "@/components/atlas-analytics";
 import { SideNav, MobileBar } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-background">
         <ThemeProvider>
+          <AtlasAnalytics>
           <div className="mx-auto flex min-h-screen w-full max-w-[100rem] px-0 lg:pl-4">
             <SideNav />
             <div className="flex min-w-0 flex-1 flex-col">
@@ -45,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
           </div>
           <Feedback />
+          </AtlasAnalytics>
         </ThemeProvider>
       </body>
     </html>

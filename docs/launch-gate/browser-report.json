@@ -1,0 +1,69 @@
+[
+  {
+    "width": 1440,
+    "mobile_emulation": false,
+    "checks": "title + real canvas dots + native toggle + keyboard + reduced motion + bounds + deep link",
+    "initial": {
+      "width": 1440,
+      "client": 1440,
+      "scroll": 1440,
+      "phase": "atlas",
+      "ready": "true",
+      "dots": 18760,
+      "units": 4,
+      "form": {
+        "left": 535,
+        "right": 905,
+        "bottom": 698.796875
+      },
+      "hover": true
+    }
+  },
+  {
+    "width": 390,
+    "mobile_emulation": true,
+    "checks": "title + real canvas dots + native toggle + keyboard + reduced motion + bounds + deep link",
+    "initial": {
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "phase": "atlas",
+      "ready": "true",
+      "dots": 4450,
+      "units": 4,
+      "form": {
+        "left": 20,
+        "right": 370,
+        "bottom": 631.328125
+      },
+      "hover": false
+    }
+  },
+  {
+    "width": 320,
+    "mobile_emulation": true,
+    "checks": "title + real canvas dots + native toggle + keyboard + reduced motion + bounds + deep link",
+    "initial": {
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "phase": "atlas",
+      "ready": "true",
+      "dots": 3070,
+      "units": 4,
+      "form": {
+        "left": 16,
+        "right": 304,
+        "bottom": 579.328125
+      },
+      "hover": false
+    }
+  },
+  {
+    "wrong_password": "native form rejected, usable retry, no echo",
+    "error": "That password didn\u2019t match. Please try again."
+  },
+  {
+    "client_clock_tamper": "future Date.now persisted into new document; still gated and countdown anchored to server time"
+  }
+]

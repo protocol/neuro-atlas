@@ -23,7 +23,7 @@ test("the shared footer provides PL destinations and a visible investment discla
     ["Protocol Labs", "https://www.protocol.ai/"],
     ["X / Twitter", "https://x.com/protocollabs_rd"],
     ["GitHub", "https://github.com/protocol/neuro-atlas"],
-    ["Privacy Policy", "https://www.protocol.ai/legal/#privacy-policy"],
+    ["Privacy Policy", "https://www.plneuro.xyz/privacy-policy/"],
     ["Terms of Service", "https://www.protocol.ai/legal/#terms-conditions"],
   ]);
   for (const [label, href] of expectedLinks) {

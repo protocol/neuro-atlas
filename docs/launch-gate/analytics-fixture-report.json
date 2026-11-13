@@ -1,0 +1,77 @@
+{
+  "fixtureOnly": true,
+  "realCollection": false,
+  "nativeApp": "Next16.4.6 behind companion host rewrite",
+  "substitutions": [
+    "loopback canonical origin",
+    "synthetic after-launch instant",
+    "synthetic GA ID",
+    "stub external tag load with network blocked"
+  ],
+  "checks": [
+    "required-region native banner present",
+    "no tag/pageview before acceptance",
+    "one sanitized initial pageview",
+    "query/hash silent",
+    "real Next route adds exactly one pathname view",
+    "withdrawal disables before subsequent navigation"
+  ],
+  "commands": [
+    [
+      "consent",
+      "default",
+      {
+        "analytics_storage": "granted",
+        "ad_storage": "denied",
+        "ad_user_data": "denied",
+        "ad_personalization": "denied"
+      }
+    ],
+    [
+      "js",
+      {}
+    ],
+    [
+      "config",
+      "G-SYNTHETIC1",
+      {
+        "send_page_view": false,
+        "allow_google_signals": false,
+        "allow_ad_personalization_signals": false,
+        "page_location": "http://localhost:3187/neuro-atlas",
+        "page_referrer": "",
+        "page_title": "Neuro Atlas"
+      }
+    ],
+    [
+      "event",
+      "page_view",
+      {
+        "send_to": "G-SYNTHETIC1",
+        "page_location": "http://localhost:3187/neuro-atlas",
+        "page_referrer": "",
+        "page_title": "Neuro Atlas"
+      }
+    ],
+    [
+      "event",
+      "page_view",
+      {
+        "send_to": "G-SYNTHETIC1",
+        "page_location": "http://localhost:3187/neuro-atlas/milestones",
+        "page_referrer": "http://localhost:3187/neuro-atlas",
+        "page_title": "Neuro Atlas"
+      }
+    ],
+    [
+      "consent",
+      "update",
+      {
+        "analytics_storage": "denied",
+        "ad_storage": "denied",
+        "ad_user_data": "denied",
+        "ad_personalization": "denied"
+      }
+    ]
+  ]
+}

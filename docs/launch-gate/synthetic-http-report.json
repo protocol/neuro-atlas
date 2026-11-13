@@ -1,0 +1,32 @@
+{
+  "fixtureOnly": true,
+  "atlas": "http://localhost:3185",
+  "host": "http://localhost:3187",
+  "checks": 6,
+  "results": [
+    {
+      "label": "anonymous native entry is standalone HTML401 without Basic dialog or Atlas bundles",
+      "status": "PASS"
+    },
+    {
+      "label": "native mounted POST rejects wrong passwords and cross-origin/missing Origin",
+      "status": "PASS"
+    },
+    {
+      "label": "positive native login through actual host rewrite issues a scoped signed cookie and preserves deep link",
+      "status": "PASS"
+    },
+    {
+      "label": "valid cookie opens actual Atlas content through host and origin; forged/duplicate cookies fail",
+      "status": "PASS"
+    },
+    {
+      "label": "real published JS asset is inaccessible anonymously, accessible only with session, same bytes through host",
+      "status": "PASS"
+    },
+    {
+      "label": "legacy Basic works and middleware bypass hints do not open without credentials",
+      "status": "PASS"
+    }
+  ]
+}
