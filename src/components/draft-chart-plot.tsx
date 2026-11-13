@@ -174,9 +174,18 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     ? "Rings keep overlapping observations visible at their source positions." : undefined;
   // Only callouts move. Search bounded slots for the closest free 20px badge;
   // leave clearance from both source glyphs and already placed badges.
+  // Reserve the direct benchmark labels before placing movable annotation badges.
+  // Source marks stay at their quantitative centers; only their numbered keys move.
+  const benchmarkLabelRegions = benchmark && benchmarkProgress > .8 ? benchmark.references.map(ref => ({
+    left: right - 4 - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
+    right,
+    top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
+    bottom: y(ref.value),
+  })) : [];
   const placedKeys: { x: number; y: number }[] = [];
-  const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / 24) + 1) }, (_, column) =>
-    Array.from({ length: Math.floor((bottom - top - 24) / 24) + 1 }, (_, row) => ({ x: left + 12 + column * 24, y: top + 12 + row * 24 }))).flat();
+  const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;
+  const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / keySlotStep) + 1) }, (_, column) =>
+    Array.from({ length: Math.floor((bottom - top - 24) / keySlotStep) + 1 }, (_, row) => ({ x: left + 12 + column * keySlotStep, y: top + 12 + row * keySlotStep }))).flat();
   const annotations = plot.points.flatMap((point, index) => {
     const text = point.annotation?.trim() || (overlaps[index].length
       ? [point.label, point.group, qualifiedValue(point)].filter(Boolean).join(" · ") : "");
@@ -200,6 +209,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     const position = [preferred, ...segmentSlots]
       .sort((a, b) => Math.hypot(a.x - preferred.x, a.y - preferred.y) - Math.hypot(b.x - preferred.x, b.y - preferred.y))
       .find(candidate => placedKeys.every(other => Math.abs(candidate.x - other.x) >= 23 || Math.abs(candidate.y - other.y) >= 23)
+        && benchmarkLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right
+          || candidate.y + 12 < region.top || candidate.y - 12 > region.bottom)
         && plot.points.every((other, otherIndex) => Math.hypot(
           Math.max(0, Math.abs(candidate.x - x(other.x)) - 10),
           Math.max(0, Math.abs(candidate.y - y(other.y)) - 10),
