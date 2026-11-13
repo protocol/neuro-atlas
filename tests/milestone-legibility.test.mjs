@@ -51,6 +51,8 @@ async function mount(t) {
 
 test('folded and resized plots repack full-size logos without shifting their date centers', async t => {
   const { doc, click, resize } = await mount(t);
+  // The rail now starts folded; explicitly open it before exercising the existing fold/repack path.
+  await click(doc.querySelector('button[aria-label="Open side panel"]'));
   const plot = () => doc.querySelector('.cursor-crosshair');
   const marks = () => [...plot().querySelectorAll('a[aria-label]')];
   const dates = () => marks().map(el => [el.getAttribute('aria-label'), el.style.left]);

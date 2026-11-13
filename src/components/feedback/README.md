@@ -4,7 +4,7 @@ The mounted flow is [visitor feedback → Linear logging](../../../docs/feedback
 
 ## Entry points, native layers and selection
 
-`FeedbackTrigger` sits beside the existing PR action in the desktop sidebar, mobile navigation, plate header and landing hero, using the same classes as its neighbor. The layout mounts one page-lifetime `Feedback` controller with no floating launcher. **Feedback** / **Alt+Shift+F** starts fresh picking, even when unsent text is retained. Curated chart open events can supply an allowlisted target directly.
+`FeedbackTrigger` is the only feedback/contribution action: bottom-left in the desktop sidebar, and left-aligned in the footer below the large-screen breakpoint. Plate headers, the landing hero and mobile header have no duplicate Feedback or Contribute via PR buttons. The layout mounts one page-lifetime `Feedback` controller with no floating launcher. **Feedback** / **Alt+Shift+F** starts fresh picking, even when unsent text is retained. Curated chart open events can supply an allowlisted target directly.
 
 The picker only highlights elements; there is no visible instruction card, General page or Back button, and those controls/copy are not relocated. Screen-reader-only instructions describe selection/cancel. Clicking pins the structural element and opens a compact native `dialog.showModal()` beside it. Escape cancels fresh selection without opening the composer; pressing Feedback again also cancels, including on mobile. Canceling **Select element** from an active composer returns safely to its still-active pin and text.
 
@@ -26,7 +26,7 @@ Drafts/keys live only in page memory; reload loses them. Requests have a 15-seco
 
 ## Verification and selectors
 
-Run the focused commands in the logging runbook. Component tests cover retry bytes/UUIDs, pending fence, exact receipts/negative writes, persistent confirmation, selection/no-toolbar/cancel, true-exit deselection, IME, growth, native chart layering, focus/Tab/Escape, route/remount and viewport clamps. Trigger tests render all four placements and exercise the same event/controller. A/H1 and B/H2 are actual separate synthetic-transport saves, not fabricated history.
+Run the focused commands in the logging runbook. Component tests cover retry bytes/UUIDs, pending fence, exact receipts/negative writes, persistent confirmation, selection/no-toolbar/cancel, true-exit deselection, IME, growth, native chart layering, focus/Tab/Escape, route/remount and viewport clamps. Trigger tests verify both retained responsive placements, the three duplicate-free surfaces, and the same event/controller. A/H1 and B/H2 are actual separate synthetic-transport saves, not fabricated history.
 
 Stable selectors: `[data-feedback-trigger]`, `[data-feedback-selection]`, `[data-feedback-composer]`, `[data-feedback-success]`, `[data-feedback-submit]`, `[data-feedback-close]`, `[data-feedback-done]`, and textarea `[aria-label="Feedback"]`. Multiple responsive triggers are rendered: native tests must choose a visible one.
 

@@ -128,7 +128,7 @@ export function MilestoneTimeline() {
   const [scopeFilter, setScopeFilter] = useState<"all" | "bci">("all");
   const [openStage, setOpenStage] = useState<StageKey | null>(null);
   const [focusYear, setFocusYearRaw] = useState(2026);
-  const [railOpen, setRailOpen] = useState(true);
+  const [railOpen, setRailOpen] = useState(false);
   const [now, setNow] = useState<number | null>(null);
   const [dock, setDock] = useState<{ x: number; y: number; w: number } | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);

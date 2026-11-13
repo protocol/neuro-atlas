@@ -32,16 +32,12 @@ test("four visual tiles keep all destinations and accessible names", () => {
   }
 });
 
-test("hero offers a real explore anchor and GitHub pull-request route for feedback", () => {
+test("hero offers the explore anchor without duplicate contribution or Feedback buttons", () => {
   const document = render();
   const hero = document.querySelector(".landing-hero");
-  const explore = hero.querySelector('a[href="#explore"]');
-  assert.ok(explore, "Missing exploration CTA");
-  assert.ok(document.querySelector("#explore"), "Explore target must exist");
+  assert.ok(hero.querySelector('a[href="#explore"]'));
   assert.equal(document.querySelector("#explore").getAttribute("tabindex"), "-1");
-  const contribute = hero.querySelector('a[href="https://github.com/protocol/neuro-atlas/compare"]');
-  assert.ok(contribute, "Contribution CTA should reach the new-PR flow, not a placeholder");
-  assert.match(contribute.textContent, /Contribute via PR/);
-  assert.match(hero.textContent, /Feedback, corrections, or new data/);
+  assert.equal(hero.querySelector('a[href*="github.com/protocol/neuro-atlas/"]'), null);
+  assert.equal(hero.querySelector('[data-feedback-trigger]'), null);
   assert.ok(document.querySelector('a[href="/methodology"]'));
 });

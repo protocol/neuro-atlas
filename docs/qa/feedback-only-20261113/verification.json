@@ -1,0 +1,57 @@
+{
+  "runtimeRevision": "358d6811ec421c0d245893bf7000041aa56da5c4",
+  "finalTestRevision": "a5da575e524d3506d789601c6e715bd149714b1b",
+  "standardSuite": {
+    "tests": 1237,
+    "passed": 1233,
+    "failed": 4,
+    "status": "completed; four superseded UI expectations corrected afterward",
+    "failures": [
+      "milestone-capital-classification: native/unconverted summary assumes initial open rail",
+      "milestone-capital-classification: grant summary assumes initial open rail",
+      "milestone-capital-classification: annual rail assumes initial open rail",
+      "site-footer: blanket no-button assertion predates retained mobile Feedback"
+    ]
+  },
+  "finalAffectedRerun": {
+    "tests": 65,
+    "passed": 65,
+    "failed": 0,
+    "includesEveryUpdatedTestAndAllFourPriorFailures": true
+  },
+  "sourceRuntimeDeltaAfterNativeAndOriginalReview": [],
+  "typecheck": "passed",
+  "productionBuild": "passed Next16.4.6 Turbopack mounted at /neuro-atlas",
+  "changedSourceLint": {
+    "newErrors": 0,
+    "existingErrors": [
+      {
+        "path": "src/components/milestone-timeline.tsx",
+        "line": 148,
+        "rule": "react-hooks/set-state-in-effect"
+      },
+      {
+        "path": "src/components/milestone-timeline.tsx",
+        "line": 186,
+        "rule": "react-hooks/immutability"
+      }
+    ],
+    "baselineIndependentlyReproduced": true
+  },
+  "productionAuditVulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "nativeRouteViewportCases": 12,
+  "liveProviderWrites": 0,
+  "productionDeploymentOrMerge": false,
+  "independentReview": {
+    "originalRuntime": "PASS at 358d681",
+    "testOnlyClosure": "PASS at a5da575; 11/11 tests; original assertions and fixture cleanup retained",
+    "pendingReviews": 0
+  }
+}

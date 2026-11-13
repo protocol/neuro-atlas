@@ -83,22 +83,19 @@ test('Milestone timeline intro renders exactly the owner-approved replacement pa
   }
 });
 
-test('Milestones omits the entire Memo cut comparison while retaining the sourced capital panel', () => {
+test('Milestones omits the entire Memo cut comparison while retaining the sourced capital panel', async t => {
   const memo = JSON.parse(readFileSync(new URL('../src/data/capital.json', import.meta.url), 'utf8'));
-  const dom = new JSDOM(renderToStaticMarkup(React.createElement(MilestoneTimeline)));
-  try {
-    const panel = dom.window.document.querySelector('aside');
-    assert.ok(panel);
-    assert.doesNotMatch(panel.textContent, /Memo cut|Naveen’s Q1\+ 2026 chart|Independent of the dots/);
-    const rowTexts = [...panel.querySelectorAll('div')].map(el => el.textContent);
-    for (const { year, usdM } of memo) {
-      assert.ok(!rowTexts.includes(`${year}$${usdM}m`), `Remove the ${year} memo comparison amount`);
-    }
-    assert.match(panel.textContent, /Capital raised/);
-    assert.match(panel.textContent, /Sourced round sizes on this lane/);
-    assert.match(panel.textContent, /Full period/);
-    assert.ok(panel.querySelector('button[aria-label="Fold side panel to show the full year"]'));
-  } finally {
-    dom.window.close();
+  const window = await mount(t);
+  await act(async () => window.document.querySelector('button[aria-label="Open side panel"]').click());
+  const panel = window.document.querySelector('aside');
+  assert.ok(panel);
+  assert.doesNotMatch(panel.textContent, /Memo cut|Naveen’s Q1\+ 2026 chart|Independent of the dots/);
+  const rowTexts = [...panel.querySelectorAll('div')].map(el => el.textContent);
+  for (const { year, usdM } of memo) {
+    assert.ok(!rowTexts.includes(`${year}$${usdM}m`), `Remove the ${year} memo comparison amount`);
   }
+  assert.match(panel.textContent, /Capital raised/);
+  assert.match(panel.textContent, /Sourced round sizes on this lane/);
+  assert.match(panel.textContent, /Full period/);
+  assert.ok(panel.querySelector('button[aria-label="Fold side panel to show the full year"]'));
 });

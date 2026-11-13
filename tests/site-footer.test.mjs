@@ -34,6 +34,7 @@ test("the shared footer provides PL destinations and a visible investment discla
   const text = footer.textContent.replace(/\s+/g, " ");
   const disclaimer = [...footer.querySelectorAll("p")].at(-1).textContent.replace(/\s+/g, " ").trim();
   assert.equal(disclaimer, "Neuro Atlas is for informational purposes only and is not investment, legal, or medical advice. It is not an offer, solicitation, or recommendation of any security or investment product, and makes no commitment or guarantee of future performance or outcomes. Company and project inclusion does not imply endorsement. Data is compiled from third-party sources and may contain errors, be incomplete, or become outdated, and is provided without warranty. You should review the linked primary sources and do your own due diligence before relying on any data in this site. Protocol Labs, Inc. and PL Capital hold, or may hold, financial interests in companies or funds featured here.");
-  assert.equal(footer.querySelector("details, button"), null, "No hidden disclaimer or nonfunctional cookie control");
+  assert.equal(footer.querySelector("details, button:not([data-feedback-trigger])"), null, "No hidden disclaimer or nonfunctional cookie control");
+  assert.equal(footer.querySelectorAll("button[data-feedback-trigger]").length, 1, "Only the functional mobile Feedback control is added");
   assert.doesNotMatch(text, /CC-BY|all rights reserved/i, "Do not impose a new license on sourced data");
 });
