@@ -16,7 +16,6 @@ export default function MilestonesPage() {
         meta={[`${years} years`]}
         title="Milestones"
         description="Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and the broader neurotech ecosystem — on one time axis, year by year."
-        status="live"
         stats={[
           { value: String(MILESTONES.length), label: "tracked events" },
           { value: String(companies), label: "companies on the axis" },

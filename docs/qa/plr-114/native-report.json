@@ -1,0 +1,56 @@
+[
+  {
+    "width": 1452,
+    "client": 1437,
+    "scroll": 1437,
+    "title": "Milestones",
+    "meta": [
+      "Field events",
+      "3 years"
+    ],
+    "statLabels": [
+      "tracked events",
+      "companies on the axis",
+      "lanes \u00b7 capital, clinical, commercial",
+      "years on the timeline"
+    ],
+    "feedback": 3,
+    "hasBciFilter": true
+  },
+  {
+    "width": 390,
+    "client": 390,
+    "scroll": 390,
+    "title": "Milestones",
+    "meta": [
+      "Field events",
+      "3 years"
+    ],
+    "statLabels": [
+      "tracked events",
+      "companies on the axis",
+      "lanes \u00b7 capital, clinical, commercial",
+      "years on the timeline"
+    ],
+    "feedback": 3,
+    "hasBciFilter": true
+  },
+  {
+    "width": 320,
+    "client": 320,
+    "scroll": 320,
+    "title": "Milestones",
+    "meta": [
+      "Field events",
+      "3 years"
+    ],
+    "statLabels": [
+      "tracked events",
+      "companies on the axis",
+      "lanes \u00b7 capital, clinical, commercial",
+      "years on the timeline"
+    ],
+    "feedback": 3,
+    "hasBciFilter": true
+  }
+]
