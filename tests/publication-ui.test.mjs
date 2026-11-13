@@ -10,8 +10,8 @@ const fixture=()=>({...syntheticPublicationEndpointSnapshot(),matchedGrowth:synt
 const chart=s=>React.createElement(PublicationCharts,{snapshot:s,allowTestFixture:true});
 
 const chooseBaseline=async(modal,value)=>act(async()=>{
- const select=modal.querySelector('[data-growth-baseline]');assert.ok(select,'Native comparison baseline selector');
- select.value=value;select.dispatchEvent(new window.Event('change',{bubbles:true}));
+ const option=modal.querySelector(`[data-growth-baseline] [data-baseline-option="${value}"]`);assert.ok(option,'Comparison baseline toggle option');
+ option.click();
 });
 
 test('growth selects one baseline per group without a second numerator or silent fallback',async()=>{
@@ -26,9 +26,9 @@ test('growth selects one baseline per group without a second numerator or silent
   assert.equal(Number(band.dataset.low),data.scienceGrowth.low);assert.equal(Number(band.dataset.high),data.scienceGrowth.high);
   assert.equal(Number(svg.querySelector('[data-neurotech-average]').dataset.value),data.neurotechGrowth);
   const original=svg.outerHTML;
-  const select=modal.querySelector('select[data-growth-baseline]');assert.ok(select);assert.equal(select.value,'science');
-  assert.match(select.closest('label').textContent,/Comparison baseline/);
-  assert.deepEqual([...select.options].map(option=>option.textContent),['General science','Matched to each group (9 available)']);
+  const toggle=modal.querySelector('[role=radiogroup][data-growth-baseline]');assert.ok(toggle);assert.equal(toggle.dataset.growthBaseline,'science');
+  assert.equal(toggle.getAttribute('aria-label'),'Comparison baseline');
+  assert.deepEqual([...toggle.querySelectorAll('[role=radio]')].map(option=>[option.textContent,option.getAttribute('aria-checked')]),[['General science','true'],['Matched to each group (9 available)','false']]);
   assert.equal(modal.querySelector('input[type="checkbox"]'),null,'Baseline selection replaces the overlay');
   assert.match(modal.querySelector('.pc-methodology').textContent,/9 same-category comparisons available; 12 unavailable/);
   await chooseBaseline(modal,'matched');
@@ -73,18 +73,18 @@ test('changing the comparison baseline clears stale selected-baseline inspection
  const cleanup=await mount(chart(fixture()),'#publication-growth');
  try {
   const modal=document.querySelector('dialog'),readout=modal.querySelector('[data-publication-inspector]');
-  const select=modal.querySelector('[data-growth-baseline]');
+  const option=value=>modal.querySelector(`[data-baseline-option="${value}"]`);
   for(const id of ['asia','early']) {
    for(const [from,to] of [['science','matched'],['matched','science']]) {
     await chooseBaseline(modal,from);
     await act(async()=>modal.querySelector(`[data-growth-row="${id}"]`).dispatchEvent(new window.MouseEvent('click',{bubbles:true})));
     assert.ok(readout.textContent.length>0,'Inspect a real mark first');
     assert.ok(modal.querySelector('[data-point-tooltip]'),'A real source popup is pinned before switching');
-    await act(async()=>select.focus());
+    await act(async()=>option(to).focus());
     await chooseBaseline(modal,to);
     assert.equal(readout.textContent,'','A changed baseline requires a fresh, correctly qualified inspection');
     assert.equal(modal.querySelector('[data-point-tooltip]'),null,'The stale source popup is dismissed');
-    assert.equal(document.activeElement,select,'Changing a native select must not restore focus to the old mark');
+    assert.ok(document.activeElement===option(to),'Changing the baseline must not restore focus to the old mark');
    }
   }
  } finally {await cleanup();}
@@ -240,24 +240,24 @@ test('the zero tick remains inside the initial narrow viewport instead of beyond
   assert.ok(Math.abs(parseFloat(svg.style.fontSize)*minWidth/width-12)<.001,'Measured labels stay 12 CSS px on narrow screens');
   const tick=document.querySelector('dialog [data-growth-sticky-axis] [data-growth-tick]');
   assert.ok(Number(tick.getAttribute('x'))*minWidth/width<=240,'A 240px narrow plot must show the zero tick without horizontal scrolling');
-  const select=document.querySelector('dialog [data-growth-baseline]');assert.equal(getComputedStyle(select).maxWidth,'100%');
+  assert.ok(document.querySelector('dialog [role=radiogroup][data-growth-baseline]'),'The baseline toggle wraps rather than widening the modal');
  }finally{await cleanup();}
 });
 
-test('growth has aligned sticky axes in both scrollers while full SVG retains its own export axis',async()=>{
+test('the expanded growth chart keeps an aligned sticky axis, the card preview shows rows only, and the full SVG retains its own export axis',async()=>{
  const {readFileSync}=await import('node:fs');
  const {buildChartImage}=await import('../src/lib/chart-export.ts');
  const s=fixture();const parsed=parsePublicationSnapshot(s,fixtureOptions);const data=selectPublicationCharts(parsed);
  const cleanup=await mount(chart(s),'#publication-growth');
  try {
   const style=document.createElement('style');style.textContent=readFileSync(new URL('../src/components/publication-charts.css',import.meta.url),'utf8');document.head.append(style);
-  for(const region of [document.querySelector('dialog .publication-plot-1'),document.querySelector('[data-publication-card="publication-growth"] .publication-preview')]) {
+  assert.equal(document.querySelector('[data-publication-card="publication-growth"] .publication-preview [data-growth-sticky-axis]'),null,'The card preview never freezes a bottom row over its first groups');
+  for(const region of [document.querySelector('dialog .publication-plot-1')]) {
    const svg=region.querySelector('svg');const sticky=region.querySelector('[data-growth-sticky-axis]');assert.ok(sticky);
    assert.equal(sticky.getAttribute('aria-hidden'),'true');assert.ok(sticky.hasAttribute('data-export-exclude'));
    assert.equal(getComputedStyle(sticky).position,'sticky');assert.equal(getComputedStyle(sticky).bottom,'0px');
    const footerBox=sticky.querySelector('svg').getAttribute('viewBox').split(' ').map(Number);
    assert.equal(parseFloat(sticky.style.marginTop),-footerBox[3]/footerBox[2]*100,'Sticky footer exactly covers the static footer at scroll-bottom');
-   if(region.classList.contains('publication-preview'))assert.ok(footerBox[3]/parseFloat(svg.style.fontSize)<=7,'Preview footer leaves room for actual rows');
    assert.equal(svg.parentElement,sticky.parentElement,'Share a horizontally scrollable coordinate canvas');
    assert.equal(svg.getAttribute('viewBox').split(' ')[2],sticky.querySelector('svg').getAttribute('viewBox').split(' ')[2]);
    const nativeAxis=svg.querySelector('[data-growth-axis]');assert.ok(nativeAxis,'Standalone SVG keeps its own axis');
@@ -437,7 +437,7 @@ test('an absent matched feed honestly labels all 21 references unavailable',asyn
  try {
   const svg=document.querySelector('dialog .publication-full-plot svg');
   assert.match(document.querySelector('dialog .pc-methodology').textContent,/0 same-category comparisons available; 21 unavailable/);
-  const modal=document.querySelector('dialog');assert.match(modal.querySelector('select').textContent,/0 available/);
+  const modal=document.querySelector('dialog');assert.match(modal.querySelector('[data-growth-baseline]').textContent,/0 available/);
   await chooseBaseline(modal,'matched');
   assert.equal(svg.querySelectorAll('[data-growth-reference-tick]').length,0);
   assert.equal(svg.querySelectorAll('[data-reference-unavailable]').length,21);

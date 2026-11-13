@@ -161,7 +161,7 @@ test('plot previews open source-qualified detail without a paragraph wall above 
       assert.equal(preview.querySelector('details'), null);
       await click(preview.closest('[data-draft-popout]').querySelector('[data-draft-popout-trigger]'));
       const figure = document.querySelector('dialog[open] .draft-plot');
-      assert.ok(figure.querySelector('details .draft-plot-scope'));
+      assert.ok(document.querySelector('dialog[open] .mx-data details .draft-plot-scope'), 'Source details sit in the full-width data row below the reading columns');
       assert.equal(figure.querySelector('svg').previousElementSibling.tagName, 'FIGCAPTION');
       await click(document.querySelector('dialog[open] .pc-modal-header button')); await settle(); await settle();
     }

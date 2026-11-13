@@ -217,9 +217,10 @@ test('export removes pointer-only emphasis without mutating the actual plotted m
     const baseline = buildChartImage(spec, window.location.href).svg;
     const point = svg.querySelector('[data-curve-point]');
     await act(async () => point.dispatchEvent(new window.MouseEvent('mousemove', { bubbles: true, clientX: 60, clientY: 80 })));
-    assert.equal(point.getAttribute('r'), '7', 'Real hover changed the source DOM');
+    assert.ok(point.hasAttribute('aria-describedby'), 'Real hover inspects the mark (emphasis is a stroke, not a larger radius)');
+    assert.equal(point.getAttribute('r'), '6', 'Hover never enlarges the mark');
     assert.equal(buildChartImage(spec, window.location.href).svg, baseline, 'Export must not freeze random hover styling');
-    assert.equal(point.getAttribute('r'), '7', 'Export never mutates the live chart');
+    assert.ok(point.hasAttribute('aria-describedby'), 'Export never mutates the live chart');
   } finally { await cleanup(); }
 });
 

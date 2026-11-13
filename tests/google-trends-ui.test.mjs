@@ -56,7 +56,7 @@ for (const flat of [false, true]) for (const id of ['neurotech', 'neuralink']) t
     assert.ok(modal.querySelector('a[href^="https://trends.google.com/trends/explore?"]'));
     assert.match(modal.textContent, new RegExp(group.rawSha256));
     await act(async () => modal.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true })));
-    assert.equal(document.activeElement, modal.querySelector('summary'), 'Closed source tables must not trap focus in hidden content');
+    assert.ok(document.activeElement === [...modal.querySelectorAll('summary')].at(-1), 'Closed source tables must not trap focus in hidden content; the data row is the last stop');
     await act(async () => modal.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', bubbles: true })));
     assert.equal(document.activeElement, modal.querySelector('button[aria-label^="Close"]'));
     await click(modal.querySelector('button[aria-label^="Close"]'));

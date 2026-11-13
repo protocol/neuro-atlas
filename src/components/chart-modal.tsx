@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { ModalSlotsContext, type ModalSlots } from "@/components/chart-modal-slots";
 import { lockModalScroll } from "@/lib/field-velocity/modal-scroll";
 import { closePerformance, takePerformanceFocusReturn } from "@/lib/field-velocity/navigation";
 
@@ -45,6 +46,20 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
   const ref = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const originRef = useRef<HTMLElement | null>(null);
+  const [slots, setSlots] = useState<ModalSlots>({});
+  // Stable ref callbacks: a new function per render would detach and re-attach every region.
+  const slotRefs = useRef<Partial<Record<keyof ModalSlots, (node: HTMLElement | null) => void>>>({});
+  const slotRef = (kind: keyof ModalSlots) => slotRefs.current[kind] ??= (node: HTMLElement | null) => setSlots(previous => previous[kind] === node ? previous : { ...previous, [kind]: node });
+  const body = <ModalSlotsContext.Provider value={slots}>
+    <div className="pc-detail">
+      {children}
+      <div className="mx-grid">
+        <div className="mx-left" ref={slotRef("reading")} />
+        <aside className="mx-right" aria-label="Sources and data"><h3 className="mx-k">Sources &amp; data</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>
+      </div>
+      <div className="mx-data" ref={slotRef("data")} />
+    </div>
+  </ModalSlotsContext.Provider>;
   useEffect(() => {
     // An off-screen export mount is not a dialog: no focus, scroll lock or history.
     if (offscreen) return;
@@ -79,7 +94,7 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
   }, [returnFocus, offscreen]);
   // Card PNG export: the same chart tree, laid out invisibly so its share control can register.
   if (offscreen) return <div className="chart-export-host" data-chart-export-host={id} aria-hidden="true" inert>
-    <div className="pc-modal-panel"><div className="pc-detail">{children}</div></div>
+    <div className="pc-modal-panel"><div className="pc-modal-header"><div className="mx-actions" ref={slotRef("actions")} /></div>{body}</div>
   </div>;
   return <dialog ref={ref} className="pc-modal" aria-modal="true" aria-labelledby={`${id}-title`}
     onCancel={event => { event.preventDefault(); closePerformance(); }}
@@ -94,8 +109,13 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus({ preventScroll: true }); }
     }}>
     <div className="pc-modal-panel">
-      <header className="pc-modal-header"><h2 id={`${id}-title`}>{title}</h2><button ref={closeRef} type="button" aria-label={`Close ${title}`} onClick={closePerformance}><span aria-hidden="true">×</span> Close</button></header>
-      <div className="pc-detail">{children}</div>
+      {/* Close stays the header's first button; the chart's actions follow it in the same row. */}
+      <header className="pc-modal-header"><h2 id={`${id}-title`}>{title}</h2><button ref={closeRef} type="button" className="pc-modal-close" aria-label={`Close ${title}`} onClick={closePerformance}>
+        {/* A CSS-drawn cross: geometrically centred, and no extra SVG inside the chart dialog. */}
+        <span className="pc-modal-close-icon" aria-hidden="true" />
+        <span className="pc-modal-close-label">Close</span>
+      </button><div className="mx-actions" ref={slotRef("actions")} /></header>
+      {body}
     </div>
   </dialog>;
 }

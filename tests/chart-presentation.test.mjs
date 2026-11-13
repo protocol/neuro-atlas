@@ -129,7 +129,7 @@ test('expanded marks share a 6px screen-space base and 1.5px non-scaling outline
     assert.equal(harness.observers.filter(observer => observer.target.closest('dialog')).length, 1, 'One shared presentation observer per expanded SVG');
     const mark = expanded.querySelector('[data-curve-point]');
     await act(async () => mark.focus());
-    assert.ok(Math.abs(screenRadius(mark, 680) - 7) < 1e-9, 'Inspection emphasis stays confined to expanded charts');
+    assert.ok(Math.abs(screenRadius(mark, 680) - 6) < 1e-9, 'Inspection never enlarges the mark; emphasis is a stroke change only');
     assert.equal(mark.getAttribute('data-export-r'), '6', 'Exports never freeze focus enlargement');
     assert.equal(Number.parseFloat(mark.getAttribute('stroke-width')), 1.5);
   } finally { if (cleanup) await cleanup(); harness.restore(); }
@@ -161,7 +161,7 @@ test('expanded curve radius follows the actual SVG screen transform including ma
       assert.deepEqual(centers(svg), pinned, 'Screen-sized styling never remaps measurements');
       assert.equal(buildChartImage(spec, window.location.href).svg, exported, 'Export radius stays canonical rather than depending on viewport');
       await act(async () => mark.focus());
-      assert.ok(Math.abs(Number(mark.getAttribute('r')) * scale - 7) < 1e-9);
+      assert.ok(Math.abs(Number(mark.getAttribute('r')) * scale - 6) < 1e-9, 'Focus never enlarges the mark');
       assert.equal(buildChartImage(spec, window.location.href).svg, exported, 'Focus never leaks into export');
       await act(async () => mark.blur());
     }

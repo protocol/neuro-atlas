@@ -236,17 +236,90 @@
 /* Chart pop-outs (Metrics only): the panel scrolls, so the round close control can
    overhang the dialog corner without being clipped or scrolling away. */
 .metrics-index .pc-modal { overflow: visible; }
-.metrics-index .pc-modal-panel { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; border-radius: 1rem; }
-.metrics-index .pc-modal-header { position: static; align-items: center; padding: 1.1rem 3.25rem 1.1rem 1.25rem; border-radius: 1rem 1rem 0 0; }
-.metrics-index .pc-modal-header h2 { margin: 0; line-height: 1.3; letter-spacing: -.01em; }
-.metrics-index .pc-modal-header button { position: absolute; top: -10px; right: -10px; z-index: 3; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--foreground); font-size: 0; line-height: 1; box-shadow: 0 4px 14px rgb(0 0 0 / .18); transition: background-color .14s, color .14s, border-color .14s; }
-.metrics-index .pc-modal-header button > span { font-size: 18px; line-height: 1; }
-.metrics-index .pc-modal-header button:hover { background: var(--foreground); color: var(--surface); border-color: var(--foreground); }
-.metrics-index .pc-modal .pc-modal-header button:focus-visible { border-radius: 50%; outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Header stays put; only the body scrolls. Close is positioned against the dialog, so it is never clipped. */
+.metrics-index .pc-modal-panel { display: flex; flex-direction: column; max-height: calc(100dvh - 2rem); overflow: hidden; border-radius: 1rem; }
+.metrics-index .pc-modal-panel > .pc-detail { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.metrics-index .pc-modal-panel > .pc-modal-header { flex: none; }
+/* Header: title, then the chart's own actions, all on one centered row. */
+.metrics-index .pc-modal-header { position: static; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; padding: 1rem 1.25rem; margin-bottom: 0; border-radius: 1rem 1rem 0 0; }
+.metrics-index .pc-modal-header h2 { flex: 1 1 16rem; min-width: 0; margin: 0; line-height: 1.3; letter-spacing: -.01em; }
+.metrics-index .pc-modal-header .mx-actions { display: flex; flex: none; min-width: 0; }
+.metrics-index .pc-modal-header .mx-actions:empty { display: none; }
+.metrics-index .pc-modal-header .chart-actions { position: relative; margin: 0; width: auto; grid-template-columns: repeat(3, max-content); }
+.metrics-index .pc-modal-header .chart-actions > :is(.pc-share, .draft-chart-share) button { min-height: 32px; padding: .3rem .8rem; font-size: 13px; font-weight: 500; background: var(--surface); color: var(--foreground); border: 1px solid var(--border-strong); border-radius: 999px; }
+.metrics-index .pc-modal-header .chart-actions > :is(.pc-share, .draft-chart-share) button:hover { color: var(--accent); border-color: var(--accent); }
+/* Copy/download messages float under the pills instead of growing the header. */
+.metrics-index .pc-modal-header .chart-actions :is([role=status]:not(:empty), .chart-link-fallback, .gt-copy-fallback) { position: absolute; z-index: 4; top: calc(100% + 6px); right: 0; width: max-content; min-width: 0; max-width: min(22rem, 70vw); padding: .4rem .6rem; border: 1px solid var(--border-strong); border-radius: .5rem; background: var(--surface); box-shadow: 0 6px 18px rgb(0 0 0 / .1); color: var(--muted); font-size: 12px; }
+.metrics-index .pc-modal-close { position: absolute; top: -10px; right: -10px; z-index: 5; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--foreground); line-height: 0; box-shadow: 0 4px 14px rgb(0 0 0 / .18); cursor: pointer; transition: background-color .14s, color .14s, border-color .14s; }
+.metrics-index .pc-modal-close-icon { position: relative; display: block; width: 14px; height: 14px; }
+.metrics-index .pc-modal-close-icon::before, .metrics-index .pc-modal-close-icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 1.8px; margin: -0.9px 0 0 -8px; border-radius: 1px; background: currentColor; transform: rotate(45deg); }
+.metrics-index .pc-modal-close-icon::after { transform: rotate(-45deg); }
+.metrics-index .pc-modal-close-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.metrics-index .pc-modal-close:hover { background: var(--foreground); color: var(--surface); border-color: var(--foreground); }
+.metrics-index .pc-modal .pc-modal-close:focus-visible { border-radius: 50%; outline: 2px solid var(--accent); outline-offset: 2px; }
+.metrics-index .pc-modal .pc-detail { padding: 1.1rem 1.25rem 1.4rem; }
+/* Reading column beside a "Sources & data" column, then full-width source tables. */
+.metrics-index .mx-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 0 2rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.metrics-index .mx-grid:not(:has(.mx-left > *)):not(:has(.mx-sources > *)) { display: none; }
+.metrics-index .mx-grid:not(:has(.mx-sources > *)) { grid-template-columns: minmax(0, 1fr); }
+.metrics-index .mx-grid:not(:has(.mx-left > *)) { grid-template-columns: minmax(0, 1fr); }
+.metrics-index .mx-left:empty { display: none; }
+.metrics-index .mx-left > :first-child, .metrics-index .mx-left > :first-child > .pc-methodology:first-child { margin-top: 0; }
+.metrics-index .mx-left .pc-methodology { border-top: 0; padding-top: 0; margin-top: 0; font-size: 13.5px; color: var(--muted); }
+.metrics-index .mx-left .pc-methodology + .pc-methodology { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.metrics-index .mx-left :is(.pc-methodology h3, .pc-methodology h4) { color: var(--foreground); font-size: 15px; font-weight: 600; margin: 0 0 .5rem; }
+.metrics-index .mx-right { min-width: 0; padding-left: 1.5rem; border-left: 1px solid var(--border); font-size: 12.5px; line-height: 1.55; color: var(--muted); overflow-wrap: anywhere; }
+.metrics-index .mx-right:not(:has(.mx-sources > *)) { display: none; }
+.metrics-index .mx-grid:not(:has(.mx-left > *)) .mx-right { padding-left: 0; border-left: 0; }
+.metrics-index .mx-k { margin: 0 0 .75rem; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.metrics-index .mx-sources > * + * { margin-top: .7rem; }
+.metrics-index .mx-sources :is(p, li) { margin: 0; }
+.metrics-index .mx-sources .pc-sources { font-size: inherit; gap: .45rem; }
+.metrics-index .mx-sources .mx-scope-line { color: var(--foreground); }
+.metrics-index .mx-sources .pc-methodology { margin: 0; padding: 0; border: 0; font-size: inherit; }
+.metrics-index .mx-sources .pc-methodology h4 { font-size: 12.5px; color: var(--foreground); margin: 0 0 .4rem; }
+.metrics-index .mx-sources details:is(.mx-prov, .pc-provenance) { margin-top: .9rem; font-size: 12px; }
+.metrics-index .mx-sources details:is(.mx-prov, .pc-provenance) > summary { cursor: pointer; font-weight: 500; color: var(--muted); }
+.metrics-index .mx-sources details:is(.mx-prov, .pc-provenance) p { margin-top: .4rem; font-size: 11.5px; color: var(--faint, var(--muted)); }
+.metrics-index .mx-data:empty { display: none; }
+.metrics-index .mx-data { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+/* One size for every collapsed data box, whatever the chart family styled it as. */
+.metrics-index .mx-data > details { margin: 0 0 .6rem; padding: .7rem .9rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--surface); font-size: 13px; line-height: 1.5; color: var(--foreground); }
+.metrics-index .mx-data > details > summary { cursor: pointer; font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--foreground); width: auto; margin: 0; padding: 0; }
+.metrics-index .mx-data > details[open] > summary { margin-bottom: .75rem; }
+.metrics-index .mx-data .pc-table-scroll { margin: .5rem 0 0; }
+.metrics-index .mx-data caption { text-align: left; }
+/* Native selects in pop-outs: chevron inset from the right edge. */
+.metrics-index .pc-modal select { appearance: none; -webkit-appearance: none; padding-right: 2.2rem; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236b6b74' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E") no-repeat right .8rem center / 12px; }
+/* Drag-to-measure. */
+.metrics-index .pc-modal svg[data-measuring] { cursor: ew-resize; user-select: none; -webkit-user-select: none; }
+.chart-measure-hint { display: inline-flex; align-items: center; gap: .4rem; margin: .5rem 0 0; padding: .2rem .65rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 11.5px; font-weight: 500; line-height: 1.5; pointer-events: none; transition: opacity .15s; }
+.chart-measure-hint[data-active] { opacity: .45; }
+.chart-measure-readout { z-index: 10; min-width: 200px; max-width: 340px; padding: .6rem .75rem; border: 1px solid var(--border-strong); border-radius: .6rem; background: var(--surface); box-shadow: 0 8px 28px rgb(0 0 0 / .14); color: var(--foreground); font-size: 12.5px; line-height: 1.5; pointer-events: none; }
+.chart-measure-range { margin-bottom: .3rem; font-size: 13px; font-weight: 600; }
+.chart-measure-row { display: flex; gap: .5rem; align-items: baseline; }
+.chart-measure-row + .chart-measure-row { margin-top: .25rem; }
+.chart-measure-row i { flex: none; width: 8px; height: 8px; border-radius: 50%; transform: translateY(-1px); }
+.chart-measure-readout .up { color: #0a7d4a; }
+.chart-measure-readout .down { color: #c43b40; }
+.chart-measure-sub { color: var(--muted); }
+/* Comparison baseline: a two-option toggle. */
+.publication-growth-options[role=radiogroup] { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin: .5rem 0; font-size: 13px; }
+.publication-growth-options-label { color: var(--muted); }
+.publication-growth-options [role=radio] { min-height: 32px; padding: .3rem .85rem; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--muted); font: inherit; font-weight: 500; cursor: pointer; }
+.publication-growth-options [role=radio][aria-checked=true] { background: var(--foreground); border-color: var(--foreground); color: var(--surface); }
+.publication-growth-options [role=radio]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pc-plot circle[aria-describedby], .gt-plot circle[aria-describedby] { stroke: var(--foreground); stroke-width: 2px; }
+@media (max-width: 720px) {
+  .metrics-index .mx-grid { grid-template-columns: minmax(0, 1fr); }
+  .metrics-index .mx-right { margin-top: 1.25rem; padding: 1.25rem 0 0; border-left: 0; border-top: 1px solid var(--border); }
+}
 @media (max-width: 560px) {
   .metrics-index .pc-modal-panel { max-height: calc(100dvh - 1rem); }
   .metrics-index .pc-modal-header { padding: 1rem 3rem 1rem 1rem; }
-  .metrics-index .pc-modal-header button { top: -8px; right: -6px; width: 44px; height: 44px; }
+  .metrics-index .pc-modal-header .mx-actions { flex: 1 1 100%; }
+  .metrics-index .pc-modal-close { top: 8px; right: 8px; width: 40px; height: 40px; box-shadow: none; }
+  .metrics-index .pc-modal .pc-detail { padding: 1rem; }
 }
 
 /* The evidence role is more useful than a repeated generic label. */
@@ -257,3 +330,4 @@
 .inflection-index [data-related-forecasts][open] summary::before { content: "▾"; }
 /* Empty share status spans must not widen the gap between the footer pills. */
 .metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) > [role=status]:empty { display: none; }
+@media (pointer: coarse) { .chart-measure-hint { display: none; } }

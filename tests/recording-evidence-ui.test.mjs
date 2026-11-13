@@ -103,7 +103,8 @@ test('recording presentation names the measurement family, keeps actions first a
     const modal = document.querySelector('dialog');
     assert.equal(modal.querySelector('h2').textContent, 'Simultaneous neural recordings');
     const active = modal.querySelector('[data-recording-view]');
-    assert.equal(active.firstElementChild.hasAttribute('data-chart-actions'), true, 'Uniform sharing stays the first row below the modal header');
+    assert.ok(active, 'The measurement view wraps the plot');
+    assert.ok(modal.querySelector('.pc-modal-header [data-chart-actions]'), 'Uniform sharing sits in the modal header row, beside Close');
     const history = modal.querySelector('[data-recording-history]');
     assert.ok(history, 'All seven inherited benchmarks remain visibly accessible');
     assert.match(history.querySelector('summary').textContent, /Historical.*1957.*2014/);
