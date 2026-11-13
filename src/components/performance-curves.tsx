@@ -58,7 +58,7 @@ export function chartGeometry(data: PlotData) {
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
 function compactChartGeometry(data: PlotData, extraHeight = 0, width = 360) {
   const full = chartGeometry(data);
-  const height = 220 + extraHeight, left = 64, right = 16, top = 32, bottom = 52;
+  const height = 160 + extraHeight, left = 64, right = 16, top = 30, bottom = 44;
   return { ...full, width, height, left, right,
     x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
     y: (value: number) => top + (full.y(value) - 28) / (full.height - 28 - 44) * (height - top - bottom),

@@ -18,13 +18,15 @@ const sourceBefore = JSON.stringify(feed);
 const baseline = {
   // Intentional replacement: three modern electrical observations; no old frontier line.
   'simultaneously-recorded-neurons': null,
-  'tissue-mapped': '4381ff79385d5b1375b516b77b21840bd1601497e8cac0eeab3143bd45678d89',
-  'neural-recording-hours': '4089d4a140e99d8703af2f956e032218e9d3965a7e7051aaf8d6ac38d884d266',
+  // Hashes below re-pinned for the 160px compact rail frame (Metrics chapter redesign);
+  // only preview frame height changed, expanded/export geometry is unchanged.
+  'tissue-mapped': '6282f2ebfc975fcbefc8ee13172c503aa86f13eb8de7864c37a5ca52870643ad',
+  'neural-recording-hours': 'c8f50e4cfd9527865c89b6c1a28ec5a7d8b2ac93367e9dd128c85870914d4c43',
   // November 6 independently acquired citation data intentionally replaces the archived coordinates.
   // All other original scientific geometry remains independently pinned.
-  idea_vintage: '7ef8ba1c79edbd70c15da002d4abe34b37afaf85f8ff3b7bb4902acf00a77397',
+  idea_vintage: 'd6d6aa5e6ae69ea979206330ae6176c8546504fefc71e3228ac82f7e3bb02e84',
   // Reviewed replacement of the withdrawn animal-event series: five sourced report intervals.
-  latency_compression: '3528e6676217983e6ffeebba28b29466ea2e344f878ad7d8c5cb5864af713826',
+  latency_compression: 'afc6e5c1065a591049e0a1b232035090c99f28041978af871a55e7626ec50003',
 };
 const charts = () => React.createElement(React.Fragment, null,
   React.createElement(PerformanceCurves, { data: selectPerformance(feed), provenance, flat: true }),
@@ -64,7 +66,7 @@ function assertGeometry() {
   assert.deepEqual(cards.map(card => card.dataset.performanceCard), Object.keys(baseline));
   for (const card of cards) {
     const svg = card.querySelector('.pc-preview svg');
-    assert.equal(svg.getAttribute('viewBox'), '0 0 360 220', 'The fixed plot coordinate frame must not change');
+    assert.equal(svg.getAttribute('viewBox'), '0 0 360 160', 'The fixed plot coordinate frame must not change');
     // Only the readable unit/scale caption may move down to reserve its ascent.
     // Its content/x plus every tick, point, interval and other label remain pinned.
     const normalized = svg.cloneNode(true);
