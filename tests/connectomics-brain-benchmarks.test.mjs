@@ -7,7 +7,7 @@ test('whole-brain benchmarks use source-qualified volumes and demonstrated 4×4�
   assert.deepEqual(BRAIN_IMAGE_MODEL.voxelDimensionsNm, [4, 4, 40]);
   assert.equal(BRAIN_IMAGE_MODEL.bytesPerVoxel, 1);
   assert.deepEqual(context.references.map(ref => [ref.id, ref.volumeMm3, ref.value]), [
-    ['mouse', 500, 781.25], ['macaque', 91_760, 143_375], ['human', 1_200_000, 1_875_000],
+    ['mouse', 450, 703.125], ['macaque', 78_550, 122_734.375], ['human', 1_200_000, 1_875_000],
   ]);
   for (const ref of context.references) {
     assert.equal(brainImageVoxels(ref.volumeMm3), ref.volumeMm3 * 1e18 / (4 * 4 * 40));
@@ -15,19 +15,20 @@ test('whole-brain benchmarks use source-qualified volumes and demonstrated 4×4�
     assert.match(ref.label, /PB/);
   }
   assert.equal(context.toggleLabel, 'Whole-brain scale');
-  assert.deepEqual(context.references.map(ref => ref.label), ['Mouse ≈780 PB', 'Macaque ≈140K PB', 'Human ≈1.9M PB']);
+  assert.deepEqual(context.references.map(ref => ref.label), ['Mouse ≈700 PB', 'Macaque ≈120K PB', 'Human ≈1.9M PB']);
   assert.match(context.scopeLabel, /8-bit raw images/);
   assert.match(context.disclosure, /image-equivalent/i);
   assert.match(context.disclosure, /compressed/i);
-  assert.match(context.disclosure, /Rhesus macaque \(template envelope\)/);
-  assert.match(context.disclosure, /CSF.*dura/);
-  assert.match(context.disclosure, /olfactory bulb.*optic nerves/);
+  assert.match(context.disclosure, /Rhesus macaque/);
+  assert.match(context.disclosure, /10 postmortem.*78.55/);
+  assert.match(context.disclosure, /extraction.*fixation/);
   assert.deepEqual(context.sources.map(source => source.url), [
+    'https://pmc.ncbi.nlm.nih.gov/articles/PMC4927572/',
     'https://pmc.ncbi.nlm.nih.gov/articles/PMC11955263/',
     'https://pmc.ncbi.nlm.nih.gov/articles/PMC11981939/',
-    'https://pmc.ncbi.nlm.nih.gov/articles/PMC5660669/',
+    'https://pmc.ncbi.nlm.nih.gov/articles/PMC4512905/',
   ]);
-  assert.match(context.sources[2].title, /§3.4/);
+  assert.match(context.sources[3].title, /§4.1/);
 });
 
 test('human acquisition budgets use the same whole-brain voxel denominator and displayed $/10M units', () => {

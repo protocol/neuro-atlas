@@ -6,12 +6,13 @@
 export const BRAIN_IMAGE_MODEL = {
   voxelDimensionsNm: [4, 4, 40],
   bytesPerVoxel: 1,
-  volumesMm3: { mouse: 500, macaque: 91_760, human: 1_200_000 },
+  volumesMm3: { mouse: 450, macaque: 78_550, human: 1_200_000 },
 } as const;
 
-const volumeSource = { title: "Mouse and human volume estimates · introduction", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11955263/" };
+const mouseSource = { title: "Adult mouse volume estimate · Volume EM", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4927572/" };
+const volumeSource = { title: "Human volume estimate · introduction", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11955263/" };
 const samplingSource = { title: "Demonstrated EM sampling · 4 nm pixels, 40 nm sections", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11981939/" };
-const macaqueSource = { title: "NMT rhesus macaque template envelope · §3.4", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5660669/" };
+const macaqueSource = { title: "Rhesus macaque MRI brain-volume cohort · §4.1", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4512905/" };
 
 export type BrainBenchmarkReference = { id: string; value: number; label: string; volumeMm3?: number; budget?: number };
 export type BrainBenchmarkContext = {
@@ -29,7 +30,7 @@ const imageLabel = (value: number) => {
   return rounded >= 1e6 ? `${rounded / 1e6}M` : rounded >= 1e3 ? `${rounded / 1e3}K` : number(rounded);
 };
 const sampling = BRAIN_IMAGE_MODEL.voxelDimensionsNm.join("×");
-const volumeBasis = `Mouse ${number(BRAIN_IMAGE_MODEL.volumesMm3.mouse)} mm³; human ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³. Rhesus macaque (template envelope): ${number(BRAIN_IMAGE_MODEL.volumesMm3.macaque)} mm³ (NMT 91.76 cm³ mask, including CSF and dura, excluding olfactory bulb and optic nerves).`;
+const volumeBasis = `Adult mouse ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.mouse)} mm³; human ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³. Rhesus macaque ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.macaque)} mm³: 10 postmortem adolescent–adult MRI specimens, mean 78.55 ± 5.49 mL. Brain extraction and fixation can affect volume; this cohort provides approximate scale context.`;
 const imageBasis = `Dense ${sampling} nm sampling at ${BRAIN_IMAGE_MODEL.bytesPerVoxel} byte/voxel, using demonstrated EM pixel/section dimensions. Voxels = volume in mm³ × 10¹⁸ ÷ (4 × 4 × 40); PB = voxels × bytes/voxel ÷ 10¹⁵.`;
 
 export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | undefined {
@@ -37,7 +38,7 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
     toggleLabel: "Whole-brain scale",
     scopeLabel: `${sampling} nm · 8-bit raw images`,
     disclosure: `Whole-brain image-equivalent capacity scenarios. ${volumeBasis} ${imageBasis} Stored compressed public resources have heterogeneous resolution, encoding and included products; modeled image capacity is separate from connectome completion.`,
-    sources: [volumeSource, samplingSource, macaqueSource],
+    sources: [mouseSource, volumeSource, samplingSource, macaqueSource],
     references: Object.entries(BRAIN_IMAGE_MODEL.volumesMm3).map(([id, volumeMm3]) => {
       const value = brainImageVoxels(volumeMm3) * BRAIN_IMAGE_MODEL.bytesPerVoxel / 1e15;
       return { id, volumeMm3, value, label: `${id === "macaque" ? "Macaque" : id === "mouse" ? "Mouse" : "Human"} ≈${imageLabel(value)} PB` };
