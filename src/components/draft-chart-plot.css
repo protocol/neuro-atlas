@@ -98,7 +98,7 @@
 }
 
 /* Unified metrics navigation; legacy plot classes remain stable compatibility hooks. */
-.metrics-index { position: relative; max-width: 78rem; min-width: 0; }
+.metrics-index { --metric-card-max-height: 340px; position: relative; max-width: 78rem; min-width: 0; }
 .metrics-index [hidden] { display: none !important; }
 /* Important declarations must share Tailwind's base layer to beat its hidden reset. */
 @layer base {
@@ -114,24 +114,39 @@
 .metrics-index .metric-chart-fragment[data-metric-size-hidden][hidden] { display: contents !important; }
 .metrics-index :is(article[data-metric-size-hidden][hidden], [data-metric-size-hidden][hidden] article):has([data-metric-card-body]) { display: flex !important; position: absolute; left: 0; top: 0; width: var(--metric-card-width); visibility: hidden; pointer-events: none; }
 .metrics-index [data-metric-size-hidden][hidden] article:not(:has([data-metric-card-body])) { display: none; }
-.metrics-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .65rem; }
-.metrics-tools label { flex-basis: 100%; font-size: .8rem; font-weight: 600; }
-.metrics-tools input { flex: 1 1 20rem; min-width: 0; padding: .65rem .8rem; border: 1px solid var(--border-strong); border-radius: .5rem; background: var(--surface); color: var(--foreground); }
-.metrics-utilities { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem; }
-.metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid transparent; border-radius: 999px; color: var(--muted); font-size: .8rem; cursor: pointer; }
+/* Toolbar: one quiet row — search owns the width, bulk controls stay secondary. */
+.metrics-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .9rem; margin-bottom: 1.4rem; }
+.metrics-tools input { flex: 1 1 20rem; min-width: 0; min-height: 40px; padding: .55rem .8rem .55rem 2.1rem; border: 1px solid var(--border-strong); border-radius: .5rem; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none' stroke='%239a9aa3' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.5'/%3E%3Cpath d='M10.5 10.5 14 14'/%3E%3C/svg%3E") no-repeat .75rem center / 14px; color: var(--foreground); font-size: 14px; }
+.metrics-tools input::placeholder { color: var(--faint, var(--muted)); }
+.metrics-utilities { display: flex; flex-wrap: wrap; align-items: center; gap: .1rem; }
+.metrics-tools button { min-height: 44px; padding: .4rem .7rem; border: 1px solid transparent; border-radius: 999px; color: var(--muted); font-size: 13px; cursor: pointer; }
 .metrics-tools button:hover:not(:disabled) { color: var(--foreground); border-color: var(--border-strong); }
 .metrics-tools button:disabled { opacity: .45; cursor: default; }
+/* Clear only appears once there is a query to clear. */
+.metrics-tools [data-clear-metrics]:disabled { display: none; }
 .metrics-index > [role=status] { color: var(--muted); font-size: .75rem; margin-bottom: 1rem; }
-.metric-category { position: relative; margin: 1.5rem 0 2rem; min-width: 0; overflow-wrap: anywhere; }
-.metric-category:not([hidden]) ~ .metric-category:not([hidden]) { border-top: 1px solid var(--border); padding-top: 1.5rem; }
-.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .4rem .6rem; width: 100%; min-height: 44px; text-align: left; font-size: 18px; line-height: 1.4; letter-spacing: -.02em; font-weight: 650; cursor: pointer; }
-.metric-category-name { min-width: 0; }
+
+/* Groups read as numbered chapters: tone badge, edge and tint carry the group identity. */
+.metric-category { --metric-tone: var(--accent); --metric-tone-soft: color-mix(in srgb, var(--metric-tone) 10%, transparent); position: relative; margin: 0 0 .875rem; min-width: 0; overflow-wrap: anywhere; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.metric-category-head { position: relative; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto auto; grid-template-rows: auto auto; column-gap: 1rem; row-gap: .1rem; align-items: center; padding: 1rem 1.125rem; border-left: 3px solid var(--metric-tone); border-radius: 13px 13px 0 0; background: linear-gradient(90deg, var(--metric-tone-soft), transparent 70%); }
+.metric-category[data-metric-state="collapsed"] .metric-category-head { border-radius: 13px; }
+.metric-category-index { grid-row: 1 / span 2; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--metric-tone); color: #fff; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.metric-category h2 { grid-column: 2; grid-row: 1; min-width: 0; margin: 0; }
+.metric-category h2 > button { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 0; width: 100%; min-height: 44px; margin-block: -6px -4px; padding: 0; align-content: center; text-align: left; font-size: 18px; line-height: 1.3; letter-spacing: -.02em; font-weight: 600; color: var(--foreground); cursor: pointer; }
+/* The whole header is the hit area; the button itself stays the only interactive element. */
+.metric-category h2 > button::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.metric-category h2 > button:focus-visible { outline: none; }
+.metric-category h2 > button:focus-visible::after { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 13px; }
+.metric-category-name { grid-column: 1 / -1; min-width: 0; }
 .metric-category h2 > button:disabled { cursor: default; }
-.metric-category h2 small { margin-left: auto; color: var(--muted); font-size: .7rem; font-weight: 400; }
-.metric-category-summary { color: var(--muted); font-size: .8rem; line-height: 1.6; margin: .1rem 0 .25rem 1.2rem; }
-.metric-category-content { align-content: start; min-height: calc(var(--metric-card-height, 0px) + 1.65rem + var(--metric-scrollbar-height, 0px)); position: relative; --metric-card-width: calc((100% - 1rem) / 1.25); display: grid; grid-template-columns: var(--metric-card-width) minmax(0, 1fr); column-gap: 1rem; min-width: 0; padding-top: .65rem; }
+.metric-category-summary { grid-column: 2; grid-row: 2; min-width: 0; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.metric-category-count { grid-column: 3; grid-row: 1 / span 2; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.metric-category-icon { grid-column: 4; grid-row: 1 / span 2; display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--muted); font-size: 15px; line-height: 1; pointer-events: none; }
+.metric-category-head:hover .metric-category-icon { color: var(--foreground); border-color: var(--foreground); }
+.metric-category-head:has(button:disabled) .metric-category-icon { opacity: .45; }
+.metric-category-content { align-content: start; min-height: calc(var(--metric-card-height, 0px) + 2.125rem + var(--metric-scrollbar-height, 0px)); position: relative; --metric-card-width: calc((100% - 2.625rem)/3.34); display: grid; grid-template-columns: var(--metric-card-width) minmax(0, 1fr); column-gap: .875rem; min-width: 0; padding: 1rem 0 1.125rem 1.125rem; container-type: inline-size; }
 /* One flat native rail, with every chart available in the established order. */
-.metric-chart-rail { display: grid; grid-auto-flow: column; grid-auto-columns: var(--metric-card-width); gap: 1rem; align-items: start; grid-column: 1 / -1; grid-row: 1; width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; padding-block: .25rem .75rem; scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: auto; scrollbar-color: var(--border-strong) transparent; }
+.metric-chart-rail { display: grid; grid-auto-flow: column; grid-auto-columns: var(--metric-card-width); gap: .875rem; align-items: start; grid-column: 1 / -1; grid-row: 1; width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; padding-block: 0 .5rem; padding-inline-end: 1.125rem; scroll-snap-type: x proximity; scroll-padding-inline-start: 0; overscroll-behavior-x: contain; scrollbar-width: auto; scrollbar-color: var(--border-strong) transparent; }
 .metric-chart-rail article { min-width: 0; scroll-snap-align: start; }
 .metric-chart-rail:focus-within { scroll-snap-type: none; }
 .metric-chart-rail:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -141,33 +156,97 @@
 .metric-chart-fragment { display: contents; }
 .metric-chart-card { min-width: 0; }
 /* One measured outer height across all chart families; scientific SVGs stay natural-size. */
-.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]) { position: relative; display: flex; flex-direction: column; box-sizing: border-box; min-height: var(--metric-card-height, 0px); padding: 0; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: 0 2px 6px rgb(0 0 0 / .05); }
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]) { position: relative; display: flex; flex-direction: column; box-sizing: border-box; min-height: var(--metric-card-height, 0px); padding: 0; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: 0 2px 6px rgb(0 0 0 / .05); transition: border-color .14s, box-shadow .14s; }
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]):hover { border-color: var(--accent); box-shadow: 0 3px 12px rgb(0 0 0 / .1); }
+/* Short signature tab in the group tone, as on exported PNGs. */
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body])::before { content: ""; position: absolute; z-index: 2; left: 14px; top: 0; width: 40px; height: 4px; border-radius: 0 0 2px 2px; background: var(--metric-tone, var(--accent)); pointer-events: none; }
+/* Expand affordance: decorative, because the whole card already opens the chart. */
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body])::after { content: ""; position: absolute; z-index: 2; top: 9px; right: 9px; width: 30px; height: 30px; box-sizing: border-box; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 16 16' fill='none' stroke='%236b6b74' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9'/%3E%3C/svg%3E") no-repeat center / 15px; pointer-events: none; transition: border-color .14s; }
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]):hover::after { border-color: var(--accent); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 16 16' fill='none' stroke='%23115ef7' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9'/%3E%3C/svg%3E"); }
 .metric-chart-card > [data-draft-panel], .metric-chart-card > [data-draft-panel] > .draft-popout { display: contents; }
 .metric-chart-rail [data-metric-card-body] { flex: 0 0 auto; min-width: 0; margin: 0; }
-.metric-chart-rail .draft-popout-card { position: static; padding: 1.25rem; border: 0; border-radius: 0; box-shadow: none; background: none; }
-.metric-chart-rail [data-metric-card-footer] { position: relative; z-index: 1; flex: 0 0 auto; min-width: 0; margin-top: auto; padding: 0 1.25rem 1rem; }
+/* Cards share one capped height; a preview taller than the cap fades out above the footer. */
+.metric-chart-rail :is(.metric-chart-card, .pc-card):has([data-metric-card-body]) { max-height: var(--metric-card-height, none); }
+.metric-chart-rail article[data-metric-clipped] [data-metric-card-body] { flex: 1 1 0; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent); }
+.metric-chart-rail .draft-popout-card { position: static; padding: 14px 14px 10px; border: 0; border-radius: 0; box-shadow: none; background: none; }
+.metric-chart-rail .pc-trigger { padding: 14px 14px 10px; }
+/* Footer: one row, separated from the plot; secondary links and copy controls share it. */
+.metric-chart-rail [data-metric-card-footer] { position: relative; z-index: 1; flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .4rem; min-width: 0; margin: auto 14px 0; padding: 8px 0 10px; border-top: 1px solid var(--border); }
 .metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { margin: 0; }
-.metric-chart-rail [data-metric-card-footer] button { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; padding: .35rem .7rem; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--muted); background: var(--surface); font-size: 12px; font-weight: 500; line-height: 1.4; text-decoration: none; cursor: pointer; }
+.metric-chart-rail [data-metric-card-footer] .pc-preview-sources { margin: 0 auto 0 0; font-size: 11px; }
+.metric-chart-rail [data-metric-card-footer] button { display: inline-flex; align-items: center; justify-content: center; min-height: 26px; padding: .2rem .6rem; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 500; line-height: 1.4; text-decoration: none; cursor: pointer; }
 .metric-chart-rail [data-metric-card-footer] button:hover { color: var(--accent); border-color: var(--accent); }
 @media (max-width: 560px) { .metric-chart-rail [data-metric-card-footer] button { min-height: 44px; } }
 .metric-chart-rail .pc-trigger::after { content: ""; position: absolute; inset: 0; cursor: zoom-in; }
 .metric-chart-rail .metric-chart-card:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
 .metric-chart-rail .metric-chart-card .draft-popout-trigger:focus-visible { outline-offset: -2px; }
-.metric-preview-context { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: .65rem; padding-top: .65rem; border-top: 1px solid var(--border); }
-.metric-preview-context p + p { margin-top: .5rem; }
+.metric-preview-context { color: var(--muted); font-size: 11.5px; line-height: 1.5; margin-top: .5rem; padding-top: .5rem; border-top: 1px solid var(--border); }
+.metric-preview-context p + p { margin-top: .35rem; }
+/* Footer scope line: one row, fades where clipped, scrolls sideways (wheel/trackpad or drag). */
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope { flex: 1 1 0; min-width: 0; margin: 0 auto 0 0; padding: 0; border: 0; color: var(--muted); font-size: 12px; line-height: 1.6; white-space: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope::-webkit-scrollbar { display: none; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope p { display: inline; margin: 0; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope p + p::before { content: " · "; }
+.metric-card-scope[data-clipped] { cursor: grab; user-select: none; -webkit-user-select: none; -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent); mask-image: linear-gradient(90deg, #000 80%, transparent); }
+.metric-card-scope[data-clipped][data-edge="middle"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
+.metric-card-scope[data-clipped][data-edge="end"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%); mask-image: linear-gradient(90deg, transparent, #000 20%); }
+.metric-card-scope[data-dragging] { cursor: grabbing; }
+.metric-chart-rail [data-metric-card-footer]:has(.metric-card-scope):not(:has(.pc-preview-sources)) { flex-wrap: nowrap; }
 .metric-chart-rail .pc-coverage { min-height: 0; }
 .metric-chart-rail .pc-card-title { min-height: 0; }
 .metric-chart-rail .pc-card-title,
 .metric-chart-rail .gt-card .pc-trigger h3,
-.metric-chart-rail .draft-popout-preview .draft-plot > figcaption { font-size: 16px; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; margin-top: 0; }
+.metric-chart-rail .draft-popout-preview .draft-plot > figcaption { font-size: 16px; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; margin-top: 0; padding-right: 34px; color: var(--foreground); }
 .metric-chart-rail .pc-preview { margin-left: 0; margin-right: 0; }
 .metrics-index :is(button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .metric-anchor { display: block; scroll-margin-top: 6rem; }
+/* Mid-width plates: two cards and a peek, so plots keep a readable frame. */
+@container (min-width: 521px) and (max-width: 820px) {
+  .metric-chart-rail { --metric-card-width: calc((100% - 1.75rem)/2.2); }
+}
 @media (max-width: 560px) {
-  .metric-category-content { --metric-card-width: calc(100% - 1.5rem); }
-  .metric-category h2 > button { grid-template-columns: auto minmax(0, 1fr); }
-  .metric-category h2 small { grid-column: 2; margin-left: 0; }
+  .metric-category-content { --metric-card-width: calc(100% - 1.5rem); padding-left: .75rem; }
+  .metric-category-head { grid-template-columns: 32px minmax(0, 1fr) auto; column-gap: .75rem; padding: .85rem .9rem; }
+  .metric-category-index { width: 32px; height: 32px; }
+  .metric-category-count { display: none; }
+  .metric-category-icon { grid-column: 3; }
   .metrics-tools input { flex-basis: 100%; }
+}
+/* Metrics: the tab rail and the catalog toolbar share one row on wide plates.
+   Columns are shared through subgrid so the toolbar sits in the column beside the rail. */
+@media (min-width: 900px) {
+  .velocity-tabs[data-velocity-tab="instruments"] { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .9rem; max-width: 78rem; }
+  .velocity-tabs[data-velocity-tab="instruments"] > :first-child { grid-area: 1 / 1; align-self: start; margin: 2px 0 0; position: relative; z-index: 1; }
+  .velocity-tabs[data-velocity-tab="instruments"] > :nth-child(2) { grid-area: 1 / 1 / 2 / -1; display: grid; grid-template-columns: subgrid; min-width: 0; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-content: start; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index > * { grid-column: 1 / -1; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index > .metrics-tools { grid-column: 2; flex-wrap: nowrap; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-tools input { flex: 1 1 12rem; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-utilities { flex: none; flex-wrap: nowrap; white-space: nowrap; }
+}
+
+/* Card PNG export: the pop-out's chart tree, laid out invisibly long enough to register and export. */
+.chart-export-host { position: fixed; left: -12000px; top: 0; width: min(1000px, calc(100vw - 2rem)); visibility: hidden; pointer-events: none; contain: layout paint; }
+.metric-chart-rail [data-metric-card-footer] .pc-preview-sources { flex: 1 0 100%; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope :is(.pc-coverage, .pc-preview-qualification) { display: inline; margin: 0; padding: 0; min-height: 0; font-size: inherit; color: inherit; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope .pc-preview-qualification::before { content: " · "; }
+.metric-chart-rail [data-metric-card-footer] .card-png { display: inline-flex; flex: none; }
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { flex: none; }
+
+/* Chart pop-outs (Metrics only): the panel scrolls, so the round close control can
+   overhang the dialog corner without being clipped or scrolling away. */
+.metrics-index .pc-modal { overflow: visible; }
+.metrics-index .pc-modal-panel { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; border-radius: 1rem; }
+.metrics-index .pc-modal-header { position: static; align-items: center; padding: 1.1rem 3.25rem 1.1rem 1.25rem; border-radius: 1rem 1rem 0 0; }
+.metrics-index .pc-modal-header h2 { margin: 0; line-height: 1.3; letter-spacing: -.01em; }
+.metrics-index .pc-modal-header button { position: absolute; top: -10px; right: -10px; z-index: 3; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--foreground); font-size: 0; line-height: 1; box-shadow: 0 4px 14px rgb(0 0 0 / .18); transition: background-color .14s, color .14s, border-color .14s; }
+.metrics-index .pc-modal-header button > span { font-size: 18px; line-height: 1; }
+.metrics-index .pc-modal-header button:hover { background: var(--foreground); color: var(--surface); border-color: var(--foreground); }
+.metrics-index .pc-modal .pc-modal-header button:focus-visible { border-radius: 50%; outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .metrics-index .pc-modal-panel { max-height: calc(100dvh - 1rem); }
+  .metrics-index .pc-modal-header { padding: 1rem 3rem 1rem 1rem; }
+  .metrics-index .pc-modal-header button { top: -8px; right: -6px; width: 44px; height: 44px; }
 }
 
 /* The evidence role is more useful than a repeated generic label. */
@@ -176,3 +255,5 @@
 .inflection-index [data-related-forecasts] summary { display: flex; align-items: center; gap: .4rem; min-height: 32px; padding-block: .25rem; font-size: 12px; }
 .inflection-index [data-related-forecasts] summary::before { content: "▸"; font-size: 11px; }
 .inflection-index [data-related-forecasts][open] summary::before { content: "▾"; }
+/* Empty share status spans must not widen the gap between the footer pills. */
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) > [role=status]:empty { display: none; }

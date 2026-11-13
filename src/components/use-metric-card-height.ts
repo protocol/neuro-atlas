@@ -25,14 +25,21 @@ function measureCards(root: HTMLElement) {
       .reduce((sum, value) => sum + (parseFloat(value) || 0), 0);
     // Subtract space already allocated by this pass, so filling cannot inflate the maximum.
     const appliedExtra = Number(body.querySelector<HTMLElement>("[data-metric-preview-extra]")?.getAttribute("data-metric-preview-extra") ?? 0);
-    const natural = bodyRect.height - (Number.isFinite(appliedExtra) ? appliedExtra : 0) + footer.getBoundingClientRect().height + chrome;
+    // A clipped body is shrunk to the cap; its scrollHeight still reports the natural content height.
+    const bodyHeight = Math.max(bodyRect.height, body.scrollHeight || 0);
+    const natural = bodyHeight - (Number.isFinite(appliedExtra) ? appliedExtra : 0) + footer.getBoundingClientRect().height + chrome;
     measured.push({ card, natural });
     height = Math.max(height, natural);
   }
   if (height > 0) {
-    const target = Math.ceil(height);
+    // An optional CSS cap keeps rail cards compact; taller previews clip under a fade
+    // and the full chart stays one click away in its pop-out.
+    const cap = Number.parseFloat(getComputedStyle(root).getPropertyValue("--metric-card-max-height"));
+    const target = Math.ceil(Number.isFinite(cap) && cap > 0 ? Math.min(height, cap) : height);
     root.style.setProperty("--metric-card-height", `${target}px`);
     for (const { card, natural } of measured) {
+      const clipped = natural > target + .5;
+      if (card.hasAttribute("data-metric-clipped") !== clipped) card.toggleAttribute("data-metric-clipped", clipped);
       const extra = Math.max(0, target - natural);
       const previous = Number.parseFloat(card.style.getPropertyValue("--metric-preview-extra"));
       if (!Number.isFinite(previous) || Math.abs(previous - extra) >= .25) card.style.setProperty("--metric-preview-extra", String(extra));

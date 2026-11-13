@@ -6,6 +6,8 @@ import { DraftChartShare } from "@/components/draft-chart-share";
 import { METRIC_CHARTS as DRAFT_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, isVisibleMetric, metricCategoryFor, METRIC_CHART_CATEGORIES } from "@/data/metric-chart-visibility";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
+import { MetricCardScope } from "@/components/metric-card-scope";
+import { CardPngButton } from "@/components/card-png-button";
 
 const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["acquisition-economics", 0],
@@ -51,12 +53,16 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <span id={anchor} className="metric-anchor" />
             {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
-              previewContext={<div className="metric-preview-context">
+              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} /></>} />
+            {/* Scope sits in the footer row, so a capped preview can never clip it. */}
+            <div data-metric-card-footer>
+              <MetricCardScope>
                 <p data-metric-scope>{plot.scope.split(/\.(?:\s|$)/)[0]}.</p>
                 {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
-              </div>}
-              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} /></>} />
-            <div data-metric-card-footer><DraftChartShare anchor={anchor} label={displayPlot.title} /></div>
+              </MetricCardScope>
+              <DraftChartShare anchor={anchor} label={displayPlot.title} />
+              <CardPngButton anchor={anchor} title={displayPlot.title} />
+            </div>
           </div>
         </article>;
       });
@@ -70,9 +76,12 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <span id={anchor} className="metric-anchor" />
             {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
-              previewContext={<p className="metric-preview-context" data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p>}
               methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology chart={chart} context={evidence.gapReason} axes="x-axis: Publication date · y-axis: Reported event stage" /></>} />
-            <div data-metric-card-footer><DraftChartShare anchor={anchor} label="Selected application events" /></div>
+            <div data-metric-card-footer>
+              <MetricCardScope><p data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p></MetricCardScope>
+              <DraftChartShare anchor={anchor} label="Selected application events" />
+              <CardPngButton anchor={anchor} title="Selected application events" />
+            </div>
           </div>
         </article>);
       }

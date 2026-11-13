@@ -17,6 +17,9 @@ import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { usePublicationSource } from "@/components/publication-source-provider";
 import { parsePublicationSnapshot, selectPublicationCharts, PUBLICATION_ANCHORS, PUBLICATION_GROWTH_GROUPS, PUBLICATION_SECTORS, type PublicationSnapshot, type PublicationAnchor, type PublicationChartData, type PublicationTable } from "@/lib/publication-data";
+import { MetricCardScope } from "@/components/metric-card-scope";
+import { CardPngButton } from "@/components/card-png-button";
+import { useCardExporting } from "@/lib/field-velocity/card-export";
 
 const number = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 1 });
 const percent = (n: number | null) => n === null ? "No 2022 denominator" : `${n > 0 ? "+" : ""}${number(n)}%`;
@@ -343,20 +346,25 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
 }
 function PublicationCard({index,snapshot,data}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData}) {
   const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${canonicalPerformanceAnchor(anchor)}`, trigger=useRef<HTMLButtonElement>(null);
+  const exporting=useCardExporting(anchor);
   const hasScience=annualScienceAvailable(data);
   const preview=useRef<HTMLDivElement>(null);
   const previewExtra=useMetricPreviewSpace(preview,true);
   const previewHeight=235+previewExtra;
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>
-      <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span><span className="pc-coverage">{index===3?`First → latest paper affiliations · first observed 2016–${data.authorEndYear} · people`:scope(index,snapshot)}</span></button>
+      <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span></button>
       <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button></div>
       {index===0&&<p className="publication-preview-note publication-preview-legend" data-annual-preview-key={hasScience?"":undefined}>{hasScience?<><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span><span data-series-key="all-research" style={{color:teal}}>● All research</span><span data-series-key="four-domain"><span aria-hidden="true" style={{color:gray}}>■</span> Four-domain range</span></>:data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
       {index===1&&<p className="publication-preview-note">21 groups · scroll for all</p>}
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}
     </div>
-    <div data-metric-card-footer><DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/></div>
-    {open&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
+    <div data-metric-card-footer>
+      <MetricCardScope><span className="pc-coverage">{index===3?`First → latest paper affiliations · first observed 2016–${data.authorEndYear} · people`:scope(index,snapshot)}</span></MetricCardScope>
+      <DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/>
+      <CardPngButton anchor={anchor} title={titles[index]} disabled={index===3&&!data.endpointTransitions}/>
+    </div>
+    {(open||exporting)&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger} offscreen={!open}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
   </article>;
 }
 /** Anonymous compiled aggregates only. No network access, author records or production fallback. */
