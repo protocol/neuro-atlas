@@ -7,6 +7,7 @@ import { METRIC_CHARTS as DRAFT_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVI
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
 import { MetricCardScope } from "@/components/metric-card-scope";
+import { CardPngButton } from "@/components/card-png-button";
 
 const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["acquisition-economics", 0],
@@ -60,6 +61,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                 {["tissue-cm3", "largest-connectome-neurons", "largest-connectome-synapses", "paired-manual"].includes(plot.id) && <p data-metric-datasets>{plot.points.map(point => point.annotation ?? point.label).join(" · ")}</p>}
               </MetricCardScope>
               <DraftChartShare anchor={anchor} label={displayPlot.title} />
+              <CardPngButton anchor={anchor} title={displayPlot.title} />
             </div>
           </div>
         </article>;
@@ -78,6 +80,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <div data-metric-card-footer>
               <MetricCardScope><p data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p></MetricCardScope>
               <DraftChartShare anchor={anchor} label="Selected application events" />
+              <CardPngButton anchor={anchor} title="Selected application events" />
             </div>
           </div>
         </article>);

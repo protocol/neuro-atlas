@@ -40,15 +40,20 @@ export function MetricCardScope({ children }: { children: ReactNode }) {
     element.addEventListener("pointermove", move);
     element.addEventListener("pointerup", up);
     element.addEventListener("pointercancel", up);
-    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
-    observer?.observe(element);
+    // Card widths only change with the viewport; avoid one more ResizeObserver per card.
+    const view = element.ownerDocument.defaultView;
+    view?.addEventListener("resize", update);
+    element.addEventListener("pointerenter", update);
+    const frame = view?.requestAnimationFrame(update) ?? 0;
     return () => {
+      view?.removeEventListener("resize", update);
+      element.removeEventListener("pointerenter", update);
+      view?.cancelAnimationFrame(frame);
       element.removeEventListener("scroll", update);
       element.removeEventListener("pointerdown", down);
       element.removeEventListener("pointermove", move);
       element.removeEventListener("pointerup", up);
       element.removeEventListener("pointercancel", up);
-      observer?.disconnect();
     };
   }, [children]);
   return <div ref={ref} className="metric-preview-context metric-card-scope">{children}</div>;

@@ -191,7 +191,7 @@
 .metric-card-scope[data-clipped][data-edge="middle"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
 .metric-card-scope[data-clipped][data-edge="end"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%); mask-image: linear-gradient(90deg, transparent, #000 20%); }
 .metric-card-scope[data-dragging] { cursor: grabbing; }
-.metric-chart-rail [data-metric-card-footer]:has(.metric-card-scope) { flex-wrap: nowrap; }
+.metric-chart-rail [data-metric-card-footer]:has(.metric-card-scope):not(:has(.pc-preview-sources)) { flex-wrap: nowrap; }
 .metric-chart-rail .pc-coverage { min-height: 0; }
 .metric-chart-rail .pc-card-title { min-height: 0; }
 .metric-chart-rail .pc-card-title,
@@ -212,6 +212,27 @@
   .metric-category-icon { grid-column: 3; }
   .metrics-tools input { flex-basis: 100%; }
 }
+/* Metrics: the tab rail and the catalog toolbar share one row on wide plates.
+   Columns are shared through subgrid so the toolbar sits in the column beside the rail. */
+@media (min-width: 900px) {
+  .velocity-tabs[data-velocity-tab="instruments"] { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .9rem; max-width: 78rem; }
+  .velocity-tabs[data-velocity-tab="instruments"] > :first-child { grid-area: 1 / 1; align-self: start; margin: 2px 0 0; position: relative; z-index: 1; }
+  .velocity-tabs[data-velocity-tab="instruments"] > :nth-child(2) { grid-area: 1 / 1 / 2 / -1; display: grid; grid-template-columns: subgrid; min-width: 0; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-content: start; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index > * { grid-column: 1 / -1; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-index > .metrics-tools { grid-column: 2; flex-wrap: nowrap; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-tools input { flex: 1 1 12rem; }
+  .velocity-tabs[data-velocity-tab="instruments"] .metrics-utilities { flex: none; flex-wrap: nowrap; white-space: nowrap; }
+}
+
+/* Card PNG export: the pop-out's chart tree, laid out invisibly long enough to register and export. */
+.chart-export-host { position: fixed; left: -12000px; top: 0; width: min(1000px, calc(100vw - 2rem)); visibility: hidden; pointer-events: none; contain: layout paint; }
+.metric-chart-rail [data-metric-card-footer] .pc-preview-sources { flex: 1 0 100%; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope :is(.pc-coverage, .pc-preview-qualification) { display: inline; margin: 0; padding: 0; min-height: 0; font-size: inherit; color: inherit; }
+.metric-chart-rail [data-metric-card-footer] .metric-card-scope .pc-preview-qualification::before { content: " · "; }
+.metric-chart-rail [data-metric-card-footer] .card-png { display: inline-flex; flex: none; }
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) { flex: none; }
+
 /* Chart pop-outs (Metrics only): the panel scrolls, so the round close control can
    overhang the dialog corner without being clipped or scrolling away. */
 .metrics-index .pc-modal { overflow: visible; }
@@ -234,3 +255,5 @@
 .inflection-index [data-related-forecasts] summary { display: flex; align-items: center; gap: .4rem; min-height: 32px; padding-block: .25rem; font-size: 12px; }
 .inflection-index [data-related-forecasts] summary::before { content: "▸"; font-size: 11px; }
 .inflection-index [data-related-forecasts][open] summary::before { content: "▾"; }
+/* Empty share status spans must not widen the gap between the footer pills. */
+.metric-chart-rail [data-metric-card-footer] :is(.pc-share, .draft-chart-share) > [role=status]:empty { display: none; }

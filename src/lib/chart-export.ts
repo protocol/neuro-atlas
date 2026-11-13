@@ -291,6 +291,20 @@ export async function copyChartImage(image: ChartImage) {
   await navigator.clipboard.write([new ClipboardItem(data)]);
 }
 
+/** Same clipboard payload as copyChartImage, for an image that is still being prepared.
+ * The write starts synchronously inside the click, so transient activation is kept. */
+export async function copyDeferredChartImage(image: Promise<ChartImage>) {
+  if (typeof ClipboardItem === "undefined" || !navigator.clipboard?.write || (ClipboardItem.supports && (!ClipboardItem.supports("image/png") || !ClipboardItem.supports("text/plain")))) {
+    void image.catch(() => {});
+    throw new Error("Image clipboard unavailable");
+  }
+  const png = image.then(chartPng);
+  const data: Record<string, Promise<Blob>> = { "image/png": png, "text/plain": image.then(ready => new Blob([ready.url], { type: "text/plain" })) };
+  if (!ClipboardItem.supports || ClipboardItem.supports("text/html")) data["text/html"] = Promise.all([png, image]).then(([blob, ready]) => richHtml(blob, ready));
+  for (const value of Object.values(data)) void value.catch(() => {});
+  await navigator.clipboard.write([new ClipboardItem(data)]);
+}
+
 export async function downloadChartImage(image: ChartImage) {
   const png = await chartPng(image);
   const url = URL.createObjectURL(png);
