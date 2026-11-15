@@ -11,6 +11,7 @@ The exact underlying 14-mark chart was publicly posted by [Sumner L Norman on Ju
 | File | Scope | Interpretation |
 |---|---|---|
 | [Current chart provenance](chart-provenance.csv) | All 14 displayed observations, with explicit evidence labels | Actual plotted values, source-native input, calculation, retained image value and candidate links. Five speech estimates use a declared 5-bits/word convention; handwriting uses the authors' separate empirical approximation. |
+| [Reproduce the fit](reproduce_fit.py) | Python standard library; full-precision current CSV | Recalculates every input, coefficients, log-space R², SSE/SST and input hash; accepts an edited CSV for sensitivity checks. |
 | [Anonymous-point candidate audit](anonymous-point-candidates.md) | Four unconfirmed assignments, with alternatives | Candidate papers and their actual native results exist; they are not confirmed identities or extra paper-backed chart points. |
 | [Identified slide-study results](identified-slide-study-results.csv) | 10 labeled report records; nine have a source-native numeric rate, Kennedy's rate is blank | Native rate/unit/task/error and original source URL. These are not 10 comparable measured bps values. Four anonymous slide marks are not assigned here. |
 | [Historical primary results](historical-primary-results.csv) | 19 printed outcomes from six historical studies | Multiple participants, tasks and measures; no sum, common normalization or proven anonymous-slide assignment. |
@@ -33,7 +34,7 @@ The [2000 original report](https://doi.org/10.1109/86.847815) was recovered at m
 
 ## Speech and handwriting
 
-The six original native speech/handwriting rates and task/error/date pairings are in the identified-study CSV and [main source audit](../bci-bitrate.md#study-native-evidence). The active chart labels handwriting **Author estimate** (the separate technical report's **≈6.18-bps empirical approximation**, based on the observed **90 characters/minute**) and five speech values **Atlas-calculated** (reported WPM × **5 assumed information bits/word** ÷ 60, no error adjustment). Those explicit selections do not recover the original figure's formula and are not measured neural ITR.
+The six original native speech/handwriting rates and task/error/date pairings are in the identified-study CSV and [main source audit](../bci-bitrate.md#study-native-evidence). The active chart labels handwriting **Author estimate** (the separate technical report's **≈6.18-bps empirical approximation**, based on the observed **90 characters/minute**) and five speech values **PL R&D estimate** (reported WPM × **5 assumed information bits/word** ÷ 60, no error adjustment). Those explicit selections do not recover the original figure's formula and are not measured neural ITR.
 
 ## Independent reconstruction is not the original dataset
 

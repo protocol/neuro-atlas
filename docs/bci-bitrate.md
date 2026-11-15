@@ -9,7 +9,7 @@ The rebuilt chart preserves the reference figure's **14 observation identities/y
 - **1 company-reported rate:** Neuralink **8.0 bits/s**.
 - **5 remaining image estimates:** Kennedy (paper identified, numerical result unverified) plus four anonymous marks with linked candidate papers.
 
-Every numbered observation key, source inspection and exported PNG states **Paper-reported**, **Paper-reported estimate**, **Atlas-calculated**, **Author estimate**, **Company-reported** or **Image estimate**. The [14-row provenance CSV](bci-study-data/chart-provenance.csv) records every displayed value, reported input, calculation, original image value, source and candidate status. This is not a recovered original 14-row dataset.
+Every numbered observation key, source inspection and exported PNG states **Paper-reported**, **Paper-reported estimate**, **PL R&D estimate**, **Author estimate**, **Company-reported** or **Image estimate**. The [14-row provenance CSV](bci-study-data/chart-provenance.csv) records every displayed value, reported input, calculation, original image value, source and candidate status. This is not a recovered original 14-row dataset.
 
 ## Original figure and archived digitization
 
@@ -42,9 +42,9 @@ The selected native results need not equal the original figure's chosen statisti
 
 `estimated bits/s = paper-reported words/minute × 5 assumed information bits/word ÷ 60`
 
-The working assumptions are one information bit per character and five characters per word, consistent with the explicitly declared [independent ITR Atlas convention](https://tangemicioglu.com/itr-atlas/methodology/). Extending a five-character typing convention to these spoken-word counts is an Atlas assumption, not a measured corpus average. We apply **no WER adjustment**: each paper's error measure, vocabulary and task remain separate. This gross-rate illustration is not a reproduction of ITR Atlas's error-discounted strictest-bound rankings.
+The working assumptions are one information bit per character and five characters per word, consistent with the explicitly declared [independent ITR Atlas convention](https://tangemicioglu.com/itr-atlas/methodology/). Extending a five-character typing convention to these spoken-word counts is a PL R&D assumption, not a measured corpus average. We apply **no WER adjustment**: each paper's error measure, vocabulary and task remain separate. This gross-rate illustration is not a reproduction of ITR Atlas's error-discounted strictest-bound rankings.
 
-| Study | Reported WPM | Atlas-estimated bits/s |
+| Study | Reported WPM | PL R&D-estimated bits/s |
 |---|---:|---:|
 | Moses 2021 | 15.2 | 1.266667 |
 | Willett speech 2023 | 62 | 5.166667 |
@@ -62,7 +62,7 @@ This is labeled **Author estimate**, not a measured ITR in the Nature paper, and
 
 ## Four anonymous points: candidate papers exist
 
-The four assignments remain unconfirmed, but they are no longer presented as having no source leads. Their inspections and data rows provide named, linked candidates with the actual native result and mismatch:
+The labels **Cursor control A–D · source unconfirmed** mean the four blue cursor/grid-control dots with no study name attached in the original figure. The letters identify those dots, not extra studies or verified reports. The four assignments remain unconfirmed, but they are no longer presented as having no source leads. Their inspections and data rows provide named, linked candidates with the actual native result and mismatch:
 
 - **2015 upper (~0.90 image bits/s):** possible [Gilja 2015](https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf), **0.93/0.92 Fitts bits/s**, excluding hold time. Equally plausible alternative: [Jarosiewicz 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4765319/), with T6 **0.93 bits/s** printed in [Pandarinath's later comparison](https://doi.org/10.7554/eLife.18554.021), not a newly recovered original-2015 numerical row.
 - **2015 lower (~0.76):** possible [Bacher 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/), **9.4 correct characters/min without prediction**, **10.4 with completion**. Exact plotted bps not recovered.
@@ -75,7 +75,21 @@ Year/rate resemblance is not an identity proof. Candidate bps calculations, wher
 
 The olive line remains an equal-weight, unconstrained ordinary least-squares fit of log10(bits/s) against reference year, recomputed from the **actual 14 currently displayed values**, including repeated years. It is labeled **Log-linear fit · 14 mixed-evidence points**.
 
-`log10(rate) = -0.929472 + 0.060277 × (year − 2000)`; `n = 14`; `R²(log10 rate) = 0.455330`.
+`log10(rate) = -0.929472 + 0.060277 × (year − 2000)`; `n = 14`; `R²(log10 rate) = 0.455330`. The on-chart and native-image line key shows **R²(log10) = 0.455**. This is goodness of fit in log space, not the fraction of raw-rate variance explained or evidence of a causal scaling law.
+
+### Reproduce or question the fit
+
+Download the [full-precision 14-point CSV](bci-study-data/chart-provenance.csv) and [standard-library Python reconstruction](bci-study-data/reproduce_fit.py), keep them in the same folder, and run:
+
+```sh
+python3 reproduce_fit.py
+# Or try alternative point selections/assumptions in a copy of the CSV:
+python3 reproduce_fit.py modified-provenance.csv
+```
+
+The script prints every fitted input, the CSV SHA-256, full-precision coefficients, log-space R², residual sum of squares (SSE), and total sum of squares (SST). No fitted coefficients are hardcoded. For each row set `x = reference_year − 2000`, `z = log10(plotted_bps)`, compute `b = Σ((x−mean(x))(z−mean(z))) / Σ((x−mean(x))²)` and `a = mean(z) − b·mean(x)`; then `R² = 1 − Σ((z−a−b·x)²) / Σ((z−mean(z))²)`. All 14 observations have equal weight; repeated years are retained. Fit endpoints are the minimum/maximum observed reference years, not extrapolations. The script centers at the input's minimum year (2000 for this CSV).
+
+The CSV links each source, reports the original native input and the exact active conversion, flags candidate assignments, and keeps the original photo estimate separately. Native-source quotations and image calibration are preserved in [the archived ledger](../src/data/bci-bitrate.source.json); [the actual app fitting function](../src/lib/log-linear-fit.ts) is also public. Estimator choices and heterogeneous tasks remain open to challenge, not silently treated as equivalent measurements.
 
 The fit is descriptive only. Cursor grid achieved bitrate, Fitts throughput, author-estimated switch ITR, language-model-assisted speech proxies and modeled handwriting output are not a common experimental benchmark. Conversion assumptions can change the fitted line. No causal scaling claim, forecast, confidence band or original-model recovery is made. The domain remains 2000–2025; no original speech/typing benchmark lines are added.
 
