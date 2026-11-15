@@ -160,7 +160,7 @@
     "coordinateFormula": "q = H × [pixelX, pixelY, 1]; year = homographyXOriginYear + q[0]/q[2]; bits/s = 10^(q[1]/q[2])"
   },
   "omittedOverlays": [
-    "Regression line: method and underlying data unverified",
+    "Original regression model/statistical interpretation: unverified; centerline shown only as an approximate visual trace",
     "Shaded band: uncertainty meaning and method unverified",
     "Speech and typing dashed benchmarks: exact values/derivations unavailable"
   ],

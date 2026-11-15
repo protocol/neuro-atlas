@@ -27,6 +27,16 @@ test('the reference trendline comes from traced photo pixels, separately from th
   }
   assert.equal(plot.points.length, 14);
   assert.deepEqual(plot.referenceTrendline.points, source.referenceTrendline.displayPoints);
+  const samples = source.referenceTrendline.samples;
+  const expected = [2000, ...samples.map(sample => sample.year).filter(year => year > 2000 && year < 2025), 2025].map(year => {
+    const [a, b] = samples.slice(0, -1).map((a, i) => [a, samples[i + 1]]).find(([a, b]) => a.year <= year && year <= b.year);
+    const fraction = (year - a.year) / (b.year - a.year);
+    return { x: year, y: 10 ** (Math.log10(a.bps) + fraction * (Math.log10(b.bps) - Math.log10(a.bps))) };
+  });
+  for (const [i, point] of plot.referenceTrendline.points.entries()) {
+    assert.equal(point.x, expected[i].x);
+    assert.ok(Math.abs(point.y - expected[i].y) < 1e-12, 'Display line must replay from the recorded trace, not a new fit');
+  }
   assert.equal(plot.referenceTrendline.points[0].x, 2000);
   assert.equal(plot.referenceTrendline.points.at(-1).x, 2025);
   assert.match(plot.referenceTrendline.label, /≈.*slide trendline/i);
