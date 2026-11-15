@@ -27,6 +27,7 @@ test('every chart coordinate has an explicit evidence basis rather than calling 
   assert.equal(plot.points.find(p=>p.id==='bci-slide-neuralink').y,8);
   assert.match(plot.scope, /2 paper.*6.*(calculated|derived).*1 company.*5 image/i);
   assert.match(plot.seriesNote, /not.*(measured neural|common.*benchmark)/i);
+  for (const point of plot.points) assert.doesNotMatch(point.note, /in this worker|Do not|6-bits\/word/, 'Reader-facing notes must not repeat archived research instructions');
 });
 
 
@@ -44,6 +45,7 @@ test('all four anonymous marks show named candidate papers without claiming conf
     for (const name of names) assert.ok(point.candidateSources.some(c => name.test(c.title)));
     assert.ok(point.candidateSources.every(c=>/^https:\/\//.test(c.url) && c.note));
     assert.match(point.annotation, /Image estimate/);
+    assert.ok(point.note.length < 300, 'Put useful candidate links before an unnecessarily long unresolved-source explanation');
     assert.equal(point.y, original.observations.find(p => p.id === point.id).approximateBps);
   }
 });

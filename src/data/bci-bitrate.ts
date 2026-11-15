@@ -64,14 +64,30 @@ export const BCI_BITRATE_ROWS = source.observations.map(point => {
   return { id: point.id, ...selected };
 });
 
+// Display factual caveats separately; archival native notes also contain historical
+// research instructions and must not become current reader-facing copy.
+const readerCaveats: Record<string, string> = {
+  "bci-slide-kennedy-bakay": "The paper is identified at metadata/abstract level; its full numerical result is unverified. No typing-rate conversion is used for this dot.",
+  "bci-slide-pandarinath": "The paper also reports 3.7 ± 0.4 bits/s for T5 on a 6×6 grid. The chart explicitly selects the 9×9 mean, not the single 4.36-bits/s example block; the original figure's exact choice is unknown.",
+  "bci-slide-neuralink": "This is a company disclosure, not independent validation. The original figure's exact value/date/grid pairing is unknown.",
+  "bci-slide-stentrode": "The isolated contribution is an author estimate; actual typing used eye tracking. Participant 1's isolated estimate was 0.32 bits/s.",
+  "bci-slide-handwriting": "The final-day 5.4% character error rate is distinct from the overall five-day 94.1% accuracy. The bitrate approximation comes from a separate author technical report, not a measured ITR in Nature.",
+  "bci-slide-moses": "Prompted sentences with a language model and a restricted 50-word vocabulary. WPM and WER are source-level medians with different aggregation, not a per-trial channel estimate.",
+  "bci-slide-willett-speech": "The 23.8% WER applies to the 125,000-word vocalized condition; the paper's 9.1% WER belongs to a separate 50-word condition. Evaluation used held-out prompted sentences, not free conversation.",
+  "bci-slide-metzger": "Online evaluation used 1,024 words. The 39,378-word condition was an offline simulation; a later anatomical correction did not change real-time decoding performance.",
+  "bci-slide-card-2024": "31.6 WPM and 2.5% WER are the final five copy-task session means. The reference figure's 33-WPM label is a different, unverified selection.",
+  "bci-slide-card-home": "Personal home use has no paired WER here. The 99.2% copy-task accuracy and 92.3% participant-rated sentence correctness are different endpoints. This follows the same participant as Card 2024, not an independent cohort.",
+};
 const candidates: Record<string, NonNullable<DraftObservation["candidateSources"]>> = candidateLedger;
 const points: DraftObservation[] = source.observations.map(point => {
   const group = groups[point.group];
   const native = point.nativeSource;
   const selected = BCI_BITRATE_ROWS.find(row => row.id === point.id)!;
   const estimate = selected.basis === "image" || selected.basis === "derived" || point.id === "bci-slide-stentrode";
-  const sourceContext = native ? ` Publication/disclosure: ${native.date} (${native.dateBasis}). ${native.note}` : ` ${point.unresolvedNote}`;
-  const note = `${selected.basisLabel}. ${selected.reportedResult ? `Reported input: ${selected.reportedResult} ` : ""}${selected.calculation ?? (selected.basis === "image" ? "Plotted value digitized from the reference image; no numerical result verified for this exact mark." : "Plotted rate taken from the cited report; the chosen condition/statistic is explicit, not claimed to reproduce the original figure's exact selection.")} Reference image: approximately ${point.approximateBps} bits/s; original image coordinates remain archived separately.${sourceContext}`;
+  const sourceContext = native ? ` Publication/disclosure: ${native.date} (${native.dateBasis}). ${readerCaveats[point.id] ?? ""}` : "";
+  const note = !native
+    ? `${selected.basisLabel}. Approximately ${point.approximateBps} bits/s, digitized from the reference. The papers below are plausible candidates, not confirmed assignments; this dot has not been replaced by a converted candidate result.`
+    : `${selected.basisLabel}. ${selected.reportedResult ? `Reported input: ${selected.reportedResult} ` : ""}${selected.calculation ?? (selected.basis === "image" ? "Plotted value digitized from the reference image; no numerical result verified for this exact mark." : "Plotted rate taken from the cited report; the chosen condition/statistic is explicit, not claimed to reproduce the original figure's exact selection.")} Reference image: approximately ${point.approximateBps} bits/s; original image coordinates remain archived separately.${sourceContext}`;
   return {
     id: point.id,
     x: point.slideYear,
