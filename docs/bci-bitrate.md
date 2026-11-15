@@ -1,26 +1,23 @@
-# BCI bitrate chart — reference reconstruction and source audit
+# BCI bitrate chart — reported results and explicit estimates
 
-## What this chart is
+## Current chart
 
-**A visual reconstruction of the 14 observations in a photographed “Bitrate Scaling” slide. Every plotted year and bitrate is approximate.** The original numeric table, plotting code, language-to-bitrate conversion and fit construction were not recovered.
+The rebuilt chart preserves the reference figure's **14 observation identities/year placements**, while replacing nine image-derived y-values with explicit report-based selections:
 
-The reconstruction keeps all 14 visible marks: seven cursor/grid circles, one endovascular triangle, five speech squares and one handwriting diamond. Four cursor circles have no legible author label and remain unidentified. Source papers support the separate study-native results below; their values have not been substituted for the photographed coordinates.
+- **2 paper-reported rates:** Pandarinath T5 9×9-grid mean **4.16 bits/s**; Oxley/Stentrode P2 **0.46 bits/s**, an author-estimated isolated motor-neuroprosthesis contribution rather than the hybrid eye-tracker result.
+- **6 derived estimates from paper/preprint inputs:** five speech rates converted with a declared **5 information bits/word** convention, plus the handwriting authors' separate empirical bitrate approximation.
+- **1 company-reported rate:** Neuralink **8.0 bits/s**.
+- **5 remaining image estimates:** Kennedy (paper identified, numerical result unverified) plus four anonymous marks with linked candidate papers.
 
-The photograph is not redistributed. `src/data/bci-bitrate.source.json` records its SHA-256, rectification corners, manual axis control points, pixel centers, coordinate transform, rounding policy and per-mark source reconciliation. The reference image is required to reproduce the digitization independently; the ledger alone is not the original experimental dataset.
+Every numbered observation key, source inspection and exported PNG states **Paper-reported**, **Paper-reported estimate**, **Atlas-calculated**, **Author estimate**, **Company-reported** or **Image estimate**. The [14-row provenance CSV](bci-study-data/chart-provenance.csv) records every displayed value, reported input, calculation, original image value, source and candidate status. This is not a recovered original 14-row dataset.
 
-## Original published figure and study-native data
+## Original figure and archived digitization
 
-The same underlying chart was recovered in [Sumner L Norman’s June 22, 2026 post](https://x.com/SumnerLN/status/2069192808016273813), with its [original-size published raster](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig). This establishes the figure’s provenance; it does not recover the numeric table or original plotting code. The [source-study data package](bci-study-data/README.md) includes separately sourced native measurements, primary historical tables, retrospective comparison rows and remaining gaps. None has been silently substituted for the approximate plotted values.
+The same underlying chart was recovered in [Sumner L Norman's June 22, 2026 post](https://x.com/SumnerLN/status/2069192808016273813), with its [original-size published raster](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig). The original numeric table/code and conversion choices remain unavailable. The photograph is not redistributed.
 
-## Digitization
+`src/data/bci-bitrate.source.json` preserves all original image-derived observations, source-native quotations, calibration and traced-line samples unchanged. Its observation coordinates are an **archived reconstruction**, not the current nine report-based selections. The original method rectified the photograph to 2,200 × 1,400 pixels, then transformed manually selected pixel centers to year and log10(bits/s), rounding years to integers and rates to two significant digits. Screen distortion and manual selection make those values approximate, not uncertainty-calibrated.
 
-1. Rectify the photographed screen to a 2,200 × 1,400-pixel plane using four manually selected corners.
-2. Select visible year ticks and log-axis ticks (0.1, 0.5, 1, 5, 10 and 50 bits/s).
-3. Fit a projective transform from rectified pixel centers to `year − 2000` and `log10(bits/s)`. For `q = H × [pixelX, pixelY, 1]`, recover `year = 2000 + q[0]/q[2]` and `bits/s = 10^(q[1]/q[2])`. The rectification destination corners are `(0,0), (2200,0), (2200,1400), (0,1400)`.
-4. Transform each of the 14 visually selected marker centers. Round years to the nearest integer and bitrates to two significant digits; retain `≈` everywhere.
-5. Keep category and symbol identity from the slide. Never infer an anonymous mark’s paper from its resemblance to a published result.
-
-Perspective distortion, screen curvature, blurred ticks and manual center selection limit accuracy. Two significant digits are display rounding, not measurement precision or a calibrated confidence interval. The y-axis is deliberately labeled **Approximate slide rate**. Native article dates and rates are retained separately in inspection and the source table.
+The selected native results need not equal the original figure's chosen statistic. In particular, the chart now explicitly selects the 4.16-bits/s 9×9-grid result rather than the image's approximate 3.5; it does not claim the original author used that condition. Reference-year placement remains distinct from source publication date.
 
 ## Study-native evidence
 
@@ -38,30 +35,52 @@ Perspective distortion, screen curvature, blurred ticks and manual center select
 | Card & Stavisky, 56 WPM / home use | Preprint mean **56.1 words/min** personal use; 92.3% of sentences self-rated at least mostly correct. | [Version 1 preprint, posted July 7, 2025](https://www.biorxiv.org/content/10.1101/2025.06.26.661591v1.full); [final paper, June 15, 2026](https://doi.org/10.1038/s41591-026-04414-6). Self-rated sentence correctness is not WER; prompted copy results are separate. |
 | Four anonymous cursor marks | No verified identity. | Two near 2015, one near 2016 and one near 2018. All remain explicit unresolved slide observations. |
 
-### Author handwriting approximation
 
-A separate [Stanford technical report, version 2.7, May 20, 2021](https://stacks.stanford.edu/file/druid:jx921pv3255/TechnicalReport01_GPT_BCIs-2021-05-20.pdf) estimates handwriting bitrate as approximately **6.18 bits/s** from `16.06 corrected words/min ÷ 2.6 corrected words/min per bit/s`. That estimate assumes five characters/word and modeled backspace correction. It is neither a measured neural information rate nor proof of the slide’s conversion. It is retained as source context, not used to overwrite the reconstructed mark.
+## Explicit text-rate calculations
 
-## Comparability and deliberate omissions
+### Five speech estimates
 
-Cursor achieved bitrate, symmetric-choice ITR, language-model-assisted speech rate and handwriting output use different tasks, error treatments and priors. A common bits/s display does not establish equal measurement meaning. No new WPM/CPM-to-bps formula is introduced, and no fitted scaling law is claimed.
+`estimated bits/s = paper-reported words/minute × 5 assumed information bits/word ÷ 60`
 
-## Descriptive fitted trendline
+The working assumptions are one information bit per character and five characters per word, consistent with the explicitly declared [independent ITR Atlas convention](https://tangemicioglu.com/itr-atlas/methodology/). Extending a five-character typing convention to these spoken-word counts is an Atlas assumption, not a measured corpus average. We apply **no WER adjustment**: each paper's error measure, vocabulary and task remain separate. This gross-rate illustration is not a reproduction of ITR Atlas's error-discounted strictest-bound rankings.
 
-On request, the olive line is now an **equal-weight ordinary least-squares fit of log10(bits/s) against year using all 14 approximate observations**, including repeated years. It replaces the earlier visually traced line. The source values themselves are unchanged. The fit is computed from the actual rendered observations by `src/lib/log-linear-fit.ts`, with an unconstrained intercept:
+| Study | Reported WPM | Atlas-estimated bits/s |
+|---|---:|---:|
+| Moses 2021 | 15.2 | 1.266667 |
+| Willett speech 2023 | 62 | 5.166667 |
+| Metzger 2023 | 78.3 | 6.525000 |
+| Card 2024 | 31.6 | 2.633333 |
+| Card home-use preprint 2025 | 56.1 | 4.675000 |
 
-`log10(rate) = −0.935756 + 0.060227 × (year − 2000)`
+These are **information-rate proxies**, not encoded bytes or measured neural-channel ITR. One byte is eight bits; an assumed one-byte/character text encoding is a different quantity. The original chart's formula has not been recovered. Home-use speech has no same-task WER in this source selection; missing error is not zero error.
 
-`n = 14; R²(log10 rate) ≈ 0.460082`.
+### Source-authored handwriting estimate
 
-The line is labeled **Log-linear fit · 14 approximate points** in preview, detail and native image exports. It is drawn only over observed years, 2000–2025. R² describes the scatter of these reconstructed points in log space; it is not forecast confidence or proof of comparable task performance. The original slide's numerical table and fit method remain unavailable. No confidence band or forecast is displayed.
+The [Stanford author technical report, version 2.7, May 20, 2021](https://stacks.stanford.edu/file/druid:jx921pv3255/TechnicalReport01_GPT_BCIs-2021-05-20.pdf) explicitly approximates handwriting bitrate as **16.06 correct WPM ÷ 2.6 correct WPM per bit/s ≈ 6.18 bits/s**. This model uses the 90-CPM, 5.4%-CER final-day result, five characters/word and modeled backspace overhead. The source's rounded intermediate 16.06 is retained in the calculation; extra runtime decimals are arithmetic, not measurement precision.
 
-The earlier eight-pixel visual trace is preserved under `referenceTrendline` in the source ledger as an explicitly archived reconstruction; it no longer determines the displayed line.
+This is labeled **Author estimate**, not a measured ITR in the Nature paper, and not the same model as the speech proxy. It is preferred here over introducing a new symmetric-character-channel model solely to resemble the image. The original study remains linked as the input source and the separate technical report as the calculation source.
 
-The shaded band and dashed speech/typing benchmarks remain omitted: their numerical inputs and statistical meaning are unverified. The rebuilt plot preserves the observations, category colors and marker distinctions.
+## Four anonymous points: candidate papers exist
 
-A related [Meyer and Zamani review](https://doi.org/10.1088/1741-2552/ae6dfd) and its author code were checked. Its available repository concerns recording-channel counts; it is not the source of this 14-point chart.
+The four assignments remain unconfirmed, but they are no longer presented as having no source leads. Their inspections and data rows provide named, linked candidates with the actual native result and mismatch:
 
-## Implementation and review scope
+- **2015 upper (~0.90 image bits/s):** possible [Gilja 2015](https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf), **0.93/0.92 Fitts bits/s**, excluding hold time. Equally plausible alternative: [Jarosiewicz 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4765319/), with T6 **0.93 bits/s** printed in [Pandarinath's later comparison](https://doi.org/10.7554/eLife.18554.021), not a newly recovered original-2015 numerical row.
+- **2015 lower (~0.76):** possible [Bacher 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/), **9.4 correct characters/min without prediction**, **10.4 with completion**. Exact plotted bps not recovered.
+- **2016 (~0.16):** possible [Vansteensel 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/), **52 seconds/letter**, **33 with prediction**, rounded headline two letters/min. Neural-click/scanning task, not literal 2D cursor control.
+- **2018 (~0.53):** possible [Milekovic/Sarma 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/), **6.88 correct characters/min with completion**. Numerical/year lead, but a scanning neural-switch task. [Nuyujukian 2018](https://doi.org/10.1371/journal.pone.0204566) is a cursor-task alternative, reporting **24.0/13.6/30.8 effective characters/min with completion**.
 
-The chart is additive under **Human interfaces and recordings**, with stable fragment `#bci-information-transfer-over-time`. Native source inspection, source-table access, keyboard dismissal/history, Copy link, Copy chart and Download PNG use existing Atlas controls. Shared images retain a concise numbered observation key with `≈` values, PL R&D branding and the Neuro Atlas link. Access, launch settings and production publication are unchanged. This is a manually curated reconstruction; no recurring refresh is configured.
+Year/rate resemblance is not an identity proof. Candidate bps calculations, where shown in source notes, are explicitly illustrative assumptions and **are not substituted for these five image coordinates**. The [candidate ledger](../src/data/bci-bitrate.candidates.json) retains confidence and limitations; a candidate never occupies the confirmed `sourceUrl` field.
+
+## Fitted line and comparability
+
+The olive line remains an equal-weight, unconstrained ordinary least-squares fit of log10(bits/s) against reference year, recomputed from the **actual 14 currently displayed values**, including repeated years. It is labeled **Log-linear fit · 14 mixed-evidence points**.
+
+`log10(rate) = -0.929472 + 0.060277 × (year − 2000)`; `n = 14`; `R²(log10 rate) = 0.455330`.
+
+The fit is descriptive only. Cursor grid achieved bitrate, Fitts throughput, author-estimated switch ITR, language-model-assisted speech proxies and modeled handwriting output are not a common experimental benchmark. Conversion assumptions can change the fitted line. No causal scaling claim, forecast, confidence band or original-model recovery is made. The domain remains 2000–2025; no original speech/typing benchmark lines are added.
+
+## Implementation and acceptance
+
+The chart remains under **Human interfaces and recordings**, at `#bci-information-transfer-over-time`. Existing source-table, native point inspection, keyboard/history, copy and PNG controls are retained. Candidate links are labeled **assignment unconfirmed**, separate from verified calculation-method links. The standalone image retains a concise, numbered identity/value/unit/evidence-basis key, PL R&D brand and Atlas link; long source/method notes remain on site rather than being restored as image footnotes.
+
+No access/launch configuration, historical acceptance inventory, recurring job, merge or production publication is changed. The current work remains an unmerged update to PR112.

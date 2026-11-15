@@ -26,21 +26,23 @@ test('the reconstruction keeps a reviewable photo-digitization source ledger', (
   }
 });
 
-test('every rendered mark preserves the photograph-derived value and keeps primary results separate', async () => {
+test('rendered selections keep the original photograph ledger separate and make evidence explicit', async () => {
   const imported = await import('../src/data/bci-bitrate.ts');
   const data = imported.default ?? imported;
   const source = JSON.parse(readFileSync(dataUrl, 'utf8'));
   const plot = data.BCI_BITRATE_EVIDENCE.plots[0];
   assert.equal(plot.points.length, 14);
-  assert.equal(plot.observationBasis, 'Digitized slide · approximate');
-  assert.match(plot.scope, /approximate/i);
-  assert.match(plot.seriesNote, /conversion.*unverified/i);
+  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*image estimate/);
+  assert.match(plot.scope, /14 reference observations/);
+  assert.match(plot.seriesNote, /assumptions/);
   assert.equal(plot.connections, undefined);
-  assert.deepEqual(plot.points.map(point => [point.id, point.x, point.y, point.qualifier]), source.observations.map(point => [point.id, point.slideYear, point.approximateBps, '≈']));
+  assert.deepEqual(plot.points.map(point => [point.id, point.x]), source.observations.map(point => [point.id, point.slideYear]));
+  assert.deepEqual(plot.points.map(point => point.y), data.BCI_BITRATE_ROWS.map(row => row.bps));
   assert.deepEqual(plot.points.filter(point => !point.sourceUrl).map(point => point.id), source.observations.filter(point => point.identityStatus === 'unresolved').map(point => point.id));
   for (const point of plot.points) {
-    assert.match(point.note, /digitized/i);
-    assert.match(point.annotation, /≈/);
+    const row = data.BCI_BITRATE_ROWS.find(row => row.id === point.id);
+    assert.ok(point.note.includes(row.basisLabel));
+    assert.ok(point.annotation.includes(row.basisLabel));
   }
   assert.match(plot.points.find(point => point.id.endsWith('pandarinath')).note, /4\.16/);
   assert.match(plot.points.find(point => point.id.endsWith('card-2024')).note, /31\.6/);

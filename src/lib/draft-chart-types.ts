@@ -1,4 +1,4 @@
-/** A source-reported measurement; qualifiers and scope are part of the value. */
+/** A reported, derived or reconstructed observation with explicit qualifiers and scope. */
 export type DraftObservation = {
   id: string;
   x: number;
@@ -20,6 +20,10 @@ export type DraftObservation = {
   annotation?: string;
   /** Decisive point-specific provenance retained in standalone chart exports. */
   exportNote?: string;
+  /** Related papers are leads, not confirmed attributions for this observation. */
+  candidateSources?: { title: string; url: string; note: string }[];
+  /** A verified methods reference, distinct from a candidate study attribution. */
+  calculationSource?: { title: string; url: string };
 };
 
 export type DraftPlot = {

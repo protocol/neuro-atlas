@@ -4,12 +4,14 @@
 
 The exact underlying 14-mark chart was publicly posted by [Sumner L Norman on June 22, 2026](https://x.com/SumnerLN/status/2069192808016273813). Its [original-size published JPEG](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig) matches the supplied photograph's labels, four marker classes, seven cursor circles including four anonymous marks, five speech squares, handwriting diamond, Stentrode triangle and overlays. The slide adds its title/footer; the published raster establishes figure provenance, not presenter identity.
 
-**The original numeric table and plotting code have not been recovered.** A high-resolution chart image is still an image, not an exact numerical dataset. The Atlas plotted coordinates remain explicitly approximate photo-derived values; this package supplies the separately verified study-native measurements and preserves their different units/methods.
+**The original numeric table and plotting code have not been recovered.** The current chart now uses **2 paper-reported rates, 6 derived estimates from paper/preprint inputs, 1 company report and 5 retained image estimates**. Every point identifies its basis; the [14-row current-chart provenance CSV](chart-provenance.csv) shows reported input versus calculation versus image coordinate. The original 14 image-derived coordinates remain archived unchanged in the source ledger. See the [active chart method](../bci-bitrate.md) and [four anonymous-point candidates](anonymous-point-candidates.md).
 
 ## Downloadable data
 
 | File | Scope | Interpretation |
 |---|---|---|
+| [Current chart provenance](chart-provenance.csv) | All 14 displayed observations, with explicit evidence labels | Actual plotted values, source-native input, calculation, retained image value and candidate links. Five speech estimates use a declared 5-bits/word convention; handwriting uses the authors' separate empirical approximation. |
+| [Anonymous-point candidate audit](anonymous-point-candidates.md) | Four unconfirmed assignments, with alternatives | Candidate papers and their actual native results exist; they are not confirmed identities or extra paper-backed chart points. |
 | [Identified slide-study results](identified-slide-study-results.csv) | 10 labeled report records; nine have a source-native numeric rate, Kennedy's rate is blank | Native rate/unit/task/error and original source URL. These are not 10 comparable measured bps values. Four anonymous slide marks are not assigned here. |
 | [Historical primary results](historical-primary-results.csv) | 19 printed outcomes from six historical studies | Multiple participants, tasks and measures; no sum, common normalization or proven anonymous-slide assignment. |
 | [Historical retrospective comparisons](historical-retrospective-results.csv) | Eight later-author comparison rows | Explicitly separate from original primary-study measurements. Their printed source/column and limitations travel with the numbers. |
@@ -31,7 +33,7 @@ The [2000 original report](https://doi.org/10.1109/86.847815) was recovered at m
 
 ## Speech and handwriting
 
-The six original native speech/handwriting rates and their task/error/date pairings are in the identified-study CSV and [main source audit](../bci-bitrate.md#study-native-evidence). The author-issued handwriting **≈6.18-bps empirical approximation** is separate from the **90-character/minute** observed result. The speech reports give words/minute; their source-native text rates do not recover the original chart's language-to-bitrate normalization.
+The six original native speech/handwriting rates and task/error/date pairings are in the identified-study CSV and [main source audit](../bci-bitrate.md#study-native-evidence). The active chart labels handwriting **Author estimate** (the separate technical report's **≈6.18-bps empirical approximation**, based on the observed **90 characters/minute**) and five speech values **Atlas-calculated** (reported WPM × **5 assumed information bits/word** ÷ 60, no error adjustment). Those explicit selections do not recover the original figure's formula and are not measured neural ITR.
 
 ## Independent reconstruction is not the original dataset
 

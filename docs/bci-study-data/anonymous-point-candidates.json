@@ -1,0 +1,222 @@
+{
+  "task": "Four anonymous Sumner Norman BCI chart marks: candidate recheck",
+  "generated_at_utc": "2026-11-15T18:31:09.161706+00:00",
+  "original_chart_url": "https://x.com/SumnerLN/status/2069192808016273813",
+  "original_image_url": "https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig",
+  "original_image_sha256": "5145e072d2110383ee9b948fb7bcca03a0175cd3361edf95739d8bcf81591f94",
+  "scope": "Local research artifacts only; no repo edits, outreach, external writes or source assignment claims.",
+  "important_new_check": "Direct original image yields ~.93,.79,.16,.55, slightly above the supplied photograph digitization ~.90,.76,.16,.53. Neither is author printed data.",
+  "conversion_policy": "Illustrative output-code equivalents only. Use same explicitly assumed log2(28) bits/character for comparison; do not call these author-reported bitrate, measured channel capacity, or proof of chart identity. A byte equivalent is 8 bits/character and is distinct.",
+  "records": [
+    {
+      "mark_id": "A",
+      "approx_photo_year": 2015,
+      "approx_photo_bps": 0.9,
+      "original_image_digitization_bps": 0.9288642865031975,
+      "preferred_candidate": "Gilja et al. (2015), Clinical translation of a high-performance neural prosthesis",
+      "identity_confidence": "moderate; co-leading alternative exists",
+      "assignment_proven": false,
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf",
+      "source_reported_numbers": [
+        {
+          "participant": "T6",
+          "value": 0.93,
+          "unit": "Fitts bits/s"
+        },
+        {
+          "participant": "T7",
+          "value": 0.92,
+          "unit": "Fitts bits/s"
+        }
+      ],
+      "supporting_passage_id": "gilja_native",
+      "value_basis": "author-printed Fitts-normalized result, Supplementary Table 1",
+      "match_reason": "Publication year and printed .93/.92 are close to the photograph and the direct original-image mark (~.929).",
+      "limitations": [
+        "Fitts bits/s excludes hold time; it is not achieved grid bitrate.",
+        "No author-provided original chart data links this mark to Gilja."
+      ],
+      "alternatives": [
+        {
+          "candidate": "Jarosiewicz et al. (2015), T6",
+          "source_url": "https://doi.org/10.7554/eLife.18554.021",
+          "confidence": "moderate; equally plausible numerical identity",
+          "result": "0.93 bps for T6; 0.59 average across four",
+          "source_basis": "Printed retrospective Table 1 in Pandarinath et al. (2017), not an explicit .93 table recovered in the original 2015 paper.",
+          "supporting_passage_id": "jarosiewicz_retrospective",
+          "original_2015_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4765319/",
+          "original_2015_formula": "eBR = CSPM * log2(N-1) / 60, N=8, radial sessions only"
+        }
+      ]
+    },
+    {
+      "mark_id": "B",
+      "approx_photo_year": 2015,
+      "approx_photo_bps": 0.76,
+      "original_image_digitization_bps": 0.7884217136599092,
+      "preferred_candidate": "Bacher et al. (2015 issue; online 2014), Neural point-and-click communication by a person with incomplete locked-in syndrome",
+      "identity_confidence": "low-to-moderate",
+      "assignment_proven": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/",
+      "source_reported_numbers": [
+        {
+          "condition": "keyboard task; prediction disabled",
+          "value": 9.4,
+          "uncertainty": 3.2,
+          "uncertainty_type": "SD",
+          "unit": "correct characters/min"
+        },
+        {
+          "condition": "quick fox task; word completion enabled",
+          "value": 10.4,
+          "uncertainty": 2.4,
+          "uncertainty_type": "SD",
+          "unit": "correct characters/min"
+        }
+      ],
+      "supporting_passage_id": "bacher_native",
+      "value_basis": "native ccpm; bps is analyst-derived only",
+      "illustrative_conversion": {
+        "formula": "9.4 * log2(28) / 60",
+        "bps": 0.7531522711223579,
+        "assumption": "Assume an equiprobable 28-symbol output alphabet; 28 is not asserted as the Radial Keyboard target count or its actual language entropy."
+      },
+      "alternative_condition_conversion": {
+        "formula": "10.4 * log2(28) / 60",
+        "bps": 0.8332748531566513
+      },
+      "match_reason": "Correct year (issue date) and cursor-controlled text entry; defensible coding-convention proxy yields .75-.83 bps, bracketing the direct original mark (~.788).",
+      "limitations": [
+        "No primary author-reported .76 or .79-bps value found.",
+        "Prediction conditions differ; cannot treat 10.4 as prediction-free.",
+        "The Radial Keyboard uses ambiguous groups and disambiguation, so an output-character code must not be called measured command-channel bitrate."
+      ],
+      "alternatives": [
+        {
+          "candidate": "Gilja et al. (2015), full acquisition-time Fitts-style re-expression",
+          "confidence": "low; derived, not the authors printed score",
+          "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf",
+          "formula_T6": "2.28/2.95",
+          "result_T6_bps": 0.7728813559322033,
+          "formula_T7": "2.28/2.97",
+          "result_T7_bps": 0.7676767676767675,
+          "warning": "Authors report .93/.92 after subtracting hold; .773/.768 are new analyst calculations. Do not infer two distinct studies from them."
+        }
+      ]
+    },
+    {
+      "mark_id": "C",
+      "approx_photo_year": 2016,
+      "approx_photo_bps": 0.16,
+      "original_image_digitization_bps": 0.15923546635615837,
+      "preferred_candidate": "Vansteensel et al. (2016), Fully Implanted Brain-Computer Interface in a Locked-In Patient with ALS",
+      "identity_confidence": "moderate",
+      "assignment_proven": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/",
+      "source_reported_numbers": [
+        {
+          "condition": "initial spelling",
+          "value": 52,
+          "unit": "seconds/letter"
+        },
+        {
+          "condition": "with word prediction",
+          "value": 33,
+          "unit": "seconds/letter"
+        },
+        {
+          "condition": "rounded summary",
+          "value": 2,
+          "unit": "letters/min",
+          "precision": "equivalent of two; rounded"
+        }
+      ],
+      "supporting_passage_ids": [
+        "vansteensel_native",
+        "vansteensel_headline"
+      ],
+      "value_basis": "native letter timing; bps is analyst-derived only",
+      "illustrative_conversion": {
+        "formula": "2 * log2(28) / 60",
+        "bps": 0.1602451640685868,
+        "assumption": "Uses rounded headline and assumed uniform 28-symbol code, not measured ITR."
+      },
+      "exact_timing_conversions": [
+        {
+          "formula": "log2(28)/52",
+          "bps": 0.09244913311649237
+        },
+        {
+          "formula": "log2(28)/33",
+          "bps": 0.14567742188053345
+        }
+      ],
+      "byte_equivalent_check": {
+        "formula": "8/52",
+        "bps": 0.15384615384615385,
+        "basis": "1 byte/letter; encoded payload equivalent, not neural-information bitrate"
+      },
+      "match_reason": "Year and landmark implanted communication demonstration fit; rounded two-letter/minute result converts to ~.16 under explicit convention.",
+      "limitations": [
+        "Subdural ECoG neural-click/scanning interface, not literal 2D cursor/grid control.",
+        "Actual 52/33-second timings give .092/.146 under the same 28-symbol convention, not .16.",
+        "Pandarinath 2017 reports .21 ITR in a separate column and leaves bitrate blank; cannot relabel .21 as the figure value."
+      ]
+    },
+    {
+      "mark_id": "D",
+      "approx_photo_year": 2018,
+      "approx_photo_bps": 0.53,
+      "original_image_digitization_bps": 0.5488133656252068,
+      "preferred_candidate": "Milekovic, Sarma et al. (2018), Stable long-term BCI-enabled communication in ALS and locked-in syndrome using LFP signals",
+      "identity_confidence": "low-to-moderate; best numerical lead, task-family mismatch",
+      "assignment_proven": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/",
+      "source_reported_numbers": [
+        {
+          "participant": "T6",
+          "value": 6.88,
+          "uncertainty": 0.33,
+          "unit": "correct characters/min",
+          "condition": "free spelling with word completion"
+        },
+        {
+          "participant": "T2",
+          "value": 3.07,
+          "uncertainty": 0.2,
+          "unit": "correct characters/min",
+          "condition": "free spelling with word completion"
+        }
+      ],
+      "supporting_passage_id": "milekovic_conditioned_native_fresh",
+      "value_basis": "native ccpm; bps is analyst-derived only",
+      "illustrative_conversion": {
+        "formula": "6.88 * log2(28) / 60",
+        "bps": 0.5512433643959386,
+        "assumption": "Assumed uniform 28-symbol output code; not reported BCI ITR and not the interface target count."
+      },
+      "alphabet_sensitivity": {
+        "formula_26": "6.88*log2(26)/60",
+        "bps_26": 0.5389837543468451
+      },
+      "match_reason": "Correct year; explicit proxy gives .539-.551, close to photograph ~.53 and original image ~.549.",
+      "limitations": [
+        "FlashSpeller is a two-tier scanning neural-switch interface, not 2D cursor/grid control.",
+        "Word completion increases output characters per selection.",
+        "No primary author-reported .53/.55-bps score recovered."
+      ],
+      "alternatives": [
+        {
+          "candidate": "Nuyujukian et al. (2018), Cortical control of a tablet computer by people with paralysis",
+          "confidence": "low; fits cursor modality but poorer numerical match",
+          "source_url": "https://doi.org/10.1371/journal.pone.0204566",
+          "supporting_passage_id": "nuyujukian_native",
+          "reported": "24.0/13.6/30.8 effective characters/min with prediction for T6/T9/T5; 14.3/12.0/22.8 selections/min",
+          "same_convention_T5_bps": 2.467775526656237,
+          "one_bit_per_char_T5_bps": 0.5133333333333333,
+          "warning": "A ~.51 result requires a separate 1-bit/char language-entropy assumption, not a result printed in this paper and not the same convention used above."
+        }
+      ]
+    }
+  ]
+}

@@ -60,6 +60,21 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
   return <circle cx={cx} cy={cy} r={r} {...props} />;
 }
 
+function CalculationSource({ source }: { source?: DraftObservation["calculationSource"] }) {
+  return source ? <p data-calculation-source>Calculation source: <a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></p> : null;
+}
+
+function CandidateSources({ sources }: { sources?: DraftObservation["candidateSources"] }) {
+  if (!sources?.length) return null;
+  return <div data-candidate-sources>
+    <p><strong>Candidate sources · assignment unconfirmed</strong></p>
+    <ul>{sources.map(source => <li key={source.url}>
+      <a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>
+      <p>{source.note}</p>
+    </li>)}</ul>
+  </div>;
+}
+
 function wrapLabel(label: string, width: number) {
   const limit = Math.max(16, Math.floor(width / 7));
   const lines = [""];
@@ -350,6 +365,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
         {active.sourceUrl ? <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a> : <span>{active.sourceTitle}</span>}
         {active.note && <p>{active.note}</p>}
+        <CandidateSources sources={active.candidateSources} />
+        <CalculationSource source={active.calculationSource} />
       </> : null}
     </PointTooltip>
     <ModalSources modalOnly>
@@ -369,7 +386,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
             <td>{numericX && <>{exactNumber(point.x)}<br /></>}{point.dateLabel}</td>
             <td>{qualifiedValue(point)}</td>
-            <td>{point.sourceUrl ? <a href={point.sourceUrl} target="_blank" rel="noreferrer">{point.sourceTitle} ↗</a> : <span>{point.sourceTitle}</span>}<blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}</td>
+            <td>{point.sourceUrl ? <a href={point.sourceUrl} target="_blank" rel="noreferrer">{point.sourceTitle} ↗</a> : <span>{point.sourceTitle}</span>}<blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}<CandidateSources sources={point.candidateSources} /><CalculationSource source={point.calculationSource} /></td>
           </tr>)}</tbody>
         </table>
       </div>

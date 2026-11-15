@@ -49,7 +49,7 @@ test('BCI source evidence mounts unchanged through the generic Metrics panel and
   assert.equal(plot.id, 'bci-bitrate');
   assert.equal(plot.scale, 'log');
   assert.equal(plot.xKind, 'year');
-  assert.equal(plot.observationBasis, 'Digitized slide · approximate');
+  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*image estimate/);
   const before = JSON.stringify(evidence);
   const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(VelocityTabs, { performance: null })), `#${slug}`);
   try {
@@ -73,7 +73,7 @@ test('BCI source evidence mounts unchanged through the generic Metrics panel and
     for (const [i, point] of plot.points.entries()) {
       if (point.sourceUrl) assert.equal(rows[i].querySelector('a').href, point.sourceUrl);
       else {
-        assert.equal(rows[i].querySelectorAll('a').length, 0, 'Unresolved sources have no placeholder URLs');
+        assert.equal(rows[i].querySelectorAll('a').length, point.candidateSources?.length ?? 0, 'Only explicitly labeled candidate links, never a primary attribution');
         assert.ok(rows[i].textContent.includes(point.sourceTitle));
       }
       assert.equal(rows[i].querySelector('blockquote').textContent, point.quote);

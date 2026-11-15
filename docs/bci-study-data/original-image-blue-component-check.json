@@ -1,0 +1,75 @@
+{
+  "source_file": "/opt/data/tmp/atlas-bitrate-20261115/original-data-pass2/sumner-chart-source-original.jpg",
+  "components": [
+    {
+      "n": 634,
+      "center_x": 1578.01261829653,
+      "center_y": 1430.9842271293376,
+      "bbox": [
+        1564,
+        1417,
+        1592,
+        1445
+      ],
+      "approx_bps_original_image": 0.15923546635615837
+    },
+    {
+      "n": 631,
+      "center_x": 1501.041204437401,
+      "center_y": 1012.0301109350238,
+      "bbox": [
+        1487,
+        998,
+        1515,
+        1026
+      ],
+      "approx_bps_original_image": 0.9288642865031975
+    },
+    {
+      "n": 634,
+      "center_x": 1732.0252365930598,
+      "center_y": 1137.0347003154575,
+      "bbox": [
+        1718,
+        1123,
+        1746,
+        1151
+      ],
+      "approx_bps_original_image": 0.5488133656252068
+    },
+    {
+      "n": 631,
+      "center_x": 1501.0174326465926,
+      "center_y": 1050.973058637084,
+      "bbox": [
+        1487,
+        1037,
+        1515,
+        1065
+      ],
+      "approx_bps_original_image": 0.7884217136599092
+    }
+  ],
+  "calibration": [
+    {
+      "bps": 1,
+      "y": 994.5,
+      "dark_tick_pixels": 14
+    },
+    {
+      "bps": 0.5,
+      "y": 1159.5,
+      "dark_tick_pixels": 14
+    },
+    {
+      "bps": 0.1,
+      "y": 1541.5,
+      "dark_tick_pixels": 14
+    }
+  ],
+  "formula": "log10(bps)=a*y+b",
+  "a": -0.0018281535648994515,
+  "b": 1.8180987202925045,
+  "intermediate_tick_error_px": 0.33659237180245327,
+  "note": "Direct original-image diagnostic digitization, not author printed data. Supplied photograph-derived marks are preserved; original marks appear approximately .93,.79,.16,.55. Axis tick rows independently detected (not estimated by eye)."
+}

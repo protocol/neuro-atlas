@@ -6,7 +6,7 @@
   "referenceContext": "Photographed presentation slide; original numeric dataset unavailable",
   "referencePhotoSha256": "e2b2f7c80509607f9e53db63e7334c36de1c861019abf28a0dad939f5192eb00",
   "retrievedDate": "2026-11-15",
-  "limitations": "The original 14-point dataset/spreadsheet/table is unavailable. All plotted year/bps coordinates are approximate visual digitizations. The original WPM/CPM-to-bps conversion, trendline fit method, shaded band and benchmark derivations remain unverified. Named study links establish native results and identity context, not the digitized bps. Four cursor marks remain unidentified.",
+  "limitations": "The original 14-point dataset/spreadsheet/table is unavailable. The observation coordinates in this ledger archive the approximate visual digitization; the active chart now substitutes explicit source/derived selections in bci-bitrate.ts. The original WPM/CPM-to-bps conversion, fit method, shaded band and benchmark derivations remain unverified. Named study links establish native results and identity context, not exact original-figure statistic choices. Four cursor identities remain unconfirmed; candidate papers are listed separately in bci-bitrate.candidates.json.",
   "digitization": {
     "method": "Perspective rectification, visually selected grid/tick control points, fitted pixel-to-year/log10(bps) homography. Years rounded to nearest integer and bps to two significant digits; image distortion and manual selection remain larger than rounding precision. These are approximate coordinates, not uncertainty-calibrated measurements.",
     "rectificationSourceCornersOriginalPixels": [
@@ -160,7 +160,7 @@
     "coordinateFormula": "q = H × [pixelX, pixelY, 1]; year = homographyXOriginYear + q[0]/q[2]; bits/s = 10^(q[1]/q[2])"
   },
   "omittedOverlays": [
-    "Original regression model/statistical interpretation: unavailable; active line is a newly computed descriptive fit to the 14 approximate points",
+    "Original regression model/statistical interpretation: unavailable; active line is a newly computed descriptive fit to the 14 displayed mixed-evidence points",
     "Shaded band: uncertainty meaning and method unverified",
     "Speech and typing dashed benchmarks: exact values/derivations unavailable"
   ],
@@ -681,16 +681,18 @@
     "sameUnderlyingFigureVerified": true,
     "originalNumericalTableRecovered": false,
     "originalPlottingCodeRecovered": false,
-    "note": "Same 14-point arrangement, labels, marker classes and overlays; source raster is available, not the original numerical dataset. Existing plotted coordinates remain photo-derived approximations."
+    "note": "Same 14-point arrangement, labels, marker classes and overlays; source raster is available, not the original numerical dataset. Archived reference coordinates remain photo-derived approximations; current selections are explicit in bci-bitrate.ts."
   },
   "activeTrendline": {
-    "method": "Equal-weight ordinary least squares of log10(approximateBps) against slideYear over all 14 observations",
+    "method": "Equal-weight ordinary least squares of log10(active displayed bits/s) against reference year over all 14 mixed-evidence observations",
     "formula": "log10(rate) = interceptLog10 + slopeLog10PerX * (year - xOrigin)",
     "implementation": "src/lib/log-linear-fit.ts; fitted at runtime from rendered observations",
     "rSquaredBasis": "log10(rate)",
     "domain": "observed years only",
     "statisticalConfidenceBand": false,
     "forecast": false,
-    "sourceNativeMeasurementsSubstituted": false
+    "sourceNativeMeasurementsSubstituted": true,
+    "selectionImplementation": "bci-bitrate.ts: BCI_BITRATE_ROWS; original observations/calibration above are unchanged",
+    "composition": "2 paper-reported rates; 5 Atlas speech estimates at 5 assumed information bits/word; 1 source-authored handwriting approximation; 1 company report; 5 retained image estimates"
   }
 }

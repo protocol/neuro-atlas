@@ -1,0 +1,40 @@
+{
+  "bci-slide-unlabeled-cursor-2015-upper": [
+    {
+      "title": "Possible Gilja et al. 2015 · moderate confidence",
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf",
+      "note": "Supplementary Table 1 prints 0.93 and 0.92 Fitts bits/s, excluding hold time. Year and rate are plausible, but this is not achieved-grid bitrate and no original chart data confirms the assignment. Jarosiewicz is an equally plausible alternative."
+    },
+    {
+      "title": "Possible Jarosiewicz et al. 2015 · alternative",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4765319/",
+      "note": "The original paper defines radial-keyboard extrapolated bitrate. Pandarinath 2017 Table 1 later reports T6 0.93 bits/s (four-person average 0.59). That retrospective result is compatible with this mark but does not identify it."
+    }
+  ],
+  "bci-slide-unlabeled-cursor-2015-lower": [
+    {
+      "title": "Possible Bacher et al. 2015 · low-to-moderate confidence",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/",
+      "note": "The original study reports 9.4 ± 3.2 correct characters/min without prediction and 10.4 ± 2.4 with completion. Year and cursor-based text-entry task fit. No exact 0.76-bits/s result or original-figure assignment was recovered; converting the character rate requires a separate coding assumption. Online 2014; journal issue 2015."
+    }
+  ],
+  "bci-slide-unlabeled-cursor-2016": [
+    {
+      "title": "Possible Vansteensel et al. 2016 · moderate confidence",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/",
+      "note": "The primary paper reports 52 seconds/letter, improving to 33 with prediction; the summary rounds this to two letters/min. A declared uniform 28-symbol code would turn that rounded rate into about 0.16 bits/s, but the exact timings give about 0.092 or 0.146. This is a neural-click/scanning interface, not literal 2D cursor control. Assignment remains inferred."
+    }
+  ],
+  "bci-slide-unlabeled-cursor-2018": [
+    {
+      "title": "Possible Milekovic / Sarma et al. 2018 · low-to-moderate confidence",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/",
+      "note": "Free spelling with word completion: 6.88 ± 0.33 correct characters/min for T6 (3.07 ± 0.20 for T2). A declared uniform 28-symbol output code gives about 0.55 bits/s from 6.88; this is our illustrative conversion, not a printed ITR. Numerical/year fit is plausible, but the task is a scanning neural-switch speller. Assignment remains inferred."
+    },
+    {
+      "title": "Possible Nuyujukian et al. 2018 · cursor-task alternative",
+      "url": "https://doi.org/10.1371/journal.pone.0204566",
+      "note": "Tablet cursor control fits the category better. Reported effective typing rates with completion are 24.0, 13.6 and 30.8 characters/min; no exact 0.53-bits/s value was recovered. A different one-information-bit/character assumption would turn 30.8 into about 0.51 bits/s, but that does not prove this is the plotted study."
+    }
+  ]
+}

@@ -25,7 +25,8 @@ test('preview and initially empty modal visibly qualify source-bounded observati
           assert.ok(entry, point.id);
           assert.ok(entry.textContent.includes(point.label), point.id);
           assert.ok(entry.textContent.includes(point.qualifier), point.id);
-          assert.ok(entry.textContent.includes(point.y.toLocaleString('en-US', { maximumFractionDigits: 12 })), point.id);
+          const displayValue = plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y;
+          assert.ok(entry.textContent.includes(displayValue.toLocaleString('en-US', { maximumFractionDigits: 12 })), point.id);
         }
         assert.ok(note.textContent.includes(plot.yLabel), 'Keep units visible');
       }
