@@ -229,14 +229,14 @@ test('multi-panel definitions render separate tiles with one unambiguous panel c
   } finally { await cleanup(); }
 });
 
-test('all 14 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote', async () => {
+test('all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
   try {
     const { JSDOM } = await import('jsdom');
     const panels = [...document.querySelectorAll('[data-draft-panel]')].filter(panel => panel.querySelector('[data-source-observation]'));
-    assert.equal(panels.length, 14, 'Independent current public inventory');
+    assert.equal(panels.length, 15, 'Independent current public inventory');
     for (const panel of panels) {
       const modal = await openPanel(panel);
       const source = modal.querySelector('svg');

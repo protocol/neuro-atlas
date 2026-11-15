@@ -17,10 +17,10 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.deepEqual([...document.querySelectorAll('[data-metrics-category]')].map(n => n.dataset.metricsCategory), names);
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
     assert.equal(document.querySelector('[data-metric-more]'), null);
-    assert.equal(visible('[data-draft-chart-card]').length, 15, 'Every numeric plot and timeline is visible from the start');
+    assert.equal(visible('[data-draft-chart-card]').length, 16, 'Every numeric plot and timeline is visible from the start');
     assert.deepEqual(visible('[data-trends-card]').map(n => n.dataset.trendsCard), ['neurotech']);
     assert.equal(visible('[data-performance-card]').length, 8);
-    assert.equal(visible('svg.draft-plot-svg').length, 15);
+    assert.equal(visible('svg.draft-plot-svg').length, 16);
     assert.equal(visible('.gt-preview svg').length, 1);
     for (const name of names) {
       const el = group(name), toggle = el.querySelector('[data-metric-toggle]');
@@ -43,9 +43,9 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.equal(visible('[data-draft-chart-card], [data-trends-card], [data-performance-card]').length, 0);
     await click(document.querySelector('[data-expand-metrics]'));
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
-    assert.equal(visible('[data-draft-chart-card]').length, 15, 'Each of the 14 numeric plots and the timeline is a peer tile');
-    assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 14);
-    assert.equal(visible('[data-source-observation]').length, 78);
+    assert.equal(visible('[data-draft-chart-card]').length, 16, 'Each of the 15 numeric plots and the timeline is a peer tile');
+    assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 15);
+    assert.equal(visible('[data-source-observation]').length, 92, '78 unchanged original observations plus 14 slide-digitized BCI marks');
     assert.equal(visible('[data-trends-card]').length, 1);
     assert.equal(visible('[data-performance-card]').length, 8);
     const ids = [...document.querySelectorAll('[id]')].map(n => n.id);

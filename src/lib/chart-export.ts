@@ -3,7 +3,7 @@ import { performanceTarget } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
-export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "line" | "dashed" };
+export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
 export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; legend?: ChartLegendEntry[] };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
 const NS = "http://www.w3.org/2000/svg";
@@ -240,6 +240,7 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
       ? `<line x1="48" x2="70" y1="${cy}" y2="${cy}" stroke="${color}" stroke-width="3"${entry.marker === "dashed" ? ' stroke-dasharray="7 3"' : ""}/>`
       : entry.marker === "square" ? `<rect x="50" y="${cy - 6}" width="12" height="12" fill="${color}"/>`
       : entry.marker === "triangle" ? `<polygon points="56,${cy - 7} 63,${cy + 6} 49,${cy + 6}" fill="${color}"/>`
+      : entry.marker === "diamond" ? `<polygon points="56,${cy - 7} 63,${cy} 56,${cy + 7} 49,${cy}" fill="${color}"/>`
       : `<circle cx="56" cy="${cy}" r="6" fill="${color}"/>`;
     body.push(marker); text(entry.label, 18, false, 82);
   }

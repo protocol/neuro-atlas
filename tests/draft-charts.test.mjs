@@ -78,7 +78,7 @@ test("Draft charts renders source-backed plots as the primary gallery, retaining
     const plotted = METRIC_CHARTS.filter(isVisibleMetric);
     assert.ok(plotted.length > 0, 'Actual source-backed production data is assembled');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="plotted"]').length, plotted.length);
-    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 18);
+    assert.equal(document.querySelectorAll("[data-draft-chart-card]").length, 19);
     assert.deepEqual([...document.querySelectorAll("[data-draft-chart-category]")].map(group => group.dataset.draftChartCategory), METRIC_CHART_CATEGORIES);
     for (const chart of plotted) {
       const card = [...document.querySelectorAll('[data-draft-chart-card]')].find(card => card.dataset.draftChartCard === chart.title);

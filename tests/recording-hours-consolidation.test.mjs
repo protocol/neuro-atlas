@@ -91,7 +91,7 @@ test('the real page retires only the duplicate hours reference, its self-link an
     assert.equal(document.querySelector('dialog .draft-chart-methodology dd').textContent, `x-axis: ${shared.xLabel} · y-axis: ${shared.yLabel}`);
     assert.match(document.querySelector('dialog .draft-plot-legend').textContent, /Log scale/);
     await click(document.querySelector('dialog .pc-modal-header button')); await settle(); await settle();
-    assert.equal(document.querySelectorAll('#metric-category-3 [data-metric-tile]').length, 3);
+    assert.equal(document.querySelectorAll('#metric-category-3 [data-metric-tile]').length, 4);
     for (const term of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO', 'JapanEEG']) {
       await search(term);
       assert.equal(card().closest('[hidden]'), null, term);

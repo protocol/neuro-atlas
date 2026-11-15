@@ -56,8 +56,8 @@ test('natural-size observers can grow and shrink all cards and ignore deliveries
       };
     });
     const catalog = document.querySelector('.metrics-index');
-    const observer = observers.findLast(observer => observer.targets.length === 48);
-    assert.ok(observer, 'Watch natural content and footers for all 24 charts, not the equalized outer boxes');
+    const observer = observers.findLast(observer => observer.targets.length === 50);
+    assert.ok(observer, 'Watch natural content and footers for all 25 charts, not the equalized outer boxes');
     for (const next of [600, 250]) {
       height = next;
       await act(async () => observer.callback([]));
@@ -152,7 +152,7 @@ test('every real Metrics chart has separately measurable natural content and a f
   try {
     await click(document.querySelector('[data-expand-metrics]'));
     const cards = [...document.querySelectorAll('[data-metric-rail] article')].filter(card => card.querySelector('[data-draft-popout-trigger], .pc-trigger'));
-    assert.equal(cards.length, 24);
+    assert.equal(cards.length, 25);
     for (const card of cards) {
       assert.equal(card.querySelectorAll('[data-metric-card-body]').length, 1, card.textContent.slice(0, 100));
       assert.equal(card.querySelectorAll('[data-metric-card-footer]').length, 1);
@@ -176,8 +176,8 @@ test('equal cards allocate spare space to one preview without feeding expansion 
   try {
     const catalog=document.querySelector('.metrics-index');
     const bodies=[...catalog.querySelectorAll('[data-metric-card-body]')];
-    assert.equal(bodies.length,24);
-    assert.equal(catalog.querySelectorAll('[data-metric-preview-extra]').length,24,'One fillable preview per unopened card');
+    assert.equal(bodies.length,25);
+    assert.equal(catalog.querySelectorAll('[data-metric-preview-extra]').length,25,'One fillable preview per unopened card');
     assert.equal(catalog.style.getPropertyValue('--metric-card-height'),'560px');
     for(const body of bodies) {
       const extra=Number.parseFloat(body.closest('article').style.getPropertyValue('--metric-preview-extra'));

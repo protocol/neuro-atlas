@@ -32,9 +32,9 @@ test('Metrics is one full-rail-default, keyboard-native index in the five-group 
     assert.equal(document.activeElement, toggles[0]);
     await click(toggles[0]);
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15, 'One peer tile per numeric plot or timeline');
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 16, 'One peer tile per numeric plot or timeline');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 78);
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 92, '78 unchanged original observations plus 14 slide-digitized BCI marks');
   } finally { await cleanup(); }
 });
 
@@ -162,10 +162,10 @@ test('archived source snapshots and provenance remain byte-identical to base', (
   for (const [path, sha] of Object.entries(frozen)) assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'), sha, path);
 });
 test('every canonical share link has exactly one legacy alias and an independently addressable target', () => {
-  assert.equal(metricChartAnchors.length, 46);
-  assert.equal(new Set([...metricChartAnchors, ...draftChartAnchors]).size, 92);
+  assert.equal(metricChartAnchors.length, 48);
+  assert.equal(new Set([...metricChartAnchors, ...draftChartAnchors]).size, 96);
   for (const id of metricChartAnchors) assert.equal(performanceUrl('https://atlas.example/base/field-velocity?a=1&a=2', id), `https://atlas.example/base/field-velocity?a=1&a=2#${canonicalPerformanceAnchor(id)}`);
-  assert.equal(DRAFT_CHART_LINKS.length, 20);
+  assert.equal(DRAFT_CHART_LINKS.length, 21);
 });
 
 for (const anchor of ['draft-panel-tissue-cm3', 'metric-panel-tissue-cm3']) {

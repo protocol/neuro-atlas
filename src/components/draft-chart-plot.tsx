@@ -54,6 +54,9 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
     const halfBase = Math.sqrt(3) * r / 2;
     return <polygon points={`${cx},${cy - r} ${cx + halfBase},${cy + r / 2} ${cx - halfBase},${cy + r / 2}`} {...props} />;
   }
+  if (marker === "diamond") {
+    return <polygon points={`${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`} {...props} />;
+  }
   return <circle cx={cx} cy={cy} r={r} {...props} />;
 }
 
@@ -228,7 +231,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
-      legend,
+      legend: plot.exportPointKey ? [...legend, ...annotations.map(({ point, text }, index) => ({
+        label: `${index + 1}. ${text}`, color: groupColor(point), marker: point.marker,
+      }))] : legend,
       notes: [plot.scope, plot.seriesNote ?? "",
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(energyAxis ? [energyAxis.note] : []),
@@ -327,13 +332,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {active.group && <p>{active.group}</p>}
         <p>{active.dateLabel}{numericX && ` · ${plot.xLabel}: ${exactNumber(active.x)}`}</p>
         <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
-        <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a>
+        {active.sourceUrl ? <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a> : <span>{active.sourceTitle}</span>}
         {active.note && <p>{active.note}</p>}
       </> : null}
     </PointTooltip>
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
-      <ul className="pc-sources">{[...new Map(plot.points.map(point => [point.sourceUrl, point.sourceTitle])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
+      <ul className="pc-sources">{[...new Map(plot.points.flatMap(point => point.sourceUrl ? [[point.sourceUrl, point.sourceTitle] as const] : [])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
     </ModalSources>
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
@@ -347,7 +352,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
             <td>{numericX && <>{exactNumber(point.x)}<br /></>}{point.dateLabel}</td>
             <td>{qualifiedValue(point)}</td>
-            <td><a href={point.sourceUrl} target="_blank" rel="noreferrer">{point.sourceTitle} ↗</a><blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}</td>
+            <td>{point.sourceUrl ? <a href={point.sourceUrl} target="_blank" rel="noreferrer">{point.sourceTitle} ↗</a> : <span>{point.sourceTitle}</span>}<blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}</td>
           </tr>)}</tbody>
         </table>
       </div>

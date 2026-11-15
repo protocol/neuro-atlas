@@ -4,7 +4,8 @@ export type DraftObservation = {
   x: number;
   y: number;
   label: string;
-  sourceUrl: string;
+  /** Omit when the source identity or a verifiable public record is unresolved. */
+  sourceUrl?: string;
   sourceTitle: string;
   quote: string;
   dateLabel: string;
@@ -13,7 +14,7 @@ export type DraftObservation = {
   /** Optional presentation override; otherwise the existing group palette applies. */
   color?: string;
   /** Centered on the source coordinates; defaults to a circle. */
-  marker?: "circle" | "square" | "triangle";
+  marker?: "circle" | "square" | "triangle" | "diamond";
   note?: string;
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
@@ -39,6 +40,8 @@ export type DraftPlot = {
   connections?: { id: string; label: string; pointIds: string[] }[];
   /** Optional evidence basis; default preserves source-reported charts. */
   observationBasis?: string;
+  /** Append concise numbered observation identities to the exported image key. */
+  exportPointKey?: boolean;
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

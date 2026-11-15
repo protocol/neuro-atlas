@@ -1,0 +1,25 @@
+[
+  {
+    "id": "metric-panel-bci-bitrate",
+    "title": "BCI information transfer over time",
+    "family": "draft",
+    "point_size": {
+      "applicability": "applies",
+      "decision": "Use shared 5 CSS-pixel preview / 6px expanded circumradii, with circle, triangle, square and diamond scope markers centered at unchanged source coordinates."
+    },
+    "annual_guides": {
+      "applicability": "applies",
+      "decision": "Integer-year divisions retain the parent-provided year coordinates and disclosed digitization/date uncertainty."
+    },
+    "series_connections": {
+      "applicability": "not_applicable",
+      "decision": "Slide-digitized approximate observations span different tasks, cohorts and measurement definitions; keep every mark unconnected, with no fitted trend or extrapolation."
+    },
+    "wider_ratio": {
+      "applicability": "applies",
+      "decision": "Reuse the native generic responsive plot, equal-height card contract and existing branded no-footnote PNG pipeline."
+    },
+    "implementation": "covered_by_source_and_regressions",
+    "native_qa": "pending_parent"
+  }
+]

@@ -12,7 +12,11 @@ import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-char
 globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
 const raw = JSON.parse(bytes);
-const charts = METRIC_CHARTS.filter(isVisibleMetric);
+// This suite pins the original curated scientific corpus and its copy rewrite.
+// The additive slide-digitized BCI corpus has its own data/integration contracts;
+// do not regenerate these scientific goldens to absorb a new evidence basis.
+const legacyMetricEvidence = Object.fromEntries(Object.entries(METRIC_CHART_EVIDENCE).filter(([title]) => title !== 'BCI information transfer over time'));
+const charts = METRIC_CHARTS.filter(chart => chart.title !== 'BCI information transfer over time' && isVisibleMetric(chart));
 const plots = charts.flatMap(chart => METRIC_CHART_EVIDENCE[chart.title].plots);
 const plot = id => plots.find(item => item.id === id);
 const point = id => plots.flatMap(item => item.points).find(item => item.id === id);
@@ -32,7 +36,7 @@ function scientificFields(evidence) {
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
   assert.equal(digest(bytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
   assert.equal(digest(JSON.stringify(scientificFields(DRAFT_CHART_EVIDENCE))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
-  assert.equal(digest(JSON.stringify(scientificFields(METRIC_CHART_EVIDENCE))), 'cbe28e7f7fff6aed35c27af8702b0fc827bb1c5817510ca0ac5d7d94afc499df');
+  assert.equal(digest(JSON.stringify(scientificFields(legacyMetricEvidence))), 'cbe28e7f7fff6aed35c27af8702b0fc827bb1c5817510ca0ac5d7d94afc499df');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 7], ['largest-connectome-neurons', 5], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],

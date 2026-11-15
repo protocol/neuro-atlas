@@ -5,6 +5,7 @@ import React, { act } from 'react';
 import { VelocityTabs } from '../src/components/sections/velocity-tabs.tsx';
 import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
+import { BCI_BITRATE_EVIDENCE } from '../src/data/bci-bitrate.ts';
 import { mount, click, settle } from './modal-helpers.mjs';
 import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
 globalThis.React = React;
@@ -17,10 +18,11 @@ test('retired panels are unmounted, with every other source observation retained
     await click(document.querySelector('[data-expand-metrics]'));
     for (const id of retiredPoints) assert.equal(!!document.querySelector(`[data-source-observation="${id}"]`), false, id);
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
-    assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), expected);
+    const newIds = BCI_BITRATE_EVIDENCE.plots.flatMap(plot => plot.points.map(point => point.id));
+    assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), [...expected, ...newIds].sort());
     assert.equal(expected.length, 78);
-    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 15);
-    assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 15); // 14 numeric + timeline
+    assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 16);
+    assert.equal(document.querySelectorAll('svg.draft-plot-svg').length, 16); // 15 numeric + timeline
     assert.equal(document.querySelector('[data-metric-toggle="Tissue quality and annotation"]'), null);
     assert.doesNotMatch(document.body.textContent, /No plotted observations yet|Section rejection and loss|comparative cohorts/i);
     assert.equal(document.querySelectorAll('[data-source-observation^="roboem-"]').length, 12);
@@ -58,7 +60,7 @@ test('search and default full-rail inventories describe only the retained panels
     const counts = [...document.querySelectorAll('[data-metrics-category]')].map(category => [category.dataset.metricsCategory,
       category.querySelectorAll('[data-draft-popout], [data-trends-card], [data-performance-card]').length]);
     assert.deepEqual(counts, [
-      ['Neurotech field engagement', 8], ['Human interfaces and recordings', 3],
+      ['Neurotech field engagement', 8], ['Human interfaces and recordings', 4],
       ['Mapping Scale', 6], ['Cost and automation', 4], ['Simulation and NeuroAI', 3],
     ], 'Pin actual chart inventory independently of the category headings');
     assert.equal(document.querySelectorAll('[data-performance-card="revealed_commitments"]').length, 1, 'The former scalar is now one sourced over-time cohort chart');

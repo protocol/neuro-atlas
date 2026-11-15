@@ -1,5 +1,6 @@
 import { DRAFT_CHARTS, type DraftChart } from "./draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
+import { BCI_BITRATE_CHART, BCI_BITRATE_EVIDENCE } from "./bci-bitrate";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
 // Shared axes change presentation, not source records, dates or measured values.
@@ -48,7 +49,7 @@ const costEfficiency: DraftChart = {
   definition: "Source-estimated acquisition costs per 10M voxels at each protocol's stated resolution and scope.",
   constraint: acquisitionEconomics.scope,
 };
-export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency];
+export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency, BCI_BITRATE_CHART];
 
 /** Presentation retirement only. Original evidence and stable URL identities remain intact. */
 export const RETIRED_METRIC_PLOT_IDS: ReadonlySet<string> = new Set([
@@ -78,7 +79,7 @@ export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.
     status: "plotted",
     summary: "Source-estimated acquisition costs at each protocol's stated resolution and scope.",
     plots: [acquisitionEconomics],
-  }]]),
+  }], [BCI_BITRATE_CHART.title, BCI_BITRATE_EVIDENCE]]),
 );
 
 export function isVisibleMetric(chart: DraftChart) {

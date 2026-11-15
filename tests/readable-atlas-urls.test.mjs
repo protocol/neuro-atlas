@@ -37,7 +37,7 @@ test('every rendered chart shares its actual visible title, including exports an
   try {
     const doc = dom.window.document;
     const buttons = [...doc.querySelectorAll('button[aria-label^="Copy link to "]')];
-    assert.equal(buttons.length, 24);
+    assert.equal(buttons.length, 25);
     assert.deepEqual(buttons.map(b => b.getAttribute('aria-label').slice(13)).sort(), inventory.map(([title]) => title).sort());
     for (const [title, slug] of inventory) {
       const button = buttons.find(b => b.getAttribute('aria-label') === `Copy link to ${title}`);
@@ -173,7 +173,7 @@ test('actual copy controls and their denied-clipboard fallback use canonical URL
   const cleanup = await mount(React.createElement(Page), '#metrics');
   try {
     const buttons = [...document.querySelectorAll('button[aria-label^="Copy link to "]')];
-    assert.equal(buttons.length, 24);
+    assert.equal(buttons.length, 25);
     for (const button of buttons) {
       const title = button.getAttribute('aria-label').slice(13);
       const slug = inventory.find(([name]) => name === title)[1];

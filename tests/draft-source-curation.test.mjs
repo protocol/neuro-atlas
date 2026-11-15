@@ -50,7 +50,9 @@ test('proofreading scope distinguishes incomplete axons and incompatible NeuVue 
 test('all candidate definitions, evidence gaps and additive share targets remain intact',async()=>{
  const {DRAFT_CHART_LINKS}=await import('../src/data/draft-chart-links.ts');
  const expected=JSON.parse(readFileSync('tests/fixtures/draft-chart-links.json','utf8'));
- assert.deepEqual(DRAFT_CHART_LINKS,expected);
+ // Keep the frozen historical URL records exact; the additive BCI contract is
+ // independently pinned in bci-bitrate-integration.test.mjs.
+ assert.deepEqual(DRAFT_CHART_LINKS.filter(link=>link.id!=='draft-bci-bitrate'),expected);
  assert.equal(Object.keys(evidence).length,19);
  assert.equal(Object.values(evidence).filter(c=>c.status==='gap').length,5);
  assert.equal(Object.values(evidence).flatMap(c=>c.plots).length,23);

@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "valueBasis": "visual-digitization",
+  "title": "BCI information transfer over time",
+  "referenceTitle": "Bitrate Scaling",
+  "referenceContext": "Photographed presentation slide; original numeric dataset unavailable",
+  "referencePhotoSha256": "e2b2f7c80509607f9e53db63e7334c36de1c861019abf28a0dad939f5192eb00",
+  "retrievedDate": "2026-11-15",
+  "limitations": "The original 14-point dataset/spreadsheet/table is unavailable. All plotted year/bps coordinates are approximate visual digitizations. The original WPM/CPM-to-bps conversion, fitted line, shaded band and benchmark derivations remain unverified. Named study links establish native results and identity context, not the digitized bps. Four cursor marks remain unidentified.",
+  "digitization": {
+    "method": "Perspective rectification, visually selected grid/tick control points, fitted pixel-to-year/log10(bps) homography. Years rounded to nearest integer and bps to two significant digits; image distortion and manual selection remain larger than rounding precision. These are approximate coordinates, not uncertainty-calibrated measurements.",
+    "rectificationSourceCornersOriginalPixels": [
+      [
+        200,
+        584
+      ],
+      [
+        3396,
+        292
+      ],
+      [
+        3500,
+        2490
+      ],
+      [
+        176,
+        2330
+      ]
+    ],
+    "rectifiedDimensionsPixels": [
+      2200,
+      1400
+    ],
+    "controlPoints": [
+      {
+        "pixel": [
+          400,
+          1283
+        ],
+        "year": 2000,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          646,
+          1280
+        ],
+        "year": 2005,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          892,
+          1273
+        ],
+        "year": 2010,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          1150,
+          1266
+        ],
+        "year": 2015,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          1396,
+          1260
+        ],
+        "year": 2020,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          1646,
+          1250
+        ],
+        "year": 2025,
+        "log10Bps": -1.0
+      },
+      {
+        "pixel": [
+          400,
+          199
+        ],
+        "year": 2000,
+        "log10Bps": 1.6989700043360187
+      },
+      {
+        "pixel": [
+          400,
+          475
+        ],
+        "year": 2000,
+        "log10Bps": 1.0
+      },
+      {
+        "pixel": [
+          400,
+          602
+        ],
+        "year": 2000,
+        "log10Bps": 0.6989700043360189
+      },
+      {
+        "pixel": [
+          400,
+          894
+        ],
+        "year": 2000,
+        "log10Bps": 0.0
+      },
+      {
+        "pixel": [
+          400,
+          1015
+        ],
+        "year": 2000,
+        "log10Bps": -0.3010299956639812
+      }
+    ],
+    "homography": [
+      [
+        0.01971341008460277,
+        1.9764243185042327e-05,
+        -7.895408157791435
+      ],
+      [
+        -7.791360979280903e-05,
+        -0.0024447817070642796,
+        2.2032206665419722
+      ],
+      [
+        5.911406193687642e-06,
+        -2.0600234879110145e-05,
+        1.0
+      ]
+    ],
+    "homographyXOriginYear": 2000
+  },
+  "omittedOverlays": [
+    "Regression line: method and underlying data unverified",
+    "Shaded band: uncertainty meaning and method unverified",
+    "Speech and typing dashed benchmarks: exact values/derivations unavailable"
+  ],
+  "observations": [
+    {
+      "id": "bci-slide-kennedy-bakay",
+      "label": "Kennedy & Bakay",
+      "slideLabel": "Kennedy & Bakay (neurotrophic electrode)",
+      "slideYear": 2000,
+      "approximateBps": 0.24,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        406,
+        1138
+      ],
+      "identityStatus": "labeled",
+      "group": "cursor",
+      "nativeSource": {
+        "url": "https://doi.org/10.1109/86.847815",
+        "title": "Direct control of a computer from the human central nervous system",
+        "date": "2000",
+        "dateBasis": "paper publication year",
+        "quote": "Our present patient has learned to control the cursor for the production of synthetic speech and typing.",
+        "note": "The primary paper metadata/abstract identify a relevant neurotrophic-electrode report, but its full text and an exact bps value were not retrieved. No character-rate conversion is assumed."
+      }
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-upper",
+      "label": "Unlabeled cursor report A",
+      "slideLabel": "Cursor / Grid control",
+      "slideYear": 2015,
+      "approximateBps": 0.9,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1162,
+        882
+      ],
+      "identityStatus": "unresolved",
+      "group": "cursor",
+      "unresolvedNote": "No legible study attribution accompanies this cursor/grid-control mark. Year and bps are approximate slide coordinates; candidate papers were not assigned by resemblance."
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-lower",
+      "label": "Unlabeled cursor report B",
+      "slideLabel": "Cursor / Grid control",
+      "slideYear": 2015,
+      "approximateBps": 0.76,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1161,
+        913
+      ],
+      "identityStatus": "unresolved",
+      "group": "cursor",
+      "unresolvedNote": "No legible study attribution accompanies this cursor/grid-control mark. Year and bps are approximate slide coordinates; candidate papers were not assigned by resemblance."
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2016",
+      "label": "Unlabeled cursor report C",
+      "slideLabel": "Cursor / Grid control",
+      "slideYear": 2016,
+      "approximateBps": 0.16,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1202,
+        1188
+      ],
+      "identityStatus": "unresolved",
+      "group": "cursor",
+      "unresolvedNote": "No legible study attribution accompanies this cursor/grid-control mark. Year and bps are approximate slide coordinates; candidate papers were not assigned by resemblance."
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2018",
+      "label": "Unlabeled cursor report D",
+      "slideLabel": "Cursor / Grid control",
+      "slideYear": 2018,
+      "approximateBps": 0.53,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1308,
+        972
+      ],
+      "identityStatus": "unresolved",
+      "group": "cursor",
+      "unresolvedNote": "No legible study attribution accompanies this cursor/grid-control mark. Year and bps are approximate slide coordinates; candidate papers were not assigned by resemblance."
+    },
+    {
+      "id": "bci-slide-pandarinath",
+      "label": "Pandarinath et al.",
+      "slideLabel": "Pandarinath et al. (ReFIT-KF, grid task)",
+      "slideYear": 2017,
+      "approximateBps": 3.5,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1270,
+        640
+      ],
+      "identityStatus": "labeled",
+      "group": "cursor",
+      "nativeSource": {
+        "url": "https://doi.org/10.7554/eLife.18554",
+        "title": "High performance communication by people with paralysis using an intracortical brain-computer interface",
+        "date": "2017-02-21",
+        "dateBasis": "paper publication",
+        "quote": "average performance was 4.16 ± 0.39 bps",
+        "note": "Primary study mean: 4.16 ± 0.39 bps on a 9×9 grid. A 6×6 condition reports 3.7 ± 0.4 bps; the slide’s chosen condition/statistic is unconfirmed. The photographed value remains approximate rather than silently replaced by either result."
+      }
+    },
+    {
+      "id": "bci-slide-neuralink",
+      "label": "Neuralink PRIME",
+      "slideLabel": "Neuralink PRIME (Webgrid, 30×30)",
+      "slideYear": 2024,
+      "approximateBps": 8.7,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1623,
+        466
+      ],
+      "identityStatus": "labeled",
+      "group": "cursor",
+      "nativeSource": {
+        "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+        "title": "PRIME Study Progress Update — User Experience (company report)",
+        "date": "2024-05-08",
+        "dateBasis": "company disclosure",
+        "quote": "He has subsequently achieved 8.0 BPS and is currently trying to beat scores of the Neuralink engineers using a mouse (~10 BPS).",
+        "note": "The May 8, 2024 company update reports an 8.0-bps achievement; it does not identify the slide’s exact value/date/30×30 combination. The later October 1, 2026 post cites a previous 10.39-bps record without dating its achievement. Company claims are distinct from independently validated study results."
+      }
+    },
+    {
+      "id": "bci-slide-stentrode",
+      "label": "Synchron Stentrode",
+      "slideLabel": "Synchron Stentrode (endovascular switch)",
+      "slideYear": 2021,
+      "approximateBps": 0.47,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1458,
+        986
+      ],
+      "identityStatus": "labeled",
+      "group": "switch",
+      "nativeSource": {
+        "url": "https://doi.org/10.1136/neurintsurg-2020-016862",
+        "title": "Motor neuroprosthesis implanted with neurointerventional surgery improves capacity for activities of daily living tasks in severe paralysis",
+        "date": "2020-10-28",
+        "dateBasis": "online publication; February 2021 journal issue",
+        "quote": "The participant achieved 1.33 (1.58, 0.94–1.58) bits/trial at an ITR of 0.46 (0.41, 0.28–0.63) bits s -1 with the motor neuroprosthesis alone, and 4.43 (4.95, 3.85–4.95) bits/trial at an ITR of 1.57 (1.40, 0.98–2.11) bits s -1 was transmitted with the motor neuroprosthesis + eye-tracker.",
+        "note": "Participant 2 mean isolated motor-neuroprosthesis contribution: 0.46 bps; participant 1: 0.32. Actual typing used eye-tracking; the isolated contribution is an author estimate. Hybrid motor-neuroprosthesis plus eye-tracker results were 1.08 and 1.57 bps. The slide uses a 2021 placement; the exact selected statistic is unconfirmed."
+      }
+    },
+    {
+      "id": "bci-slide-handwriting",
+      "label": "Willett et al. · handwriting",
+      "slideLabel": "Willett et al. (handwriting, 90 cpm)",
+      "slideYear": 2021,
+      "approximateBps": 6.6,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1474,
+        520
+      ],
+      "identityStatus": "labeled",
+      "group": "handwriting",
+      "nativeSource": {
+        "url": "https://www.nature.com/articles/s41586-021-03506-2",
+        "title": "High-performance brain-to-text communication via handwriting",
+        "date": "2021-05-12",
+        "dateBasis": "first online publication; issue 2021-05-13",
+        "rate": {
+          "value": 90,
+          "unit": "characters/minute",
+          "statistic": "mean across four blocks on final evaluation day",
+          "task": "prompted copy handwriting",
+          "error": {
+            "value": 5.4,
+            "unit": "percent",
+            "metric": "character_error_rate_pct"
+          }
+        },
+        "quote": "Notably, typing speeds were high, plateauing at 90 characters per minute with a mean character error rate of 5.4% (averaged across all four blocks on the final day) (Fig. 2c).",
+        "note": "90 cpm final day pairs with 5.4% CER / 94.6% character accuracy, not the overall 94.1% accuracy. Do not mix 6.18 bps author approximation into a common 6-bits/word series without a visibly separate metric category. Separate author technical report gives an approximate 6.18 bps using an empirical corrected-typing conversion; this is separate from the photographed coordinate."
+      }
+    },
+    {
+      "id": "bci-slide-moses",
+      "label": "Moses & Chang",
+      "slideLabel": "Moses & Chang (ECoG speech, 50-word)",
+      "slideYear": 2021,
+      "approximateBps": 1.2,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1465,
+        818
+      ],
+      "identityStatus": "labeled",
+      "group": "speech",
+      "nativeSource": {
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2027540",
+        "title": "Neuroprosthesis for Decoding Speech in a Paralyzed Person with Anarthria",
+        "date": "2021-07-14",
+        "dateBasis": "first online publication; issue 2021-07-15",
+        "rate": {
+          "value": 15.2,
+          "unit": "words/minute",
+          "statistic": "median across 150 trials",
+          "task": "real-time visually prompted sentence decoding, language model enabled",
+          "error": {
+            "value": 25.6,
+            "unit": "percent",
+            "metric": "word_error_rate_pct"
+          },
+          "n_trials": 150,
+          "n_blocks": 15,
+          "trials_per_block": 10,
+          "error_ci": {
+            "level_pct": 95,
+            "lower": 17.1,
+            "upper": 37.1
+          }
+        },
+        "quote": "We decoded sentences from the participant’s cortical activity in real time at a median rate of 15.2 words per minute, with a median word error rate of 25.6%.",
+        "note": "The median WER across blocks and median WPM across trials are source-level aggregate pairings, not a common per-trial information channel estimate. 50-word restricted vocabulary; a separate conversational demonstration should not be substituted for the measured prompted task."
+      }
+    },
+    {
+      "id": "bci-slide-willett-speech",
+      "label": "Willett et al. · speech",
+      "slideLabel": "Willett et al. (speech, 62 WPM)",
+      "slideYear": 2023,
+      "approximateBps": 4.9,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1570,
+        570
+      ],
+      "identityStatus": "labeled",
+      "group": "speech",
+      "nativeSource": {
+        "url": "https://www.nature.com/articles/s41586-023-06377-x",
+        "title": "A high-performance speech neuroprosthesis",
+        "date": "2023-08-23",
+        "dateBasis": "first online publication",
+        "rate": {
+          "value": 62,
+          "unit": "words/minute",
+          "statistic": "headline/overall mean pace",
+          "task": "real-time held-out prompted sentences",
+          "error": {
+            "value": 23.8,
+            "unit": "percent",
+            "metric": "word_error_rate_pct"
+          },
+          "rate_pairing_scope": "Headline mean pace is reported adjacent to the vocabulary-specific aggregate WER; not claimed to be separately measured at exactly 62 WPM for each condition."
+        },
+        "quote": "T12 achieved a 9.1% word error rate for the 50-word vocabulary across all vocalizing days (11.2% for silent) and a 23.8% word error rate for the 125,000-word vocabulary across all vocalizing days (24.7% for silent).",
+        "note": "Do not combine 9.1% WER with the 125,000-word vocabulary; 9.1% is the 50-word vocalized condition. Unconstrained large vocabulary does not mean the reported evaluation was unprompted free conversation."
+      }
+    },
+    {
+      "id": "bci-slide-metzger",
+      "label": "Metzger & Chang",
+      "slideLabel": "Metzger & Chang (ECoG speech, 78 WPM)",
+      "slideYear": 2023,
+      "approximateBps": 6.2,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1572,
+        528
+      ],
+      "identityStatus": "labeled",
+      "group": "speech",
+      "nativeSource": {
+        "url": "https://www.nature.com/articles/s41586-023-06443-4",
+        "title": "A high-performance neuroprosthesis for speech decoding and avatar control",
+        "date": "2023-08-23",
+        "dateBasis": "first online publication",
+        "rate": {
+          "value": 78.3,
+          "unit": "words/minute",
+          "statistic": "median",
+          "task": "real-time text decoding of held-out silently attempted prompted sentences",
+          "error": {
+            "value": 25.5,
+            "unit": "percent",
+            "metric": "word_error_rate_pct"
+          },
+          "rate_ci": {
+            "level_pct": 99,
+            "lower": 75.5,
+            "upper": 79.4
+          },
+          "error_ci": {
+            "level_pct": 99,
+            "lower": 19.3,
+            "upper": 34.5
+          },
+          "n_trials": 249,
+          "n_pseudo_blocks": 25
+        },
+        "quote": "We observed a median real-time decoding rate of 78.3 WPM (99% CI \\[75.5, 79.4\\]; Fig. 2f).",
+        "note": "A 2024 author correction affects electrode anatomical assignments, not real-time decoding performance. 1,024-word online result must not be combined with 39,378-word offline simulation. Use 78 for a faithful rounded slide label or 78.3 for primary-text precision; do not silently pretend the original slide encoded that precision."
+      }
+    },
+    {
+      "id": "bci-slide-card-2024",
+      "label": "Card & Stavisky · 2024",
+      "slideLabel": "Card & Stavisky (speech, 33 WPM, 2.5% WER)",
+      "slideYear": 2024,
+      "approximateBps": 2.6,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1616,
+        679
+      ],
+      "identityStatus": "labeled",
+      "group": "speech",
+      "nativeSource": {
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2314132",
+        "title": "An Accurate and Rapidly Calibrating Speech Neuroprosthesis",
+        "date": "2024-08-14",
+        "dateBasis": "first online publication; issue 2024-08-15",
+        "rate": {
+          "value": 31.6,
+          "unit": "words/minute",
+          "statistic": "mean, final five copy-task evaluation sessions",
+          "task": "prompted copy task at self-paced speaking rate",
+          "error": {
+            "value": 2.5,
+            "unit": "percent",
+            "metric": "word_error_rate_pct"
+          },
+          "rate_ci": {
+            "level_pct": 95,
+            "lower": 31.2,
+            "upper": 32.0
+          },
+          "error_ci": {
+            "level_pct": 95,
+            "lower": 2.0,
+            "upper": 3.1
+          }
+        },
+        "quote": "The mean decoding performance for the copy task in the final five evaluation sessions was a word error rate of 2.5% (95% CI, 2.0 to 3.1) at the participant’s self-paced speaking rate of 31.6 words per minute (95% CI, 31.2 to 32.0) (Fig. S1B), with individual daily mean word error rates ranging from 1.0 to 3.3% (Table S3).",
+        "note": "Slide 33 WPM is not the final-paper aggregate 31.6 WPM. Use 31.6 paired with 2.5% WER, not 33. Do not silently substitute a final-day 32.8 WPM value for the five-session aggregate; 32.8 was not established from the excerpts retrieved in this worker."
+      }
+    },
+    {
+      "id": "bci-slide-card-home",
+      "label": "Card & Stavisky · home use",
+      "slideLabel": "Card & Stavisky (speech, 56 WPM, home use)",
+      "slideYear": 2025,
+      "approximateBps": 4.4,
+      "qualifier": "≈",
+      "valueBasis": "visual-digitization",
+      "pixelCenter": [
+        1670,
+        586
+      ],
+      "identityStatus": "labeled",
+      "group": "speech",
+      "nativeSource": {
+        "url": "https://www.biorxiv.org/content/10.1101/2025.06.26.661591v1.full",
+        "title": "Long-term independent use of an intracortical brain-computer interface for speech and cursor control",
+        "date": "2025-07-07",
+        "dateBasis": "bioRxiv v1 posting, not DOI date string; peer-reviewed online publication 2026-06-15",
+        "rate": {
+          "value": 56.1,
+          "unit": "words/minute",
+          "statistic": "mean",
+          "task": "unconstrained personal use at home",
+          "error": null,
+          "n_sentences": 183060,
+          "n_words": 1960163,
+          "accuracy_measure": {
+            "value_pct": 92.3,
+            "metric": "participant-rated sentences at least mostly correct",
+            "not_word_error_rate": true
+          }
+        },
+        "quote": "He communicated 183,060 sentences – totaling 1,960,163 words – at an average rate of 56.1 words per minute.",
+        "note": "56.1 WPM personal use cannot be paired with 99.2% prompted-copy word accuracy as if the same task. 92.3% sentence self-rating is not 7.7% WER. 2025 preprint is legitimate date for historical slide, but identify it explicitly; final paper belongs to 2026. Same participant as Card 2024, not an independent cohort. Preprint v1 posted July 7, 2025; final Nature Medicine paper published June 15, 2026. Self-rated sentence correctness is a different endpoint from WER."
+      }
+    }
+  ]
+}
