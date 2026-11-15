@@ -1,6 +1,7 @@
 import source from "./bci-bitrate.source.json";
 import type { DraftChart } from "./draft-charts";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
+import { fitLogLinear } from "@/lib/log-linear-fit";
 
 const groups: Record<string, { label: string; color: string; marker: DraftObservation["marker"] }> = {
   cursor: { label: "Cursor / grid control", color: "#1967d2", marker: "circle" },
@@ -33,6 +34,10 @@ const points: DraftObservation[] = source.observations.map(point => {
   };
 });
 
+export const BCI_BITRATE_FIT = fitLogLinear(points);
+
+const fitNote = `Equal-weight ordinary least squares of log10(bits/s) against year across all ${BCI_BITRATE_FIT.n} approximate, photo-digitized observations, including repeated years. log10(rate) = ${BCI_BITRATE_FIT.interceptLog10.toFixed(6)} + ${BCI_BITRATE_FIT.slopeLog10PerX.toFixed(6)} × (year − ${BCI_BITRATE_FIT.xOrigin}); R² in log10 space = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(2)}. Descriptive fit over the observed years only; heterogeneous tasks and unrecovered language-rate conversions limit interpretation. The original slide's model remains unavailable. No forecast or confidence band is shown.`;
+
 const plot: DraftPlot = {
   id: "bci-bitrate",
   title: "BCI information transfer over time",
@@ -43,13 +48,13 @@ const plot: DraftPlot = {
   valueSignificantDigits: 2,
   observationBasis: "Digitized slide · approximate",
   scope: "Approximate reconstruction of the photographed Bitrate Scaling chart. All 14 plotted coordinates come from the slide; linked papers provide separate native metrics and study context. Four cursor reports remain unidentified.",
-  seriesNote: "The original numeric dataset and WPM/CPM-to-bps conversion remain unverified. No new language-to-bitrate conversion is assumed. Source task definitions, vocabulary sizes, error measures and statistical summaries differ. The original trendline is visually reconstructed as a separate olive reference. Its fit method remains unavailable; no new regression or forecast is computed. The shaded band and speech/typing benchmarks remain omitted because their derivations were not recovered.\n\nYears retain the slide’s placement. Stentrode was published online in 2020 with a 2021 journal issue; the independent-home-use speech result was posted as a preprint in July 2025 and published in Nature Medicine in June 2026. Card 2024’s source aggregate is 31.6 WPM with 2.5% WER; the slide labels it 33 WPM. The reason for that difference is unverified.",
+  seriesNote: "The original numeric dataset and WPM/CPM-to-bps conversion remain unverified. No new language-to-bitrate conversion is assumed. Source task definitions, vocabulary sizes, error measures and statistical summaries differ. The olive trendline is a descriptive equal-weight log-linear fit to all 14 approximate plotted observations. The original slide’s model remains unavailable. The shaded band and speech/typing benchmarks remain omitted because their derivations were not recovered.\n\nYears retain the slide’s placement. Stentrode was published online in 2020 with a 2021 journal issue; the independent-home-use speech result was posted as a preprint in July 2025 and published in Nature Medicine in June 2026. Card 2024’s source aggregate is 31.6 WPM with 2.5% WER; the slide labels it 33 WPM. The reason for that difference is unverified.",
   points,
   referenceTrendline: {
-    label: source.referenceTrendline.label,
-    color: source.referenceTrendline.color,
-    note: source.referenceTrendline.note,
-    points: source.referenceTrendline.displayPoints,
+    label: `Log-linear fit · ${BCI_BITRATE_FIT.n} approximate points`,
+    color: "#7e8152",
+    note: fitNote,
+    points: BCI_BITRATE_FIT.points,
   },
   exportPointKey: true,
   legend: Object.values(groups).map(group => ({ label: group.label, color: group.color, marker: group.marker })),

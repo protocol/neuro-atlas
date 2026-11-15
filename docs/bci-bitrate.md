@@ -8,6 +8,10 @@ The reconstruction keeps all 14 visible marks: seven cursor/grid circles, one en
 
 The photograph is not redistributed. `src/data/bci-bitrate.source.json` records its SHA-256, rectification corners, manual axis control points, pixel centers, coordinate transform, rounding policy and per-mark source reconciliation. The reference image is required to reproduce the digitization independently; the ledger alone is not the original experimental dataset.
 
+## Original published figure and study-native data
+
+The same underlying chart was recovered in [Sumner L Norman’s June 22, 2026 post](https://x.com/SumnerLN/status/2069192808016273813), with its [original-size published raster](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig). This establishes the figure’s provenance; it does not recover the numeric table or original plotting code. The [source-study data package](bci-study-data/README.md) includes separately sourced native measurements, primary historical tables, retrospective comparison rows and remaining gaps. None has been silently substituted for the approximate plotted values.
+
 ## Digitization
 
 1. Rectify the photographed screen to a 2,200 × 1,400-pixel plane using four manually selected corners.
@@ -42,7 +46,17 @@ A separate [Stanford technical report, version 2.7, May 20, 2021](https://stacks
 
 Cursor achieved bitrate, symmetric-choice ITR, language-model-assisted speech rate and handwriting output use different tasks, error treatments and priors. A common bits/s display does not establish equal measurement meaning. No new WPM/CPM-to-bps formula is introduced, and no fitted scaling law is claimed.
 
-The **olive trendline is visually reconstructed** from eight pixel samples on the reference slide, using the same calibrated year/log-rate transform. It is displayed only over the observed-year span, 2000–2025; boundary intersections use straight interpolation in year/log10(bits/s). The trace is separate from the 14 observations and is labeled **≈ Slide trendline (visual reconstruction)** in preview, detail and native image exports. No regression is fitted to the observations, and no original fit coefficient, uncertainty or forecast is asserted. Source pixels and replayable display coordinates are recorded under `referenceTrendline` in the source ledger.
+## Descriptive fitted trendline
+
+On request, the olive line is now an **equal-weight ordinary least-squares fit of log10(bits/s) against year using all 14 approximate observations**, including repeated years. It replaces the earlier visually traced line. The source values themselves are unchanged. The fit is computed from the actual rendered observations by `src/lib/log-linear-fit.ts`, with an unconstrained intercept:
+
+`log10(rate) = −0.935756 + 0.060227 × (year − 2000)`
+
+`n = 14; R²(log10 rate) ≈ 0.460082`.
+
+The line is labeled **Log-linear fit · 14 approximate points** in preview, detail and native image exports. It is drawn only over observed years, 2000–2025. R² describes the scatter of these reconstructed points in log space; it is not forecast confidence or proof of comparable task performance. The original slide's numerical table and fit method remain unavailable. No confidence band or forecast is displayed.
+
+The earlier eight-pixel visual trace is preserved under `referenceTrendline` in the source ledger as an explicitly archived reconstruction; it no longer determines the displayed line.
 
 The shaded band and dashed speech/typing benchmarks remain omitted: their numerical inputs and statistical meaning are unverified. The rebuilt plot preserves the observations, category colors and marker distinctions.
 

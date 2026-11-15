@@ -160,7 +160,7 @@
     "coordinateFormula": "q = H × [pixelX, pixelY, 1]; year = homographyXOriginYear + q[0]/q[2]; bits/s = 10^(q[1]/q[2])"
   },
   "omittedOverlays": [
-    "Original regression model/statistical interpretation: unverified; centerline shown only as an approximate visual trace",
+    "Original regression model/statistical interpretation: unavailable; active line is a newly computed descriptive fit to the 14 approximate points",
     "Shaded band: uncertainty meaning and method unverified",
     "Speech and typing dashed benchmarks: exact values/derivations unavailable"
   ],
@@ -669,6 +669,28 @@
         "y": 3.693131328290374
       }
     ],
-    "note": "Trendline visually reconstructed from the reference slide. The original regression method and statistical interpretation remain unavailable. Shown only across the observed years, 2000–2025; no new fit or forecast is computed."
+    "note": "Trendline visually reconstructed from the reference slide. The original regression method and statistical interpretation remain unavailable. Shown only across the observed years, 2000–2025; no new fit or forecast is computed.",
+    "displayStatus": "Archived visual trace; superseded by the equal-weight fitted line requested on November 15."
+  },
+  "originalPublishedFigure": {
+    "postUrl": "https://x.com/SumnerLN/status/2069192808016273813",
+    "imageUrl": "https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig",
+    "postedBy": "Sumner L Norman",
+    "postedDate": "2026-06-22",
+    "imageSha256": "5145e072d2110383ee9b948fb7bcca03a0175cd3361edf95739d8bcf81591f94",
+    "sameUnderlyingFigureVerified": true,
+    "originalNumericalTableRecovered": false,
+    "originalPlottingCodeRecovered": false,
+    "note": "Same 14-point arrangement, labels, marker classes and overlays; source raster is available, not the original numerical dataset. Existing plotted coordinates remain photo-derived approximations."
+  },
+  "activeTrendline": {
+    "method": "Equal-weight ordinary least squares of log10(approximateBps) against slideYear over all 14 observations",
+    "formula": "log10(rate) = interceptLog10 + slopeLog10PerX * (year - xOrigin)",
+    "implementation": "src/lib/log-linear-fit.ts; fitted at runtime from rendered observations",
+    "rSquaredBasis": "log10(rate)",
+    "domain": "observed years only",
+    "statisticalConfidenceBand": false,
+    "forecast": false,
+    "sourceNativeMeasurementsSubstituted": false
   }
 }
