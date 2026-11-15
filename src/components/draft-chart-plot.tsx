@@ -346,6 +346,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
         <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />
       </svg>{referenceTrendline.label}
+      {referenceTrendline.methodologyUrl && <> · <a data-fit-methodology href={referenceTrendline.methodologyUrl} target="_blank" rel="noreferrer">Data and fit code ↗</a></>}
     </p>}
     {plot.points.some(point => point.qualifier) && <p className="draft-plot-qualifications" data-visible-qualifications>
       {plot.points.every(point => point.qualifier === "≈") ? "All plotted values are approximate (≈)." : <>
