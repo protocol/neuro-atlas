@@ -12,7 +12,7 @@ The photograph is not redistributed. `src/data/bci-bitrate.source.json` records 
 
 1. Rectify the photographed screen to a 2,200 × 1,400-pixel plane using four manually selected corners.
 2. Select visible year ticks and log-axis ticks (0.1, 0.5, 1, 5, 10 and 50 bits/s).
-3. Fit a projective transform from rectified pixel centers to year and `log10(bits/s)`.
+3. Fit a projective transform from rectified pixel centers to `year − 2000` and `log10(bits/s)`. For `q = H × [pixelX, pixelY, 1]`, recover `year = 2000 + q[0]/q[2]` and `bits/s = 10^(q[1]/q[2])`. The rectification destination corners are `(0,0), (2200,0), (2200,1400), (0,1400)`.
 4. Transform each of the 14 visually selected marker centers. Round years to the nearest integer and bitrates to two significant digits; retain `≈` everywhere.
 5. Keep category and symbol identity from the slide. Never infer an anonymous mark’s paper from its resemblance to a published result.
 

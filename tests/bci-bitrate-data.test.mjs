@@ -18,7 +18,7 @@ test('the reconstruction keeps a reviewable photo-digitization source ledger', (
     const [x, y] = point.pixelCenter;
     const h = source.digitization.homography;
     const w = h[2][0] * x + h[2][1] * y + h[2][2];
-    const year = 2000 + (h[0][0] * x + h[0][1] * y + h[0][2]) / w;
+    const year = source.digitization.homographyXOriginYear + (h[0][0] * x + h[0][1] * y + h[0][2]) / w;
     const bps = 10 ** ((h[1][0] * x + h[1][1] * y + h[1][2]) / w);
     assert.equal(point.slideYear, Math.round(year), point.id);
     assert.equal(point.approximateBps, Number(bps.toPrecision(2)), point.id);
