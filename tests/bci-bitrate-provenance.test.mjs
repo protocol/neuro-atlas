@@ -59,4 +59,7 @@ test('speech calculations replay from original reported WPM and a declared five-
   assert.equal(hand.bps, 16.06/2.6);
   assert.match(hand.calculation, /authors.*technical report/);
   assert.ok(plot.points.find(p=>p.id===hand.id).calculationSource.url.includes('stacks.stanford.edu'));
+  assert.match(plot.points.find(p=>p.id==='bci-slide-willett-speech').annotation, /5 assumed bits\/word/);
+  assert.match(plot.points.find(p=>p.id==='bci-slide-pandarinath').annotation, /T5.*9×9/);
+  assert.match(plot.points.find(p=>p.id==='bci-slide-stentrode').annotation, /P2 isolated/);
 });

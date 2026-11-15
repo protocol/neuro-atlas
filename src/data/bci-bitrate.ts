@@ -86,7 +86,7 @@ const points: DraftObservation[] = source.observations.map(point => {
     sourceTitle: native ? `${selected.basis === "image" ? "Identified report; numerical value unresolved" : selected.basis === "derived" ? "Reported input" : selected.basisLabel}: ${native.title}` : "Anonymous reference-image mark · assignment unresolved",
     quote: native?.quote ?? "Cursor / Grid control",
     note,
-    annotation: `${point.label} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} bits/s · ${selected.basisLabel}`,
+    annotation: `${point.label}${point.id === "bci-slide-pandarinath" ? " · T5 9×9 grid" : point.id === "bci-slide-stentrode" ? " · P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} bits/s · ${selected.basisLabel}${point.group === "speech" ? ` · ${BCI_SPEECH_BITS_PER_WORD} assumed bits/word` : point.id === "bci-slide-handwriting" ? " · corrected-typing model" : ""}`,
     exportNote: note,
     candidateSources: candidates[point.id],
     calculationSource: point.id === "bci-slide-handwriting" ? handwritingReport : selected.basis === "derived" ? {
