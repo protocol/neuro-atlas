@@ -323,6 +323,10 @@
 }
 
 /* The evidence role is more useful than a repeated generic label. */
+@media (max-width: 360px) {
+  .metrics-index [data-draft-popout="metric-panel-bci-bitrate"] .pc-modal-header .chart-actions { grid-template-columns: repeat(2, max-content); row-gap: .4rem; }
+}
+
 .inflection-index [data-measurement-relationship] { font-size: 12px; font-weight: 600; line-height: 1.6; margin: 0 0 .25rem; color: var(--muted); }
 .inflection-index [data-related-measurements] h4 { font-weight: 500; }
 .inflection-index [data-related-forecasts] summary { display: flex; align-items: center; gap: .4rem; min-height: 32px; padding-block: .25rem; font-size: 12px; }
