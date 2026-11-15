@@ -1,0 +1,85 @@
+{
+  "method": "Equal-weight unconstrained OLS of log10(bits/s) against reference year; repeated years retained",
+  "inputSha256": "01f0129431e606ade4d58e79c0c94ada5319c1786be399cc9501fb112be94998",
+  "observations": [
+    {
+      "id": "bci-slide-kennedy-bakay",
+      "year": 2000.0,
+      "bps": 0.24
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-upper",
+      "year": 2015.0,
+      "bps": 0.9
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-lower",
+      "year": 2015.0,
+      "bps": 0.76
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2016",
+      "year": 2016.0,
+      "bps": 0.16
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2018",
+      "year": 2018.0,
+      "bps": 0.53
+    },
+    {
+      "id": "bci-slide-pandarinath",
+      "year": 2017.0,
+      "bps": 4.16
+    },
+    {
+      "id": "bci-slide-neuralink",
+      "year": 2024.0,
+      "bps": 8.0
+    },
+    {
+      "id": "bci-slide-stentrode",
+      "year": 2021.0,
+      "bps": 0.46
+    },
+    {
+      "id": "bci-slide-handwriting",
+      "year": 2021.0,
+      "bps": 6.176923076923076
+    },
+    {
+      "id": "bci-slide-moses",
+      "year": 2021.0,
+      "bps": 1.2666666666666666
+    },
+    {
+      "id": "bci-slide-willett-speech",
+      "year": 2023.0,
+      "bps": 5.166666666666667
+    },
+    {
+      "id": "bci-slide-metzger",
+      "year": 2023.0,
+      "bps": 6.525
+    },
+    {
+      "id": "bci-slide-card-2024",
+      "year": 2024.0,
+      "bps": 2.6333333333333333
+    },
+    {
+      "id": "bci-slide-card-home",
+      "year": 2025.0,
+      "bps": 4.675
+    }
+  ],
+  "fit": {
+    "n": 14,
+    "xOrigin": 2000.0,
+    "interceptLog10": -0.9294723618914491,
+    "slopeLog10PerX": 0.06027654128356745,
+    "rSquaredLog10": 0.45533018672824777,
+    "residualSumSquaresLog10": 2.3310821566960036,
+    "totalSumSquaresLog10": 4.279807876066295
+  }
+}

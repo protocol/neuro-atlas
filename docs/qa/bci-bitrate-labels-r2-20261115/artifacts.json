@@ -1,0 +1,65 @@
+{
+  "runtime": "37ae02ff11cefeec3e07df3056f0c8660e5b3729",
+  "files": {
+    "fit-disclosure-320.json": {
+      "bytes": 351,
+      "sha256": "f6c460cc9f92de31e3d5a51b30ea455f4bf51684aa38878ec96b2c5c0cac2d2d"
+    },
+    "native-qa.json": {
+      "bytes": 43316,
+      "sha256": "d5729ae737e13fc0dcae4ea6fb8dc5bf4edb944a5ce7f7eafdde6bf47c6f4686"
+    },
+    "bci-bitrate-native-export.png": {
+      "bytes": 623297,
+      "sha256": "870253ca9b4632fa4514feb694fe2dbcb779cc09367cd8c87050aa14ccbd0d41"
+    },
+    "chart-390.png": {
+      "bytes": 86418,
+      "sha256": "0024bae060303eaf603c3fb8544ab47fd8fec9088d035114fc2ea6767db1c50a"
+    },
+    "tab-cleanup.json": {
+      "bytes": 87,
+      "sha256": "5e1e05ecd023b92a9fd63b67ad1c3375409cf9915d5f3cbb14ca5eed14a765ec"
+    },
+    "plrd-estimate.png": {
+      "bytes": 255311,
+      "sha256": "6177cdddadb4cf66cac0c7223f786f2dcb2f7d8ad167d3c119e1e64f26dfe23f"
+    },
+    "fit-disclosure-320.png": {
+      "bytes": 91863,
+      "sha256": "6c8c25fabf789106a49715ea9259440e5f25106f323be13aa1bda4ecacabf119"
+    },
+    "clipboard.json": {
+      "bytes": 205,
+      "sha256": "8297b5c4efa92fc5ee58c851f08ee223263ebc946239ca0d88e7f7ed71cb63d2"
+    },
+    "candidate-2018.png": {
+      "bytes": 250873,
+      "sha256": "e5b5d0dbc0091a4f50e7f75ee9ef06b9be2ba1638c25f6e8f440191dd2e205f0"
+    },
+    "bci-bitrate-native-clipboard.png": {
+      "bytes": 562483,
+      "sha256": "4287eaab4270fda01dafcb9dc5329851b7358b57caf07ba5e258f9d9bb44c9bc"
+    },
+    "chart-320.png": {
+      "bytes": 77592,
+      "sha256": "718f8f803360a9bd69967ccfd94ab365138822a649b7e3e30a379870c6bb641e"
+    },
+    "served-assets.json": {
+      "bytes": 2463,
+      "sha256": "c16fce25b164df2ecaf1ebf97b41a62e25c232bb1474e0c8bbdef5eeb854c717"
+    },
+    "invariants.json": {
+      "bytes": 836,
+      "sha256": "3cb2a5001d102db745a343542e51d1732ced0882e35c19c7d95e5034e5c8e23c"
+    },
+    "chart-desktop.png": {
+      "bytes": 203740,
+      "sha256": "7be36b61bf72f6e64027bd5d72ff678c899316329d7d1e32b46e5a7f8827a825"
+    },
+    "fit-reproduction.json": {
+      "bytes": 1853,
+      "sha256": "0c115591f266b3a494efd899387aba8910a36488ed43b26743fc17cee3463d54"
+    }
+  }
+}
