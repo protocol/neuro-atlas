@@ -36,6 +36,8 @@ export type DraftPlot = {
   points: DraftObservation[];
   xKind?: "year" | "number";
   seriesNote?: string;
+  /** Visually traced reference, separate from measured observations and study connections. */
+  referenceTrendline?: { label: string; color: string; note: string; points: { x: number; y: number }[] };
   /** Explicit source-supported identities only; never infer a path from color/category. */
   connections?: { id: string; label: string; pointIds: string[] }[];
   /** Optional evidence basis; default preserves source-reported charts. */

@@ -102,6 +102,10 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     const point = plot.points.find(point => (point.group ?? "Other observations") === group);
     return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
   }) : []);
+  const referenceTrendline = plot.referenceTrendline;
+  const exportLegend = referenceTrendline
+    ? [...legend, { label: referenceTrendline.label, color: referenceTrendline.color, marker: "line" as const }]
+    : legend;
   const tooltip = usePointTooltip(plot.points);
   const active = tooltip.active;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
@@ -231,10 +235,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
-      legend: plot.exportPointKey ? [...legend, ...annotations.map(({ point, text }, index) => ({
+      legend: plot.exportPointKey ? [...exportLegend, ...annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${text}`, color: groupColor(point), marker: point.marker,
-      }))] : legend,
+      }))] : exportLegend,
       notes: [plot.scope, plot.seriesNote ?? "",
+        ...(referenceTrendline ? [referenceTrendline.note] : []),
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
@@ -267,6 +272,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
       </text>}
+      {referenceTrendline && <polyline data-reference-trendline={plot.id}
+        points={referenceTrendline.points.map(point => `${x(point.x)},${y(point.y)}`).join(" ")}
+        fill="none" stroke={referenceTrendline.color} strokeWidth={2} vectorEffect="non-scaling-stroke"
+        data-export-stroke-width={2} pointerEvents="none" aria-label={referenceTrendline.label}>
+        <title>{referenceTrendline.note}</title>
+      </polyline>}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
@@ -316,6 +327,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
+    {referenceTrendline && <p className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
+      <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
+        <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />
+      </svg>{referenceTrendline.label}
+    </p>}
     {plot.points.some(point => point.qualifier) && <p className="draft-plot-qualifications" data-visible-qualifications>
       {plot.points.every(point => point.qualifier === "≈") ? "All plotted values are approximate (≈)." : <>
         <span>{plot.yLabel}: </span>
@@ -344,6 +360,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{plot.scope}</p>
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
+      {referenceTrendline && <p>{referenceTrendline.note}</p>}
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
           <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>

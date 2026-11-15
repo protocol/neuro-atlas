@@ -42,7 +42,9 @@ A separate [Stanford technical report, version 2.7, May 20, 2021](https://stacks
 
 Cursor achieved bitrate, symmetric-choice ITR, language-model-assisted speech rate and handwriting output use different tasks, error treatments and priors. A common bits/s display does not establish equal measurement meaning. No new WPM/CPM-to-bps formula is introduced, and no fitted scaling law is claimed.
 
-The original regression line, shaded band and dashed speech/typing benchmarks are not recreated: their numerical inputs and derivations remain unverified. The rebuilt plot preserves the observations, category colors and marker distinctions while making that limitation visible.
+The **olive trendline is visually reconstructed** from eight pixel samples on the reference slide, using the same calibrated year/log-rate transform. It is displayed only over the observed-year span, 2000–2025; boundary intersections use straight interpolation in year/log10(bits/s). The trace is separate from the 14 observations and is labeled **≈ Slide trendline (visual reconstruction)** in preview, detail and native image exports. No regression is fitted to the observations, and no original fit coefficient, uncertainty or forecast is asserted. Source pixels and replayable display coordinates are recorded under `referenceTrendline` in the source ledger.
+
+The shaded band and dashed speech/typing benchmarks remain omitted: their numerical inputs and statistical meaning are unverified. The rebuilt plot preserves the observations, category colors and marker distinctions.
 
 A related [Meyer and Zamani review](https://doi.org/10.1088/1741-2552/ae6dfd) and its author code were checked. Its available repository concerns recording-channel counts; it is not the source of this 14-point chart.
 

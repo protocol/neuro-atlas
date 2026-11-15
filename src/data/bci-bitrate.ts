@@ -43,8 +43,14 @@ const plot: DraftPlot = {
   valueSignificantDigits: 2,
   observationBasis: "Digitized slide · approximate",
   scope: "Approximate reconstruction of the photographed Bitrate Scaling chart. All 14 plotted coordinates come from the slide; linked papers provide separate native metrics and study context. Four cursor reports remain unidentified.",
-  seriesNote: "The original numeric dataset and WPM/CPM-to-bps conversion remain unverified. No new language-to-bitrate conversion is assumed. Source task definitions, vocabulary sizes, error measures and statistical summaries differ. The original fitted line, shaded band and speech/typing benchmarks are omitted because their derivations were not recovered.\n\nYears retain the slide’s placement. Stentrode was published online in 2020 with a 2021 journal issue; the independent-home-use speech result was posted as a preprint in July 2025 and published in Nature Medicine in June 2026. Card 2024’s source aggregate is 31.6 WPM with 2.5% WER; the slide labels it 33 WPM. The reason for that difference is unverified.",
+  seriesNote: "The original numeric dataset and WPM/CPM-to-bps conversion remain unverified. No new language-to-bitrate conversion is assumed. Source task definitions, vocabulary sizes, error measures and statistical summaries differ. The original trendline is visually reconstructed as a separate olive reference. Its fit method remains unavailable; no new regression or forecast is computed. The shaded band and speech/typing benchmarks remain omitted because their derivations were not recovered.\n\nYears retain the slide’s placement. Stentrode was published online in 2020 with a 2021 journal issue; the independent-home-use speech result was posted as a preprint in July 2025 and published in Nature Medicine in June 2026. Card 2024’s source aggregate is 31.6 WPM with 2.5% WER; the slide labels it 33 WPM. The reason for that difference is unverified.",
   points,
+  referenceTrendline: {
+    label: source.referenceTrendline.label,
+    color: source.referenceTrendline.color,
+    note: source.referenceTrendline.note,
+    points: source.referenceTrendline.displayPoints,
+  },
   exportPointKey: true,
   legend: Object.values(groups).map(group => ({ label: group.label, color: group.color, marker: group.marker })),
 };

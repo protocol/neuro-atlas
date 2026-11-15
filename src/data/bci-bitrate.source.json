@@ -6,7 +6,7 @@
   "referenceContext": "Photographed presentation slide; original numeric dataset unavailable",
   "referencePhotoSha256": "e2b2f7c80509607f9e53db63e7334c36de1c861019abf28a0dad939f5192eb00",
   "retrievedDate": "2026-11-15",
-  "limitations": "The original 14-point dataset/spreadsheet/table is unavailable. All plotted year/bps coordinates are approximate visual digitizations. The original WPM/CPM-to-bps conversion, fitted line, shaded band and benchmark derivations remain unverified. Named study links establish native results and identity context, not the digitized bps. Four cursor marks remain unidentified.",
+  "limitations": "The original 14-point dataset/spreadsheet/table is unavailable. All plotted year/bps coordinates are approximate visual digitizations. The original WPM/CPM-to-bps conversion, trendline fit method, shaded band and benchmark derivations remain unverified. Named study links establish native results and identity context, not the digitized bps. Four cursor marks remain unidentified.",
   "digitization": {
     "method": "Perspective rectification, visually selected grid/tick control points, fitted pixel-to-year/log10(bps) homography. Years rounded to nearest integer and bps to two significant digits; image distortion and manual selection remain larger than rounding precision. These are approximate coordinates, not uncertainty-calibrated measurements.",
     "rectificationSourceCornersOriginalPixels": [
@@ -559,5 +559,116 @@
         "note": "56.1 WPM personal use cannot be paired with 99.2% prompted-copy word accuracy as if the same task. 92.3% sentence self-rating is not 7.7% WER. 2025 preprint is legitimate date for historical slide, but identify it explicitly; final paper belongs to 2026. Same participant as Card 2024, not an independent cohort. Preprint v1 posted July 7, 2025; final Nature Medicine paper published June 15, 2026. Self-rated sentence correctness is a different endpoint from WER."
       }
     }
-  ]
+  ],
+  "referenceTrendline": {
+    "valueBasis": "visual-digitization",
+    "label": "≈ Slide trendline (visual reconstruction)",
+    "color": "#7e8152",
+    "method": "Trace the visible olive centerline in the same rectified reference photograph. Endpoints manually selected; six inner samples selected in clear line segments. Map each pixel with the existing year/log10(bps) homography. Display the resulting polyline clipped to the observation-year domain, with boundary intersections interpolated linearly in year/log10(bps). No regression to study observations or statistical interval is computed.",
+    "samples": [
+      {
+        "pixel": [
+          380,
+          1278
+        ],
+        "year": 1999.6115932450382,
+        "bps": 0.10610139426268764
+      },
+      {
+        "pixel": [
+          500,
+          1214
+        ],
+        "year": 2002.0300595423778,
+        "bps": 0.15072149086283643
+      },
+      {
+        "pixel": [
+          750,
+          1088
+        ],
+        "year": 2007.037687002056,
+        "bps": 0.2988350140546913
+      },
+      {
+        "pixel": [
+          1000,
+          960
+        ],
+        "year": 2012.0034005801817,
+        "bps": 0.595936250129845
+      },
+      {
+        "pixel": [
+          1250,
+          830
+        ],
+        "year": 2016.9271029494475,
+        "bps": 1.1951197407690068
+      },
+      {
+        "pixel": [
+          1500,
+          702
+        ],
+        "year": 2021.8105955138033,
+        "bps": 2.356110480387308
+      },
+      {
+        "pixel": [
+          1660,
+          619
+        ],
+        "year": 2024.914300088184,
+        "bps": 3.649356851074451
+      },
+      {
+        "pixel": [
+          1740,
+          578
+        ],
+        "year": 2026.4602435312572,
+        "bps": 4.525118882911179
+      }
+    ],
+    "displayDomainYears": [
+      2000,
+      2025
+    ],
+    "displayPoints": [
+      {
+        "x": 2000,
+        "y": 0.1122548942673185
+      },
+      {
+        "x": 2002.0300595423778,
+        "y": 0.15072149086283643
+      },
+      {
+        "x": 2007.037687002056,
+        "y": 0.2988350140546913
+      },
+      {
+        "x": 2012.0034005801817,
+        "y": 0.595936250129845
+      },
+      {
+        "x": 2016.9271029494475,
+        "y": 1.1951197407690068
+      },
+      {
+        "x": 2021.8105955138033,
+        "y": 2.356110480387308
+      },
+      {
+        "x": 2024.914300088184,
+        "y": 3.649356851074451
+      },
+      {
+        "x": 2025,
+        "y": 3.693131328290374
+      }
+    ],
+    "note": "Trendline visually reconstructed from the reference slide. The original regression method and statistical interpretation remain unavailable. Shown only across the observed years, 2000–2025; no new fit or forecast is computed."
+  }
 }
