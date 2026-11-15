@@ -1,0 +1,956 @@
+[
+  {
+    "width": 1440,
+    "state": {
+      "title": "BCI information transfer over time",
+      "marks": [
+        {
+          "id": "bci-slide-kennedy-bakay",
+          "tag": "circle",
+          "label": "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate; Kennedy & Bakay; Cursor / grid control; 2000 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.24; Identified report; numerical value unresolved: Direct control of a computer from the human central nervous system"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-upper",
+          "tag": "circle",
+          "label": "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate; Unlabeled cursor report A; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.9; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-lower",
+          "tag": "circle",
+          "label": "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate; Unlabeled cursor report B; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.76; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2016",
+          "tag": "circle",
+          "label": "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate; Unlabeled cursor report C; Cursor / grid control; 2016 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.16; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2018",
+          "tag": "circle",
+          "label": "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate; Unlabeled cursor report D; Cursor / grid control; 2018 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.53; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-pandarinath",
+          "tag": "circle",
+          "label": "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported; Pandarinath et al.; Cursor / grid control; 2017 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 4.16; Paper-reported: High performance communication by people with paralysis using an intracortical brain-computer interface"
+        },
+        {
+          "id": "bci-slide-neuralink",
+          "tag": "circle",
+          "label": "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported; Neuralink PRIME; Cursor / grid control; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 8; Company-reported: PRIME Study Progress Update \u2014 User Experience (company report)"
+        },
+        {
+          "id": "bci-slide-stentrode",
+          "tag": "polygon",
+          "label": "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate; Synchron Stentrode; Endovascular switch; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.46; Paper-reported estimate: Motor neuroprosthesis implanted with neurointerventional surgery improves capacity for activities of daily living tasks in severe paralysis"
+        },
+        {
+          "id": "bci-slide-handwriting",
+          "tag": "polygon",
+          "label": "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model; Willett et al. \u00b7 handwriting; Handwriting decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.18; Reported input: High-performance brain-to-text communication via handwriting"
+        },
+        {
+          "id": "bci-slide-moses",
+          "tag": "rect",
+          "label": "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Moses & Chang; Speech decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22481.27; Reported input: Neuroprosthesis for Decoding Speech in a Paralyzed Person with Anarthria"
+        },
+        {
+          "id": "bci-slide-willett-speech",
+          "tag": "rect",
+          "label": "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Willett et al. \u00b7 speech; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22485.17; Reported input: A high-performance speech neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-metzger",
+          "tag": "rect",
+          "label": "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Metzger & Chang; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.53; Reported input: A high-performance neuroprosthesis for speech decoding and avatar control"
+        },
+        {
+          "id": "bci-slide-card-2024",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky; Speech decoding; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22482.63; Reported input: An Accurate and Rapidly Calibrating Speech Neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-card-home",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky \u00b7 home use; Speech decoding; 2025 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22484.67; Reported input: Long-term independent use of an intracortical brain-computer interface for speech and cursor control"
+        }
+      ],
+      "rows": 14,
+      "restingTooltip": false,
+      "qualifier": "Reported / estimated rate (bits/s \u00b7 log): Kennedy & Bakay: \u22480.24; Unlabeled cursor report A: \u22480.9; Unlabeled cursor report B: \u22480.76; Unlabeled cursor report C: \u22480.16; Unlabeled cursor report D: \u22480.53; Synchron Stentrode: \u22480.46; Willett et al. \u00b7 handwriting: \u22486.18; Moses & Chang: \u22481.27; Willett et al. \u00b7 speech: \u22485.17; Metzger & Chang: \u22486.53; Card & Stavisky: \u22482.63; Card & Stavisky \u00b7 home use: \u22484.67",
+      "doc": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440
+      },
+      "dialog": {
+        "client": 998,
+        "scroll": 1008
+      },
+      "focus": "Close",
+      "textBounds": [
+        {
+          "text": "Reported / estimated rate (bits/s \u00b7 log)",
+          "x": 0,
+          "y": 6,
+          "right": 213.53125,
+          "bottom": 22,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "0.1",
+          "x": 19.1875,
+          "y": 268,
+          "right": 36,
+          "bottom": 284,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "1",
+          "x": 28.796875,
+          "y": 152,
+          "right": 36,
+          "bottom": 168,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "10",
+          "x": 21.59375,
+          "y": 36,
+          "right": 36,
+          "bottom": 52,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "2000",
+          "x": 31.59375,
+          "y": 286,
+          "right": 60.40625,
+          "bottom": 302,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "2013",
+          "x": 485.55377197265625,
+          "y": 286,
+          "right": 514.3662719726562,
+          "bottom": 302,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "2025",
+          "x": 904.59375,
+          "y": 286,
+          "right": 933.40625,
+          "bottom": 302,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "Year placement from reference figure",
+          "x": -1,
+          "y": 316,
+          "right": 208.91583251953125,
+          "bottom": 332,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "1",
+          "x": 66.25,
+          "y": 199.89549255371094,
+          "right": 73.75,
+          "bottom": 215.89549255371094,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "2",
+          "x": 542.0499877929688,
+          "y": 133.307861328125,
+          "right": 549.5499877929688,
+          "bottom": 149.307861328125,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "3",
+          "x": 590.0499877929688,
+          "y": 141.82562255859375,
+          "right": 598.0499877929688,
+          "bottom": 157.82562255859375,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "4",
+          "x": 576.969970703125,
+          "y": 220.32208251953125,
+          "right": 584.969970703125,
+          "bottom": 236.32208251953125,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "5",
+          "x": 646.8099975585938,
+          "y": 159.98399353027344,
+          "right": 654.3099975585938,
+          "bottom": 175.98399353027344,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "6",
+          "x": 611.8900146484375,
+          "y": 104.18517303466797,
+          "right": 619.3900146484375,
+          "bottom": 120.18517303466797,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "7",
+          "x": 846.25,
+          "y": 96,
+          "right": 853.75,
+          "bottom": 112,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "8",
+          "x": 751.5700073242188,
+          "y": 167.12008666992188,
+          "right": 759.5700073242188,
+          "bottom": 183.12008666992188,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "9",
+          "x": 751.5700073242188,
+          "y": 84.27042388916016,
+          "right": 759.0700073242188,
+          "bottom": 100.27042388916016,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "10",
+          "x": 746.5078125,
+          "y": 144,
+          "right": 761.995849609375,
+          "bottom": 160,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "11",
+          "x": 817.6677856445312,
+          "y": 93.26758575439453,
+          "right": 832.6521606445312,
+          "bottom": 109.26758575439453,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "12",
+          "x": 890.5078125,
+          "y": 72,
+          "right": 905.4921875,
+          "bottom": 88,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "13",
+          "x": 852.5878295898438,
+          "y": 127.22132873535156,
+          "right": 868.0758666992188,
+          "bottom": 143.22132873535156,
+          "w": 943,
+          "h": 340
+        },
+        {
+          "text": "14",
+          "x": 890.5078125,
+          "y": 144,
+          "right": 905.995849609375,
+          "bottom": 160,
+          "w": 943,
+          "h": 340
+        }
+      ],
+      "trendline": {
+        "points": "46,267.8187939794081 919,93.0168242570625",
+        "label": "Log-linear fit \u00b7 14 mixed-evidence points",
+        "note": "Equal-weight ordinary least squares of log10(bits/s) against reference year across all 14 displayed observations: 2 paper-reported rates, 6 derived estimates, 1 company report and 5 image estimates. log10(rate) = -0.929472 + 0.060277 \u00d7 (year \u2212 2000); R\u00b2 in log10 space = 0.46. Descriptive fit over observed years only; task definitions and conversion assumptions differ. Not a common performance benchmark, causal growth estimate, forecast or recovered original model. No confidence band is shown.",
+        "preview": true
+      },
+      "annotations": [
+        "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate",
+        "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported",
+        "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported",
+        "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate",
+        "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model",
+        "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word"
+      ]
+    },
+    "nativeInspection": true,
+    "candidateLinksExplicitlyUnconfirmed": true,
+    "nativeCardOpenEscapeFocus": true,
+    "historyForwardBack": true,
+    "copyLinkReadback": true
+  },
+  {
+    "width": 390,
+    "state": {
+      "title": "BCI information transfer over time",
+      "marks": [
+        {
+          "id": "bci-slide-kennedy-bakay",
+          "tag": "circle",
+          "label": "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate; Kennedy & Bakay; Cursor / grid control; 2000 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.24; Identified report; numerical value unresolved: Direct control of a computer from the human central nervous system"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-upper",
+          "tag": "circle",
+          "label": "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate; Unlabeled cursor report A; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.9; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-lower",
+          "tag": "circle",
+          "label": "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate; Unlabeled cursor report B; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.76; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2016",
+          "tag": "circle",
+          "label": "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate; Unlabeled cursor report C; Cursor / grid control; 2016 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.16; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2018",
+          "tag": "circle",
+          "label": "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate; Unlabeled cursor report D; Cursor / grid control; 2018 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.53; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-pandarinath",
+          "tag": "circle",
+          "label": "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported; Pandarinath et al.; Cursor / grid control; 2017 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 4.16; Paper-reported: High performance communication by people with paralysis using an intracortical brain-computer interface"
+        },
+        {
+          "id": "bci-slide-neuralink",
+          "tag": "circle",
+          "label": "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported; Neuralink PRIME; Cursor / grid control; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 8; Company-reported: PRIME Study Progress Update \u2014 User Experience (company report)"
+        },
+        {
+          "id": "bci-slide-stentrode",
+          "tag": "polygon",
+          "label": "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate; Synchron Stentrode; Endovascular switch; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.46; Paper-reported estimate: Motor neuroprosthesis implanted with neurointerventional surgery improves capacity for activities of daily living tasks in severe paralysis"
+        },
+        {
+          "id": "bci-slide-handwriting",
+          "tag": "polygon",
+          "label": "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model; Willett et al. \u00b7 handwriting; Handwriting decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.18; Reported input: High-performance brain-to-text communication via handwriting"
+        },
+        {
+          "id": "bci-slide-moses",
+          "tag": "rect",
+          "label": "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Moses & Chang; Speech decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22481.27; Reported input: Neuroprosthesis for Decoding Speech in a Paralyzed Person with Anarthria"
+        },
+        {
+          "id": "bci-slide-willett-speech",
+          "tag": "rect",
+          "label": "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Willett et al. \u00b7 speech; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22485.17; Reported input: A high-performance speech neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-metzger",
+          "tag": "rect",
+          "label": "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Metzger & Chang; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.53; Reported input: A high-performance neuroprosthesis for speech decoding and avatar control"
+        },
+        {
+          "id": "bci-slide-card-2024",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky; Speech decoding; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22482.63; Reported input: An Accurate and Rapidly Calibrating Speech Neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-card-home",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky \u00b7 home use; Speech decoding; 2025 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22484.67; Reported input: Long-term independent use of an intracortical brain-computer interface for speech and cursor control"
+        }
+      ],
+      "rows": 14,
+      "restingTooltip": false,
+      "qualifier": "Reported / estimated rate (bits/s \u00b7 log): Kennedy & Bakay: \u22480.24; Unlabeled cursor report A: \u22480.9; Unlabeled cursor report B: \u22480.76; Unlabeled cursor report C: \u22480.16; Unlabeled cursor report D: \u22480.53; Synchron Stentrode: \u22480.46; Willett et al. \u00b7 handwriting: \u22486.18; Moses & Chang: \u22481.27; Willett et al. \u00b7 speech: \u22485.17; Metzger & Chang: \u22486.53; Card & Stavisky: \u22482.63; Card & Stavisky \u00b7 home use: \u22484.67",
+      "doc": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "dialog": {
+        "client": 372,
+        "scroll": 372
+      },
+      "focus": "Close",
+      "textBounds": [
+        {
+          "text": "Reported / estimated rate (bits/s \u00b7 log)",
+          "x": 0,
+          "y": 6,
+          "right": 213.53125,
+          "bottom": 22,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "0.1",
+          "x": 19.1875,
+          "y": 268,
+          "right": 36,
+          "bottom": 284,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "1",
+          "x": 28.796875,
+          "y": 152,
+          "right": 36,
+          "bottom": 168,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "10",
+          "x": 21.59375,
+          "y": 36,
+          "right": 36,
+          "bottom": 52,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "2000",
+          "x": 31.59375,
+          "y": 286,
+          "right": 60.40625,
+          "bottom": 302,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "2013",
+          "x": 171.99374389648438,
+          "y": 286,
+          "right": 200.80624389648438,
+          "bottom": 302,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "2025",
+          "x": 301.59375,
+          "y": 286,
+          "right": 330.40625,
+          "bottom": 302,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "Year placement from reference figure",
+          "x": -1,
+          "y": 316,
+          "right": 208.91583251953125,
+          "bottom": 332,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "1",
+          "x": 66.25,
+          "y": 199.89549255371094,
+          "right": 73.75,
+          "bottom": 215.89549255371094,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "2",
+          "x": 180.25,
+          "y": 133.307861328125,
+          "right": 187.75,
+          "bottom": 149.307861328125,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "3",
+          "x": 228.25,
+          "y": 141.82562255859375,
+          "right": 236.25,
+          "bottom": 157.82562255859375,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "4",
+          "x": 191.0500030517578,
+          "y": 220.32208251953125,
+          "right": 199.0500030517578,
+          "bottom": 236.32208251953125,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "5",
+          "x": 198.25,
+          "y": 192,
+          "right": 205.75,
+          "bottom": 208,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "6",
+          "x": 201.85000610351562,
+          "y": 104.18517303466797,
+          "right": 209.35000610351562,
+          "bottom": 120.18517303466797,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "7",
+          "x": 270.25,
+          "y": 96,
+          "right": 277.75,
+          "bottom": 112,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "8",
+          "x": 270.25,
+          "y": 168,
+          "right": 278.25,
+          "bottom": 184,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "9",
+          "x": 245.05001831054688,
+          "y": 84.27042388916016,
+          "right": 252.55001831054688,
+          "bottom": 100.27042388916016,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "10",
+          "x": 290.5078125,
+          "y": 168,
+          "right": 305.995849609375,
+          "bottom": 184,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "11",
+          "x": 266.5078125,
+          "y": 120,
+          "right": 281.4921875,
+          "bottom": 136,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "12",
+          "x": 290.5078125,
+          "y": 144,
+          "right": 305.4921875,
+          "bottom": 160,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "13",
+          "x": 290.5078125,
+          "y": 192,
+          "right": 305.995849609375,
+          "bottom": 208,
+          "w": 340,
+          "h": 340
+        },
+        {
+          "text": "14",
+          "x": 242.5078125,
+          "y": 48,
+          "right": 257.995849609375,
+          "bottom": 64,
+          "w": 340,
+          "h": 340
+        }
+      ],
+      "trendline": {
+        "points": "46,267.8187939794081 316,93.0168242570625",
+        "label": "Log-linear fit \u00b7 14 mixed-evidence points",
+        "note": "Equal-weight ordinary least squares of log10(bits/s) against reference year across all 14 displayed observations: 2 paper-reported rates, 6 derived estimates, 1 company report and 5 image estimates. log10(rate) = -0.929472 + 0.060277 \u00d7 (year \u2212 2000); R\u00b2 in log10 space = 0.46. Descriptive fit over observed years only; task definitions and conversion assumptions differ. Not a common performance benchmark, causal growth estimate, forecast or recovered original model. No confidence band is shown.",
+        "preview": true
+      },
+      "annotations": [
+        "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate",
+        "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported",
+        "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported",
+        "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate",
+        "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model",
+        "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word"
+      ]
+    },
+    "nativeInspection": true,
+    "candidateLinksExplicitlyUnconfirmed": true,
+    "nativeCardOpenEscapeFocus": true,
+    "historyForwardBack": true,
+    "copyLinkReadback": true
+  },
+  {
+    "width": 320,
+    "state": {
+      "title": "BCI information transfer over time",
+      "marks": [
+        {
+          "id": "bci-slide-kennedy-bakay",
+          "tag": "circle",
+          "label": "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate; Kennedy & Bakay; Cursor / grid control; 2000 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.24; Identified report; numerical value unresolved: Direct control of a computer from the human central nervous system"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-upper",
+          "tag": "circle",
+          "label": "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate; Unlabeled cursor report A; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.9; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2015-lower",
+          "tag": "circle",
+          "label": "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate; Unlabeled cursor report B; Cursor / grid control; 2015 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.76; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2016",
+          "tag": "circle",
+          "label": "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate; Unlabeled cursor report C; Cursor / grid control; 2016 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.16; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-unlabeled-cursor-2018",
+          "tag": "circle",
+          "label": "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate; Unlabeled cursor report D; Cursor / grid control; 2018 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.53; Anonymous reference-image mark \u00b7 assignment unresolved"
+        },
+        {
+          "id": "bci-slide-pandarinath",
+          "tag": "circle",
+          "label": "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported; Pandarinath et al.; Cursor / grid control; 2017 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 4.16; Paper-reported: High performance communication by people with paralysis using an intracortical brain-computer interface"
+        },
+        {
+          "id": "bci-slide-neuralink",
+          "tag": "circle",
+          "label": "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported; Neuralink PRIME; Cursor / grid control; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): 8; Company-reported: PRIME Study Progress Update \u2014 User Experience (company report)"
+        },
+        {
+          "id": "bci-slide-stentrode",
+          "tag": "polygon",
+          "label": "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate; Synchron Stentrode; Endovascular switch; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22480.46; Paper-reported estimate: Motor neuroprosthesis implanted with neurointerventional surgery improves capacity for activities of daily living tasks in severe paralysis"
+        },
+        {
+          "id": "bci-slide-handwriting",
+          "tag": "polygon",
+          "label": "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model; Willett et al. \u00b7 handwriting; Handwriting decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.18; Reported input: High-performance brain-to-text communication via handwriting"
+        },
+        {
+          "id": "bci-slide-moses",
+          "tag": "rect",
+          "label": "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Moses & Chang; Speech decoding; 2021 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22481.27; Reported input: Neuroprosthesis for Decoding Speech in a Paralyzed Person with Anarthria"
+        },
+        {
+          "id": "bci-slide-willett-speech",
+          "tag": "rect",
+          "label": "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Willett et al. \u00b7 speech; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22485.17; Reported input: A high-performance speech neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-metzger",
+          "tag": "rect",
+          "label": "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Metzger & Chang; Speech decoding; 2023 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22486.53; Reported input: A high-performance neuroprosthesis for speech decoding and avatar control"
+        },
+        {
+          "id": "bci-slide-card-2024",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky; Speech decoding; 2024 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22482.63; Reported input: An Accurate and Rapidly Calibrating Speech Neuroprosthesis"
+        },
+        {
+          "id": "bci-slide-card-home",
+          "tag": "rect",
+          "label": "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word; Card & Stavisky \u00b7 home use; Speech decoding; 2025 \u00b7 reference-year placement; source date below; Reported / estimated rate (bits/s \u00b7 log): \u22484.67; Reported input: Long-term independent use of an intracortical brain-computer interface for speech and cursor control"
+        }
+      ],
+      "rows": 14,
+      "restingTooltip": false,
+      "qualifier": "Reported / estimated rate (bits/s \u00b7 log): Kennedy & Bakay: \u22480.24; Unlabeled cursor report A: \u22480.9; Unlabeled cursor report B: \u22480.76; Unlabeled cursor report C: \u22480.16; Unlabeled cursor report D: \u22480.53; Synchron Stentrode: \u22480.46; Willett et al. \u00b7 handwriting: \u22486.18; Moses & Chang: \u22481.27; Willett et al. \u00b7 speech: \u22485.17; Metzger & Chang: \u22486.53; Card & Stavisky: \u22482.63; Card & Stavisky \u00b7 home use: \u22484.67",
+      "doc": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      },
+      "dialog": {
+        "client": 302,
+        "scroll": 302
+      },
+      "focus": "Close",
+      "textBounds": [
+        {
+          "text": "Reported / estimated rate (bits/s \u00b7 log)",
+          "x": 0,
+          "y": 6,
+          "right": 192.53125,
+          "bottom": 38,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "0.1",
+          "x": 19.1875,
+          "y": 284,
+          "right": 36,
+          "bottom": 300,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "1",
+          "x": 28.796875,
+          "y": 168,
+          "right": 36,
+          "bottom": 184,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "10",
+          "x": 21.59375,
+          "y": 52,
+          "right": 36,
+          "bottom": 68,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "2000",
+          "x": 31.59375,
+          "y": 302,
+          "right": 60.40625,
+          "bottom": 318,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "2013",
+          "x": 135.59375,
+          "y": 302,
+          "right": 164.40625,
+          "bottom": 318,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "2025",
+          "x": 231.59375,
+          "y": 302,
+          "right": 260.40625,
+          "bottom": 318,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "Year placement from reference figure",
+          "x": -1,
+          "y": 332,
+          "right": 208.91583251953125,
+          "bottom": 348,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "1",
+          "x": 66.25,
+          "y": 215.89549255371094,
+          "right": 73.75,
+          "bottom": 231.89549255371094,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "2",
+          "x": 138.25,
+          "y": 149.307861328125,
+          "right": 145.75,
+          "bottom": 165.307861328125,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "3",
+          "x": 186.25,
+          "y": 157.82562255859375,
+          "right": 194.25,
+          "bottom": 173.82562255859375,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "4",
+          "x": 146.25,
+          "y": 236.32208251953125,
+          "right": 154.25,
+          "bottom": 252.32208251953125,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "5",
+          "x": 150.25,
+          "y": 208,
+          "right": 157.75,
+          "bottom": 224,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "6",
+          "x": 154.25,
+          "y": 120.1851806640625,
+          "right": 161.75,
+          "bottom": 136.1851806640625,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "7",
+          "x": 198.25,
+          "y": 112,
+          "right": 205.75,
+          "bottom": 128,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "8",
+          "x": 222.25,
+          "y": 184,
+          "right": 230.25,
+          "bottom": 200,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "9",
+          "x": 150.25,
+          "y": 88,
+          "right": 157.75,
+          "bottom": 104,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "10",
+          "x": 170.5078125,
+          "y": 232,
+          "right": 185.99586486816406,
+          "bottom": 248,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "11",
+          "x": 170.5078125,
+          "y": 64,
+          "right": 185.4921875,
+          "bottom": 80,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "12",
+          "x": 122.5078125,
+          "y": 112,
+          "right": 137.4921875,
+          "bottom": 128,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "13",
+          "x": 194.5078125,
+          "y": 232,
+          "right": 209.99586486816406,
+          "bottom": 248,
+          "w": 270,
+          "h": 356
+        },
+        {
+          "text": "14",
+          "x": 146.5078125,
+          "y": 64,
+          "right": 161.99586486816406,
+          "bottom": 80,
+          "w": 270,
+          "h": 356
+        }
+      ],
+      "trendline": {
+        "points": "46,283.8187939794081 246,109.0168242570625",
+        "label": "Log-linear fit \u00b7 14 mixed-evidence points",
+        "note": "Equal-weight ordinary least squares of log10(bits/s) against reference year across all 14 displayed observations: 2 paper-reported rates, 6 derived estimates, 1 company report and 5 image estimates. log10(rate) = -0.929472 + 0.060277 \u00d7 (year \u2212 2000); R\u00b2 in log10 space = 0.46. Descriptive fit over observed years only; task definitions and conversion assumptions differ. Not a common performance benchmark, causal growth estimate, forecast or recovered original model. No confidence band is shown.",
+        "preview": true
+      },
+      "annotations": [
+        "Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report A \u00b7 2015 \u00b7 \u22480.9 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report B \u00b7 2015 \u00b7 \u22480.76 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report C \u00b7 2016 \u00b7 \u22480.16 bits/s \u00b7 Image estimate",
+        "Unlabeled cursor report D \u00b7 2018 \u00b7 \u22480.53 bits/s \u00b7 Image estimate",
+        "Pandarinath et al. \u00b7 T5 9\u00d79 grid \u00b7 2017 \u00b7 4.16 bits/s \u00b7 Paper-reported",
+        "Neuralink PRIME \u00b7 2024 \u00b7 8 bits/s \u00b7 Company-reported",
+        "Synchron Stentrode \u00b7 P2 isolated \u00b7 2021 \u00b7 \u22480.46 bits/s \u00b7 Paper-reported estimate",
+        "Willett et al. \u00b7 handwriting \u00b7 2021 \u00b7 \u22486.18 bits/s \u00b7 Author estimate \u00b7 corrected-typing model",
+        "Moses & Chang \u00b7 2021 \u00b7 \u22481.27 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Willett et al. \u00b7 speech \u00b7 2023 \u00b7 \u22485.17 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Metzger & Chang \u00b7 2023 \u00b7 \u22486.53 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 2024 \u00b7 \u22482.63 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word",
+        "Card & Stavisky \u00b7 home use \u00b7 2025 \u00b7 \u22484.67 bits/s \u00b7 Atlas-calculated \u00b7 5 assumed bits/word"
+      ]
+    },
+    "nativeInspection": true,
+    "candidateLinksExplicitlyUnconfirmed": true,
+    "nativeCardOpenEscapeFocus": true,
+    "historyForwardBack": true,
+    "copyLinkReadback": true
+  }
+]
