@@ -39,6 +39,8 @@ export type DraftPlot = {
   scope: string;
   points: DraftObservation[];
   xKind?: "year" | "number";
+  /** Positive whole-year calendar spacing; invalid or >100 labels fall back to default ticks. */
+  yearTickStep?: number;
   seriesNote?: string;
   /** Descriptive fitted or traced trend, separate from observations and study connections. */
   referenceTrendline?: { label: string; color: string; note: string; methodologyUrl?: string; points: { x: number; y: number }[] };

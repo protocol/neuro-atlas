@@ -121,6 +121,7 @@ const plot: DraftPlot = {
   title: "BCI information transfer over time",
   xLabel: "Year placement from reference figure",
   xKind: "year",
+  yearTickStep: 5,
   yLabel: "Reported / estimated rate (bits/s · log)",
   scale: "log",
   valueSignificantDigits: 3,

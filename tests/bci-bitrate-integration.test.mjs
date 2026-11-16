@@ -83,6 +83,37 @@ test('BCI source evidence mounts unchanged through the generic Metrics panel and
   } finally { await cleanup(); }
 });
 
+test('BCI uses five-year labels in the rail preview, opened modal and native export SVG', async () => {
+  const plot = METRIC_CHART_EVIDENCE[title].plots[0];
+  const before = JSON.stringify(plot);
+  const expected = ['2000', '2005', '2010', '2015', '2020', '2025'];
+  const xTickLabels = (svg, bottom = Number(svg.querySelector('.draft-plot-axis').getAttribute('y1'))) => [...svg.querySelectorAll('text')]
+    .filter(tick => Number(tick.getAttribute('y')) === bottom + 22 && tick.getAttribute('text-anchor') === 'middle')
+    .map(tick => tick.textContent);
+  const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor: panel }), `#${slug}`);
+  let output;
+  try {
+    const preview = document.querySelector('.draft-popout-preview .draft-plot-svg');
+    assert.ok(preview, 'Read the real panel rail preview');
+    assert.deepEqual(xTickLabels(preview), expected, 'Rail preview labels every five years');
+    const dialog = document.querySelector('dialog[open]');
+    assert.equal(dialog?.querySelector('h2').textContent, title, 'Inspect the opened BCI modal');
+    assert.deepEqual(xTickLabels(dialog.querySelector('.draft-plot-svg')), expected, 'Opened modal uses the same calendar ticks');
+    const registration = await whenChartRegistered(panel);
+    const specification = registration.getChart();
+    assert.equal(specification.svg, dialog.querySelector('.draft-plot-svg'), 'Export reads the actual expanded SVG');
+    const exportBottom = Number(specification.svg.querySelector('.draft-plot-axis').getAttribute('y1'));
+    output = new JSDOM(buildChartImage(specification, window.location.href).svg, { contentType: 'image/svg+xml' });
+    // The native serializer deliberately drops CSS classes; quantitative tick coordinates survive.
+    assert.deepEqual(xTickLabels(output.window.document.querySelector('svg'), exportBottom), expected, 'Native export serializer retains all six year labels');
+    assert.equal(output.window.document.querySelectorAll('[data-source-observation]').length, plot.points.length);
+    assert.equal(JSON.stringify(plot), before, 'All source dates, values, fit and notes survive unchanged');
+    const optedIn = [...new Set(Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots)
+      .filter(candidate => candidate.yearTickStep !== undefined).map(candidate => candidate.id))];
+    assert.deepEqual(optedIn, ['bci-bitrate'], 'Only BCI opts into explicit calendar spacing');
+  } finally { output?.window.close(); await cleanup(); }
+});
+
 test('the actual BCI export callback serializes 14 numbered observation keys while the native legend stays at four groups', async () => {
   const plot = METRIC_CHART_EVIDENCE[title].plots[0];
   const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor: panel }), `#${slug}`);

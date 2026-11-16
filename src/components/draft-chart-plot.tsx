@@ -41,6 +41,15 @@ function readerTicks(min: number, max: number) {
 }
 const previewTickLabel = (value: number) => value !== 0 && Math.abs(value) < .001 ? value.toExponential(0).replace("e+", "e") : tickLabel(value);
 
+/** Opt-in calendar multiples inside the unchanged domain, with bounded allocation. */
+function steppedYearTicks(min: number, max: number, step?: number) {
+  if (step === undefined || !Number.isSafeInteger(step) || step <= 0) return null;
+  const first = Math.ceil(min / step) * step;
+  const count = Math.floor((max - first) / step) + 1;
+  if (!Number.isSafeInteger(count) || count < 1 || count > 100) return null;
+  return Array.from({ length: count }, (_, index) => first + index * step);
+}
+
 function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttributes<SVGElement> & {
   marker?: DraftObservation["marker"]; cx: number; cy: number; r: number;
 }) {
@@ -166,7 +175,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     minPower += (targetMinPower - minPower) * benchmarkProgress;
     maxPower += (targetMaxPower - maxPower) * benchmarkProgress;
   }
-  const xTicks = preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])];
+  const xTicks = (!numericX ? steppedYearTicks(xMin, xMax, plot.yearTickStep) : null)
+    ?? (preview && numericX ? readerTicks(xMin, xMax) : [...new Set([xMin, numericX ? (xMin + xMax) / 2 : Math.round((xMin + xMax) / 2), xMax])]);
   const connections = numericX ? [] : (plot.connections ?? []).map(series => ({
     ...series,
     points: series.pointIds.map(id => plot.points.find(point => point.id === id)).filter((point): point is DraftObservation => !!point).sort((a, b) => a.x - b.x),

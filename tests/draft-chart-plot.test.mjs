@@ -160,6 +160,61 @@ test('fractional dates use integer calendar ticks and date labels; long axes wra
   } finally { await cleanup(); }
 });
 
+function xTickLabels(svg) {
+  const bottom = Number(svg.querySelector('.draft-plot-axis').getAttribute('y1'));
+  return [...svg.querySelectorAll('.draft-plot-tick')]
+    .filter(tick => Number(tick.getAttribute('y')) === bottom + 22)
+    .map(tick => tick.textContent);
+}
+
+test('an opt-in year step labels calendar multiples in both preview and expanded plots', async () => {
+  const DraftChartPlot = await renderer();
+  for (const preview of [true, false]) {
+    for (const [points, expected] of [
+      [plot.points, ['2000', '2005', '2010', '2015', '2020']],
+      [[{ ...plot.points[0], x: 2002 }, { ...plot.points[1], x: 2018 }], ['2005', '2010', '2015']],
+    ]) {
+      const stepped = { ...plot, yearTickStep: 5, points };
+      const before = JSON.stringify(stepped);
+      const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: stepped, preview })));
+      try {
+        assert.deepEqual(xTickLabels(dom.window.document.querySelector('.draft-plot-svg')), expected);
+        assert.equal(JSON.stringify(stepped), before, 'Calendar labels never change source dates or values');
+      } finally { dom.window.close(); }
+    }
+  }
+});
+
+test('absent, invalid or excessive year steps retain the existing bounded default ticks', async () => {
+  const DraftChartPlot = await renderer();
+  for (const preview of [true, false]) {
+    for (const [yearTickStep, points, expected] of [
+      ...[undefined, 0, -5, NaN, Infinity, -Infinity, 0.5, Number.MIN_VALUE, 3000]
+        .map(step => [step, plot.points, ['2000', '2010', '2020']]),
+      [1, [{ ...plot.points[0], x: 2000 }, { ...plot.points[1], x: 2100 }], ['2000', '2050', '2100']],
+    ]) {
+      const dom = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: { ...plot, yearTickStep, points }, preview })));
+      try {
+        assert.deepEqual(xTickLabels(dom.window.document.querySelector('.draft-plot-svg')), expected, `Fallback for step ${yearTickStep}`);
+      } finally { dom.window.close(); }
+    }
+  }
+});
+
+test('an opt-in year step does not affect numeric axes or their preview ticks', async () => {
+  const DraftChartPlot = await renderer();
+  const numeric = { ...plot, xKind: 'number', points: [
+    { ...plot.points[0], x: 1.13 }, { ...plot.points[1], x: 41.77 },
+  ] };
+  for (const preview of [true, false]) {
+    const baseline = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: numeric, preview })));
+    const stepped = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: { ...numeric, yearTickStep: 5 }, preview })));
+    try {
+      assert.deepEqual(xTickLabels(stepped.window.document.querySelector('.draft-plot-svg')), xTickLabels(baseline.window.document.querySelector('.draft-plot-svg')));
+    } finally { baseline.window.close(); stepped.window.close(); }
+  }
+});
+
 test('separate scope groups have a visible legend, distinct markers and accessible point identity', async () => {
   const DraftChartPlot = await renderer();
   const grouped = { ...plot, points: plot.points.map((point, index) => ({ ...point, group: index ? 'Whole specimen' : 'Partial specimen' })) };
