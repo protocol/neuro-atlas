@@ -21,12 +21,14 @@
     "trends:feed": "tsx scripts/weekly-google-trends-feed.ts"
   },
   "dependencies": {
+    "html-to-image": "1.11.13",
     "next": "16.4.6",
     "next-themes": "^0.4.6",
     "pg": "^8.23.1",
     "postcss": "^8.5.32",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "sharp": "0.35.5",
     "zod": "4.6.6"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@ import {JSDOM} from 'jsdom';
 const bootstrap=new JSDOM('<!doctype html><body></body>');
 globalThis.window=bootstrap.window;globalThis.document=bootstrap.window.document;
 const {mount,click,settle}=await import('./modal-helpers.mjs');bootstrap.window.close();
-import {Feedback as FeedbackController} from '../src/components/feedback/feedback.tsx';
+import {Feedback as FeedbackController} from './feedback-capture-fixture.mjs';
 import {FeedbackTrigger} from '../src/components/feedback/feedback-trigger.tsx';
 function Feedback(){return React.createElement(React.Fragment,null,React.createElement(FeedbackTrigger),React.createElement(FeedbackController));}
 globalThis.React=React;

@@ -6,7 +6,7 @@ import {JSDOM} from 'jsdom';
 const bootstrap=new JSDOM('<!doctype html><body></body>');
 globalThis.window=bootstrap.window;globalThis.document=bootstrap.window.document;
 const {mount,click}=await import('./modal-helpers.mjs');bootstrap.window.close();
-import {Feedback,FEEDBACK_OPEN_EVENT} from '../src/components/feedback/feedback.tsx';
+import {Feedback,FEEDBACK_OPEN_EVENT} from './feedback-capture-fixture.mjs';
 globalThis.React=React;
 const button=text=>[...document.querySelectorAll('button')].find(node=>node.textContent.trim()===text);
 const open=()=>act(async()=>window.dispatchEvent(new window.CustomEvent(FEEDBACK_OPEN_EVENT)));

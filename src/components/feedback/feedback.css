@@ -68,3 +68,6 @@ dialog.atlas-feedback-layer {
   position: fixed; box-sizing: border-box; pointer-events: none; z-index: -1;
   border: 2px solid #397cf6; border-radius: 3px; background: #397cf610;
 }
+
+.atlas-feedback-capture { display: flex; align-items: center; gap: 8px; font-size: 12px; flex-wrap: wrap; }
+.atlas-feedback-capture img { object-fit: contain; border: 1px solid currentColor; border-radius: 4px; }

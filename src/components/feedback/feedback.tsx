@@ -1,5 +1,8 @@
 "use client";
+/* eslint-disable @next/next/no-img-element -- Private page-memory PNG previews must never enter an image optimizer. */
 
+import {captureFeedbackScreenshot} from "./screenshot";
+import type {FeedbackScreenshot} from "../../lib/feedback-public/contracts";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FEEDBACK_OPEN_EVENT } from "./feedback-trigger";
@@ -27,7 +30,7 @@ function visibleFeedbackControls(layer: HTMLDialogElement) {
     return true;
   });
 }
-export function Feedback() {
+export function Feedback({capture = captureFeedbackScreenshot}: {capture?:typeof captureFeedbackScreenshot} = {}) {
   const client = useRef<PublicFeedbackClient | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const textarea = useRef<HTMLTextAreaElement>(null);
@@ -40,6 +43,8 @@ export function Feedback() {
   const pending = useRef<{ fingerprint: string; key: string; input: PublicFeedbackInput; element?: Element } | null>(null);
   const selectionReturnsToComposer = useRef(false);
   const pickerInstructions = useId();
+  const snapshot = useRef<{element:Element; context:PublicFeedbackInput["context"]; image:Promise<FeedbackScreenshot>} | null>(null);
+  const [screenshot, setScreenshot] = useState<FeedbackScreenshot | null>(null);
   const submitting = useRef(false);
   const mounted = useRef(false);
   const [open, setOpen] = useState(false);
@@ -73,6 +78,7 @@ export function Feedback() {
       const match = semanticTargets(document).find(value => value.id === id);
       const element = match?.element;
       if (pending.current && (pending.current.element !== element || pending.current.input.context.route !== feedbackContext(window, id).route)) pending.current = null;
+      if (element) startCapture(element, id);
       setPinned(element ? pickElement(element) : undefined);
     }
     mode.current = { open: true, selecting: false };
@@ -84,13 +90,23 @@ export function Feedback() {
     mode.current = { open: false, selecting: false };
     setOpen(false); setSelecting(false); setSaved(false);
     setPinned(undefined); setTarget(undefined); setHover(undefined);
-    downTarget.current = undefined;
+    downTarget.current = undefined; snapshot.current = null; setScreenshot(null);
+  }
+  function startCapture(element: Element, targetId?: string) {
+    setScreenshot(null);
+    const context = feedbackContext(window, targetId);
+    const current = {element, context, image:Promise.resolve({status:"unavailable", reason:"capture_failed"} as FeedbackScreenshot)};
+    snapshot.current = current;
+    current.image = pending.current?.element === element && pending.current.input.screenshot
+      ? Promise.resolve(pending.current.input.screenshot) : capture(element);
+    current.image.then(value => {if (mounted.current && snapshot.current === current) setScreenshot(value);});
   }
   function finishSelection(pick: PickedElement) {
     // A newly chosen DOM node/route is a new target even if its structural path
     // matches an exited uncertain submission. Only the actual original target
     // can reconcile that operation with its untouched UUID and full snapshot.
     if (pending.current && (pending.current.element !== pick.element || pending.current.input.context.route !== feedbackContext(window, pick.targetId).route)) pending.current = null;
+    startCapture(pick.element, pick.targetId);
     setPinned(pick); setTarget(pick.targetId); setSelecting(false); setHover(undefined);
     mode.current.selecting = false;
   }
@@ -179,6 +195,8 @@ export function Feedback() {
       if (layer.matches(':popover-open')) layer.hidePopover?.();
       downTarget.current = undefined;
     };
+  // Selection/capture uses page-lifetime refs and setters, not draft state.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, selecting]);
   useLayoutEffect(() => {
     if (!open) return;
@@ -211,7 +229,7 @@ export function Feedback() {
     };
   }, [open, selecting, hover, pinned, saved]);
 
-  async function submit() {
+  async function submit(withoutScreenshot = false) {
     if (submitting.current || !available || !comment.trim() || comment.length > 3000) return;
     submitting.current = true; setBusy(true); setError("");
     // Only intentional note/target edits start a new operation. Viewport, theme and
@@ -220,9 +238,12 @@ export function Feedback() {
     // movement on that same chosen node must not split an uncertain retry.
     const fingerprint = JSON.stringify({ comment, target });
     try {
+      const selectedSnapshot = snapshot.current;
+      const image = pending.current?.fingerprint === fingerprint ? pending.current.input.screenshot : await selectedSnapshot?.image;
+      if (!image || image.status === "unavailable" && !withoutScreenshot) {setError("Screenshot unavailable. Select the element again, or send without a screenshot."); return;}
       if (pending.current?.fingerprint !== fingerprint) pending.current = {
         fingerprint, key: client.current!.newKey(), element: pinned?.element,
-        input: { feedback: comment, context: { ...feedbackContext(window, target), ...(pinned ? { element: { ...pinned.reference } } : {}) } },
+        input: { feedback: comment, context: { ...(selectedSnapshot?.context ?? feedbackContext(window, target)), ...(pinned ? { element: { ...pinned.reference } } : {}) }, screenshot:image },
       };
       const { input, key } = pending.current;
       await client.current!.submit(input, key);
@@ -262,6 +283,10 @@ export function Feedback() {
         </> : <>
         {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
         {error && <p role="alert">{error}</p>}
+        <div className="atlas-feedback-capture" data-feedback-capture>
+          {screenshot?.status === "captured" ? <><img alt="Selected element screenshot preview" src={`data:image/png;base64,${screenshot.data}`} width={72} height={48} /> <span>Screenshot attached</span></> : screenshot ? <span>Screenshot unavailable</span> : <span role="status">Capturing screenshot…</span>}
+          {screenshot?.status === "unavailable" && <button type="button" disabled={busy || !available || !comment.trim()} onClick={() => void submit(true)}>Send without screenshot</button>}
+        </div>
         <textarea ref={textarea} aria-label="Feedback" rows={1} maxLength={3000} placeholder="What should change?" value={comment} readOnly={busy} aria-busy={busy} onChange={event => setComment(event.target.value)} onKeyDown={event => {
           if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
           event.preventDefault(); void submit();

@@ -7,7 +7,7 @@ import Home from '../src/app/page.tsx';
 import * as Nav from '../src/components/site-nav.tsx';
 import {SiteFooter} from '../src/components/site-footer.tsx';
 import {PlateHero} from '../src/components/plate-header.tsx';
-import {Feedback} from '../src/components/feedback/feedback.tsx';
+import {Feedback} from './feedback-capture-fixture.mjs';
 const bootstrap=new JSDOM('<!doctype html><body></body>');
 globalThis.window=bootstrap.window;globalThis.document=bootstrap.window.document;
 const {mount,click}=await import('./modal-helpers.mjs');bootstrap.window.close();

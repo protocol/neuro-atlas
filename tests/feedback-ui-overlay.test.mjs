@@ -9,7 +9,7 @@ globalThis.window = bootstrap.window; globalThis.document = bootstrap.window.doc
 const { mount, click, settle } = await import('./modal-helpers.mjs');
 bootstrap.window.close();
 import { ChartModal } from '../src/components/chart-modal.tsx';
-import { Feedback as FeedbackController } from '../src/components/feedback/feedback.tsx';
+import { Feedback as FeedbackController } from './feedback-capture-fixture.mjs';
 import { FeedbackTrigger } from '../src/components/feedback/feedback-trigger.tsx';
 function Feedback(){return React.createElement(React.Fragment,null,React.createElement(FeedbackTrigger),React.createElement(FeedbackController));}
 async function pickFixture(){
@@ -139,7 +139,7 @@ test('one visitor field sends without sign-in, retains exact failed retry and cl
     await click(document.querySelector('[data-feedback-submit]'));await settle();
     const posts=calls.filter(c=>c.method==='POST');assert.equal(posts.length,2);
     assert.equal(posts[0].url,'/api/feedback/public');assert.equal(posts[0].headers['Idempotency-Key'],posts[1].headers['Idempotency-Key']);assert.equal(posts[0].body,posts[1].body);
-    const body=JSON.parse(posts[1].body);assert.deepEqual(Object.keys(body).sort(),['context','feedback']);
+    const body=JSON.parse(posts[1].body);assert.deepEqual(Object.keys(body).sort(),['context','feedback','screenshot']);
     assert.equal(body.feedback,'PRIVATE CANARY');assert.equal(body.context.route,'/field-velocity');
     assert.equal(body.context.element.tagName,'h1');assert.equal(body.context.element.selector,'html:nth-of-type(1) > body:nth-of-type(1) > h1:nth-of-type(1)');
     assert.equal(body.context.element.label,undefined);assert.equal(JSON.stringify(body.context).includes('review=1'),false);
