@@ -9,7 +9,7 @@ test('Notables 63 keeps Science leadership and Neuracle disclosed sales in the c
   assert.equal(science[0].activity, 'leadership');
   assert.match(science[0].note, /Darius Shahida/);
   assert.equal(science[0].sourceUrl, 'https://science.xyz/news/leadership-shahida/');
-  const neuracle = milestones.filter(row => row.slug === 'neuracle' && row.date === '2026-09-29');
+  const neuracle = milestones.filter(row => row.slug === 'neuracle' && row.date === '2026-09-01');
   assert.equal(neuracle.length, 1);
   assert.equal(neuracle[0].activity, 'sales');
   assert.match(neuracle[0].note, /13 .*sold/);
@@ -19,7 +19,7 @@ test('Notables 63 keeps Science leadership and Neuracle disclosed sales in the c
   for (const row of [...science, ...neuracle]) {
     assert.equal(row.stage, 'commercial');
     assert.equal(row.amountUsdM, null);
-    assert.equal(row.datePrecision, 'day');
+    assert.equal(row.datePrecision, row.slug === 'neuracle' ? 'month' : 'day');
     assert.equal(row.scope, 'bci');
     assert.equal(funding.rounds.filter(round => round.announcedOn === row.date && ['science-corporation','neuracle-technology'].includes(round.companySlug)).length, 0);
   }

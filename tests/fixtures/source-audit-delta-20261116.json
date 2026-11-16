@@ -1,0 +1,4454 @@
+{
+  "baselineSha": "de2301974ac1e66b35aaaec91198dc5dda8c060c",
+  "collections": {
+    "milestones": {
+      "length": 90,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "penumbra",
+          "before": {
+            "activity": "$14b",
+            "note": "Acquisition by Boston Scientific at ~$14.5b enterprise value ($374/share cash+stock); per memo author 'not a BCI play' but a neural-access bet by a DBS company"
+          },
+          "after": {
+            "activity": "$14.5b EV",
+            "note": "Boston Scientific announced a definitive agreement to acquire Penumbra at approximately $14.5b enterprise value ($374/share in cash and stock). This is an agreement, not a completed acquisition or capital raised.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "merge-labs",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "envoy-medical",
+          "before": {
+            "activity": "$78m",
+            "amountUsdM": 78,
+            "note": "Upsized public offering (Nasdaq: COCH): $30m upfront plus up to $48m via milestone-linked warrants"
+          },
+          "after": {
+            "activity": "$30m",
+            "amountUsdM": 30,
+            "note": "Upsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "stairmed",
+          "before": {
+            "note": "RMB 500m (~$72.8m) strategic round led by Alibaba; Tencent, FountainBridge, OrbiMed, Oriza Seed, Qiming, LAV, Source Code participating — part of China BCI investment crossing $100m"
+          },
+          "after": {
+            "note": "RMB 500m strategic financing led by Alibaba, with Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming, LAV, and Source Code participating. The approximate legacy USD estimate is retained; its exchange-rate source and date are unverified.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "onward-medical",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "neuracle",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "synchron",
+          "before": {
+            "activity": "pivotal",
+            "note": "First pivotal trial of a permanently implanted BCI (Stentrode), initiated in 2026 toward the first PMA filing — following the $200m Series D that closed Nov 6, 2025"
+          },
+          "after": {
+            "activity": "pivotal planned",
+            "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "gestala",
+          "before": {
+            "activity": "$21m",
+            "amountUsdM": 21,
+            "note": "~$21.6m angel raise (the dollar on the lane). Separate post-money valuation reported at $100–200m is not plotted. Largest early-stage BCI round in China's history; Guosheng Capital and Dalton Venture led. Non-invasive ultrasound BCI"
+          },
+          "after": {
+            "activity": "$21.6m",
+            "amountUsdM": 21.6,
+            "note": "Early-stage financing of $21.6m (CNY 150m), co-led by Guosheng Capital and Dalton Venture. The company is developing non-invasive ultrasound BCI technology. The separately reported $100–200m valuation is not plotted.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "enspire-dbs",
+          "before": {
+            "activity": "$10m",
+            "amountUsdM": 10,
+            "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic spinout advancing DBS-enabled stroke rehabilitation"
+          },
+          "after": {
+            "activity": "$10.3m",
+            "amountUsdM": 10.3,
+            "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic portfolio company advancing DBS combined with structured stroke rehabilitation.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "epianeura",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "blue-arbor-technologies",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "blue-arbor-technologies",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "ruten-neuro",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "motif-neurotech",
+          "before": {
+            "activity": "grant",
+            "note": "Selected as a performer team for ARPA-H's EVIDENT initiative (a $139.4m behavioral-health program)"
+          },
+          "after": {
+            "activity": "award",
+            "note": "Selected as an ARPA-H EVIDENT performer for adjunctive neuromodulation data collection. The program-wide ceiling is up to $139.4m across teams; Motif-specific funding amount and award instrument are not disclosed. No program-wide amount is counted as Motif financing.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 18,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 19,
+          "identity": "cortec",
+          "before": {
+            "activity": "FIH",
+            "note": "Second human implantation of its Brain Interchange BCI system"
+          },
+          "after": {
+            "activity": "implantation",
+            "note": "Second human implantation of the Brain Interchange BCI system, performed in early February 2026 and announced February 10. The source does not specify the procedure day.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "cortec",
+          "before": {
+            "note": "FDA Breakthrough Device Designation (Apr 8) then acceptance into the Total Product Life Cycle Advisory Program (Apr 23) — first BCI designated for stroke motor rehabilitation"
+          },
+          "after": {
+            "note": "CorTec announced FDA TAP acceptance on April 23, 2026, following a recently granted Breakthrough Device Designation for therapeutic motor rehabilitation after stroke. The source places the designation in April but does not specify the agency-action days.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "phantom-neuro",
+          "before": {
+            "activity": "FIH",
+            "note": "FDA approval to begin the CYBORG first-in-human trial of Phantom X, a subcutaneous EMG sensor array (Cabrini Health, Melbourne)"
+          },
+          "after": {
+            "activity": "FIH approved",
+            "note": "Australian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.",
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "neuroxess",
+          "before": {
+            "activity": "FIH",
+            "note": "Second fully-implanted 'three-full' BCI clinical case (BCI-FES restored self-feeding/painting in a paralyzed patient); the first battery-integrated implant was Dec 2025"
+          },
+          "after": {
+            "activity": "clinical case",
+            "note": "Second fully implanted, fully wireless, full-function ('three-full') BCI clinical case: BCI-FES restored self-feeding and painting in a paralyzed patient, following the first such clinical implant at the end of 2025. April 23 is the company announcement date, not a specified procedure day.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 24,
+          "identity": "paradromics",
+          "before": {
+            "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This was not the first Connect-One implantation; that separate milestone was announced June 17, 2026."
+          },
+          "after": {
+            "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This record describes the partnership, not an implantation.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 25,
+          "identity": "nia-therapeutics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 26,
+          "identity": "revision-implant",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 27,
+          "identity": "motif-neurotech",
+          "before": {
+            "date": "2026-05-01",
+            "note": "MintNeuro partnership to advance miniature BCI therapy for mental health — noted by memo author as omitted from the visual (just out of window); included for completeness"
+          },
+          "after": {
+            "date": "2026-04-30",
+            "note": "MintNeuro partnership to advance miniature BCI therapy for mental health",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 28,
+          "identity": "neuralink",
+          "before": {
+            "date": "2024-01-29",
+            "note": "First human implant of N1 / Telepathy (PRIME)"
+          },
+          "after": {
+            "date": "2024-01-28",
+            "note": "First human implant of Telepathy on January 28, 2024; announced January 29, 2024. The procedure date is inferred from the AP/Fortune report that Monday's announcement described implantation the day prior.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 29,
+          "identity": "onward-medical",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 30,
+          "identity": "onward-medical",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 31,
+          "identity": "inbrain-neuroelectronics",
+          "before": {
+            "date": "2024-03-01",
+            "note": "Accepted into FDA TAP (company timeline: January 2024; digest files it under March)"
+          },
+          "after": {
+            "date": "2024-01-01",
+            "note": "Accepted into FDA TAP in January 2024; exact day not disclosed.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 32,
+          "identity": "blue-arbor-technologies",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 33,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 34,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 35,
+          "identity": "neuralink",
+          "before": {
+            "note": "Breakthrough Device Designation for Blindsight cortical vision prosthesis"
+          },
+          "after": {
+            "note": "FDA Breakthrough Device Designation for the investigational Blindsight vision-restoration device. Designation is not marketing approval; September 17 is the reported announcement date.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 37,
+          "identity": "neuralink",
+          "before": {
+            "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
+          },
+          "after": {
+            "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 38,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 39,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 40,
+          "identity": "precision-neuroscience",
+          "before": {
+            "date": "2025-04-17",
+            "note": "Company announcement of FDA 510(k) clearance for the Layer 7-T cortical electrode array. FDA letter K242618 is dated March 30, 2025 and specifies temporary use for less than 30 days. Cleared passive array, not the complete chronic wireless BCI.",
+            "sourceUrl": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array"
+          },
+          "after": {
+            "date": "2025-03-30",
+            "note": "FDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.",
+            "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 41,
+          "identity": "onward-medical",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 42,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 43,
+          "identity": "precision-neuroscience",
+          "before": {
+            "note": "Series C led by General Equity Holdings to advance the Layer 7 cortical implant"
+          },
+          "after": {
+            "note": "$102m Series C led by General Equity Holdings to advance brain-implant development.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 44,
+          "identity": "onward-medical",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 45,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 46,
+          "identity": "motif-neurotech",
+          "before": {
+            "activity": "$19m",
+            "amountUsdM": 19,
+            "note": "$18.75m Series A (rounded) for the DOT microstimulator in treatment-resistant depression"
+          },
+          "after": {
+            "activity": "$18.75m",
+            "amountUsdM": 18.75,
+            "note": "$18.75m Series A for the DOT microstimulator in treatment-resistant depression.",
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 47,
+          "identity": "forest-neurotech",
+          "before": {
+            "activity": "$14m",
+            "note": "$14m philanthropic FRO funding commitment from Convergent Research — not a priced equity round",
+            "sourceUrl": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech"
+          },
+          "after": {
+            "activity": "$14m committed",
+            "note": "Convergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.",
+            "sourceUrl": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 48,
+          "identity": "nia-therapeutics",
+          "before": {
+            "note": "Series A"
+          },
+          "after": {
+            "note": "$8.5m equity financing; the linked Penn source does not identify a named round stage. May 3 is the article publication date.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 49,
+          "identity": "neuracle",
+          "before": {
+            "note": "RMB 60m (~$8.5m) venture round; USD is an announcement-date conversion"
+          },
+          "after": {
+            "note": "RMB 60m financing; round stage is not disclosed. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 50,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 51,
+          "identity": "neuropace",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 52,
+          "identity": "echo-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 53,
+          "identity": "stairmed",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 54,
+          "identity": "subsense",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 55,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 56,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 57,
+          "identity": "subsense",
+          "before": {
+            "note": "$10m seed extension"
+          },
+          "after": {
+            "note": "$10m additional financing, bringing reported total funding to $27m. Only the $10m new financing is plotted; the linked source does not identify it as a seed extension.",
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 58,
+          "identity": "neurobionics",
+          "before": {
+            "note": "$5m seed first close; a later second close took the seed total to $10m. Label: first close."
+          },
+          "after": {
+            "note": "$5m seed round close. The linked announcement does not establish a later second close or a $10m seed total.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 59,
+          "identity": "augmental",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 60,
+          "identity": "blackrock-neurotech",
+          "before": {
+            "note": "Tether majority-stake strategic investment"
+          },
+          "after": {
+            "note": "$200m investment from Tether Evo in Blackrock Neurotech. The linked company announcement does not state an ownership percentage.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 61,
+          "identity": "neuralink",
+          "before": {
+            "note": "Series E raise — $650m of new capital, not a valuation or market cap. Reported ~$9b pre-money is a separate figure."
+          },
+          "after": {
+            "note": "Series E raise: $650m of new capital, not valuation or market capitalization.",
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 62,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 63,
+          "identity": "neucyber-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 64,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 65,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 66,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 67,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 68,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 69,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 70,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 71,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 72,
+          "identity": "neuracle",
+          "before": {
+            "date": "2026-09-29",
+            "datePrecision": "day",
+            "note": "In its September 29 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. This is the disclosure date, not the individual sales or implant dates; no revenue or IPO proceeds are inferred."
+          },
+          "after": {
+            "date": "2026-09-01",
+            "datePrecision": "month",
+            "note": "In a September 2026 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. The linked body does not establish the filing day or individual sale/implant dates; no revenue or IPO proceeds are inferred.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 73,
+          "identity": "science-corp",
+          "before": {
+            "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. Announcement date; the October update places the designations in spring 2026 without exact dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required."
+          },
+          "after": {
+            "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. July 22 is the announcement date, not the grant dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 74,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 75,
+          "identity": "science-corp",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 76,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 77,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 78,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 79,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 80,
+          "identity": "precision-neuroscience",
+          "before": {
+            "datePrecision": "day",
+            "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% in one participant and four-direction motor classification of 78-84%. This is the publication date, not procedure dates; small acute study, not unrestricted speech restoration or chronic implant efficacy."
+          },
+          "after": {
+            "datePrecision": "month",
+            "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% and four-direction motor classification of 78–84%; the abstract does not specify the speech-task participant count. February 2026 is the publication month, not procedure dates. Small acute study, not unrestricted speech restoration or chronic implant efficacy.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 81,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 82,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 83,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 84,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 85,
+          "identity": "neuroxess",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 86,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 87,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 88,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 89,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "fundingRounds": {
+      "length": 41,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "blackrock-neurotech",
+          "before": {
+            "stage": "Strategic investment",
+            "note": "Majority-stake strategic investment."
+          },
+          "after": {
+            "stage": "Investment",
+            "note": "$200m investment from Tether Evo. The linked company announcement does not state an ownership percentage.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "synchron",
+          "before": {
+            "investors": [
+              "Neurotechnology Investors"
+            ]
+          },
+          "after": {
+            "investors": [
+              "NeuroTechnology Investors"
+            ],
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "synchron",
+          "before": {
+            "investors": [
+              "Double Point Ventures",
+              "ARCH Ventures",
+              "Khosla Ventures",
+              "Bezos Expeditions",
+              "Neurotechnology Investors",
+              "METIS",
+              "Australian National Reconstruction Fund",
+              "T.Rx Capital",
+              "Qatar Investment Authority",
+              "K5 Global",
+              "Protocol Labs",
+              "IQT"
+            ]
+          },
+          "after": {
+            "investors": [
+              "Double Point Ventures",
+              "ARCH Ventures",
+              "Khosla Ventures",
+              "Bezos Expeditions",
+              "NeuroTechnology Investors",
+              "METIS",
+              "Australian National Reconstruction Fund",
+              "T.Rx Capital",
+              "Qatar Investment Authority",
+              "K5 Global",
+              "Protocol Labs",
+              "IQT"
+            ],
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 18,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 19,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "cortec",
+          "before": {
+            "stage": "Venture round",
+            "note": "USD value is an approximate announcement-date conversion; the source amount is €13m."
+          },
+          "after": {
+            "stage": "Investment (stage undisclosed)",
+            "note": "Legacy record: €13m with an approximate $14.4m estimate. The captured linked article does not establish the native amount or the exchange-rate source/date; these values remain unverified.",
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "neurobionics",
+          "before": {
+            "note": "First close; a later second close took the seed total to $10m."
+          },
+          "after": {
+            "note": "$5m seed round close. A later second close or $10m seed total is not established by this linked announcement.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "nia-therapeutics",
+          "before": {
+            "stage": "Series A"
+          },
+          "after": {
+            "stage": "Equity financing",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 24,
+          "identity": "echo-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 25,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 26,
+          "identity": "merge-labs",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 27,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 28,
+          "identity": "neuracle-technology",
+          "before": {
+            "stage": "Venture round",
+            "investors": [
+              "WI Harper Group",
+              "Yipu Capital",
+              "Prosperico"
+            ],
+            "note": "USD value is an approximate announcement-date conversion; the source amount is RMB 60m."
+          },
+          "after": {
+            "stage": "Financing (stage undisclosed)",
+            "investors": [
+              "China Control Fund",
+              "China Development Fund",
+              "China Development Frontier Fund",
+              "BV Baidu Ventures"
+            ],
+            "note": "RMB 60m financing led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures. WI Harper is described as an existing backer, not a participant in this round. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+            "dateBasis": "reported",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-16"
+          },
+          "added": [
+            "dateBasis",
+            "sourceKind",
+            "reviewedOn"
+          ],
+          "removed": []
+        },
+        {
+          "index": 29,
+          "identity": "neuroxess",
+          "before": {
+            "announcedOn": "2022-01-12",
+            "stage": "Pre-Series A",
+            "investors": [
+              "Shanda Group",
+              "Sequoia Capital China"
+            ],
+            "note": ""
+          },
+          "after": {
+            "announcedOn": "2022-01-11",
+            "stage": "Angel + pre-Series A (combined)",
+            "investors": [
+              "Shanda Group",
+              "Sequoia Capital"
+            ],
+            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once.",
+            "dateBasis": "announcement",
+            "sourceKind": "reporting",
+            "reviewedOn": "2026-11-16"
+          },
+          "added": [
+            "dateBasis",
+            "sourceKind",
+            "reviewedOn"
+          ],
+          "removed": []
+        },
+        {
+          "index": 30,
+          "identity": "neucyber-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 31,
+          "identity": "stairmed",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 32,
+          "identity": "stairmed",
+          "before": {
+            "note": ""
+          },
+          "after": {
+            "note": "RMB 500m disclosed financing. The approximate legacy $73m estimate is retained; its exchange-rate source and date are unverified. April 2 is the release publication date, not an established closing date.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 33,
+          "identity": "gestala",
+          "before": {
+            "stage": "Angel"
+          },
+          "after": {
+            "stage": "Early-stage financing",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 34,
+          "identity": "forest-neurotech",
+          "before": {
+            "displayAmount": "$14m",
+            "investors": [
+              "Eric Schmidt",
+              "Griffin Catalyst",
+              "Riley & Susan Bechtel Foundation",
+              "James Fickel"
+            ],
+            "sourceUrl": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech",
+            "note": "Philanthropic FRO funding rather than a priced equity round."
+          },
+          "after": {
+            "displayAmount": "$14m committed",
+            "investors": [
+              "Eric Schmidt"
+            ],
+            "sourceUrl": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+            "note": "Announced $14m philanthropic commitment from Eric Schmidt; disbursement or cash received is not confirmed. Griffin Catalyst, the Riley & Susan Bechtel Foundation, and James Fickel are separately described as supporters with undisclosed funding, not participants in this $14m commitment. BioSpace syndicates the Convergent Research issuer release; not a priced equity round.",
+            "dateBasis": "announcement",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-16"
+          },
+          "added": [
+            "dateBasis",
+            "sourceKind",
+            "reviewedOn"
+          ],
+          "removed": []
+        },
+        {
+          "index": 35,
+          "identity": "subsense",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "subsense",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 37,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 38,
+          "identity": "enspire-dbs",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 39,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 40,
+          "identity": "neuroxess",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "fundingMilestones": {
+      "length": 15,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "cortec",
+          "before": {
+            "announcedOn": "2026-04-08",
+            "datePrecision": "day",
+            "note": "FDA Breakthrough Device Designation for Brain Interchange."
+          },
+          "after": {
+            "announcedOn": "2026-04-01",
+            "datePrecision": "month",
+            "note": "FDA Breakthrough Device Designation for therapeutic motor rehabilitation after stroke, reported in April 2026; exact designation day is not disclosed.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "nia-therapeutics",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "synchron",
+          "before": {
+            "marker": "Pivotal",
+            "note": "Pivotal-trial initiation toward a first PMA filing."
+          },
+          "after": {
+            "marker": "Pivotal (planned)",
+            "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.",
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "neuracle-technology",
+          "before": {},
+          "after": {
+            "dateBasis": "unverified"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "neuralink",
+          "before": {
+            "indication": "Cortical vision prosthesis",
+            "note": "FDA Breakthrough Device Designation for Blindsight."
+          },
+          "after": {
+            "indication": "Vision restoration (investigational)",
+            "note": "Breakthrough Device Designation for Blindsight, not marketing approval. September 17 is the reported announcement date.",
+            "dateBasis": "announcement"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "inbrain-neuroelectronics",
+          "before": {
+            "announcedOn": "2024-03-01",
+            "indication": "Parkinson's and neurological disorders",
+            "note": "Accepted into FDA TAP (company timeline January 2024; digest files it under March)."
+          },
+          "after": {
+            "announcedOn": "2024-01-01",
+            "indication": "Not specified in the linked TAP timeline entry",
+            "note": "Accepted into FDA TAP in January 2024; exact day not disclosed.",
+            "dateBasis": "event"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "dateBasis": "reported"
+          },
+          "added": [
+            "dateBasis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "fundingCompanies": {
+      "length": 25,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "blackrock-neurotech",
+          "before": {
+            "founding": {
+              "year": 2008,
+              "sourceUrl": "https://blackrockneurotech.com/our-story/",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Company history dates the business to 2008 as Blackrock Microsystems; not the later Neurotech rebrand."
+            }
+          },
+          "after": {
+            "founding": {
+              "year": 2008,
+              "sourceUrl": "https://blackrockneurotech.com/our-story/",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Company history dates the business to 2008 as Blackrock Microsystems."
+            }
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "precision-neuroscience",
+          "before": {
+            "indication": "Paralysis and neurological disorders"
+          },
+          "after": {
+            "indication": "Paralysis"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "paradromics",
+          "before": {
+            "modality": "Connexus Direct Data Interface"
+          },
+          "after": {
+            "modality": "Connexus BCI"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "neurosoft-bioelectronics",
+          "before": {
+            "founding": {
+              "year": 2020,
+              "sourceUrl": "https://www.startupticker.ch/en/news/neurosoft-bioelectronics-secures-funds-to-validate-its-brain-implant",
+              "sourceKind": "reporting",
+              "reviewedOn": "2026-10-15",
+              "note": "Startupticker's press-release account explicitly states co-founded in 2020, consistent with Venturelab's 7 August 2020 incorporation record. PitchBook instead reports 2019; this discrepancy remains unresolved. The index uses the corroborated 2020 organizational founding, without inventing a 2019 research-origin date."
+            }
+          },
+          "after": {
+            "founding": {
+              "year": 2020,
+              "sourceUrl": "https://www.startupticker.ch/en/news/neurosoft-bioelectronics-secures-funds-to-validate-its-brain-implant",
+              "sourceKind": "reporting",
+              "reviewedOn": "2026-10-15",
+              "note": "Startupticker's press-release account explicitly states Neurosoft Bioelectronics was co-founded in 2020."
+            }
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "axoft",
+          "before": {
+            "modality": "Soft Polymer Electrodes"
+          },
+          "after": {
+            "modality": "Soft Neural Interface"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "neurobionics",
+          "before": {
+            "interfaceDepth": "Intracortical",
+            "indication": "Neural recording and stimulation"
+          },
+          "after": {
+            "interfaceDepth": "Endovascular (clinical device)",
+            "indication": "Brain stimulation (clinical development); neural recording and stimulation (research)"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "nia-therapeutics",
+          "before": {
+            "indication": "Memory loss after brain injury"
+          },
+          "after": {
+            "indication": "Memory loss"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "coherence-neuro",
+          "before": {
+            "modality": "High-channel Neural Interface"
+          },
+          "after": {
+            "modality": "SOMA Brain-computer Interface"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "newronika",
+          "before": {
+            "hq": "Milan, Italy"
+          },
+          "after": {
+            "hq": "Cologno Monzese (Milan metropolitan area), Italy"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "neuracle-technology",
+          "before": {
+            "founding": {
+              "year": 2011,
+              "sourceUrl": "https://www.hsgcap.com/companies/neuracle/",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Investor HSG dates Neuracle to 2011, matching the Changzhou business in this roster; not a later Shanghai entity or unrelated namesake."
+            }
+          },
+          "after": {
+            "founding": {
+              "year": 2011,
+              "sourceUrl": "https://www.hsgcap.com/companies/neuracle/",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Investor HSG states that Neuracle was founded in 2011."
+            }
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "neuroxess",
+          "before": {
+            "modality": "High-throughput Flexible BCI"
+          },
+          "after": {
+            "modality": "Implantable Flexible BCI"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "gestala",
+          "before": {
+            "modality": "Ultrasonic Phased-array BCI",
+            "indication": "Brain imaging and therapy"
+          },
+          "after": {
+            "modality": "Ultrasound BCI",
+            "indication": "Neurological disorders (in development)"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "forest-neurotech",
+          "before": {
+            "founding": {
+              "year": 2023,
+              "sourceUrl": "https://www.convergentresearch.org/ecosystem/forest",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Parent organization Convergent Research lists Established 2023; Forest is a nonprofit focused research organization, not a conventional venture-backed company."
+            }
+          },
+          "after": {
+            "founding": {
+              "year": 2023,
+              "sourceUrl": "https://www.convergentresearch.org/ecosystem/forest",
+              "sourceKind": "primary",
+              "reviewedOn": "2026-10-15",
+              "note": "Convergent Research lists Forest Neurotech as a focused research organization (FRO), established in 2023."
+            }
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "motif-neurotech",
+          "before": {
+            "modality": "Miniaturized Deep Brain Stimulation",
+            "interfaceDepth": "Deep Brain",
+            "indication": "Treatment-resistant depression"
+          },
+          "after": {
+            "modality": "DOT Neuromodulation",
+            "interfaceDepth": "",
+            "indication": "Treatment-resistant depression (in development)"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalMilestones": {
+      "length": 90,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "Penumbra",
+          "before": {
+            "activity": "$14b",
+            "note": "Acquisition by Boston Scientific at ~$14.5b enterprise value ($374/share cash+stock); per memo author 'not a BCI play' but a neural-access bet by a DBS company"
+          },
+          "after": {
+            "activity": "$14.5b EV",
+            "note": "Boston Scientific announced a definitive agreement to acquire Penumbra at approximately $14.5b enterprise value ($374/share in cash and stock). This is an agreement, not a completed acquisition or capital raised.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "Merge Labs",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "Neurosoft Bioelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "Envoy Medical",
+          "before": {
+            "activity": "$78m",
+            "amount_usd_m": "78",
+            "note": "Upsized public offering (Nasdaq: COCH): $30m upfront plus up to $48m via milestone-linked warrants"
+          },
+          "after": {
+            "activity": "$30m",
+            "amount_usd_m": "30",
+            "note": "Upsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "StairMed",
+          "before": {
+            "note": "RMB 500m (~$72.8m) strategic round led by Alibaba; Tencent, FountainBridge, OrbiMed, Oriza Seed, Qiming, LAV, Source Code participating — part of China BCI investment crossing $100m"
+          },
+          "after": {
+            "note": "RMB 500m strategic financing led by Alibaba, with Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming, LAV, and Source Code participating. The approximate legacy USD estimate is retained; its exchange-rate source and date are unverified.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "Axoft",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "Onward Medical",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "Precision Neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "Neuracle",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "Synchron",
+          "before": {
+            "activity": "pivotal",
+            "note": "First pivotal trial of a permanently implanted BCI (Stentrode), initiated in 2026 toward the first PMA filing — following the $200m Series D that closed Nov 6, 2025"
+          },
+          "after": {
+            "activity": "pivotal planned",
+            "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "Gestala",
+          "before": {
+            "activity": "$21m",
+            "amount_usd_m": "21",
+            "note": "~$21.6m angel raise (the dollar on the lane). Separate post-money valuation reported at $100–200m is not plotted. Largest early-stage BCI round in China's history; Guosheng Capital and Dalton Venture led. Non-invasive ultrasound BCI"
+          },
+          "after": {
+            "activity": "$21.6m",
+            "amount_usd_m": "21.6",
+            "note": "Early-stage financing of $21.6m (CNY 150m), co-led by Guosheng Capital and Dalton Venture. The company is developing non-invasive ultrasound BCI technology. The separately reported $100–200m valuation is not plotted.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "Enspire DBS",
+          "before": {
+            "activity": "$10m",
+            "amount_usd_m": "10",
+            "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic spinout advancing DBS-enabled stroke rehabilitation"
+          },
+          "after": {
+            "activity": "$10.3m",
+            "amount_usd_m": "10.3",
+            "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic portfolio company advancing DBS combined with structured stroke rehabilitation.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "EpiAneura",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "Blue Arbor Technologies",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "Blue Arbor Technologies",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "Ruten Neuro",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "Motif Neurotech",
+          "before": {
+            "activity": "grant",
+            "note": "Selected as a performer team for ARPA-H's EVIDENT initiative (a $139.4m behavioral-health program)"
+          },
+          "after": {
+            "activity": "award",
+            "note": "Selected as an ARPA-H EVIDENT performer for adjunctive neuromodulation data collection. The program-wide ceiling is up to $139.4m across teams; Motif-specific funding amount and award instrument are not disclosed. No program-wide amount is counted as Motif financing.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 18,
+          "identity": "Motif Neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 19,
+          "identity": "CorTec",
+          "before": {
+            "activity": "FIH",
+            "note": "Second human implantation of its Brain Interchange BCI system"
+          },
+          "after": {
+            "activity": "implantation",
+            "note": "Second human implantation of the Brain Interchange BCI system, performed in early February 2026 and announced February 10. The source does not specify the procedure day.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "CorTec",
+          "before": {
+            "note": "FDA Breakthrough Device Designation (Apr 8) then acceptance into the Total Product Life Cycle Advisory Program (Apr 23) — first BCI designated for stroke motor rehabilitation"
+          },
+          "after": {
+            "note": "CorTec announced FDA TAP acceptance on April 23, 2026, following a recently granted Breakthrough Device Designation for therapeutic motor rehabilitation after stroke. The source places the designation in April but does not specify the agency-action days.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "INBRAIN Neuroelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "Phantom Neuro",
+          "before": {
+            "activity": "FIH",
+            "note": "FDA approval to begin the CYBORG first-in-human trial of Phantom X, a subcutaneous EMG sensor array (Cabrini Health, Melbourne)"
+          },
+          "after": {
+            "activity": "FIH approved",
+            "note": "Australian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.",
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "NeuroXess",
+          "before": {
+            "activity": "FIH",
+            "note": "Second fully-implanted 'three-full' BCI clinical case (BCI-FES restored self-feeding/painting in a paralyzed patient); the first battery-integrated implant was Dec 2025"
+          },
+          "after": {
+            "activity": "clinical case",
+            "note": "Second fully implanted, fully wireless, full-function ('three-full') BCI clinical case: BCI-FES restored self-feeding and painting in a paralyzed patient, following the first such clinical implant at the end of 2025. April 23 is the company announcement date, not a specified procedure day.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 24,
+          "identity": "Paradromics",
+          "before": {
+            "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This was not the first Connect-One implantation; that separate milestone was announced June 17, 2026."
+          },
+          "after": {
+            "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This record describes the partnership, not an implantation.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 25,
+          "identity": "Nia Therapeutics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 26,
+          "identity": "ReVision Implant",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 27,
+          "identity": "Motif Neurotech",
+          "before": {
+            "date": "2026-05-01",
+            "note": "MintNeuro partnership to advance miniature BCI therapy for mental health — noted by memo author as omitted from the visual (just out of window); included for completeness"
+          },
+          "after": {
+            "date": "2026-04-30",
+            "note": "MintNeuro partnership to advance miniature BCI therapy for mental health",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 28,
+          "identity": "Neuralink",
+          "before": {
+            "date": "2024-01-29",
+            "note": "First human implant of N1 / Telepathy (PRIME)"
+          },
+          "after": {
+            "date": "2024-01-28",
+            "note": "First human implant of Telepathy on January 28, 2024; announced January 29, 2024. The procedure date is inferred from the AP/Fortune report that Monday's announcement described implantation the day prior.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 29,
+          "identity": "Onward Medical",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 30,
+          "identity": "Onward Medical",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 31,
+          "identity": "INBRAIN Neuroelectronics",
+          "before": {
+            "date": "2024-03-01",
+            "note": "Accepted into FDA TAP (company timeline: January 2024; digest files it under March)"
+          },
+          "after": {
+            "date": "2024-01-01",
+            "note": "Accepted into FDA TAP in January 2024; exact day not disclosed.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 32,
+          "identity": "Blue Arbor Technologies",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 33,
+          "identity": "CorTec",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 34,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 35,
+          "identity": "Neuralink",
+          "before": {
+            "note": "Breakthrough Device Designation for Blindsight cortical vision prosthesis"
+          },
+          "after": {
+            "note": "FDA Breakthrough Device Designation for the investigational Blindsight vision-restoration device. Designation is not marketing approval; September 17 is the reported announcement date.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "Neuralink",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 37,
+          "identity": "Neuralink",
+          "before": {
+            "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
+          },
+          "after": {
+            "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 38,
+          "identity": "Newronika",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 39,
+          "identity": "Newronika",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 40,
+          "identity": "Precision Neuroscience",
+          "before": {
+            "date": "2025-04-17",
+            "note": "Company announcement of FDA 510(k) clearance for the Layer 7-T cortical electrode array. FDA letter K242618 is dated March 30, 2025 and specifies temporary use for less than 30 days. Cleared passive array, not the complete chronic wireless BCI.",
+            "source_url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array"
+          },
+          "after": {
+            "date": "2025-03-30",
+            "note": "FDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.",
+            "source_url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 41,
+          "identity": "Onward Medical",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 42,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 43,
+          "identity": "Precision Neuroscience",
+          "before": {
+            "note": "Series C led by General Equity Holdings to advance the Layer 7 cortical implant"
+          },
+          "after": {
+            "note": "$102m Series C led by General Equity Holdings to advance brain-implant development.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 44,
+          "identity": "Onward Medical",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 45,
+          "identity": "INBRAIN Neuroelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 46,
+          "identity": "Motif Neurotech",
+          "before": {
+            "activity": "$19m",
+            "amount_usd_m": "19",
+            "note": "$18.75m Series A (rounded) for the DOT microstimulator in treatment-resistant depression"
+          },
+          "after": {
+            "activity": "$18.75m",
+            "amount_usd_m": "18.75",
+            "note": "$18.75m Series A for the DOT microstimulator in treatment-resistant depression.",
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 47,
+          "identity": "Forest Neurotech",
+          "before": {
+            "activity": "$14m",
+            "note": "$14m philanthropic FRO funding commitment from Convergent Research — not a priced equity round",
+            "source_url": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech"
+          },
+          "after": {
+            "activity": "$14m committed",
+            "note": "Convergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.",
+            "source_url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 48,
+          "identity": "Nia Therapeutics",
+          "before": {
+            "note": "Series A"
+          },
+          "after": {
+            "note": "$8.5m equity financing; the linked Penn source does not identify a named round stage. May 3 is the article publication date.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 49,
+          "identity": "Neuracle",
+          "before": {
+            "note": "RMB 60m (~$8.5m) venture round; USD is an announcement-date conversion"
+          },
+          "after": {
+            "note": "RMB 60m financing; round stage is not disclosed. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 50,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 51,
+          "identity": "NeuroPace",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 52,
+          "identity": "Echo Neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 53,
+          "identity": "StairMed",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 54,
+          "identity": "SubSense",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 55,
+          "identity": "Newronika",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 56,
+          "identity": "Coherence Neuro",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 57,
+          "identity": "SubSense",
+          "before": {
+            "note": "$10m seed extension"
+          },
+          "after": {
+            "note": "$10m additional financing, bringing reported total funding to $27m. Only the $10m new financing is plotted; the linked source does not identify it as a seed extension.",
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 58,
+          "identity": "NeuroBionics",
+          "before": {
+            "note": "$5m seed first close; a later second close took the seed total to $10m. Label: first close."
+          },
+          "after": {
+            "note": "$5m seed round close. The linked announcement does not establish a later second close or a $10m seed total.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 59,
+          "identity": "Augmental",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 60,
+          "identity": "Blackrock Neurotech",
+          "before": {
+            "note": "Tether majority-stake strategic investment"
+          },
+          "after": {
+            "note": "$200m investment from Tether Evo in Blackrock Neurotech. The linked company announcement does not state an ownership percentage.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 61,
+          "identity": "Neuralink",
+          "before": {
+            "note": "Series E raise — $650m of new capital, not a valuation or market cap. Reported ~$9b pre-money is a separate figure."
+          },
+          "after": {
+            "note": "Series E raise: $650m of new capital, not valuation or market capitalization.",
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 62,
+          "identity": "Synchron",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 63,
+          "identity": "NeuCyber NeuroTech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 64,
+          "identity": "Neurosoft Bioelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 65,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 66,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 67,
+          "identity": "CorTec",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 68,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 69,
+          "identity": "Precision Neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 70,
+          "identity": "Neurosoft Bioelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 71,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 72,
+          "identity": "Neuracle",
+          "before": {
+            "date": "2026-09-29",
+            "date_precision": "day",
+            "note": "In its September 29 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. This is the disclosure date, not the individual sales or implant dates; no revenue or IPO proceeds are inferred."
+          },
+          "after": {
+            "date": "2026-09-01",
+            "date_precision": "month",
+            "note": "In a September 2026 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. The linked body does not establish the filing day or individual sale/implant dates; no revenue or IPO proceeds are inferred.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 73,
+          "identity": "Science Corp",
+          "before": {
+            "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. Announcement date; the October update places the designations in spring 2026 without exact dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required."
+          },
+          "after": {
+            "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. July 22 is the announcement date, not the grant dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 74,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 75,
+          "identity": "Science Corp",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 76,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 77,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 78,
+          "identity": "Precision Neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 79,
+          "identity": "Precision Neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 80,
+          "identity": "Precision Neuroscience",
+          "before": {
+            "date_precision": "day",
+            "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% in one participant and four-direction motor classification of 78-84%. This is the publication date, not procedure dates; small acute study, not unrestricted speech restoration or chronic implant efficacy."
+          },
+          "after": {
+            "date_precision": "month",
+            "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% and four-direction motor classification of 78–84%; the abstract does not specify the speech-task participant count. February 2026 is the publication month, not procedure dates. Small acute study, not unrestricted speech restoration or chronic implant efficacy.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 81,
+          "identity": "Newronika",
+          "before": {},
+          "after": {
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 82,
+          "identity": "Neuralink",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 83,
+          "identity": "INBRAIN Neuroelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 84,
+          "identity": "Coherence Neuro",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 85,
+          "identity": "NeuroXess",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 86,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 87,
+          "identity": "Paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 88,
+          "identity": "Precision Neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 89,
+          "identity": "Neuralink",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalRounds": {
+      "length": 41,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "blackrock-neurotech",
+          "before": {
+            "stage": "Strategic investment",
+            "note": "Majority-stake strategic investment."
+          },
+          "after": {
+            "stage": "Investment",
+            "note": "$200m investment from Tether Evo. The linked company announcement does not state an ownership percentage.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 18,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 19,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "cortec",
+          "before": {
+            "stage": "Venture round",
+            "note": "USD value is an approximate announcement-date conversion; the source amount is €13m."
+          },
+          "after": {
+            "stage": "Investment (stage undisclosed)",
+            "note": "Legacy record: €13m with an approximate $14.4m estimate. The captured linked article does not establish the native amount or the exchange-rate source/date; these values remain unverified.",
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "neurobionics",
+          "before": {
+            "note": "First close; a later second close took the seed total to $10m."
+          },
+          "after": {
+            "note": "$5m seed round close. A later second close or $10m seed total is not established by this linked announcement.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "nia-therapeutics",
+          "before": {
+            "stage": "Series A"
+          },
+          "after": {
+            "stage": "Equity financing",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 24,
+          "identity": "echo-neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 25,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 26,
+          "identity": "merge-labs",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 27,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 28,
+          "identity": "neuracle-technology",
+          "before": {
+            "stage": "Venture round",
+            "investors": "WI Harper Group;Yipu Capital;Prosperico",
+            "note": "USD value is an approximate announcement-date conversion; the source amount is RMB 60m.",
+            "source_kind": "",
+            "reviewed_on": ""
+          },
+          "after": {
+            "stage": "Financing (stage undisclosed)",
+            "investors": "China Control Fund;China Development Fund;China Development Frontier Fund;BV Baidu Ventures",
+            "note": "RMB 60m financing led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures. WI Harper is described as an existing backer, not a participant in this round. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+            "source_kind": "primary",
+            "reviewed_on": "2026-11-16",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 29,
+          "identity": "neuroxess",
+          "before": {
+            "announced_on": "2022-01-12",
+            "stage": "Pre-Series A",
+            "investors": "Shanda Group;Sequoia Capital China",
+            "note": "",
+            "source_kind": "",
+            "reviewed_on": ""
+          },
+          "after": {
+            "announced_on": "2022-01-11",
+            "stage": "Angel + pre-Series A (combined)",
+            "investors": "Shanda Group;Sequoia Capital",
+            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once.",
+            "source_kind": "reporting",
+            "reviewed_on": "2026-11-16",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 30,
+          "identity": "neucyber-neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 31,
+          "identity": "stairmed",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 32,
+          "identity": "stairmed",
+          "before": {
+            "note": ""
+          },
+          "after": {
+            "note": "RMB 500m disclosed financing. The approximate legacy $73m estimate is retained; its exchange-rate source and date are unverified. April 2 is the release publication date, not an established closing date.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 33,
+          "identity": "gestala",
+          "before": {
+            "stage": "Angel"
+          },
+          "after": {
+            "stage": "Early-stage financing",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 34,
+          "identity": "forest-neurotech",
+          "before": {
+            "display_amount": "$14m",
+            "investors": "Eric Schmidt;Griffin Catalyst;Riley & Susan Bechtel Foundation;James Fickel",
+            "source_url": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech",
+            "note": "Philanthropic FRO funding rather than a priced equity round.",
+            "source_kind": "",
+            "reviewed_on": ""
+          },
+          "after": {
+            "display_amount": "$14m committed",
+            "investors": "Eric Schmidt",
+            "source_url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+            "note": "Announced $14m philanthropic commitment from Eric Schmidt; disbursement or cash received is not confirmed. Griffin Catalyst, the Riley & Susan Bechtel Foundation, and James Fickel are separately described as supporters with undisclosed funding, not participants in this $14m commitment. BioSpace syndicates the Convergent Research issuer release; not a priced equity round.",
+            "source_kind": "primary",
+            "reviewed_on": "2026-11-16",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 35,
+          "identity": "subsense",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "subsense",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 37,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 38,
+          "identity": "enspire-dbs",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 39,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 40,
+          "identity": "neuroxess",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalRegulatory": {
+      "length": 15,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "cortec",
+          "before": {
+            "announced_on": "2026-04-08",
+            "date_precision": "day",
+            "note": "FDA Breakthrough Device Designation for Brain Interchange."
+          },
+          "after": {
+            "announced_on": "2026-04-01",
+            "date_precision": "month",
+            "note": "FDA Breakthrough Device Designation for therapeutic motor rehabilitation after stroke, reported in April 2026; exact designation day is not disclosed.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "nia-therapeutics",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "synchron",
+          "before": {
+            "marker": "Pivotal",
+            "note": "Pivotal-trial initiation toward a first PMA filing."
+          },
+          "after": {
+            "marker": "Pivotal (planned)",
+            "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.",
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "neuracle-technology",
+          "before": {},
+          "after": {
+            "date_basis": "unverified"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "neuralink",
+          "before": {
+            "indication": "Cortical vision prosthesis",
+            "note": "FDA Breakthrough Device Designation for Blindsight."
+          },
+          "after": {
+            "indication": "Vision restoration (investigational)",
+            "note": "Breakthrough Device Designation for Blindsight, not marketing approval. September 17 is the reported announcement date.",
+            "date_basis": "announcement"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "inbrain-neuroelectronics",
+          "before": {
+            "announced_on": "2024-03-01",
+            "indication": "Parkinson's and neurological disorders",
+            "note": "Accepted into FDA TAP (company timeline January 2024; digest files it under March)."
+          },
+          "after": {
+            "announced_on": "2024-01-01",
+            "indication": "Not specified in the linked TAP timeline entry",
+            "note": "Accepted into FDA TAP in January 2024; exact day not disclosed.",
+            "date_basis": "event"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "date_basis": "reported"
+          },
+          "added": [
+            "date_basis"
+          ],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalCompanies": {
+      "length": 25,
+      "changes": [
+        {
+          "index": 4,
+          "identity": "precision-neuroscience",
+          "before": {
+            "indication": "Paralysis and neurological disorders"
+          },
+          "after": {
+            "indication": "Paralysis"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "paradromics",
+          "before": {
+            "modality": "Connexus Direct Data Interface"
+          },
+          "after": {
+            "modality": "Connexus BCI"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "axoft",
+          "before": {
+            "modality": "Soft Polymer Electrodes"
+          },
+          "after": {
+            "modality": "Soft Neural Interface"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "neurobionics",
+          "before": {
+            "interface_depth": "Intracortical",
+            "indication": "Neural recording and stimulation"
+          },
+          "after": {
+            "interface_depth": "Endovascular (clinical device)",
+            "indication": "Brain stimulation (clinical development); neural recording and stimulation (research)"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "nia-therapeutics",
+          "before": {
+            "indication": "Memory loss after brain injury"
+          },
+          "after": {
+            "indication": "Memory loss"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "coherence-neuro",
+          "before": {
+            "modality": "High-channel Neural Interface"
+          },
+          "after": {
+            "modality": "SOMA Brain-computer Interface"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "newronika",
+          "before": {
+            "hq": "Milan, Italy"
+          },
+          "after": {
+            "hq": "Cologno Monzese (Milan metropolitan area), Italy"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "neuroxess",
+          "before": {
+            "modality": "High-throughput Flexible BCI"
+          },
+          "after": {
+            "modality": "Implantable Flexible BCI"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "gestala",
+          "before": {
+            "modality": "Ultrasonic Phased-array BCI",
+            "indication": "Brain imaging and therapy"
+          },
+          "after": {
+            "modality": "Ultrasound BCI",
+            "indication": "Neurological disorders (in development)"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "motif-neurotech",
+          "before": {
+            "modality": "Miniaturized Deep Brain Stimulation",
+            "interface_depth": "Deep Brain",
+            "indication": "Treatment-resistant depression"
+          },
+          "after": {
+            "modality": "DOT Neuromodulation",
+            "interface_depth": "",
+            "indication": "Treatment-resistant depression (in development)"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalFoundings": {
+      "length": 25,
+      "changes": [
+        {
+          "index": 0,
+          "identity": "blackrock-neurotech",
+          "before": {
+            "note": "Company history dates the business to 2008 as Blackrock Microsystems; not the later Neurotech rebrand."
+          },
+          "after": {
+            "note": "Company history dates the business to 2008 as Blackrock Microsystems."
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "neurosoft-bioelectronics",
+          "before": {
+            "note": "Startupticker's press-release account explicitly states co-founded in 2020, consistent with Venturelab's 7 August 2020 incorporation record. PitchBook instead reports 2019; this discrepancy remains unresolved. The index uses the corroborated 2020 organizational founding, without inventing a 2019 research-origin date."
+          },
+          "after": {
+            "note": "Startupticker's press-release account explicitly states Neurosoft Bioelectronics was co-founded in 2020."
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "neuracle-technology",
+          "before": {
+            "note": "Investor HSG dates Neuracle to 2011, matching the Changzhou business in this roster; not a later Shanghai entity or unrelated namesake."
+          },
+          "after": {
+            "note": "Investor HSG states that Neuracle was founded in 2011."
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "forest-neurotech",
+          "before": {
+            "note": "Parent organization Convergent Research lists Established 2023; Forest is a nonprofit focused research organization, not a conventional venture-backed company."
+          },
+          "after": {
+            "note": "Convergent Research lists Forest Neurotech as a focused research organization (FRO), established in 2023."
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    }
+  }
+}

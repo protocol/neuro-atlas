@@ -7,6 +7,7 @@ import {
   buildCompanyRows,
   formatCapital,
   formatFundingDate,
+  formatFundingRecordDate,
   getTimelinePosition,
   type FundingCompanyRow,
   type FundingIndexData,
@@ -198,7 +199,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                     </span>
                   ))}
                 </div>
-                <div className="text-right">Raised</div>
+                <div className="text-right">Indexed financing</div>
               </div>
               <div className="min-w-[1055px] sm:min-w-[1120px]">
                 {rows.map((row, rowIndex) => {
@@ -255,14 +256,14 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                       <div className="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-muted">
                         {row.rounds.map((round) => (
                           <span key={`${round.announcedOn}-${round.stage}`} data-financing-readout className="text-xs leading-relaxed">
-                            {formatFundingDate(round.announcedOn, round.datePrecision)} · {round.stage} · <span className="font-semibold tabular-nums text-foreground">{round.displayAmount}</span>
+                            {formatFundingRecordDate(round.announcedOn, round.datePrecision, round.dateBasis)} · {round.stage} · <span className="font-semibold tabular-nums text-foreground">{round.displayAmount}</span>
                           </span>
                         ))}
                       </div>
                       </div>
                       <div className="pl-4 text-right">
                         <div className="text-sm font-semibold">{formatCapital(row.observedCapitalUsdM)}</div>
-                        <div className="mt-0.5 text-xs text-muted">{row.rounds.length} {row.rounds.length === 1 ? "round" : "rounds"}</div>
+                        <div className="mt-0.5 text-xs text-muted">{row.rounds.length} financing {row.rounds.length === 1 ? "record" : "records"}</div>
                         {row.rounds.some((round) => round.sourceKind) && <div className="mt-1 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.sourceKind ? [sourceKindLabel(round.sourceKind)] : []))].join(" · ")}</div>}
                         {row.rounds.some((round) => round.reviewedOn) && <div className="mt-0.5 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.reviewedOn ? [sourceReviewLabel(round.reviewedOn)] : []))].join(" · ")}</div>}
                       </div>
@@ -290,7 +291,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                     </div>
                     <div className="text-right">
                       <div className="text-lg font-semibold">{formatCapital(group.capital)}</div>
-                      <div className="text-xs text-muted">indexed capital raised</div>
+                      <div className="text-xs text-muted">indexed financing</div>
                     </div>
                   </div>
                   <div className="mt-4 space-y-2">
@@ -316,8 +317,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
               <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
                 <div className="border-b border-border px-6 py-5">
-                  <h2 className="text-base font-semibold tracking-[-0.01em]">Most active indexed investors</h2>
-                  <p className="mt-1 text-sm text-muted">Ranked by participations in the sourced rounds below. Associated capital is the full round size, not attributed check size.</p>
+                  <h2 className="text-base font-semibold tracking-[-0.01em]">Most active indexed investors and funders</h2>
+                  <p className="mt-1 text-sm text-muted">Ranked by appearances in the sourced financing records below. Associated capital is the full disclosed financing amount, including commitments and combined rounds, not an attributed check size.</p>
                 </div>
                 <div className="divide-y divide-black/[0.07]">
                   {data.investors.slice(0, 24).map((investor, index) => (
@@ -331,11 +332,11 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                               <span key={dot} className={`h-2 w-2 shrink-0 rounded-full ${dot < investor.roundCount ? "bg-accent" : "bg-border"}`} />
                             ))}
                           </div>
-                          <span className="text-xs text-muted">{investor.roundCount} {investor.roundCount === 1 ? "round" : "rounds"} · {investor.companyCount} {investor.companyCount === 1 ? "company" : "companies"}</span>
+                          <span className="text-xs text-muted">{investor.roundCount} financing {investor.roundCount === 1 ? "record" : "records"} · {investor.companyCount} {investor.companyCount === 1 ? "company" : "companies"}</span>
                         </div>
                       </div>
                       <div className="col-start-2 min-w-0 sm:col-start-3 sm:row-start-1 sm:text-right">
-                        <div className="text-xs text-muted">associated rounds</div>
+                        <div className="text-xs text-muted">associated financing</div>
                         <div className="mt-0.5 text-xs font-semibold">{formatCapital(investor.associatedCapitalUsdM)}</div>
                       </div>
                     </div>
@@ -345,7 +346,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               <aside className="self-start rounded-3xl bg-[#171a21] p-7 text-white lg:sticky lg:top-40">
                 <div className="text-xs font-bold text-white/80">How to read this</div>
                 <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em]">Participation, not portfolio exposure.</h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts named investor appearances in the indexed rounds. It does not estimate check size, ownership, reserves, or returns.</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts named backer appearances in indexed financing records, including funding commitments. It does not estimate check size, cash received, ownership, reserves, or returns.</p>
                 <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Round announcements do not always publish every participant. A low count may mean incomplete disclosure, not low conviction.</div>
               </aside>
             </div>
@@ -394,9 +395,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 {[selected.scope, selected.modality, selected.interfaceDepth].filter(Boolean).map((item) => <span key={item} className="rounded-full border border-border bg-surface-raised px-3 py-1.5 text-xs font-semibold">{item}</span>)}
               </div>
               <div className="mt-6 rounded-2xl bg-[#11131a] p-6 text-white">
-                <div className="text-xs font-bold text-white/70">Indexed capital raised</div>
+                <div className="text-xs font-bold text-white/70">Indexed financing</div>
                 <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selected.observedCapitalUsdM)}</div>
                 <p className="mt-3 text-sm text-white/75">{selected.indication}</p>
+                <p className="mt-2 text-xs leading-relaxed text-white/65">Disclosed financing, including commitments where labeled; not a cash-receipts total.</p>
               </div>
 
               <section className="mt-8 rounded-2xl border border-border bg-surface-raised p-4">
@@ -413,7 +415,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                   {[...selected.rounds].reverse().map((round) => (
                     <article key={`${round.announcedOn}-${round.stage}`} className="rounded-2xl border border-border bg-surface-raised p-4">
                       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-                        <div className="min-w-0 [overflow-wrap:anywhere]"><div className="text-sm font-semibold">{round.stage}</div><div className="mt-1 text-xs text-muted">{formatFundingDate(round.announcedOn, round.datePrecision)}</div></div>
+                        <div className="min-w-0 [overflow-wrap:anywhere]"><div className="text-sm font-semibold">{round.stage}</div><div className="mt-1 text-xs text-muted">{formatFundingRecordDate(round.announcedOn, round.datePrecision, round.dateBasis)}</div></div>
                         <div className="shrink-0 text-lg font-semibold tabular-nums text-accent">{round.displayAmount}</div>
                       </div>
                       {round.sourceKind && <p className="mt-3 text-xs font-semibold">{sourceKindLabel(round.sourceKind)}{round.reviewedOn ? ` · ${sourceReviewLabel(round.reviewedOn)}` : ""}</p>}
@@ -431,7 +433,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                   <div className="mt-3 space-y-3">
                     {selectedMilestones.map((milestone) => (
                       <article key={`${milestone.announcedOn}-${milestone.marker}`} className="rounded-2xl border border-border bg-positive-soft p-4">
-                        <div className="flex items-center justify-between gap-3"><span className="cursor-help rounded bg-[#11131a] px-2 py-1 text-xs font-bold text-white" onMouseEnter={(event) => showMarkerTip(event, milestone.marker, milestone.indication)} onMouseLeave={() => setMarkerTip(null)} aria-label={markerTitle(milestone.marker, milestone.indication)}>{milestone.marker}</span><span className="text-xs text-muted">{formatFundingDate(milestone.announcedOn, milestone.datePrecision)}</span></div>
+                        <div className="flex items-center justify-between gap-3"><span className="cursor-help rounded bg-[#11131a] px-2 py-1 text-xs font-bold text-white" onMouseEnter={(event) => showMarkerTip(event, milestone.marker, milestone.indication)} onMouseLeave={() => setMarkerTip(null)} aria-label={markerTitle(milestone.marker, milestone.indication)}>{milestone.marker}</span><span className="text-xs text-muted">{formatFundingRecordDate(milestone.announcedOn, milestone.datePrecision, milestone.dateBasis)}</span></div>
                         <p className="mt-3 text-sm font-medium">{milestone.indication}</p>
                         {milestone.note && <p className="mt-1.5 text-xs leading-relaxed text-muted">{milestone.note}</p>}
                         <a href={milestone.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold underline decoration-black/20 underline-offset-4">Source ↗</a>

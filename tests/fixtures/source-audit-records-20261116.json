@@ -1,0 +1,2144 @@
+[
+  {
+    "id": "stairmed-scope",
+    "title": "StairMed discloses its own round, not a market-wide total",
+    "groups": [
+      "NA-UNLINKED-ASIDES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-006",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 7,
+        "company": "StairMed",
+        "before": {
+          "note": "RMB 500m (~$72.8m) strategic round led by Alibaba; Tencent, FountainBridge, OrbiMed, Oriza Seed, Qiming, LAV, Source Code participating — part of China BCI investment crossing $100m"
+        },
+        "after": {
+          "note": "RMB 500m strategic financing led by Alibaba, with Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming, LAV, and Source Code participating. The approximate legacy USD estimate is retained; its exchange-rate source and date are unverified."
+        }
+      },
+      {
+        "recordId": "funding-round-033",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 34,
+        "company": "stairmed",
+        "before": {
+          "note": "",
+          "date_basis": "unverified"
+        },
+        "after": {
+          "note": "RMB 500m disclosed financing. The approximate legacy $73m estimate is retained; its exchange-rate source and date are unverified. April 2 is the release publication date, not an established closing date.",
+          "date_basis": "reported"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "recently announced the closing of a strategic financing round totaling RMB 500 million."
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "The round was led by Alibaba"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "SHANGHAI, April 2, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "today announced a new Application Expansion (APEX) Partnership Program to open collaboration between Paradromics and leading academic researchers advancing BCI science."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Mar 17, 2026"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Paradromics built strategic alliances with leading BCI researchers at multiple world-class institutions"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "The first surgery in the Connect-One Study is anticipated in the first half of 2026."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Stanford University’s Jaimie Henderson, MD and Frank Willett, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Massachusetts General Hospital’s Dan Rubin, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Pittsburgh’s Jennifer Collinger, PhD, and Robert Gaunt, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Michigan’s Matt Willsey, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "UC Davis Health’s David Brandman, MD, PhD"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "announced the successful closing of a $102 million Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "$102 million Series C funding round"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Dec. 16, 2024 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+        "quote": "We’ve closed our Series E funding round of $650 million with participation from key investors including ARK Invest, DFJ Growth, Founders Fund, G42, Human Capital, Lightspeed, QIA, Sequoia Capital, Thrive Capital, Valor Equity Partners, Vy Capital, amongst others."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "PRIMA received two Humanitarian Use Device (HUD) designations from the Food and Drug Administration. The HUD program offers expedited review for medical devices that treat patients with rare diseases or conditions. Once granted a HUD designation, a device must still be reviewed and approved by the FDA via a Humanitarian Device Exemption."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "Our first HUD designation is for patients who have gone blind from advanced geographic atrophy (GA) secondary to age-related macular degeneration (AMD). While GA itself is not a rare disease, the very advanced form, leading to blindness in both eyes without vision loss from other eye diseases, is less common and was approved as an “orphan subset” of the more common disease—thereby allowing us to receive HUD designation and expedite market access to help these patients."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "The second HUD designation is for patients who have lost vision from Stargardt disease, a rare inherited retinal disease."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "July 22, 2026"
+      }
+    ]
+  },
+  {
+    "id": "gestala-stage-amount",
+    "title": "Gestala preserves the disclosed amount and early-stage description",
+    "groups": [
+      "NA-STAGES",
+      "NA-ROUNDING"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-012",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 13,
+        "company": "Gestala",
+        "before": {
+          "activity": "$21m",
+          "amount_usd_m": "21",
+          "note": "~$21.6m angel raise (the dollar on the lane). Separate post-money valuation reported at $100–200m is not plotted. Largest early-stage BCI round in China's history; Guosheng Capital and Dalton Venture led. Non-invasive ultrasound BCI"
+        },
+        "after": {
+          "activity": "$21.6m",
+          "amount_usd_m": "21.6",
+          "note": "Early-stage financing of $21.6m (CNY 150m), co-led by Guosheng Capital and Dalton Venture. The company is developing non-invasive ultrasound BCI technology. The separately reported $100–200m valuation is not plotted."
+        }
+      },
+      {
+        "recordId": "funding-round-034",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 35,
+        "company": "gestala",
+        "before": {
+          "stage": "Angel",
+          "date_basis": "reported"
+        },
+        "after": {
+          "stage": "Early-stage financing",
+          "date_basis": "reported"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million, founder and CEO Phoenix Peng told TechCrunch."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture with participation from Tsing Song Capital, Gobi Ventures, Fourier Intelligence, Liepin, and Seas Capital, was heavily oversubscribed, with investor commitments totaling more than $58 million, Peng added."
+      },
+      {
+        "url": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+        "quote": "Penn spinout Nia Therapeutics recently raised $8.5 million in an equity financing round."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "completed a new financing round"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "From the perspective of the two managing directors of CorTec, Dr. Jörn Rickert and Dr. Martin Schüttler, Santo's investment confirms the increasing relevance of neurotechnology. \"The fact that the Strüngmann family as German life science investors of the highest reputation invest in CorTec, testifies to the growing importance of implantable solutions in neurotherapy,\" explained Dr. Jörn Rickert. \"This trend is not only evident in our market environment, but also in the public perception of companies such as Elon Musk- founded Neuralink. It is therefore essential for us to drive our Brain Interchange technology forward, with which we are pushing the boundaries of implant technology used to date,\" added Dr. Martin Schüttler. \"Santo's expertise will contribute to further expanding our technological capabilities.\""
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "That CorTec is about to play a central role in a growing market has attracted Santo Venture Capital to invest in the company. \"We are very impressed with CorTec's progress to date and believe that the technology will play a significant role in the future. With our experience and network in the field of life science, especially through the connection to the Ernst Strüngmann Institute for Neurosciences, which focuses intensively on brain research, we can contribute to the further development of the company\", explained Helmut Jeggle, Managing Director of the family office. This position is also confirmed by Dr. Harald Poth, member of the Management Board of LBBW Venture Capital GmbH in Stuttgart: \"Customers worldwide already value CorTec's innovative components. The Brain Interchange System has the potential to become the gold standard in neurotechnology\".\n\nThe Chairman of CorTec's Advisory Board, Prof. Dr. Klaus Mangold, welcomed Santo's commitment as new lead investor as well as the participation of a large number of existing shareholders such as Mangold Invest, Meder Invest, KfW or High-Tech Gründerfonds: \"With this significant increase in the equity base, CorTec will effectively fund the next important steps towards expanding the company. The course has been set for the future\"."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "today announced that it has raised $10.3 million in a Series B1 financing led by new investor Genesys Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "evaluates deep brain stimulation combined with structured rehabilitation"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "CLEVELAND, Jan. 13, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "announced today an oversubscribed Series A financing of $18.75 million"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Proceeds from the Series A financing will be used to advance the development of Motif’s lead product, [DOT microstimulator]"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "The initial indication Motif is pursuing for the device is treatment-resistant depression (TRD)"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Series A financing of $18.75 million"
+      }
+    ]
+  },
+  {
+    "id": "enspire-amount-origin",
+    "title": "Enspire preserves $10.3m and source-proven portfolio relationship",
+    "groups": [
+      "NA-ENSPIRE",
+      "NA-ROUNDING"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-013",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 14,
+        "company": "Enspire DBS",
+        "before": {
+          "activity": "$10m",
+          "amount_usd_m": "10",
+          "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic spinout advancing DBS-enabled stroke rehabilitation"
+        },
+        "after": {
+          "activity": "$10.3m",
+          "amount_usd_m": "10.3",
+          "note": "$10.3m Series B1 led by Genesys Capital; Cleveland Clinic portfolio company advancing DBS combined with structured stroke rehabilitation."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "today announced that it has raised $10.3 million in a Series B1 financing led by new investor Genesys Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "evaluates deep brain stimulation combined with structured rehabilitation"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "Enspire is a Cleveland Clinic portfolio company"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "CLEVELAND, Jan. 13, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "today announced that it has raised $10.3 million in a Series B1 financing led by new investor Genesys Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "evaluates deep brain stimulation combined with structured rehabilitation"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "CLEVELAND, Jan. 13, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "announced today an oversubscribed Series A financing of $18.75 million"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Proceeds from the Series A financing will be used to advance the development of Motif’s lead product, [DOT microstimulator]"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "The initial indication Motif is pursuing for the device is treatment-resistant depression (TRD)"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Series A financing of $18.75 million"
+      }
+    ]
+  },
+  {
+    "id": "motif-performer",
+    "title": "Motif performer selection does not invent a grant instrument or individual amount",
+    "groups": [
+      "NA-MOTIF-AWARD"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-018",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 19,
+        "company": "Motif Neurotech",
+        "before": {
+          "activity": "grant",
+          "note": "Selected as a performer team for ARPA-H's EVIDENT initiative (a $139.4m behavioral-health program)"
+        },
+        "after": {
+          "activity": "award",
+          "note": "Selected as an ARPA-H EVIDENT performer for adjunctive neuromodulation data collection. The program-wide ceiling is up to $139.4m across teams; Motif-specific funding amount and award instrument are not disclosed. No program-wide amount is counted as Motif financing."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+        "quote": "**Motif Neurotech**, in Houston, which seeks to accelerate measures of neuromodulation by leading adjunctive data collection."
+      },
+      {
+        "url": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+        "quote": "initiative, which will collectively fund up to $139.4 million"
+      },
+      {
+        "url": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+        "quote": "These awards are a critical step"
+      },
+      {
+        "url": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+        "quote": "Published April 21, 2026"
+      }
+    ]
+  },
+  {
+    "id": "cortec-second-implant",
+    "title": "Second human implantation is not automatically a first-in-human category",
+    "groups": [
+      "NA-SECOND-CASES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-020",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 21,
+        "company": "CorTec",
+        "before": {
+          "activity": "FIH",
+          "note": "Second human implantation of its Brain Interchange BCI system"
+        },
+        "after": {
+          "activity": "implantation",
+          "note": "Second human implantation of the Brain Interchange BCI system, performed in early February 2026 and announced February 10. The source does not specify the procedure day."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+        "quote": "today announced the successful second implantation of its proprietary Brain-Computer Interface (BCI) system"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+        "quote": "This second procedure took place in early February"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "脑虎科技今日宣布，继2025年底完成首款自主研发全植入、全无线、全功能（“三全”）脑机接口临床植入后，第二例临床试验取得关键性突破。"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "第二例临床试验取得关键性突破"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "通过50毫秒全链路超低延时与脑机接口驱动功能性电刺激技术（BCI-FES）的深度融合，帮助一名29岁高位截瘫美术教师实现自主进食与绘画创作。"
+      }
+    ]
+  },
+  {
+    "id": "cortec-bdd-tap",
+    "title": "CorTec distinguishes designation month from TAP announcement day",
+    "groups": [
+      "NA-CORTEC-TIMING"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-021",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 22,
+        "company": "CorTec",
+        "before": {
+          "note": "FDA Breakthrough Device Designation (Apr 8) then acceptance into the Total Product Life Cycle Advisory Program (Apr 23) — first BCI designated for stroke motor rehabilitation"
+        },
+        "after": {
+          "note": "CorTec announced FDA TAP acceptance on April 23, 2026, following a recently granted Breakthrough Device Designation for therapeutic motor rehabilitation after stroke. The source places the designation in April but does not specify the agency-action days."
+        }
+      },
+      {
+        "recordId": "funding-regulatory-003",
+        "path": "data/funding-index/milestones.csv",
+        "rowNumber": 4,
+        "company": "cortec",
+        "before": {
+          "announced_on": "2026-04-08",
+          "date_precision": "day",
+          "date_basis": "unverified",
+          "note": "FDA Breakthrough Device Designation for Brain Interchange."
+        },
+        "after": {
+          "announced_on": "2026-04-01",
+          "date_precision": "month",
+          "date_basis": "event",
+          "note": "FDA Breakthrough Device Designation for therapeutic motor rehabilitation after stroke, reported in April 2026; exact designation day is not disclosed."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+        "quote": "The TAP enrollment follows the recently granted FDA Breakthrough Device Designation"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+        "quote": "Freiburg, Germany, April 23, 2026 (GLOBE NEWSWIRE) -- CorTec GmbH today announced"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+        "quote": "currently the only BCI platform to hold an FDA Breakthrough Device Designation specifically for therapeutic motor rehabilitation after stroke"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+        "quote": "**Freiburg, Germany, April 23, 2026 (GLOBE NEWSWIRE) -- CorTec GmbH today announced that the U.S. Food and Drug Administration (FDA) has accepted the company into its Total Product Life Cycle Advisory Program (TAP), recognizing the Brain Interchange™ BCI system as a priority innovation in stroke motor rehabilitation. The TAP enrollment follows the recently granted FDA Breakthrough Device Designation, putting CorTec among a limited number of neurotech companies to receive both recognitions.** **Additionally****, a third patient has been successfully implanted at Harborview Medical Center in Seattle as part of the ongoing NIH-funded, FDA-approved clinical trial conducted by researchers from the University of Washington and UCLA.**"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+        "quote": "CorTec GmbH is a clinical stage neurotechnology company founded in 2010 in Freiburg, Germany. CorTec is developing Brain Interchange™, a fully implantable bidirectional BCI platform currently in FDA-authorized clinical evaluation in the United States. This makes CorTec the first and only European company to reach this stage. In April 2026, the device received both FDA Breakthrough Device Designation and admission to the FDA's Total Product Life Cycle Advisory Program (TAP) for stroke motor rehabilitation."
+      }
+    ]
+  },
+  {
+    "id": "neuroxess-second-case",
+    "title": "NeuroXess second case and prior year-end implant are qualified precisely",
+    "groups": [
+      "NA-SECOND-CASES",
+      "NA-NEUROXESS-PRIOR"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-024",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 25,
+        "company": "NeuroXess",
+        "before": {
+          "activity": "FIH",
+          "note": "Second fully-implanted 'three-full' BCI clinical case (BCI-FES restored self-feeding/painting in a paralyzed patient); the first battery-integrated implant was Dec 2025"
+        },
+        "after": {
+          "activity": "clinical case",
+          "note": "Second fully implanted, fully wireless, full-function ('three-full') BCI clinical case: BCI-FES restored self-feeding and painting in a paralyzed patient, following the first such clinical implant at the end of 2025. April 23 is the company announcement date, not a specified procedure day."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+        "quote": "today announced the successful second implantation of its proprietary Brain-Computer Interface (BCI) system"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+        "quote": "This second procedure took place in early February"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "脑虎科技今日宣布，继2025年底完成首款自主研发全植入、全无线、全功能（“三全”）脑机接口临床植入后，第二例临床试验取得关键性突破。"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "第二例临床试验取得关键性突破"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "通过50毫秒全链路超低延时与脑机接口驱动功能性电刺激技术（BCI-FES）的深度融合，帮助一名29岁高位截瘫美术教师实现自主进食与绘画创作。"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "脑虎科技今日宣布，继2025年底完成首款自主研发全植入、全无线、全功能（“三全”）脑机接口临床植入后，第二例临床试验取得关键性突破。"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "通过50毫秒全链路超低延时与脑机接口驱动功能性电刺激技术（BCI-FES）的深度融合，帮助一名29岁高位截瘫美术教师实现自主进食与绘画创作。"
+      },
+      {
+        "url": "https://www.neuroxess.com/news/kejixiangshan/",
+        "quote": "继2025年底完成首款自主研发全植入、全无线、全功能（“三全”）脑机接口临床植入后"
+      }
+    ]
+  },
+  {
+    "id": "apex-partnership",
+    "title": "APEX source is not used to substantiate a later implantation announcement",
+    "groups": [
+      "NA-UNLINKED-ASIDES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-025",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 26,
+        "company": "Paradromics",
+        "before": {
+          "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This was not the first Connect-One implantation; that separate milestone was announced June 17, 2026."
+        },
+        "after": {
+          "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This record describes the partnership, not an implantation."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "recently announced the closing of a strategic financing round totaling RMB 500 million."
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "The round was led by Alibaba"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "SHANGHAI, April 2, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "today announced a new Application Expansion (APEX) Partnership Program to open collaboration between Paradromics and leading academic researchers advancing BCI science."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Mar 17, 2026"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Paradromics built strategic alliances with leading BCI researchers at multiple world-class institutions"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "The first surgery in the Connect-One Study is anticipated in the first half of 2026."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Stanford University’s Jaimie Henderson, MD and Frank Willett, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Massachusetts General Hospital’s Dan Rubin, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Pittsburgh’s Jennifer Collinger, PhD, and Robert Gaunt, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Michigan’s Matt Willsey, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "UC Davis Health’s David Brandman, MD, PhD"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "announced the successful closing of a $102 million Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "$102 million Series C funding round"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Dec. 16, 2024 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+        "quote": "We’ve closed our Series E funding round of $650 million with participation from key investors including ARK Invest, DFJ Growth, Founders Fund, G42, Human Capital, Lightspeed, QIA, Sequoia Capital, Thrive Capital, Valor Equity Partners, Vy Capital, amongst others."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "PRIMA received two Humanitarian Use Device (HUD) designations from the Food and Drug Administration. The HUD program offers expedited review for medical devices that treat patients with rare diseases or conditions. Once granted a HUD designation, a device must still be reviewed and approved by the FDA via a Humanitarian Device Exemption."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "Our first HUD designation is for patients who have gone blind from advanced geographic atrophy (GA) secondary to age-related macular degeneration (AMD). While GA itself is not a rare disease, the very advanced form, leading to blindness in both eyes without vision loss from other eye diseases, is less common and was approved as an “orphan subset” of the more common disease—thereby allowing us to receive HUD designation and expedite market access to help these patients."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "The second HUD designation is for patients who have lost vision from Stargardt disease, a rare inherited retinal disease."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "July 22, 2026"
+      }
+    ]
+  },
+  {
+    "id": "neuralink-implant-basis",
+    "title": "Neuralink implant date retains the reported relative-date inference",
+    "groups": [
+      "NA-NEURALINK-FIRST"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-029",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 30,
+        "company": "Neuralink",
+        "before": {
+          "note": "First human implant of N1 / Telepathy (PRIME) on January 28, 2024; announced January 29, 2024."
+        },
+        "after": {
+          "note": "First human implant of Telepathy on January 28, 2024; announced January 29, 2024. The procedure date is inferred from the AP/Fortune report that Monday's announcement described implantation the day prior."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+        "quote": "the first human received an implant from his computer-brain interface company Neuralink over the weekend."
+      },
+      {
+        "url": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+        "quote": "Musk said that the patient received the implant the day prior"
+      },
+      {
+        "url": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+        "quote": "Musk said that the first Neuralink product is called “Telepathy”"
+      }
+    ]
+  },
+  {
+    "id": "blindsight-intended-use",
+    "title": "Blindsight vision-restoration designation does not establish hardware placement",
+    "groups": [
+      "NA-BLINDSIGHT"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-036",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 37,
+        "company": "Neuralink",
+        "before": {
+          "note": "Breakthrough Device Designation for Blindsight cortical vision prosthesis"
+        },
+        "after": {
+          "note": "FDA Breakthrough Device Designation for the investigational Blindsight vision-restoration device. Designation is not marketing approval; September 17 is the reported announcement date."
+        }
+      },
+      {
+        "recordId": "funding-regulatory-010",
+        "path": "data/funding-index/milestones.csv",
+        "rowNumber": 11,
+        "company": "neuralink",
+        "before": {
+          "indication": "Cortical vision prosthesis",
+          "note": "FDA Breakthrough Device Designation for Blindsight."
+        },
+        "after": {
+          "indication": "Vision restoration (investigational)",
+          "note": "Breakthrough Device Designation for Blindsight, not marketing approval. September 17 is the reported announcement date."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "A device that could potentially allow blind people — even those born without the sense of sight — to see has received the U.S. Food and Drug Administration’s “breakthrough device” designation."
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "the device, called “Blindsight,” will allow people who have lost both eyes and their optic nerve to see as long as the visual cortex is intact"
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "visual cortex is intact"
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "PUBLISHED 3:31 PM ET Sep. 18, 2024"
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "Neuralink, the brain chip company founded by Elon Musk, announced the approval Tuesday."
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "PUBLISHED 3:31 PM ET Sep. 18, 2024 PUBLISHED 3:31 PM EDT Sep. 18, 2024"
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "*   A device that could potentially allow blind people — even those born without the sense of sight — to see has received the U.S. Food and Drug Administration’s “breakthrough device” designation\n  \n*   Neuralink, the brain chip company founded by Elon Musk, announced the approval Tuesday\n  \n*   The FDA program is for medical devices that offer more effective treatment or diagnosis of life-threatening or irreversibly debilitating diseases or conditions\n  \n*   [According to Musk](https://x.com/elonmusk/status/1836120537883644049)\n    , the device, called “Blindsight,” will allow people who have lost both eyes and their optic nerve to see as long as the visual cortex is intact"
+      },
+      {
+        "url": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+        "quote": "Neuralink, the brain chip company founded by Elon Musk, announced the approval Tuesday. The FDA program is for medical devices that offer more effective treatment or diagnosis of life-threatening or irreversibly debilitating diseases or conditions."
+      }
+    ]
+  },
+  {
+    "id": "convoy-feasibility",
+    "title": "CONVOY is described as a feasibility study without an unproven formal EFS designation",
+    "groups": [
+      "NA-CONVOY"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-038",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 39,
+        "company": "Neuralink",
+        "before": {
+          "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
+        },
+        "after": {
+          "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "Sponsor\n\nNeuralink Corp\n\nStudy ID\n\nNCT06710626"
+      },
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "The CONVOY Study is a clinical trial designed to explore the feasibility of participants from the PRIME Study (NCT06429735) using the N1 Implant to control various assistive devices."
+      },
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "The intervention involves using the N1 Implant, a wireless brain-computer interface (BCI), to enable participants to control the Assistive Robotic Arm through neural signals."
+      },
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "clinical trial designed to explore the feasibility"
+      },
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "Start date\n\nNov 25, 2024"
+      },
+      {
+        "url": "https://www.hipa.ai/study/NCT06710626",
+        "quote": "The CONVOY Study is a clinical trial"
+      }
+    ]
+  },
+  {
+    "id": "precision-fda-source",
+    "title": "Layer 7-T restrictions are bound directly to the FDA decision letter",
+    "groups": [
+      "NA-PRECISION-CITATION"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-041",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 42,
+        "company": "Precision Neuroscience",
+        "before": {
+          "date": "2025-04-17",
+          "date_basis": "announcement",
+          "source_url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+          "note": "Company announcement of FDA 510(k) clearance for the Layer 7-T cortical electrode array. FDA letter K242618 is dated March 30, 2025 and specifies temporary use for less than 30 days. Cleared passive array, not the complete chronic wireless BCI."
+        },
+        "after": {
+          "date": "2025-03-30",
+          "date_basis": "event",
+          "source_url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+          "note": "FDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "today announced that it has received 510(k) clearance from the U.S. Food and Drug Administration (FDA) for the Layer 7 Cortical Interface, its high-resolution cortical electrode array"
+      },
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "Layer 7 Cortical Interface"
+      },
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "NEW YORK, April 17, 2025 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "implantation durations of up to 30 days"
+      },
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "The array is a core component of Precision’s fully implantable, wireless brain–computer interface system, which is currently in development."
+      },
+      {
+        "url": "https://precisionneuro.io/articles/company-news/precision-neuroscience-receives-fda-clearance-for-high-resolution-cortical-electrode-array",
+        "quote": "authorized for commercial use with implantation durations of up to 30 days"
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+        "quote": "March 30, 2025"
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+        "quote": "Trade/Device Name: Layer 7-T"
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+        "quote": "temporary (less than 30 days)"
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+        "quote": "The Layer 7-T is a passive device"
+      }
+    ]
+  },
+  {
+    "id": "precision-financing-purpose",
+    "title": "Precision financing source does not establish product-specific use of proceeds",
+    "groups": [
+      "NA-UNLINKED-ASIDES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-044",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 45,
+        "company": "Precision Neuroscience",
+        "before": {
+          "note": "Series C led by General Equity Holdings to advance the Layer 7 cortical implant"
+        },
+        "after": {
+          "note": "$102m Series C led by General Equity Holdings to advance brain-implant development."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "recently announced the closing of a strategic financing round totaling RMB 500 million."
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "The round was led by Alibaba"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "SHANGHAI, April 2, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "today announced a new Application Expansion (APEX) Partnership Program to open collaboration between Paradromics and leading academic researchers advancing BCI science."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Mar 17, 2026"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Paradromics built strategic alliances with leading BCI researchers at multiple world-class institutions"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "The first surgery in the Connect-One Study is anticipated in the first half of 2026."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Stanford University’s Jaimie Henderson, MD and Frank Willett, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Massachusetts General Hospital’s Dan Rubin, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Pittsburgh’s Jennifer Collinger, PhD, and Robert Gaunt, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Michigan’s Matt Willsey, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "UC Davis Health’s David Brandman, MD, PhD"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "announced the successful closing of a $102 million Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "$102 million Series C funding round"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Dec. 16, 2024 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+        "quote": "We’ve closed our Series E funding round of $650 million with participation from key investors including ARK Invest, DFJ Growth, Founders Fund, G42, Human Capital, Lightspeed, QIA, Sequoia Capital, Thrive Capital, Valor Equity Partners, Vy Capital, amongst others."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "PRIMA received two Humanitarian Use Device (HUD) designations from the Food and Drug Administration. The HUD program offers expedited review for medical devices that treat patients with rare diseases or conditions. Once granted a HUD designation, a device must still be reviewed and approved by the FDA via a Humanitarian Device Exemption."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "Our first HUD designation is for patients who have gone blind from advanced geographic atrophy (GA) secondary to age-related macular degeneration (AMD). While GA itself is not a rare disease, the very advanced form, leading to blindness in both eyes without vision loss from other eye diseases, is less common and was approved as an “orphan subset” of the more common disease—thereby allowing us to receive HUD designation and expedite market access to help these patients."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "The second HUD designation is for patients who have lost vision from Stargardt disease, a rare inherited retinal disease."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "July 22, 2026"
+      }
+    ]
+  },
+  {
+    "id": "motif-round-precision",
+    "title": "Motif aggregate arithmetic retains the disclosed $18.75m",
+    "groups": [
+      "NA-ROUNDING"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-047",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 48,
+        "company": "Motif Neurotech",
+        "before": {
+          "activity": "$19m",
+          "amount_usd_m": "19",
+          "note": "$18.75m Series A (rounded) for the DOT microstimulator in treatment-resistant depression"
+        },
+        "after": {
+          "activity": "$18.75m",
+          "amount_usd_m": "18.75",
+          "note": "$18.75m Series A for the DOT microstimulator in treatment-resistant depression."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "today announced that it has raised $10.3 million in a Series B1 financing led by new investor Genesys Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "evaluates deep brain stimulation combined with structured rehabilitation"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+        "quote": "CLEVELAND, Jan. 13, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "announced today an oversubscribed Series A financing of $18.75 million"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Proceeds from the Series A financing will be used to advance the development of Motif’s lead product, [DOT microstimulator]"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "The initial indication Motif is pursuing for the device is treatment-resistant depression (TRD)"
+      },
+      {
+        "url": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+        "quote": "Series A financing of $18.75 million"
+      }
+    ]
+  },
+  {
+    "id": "forest-commitment-donor",
+    "title": "Forest attributes the $14m commitment to Eric Schmidt only",
+    "groups": [
+      "NA-COMMITMENT-LABEL"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-048",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 49,
+        "company": "Forest Neurotech",
+        "before": {
+          "activity": "$14m",
+          "source_url": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech",
+          "date_basis": "unverified",
+          "note": "$14m philanthropic FRO funding commitment from Convergent Research — not a priced equity round"
+        },
+        "after": {
+          "activity": "$14m committed",
+          "source_url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+          "date_basis": "announcement",
+          "note": "Convergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round."
+        }
+      },
+      {
+        "recordId": "funding-round-035",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 36,
+        "company": "forest-neurotech",
+        "before": {
+          "display_amount": "$14m",
+          "investors": "Eric Schmidt;Griffin Catalyst;Riley & Susan Bechtel Foundation;James Fickel",
+          "source_url": "https://www.businesswire.com/news/home/20240311581698/en/Convergent-Research-Announces-Major-New-Funding-Commitment-to-Forest-Neurotech",
+          "date_basis": "unverified",
+          "source_kind": "",
+          "reviewed_on": "",
+          "note": "Philanthropic FRO funding rather than a priced equity round."
+        },
+        "after": {
+          "display_amount": "$14m committed",
+          "investors": "Eric Schmidt",
+          "source_url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+          "date_basis": "announcement",
+          "source_kind": "primary",
+          "reviewed_on": "2026-11-16",
+          "note": "Announced $14m philanthropic commitment from Eric Schmidt; disbursement or cash received is not confirmed. Griffin Catalyst, the Riley & Susan Bechtel Foundation, and James Fickel are separately described as supporters with undisclosed funding, not participants in this $14m commitment. BioSpace syndicates the Convergent Research issuer release; not a priced equity round."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+        "quote": "Convergent Research today announced a new $14 million funding commitment from former Google CEO Eric Schmidt to Forest Neurotech, an initiative designed to create next-generation brain-computer-interfaces (BCIs) for individuals with neurological injuries or diseases."
+      },
+      {
+        "url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+        "quote": "In addition to support from Eric Schmidt, Forest Neurotech has received funding from Griffin Catalyst, the philanthropic organization of Citadel CEO Kenneth C. Griffin, the Riley & Susan Bechtel Foundation, and James Fickel."
+      },
+      {
+        "url": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+        "quote": "Forest Neurotech is a new breed of non-profit startup."
+      }
+    ]
+  },
+  {
+    "id": "nia-equity-stage",
+    "title": "Nia source establishes equity financing rather than a named Series A",
+    "groups": [
+      "NA-STAGES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-049",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 50,
+        "company": "Nia Therapeutics",
+        "before": {
+          "note": "Series A"
+        },
+        "after": {
+          "note": "$8.5m equity financing; the linked Penn source does not identify a named round stage. May 3 is the article publication date."
+        }
+      },
+      {
+        "recordId": "funding-round-024",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 25,
+        "company": "nia-therapeutics",
+        "before": {
+          "stage": "Series A",
+          "date_basis": "reported"
+        },
+        "after": {
+          "stage": "Equity financing",
+          "date_basis": "reported"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million, founder and CEO Phoenix Peng told TechCrunch."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture with participation from Tsing Song Capital, Gobi Ventures, Fourier Intelligence, Liepin, and Seas Capital, was heavily oversubscribed, with investor commitments totaling more than $58 million, Peng added."
+      },
+      {
+        "url": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+        "quote": "Penn spinout Nia Therapeutics recently raised $8.5 million in an equity financing round."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "completed a new financing round"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "From the perspective of the two managing directors of CorTec, Dr. Jörn Rickert and Dr. Martin Schüttler, Santo's investment confirms the increasing relevance of neurotechnology. \"The fact that the Strüngmann family as German life science investors of the highest reputation invest in CorTec, testifies to the growing importance of implantable solutions in neurotherapy,\" explained Dr. Jörn Rickert. \"This trend is not only evident in our market environment, but also in the public perception of companies such as Elon Musk- founded Neuralink. It is therefore essential for us to drive our Brain Interchange technology forward, with which we are pushing the boundaries of implant technology used to date,\" added Dr. Martin Schüttler. \"Santo's expertise will contribute to further expanding our technological capabilities.\""
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "That CorTec is about to play a central role in a growing market has attracted Santo Venture Capital to invest in the company. \"We are very impressed with CorTec's progress to date and believe that the technology will play a significant role in the future. With our experience and network in the field of life science, especially through the connection to the Ernst Strüngmann Institute for Neurosciences, which focuses intensively on brain research, we can contribute to the further development of the company\", explained Helmut Jeggle, Managing Director of the family office. This position is also confirmed by Dr. Harald Poth, member of the Management Board of LBBW Venture Capital GmbH in Stuttgart: \"Customers worldwide already value CorTec's innovative components. The Brain Interchange System has the potential to become the gold standard in neurotechnology\".\n\nThe Chairman of CorTec's Advisory Board, Prof. Dr. Klaus Mangold, welcomed Santo's commitment as new lead investor as well as the participation of a large number of existing shareholders such as Mangold Invest, Meder Invest, KfW or High-Tech Gründerfonds: \"With this significant increase in the equity base, CorTec will effectively fund the next important steps towards expanding the company. The course has been set for the future\"."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      }
+    ]
+  },
+  {
+    "id": "neuracle-round-participants",
+    "title": "Neuracle current-round participants are not confused with existing backers",
+    "groups": [
+      "NA-NEURACLE-INVESTORS",
+      "NA-STAGES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-050",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 51,
+        "company": "Neuracle",
+        "before": {
+          "note": "RMB 60m (~$8.5m) venture round; USD is an announcement-date conversion"
+        },
+        "after": {
+          "note": "RMB 60m financing; round stage is not disclosed. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date."
+        }
+      },
+      {
+        "recordId": "funding-round-029",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 30,
+        "company": "neuracle-technology",
+        "before": {
+          "stage": "Venture round",
+          "investors": "WI Harper Group;Yipu Capital;Prosperico",
+          "note": "USD value is an approximate announcement-date conversion; the source amount is RMB 60m.",
+          "date_basis": "reported",
+          "source_kind": "",
+          "reviewed_on": ""
+        },
+        "after": {
+          "stage": "Financing (stage undisclosed)",
+          "investors": "China Control Fund;China Development Fund;China Development Frontier Fund;BV Baidu Ventures",
+          "note": "RMB 60m financing led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures. WI Harper is described as an existing backer, not a participant in this round. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+          "date_basis": "reported",
+          "source_kind": "primary",
+          "reviewed_on": "2026-11-16"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million, founder and CEO Phoenix Peng told TechCrunch."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture with participation from Tsing Song Capital, Gobi Ventures, Fourier Intelligence, Liepin, and Seas Capital, was heavily oversubscribed, with investor commitments totaling more than $58 million, Peng added."
+      },
+      {
+        "url": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+        "quote": "Penn spinout Nia Therapeutics recently raised $8.5 million in an equity financing round."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "completed a new financing round"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "From the perspective of the two managing directors of CorTec, Dr. Jörn Rickert and Dr. Martin Schüttler, Santo's investment confirms the increasing relevance of neurotechnology. \"The fact that the Strüngmann family as German life science investors of the highest reputation invest in CorTec, testifies to the growing importance of implantable solutions in neurotherapy,\" explained Dr. Jörn Rickert. \"This trend is not only evident in our market environment, but also in the public perception of companies such as Elon Musk- founded Neuralink. It is therefore essential for us to drive our Brain Interchange technology forward, with which we are pushing the boundaries of implant technology used to date,\" added Dr. Martin Schüttler. \"Santo's expertise will contribute to further expanding our technological capabilities.\""
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "That CorTec is about to play a central role in a growing market has attracted Santo Venture Capital to invest in the company. \"We are very impressed with CorTec's progress to date and believe that the technology will play a significant role in the future. With our experience and network in the field of life science, especially through the connection to the Ernst Strüngmann Institute for Neurosciences, which focuses intensively on brain research, we can contribute to the further development of the company\", explained Helmut Jeggle, Managing Director of the family office. This position is also confirmed by Dr. Harald Poth, member of the Management Board of LBBW Venture Capital GmbH in Stuttgart: \"Customers worldwide already value CorTec's innovative components. The Brain Interchange System has the potential to become the gold standard in neurotechnology\".\n\nThe Chairman of CorTec's Advisory Board, Prof. Dr. Klaus Mangold, welcomed Santo's commitment as new lead investor as well as the participation of a large number of existing shareholders such as Mangold Invest, Meder Invest, KfW or High-Tech Gründerfonds: \"With this significant increase in the equity base, CorTec will effectively fund the next important steps towards expanding the company. The course has been set for the future\"."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      }
+    ]
+  },
+  {
+    "id": "cortec-stage",
+    "title": "CorTec investment is not assigned an unsupported venture-round stage",
+    "groups": [
+      "NA-STAGES"
+    ],
+    "changes": [
+      {
+        "recordId": "funding-round-022",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 23,
+        "company": "cortec",
+        "before": {
+          "stage": "Venture round",
+          "note": "USD value is an approximate announcement-date conversion; the source amount is €13m."
+        },
+        "after": {
+          "stage": "Investment (stage undisclosed)",
+          "note": "Legacy record: €13m with an approximate $14.4m estimate. The captured linked article does not establish the native amount or the exchange-rate source/date; these values remain unverified."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million, founder and CEO Phoenix Peng told TechCrunch."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture with participation from Tsing Song Capital, Gobi Ventures, Fourier Intelligence, Liepin, and Seas Capital, was heavily oversubscribed, with investor commitments totaling more than $58 million, Peng added."
+      },
+      {
+        "url": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+        "quote": "Penn spinout Nia Therapeutics recently raised $8.5 million in an equity financing round."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "completed a new financing round"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "From the perspective of the two managing directors of CorTec, Dr. Jörn Rickert and Dr. Martin Schüttler, Santo's investment confirms the increasing relevance of neurotechnology. \"The fact that the Strüngmann family as German life science investors of the highest reputation invest in CorTec, testifies to the growing importance of implantable solutions in neurotherapy,\" explained Dr. Jörn Rickert. \"This trend is not only evident in our market environment, but also in the public perception of companies such as Elon Musk- founded Neuralink. It is therefore essential for us to drive our Brain Interchange technology forward, with which we are pushing the boundaries of implant technology used to date,\" added Dr. Martin Schüttler. \"Santo's expertise will contribute to further expanding our technological capabilities.\""
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "That CorTec is about to play a central role in a growing market has attracted Santo Venture Capital to invest in the company. \"We are very impressed with CorTec's progress to date and believe that the technology will play a significant role in the future. With our experience and network in the field of life science, especially through the connection to the Ernst Strüngmann Institute for Neurosciences, which focuses intensively on brain research, we can contribute to the further development of the company\", explained Helmut Jeggle, Managing Director of the family office. This position is also confirmed by Dr. Harald Poth, member of the Management Board of LBBW Venture Capital GmbH in Stuttgart: \"Customers worldwide already value CorTec's innovative components. The Brain Interchange System has the potential to become the gold standard in neurotechnology\".\n\nThe Chairman of CorTec's Advisory Board, Prof. Dr. Klaus Mangold, welcomed Santo's commitment as new lead investor as well as the participation of a large number of existing shareholders such as Mangold Invest, Meder Invest, KfW or High-Tech Gründerfonds: \"With this significant increase in the equity base, CorTec will effectively fund the next important steps towards expanding the company. The course has been set for the future\"."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      }
+    ]
+  },
+  {
+    "id": "subsense-financing",
+    "title": "SubSense additional capital is not assigned an unsupported seed-extension label",
+    "groups": [
+      "NA-SUBSENSE"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-058",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 59,
+        "company": "SubSense",
+        "before": {
+          "note": "$10m seed extension"
+        },
+        "after": {
+          "note": "$10m additional financing, bringing reported total funding to $27m. Only the $10m new financing is plotted; the linked source does not identify it as a seed extension."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+        "quote": "Today, Subsense Inc. announced a $10M capital injection"
+      },
+      {
+        "url": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+        "quote": "has raised an additional $10M, bringing its total funding to $27M"
+      },
+      {
+        "url": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+        "quote": "announced a $10M capital injection"
+      }
+    ]
+  },
+  {
+    "id": "neurobionics-close",
+    "title": "NeuroBionics source supports one $5m seed close, not a later unsourced total",
+    "groups": [
+      "NA-NEUROBIONICS-CLOSE"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-059",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 60,
+        "company": "NeuroBionics",
+        "before": {
+          "note": "$5m seed first close; a later second close took the seed total to $10m. Label: first close."
+        },
+        "after": {
+          "note": "$5m seed round close. The linked announcement does not establish a later second close or a $10m seed total."
+        }
+      },
+      {
+        "recordId": "funding-round-023",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 24,
+        "company": "neurobionics",
+        "before": {
+          "note": "First close; a later second close took the seed total to $10m."
+        },
+        "after": {
+          "note": "$5m seed round close. A later second close or $10m seed total is not established by this linked announcement."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "today announced the successful close of its $5 million Seed Round"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "successful close of its $5 million Seed Round"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "Jan 21, 2025"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "[NeuroBionics](https://neurobionics.io/)\n, a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": " | Jan 21, 2025 | [News](https://neurobionics.io/category/press/news/)"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health."
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "[NeuroBionics](https://neurobionics.io/)\n, a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)"
+      },
+      {
+        "url": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+        "quote": "[NeuroBionics](https://neurobionics.io/)\n, a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health."
+      }
+    ]
+  },
+  {
+    "id": "tether-ownership",
+    "title": "Tether investment does not assert an unsupported majority stake",
+    "groups": [
+      "NA-TETHER",
+      "NA-STAGES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-061",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 62,
+        "company": "Blackrock Neurotech",
+        "before": {
+          "note": "Tether majority-stake strategic investment"
+        },
+        "after": {
+          "note": "$200m investment from Tether Evo in Blackrock Neurotech. The linked company announcement does not state an ownership percentage."
+        }
+      },
+      {
+        "recordId": "funding-round-001",
+        "path": "data/funding-index/rounds.csv",
+        "rowNumber": 2,
+        "company": "blackrock-neurotech",
+        "before": {
+          "stage": "Strategic investment",
+          "note": "Majority-stake strategic investment."
+        },
+        "after": {
+          "stage": "Investment",
+          "note": "$200m investment from Tether Evo. The linked company announcement does not state an ownership percentage."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "A note from CEO, Marcus Gerhardt —  \n  \nToday marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  \n  \nWhen [](https://www.linkedin.com/in/ACoAAAMheyEBHvZ0xHf9Gl24y0feNVhH9LJWPSY)\n[Florian Solzbacher](https://www.linkedin.com/in/florian-solzbacher-aa971015/)\n and I co-founded Blackrock Neurotech, we were driven by a shared dream: to create technologies that would restore independence and enrich the lives of millions facing neurological challenges. With each passing year, as our BCI breakthroughs enabled individuals to control robotic limbs, navigate digital spaces, and even paint with their thoughts, that dream grew closer to reality. I have now had the profound privilege of witnessing these life-changing moments firsthand.  \n  \nThis is not just an investment in Blackrock Neurotech; it is an investment in the millions of individuals who deserve a chance to reclaim their independence and chase their dreams.  \n  \nI am immensely grateful for the dedication of our brilliant team, the trust of our patients and partners, and the vision of Tether Evo. Together, we are writing a new chapter in the story of human resilience and innovation."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "This is the largest early-stage funding [in China’s BCI industry.](https://techcrunch.com/2026/02/22/chinas-brain-computer-interface-industry-is-racing-ahead/)"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "developing non-invasive ultrasound-based BCIs."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "9:00 PM PDT · March 11, 2026"
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "Gestala has raised $21.6 million (CN¥150 million) just two months after launching, at a valuation of $100 million to $200 million, founder and CEO Phoenix Peng told TechCrunch."
+      },
+      {
+        "url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+        "quote": "The round, co-led by Guosheng Capital and Dalton Venture with participation from Tsing Song Capital, Gobi Ventures, Fourier Intelligence, Liepin, and Seas Capital, was heavily oversubscribed, with investor commitments totaling more than $58 million, Peng added."
+      },
+      {
+        "url": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+        "quote": "Penn spinout Nia Therapeutics recently raised $8.5 million in an equity financing round."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "completed a new financing round"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024"
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "March 3, 2024\n\nWI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+        "quote": "WI Harper–backed Neuracle Technology Co., Ltd. has officially completed a new financing round, raising RMB 60 million. To date, Neuracle has completed three rounds of funding, bringing its total to over RMB 100 million. This round was led by China Control Fund, China Development Fund, China Development Frontier Fund, and BV Baidu Ventures."
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "From the perspective of the two managing directors of CorTec, Dr. Jörn Rickert and Dr. Martin Schüttler, Santo's investment confirms the increasing relevance of neurotechnology. \"The fact that the Strüngmann family as German life science investors of the highest reputation invest in CorTec, testifies to the growing importance of implantable solutions in neurotherapy,\" explained Dr. Jörn Rickert. \"This trend is not only evident in our market environment, but also in the public perception of companies such as Elon Musk- founded Neuralink. It is therefore essential for us to drive our Brain Interchange technology forward, with which we are pushing the boundaries of implant technology used to date,\" added Dr. Martin Schüttler. \"Santo's expertise will contribute to further expanding our technological capabilities.\""
+      },
+      {
+        "url": "https://cortec-neuro.com/struengmann_group_invests_in_further_expansion_of_cortec/",
+        "quote": "That CorTec is about to play a central role in a growing market has attracted Santo Venture Capital to invest in the company. \"We are very impressed with CorTec's progress to date and believe that the technology will play a significant role in the future. With our experience and network in the field of life science, especially through the connection to the Ernst Strüngmann Institute for Neurosciences, which focuses intensively on brain research, we can contribute to the further development of the company\", explained Helmut Jeggle, Managing Director of the family office. This position is also confirmed by Dr. Harald Poth, member of the Management Board of LBBW Venture Capital GmbH in Stuttgart: \"Customers worldwide already value CorTec's innovative components. The Brain Interchange System has the potential to become the gold standard in neurotechnology\".\n\nThe Chairman of CorTec's Advisory Board, Prof. Dr. Klaus Mangold, welcomed Santo's commitment as new lead investor as well as the participation of a large number of existing shareholders such as Mangold Invest, Meder Invest, KfW or High-Tech Gründerfonds: \"With this significant increase in the equity base, CorTec will effectively fund the next important steps towards expanding the company. The course has been set for the future\"."
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "Today marks an extraordinary milestone in [Blackrock Neurotech](https://www.linkedin.com/company/blackrock-neurotech/)\n’s journey – one that we believe will redefine the future of healthcare and human potential. Blackrock is thrilled to announce that Tether Evo, the pioneering venture arm of [Tether.to](http://tether.to/)\n, has made a transformative $200 million investment in our mission.  "
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": "April 29, 2024"
+      },
+      {
+        "url": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+        "quote": ", has made a transformative $200 million investment in our mission.  "
+      }
+    ]
+  },
+  {
+    "id": "neuralink-capital-only",
+    "title": "Neuralink financing is not supplemented by an unlinked valuation aside",
+    "groups": [
+      "NA-UNLINKED-ASIDES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-062",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 63,
+        "company": "Neuralink",
+        "before": {
+          "note": "Series E raise — $650m of new capital, not a valuation or market cap. Reported ~$9b pre-money is a separate figure."
+        },
+        "after": {
+          "note": "Series E raise: $650m of new capital, not valuation or market capitalization."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "recently announced the closing of a strategic financing round totaling RMB 500 million."
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "The round was led by Alibaba"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "SHANGHAI, April 2, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "today announced a new Application Expansion (APEX) Partnership Program to open collaboration between Paradromics and leading academic researchers advancing BCI science."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Mar 17, 2026"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Paradromics built strategic alliances with leading BCI researchers at multiple world-class institutions"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "The first surgery in the Connect-One Study is anticipated in the first half of 2026."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Stanford University’s Jaimie Henderson, MD and Frank Willett, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Massachusetts General Hospital’s Dan Rubin, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Pittsburgh’s Jennifer Collinger, PhD, and Robert Gaunt, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Michigan’s Matt Willsey, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "UC Davis Health’s David Brandman, MD, PhD"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "announced the successful closing of a $102 million Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "$102 million Series C funding round"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Dec. 16, 2024 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+        "quote": "We’ve closed our Series E funding round of $650 million with participation from key investors including ARK Invest, DFJ Growth, Founders Fund, G42, Human Capital, Lightspeed, QIA, Sequoia Capital, Thrive Capital, Valor Equity Partners, Vy Capital, amongst others."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "PRIMA received two Humanitarian Use Device (HUD) designations from the Food and Drug Administration. The HUD program offers expedited review for medical devices that treat patients with rare diseases or conditions. Once granted a HUD designation, a device must still be reviewed and approved by the FDA via a Humanitarian Device Exemption."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "Our first HUD designation is for patients who have gone blind from advanced geographic atrophy (GA) secondary to age-related macular degeneration (AMD). While GA itself is not a rare disease, the very advanced form, leading to blindness in both eyes without vision loss from other eye diseases, is less common and was approved as an “orphan subset” of the more common disease—thereby allowing us to receive HUD designation and expedite market access to help these patients."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "The second HUD designation is for patients who have lost vision from Stargardt disease, a rare inherited retinal disease."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "July 22, 2026"
+      }
+    ]
+  },
+  {
+    "id": "neuracle-report-month",
+    "title": "Neuracle disclosure preserves month precision and does not invent a filing day",
+    "groups": [
+      "NA-MONTH-PRECISION"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-073",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 74,
+        "company": "Neuracle",
+        "before": {
+          "date": "2026-09-29",
+          "date_precision": "day",
+          "date_basis": "unverified",
+          "note": "In its September 29 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. This is the disclosure date, not the individual sales or implant dates; no revenue or IPO proceeds are inferred."
+        },
+        "after": {
+          "date": "2026-09-01",
+          "date_precision": "month",
+          "date_basis": "reported",
+          "note": "In a September 2026 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. The linked body does not establish the filing day or individual sale/implant dates; no revenue or IPO proceeds are inferred."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "。 后续，发行人将结合医疗机构人员培训及考核情况、院内准入进度、患者筛 选结果、临床服务保障能力以及已植入病例的运行和随访情况，稳步扩大符合条 件的临床应用中心数量及终端手术规模，在确保产品安全、规范使用的前提下， 有序推动意向订单转化落地。 根据灼识咨询预测，参考植入式高端医疗器械的出厂价，侵入式脑机接口产 品的出厂价预计约为20万元。 截至本回复出具日，NEO-ONE SCI自2026年7月以来已完成13套销售并 完成8套终端植入，在手和意向订单超70套。随着公司产品在各省份挂网、各 医院入院及市场教育的持续推进，公司产品销售有望持续增长。 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-137 二、核查程序和核查意见 （一）核查程序 对于上述问题，保荐人执行了如下程序： 1、查阅各省市医保局信息，了解各省市对于侵入式脑机接口医疗器械的服 务收费标准以及耗材挂网价格； 2、访谈发行人相关人员，了解销售团队组织架构、终端医院覆盖情况、对 NEO-ONE SCI的产品销售推广规"
+      },
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "、患者筛 选结果、临床服务保障能力以及已植入病例的运行和随访情况，稳步扩大符合条 件的临床应用中心数量及终端手术规模，在确保产品安全、规范使用的前提下， 有序推动意向订单转化落地。 根据灼识咨询预测，参考植入式高端医疗器械的出厂价，侵入式脑机接口产 品的出厂价预计约为20万元。 截至本回复出具日，NEO-ONE SCI自2026年7月以来已完成13套销售并 完成8套终端植入，在手和意向订单超70套。随着公司产品在各省份挂网、各 医院入院及市场教育的持续推进，公司产品销售有望持续增长。 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-137 二、核查程序和核查意见 （一）核查程序 对于上述问题，保荐人执行了如下程序： 1、查阅各省市医保局信息，了解各省市对于侵入式脑机接口医疗器械的服 务收费标准以及耗材挂网价格； 2、访谈发行人相关人员，了解销售团队组织架构、终端医院覆盖情况、对 NEO-ONE SCI的产品销售推广规划、销售人员配备情况"
+      },
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "于博睿康技术（上海）股份有限公司 首次公开发行股票并在科创板上市申请文件 的审核问询函之回复报告 保荐人（主承销商） （深圳市福田区中心三路8号卓越时代广场（二期）北座） 二〇二六年九月 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-1 上海证券交易所： 贵所于2026年6月24日出具的上证科审［2026］262号《关于博睿康技术 （上海）股份有限公司首次公开发行股票并在科创板上市申请文件的审核问询函》 （简称“问询函”）已收悉，博睿康技术（上海）股份有限公司（以下简称“公 司”、“发行人”或“博睿康”）会同中信证券股份有限公司（以下简称“保荐 人”）、天健会计师事务所（特殊普通合伙）（以下简称“申报会计师”）、北 京市通商律师事务所（以下简称“发"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "o-electrocorticography (µECoG) array, for intraoperative neural recordings and real-time brain-computer interface (BCI) applications, including speech decoding and cursor control. METHODS Four patients (age range 23–43 years) who underwent awake craniotomy for tumor resection near the eloquent cortex were enrolled. The Layer 7 µECoG device (1024 channels, approximately 1.5-cm²coverage) was placed on the motor cortex following standard co"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "verse events. The mean electrode impedances across 6 arrays (6144 channels) ranged from 1.21 to 1.99 MΩ, with 954–990 channels per array retained for analysis. In the speech task, a 4-word classification model achieved 77.5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recording"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recordings remained stable during tumor resection. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the l"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "|     |     |\n| --- | --- |\n| Article number | E3  |\n| Journal | [Neurosurgical focus](https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/#) |\n| Volume | 60  |\n| Issue number | 2   |\n| DOIs | *   [https://doi.org/10.3171/2025.11.FOCUS25908](https://doi.org/10.3171/2025.11.FOCUS25908) |\n| State | Published - Feb 2026 |"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "ion. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the limited timeframe of an intraoperative session. These findings highlight the potential clinical applications of high-density µECoG for functional mapping, diagnostic assessment, and future chronic BCI systems for patients with motor and communication impairments."
+      }
+    ]
+  },
+  {
+    "id": "science-hud-scope",
+    "title": "Science HUD source is not used for an uncited later timing update",
+    "groups": [
+      "NA-UNLINKED-ASIDES"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-074",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 75,
+        "company": "Science Corp",
+        "before": {
+          "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. Announcement date; the October update places the designations in spring 2026 without exact dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required."
+        },
+        "after": {
+          "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. July 22 is the announcement date, not the grant dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "recently announced the closing of a strategic financing round totaling RMB 500 million."
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "The round was led by Alibaba"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital"
+      },
+      {
+        "url": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+        "quote": "SHANGHAI, April 2, 2026 /PRNewswire/"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "today announced a new Application Expansion (APEX) Partnership Program to open collaboration between Paradromics and leading academic researchers advancing BCI science."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Mar 17, 2026"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Paradromics built strategic alliances with leading BCI researchers at multiple world-class institutions"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "The first surgery in the Connect-One Study is anticipated in the first half of 2026."
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Stanford University’s Jaimie Henderson, MD and Frank Willett, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "Massachusetts General Hospital’s Dan Rubin, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Pittsburgh’s Jennifer Collinger, PhD, and Robert Gaunt, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "University of Michigan’s Matt Willsey, MD, PhD"
+      },
+      {
+        "url": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+        "quote": "UC Davis Health’s David Brandman, MD, PhD"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "announced the successful closing of a $102 million Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Series C funding round led by General Equity Holdings"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "$102 million Series C funding round"
+      },
+      {
+        "url": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+        "quote": "Dec. 16, 2024 (GLOBE NEWSWIRE)"
+      },
+      {
+        "url": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+        "quote": "We’ve closed our Series E funding round of $650 million with participation from key investors including ARK Invest, DFJ Growth, Founders Fund, G42, Human Capital, Lightspeed, QIA, Sequoia Capital, Thrive Capital, Valor Equity Partners, Vy Capital, amongst others."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "PRIMA received two Humanitarian Use Device (HUD) designations from the Food and Drug Administration. The HUD program offers expedited review for medical devices that treat patients with rare diseases or conditions. Once granted a HUD designation, a device must still be reviewed and approved by the FDA via a Humanitarian Device Exemption."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "Our first HUD designation is for patients who have gone blind from advanced geographic atrophy (GA) secondary to age-related macular degeneration (AMD). While GA itself is not a rare disease, the very advanced form, leading to blindness in both eyes without vision loss from other eye diseases, is less common and was approved as an “orphan subset” of the more common disease—thereby allowing us to receive HUD designation and expedite market access to help these patients."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "The second HUD designation is for patients who have lost vision from Stargardt disease, a rare inherited retinal disease."
+      },
+      {
+        "url": "https://science.xyz/news/hud-designation/",
+        "quote": "July 22, 2026"
+      }
+    ]
+  },
+  {
+    "id": "layer7-study-month",
+    "title": "Layer 7 paper uses publication month and does not invent speech-task participant count",
+    "groups": [
+      "NA-LAYER7-RESULT",
+      "NA-MONTH-PRECISION"
+    ],
+    "changes": [
+      {
+        "recordId": "timeline-081",
+        "path": "data/market-memo-q1-2026/milestones.csv",
+        "rowNumber": 82,
+        "company": "Precision Neuroscience",
+        "before": {
+          "date_precision": "day",
+          "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% in one participant and four-direction motor classification of 78-84%. This is the publication date, not procedure dates; small acute study, not unrestricted speech restoration or chronic implant efficacy."
+        },
+        "after": {
+          "date_precision": "month",
+          "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% and four-direction motor classification of 78–84%; the abstract does not specify the speech-task participant count. February 2026 is the publication month, not procedure dates. Small acute study, not unrestricted speech restoration or chronic implant efficacy."
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "o-electrocorticography (µECoG) array, for intraoperative neural recordings and real-time brain-computer interface (BCI) applications, including speech decoding and cursor control. METHODS Four patients (age range 23–43 years) who underwent awake craniotomy for tumor resection near the eloquent cortex were enrolled. The Layer 7 µECoG device (1024 channels, approximately 1.5-cm²coverage) was placed on the motor cortex following standard co"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "verse events. The mean electrode impedances across 6 arrays (6144 channels) ranged from 1.21 to 1.99 MΩ, with 954–990 channels per array retained for analysis. In the speech task, a 4-word classification model achieved 77.5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recording"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recordings remained stable during tumor resection. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the l"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "ion. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the limited timeframe of an intraoperative session. These findings highlight the potential clinical applications of high-density µECoG for functional mapping, diagnostic assessment, and future chronic BCI systems for patients with motor and communication impairments."
+      },
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "。 后续，发行人将结合医疗机构人员培训及考核情况、院内准入进度、患者筛 选结果、临床服务保障能力以及已植入病例的运行和随访情况，稳步扩大符合条 件的临床应用中心数量及终端手术规模，在确保产品安全、规范使用的前提下， 有序推动意向订单转化落地。 根据灼识咨询预测，参考植入式高端医疗器械的出厂价，侵入式脑机接口产 品的出厂价预计约为20万元。 截至本回复出具日，NEO-ONE SCI自2026年7月以来已完成13套销售并 完成8套终端植入，在手和意向订单超70套。随着公司产品在各省份挂网、各 医院入院及市场教育的持续推进，公司产品销售有望持续增长。 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-137 二、核查程序和核查意见 （一）核查程序 对于上述问题，保荐人执行了如下程序： 1、查阅各省市医保局信息，了解各省市对于侵入式脑机接口医疗器械的服 务收费标准以及耗材挂网价格； 2、访谈发行人相关人员，了解销售团队组织架构、终端医院覆盖情况、对 NEO-ONE SCI的产品销售推广规"
+      },
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "、患者筛 选结果、临床服务保障能力以及已植入病例的运行和随访情况，稳步扩大符合条 件的临床应用中心数量及终端手术规模，在确保产品安全、规范使用的前提下， 有序推动意向订单转化落地。 根据灼识咨询预测，参考植入式高端医疗器械的出厂价，侵入式脑机接口产 品的出厂价预计约为20万元。 截至本回复出具日，NEO-ONE SCI自2026年7月以来已完成13套销售并 完成8套终端植入，在手和意向订单超70套。随着公司产品在各省份挂网、各 医院入院及市场教育的持续推进，公司产品销售有望持续增长。 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-137 二、核查程序和核查意见 （一）核查程序 对于上述问题，保荐人执行了如下程序： 1、查阅各省市医保局信息，了解各省市对于侵入式脑机接口医疗器械的服 务收费标准以及耗材挂网价格； 2、访谈发行人相关人员，了解销售团队组织架构、终端医院覆盖情况、对 NEO-ONE SCI的产品销售推广规划、销售人员配备情况"
+      },
+      {
+        "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+        "quote": "于博睿康技术（上海）股份有限公司 首次公开发行股票并在科创板上市申请文件 的审核问询函之回复报告 保荐人（主承销商） （深圳市福田区中心三路8号卓越时代广场（二期）北座） 二〇二六年九月 博睿康技术（上海）股份有限公司 问询函回复报告 8-1-1 上海证券交易所： 贵所于2026年6月24日出具的上证科审［2026］262号《关于博睿康技术 （上海）股份有限公司首次公开发行股票并在科创板上市申请文件的审核问询函》 （简称“问询函”）已收悉，博睿康技术（上海）股份有限公司（以下简称“公 司”、“发行人”或“博睿康”）会同中信证券股份有限公司（以下简称“保荐 人”）、天健会计师事务所（特殊普通合伙）（以下简称“申报会计师”）、北 京市通商律师事务所（以下简称“发"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "o-electrocorticography (µECoG) array, for intraoperative neural recordings and real-time brain-computer interface (BCI) applications, including speech decoding and cursor control. METHODS Four patients (age range 23–43 years) who underwent awake craniotomy for tumor resection near the eloquent cortex were enrolled. The Layer 7 µECoG device (1024 channels, approximately 1.5-cm²coverage) was placed on the motor cortex following standard co"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "verse events. The mean electrode impedances across 6 arrays (6144 channels) ranged from 1.21 to 1.99 MΩ, with 954–990 channels per array retained for analysis. In the speech task, a 4-word classification model achieved 77.5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recording"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "5% accuracy, and a real-time synthesis model was able to distinguish speech and silence during approximately 20 minutes of data recording in the operating room. In the motor task, a 4-direction classification model achieved 78%–84% accuracy. Recordings remained stable during tumor resection. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the l"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "|     |     |\n| --- | --- |\n| Article number | E3  |\n| Journal | [Neurosurgical focus](https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/#) |\n| Volume | 60  |\n| Issue number | 2   |\n| DOIs | *   [https://doi.org/10.3171/2025.11.FOCUS25908](https://doi.org/10.3171/2025.11.FOCUS25908) |\n| State | Published - Feb 2026 |"
+      },
+      {
+        "url": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+        "quote": "ion. CONCLUSIONS The Layer 7 Cortical Interface device enabled high-resolution nonpenetrating cortical recordings that supported real-time speech classification and cursor control within the limited timeframe of an intraoperative session. These findings highlight the potential clinical applications of high-density µECoG for functional mapping, diagnostic assessment, and future chronic BCI systems for patients with motor and communication impairments."
+      }
+    ]
+  },
+  {
+    "id": "inbrain-tap-indication",
+    "title": "INBRAIN TAP source is not assigned the indication of a separate designation",
+    "groups": [
+      "NA-INBRAIN"
+    ],
+    "changes": [
+      {
+        "recordId": "funding-regulatory-011",
+        "path": "data/funding-index/milestones.csv",
+        "rowNumber": 12,
+        "company": "inbrain-neuroelectronics",
+        "before": {
+          "indication": "Parkinson's and neurological disorders"
+        },
+        "after": {
+          "indication": "Not specified in the linked TAP timeline entry"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://inbrain-neuroelectronics.com/",
+        "quote": "Accepted into FDA Total Product Life Cycle Advisory Program (TAP)."
+      },
+      {
+        "url": "https://inbrain-neuroelectronics.com/",
+        "quote": "2024, January\n    \n    Accepted into FDA Total Product Life Cycle Advisory Program (TAP)."
+      },
+      {
+        "url": "https://inbrain-neuroelectronics.com/",
+        "quote": "*   PARTNERSHIP\n    \n    2025, December\n    \n    Strategic collaboration with Microsoft to deploy agentic AI for precision neurology\n    \n*   CLINICAL\n    \n    2025, July\n    \n    Positive interim results confirm graphene BCI delivers neural fidelity beyond conventional materials\n    \n*   CLINICAL\n    \n    2024, September\n    \n    World's first human procedure with a graphene-based brain-computer interface.\n    \n*   REGULATORY\n    \n    2024, January\n    \n    Accepted into FDA Total Product Life Cycle Advisory Program (TAP).\n    \n*   REGULATORY\n    \n    2023, August\n    \n    FDA grants Breakthrough Device Designation for Parkinson's disease therapy."
+      }
+    ]
+  }
+]

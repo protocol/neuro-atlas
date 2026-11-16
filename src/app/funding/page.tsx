@@ -22,7 +22,7 @@ export default function FundingPage() {
         status="partial"
         stats={[
           { value: String(data.summary.selectedCompanies), label: "selected companies" },
-          { value: formatCapital(data.summary.observedCapitalUsdM), label: "raised in indexed rounds" },
+          { value: formatCapital(data.summary.observedCapitalUsdM), label: "indexed financing · incl. commitments" },
           { value: String(data.summary.indexedRounds), label: "sourced financings" },
           { value: String(data.summary.regulatoryMilestones), label: "regulatory markers" },
         ]}

@@ -1,0 +1,592 @@
+{
+  "baselineSha": "de2301974ac1e66b35aaaec91198dc5dda8c060c",
+  "fixGroups": {
+    "NA-ENVOY": {
+      "title": "Envoy: completed gross proceeds $30m, not the $78m ceiling",
+      "recordIds": [
+        "timeline-005"
+      ],
+      "fieldRefs": [
+        "timeline-005:f004",
+        "timeline-005:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-SYNCHRON": {
+      "title": "Synchron: pivotal study preparing/planned, not initiated",
+      "recordIds": [
+        "timeline-011",
+        "funding-regulatory-007"
+      ],
+      "fieldRefs": [
+        "timeline-011:f002",
+        "timeline-011:f003",
+        "timeline-011:f004",
+        "timeline-011:f006",
+        "funding-regulatory-007:f006"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-PHANTOM": {
+      "title": "Phantom: approval to run Australian study, not FDA approval",
+      "recordIds": [
+        "timeline-023"
+      ],
+      "fieldRefs": [
+        "timeline-023:f002",
+        "timeline-023:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-INBRAIN": {
+      "title": "INBRAIN: January 2024 TAP, month precision",
+      "recordIds": [
+        "timeline-032",
+        "funding-regulatory-011"
+      ],
+      "fieldRefs": [
+        "timeline-032:f002",
+        "timeline-032:f004",
+        "funding-regulatory-011:f002",
+        "funding-regulatory-011:f005",
+        "funding-regulatory-011:f006"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEUROXESS-COMBINED": {
+      "title": "NeuroXess: one combined angel + pre-Series A disclosure",
+      "recordIds": [
+        "funding-round-030"
+      ],
+      "fieldRefs": [
+        "funding-round-030:f002",
+        "funding-round-030:f004",
+        "funding-round-030:f005",
+        "funding-round-030:f007",
+        "funding-round-030:f008",
+        "funding-round-030:f009"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-MINTNEURO": {
+      "title": "Motif–MintNeuro: April 30 announcement",
+      "recordIds": [
+        "timeline-028"
+      ],
+      "fieldRefs": [
+        "timeline-028:f002",
+        "timeline-028:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEURALINK-FIRST": {
+      "title": "Neuralink: January 28 implantation vs January 29 announcement",
+      "recordIds": [
+        "timeline-029"
+      ],
+      "fieldRefs": [
+        "timeline-029:f002",
+        "timeline-029:f003",
+        "timeline-029:f004"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEUROBIONICS-CLINICAL": {
+      "title": "NeuroBionics: clinical evStim differs from research fibers",
+      "recordIds": [
+        "company-linked-website-011"
+      ],
+      "fieldRefs": [
+        "company-linked-website-011:f004",
+        "company-linked-website-011:f005",
+        "company-linked-website-011:f006"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-INVESTOR-ALIAS": {
+      "title": "Neurotechnology Investors case-only alias",
+      "recordIds": [
+        "funding-round-002",
+        "funding-round-003",
+        "funding-round-004",
+        "funding-round-005"
+      ],
+      "fieldRefs": [],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEURACLE-INVESTORS": {
+      "title": "Neuracle: replace unsupported current-round investors",
+      "recordIds": [
+        "funding-round-029"
+      ],
+      "fieldRefs": [
+        "funding-round-029:f007",
+        "funding-round-029:f008",
+        "funding-round-029:f009"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-PENUMBRA": {
+      "title": "Penumbra: definitive agreement and enterprise value",
+      "recordIds": [
+        "timeline-001"
+      ],
+      "fieldRefs": [
+        "timeline-001:f001",
+        "timeline-001:f004",
+        "timeline-001:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-STAGES": {
+      "title": "Remove financing-stage specificity not present in sources",
+      "recordIds": [
+        "timeline-012",
+        "funding-round-034",
+        "timeline-049",
+        "funding-round-024",
+        "timeline-050",
+        "funding-round-029",
+        "funding-round-022",
+        "funding-round-001"
+      ],
+      "fieldRefs": [
+        "timeline-012:f002",
+        "funding-round-034:f003",
+        "timeline-049:f004",
+        "funding-round-024:f003",
+        "timeline-050:f002",
+        "funding-round-029:f003",
+        "funding-round-022:f003",
+        "funding-round-001:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-ENSPIRE": {
+      "title": "Enspire: Cleveland Clinic portfolio company, not proven spinout",
+      "recordIds": [
+        "timeline-013"
+      ],
+      "fieldRefs": [
+        "timeline-013:f004"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-MOTIF-AWARD": {
+      "title": "Motif ARPA-H performer selection: award instrument and individual amount undisclosed",
+      "recordIds": [
+        "timeline-018"
+      ],
+      "fieldRefs": [
+        "timeline-018:f004"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-SECOND-CASES": {
+      "title": "Second implantation/case: conservative category narrowing",
+      "recordIds": [
+        "timeline-020",
+        "timeline-024"
+      ],
+      "fieldRefs": [
+        "timeline-020:f002",
+        "timeline-024:f002"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-CORTEC-TIMING": {
+      "title": "CorTec BDD day and historical-first overclaim",
+      "recordIds": [
+        "timeline-021",
+        "funding-regulatory-003"
+      ],
+      "fieldRefs": [
+        "timeline-021:f002",
+        "timeline-021:f003",
+        "timeline-021:f004",
+        "funding-regulatory-003:f002",
+        "funding-regulatory-003:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEUROXESS-PRIOR": {
+      "title": "NeuroXess: end-of-2025 prior case, not established December/battery event",
+      "recordIds": [
+        "timeline-024"
+      ],
+      "fieldRefs": [
+        "timeline-024:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-UNLINKED-ASIDES": {
+      "title": "Remove unsupported descriptive asides, not supported core events",
+      "recordIds": [
+        "timeline-006",
+        "timeline-025",
+        "timeline-044",
+        "timeline-062",
+        "timeline-074"
+      ],
+      "fieldRefs": [
+        "timeline-006:f006",
+        "timeline-025:f005",
+        "timeline-044:f003",
+        "timeline-062:f003",
+        "timeline-074:f006"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-BLINDSIGHT": {
+      "title": "Blindsight vision aim does not establish cortical placement",
+      "recordIds": [
+        "timeline-036",
+        "funding-regulatory-010"
+      ],
+      "fieldRefs": [
+        "timeline-036:f004",
+        "funding-regulatory-010:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-CONVOY": {
+      "title": "CONVOY feasibility vs formal early-feasibility designation",
+      "recordIds": [
+        "timeline-038"
+      ],
+      "fieldRefs": [
+        "timeline-038:f004"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-SUBSENSE": {
+      "title": "SubSense: additional financing, not proven seed extension",
+      "recordIds": [
+        "timeline-058"
+      ],
+      "fieldRefs": [
+        "timeline-058:f002"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEUROBIONICS-CLOSE": {
+      "title": "NeuroBionics: one $5m close does not establish later $10m seed story",
+      "recordIds": [
+        "timeline-059",
+        "funding-round-023"
+      ],
+      "fieldRefs": [
+        "timeline-059:f002",
+        "timeline-059:f003",
+        "funding-round-023:f013",
+        "funding-round-023:f015"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-TETHER": {
+      "title": "Tether investment is not proof of majority ownership",
+      "recordIds": [
+        "timeline-061",
+        "funding-round-001"
+      ],
+      "fieldRefs": [
+        "timeline-061:f003",
+        "funding-round-001:f007"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-LAYER7-RESULT": {
+      "title": "Layer 7 speech accuracy: contributing participant count not given",
+      "recordIds": [
+        "timeline-081"
+      ],
+      "fieldRefs": [
+        "timeline-081:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-METADATA-NARROW": {
+      "title": "Narrow modality/indication to what actual bodies establish",
+      "recordIds": [
+        "company-linked-website-005",
+        "company-linked-website-006",
+        "company-linked-website-009",
+        "company-linked-website-012",
+        "company-linked-website-014",
+        "company-linked-website-018",
+        "company-linked-website-021",
+        "company-linked-website-024"
+      ],
+      "fieldRefs": [
+        "company-linked-website-005:f005",
+        "company-linked-website-005:f008",
+        "company-linked-website-006:f003",
+        "company-linked-website-009:f003",
+        "company-linked-website-012:f005",
+        "company-linked-website-012:f008",
+        "company-linked-website-014:f003",
+        "company-linked-website-018:f003",
+        "company-linked-website-021:f003",
+        "company-linked-website-021:f005",
+        "company-linked-website-021:f007",
+        "company-linked-website-024:f003",
+        "company-linked-website-024:f004"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-NEWRONIKA-HQ": {
+      "title": "Newronika: headquarters vs legal address",
+      "recordIds": [
+        "company-linked-website-016"
+      ],
+      "fieldRefs": [
+        "company-linked-website-016:f002"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-FOUNDING-NOTES": {
+      "title": "Keep supported founding years; trim unlinked identity/database qualifiers",
+      "recordIds": [
+        "founding-001",
+        "founding-008",
+        "founding-017",
+        "founding-022"
+      ],
+      "fieldRefs": [
+        "founding-001:f003",
+        "founding-008:f003",
+        "founding-008:f004",
+        "founding-017:f003",
+        "founding-022:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-PRECISION-CITATION": {
+      "title": "Retain prior FDA correction and cite the actual FDA PDF",
+      "recordIds": [
+        "timeline-041"
+      ],
+      "fieldRefs": [
+        "timeline-041:f002",
+        "timeline-041:f004",
+        "timeline-041:f005",
+        "timeline-041:f006"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-DATE-BASIS": {
+      "title": "Source dates are not automatically underlying-event dates",
+      "recordIds": [
+        "timeline-006",
+        "timeline-012",
+        "timeline-013",
+        "timeline-018",
+        "timeline-020",
+        "timeline-024",
+        "timeline-031",
+        "timeline-035",
+        "timeline-036",
+        "timeline-039",
+        "timeline-040",
+        "timeline-042",
+        "timeline-043",
+        "timeline-044",
+        "timeline-045",
+        "timeline-049",
+        "timeline-050",
+        "timeline-054",
+        "timeline-059",
+        "timeline-060",
+        "timeline-061",
+        "timeline-065",
+        "timeline-066",
+        "timeline-068",
+        "timeline-069",
+        "timeline-070",
+        "funding-round-018",
+        "funding-round-024",
+        "funding-round-029",
+        "funding-round-032",
+        "funding-round-033",
+        "funding-round-034"
+      ],
+      "fieldRefs": [
+        "timeline-006:f002",
+        "timeline-012:f006",
+        "timeline-013:f002",
+        "timeline-018:f002",
+        "timeline-020:f003",
+        "timeline-024:f004",
+        "timeline-031:f003",
+        "timeline-035:f004",
+        "timeline-036:f003",
+        "timeline-039:f003",
+        "timeline-040:f003",
+        "timeline-042:f003",
+        "timeline-043:f003",
+        "timeline-044:f004",
+        "timeline-045:f005",
+        "timeline-049:f005",
+        "timeline-050:f004",
+        "timeline-054:f003",
+        "timeline-059:f004",
+        "timeline-060:f005",
+        "timeline-061:f002",
+        "timeline-065:f004",
+        "timeline-066:f003",
+        "timeline-068:f004",
+        "timeline-069:f003",
+        "timeline-070:f004",
+        "funding-round-018:f002",
+        "funding-round-024:f002",
+        "funding-round-029:f002",
+        "funding-round-032:f002",
+        "funding-round-033:f002",
+        "funding-round-034:f002"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-MONTH-PRECISION": {
+      "title": "Month-only disclosures/publications must not display day 1",
+      "recordIds": [
+        "timeline-073",
+        "timeline-081"
+      ],
+      "fieldRefs": [
+        "timeline-073:f003",
+        "timeline-081:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-DATE-GUARD": {
+      "title": "Render precision and date evidence honestly",
+      "recordIds": [
+        "timeline-004",
+        "timeline-017",
+        "timeline-023",
+        "timeline-027",
+        "timeline-034",
+        "timeline-037",
+        "timeline-047",
+        "timeline-058",
+        "timeline-062",
+        "funding-round-003",
+        "funding-round-007",
+        "funding-round-022",
+        "funding-round-026",
+        "funding-round-038",
+        "funding-regulatory-012"
+      ],
+      "fieldRefs": [
+        "timeline-004:f003",
+        "timeline-017:f002",
+        "timeline-023:f005",
+        "timeline-027:f003",
+        "timeline-034:f003",
+        "timeline-037:f003",
+        "timeline-047:f004",
+        "timeline-058:f003",
+        "timeline-062:f002",
+        "funding-round-003:f002",
+        "funding-round-007:f002",
+        "funding-round-022:f002",
+        "funding-round-026:f002",
+        "funding-round-038:f002",
+        "funding-regulatory-012:f002",
+        "funding-regulatory-012:f003"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-REGULATORY-LANE": {
+      "title": "Clinical lane is not proof of active clinical trial",
+      "recordIds": [
+        "timeline-032",
+        "timeline-035",
+        "timeline-036"
+      ],
+      "fieldRefs": [
+        "timeline-032:f005",
+        "timeline-035:f005",
+        "timeline-036:f005"
+      ],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-ROUNDING": {
+      "title": "Do not truncate source amounts in numeric capital inputs",
+      "recordIds": [
+        "timeline-012",
+        "timeline-013",
+        "timeline-047"
+      ],
+      "fieldRefs": [],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    },
+    "NA-COMMITMENT-LABEL": {
+      "title": "Do not render funding commitments as completed cash raised",
+      "recordIds": [
+        "timeline-048",
+        "funding-round-035"
+      ],
+      "fieldRefs": [],
+      "disposition": "implemented",
+      "note": "Source precision/basis or remaining evidence limitations are explicit; implemented does not mean every legacy source is independently validated."
+    }
+  },
+  "originalAuditLimitations": {
+    "records": 196,
+    "original_field_verdicts": {
+      "not established by linked source": 212,
+      "supported": 695,
+      "unreadable": 390,
+      "contradicted": 10
+    },
+    "exception_fields": 612,
+    "exception_dispositions": {
+      "actionable_now": 144,
+      "evidence_limitation": 461,
+      "no_factual_change": 7
+    },
+    "fix_groups": 34,
+    "headline_fix_groups": 9,
+    "additional_fix_groups": 25,
+    "actionable_contradicted_fields": 10,
+    "actionable_not_established_fields": 134,
+    "actionable_record_count": 81,
+    "verified_original_quote_count": 856,
+    "snapshot_files_hash_unchanged": 14
+  },
+  "additionalFinding": "Forest $14m commitment belongs to Eric Schmidt only; other supporters were not assigned to this event."
+}

@@ -7,6 +7,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { MilestoneTimeline } from '../src/components/milestone-timeline.tsx';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
+import { beforeSourceAudit } from './helpers/source-audit-baseline.mjs';
 
 const load = file => JSON.parse(readFileSync(new URL(file, import.meta.url)));
 const fixture = load('./fixtures/notables-65.json');
@@ -25,7 +26,7 @@ test('Notables 65 adds only six reviewed source-bound milestones; all pre-65 gen
   assert.equal(sources.length, 6);
   assert.equal(new Set(sources).size, 6);
   assert.equal(milestones.length, 90);
-  assert.equal(digest(milestones.filter(row => !sources.includes(row.sourceUrl))), fixture.baselineMilestonesSha256);
+  assert.equal(digest(beforeSourceAudit(milestones, 'milestones').filter(row => !sources.includes(row.sourceUrl))), fixture.baselineMilestonesSha256);
   for (const expected of fixture.milestones) {
     const row = one(expected.sourceUrl);
     for (const key of Object.keys(expected)) assert.deepEqual(row[key], expected[key], key);
@@ -49,7 +50,7 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.equal(rounds[0].announcedOn, '2026-10-21');
   assert.equal(rounds[0].sourceKind, 'primary');
   assert.equal(rounds[0].reviewedOn, '2026-11-09');
-  const baselineRounds = structuredClone(funding.rounds.filter(round => !sources.includes(round.sourceUrl)));
+  const baselineRounds = beforeSourceAudit(funding.rounds, 'fundingRounds').filter(round => !sources.includes(round.sourceUrl));
   const precisionSeriesC = baselineRounds.find(round => round.companySlug === 'precision-neuroscience'
     && round.announcedOn === '2024-12-16' && round.stage === 'Series C');
   // Keep the historical pre-65 golden intact while allowing only this later citation repair.
@@ -69,7 +70,7 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   delete seed.sourceKind;
   delete seed.reviewedOn;
   assert.equal(digest(baselineRounds), fixture.baselineFundingRoundsSha256);
-  assert.equal(digest(funding.milestones), fixture.baselineRegulatorySha256);
+  assert.equal(digest(beforeSourceAudit(funding.milestones, 'fundingMilestones')), fixture.baselineRegulatorySha256);
   const nx = one(fixture.milestones.find(row => row.company === 'NeuroXess').sourceUrl);
   assert.equal(nx.amountUsdM, 700 / 6.6662);
   assert.match(nx.note, /RMB 700m/);
@@ -82,7 +83,7 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
 
 test('Notables 65 corrects only the existing Coherence indication and keeps the company roster unchanged', () => {
   assert.equal(funding.companies.length, 25);
-  const companies = structuredClone(funding.companies);
+  const companies = beforeSourceAudit(funding.companies, 'fundingCompanies');
   const co = companies.find(company => company.slug === 'coherence-neuro');
   assert.equal(co.indication, 'Cancer');
   co.indication = 'Neurodegenerative conditions';

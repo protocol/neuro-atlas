@@ -23,6 +23,7 @@ export type FundingRound = {
   companySlug: string;
   announcedOn: string;
   datePrecision?: string;
+  dateBasis?: string;
   stage: string;
   amountUsdM: number;
   amountNativeM?: number | null;
@@ -94,7 +95,8 @@ export type FundingMilestone = {
   companySlug: string;
   announcedOn: string;
   datePrecision: string;
-  marker: "BDD" | "CE" | "IDE" | "NMPA" | "Pivotal" | "TAP";
+  dateBasis?: string;
+  marker: "BDD" | "CE" | "IDE" | "NMPA" | "Pivotal" | "Pivotal (planned)" | "TAP";
   indication: string;
   sourceUrl: string;
   note: string;
@@ -138,6 +140,11 @@ export function formatFundingDate(date: string, precision?: string): string {
     ...(precision === "day" ? { day: "numeric" } : {}),
     timeZone: "UTC",
   }).format(parsed);
+}
+
+export function formatFundingRecordDate(date: string, precision?: string, basis?: string): string {
+  const label = basis === "event" ? "Event date" : basis === "announcement" ? "Announced" : basis === "reported" ? "Reported" : "Date unverified";
+  return `${label} ${formatFundingDate(date, precision)}`;
 }
 
 export function formatCapital(amountUsdM: number): string {

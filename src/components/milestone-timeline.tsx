@@ -28,14 +28,14 @@ const monthsOf = (year: number) =>
 
 const STAGES = [
   { key: "capital", label: "Capital", color: "#22b8cf", soft: "rgba(34,184,207,0.12)" },
-  { key: "clinical", label: "Clinical", color: "#4c6ef5", soft: "rgba(76,110,245,0.12)" },
+  { key: "clinical", label: "Clinical / regulatory", color: "#4c6ef5", soft: "rgba(76,110,245,0.12)" },
   { key: "commercial", label: "Commercial", color: "#9775fa", soft: "rgba(151,117,250,0.13)" },
 ] as const;
 type StageKey = (typeof STAGES)[number]["key"];
 
-// Year columns on the plate. The dollar on each column is sourced capital
-// *raised* that year (sum of capital-lane round sizes) — never valuation
-// or market cap. Neuralink $650m is a Series E raise.
+// Year columns show disclosed capital-lane financing, including explicitly
+// labeled commitments; never transaction value, valuation, or cash receipts.
+// Grants/performer awards are excluded. Neuralink $650m is a Series E raise.
 const YEARS = [2024, 2025, 2026] as const;
 
 const PLOT_TOP = 24;
@@ -62,25 +62,40 @@ const pctToT = (p: number, t0: number, t1: number) => t0 + (p / 100) * (t1 - t0)
 function fmtDate(t: number): string {
   return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 }
-function fmtDateFull(dateStr: string): string {
-  return new Date(dateOf(dateStr)).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+function fmtDateFull(dateStr: string, precision: string): string {
+  if (precision === "year") return dateStr.slice(0, 4);
+  return new Date(dateOf(dateStr)).toLocaleDateString("en-US", {
+    month: "short", year: "numeric", ...(precision === "day" ? { day: "numeric" } : {}), timeZone: "UTC",
+  });
+}
+function milestoneDateLabel(m: Milestone): string {
+  if (!m.date) return "exact date TBD";
+  const basis = (m as Milestone & { dateBasis?: string }).dateBasis;
+  const label = basis === "event" ? "Event date" : basis === "announcement" ? "Announced" : basis === "reported" ? "Reported" : "Date unverified";
+  return `${label} ${fmtDateFull(m.date, m.datePrecision)}`;
 }
 function fmtUsd(m: number): string {
   return m >= 1000 ? `$${(m / 1000).toFixed(m % 1000 === 0 ? 0 : 1)}b` : `$${Math.round(m)}m`;
 }
-function isGrant(m: Milestone): boolean {
-  return m.stage === "capital" && m.activity.trim().toLowerCase() === "grant";
+function isAward(m: Milestone): boolean {
+  return m.stage === "capital" && ["grant", "award"].includes(m.activity.trim().toLowerCase());
 }
-function capitalRaisedInYear(year: number, scope: "all" | "bci" = "all"): number {
+function financingInYear(year: number, scope: "all" | "bci" = "all"): number {
   return MILESTONES.filter(
     (m) =>
       m.stage === "capital" &&
-      !isGrant(m) &&
+      !isAward(m) &&
       m.amountUsdM &&
       m.date &&
       yearOf(m.date) === year &&
       (scope === "all" || (m as { scope?: string }).scope === "bci"),
   ).reduce((sum, m) => sum + (m.amountUsdM ?? 0), 0);
+}
+function capitalActivityLabel(m: Milestone): string {
+  if (m.stage !== "capital" || !m.amountUsdM || isAward(m)) return m.activity;
+  const value = m.amountUsdM >= 1000 ? m.amountUsdM / 1000 : m.amountUsdM;
+  const amount = `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}${m.amountUsdM >= 1000 ? "b" : "m"}`;
+  return `${amount} ${m.activity.includes("committed") ? "committed" : "financing"}`;
 }
 function expandActivity(activity: string): [string, string | null][] {
   return activity.split("/").map((tok) => [tok, lookupAcronym(tok.trim())?.expansion ?? null]);
@@ -109,7 +124,7 @@ function cumulativeCapital(year: number, scope: "all" | "bci" = "all") {
   const caps = MILESTONES.filter(
     (m) =>
       m.stage === "capital" &&
-      !isGrant(m) &&
+      !isAward(m) &&
       m.amountUsdM &&
       m.date &&
       yearOf(m.date) === year &&
@@ -198,8 +213,8 @@ export function MilestoneTimeline() {
       : [t0, yearEnd];
     const rows = STAGES.filter((s) => sel[s.key].size > 0).map((stage) => {
       const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m) && dateOf(m.date) >= t1 && dateOf(m.date) <= t2);
-      const usd = evs.filter((m) => !isGrant(m)).reduce((s, m) => s + (m.amountUsdM ?? 0), 0);
-      const rounds = evs.filter((m) => m.stage === "capital" && !isGrant(m)).length;
+      const usd = evs.filter((m) => !isAward(m)).reduce((s, m) => s + (m.amountUsdM ?? 0), 0);
+      const rounds = evs.filter((m) => m.stage === "capital" && !isAward(m)).length;
       const byType: Record<string, number> = {};
       evs.forEach((m) => subcatsOf(m).forEach((sub) => { if (sub !== "$") byType[sub] = (byType[sub] ?? 0) + 1; }));
       const breakdown = Object.entries(byType).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${v} ${k}`).join(" · ");
@@ -538,13 +553,13 @@ export function MilestoneTimeline() {
               if (focused) {
                 return <div key={year} className="milestone-focused-year shrink-0" style={{ width: w, minWidth: 240, transition: YEAR_EASE }}>{plot}</div>;
               }
-              const raised = capitalRaisedInYear(year, scopeFilter);
+              const raised = financingInYear(year, scopeFilter);
               return (
                 <button
                   key={year}
                   type="button"
                   onClick={() => setFocusYear(year)}
-                  aria-label={`Focus ${year}: ${fmtUsd(raised)} raised`}
+                  aria-label={`Focus ${year}: ${fmtUsd(raised)} financing`}
                   className="milestone-collapsed-year group relative shrink-0 overflow-hidden rounded-xl border border-dashed border-border-strong bg-surface-raised text-left hover:border-border"
                   style={{ width: w, minWidth: 72, height: totalH, transition: YEAR_EASE }}
                 >
@@ -552,7 +567,7 @@ export function MilestoneTimeline() {
                   <div className="absolute inset-x-0 top-5 px-2 text-center">
                     <div className="text-[12px] font-semibold text-muted">{year}</div>
                     <div className="tnum text-sm font-semibold tracking-tight">{fmtUsd(raised)}</div>
-                    <div className="mt-0.5 text-[12px] leading-tight text-muted">raised</div>
+                    <div className="mt-0.5 text-[12px] leading-tight text-muted">financing</div>
                   </div>
                 </button>
               );
@@ -578,7 +593,7 @@ export function MilestoneTimeline() {
         {railOpen ? (
           <aside className="hidden w-48 shrink-0 lg:block">
             <div className="mb-3 flex items-center justify-between gap-2">
-              <span className="text-[12px] font-semibold text-muted">Capital raised</span>
+              <span className="text-[12px] font-semibold text-muted">Indexed financing</span>
               <button type="button" onClick={() => setRailOpen(false)} aria-label="Fold side panel to show the full year" title="Fold panel — show the full year"
                 className="flex shrink-0 items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[12px] font-medium text-muted transition-colors hover:border-border-strong hover:text-foreground">
                 Fold
@@ -590,12 +605,12 @@ export function MilestoneTimeline() {
                 className={`mb-1 flex w-full flex-col gap-0.5 rounded px-1 py-1 text-left transition-colors hover:bg-surface-raised ${focusYear === year ? "bg-surface-raised" : ""}`}>
                 <span className="tnum flex items-baseline justify-between text-[13px]">
                   <span className={focusYear === year ? "font-semibold text-foreground" : "text-muted"}>{year}</span>
-                  <span className="font-semibold">{fmtUsd(capitalRaisedInYear(year, scopeFilter))}</span>
+                  <span className="font-semibold">{fmtUsd(financingInYear(year, scopeFilter))}</span>
                 </span>
                 {year === 2026 && cumulativeCapital(2026, scopeFilter).length > 1 && <span className="mt-0.5 block"><Sparkline series={cumulativeCapital(2026, scopeFilter)} width={166} height={22} /></span>}
               </button>
             ))}
-            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Sourced round sizes on this lane — not valuations or market cap. Fold this panel to see a full year without scrolling.</div>
+            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Disclosed financing, including labeled commitments — not cash receipts, valuations, or transaction values. Fold this panel to see a full year without scrolling.</div>
 
             <div className="mt-4 border-t border-border pt-3">
               <div className="mb-1 flex items-center justify-between">
@@ -613,11 +628,11 @@ export function MilestoneTimeline() {
                     {r.stage.key === "capital" ? (
                       <>
                         <div className="tnum text-[15px] font-semibold">{fmtUsd(r.usd)}</div>
-                        <div className="text-[12px] text-muted">{r.rounds} round{r.rounds === 1 ? "" : "s"} raised{r.count > r.rounds ? ` · ${r.count - r.rounds} grant` : ""}</div>
+                        <div className="text-[12px] text-muted">{r.rounds} financing record{r.rounds === 1 ? "" : "s"}{r.count > r.rounds ? ` · ${r.count - r.rounds} award` : ""}</div>
                       </>
                     ) : (
                       <>
-                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)}</span>}</div>
+                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)} transaction value (not capital raised)</span>}</div>
                         <div className="text-[12px] leading-snug text-muted">{r.breakdown || "—"}</div>
                       </>
                     )}
@@ -640,7 +655,7 @@ export function MilestoneTimeline() {
       )}
 
       {tip && (
-        <div className={`pointer-events-none fixed z-50 w-72 -translate-x-1/2 rounded-xl bg-foreground p-3 shadow-2xl ${tip.below ? "" : "-translate-y-full"}`} style={{ left: tip.x, top: tip.y }}>
+        <div data-milestone-detail className={`pointer-events-none fixed z-50 w-72 -translate-x-1/2 rounded-xl bg-foreground p-3 shadow-2xl ${tip.below ? "" : "-translate-y-full"}`} style={{ left: tip.x, top: tip.y }}>
           <div className="mb-1 flex items-center gap-2">
             <FirmLogo src={tip.m.logo} name={tip.m.company} size={18} />
             <span className="text-[13px] font-semibold text-background">{tip.m.company}</span>
@@ -650,8 +665,8 @@ export function MilestoneTimeline() {
             </span>
           </div>
           <div className="tnum text-[12px] font-medium text-background/90">
-            {tip.m.stage === "capital" && tip.m.amountUsdM ? `${tip.m.activity} raised` : tip.m.activity}
-            <span className="text-background/60">{" · "}{tip.m.date ? fmtDateFull(tip.m.date) : "exact date TBD"}</span>
+            {capitalActivityLabel(tip.m)}
+            <span className="text-background/60">{" · "}{milestoneDateLabel(tip.m)}</span>
           </div>
           {expandActivity(tip.m.activity).filter(([, ex]) => ex).length > 0 && (
             <div className="mt-1 text-[12px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>

@@ -19,7 +19,7 @@ export default function MilestonesPage() {
         stats={[
           { value: String(MILESTONES.length), label: "tracked events" },
           { value: String(companies), label: "companies on the axis" },
-          { value: "3", label: "lanes · capital, clinical, commercial" },
+          { value: "3", label: "lanes · capital, clinical/regulatory, commercial" },
           { value: "2024–26", label: "years on the timeline" },
         ]}
       />

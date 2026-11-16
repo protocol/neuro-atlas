@@ -92,11 +92,11 @@ for (const width of [320, 390]) {
       const participation = name.nextElementSibling;
       assert.match(participation.className, /flex-col/, 'count sits below dots, never squeezed beside the strip');
       assert.equal(participation.querySelector('[aria-hidden="true"]').children.length, max.roundCount);
-      assert.ok(participation.textContent.includes(`${max.roundCount} rounds · ${max.companyCount} companies`));
+      assert.ok(participation.textContent.includes(`${max.roundCount} financing records · ${max.companyCount} companies`));
       const associated = row.lastElementChild;
       assert.match(associated.className, /col-start-2/);
       assert.match(associated.className, /sm:row-start-1/);
-      assert.ok(associated.textContent.includes('associated rounds'));
+      assert.ok(associated.textContent.includes('associated financing'));
       assert.match(associated.className, /min-w-0/);
     } finally { await cleanup(); }
   });

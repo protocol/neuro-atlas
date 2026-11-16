@@ -61,14 +61,14 @@ test('native and undisclosed financing count as rounds, not grants, without USD 
   const dom = await renderTimeline(t);
   const summary = capitalSummary(dom.window.document);
   assert.ok(summary, 'Rendered capital summary is present');
-  assert.equal(summary.lastElementChild.textContent, '3 rounds raised · 1 grant');
+  assert.equal(summary.lastElementChild.textContent, '3 financing records · 1 award');
   assert.equal(summary.querySelector('.tnum').textContent, '$10m');
 });
 
 test('a disclosed USD grant stays a grant and is excluded from the selected-period financing amount', async t => {
   const dom = await renderTimeline(t, fixtures.map(event => event.activity === 'grant' ? { ...event, amountUsdM: 25 } : event));
   const summary = capitalSummary(dom.window.document);
-  assert.equal(summary.lastElementChild.textContent, '3 rounds raised · 1 grant');
+  assert.equal(summary.lastElementChild.textContent, '3 financing records · 1 award');
   assert.equal(summary.querySelector('.tnum').textContent, '$10m');
 });
 
@@ -79,7 +79,7 @@ test('annual capital raised excludes grants from the collapsed year and summary 
   capitalEvent('Prior grant', 'grant', 25, '2025-04-10'),
   ]);
   const document = dom.window.document;
-  assert.equal(document.querySelector('button[aria-label^="Focus 2025:"]').getAttribute('aria-label'), 'Focus 2025: $10m raised');
+  assert.equal(document.querySelector('button[aria-label^="Focus 2025:"]').getAttribute('aria-label'), 'Focus 2025: $10m financing');
   const annual = [...document.querySelectorAll('aside button')]
     .find(button => button.querySelector('span.tnum > span')?.textContent === '2025');
   assert.equal(annual.querySelector('span.tnum').lastElementChild.textContent, '$10m');

@@ -212,5 +212,5 @@ test("labels reporting sources and leaves unreviewed cards without a verified la
 
   assert.match(text, /Reported source/);
   assert.match(text, /Source reviewed Sep 2026/);
-  assert.doesNotMatch(text, /Verified source|verified/i);
+  assert.doesNotMatch(text, /Verified source|\bverified\b/i);
 });

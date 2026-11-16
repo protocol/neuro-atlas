@@ -4,6 +4,17 @@ import { historicalFxFor } from "./historical-fx.mjs";
 
 export const MINIMUM_ROUND_USD_M = 2;
 const SOURCE_KINDS = new Set(["primary", "reporting"]);
+// Exact reviewed alias only; do not case-fold unrelated investor identities.
+// Official brand: https://themdadvantage.com/ (NeuroTechnology Investors / NTI).
+const INVESTOR_ALIASES = new Map([["Neurotechnology Investors", "NeuroTechnology Investors"]]);
+
+export function sourceDateBasis(value) {
+  if (!value) return "unverified";
+  if (!["event", "announcement", "reported", "unverified"].includes(value)) {
+    throw new Error(`Invalid source date basis: ${value}`);
+  }
+  return value;
+}
 
 export function parseCsv(text) {
   const rows = [];
@@ -103,13 +114,14 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       companySlug: round.company_slug,
       announcedOn: round.announced_on,
       datePrecision: round.date_precision,
+      dateBasis: sourceDateBasis(round.date_basis),
       stage: round.stage,
       amountUsdM,
       ...(converted ? { fx: converted.fx } : {}),
       amountNativeM: round.amount_native_m ? Number(round.amount_native_m) : null,
       currency: round.currency,
       displayAmount: round.display_amount,
-      investors: [...new Set(round.investors ? round.investors.split(";").map((name) => name.trim()).filter(Boolean) : [])],
+      investors: [...new Set(round.investors ? round.investors.split(";").map((name) => name.trim()).filter(Boolean).map((name) => INVESTOR_ALIASES.get(name) ?? name) : [])],
       sourceUrl: round.source_url,
       note: round.note,
       ...(sourceKind ? { sourceKind } : {}),
@@ -148,6 +160,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       companySlug: milestone.company_slug,
       announcedOn: milestone.announced_on,
       datePrecision: milestone.date_precision,
+      dateBasis: sourceDateBasis(milestone.date_basis),
       marker: milestone.marker,
       indication: milestone.indication,
       sourceUrl: milestone.source_url,

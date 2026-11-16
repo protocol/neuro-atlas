@@ -6,6 +6,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { MilestoneTimeline } from '../src/components/milestone-timeline.tsx';
+import { beforeSourceAudit } from './helpers/source-audit-baseline.mjs';
 
 const milestones = JSON.parse(readFileSync(new URL('../src/data/milestones.json', import.meta.url)));
 const funding = JSON.parse(readFileSync(new URL('../src/data/funding-index.json', import.meta.url)));
@@ -82,8 +83,8 @@ function sha256(value) {
 }
 
 test('Notables 64 is exactly the permitted three-row delta from the frozen pre-issue baseline', () => {
-  const canonicalRows = parseCSV(canonical).filter(row => !laterSources.includes(row.source_url));
-  const scopedMilestones = milestones.filter(row => !laterSources.includes(row.sourceUrl));
+  const canonicalRows = beforeSourceAudit(parseCSV(canonical), 'canonicalMilestones').filter(row => !laterSources.includes(row.source_url));
+  const scopedMilestones = beforeSourceAudit(milestones, 'milestones').filter(row => !laterSources.includes(row.sourceUrl));
   const canonicalAdditions = canonicalRows.filter(row => additions.includes(row.source_url));
   const generatedAdditions = milestones.filter(row => additions.includes(row.sourceUrl));
   const canonicalBaseline = canonicalRows.filter(row => !additions.includes(row.source_url));

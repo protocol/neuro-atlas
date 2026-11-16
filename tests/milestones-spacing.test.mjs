@@ -94,8 +94,8 @@ test('Milestones omits the entire Memo cut comparison while retaining the source
   for (const { year, usdM } of memo) {
     assert.ok(!rowTexts.includes(`${year}$${usdM}m`), `Remove the ${year} memo comparison amount`);
   }
-  assert.match(panel.textContent, /Capital raised/);
-  assert.match(panel.textContent, /Sourced round sizes on this lane/);
+  assert.match(panel.textContent, /Indexed financing/);
+  assert.match(panel.textContent, /Disclosed financing, including labeled commitments/);
   assert.match(panel.textContent, /Full period/);
   assert.ok(panel.querySelector('button[aria-label="Fold side panel to show the full year"]'));
 });

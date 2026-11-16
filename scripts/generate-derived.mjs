@@ -4,7 +4,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { buildFundingIndex, loadFundingIndexSources } from "./lib/funding-index.mjs";
+import { buildFundingIndex, loadFundingIndexSources, sourceDateBasis } from "./lib/funding-index.mjs";
 import { historicalFxFor } from "./lib/historical-fx.mjs";
 
 const ROOT = path.join(import.meta.dirname, "..");
@@ -60,6 +60,7 @@ const milestones = msRows.map((r) => {
     ...(converted ? { fx: converted.fx } : {}),
     date: r.date || null,
     datePrecision: r.date_precision || "window",
+    dateBasis: sourceDateBasis(r.date_basis),
     note: r.note || null,
     sourceUrl: r.source_url || null,
     logo: logoFile ? `/logos/${logoFile}` : null,
@@ -124,7 +125,7 @@ fundingIndex.summary = {
 fundingIndex.methodology = {
   thresholdUsdM: 2,
   scope: "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
-  coverage: "Publicly disclosed indexed rounds, not an exhaustive funding-to-date total. Company histories remain partial. Amounts are reported financing values or explicitly sourced historical FX estimates; new conversions use the investment date when disclosed, otherwise a labeled announcement-date fallback. Rates and native amounts are pinned, not revalued at current rates. Legacy reported USD values are retained; unsourced conversions, cumulative totals and standalone grants are not added.",
+  coverage: "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added.",
 };
 fs.writeFileSync(path.join(OUT, "funding-index.json"), JSON.stringify(fundingIndex));
 

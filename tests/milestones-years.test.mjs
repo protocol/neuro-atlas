@@ -35,10 +35,10 @@ test("2024–25 capital lane includes mega-rounds; year bars stay independent", 
     true,
   );
 
-  // Year-column heroes are sourced capital *raised* (sum of dots), not the memo bars.
+  // Year-column heroes are disclosed financing, including labeled commitments, not memo bars.
   // 2026 is no longer labeled Jan–Apr: later sourced events sit on the same year lane.
-  assert.match(timeline, /capitalRaisedInYear/);
-  assert.match(timeline, />raised</);
+  assert.match(timeline, /financingInYear/);
+  assert.match(timeline, />financing</);
   assert.doesNotMatch(timeline, /Jan–Apr/);
   assert.doesNotMatch(timeline, /new capital\{y\.year === 2026/);
   // Removing the visible Memo cut does not alter its archived source data.

@@ -17,7 +17,7 @@ test('Milestones side panel starts folded and remains manually expandable', asyn
     const open=document.querySelector('button[aria-label="Open side panel"]');
     assert.ok(open,'collapsed panel retains an explicit opener');
     await act(async()=>open.click());
-    assert.match(document.querySelector('aside').textContent,/Capital raised/);
+    assert.match(document.querySelector('aside').textContent,/Indexed financing/);
     await act(async()=>document.querySelector('button[aria-label="Fold side panel to show the full year"]').click());
     assert.ok(document.querySelector('aside') === null, 'side panel should be folded');
     assert.ok(document.querySelector('button[aria-label="Open side panel"]'));

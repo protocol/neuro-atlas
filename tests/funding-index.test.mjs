@@ -53,7 +53,7 @@ test("joins the six requested regulatory milestone classes to selected companies
 
   assert.deepEqual(
     [...new Set(index.milestones.map((milestone) => milestone.marker))].sort(),
-    ["BDD", "CE", "IDE", "NMPA", "Pivotal", "TAP"],
+    ["BDD", "CE", "IDE", "NMPA", "Pivotal (planned)", "TAP"],
   );
   assert.equal(index.milestones.every((milestone) => milestone.sourceUrl.startsWith("https://")), true);
 });
