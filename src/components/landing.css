@@ -39,7 +39,6 @@
 .landing-explore:hover { background: var(--accent-on-dark-hover); }
 .landing-contribute { border: 1px solid #ffffff40; color: #fff; }
 .landing-contribute:hover { background: #ffffff12; border-color: #ffffff80; }
-.landing-feedback { margin-top: 1rem; color: #a8a9b3; font-size: .75rem; line-height: 1.6; }
 .landing-directory { padding-top: 1.75rem; scroll-margin-top: 1rem; }
 .landing-directory:focus-visible { outline: 2px solid var(--accent); outline-offset: .5rem; }
 .landing-section-title { margin-bottom: 1rem; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }

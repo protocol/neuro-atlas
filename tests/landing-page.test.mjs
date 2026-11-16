@@ -32,6 +32,14 @@ test("four visual tiles keep all destinations and accessible names", () => {
   }
 });
 
+test("landing removes the feedback invitation without replacing the Explore CTA", () => {
+  const document = render();
+  assert.equal(document.body.textContent.includes("Feedback, corrections, or new data? Help improve the atlas."), false, "Remove the feedback invitation rather than linking or relocating it");
+  assert.equal(document.querySelector(".landing-feedback"), null);
+  const explore = document.querySelector('a[href="#explore"]');
+  assert.equal(explore.textContent.replace("↓", "").trim(), "Explore the atlas");
+});
+
 test("hero offers the explore anchor without duplicate contribution or Feedback buttons", () => {
   const document = render();
   const hero = document.querySelector(".landing-hero");
