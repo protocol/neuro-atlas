@@ -1,0 +1,16 @@
+{
+  "runtime": "9975109821b8ccca4eec2ab4ff8687b329c1ad9c",
+  "onlyModelChange": "plot.yearTickStep=5",
+  "allPriorPointFitSourceAndMethodMetadataExactlyEqual": true,
+  "tests": [
+    "\u2714 the existing export serializer retains the SVG break explanation, slashes and exact mark coordinates (319.240849ms)",
+    "\u2139 tests 123",
+    "\u2139 suites 0",
+    "\u2139 pass 123",
+    "\u2139 fail 0",
+    "\u2139 cancelled 0",
+    "\u2139 skipped 0",
+    "\u2139 todo 0",
+    "\u2139 duration_ms 76548.193971"
+  ]
+}

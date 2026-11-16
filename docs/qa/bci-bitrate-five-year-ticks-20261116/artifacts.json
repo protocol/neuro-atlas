@@ -1,0 +1,53 @@
+{
+  "runtime": "9975109821b8ccca4eec2ab4ff8687b329c1ad9c",
+  "files": {
+    "native-qa.json": {
+      "bytes": 47464,
+      "sha256": "9233ef8eaed8fad4ba35a84258e48d9f7f2f9740b99d7f98f0fbb9826c227400"
+    },
+    "bci-bitrate-native-export.png": {
+      "bytes": 625855,
+      "sha256": "6c45ad7478c6bfee15fd71aaa72d27cebbe2b91e7eba8c60ee6694307646a67a"
+    },
+    "chart-390.png": {
+      "bytes": 86391,
+      "sha256": "e63ed2dc9fed825f9352ee3ff363d7e9c9971ea800f1b1e7cd77110a66967e96"
+    },
+    "tab-cleanup.json": {
+      "bytes": 87,
+      "sha256": "5e1e05ecd023b92a9fd63b67ad1c3375409cf9915d5f3cbb14ca5eed14a765ec"
+    },
+    "plrd-estimate.png": {
+      "bytes": 256275,
+      "sha256": "ecd71d84bac34a1729a7944a0bba3d4f533e44c329f5e404eac05986cd28c6a9"
+    },
+    "clipboard.json": {
+      "bytes": 205,
+      "sha256": "8297b5c4efa92fc5ee58c851f08ee223263ebc946239ca0d88e7f7ed71cb63d2"
+    },
+    "bci-bitrate-native-clipboard.png": {
+      "bytes": 564708,
+      "sha256": "e97ce209d37a302c4d023068a73a8e3020b8bd4c7cca8401d860d67ae9b3ec33"
+    },
+    "code-review.json": {
+      "bytes": 909,
+      "sha256": "0cbc4bd8177cb67e332f5ee6102952f43c9892f73ed798d4fa36e0ebd47638b8"
+    },
+    "chart-320.png": {
+      "bytes": 77579,
+      "sha256": "55986d89bb12bdc2e6e643a02164c851c140f8bb30ddb92d1933960a44452b79"
+    },
+    "parent-model-verification.json": {
+      "bytes": 515,
+      "sha256": "82cd5f1051b2b51e775fc0fc4a19c1c70792d300766cca3d56359030e2207b47"
+    },
+    "served-assets.json": {
+      "bytes": 2463,
+      "sha256": "7ce33618fbd1178ff684239eb8f366cb3b0bd3cd31e7a247ac8c4a3dea95e36e"
+    },
+    "chart-desktop.png": {
+      "bytes": 204557,
+      "sha256": "863e9d213954b93fb9cef2b2572044b9630bc2f312890e08612c4af5d77b4b5b"
+    }
+  }
+}
