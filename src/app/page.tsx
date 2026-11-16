@@ -24,7 +24,6 @@ export default function Home() {
         <div className="landing-actions">
           <a href="#explore" className="landing-explore">Explore the atlas <span aria-hidden="true">↓</span></a>
         </div>
-        <p className="landing-feedback">Feedback, corrections, or new data? Help improve the atlas.</p>
       </section>
 
       <section id="explore" tabIndex={-1} className="landing-directory" aria-labelledby="explore-heading">

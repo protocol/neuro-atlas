@@ -47,8 +47,6 @@ async function renderTimeline(t, rows = fixtures) {
     }
   });
   await act(async () => root.render(React.createElement(MilestoneTimeline)));
-  // Capital summaries are now opt-in; exercise the actual opener before inspecting them.
-  await act(async () => document.querySelector('button[aria-label="Open side panel"]').click());
   return dom;
 }
 

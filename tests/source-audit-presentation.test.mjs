@@ -26,7 +26,7 @@ test('Milestones tooltip preserves month precision instead of inventing a first 
 test('Milestones commercial transaction values are explicitly separate from capital raised', async () => {
   const cleanup = await mount(React.createElement(MilestoneTimeline));
   try {
-    await click(document.querySelector('button[aria-label="Open side panel"]'));
+    assert.ok(document.querySelector('aside'), 'Latest main keeps the financing summary open by default');
     const aside = document.querySelector('aside');
     assert.match(aside.textContent, /transaction value.*not capital raised/i);
   } finally { await cleanup(); }
@@ -53,7 +53,7 @@ test('Milestones keeps philanthropic commitments out of cash-raised wording', as
     const tip = document.querySelector('[data-milestone-detail]');
     assert.match(tip.textContent, /committed/);
     assert.doesNotMatch(tip.textContent, /committed raised/);
-    await click(document.querySelector('button[aria-label="Open side panel"]'));
+    assert.ok(document.querySelector('aside'), 'Latest main keeps the financing summary open by default');
     assert.match(document.querySelector('aside').textContent, /Indexed financing/);
     assert.match(document.querySelector('aside').textContent, /commitments/);
     assert.doesNotMatch(document.querySelector('aside').textContent, /rounds raised/);

@@ -131,6 +131,26 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Immediate disclosure feedback; no width/height animation or delayed hit targets. */
+.milestone-filter-chevron {
+  display: inline-block;
+  transition: transform 120ms ease-out;
+}
+[aria-expanded="true"] > .milestone-filter-chevron {
+  transform: rotate(90deg);
+}
+.milestone-filter-options:not(.hidden) {
+  animation: milestone-filter-reveal 120ms ease-out;
+}
+@keyframes milestone-filter-reveal {
+  from { opacity: 0.65; transform: translateX(-3px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .milestone-filter-chevron { transition: none; }
+  .milestone-filter-options:not(.hidden) { animation: none; }
+}
+
 /* The browser's overlay scrollbar disappears on phones. Hide it and draw
    one always-visible track under the year lane instead. */
 .milestone-year-scroll {
