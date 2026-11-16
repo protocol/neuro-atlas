@@ -33,12 +33,12 @@ test('rendered selections keep the original photograph ledger separate and make 
   const plot = data.BCI_BITRATE_EVIDENCE.plots[0];
   assert.equal(plot.points.length, 14);
   assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*image estimate/);
-  assert.match(plot.scope, /14 reference observations/);
-  assert.match(plot.seriesNote, /assumptions/);
+  assert.match(plot.scope, /14 displayed observations/);
+  assert.match(plot.seriesNote, /normalization convention/);
   assert.equal(plot.connections, undefined);
   assert.deepEqual(plot.points.map(point => [point.id, point.x]), source.observations.map(point => [point.id, point.slideYear]));
   assert.deepEqual(plot.points.map(point => point.y), data.BCI_BITRATE_ROWS.map(row => row.bps));
-  assert.deepEqual(plot.points.filter(point => !point.sourceUrl).map(point => point.id), source.observations.filter(point => point.identityStatus === 'unresolved').map(point => point.id));
+  assert.deepEqual(plot.points.filter(point => !point.sourceUrl).map(point => point.id), ['bci-slide-unlabeled-cursor-2015-upper']);
   for (const point of plot.points) {
     const row = data.BCI_BITRATE_ROWS.find(row => row.id === point.id);
     assert.ok(point.note.includes(row.basisLabel));

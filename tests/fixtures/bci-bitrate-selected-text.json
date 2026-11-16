@@ -1,0 +1,17 @@
+{
+  "bacher": {
+    "quote": "In the “keyboard” task, the number of keystrokes per minute (QWERTY: 7.1 ± 1.7, Radial: 12.3 ± 1.1 kspm, p < 0.001) and the number of correct characters per minute (QWERTY: 5.7 ± 2.0, Radial: 9.4 ± 3.2 ccpm, p = 0.019) were higher using the Radial Keyboard compared to the QWERTY keyboard.",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/",
+    "archiveSha256": "829e3045fc8eb8c33795be3853d36f6a3bcf854c8cb036eb5e34e6cabc4d0239"
+  },
+  "vansteensel": {
+    "quote": "Spelling initially took 52 seconds per letter; the time required dropped to 33 seconds per letter when word prediction was used.",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/",
+    "archiveSha256": "ef5919eafe7fb59403ab9e736a2cb3a06bfd8368925c34bd94f7a1a5a9e032d2"
+  },
+  "milekovic": {
+    "quote": "The average spelling performance, as measured by the number of correct characters per minute (CCPM), during free-spelling blocks using word completion was 3.07 ± 0.20 CCPM and 6.88 ± 0.33 CCPM for T2 and T6, respectively.",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/",
+    "archiveSha256": "6e7425923b05acec8e6948fb157ade4e198a9421d94a8af7a688ea7bb27dcf46"
+  }
+}

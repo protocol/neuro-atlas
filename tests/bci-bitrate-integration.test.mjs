@@ -13,7 +13,7 @@ import { JSDOM } from 'jsdom';
 
 globalThis.React = React;
 
-const title = 'BCI information transfer over time';
+const title = 'BCI communication rates over time';
 const slug = 'bci-information-transfer-over-time';
 const panel = 'metric-panel-bci-bitrate';
 
@@ -114,7 +114,7 @@ test('BCI uses five-year labels in the rail preview, opened modal and native exp
   } finally { output?.window.close(); await cleanup(); }
 });
 
-test('the actual BCI export callback serializes 14 numbered observation keys while the native legend stays at four groups', async () => {
+test('the actual BCI export callback serializes 14 numbered observation keys with five accurate task groups', async () => {
   const plot = METRIC_CHART_EVIDENCE[title].plots[0];
   const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor: panel }), `#${slug}`);
   let output;
@@ -126,7 +126,7 @@ test('the actual BCI export callback serializes 14 numbered observation keys whi
     assert.equal(keys.length, 14, 'Every numbered badge needs a readable observation identity in the PNG');
     assert.deepEqual(keys.map(entry => entry.label), plot.points.map((point, index) => `${index + 1}. ${point.annotation}`));
     assert.deepEqual(keys.map(({ color, marker }) => ({ color, marker })), plot.points.map(({ color, marker }) => ({ color, marker })));
-    assert.equal(document.querySelectorAll('dialog[open] [data-draft-group-legend] li').length, 4, 'Do not append point keys to the on-site group legend');
+    assert.equal(document.querySelectorAll('dialog[open] [data-draft-group-legend] li').length, 5, 'Do not append point keys to the on-site group legend');
     const image = buildChartImage(specification, window.location.href);
     output = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
     const doc = output.window.document;

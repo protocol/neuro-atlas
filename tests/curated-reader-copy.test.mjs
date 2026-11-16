@@ -15,8 +15,8 @@ const raw = JSON.parse(bytes);
 // This suite pins the original curated scientific corpus and its copy rewrite.
 // The additive slide-digitized BCI corpus has its own data/integration contracts;
 // do not regenerate these scientific goldens to absorb a new evidence basis.
-const legacyMetricEvidence = Object.fromEntries(Object.entries(METRIC_CHART_EVIDENCE).filter(([title]) => title !== 'BCI information transfer over time'));
-const charts = METRIC_CHARTS.filter(chart => chart.title !== 'BCI information transfer over time' && isVisibleMetric(chart));
+const legacyMetricEvidence = Object.fromEntries(Object.entries(METRIC_CHART_EVIDENCE).filter(([title]) => title !== 'BCI communication rates over time'));
+const charts = METRIC_CHARTS.filter(chart => chart.title !== 'BCI communication rates over time' && isVisibleMetric(chart));
 const plots = charts.flatMap(chart => METRIC_CHART_EVIDENCE[chart.title].plots);
 const plot = id => plots.find(item => item.id === id);
 const point = id => plots.flatMap(item => item.points).find(item => item.id === id);

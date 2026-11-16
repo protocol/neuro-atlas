@@ -1,11 +1,11 @@
 [
   {
     "id": "metric-panel-bci-bitrate",
-    "title": "BCI information transfer over time",
+    "title": "BCI communication rates over time",
     "family": "draft",
     "point_size": {
       "applicability": "applies",
-      "decision": "Use shared 5 CSS-pixel preview / 6px expanded circumradii, with circle, triangle, square and diamond scope markers centered at unchanged source coordinates."
+      "decision": "Use shared 5 CSS-pixel preview / 6px expanded circumradii, with circle, triangle, square and diamond scope markers centered at selected data coordinates."
     },
     "annual_guides": {
       "applicability": "applies",
@@ -13,7 +13,7 @@
     },
     "series_connections": {
       "applicability": "not_applicable",
-      "decision": "Slide-digitized approximate observations span different tasks, cohorts and measurement definitions; keep every mark unconnected, with no fitted trend or extrapolation."
+      "decision": "Keep all 14 observations unconnected. Fit only nine uniformly converted text observations; the five native task-bps/image context marks are excluded. No extrapolation or confidence band."
     },
     "wider_ratio": {
       "applicability": "applies",
