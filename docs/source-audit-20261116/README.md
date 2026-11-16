@@ -59,6 +59,7 @@ All 34 grouped actionable findings have an implemented correction, a source-boun
 - `tests/fixtures/source-audit-delta-20261116.json` permits only exact reviewed fields. Historical Notables goldens were **not rehashed**: a test-only helper first asserts each new value, then restores only its old fields in a clone for the original digest. Unlisted fields still reach the old golden unchanged.
 - [Date-basis ledger](date-basis-review.json) records the final stored dates, precision, literal citation URLs and event/announcement/report/unverified basis.
 - [Machine-readable disposition](fix-disposition.json) maps all original actionable fix groups to stable audit records.
+- The milestone/metadata evidence notes retain historical bounded-worker receipts, not final coherent-branch inventories. Final values and closure are established by the exact field-delta fixture, generated data, [review closure](review-closure.md) and [verification](verification.md).
 
 ## Deliberately retained / not “fixed” by invention
 
@@ -83,4 +84,4 @@ Envoy alone removes $48m of contingent warrant proceeds from the 2026 all-neurot
 
 ## Verification
 
-The source-bound and field-delta regressions pass locally. Final full-suite comparison, production build, native desktop/mobile evidence and independent reviews are recorded at PR handoff; this file does not treat a pending check as passed.
+Final split replay passed **1,333 tests across all 208 test files**; typecheck, production build, native desktop/mobile replay and independent bounded review passed. Scoped lint retains the same two baseline React-hook errors, with no new errors. See [complete verification and qualifications](verification.md) and [native evidence](qa/README.md). No merge or production publication is implied.

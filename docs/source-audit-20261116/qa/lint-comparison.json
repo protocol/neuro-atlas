@@ -1,0 +1,34 @@
+{
+  "baseline": {
+    "exitCode": 1,
+    "errors": [
+      {
+        "file": "src/components/milestone-timeline.tsx",
+        "rule": "react-hooks/set-state-in-effect",
+        "line": 148
+      },
+      {
+        "file": "src/components/milestone-timeline.tsx",
+        "rule": "react-hooks/immutability",
+        "line": 186
+      }
+    ]
+  },
+  "candidate": {
+    "exitCode": 1,
+    "errors": [
+      {
+        "file": "src/components/milestone-timeline.tsx",
+        "rule": "react-hooks/set-state-in-effect",
+        "line": 163
+      },
+      {
+        "file": "src/components/milestone-timeline.tsx",
+        "rule": "react-hooks/immutability",
+        "line": 201
+      }
+    ]
+  },
+  "status": "NO_NEW_ERRORS",
+  "runtimeCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9"
+}

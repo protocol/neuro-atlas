@@ -1,0 +1,178 @@
+{
+  "verdict": "PASS",
+  "passed": true,
+  "reviewedCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9",
+  "firstCandidate": "6aa79afdb5b10e59af8ea1701a40a299eaf7e941",
+  "originalBaseline": "de2301974ac1e66b35aaaec91198dc5dda8c060c",
+  "scope": [
+    "R1",
+    "R2",
+    "R3",
+    "EVID-001",
+    "EVID-002",
+    "S2",
+    "planned-pivotal glossary regression",
+    "new P0 in closure diff only"
+  ],
+  "summary": "PASS for the bounded closure at the exact commit. All seven requested checks close; no unresolved scoped blocker and no new P0 identified. This is not full-source, full-suite, browser/visual, authenticated or release approval.",
+  "findings": [
+    {
+      "id": "R1",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "data/market-memo-q1-2026/milestones.csv:39",
+        "src/data/milestones.json, [37].activity",
+        "tests/source-audit-presentation.test.mjs:74-84",
+        "src/components/milestone-timeline.tsx:103-118,518-529,671-672"
+      ],
+      "evidence": "Canonical and generated CONVOY activity is feasibility, not EFS. Independently mounted tooltip contains feasibility with no EFS/Early Feasibility Study expansion. Clinical filter is feasibility1; no EFS pill remains. Turning feasibility off removes this exact source mark; turning it back on restores it."
+    },
+    {
+      "id": "R2",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "data/funding-index/milestones.csv:13",
+        "src/data/funding-index.json, milestones[11].dateBasis",
+        "docs/source-audit-20261116/date-basis-review.json:997-1001",
+        "tests/source-audit-funding-ui.test.mjs:12-25"
+      ],
+      "evidence": "Funding copy and ledger use unverified, matching timeline-034 for the identical literal source URL. Legacy 2024-05-24 position remains; no new date evidence is claimed. Actual mounted Funding Index card and timeline both say Date unverified May 24, 2024, not Reported May 24, 2024."
+    },
+    {
+      "id": "R3",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "tests/company-blog-milestones.test.mjs:102-117",
+        "data/market-memo-q1-2026/milestones.csv:42,82"
+      ],
+      "evidence": "Existing regression now asserts month precision and publication-month wording and identifies the clearance through exact FDA K242618 PDF plus 2025-03-30. Four-patient, not-chronic, co-development, less-than-30-days and not-complete-chronic-wireless assertions remain. Named test passed. Independent mounted timeline shows Reported Feb 2026 (not Feb 1) and Event date Mar 30, 2025 with passive/no-wireless and temporary-use caveats."
+    },
+    {
+      "id": "EVID-001",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "data/funding-index/rounds.csv:31",
+        "src/data/funding-index.json, rounds[29], investors[name=Sequoia Capital China], investors[name=Sequoia Capital]",
+        "tests/source-audit-funding-data.test.mjs:36-49"
+      ],
+      "evidence": "Read actual saved Shanda passage and matching capture metadata. Specific Sequoia Capital China restored in canonical/generated backer array and actual mounted backer paragraph; original Yicai citation retained and Shanda added in note. Combined RMB97m/$15.2m disclosure remains one record at inferred announcement date 2022-01-11, with no constituent allocations invented. China-specific aggregate is 1 record/1 company/$15.2m; generic Sequoia is 1/1/$650m."
+    },
+    {
+      "id": "EVID-002",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "data/funding-index/milestones.csv:13",
+        "docs/source-audit-20261116/date-basis-review.json:234-238,997-1001"
+      ],
+      "evidence": "Same closure as R2. Re-read saved Medical Device Network body: it gives no publication/approval day establishing May 24. Correct guard is applied on both surfaces and in both date-ledger records."
+    },
+    {
+      "id": "S2",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "src/components/milestone-timeline.tsx:94-98",
+        "tests/source-audit-presentation.test.mjs:64-71"
+      ],
+      "evidence": "capitalActivityLabel preserves an existing leading ~. Actual mounted Echo tooltip says ~$50m financing and retains approximately $50m source note."
+    },
+    {
+      "id": "PLANNED-PIVOTAL-GLOSSARY",
+      "verdict": "PASS",
+      "unresolved": false,
+      "locations": [
+        "data/glossary/acronyms.csv:52",
+        "src/data/acronyms.json:198-200",
+        "tests/plate-heroes-and-markers.test.mjs:31-38"
+      ],
+      "evidence": "Canonical/generated Pivotal (planned) entry expands to Planned pivotal trial and explicitly says the marker does not establish enrollment or implantation. Existing glossary coverage regression passes; independent mounted Synchron marker hover displays the exact planned expansion and non-started caveat."
+    }
+  ],
+  "unresolved_blockers": [],
+  "newP0": {
+    "verdict": "PASS",
+    "findings": [],
+    "scope": "Inspected closure diff only. Runtime code change is the approximation-marker preservation; canonical/generated/glossary/test changes and new non-runtime QA helper inspected. No new broad audit."
+  },
+  "exactSixDeltaFixtureEntries": [
+    {
+      "collection": "milestones",
+      "index": 37,
+      "fields": [
+        "activity"
+      ]
+    },
+    {
+      "collection": "fundingRounds",
+      "index": 29,
+      "fields": [
+        "investors",
+        "note"
+      ]
+    },
+    {
+      "collection": "fundingMilestones",
+      "index": 11,
+      "fields": [
+        "dateBasis"
+      ]
+    },
+    {
+      "collection": "canonicalMilestones",
+      "index": 37,
+      "fields": [
+        "activity"
+      ]
+    },
+    {
+      "collection": "canonicalRounds",
+      "index": 29,
+      "fields": [
+        "investors",
+        "note"
+      ]
+    },
+    {
+      "collection": "canonicalRegulatory",
+      "index": 11,
+      "fields": [
+        "date_basis"
+      ]
+    }
+  ],
+  "fixtureIntegrity": {
+    "verdict": "PASS",
+    "details": "All nine collections restore actual Git base; fixture equals exact actual row/field diff; helper and original hash file unchanged",
+    "fixtureEditCount": 6
+  },
+  "canonicalGeneration": {
+    "method": "actual generator, all write/copy/mkdir calls intercepted in memory",
+    "filesChecked": 33,
+    "byteIdentical": true
+  },
+  "tests": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/source-audit-scope.test.mjs tests/source-audit-records.test.mjs tests/source-audit-funding-data.test.mjs tests/source-audit-funding-ui.test.mjs tests/source-audit-presentation.test.mjs tests/company-blog-milestones.test.mjs tests/plate-heroes-and-markers.test.mjs",
+    "exitCode": 0,
+    "tests": 60,
+    "pass": 60,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "mountedProbes": {
+    "exitCode": 0,
+    "status": "PASS",
+    "environment": "Actual React components mounted in JSDOM; not browser, layout, visual, auth or hosted release evidence"
+  },
+  "limitations": [
+    "No browser, screenshot, layout, visual, authenticated, hosted or production verification performed; new browser evidence was unavailable.",
+    "No full suite, build, typecheck or parent full-suite result is claimed. Ran only seven bounded test files serially plus two independent local probes.",
+    "Saved actual source captures reused at their original retrieval time; no fresh network fetch. Other original inaccessible or unsupported legacy claims are not reverified by this scoped PASS.",
+    "S1 is outside the requested closure scope and remains unadjudicated here. No product edits, commits, PR, merge, external writes or nested critic."
+  ]
+}

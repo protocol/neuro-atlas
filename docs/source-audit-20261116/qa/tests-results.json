@@ -1,0 +1,26 @@
+{
+  "runtimeCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9",
+  "status": "PASS",
+  "remainingFiles": 207,
+  "remainingSummary": {
+    "tests": 1327,
+    "pass": 1327,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "serialPerformanceSummary": {
+    "tests": 6,
+    "pass": 6,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "allTestFiles": 208,
+  "exactTestFileUnion": true,
+  "totalTests": 1333,
+  "totalPass": 1333,
+  "execution": "207 files at concurrency 2; performance-modal.test.mjs separately at concurrency 1",
+  "originalParallelRun": "1322 passed, 3 failed; not relabeled green",
+  "baseline": "1264 passed, 0 failed at de2301974ac1e66b35aaaec91198dc5dda8c060c"
+}

@@ -1,0 +1,512 @@
+{
+  "status": "PASS",
+  "runtimeCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9",
+  "fixture": "Actual Next production-built HTML/assets on loopback; not authenticated hosted verification",
+  "buildId": "Sl35hFca82FD_3F9PuF6z",
+  "fundingDataSha256": "854491d429a299738dc0d19813b36368bea8eeb99aedd4e4dad0b77b7d214d1d",
+  "milestonesDataSha256": "cd9dce362d0b449ddc746394bff5b4cda0a8955410d418bd7859c5bc1ce58466",
+  "cases": [
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "envoy",
+      "detail": {
+        "text": "E\nEnvoy Medical\nNeuro\ncapital\n$30m financing \u00b7 Event date Feb 12, 2026\nUpsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.\nclick to open source \u2197",
+        "left": 438.578125,
+        "right": 726.578125,
+        "top": 279.5,
+        "bottom": 475,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "synchron",
+      "detail": {
+        "text": "Synchron\nBCI\nclinical\npivotal planned \u00b7 Reported Jun 6, 2026\nPreparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.\nclick to open source \u2197",
+        "left": 693.375,
+        "right": 981.375,
+        "top": 318.5,
+        "bottom": 475,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "phantom",
+      "detail": {
+        "text": "Phantom Neuro\nNeuro\nclinical\nFIH approved \u00b7 Date unverified Apr 15, 2026\nAustralian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.\nclick to open source \u2197",
+        "left": 577.15625,
+        "right": 865.15625,
+        "top": 299,
+        "bottom": 475,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "inbrain-month",
+      "detail": {
+        "text": "INBRAIN Neuroelectronics\nBCI\nclinical\nTAP \u00b7 Event date Jan 2024\nTAP \u2014 Total Product Life Cycle Advisory Program\nAccepted into FDA TAP in January 2024; exact day not disclosed.\nclick to open source \u2197",
+        "left": 141,
+        "right": 429,
+        "top": 284,
+        "bottom": 475,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "forest-commitment",
+      "detail": {
+        "text": "F\nForest Neurotech\nNeuro\ncapital\n$14m committed \u00b7 Announced Mar 11, 2024\nConvergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.\nclick to open source \u2197",
+        "left": 297.015625,
+        "right": 585.015625,
+        "top": 240.5,
+        "bottom": 475,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "milestones",
+      "record": "precision-fda",
+      "detail": {
+        "text": "Precision Neuroscience\nBCI\ncommercial\n510(k) \u00b7 Event date Mar 30, 2025\n510(k) \u2014 FDA 510(k) Clearance\nFDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.\nclick to open source \u2197",
+        "left": 439.53125,
+        "right": 727.53125,
+        "top": 248,
+        "bottom": 481,
+        "inner": 1440,
+        "height": 1000
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 1440,
+      "route": "funding",
+      "company": "neuracle-technology",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 849,
+        "right": 1425,
+        "scroll": 561,
+        "client": 561
+      }
+    },
+    {
+      "width": 1440,
+      "route": "funding",
+      "company": "forest-neurotech",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 849,
+        "right": 1425,
+        "scroll": 561,
+        "client": 561
+      }
+    },
+    {
+      "width": 1440,
+      "route": "funding",
+      "company": "neuroxess",
+      "roundsChecked": 2,
+      "bounds": {
+        "left": 849,
+        "right": 1425,
+        "scroll": 561,
+        "client": 561
+      }
+    },
+    {
+      "width": 1440,
+      "route": "funding",
+      "company": "neurobionics",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 849,
+        "right": 1425,
+        "scroll": 561,
+        "client": 561
+      }
+    },
+    {
+      "width": 1440,
+      "route": "funding-investors",
+      "nti": "03\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M"
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "envoy",
+      "detail": {
+        "text": "E\nEnvoy Medical\nNeuro\ncapital\n$30m financing \u00b7 Event date Feb 12, 2026\nUpsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 201.953125,
+        "bottom": 397.453125,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "synchron",
+      "detail": {
+        "text": "Synchron\nBCI\nclinical\npivotal planned \u00b7 Reported Jun 6, 2026\nPreparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.\nclick to open source \u2197",
+        "left": 21.421875,
+        "right": 309.421875,
+        "top": 240.953125,
+        "bottom": 397.453125,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "phantom",
+      "detail": {
+        "text": "Phantom Neuro\nNeuro\nclinical\nFIH approved \u00b7 Date unverified Apr 15, 2026\nAustralian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 218.796875,
+        "bottom": 394.796875,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "inbrain-month",
+      "detail": {
+        "text": "INBRAIN Neuroelectronics\nBCI\nclinical\nTAP \u00b7 Event date Jan 2024\nTAP \u2014 Total Product Life Cycle Advisory Program\nAccepted into FDA TAP in January 2024; exact day not disclosed.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 206.453125,
+        "bottom": 397.453125,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "forest-commitment",
+      "detail": {
+        "text": "F\nForest Neurotech\nNeuro\ncapital\n$14m committed \u00b7 Announced Mar 11, 2024\nConvergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 162.953125,
+        "bottom": 397.453125,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "milestones",
+      "record": "precision-fda",
+      "detail": {
+        "text": "Precision Neuroscience\nBCI\ncommercial\n510(k) \u00b7 Event date Mar 30, 2025\n510(k) \u2014 FDA 510(k) Clearance\nFDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 164.453125,
+        "bottom": 397.453125,
+        "inner": 390,
+        "height": 844
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 390,
+      "route": "funding",
+      "company": "neuracle-technology",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 375,
+        "scroll": 360,
+        "client": 360
+      }
+    },
+    {
+      "width": 390,
+      "route": "funding",
+      "company": "forest-neurotech",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 375,
+        "scroll": 360,
+        "client": 360
+      }
+    },
+    {
+      "width": 390,
+      "route": "funding",
+      "company": "neuroxess",
+      "roundsChecked": 2,
+      "bounds": {
+        "left": 0,
+        "right": 375,
+        "scroll": 360,
+        "client": 360
+      }
+    },
+    {
+      "width": 390,
+      "route": "funding",
+      "company": "neurobionics",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 375,
+        "scroll": 360,
+        "client": 360
+      }
+    },
+    {
+      "width": 390,
+      "route": "funding-investors",
+      "nti": "03\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M"
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "envoy",
+      "detail": {
+        "text": "E\nEnvoy Medical\nNeuro\ncapital\n$30m financing \u00b7 Event date Feb 12, 2026\nUpsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 179.953125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "synchron",
+      "detail": {
+        "text": "Synchron\nBCI\nclinical\npivotal planned \u00b7 Reported Jun 6, 2026\nPreparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 218.953125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "phantom",
+      "detail": {
+        "text": "Phantom Neuro\nNeuro\nclinical\nFIH approved \u00b7 Date unverified Apr 15, 2026\nAustralian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 199.453125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "inbrain-month",
+      "detail": {
+        "text": "INBRAIN Neuroelectronics\nBCI\nclinical\nTAP \u00b7 Event date Jan 2024\nTAP \u2014 Total Product Life Cycle Advisory Program\nAccepted into FDA TAP in January 2024; exact day not disclosed.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 184.453125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "forest-commitment",
+      "detail": {
+        "text": "F\nForest Neurotech\nNeuro\ncapital\n$14m committed \u00b7 Announced Mar 11, 2024\nConvergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 140.953125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "milestones",
+      "record": "precision-fda",
+      "detail": {
+        "text": "Precision Neuroscience\nBCI\ncommercial\n510(k) \u00b7 Event date Mar 30, 2025\n510(k) \u2014 FDA 510(k) Clearance\nFDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.\nclick to open source \u2197",
+        "left": 12,
+        "right": 300,
+        "top": 142.453125,
+        "bottom": 375.453125,
+        "inner": 320,
+        "height": 800
+      },
+      "inventories": {
+        "2024": 19,
+        "2025": 16,
+        "2026": 55
+      }
+    },
+    {
+      "width": 320,
+      "route": "funding",
+      "company": "neuracle-technology",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 305,
+        "scroll": 290,
+        "client": 290
+      }
+    },
+    {
+      "width": 320,
+      "route": "funding",
+      "company": "forest-neurotech",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 305,
+        "scroll": 290,
+        "client": 290
+      }
+    },
+    {
+      "width": 320,
+      "route": "funding",
+      "company": "neuroxess",
+      "roundsChecked": 2,
+      "bounds": {
+        "left": 0,
+        "right": 305,
+        "scroll": 290,
+        "client": 290
+      }
+    },
+    {
+      "width": 320,
+      "route": "funding",
+      "company": "neurobionics",
+      "roundsChecked": 1,
+      "bounds": {
+        "left": 0,
+        "right": 305,
+        "scroll": 290,
+        "client": 290
+      }
+    },
+    {
+      "width": 320,
+      "route": "funding-investors",
+      "nti": "03\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M"
+    }
+  ],
+  "preexistingTabsPreserved": true
+}

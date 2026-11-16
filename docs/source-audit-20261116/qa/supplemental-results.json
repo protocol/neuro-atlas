@@ -1,0 +1,2191 @@
+{
+  "status": "PASS",
+  "runtimeCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9",
+  "restingMarksChecked": 270,
+  "receipts": [
+    {
+      "width": 1440,
+      "restingMarks": [
+        {
+          "label": "Motif Neurotech \u2014 $18.75m",
+          "source": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 $8.5m",
+          "source": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Forest Neurotech \u2014 $14m committed",
+          "source": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blackrock Neurotech \u2014 $200m",
+          "source": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 $8.5m",
+          "source": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Augmental \u2014 $4m",
+          "source": "https://www.forbes.com/sites/naveenrao/2024/10/23/is-the-future-of-bci-right-under-our-nose/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $54m",
+          "source": "https://www.globenewswire.com/news-release/2024/10/24/2968347/0/en/ONWARD-Medical-Successfully-Raises-EUR-50-Million-in-an-Upsized-Capital-Increase-with-Cornerstone-Investment-from-Ottobock-SE-Co-KGaA.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 $50m",
+          "source": "https://www.businesswire.com/news/home/20241029660063/en/INBRAIN-Neuroelectronics-Raises-%2450M-Series-B-to-Advance-Graphene-Based-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $102m",
+          "source": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 TAP",
+          "source": "https://inbrain-neuroelectronics.com/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 FIH",
+          "source": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 BDD",
+          "source": "https://uk.advfn.com/stock-market/EURONEXT/ONWD/share-news/ONWARD-Medical-Awarded-10th-Breakthrough-Device-Designation-for-Brain-Computer/93384300",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 TAP",
+          "source": "https://kommunikasjon.ntb.no/pressemelding/18056584/onward-medical-accepted-to-new-us-fda-tap-program-for-development-of-its-arc-bci-system?publisherId=4954260",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 BDD/TAP",
+          "source": "https://www.businesswire.com/news/home/20240424910905/en/Blue-Arbor-Technologies-Receives-FDA-Breakthrough-Device-Designation-and-TAP-Enrollment-for-the-RESTORE%E2%84%A2-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 IDE",
+          "source": "https://www.medicaldevice-network.com/news/fda-cortec-implant-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 TAP",
+          "source": "https://www.paradromics.com/news/paradromics-accepted-to-fda-regulatory-accelerator-program-and-announces-new-patient-registry",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 BDD",
+          "source": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 trial",
+          "source": "https://www.clinicaltrialsarena.com/news/neuralink-health-canada-trial",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 feasibility",
+          "source": "https://www.hipa.ai/study/NCT06710626",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroBionics \u2014 $5m",
+          "source": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Echo Neurotech \u2014 ~$50m",
+          "source": "https://www.bloomberg.com/news/articles/2025-01-30/andreessen-horowitz-backs-rival-to-musk-s-neuralink-in-new-funding-round",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $48m",
+          "source": "https://www.chinadaily.com.cn/a/202502/12/WS67abf242a310a2ab06eaba81.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 $14m",
+          "source": "https://www.massdevice.com/newronika-closes-14m-series-b/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroPace \u2014 $65m",
+          "source": "https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Pricing-of-Public-Offering-of-65-Million-of-Common-Stock-02-14-2025/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $17m",
+          "source": "https://endpoints.news/subsense-launches-with-17m-to-build-a-noninvasive-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $104m",
+          "source": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 $650m",
+          "source": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $10m",
+          "source": "https://www.massdevice.com/coherence-neuro-raises-10m-seed-round-for-bci-that-aids-in-cancer-treatment/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 $200m",
+          "source": "https://www.businesswire.com/news/home/20251106150841/en/Synchron-Raises-%24200-Million-Series-D-to-Advance-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $10m",
+          "source": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 IDE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-investigational-device-exemption-ide-from-fda-to-initiate-us-clinical-trial-of-adaptive-dbs-system-302368037.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 IDE",
+          "source": "https://www.globenewswire.com/news-release/2025/08/18/3135202/0/en/ONWARD-Medical-Receives-FDA-IDE-Approval-to-Initiate-the-Empower-BP-Pivotal-Study-with-the-ARC-IM-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://www.paradromics.com/news/paradromics-receives-fda-approval-for-the-connect-one-clinical-study-with-the-connexus-brain-computer-interface",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 CE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-ce-mark-approval-for-alphadbs-advancing-adaptive-deep-brain-stimulation-for-parkinsons-disease-302408082.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 510(k)",
+          "source": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Enspire DBS \u2014 $10.3m",
+          "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Merge Labs \u2014 $252m",
+          "source": "https://openai.com/index/investing-in-merge-labs/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Envoy Medical \u2014 $30m",
+          "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 $5m",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $230m",
+          "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Gestala \u2014 $21.6m",
+          "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Ruten Neuro \u2014 $2m",
+          "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuCyber NeuroTech \u2014 $29m",
+          "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $73m",
+          "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $47m",
+          "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 award",
+          "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Axoft \u2014 $55m",
+          "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+          "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $250m",
+          "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $45m",
+          "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 Series B",
+          "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 study",
+          "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 implantation",
+          "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 BDD",
+          "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "ReVision Implant \u2014 BDD",
+          "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Phantom Neuro \u2014 FIH approved",
+          "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD/TAP",
+          "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 clinical case",
+          "source": "https://www.neuroxess.com/news/kejixiangshan/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 IDE",
+          "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 pivotal planned",
+          "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 HUD",
+          "source": "https://science.xyz/news/hud-designation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD",
+          "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 pivotal",
+          "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/long-term-prima-results/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+          "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 preclinical",
+          "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 research",
+          "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/stargardt-first-rehab/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://x.com/neuralink/status/2115534593147187397",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Penumbra \u2014 $14.5b EV",
+          "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 approval",
+          "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "EpiAneura \u2014 spinout",
+          "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 partner",
+          "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 CE",
+          "source": "https://science.xyz/news/ce-mark/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 sales",
+          "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 leadership",
+          "source": "https://science.xyz/news/leadership-shahida/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        }
+      ],
+      "convoyGenericActivity": true,
+      "echoApproximation": true,
+      "cortecIdeText": "IDE\nDate unverified May 24, 2024\n\nStroke motor rehabilitation\n\nFDA IDE for University of Washington early-feasibility study of Brain Interchange.\n\nSource \u2197"
+    },
+    {
+      "width": 390,
+      "restingMarks": [
+        {
+          "label": "Motif Neurotech \u2014 $18.75m",
+          "source": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 $8.5m",
+          "source": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Forest Neurotech \u2014 $14m committed",
+          "source": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blackrock Neurotech \u2014 $200m",
+          "source": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 $8.5m",
+          "source": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Augmental \u2014 $4m",
+          "source": "https://www.forbes.com/sites/naveenrao/2024/10/23/is-the-future-of-bci-right-under-our-nose/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $54m",
+          "source": "https://www.globenewswire.com/news-release/2024/10/24/2968347/0/en/ONWARD-Medical-Successfully-Raises-EUR-50-Million-in-an-Upsized-Capital-Increase-with-Cornerstone-Investment-from-Ottobock-SE-Co-KGaA.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 $50m",
+          "source": "https://www.businesswire.com/news/home/20241029660063/en/INBRAIN-Neuroelectronics-Raises-%2450M-Series-B-to-Advance-Graphene-Based-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $102m",
+          "source": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 TAP",
+          "source": "https://inbrain-neuroelectronics.com/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 FIH",
+          "source": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 BDD",
+          "source": "https://uk.advfn.com/stock-market/EURONEXT/ONWD/share-news/ONWARD-Medical-Awarded-10th-Breakthrough-Device-Designation-for-Brain-Computer/93384300",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 TAP",
+          "source": "https://kommunikasjon.ntb.no/pressemelding/18056584/onward-medical-accepted-to-new-us-fda-tap-program-for-development-of-its-arc-bci-system?publisherId=4954260",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 BDD/TAP",
+          "source": "https://www.businesswire.com/news/home/20240424910905/en/Blue-Arbor-Technologies-Receives-FDA-Breakthrough-Device-Designation-and-TAP-Enrollment-for-the-RESTORE%E2%84%A2-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 IDE",
+          "source": "https://www.medicaldevice-network.com/news/fda-cortec-implant-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 TAP",
+          "source": "https://www.paradromics.com/news/paradromics-accepted-to-fda-regulatory-accelerator-program-and-announces-new-patient-registry",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 BDD",
+          "source": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 trial",
+          "source": "https://www.clinicaltrialsarena.com/news/neuralink-health-canada-trial",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 feasibility",
+          "source": "https://www.hipa.ai/study/NCT06710626",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroBionics \u2014 $5m",
+          "source": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Echo Neurotech \u2014 ~$50m",
+          "source": "https://www.bloomberg.com/news/articles/2025-01-30/andreessen-horowitz-backs-rival-to-musk-s-neuralink-in-new-funding-round",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $48m",
+          "source": "https://www.chinadaily.com.cn/a/202502/12/WS67abf242a310a2ab06eaba81.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 $14m",
+          "source": "https://www.massdevice.com/newronika-closes-14m-series-b/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroPace \u2014 $65m",
+          "source": "https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Pricing-of-Public-Offering-of-65-Million-of-Common-Stock-02-14-2025/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $17m",
+          "source": "https://endpoints.news/subsense-launches-with-17m-to-build-a-noninvasive-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $104m",
+          "source": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 $650m",
+          "source": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $10m",
+          "source": "https://www.massdevice.com/coherence-neuro-raises-10m-seed-round-for-bci-that-aids-in-cancer-treatment/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 $200m",
+          "source": "https://www.businesswire.com/news/home/20251106150841/en/Synchron-Raises-%24200-Million-Series-D-to-Advance-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $10m",
+          "source": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 IDE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-investigational-device-exemption-ide-from-fda-to-initiate-us-clinical-trial-of-adaptive-dbs-system-302368037.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 IDE",
+          "source": "https://www.globenewswire.com/news-release/2025/08/18/3135202/0/en/ONWARD-Medical-Receives-FDA-IDE-Approval-to-Initiate-the-Empower-BP-Pivotal-Study-with-the-ARC-IM-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://www.paradromics.com/news/paradromics-receives-fda-approval-for-the-connect-one-clinical-study-with-the-connexus-brain-computer-interface",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 CE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-ce-mark-approval-for-alphadbs-advancing-adaptive-deep-brain-stimulation-for-parkinsons-disease-302408082.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 510(k)",
+          "source": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Enspire DBS \u2014 $10.3m",
+          "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Merge Labs \u2014 $252m",
+          "source": "https://openai.com/index/investing-in-merge-labs/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Envoy Medical \u2014 $30m",
+          "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 $5m",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $230m",
+          "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Gestala \u2014 $21.6m",
+          "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Ruten Neuro \u2014 $2m",
+          "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuCyber NeuroTech \u2014 $29m",
+          "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $73m",
+          "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $47m",
+          "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 award",
+          "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Axoft \u2014 $55m",
+          "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+          "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $250m",
+          "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $45m",
+          "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 Series B",
+          "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 study",
+          "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 implantation",
+          "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 BDD",
+          "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "ReVision Implant \u2014 BDD",
+          "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Phantom Neuro \u2014 FIH approved",
+          "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD/TAP",
+          "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 clinical case",
+          "source": "https://www.neuroxess.com/news/kejixiangshan/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 IDE",
+          "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 pivotal planned",
+          "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 HUD",
+          "source": "https://science.xyz/news/hud-designation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD",
+          "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 pivotal",
+          "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/long-term-prima-results/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+          "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 preclinical",
+          "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 research",
+          "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/stargardt-first-rehab/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://x.com/neuralink/status/2115534593147187397",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Penumbra \u2014 $14.5b EV",
+          "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 approval",
+          "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "EpiAneura \u2014 spinout",
+          "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 partner",
+          "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 CE",
+          "source": "https://science.xyz/news/ce-mark/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 sales",
+          "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 leadership",
+          "source": "https://science.xyz/news/leadership-shahida/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        }
+      ],
+      "convoyGenericActivity": true,
+      "echoApproximation": true,
+      "cortecIdeText": "IDE\nDate unverified May 24, 2024\n\nStroke motor rehabilitation\n\nFDA IDE for University of Washington early-feasibility study of Brain Interchange.\n\nSource \u2197"
+    },
+    {
+      "width": 320,
+      "restingMarks": [
+        {
+          "label": "Motif Neurotech \u2014 $18.75m",
+          "source": "https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 $8.5m",
+          "source": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Forest Neurotech \u2014 $14m committed",
+          "source": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blackrock Neurotech \u2014 $200m",
+          "source": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 $8.5m",
+          "source": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Augmental \u2014 $4m",
+          "source": "https://www.forbes.com/sites/naveenrao/2024/10/23/is-the-future-of-bci-right-under-our-nose/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $54m",
+          "source": "https://www.globenewswire.com/news-release/2024/10/24/2968347/0/en/ONWARD-Medical-Successfully-Raises-EUR-50-Million-in-an-Upsized-Capital-Increase-with-Cornerstone-Investment-from-Ottobock-SE-Co-KGaA.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 $50m",
+          "source": "https://www.businesswire.com/news/home/20241029660063/en/INBRAIN-Neuroelectronics-Raises-%2450M-Series-B-to-Advance-Graphene-Based-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $102m",
+          "source": "https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 TAP",
+          "source": "https://inbrain-neuroelectronics.com/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 FIH",
+          "source": "https://fortune.com/2024/01/30/elon-musk-first-human-neuralink-implant-recovering-well",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 BDD",
+          "source": "https://uk.advfn.com/stock-market/EURONEXT/ONWD/share-news/ONWARD-Medical-Awarded-10th-Breakthrough-Device-Designation-for-Brain-Computer/93384300",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 TAP",
+          "source": "https://kommunikasjon.ntb.no/pressemelding/18056584/onward-medical-accepted-to-new-us-fda-tap-program-for-development-of-its-arc-bci-system?publisherId=4954260",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 BDD/TAP",
+          "source": "https://www.businesswire.com/news/home/20240424910905/en/Blue-Arbor-Technologies-Receives-FDA-Breakthrough-Device-Designation-and-TAP-Enrollment-for-the-RESTORE%E2%84%A2-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 IDE",
+          "source": "https://www.medicaldevice-network.com/news/fda-cortec-implant-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 TAP",
+          "source": "https://www.paradromics.com/news/paradromics-accepted-to-fda-regulatory-accelerator-program-and-announces-new-patient-registry",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 BDD",
+          "source": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 trial",
+          "source": "https://www.clinicaltrialsarena.com/news/neuralink-health-canada-trial",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 feasibility",
+          "source": "https://www.hipa.ai/study/NCT06710626",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroBionics \u2014 $5m",
+          "source": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Echo Neurotech \u2014 ~$50m",
+          "source": "https://www.bloomberg.com/news/articles/2025-01-30/andreessen-horowitz-backs-rival-to-musk-s-neuralink-in-new-funding-round",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $48m",
+          "source": "https://www.chinadaily.com.cn/a/202502/12/WS67abf242a310a2ab06eaba81.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 $14m",
+          "source": "https://www.massdevice.com/newronika-closes-14m-series-b/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroPace \u2014 $65m",
+          "source": "https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Pricing-of-Public-Offering-of-65-Million-of-Common-Stock-02-14-2025/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $17m",
+          "source": "https://endpoints.news/subsense-launches-with-17m-to-build-a-noninvasive-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $104m",
+          "source": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 $650m",
+          "source": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $10m",
+          "source": "https://www.massdevice.com/coherence-neuro-raises-10m-seed-round-for-bci-that-aids-in-cancer-treatment/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 $200m",
+          "source": "https://www.businesswire.com/news/home/20251106150841/en/Synchron-Raises-%24200-Million-Series-D-to-Advance-Brain-Computer-Interface-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "SubSense \u2014 $10m",
+          "source": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 IDE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-investigational-device-exemption-ide-from-fda-to-initiate-us-clinical-trial-of-adaptive-dbs-system-302368037.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 IDE",
+          "source": "https://www.globenewswire.com/news-release/2025/08/18/3135202/0/en/ONWARD-Medical-Receives-FDA-IDE-Approval-to-Initiate-the-Empower-BP-Pivotal-Study-with-the-ARC-IM-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://www.paradromics.com/news/paradromics-receives-fda-approval-for-the-connect-one-clinical-study-with-the-connexus-brain-computer-interface",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 CE",
+          "source": "https://www.prnewswire.com/news-releases/newronika-receives-ce-mark-approval-for-alphadbs-advancing-adaptive-deep-brain-stimulation-for-parkinsons-disease-302408082.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 510(k)",
+          "source": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Enspire DBS \u2014 $10.3m",
+          "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Merge Labs \u2014 $252m",
+          "source": "https://openai.com/index/investing-in-merge-labs/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Envoy Medical \u2014 $30m",
+          "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 $5m",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 $230m",
+          "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Gestala \u2014 $21.6m",
+          "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Ruten Neuro \u2014 $2m",
+          "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuCyber NeuroTech \u2014 $29m",
+          "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "StairMed \u2014 $73m",
+          "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Onward Medical \u2014 $47m",
+          "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 award",
+          "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Axoft \u2014 $55m",
+          "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+          "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 $250m",
+          "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Coherence Neuro \u2014 $45m",
+          "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 Series B",
+          "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 study",
+          "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 implantation",
+          "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Blue Arbor Technologies \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Nia Therapeutics \u2014 BDD",
+          "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "ReVision Implant \u2014 BDD",
+          "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Phantom Neuro \u2014 FIH approved",
+          "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 FIH",
+          "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD/TAP",
+          "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "NeuroXess \u2014 clinical case",
+          "source": "https://www.neuroxess.com/news/kejixiangshan/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 IDE",
+          "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Synchron \u2014 pivotal planned",
+          "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 HUD",
+          "source": "https://science.xyz/news/hud-designation/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "CorTec \u2014 BDD",
+          "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 trial",
+          "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Newronika \u2014 pivotal",
+          "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/long-term-prima-results/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+          "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 preclinical",
+          "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 research",
+          "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 trial",
+          "source": "https://science.xyz/news/stargardt-first-rehab/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 IDE",
+          "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuralink \u2014 research",
+          "source": "https://x.com/neuralink/status/2115534593147187397",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Precision Neuroscience \u2014 partner",
+          "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Penumbra \u2014 $14.5b EV",
+          "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 approval",
+          "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "EpiAneura \u2014 spinout",
+          "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Motif Neurotech \u2014 partner",
+          "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 CE",
+          "source": "https://science.xyz/news/ce-mark/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neuracle \u2014 sales",
+          "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Science Corp \u2014 leadership",
+          "source": "https://science.xyz/news/leadership-shahida/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Neurosoft Bioelectronics \u2014 partner",
+          "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "Paradromics \u2014 partner",
+          "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+          "w": 34,
+          "h": 34,
+          "centerVisible": true,
+          "hit": true
+        }
+      ],
+      "convoyGenericActivity": true,
+      "echoApproximation": true,
+      "cortecIdeText": "IDE\nDate unverified May 24, 2024\n\nStroke motor rehabilitation\n\nFDA IDE for University of Washington early-feasibility study of Brain Interchange.\n\nSource \u2197"
+    }
+  ]
+}

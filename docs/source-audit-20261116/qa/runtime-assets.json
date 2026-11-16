@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "capturedAt": "2026-11-16T12:39:37.893220+00:00",
+  "runtimeCommit": "e55dd2e25b5484ae4c508a7316b563a9a061ecf9",
+  "buildId": "Sl35hFca82FD_3F9PuF6z",
+  "scope": "loopback production-static HTML/assets; no hosted authentication or API claim",
+  "checks": [
+    {
+      "route": "/milestones",
+      "status": 200,
+      "sha256": "5aa704f421a6d77e08258752997f596b3045edfff203daf54384af64a913a747",
+      "matchesProductionBuild": true
+    },
+    {
+      "route": "/funding",
+      "status": 200,
+      "sha256": "b77e3c04f87eaca39c5ca021c41e624b8baa2718735a160018c2e31fee4ef7b4",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/03oqsftlzc7by.js",
+      "sha256": "fdb5273d218c71b04f6ad366f9ce82f4b41b43d5333da03fccbd13b52d41ee71",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/07c28522xrqlq.js",
+      "sha256": "f1db75d170ef1142fa28c44b7602f65e62b4c248a34ee49408d2daa2fef62009",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/1lsxcmq2-l6x_.js",
+      "sha256": "f7f7c3a2cb7094b1cebb6f9d4218d8c0f7df969422d90e43916f2f56d16a29a6",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/1xz60i7kdirk_.js",
+      "sha256": "7bcf4393046809c93b84bccef028d6307199819d86d97e58b948f6bb827bbcab",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/1y86c1wevkk0q.css",
+      "sha256": "1d3f0289c4451275ec086bc9e30dc5629151e28f7617935b4481f5d32b75732e",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/2c7fqfns8tiv2.js",
+      "sha256": "a778a54a7943f0defa78fab07af594d764c72f388eb4e246582b4b2ecfa78c94",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/2rv5jvl35qh22.js",
+      "sha256": "e5f2ab68dddb4aba54fa30f77bba20b82751ca39a0db569577f1ee00a42df38c",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/361w87mea3yxc.css",
+      "sha256": "d07e13825554b4d4246d85a791325dcbd1a75836e36f2b6b1e85be3e535dba63",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/39_j1bdzreq0m.js",
+      "sha256": "a0cb7a4a53fbd01da1ea4c537d56e06ebcef9d3fdd6e79cb7b24809c70b41f82",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/3qfy96eoyh-ek.js",
+      "sha256": "0f13eecc75702fa059f047636cf8814acbb7acaf3702e75d5835ef85a49528b1",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/3y705tc4v-41-.js",
+      "sha256": "0dbdf7507714978d76a1e2564e25cb104e5e573730eed842fd3c3a3b1542d7ec",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/44hx7ndp-m0-f.css",
+      "sha256": "412f30f0cd0365f2a7bb9365c88e19d8b7e17b35b6637b4954b89a8c54919270",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/chunks/turbopack-077hmtqrhcoji.js",
+      "sha256": "3f0ba0c36a0758d76b55b6717fd77e65f46ae1295bb22fa441476e1eb7854d51",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/media/07a39a8a4660cc7c-s.p.0r6juujl39pe6.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b",
+      "matchesProductionBuild": true
+    },
+    {
+      "asset": "/_next/static/media/605ce01b664af129-s.p.0wgildi0cnwt9.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+      "matchesProductionBuild": true
+    }
+  ]
+}
