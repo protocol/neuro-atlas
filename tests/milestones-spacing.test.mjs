@@ -86,7 +86,6 @@ test('Milestone timeline intro renders exactly the owner-approved replacement pa
 test('Milestones omits the entire Memo cut comparison while retaining the sourced capital panel', async t => {
   const memo = JSON.parse(readFileSync(new URL('../src/data/capital.json', import.meta.url), 'utf8'));
   const window = await mount(t);
-  await act(async () => window.document.querySelector('button[aria-label="Open side panel"]').click());
   const panel = window.document.querySelector('aside');
   assert.ok(panel);
   assert.doesNotMatch(panel.textContent, /Memo cut|Naveen’s Q1\+ 2026 chart|Independent of the dots/);
