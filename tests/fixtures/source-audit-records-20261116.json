@@ -815,10 +815,12 @@
         "rowNumber": 39,
         "company": "Neuralink",
         "before": {
-          "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
+          "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)",
+          "activity": "EFS"
         },
         "after": {
-          "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation."
+          "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
+          "activity": "feasibility"
         }
       }
     ],

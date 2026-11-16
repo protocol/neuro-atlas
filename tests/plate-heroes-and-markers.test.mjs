@@ -32,7 +32,7 @@ test("glossary covers the regulatory markers on the funding index", async () => 
   const acronyms = JSON.parse(await readFile(path.join(root, "src/data/acronyms.json"), "utf8"));
   const index = JSON.parse(await readFile(path.join(root, "src/data/funding-index.json"), "utf8"));
   const markers = [...new Set(index.milestones.map((row) => row.marker))];
-  assert.deepEqual(markers.sort(), ["BDD", "CE", "IDE", "NMPA", "Pivotal", "TAP"]);
+  assert.deepEqual(markers.sort(), ["BDD", "CE", "IDE", "NMPA", "Pivotal (planned)", "TAP"]);
   for (const marker of markers) {
     assert.equal(Boolean(acronyms[marker]?.expansion), true, marker);
   }

@@ -95,7 +95,7 @@ function capitalActivityLabel(m: Milestone): string {
   if (m.stage !== "capital" || !m.amountUsdM || isAward(m)) return m.activity;
   const value = m.amountUsdM >= 1000 ? m.amountUsdM / 1000 : m.amountUsdM;
   const amount = `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}${m.amountUsdM >= 1000 ? "b" : "m"}`;
-  return `${amount} ${m.activity.includes("committed") ? "committed" : "financing"}`;
+  return `${m.activity.startsWith("~") ? "~" : ""}${amount} ${m.activity.includes("committed") ? "committed" : "financing"}`;
 }
 function expandActivity(activity: string): [string, string | null][] {
   return activity.split("/").map((tok) => [tok, lookupAcronym(tok.trim())?.expansion ?? null]);

@@ -61,6 +61,29 @@ test('Milestones keeps philanthropic commitments out of cash-raised wording', as
 });
 
 
+test('approximate financing labels retain their source approximation marker', async () => {
+  const row = rows.find(r => r.slug === 'echo-neurotech');
+  const cleanup = await mount(React.createElement(MilestoneTimeline));
+  try {
+    await click(document.querySelector('button[aria-label^="Focus 2025:"]'));
+    await hover(document.querySelector(`a[aria-label="${row.company} — ${row.activity}"]`));
+    assert.match(document.querySelector('[data-milestone-detail]').textContent, /~\$50m financing/);
+  } finally { await cleanup(); }
+});
+
+test('CONVOY uses a generic feasibility activity, not an unestablished formal EFS designation', async () => {
+  const row = rows.find(r => r.note.includes('CONVOY'));
+  const cleanup = await mount(React.createElement(MilestoneTimeline));
+  try {
+    await click(document.querySelector('button[aria-label^="Focus 2024:"]'));
+    await hover(document.querySelector(`a[aria-label="${row.company} — ${row.activity}"]`));
+    const tip = document.querySelector('[data-milestone-detail]');
+    assert.match(tip.textContent, /feasibility/);
+    assert.doesNotMatch(tip.textContent, /EFS|Early Feasibility Study/);
+    assert.equal(row.activity, 'feasibility');
+  } finally { await cleanup(); }
+});
+
 test('designation and advisory-program events belong to an explicitly clinical / regulatory lane', async () => {
   const cleanup = await mount(React.createElement(MilestoneTimeline));
   try { assert.match(document.body.textContent, /Clinical \/ regulatory/); }

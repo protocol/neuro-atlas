@@ -195,6 +195,10 @@
     "expansion": "Pivotal trial",
     "definition": "Late-stage clinical study intended to support a marketing application"
   },
+  "Pivotal (planned)": {
+    "expansion": "Planned pivotal trial",
+    "definition": "A proposed or preparing late-stage clinical study; this marker does not establish that enrollment or implantation has begun"
+  },
   "trial": {
     "expansion": "Clinical trial",
     "definition": "A formal study of a device or therapy in human subjects"

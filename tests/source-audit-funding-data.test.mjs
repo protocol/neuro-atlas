@@ -36,7 +36,14 @@ test('NeuroXess combined angel and pre-Series A disclosure is indexed once witho
   assert.equal(row.announced_on, '2022-01-11');
   assert.equal(row.amount_usd_m, '15.2');
   assert.equal(row.amount_native_m, '97');
-  assert.equal(row.investors, 'Shanda Group;Sequoia Capital');
+  assert.equal(row.investors, 'Shanda Group;Sequoia Capital China');
+  const index = buildFundingIndex(sources);
+  const specific = index.investors.find(i => i.name === 'Sequoia Capital China');
+  assert.equal(specific.roundCount, 1);
+  assert.equal(specific.associatedCapitalUsdM, 15.2);
+  const generic = index.investors.find(i => i.name === 'Sequoia Capital');
+  assert.equal(generic.roundCount, 1);
+  assert.equal(generic.associatedCapitalUsdM, 650);
   assert.match(row.note, /allocation.*not disclosed/i);
   assert.match(row.note, /counted once/i);
 });

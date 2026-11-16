@@ -102,14 +102,16 @@ const studySource = 'https://pure.johnshopkins.edu/en/publications/initial-exper
 test('Precision source corrections distinguish acute feasibility, co-development and temporary array clearance', () => {
   const study = one(studySource);
   assert.equal(study.date, '2026-02-01');
+  assert.equal(study.datePrecision, 'month');
   assert.equal(study.activity, 'study');
   assert.match(study.note, /four patients/i);
-  assert.match(study.note, /publication date/);
+  assert.match(study.note, /publication month/);
   assert.match(study.note, /not.*chronic/i);
   const medtronic = milestones.find(row => row.slug === 'precision-neuroscience' && row.date === '2026-01-12');
   assert.equal(medtronic.activity, 'partner');
   assert.match(medtronic.note, /co-develop/);
-  const clearance = milestones.find(row => row.slug === 'precision-neuroscience' && row.date === '2025-04-17');
+  const clearance = milestones.find(row => row.slug === 'precision-neuroscience' && row.sourceUrl === 'https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf');
+  assert.equal(clearance.date, '2025-03-30');
   assert.match(clearance.note, /March 30, 2025/);
   assert.match(clearance.note, /less than 30 days/);
   assert.match(clearance.note, /not.*chronic wireless BCI/);

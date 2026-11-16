@@ -530,9 +530,11 @@
           "index": 37,
           "identity": "neuralink",
           "before": {
+            "activity": "EFS",
             "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
           },
           "after": {
+            "activity": "feasibility",
             "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
             "dateBasis": "event"
           },
@@ -1653,20 +1655,12 @@
           "before": {
             "announcedOn": "2022-01-12",
             "stage": "Pre-Series A",
-            "investors": [
-              "Shanda Group",
-              "Sequoia Capital China"
-            ],
             "note": ""
           },
           "after": {
             "announcedOn": "2022-01-11",
             "stage": "Angel + pre-Series A (combined)",
-            "investors": [
-              "Shanda Group",
-              "Sequoia Capital"
-            ],
-            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once.",
+            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once. Shanda’s January 20, 2022 first-party post identifies Sequoia Capital China specifically: https://www.shanda.com/tiger-tao-wins-2021-young-scientist-of-the-year-award-from-chinese-academy-of-sciences",
             "dateBasis": "announcement",
             "sourceKind": "reporting",
             "reviewedOn": "2026-11-16"
@@ -2002,7 +1996,7 @@
           "identity": "cortec",
           "before": {},
           "after": {
-            "dateBasis": "reported"
+            "dateBasis": "unverified"
           },
           "added": [
             "dateBasis"
@@ -2805,9 +2799,11 @@
           "index": 37,
           "identity": "Neuralink",
           "before": {
+            "activity": "EFS",
             "note": "CONVOY early-feasibility study start (N1 control of an investigational assistive robotic arm; NCT06710626)"
           },
           "after": {
+            "activity": "feasibility",
             "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
             "date_basis": "event"
           },
@@ -3883,7 +3879,6 @@
           "before": {
             "announced_on": "2022-01-12",
             "stage": "Pre-Series A",
-            "investors": "Shanda Group;Sequoia Capital China",
             "note": "",
             "source_kind": "",
             "reviewed_on": ""
@@ -3891,8 +3886,7 @@
           "after": {
             "announced_on": "2022-01-11",
             "stage": "Angel + pre-Series A (combined)",
-            "investors": "Shanda Group;Sequoia Capital",
-            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once.",
+            "note": "Yicai reported on January 12 that the company made its statement the previous day. RMB 97m ($15.2m) covers the angel and pre-Series A rounds together; allocation of amounts and investor participation between those rounds was not disclosed. The combined financing disclosure is counted once. Shanda’s January 20, 2022 first-party post identifies Sequoia Capital China specifically: https://www.shanda.com/tiger-tao-wins-2021-young-scientist-of-the-year-award-from-chinese-academy-of-sciences",
             "source_kind": "reporting",
             "reviewed_on": "2026-11-16",
             "date_basis": "announcement"
@@ -4219,7 +4213,7 @@
           "identity": "cortec",
           "before": {},
           "after": {
-            "date_basis": "reported"
+            "date_basis": "unverified"
           },
           "added": [
             "date_basis"
