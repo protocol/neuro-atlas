@@ -1,0 +1,77 @@
+{
+  "native_state_reconciliation": [
+    {
+      "width": 1440,
+      "identities": 14,
+      "rows": 14,
+      "speech_study_and_method_links": 5,
+      "annotation_and_fit_note_parity": true,
+      "interaction_flags": {
+        "nativeInspection": true,
+        "remainingCandidateLinksExplicitlyUnconfirmed": true,
+        "threeSelectedSourcesVerified": true,
+        "nativeCardOpenEscapeFocus": true,
+        "historyForwardBack": true,
+        "copyLinkReadback": true
+      },
+      "document_bounds": {
+        "inner": 1440,
+        "client": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "width": 390,
+      "identities": 14,
+      "rows": 14,
+      "speech_study_and_method_links": 5,
+      "annotation_and_fit_note_parity": true,
+      "interaction_flags": {
+        "nativeInspection": true,
+        "remainingCandidateLinksExplicitlyUnconfirmed": true,
+        "threeSelectedSourcesVerified": true,
+        "nativeCardOpenEscapeFocus": true,
+        "historyForwardBack": true,
+        "copyLinkReadback": true
+      },
+      "document_bounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "width": 320,
+      "identities": 14,
+      "rows": 14,
+      "speech_study_and_method_links": 5,
+      "annotation_and_fit_note_parity": true,
+      "interaction_flags": {
+        "nativeInspection": true,
+        "remainingCandidateLinksExplicitlyUnconfirmed": true,
+        "threeSelectedSourcesVerified": true,
+        "nativeCardOpenEscapeFocus": true,
+        "historyForwardBack": true,
+        "copyLinkReadback": true
+      },
+      "document_bounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ],
+  "export_key_current_annotation_parity": 14,
+  "download_dimensions": [
+    2400,
+    2232
+  ],
+  "clipboard_download_decoded_RGBA_equal": true,
+  "RGBA_sha256": "f9b9997d66313c3fee2297011a6d7a808b41d62622a75bc32a16521b03e8554b",
+  "source_git_status": "",
+  "parent_asset_parity_only": {
+    "runtime": "d2bf9f2d9b09c798c51236a83257afd8e3d4903b",
+    "assets": 16
+  },
+  "live_replay": "unavailable: loopback capture endpoint connection refused; see live-readonly-checks.json"
+}

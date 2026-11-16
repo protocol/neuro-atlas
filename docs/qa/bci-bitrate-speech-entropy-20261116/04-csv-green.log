@@ -1,0 +1,12 @@
+✔ readers can directly open the exact data, assumptions and reconstruction from the chart (248.4766ms)
+✔ the visible and exported fitted-line key discloses log-space R² for the plotted observations (0.386069ms)
+✔ the active CSV declares distinct speech entropy and non-speech symbol conversions (25.939333ms)
+✔ the dependency-free reconstruction replays the exact CSV inputs and current fit (34.133477ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1320.095154

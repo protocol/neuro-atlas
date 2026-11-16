@@ -1,0 +1,57 @@
+✔ replay retains context observations but fits only explicit true selections (64.851512ms)
+✔ replay refuses ambiguous fit selection instead of silently discarding a row (40.612525ms)
+✔ replay recalculates text equivalents from the declared alphabet and native rate (65.205331ms)
+✖ replay recalculates speech from its explicit English-entropy weight and word length rather than alphabet or plotted values (33.558795ms)
+✖ replay refuses invalid declared conversion models and nonpositive entropy weights (60.61401ms)
+✔ replay converts the printed seconds-per-letter result without rounding to CPM (34.336592ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.924112
+
+✖ failing tests:
+
+test at tests/bci-bitrate-replay-selection.test.mjs:39:1
+✖ replay recalculates speech from its explicit English-entropy weight and word length rather than alphabet or plotted values (33.558795ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 24.03677461028802
+  - 5
+  
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-replay-selection.test.mjs:41:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 24.03677461028802,
+    expected: 5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/bci-bitrate-replay-selection.test.mjs:47:1
+✖ replay refuses invalid declared conversion models and nonpositive entropy weights (60.61401ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-replay-selection.test.mjs:50:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /positive finite bits\/character/,
+    operator: 'throws',
+    diff: 'simple'
+  }

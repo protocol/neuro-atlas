@@ -1,0 +1,100 @@
+✖ PNG study identities are concise while full conversion and task notes remain on site (1.836669ms)
+✖ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (464.853599ms)
+✔ speech uses 1 assumed bit/character and 5 assumed characters/word while handwriting retains its symbol equivalent (1.988042ms)
+✔ three explicitly selected text papers replace active anonymous coordinates without claiming original-dot attribution (0.857611ms)
+✔ the descriptive fit selects only nine converted-text rows while all five context marks remain visible and explicitly excluded (0.705163ms)
+✔ each exported row and concise image key retain native input, conversion, assistance and gross versus correct basis (1.186301ms)
+✖ the reader method distinguishes speech English-entropy and retained symbol equivalents in a mixed-convention descriptive fit (4.276533ms)
+✔ the qualified communication-rate title keeps the existing public URL and legacy aliases (4.339367ms)
+✖ active method documents the speech-only model, unchanged handwriting and recomputed descriptive fit (0.527777ms)
+✔ reader-facing error labels omit internal unit suffixes while preserving native error values (0.326754ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1510.570487
+
+✖ failing tests:
+
+test at tests/bci-bitrate-clean-export.test.mjs:13:1
+✖ PNG study identities are concise while full conversion and task notes remain on site (1.836669ms)
+  AssertionError [ERR_ASSERTION]: Compact model indicators distinguish conversion bases
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-clean-export.test.mjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bacher · 2015 · ≈0.753 equiv.',
+    expected: /28-symbol/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/bci-bitrate-clean-export.test.mjs:40:1
+✖ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (464.853599ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /mixed models/i. Input:
+  
+  'BCI communication rates over time Text-equivalent / native-task context (bits/s · log) 0.1 1 10 2000 2005 2010 2015 2020 2025 Year placement from reference figure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 Cursor / grid control Endovascular switch Text selection / scanning Speech decoding Handwriting decoding Log-linear fit · 9 text-equivalent points · R²(log10) = 0.658 R&D More information on Neuro Atlas. https://www.plneuro.xyz/neuro-atlas/field-velocity#bci-information-transfer-over-time Study key · reference years · bits/s. Text equivalents: PL R&D estimates; context not fitted. 1. Kennedy & Bakay · 2000 · ≈0.24 image est. 2. Cursor A (unconfirmed) · 2015 · ≈0.9 image est. 3. Bacher · 2015 · ≈0.753 equiv. 4. Vansteensel · 2016 · ≈0.146 equiv. 5. Milekovic / Sarma · 2018 · ≈0.551 equiv. 6. Pandarinath T5 9×9 · 2017 · 4.16 native 7. Neuralink PRIME · 2024 · 8 company 8. Stentrode P2 isolated · 2021 · ≈0.46 native est. 9. Willett · handwriting · 2021 · ≈7.21 equiv. 10. Moses & Chang · 2021 · ≈1.27 equiv. 11. Willett · speech · 2023 · ≈5.17 equiv. 12. Metzger & Chang · 2023 · ≈6.53 equiv. 13. Card · 2024 · ≈2.63 equiv. 14. Card · home use · 2025 · ≈4.67 equiv.'
+  
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-clean-export.test.mjs:71:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'BCI communication rates over time Text-equivalent / native-task context (bits/s · log) 0.1 1 10 2000 2005 2010 2015 2020 2025 Year placement from reference figure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 Cursor / grid control Endovascular switch Text selection / scanning Speech decoding Handwriting decoding Log-linear fit · 9 text-equivalent points · R²(log10) = 0.658 R&D More information on Neuro Atlas. https://www.plneuro.xyz/neuro-atlas/field-velocity#bci-information-transfer-over-time Study key · reference years · bits/s. Text equivalents: PL R&D estimates; context not fitted. 1. Kennedy & Bakay · 2000 · ≈0.24 image est. 2. Cursor A (unconfirmed) · 2015 · ≈0.9 image est. 3. Bacher · 2015 · ≈0.753 equiv. 4. Vansteensel · 2016 · ≈0.146 equiv. 5. Milekovic / Sarma · 2018 · ≈0.551 equiv. 6. Pandarinath T5 9×9 · 2017 · 4.16 native 7. Neuralink PRIME · 2024 · 8 company 8. Stentrode P2 isolated · 2021 · ≈0.46 native est. 9. Willett · handwriting · 2021 · ≈7.21 equiv. 10. Moses & Chang · 2021 · ≈1.27 equiv. 11. Willett · speech · 2023 · ≈5.17 equiv. 12. Metzger & Chang · 2023 · ≈6.53 equiv. 13. Card · 2024 · ≈2.63 equiv. 14. Card · home use · 2025 · ≈4.67 equiv.',
+    expected: /mixed models/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/bci-bitrate-uniform.test.mjs:152:1
+✖ the reader method distinguishes speech English-entropy and retained symbol equivalents in a mixed-convention descriptive fit (4.276533ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Speech.*1 assumed bit\/character/. Input:
+  
+  'PL R&D text-equivalent estimates use an equiprobable 28-symbol modeling alphabet: 26 letters, a space and one extra symbol are our declared choice, not the actual task keyboard. log2(28) ≈ 4.8 assumed bits/character is an ideal finite-codebook equivalent, not measured English entropy or 8-bit storage (a literal fixed-width 28-symbol code needs 5 bits). Speech assumes five characters per word, including spaces: a normalization convention, not measured corpus word length. CPM × log2(28)/60; WPM × 5 × log2(28)/60. Calculations use full precision.\n' +
+    '\n' +
+    'No extra WER/CER penalty: native correct-character rates already include correction time; the gross pace of speech and handwriting keeps reported errors separate. Vansteensel uses the reported 33 seconds/letter timing, not native correct CPM. Assistance and tasks differ: dictionary disambiguation, prediction, completion and language models can contribute to output. Correlations and language-model output mean these are not measured neural information rates, error-standardized results or a common performance benchmark.\n' +
+    '\n' +
+    'Only 9 text-equivalent observations enter the fit; 5 context marks are excluded: 3 native task/company bits/s rates (unchanged) and 2 unresolved image estimates. All 14 marks retain reference-year placement. Bacher uses the 2015 issue (online 2014); Stentrode the 2021 issue (online 2020); home speech the 2025 preprint (final paper 2026). Named Bacher, Vansteensel and Milekovic/Sarma results are selections for our chart, not recovered original-dot assignments. Original image coordinates and historical candidate leads remain archived.'
+  
+      at TestContext.<anonymous> (/opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-uniform.test.mjs:154:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'PL R&D text-equivalent estimates use an equiprobable 28-symbol modeling alphabet: 26 letters, a space and one extra symbol are our declared choice, not the actual task keyboard. log2(28) ≈ 4.8 assumed bits/character is an ideal finite-codebook equivalent, not measured English entropy or 8-bit storage (a literal fixed-width 28-symbol code needs 5 bits). Speech assumes five characters per word, including spaces: a normalization convention, not measured corpus word length. CPM × log2(28)/60; WPM × 5 × log2(28)/60. Calculations use full precision.\n\nNo extra WER/CER penalty: native correct-character rates already include correction time; the gross pace of speech and handwriting keeps reported errors separate. Vansteensel uses the reported 33 seconds/letter timing, not native correct CPM. Assistance and tasks differ: dictionary disambiguation, prediction, completion and language models can contribute to output. Correlations and language-model output mean these are not measured neural information rates, error-standardized results or a common performance benchmark.\n\nOnly 9 text-equivalent observations enter the fit; 5 context marks are excluded: 3 native task/company bits/s rates (unchanged) and 2 unresolved image estimates. All 14 marks retain reference-year placement. Bacher uses the 2015 issue (online 2014); Stentrode the 2021 issue (online 2020); home speech the 2025 preprint (final paper 2026). Named Bacher, Vansteensel and Milekovic/Sarma results are selections for our chart, not recovered original-dot assignments. Original image coordinates and historical candidate leads remain archived.',
+    expected: /Speech.*1 assumed bit\/character/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/bci-bitrate-uniform.test.mjs:198:1
+✖ active method documents the speech-only model, unchanged handwriting and recomputed descriptive fit (0.527777ms)
+  AssertionError [ERR_ASSERTION]: Link the exact owner-provided conversion reference
+      at TestContext.<anonymous> (/opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-uniform.test.mjs:203:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

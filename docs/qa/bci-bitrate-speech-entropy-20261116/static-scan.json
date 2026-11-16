@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "baseline": "a71c1d7f6dba06af24a9a0465849e8e450cf04a3",
+  "runtime": "d2bf9f2d9b09c798c51236a83257afd8e3d4903b",
+  "diff_sha256": "30cb49caf530fe9e17a95c5f215d40d52c4f9fed8f95615326fbd61c18edf4ca",
+  "complete_diff_bytes": 79483,
+  "added_lines": 256,
+  "findings": {
+    "credential_literal": [],
+    "shell_true": [],
+    "unsafe_load": []
+  },
+  "closure": "F1: regenerated directly from Git to file; exact hash matches independent critic full-diff recovery. Supersedes prior truncated201-line scan; source/artifacts unchanged."
+}

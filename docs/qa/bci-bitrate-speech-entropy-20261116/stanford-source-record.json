@@ -1,0 +1,9 @@
+{
+  "source": "https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html",
+  "resolved_url": "https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html",
+  "http_status": 200,
+  "retrieved_at_utc": "2026-11-16T15:51:21.525262+00:00",
+  "sha256": "a1de074a1b05d16f7f886d24e7bcf6f73305b3afd5eef0c67f527d29905ee616",
+  "literal_excerpt": "some calculations place the entropy of English at around 1 bit per letter.",
+  "scope": "Public course project summarizing context-dependent English entropy. The chart adopts 1 assumed bit/character for speech and retains five assumed characters/word."
+}

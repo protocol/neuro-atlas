@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "baseline": "a71c1d7f6dba06af24a9a0465849e8e450cf04a3",
+  "runtime": "d2bf9f2d9b09c798c51236a83257afd8e3d4903b",
+  "changed_files": [
+    "docs/bci-bitrate.md",
+    "docs/bci-study-data/README.md",
+    "docs/bci-study-data/chart-provenance.csv",
+    "docs/bci-study-data/reproduce_fit.py",
+    "src/data/bci-bitrate.ts",
+    "tests/bci-bitrate-clean-export.test.mjs",
+    "tests/bci-bitrate-fit-disclosure.test.mjs",
+    "tests/bci-bitrate-provenance.test.mjs",
+    "tests/bci-bitrate-reader-labels.test.mjs",
+    "tests/bci-bitrate-replay-selection.test.mjs",
+    "tests/bci-bitrate-uniform.test.mjs"
+  ],
+  "speech": [
+    {
+      "id": "bci-slide-moses",
+      "wpm": 15.2,
+      "bps": 1.2666666666666666
+    },
+    {
+      "id": "bci-slide-willett-speech",
+      "wpm": 62,
+      "bps": 5.166666666666667
+    },
+    {
+      "id": "bci-slide-metzger",
+      "wpm": 78.3,
+      "bps": 6.525
+    },
+    {
+      "id": "bci-slide-card-2024",
+      "wpm": 31.6,
+      "bps": 2.6333333333333333
+    },
+    {
+      "id": "bci-slide-card-home",
+      "wpm": 56.1,
+      "bps": 4.675
+    }
+  ],
+  "unchanged_non_speech_rows": 9,
+  "all_native_selections_preserved": 14,
+  "independent_OLS": {
+    "n": 9,
+    "xOrigin": 2015,
+    "interceptLog10": -0.48666722810888746,
+    "slopeLog10PerX": 0.13216395418956403,
+    "rSquaredLog10": 0.6581006670862894
+  },
+  "replay_absolute_tolerance": 1e-12,
+  "speech_2bpc_sensitivity": "only five speech rates doubled with plotted_bps=999",
+  "protected_hashes": {
+    "src/data/bci-bitrate.source.json": "66c3a28870e415d2978752b389593f8644b1aa70b4c8323eac584d3f7a97b020",
+    "src/data/bci-bitrate.candidates.json": "49ca220802d81b34cfec2e1ec9627591bdbf558d6d049e35b4a8fb2187522715",
+    "docs/qa/chart-legibility-20261112/acceptance-inventory.json": "eda1c8cd2ba788e9a40b8ff92ba1b45b0f885e58c4ca10df8003566e85fe01cc",
+    "src/proxy.ts": "e679590d9199d72e0dd757f8145d5e699bb4bdc62848cf597d88ef8def8d0c3c",
+    "src/lib/chart-export.ts": "5af640c96e7afc81bf22c04b0ab47e936d2d0038361343f307c2135d8441bcf0",
+    "src/components/draft-chart-plot.tsx": "24816875e647bfbe94036be0edf15ff1412d7ffb2e0f1a2d4cec2a618eec6400",
+    "src/lib/draft-chart-types.ts": "cafef96fce07d4f38cc9f516b153f5f253d5fb3dd53877dd168b1ba1943cbc35"
+  },
+  "full_diff_sha256": "30cb49caf530fe9e17a95c5f215d40d52c4f9fed8f95615326fbd61c18edf4ca",
+  "full_diff_added_lines": 256,
+  "scan": {
+    "credential_literal": [],
+    "shell_true": [],
+    "unsafe_load": []
+  }
+}

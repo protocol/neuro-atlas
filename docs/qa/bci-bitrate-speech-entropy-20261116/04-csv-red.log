@@ -1,0 +1,53 @@
+✔ readers can directly open the exact data, assumptions and reconstruction from the chart (239.891301ms)
+✔ the visible and exported fitted-line key discloses log-space R² for the plotted observations (0.357845ms)
+✖ the active CSV declares distinct speech entropy and non-speech symbol conversions (35.008449ms)
+✖ the dependency-free reconstruction replays the exact CSV inputs and current fit (36.711353ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1376.33376
+
+✖ failing tests:
+
+test at tests/bci-bitrate-fit-disclosure.test.mjs:27:1
+✖ the active CSV declares distinct speech entropy and non-speech symbol conversions (35.008449ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /uniform/i. Input:
+  
+  'Uniform text-equivalent fit'
+  
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-fit-disclosure.test.mjs:34:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Uniform text-equivalent fit',
+    expected: /uniform/i,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tests/bci-bitrate-fit-disclosure.test.mjs:49:1
+✖ the dependency-free reconstruction replays the exact CSV inputs and current fit (36.711353ms)
+  AssertionError [ERR_ASSERTION]: bci-slide-moses
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-fit-disclosure.test.mjs:58:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

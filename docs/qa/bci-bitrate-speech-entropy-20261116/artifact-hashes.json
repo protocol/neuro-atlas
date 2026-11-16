@@ -1,0 +1,89 @@
+{
+  "runtime": "d2bf9f2d9b09c798c51236a83257afd8e3d4903b",
+  "method_commit": "994069a72034c01d0dcb058c1097ddf077d810d8",
+  "artifact_origin": "local loopback QA",
+  "images": {
+    "speech-source-390.png": {
+      "width": 390,
+      "height": 1000
+    },
+    "bci-bitrate-native-export.png": {
+      "width": 2400,
+      "height": 2232
+    },
+    "chart-390.png": {
+      "width": 390,
+      "height": 1000
+    },
+    "stanford-reference-390.png": {
+      "width": 390,
+      "height": 1000
+    },
+    "fit-and-methods-390.png": {
+      "width": 390,
+      "height": 1000
+    },
+    "bci-bitrate-native-clipboard.png": {
+      "width": 2400,
+      "height": 2232
+    },
+    "chart-320.png": {
+      "width": 320,
+      "height": 1000
+    },
+    "chart-desktop.png": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "files": {
+    "01-model-green.log": "39e6cf78311d3f488ebeed4e2f3dfa82ac90e3b47403726912264cf449845927",
+    "01-model-red.log": "3134fb4915cd7e7d4ac6449782237b11c299a1c50dae9adb267cffeef852da67",
+    "02-reference-green.log": "9420decb58384c384a4ac7f66416be86e47bf0e1665674220b55baa0ab95b6b5",
+    "02-reference-red.log": "79b62ab37ee1579151e4325f4c138b0e4d616819cf8c5fe1deb170405affd399",
+    "03-replay-green.log": "59a226d73f79f567691b59752a99b76e56e13adefbdf2e2162a4f29101435dcd",
+    "03-replay-red.log": "3d011923d6c68f02af365da884fcd6805ee17e94890f027d0111026d35916393",
+    "04-csv-green.log": "08b8545d9ecae7af4103d99832b4476d6ce6441460cf7509fba83f068e82b42a",
+    "04-csv-red.log": "d4f3263aba76b9947ae9144e402387e903e4ed52cbd86f8f62d8a0e63fb21b50",
+    "05-copy-export-red.log": "eb49ff7c8babe77b99e53df10e434c1c6b6b4619c6e137dbbf81da69aa5ad6e7",
+    "09-focused-green.log": "fd9638c1923c6e8e4e8a4b8c30738d0fbdd35f1edb4f120fe5e6b67382b12a77",
+    "10-final-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "11-final-scoped-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "README.md": "5e34ee16ab5ff4813b72b24241ca905915c9eedc5d612071b667a82d7a131adc",
+    "asset-parity.json": "5233348c701b86da6452cde74a45fd4d10d0e0fd77cf122cb49d1133760fc06e",
+    "baseline-full.log": "9477501776913746d02a397b977e5ea5c092e9387c25755eb2ea6280f3a5d9b7",
+    "bci-bitrate-native-clipboard.png": "08fac24024856414a6298f62c6c8309ff456016743af8dbd8126f60ad490c120",
+    "bci-bitrate-native-export.png": "4f795b7c80ad80eca27e22078c377f96a95afb86aad1749548853f36aa4941ef",
+    "broad-reconciliation.json": "ad7d484ef6dc00f74a8d731932122f1dba5a6a4931cc1e9e3459ca5e4356a658",
+    "candidate-full.log": "f449e3e9f421cd6d8b67c5bb31d09df45d012e95a94e3b8ad7f8bdb50f67af28",
+    "chart-320.png": "7c848272cf32e22c230a5ad9b5ba2ca2bfd958d6f84053c63608da5e32ccae30",
+    "chart-390.png": "ef8a727769fda79c906b5a84f72999ea3d9f22d0435ca521d0947da5086665b5",
+    "chart-desktop.png": "51b8b4549366bcd1d1c22e0ec6e7730520b8db87f852c47945c5567dafb9ab10",
+    "cleanup.json": "e853075993d7fc0e71f49d7e2941a93db3c9d2df0c029cc3d8d5451e2c63c18f",
+    "clipboard.json": "3c8c10f02f51e77fadc0c9788b9976fe46c4d02a050105ad4e4d567b8bcf7d60",
+    "compact-export-state.json": "289273ca1abb53d895b5224021abc819f22816d52cd17fb3a0ee860029d6efbd",
+    "final-affected.log": "e324719e47fe67016999e80368fc002bf3a833d7f7363289bbe5ab55f92755bf",
+    "final-focused.log": "43bae5f06778f9d5183d04f948c164ad7274be337645ea2da676b032c9d1052b",
+    "fit-and-methods-390.png": "13a71ffa8f037c8010976433837caab0a6bbac93f5cd44238d4ebf396b1504ae",
+    "fixture-build.log": "e02e589721271b708787ac2561d40784c314a548a790b04c26fd6caef52dfc89",
+    "full-review-diff.patch": "30cb49caf530fe9e17a95c5f215d40d52c4f9fed8f95615326fbd61c18edf4ca",
+    "independent-artifact-verification.json": "216beeac6709baf1d05d6b76932376ddb2e07dd5aa916650773e425b6a83d29c",
+    "independent-review-verification.json": "537ddba599544856fe25e58cbb4c83613caed55ee33fa4afb1f6c1353290a933",
+    "model.after.json": "3703b88c664df45fca3e43322b19b685867b66176ea7eb07c369898a9035bb12",
+    "model.before.json": "18c30f8bbb0427e8697c9fe166178655683ca0e6bb009488d178ccde78c9ba1d",
+    "native-export.svg": "4f62a94645ebd508688e8816de59d5b59b8c550d7200737f3553baa1673c13ee",
+    "native-qa.json": "b553619355142c72b4a464bbb041b3bfad8ee1e618a0395ca4139399848f5db4",
+    "native-qa.py": "60b12e1c1c0e26db5cec120dc80364a5ae3f84a200e23ae116f54d5308a20d90",
+    "parent-sensitivity-preflight.json": "0a471d1f4c766494caa950543d36c88ff566aca629c6a61873207a7c7fb2ba84",
+    "parent-verification.json": "92ef256a8a4d7ec5be69b42d3f9419888c956d4c0fc962093304238860ddc616",
+    "preserved-before.json": "0e06439dff81eb844c10aa90fc95e745a171f6921dbc8b23f4e3246a66445b60",
+    "review-closure.md": "e8e49e826960c3bf2f136a26a2331032d46c5ccc4a493816c8503e05afc89daa",
+    "source-build.log": "7c4704dc26d912fcc198646b1a9476ef8f50fc349989da5571f9805d1e56f453",
+    "speech-source-390.png": "e46b43a237a16ef87aa87e64cfa203414e649d244b240c9f64d80631fdb4a021",
+    "stanford-link-visible.json": "be7022dd330affc7cd5781415aa937e60dd2127aa9b1b5cd2d6972ab8015f960",
+    "stanford-reference-390.png": "39b0654671d7415619d5691ea7a263f2e35ed41b24fab0818cc9bbdd2976ad1e",
+    "stanford-source-record.json": "33ed866d68f4e281272eec84e79e91ccac2eaf048cfd4532afd44147541f42c6",
+    "static-scan.json": "b52d711a97ab544eb22069dfb96488ff613ddadc8f041dd2e133f6ca7bee2d84",
+    "tab-cleanup.json": "13d06202a8dc056b07ec07af120ed03dcfb8c473fa9e4e9f1c18d0ac6b63b20c"
+  }
+}

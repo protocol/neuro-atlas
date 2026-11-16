@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "field": "normalization_bits_per_character",
+      "value": "2",
+      "speech_factor": 2,
+      "changed_speech_rows": 5,
+      "unchanged_other_rows": 9,
+      "fit_recomputed": true
+    },
+    {
+      "field": "normalization_characters_per_word",
+      "value": "4",
+      "speech_factor": 0.8,
+      "changed_speech_rows": 5,
+      "unchanged_other_rows": 9,
+      "fit_recomputed": true
+    }
+  ]
+}

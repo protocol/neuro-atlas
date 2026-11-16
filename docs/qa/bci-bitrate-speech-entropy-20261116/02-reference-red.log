@@ -1,0 +1,32 @@
+✖ speech inspection links the exact English-entropy conversion reference separately from each study (2.223811ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1804.745572
+
+✖ failing tests:
+
+test at tests/bci-bitrate-provenance.test.mjs:16:1
+✖ speech inspection links the exact English-entropy conversion reference separately from each study (2.223811ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html'
+  
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-provenance.test.mjs:24:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,1727 @@
+✔ actual app layout mounts consent UI and footer settings, never a gate insertion (7.226674ms)
+✔ mounted real consent component is accessible, honors choices/settings and survives StrictMode without duplicates (373.188164ms)
+✔ granted consent loads one dedicated tag and emits only an explicit sanitized initial page view (330.368673ms)
+✔ pathname history owns one pageview per navigation including back/forward; modal/query/hash changes are silent (122.318487ms)
+✔ only canonical Atlas content URLs are eligible, never preview/direct/auth/API/assets (193.684775ms)
+✔ denied, unknown choice/region/storage, ineligible or invalid config never loads a tracker (121.588973ms)
+✔ withdrawal from implicit open permission disables immediately, purges all GA domain/path variants and stops future events (28.318923ms)
+✔ same-origin cross-tab choices and settings events are honored without extra tags (47.567011ms)
+✔ StrictMode replay and real remount reuse a singleton without duplicate scripts/config/views (13.462411ms)
+✔ rapid grant/reject before tag completion and failed tag/fetch cannot emit events (78.624726ms)
+✔ authoritative context policy outranks stale open cookies and absent policy fails closed (28.236485ms)
+✔ leaving the content allowlist hides consent UI and disables collection until valid reentry (61.152352ms)
+✔ settings remain usable after tag failure without retries or collection (19.109559ms)
+✔ slow tag loading preserves each sanitized content navigation, but withdrawal discards pending events (13.861305ms)
+✔ Next-style history changes during insertion effects never synchronously schedule consent UI updates (364.806985ms)
+✔ real GET uses server state, ignores request overrides, and forbids caching (184.056066ms)
+✔ server eligibility is launch-, production-, and dedicated-ID-gated (3.977556ms)
+✔ Basic 401 covers root and all content/resource routes with basePath=(root) (16.925754ms)
+✔ launch gate includes every static asset with basePath=(root) (1.033666ms)
+✔ Basic 401 covers root and all content/resource routes with basePath=/neuro-atlas (5.594314ms)
+✔ launch gate includes every static asset with basePath=/neuro-atlas (0.77192ms)
+✔ PNG study identities are concise while full conversion and task notes remain on site (1.877899ms)
+✔ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (1060.047464ms)
+✔ the reconstruction keeps a reviewable photo-digitization source ledger (1.554027ms)
+✔ rendered selections keep the original photograph ledger separate and make evidence explicit (106.316991ms)
+✔ readers can directly open the exact data, assumptions and reconstruction from the chart (398.101615ms)
+✔ the visible and exported fitted-line key discloses log-space R² for the plotted observations (0.387815ms)
+✔ the dependency-free reconstruction replays the exact CSV inputs and current fit (90.162835ms)
+✔ BCI information transfer has one explicit public URL and a native plot-panel identity (1.838393ms)
+✔ BCI source evidence mounts unchanged through the generic Metrics panel and canonical URL (1742.157224ms)
+✔ BCI uses five-year labels in the rail preview, opened modal and native export SVG (704.571259ms)
+✔ the actual BCI export callback separates compact study keys from task groups and places them below branding (519.972521ms)
+✔ the bitrate narrow-action selector reaches the real modal action row without changing other charts (1367.367091ms)
+✔ every chart coordinate has an explicit evidence basis rather than calling paper and inferred values the same thing (1.633197ms)
+✔ the unresolved upper-2015 mark retains useful candidate papers without claiming an attribution (0.361726ms)
+✔ speech and handwriting conversions replay source-native inputs with the same uniform symbol model (0.342551ms)
+✔ PL R&D owns all nine uniform text estimates, including handwriting and selected spelling papers (1.272851ms)
+✔ only the upper-2015 unresolved active dot retains assignment-unconfirmed candidate links (0.305695ms)
+✔ replay retains context observations but fits only explicit true selections (36.45536ms)
+✔ replay refuses ambiguous fit selection instead of silently discarding a row (65.760568ms)
+✔ replay recalculates text equivalents from the declared alphabet and native rate (31.975476ms)
+✔ replay converts the printed seconds-per-letter result without rounding to CPM (32.136468ms)
+✔ the earlier source trace stays archived and replayable (1.292939ms)
+✔ the visible line is an equal-weight log-linear fit to the nine text-equivalent observations, not the archived trace (1.78854ms)
+✔ preview and expanded plots paint the fitted line behind unchanged observations without a confidence band (412.588416ms)
+✔ native chart export preserves the reference stroke and a visibly qualified line key (893.0032ms)
+✔ one 28-symbol code-equivalent convention converts all existing speech and handwriting inputs without an error penalty (1.404037ms)
+✔ three explicitly selected text papers replace active anonymous coordinates without claiming original-dot attribution (0.926958ms)
+✔ the descriptive fit selects only nine converted-text rows while all five context marks remain visible and explicitly excluded (1.322195ms)
+✔ each exported row and concise image key retain native input, conversion, assistance and gross versus correct basis (0.834744ms)
+✔ the reader method explains 4.8 as a hypothetical equiprobable code equivalent without claiming entropy, storage or error-standardization (0.825035ms)
+✔ the qualified communication-rate title keeps the existing public URL and legacy aliases (3.986423ms)
+✔ reader-facing error labels omit internal unit suffixes while preserving native error values (0.330358ms)
+✔ the light accent matches the official PL R&D logo and chart-export signature (1.095984ms)
+✔ both themes keep readable accent text, filled controls and tinted selections (0.678085ms)
+✔ runtime brand surfaces do not retain the former violet accent palette (8.472852ms)
+✔ plate accent badges use the theme-aware foreground rather than white in dark mode (0.430372ms)
+✔ publication primary series use PL R&D blue without erasing categorical colors (0.608981ms)
+✔ reference: every discovered modal keeps chart actions together, first, and in the same order (1462.48648ms)
+✔ Pace including latency intro: every discovered modal keeps chart actions together, first, and in the same order (476.814857ms)
+✔ participants: every discovered modal keeps chart actions together, first, and in the same order (217.366747ms)
+✔ curated numeric and timeline: every discovered modal keeps chart actions together, first, and in the same order (3906.72634ms)
+✔ Google Trends: every discovered modal keeps chart actions together, first, and in the same order (1196.478545ms)
+✔ supported timeline: every discovered modal keeps chart actions together, first, and in the same order (396.374182ms)
+✔ a chart without an exportable plot retains only its top-row Copy link (112.180512ms)
+✔ temporal draft guides use the exact year projection, not evenly spaced observations (preview=true) (223.820115ms)
+✔ temporal draft guides use the exact year projection, not evenly spaced observations (preview=false) (78.35289ms)
+✔ non-temporal scatterplots never acquire year guides or time-like series paths (143.027687ms)
+✔ event guides align with year coordinates without connecting unrelated stages (52.254824ms)
+✔ curve: preview and expanded charts retain annual guides on the original date axis (218.421783ms)
+✔ annual: preview and expanded charts retain annual guides on the original date axis (189.057744ms)
+✔ trends: preview and expanded charts retain annual guides on the original date axis (232.194288ms)
+✔ C1: citation visible note agrees with reliable-series connection (574.633232ms)
+✔ C2: participant overview connects only the five source-supported Neuralink checkpoints in preview, modal and export (803.017801ms)
+✔ selected A export is white with the official blue signature and a small authentic PL R&D footer (581.369593ms)
+✔ every exported chart replaces long notes with one Neuro Atlas referral and the existing direct link (232.097303ms)
+✔ dark source neutral paints become a readable white export on the clone while series colors and uncertainty survive (184.54998ms)
+✔ export text and non-scaling outlines use a local render-safe canonical contract rather than live viewport typography (182.824238ms)
+✔ the shared 48px editorial edge contains y tick glyphs with an internal gutter and left-aligned axis captions (35.225134ms)
+✔ white branding replaces literal full-plot surfaces without recoloring meaningful data rectangles (188.763948ms)
+✔ export labels stay readable at the fixed image width even when adaptive source viewBoxes vary (209.256511ms)
+✔ native glyph measurement sees only the canonical inert clone in an isolated tree and always cleans up (98.286059ms)
+✔ export removes pointer-only emphasis without mutating the actual plotted marks (1890.854609ms)
+✔ light: complete viewBox, marks and computed paint survive independently of viewport size (83.41919ms)
+✔ dark: complete viewBox, marks and computed paint survive independently of viewport size (27.879896ms)
+✔ SVG export is inert and local: drops active markup, external resources, tooltip UI, handlers and stylesheet links (79.997989ms)
+✔ large chart dimensions remain bounded while supporting notes are nonvisual and do not resize the image (22.07669ms)
+✔ share link validates chart identity and strips URL credentials/query while preserving origin and basePath (0.283998ms)
+✔ recording image URLs retain only an exact single allowlisted measurement view for the recording anchor (0.694351ms)
+✔ legacy caption inputs do not restore painted footnotes while complete source evidence remains nonvisual (76.904179ms)
+✔ desktop rails show three compact cards and a peek, mid-width plates two, while narrow rails trade excess peek for readable content (501.945922ms)
+✔ draft previews are shorter without altering the expanded scientific chart coordinate frame (179.806924ms)
+✔ rail curve previews reflow to the measured content width, rather than growing taller as cards grow wider (210.520367ms)
+✔ Trends previews reserve a shorter plotting region without changing the expanded time-series geometry (380.994947ms)
+✔ the frozen historical inventory plus the explicit BCI addition enumerate every current chart in rail order (1201.315485ms)
+✔ curve: larger fixed-size observations use 5px preview / 6px expanded radii at actual CTM scale (713.617458ms)
+✔ annual: larger fixed-size observations use 5px preview / 6px expanded radii at actual CTM scale (773.009562ms)
+✔ growth: larger fixed-size observations use 5px preview / 6px expanded radii at actual CTM scale (819.609572ms)
+✔ growth endpoint labels keep a 6 CSS px gap beyond the enlarged dots at narrow CTM scales without moving data (1521.68278ms)
+✔ responsive draft observations and events share larger visual radii (preview=true) (77.563254ms)
+✔ responsive draft observations and events share larger visual radii (preview=false) (40.643864ms)
+✔ the actual recording-hours site notes separate five source paragraphs with existing legend color keys (472.915855ms)
+✔ reference-chart dataset definitions use separate rows keyed to the exact existing legend (503.526337ms)
+✔ simultaneously-recorded-neurons: source popup starts absent and preserves focus/hover inspection without a below-chart box (1296.742224ms)
+✔ tissue-mapped: source popup starts absent and preserves focus/hover inspection without a below-chart box (594.459771ms)
+✔ neural-recording-hours: source popup starts absent and preserves focus/hover inspection without a below-chart box (500.383891ms)
+✔ idea_vintage: source popup starts absent and preserves focus/hover inspection without a below-chart box (566.289726ms)
+✔ latency_compression: source popup starts absent and preserves focus/hover inspection without a below-chart box (508.922767ms)
+✔ neurotech: Trends retains its static latest-week summary, not an auto-selected point panel (236.709461ms)
+✔ neuralink: Trends retains its static latest-week summary, not an auto-selected point panel (200.895099ms)
+✔ milestone tooltip is absent until hover; source navigation and exit stay unchanged (218.935908ms)
+✔ reference and draft preview circles remain 5 screen pixels across narrow and wide cards without moving observations (970.405364ms)
+✔ expanded marks share a 6px screen-space base and 1.5px non-scaling outlines; preview resizing never changes the expanded curve (519.707219ms)
+✔ expanded curve radius follows the actual SVG screen transform including max-height letterboxing, without changing export geometry (2192.998465ms)
+✔ overlap rings use the common base without implying a quantitative magnitude (83.336302ms)
+✔ rail previews share title typography, caveats-below hierarchy and quiet non-scaling gridlines without height constraints (111.508774ms)
+✔ preview and initially empty modal visibly qualify source-bounded observations (1187.15036ms)
+✔ preview SVG keeps native text scale and adopts narrow card width without a fixed-height squeeze (405.443089ms)
+✔ narrow timeline preview wraps its date-axis title without overlapping year ticks (20.64242ms)
+✔ only source-supported release/cumulative identities connect (preview=true) (591.655084ms)
+✔ only source-supported release/cumulative identities connect (preview=false) (640.523878ms)
+✔ curve paths partition explicit series by track and never connect cross-track or unreliable samples (200.836953ms)
+✔ citation annual medians connect as their own reliable measurement series; translation pathways remain separate (160.117526ms)
+✔ each curated numeric panel offers a single-item PNG + absolute chart URL + safe rich HTML, without writes on render (10224.414884ms)
+✔ simultaneously-recorded-neurons: copy targets the expanded numeric plot with exact marks, units, source scope and legend (694.633948ms)
+✔ tissue-mapped: copy targets the expanded numeric plot with exact marks, units, source scope and legend (572.647205ms)
+✔ neural-recording-hours: copy targets the expanded numeric plot with exact marks, units, source scope and legend (521.701985ms)
+✔ idea_vintage: copy targets the expanded numeric plot with exact marks, units, source scope and legend (1376.826079ms)
+✔ latency_compression: copy targets the expanded numeric plot with exact marks, units, source scope and legend (873.401521ms)
+✔ google-trends-neurotech: copy targets the expanded numeric plot with exact marks, units, source scope and legend (2643.884855ms)
+✔ google-trends-neuralink: copy targets the expanded numeric plot with exact marks, units, source scope and legend (1687.40933ms)
+✔ performance export retains the selected track, conditional scenario and targets, but not a hovered readout (887.483562ms)
+✔ unsupported: recover with accessible error, explicit PNG download and untouched Copy link (14386.723786ms)
+✔ permission: recover with accessible error, explicit PNG download and untouched Copy link (14717.997593ms)
+✔ image rendering failure is announced, releases object URLs and permits a retry (14033.798744ms)
+✔ rendered metric cards omit the generic Bounded evidence eyebrow, retaining observed counts and scientific caveats (1691.205163ms)
+✔ multi-panel definitions render separate tiles with one unambiguous panel copy action each (182.842355ms)
+✖ all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote (63181.526804ms)
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to DraftPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ChartModal inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ChartModal inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ChartModal inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ChartModal inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+✖ optional rich HTML is omitted only when unsupported; PNG and URL stay in one ClipboardItem (8035.418195ms)
+✔ filtered performance export retains the selected track definition and every actual selected point (844.333495ms)
+✖ curated exports keep source-qualified evidence and identity without adding visible notes (61131.50823ms)
+✖ filtered POYO image keeps its selected point and nonvisual lower-bound evidence with a clean referral (176.467637ms)
+✖ unified recording-hours export has one generic chart URL, all 12 marks and observation-linked lower bounds/scopes (19.805081ms)
+✖ NeuroAI clipboard export uses the corrected performance–cost title with its original panel URL (74.645734ms)
+✖ public-data export keeps plotted units and source evidence without painting long notes (24.077398ms)
+✖ recording electrical: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (9.779089ms)
+✖ recording human-channels: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (9.064402ms)
+✖ recording optical: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (56.764857ms)
+TypeError: Cannot read properties of null (reading '_location')
+    at get location (/opt/data/projects/atlas-bitrate-20261115/node_modules/jsdom/lib/jsdom/browser/Window.js:384:79)
+    at canonicalizePerformanceLocation (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/src/lib/field-velocity/navigation.ts:106:25)
+    at navigatePerformance (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/src/lib/field-velocity/navigation.ts:64:3)
+    at onClick (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/src/components/draft-chart-panel.tsx:29:24)
+    at executeDispatch (/opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:19116:9)
+    at runWithFiberInDEV (/opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:871:30)
+    at processDispatchQueue (/opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:19166:19)
+    at /opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:19767:9
+    at batchedUpdates$1 (/opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:3255:40)
+    at dispatchEventForPluginEventSystem (/opt/data/projects/atlas-bitrate-20261115/node_modules/react-dom/cjs/react-dom-client.development.js:19320:7)
+✔ all chart families share 16px preview headings and 12px supporting type (715.662945ms)
+✔ curve full chart type is 12 actual CSS pixels at narrow, wide and height-capped scales; export is canonical (1024.482191ms)
+✔ trends full chart type is 12 actual CSS pixels at narrow, wide and height-capped scales; export is canonical (4772.089693ms)
+✔ event date caption shares the left edge (preview=true) (17.064118ms)
+✔ event date caption shares the left edge (preview=false) (14.96336ms)
+✔ dense Trends samples stay 2.5 screen px, including during source inspection; exports drop transient emphasis (4763.044452ms)
+✔ private latest and immutable CSV/JSON preserve displayed revision and accepted bytes (11.055197ms)
+✔ old exact revision unavailable returns 503 without substituting latest/archive; invalid route 404 (0.80433ms)
+✔ archived fallback CSV independently matches retained snapshot and source provenance (9.083553ms)
+✔ application configuration suppresses only the three approved data branches (2.129084ms)
+✔ CLI refuses publish without a prior stage/expected ref and refuses automatic absent bootstrap (655.126975ms)
+✔ historical source projects source-compatible median, intervals, reliable headline and patent twin only (11.46797ms)
+✔ original provider archive reproduces its complete idea-vintage mapping with only a newly pinned generator URL (1.470649ms)
+✔ strict admission rejects missing columns, year gaps, flags, counts, interval corruption and private/unknown keys (6.02011ms)
+✔ frozen integer reference-age median/bootstrap output rejects impossible sub-half-year precision (0.469619ms)
+✔ semantic fingerprint ignores acquisition timestamps but includes uncertainty and reliability (6.471421ms)
+✔ absent bootstrap and invalid payloads cannot reach Git without explicit parent-controlled installation opt-in (7.907499ms)
+✔ source stage rejects missing receipt proof before creating destination (0.827488ms)
+✔ private admission refuses malformed successful HTTP receipt shapes before they can become missing observations (3.281778ms)
+✔ explicit source stage independently replays every private receipt and rejects mismatched public provenance (667.957556ms)
+✔ real local bare remote CAS, strict two-file modes, public identity, semantic no-op and race refusal (656.784326ms)
+✔ latest pins raw download to exact GitHub ref SHA and strict feed (60.936423ms)
+✔ rejects invalid immutable token before transport and status/type/redirect/size/schema failures (4.258474ms)
+✔ last good survives failed/stale loads; cold process begins at archived record (2.661685ms)
+✔ upstream generator and direction implementation remain exact pinned Git blobs (2.12596ms)
+✔ original shared snapshot and provenance retain initial-main byte hashes (0.475066ms)
+✔ one immutable accepted release per document, even across remounts/focus/StrictMode (10.6756ms)
+✔ Pace adopts only vintage, pins CSV/JSON exports, retains translation evidence and fresh bundle on failure (666.739789ms)
+✔ Paradromics separates the first Connect-One implant from the APEX partnership and animal durability (1.377561ms)
+✔ Precision distinguishes its 70-patient research cohort from cumulative implants and partnership plans (0.480474ms)
+✔ Science blog review adds qualified clinical disclosures, not marketing approvals or funding (1.259577ms)
+✔ Precision source corrections distinguish acute feasibility, co-development and temporary array clearance (0.38509ms)
+✔ All blog-review additions render once in the 2026 Milestone timeline with their direct source links (378.09299ms)
+✔ independently sourced company logos survive regeneration in both Atlas views (101.357209ms)
+✔ restored assets retain independent provenance and exact integrity (3.585205ms)
+✔ logo renderer uses images when available and retains initials for genuinely unavailable logos (7.080324ms)
+✔ human budget text clears observed annotation badges at 238px internal width (322.36558ms)
+✔ human budget text clears observed annotation badges at 255px internal width (126.699832ms)
+✔ human budget text clears observed annotation badges at 308px internal width (148.1406ms)
+✔ whole-brain benchmarks use source-qualified volumes and demonstrated 4×4×40 nm EM sampling (2.065017ms)
+✔ human acquisition budgets use the same whole-brain voxel denominator and displayed $/10M units (0.567626ms)
+✔ only the two supported full plots offer a default-off accessible switch; previews and off SVGs match the independent baseline (1245.623293ms)
+✔ public-data-size: a 700ms log-domain expansion moves the original marks and ticks, revealing direct targets late (224.68332ms)
+✔ acquisition-economics: a 700ms log-domain expansion moves the original marks and ticks, revealing direct targets late (168.717558ms)
+✔ public-data-size: interrupted reversals resume the displayed domain and restore exact off markup (234.526322ms)
+✔ acquisition-economics: interrupted reversals resume the displayed domain and restore exact off markup (230.031824ms)
+✔ reduced motion settles immediately, live preference changes finish the destination, and StrictMode/unmount clean up RAF/listeners (336.237501ms)
+✔ public-data-size: source disclosure stays below the plot and export is disabled until the selected view settles (577.01564ms)
+✔ acquisition-economics: source disclosure stays below the plot and export is disabled until the selected view settles (569.052669ms)
+✔ public-data-size: conservative 12px label envelopes fit at 238px internal width without resizing the chart (188.489696ms)
+✔ acquisition-economics: conservative 12px label envelopes fit at 238px internal width without resizing the chart (121.351596ms)
+✔ public-data-size: conservative 12px label envelopes fit at 308px internal width without resizing the chart (103.554142ms)
+✔ acquisition-economics: conservative 12px label envelopes fit at 308px internal width without resizing the chart (112.607638ms)
+✔ benchmark controls use a fixed touch target and a paint-only checked state below the chart (158.926582ms)
+✔ public-data-size: switching scale clears a pinned source popup without returning focus to a moving mark (473.541271ms)
+✔ acquisition-economics: switching scale clears a pinned source popup without returning focus to a moving mark (132.815878ms)
+✔ Cost rail places human/mouse cortex second and the former second chart last without changing identities or evidence (1599.9411ms)
+✔ curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities (4.464884ms)
+✔ only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata (0.355413ms)
+✔ unsupported and retired evidence remains archived verbatim and unrendered (0.403655ms)
+✔ all visible curated descriptions state the measure positively and impersonally (1.4288ms)
+✔ mapping descriptions retain specimen, completeness, release timing and contact-count scope (0.588906ms)
+✔ cost and throughput retain acquisition boundaries, estimates, resolution and prospective scope (0.50997ms)
+✔ benchmark and effort descriptions keep fixed evaluations, test subsets and version-specific labor (0.520035ms)
+✔ cohort and recording descriptions retain overlapping samples, source dates and duration definitions (0.539302ms)
+✔ paired datasets, storage footprints, model validation and application events retain comparison conditions (0.499245ms)
+✔ detail/source-table rendering consumes the concise projection and preserves exact source quotations (768.936373ms)
+✔ acquisition economics shows the reciprocal of each published efficiency, not all-in cost (1.376739ms)
+✔ one combined species-colored split/merge plot retains every exact workbook row without regression lines (4.406362ms)
+✔ combined error plot keeps both old panel URLs without duplicating observations (450.817748ms)
+✔ new human observations retain cohort, modality, access and bound distinctions (0.597513ms)
+✔ public image additions are separately named byte products, not FlyWire duplicate acquisition (0.304376ms)
+✔ all 79 pre-review source identities, dates, citations and exact values survive except the explicit reciprocal display (0.783776ms)
+✔ earlier and later partial mouse cortex checkpoints use the same green species color (256.847663ms)
+✔ H01 remains visible as an outline around MICrONS without changing either source coordinate (55.990377ms)
+✔ species colors stay distinct and consistent when point order changes between plots (140.436979ms)
+✔ annotation keys stay bounded and distinct through narrow-card resizes while every source position remains exact (217.550541ms)
+✔ dense imaging annotations avoid all markers and other keys at 320px (79.756581ms)
+✔ an optional per-point annotation is persistent, source-linked by a true-position leader, and independently operable (230.890968ms)
+✔ a verified calculation reference is labeled separately from an unconfirmed study assignment (191.676044ms)
+✔ unconfirmed candidates are useful linked leads, never the primary source attribution (494.702418ms)
+✔ opt-in diamonds preserve real source centers and circumradii in native previews, expanded plots and legends (601.320675ms)
+✔ diamond source marks retain keyboard inspection and Escape clearing without a resting popover (304.232156ms)
+✔ native branded exports retain both diamond source marks and a matching diamond legend (292.727682ms)
+✔ Inflection points remains reachable at the existing expectations fragment and tab action (2012.067509ms)
+✖ fresh actual chart/panel URLs open the matching popup; retired definitions still reveal inline (60000.561454ms)
+✖ stable alias URLs, same-hash navigation and Back/Forward preserve popup history without background scroll (12.395759ms)
+✔ all share URLs preserve exact origin, base path and query; unknown targets fail closed (1.15256ms)
+✖ candidate and panel copy controls copy without navigating; failure is visible (23.632283ms)
+✔ all stable candidate/panel targets survive; retired targets have no share controls or charts (733.610291ms)
+✔ explicit observation colors apply to the mark and its persistent annotation (287.299276ms)
+✔ opt-in square and triangle markers retain circle-reference quantitative centers on both scales (198.267065ms)
+✔ plot-level legend labels show the same colored dataset glyphs outside the disclosure (97.573499ms)
+✔ automatic group legends inherit the representative observation style when no legend is authored (20.78991ms)
+✔ styled markers preserve inspection by keyboard, pointer and persistent labels (750.302439ms)
+✔ mixed coincident markers keep outlined outer glyphs, true centers and bounded callouts on resize (323.812108ms)
+✔ omitting styles retains existing circle selectors and palette colors (21.600598ms)
+✔ tiny reciprocal values round-trip exactly through source table and accessible observation labels (246.317522ms)
+✔ the inspector retains the same exact tiny source values as the table (215.671562ms)
+✔ ordinary source values keep existing readable comma and decimal formatting (27.412501ms)
+✔ both overlapping observations get separate persistent labels and source inspection even without authored annotations (418.31945ms)
+✔ point details start absent without a gray placeholder or preselected observation (369.449569ms)
+✔ a modal appearing beneath a stationary pointer does not preselect an observation (156.553317ms)
+✔ pinned source inspection stays usable after leaving its mark and Escape dismisses it (153.666749ms)
+✔ keyboard focus and hover reveal exact qualified values, date, scope and source without relying on color (118.404648ms)
+✔ a persistent disclosure exposes every exact value, original quote, scope and date note with source links (43.884577ms)
+✔ resizes the SVG coordinate space for narrow cards rather than shrinking its labels (44.950254ms)
+✔ fractional dates use integer calendar ticks and date labels; long axes wrap and extreme ticks stay exact and compact (96.141929ms)
+✔ an opt-in year step labels calendar multiples in both preview and expanded plots (99.951826ms)
+✔ absent, invalid or excessive year steps retain the existing bounded default ticks (444.492825ms)
+✔ an opt-in year step does not affect numeric axes or their preview ticks (103.86575ms)
+✔ separate scope groups have a visible legend, distinct markers and accessible point identity (48.241284ms)
+✔ applications use a date-positioned categorical event timeline with full sources, never a numeric impact score (18.770082ms)
+✔ numeric axis ticks discard floating-point noise without changing source values (19.233389ms)
+✔ renders real log scatter coordinates with exact numeric ticks and labeled axes, not a connecting trend (19.678268ms)
+✔ numeric preview keeps real glyph coordinates/colors but mounts no nested controls, source table or inspector (461.780133ms)
+✔ timeline preview retains the real dated events without its detailed source list (25.9827ms)
+✔ whole-card native button opens one URL-addressed full plot and Close returns through history without scroll (363.488801ms)
+✔ categorical timeline has the same popup contract and full export/source affordances (35.125029ms)
+✔ preview is a visibly bounded card with a full-area native trigger and compact plot (85.481754ms)
+✔ modal keyboard trap includes a closed source summary, not its hidden source controls (488.312823ms)
+✔ fresh metric-recording-hours opens only its own real modal; backdrop uses the existing fallback (103.288738ms)
+✔ fresh draft-recording-hours opens only its own real modal; backdrop uses the existing fallback (110.87425ms)
+✔ fresh draft-panel-tusz-scalp-eeg opens only its own real modal; backdrop uses the existing fallback (85.91381ms)
+✔ fresh metric-panel-tusz-scalp-eeg opens only its own real modal; backdrop uses the existing fallback (93.468259ms)
+✔ fresh neural-recording-hours opens only its own real modal; backdrop uses the existing fallback (101.284278ms)
+✔ fresh metric-panel-application-events opens only its own real modal; backdrop uses the existing fallback (37.76789ms)
+✔ fresh draft-panel-application-events opens only its own real modal; backdrop uses the existing fallback (64.584001ms)
+✔ only registered curated popup targets skip inline reveal; retired links retain scrolling (282.120001ms)
+✔ real page fresh metric-recording-hours reveals its category before native modal focus (1898.064075ms)
+✔ real page fresh draft-panel-japaneeg-scalp-eeg reveals its category before native modal focus (1435.080398ms)
+✔ real page fresh neural-recording-hours reveals its category before native modal focus (1240.842536ms)
+✔ real page fresh tissue-mapped reveals its category before native modal focus (1278.246634ms)
+✔ real page fresh metric-panel-acquisition-economics reveals its category before native modal focus (1556.622275ms)
+✔ real page fresh metric-neuroai-frontier reveals its category before native modal focus (1434.160145ms)
+✔ real page fresh draft-panel-application-events reveals its category before native modal focus (1317.224348ms)
+✔ curated cross-tab popup restores the real Expectations link after Close and Forward (StrictMode=false) (2592.216104ms)
+✔ curated cross-tab popup restores the real Expectations link after Close and Forward (StrictMode=true) (3690.974533ms)
+✔ a missing observation URL renders plain provenance, never a fabricated source link (388.89124ms)
+✔ a blank observation URL renders plain provenance, never a fabricated source link (109.678534ms)
+✔ Selected Draft tab stays visible when the viewport narrows without navigation (206.792126ms)
+✔ Retained neuron chart recovers exact visible focus after close and Forward under StrictMode=false (2089.950477ms)
+✔ Retained neuron chart recovers exact visible focus after close and Forward under StrictMode=true (2036.271136ms)
+✔ Draft charts preserves all 19 authorized technical definitions exactly once across six categories (2.533618ms)
+✔ Reconstruction accuracy uses time on x with a fixed benchmark version (0.273578ms)
+✔ Draft chart manifest is a stable, sanitized technical definition set (0.526946ms)
+✔ Draft charts renders source-backed plots as the primary gallery, retaining all definitions and exact categories (659.311126ms)
+✔ evidence gaps are explicit compact disclosures outside the plotted gallery, never empty SVG charts (235.905225ms)
+✔ Draft charts is a stable non-modal tab location (0.342185ms)
+✔ a Draft chart link records its exact return focus target (42.427848ms)
+✔ the wired gallery stylesheet makes two readable columns, mobile single columns, and floating point inspection (0.915531ms)
+✔ plot previews open source-qualified detail without a paragraph wall above the SVG (2003.586222ms)
+✔ Draft chart status rows wrap before labels spill into card padding (0.656542ms)
+✔ Draft chart readiness labels are constrained on narrow screens (0.311243ms)
+✔ The three-position Field velocity rail contains overflow on narrow screens (0.147086ms)
+✔ a visible Metrics trigger regains focus synchronously on close (11.093891ms)
+✔ a Draft chart metric link regains focus only after its hidden pane is visible (11.475473ms)
+✔ the active narrow rail tab is revealed by scrolling only the rail (9.380196ms)
+✔ the active narrow rail tab is revealed again after the final layout frame (9.580997ms)
+✔ connectome candidate contains separately sourced neuron and synapse plots, not only prose (2.260944ms)
+✔ draft chart evidence supplies real tissue, recording and implanted-participant observations (2.087991ms)
+✔ tissue release annotations preserve coordinates and neuronal targets remain partial (2.060823ms)
+✔ acquisition economics uses nine approximate Table A1 values, excludes unresolved rows and preserves raw archive (1.988692ms)
+✔ RoboEM preserves exact workbook coordinates and full point notes while retaining nERL (1.04593ms)
+✔ proofreading scope distinguishes incomplete axons and incompatible NeuVue versions without a new numeric point (0.54816ms)
+✔ all candidate definitions, evidence gaps and additive share targets remain intact (8.558592ms)
+✔ browser source-table probe derives its exact row count from current neuronal data (68.378901ms)
+✔ old Ecosystem bookmarks redirect to the original map (1.76229ms)
+✔ sidebar and mobile header follow Milestones, Field Velocity, BCI Funding Index, Ecosystem order (207.39044ms)
+✔ Ecosystem links directly to Neurofounders from home and both navigation layouts (93.042299ms)
+✔ Inflections preserve source identities and consume the reviewed signal copy (204.456434ms)
+✔ each inflection has bounded related measurements distinct from forecast proxies (47.386613ms)
+✔ related links reveal the real Metrics card, clear old search, and move keyboard focus through history (9952.082599ms)
+✔ modified related-link clicks keep native new-tab behavior without changing the current pane (516.029593ms)
+✔ related anchors identify actual plotted evidence, with source signals and market questions unchanged (26.97015ms)
+✔ retained multi-entry history restores each measurement visit rather than the last link (4454.648847ms)
+✔ enabled-only controls stay below the chart and both hint strings reserve a stable shared row (630.808427ms)
+✔ unmount during motion cancels RAF and removes the preference listener, including StrictMode replay (231.366259ms)
+✔ reduced motion snaps both ways without RAF and a live preference change finishes the current destination (216.512452ms)
+✔ ticks move and crossfade; render constraints and forecast reveal follow the geometry clock (149.689646ms)
+✔ neural-recording-hours: rapid reversals resume the displayed frame and restore the exact original SVG (186.558094ms)
+✔ neural-recording-hours: toggle moves the same historical marks and SVG size through eased intermediate frames (122.51761ms)
+✔ Milestones plots sourced cumulative capital only, scaled to observations in every year and scope (503.711625ms)
+✔ neural-recording-hours starts and reopens with extrapolation Off (278.860624ms)
+✔ fit diagnostics distinguish historical OLS log R-squared from the anchored scenario (2.202374ms)
+✔ neuron scenario selection changes actual crossings and diagnostics without changing observations (1.072239ms)
+✔ retaining the last three TUSZ plateau releases gives no future crossing or invented R-squared (0.543062ms)
+✔ canonical source bytes and unmodified tissue chart are preserved (377.297327ms)
+✔ flat inherited neuron history never enables a fit in modern recording views (95.61363ms)
+✔ decreasing inherited neuron history never enables a fit in modern recording views (70.396012ms)
+✔ slow inherited neuron history never enables a fit in modern recording views (68.891721ms)
+✔ forecast layout reserves readable label rows and 720px internal scrolling without changing off sizing (224.217494ms)
+✔ hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppresses unsupported tracks and restores linear geometry (238.466748ms)
+✔ hours scenarios expose the old flat tail beside the chart and remove optimistic dates under plateau (105.198065ms)
+✔ rejects invalid dates/values, insufficient distinct times, mixed tracks and nonpositive growth (8.532702ms)
+✔ flat noninteger series and conflicting latest anchors cannot create an artificial growth estimate (0.598649ms)
+✔ target crossings match independent fixtures and never invent an out-of-range date (1.263631ms)
+✔ hours scenario fits only all eight TUSZ release totals, retaining plateaus and ignoring other datasets (2.725063ms)
+✔ neuron scenario separates whole-brain target assumptions from actual observations and caps slow continuations (0.87151ms)
+✔ fits all seven selected neuron points but anchors at the last actual, not the OLS intercept (0.458669ms)
+✔ cookie-free HTTP PKCE verifies provider identity, hashes session and revokes it (2712.829752ms)
+✔ durable intake commits one immutable public job, deduplicates and fences followup versions (1792.135017ms)
+✔ Next handlers load disabled without secrets, database connection or build-time IO (36.627763ms)
+✔ health fails closed when singleton control is missing (2278.846788ms)
+✔ OAuth rejects nonowner numeric identity despite matching display login (1977.201588ms)
+✔ OAuth verifier failure consumes state; expiry and malformed callbacks fail closed (2092.572597ms)
+✔ exact origin, strict unknown-key schemas, same-owner status and byte limits guard all intake (1753.886952ms)
+✔ streamed byte limit is enforced without Content-Length and without parsing unbounded JSON (1781.664415ms)
+✔ configuration cannot enable preview origins, unconfigured owner or test overrides on Vercel (0.565001ms)
+✔ actual PGlite filesystem restart retains session, feedback and idempotent receipt (2564.235738ms)
+✔ transaction failure returns safe unavailable, never received, and rolls back all intake writes (1646.668062ms)
+✔ provider outage cannot mint session and never leaks provider configuration (1561.680771ms)
+✔ auth admission rate limit is durable and shared by handlers (1685.705283ms)
+✔ approval digest binds exact approved task and complete context, not private comment (3.467601ms)
+✔ concurrent followups admit one new version and event history is append-only (1692.851029ms)
+✔ bounded oversized collections and deeply nested unknown keys are rejected before durable writes (1720.865989ms)
+✔ one-field HTTP intake privately binds an element, retries immutably and fences mixed-mode followups (2032.027349ms)
+✔ every curated frontend selection produces context accepted by the actual intake validator (115.770847ms)
+✔ one-field intake accepts structural button/heading/nested SVG targets, rejects capture and mixed public modes (4.662303ms)
+✔ actual PostgreSQL migration: disabled defaults, global lease, durable reservations, caps, kill and fencing (3234.597506ms)
+✔ private instruction capability remains bound to immutable SQL payload at budget reservation (2130.713199ms)
+✔ malformed immutable private job snapshots cannot acquire execution or reserve spend (2267.299439ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (1000.562127ms)
+▶ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files
+  ✔ /git/trees (562.627681ms)
+  ✔ /git/commits (443.749226ms)
+  ✔ /git/refs (483.041353ms)
+  ✔ /pulls (921.600903ms)
+✔ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files (2413.119993ms)
+✔ tampered bundle, disabled control and unexpected head cannot load credentials or write (359.142893ms)
+✔ publisher rejects a matching presentation blob hidden in a commit with extra unrelated changes (397.445645ms)
+✔ GitHub adapter has no merge/deployment/arbitrary write endpoint even with a token callback (4.686255ms)
+✔ Git-second commit readback works with fractional receipt expiry; actual Git confirms precision (503.261619ms)
+✔ publisher independently denies a valid signed private-mode TSX patch before credentials or HTTP writes (385.75027ms)
+✔ publisher independently rejects re-signed unknown/malformed private markers, public contexts and private bundle keys (358.351452ms)
+✔ followup crossing each partial publication parks before inference and fences the old writer without erasing evidence (2479.623957ms)
+✔ direct pending successor of each partial publication is parked by acquisition before a capability or spend exists (2108.232509ms)
+✔ two-file incremental followup preserves the previous draft through real intake, checks, durable bundles and GitHub HTTP publication (8660.538077ms)
+✔ same-file incremental followup keeps the approved property while editing another through the full pipeline (8556.375916ms)
+✔ unprovable followup history (moved_main) parks before inference (6131.197296ms)
+✔ unprovable followup history (missing_bundle) parks before inference (6209.217626ms)
+✔ unprovable followup history (missing_publication) parks before inference (6329.746179ms)
+✔ unprovable followup history (signature) parks before inference (6400.60206ms)
+✔ expired signed history is source evidence only: newly approved followup gets a fresh receipt, lease and fence (1544.469301ms)
+✔ legacy CSS → simple CSS → legacy followups preserve cumulative draft and segregate each private instruction (13340.955233ms)
+✔ simple followup to previously public-approved TSX history parks before inference or reservation (6902.419897ms)
+✔ actual PostgreSQL migration: disabled defaults, global lease, durable reservations, caps, kill and fencing (3340.583888ms)
+✔ private instruction capability remains bound to immutable SQL payload at budget reservation (2620.859021ms)
+✔ malformed immutable private job snapshots cannot acquire execution or reserve spend (2164.527401ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (1039.607077ms)
+▶ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files
+  ✔ /git/trees (595.931898ms)
+  ✔ /git/commits (514.119148ms)
+  ✔ /git/refs (845.135358ms)
+  ✔ /pulls (948.579569ms)
+✔ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files (2905.546302ms)
+✔ tampered bundle, disabled control and unexpected head cannot load credentials or write (673.85677ms)
+✔ publisher rejects a matching presentation blob hidden in a commit with extra unrelated changes (621.725358ms)
+✔ GitHub adapter has no merge/deployment/arbitrary write endpoint even with a token callback (2.340768ms)
+✔ Git-second commit readback works with fractional receipt expiry; actual Git confirms precision (780.728978ms)
+✔ publisher independently denies a valid signed private-mode TSX patch before credentials or HTTP writes (496.756422ms)
+✔ publisher independently rejects re-signed unknown/malformed private markers, public contexts and private bundle keys (599.888243ms)
+✔ SYNTHETIC integrated owner PKCE → actual intake → durable job → model/checks → draft publisher → actual status (6387.029354ms)
+✔ one-field private element reaches only private model instruction; durable public outbox and draft requests remain generic (6191.579257ms)
+✔ public client needs no identity; sends only one note to the mounted fixed endpoint and confirms an exact receipt (55.253328ms)
+✔ public client rejects uncertain or malformed saves, ignores provider error prose and never retries automatically (2.72018ms)
+✔ public client bounds uncertain requests and dispose aborts pending work without reissuing it (7.567599ms)
+✔ loopback QA transport matches the public logger only, with no fake identity or history (1211.742708ms)
+✔ actual browser bundle contains public DTO/picker only, never the Linear key, backend scope or legacy OAuth client (183.07748ms)
+✔ public config fails closed without the dedicated flag and backend key; leaks no secret (33.969367ms)
+✔ a visitor without cookies or accounts logs one fixed-scope issue only after exact independent Linear readback (20.543329ms)
+✔ public intake rejects foreign origins, non-JSON, unknown fields, malformed keys and oversized streaming bodies before Linear (43.354502ms)
+✔ loopback origin is allowed only under explicit local test mode, never on Vercel or production (4.422819ms)
+✔ retry after lost create response and restart uses the original issue; key reuse with changed payload conflicts without overwriting (5.552245ms)
+✔ concurrent same-key delivery reconciles Linear uniqueness with readback, never a second issue (3.950711ms)
+✔ never confirms a mismatched or missing independent readback, even if mutation reports success (20.436194ms)
+✔ provider errors, redirects, malformed GraphQL and oversized bodies fail closed without raw provider content (6.41588ms)
+✔ one whole-operation deadline bounds both provider headers and slow body intake (13.861552ms)
+✔ bounded best-effort instance limiter cools down without IP/cookie identity or unbounded client maps (20.669074ms)
+✔ at most four submissions can occupy an instance while bodies or Linear are pending (27.049058ms)
+✔ Next routes expose only public config and submit, without repurposing legacy owner list/history (5.192295ms)
+✔ formatter already matches real Linear blank-line canonicalization without weakening exact readback (2.734503ms)
+✔ every backend read is hard-scoped to the verified team and project as well as the deterministic issue ID (1.857195ms)
+✔ expiry during uncertain mutation never starts another provider request after the deadline (1.929293ms)
+✔ real HTTP transport to a synthetic Linear peer preserves fixed request, personal-key header and canonical exact readback (44.153654ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (228.611559ms)
+▶ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files
+  ✔ /git/trees (234.632684ms)
+  ✔ /git/commits (230.057774ms)
+  ✔ /git/refs (243.79816ms)
+  ✔ /pulls (347.953905ms)
+✔ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files (1101.26272ms)
+✔ tampered bundle, disabled control and unexpected head cannot load credentials or write (120.373954ms)
+✔ publisher rejects a matching presentation blob hidden in a commit with extra unrelated changes (98.587734ms)
+✔ GitHub adapter has no merge/deployment/arbitrary write endpoint even with a token callback (1.739856ms)
+✔ Git-second commit readback works with fractional receipt expiry; actual Git confirms precision (142.921082ms)
+✔ publisher independently denies a valid signed private-mode TSX patch before credentials or HTTP writes (112.628863ms)
+✔ publisher independently rejects re-signed unknown/malformed private markers, public contexts and private bundle keys (101.989046ms)
+✔ the real intake contract admits one feedback field associated with a non-chart page element (11.563584ms)
+✔ actual DOM picks resolve the exact element and cross the intake seam without sending local names or input values (258.671101ms)
+✔ migration installs durable private schema and disables unbudgeted automation (2423.202422ms)
+✔ sidebar retains Feedback without a contribution action (52.153624ms)
+✔ mobile footer retains Feedback without a contribution action (49.131534ms)
+✔ mobile header has no duplicate Feedback or contribution action (19.323431ms)
+✔ landing has no duplicate Feedback or contribution action (37.888477ms)
+✔ plate has no duplicate Feedback or contribution action (41.115862ms)
+✔ controller has no floating launch button; retained trigger starts and cancels selection (115.117972ms)
+✔ picker only highlights: no floating instructions/buttons, Escape cancels a fresh selection (97.568821ms)
+✔ Close clears a selected element; retained text requires fresh selection (206.467225ms)
+✔ Escape clears a selected element; retained text requires fresh selection (79.354197ms)
+✔ compact chat removes the helper entirely, keeps one growing field and no clear-to-General-page shortcut (80.612068ms)
+✔ confirmed success remains in place beyond six seconds; Done clears selection and next feedback starts picking (110.942143ms)
+✔ HTTP 200 never shows confirmation or clears the draft (35.177519ms)
+✔ unconfirmed 202 never shows confirmation or clears the draft (74.124569ms)
+✔ extra fields never shows confirmation or clears the draft (33.071686ms)
+✔ server error never shows confirmation or clears the draft (66.265444ms)
+✔ transport loss never shows confirmation or clears the draft (30.26341ms)
+✔ pending save fences duplicate sends and reselection; exit cannot attach its old snapshot to a new element (64.087597ms)
+✔ fresh selection of a replacement node with the same structural path cannot reuse an exited retry snapshot (32.795752ms)
+✔ explicitly choosing the unchanged original element after exit preserves the genuine retry UUID and full original snapshot (60.219763ms)
+✔ same original node after harmless DOM movement preserves the complete uncertain retry (43.148998ms)
+✔ successful save after Close cannot steal focus from subsequent page work (55.231786ms)
+✔ popup is direct-gesture; forged origin/source/state cannot finish; valid state is consumed once (163.276967ms)
+✔ authenticated fetch preserves Basic header namespace, no-store, explicit idempotency and routes (69.36858ms)
+✔ failed/non-JSON service responses are honest safe errors and never accepted as saved (9.332616ms)
+✔ blocked popup and disposal cancel authentication without leaking listeners or accepting a late message (13.687991ms)
+✔ malformed 2xx writes never count as saved (13.906435ms)
+✔ closed popup and five-minute expiry cancel the transaction; late messages cannot authenticate (19.90553ms)
+✔ 401 and absolute page-memory expiry clear authentication without sending a stale session (49.153947ms)
+✔ authorize URL cannot redirect the popup off GitHub or change the bound PKCE transaction (11.49738ms)
+✔ only durable 202 intake receipts count as saved (31.574268ms)
+✔ malformed OAuth finish fails closed instead of hanging or retaining a session (56.016911ms)
+✔ auth finish is still bounded by transaction timeout and aborts on disposal (15.303843ms)
+✔ callback may close immediately after its one-use message while finish is delayed (15.188932ms)
+✔ public Feedback after two real targeted saves and route/remount cannot expose history or inherit saved context (402.204926ms)
+✔ public Escape after two real targeted saves and route/remount cannot expose history or inherit saved context (234.841304ms)
+✔ visible-control Tab wrapping stays inside the single-field public composer at a short mobile viewport (66.946733ms)
+✔ native chart survives selection → composer → chart Escape ordering, focus return and disabled draft retention (371.002992ms)
+✔ picker hovers exact DOM, intercepts full activation sequence and pins above an existing native chart (101.743429ms)
+✔ one visitor field sends without sign-in, retains exact failed retry and clears only on confirmed Linear receipt (131.544615ms)
+✔ physical shortcut works with an Alt-composed key but never inside editable controls (27.637548ms)
+✔ public composer never loads history or polls another visitor feedback (58.520669ms)
+✔ fresh and reopened launches require an element even when unsent text is retained (33.299621ms)
+✔ narrow composition anchors below the picked element when room exists and clamps after keyboard-sized resize (33.954981ms)
+✔ selection over native chart uses expanded geometry and only curated IDs, never reads text/input (210.625127ms)
+✔ global root mounts feedback once and scoped responsive styles preserve full mobile text (4.941278ms)
+✔ DOM references identify heading/button/nested SVG without serializing names or private attributes (276.346128ms)
+✔ nested icon/span picks its actionable button, chart SVG stays exact, tooltip never picks (29.744827ms)
+✔ compact composer CSS is content-sized and picker is a transparent pointer pass-through top layer (2.397087ms)
+✔ reference chip has a bounded meaningful local name; only safe classes/role travel, never input values (74.92547ms)
+✔ decorative aria-hidden icons inside an accessible button still select that button (18.032031ms)
+✔ a long local element name stays a one-line reference chip rather than inflating the compact composer (1.482148ms)
+✔ actual PostgreSQL migration: disabled defaults, global lease, durable reservations, caps, kill and fencing (3565.997075ms)
+✔ private instruction capability remains bound to immutable SQL payload at budget reservation (2712.204ms)
+✔ malformed immutable private job snapshots cannot acquire execution or reserve spend (2605.972568ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (1297.041118ms)
+▶ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files
+  ✔ /git/trees (700.037855ms)
+  ✔ /git/commits (577.645291ms)
+  ✔ /git/refs (668.347351ms)
+  ✔ /pulls (941.589735ms)
+✔ separate publisher reconciles synthetic GitHub HTTP crashes without duplicate branch/draft PR; readbacks exact files (2889.483571ms)
+✔ tampered bundle, disabled control and unexpected head cannot load credentials or write (334.463907ms)
+✔ publisher rejects a matching presentation blob hidden in a commit with extra unrelated changes (456.892527ms)
+✔ GitHub adapter has no merge/deployment/arbitrary write endpoint even with a token callback (3.943788ms)
+✔ Git-second commit readback works with fractional receipt expiry; actual Git confirms precision (512.821783ms)
+✔ publisher independently denies a valid signed private-mode TSX patch before credentials or HTTP writes (427.197694ms)
+✔ publisher independently rejects re-signed unknown/malformed private markers, public contexts and private bundle keys (590.380881ms)
+✔ SYNTHETIC full durable pipeline: real git + real npm checks + HTTP model + signed SQL outbox + separate HTTP publisher (9472.909114ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (373.213148ms)
+✔ worker executes real git -> approved-only model -> repeated validation -> signed publisher receipt (448.734756ms)
+✔ trusted checks run fixed npm argv with stripped environment and hard timeout (691.817485ms)
+✔ candidate checks cannot smuggle an unvalidated file mutation into a signed receipt (321.470676ms)
+✔ kill during inference aborts capability, never completes, and attempt >2 fails closed (262.735734ms)
+✔ private instruction mode rejects otherwise valid navigation literal edits before candidate checks or outbox (192.720788ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (396.111364ms)
+✔ synthetic Anthropic HTTP reserves before sending; reconciles usage; strict output and failures stay private (898.031815ms)
+✔ documented standard uncached usage metadata is accepted; priced-mode changes and unknown billing remain blocked (85.559185ms)
+✔ malformed/mixed private envelopes fail before budget, credential loading or provider HTTP (8.639854ms)
+✔ actual PostgreSQL migration: disabled defaults, global lease, durable reservations, caps, kill and fencing (3638.297735ms)
+✔ private instruction capability remains bound to immutable SQL payload at budget reservation (1957.884867ms)
+✔ malformed immutable private job snapshots cannot acquire execution or reserve spend (2626.24316ms)
+✔ real git checkout snapshot excludes private source, applies only verified patch and rejects dirty/stale/mode trees (383.315073ms)
+✔ private runtime roles are disabled by default without opening DB, provider or token (1334.119679ms)
+✔ bounded private drain actually runs queued work and stops on idle (0.675533ms)
+✔ runtime materializes isolated physical trusted dependencies instead of an escaping Turbopack symlink (162.710928ms)
+✔ deterministic validator allows bounded existing CSS values and literal labels only (674.241478ms)
+✔ compact previews have no unexplained numbered keys while full charts retain their keyed observations (347.475122ms)
+✔ preview split–merge axes use round tick positions rather than relabeled fractional subdivisions (25.603839ms)
+✔ catalog utilities are grouped quietly and section type is distinct from chart titles (1190.160788ms)
+✔ inflection evidence roles precede measurement links and forecast disclosures have usable hit areas (107.233493ms)
+✔ native annual exports keep the two axis titles separated at their own sides (12282.1365ms)
+✔ metric-panel-connectomics-roboem-human-split-merge: methodology names the plotted axes (641.682689ms)
+✔ metric-panel-pathfinder-nerl: methodology names the plotted axes (233.389162ms)
+✔ metric-panel-proofreading-effort: methodology names the plotted axes (207.553577ms)
+✔ growth reference statuses retain source metadata in downloads and omit acquisition planning from the table (359.855316ms)
+✔ citation description states reference age, preserves plotted data and omits unrelated patent/policy copy (584.06756ms)
+✔ search-interest methodology states scope and normalization without internal policy or negative definitions (490.843739ms)
+✔ recording notes describe each measurement positively and retain the scientific distinctions (3.238129ms)
+✔ participant source notes keep original quotations and cohort qualifications in concise descriptions (270.88598ms)
+✔ translation intervals keep report-date and endpoint scope while removing internal history and instructions (51.528594ms)
+✔ citation transport outage retains the validated anonymous November 6 bundle and exact exports (12.117095ms)
+✔ an admitted older citation release cannot replace the fresh bundled last-good source (35.260736ms)
+✔ cold-start Trends bundle is the exact accepted November 6 whole-window source (59.677118ms)
+✔ original October 15 revision retains exact archived downloads (0.4941ms)
+✔ timeline exposes every founding year and its exact source in company details (3103.345577ms)
+✔ stage exposes every founding year and its exact source in company details (1391.385731ms)
+✔ missing research is shown as Unknown in both views, never zero or financing year (84.410463ms)
+✔ company filtering and capital ranking preserve the founding provenance unchanged (1.377641ms)
+✔ canonical founding research covers the entire unchanged roster exactly once and regenerates deterministically (241.450377ms)
+✔ CSV parsing preserves commas, quoted notes and blank years (0.451815ms)
+✔ missing founding evidence remains null rather than zero or earliest financing (0.306729ms)
+✔ rejects malformed years and incomplete provenance (0.970246ms)
+✔ rejects duplicate, foreign or missing founding roster entries (0.410313ms)
+✔ joins source-backed business founding years independently of financing events (0.172435ms)
+✔ excludes disclosed rounds below the $2m screen (1.567051ms)
+✔ loads a bounded 25-company capital index (16.769086ms)
+✔ seeds every selected company with a qualifying sourced financing (3.504328ms)
+✔ joins the six requested regulatory milestone classes to selected companies (3.183498ms)
+✔ aggregates investor participation across financing rounds (2.888314ms)
+✔ derived-data generation emits the funding index without a copied ecosystem (166.872039ms)
+✔ builds a filtered company ranking for interactive views (0.535099ms)
+✔ positions timeline events inside the selected year range (0.197667ms)
+✔ formats indexed capital in familiar financial units (7.365297ms)
+✔ uses the current primary Neuralink financing source (3.569548ms)
+✔ mounted funding views keep supporting type at least 12px with calm label typography (658.952418ms)
+✔ every financing amount has a readable visible readout without expanding the quantitative capsule (223.235382ms)
+✔ company financing details let long stages and full amount labels reflow independently (81.174456ms)
+✔ investor rows at 320px use an unconstrained name lane and a separate capital row (146.197816ms)
+✔ investor rows at 390px use an unconstrained name lane and a separate capital row (171.951564ms)
+✔ passes optional public-source provenance through without labeling older rows reviewed (2.204611ms)
+✔ rejects duplicate events, invalid source kinds, and invalid disclosed amounts (0.809003ms)
+✔ keeps the existing threshold and excludes missing amounts without treating them as zero (0.354047ms)
+✔ dedupes exact repeated investor names within an event without changing participation counts (7.587033ms)
+✔ formats year, month, and day dates without inventing a month or day (7.819007ms)
+✔ renders source provenance, reviewed dates, and partial-history coverage (285.088843ms)
+✔ labels reporting sources and leaves unreviewed cards without a verified label (19.817941ms)
+✔ real immutable download route returns exact verified bundled JSON/CSV and rejects arbitrary paths/revisions (380.523925ms)
+✔ latest response exposes only the validated snapshot and its immutable revision (5.038238ms)
+✔ parser accepts a calendar-clamped leap-day 36-month window without losing weekly coverage (175.152811ms)
+✔ browser acquisition preflight accepts the same valid leap-day calendar window (63.796895ms)
+✔ synthetic unapproved acquisition metadata is rejected before any capture file is persisted (942.216749ms)
+✔ flat Trends returns only the selected article roots for the parent chart grid (614.119037ms)
+✔ standalone Trends retains its section anchor without repeating subgroup copy or snapshot chrome (195.771301ms)
+✔ each Trends preview has one Copy link action without a duplicate Direct link (104.179023ms)
+✔ denied or missing clipboard reveals a selectable native URL fallback only until Copy link succeeds (1222.92632ms)
+✔ flat Trends preserves trigger focus, chart hashes, dismissal and history through StrictMode (1376.896618ms)
+✔ remounting the page in the same document preserves its accepted release and single request (1262.672727ms)
+✔ outage preserves both bundled groups without a public fallback banner (116.057363ms)
+✔ bad status preserves both bundled groups without a public fallback banner (124.183057ms)
+✔ HTML preserves both bundled groups without a public fallback banner (192.476164ms)
+✔ invalid feed preserves both bundled groups without a public fallback banner (113.835911ms)
+✔ one validated source bundle regenerates both normalized groups and exact existing downloads (182.791239ms)
+✔ metadata allowlist rejects synthetic apiKey at root in either source (4.405216ms)
+✔ metadata allowlist rejects synthetic session at root in either source (3.2182ms)
+✔ metadata allowlist rejects synthetic credential at root in either source (2.933113ms)
+✔ metadata allowlist rejects synthetic accountEmail at root in either source (3.138102ms)
+✔ metadata allowlist rejects synthetic apiKey at exploreRequest in either source (3.119003ms)
+✔ metadata allowlist rejects synthetic session at exploreRequest in either source (4.375268ms)
+✔ metadata allowlist rejects synthetic credential at exploreRequest in either source (2.013326ms)
+✔ metadata allowlist rejects synthetic accountEmail at exploreRequest in either source (1.951746ms)
+✔ metadata allowlist rejects synthetic apiKey at exploreRequest.comparisonItem.0 in either source (2.491803ms)
+✔ metadata allowlist rejects synthetic session at exploreRequest.comparisonItem.0 in either source (49.235552ms)
+✔ metadata allowlist rejects synthetic credential at exploreRequest.comparisonItem.0 in either source (2.262801ms)
+✔ metadata allowlist rejects synthetic accountEmail at exploreRequest.comparisonItem.0 in either source (1.754152ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest in either source (2.311966ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest in either source (1.751239ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest in either source (1.739555ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest in either source (1.733976ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.comparisonItem.0 in either source (2.656361ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.comparisonItem.0 in either source (2.23115ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.comparisonItem.0 in either source (2.361705ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.comparisonItem.0 in either source (2.482192ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.comparisonItem.0.geo in either source (2.308914ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.comparisonItem.0.geo in either source (1.747704ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.comparisonItem.0.geo in either source (1.888685ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.comparisonItem.0.geo in either source (1.817769ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.comparisonItem.0.complexKeywordsRestriction in either source (1.778676ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.comparisonItem.0.complexKeywordsRestriction in either source (1.743733ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.comparisonItem.0.complexKeywordsRestriction in either source (1.887461ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.comparisonItem.0.complexKeywordsRestriction in either source (2.408494ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 in either source (2.210828ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 in either source (1.749366ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 in either source (1.825345ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 in either source (1.679713ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.requestOptions in either source (1.743921ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.requestOptions in either source (2.222919ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.requestOptions in either source (2.248424ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.requestOptions in either source (1.670529ms)
+✔ metadata allowlist rejects synthetic apiKey at widgetRequest.userConfig in either source (1.610991ms)
+✔ metadata allowlist rejects synthetic session at widgetRequest.userConfig in either source (1.60484ms)
+✔ metadata allowlist rejects synthetic credential at widgetRequest.userConfig in either source (1.552878ms)
+✔ metadata allowlist rejects synthetic accountEmail at widgetRequest.userConfig in either source (41.489959ms)
+✔ metadata allowlist rejects unapproved widgetRequest.requestOptions.backend values (1.796086ms)
+✔ metadata allowlist rejects unapproved widgetRequest.userConfig.userType values (1.633887ms)
+✔ bundle rejects future capture dates rather than presenting future-dated observations as current (1.604255ms)
+✔ source metadata containing credential/header fields is not eligible for public feed publication (2.128405ms)
+✔ request periods must be exactly two calendar dates, never an ignored suffix (1.571468ms)
+✔ Google Trends mini previews keep numeric and date axes visible inside their SVG frame (601.427501ms)
+✔ Google Trends preview tick labels use the same 12px coordinate font as curated previews (171.387201ms)
+✔ Google Trends preview coordinate width follows card resize and retains the last usable hidden width (188.008959ms)
+✔ producer stages a fresh whole-window bundle and suppresses all data-branch deployments; no implicit publish (381.888248ms)
+✔ publish preflight rejects synthetic apiKey at root before any Git call (5.476903ms)
+✔ publish preflight rejects synthetic session at root before any Git call (3.657901ms)
+✔ publish preflight rejects synthetic credential at root before any Git call (3.621523ms)
+✔ publish preflight rejects synthetic accountEmail at root before any Git call (3.246978ms)
+✔ publish preflight rejects synthetic apiKey at exploreRequest before any Git call (2.686241ms)
+✔ publish preflight rejects synthetic session at exploreRequest before any Git call (2.537684ms)
+✔ publish preflight rejects synthetic credential at exploreRequest before any Git call (2.590396ms)
+✔ publish preflight rejects synthetic accountEmail at exploreRequest before any Git call (2.306103ms)
+✔ publish preflight rejects synthetic apiKey at exploreRequest.comparisonItem.0 before any Git call (2.917989ms)
+✔ publish preflight rejects synthetic session at exploreRequest.comparisonItem.0 before any Git call (3.100453ms)
+✔ publish preflight rejects synthetic credential at exploreRequest.comparisonItem.0 before any Git call (37.819551ms)
+✔ publish preflight rejects synthetic accountEmail at exploreRequest.comparisonItem.0 before any Git call (2.064267ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest before any Git call (1.993605ms)
+✔ publish preflight rejects synthetic session at widgetRequest before any Git call (1.958035ms)
+✔ publish preflight rejects synthetic credential at widgetRequest before any Git call (1.845821ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest before any Git call (1.728486ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.comparisonItem.0 before any Git call (2.400315ms)
+✔ publish preflight rejects synthetic session at widgetRequest.comparisonItem.0 before any Git call (2.314005ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.comparisonItem.0 before any Git call (1.837981ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.comparisonItem.0 before any Git call (1.668565ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.comparisonItem.0.geo before any Git call (1.647339ms)
+✔ publish preflight rejects synthetic session at widgetRequest.comparisonItem.0.geo before any Git call (1.753043ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.comparisonItem.0.geo before any Git call (1.717624ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.comparisonItem.0.geo before any Git call (1.651564ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.comparisonItem.0.complexKeywordsRestriction before any Git call (2.265996ms)
+✔ publish preflight rejects synthetic session at widgetRequest.comparisonItem.0.complexKeywordsRestriction before any Git call (1.725586ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.comparisonItem.0.complexKeywordsRestriction before any Git call (1.678811ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.comparisonItem.0.complexKeywordsRestriction before any Git call (1.822674ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 before any Git call (2.106405ms)
+✔ publish preflight rejects synthetic session at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 before any Git call (1.802204ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 before any Git call (1.780015ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.comparisonItem.0.complexKeywordsRestriction.keyword.0 before any Git call (2.214424ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.requestOptions before any Git call (1.636016ms)
+✔ publish preflight rejects synthetic session at widgetRequest.requestOptions before any Git call (1.678299ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.requestOptions before any Git call (1.591075ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.requestOptions before any Git call (1.591956ms)
+✔ publish preflight rejects synthetic apiKey at widgetRequest.userConfig before any Git call (1.583089ms)
+✔ publish preflight rejects synthetic session at widgetRequest.userConfig before any Git call (1.664878ms)
+✔ publish preflight rejects synthetic credential at widgetRequest.userConfig before any Git call (1.637351ms)
+✔ publish preflight rejects synthetic accountEmail at widgetRequest.userConfig before any Git call (1.58066ms)
+✔ unknown nested request metadata cannot create a staging destination (2.759453ms)
+✔ publisher uses exact-lease Git CAS and verifies every byte on a real local bare remote; never touches main (478.791176ms)
+✔ production Git runner overrides all synthetic ambient identities in the actual local commit (213.384039ms)
+✔ publisher refuses actual synthetic GIT_AUTHOR_NAME metadata before any push without echoing it (104.345261ms)
+✔ publisher refuses actual synthetic GIT_AUTHOR_EMAIL metadata before any push without echoing it (105.831366ms)
+✔ publisher refuses actual synthetic GIT_COMMITTER_NAME metadata before any push without echoing it (146.366273ms)
+✔ publisher refuses actual synthetic GIT_COMMITTER_EMAIL metadata before any push without echoing it (101.280209ms)
+✔ publisher refuses actual synthetic message metadata before any push without echoing it (113.02668ms)
+✔ publisher refuses actual synthetic readback-error metadata before any push without echoing it (107.128274ms)
+✔ rolling window is three calendar years, including leap-day clamping (0.711556ms)
+✔ CLI is dry-run by default and publish requires an explicit expected branch revision (974.386289ms)
+✔ app config suppresses only the three approved data branches and leaves application deployments enabled (0.268251ms)
+✔ reader resolves branch once, then validates one atomic bundle from its immutable SHA (252.367657ms)
+✔ reader retains the verified last good whole window when a later refresh fails (5.612377ms)
+✔ a stale but valid window cannot roll a newer retained source backward (3.643487ms)
+✔ bad upstream response () => new Response('bad status', { status: 429 }) is rejected (1.610319ms)
+✔ bad upstream response () => new Response('<html>not data</html>', { headers: { 'Content is rejected (1.455093ms)
+✔ bad upstream response () => Response.json({ object: { sha: '../../main' } }) is rejected (1.524274ms)
+✔ bad upstream response () => Response.json({ version: 2, sources }) is rejected (1.644949ms)
+✔ bad upstream response () => Response.json({ version: 1, sources: { neurotech: sources.n is rejected (1.322548ms)
+✔ bad upstream response () => Response.json({ version: 1, sources: { ...sources, neuralin is rejected (4.33747ms)
+✔ bad upstream response () => Response.json({ version: 1, sources: { ...sources, neuralin is rejected (3.811758ms)
+✔ oversized upstream bodies are canceled while streaming, not buffered without a bound (2.178876ms)
+✔ refresh reproduces checked-in public JSON/CSV from real captures and rejects wrong search scope before writing (1707.921886ms)
+✔ chart fingerprints ignore capture timestamps and source serialization while preserving integrity hashes (64.998689ms)
+✔ fingerprint changes only the affected chart for values (6.413906ms)
+✔ fingerprint changes only the affected chart for missingness (7.349012ms)
+✔ fingerprint changes only the affected chart for literal <1 (5.85546ms)
+✔ normalization window shifts are substantive even when values are otherwise unchanged (7.747729ms)
+✔ timestamp-only checks verify the existing ref/tree then skip commit and push (356.190585ms)
+✔ a semantic update publishes once with affected-chart identifiers and a parent-bound receipt (499.487569ms)
+✔ no-op rejects an existing symlink outside the exact regular-file tree contract (353.279742ms)
+✔ no-op rejects an existing executable outside the exact regular-file tree contract (358.394595ms)
+✔ no-op rejects an existing empty directory outside the exact regular-file tree contract (406.570002ms)
+✔ a concurrent data ref change invalidates a no-op receipt before success is reported (321.185694ms)
+✔ deployed /neuro-atlas source downloads keep the basePath and exact query metadata (2679.081896ms)
+✔ neurotech standalone deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values (2203.350543ms)
+✔ neuralink standalone deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values (942.307033ms)
+✔ neurotech flat deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values (1275.221619ms)
+✔ neuralink flat deep link opens sourced modal with complete points, partial rows clearly excluded and downloadable values (787.479663ms)
+✔ Metrics renders two real 36-month attention previews with distinct normalization, reserving latest values for the modal (102.58351ms)
+✔ browser view accepts exact complete source and rejects changed identity, missingness and partial flags (217.926487ms)
+✔ both chart selections adopt one atomic revision once per document and old tabs keep pinned downloads (1525.115954ms)
+✔ admitted capture flows through the reader, latest API response, both chart tables and pinned exports (1687.416402ms)
+✔ rejects invalid, missing, out-of-range or misaligned source values instead of plotting them (197.396958ms)
+✔ validates the exact 36-month UTC window and weekly order, derives partial status even if Google omits it (9.407198ms)
+✔ preserves low-volume <1 and treats unavailable hasData=false as a gap, not zero (2.313653ms)
+✔ parses actual 36-month Google response without rescaling and separates incomplete week (2.263644ms)
+✔ native-only financing uses a pinned historical rate and retains its date/source provenance (2.191484ms)
+✔ historical conversion rejects missing, future, stale, duplicate or contradictory provenance (1.245249ms)
+✔ the reviewed NeuroXess round and timeline share the same historical conversion and explicit announcement fallback (1.719383ms)
+✔ a disclosed investment date drives FX and unsupported previous-business-day claims fail closed (0.406451ms)
+✔ inflection copy positively distinguishes signals, supporting measurements, and external forecast proxies (267.95445ms)
+✔ concise rendered signals retain every compound condition and quantitative bound (35.770166ms)
+✔ forecast quotations, destinations, disclosure state, and measurement identities remain intact (72.267345ms)
+✔ neuralink-cumulative: human-count y-axis labels are distinct whole integers enclosing all observations (386.44394ms)
+✔ precision-temporary-recording: human-count y-axis labels are distinct whole integers enclosing all observations (28.048998ms)
+✔ count fixture 0: finite nonduplicated integer ticks and unchanged source value (61.501815ms)
+✔ count fixture 1: finite nonduplicated integer ticks and unchanged source value (17.539914ms)
+✔ count fixture 2: finite nonduplicated integer ticks and unchanged source value (19.610822ms)
+✔ count fixture 21: finite nonduplicated integer ticks and unchanged source value (20.738945ms)
+✔ count fixture 50: finite nonduplicated integer ticks and unchanged source value (48.96769ms)
+✔ unflagged continuous measurements retain fractional ticks (22.084103ms)
+✔ public resource coverage names MaleCNS and Fish Fire&Wire without inventing byte observations (2.330304ms)
+✔ landing introduces the whole neurotechnology field without context-free snapshot figures (200.398712ms)
+✔ four visual tiles keep all destinations and accessible names (90.772878ms)
+✔ hero offers the explore anchor without duplicate contribution or Feedback buttons (21.976246ms)
+✔ report intervals retain calendar precision, exact endpoint arithmetic, and separate clinical tracks (2.809321ms)
+✔ latency uses explicitly defined report-to-human intervals with direct endpoint sources and researched company coverage (523.550781ms)
+✔ signed preview session expires after 24 hours or at opening, whichever comes first (11.123657ms)
+✔ preview verification rejects malformed, forged, expired, and overlong sessions without throwing (40.974557ms)
+✔ only one exact signed preview cookie grants access; duplicate or unsigned flags never do (0.723108ms)
+✔ Basic access accepts any username but requires a colon, strict base64, and the exact server secret (0.898163ms)
+✔ return destinations preserve same-mount path, query, and hash while rejecting unsafe encodings (0.904064ms)
+✔ auth Origin must be the exact request origin or configured canonical origin, never forwarded headers (19.220097ms)
+✔ native URLencoded auth parses a synthetic password and preserves the return fragment (8.75528ms)
+✔ auth form rejects malformed fields, encodings, media types, and overlong streamed bodies (4.326529ms)
+✔ correct native password yields 303 and a scoped secure signed cookie using a synthetic secret (3.137747ms)
+✔ gate uses the supplied black particle-intro reference, not the white sign-in card (419.261927ms)
+✔ owner-requested explanatory copy is absent while the password keeps an accessible label (57.962934ms)
+✔ gate follows SAB sign-in hierarchy with an explicit ET launch and small real countdown (26.901611ms)
+✔ gate escapes request-derived return paths and error text without emitting markup (21.894975ms)
+✔ countdown clamps at zero, uses ceiling seconds, and has a non-live timer to avoid screen-reader chatter (129.812401ms)
+✔ preview password comes only from a server-side deployment secret, never a source literal (2.200157ms)
+✔ configured synthetic server secret works and missing configuration fails closed (499.095419ms)
+✔ document GET returns only the nonce-protected standalone gate, no native Basic challenge (10.601639ms)
+✔ assets, API, RSC, and non-document requests never receive Atlas content or a gate HTML page (6.097472ms)
+✔ server clock opens every route exactly at launch; client query/cookie flags never open it early (2.380454ms)
+✔ native form POST is intercepted, preserves return path, and rejects bad credentials without a browser dialog (6.24152ms)
+✔ form POST denies missing or untrusted Origin even when forwarded-host headers claim it (1.116713ms)
+✔ old Atlas entry points temporarily redirect to the matching PLRD page (916.196776ms)
+✔ legacy deep links retain nested paths and encoded query values (603.505858ms)
+✔ proxy paths, assets and unknown routes do not match a legacy redirect (1154.751756ms)
+✔ standalone or unrelated deployments do not enable legacy cutover: {"NEXT_PUBLIC_BASE_PATH":"","ATLAS_SITE_URL":""} (542.192587ms)
+✔ standalone or unrelated deployments do not enable legacy cutover: {"NEXT_PUBLIC_BASE_PATH":"","ATLAS_SITE_URL":"https://www.plrd.org"} (681.726129ms)
+✔ standalone or unrelated deployments do not enable legacy cutover: {"NEXT_PUBLIC_BASE_PATH":"/neuro-atlas","ATLAS_SITE_URL":""} (513.749339ms)
+✔ standalone or unrelated deployments do not enable legacy cutover: {"NEXT_PUBLIC_BASE_PATH":"/other"} (506.389352ms)
+✔ a trailing slash on the configured origin never doubles the destination slash (550.672445ms)
+✔ fits an exponential in log10 y with an unconstrained intercept (1.795818ms)
+✔ all repeated-year observations contribute equally and input order is immaterial (0.32785ms)
+✔ constant positive outputs have zero slope and undefined R squared (0.194798ms)
+✔ rejects insufficient, nonfinite, nonpositive and zero-span inputs rather than silently dropping them (0.354202ms)
+✔ NeuroAI title describes the performance–cost comparison without implying a time series (587.341533ms)
+✔ draft acquisition economics belongs to Cost and automation without changing its values or scope (4201.498059ms)
+✔ metric acquisition economics belongs to Cost and automation without changing its values or scope (4332.239999ms)
+✔ every Metrics row starts with all charts in the existing expanded order and has no featured-only control (2708.857331ms)
+
+Interrupted while running:
+
+⚠ tests/metrics-card-png.test.mjs (tests/metrics-card-png.test.mjs:1:1)
+⚠ tests/metrics-category-header.test.mjs (tests/metrics-category-header.test.mjs:1:1)
+⚠ tests/metrics-chapters.test.mjs (tests/metrics-chapters.test.mjs:1:1)
+⚠ tests/metrics-equal-heights.test.mjs (tests/metrics-equal-heights.test.mjs:1:1)
+⚠ tests/metrics-featured-stability.test.mjs (tests/metrics-featured-stability.test.mjs:1:1)
+⚠ tests/metrics-flat-cards.test.mjs (tests/metrics-flat-cards.test.mjs:1:1)
+⚠ tests/metrics-grid-breakpoint.test.mjs (tests/metrics-grid-breakpoint.test.mjs:1:1)
+⚠ tests/metrics-inventory-header.test.mjs (tests/metrics-inventory-header.test.mjs:1:1)
+⚠ tests/metrics-layout.test.mjs (tests/metrics-layout.test.mjs:1:1)
+⚠ tests/metrics-modal-entry-focus.test.mjs (tests/metrics-modal-entry-focus.test.mjs:1:1)
+⚠ tests/metrics-navigation.test.mjs (tests/metrics-navigation.test.mjs:1:1)
+⚠ tests/metrics-neuralink-removal.test.mjs (tests/metrics-neuralink-removal.test.mjs:1:1)
+⚠ tests/metrics-page-flat.test.mjs (tests/metrics-page-flat.test.mjs:1:1)
+⚠ tests/metrics-popout-integration.test.mjs (tests/metrics-popout-integration.test.mjs:1:1)
+⚠ tests/metrics-popout-layout.test.mjs (tests/metrics-popout-layout.test.mjs:1:1)
+⚠ tests/metrics-preview-noise.test.mjs (tests/metrics-preview-noise.test.mjs:1:1)
+⚠ tests/metrics-preview-scale.test.mjs (tests/metrics-preview-scale.test.mjs:1:1)
+⚠ tests/metrics-rail-focus-snap.test.mjs (tests/metrics-rail-focus-snap.test.mjs:1:1)
+⚠ tests/metrics-rails.test.mjs (tests/metrics-rails.test.mjs:1:1)
+⚠ tests/metrics-readable-copy.test.mjs (tests/metrics-readable-copy.test.mjs:1:1)
+⚠ tests/metrics-reader-policy.test.mjs (tests/metrics-reader-policy.test.mjs:1:1)
+⚠ tests/metrics-three-state-groups.test.mjs (tests/metrics-three-state-groups.test.mjs:1:1)
+✔ an off-screen ChartModal is an inert, hidden export host rather than a dialog (8.556187ms)
+✔ every rail card offers Copy PNG next to Copy link (1083.940693ms)
+✖ tests/metrics-card-png.test.mjs (51173.689298ms)
+Could not parse CSS @import URL "./point-source-tooltip.css" relative to base URL "about:blank"
+✔ category headers expose a separately wrapping name without redundant badges or counts (984.639652ms)
+✔ chapter headers count the rendered cards and the search placeholder totals them (995.402511ms)
+✔ curated scope sits in the card footer, outside the capped preview body (522.902973ms)
+✔ the catalog reserves one natural-content maximum independent of which panels are open (3032.698861ms)
+✔ natural-size observers can grow and shrink all cards and ignore deliveries after cleanup (1310.08711ms)
+✔ equalized cards declare full-card overlay geometry and a separate footer stacking layer (1116.843172ms)
+✔ hidden chart regions remain measurable but inert and visually excluded in every panel state (1162.726502ms)
+✔ sizing visibility overrides Tailwind base-layer hidden rules while retaining local rail stacking (672.57143ms)
+✔ full rows reserve card and scrollbar space without obsolete expansion-action space (583.780718ms)
+✔ every real Metrics chart has separately measurable natural content and a footer (811.003931ms)
+✔ equal cards allocate spare space to one preview without feeding expansion back into natural sizing (1472.722962ms)
+✔ a CSS height cap keeps rail cards compact and marks only taller previews as clipped (908.850439ms)
+✔ full rails retain the featured tile first and preserve every peer through collapse and reopen (2176.791363ms)
+✔ flat reference renderers return only individual chart-card peers, without subgroup chrome (207.185311ms)
+✔ flat curated rendering gives each real plot and timeline its own peer article (290.827646ms)
+✔ flat curated cards keep essential scope visible and move complete definitions into their own modal (419.012074ms)
+✔ all chart families start in one native horizontal rail and remain intact through heading collapse (2580.002826ms)
+✔ each chart has only Copy link at rest, with selectable URL fallback only after clipboard failure (42.294182ms)
+✔ curated tiles remove repeated enlargement and observation-count copy while retaining a named full-card trigger (173.287703ms)
+✔ reference previews use readable compact axes with wrapped HTML date labels, independent of full-chart geometry (76.635347ms)
+✔ flat reference and curated cards retain theme paint and keyboard source affordances without retired wrappers (498.903065ms)
+✔ flat reference cards keep provider export timestamps and revision provenance in the modal, not a repeated footer (68.147072ms)
+Could not parse CSS @import URL "./point-source-tooltip.css" relative to base URL "about:blank"
+Could not parse CSS @import URL "./point-source-tooltip.css" relative to base URL "about:blank"
+✔ wide rails use fixed compact peer columns with a visible peek, never the retired wrapping grid (318.422663ms)
+✔ narrow rails reclaim 16px of excess peek for unclipped growth headings at the native 320px width (28.746797ms)
+✔ Field velocity hero stays focused on charts, without inventory KPI tiles (9.646435ms)
+✔ PlateHero keeps explicit status badges on other pages (2.144042ms)
+✔ commitments renders sourced participant observations over time without an unwired Markets section (372.220666ms)
+✔ channel-count frontier is only a noninteractive coming-soon chart in the Performance grid (154.699121ms)
+✔ every desktop Metrics grid reserves three tracks even with one, two or more than three cards (222.868568ms)
+✔ fresh simultaneously-recorded-neurons modal focuses Close after its collapsed category becomes visible (1525.415436ms)
+✔ fresh idea_vintage modal focuses Close after its collapsed category becomes visible (819.673187ms)
+✔ fresh latency_compression modal focuses Close after its collapsed category becomes visible (891.31639ms)
+✔ fresh google-trends-neurotech modal focuses Close after its collapsed category becomes visible (959.129921ms)
+✔ Metrics is one full-rail-default, keyboard-native index in the five-group order (1485.005903ms)
+✔ search matches dataset/species and panel titles, opens results; clear restores expansion; bulk controls work (1765.837141ms)
+✔ only the unique capability chart remains alongside curated measurements (511.324675ms)
+✔ clean and legacy links override search/collapse, reveal exact target and retain back/forward (3003.381935ms)
+✔ search includes references and field context, labels category results, disables search-time toggles (1492.31985ms)
+✔ search excludes retired definitions and unwired placeholders (3102.331388ms)
+✔ category styling keeps counts scannable and disclosures/search keyboard-visible on small screens (0.740748ms)
+✔ archived source snapshots and provenance remain byte-identical to base (0.823697ms)
+✔ every canonical share link has exactly one legacy alias and an independently addressable target (0.524941ms)
+✔ draft-panel-tissue-cm3 opens its popup without background scrolling during navigation or later search/disclosure changes (3107.436867ms)
+✔ metric-panel-tissue-cm3 opens its popup without background scrolling during navigation or later search/disclosure changes (2320.763706ms)
+✔ the retained commitments fragment opens the participant chart without moving the background (1406.308468ms)
+✔ field engagement omits only the Neuralink brand-context chart across expand and collapse (1692.461928ms)
+Error: Modal navigation must not scroll a card
+    at dom.window.HTMLElement.scrollIntoView (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/modal-helpers.mjs:14:67)
+    at <anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/src/lib/field-velocity/navigation.ts:56:16)
+    at invokeTheCallbackFunction (/opt/data/projects/atlas-bitrate-20261115/node_modules/jsdom/lib/generated/idl/Function.js:19:26)
+    at runAnimationFrameCallbacks (/opt/data/projects/atlas-bitrate-20261115/node_modules/jsdom/lib/jsdom/browser/Window.js:639:13)
+    at Timeout.<anonymous> (/opt/data/projects/atlas-bitrate-20261115/node_modules/jsdom/lib/jsdom/browser/Window.js:617:11)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+✔ removed brand chart is neither reopened by its old hash nor retained in engagement search metadata (1175.749721ms)
+✔ the actual Metrics page requests peer-card output from every supplemental chart family (2.289892ms)
+✔ the default recording card opens one source-qualified detail popup at its generic URL (4212.363622ms)
+✔ related measurement links leave focus inside the popup and restore their own Expectations origin (2727.89066ms)
+✖ tests/metrics-popout-layout.test.mjs (18659.122508ms)
+✔ preview cards avoid generic source-status labels while retaining scope, qualifiers and full chart notes (2049.653872ms)
+✔ every retained logarithmic preview identifies its scale in the axis title without a generic footer (408.028157ms)
+✔ keyboard focus can reveal a complete rail tile without proximity snapping it partly offscreen (1.79283ms)
+✔ each of the five sections is its own bordered chapter, separated by spacing even when headline-only (1437.382432ms)
+✔ full rails have no chart expansion action or obsolete circular-action layout (693.650186ms)
+✔ category collapse resets its rail and recovers focus before hiding the offscreen peer (1530.381302ms)
+✔ Collapse all resets every horizontal position and leaves focus on its visible page action (1207.273754ms)
+✔ keyboard focus and modal-close restoration reveal their full tile using only local horizontal scroll (1136.446332ms)
+✔ pointer-pressed focus does not move a peer out from under the pending click (539.981286ms)
+✔ public-data-size omits the owner-rejected disclaimer from preview and details (256.752825ms)
+✔ neuroai-imagenet omits the owner-rejected disclaimer from preview and details (37.400125ms)
+✔ recording-hours omits the owner-rejected disclaimer from preview and details (83.047895ms)
+✔ the first Metrics section is named Neurotech field engagement (0.285465ms)
+✔ acquisition preview and details use dollars per 10M voxels with the exact unit conversion (87.20815ms)
+✔ published Table A1 efficiencies use thousands separators in inspection and source rows (31.119153ms)
+✔ the edited chart descriptions state their scope directly (0.612065ms)
+✔ category summaries describe displayed measurements rather than backlog proposals (834.682889ms)
+✖ tests/metrics-reader-policy.test.mjs (6695.464284ms)
+✖ tests/metrics-three-state-groups.test.mjs (615.720487ms)
+✖ tests/milestone-capital-classification.test.mjs
+✖ tests/milestone-legibility.test.mjs
+✖ tests/milestones-header-status.test.mjs
+✖ tests/milestones-panel.test.mjs
+✖ tests/milestones-reconciliation-and-filter.test.mjs
+✖ tests/milestones-spacing.test.mjs
+✖ tests/milestones-years.test.mjs
+✖ tests/modal-scroll.test.mjs
+✖ tests/neuroai-axis-break.test.mjs
+✖ tests/notables-63.test.mjs
+✖ tests/notables-64.test.mjs
+✖ tests/notables-65.test.mjs
+✖ tests/pace-data.test.mjs
+✖ tests/pace-followup.test.mjs
+✖ tests/pace-parity.test.mjs
+✖ tests/pace-ui.test.mjs
+✖ tests/participant-commitments.test.mjs
+✖ tests/performance-data.test.mjs
+✖ tests/performance-modal.test.mjs
+✖ tests/performance-navigation.test.mjs
+✖ tests/performance-snapshot.test.mjs
+✖ tests/performance-ui.test.mjs
+✖ tests/performance-validation.test.mjs
+✖ tests/plate-heroes-and-markers.test.mjs
+✖ tests/point-source-tooltip.test.mjs
+✖ tests/precision-funding-source.test.mjs
+✖ tests/public-data-inventory.test.mjs
+✖ tests/public-data-size-audit.test.mjs
+✖ tests/publication-annual-axis.test.mjs
+✖ tests/publication-baseline-runtime.test.mjs
+✖ tests/publication-changes-labels.test.mjs
+✖ tests/publication-chart-typography.test.mjs
+✖ tests/publication-data.test.mjs
+✖ tests/publication-endpoint-contract.test.mjs
+✖ tests/publication-endpoint-replay.test.mjs
+✖ tests/publication-exact-fractions.test.mjs
+✖ tests/publication-live-wiring.test.mjs
+✖ tests/publication-reader-copy.test.mjs
+✖ tests/publication-responsive-legend.test.mjs
+✖ tests/publication-sankey.test.mjs
+✖ tests/publication-science-history.test.mjs
+✖ tests/publication-source-tooltip.test.mjs
+✖ tests/publication-ui.test.mjs
+✖ tests/publications-config.test.mjs
+✖ tests/publications-feed.test.mjs
+✖ tests/publications-source.test.mjs
+✖ tests/readable-atlas-urls.test.mjs
+✖ tests/recording-axis-dates.test.mjs
+✖ tests/recording-evidence-data.test.mjs
+✖ tests/recording-evidence-ui.test.mjs
+✖ tests/recording-hours-consolidation.test.mjs
+✖ tests/recording-sharing-state.test.mjs
+✖ tests/recording-viewport.test.mjs
+✖ tests/reference-preview-font.test.mjs
+✖ tests/researcher-sector-typography.test.mjs
+✖ tests/response-robots.test.mjs
+✖ tests/retired-metrics.test.mjs
+✖ tests/site-footer.test.mjs
+✖ tests/subpath.test.mjs
+✖ tests/theme-preference.test.mjs
+✖ tests/tooltip-clamp.test.mjs
+✖ tests/trends-preview-copy.test.mjs
+✖ tests/trends-source-tooltip.test.mjs
+ℹ tests 928
+ℹ suites 0
+ℹ pass 848
+ℹ fail 10
+ℹ cancelled 70
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239969.068671
+
+✖ failing tests:
+
+test at tests/chart-sharing.test.mjs:232:1
+✖ all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote (63181.526804ms)
+  'test timed out after 60000ms'
+
+test at tests/chart-sharing.test.mjs:261:1
+✖ optional rich HTML is omitted only when unsupported; PNG and URL stay in one ClipboardItem (8035.418195ms)
+  TypeError: Cannot read properties of undefined (reading 'length')
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:269:37)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:297:1
+✖ curated exports keep source-qualified evidence and identity without adding visible notes (61131.50823ms)
+  'test timed out after 60000ms'
+
+test at tests/chart-sharing.test.mjs:326:1
+✖ filtered POYO image keeps its selected point and nonvisual lower-bound evidence with a clean referral (176.467637ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:333:24)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:348:1
+✖ unified recording-hours export has one generic chart URL, all 12 marks and observation-linked lower bounds/scopes (19.805081ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at openPanel (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:44:21)
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:354:24)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:382:1
+✖ NeuroAI clipboard export uses the corrected performance–cost title with its original panel URL (74.645734ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at openPanel (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:44:21)
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:387:25)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:399:1
+✖ public-data export keeps plotted units and source evidence without painting long notes (24.077398ms)
+  AssertionError [ERR_ASSERTION]: click target exists
+      at click (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/modal-helpers.mjs:20:43)
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:404:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/chart-sharing.test.mjs:415:37
+✖ recording electrical: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (9.779089ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:420:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:415:37
+✖ recording human-channels: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (9.064402ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:420:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/chart-sharing.test.mjs:415:37
+✖ recording optical: actual Copy chart and PNG callbacks preserve selected marks, qualifications, sources and view link (56.764857ms)
+  TypeError: Cannot read properties of null (reading 'querySelector')
+      at TestContext.<anonymous> (/opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/chart-sharing.test.mjs:420:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/draft-chart-links.test.mjs:52:1
+✖ fresh actual chart/panel URLs open the matching popup; retired definitions still reveal inline (60000.561454ms)
+  'test timed out after 60000ms'
+
+test at tests/draft-chart-links.test.mjs:88:1
+✖ stable alias URLs, same-hash navigation and Back/Forward preserve popup history without background scroll (12.395759ms)
+  AssertionError [ERR_ASSERTION]: click target exists
+      at click (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/modal-helpers.mjs:20:43)
+      at TestContext.<anonymous> (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/draft-chart-links.test.mjs:94:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/draft-chart-links.test.mjs:145:1
+✖ candidate and panel copy controls copy without navigating; failure is visible (23.632283ms)
+  AssertionError [ERR_ASSERTION]: click target exists
+      at click (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/modal-helpers.mjs:20:43)
+      at TestContext.<anonymous> (file:///opt/data/tmp/atlas-bitrate-20261116/speech-1bpc/baseline/tests/draft-chart-links.test.mjs:152:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/metrics-card-png.test.mjs:1:1
+✖ tests/metrics-card-png.test.mjs (51173.689298ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/metrics-popout-layout.test.mjs:1:1
+✖ tests/metrics-popout-layout.test.mjs (18659.122508ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/metrics-reader-policy.test.mjs:1:1
+✖ tests/metrics-reader-policy.test.mjs (6695.464284ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/metrics-three-state-groups.test.mjs:1:1
+✖ tests/metrics-three-state-groups.test.mjs (615.720487ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestone-capital-classification.test.mjs:1:1
+✖ tests/milestone-capital-classification.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestone-legibility.test.mjs:1:1
+✖ tests/milestone-legibility.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestones-header-status.test.mjs:1:1
+✖ tests/milestones-header-status.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestones-panel.test.mjs:1:1
+✖ tests/milestones-panel.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestones-reconciliation-and-filter.test.mjs:1:1
+✖ tests/milestones-reconciliation-and-filter.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestones-spacing.test.mjs:1:1
+✖ tests/milestones-spacing.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/milestones-years.test.mjs:1:1
+✖ tests/milestones-years.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/modal-scroll.test.mjs:1:1
+✖ tests/modal-scroll.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/neuroai-axis-break.test.mjs:1:1
+✖ tests/neuroai-axis-break.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/notables-63.test.mjs:1:1
+✖ tests/notables-63.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/notables-64.test.mjs:1:1
+✖ tests/notables-64.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/notables-65.test.mjs:1:1
+✖ tests/notables-65.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pace-data.test.mjs:1:1
+✖ tests/pace-data.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pace-followup.test.mjs:1:1
+✖ tests/pace-followup.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pace-parity.test.mjs:1:1
+✖ tests/pace-parity.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/pace-ui.test.mjs:1:1
+✖ tests/pace-ui.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/participant-commitments.test.mjs:1:1
+✖ tests/participant-commitments.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-data.test.mjs:1:1
+✖ tests/performance-data.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-modal.test.mjs:1:1
+✖ tests/performance-modal.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-navigation.test.mjs:1:1
+✖ tests/performance-navigation.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-snapshot.test.mjs:1:1
+✖ tests/performance-snapshot.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-ui.test.mjs:1:1
+✖ tests/performance-ui.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/performance-validation.test.mjs:1:1
+✖ tests/performance-validation.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/plate-heroes-and-markers.test.mjs:1:1
+✖ tests/plate-heroes-and-markers.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/point-source-tooltip.test.mjs:1:1
+✖ tests/point-source-tooltip.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/precision-funding-source.test.mjs:1:1
+✖ tests/precision-funding-source.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/public-data-inventory.test.mjs:1:1
+✖ tests/public-data-inventory.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/public-data-size-audit.test.mjs:1:1
+✖ tests/public-data-size-audit.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-annual-axis.test.mjs:1:1
+✖ tests/publication-annual-axis.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-baseline-runtime.test.mjs:1:1
+✖ tests/publication-baseline-runtime.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-changes-labels.test.mjs:1:1
+✖ tests/publication-changes-labels.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-chart-typography.test.mjs:1:1
+✖ tests/publication-chart-typography.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-data.test.mjs:1:1
+✖ tests/publication-data.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-endpoint-contract.test.mjs:1:1
+✖ tests/publication-endpoint-contract.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-endpoint-replay.test.mjs:1:1
+✖ tests/publication-endpoint-replay.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-exact-fractions.test.mjs:1:1
+✖ tests/publication-exact-fractions.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-live-wiring.test.mjs:1:1
+✖ tests/publication-live-wiring.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-reader-copy.test.mjs:1:1
+✖ tests/publication-reader-copy.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-responsive-legend.test.mjs:1:1
+✖ tests/publication-responsive-legend.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-sankey.test.mjs:1:1
+✖ tests/publication-sankey.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-science-history.test.mjs:1:1
+✖ tests/publication-science-history.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-source-tooltip.test.mjs:1:1
+✖ tests/publication-source-tooltip.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publication-ui.test.mjs:1:1
+✖ tests/publication-ui.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publications-config.test.mjs:1:1
+✖ tests/publications-config.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publications-feed.test.mjs:1:1
+✖ tests/publications-feed.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/publications-source.test.mjs:1:1
+✖ tests/publications-source.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/readable-atlas-urls.test.mjs:1:1
+✖ tests/readable-atlas-urls.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-axis-dates.test.mjs:1:1
+✖ tests/recording-axis-dates.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-evidence-data.test.mjs:1:1
+✖ tests/recording-evidence-data.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-evidence-ui.test.mjs:1:1
+✖ tests/recording-evidence-ui.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-hours-consolidation.test.mjs:1:1
+✖ tests/recording-hours-consolidation.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-sharing-state.test.mjs:1:1
+✖ tests/recording-sharing-state.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-viewport.test.mjs:1:1
+✖ tests/recording-viewport.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/reference-preview-font.test.mjs:1:1
+✖ tests/reference-preview-font.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/researcher-sector-typography.test.mjs:1:1
+✖ tests/researcher-sector-typography.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/response-robots.test.mjs:1:1
+✖ tests/response-robots.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/retired-metrics.test.mjs:1:1
+✖ tests/retired-metrics.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-footer.test.mjs:1:1
+✖ tests/site-footer.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/subpath.test.mjs:1:1
+✖ tests/subpath.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/theme-preference.test.mjs:1:1
+✖ tests/theme-preference.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tooltip-clamp.test.mjs:1:1
+✖ tests/tooltip-clamp.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/trends-preview-copy.test.mjs:1:1
+✖ tests/trends-preview-copy.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/trends-source-tooltip.test.mjs:1:1
+✖ tests/trends-source-tooltip.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+BASELINE_EXIT=124

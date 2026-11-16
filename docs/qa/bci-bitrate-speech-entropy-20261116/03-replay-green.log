@@ -1,0 +1,14 @@
+✔ replay retains context observations but fits only explicit true selections (40.423508ms)
+✔ replay refuses ambiguous fit selection instead of silently discarding a row (40.488074ms)
+✔ replay recalculates text equivalents from the declared alphabet and native rate (33.803315ms)
+✔ replay recalculates speech from its explicit English-entropy weight and word length rather than alphabet or plotted values (37.791512ms)
+✔ replay refuses invalid declared conversion models and nonpositive entropy weights (247.430346ms)
+✔ replay converts the printed seconds-per-letter result without rounding to CPM (31.266883ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 555.551419

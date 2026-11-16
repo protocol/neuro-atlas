@@ -1,0 +1,30 @@
+✖ speech uses 1 assumed bit/character and 5 assumed characters/word while handwriting retains its symbol equivalent (4.734691ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 263.940959
+
+✖ failing tests:
+
+test at tests/bci-bitrate-uniform.test.mjs:10:1
+✖ speech uses 1 assumed bit/character and 5 assumed characters/word while handwriting retains its symbol equivalent (4.734691ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (/opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-uniform.test.mjs:11:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
