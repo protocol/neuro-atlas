@@ -13,10 +13,14 @@ import sys
 
 path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).with_name("chart-provenance.csv")
 with path.open(newline="", encoding="utf-8") as stream:
-    observations = [
-        {"id": row["id"], "year": float(row["reference_year"]), "bps": float(row["plotted_bps"])}
-        for row in csv.DictReader(stream)
-    ]
+    rows = list(csv.DictReader(stream))
+if any(row.get("fit_included") not in ("true", "false") for row in rows):
+    raise ValueError("fit_included must be exactly true or false for every observation")
+observations = [
+    {"id": row["id"], "year": float(row["reference_year"]), "bps": float(row["plotted_bps"]),
+     "fitIncluded": row["fit_included"] == "true"}
+    for row in rows
+]
 if len(observations) < 2 or any(
     not math.isfinite(p["year"]) or not math.isfinite(p["bps"]) or p["bps"] <= 0
     for p in observations
@@ -24,8 +28,10 @@ if len(observations) < 2 or any(
     raise ValueError("At least two finite observations with positive rates are required")
 if len({p["id"] for p in observations}) != len(observations):
     raise ValueError("Observation IDs must be unique; repeated years are allowed")
-ordered = sorted(observations, key=lambda p: (p["year"], p["bps"]))
+ordered = sorted((p for p in observations if p["fitIncluded"]), key=lambda p: (p["year"], p["bps"]))
 n = len(ordered)
+if n < 2:
+    raise ValueError("At least two observations must be explicitly included in the fit")
 x_origin = ordered[0]["year"]
 x = [p["year"] - x_origin for p in ordered]
 z = [math.log10(p["bps"]) for p in ordered]
@@ -38,9 +44,10 @@ intercept = mean_z - slope * mean_x
 residual = sum((b - intercept - slope * a) ** 2 for a, b in zip(x, z))
 total = sum((b - mean_z) ** 2 for b in z)
 print(json.dumps({
-    "method": "Equal-weight unconstrained OLS of log10(bits/s) against reference year; repeated years retained",
+    "method": "Equal-weight unconstrained OLS of log10(bits/s equivalent) against reference year for fit_included=true rows; repeated years retained, context rows excluded",
     "inputSha256": hashlib.sha256(path.read_bytes()).hexdigest(),
     "observations": observations,
+    "fitObservations": ordered,
     "fit": {
         "n": n,
         "xOrigin": x_origin,

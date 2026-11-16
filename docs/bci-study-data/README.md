@@ -1,45 +1,39 @@
-# BCI source-study data and original-figure provenance
+# BCI source data and reproducible uniform text conversion
 
-## Original figure recovered
+## Active chart
 
-The exact underlying 14-mark chart was publicly posted by [Sumner L Norman on June 22, 2026](https://x.com/SumnerLN/status/2069192808016273813). Its [original-size published JPEG](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig) matches the supplied photograph's labels, four marker classes, seven cursor circles including four anonymous marks, five speech squares, handwriting diamond, Stentrode triangle and overlays. The slide adds its title/footer; the published raster establishes figure provenance, not presenter identity.
+The [current method](../bci-bitrate.md) uses one **log2(28) ≈ 4.8 bits/character** text-output equivalent for **nine selected text observations**, with **five assumed characters/word** for speech. Bacher, Vansteensel, and Milekovic/Sarma are now explicit named study selections in place of three image-derived heights. These selections do not establish the original figure author's anonymous-paper assignments.
 
-**The original numeric table and plotting code have not been recovered.** The current chart now uses **2 paper-reported rates, 6 derived estimates from paper/preprint inputs, 1 company report and 5 retained image estimates**. Every point identifies its basis; the [14-row current-chart provenance CSV](chart-provenance.csv) shows reported input versus calculation versus image coordinate. The original 14 image-derived coordinates remain archived unchanged in the source ledger. See the [active chart method](../bci-bitrate.md) and [four anonymous-point candidates](anonymous-point-candidates.md).
+The chart still displays all **14 reference IDs/year placements**: nine converted text estimates, three native task/company bitrates, and two remaining image estimates. The regression fits only the nine converted text points; the other five observations are marked context/excluded. Error and assistance conditions remain distinct; no extra WER/CER discount is applied. All nine conversions say **PL R&D estimate**.
 
-## Downloadable data
+## Download and reproduce
 
-| File | Scope | Interpretation |
-|---|---|---|
-| [Current chart provenance](chart-provenance.csv) | All 14 displayed observations, with explicit evidence labels | Actual plotted values, source-native input, calculation, retained image value and candidate links. Five speech estimates use a declared 5-bits/word convention; handwriting uses the authors' separate empirical approximation. |
-| [Reproduce the fit](reproduce_fit.py) | Python standard library; full-precision current CSV | Recalculates every input, coefficients, log-space R², SSE/SST and input hash; accepts an edited CSV for sensitivity checks. |
-| [Anonymous-point candidate audit](anonymous-point-candidates.md) | Four unconfirmed assignments, with alternatives | Candidate papers and their actual native results exist; they are not confirmed identities or extra paper-backed chart points. |
-| [Identified slide-study results](identified-slide-study-results.csv) | 10 labeled report records; nine have a source-native numeric rate, Kennedy's rate is blank | Native rate/unit/task/error and original source URL. These are not 10 comparable measured bps values. Four anonymous slide marks are not assigned here. |
-| [Historical primary results](historical-primary-results.csv) | 19 printed outcomes from six historical studies | Multiple participants, tasks and measures; no sum, common normalization or proven anonymous-slide assignment. |
-| [Historical retrospective comparisons](historical-retrospective-results.csv) | Eight later-author comparison rows | Explicitly separate from original primary-study measurements. Their printed source/column and limitations travel with the numbers. |
+| File | Scope |
+|---|---|
+| [Current provenance CSV](chart-provenance.csv) | All 14 actual plotted values, reported native inputs, conversion parameters, source dates/URLs, original photo values, and explicit `fit_included=true/false`. |
+| [Independent Python reconstruction](reproduce_fit.py) | Standard library only. Prints all observations, the nine fitted rows, input hash, exact OLS coefficients and log-space R²/SSE/SST. Accepts a modified CSV for sensitivity checks. |
+| [Current methods](../bci-bitrate.md) | Why 4.8 bits/character, five-character word assumption, selected task/participant/statistic, source links, fitted cohort and limits. |
+| [Original anonymous-point candidate audit](anonymous-point-candidates.md) | Historical attribution research for four unnamed original dots. The latter three have now been adopted as named selections in our chart, not confirmed original assignments. |
+| [Identified slide-study results](identified-slide-study-results.csv) | Earlier native-rate inventory for 10 labeled report records; Kennedy's numerical rate is blank. Source evidence, not current plotted-value authority. |
+| [Historical primary results](historical-primary-results.csv) | 19 printed outcomes from six studies; multiple participants/tasks/measures, not additional independent points to append. |
+| [Historical retrospective comparisons](historical-retrospective-results.csv) | Eight later-author comparison rows, separate from original primary measurements. |
 
-The historical files overlap in studies/participants with the identified-study table and one another. Row counts describe records, not independent studies, participants or additional points to append to the chart.
+Download the CSV and script into the same folder, then run `python3 reproduce_fit.py`. Every row needs an explicit lowercase `true` or `false` selection. The script derives coefficients from selected inputs rather than hardcoding the displayed result.
 
-## Newly recovered historical tables
+## Primary sources for the three adopted selections
 
-- [Gilja et al. 2015, Supplementary Table 1, PDF pages 1–2](https://static-content.springer.com/esm/art%3A10.1038%2Fnm.3953/MediaObjects/41591_2015_BFnm3953_MOESM47_ESM.pdf): printed T6 **0.93** and T7 **0.92 Fitts bits/s**. The table subtracts hold time. Its primary [task definition](https://pmc.ncbi.nlm.nih.gov/articles/PMC4805425/#S3) uses a particular target-distance/width convention. These are not error-corrected random-grid bitrates, and resemblance to anonymous 2015 marks does not prove an assignment.
-- [Jarosiewicz et al. 2015, Figure 3C](https://pmc.ncbi.nlm.nih.gov/articles/PMC4765319/): defines extrapolated bitrate from correct selections/minute and eight radial-keyboard targets. The printed overall **15.0/14.6 correct selections/minute** means include sessions to which that radial-only conversion does not apply; no blanket conversion is made here.
-- [Pandarinath et al. 2017, Table 1](https://doi.org/10.7554/eLife.18554.021): later comparative Jarosiewicz average **0.59 bps**, with participant values **0.93/0.64/0.58/0.19**, and Vansteensel **0.21-bps ITR**. These remain retrospective rows, not newly recovered exact values from the earlier original studies or proof of the photo's identities.
-- [Vansteensel et al. 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/#S10): primary **52 seconds/letter**, **33 seconds/letter with word prediction**. Preserve prediction and task conditions. The approximate low 2016 photo mark is not thereby identified.
-- [Milekovic et al. 2018, Table 3 and appendix](https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/): primary **3.07/6.88 correct characters/minute**, a scanning speller with word completion, plus a useful original comparison table. This is a neural-switch task, not automatically the unidentified cursor circle in 2018.
-- [Nuyujukian et al. 2018](https://doi.org/10.1371/journal.pone.0204566): participant-specific selections/minute and effective characters/minute are retained separately; no exact 0.53-bps result was recovered.
+- [Bacher Results/Figure 3](https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/#F3): **9.4 ± 3.2 correct characters/min**, radial “keyboard ” copy task with word completion off. Ambiguous-key disambiguation remains. The **10.4 ± 2.4** “quick fox” task changes both text and completion setting, so it is not a clean treatment comparison. Online 2014; 2015 issue/year placement retained.
+- [Vansteensel Results](https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/): **33 seconds/letter with word prediction**, selected instead of the rounded two-letters/minute headline; ECoG brain-click scanning interface. The unassisted 52-second condition remains separate.
+- [Milekovic/Sarma Results/Figure 8](https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/#F0008): T6 **6.88 ± 0.33 correct characters/min** in free spelling **with word completion**; FlashSpeller scanning/neural-switch task.
 
-## Kennedy remains unresolved numerically
+Current estimates are respectively approximately **0.753**, **0.146**, and **0.551 bits/s equivalent**. Correct-character rates already include correction costs; the coding rule is not an additional accuracy model.
 
-The [2000 original report](https://doi.org/10.1109/86.847815) was recovered at metadata/abstract level; its full numerical table was unavailable. [An investigator follow-up](https://ecl.cc.gatech.edu/sites/default/files/publications/C.34-Moore-CHI-2001.pdf) documents EMG-switch or dwell selection. The [2002 Wolpaw review](https://www.cs.cmu.edu/~tanja/BCI/BCIreview.pdf) reports approximately three letters/minute/about 15 bits/minute for **hybrid neuronal plus residual EMG control**. That secondary approximate hybrid figure is not silently promoted to an exact primary pure-BCI rate.
+## Archived original figure
 
-## Speech and handwriting
+The [Sumner Norman post](https://x.com/SumnerLN/status/2069192808016273813) and [original-size JPEG](https://pbs.twimg.com/media/HLc_CpXaIAA-nFr?format=jpg&name=orig) establish figure provenance. The original table/code, conversion equation and band method remain unavailable.
 
-The six original native speech/handwriting rates and task/error/date pairings are in the identified-study CSV and [main source audit](../bci-bitrate.md#study-native-evidence). The active chart labels handwriting **Author estimate** (the separate technical report's **≈6.18-bps empirical approximation**, based on the observed **90 characters/minute**) and five speech values **PL R&D estimate** (reported WPM × **5 assumed information bits/word** ÷ 60, no error adjustment). Those explicit selections do not recover the original figure's formula and are not measured neural ITR.
+[src/data/bci-bitrate.source.json](../../src/data/bci-bitrate.source.json) preserves the original 14 photographed coordinates, quotations/calibration and traced-line history unchanged. [The candidate ledger](../../src/data/bci-bitrate.candidates.json) remains archival attribution research. The current active study selections and values live in [bci-bitrate.ts](../../src/data/bci-bitrate.ts) and the current CSV.
 
-## Independent reconstruction is not the original dataset
+The upper 2015 mark remains an image estimate with Gilja/Jarosiewicz candidates. Kennedy's relevant [2000 paper](https://doi.org/10.1109/86.847815) is identified, but its exact primary bitrate remains unresolved. Neither graphical context point enters the current text fit.
 
-[ITR Atlas](https://tangemicioglu.com/projects/itr-atlas/) and its [public source](https://github.com/tangemicioglu/itr-atlas) led to the original posted figure. It independently re-derives scores using explicit, sometimes different conventions; it is not Sumner Norman's original 14-row dataset. Its scores have not been substituted into this chart.
-
-## Remaining gaps
-
-Original numeric table/code, four anonymous-study assignments, Kennedy's exact original bitrate, the original language-to-bitrate convention, and band/statistical construction remain open. No outreach, access grant, recurring collection, merge or production publication is authorized by this research task.
+The prior five-bits/word speech convention and author-issued corrected-typing handwriting model are superseded in the active chart. Historical evidence and QA retain their original meanings. No outreach, monitoring, merge or production release is part of this update.
