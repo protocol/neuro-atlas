@@ -32,7 +32,7 @@ test('rendered selections keep the original photograph ledger separate and make 
   const source = JSON.parse(readFileSync(dataUrl, 'utf8'));
   const plot = data.BCI_BITRATE_EVIDENCE.plots[0];
   assert.equal(plot.points.length, 14);
-  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*image estimate/);
+  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*source-unverified approximate rate/);
   assert.match(plot.scope, /14 displayed observations/);
   assert.match(plot.seriesNote, /normalization convention/);
   assert.equal(plot.connections, undefined);

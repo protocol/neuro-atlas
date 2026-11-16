@@ -2,7 +2,7 @@
 """Recompute the descriptive BCI fit from the full-precision provenance CSV.
 
 Python standard library only. Optionally pass a modified CSV to test alternative
-selections. This reproduces the PL R&D reconstruction, not the original figure.
+selections. Rates are recalculated from the declared source inputs and models.
 """
 import csv
 import hashlib
@@ -72,7 +72,7 @@ intercept = mean_z - slope * mean_x
 residual = sum((b - intercept - slope * a) ** 2 for a, b in zip(x, z))
 total = sum((b - mean_z) ** 2 for b in z)
 print(json.dumps({
-    "method": "Equal-weight unconstrained OLS of log10(bits/s equivalent) against reference year for fit_included=true rows; repeated years retained, context rows excluded",
+    "method": "Equal-weight unconstrained OLS of log10(bits/s equivalent) against year for fit_included=true rows; repeated years retained, context rows excluded",
     "inputSha256": hashlib.sha256(path.read_bytes()).hexdigest(),
     "observations": observations,
     "fitObservations": ordered,

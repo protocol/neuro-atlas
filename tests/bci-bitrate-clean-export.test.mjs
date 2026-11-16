@@ -21,7 +21,7 @@ test('PNG study identities are concise while full conversion and task notes rema
     assert.ok(point.note.length > point.exportAnnotation.length, point.id);
     assert.ok(point.exportNote.length > point.exportAnnotation.length, point.id);
     const row = data.BCI_BITRATE_ROWS.find(row => row.id === point.id);
-    assert.match(point.exportAnnotation, row.fitIncluded ? /equiv\./ : /image est\.|native|company/);
+    assert.match(point.exportAnnotation, row.fitIncluded ? /equiv\./ : /source unverified|native|company/);
     if (row.fitIncluded) {
       const speech = row.nativeRateUnit === 'words/minute';
       assert.match(point.annotation, speech ? /5 × 1 bit\/char/ : /log2\(28\)/, 'Full on-site conversion is retained');
@@ -36,7 +36,7 @@ test('PNG study identities are concise while full conversion and task notes rema
   assert.match(plot.exportPointKeyNote, /mixed.model fit/i);
   assert.match(plot.points.find(point => point.id === 'bci-slide-pandarinath').exportAnnotation, /T5 9×9/);
   assert.match(plot.points.find(point => point.id === 'bci-slide-stentrode').exportAnnotation, /P2 isolated/);
-  assert.match(plot.points.find(point => point.id === 'bci-slide-unlabeled-cursor-2015-upper').exportAnnotation, /unconfirmed/);
+  assert.match(plot.points.find(point => point.id === 'bci-slide-unlabeled-cursor-2015-upper').exportAnnotation, /unverified/);
 });
 
 test('the native image puts a compact two-column study key after the branded crop boundary, not in the legend', () => {

@@ -49,7 +49,7 @@ test('BCI source evidence mounts unchanged through the generic Metrics panel and
   assert.equal(plot.id, 'bci-bitrate');
   assert.equal(plot.scale, 'log');
   assert.equal(plot.xKind, 'year');
-  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*image estimate/);
+  assert.match(plot.observationBasis, /Paper-reported.*calculated.*company.*source-unverified approximate rate/);
   const before = JSON.stringify(evidence);
   const cleanup = await mount(React.createElement(React.StrictMode, null, React.createElement(VelocityTabs, { performance: null })), `#${slug}`);
   try {

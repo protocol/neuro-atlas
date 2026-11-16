@@ -42,7 +42,7 @@ test('speech uses 1 assumed bit/character and 5 assumed characters/word while ha
 });
 
 
-test('three explicitly selected text papers replace active anonymous coordinates without claiming original-dot attribution', () => {
+test('three selected text papers expose their native inputs and evaluation conditions', () => {
   const selected = [
     { suffix: '2015-lower', name: /Bacher/, value: 9.4, unit: 'correct characters/minute', expected: 9.4 * bits / 60, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/#F3', date: '2014-11-10', task: /radial.*completion off/i, title: 'Neural point-and-click communication by a person with incomplete locked-in syndrome' },
     { suffix: '2016', name: /Vansteensel/, value: 33, unit: 'seconds/letter', expected: bits / 33, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/', date: '2016-11-12', task: /scanning.*prediction/i, title: 'Fully Implanted Brain–Computer Interface in a Locked-In Patient with ALS' },
@@ -65,8 +65,8 @@ test('three explicitly selected text papers replace active anonymous coordinates
     assert.match(point.label, selection.name);
     assert.doesNotMatch(point.label, /unconfirmed|unlabeled/i);
     assert.equal(point.candidateSources, undefined);
-    assert.match(point.note, /selected paper-backed observation/i);
-    assert.match(point.note, /not.*(confirmed|confirmation).*original/i);
+    assert.match(point.note, /PL R&D estimate.*Reported input:/i);
+    assert.ok(point.note.includes(row.reportedResult));
     assert.notEqual(point.y, original.observations.find(p => p.id === id).approximateBps);
   }
   assert.match(data.BCI_BITRATE_ROWS.find(r => r.id.endsWith('2015-lower')).reportedResult, /9\.4 ± 3\.2.*correct/);
@@ -153,7 +153,7 @@ test('the reader method distinguishes speech English-entropy and retained symbol
   const note = plot.seriesNote;
   assert.match(note, /Speech.*1 assumed bit\/character/);
   assert.match(note, /context-dependent English-entropy model/);
-  assert.match(note, /Handwriting and text selection\/scanning retain/);
+  assert.match(note, /Handwriting and text selection\/scanning use/);
   assert.match(note, /mixed.convention.*descriptive fit/i);
   assert.match(plot.referenceTrendline.note, /mixed.convention/i);
   assert.match(plot.referenceTrendline.label, /mixed models/i);
@@ -195,7 +195,7 @@ test('the qualified communication-rate title keeps the existing public URL and l
   }
 });
 
-test('active method documents the speech-only model, unchanged handwriting and recomputed descriptive fit', () => {
+test('active method documents both conversion models and the descriptive fit', () => {
   const method = readFileSync(new URL('../docs/bci-bitrate.md', import.meta.url), 'utf8');
   const readme = readFileSync(new URL('../docs/bci-study-data/README.md', import.meta.url), 'utf8');
   const ref = 'https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html';

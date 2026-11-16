@@ -17,13 +17,14 @@ test('PL R&D owns all nine mixed-convention text estimates, including handwritin
   assert.doesNotMatch(plot.seriesNote, /Atlas-calculated|author.*approximation/);
 });
 
-test('only the upper-2015 unresolved active dot retains assignment-unconfirmed candidate links', () => {
-  const unknown = plot.points.filter(p => p.candidateSources);
+test('only the upper-2015 point lacks a source link and speculative sources are not rendered', () => {
+  const unknown = plot.points.filter(p => !p.sourceUrl);
   assert.equal(unknown.length, 1);
+  assert.ok(plot.points.every(p => p.candidateSources === undefined));
   const point = unknown[0];
   assert.equal(point.id, 'bci-slide-unlabeled-cursor-2015-upper');
-  assert.match(point.label, /^Cursor control A · source unconfirmed$/);
+  assert.match(point.label, /^Cursor control A · source unverified$/);
   assert.ok(point.annotation.startsWith(point.label));
   assert.equal(point.sourceUrl, undefined);
-  assert.match(point.note, /not confirmed assignments/);
+  assert.match(point.note, /source-native numerical rate unverified/);
 });
