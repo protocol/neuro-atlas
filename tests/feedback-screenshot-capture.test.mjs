@@ -31,6 +31,14 @@ test('loaded same-origin logos and an existing canvas freeze into PNG bytes inst
  assert.match(frozen.node.outerHTML,/src="data:image\/png;base64,FROZEN"/);assert.equal(frozen.node.querySelectorAll('canvas').length,0);
  image.src='/changed-logo.png';assert.doesNotMatch(frozen.node.outerHTML,/changed-logo/);dom.window.close();
 });
+test('crop translation has a dedicated wrapper without replacing the original root transform',()=>{
+ const dom=new JSDOM('<body><article style="transform:scale(1)"><div id="target">Selected landmark</div></article></body>'),doc=dom.window.document;
+ const root=doc.querySelector('article'),target=doc.querySelector('#target');root.getBoundingClientRect=()=>rect(-480,-300,1600,1400);target.getBoundingClientRect=()=>rect(170,650,48,48);
+ const frozen=freezeFeedbackRegion(target),wrapper=frozen.node.querySelector('[data-feedback-crop]');
+ assert.ok(wrapper,'cropping cannot rely on cloned root top/left in a foreignObject');
+ assert.match(wrapper.style.transform,/translate\(-480px, -\d+px\)/);
+ assert.equal(wrapper.querySelector('article').style.transform,'scale(1)');dom.window.close();
+});
 test('body/full-page selections and offscreen elements fail instead of capturing unrelated content',()=>{
  const dom=new JSDOM('<body><h1>Heading</h1></body>'),doc=dom.window.document;
  doc.body.getBoundingClientRect=()=>rect(0,0,390,2000);

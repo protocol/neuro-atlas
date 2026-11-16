@@ -239,8 +239,9 @@ export function Feedback({capture = captureFeedbackScreenshot}: {capture?:typeof
     const fingerprint = JSON.stringify({ comment, target });
     try {
       const selectedSnapshot = snapshot.current;
-      const image = pending.current?.fingerprint === fingerprint ? pending.current.input.screenshot : await selectedSnapshot?.image;
-      if (!image || image.status === "unavailable" && !withoutScreenshot) {setError("Screenshot unavailable. Select the element again, or send without a screenshot."); return;}
+      const retrying = pending.current?.fingerprint === fingerprint;
+      const image = retrying ? pending.current!.input.screenshot : await selectedSnapshot?.image;
+      if (!image || image.status === "unavailable" && !withoutScreenshot && !retrying) {setError("Screenshot unavailable. Select the element again, or send without a screenshot."); return;}
       if (pending.current?.fingerprint !== fingerprint) pending.current = {
         fingerprint, key: client.current!.newKey(), element: pinned?.element,
         input: { feedback: comment, context: { ...(selectedSnapshot?.context ?? feedbackContext(window, target)), ...(pinned ? { element: { ...pinned.reference } } : {}) }, screenshot:image },

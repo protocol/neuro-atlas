@@ -77,5 +77,17 @@ js("document.querySelector('[data-performance-card=idea_vintage]').scrollIntoVie
 trigger();click('[data-performance-card=idea_vintage] svg');wait("!!document.querySelector('[data-feedback-composer][open]')")
 wait("document.querySelector('[data-feedback-capture]')?.textContent.includes('Screenshot attached')")
 save_image('citation-chart-svg');capture_screenshot(path=str(out/'citation-chart-composer.png'));press_key('Escape')
+# ASCR-001 actual-product reproduction: Commercial near the viewport bottom,
+# with the timeline root substantially above the viewport (nonzero crop translation).
+visit('/milestones',390,900)
+wait("[...document.querySelectorAll('img')].filter(e=>e.complete&&e.naturalWidth>0).length>40")
+js("""(()=>{const label=[...document.querySelectorAll('span')].find(e=>e.textContent==='Commercial'&&e.parentElement.matches('div.absolute'));window.__commercial=label.parentElement;const root=__commercial.closest('.milestone-year-scroll');window.scrollTo(0,scrollY+root.getBoundingClientRect().top+96);__commercial.setAttribute('data-qa-commercial','')})()""")
+time.sleep(.15)
+commercial=js("(()=>{const r=__commercial.getBoundingClientRect(),root=__commercial.closest('.milestone-year-scroll').getBoundingClientRect();return {top:r.top,left:r.left,right:r.right,bottom:r.bottom,rootTop:root.top}})()")
+assert commercial['rootTop']<0 and 600<commercial['top']<850,commercial
+trigger();click_at_xy(commercial['right']-14,commercial['top']+8)
+wait("document.querySelector('[data-feedback-capture]')?.textContent.includes('Screenshot attached')")
+save_image('commercial-offset-390');capture_screenshot(path=str(out/'commercial-offset-actual-390.png'));press_key('Escape')
+(out/'commercial-offset-geometry.json').write_text(json.dumps(commercial,indent=2))
 (out/'native-results.json').write_text(json.dumps({'provider':'synthetic only','screenshots':'actual headed client rendering','results':results},indent=2))
 print(json.dumps({'passed':len(results),'resultsFile':str(out/'native-results.json')}))

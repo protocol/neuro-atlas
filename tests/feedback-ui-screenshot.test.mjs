@@ -23,6 +23,18 @@ test('selection freezes screenshot once and retries preserve exact image, contex
  let count=0;const {cleanup,posts,field}=await setup(async()=>{count++;return image;});
  try{await enter(field);await enter(field);assert.equal(count,1);assert.equal(posts.length,2);assert.deepEqual(JSON.parse(posts[0].body).screenshot,image);assert.equal(posts[0].body,posts[1].body);assert.deepEqual(posts[0].headers,posts[1].headers);}finally{await cleanup();}
 });
+test('explicit image-free consent carries into ordinary Enter and arrow retry, but not a changed note',async()=>{
+ const {cleanup,posts,field}=await setup(async()=>({status:'unavailable',reason:'capture_failed'}));
+ try{
+  await enter(field);assert.equal(posts.length,0);
+  await click([...document.querySelectorAll('button')].find(b=>b.textContent==='Send without screenshot'));
+  await enter(field);await click(document.querySelector('[data-feedback-submit]'));
+  assert.equal(posts.length,3,'ordinary controls retry the already-consented operation');
+  for(const post of posts){assert.equal(post.body,posts[0].body);assert.equal(post.headers['Idempotency-Key'],posts[0].headers['Idempotency-Key']);}
+  await act(async()=>{Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set.call(field,'Changed note');field.dispatchEvent(new Event('input',{bubbles:true}));});
+  await enter(field);assert.equal(posts.length,3,'a changed note is a new operation needing explicit consent');
+ }finally{await cleanup();}
+});
 test('failed screenshot does not silently send: Enter is blocked until explicit send-without-image gesture',async()=>{
  const {cleanup,posts,field}=await setup(async()=>({status:'unavailable',reason:'capture_failed'}));
  try{await enter(field);assert.equal(posts.length,0);assert.match(document.body.textContent,/Screenshot unavailable/);const fallback=[...document.querySelectorAll('button')].find(b=>b.textContent==='Send without screenshot');assert.ok(fallback);await click(fallback);assert.equal(posts.length,1);assert.deepEqual(JSON.parse(posts[0].body).screenshot,{status:'unavailable',reason:'capture_failed'});}finally{await cleanup();}

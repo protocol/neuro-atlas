@@ -56,10 +56,28 @@ export function freezeFeedbackRegion(target: Element) {
   };
   const frozen = clone(root) as HTMLElement | undefined;
   if (!frozen) throw Error('not_visible');
-  Object.assign(frozen.style,{position:'absolute',margin:'0',left:`${bounds.left-left}px`,top:`${bounds.top-top}px`,width:`${bounds.width}px`,height:`${bounds.height}px`});
+  const rootStyle = win.getComputedStyle(root);
+  let transformedLeft = 0, transformedTop = 0;
+  if (rootStyle.transform && rootStyle.transform !== 'none' && rootStyle.transform !== 'scale(1)') {
+    // Retain the original transform, but avoid counting its bounding-box displacement twice.
+    const matrix = new DOMMatrixReadOnly(rootStyle.transform);
+    if (!matrix.is2D) throw Error('unsupported');
+    const numeric = (property: string) => parseFloat(rootStyle.getPropertyValue(property)) || 0;
+    const layoutWidth = numeric('width') + (rootStyle.boxSizing === 'border-box' ? 0 : numeric('padding-left') + numeric('padding-right') + numeric('border-left-width') + numeric('border-right-width'));
+    const layoutHeight = numeric('height') + (rootStyle.boxSizing === 'border-box' ? 0 : numeric('padding-top') + numeric('padding-bottom') + numeric('border-top-width') + numeric('border-bottom-width'));
+    const [ox,oy] = rootStyle.transformOrigin.split(' ').map(value => parseFloat(value) || 0);
+    const corners = [[0,0],[layoutWidth,0],[0,layoutHeight],[layoutWidth,layoutHeight]].map(([x,y]) => ({x:matrix.a*(x-ox)+matrix.c*(y-oy)+matrix.e+ox,y:matrix.b*(x-ox)+matrix.d*(y-oy)+matrix.f+oy}));
+    transformedLeft = Math.min(...corners.map(point => point.x)); transformedTop = Math.min(...corners.map(point => point.y));
+  }
+  // foreignObject can ignore absolute negative top/left on the cloned root. Keep
+  // layout local, and express viewport cropping on a dedicated transform wrapper.
+  Object.assign(frozen.style,{position:'relative',margin:'0',inset:'auto',insetBlock:'auto',insetInline:'auto',left:'0px',top:'0px'});
+  const translation = doc.createElement('div');translation.setAttribute('data-feedback-crop','');
+  Object.assign(translation.style,{position:'absolute',left:'0',top:'0',transform:`translate(${bounds.left-left-transformedLeft}px, ${bounds.top-top-transformedTop}px)`});
+  translation.append(frozen);
   const node = doc.createElement('div');node.setAttribute('data-feedback-snapshot','');
   Object.assign(node.style,{position:'relative',width:`${width}px`,height:`${height}px`,overflow:'hidden',background:win.getComputedStyle(doc.body).backgroundColor || '#fff'});
-  node.append(frozen);
+  node.append(translation);
   return {node,root,width,height,highlight:{left:Math.max(0,selected.left-left),top:Math.max(0,selected.top-top),width:Math.min(right,selected.right)-Math.max(left,selected.left),height:Math.min(bottom,selected.bottom)-Math.max(top,selected.top)}};
 }
 export async function captureFeedbackScreenshot(target: Element): Promise<FeedbackScreenshot> {
