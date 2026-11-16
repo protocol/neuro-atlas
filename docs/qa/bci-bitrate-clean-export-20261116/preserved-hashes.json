@@ -1,0 +1,7 @@
+{
+  "src/data/bci-bitrate.source.json": "66c3a28870e415d2978752b389593f8644b1aa70b4c8323eac584d3f7a97b020",
+  "src/data/bci-bitrate.candidates.json": "49ca220802d81b34cfec2e1ec9627591bdbf558d6d049e35b4a8fb2187522715",
+  "docs/qa/chart-legibility-20261112/acceptance-inventory.json": "eda1c8cd2ba788e9a40b8ff92ba1b45b0f885e58c4ca10df8003566e85fe01cc",
+  "docs/bci-study-data/chart-provenance.csv": "de88fb00310764f9a0e8420c50997ca8662da848234dea091c1a7fb019201105",
+  "src/proxy.ts": "e679590d9199d72e0dd757f8145d5e699bb4bdc62848cf597d88ef8def8d0c3c"
+}

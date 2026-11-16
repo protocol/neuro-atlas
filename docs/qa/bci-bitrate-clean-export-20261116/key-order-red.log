@@ -1,0 +1,30 @@
+✔ PNG study identities are concise while full conversion and task notes remain on site (1.394931ms)
+✖ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (461.840258ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1416.833122
+
+✖ failing tests:
+
+test at tests/bci-bitrate-clean-export.test.mjs:34:1
+✖ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (461.840258ms)
+  AssertionError [ERR_ASSERTION]: Observation identities must remain readable in the real image
+      at TestContext.<anonymous> (file:///opt/data/projects/atlas-bitrate-20261115/tests/bci-bitrate-clean-export.test.mjs:48:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

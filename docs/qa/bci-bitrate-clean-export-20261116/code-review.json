@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "security_concerns": [],
+  "logic_errors": [],
+  "suggestions": [
+    "Add focused exporter regressions for omitted and empty pointKey, a single entry, and an odd-length key; assert unchanged default output and complete row-major ordering without missing or duplicated entries.",
+    "Add adversarial key-label and pointKeyNote escaping tests, plus assertions for every supported marker's rendered SVG geometry. The new label path explicitly escapes text, but the supplied tests mainly cover ordinary labels and marker metadata.",
+    "Extend geometry checks to multi-line key rows and a long footer URL, asserting row separation, column bounds, and that the crop boundary clears the entire footer rather than only the logo."
+  ],
+  "summary": "PASS: Independently reviewed all six complete diff chunks (21,145 bytes, 13 hunks, 126 added lines) and the empty static scan. No blocking security or logic defects found in escaping, layout, marker preservation, optional-key handling, default exports, source-model preservation, or annotation ordering. Tests were inspected, not executed; additional edge-case coverage is recommended. Verdict saved to /opt/data/tmp/atlas-bitrate-20261116/clean-export/code-review.json; no source files were edited."
+}

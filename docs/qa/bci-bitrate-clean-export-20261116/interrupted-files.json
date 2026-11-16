@@ -1,0 +1,16 @@
+[
+  "tests/performance-modal.test.mjs",
+  "tests/readable-atlas-urls.test.mjs",
+  "tests/recording-evidence-ui.test.mjs",
+  "tests/recording-hours-consolidation.test.mjs",
+  "tests/reference-preview-font.test.mjs",
+  "tests/researcher-sector-typography.test.mjs",
+  "tests/response-robots.test.mjs",
+  "tests/retired-metrics.test.mjs",
+  "tests/site-footer.test.mjs",
+  "tests/subpath.test.mjs",
+  "tests/theme-preference.test.mjs",
+  "tests/tooltip-clamp.test.mjs",
+  "tests/trends-preview-copy.test.mjs",
+  "tests/trends-source-tooltip.test.mjs"
+]

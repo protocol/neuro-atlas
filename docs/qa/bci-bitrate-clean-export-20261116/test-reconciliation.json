@@ -1,0 +1,83 @@
+{
+  "knownInitialFailures": 10,
+  "resolvedFailures": 10,
+  "scopedTestsPassed": 56,
+  "initialBroadRun": {
+    "total": 1307,
+    "passed": 1297,
+    "failed": 10
+  },
+  "correctEnvironmentBroadRerun": {
+    "exitCode": 124,
+    "limitSeconds": 600,
+    "allGreenClaim": false,
+    "tests": 1237,
+    "pass": 1223,
+    "fail": 2,
+    "cancelled": 12,
+    "remainingObservedFailures": [
+      "tests/performance-modal.test.mjs",
+      "tests/recording-evidence-ui.test.mjs (optical vs human-channels history assertion)"
+    ]
+  },
+  "cases": [
+    {
+      "originalFailure": "the actual BCI export callback serializes 14 numbered observation keys with five accurate task groups",
+      "passingCase": "the actual BCI export callback separates compact study keys from task groups and places them below branding",
+      "reason": "Owner-directed export contract updated"
+    },
+    {
+      "originalFailure": "public client needs no identity; sends only one note to the mounted fixed endpoint and confirms an exact receipt",
+      "passingCase": "public client needs no identity; sends only one note to the mounted fixed endpoint and confirms an exact receipt",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "authenticated fetch preserves Basic header namespace, no-store, explicit idempotency and routes",
+      "passingCase": "authenticated fetch preserves Basic header namespace, no-store, explicit idempotency and routes",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "public Feedback after two real targeted saves and route/remount cannot expose history or inherit saved context",
+      "passingCase": "public Feedback after two real targeted saves and route/remount cannot expose history or inherit saved context",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "public Escape after two real targeted saves and route/remount cannot expose history or inherit saved context",
+      "passingCase": "public Escape after two real targeted saves and route/remount cannot expose history or inherit saved context",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "one visitor field sends without sign-in, retains exact failed retry and clears only on confirmed Linear receipt",
+      "passingCase": "one visitor field sends without sign-in, retains exact failed retry and clears only on confirmed Linear receipt",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "public composer never loads history or polls another visitor feedback",
+      "passingCase": "public composer never loads history or polls another visitor feedback",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "admitted capture flows through the reader, latest API response, both chart tables and pinned exports",
+      "passingCase": "admitted capture flows through the reader, latest API response, both chart tables and pinned exports",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "document GET returns only the nonce-protected standalone gate, no native Basic challenge",
+      "passingCase": "document GET returns only the nonce-protected standalone gate, no native Basic challenge",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    },
+    {
+      "originalFailure": "native form POST is intercepted, preserves return path, and rejects bad credentials without a browser dialog",
+      "passingCase": "native form POST is intercepted, preserves return path, and rejects bad credentials without a browser dialog",
+      "reason": "Root-only test expectations replayed without build-only NEXT_PUBLIC_BASE_PATH"
+    }
+  ],
+  "serial14FileReplays": {
+    "baseline": "cfc8c943cc190cac64bf353e9df1fc7a16b2f5d4",
+    "candidate": "80a14e610f331b6b0cbd37a4f14d1893950be7d1",
+    "baselineExitCode": 124,
+    "candidateExitCode": 124,
+    "limitSecondsEach": 150,
+    "allGreenClaim": false
+  }
+}

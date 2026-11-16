@@ -1,0 +1,163 @@
+{
+  "width": 1200,
+  "height": 1093,
+  "cropBottom": 785,
+  "footerBottom": 768.148780487805,
+  "entries": [
+    {
+      "text": "1. Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 image est.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 843.4000244140625,
+          "right": 401.203125,
+          "bottom": 860.4000244140625
+        }
+      ]
+    },
+    {
+      "text": "2. Cursor A (unconfirmed) \u00b7 2015 \u00b7 \u22480.9 image est.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 843.4000244140625,
+          "right": 997.609375,
+          "bottom": 860.4000244140625
+        }
+      ]
+    },
+    {
+      "text": "3. Bacher \u00b7 2015 \u00b7 \u22480.753 equiv.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 874.5999755859375,
+          "right": 301.296875,
+          "bottom": 891.5999755859375
+        }
+      ]
+    },
+    {
+      "text": "4. Vansteensel \u00b7 2016 \u00b7 \u22480.146 equiv.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 874.5999755859375,
+          "right": 905.46875,
+          "bottom": 891.5999755859375
+        }
+      ]
+    },
+    {
+      "text": "5. Milekovic / Sarma \u00b7 2018 \u00b7 \u22480.551 equiv.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 905.7999877929688,
+          "right": 376.84375,
+          "bottom": 922.7999877929688
+        }
+      ]
+    },
+    {
+      "text": "6. Pandarinath T5 9\u00d79 \u00b7 2017 \u00b7 4.16 native",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 905.7999877929688,
+          "right": 942.90625,
+          "bottom": 922.7999877929688
+        }
+      ]
+    },
+    {
+      "text": "7. Neuralink PRIME \u00b7 2024 \u00b7 8 company",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 937,
+          "right": 356.796875,
+          "bottom": 954
+        }
+      ]
+    },
+    {
+      "text": "8. Stentrode P2 isolated \u00b7 2021 \u00b7 \u22480.46 native est.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 937,
+          "right": 994.109375,
+          "bottom": 954
+        }
+      ]
+    },
+    {
+      "text": "9. Willett \u00b7 handwriting \u00b7 2021 \u00b7 \u22487.21 equiv.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 968.2000122070312,
+          "right": 381.296875,
+          "bottom": 985.2000122070312
+        }
+      ]
+    },
+    {
+      "text": "10. Moses & Chang \u00b7 2021 \u00b7 \u22486.09 equiv.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 968.2000122070312,
+          "right": 932.4375,
+          "bottom": 985.2000122070312
+        }
+      ]
+    },
+    {
+      "text": "11. Willett \u00b7 speech \u00b7 2023 \u00b7 \u224824.8 equiv.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 999.4000244140625,
+          "right": 358.78125,
+          "bottom": 1016.4000244140625
+        }
+      ]
+    },
+    {
+      "text": "12. Metzger & Chang \u00b7 2023 \u00b7 \u224831.4 equiv.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 999.4000244140625,
+          "right": 943.109375,
+          "bottom": 1016.4000244140625
+        }
+      ]
+    },
+    {
+      "text": "13. Card \u00b7 2024 \u00b7 \u224812.7 equiv.",
+      "bounds": [
+        {
+          "x": 74,
+          "y": 1030.5999755859375,
+          "right": 285.28125,
+          "bottom": 1047.5999755859375
+        }
+      ]
+    },
+    {
+      "text": "14. Card \u00b7 home use \u00b7 2025 \u00b7 \u224822.5 equiv.",
+      "bounds": [
+        {
+          "x": 642,
+          "y": 1030.5999755859375,
+          "right": 937.765625,
+          "bottom": 1047.5999755859375
+        }
+      ]
+    }
+  ],
+  "visible": "BCI communication rates over time Text-equivalent / native-task context (bits/s \u00b7 log) 0.1 1 10 100 2000 2005 2010 2015 2020 2025 Year placement from reference figure 1 2 3 4 5 6 7 8 9 10 11 12 13 14 Cursor / grid control Endovascular switch Text selection / scanning Speech decoding Handwriting decoding Log-linear fit \u00b7 9 text-equivalent points \u00b7 R\u00b2(log10) = 0.847 R&D More information on Neuro Atlas. http://127.0.0.1:37311/neuro-atlas/field-velocity#bci-information-transfer-over-time Study key \u00b7 reference years \u00b7 bits/s. Text equivalents: PL R&D estimates; context not fitted. 1. Kennedy & Bakay \u00b7 2000 \u00b7 \u22480.24 image est. 2. Cursor A (unconfirmed) \u00b7 2015 \u00b7 \u22480.9 image est. 3. Bacher \u00b7 2015 \u00b7 \u22480.753 equiv. 4. Vansteensel \u00b7 2016 \u00b7 \u22480.146 equiv. 5. Milekovic / Sarma \u00b7 2018 \u00b7 \u22480.551 equiv. 6. Pandarinath T5 9\u00d79 \u00b7 2017 \u00b7 4.16 native 7. Neuralink PRIME \u00b7 2024 \u00b7 8 company 8. Stentrode P2 isolated \u00b7 2021 \u00b7 \u22480.46 native est. 9. Willett \u00b7 handwriting \u00b7 2021 \u00b7 \u22487.21 equiv. 10. Moses & Chang \u00b7 2021 \u00b7 \u22486.09 equiv. 11. Willett \u00b7 speech \u00b7 2023 \u00b7 \u224824.8 equiv. 12. Metzger & Chang \u00b7 2023 \u00b7 \u224831.4 equiv. 13. Card \u00b7 2024 \u00b7 \u224812.7 equiv. 14. Card \u00b7 home use \u00b7 2025 \u00b7 \u224822.5 equiv."
+}

@@ -1,0 +1,102 @@
+✔ chart opens in a named modal, locks scroll, traps focus, closes visibly and restores trigger without scrolling (2899.949292ms)
+✔ simultaneously-recorded-neurons fresh URL mounts only its selected source observations; backdrop closes (495.473324ms)
+✔ tissue-mapped fresh URL mounts only its selected source observations; backdrop closes (491.432676ms)
+✔ neural-recording-hours fresh URL mounts only its selected source observations; backdrop closes (507.255063ms)
+✔ modal navigation disables browser automatic history scrolling while mounted (288.912365ms)
+✔ close returns to the original fragment and opening preserves framework history state (397.96712ms)
+✔ performance_curves shares the current visible title as #metrics (2.038765ms)
+✔ draft-charts shares the current visible title as #metrics (0.271408ms)
+✔ expectations shares the current visible title as #inflection-points (0.18516ms)
+✔ idea_vintage shares the current visible title as #citation-latency (0.192397ms)
+✔ latency_compression shares the current visible title as #latency-compression (0.21479ms)
+✔ revealed_commitments shares the current visible title as #implanted-bci-participants-over-time (0.140365ms)
+✔ every rendered chart shares its actual visible title, including exports and related native links (2492.16699ms)
+✔ fresh #expectations resolves and replaces only the fragment, including StrictMode (3518.357993ms)
+✔ fresh #inflection-points resolves and replaces only the fragment, including StrictMode (3184.149349ms)
+✔ fresh #idea_vintage resolves and replaces only the fragment, including StrictMode (3494.175356ms)
+✔ fresh #citation-latency resolves and replaces only the fragment, including StrictMode (2412.318746ms)
+✔ fresh #revealed_commitments resolves and replaces only the fragment, including StrictMode (2291.204214ms)
+✔ fresh #implanted-bci-participants-over-time resolves and replaces only the fragment, including StrictMode (2428.70608ms)
+✔ fresh #metric-panel-neuroai-imagenet resolves and replaces only the fragment, including StrictMode (2107.298784ms)
+✔ fresh #neuroai-performance-cost-frontier resolves and replaces only the fragment, including StrictMode (2879.536365ms)
+✔ unknown fragments remain untouched and unknown new share targets fail closed (1499.385521ms)
+✔ registry is collision-free, explicit, and covers the entire frozen legacy contract (1.655563ms)
+
+Interrupted while running:
+
+⚠ tests/readable-atlas-urls.test.mjs (tests/readable-atlas-urls.test.mjs:1:1)
+✖ tests/readable-atlas-urls.test.mjs (141390.99249ms)
+✖ tests/recording-evidence-ui.test.mjs
+✖ tests/recording-hours-consolidation.test.mjs
+✖ tests/reference-preview-font.test.mjs
+✖ tests/researcher-sector-typography.test.mjs
+✖ tests/response-robots.test.mjs
+✖ tests/retired-metrics.test.mjs
+✖ tests/site-footer.test.mjs
+✖ tests/subpath.test.mjs
+✖ tests/theme-preference.test.mjs
+✖ tests/tooltip-clamp.test.mjs
+✖ tests/trends-preview-copy.test.mjs
+✖ tests/trends-source-tooltip.test.mjs
+ℹ tests 36
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 13
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149905.349405
+
+✖ failing tests:
+
+test at tests/readable-atlas-urls.test.mjs:1:1
+✖ tests/readable-atlas-urls.test.mjs (141390.99249ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-evidence-ui.test.mjs:1:1
+✖ tests/recording-evidence-ui.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/recording-hours-consolidation.test.mjs:1:1
+✖ tests/recording-hours-consolidation.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/reference-preview-font.test.mjs:1:1
+✖ tests/reference-preview-font.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/researcher-sector-typography.test.mjs:1:1
+✖ tests/researcher-sector-typography.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/response-robots.test.mjs:1:1
+✖ tests/response-robots.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/retired-metrics.test.mjs:1:1
+✖ tests/retired-metrics.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/site-footer.test.mjs:1:1
+✖ tests/site-footer.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/subpath.test.mjs:1:1
+✖ tests/subpath.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/theme-preference.test.mjs:1:1
+✖ tests/theme-preference.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/tooltip-clamp.test.mjs:1:1
+✖ tests/tooltip-clamp.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/trends-preview-copy.test.mjs:1:1
+✖ tests/trends-preview-copy.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at tests/trends-source-tooltip.test.mjs:1:1
+✖ tests/trends-source-tooltip.test.mjs
+  'Promise resolution is still pending but the event loop has already resolved'

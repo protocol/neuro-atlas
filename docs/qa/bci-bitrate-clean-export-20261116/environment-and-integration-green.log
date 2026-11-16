@@ -1,0 +1,41 @@
+✔ PNG study identities are concise while full conversion and task notes remain on site (1.439298ms)
+✔ the native image puts a compact two-column study key after the branded crop boundary, not in the legend (1306.434827ms)
+✔ BCI information transfer has one explicit public URL and a native plot-panel identity (2.122769ms)
+✔ BCI source evidence mounts unchanged through the generic Metrics panel and canonical URL (1722.338305ms)
+✔ BCI uses five-year labels in the rail preview, opened modal and native export SVG (462.703102ms)
+✔ the actual BCI export callback separates compact study keys from task groups and places them below branding (339.68291ms)
+✔ public client needs no identity; sends only one note to the mounted fixed endpoint and confirms an exact receipt (70.50461ms)
+✔ public client rejects uncertain or malformed saves, ignores provider error prose and never retries automatically (2.572065ms)
+✔ public client bounds uncertain requests and dispose aborts pending work without reissuing it (5.296456ms)
+✔ loopback QA transport matches the public logger only, with no fake identity or history (1485.705329ms)
+✔ actual browser bundle contains public DTO/picker only, never the Linear key, backend scope or legacy OAuth client (21.630173ms)
+✔ popup is direct-gesture; forged origin/source/state cannot finish; valid state is consumed once (187.00919ms)
+✔ authenticated fetch preserves Basic header namespace, no-store, explicit idempotency and routes (84.129127ms)
+✔ failed/non-JSON service responses are honest safe errors and never accepted as saved (8.289088ms)
+✔ blocked popup and disposal cancel authentication without leaking listeners or accepting a late message (14.886789ms)
+✔ malformed 2xx writes never count as saved (15.257089ms)
+✔ closed popup and five-minute expiry cancel the transaction; late messages cannot authenticate (85.456489ms)
+✔ 401 and absolute page-memory expiry clear authentication without sending a stale session (22.535321ms)
+✔ authorize URL cannot redirect the popup off GitHub or change the bound PKCE transaction (8.941594ms)
+✔ only durable 202 intake receipts count as saved (79.357593ms)
+✔ malformed OAuth finish fails closed instead of hanging or retaining a session (14.114578ms)
+✔ auth finish is still bounded by transaction timeout and aborts on disposal (14.960221ms)
+✔ callback may close immediately after its one-use message while finish is delayed (12.929093ms)
+✔ public Feedback after two real targeted saves and route/remount cannot expose history or inherit saved context (366.528175ms)
+✔ public Escape after two real targeted saves and route/remount cannot expose history or inherit saved context (189.43377ms)
+✔ visible-control Tab wrapping stays inside the single-field public composer at a short mobile viewport (66.740222ms)
+✔ both chart selections adopt one atomic revision once per document and old tabs keep pinned downloads (1078.66544ms)
+✔ admitted capture flows through the reader, latest API response, both chart tables and pinned exports (880.052027ms)
+✔ document GET returns only the nonce-protected standalone gate, no native Basic challenge (10.492564ms)
+✔ assets, API, RSC, and non-document requests never receive Atlas content or a gate HTML page (6.189417ms)
+✔ server clock opens every route exactly at launch; client query/cookie flags never open it early (2.442767ms)
+✔ native form POST is intercepted, preserves return path, and rejects bad credentials without a browser dialog (6.843614ms)
+✔ form POST denies missing or untrusted Origin even when forwarded-host headers claim it (1.072121ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5896.529062
