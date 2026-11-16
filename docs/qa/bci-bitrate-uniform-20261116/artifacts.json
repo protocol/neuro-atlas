@@ -1,0 +1,107 @@
+[
+  {
+    "file": "README.md",
+    "bytes": 4577,
+    "sha256": "3653d3a66d2c73d275c85c4357ac98c4ae3e0a149764171069ed3485c105da06"
+  },
+  {
+    "file": "bacher-source.png",
+    "bytes": 262201,
+    "sha256": "026cdb2aa0bbdd6fa55c77d0647bf02767c071a9c7415e9ef25232f02345d6fc"
+  },
+  {
+    "file": "bci-bitrate-native-clipboard.png",
+    "bytes": 820041,
+    "sha256": "c362a6c5c182a090ca555262a812707260ffc947c56cda64f01b984eb6ded474"
+  },
+  {
+    "file": "bci-bitrate-native-export.png",
+    "bytes": 904603,
+    "sha256": "50a4b4e36dbeb9ee8f42fb9b0625c727140a435547c97b718af3fd1608289c71"
+  },
+  {
+    "file": "chart-320.png",
+    "bytes": 81914,
+    "sha256": "69d51aeebac783d043a4c3a8466c8ef0ce4755825755a842ea316338671afeea"
+  },
+  {
+    "file": "chart-390.png",
+    "bytes": 94330,
+    "sha256": "3f7371a22ce56106f3971b14a2ae433449a63e7a258962d3ba8cf398f3c09c22"
+  },
+  {
+    "file": "chart-desktop.png",
+    "bytes": 222111,
+    "sha256": "bbd16d1edba443db25ec651bc4665077bc748c5f0563fd0483471a33e22353b6"
+  },
+  {
+    "file": "clipboard.json",
+    "bytes": 205,
+    "sha256": "574538157d8f399682d322cf61ddcce3b6e39905bbc77a8af8e2574cc956723a"
+  },
+  {
+    "file": "displayed-model.json",
+    "bytes": 55816,
+    "sha256": "b8329e11cacd7f89edf965c37784ececad854f18207f0c5f9b9e9418d5e1d3bd"
+  },
+  {
+    "file": "expanded-method-320.json",
+    "bytes": 17987,
+    "sha256": "676e47972a65403c74ae72da1744bd484beebd577f373ebb3edfeece3d194c4a"
+  },
+  {
+    "file": "fit-reproduction.json",
+    "bytes": 4504,
+    "sha256": "413204bbadb65e8d00eef8d1f06a0682575c446fdc6185b772d995dd5695a3e8"
+  },
+  {
+    "file": "milekovic-source.png",
+    "bytes": 264456,
+    "sha256": "4b5a4b6eb713102c7deceddd6ec9b83b1df8dd01c5cddcd4f7419918f1ef5a10"
+  },
+  {
+    "file": "model-reconciliation.json",
+    "bytes": 365,
+    "sha256": "b897633e6de9a198272a51da0a525de11021ae8d3d9f663d0c31f7f1701b3b19"
+  },
+  {
+    "file": "native-qa.json",
+    "bytes": 55181,
+    "sha256": "05ccaee7204d1b7d4aeac3e5fe3e4046ca83ad639a9c78026b51ee627a169781"
+  },
+  {
+    "file": "plrd-estimate.png",
+    "bytes": 266581,
+    "sha256": "ff71b55e592f0cd89e8ceb4a8663f4ffdeade8224349e9ad1eadc57579ce2057"
+  },
+  {
+    "file": "review-closure.json",
+    "bytes": 599,
+    "sha256": "9d2481f5f43191a96c9bda621a8b3722ad07cca54cf8ba453ccd22c134bfe6d0"
+  },
+  {
+    "file": "served-assets.json",
+    "bytes": 2768,
+    "sha256": "994fc2004cb7816546c11c1e45cf977d4ea9b7ca98c5fae2c150e83b29e0fab1"
+  },
+  {
+    "file": "tab-cleanup.json",
+    "bytes": 90,
+    "sha256": "8b83bee2fcf8f281c2338e07d1a33e465f302ddafb5261e9b8365d8f96ddd1ac"
+  },
+  {
+    "file": "uniform-method-320.png",
+    "bytes": 92085,
+    "sha256": "cbfc46ad651aaf75173e9a0992436bbaf7ffb48dd678de877437b9d2b642c97d"
+  },
+  {
+    "file": "vansteensel-source.png",
+    "bytes": 259749,
+    "sha256": "9b62725aeb011ff7ee98b273c5c8aac55022937e805b5aa40400274dd4d871a4"
+  },
+  {
+    "file": "verification.json",
+    "bytes": 1144,
+    "sha256": "17e3946050c16a9b013b2dd06f16c27f7c6350577d8156ead7ea93f7cbefd199"
+  }
+]

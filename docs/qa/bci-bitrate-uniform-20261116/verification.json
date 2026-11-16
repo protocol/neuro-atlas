@@ -1,0 +1,32 @@
+{
+  "runtime": "245c254574fb7def0513810086adae8013c588d1",
+  "baselineFullTests": 1294,
+  "methodFullTests": 1304,
+  "finalCopyFocusedTests": 34,
+  "fullSuiteRuntime": "8d64fdfca3c9cb2947996fe73cf7e4eeb89269df",
+  "independentCodeReviewPassed": true,
+  "independentArtifactReviewPassed": true,
+  "locatedP2FindingsClosed": 4,
+  "typecheck": true,
+  "scopedLint": true,
+  "sourceBuild": true,
+  "fixtureBuild": true,
+  "nativeWidths": [
+    1440,
+    390,
+    320
+  ],
+  "nativePNGDimensions": [
+    2400,
+    2974
+  ],
+  "servedAssetsMatched": 14,
+  "protectedHashes": {
+    "src/data/bci-bitrate.source.json": "66c3a28870e415d2978752b389593f8644b1aa70b4c8323eac584d3f7a97b020",
+    "docs/qa/chart-legibility-20261112/acceptance-inventory.json": "eda1c8cd2ba788e9a40b8ff92ba1b45b0f885e58c4ca10df8003566e85fe01cc",
+    "src/proxy.ts": "e679590d9199d72e0dd757f8145d5e699bb4bdc62848cf597d88ef8def8d0c3c",
+    "package.json": "52204a14a2c78a7131f3706462c9ccd2d3dec8d5b1f9dfad2e7c16a0f5a847bc",
+    "package-lock.json": "27e50db06d4f03f7bbd62f35a0b41ab16bef1ad26085b9b1b0b4f739f82f4203"
+  },
+  "originalPhotoAndPrivateComparisonNotIncluded": true
+}

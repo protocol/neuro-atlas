@@ -1,0 +1,15 @@
+{
+  "all14CSVNumericSourceAndFitFieldsUnchanged": true,
+  "finalPNGMatchesIndependentlyReviewedPixels": true,
+  "comparisonPanelMatchesFinalNativeCrop": true,
+  "finalDimensions": [
+    2400,
+    2974
+  ],
+  "P2_01": "error labels stripped and native readback passed",
+  "P2_02": "reported precision copy",
+  "P2_03": "Bacher point-and-click distinguished from scanning",
+  "P2_04": "reference-year subtitle qualified",
+  "finalPNGSha256": "50a4b4e36dbeb9ee8f42fb9b0625c727140a435547c97b718af3fd1608289c71",
+  "comparisonSha256": "c65b692e6ad82e8f217160cf95e5c0782bdb805064025f906e1f702cbcc1a871"
+}

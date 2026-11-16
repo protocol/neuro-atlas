@@ -1,0 +1,12 @@
+{
+  "priorRuntime": "8d64fdfca3c9cb2947996fe73cf7e4eeb89269df",
+  "finalRuntime": "245c254574fb7def0513810086adae8013c588d1",
+  "fitExact": true,
+  "conversionExact": true,
+  "all14PointsAnnotationsAndSourcesExact": true,
+  "allowedPointDelta": [
+    "note",
+    "exportNote"
+  ],
+  "copyFix": "strip internal pct suffix; reported timing precision; method repin"
+}

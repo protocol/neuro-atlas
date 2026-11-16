@@ -1,0 +1,178 @@
+{
+  "method": "Equal-weight unconstrained OLS of log10(bits/s equivalent) against reference year for fit_included=true rows; repeated years retained, context rows excluded",
+  "inputSha256": "de88fb00310764f9a0e8420c50997ca8662da848234dea091c1a7fb019201105",
+  "observations": [
+    {
+      "id": "bci-slide-kennedy-bakay",
+      "year": 2000.0,
+      "bps": 0.24,
+      "csvPlottedBps": 0.24,
+      "fitIncluded": false
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-upper",
+      "year": 2015.0,
+      "bps": 0.9,
+      "csvPlottedBps": 0.9,
+      "fitIncluded": false
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-lower",
+      "year": 2015.0,
+      "bps": 0.7531522711223579,
+      "csvPlottedBps": 0.7531522711223579,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2016",
+      "year": 2016.0,
+      "bps": 0.14567742188053345,
+      "csvPlottedBps": 0.14567742188053345,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2018",
+      "year": 2018.0,
+      "bps": 0.5512433643959386,
+      "csvPlottedBps": 0.5512433643959386,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-pandarinath",
+      "year": 2017.0,
+      "bps": 4.16,
+      "csvPlottedBps": 4.16,
+      "fitIncluded": false
+    },
+    {
+      "id": "bci-slide-neuralink",
+      "year": 2024.0,
+      "bps": 8.0,
+      "csvPlottedBps": 8.0,
+      "fitIncluded": false
+    },
+    {
+      "id": "bci-slide-stentrode",
+      "year": 2021.0,
+      "bps": 0.46,
+      "csvPlottedBps": 0.46,
+      "fitIncluded": false
+    },
+    {
+      "id": "bci-slide-handwriting",
+      "year": 2021.0,
+      "bps": 7.211032383086406,
+      "csvPlottedBps": 7.211032383086406,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-moses",
+      "year": 2021.0,
+      "bps": 6.089316234606298,
+      "csvPlottedBps": 6.089316234606298,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-willett-speech",
+      "year": 2023.0,
+      "bps": 24.838000430630952,
+      "csvPlottedBps": 24.838000430630952,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-metzger",
+      "year": 2023.0,
+      "bps": 31.367990866425867,
+      "csvPlottedBps": 31.367990866425867,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-card-2024",
+      "year": 2024.0,
+      "bps": 12.659367961418356,
+      "csvPlottedBps": 12.659367961418358,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-card-home",
+      "year": 2025.0,
+      "bps": 22.474384260619296,
+      "csvPlottedBps": 22.4743842606193,
+      "fitIncluded": true
+    }
+  ],
+  "fitObservations": [
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-lower",
+      "year": 2015.0,
+      "bps": 0.7531522711223579,
+      "csvPlottedBps": 0.7531522711223579,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2016",
+      "year": 2016.0,
+      "bps": 0.14567742188053345,
+      "csvPlottedBps": 0.14567742188053345,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2018",
+      "year": 2018.0,
+      "bps": 0.5512433643959386,
+      "csvPlottedBps": 0.5512433643959386,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-moses",
+      "year": 2021.0,
+      "bps": 6.089316234606298,
+      "csvPlottedBps": 6.089316234606298,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-handwriting",
+      "year": 2021.0,
+      "bps": 7.211032383086406,
+      "csvPlottedBps": 7.211032383086406,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-willett-speech",
+      "year": 2023.0,
+      "bps": 24.838000430630952,
+      "csvPlottedBps": 24.838000430630952,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-metzger",
+      "year": 2023.0,
+      "bps": 31.367990866425867,
+      "csvPlottedBps": 31.367990866425867,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-card-2024",
+      "year": 2024.0,
+      "bps": 12.659367961418356,
+      "csvPlottedBps": 12.659367961418358,
+      "fitIncluded": true
+    },
+    {
+      "id": "bci-slide-card-home",
+      "year": 2025.0,
+      "bps": 22.474384260619296,
+      "csvPlottedBps": 22.4743842606193,
+      "fitIncluded": true
+    }
+  ],
+  "fit": {
+    "n": 9,
+    "xOrigin": 2015.0,
+    "interceptLog10": -0.5876903668979486,
+    "slopeLog10PerX": 0.2168451146451006,
+    "rSquaredLog10": 0.8469690315566175,
+    "residualSumSquaresLog10": 0.8665851684014214,
+    "totalSumSquaresLog10": 5.662809150436996
+  }
+}
