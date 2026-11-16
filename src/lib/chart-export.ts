@@ -4,7 +4,7 @@ import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; legend?: ChartLegendEntry[] };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -233,16 +233,17 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   clone.setAttribute("viewBox", frame.join(" "));
   body.push(new source.ownerDocument.defaultView!.XMLSerializer().serializeToString(clone));
   cursor += plotHeight + 12;
-  for (const entry of chart.legend ?? []) {
+  const legendMarker = (entry: ChartLegendEntry, left: number, cy: number) => {
     const color = escape(exportPaint(entry.color, source, palette) || ink);
-    const cy = cursor + 21;
-    const marker = entry.marker === "line" || entry.marker === "dashed"
-      ? `<line x1="48" x2="70" y1="${cy}" y2="${cy}" stroke="${color}" stroke-width="3"${entry.marker === "dashed" ? ' stroke-dasharray="7 3"' : ""}/>`
-      : entry.marker === "square" ? `<rect x="50" y="${cy - 6}" width="12" height="12" fill="${color}"/>`
-      : entry.marker === "triangle" ? `<polygon points="56,${cy - 7} 63,${cy + 6} 49,${cy + 6}" fill="${color}"/>`
-      : entry.marker === "diamond" ? `<polygon points="56,${cy - 7} 63,${cy} 56,${cy + 7} 49,${cy}" fill="${color}"/>`
-      : `<circle cx="56" cy="${cy}" r="6" fill="${color}"/>`;
-    body.push(marker); text(entry.label, 18, false, 82);
+    return entry.marker === "line" || entry.marker === "dashed"
+      ? `<line x1="${left}" x2="${left + 22}" y1="${cy}" y2="${cy}" stroke="${color}" stroke-width="3"${entry.marker === "dashed" ? ' stroke-dasharray="7 3"' : ""}/>`
+      : entry.marker === "square" ? `<rect x="${left + 2}" y="${cy - 6}" width="12" height="12" fill="${color}"/>`
+      : entry.marker === "triangle" ? `<polygon points="${left + 8},${cy - 7} ${left + 15},${cy + 6} ${left + 1},${cy + 6}" fill="${color}"/>`
+      : entry.marker === "diamond" ? `<polygon points="${left + 8},${cy - 7} ${left + 15},${cy} ${left + 8},${cy + 7} ${left + 1},${cy}" fill="${color}"/>`
+      : `<circle cx="${left + 8}" cy="${cy}" r="6" fill="${color}"/>`;
+  };
+  for (const entry of chart.legend ?? []) {
+    body.push(legendMarker(entry, inset, cursor + 21)); text(entry.label, 18, false, 82);
   }
   cursor += 20;
   const footerY = cursor + 20;
@@ -250,11 +251,33 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const footerHeight = Math.max(54, 26 + footerLink.length * 22);
   body.push(`<g data-export-footer="true"><line x1="${inset}" x2="${width - inset}" y1="${cursor}" y2="${cursor}" stroke="#dfe5ec" stroke-width="1"/><svg data-export-brand="pl-rd" x="${inset}" y="${footerY}" width="124" height="54" viewBox="0 0 406 176">${PL_RESEARCH_LOGO}</svg><text x="${width - inset}" y="${footerY + 19}" text-anchor="end" fill="${ink}" font-family="${EXPORT_FONT}" font-size="20" font-weight="700" data-export-info="true">More information on Neuro Atlas.</text>${footerLink.map((line, i) => `<text x="${width - inset}" y="${footerY + 44 + i * 22}" text-anchor="end" fill="#52647d" font-family="${EXPORT_FONT}" font-size="16">${escape(line)}</text>`).join("")}</g>`);
   cursor = footerY + footerHeight;
+  // Complete the branded chart before the concise study-identification key.
+  // Methods and task notes remain on site; the optional key is safe to crop off.
+  const cropBottom = Math.ceil(cursor + 16);
+  if (chart.pointKey?.length) {
+    cursor = cropBottom + 18;
+    body.push('<g data-export-point-key="true">');
+    text(chart.pointKeyNote ?? "Study key", 16, true);
+    cursor += 8;
+    const size = 16, gap = 32, columnWidth = (plotWidth - gap) / 2, textInset = 26;
+    const columns = Math.floor((columnWidth - textInset) / (size * .62));
+    for (let index = 0; index < chart.pointKey.length; index += 2) {
+      const entries = chart.pointKey.slice(index, index + 2).map(entry => ({ entry, lines: wrap(entry.label, columns) }));
+      entries.forEach(({ entry, lines }, column) => {
+        const left = inset + column * (columnWidth + gap);
+        body.push(`<g data-export-point-key-entry="${index + column + 1}">`, legendMarker(entry, left, cursor + size * 1.1));
+        lines.forEach((line, row) => body.push(`<text x="${left + textInset}" y="${cursor + (row + 1) * size * 1.45}" fill="${ink}" font-family="${EXPORT_FONT}" font-size="${size}">${escape(line)}</text>`));
+        body.push('</g>');
+      });
+      cursor += Math.max(...entries.map(entry => entry.lines.length)) * size * 1.45 + 8;
+    }
+    body.push('</g>');
+  }
   const height = Math.ceil(cursor + 40);
   const evidence = `<desc>${escape(chart.notes.join("\n"))}</desc>`;
   // Fail explicitly rather than silently clipping scientific scope or overflowing a canvas.
   if (height > 6000 || body.join("").length + evidence.length > 4_000_000) throw new Error("Chart export exceeds safe image bounds");
-  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
+  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"${chart.pointKey?.length ? ` data-export-crop-bottom="${cropBottom}"` : ""}>${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
 }
 
 export async function chartPng(image: ChartImage): Promise<Blob> {

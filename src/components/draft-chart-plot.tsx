@@ -260,9 +260,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
-      legend: plot.exportPointKey ? [...exportLegend, ...annotations.map(({ point, text }, index) => ({
-        label: `${index + 1}. ${text}`, color: groupColor(point), marker: point.marker,
-      }))] : exportLegend,
+      legend: exportLegend,
+      pointKey: plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
+        label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
+      })) : undefined,
+      pointKeyNote: plot.exportPointKey ? plot.exportPointKeyNote : undefined,
       notes: [plot.scope, plot.seriesNote ?? "",
         ...(referenceTrendline ? [referenceTrendline.note] : []),
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),

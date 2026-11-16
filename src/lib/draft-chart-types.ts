@@ -18,6 +18,8 @@ export type DraftObservation = {
   note?: string;
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
+  /** Compact image-only identity; verbose annotation and source notes stay on site. */
+  exportAnnotation?: string;
   /** Decisive point-specific provenance retained in standalone chart exports. */
   exportNote?: string;
   /** Related papers are leads, not confirmed attributions for this observation. */
@@ -50,6 +52,8 @@ export type DraftPlot = {
   observationBasis?: string;
   /** Append concise numbered observation identities to the exported image key. */
   exportPointKey?: boolean;
+  /** One shared scope label for the compact image-only study key. */
+  exportPointKeyNote?: string;
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };

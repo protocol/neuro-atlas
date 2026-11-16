@@ -198,6 +198,7 @@ const points: DraftObservation[] = source.observations.map(point => {
     ? `${selected.basisLabel}. Approximately ${point.approximateBps} bits/s, digitized from the reference. The papers below are plausible candidates, not confirmed assignments; this dot has not been replaced by a converted candidate result.`
     : `${selected.basisLabel}. ${selected.reportedResult ? `Reported input: ${selected.reportedResult} ` : ""}${selected.calculation ?? (selected.basis === "image" ? "Plotted value digitized from the reference image; no numerical result verified for this exact mark." : "Plotted rate taken from the cited report; the chosen condition/statistic is explicit, not claimed to reproduce the original figure's exact selection.")} Reference image: approximately ${point.approximateBps} bits/s; original image coordinates remain archived separately.${sourceContext}${selectionNote}`;
   const fitStatus = selected.fitIncluded ? " Text-equivalent; fit included." : " Context; excluded from fit.";
+  const exportLabel = label.replaceAll(" et al.", "").replace("Cursor control A · source unconfirmed", "Cursor A (unconfirmed)").replace("Synchron ", "").replace("Card & Stavisky", "Card");
   return {
     id: point.id,
     x: point.slideYear,
@@ -213,6 +214,7 @@ const points: DraftObservation[] = source.observations.map(point => {
     quote: native?.quote ?? "Cursor / Grid control",
     note: note + fitStatus,
     annotation: `${label}${point.id === "bci-slide-pandarinath" ? " · T5 9×9 grid" : point.id === "bci-slide-stentrode" ? " · P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} bits/s${selected.fitIncluded ? " text-equivalent" : ""} · ${selected.basisLabel}${selected.fitIncluded ? ` · ${selected.inputKey} · ${selected.assistance} · fit included` : " · context · excluded from fit"}`,
+    exportAnnotation: `${exportLabel}${point.id === "bci-slide-pandarinath" ? " T5 9×9" : point.id === "bci-slide-stentrode" ? " P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} ${selected.fitIncluded ? "equiv." : selected.basis === "image" ? "image est." : selected.basis === "company" ? "company" : point.id === "bci-slide-stentrode" ? "native est." : "native"}`,
     exportNote: note + fitStatus,
     candidateSources: selection ? undefined : candidates[point.id],
     calculationSource: undefined,
@@ -239,6 +241,7 @@ const plot: DraftPlot = {
   points,
   referenceTrendline: { label: `Log-linear fit · ${BCI_BITRATE_FIT.n} text-equivalent points · R²(log10) = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(3)}`, color: "#7e8152", note: fitNote, methodologyUrl: "https://github.com/protocol/neuro-atlas/blob/e1182fc9e3efa6aadbd9e924818f50c8b64cd620/docs/bci-bitrate.md", points: BCI_BITRATE_FIT.points },
   exportPointKey: true,
+  exportPointKeyNote: "Study key · reference years · bits/s. Text equivalents: PL R&D estimates; context not fitted.",
   legend: Object.values(groups).map(group => ({ label: group.label, color: group.color, marker: group.marker })),
 };
 
