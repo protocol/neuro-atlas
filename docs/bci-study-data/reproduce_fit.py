@@ -20,8 +20,20 @@ def observation(row):
     plotted = float(row["plotted_bps"])
     included = row["fit_included"] == "true"
     rate = plotted
-    if included and row.get("normalization_alphabet_size"):
-        bits_per_character = math.log2(float(row["normalization_alphabet_size"]))
+    basis = row.get("conversion_basis", "")
+    # Legacy alphabet CSVs and explicit plotted-only sensitivity inputs remain usable.
+    if included and (basis or row.get("normalization_alphabet_size")):
+        if basis == "english-entropy":
+            try:
+                bits_per_character = float(row.get("normalization_bits_per_character", ""))
+            except ValueError:
+                raise ValueError("English-entropy conversion requires positive finite bits/character") from None
+            if not math.isfinite(bits_per_character) or bits_per_character <= 0:
+                raise ValueError("English-entropy conversion requires positive finite bits/character")
+        elif basis in ("", "equiprobable-alphabet"):
+            bits_per_character = math.log2(float(row["normalization_alphabet_size"]))
+        else:
+            raise ValueError(f"Unsupported conversion basis: {basis}")
         native = float(row["paper_or_company_native_rate"])
         unit = row["native_unit"]
         if unit in ("characters/minute", "correct characters/minute"):

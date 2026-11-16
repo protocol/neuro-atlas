@@ -36,6 +36,22 @@ test('replay recalculates text equivalents from the declared alphabet and native
   assert.ok(Math.abs(result.fit.slopeLog10PerX - Math.log10(5) / 10) < 1e-12);
 });
 
+test('replay recalculates speech from its explicit English-entropy weight and word length rather than alphabet or plotted values', () => {
+  const result = replay('id,reference_year,plotted_bps,fit_included,paper_or_company_native_rate,native_unit,normalization_alphabet_size,normalization_characters_per_word,conversion_basis,normalization_bits_per_character\na,2021,999,true,60,words/minute,28,5,english-entropy,1\nb,2025,999,true,120,words/minute,28,4,english-entropy,2\n');
+  assert.equal(result.observations[0].bps, 5);
+  assert.equal(result.observations[1].bps, 16, 'Changing native WPM, bits/character and characters/word recalculates the rate');
+  assert.equal(result.observations[0].csvPlottedBps, 999);
+  assert.ok(Math.abs(result.fit.slopeLog10PerX - Math.log10(16 / 5) / 4) < 1e-12);
+});
+
+test('replay refuses invalid declared conversion models and nonpositive entropy weights', () => {
+  const header = 'id,reference_year,plotted_bps,fit_included,paper_or_company_native_rate,native_unit,normalization_characters_per_word,conversion_basis,normalization_bits_per_character\n';
+  for (const weight of ['', '0', '-1', 'NaN', 'Infinity']) {
+    assert.throws(() => replay(header + `a,2021,1,true,60,words/minute,5,english-entropy,${weight}\nb,2025,2,true,60,words/minute,5,english-entropy,1\n`), /positive finite bits\/character/);
+  }
+  assert.throws(() => replay(header + 'a,2021,1,true,60,words/minute,5,unknown,1\nb,2025,2,true,60,words/minute,5,english-entropy,1\n'), /Unsupported conversion basis/);
+});
+
 test('replay converts the printed seconds-per-letter result without rounding to CPM', () => {
   const result = replay('id,reference_year,plotted_bps,fit_included,paper_or_company_native_rate,native_unit,normalization_alphabet_size,normalization_characters_per_word\na,2016,999,true,33,seconds/letter,28,\nb,2025,999,true,66,seconds/letter,28,\n');
   assert.ok(Math.abs(result.observations[0].bps - Math.log2(28) / 33) < 1e-12, 'Printed timing input');

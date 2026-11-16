@@ -7,21 +7,34 @@ const original = JSON.parse(readFileSync(new URL('../src/data/bci-bitrate.source
 const plot = data.BCI_BITRATE_EVIDENCE.plots[0];
 const bits = Math.log2(28);
 
-test('one 28-symbol code-equivalent convention converts all existing speech and handwriting inputs without an error penalty', () => {
+test('speech uses 1 assumed bit/character and 5 assumed characters/word while handwriting retains its symbol equivalent', () => {
+  assert.equal(data.BCI_SPEECH_BITS_PER_CHARACTER, 1);
+  assert.equal(data.BCI_SPEECH_CHARACTERS_PER_WORD, 5);
+  assert.equal(data.BCI_SPEECH_BITS_PER_WORD, 5);
+  assert.deepEqual(data.BCI_SPEECH_CONVERSION, { basis: 'english-entropy', bitsPerCharacter: 1, charactersPerWord: 5, bitsPerWord: 5 });
   assert.equal(data.BCI_TEXT_ALPHABET_SIZE, 28);
   assert.equal(data.BCI_TEXT_BITS_PER_CHARACTER, bits);
-  assert.equal(data.BCI_TEXT_CHARACTERS_PER_WORD, 5);
-  assert.equal(data.BCI_TEXT_CONVERSION.bitsPerWord, 5 * bits);
-  assert.equal(data.BCI_TEXT_CONVERSION.bitsPerCharacter, bits);
-  for (const point of original.observations.filter(p => p.group === 'speech' || p.group === 'handwriting')) {
+  assert.deepEqual(data.BCI_TEXT_CONVERSION, { basis: 'equiprobable-alphabet', alphabetSize: 28, bitsPerCharacter: bits });
+  const speech = original.observations.filter(p => p.group === 'speech');
+  assert.equal(speech.length, 5);
+  for (const point of [...speech, original.observations.find(p => p.group === 'handwriting')]) {
     const row = data.BCI_BITRATE_ROWS.find(r => r.id === point.id);
-    const factor = point.group === 'speech' ? 5 * bits : bits;
+    const factor = point.group === 'speech' ? 5 : bits;
     assert.equal(row.bps, point.nativeSource.rate.value * factor / 60, point.id);
     assert.equal(row.basisLabel, 'PL R&D estimate');
-    assert.match(row.calculation, /log2\(28\)/);
+    assert.match(row.calculation, point.group === 'speech' ? /5 assumed characters\/word × 1 assumed bit\/character/ : /log2\(28\)/);
+    if (point.group === 'speech') {
+      assert.doesNotMatch(row.calculation, /log2\(28\)/);
+      assert.match(row.calculation, /context-dependent English-entropy model/);
+    }
     assert.match(row.calculation, /No (extra )?error (adjustment|penalty)/);
-    assert.doesNotMatch(row.calculation, /16\.06|2\.6|technical report|one information bit\/character/);
-    assert.equal(plot.points.find(p => p.id === row.id).calculationSource, undefined);
+    assert.doesNotMatch(row.calculation, /16\.06|2\.6|technical report/);
+    assert.equal(row.nativeRateValue, point.nativeSource.rate.value);
+    assert.equal(row.nativeRateUnit, point.nativeSource.rate.unit);
+    assert.equal(row.nativeRateStatistic, point.nativeSource.rate.statistic);
+    assert.deepEqual(row.nativeError, point.nativeSource.rate.error ?? null);
+    assert.equal(row.task, point.nativeSource.rate.task);
+    assert.equal(row.fitIncluded, true);
   }
   for (const [id, value] of [['pandarinath',4.16], ['stentrode',0.46], ['neuralink',8]]) {
     assert.equal(data.BCI_BITRATE_ROWS.find(r => r.id === `bci-slide-${id}`).bps, value);
@@ -114,7 +127,7 @@ test('each exported row and concise image key retain native input, conversion, a
       assert.ok(Number.isFinite(row.nativeRateValue), row.id);
       assert.ok(row.nativeRateUnit, row.id);
       assert.ok(point.annotation.includes(String(row.nativeRateValue)), row.id);
-      assert.match(point.annotation, /log2\(28\)|4\.8 bits\/char/);
+      assert.match(point.annotation, row.nativeRateUnit === 'words/minute' ? /5 × 1 bit\/char/ : /log2\(28\)/);
       assert.match(point.annotation, /gross|correct|timing/);
       assert.ok(row.assistance && point.annotation.includes(row.assistance), row.id);
       assert.ok(point.annotation.length <= 330, 'Keep standalone PNG keys concise: '+row.id);
@@ -136,13 +149,21 @@ test('each exported row and concise image key retain native input, conversion, a
 });
 
 
-test('the reader method explains 4.8 as a hypothetical equiprobable code equivalent without claiming entropy, storage or error-standardization', () => {
+test('the reader method distinguishes speech English-entropy and retained symbol equivalents in a mixed-convention descriptive fit', () => {
   const note = plot.seriesNote;
+  assert.match(note, /Speech.*1 assumed bit\/character/);
+  assert.match(note, /context-dependent English-entropy model/);
+  assert.match(note, /Handwriting and text selection\/scanning retain/);
+  assert.match(note, /mixed.convention.*descriptive fit/i);
+  assert.match(plot.referenceTrendline.note, /mixed.convention/i);
+  assert.match(plot.referenceTrendline.label, /mixed models/i);
+  assert.doesNotMatch([note, data.BCI_BITRATE_CHART.definition, data.BCI_BITRATE_CHART.constraint, plot.referenceTrendline.note].join(' '), /\buniform(?:ly)? (?:text )?conversion|one (?:shared )?convention across|same (?:28-symbol|coding) convention/i);
   assert.match(note, /equiprobable 28-symbol modeling alphabet/i);
   assert.match(note, /26 letters.*space.*extra symbol/i);
   assert.match(note, /log2\(28\).*4\.8/);
   assert.match(note, /five characters per word.*including spaces/i);
-  assert.match(note, /normalization convention.*not measured/i);
+  assert.match(note, /normalization convention/);
+  assert.match(note, /word.length.*assumptions/i);
   assert.match(note, /finite.codebook equivalent/i);
   assert.match(note, /not.*(actual|task).*keyboard/i);
   assert.match(note, /not.*English entropy/i);
@@ -152,9 +173,9 @@ test('the reader method explains 4.8 as a hypothetical equiprobable code equival
   assert.match(note, /No extra WER\/CER penalty/);
   assert.match(note, /correct.*correction time/i);
   assert.match(note, /gross.*(speech|handwriting)/i);
-  assert.match(note, /9.*text.*fit.*5.*context.*excluded/i);
+  assert.match(note, /fit.*9.*text.*5.*context.*excluded/i);
   const activeCopy = [note, data.BCI_BITRATE_CHART.definition, data.BCI_BITRATE_EVIDENCE.summary, data.BCI_BITRATE_EVIDENCE.gapReason, ...plot.points.map(p => p.note)].join(' ');
-  assert.doesNotMatch(activeCopy, /16\.06|6\.18|one information bit\/character|five.bits\/word|four anonymous.*unavailable/i);
+  assert.doesNotMatch(activeCopy, /16\.06|6\.18|four anonymous.*unavailable/i);
   assert.match(data.BCI_BITRATE_EVIDENCE.summary, /9.*3.*2/);
 });
 
@@ -172,6 +193,32 @@ test('the qualified communication-rate title keeps the existing public URL and l
   for (const alias of ['draft-bci-bitrate','metric-bci-bitrate','draft-panel-bci-bitrate','metric-panel-bci-bitrate']) {
     assert.equal(canonicalPerformanceAnchor(alias), 'bci-information-transfer-over-time');
   }
+});
+
+test('active method documents the speech-only model, unchanged handwriting and recomputed descriptive fit', () => {
+  const method = readFileSync(new URL('../docs/bci-bitrate.md', import.meta.url), 'utf8');
+  const readme = readFileSync(new URL('../docs/bci-study-data/README.md', import.meta.url), 'utf8');
+  const ref = 'https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html';
+  for (const copy of [method, readme]) {
+    assert.ok(copy.includes(ref), 'Link the exact owner-provided conversion reference');
+    assert.match(copy, /1 assumed bit\/character/);
+    assert.match(copy, /context-dependent/);
+    assert.match(copy, /mixed.convention.*descriptive/i);
+    assert.doesNotMatch(copy, /one declared text-to-bit-equivalent rule|All use the same|same formulas everywhere|conversion is uniform|under one coding convention|common conversion/i);
+  }
+  assert.match(method, /90 × log2\(28\) \/ 60/);
+  for (const row of data.BCI_BITRATE_ROWS.filter(row => row.nativeRateUnit === 'words/minute')) {
+    assert.ok(method.includes(`${row.nativeRateValue} × 5 × 1 / 60`));
+    assert.ok(method.includes(String(row.bps)));
+  }
+  const intercept = Number(method.match(/log10\(text-equivalent rate\) = ([-\d.]+)/)?.[1]);
+  const slope = Number(method.match(/\+ ([\d.]+) × \(year - 2015\)/)?.[1]);
+  const r2 = Number(method.match(/R²\(log10 rate\) = ([\d.]+)/)?.[1]);
+  assert.ok(Math.abs(intercept - data.BCI_BITRATE_FIT.interceptLog10) < 1e-12);
+  assert.ok(Math.abs(slope - data.BCI_BITRATE_FIT.slopeLog10PerX) < 1e-12);
+  assert.ok(Math.abs(r2 - data.BCI_BITRATE_FIT.rSquaredLog10) < 1e-12);
+  assert.match(method, /conversion_basis/);
+  assert.match(method, /normalization_bits_per_character/);
 });
 
 test('reader-facing error labels omit internal unit suffixes while preserving native error values', () => {

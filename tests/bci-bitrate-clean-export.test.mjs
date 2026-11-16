@@ -22,10 +22,18 @@ test('PNG study identities are concise while full conversion and task notes rema
     assert.ok(point.exportNote.length > point.exportAnnotation.length, point.id);
     const row = data.BCI_BITRATE_ROWS.find(row => row.id === point.id);
     assert.match(point.exportAnnotation, row.fitIncluded ? /equiv\./ : /image est\.|native|company/);
-    if (row.fitIncluded) assert.match(point.annotation, /log2\(28\)/, 'Full on-site conversion is retained');
+    if (row.fitIncluded) {
+      const speech = row.nativeRateUnit === 'words/minute';
+      assert.match(point.annotation, speech ? /5 × 1 bit\/char/ : /log2\(28\)/, 'Full on-site conversion is retained');
+      if (speech) assert.match(point.exportAnnotation, /1b\/char equiv\./, 'Speech keys carry a compact model indicator');
+      else assert.doesNotMatch(point.exportAnnotation, /1b\/char/, 'Retained symbol equivalents use the shared scope note');
+    }
   }
   assert.match(plot.exportPointKeyNote, /PL R&D estimates/);
   assert.match(plot.exportPointKeyNote, /context not fitted/);
+  assert.match(plot.exportPointKeyNote, /speech.*5 char\/word/i);
+  assert.match(plot.exportPointKeyNote, /speech 1 bit\/char × 5 char\/word; other text 28-symbol/);
+  assert.match(plot.exportPointKeyNote, /mixed.model fit/i);
   assert.match(plot.points.find(point => point.id === 'bci-slide-pandarinath').exportAnnotation, /T5 9×9/);
   assert.match(plot.points.find(point => point.id === 'bci-slide-stentrode').exportAnnotation, /P2 isolated/);
   assert.match(plot.points.find(point => point.id === 'bci-slide-unlabeled-cursor-2015-upper').exportAnnotation, /unconfirmed/);
@@ -61,7 +69,11 @@ test('the native image puts a compact two-column study key after the branded cro
     assert.ok(footer.textContent.includes(url + '#bci-information-transfer-over-time'));
     const visible = [...doc.querySelectorAll('text')].map(text => text.textContent).join(' ');
     assert.doesNotMatch(visible, /log2\(28\)|gross WPM|correct CPM|fit included|Publication\//);
-    assert.match(visible, /R²\(log10\) = 0\.847/);
+    assert.ok(visible.includes(`R²(log10) = ${data.BCI_BITRATE_FIT.rSquaredLog10.toFixed(3)}`));
+    assert.match(visible, /mixed models/i);
+    const entryText = entries.map(entry => [...entry.querySelectorAll('text')].map(text => text.textContent).join(' '));
+    assert.equal(entryText.filter(text => /1b\/char equiv\./.test(text)).length, 5);
+    assert.match(visible, /speech 1 bit\/char × 5 char\/word; other text 28-symbol/);
     assert.match(doc.querySelector('desc').textContent, /log2\(28\)/);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 14);
     const legacy = buildChartImage({ ...base, legend: [...legend, ...plot.points.map((point, index) => ({label: `${index + 1}. ${point.annotation}`, color: point.color, marker: point.marker}))] }, url);

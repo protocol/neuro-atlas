@@ -1,10 +1,10 @@
-# BCI source data and reproducible uniform text conversion
+# BCI source data and reproducible text conversions
 
 ## Active chart
 
-The [current method](../bci-bitrate.md) uses one **log2(28) ≈ 4.8 bits/character** text-output equivalent for **nine selected text observations**, with **five assumed characters/word** for speech. Bacher, Vansteensel, and Milekovic/Sarma are now explicit named study selections in place of three image-derived heights. These selections do not establish the original figure author's anonymous-paper assignments.
+The [current method](../bci-bitrate.md) uses **1 assumed bit/character × 5 assumed characters/word including spaces** for five speech observations, a context-dependent English-entropy model referenced to Stanford’s [Entropy and Redundancy in English](https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html). Handwriting and three text-selection/scanning observations retain **log2(28) ≈ 4.8 bits/character**. Handwriting stays at **90 × log2(28) / 60 ≈ 7.211 bits/s**. Bacher, Vansteensel, and Milekovic/Sarma are now explicit named study selections in place of three image-derived heights. These selections do not establish the original figure author's anonymous-paper assignments.
 
-The chart still displays all **14 reference IDs/year placements**: nine converted text estimates, three native task/company bitrates, and two remaining image estimates. The regression fits only the nine converted text points; the other five observations are marked context/excluded. Error and assistance conditions remain distinct; no extra WER/CER discount is applied. All nine conversions say **PL R&D estimate**.
+The chart still displays all **14 reference IDs/year placements**: nine converted text estimates, three native task/company bitrates, and two remaining image estimates. The mixed-convention descriptive regression fits only the nine converted text points; the other five observations are marked context/excluded. Error and assistance conditions remain distinct; no extra WER/CER discount is applied. All nine conversions say **PL R&D estimate**.
 
 ## Download and reproduce
 
@@ -12,13 +12,13 @@ The chart still displays all **14 reference IDs/year placements**: nine converte
 |---|---|
 | [Current provenance CSV](chart-provenance.csv) | All 14 actual plotted values, reported native inputs, conversion parameters, source dates/URLs, original photo values, and explicit `fit_included=true/false`. |
 | [Independent Python reconstruction](reproduce_fit.py) | Standard library only. Prints all observations, the nine fitted rows, input hash, exact OLS coefficients and log-space R²/SSE/SST. Accepts a modified CSV for sensitivity checks. |
-| [Current methods](../bci-bitrate.md) | Why 4.8 bits/character, five-character word assumption, selected task/participant/statistic, source links, fitted cohort and limits. |
+| [Current methods](../bci-bitrate.md) | Speech entropy and retained symbol models, five-character word assumption, selected task/participant/statistic, source links, fitted cohort and limits. |
 | [Original anonymous-point candidate audit](anonymous-point-candidates.md) | Historical attribution research for four unnamed original dots. The latter three have now been adopted as named selections in our chart, not confirmed original assignments. |
 | [Identified slide-study results](identified-slide-study-results.csv) | Earlier native-rate inventory for 10 labeled report records; Kennedy's numerical rate is blank. Source evidence, not current plotted-value authority. |
 | [Historical primary results](historical-primary-results.csv) | 19 printed outcomes from six studies; multiple participants/tasks/measures, not additional independent points to append. |
 | [Historical retrospective comparisons](historical-retrospective-results.csv) | Eight later-author comparison rows, separate from original primary measurements. |
 
-Download the CSV and script into the same folder, then run `python3 reproduce_fit.py`. Every row needs an explicit lowercase `true` or `false` selection. The script derives coefficients from selected inputs rather than hardcoding the displayed result.
+Download the CSV and script into the same folder, then run `python3 reproduce_fit.py`. Every row needs an explicit lowercase `true` or `false` selection. The active CSV declares `conversion_basis`: `english-entropy` uses `normalization_bits_per_character` and `normalization_characters_per_word`; `equiprobable-alphabet` recomputes the weight from `normalization_alphabet_size`. The weight column records the current derived weight for alphabet rows. The script recalculates converted rates independently of `plotted_bps`, so modified weights, alphabets and word lengths support sensitivity checks. The script derives coefficients from selected inputs rather than hardcoding the displayed result.
 
 ## Primary sources for the three adopted selections
 
@@ -36,4 +36,4 @@ The [Sumner Norman post](https://x.com/SumnerLN/status/2069192808016273813) and 
 
 The upper 2015 mark remains an image estimate with Gilja/Jarosiewicz candidates. Kennedy's relevant [2000 paper](https://doi.org/10.1109/86.847815) is identified, but its exact primary bitrate remains unresolved. Neither graphical context point enters the current text fit.
 
-The prior five-bits/word speech convention and author-issued corrected-typing handwriting model are superseded in the active chart. Historical evidence and QA retain their original meanings. No outreach, monitoring, merge or production release is part of this update.
+The current speech-only revision replaces the preceding log2(28)-per-character speech model. Its explicit entropy and word-length assumptions yield five assumed bits/word. The older author-issued corrected-typing handwriting model remains historical context; the active handwriting symbol equivalent is unchanged. Historical evidence and QA retain their original meanings. No outreach, monitoring, merge or production release is part of this update.

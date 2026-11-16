@@ -12,16 +12,26 @@ const groups: Record<string, { label: string; color: string; marker: DraftObserv
   handwriting: { label: "Handwriting decoding", color: "#647d3d", marker: "diamond" },
 };
 
-// PL R&D normalization convention, not a recovered original-figure formula.
+// Separate PL R&D conversion models; original-figure formulas remain archival.
 export const BCI_TEXT_ALPHABET_SIZE = 28;
 export const BCI_TEXT_BITS_PER_CHARACTER = Math.log2(BCI_TEXT_ALPHABET_SIZE);
-export const BCI_TEXT_CHARACTERS_PER_WORD = 5;
-export const BCI_SPEECH_BITS_PER_WORD = BCI_TEXT_CHARACTERS_PER_WORD * BCI_TEXT_BITS_PER_CHARACTER;
 export const BCI_TEXT_CONVERSION = {
+  basis: "equiprobable-alphabet",
   alphabetSize: BCI_TEXT_ALPHABET_SIZE,
   bitsPerCharacter: BCI_TEXT_BITS_PER_CHARACTER,
-  charactersPerWord: BCI_TEXT_CHARACTERS_PER_WORD,
+} as const;
+export const BCI_SPEECH_BITS_PER_CHARACTER = 1;
+export const BCI_SPEECH_CHARACTERS_PER_WORD = 5;
+export const BCI_SPEECH_BITS_PER_WORD = BCI_SPEECH_CHARACTERS_PER_WORD * BCI_SPEECH_BITS_PER_CHARACTER;
+export const BCI_SPEECH_CONVERSION = {
+  basis: "english-entropy",
+  bitsPerCharacter: BCI_SPEECH_BITS_PER_CHARACTER,
+  charactersPerWord: BCI_SPEECH_CHARACTERS_PER_WORD,
   bitsPerWord: BCI_SPEECH_BITS_PER_WORD,
+} as const;
+export const BCI_SPEECH_CONVERSION_REFERENCE = {
+  title: "Stanford · Entropy and Redundancy in English",
+  url: "https://cs.stanford.edu/people/eroberts/courses/soco/projects/1999-00/information-theory/entropy_of_english_9.html",
 } as const;
 
 type RateSelection = {
@@ -30,6 +40,7 @@ type RateSelection = {
   bps: number;
   reportedResult?: string;
   calculation?: string;
+  calculationSource?: DraftObservation["calculationSource"];
   nativeRateValue?: number;
   nativeRateUnit?: string;
   task?: string;
@@ -145,9 +156,10 @@ export const BCI_BITRATE_ROWS = source.observations.map(point => {
     selected = {
       basis: "derived", basisLabel: "PL R&D estimate", bps: nativeRate.value * BCI_SPEECH_BITS_PER_WORD / 60,
       assistance: "LM-assisted",
-      inputKey: `${nativeRate.value} gross WPM × 5 × log2(28)/60; ${nativeRate.error ? `${nativeRate.error.value}% WER` : "WER unpaired"}`,
+      calculationSource: BCI_SPEECH_CONVERSION_REFERENCE,
+      inputKey: `${nativeRate.value} gross WPM × 5 × 1 bit/char /60; ${nativeRate.error ? `${nativeRate.error.value}% WER` : "WER unpaired"}`,
       reportedResult: `${nativeRate.value} ${nativeRate.unit}; ${nativeRate.task}.${nativeRate.error ? ` ${nativeRate.error.value}% ${nativeRate.error.metric.replace(/_pct$/, "").replaceAll("_", " ")}.` : ""}`,
-      calculation: `${nativeRate.value} words/minute × 5 assumed characters/word × log2(28) bits/character ÷ 60. PL R&D code-equivalent estimate of gross decoding pace, not measured neural ITR. No error penalty; the reported error metric remains separate.`,
+      calculation: `${nativeRate.value} words/minute × 5 assumed characters/word × 1 assumed bit/character ÷ 60. PL R&D estimate of gross decoding pace under a context-dependent English-entropy model; five characters/word includes spaces. No error penalty; the reported error metric remains separate.`,
     };
   }
   const native = selectedText[point.id]?.source ?? point.nativeSource;
@@ -214,17 +226,17 @@ const points: DraftObservation[] = source.observations.map(point => {
     quote: native?.quote ?? "Cursor / Grid control",
     note: note + fitStatus,
     annotation: `${label}${point.id === "bci-slide-pandarinath" ? " · T5 9×9 grid" : point.id === "bci-slide-stentrode" ? " · P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} bits/s${selected.fitIncluded ? " text-equivalent" : ""} · ${selected.basisLabel}${selected.fitIncluded ? ` · ${selected.inputKey} · ${selected.assistance} · fit included` : " · context · excluded from fit"}`,
-    exportAnnotation: `${exportLabel}${point.id === "bci-slide-pandarinath" ? " T5 9×9" : point.id === "bci-slide-stentrode" ? " P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} ${selected.fitIncluded ? "equiv." : selected.basis === "image" ? "image est." : selected.basis === "company" ? "company" : point.id === "bci-slide-stentrode" ? "native est." : "native"}`,
+    exportAnnotation: `${exportLabel}${point.id === "bci-slide-pandarinath" ? " T5 9×9" : point.id === "bci-slide-stentrode" ? " P2 isolated" : ""} · ${point.slideYear} · ${estimate ? "≈" : ""}${Number(selected.bps.toPrecision(3))} ${selected.fitIncluded ? `${point.group === "speech" ? "1b/char " : ""}equiv.` : selected.basis === "image" ? "image est." : selected.basis === "company" ? "company" : point.id === "bci-slide-stentrode" ? "native est." : "native"}`,
     exportNote: note + fitStatus,
     candidateSources: selection ? undefined : candidates[point.id],
-    calculationSource: undefined,
+    calculationSource: selected.calculationSource,
   };
 });
 
-// Implementation choice: fit the uniformly converted text subset only, not native
-// task-bps or unresolved image context. This supersedes the historical 14-mark fit.
+// Fit the same nine text observations under their declared modality-specific models.
+// Native task-bps and unresolved image context stay excluded.
 export const BCI_BITRATE_FIT = fitLogLinear(points.filter(point => BCI_BITRATE_ROWS.find(row => row.id === point.id)!.fitIncluded));
-const fitNote = `Equal-weight ordinary least squares of log10(text-equivalent bits/s) against reference year across ${BCI_BITRATE_FIT.n} converted-text observations; ${BCI_BITRATE_CONTEXT_COUNT} context marks are excluded (3 native task-bps, 2 unresolved image estimates). log10(rate) = ${BCI_BITRATE_FIT.interceptLog10.toFixed(6)} + ${BCI_BITRATE_FIT.slopeLog10PerX.toFixed(6)} × (year − ${BCI_BITRATE_FIT.xOrigin}); R² in log10 space = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(6)}. Descriptive subset fit over 2015–2025 only; assistance, error metrics and tasks differ. Not a common performance benchmark, measured neural ITR, causal growth estimate or forecast. No confidence band is shown.`;
+const fitNote = `Equal-weight ordinary least squares of log10(text-equivalent bits/s) against reference year across ${BCI_BITRATE_FIT.n} converted-text observations; ${BCI_BITRATE_CONTEXT_COUNT} context marks are excluded (3 native task-bps, 2 unresolved image estimates). log10(rate) = ${BCI_BITRATE_FIT.interceptLog10.toFixed(6)} + ${BCI_BITRATE_FIT.slopeLog10PerX.toFixed(6)} × (year − ${BCI_BITRATE_FIT.xOrigin}); R² in log10 space = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(6)}. Mixed-convention descriptive fit over 2015–2025: five speech estimates use 1 assumed bit/character × 5 assumed characters/word; handwriting and three text-selection/scanning estimates retain log2(28) bits/character. Tasks, assistance, errors and summary statistics differ; this heterogeneous subset is not a common performance benchmark, measured neural ITR, causal growth estimate or forecast. No confidence band is shown.`;
 
 const plot: DraftPlot = {
   id: "bci-bitrate",
@@ -237,11 +249,11 @@ const plot: DraftPlot = {
   valueSignificantDigits: 3,
   observationBasis: "Paper-reported · calculated · company · image estimate",
   scope: "14 displayed observations: 9 PL R&D text-equivalent estimates included in the fit; 5 context marks excluded (2 paper-reported native task rates, 1 company native task rate and 2 unresolved image estimates).",
-  seriesNote: "PL R&D text-equivalent estimates use an equiprobable 28-symbol modeling alphabet: 26 letters, a space and one extra symbol are our declared choice, not the actual task keyboard. log2(28) ≈ 4.8 assumed bits/character is an ideal finite-codebook equivalent, not measured English entropy or 8-bit storage (a literal fixed-width 28-symbol code needs 5 bits). Speech assumes five characters per word, including spaces: a normalization convention, not measured corpus word length. CPM × log2(28)/60; WPM × 5 × log2(28)/60. Calculations use full precision.\n\nNo extra WER/CER penalty: native correct-character rates already include correction time; the gross pace of speech and handwriting keeps reported errors separate. Vansteensel uses the reported 33 seconds/letter timing, not native correct CPM. Assistance and tasks differ: dictionary disambiguation, prediction, completion and language models can contribute to output. Correlations and language-model output mean these are not measured neural information rates, error-standardized results or a common performance benchmark.\n\nOnly 9 text-equivalent observations enter the fit; 5 context marks are excluded: 3 native task/company bits/s rates (unchanged) and 2 unresolved image estimates. All 14 marks retain reference-year placement. Bacher uses the 2015 issue (online 2014); Stentrode the 2021 issue (online 2020); home speech the 2025 preprint (final paper 2026). Named Bacher, Vansteensel and Milekovic/Sarma results are selections for our chart, not recovered original-dot assignments. Original image coordinates and historical candidate leads remain archived.",
+  seriesNote: "Speech: PL R&D estimates use 1 assumed bit/character × five characters per word, including spaces (5 assumed bits/word). This context-dependent English-entropy model follows Stanford’s ‘Entropy and Redundancy in English,’ which describes estimates around 1 bit/letter. The selected weight and word-length factor are assumptions for these speech corpora. WPM × 5 × 1/60.\n\nHandwriting and text selection/scanning retain an equiprobable 28-symbol modeling alphabet: 26 letters, a space and one extra symbol are our declared choice, not the actual task keyboard. log2(28) ≈ 4.8 assumed bits/character is an ideal finite-codebook equivalent, not measured English entropy or 8-bit storage (a literal fixed-width 28-symbol code needs 5 bits). This retained normalization convention uses CPM × log2(28)/60 or log2(28)/seconds-per-letter. Calculations use full precision.\n\nNo extra WER/CER penalty: native correct-character rates already include correction time; the gross pace of speech and handwriting keeps reported errors separate. Vansteensel uses the reported 33 seconds/letter timing, not native correct CPM. Assistance and tasks differ: dictionary disambiguation, prediction, completion and language models can contribute to output. Correlations and language-model output mean these are not measured neural information rates, error-standardized results or a common performance benchmark.\n\nThe mixed-convention descriptive fit includes the same 9 text-equivalent observations; 5 context marks are excluded: 3 native task/company bits/s rates (unchanged) and 2 unresolved image estimates. All 14 marks retain reference-year placement. Bacher uses the 2015 issue (online 2014); Stentrode the 2021 issue (online 2020); home speech the 2025 preprint (final paper 2026). Named Bacher, Vansteensel and Milekovic/Sarma results are selections for our chart, not recovered original-dot assignments. Original image coordinates and historical candidate leads remain archived.",
   points,
-  referenceTrendline: { label: `Log-linear fit · ${BCI_BITRATE_FIT.n} text-equivalent points · R²(log10) = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(3)}`, color: "#7e8152", note: fitNote, methodologyUrl: "https://github.com/protocol/neuro-atlas/blob/e1182fc9e3efa6aadbd9e924818f50c8b64cd620/docs/bci-bitrate.md", points: BCI_BITRATE_FIT.points },
+  referenceTrendline: { label: `Log-linear fit · ${BCI_BITRATE_FIT.n} text-equivalent points · mixed models · R²(log10) = ${BCI_BITRATE_FIT.rSquaredLog10?.toFixed(3)}`, color: "#7e8152", note: fitNote, methodologyUrl: "https://github.com/protocol/neuro-atlas/blob/e1182fc9e3efa6aadbd9e924818f50c8b64cd620/docs/bci-bitrate.md", points: BCI_BITRATE_FIT.points },
   exportPointKey: true,
-  exportPointKeyNote: "Study key · reference years · bits/s. Text equivalents: PL R&D estimates; context not fitted.",
+  exportPointKeyNote: "Study key · reference years · bits/s. PL R&D estimates: speech 1 bit/char × 5 char/word; other text 28-symbol. Mixed-model fit; context not fitted.",
   legend: Object.values(groups).map(group => ({ label: group.label, color: group.color, marker: group.marker })),
 };
 
@@ -249,8 +261,8 @@ export const BCI_BITRATE_CHART: DraftChart = {
   category: "Human interfaces and recordings",
   title: plot.title,
   axes: "x-axis: reference-figure year · y-axis: text-equivalent / native-task context (bits/s), log scale",
-  definition: "Fourteen displayed observations: nine PL R&D text-equivalent estimates using log2(28) bits/character and five excluded context marks. Inspect native rates, assistance, conversion and source limits.",
-  constraint: "Uniform text conversion does not standardize tasks, errors or assistance. Native task rates and unresolved image values are context only; this is not measured neural ITR, a common benchmark or a scaling law.",
+  definition: "Fourteen displayed observations: five speech estimates at 1 assumed bit/character × 5 assumed characters/word, four handwriting/text-selection estimates at log2(28) bits/character, and five excluded context marks. All nine converted values are PL R&D estimates.",
+  constraint: "The mixed-convention fit describes nine selected text observations with distinct tasks, errors, assistance and summary statistics. Native task rates and unresolved image values remain excluded context; the fit is not a common benchmark or scaling law.",
 };
 export const BCI_BITRATE_EVIDENCE: DraftChartEvidence = {
   status: "plotted",

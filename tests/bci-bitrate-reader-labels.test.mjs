@@ -4,7 +4,7 @@ import * as imported from '../src/data/bci-bitrate.ts';
 const { BCI_BITRATE_EVIDENCE, BCI_BITRATE_ROWS } = imported.default ?? imported;
 const plot = BCI_BITRATE_EVIDENCE.plots[0];
 
-test('PL R&D owns all nine uniform text estimates, including handwriting and selected spelling papers', () => {
+test('PL R&D owns all nine mixed-convention text estimates, including handwriting and selected spelling papers', () => {
   const converted = BCI_BITRATE_ROWS.filter(p => p.basis === 'derived');
   assert.equal(converted.length, 9);
   for (const row of converted) {
