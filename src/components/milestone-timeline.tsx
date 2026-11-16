@@ -9,7 +9,7 @@
 // (acronyms carry a tooltip; ✕ collapses). Undated milestones sit in a
 // "date TBD" shelf.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import MILESTONES from "@/data/milestones.json";
 import { FirmLogo } from "@/components/firm-logo";
 import { Sparkline } from "@/components/sparkline";
@@ -120,6 +120,7 @@ function cumulativeCapital(year: number, scope: "all" | "bci" = "all") {
 }
 
 export function MilestoneTimeline() {
+  const filterId = useId();
   const [sel, setSel] = useState<Record<StageKey, Set<string>>>({
     capital: new Set(ALL_SUBCATS.capital),
     clinical: new Set(ALL_SUBCATS.clinical),
@@ -450,7 +451,8 @@ export function MilestoneTimeline() {
   return (
     <div>
       {/* Scope filter and stage legend */}
-      <div className="mb-3 flex flex-wrap items-center gap-2">
+      {/* The year strip's negative margin/padding must not shield these hit targets. */}
+      <div className="relative z-10 mb-3 flex flex-wrap items-center gap-2">
         {/* Scope filter toggle */}
         <div className="inline-flex rounded-full border border-border bg-surface-raised p-0.5 text-xs">
           <button
@@ -488,15 +490,15 @@ export function MilestoneTimeline() {
           const noneOn = selected.size === 0;
           return (
             <div key={s.key} className={`flex min-w-0 flex-wrap items-center gap-1.5 ${open ? "w-full" : ""}`}>
-              <button type="button" onClick={() => clickGroup(s.key)} aria-expanded={open}
-                className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-all ${open ? "border-border-strong bg-surface-raised" : noneOn ? "border-border opacity-40" : "border-border-strong"}`}>
+              <button type="button" onClick={() => clickGroup(s.key)} aria-expanded={open} aria-controls={`${filterId}-${s.key}`}
+                className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${open ? "border-border-strong bg-surface-raised" : noneOn ? "border-border opacity-40" : "border-border-strong"}`}>
                 <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
                 {s.label}
                 <span className="tnum text-muted">{total}</span>
-                {!open && <span className="text-[12px] text-muted" aria-hidden>▸</span>}
+                <span className="milestone-filter-chevron text-[12px] text-muted" aria-hidden>▸</span>
               </button>
               {/* Zero-width grids still wrap into tall invisible stacks; closed controls must leave layout. */}
-              <div className={`min-w-0 max-w-full ${open ? "grid flex-1 basis-full grid-cols-[1fr] sm:basis-auto" : "hidden"}`}>
+              <div id={`${filterId}-${s.key}`} className={`milestone-filter-options min-w-0 max-w-full ${open ? "grid flex-1 basis-full grid-cols-[1fr] sm:basis-auto" : "hidden"}`}>
                 <div className="min-w-0 overflow-hidden">
                   <div className="flex flex-wrap items-center gap-1.5 pr-1">
                     <span className="mx-0.5 h-5 w-px shrink-0 bg-border-strong" aria-hidden />
