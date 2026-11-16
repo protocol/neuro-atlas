@@ -1,0 +1,6 @@
+{
+  "kind": "fixture",
+  "exit_code": 0,
+  "dependency_realpath_fix": "temporary physical hard-linked existing dependencies, no install or package change",
+  "original_symlink_restored": true
+}

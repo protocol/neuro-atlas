@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "observations": 14,
+  "fit_included": 9,
+  "numeric_coordinates_native_inputs_sources_fit_preserved": true,
+  "immutable_files_verified": 9,
+  "history_copy_absent": true,
+  "csv_history_columns_removed": true,
+  "head": "0dffb1aadf9869015375a49f5df10534e7b9f4fb"
+}

@@ -1,0 +1,20 @@
+{
+  "full_diff_bytes": 84871,
+  "sha256": "ccac24a2dac8dada4fda94f3248fceb0180d148b7ec25476dea02aff2dbba63e",
+  "added_lines": 204,
+  "paths": [
+    "docs/bci-bitrate.md",
+    "docs/bci-study-data/README.md",
+    "docs/bci-study-data/chart-provenance.csv",
+    "docs/bci-study-data/reproduce_fit.py",
+    "src/data/bci-bitrate.ts",
+    "tests/bci-bitrate-clean-export.test.mjs",
+    "tests/bci-bitrate-current-copy.test.mjs",
+    "tests/bci-bitrate-data.test.mjs",
+    "tests/bci-bitrate-integration.test.mjs",
+    "tests/bci-bitrate-provenance.test.mjs",
+    "tests/bci-bitrate-reader-labels.test.mjs",
+    "tests/bci-bitrate-uniform.test.mjs"
+  ],
+  "reviewed_scope_matches": true
+}

@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "runtime": "0dffb1aadf9869015375a49f5df10534e7b9f4fb",
+  "cases": [
+    {
+      "width": 1440,
+      "title": "BCI communication rates over time",
+      "marks": 14,
+      "rows": 14,
+      "history_copy_absent": true,
+      "speech_study_and_calculation_links_verified": 5,
+      "handwriting_unchanged": true,
+      "viewport_bounds_passed": true,
+      "copy_link_readback": true,
+      "history_forward_back": true,
+      "native_card_open_escape_focus": true
+    },
+    {
+      "width": 390,
+      "title": "BCI communication rates over time",
+      "marks": 14,
+      "rows": 14,
+      "history_copy_absent": true,
+      "speech_study_and_calculation_links_verified": 5,
+      "handwriting_unchanged": true,
+      "viewport_bounds_passed": true,
+      "copy_link_readback": true,
+      "history_forward_back": true,
+      "native_card_open_escape_focus": true
+    },
+    {
+      "width": 320,
+      "title": "BCI communication rates over time",
+      "marks": 14,
+      "rows": 14,
+      "history_copy_absent": true,
+      "speech_study_and_calculation_links_verified": 5,
+      "handwriting_unchanged": true,
+      "viewport_bounds_passed": true,
+      "copy_link_readback": true,
+      "history_forward_back": true,
+      "native_card_open_escape_focus": true
+    }
+  ],
+  "png": [
+    2400,
+    2232
+  ]
+}

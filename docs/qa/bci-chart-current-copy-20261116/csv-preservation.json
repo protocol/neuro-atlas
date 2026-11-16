@@ -1,0 +1,74 @@
+{
+  "all_non_history_numeric_native_conversion_source_and_fit_columns_unchanged": true,
+  "only_reader_copy_columns_changed": [
+    {
+      "id": "bci-slide-kennedy-bakay",
+      "changes": {
+        "value_basis": [
+          "Image estimate",
+          "Unverified estimate"
+        ],
+        "reported_rate_type": [
+          "image estimate",
+          "approximate rate; numerical source unverified"
+        ],
+        "assistance": [
+          "Native task/image context",
+          "No text conversion; numerical source unverified"
+        ]
+      }
+    },
+    {
+      "id": "bci-slide-unlabeled-cursor-2015-upper",
+      "changes": {
+        "study": [
+          "Cursor control A \u00b7 source unconfirmed",
+          "Cursor control A \u00b7 source unverified"
+        ],
+        "value_basis": [
+          "Image estimate",
+          "Unverified estimate"
+        ],
+        "reported_rate_type": [
+          "image estimate",
+          "approximate rate; numerical source unverified"
+        ],
+        "assistance": [
+          "Native task/image context",
+          "No text conversion; numerical source unverified"
+        ]
+      }
+    },
+    {
+      "id": "bci-slide-pandarinath",
+      "changes": {
+        "assistance": [
+          "Native task/image context",
+          "Native task context"
+        ]
+      }
+    },
+    {
+      "id": "bci-slide-neuralink",
+      "changes": {
+        "assistance": [
+          "Native task/image context",
+          "Native task context"
+        ]
+      }
+    },
+    {
+      "id": "bci-slide-stentrode",
+      "changes": {
+        "assistance": [
+          "Native task/image context",
+          "Native task context"
+        ]
+      }
+    }
+  ],
+  "removed_columns": [
+    "candidate_sources_unconfirmed",
+    "original_photo_bps"
+  ]
+}
