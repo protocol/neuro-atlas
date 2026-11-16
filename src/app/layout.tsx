@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { atlasDescription } from "@/lib/atlas-metadata";
+import { plNeuroIcons } from "@/lib/site-icons";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AtlasAnalytics } from "@/components/atlas-analytics";
@@ -22,6 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Neuro Atlas",
   description: atlasDescription,
+  icons: plNeuroIcons,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

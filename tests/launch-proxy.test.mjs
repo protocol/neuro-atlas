@@ -37,7 +37,7 @@ test('document GET returns only the nonce-protected standalone gate, no native B
       assert.ok(html.includes(`<style nonce="${nonce}">`));
       assert.ok(html.includes(`action="${basePath}/__launch/auth"`));
       assert.ok(html.includes(`name="returnTo" value="${path.replaceAll('&', '&amp;')}"`));
-      assert.doesNotMatch(html, /_next\/static|<script[^>]+src=|<link[^>]+href=/);
+      assert.doesNotMatch(html, /_next\/static|<script[^>]+src=|<link[^>]+rel="(?:stylesheet|preload|modulepreload)"/);
     }
   }
 });

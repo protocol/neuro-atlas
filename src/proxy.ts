@@ -8,6 +8,7 @@ import {
   isAllowedAuthOrigin, safeReturnTo,
 } from "./lib/launch-access";
 import { renderLaunchGate } from "./lib/launch-gate";
+import { plNeuroIconSources } from "./lib/site-icons";
 
 // Owner-managed deployment secret only. Missing configuration stays closed before launch.
 const PASSWORD = process.env.ATLAS_PREVIEW_PASSWORD;
@@ -20,7 +21,7 @@ function privateResponse(response: Response, nonce?: string): Response {
   response.headers.set("Referrer-Policy", "same-origin");
   if (nonce) response.headers.set("Content-Security-Policy", [
     "default-src 'none'", `script-src 'nonce-${nonce}'`, `style-src 'nonce-${nonce}'`,
-    "img-src data:", "connect-src 'none'", "base-uri 'none'", "form-action 'self'",
+    `img-src data: ${plNeuroIconSources.join(" ")}`, "connect-src 'none'", "base-uri 'none'", "form-action 'self'",
     "frame-ancestors 'none'", "object-src 'none'",
   ].join("; "));
   return response;
