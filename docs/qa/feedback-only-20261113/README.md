@@ -1,5 +1,7 @@
 # Feedback-only actions and folded Milestones panel
 
+Historical November 13 record: the Milestones folded default below is superseded by the [November 16 default-open change](../milestones-panel-20261116/README.md). The feedback-only action requirements remain unchanged.
+
 Runtime revision: `358d6811ec421c0d245893bf7000041aa56da5c4`.
 Base: `5015d2cc27a2c63babbdc0ad93d975724a25b84b`.
 

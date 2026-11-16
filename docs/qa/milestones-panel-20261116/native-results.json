@@ -1,0 +1,104 @@
+{
+  "source": "e4df7e605a0bba12472beb457d8061ef06e4b21e",
+  "actualNextUI": true,
+  "syntheticLoopbackGateOnly": true,
+  "hostedAuthUntouched": true,
+  "noProviderWrites": true,
+  "expected2026CapitalUsdM": 1209.507350514536,
+  "checks": [
+    {
+      "width": 1440,
+      "initialSummary": {
+        "text": "Capital raised\nFold\n2024\n$460m\n2025\n$1.2b\n2026\n$1.2b\nSourced round sizes on this lane \u2014 not valuations or market cap. Fold this panel to see a full year without scrolling.\nFull period\nJan 1 \u2013 Dec 31, 2026\nCapital\n$1.2b\n15 rounds raised \u00b7 1 grant\nClinical\n28\n5 FIH \u00b7 4 BDD \u00b7 4 trial \u00b7 3 IDE \u00b7 3 partner \u00b7 3 research \u00b7 2 pivotal \u00b7 2 preclinical \u00b7 1 TAP \u00b7 1 HUD \u00b7 1 study\nCommercial\n11\u00b7 $14.5b\n5 partner \u00b7 1 approval \u00b7 1 spinout \u00b7 1 CE \u00b7 1 leadership \u00b7 1 sales",
+        "annual": "$1.2b",
+        "period": "$1.2b"
+      },
+      "bounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "railVisible": true,
+        "plot": {
+          "x": 459.21875,
+          "y": 27.5,
+          "width": 685.609375,
+          "height": 632,
+          "top": 27.5,
+          "right": 1144.828125,
+          "bottom": 659.5,
+          "left": 459.21875
+        },
+        "localScroll": 1360,
+        "localClient": 686
+      },
+      "foldedBounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425,
+        "railVisible": false,
+        "plot": {
+          "x": 488.71875,
+          "y": 487.5,
+          "width": 813.53125,
+          "height": 770,
+          "top": 487.5,
+          "right": 1302.25,
+          "bottom": 1257.5,
+          "left": 488.71875
+        },
+        "localScroll": 814,
+        "localClient": 814
+      },
+      "nativeFoldOpenRoundtrip": true,
+      "sameMountResponsiveStateRetained": true
+    },
+    {
+      "width": 390,
+      "bounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390,
+        "railVisible": false,
+        "plot": {
+          "x": 33,
+          "y": 124.453125,
+          "width": 324,
+          "height": 632,
+          "top": 124.453125,
+          "right": 357,
+          "bottom": 756.453125,
+          "left": 33
+        },
+        "localScroll": 1360,
+        "localClient": 324
+      },
+      "railHiddenByExistingResponsiveCSS": true,
+      "localTimelineScrollWorks": true,
+      "summaryPresentWithoutManualOpen": true
+    },
+    {
+      "width": 320,
+      "bounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320,
+        "railVisible": false,
+        "plot": {
+          "x": 33,
+          "y": 124.453125,
+          "width": 254,
+          "height": 632,
+          "top": 124.453125,
+          "right": 287,
+          "bottom": 756.453125,
+          "left": 33
+        },
+        "localScroll": 1360,
+        "localClient": 254
+      },
+      "railHiddenByExistingResponsiveCSS": true,
+      "localTimelineScrollWorks": true,
+      "summaryPresentWithoutManualOpen": true
+    }
+  ]
+}
