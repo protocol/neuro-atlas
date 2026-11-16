@@ -114,7 +114,7 @@ test('BCI uses five-year labels in the rail preview, opened modal and native exp
   } finally { output?.window.close(); await cleanup(); }
 });
 
-test('the actual BCI export callback serializes 14 numbered observation keys with five accurate task groups', async () => {
+test('the actual BCI export callback separates compact study keys from task groups and places them below branding', async () => {
   const plot = METRIC_CHART_EVIDENCE[title].plots[0];
   const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor: panel }), `#${slug}`);
   let output;
@@ -122,9 +122,12 @@ test('the actual BCI export callback serializes 14 numbered observation keys wit
     const registration = await whenChartRegistered(panel);
     assert.ok(registration, 'Use the native ChartShare export callback');
     const specification = registration.getChart();
-    const keys = specification.legend.filter(entry => /^\d+\. /.test(entry.label));
+    assert.equal(specification.legend.filter(entry => /^\d+\. /.test(entry.label)).length, 0, 'Study notes cannot masquerade as the series legend');
+    assert.equal(specification.legend.length, plot.legend.length + 1, 'Only task groups and the fitted line precede branding');
+    const keys = specification.pointKey;
     assert.equal(keys.length, 14, 'Every numbered badge needs a readable observation identity in the PNG');
-    assert.deepEqual(keys.map(entry => entry.label), plot.points.map((point, index) => `${index + 1}. ${point.annotation}`));
+    assert.deepEqual(keys.map(entry => entry.label), plot.points.map((point, index) => `${index + 1}. ${point.exportAnnotation}`));
+    assert.equal(specification.pointKeyNote, plot.exportPointKeyNote);
     assert.deepEqual(keys.map(({ color, marker }) => ({ color, marker })), plot.points.map(({ color, marker }) => ({ color, marker })));
     assert.equal(document.querySelectorAll('dialog[open] [data-draft-group-legend] li').length, 5, 'Do not append point keys to the on-site group legend');
     const image = buildChartImage(specification, window.location.href);
@@ -135,6 +138,9 @@ test('the actual BCI export callback serializes 14 numbered observation keys wit
     assert.ok(visible.includes('More information on Neuro Atlas.'));
     assert.equal(visible.includes(plot.seriesNote), false, 'Point keys are not a restored long scientific footnote');
     assert.ok(doc.querySelector('[data-export-brand="pl-rd"]'));
+    assert.equal(doc.querySelectorAll('[data-export-point-key-entry]').length, 14);
+    assert.ok(doc.querySelector('[data-export-footer]').compareDocumentPosition(doc.querySelector('[data-export-point-key]')) & output.window.Node.DOCUMENT_POSITION_FOLLOWING);
+    assert.doesNotMatch(visible, /log2\(28\)|gross WPM|correct CPM/);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 14);
   } finally { output?.window.close(); await cleanup(); }
 });
