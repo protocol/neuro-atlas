@@ -49,7 +49,13 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.equal(rounds[0].announcedOn, '2026-10-21');
   assert.equal(rounds[0].sourceKind, 'primary');
   assert.equal(rounds[0].reviewedOn, '2026-11-09');
-  assert.equal(digest(funding.rounds.filter(round => !sources.includes(round.sourceUrl))), fixture.baselineFundingRoundsSha256);
+  const baselineRounds = structuredClone(funding.rounds.filter(round => !sources.includes(round.sourceUrl)));
+  const precisionSeriesC = baselineRounds.find(round => round.companySlug === 'precision-neuroscience'
+    && round.announcedOn === '2024-12-16' && round.stage === 'Series C');
+  // Keep the historical pre-65 golden intact while allowing only this later citation repair.
+  assert.equal(precisionSeriesC.sourceUrl, 'https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html');
+  precisionSeriesC.sourceUrl = 'https://www.globenewswire.com/news-release/2024/12/16/2997688/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html';
+  assert.equal(digest(baselineRounds), fixture.baselineFundingRoundsSha256);
   assert.equal(digest(funding.milestones), fixture.baselineRegulatorySha256);
   const nx = one(fixture.milestones.find(row => row.company === 'NeuroXess').sourceUrl);
   assert.equal(nx.amountUsdM, 700 / 6.6662);
