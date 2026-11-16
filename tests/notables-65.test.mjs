@@ -55,6 +55,19 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   // Keep the historical pre-65 golden intact while allowing only this later citation repair.
   assert.equal(precisionSeriesC.sourceUrl, 'https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html');
   precisionSeriesC.sourceUrl = 'https://www.globenewswire.com/news-release/2024/12/16/2997688/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html';
+  const seedFix = load('./fixtures/coherence-seed-20261116.json');
+  const seedRows = baselineRounds.filter(round => round.companySlug === seedFix.companySlug
+    && round.announcedOn === seedFix.announcedOn && round.stage === seedFix.stage);
+  assert.equal(seedRows.length, 1);
+  const seed = seedRows[0];
+  // Assert the later reviewed correction, then reconstruct only its historical fields.
+  for (const key of ['investors', 'note', 'sourceKind', 'reviewedOn']) {
+    assert.deepEqual(seed[key], seedFix[key], key);
+  }
+  seed.investors = seedFix.previousStoredInvestors;
+  seed.note = seedFix.previousStoredNote;
+  delete seed.sourceKind;
+  delete seed.reviewedOn;
   assert.equal(digest(baselineRounds), fixture.baselineFundingRoundsSha256);
   assert.equal(digest(funding.milestones), fixture.baselineRegulatorySha256);
   const nx = one(fixture.milestones.find(row => row.company === 'NeuroXess').sourceUrl);

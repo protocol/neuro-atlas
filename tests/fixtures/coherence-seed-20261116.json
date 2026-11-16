@@ -1,0 +1,49 @@
+{
+  "companySlug": "coherence-neuro",
+  "announcedOn": "2025-11-04",
+  "stage": "Seed",
+  "amountUsdM": 10,
+  "sourceUrl": "https://www.linkedin.com/posts/elise-jenkins-_coherence-neuro-has-raised-a-10m-seed-round-activity-7391232963549487105-N1eH/",
+  "investors": [
+    "Topology",
+    "Artesian",
+    "Blackbird",
+    "Possible",
+    "XEIA",
+    "Michael Akilian/Thales",
+    "Jumpspace Ventures",
+    "Xtal",
+    "Divergent",
+    "SmartGateVC",
+    "Spacewalk VC",
+    "Matt Krisiloff",
+    "Linhao Zhang",
+    "Tim Shi"
+  ],
+  "sourceLabels": {
+    "Topology": "Topology Ventures",
+    "Artesian": "Artesian (Alternative Investments)",
+    "Blackbird": "Blackbird",
+    "Possible": "Possible Ventures",
+    "XEIA": "XEIA Venture Partners",
+    "Michael Akilian/Thales": "Michael Akilian/Thales",
+    "Jumpspace Ventures": "Jumpspace Ventures",
+    "Xtal": "Xtal",
+    "Divergent": "Divergent Capital",
+    "SmartGateVC": "SmartGateVC",
+    "Spacewalk VC": "Spacewalk VC",
+    "Matt Krisiloff": "Matt Krisiloff",
+    "Linhao Zhang": "Linhao Zhang",
+    "Tim Shi": "Tim Shi"
+  },
+  "note": "Seed co-led by Topology Ventures and Artesian. Blackbird and Possible Ventures are identified as continuing pre-seed backers; the remaining named investors and angels are retained from the founder’s announcement. Michael Akilian/Thales preserves the source’s combined label.",
+  "sourceKind": "primary",
+  "reviewedOn": "2026-11-16",
+  "previousStoredInvestors": [
+    "SV Health Investors",
+    "BrightEdge",
+    "Innovation Endeavors",
+    "Astellas Venture Management"
+  ],
+  "previousStoredNote": "Company announcement."
+}
