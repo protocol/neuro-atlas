@@ -173,3 +173,10 @@ test('the qualified communication-rate title keeps the existing public URL and l
     assert.equal(canonicalPerformanceAnchor(alias), 'bci-information-transfer-over-time');
   }
 });
+
+test('reader-facing error labels omit internal unit suffixes while preserving native error values', () => {
+  for (const row of data.BCI_BITRATE_ROWS.filter(r => r.nativeRateUnit === 'words/minute' && r.nativeError)) {
+    assert.match(row.reportedResult, new RegExp(`${row.nativeError.value}% word error rate\\.`));
+    assert.doesNotMatch(row.reportedResult, /error rate pct/);
+  }
+});

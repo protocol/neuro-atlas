@@ -146,7 +146,7 @@ export const BCI_BITRATE_ROWS = source.observations.map(point => {
       basis: "derived", basisLabel: "PL R&D estimate", bps: nativeRate.value * BCI_SPEECH_BITS_PER_WORD / 60,
       assistance: "LM-assisted",
       inputKey: `${nativeRate.value} gross WPM × 5 × log2(28)/60; ${nativeRate.error ? `${nativeRate.error.value}% WER` : "WER unpaired"}`,
-      reportedResult: `${nativeRate.value} ${nativeRate.unit}; ${nativeRate.task}.${nativeRate.error ? ` ${nativeRate.error.value}% ${nativeRate.error.metric.replaceAll("_", " ")}.` : ""}`,
+      reportedResult: `${nativeRate.value} ${nativeRate.unit}; ${nativeRate.task}.${nativeRate.error ? ` ${nativeRate.error.value}% ${nativeRate.error.metric.replace(/_pct$/, "").replaceAll("_", " ")}.` : ""}`,
       calculation: `${nativeRate.value} words/minute × 5 assumed characters/word × log2(28) bits/character ÷ 60. PL R&D code-equivalent estimate of gross decoding pace, not measured neural ITR. No error penalty; the reported error metric remains separate.`,
     };
   }
