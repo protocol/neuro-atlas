@@ -26,3 +26,17 @@ test('replay retains context observations but fits only explicit true selections
 test('replay refuses ambiguous fit selection instead of silently discarding a row', () => {
   assert.throws(() => replay('id,reference_year,plotted_bps,fit_included\na,2015,1,true\nb,2025,100,true\ncontext,2020,50,TRUE\n'), /fit_included must be exactly true or false/);
 });
+
+test('replay recalculates text equivalents from the declared alphabet and native rate', () => {
+  const result = replay('id,reference_year,plotted_bps,fit_included,paper_or_company_native_rate,native_unit,normalization_alphabet_size,normalization_characters_per_word\na,2015,999,true,60,characters/minute,28,\nb,2025,999,true,60,words/minute,28,5\n');
+  assert.equal(result.observations[0].bps, Math.log2(28), 'CPM must be recalculated, not copied from plotted_bps');
+  assert.equal(result.observations[1].bps, 5 * Math.log2(28), 'WPM must use the declared character-per-word factor');
+  assert.equal(result.observations[0].csvPlottedBps, 999);
+  assert.ok(Math.abs(result.fit.slopeLog10PerX - Math.log10(5) / 10) < 1e-12);
+});
+
+test('replay converts the printed seconds-per-letter result without rounding to CPM', () => {
+  const result = replay('id,reference_year,plotted_bps,fit_included,paper_or_company_native_rate,native_unit,normalization_alphabet_size,normalization_characters_per_word\na,2016,999,true,33,seconds/letter,28,\nb,2025,999,true,66,seconds/letter,28,\n');
+  assert.equal(result.observations[0].bps, Math.log2(28) / 33);
+  assert.equal(result.observations[1].bps, Math.log2(28) / 66);
+});

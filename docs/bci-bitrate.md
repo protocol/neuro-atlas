@@ -18,7 +18,7 @@ For a hypothetical alphabet of **28 equally likely symbols**, the information ne
 
 Twenty-six letters, a space, and one additional symbol illustrate the declared alphabet. It is a **shared normalization convention**, not a claim that all studies used those exact keyboard targets, that natural-language characters are independent/equiprobable, or that English actually carries 4.8 new information bits per character. Language correlations and predictive completion can reduce the information supplied by the user's neural signal.
 
-It is also distinct from file storage: an 8-bit character encoding assigns eight storage bits per character. Here the aim is a fixed **28-symbol text-output equivalent**, not encoded file size or measured neural-channel capacity.
+It is also distinct from file storage: an 8-bit character encoding assigns eight storage bits per character. A literal fixed-width binary code for 28 symbols needs five bits per symbol; 4.807 is the ideal information weight under the stated uniform model. Here the aim is a fixed **28-symbol text-output equivalent**, not encoded file size or measured neural-channel capacity.
 
 ### The same formulas everywhere
 
@@ -39,7 +39,7 @@ All converted values are labeled **PL R&D estimate**, with approximately qualifi
 | Study / reference-year placement | Selected native result and task | Formula | Estimated bits/s equivalent |
 |---|---|---|---:|
 | [Bacher, 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/#F3) | **9.4 ± 3.2 correct characters/min**, radial “keyboard ” copy task, completion off; ambiguous-key disambiguation remains. Online Nov. 10, 2014; 2015 issue used for chart year. | `9.4 × log2(28) / 60` | 0.7531522711223579 |
-| [Vansteensel, 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/) | **33 seconds/letter with word prediction**, ECoG brain-click/scanning interface. Exact timing selected instead of rounded “two letters/minute.” | `log2(28) / 33` | 0.14567742188053343 |
+| [Vansteensel, 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/) | **33 seconds/letter with word prediction**, ECoG brain-click/scanning interface. Printed timing selected instead of rounded “two letters/minute.” | `log2(28) / 33` | 0.14567742188053343 |
 | [Milekovic/Sarma, 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/#F0008) | **6.88 ± 0.33 correct characters/min**, T6 free spelling with word completion, FlashSpeller scanning/neural-switch interface. | `6.88 × log2(28) / 60` | 0.5512433643959386 |
 | [Willett handwriting, 2021](https://doi.org/10.1038/s41586-021-03506-2) | **90 characters/min**, final evaluation day; **5.4% CER**, prompted copy handwriting. Gross pace is retained. | `90 × log2(28) / 60` | 7.211032383086406 |
 | [Moses, 2021](https://doi.org/10.1056/NEJMoa2027540) | **15.2 WPM**, median prompted sentence decoding with language model; **25.6% WER**, 50-word vocabulary. WPM and WER have different source aggregation. | `15.2 × 5 × log2(28) / 60` | 6.089316234606298 |
@@ -86,7 +86,7 @@ python3 reproduce_fit.py
 python3 reproduce_fit.py modified-provenance.csv
 ```
 
-The dependency-free script prints all displayed inputs, the exact fitted subset, CSV SHA-256, full-precision coefficients, log-space R², SSE and SST. Selection must be explicitly `true` or `false` for every row; no coefficient is hardcoded. To reconstruct manually set `x = year - min(fitted years)`, `z = log10(rate)`; slope `b = sum((x-mean(x))*(z-mean(z)))/sum((x-mean(x))²)`, intercept `a = mean(z)-b*mean(x)`, and `R² = 1-SSE/SST` in log space. The app uses [the same OLS definition](../src/lib/log-linear-fit.ts), independently replayed by this script.
+The dependency-free script recomputes text conversions from the native-rate and normalization columns, then prints all inputs, the exact fitted subset, CSV SHA-256, full-precision coefficients, log-space R², SSE and SST. `csvPlottedBps` preserves the supplied plotted-value column for comparison. Editing the alphabet or word-length factor recalculates the fitted equivalents; the current CSV exactly reproduces the chart. Generic alternative rows without normalization parameters can instead supply explicit `plotted_bps`. Selection must be explicitly `true` or `false` for every row; no coefficient is hardcoded. To reconstruct manually set `x = year - min(fitted years)`, `z = log10(rate)`; slope `b = sum((x-mean(x))*(z-mean(z)))/sum((x-mean(x))²)`, intercept `a = mean(z)-b*mean(x)`, and `R² = 1-SSE/SST` in log space. The app uses [the same OLS definition](../src/lib/log-linear-fit.ts), independently replayed by this script.
 
 This is a **descriptive fit to selected reported communication results under one coding convention**. Different tasks, participants, errors, assistance, reported summary statistics and gross/correct output definitions remain. It is not a causal scaling law, an error-standardized leaderboard, measured neural information capacity, or forecast.
 

@@ -16,11 +16,27 @@ with path.open(newline="", encoding="utf-8") as stream:
     rows = list(csv.DictReader(stream))
 if any(row.get("fit_included") not in ("true", "false") for row in rows):
     raise ValueError("fit_included must be exactly true or false for every observation")
-observations = [
-    {"id": row["id"], "year": float(row["reference_year"]), "bps": float(row["plotted_bps"]),
-     "fitIncluded": row["fit_included"] == "true"}
-    for row in rows
-]
+def observation(row):
+    plotted = float(row["plotted_bps"])
+    included = row["fit_included"] == "true"
+    rate = plotted
+    if included and row.get("normalization_alphabet_size"):
+        bits_per_character = math.log2(float(row["normalization_alphabet_size"]))
+        native = float(row["paper_or_company_native_rate"])
+        unit = row["native_unit"]
+        if unit in ("characters/minute", "correct characters/minute"):
+            rate = native * bits_per_character / 60
+        elif unit == "words/minute":
+            rate = native * float(row["normalization_characters_per_word"]) * bits_per_character / 60
+        elif unit == "seconds/letter":
+            rate = bits_per_character / native
+        else:
+            raise ValueError(f"Unsupported text input unit: {unit}")
+    return {"id": row["id"], "year": float(row["reference_year"]), "bps": rate,
+            "csvPlottedBps": plotted, "fitIncluded": included}
+
+
+observations = [observation(row) for row in rows]
 if len(observations) < 2 or any(
     not math.isfinite(p["year"]) or not math.isfinite(p["bps"]) or p["bps"] <= 0
     for p in observations
