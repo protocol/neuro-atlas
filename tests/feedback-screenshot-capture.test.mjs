@@ -2,6 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {freezeFeedbackRegion} from '../src/components/feedback/screenshot.ts';
+import {readFile} from 'node:fs/promises';
+test('screenshot preview has explicit CSS width/height/flex bounds despite the global image reset',async()=>{
+ const css=await readFile(new URL('../src/components/feedback/feedback.css',import.meta.url),'utf8');
+ const rule=css.match(/\.atlas-feedback-capture img\s*\{([^}]+)\}/)?.[1]??'';
+ assert.match(rule,/width:\s*72px/);assert.match(rule,/height:\s*48px/);assert.match(rule,/flex:\s*none/);assert.match(rule,/object-fit:\s*contain/);
+});
 const rect=(left,top,width,height)=>({left,top,right:left+width,bottom:top+height,width,height});
 test('freeze only bounded selected card crop; preserve current SVG state and exclude editable/feedback/private content synchronously',()=>{
  const dom=new JSDOM('<!doctype html><body><p id="outside">Outside private content</p><article data-performance-card="x"><h2>Chart title</h2><svg><circle cx="20" cy="30" r="9" fill="blue"/></svg><input value="secret"><textarea>private draft</textarea><div data-atlas-feedback>Transient overlay</div></article></body>');

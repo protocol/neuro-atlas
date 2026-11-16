@@ -70,4 +70,4 @@ dialog.atlas-feedback-layer {
 }
 
 .atlas-feedback-capture { display: flex; align-items: center; gap: 8px; font-size: 12px; flex-wrap: wrap; }
-.atlas-feedback-capture img { object-fit: contain; border: 1px solid currentColor; border-radius: 4px; }
+.atlas-feedback-capture img { width: 72px; height: 48px; flex: none; object-fit: contain; border: 1px solid currentColor; border-radius: 4px; }

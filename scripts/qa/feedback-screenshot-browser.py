@@ -43,7 +43,10 @@ for width,height in [(1440,1000),(390,900),(320,600)]:
  p=js("(()=>{const r=__lane.getBoundingClientRect();return {x:Math.min(innerWidth-25,Math.max(25,r.left+Math.min(r.width*.85,innerWidth*.6))),y:Math.min(innerHeight-40,r.top+r.height*.8)}})()")
  click_at_xy(p['x'],p['y']);wait("!!document.querySelector('[data-feedback-composer][open]')")
  wait("document.querySelector('[data-feedback-capture]')?.textContent.includes('Screenshot attached')")
- image_hash=save_image('capital-selection-'+str(width));capture_screenshot(path=str(out/('composer-'+str(width)+'.png')))
+ image_hash=save_image('capital-selection-'+str(width))
+ preview=js("(()=>{const r=document.querySelector('[data-feedback-capture] img').getBoundingClientRect();return {width:r.width,height:r.height}})()")
+ assert preview=={'width':72,'height':48},preview
+ capture_screenshot(path=str(out/('composer-'+str(width)+'.png')))
  metric=bounds();assert metric['left']>=0 and metric['right']<=width and metric['top']>=0 and metric['bottom']<=height,metric
  if width==390:
   cdp('Emulation.setDeviceMetricsOverride',width=390,height=400,deviceScaleFactor=1,mobile=True)
@@ -66,7 +69,7 @@ for width,height in [(1440,1000),(390,900),(320,600)]:
  assert any(i['sha256']==image_hash for i in state['images'])
  assert image_hash in matches[0]['description'];assert 'data:image' not in matches[0]['description']
  capture_screenshot(path=str(out/('saved-'+str(width)+'.png')))
- results.append({'width':width,'height':height,'imageSha256':image_hash,'geometry':metric,'sameKeyBodyRetry':True,'nextHttpSyntheticPrivateLinearVerified':True})
+ results.append({'width':width,'height':height,'imageSha256':image_hash,'preview':preview,'geometry':metric,'sameKeyBodyRetry':True,'nextHttpSyntheticPrivateLinearVerified':True})
  press_key('Escape');wait("!document.querySelector('[data-feedback-composer]')");assert not js("!!document.querySelector('[data-feedback-outline]')")
 # Actual chart/SVG preview, distinct from the real Milestones capital lane above.
 visit('/field-velocity',1440,1000);wait("!!document.querySelector('[data-performance-card=idea_vintage] svg')")
