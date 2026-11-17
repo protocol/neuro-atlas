@@ -1,0 +1,54 @@
+{
+  "runtimeRevision": "6e4a7ff73a620ac873860938d22fa895db975600",
+  "baselineScreenshotRevision": "586750124dff528c8239a39e3b87162dd64129ab",
+  "files": [
+    {
+      "file": "README.md",
+      "sha256": "7e1e7c3bed603b7a809c18d7761897ca87442c1cda20b98f76d271c7b40b31de"
+    },
+    {
+      "file": "after-investors-1440.png",
+      "sha256": "4ae14439e25d9444091405554ba9ec237091a04d3727e98eeef820546147733a"
+    },
+    {
+      "file": "after-investors-320.png",
+      "sha256": "98aba20b27d663722da6e1c978bef221870d347f7d3fdc2c1bf508637f7ad197"
+    },
+    {
+      "file": "after-investors-390.png",
+      "sha256": "8fdebb6eed74d0e9518f8cc83e1a8b9c288ec255c5a7f68ab7d1f3a6b1d7bf16"
+    },
+    {
+      "file": "before-investors-1440.png",
+      "sha256": "1cddba09f6a4749e4fb0565055afc62c4026bf39799af1a9b15770aa7fd482a8"
+    },
+    {
+      "file": "independent-review.md",
+      "sha256": "a037aa136f25f37afdd3c14d1c2d0e99ffbcd959a5c598dd10d161faae8d95bb"
+    },
+    {
+      "file": "lint-comparison.json",
+      "sha256": "f473cc194820ab7708f707163bcee944210995b0bbf661e20419dd1021a0bec6"
+    },
+    {
+      "file": "merge-participation-390.png",
+      "sha256": "4a94afd09fc997b712ae2b2c404d473e4147fbda32a977cc9cc462ff73a9f44d"
+    },
+    {
+      "file": "native.json",
+      "sha256": "0de4003af5315a98ced1ca99251557f42015e156fc9ff88870e6750698ae7f0b"
+    },
+    {
+      "file": "production-parity.json",
+      "sha256": "e1cc3ac2994805f27a4a4c4fb6046cac8171a841e5b612cd5377a8fac8779c47"
+    },
+    {
+      "file": "tests-summary.json",
+      "sha256": "5fc397f3be99c3be9466133fcb1023d550db994f25ab42ffc884087dbc973f66"
+    },
+    {
+      "file": "verification.json",
+      "sha256": "3be787c0e4304cbeb64cf93f9b6bd89b2373dcccc869294932d102edcd40968f"
+    }
+  ]
+}

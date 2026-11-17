@@ -1,0 +1,222 @@
+[
+  {
+    "label": "baseline",
+    "findings": [
+      {
+        "path": "src/components/theme-toggle.tsx",
+        "rule": "react-hooks/set-state-in-effect",
+        "severity": 2,
+        "line": 10,
+        "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n<repo>/src/components/theme-toggle.tsx:10:19\n   8 |   const [mounted, setMounted] = useState(false);\n   9 |\n> 10 |   useEffect(() => setMounted(true), []);\n     |                   ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  11 |\n  12 |   if (!mounted) {\n  13 |     return <div className=\"h-9 w-9 rounded-full border border-border\" aria-hidden />;"
+      },
+      {
+        "path": "tests/chart-sharing.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 248,
+        "message": "'fill' is defined but never used."
+      },
+      {
+        "path": "tests/chart-sharing.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 248,
+        "message": "'stroke' is defined but never used."
+      },
+      {
+        "path": "tests/citation-feed.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 4,
+        "message": "'createHash' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-links.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 11,
+        "message": "'DraftChartsSection' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 3,
+        "message": "'readFileSync' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@next/next/no-assign-module-variable",
+        "severity": 2,
+        "line": 237,
+        "message": "Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable"
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@next/next/no-assign-module-variable",
+        "severity": 2,
+        "line": 279,
+        "message": "Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable"
+      },
+      {
+        "path": "tests/extrapolation-ui.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 8,
+        "message": "'settle' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'DRAFT_CHART_CATEGORIES' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 7,
+        "message": "'DRAFT_CHART_EVIDENCE' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 7,
+        "message": "'METRIC_CHART_CATEGORIES' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-reader-policy.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'readFileSync' is defined but never used."
+      },
+      {
+        "path": "tests/participant-commitments.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 3,
+        "message": "'act' is defined but never used."
+      },
+      {
+        "path": "tests/participant-commitments.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'settle' is defined but never used."
+      }
+    ]
+  },
+  {
+    "label": "final",
+    "findings": [
+      {
+        "path": "src/components/theme-toggle.tsx",
+        "rule": "react-hooks/set-state-in-effect",
+        "severity": 2,
+        "line": 10,
+        "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\n<repo>/src/components/theme-toggle.tsx:10:19\n   8 |   const [mounted, setMounted] = useState(false);\n   9 |\n> 10 |   useEffect(() => setMounted(true), []);\n     |                   ^^^^^^^^^^ Avoid calling setState() directly within an effect\n  11 |\n  12 |   if (!mounted) {\n  13 |     return <div className=\"h-9 w-9 rounded-full border border-border\" aria-hidden />;"
+      },
+      {
+        "path": "tests/chart-sharing.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 248,
+        "message": "'fill' is defined but never used."
+      },
+      {
+        "path": "tests/chart-sharing.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 248,
+        "message": "'stroke' is defined but never used."
+      },
+      {
+        "path": "tests/citation-feed.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 4,
+        "message": "'createHash' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-links.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 11,
+        "message": "'DraftChartsSection' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 3,
+        "message": "'readFileSync' is defined but never used."
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@next/next/no-assign-module-variable",
+        "severity": 2,
+        "line": 237,
+        "message": "Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable"
+      },
+      {
+        "path": "tests/draft-chart-plot.test.mjs",
+        "rule": "@next/next/no-assign-module-variable",
+        "severity": 2,
+        "line": 279,
+        "message": "Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable"
+      },
+      {
+        "path": "tests/extrapolation-ui.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 8,
+        "message": "'settle' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'DRAFT_CHART_CATEGORIES' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 7,
+        "message": "'DRAFT_CHART_EVIDENCE' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-navigation.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 7,
+        "message": "'METRIC_CHART_CATEGORIES' is defined but never used."
+      },
+      {
+        "path": "tests/metrics-reader-policy.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'readFileSync' is defined but never used."
+      },
+      {
+        "path": "tests/participant-commitments.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 3,
+        "message": "'act' is defined but never used."
+      },
+      {
+        "path": "tests/participant-commitments.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "line": 6,
+        "message": "'settle' is defined but never used."
+      }
+    ]
+  }
+]

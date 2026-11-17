@@ -1,0 +1,62 @@
+{
+  "revision": "6e4a7ff73a620ac873860938d22fa895db975600",
+  "buildId": "HDVSefHFkwZobmRv9JJej",
+  "route": "http://127.0.0.1:37878/neuro-atlas/funding?view=investors",
+  "htmlSha256": "a886dc615729ecc4440f80301862a0cff7a19900ec9af0b6bf4a4e5f96f2cfa6",
+  "htmlPages": 1,
+  "verifiedStaticAssets": 13,
+  "assets": [
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/11-5424fd1cd695327f.js",
+      "sha256": "3c5623d9b4488cbb686b6168a45eba0b91584a4aa5615e8dd32e2d5dd735c5dc"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/505-16edf18b47d829b6.js",
+      "sha256": "705f4acfc9839a238fdb8d866c4e5eb3bbebbd1202c6ec2dae51b5630397e3bd"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/app/funding/page-d65e7a4064b2fbda.js",
+      "sha256": "d5d2344b2a91c3c9eef93ca18afc5cbd2ee1bea9d01e38f98166de2ac8552890"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/app/layout-bca9cc8cafc638b2.js",
+      "sha256": "4854a5103612a1353f485efa015be7798364b948b4e09857fce5fbca4d05eacf"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/e1fde684-990d915815b79c35.js",
+      "sha256": "b3a62c032aaa3ca1799214024f3a02f7a1885f4cffa8c9901c85a8fb53e2e205"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/main-app-8a6e91428ac07d06.js",
+      "sha256": "2e0c23e2d57f1e242345ff00579e28d43509b162d035058d7a2d91de576e6295"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/chunks/webpack-b3a8f60f8809102c.js",
+      "sha256": "4f752cb132591882ed046af17a45e42f98c55de344eee26601d1a480675ad104"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/css/0abf9a2d0da5d31c.css",
+      "sha256": "7d3d4d4efe039db16682e4a92a7eeeeee837e8e178328029fa2090e2c9135acf"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/css/9662ce1261c5d653.css",
+      "sha256": "218793e79ae4cd39f70c995df874ed843b24e756adf3b4418996177c504f9365"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/css/f920aebef99bd67f.css",
+      "sha256": "72c39be0c62f93580264752ed109c7fe499c321f471cf1eefe4e64482534df2a"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/media/22a5144ee8d83bca-s.p.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608"
+    },
+    {
+      "asset": "/neuro-atlas/_next/static/media/7d4881bb7e1bf84d-s.p.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    }
+  ]
+}

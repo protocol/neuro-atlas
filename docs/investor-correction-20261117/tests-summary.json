@@ -1,0 +1,10 @@
+{
+  "tests": 1440,
+  "pass": 1440,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 693626.278208,
+  "revision": "6e4a7ff73a620ac873860938d22fa895db975600",
+  "exitCode": 0
+}
