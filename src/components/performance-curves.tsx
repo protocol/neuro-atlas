@@ -45,7 +45,7 @@ export type PlotData = { xLabel?: string; title: string; unit: string; scale: "l
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
-  const left = 100, right = 22, top = 28, bottom = 44, width = 720, height = 300;
+  const left = 100, right = 22, top = data.historicalFit ? 48 : 28, bottom = 44, width = 720, height = 300;
   const times = data.points.map(p => Date.parse(p.date));
   const minTime = Math.min(...times), maxTime = Math.max(...times);
   const padding = Math.max((maxTime - minTime) * 0.035, 86400000 * 30);
@@ -57,7 +57,7 @@ export function chartGeometry(data: PlotData) {
   const ticks = data.scale === "log" ? Array.from({ length: high - low + 1 }, (_, i) => 10 ** (low + i)) : [0, 1, 2, 3, 4].map(i => i * step);
   const x = (date: string) => left + (Date.parse(date) - minTime + padding) / (maxTime - minTime + 2 * padding) * (width - left - right);
   const y = (value: number) => top + (1 - (data.scale === "log" ? (Math.log10(value) - low) / (high - low) : value / (step * 4))) * (height - top - bottom);
-  return { width, height, left, right, minTime, maxTime, ticks, x, y };
+  return { width, height, left, right, top, bottom, minTime, maxTime, ticks, x, y };
 }
 
 /** Interior multiples of five, kept clear of the two endpoint labels. */
@@ -71,10 +71,10 @@ export function fiveYearLabels(first: number, last: number) {
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
 function compactChartGeometry(data: PlotData, extraHeight = 0, width = 360) {
   const full = chartGeometry(data);
-  const height = 160 + extraHeight, left = 64, right = 16, top = 30, bottom = 44;
+  const height = 160 + extraHeight, left = 64, right = 16, top = data.historicalFit ? 62 : 30, bottom = 44;
   return { ...full, width, height, left, right,
     x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
-    y: (value: number) => top + (full.y(value) - 28) / (full.height - 28 - 44) * (height - top - bottom),
+    y: (value: number) => top + (full.y(value) - full.top) / (full.height - full.top - full.bottom) * (height - top - bottom),
   };
 }
 
@@ -185,6 +185,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
   const points = data.points.filter(p => !track || p.track === track);
+  const historicalYears = data.historicalFit ? Array.from({length: 8}, (_, i) => 1960 + i * 10).filter(year => year >= new Date(g.minTime).getUTCFullYear() + 8 && year <= new Date(g.maxTime).getUTCFullYear() - 8) : [];
   const recordingDateTicks = inspectOnActivate && !data.historicalFit ? [...new Set([g.minTime, g.maxTime])].map(time => ({
     date: new Date(time).toISOString(),
     label: g.minTime !== g.maxTime && new Date(g.minTime).getUTCFullYear() === new Date(g.maxTime).getUTCFullYear()
@@ -261,14 +262,14 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
       <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.connectTracks ? "Lines connect successive reliable observations within each measurement series." : data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
         <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
-        <ChartYearGuides years={annualDateYears(original.minTime, original.maxTime)} x={year => g.x(`${year}-01-01`)} top={g.y(g.ticks.at(-1)!)} bottom={g.y(g.ticks[0])} />
+        <ChartYearGuides years={data.historicalFit ? historicalYears : annualDateYears(original.minTime, original.maxTime)} x={year => g.x(`${year}-01-01`)} top={g.y(g.ticks.at(-1)!)} bottom={g.y(g.ticks[0])} />
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
         {data.historicalFit && <g data-historical-fit>
           <polyline points={data.historicalFit.points.map(p => `${g.x(historicalYearDate(p.x))},${g.y(p.y)}`).join(" ")} fill="none" stroke="#087f8c" strokeWidth={2} vectorEffect="non-scaling-stroke" data-export-stroke-width={2} />
-          <text data-historical-fit-label x={g.x(historicalYearDate(data.historicalFit.window[0] + (data.historicalFit.window[1]-data.historicalFit.window[0])*.62))} y={g.y(10 ** (data.historicalFit.interceptLog10 + data.historicalFit.slopeLog10PerYear * (data.historicalFit.window[1]-data.historicalFit.window[0])*.62)) - 12 * unitsPerPixel} textAnchor="middle" fill="#087f8c" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{compact ? "≈" : "Fit · ≈"}{data.historicalFit.doublingYears!.toFixed(1)}{compact ? " y/2×" : " y doubling"}</text>
+          <text data-historical-fit-label x={compact ? 0 : g.left} y={g.y(g.ticks.at(-1)!) - 12 * unitsPerPixel} textAnchor="start" fill="#087f8c" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{compact ? "≈" : "Fit · ≈"}{data.historicalFit.doublingYears!.toFixed(1)}{compact ? " y/2×" : " y doubling"}</text>
         </g>}
         {connections.map(series => <polyline key={series.id} data-curve-series={series.id} data-frontier-line={data.line || undefined} points={series.points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke={colors[series.points[0].trackIndex % colors.length]} strokeWidth={1.5} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
         {scenario && future && <g className="pc-extrapolation-overlay" opacity={moving ? reveal : undefined}>
@@ -294,7 +295,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
         </> : future ? future.yearTicks.map(year => <text key={year} x={future.xYear(year)} y={g.height - 20} textAnchor="middle">{year}</text>) : recordingDateTicks ? recordingDateTicks.map(tick => <text key={tick.date} x={g.x(tick.date)} y={g.height - 20} textAnchor="middle">{tick.label}</text>) : <>
           <text x={g.left} y={g.height - 20}>{new Date(g.minTime).getUTCFullYear()}</text>
           {/* Expanded multi-decade charts get five-year labels between the endpoints. */}
-          {!compact && data.yearLabels && fiveYearLabels(new Date(g.minTime).getUTCFullYear(), new Date(g.maxTime).getUTCFullYear()).map(year => <text key={year} data-year-label={year} x={g.x(`${year}-01-01`)} y={g.height - 20} textAnchor="middle">{year}</text>)}
+          {!compact && data.yearLabels && (data.historicalFit ? historicalYears : fiveYearLabels(new Date(g.minTime).getUTCFullYear(), new Date(g.maxTime).getUTCFullYear())).map(year => <text key={year} data-year-label={year} x={g.x(`${year}-01-01`)} y={g.height - 20} textAnchor="middle">{year}</text>)}
           <text x={g.width - g.right} y={g.height - 20} textAnchor="end">{new Date(g.maxTime).getUTCFullYear()}</text>
         </>}
         {!compact && <text x={0} y={g.height - 3} textAnchor="start">{scenario ? "Year · historical observations + conditional continuation" : (data.xLabel ?? (data.line ? "Year · historical frontier" : "Date · source basis varies"))}</text>}

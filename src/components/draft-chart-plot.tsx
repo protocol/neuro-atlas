@@ -136,7 +136,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yLabel = preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
-  const top = 28 + yTitle.length * 16;
+  const fittedLabels = referenceTrendlines.filter(line => line.fit);
+  const fitLabelTop = 28 + yTitle.length * 16;
+  const top = fitLabelTop + fittedLabels.length * 16 + (fittedLabels.length && benchmark ? 16 : 0);
   const bottom = top + (preview ? 84 : 232) + previewExtra;
   const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
   const xs = plot.points.map(point => point.x);
@@ -303,10 +305,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         data-export-stroke-width={2} pointerEvents="none" aria-label={referenceTrendline.label}>
         <title>{referenceTrendline.note}</title>
       </polyline>)}
-      {referenceTrendlines.filter(line => line.fit).map(line => {
-        const end = line.points.at(-1)!;
-        return <text key={line.id} data-fit-direct-label={line.id} x={x(end.x) - 6} y={Math.max(top + 14, y(end.y) - 10)} textAnchor="end" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.directLabel ?? line.label}</text>;
-      })}
+      {fittedLabels.map((line, index) => <text key={line.id} data-fit-direct-label={line.id} x={0} y={fitLabelTop + index * 16 - 4} textAnchor="start" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.directLabel ?? line.label}</text>)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
