@@ -1,5 +1,5 @@
 import type { HistoricalLogFit } from "./historical-log-fit";
-export type DraftTrendline = { id?: string; label: string; color: string; note: string; methodologyUrl?: string; methodologyLabel?: string; points: { x: number; y: number }[]; fit?: HistoricalLogFit };
+export type DraftTrendline = { id?: string; label: string; color: string; note: string; methodologyUrl?: string; methodologyLabel?: string; directLabel?: string; points: { x: number; y: number }[]; fit?: HistoricalLogFit };
 
 /** A reported, derived or reconstructed observation with explicit qualifiers and scope. */
 export type DraftObservation = {

@@ -67,6 +67,7 @@ const acquisitionEconomics: DraftPlot = {
   referenceTrendlines: ACQUISITION_FITS.map((fit, i) => ({
     id: i ? "em" : "expansion", fit,
     label: `${i ? "EM" : "Expansion"} fit · doubling ≈${fit.doublingYears!.toFixed(1)} y`,
+    directLabel: `${i ? "EM" : "ExM"} · 2×/${fit.doublingYears!.toFixed(1)}y`,
     color: i ? "#cd732f" : "#9275ca", points: fit.points,
     note: `${historicalFitNote(fit)} Source: arXiv:2603.25713v1 Table A1 (p. 18). ${i ? "PEEM excluded as prospective; heterogeneous reported-tech estimates." : "ExA-SPIM 2024 author estimate included; reference 54 cites HiExM (citation mismatch). mesoSPIM excluded from expansion family."}`,
     methodologyUrl: "https://arxiv.org/pdf/2603.25713v1", methodologyLabel: "Source table ↗",

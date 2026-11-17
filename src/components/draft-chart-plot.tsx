@@ -305,7 +305,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       </polyline>)}
       {referenceTrendlines.filter(line => line.fit).map(line => {
         const end = line.points.at(-1)!;
-        return <text key={line.id} data-fit-direct-label={line.id} x={x(end.x) - 6} y={Math.max(top + 14, y(end.y) - 10)} textAnchor="end" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.label}</text>;
+        return <text key={line.id} data-fit-direct-label={line.id} x={x(end.x) - 6} y={Math.max(top + 14, y(end.y) - 10)} textAnchor="end" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.directLabel ?? line.label}</text>;
       })}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
