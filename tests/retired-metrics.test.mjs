@@ -18,7 +18,7 @@ test('retired panels are unmounted, with every other source observation retained
     await click(document.querySelector('[data-expand-metrics]'));
     for (const id of retiredPoints) assert.equal(!!document.querySelector(`[data-source-observation="${id}"]`), false, id);
     const expected = Object.values(DRAFT_CHART_EVIDENCE).flatMap(e => e.plots).filter(p => !retired.includes(p.id)).flatMap(p => p.points.map(q => q.id)).sort();
-    const newIds = BCI_BITRATE_EVIDENCE.plots.flatMap(plot => plot.points.map(point => point.id));
+    const newIds = [...BCI_BITRATE_EVIDENCE.plots.flatMap(plot => plot.points.map(point => point.id)), 'exaspim2024'];
     assert.deepEqual([...document.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation).sort(), [...expected, ...newIds].sort());
     assert.equal(expected.length, 78);
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 16);

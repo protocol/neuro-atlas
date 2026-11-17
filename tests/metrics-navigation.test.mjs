@@ -34,7 +34,7 @@ test('Metrics is one full-rail-default, keyboard-native index in the five-group 
     assert.equal(toggles[0].getAttribute('aria-expanded'), 'false');
     assert.equal(document.querySelectorAll('[data-draft-chart-card]').length, 16, 'One peer tile per numeric plot or timeline');
     assert.equal(document.querySelectorAll('[data-draft-chart-status="gap"], [data-draft-evidence-gaps]').length, 0);
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 92, '78 unchanged original observations plus 14 slide-digitized BCI marks');
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 93, '78 preserved original observations plus 14 BCI marks and the qualified ExA-SPIM 2024 estimate');
   } finally { await cleanup(); }
 });
 

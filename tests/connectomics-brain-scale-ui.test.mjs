@@ -16,10 +16,14 @@ import { brainBenchmarkContext } from '../src/lib/connectomics-brain-benchmarks.
 globalThis.React = React;
 const plots = Object.values(METRIC_CHART_EVIDENCE).flatMap(item => item.plots);
 const supported = ['public-data-size', 'acquisition-economics'];
-// Independently captured from untouched 5015d2c before implementation. No source/geometry normalization.
+// Public-data goldens remain those captured from untouched 5015d2c.
+// Acquisition is intentionally re-pinned for the approved reciprocal units,
+// ExA-SPIM 2024 author estimate and two family fits, with d819dec label lanes
+// and fe6fdd9 compact preview copy; no geometry normalization hides these
+// changes. Source/fit math is checked separately.
 const baseline = {
   'public-data-size': { preview: '5f685a0387cb23d85d4a83b6e807bc7afc416b70b84d927fdf50894858211482', svg: '4a2d0d3bd865a7c03983bed2045b8c5a40ac4e2e7f5a292671c5b2f66fada6a2' },
-  'acquisition-economics': { preview: 'c712b8d74dc7915335b70baa6857e72a2282640d4fe8e44ddb06c3424b046cdb', svg: '87e640dc92681901ce50c98bf7d879ef844666a2de5c36152063fabb3870f153' },
+  'acquisition-economics': { preview: '119a0d3f5aec7eb5704561c74896a79b2947e90a0a0b5c4a8bed05ec468ca411', svg: '0daa9990cdbb566e4fc4686bda13fcb9fca2b4458117409154e8f9feaeedd1d0' },
 };
 const normalize = html => html.replace(/_R_[^"]*/g, 'ID').replace(/ data-brain-scale-(?:progress|state|log-min|log-max)="[^"]*"/g, '');
 const hash = node => createHash('sha256').update(normalize(node.outerHTML)).digest('hex');
@@ -52,12 +56,18 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
     const original = svg.outerHTML, frame = svg.getAttribute('viewBox');
     const overlapRows = figure.querySelectorAll('.draft-plot-overlap-note').length;
     const points = [...svg.querySelectorAll('[data-source-observation]')];
-    const coordinates = () => points.map(p => p.localName === 'rect'
-      ? Number(p.getAttribute('y')) + Number(p.getAttribute('height')) / 2
-      : p.localName === 'polygon' ? p.getAttribute('points').split(' ').map(pair => Number(pair.split(',')[1])).reduce((sum, y) => sum + y, 0) / 3
-      : Number(p.getAttribute('cy')));
+    const coordinates = () => points.map(p => {
+      if (p.localName === 'rect') return Number(p.getAttribute('y')) + Number(p.getAttribute('height')) / 2;
+      if (p.localName === 'polygon') {
+        // PEEM is a triangle; the newly distinct mesoSPIM marker is a diamond.
+        // Their plotted center is the mean of all vertices, not always three.
+        const ys = p.getAttribute('points').split(' ').map(pair => Number(pair.split(',')[1]));
+        return ys.reduce((sum, y) => sum + y, 0) / ys.length;
+      }
+      return Number(p.getAttribute('cy'));
+    });
     const before = coordinates();
-    const [startMin, startMax, endMin, endMax] = plotId === 'public-data-size' ? [-3, 1, -3, 7] : [-4, -1, -10, -1];
+    const [startMin, startMax, endMin, endMax] = plotId === 'public-data-size' ? [-3, 1, -3, 7] : [8, 11, 8, 17];
     await click(toggle);
     assert.equal(figure.dataset.brainScaleState, 'animating');
     assert.equal(toggle.getAttribute('aria-checked'), 'true');
@@ -68,7 +78,9 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
     await clock.advance(175);
     assert.equal(Number(svg.dataset.brainScaleLogMin), (startMin + endMin) / 2);
     assert.equal(Number(svg.dataset.brainScaleLogMax), (startMax + endMax) / 2);
-    const top = 44, bottom = 276;
+    // Acquisition alone reserves 48 units above its unchanged 232-unit plot
+    // band for the two approved fit labels and benchmark scope annotation.
+    const top = plotId === 'acquisition-economics' ? 92 : 44, bottom = top + 232;
     for (const [index, point] of plot.points.entries()) {
       const expected = bottom - (Math.log10(point.y) - (startMin + endMin) / 2) / (((startMax + endMax) - (startMin + endMin)) / 2) * (bottom - top);
       assert.ok(Math.abs(coordinates()[index] - expected) < 1e-9, 'mark follows the interpolated log domain');

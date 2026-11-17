@@ -12,16 +12,27 @@ test('the frozen historical inventory plus the explicit BCI addition enumerate e
   const additions = JSON.parse(readFileSync('tests/fixtures/bci-bitrate-chart-inventory.json', 'utf8'));
   assert.equal(inventory.charts.length, 24, 'Historical native acceptance evidence remains frozen');
   assert.equal(additions.length, 1, 'Only the independently specified new chart is additive');
-  const current = inventory.charts.flatMap(chart => chart.id === 'metric-panel-neuralink-cumulative' ? [chart, ...additions] : [chart]);
+  // The acceptance document is immutable; project only the explicitly approved
+  // reciprocal-unit title into today's inventory, retaining its stable panel ID.
+  const current = inventory.charts.flatMap(chart => chart.id === 'metric-panel-neuralink-cumulative' ? [chart, ...additions] : [chart])
+    .map(chart => chart.id === 'metric-panel-acquisition-economics'
+      ? { ...chart, title: 'Estimated acquisition efficiency — voxels per dollar' }
+      : chart);
   const native = JSON.parse(readFileSync('tests/fixtures/chart-design-inventory.json', 'utf8'));
+  // Only these two previews use compact copy; modal/export/canonical identities
+  // remain the full titles in both inventories and their sharing contracts.
+  const previewTitle = title => ({
+    'Estimated acquisition efficiency — voxels per dollar': 'Imaging efficiency',
+    'Simultaneous neural recordings': 'Neurons per experiment',
+  }[title] ?? title);
   const Page = FieldVelocityPage.default ?? FieldVelocityPage;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(Page)));
   try {
     const cards = [...dom.window.document.querySelectorAll('[data-metric-rail] article')].filter(card => !card.closest('[hidden], [inert]'));
     const titles = cards.map(card => card.querySelector('h3, .pc-card-title, figcaption').textContent);
     assert.equal(titles.length, 25, 'Derived from current route, not the earlier approximate scope');
-    assert.deepEqual(current.map(chart => chart.title), titles);
-    assert.deepEqual(native.map(chart => chart.title), titles);
+    assert.deepEqual(current.map(chart => previewTitle(chart.title)), titles);
+    assert.deepEqual(native.map(chart => previewTitle(chart.title)), titles);
     assert.equal(new Set(current.map(chart => chart.id)).size, titles.length);
     for (const chart of current) {
       for (const criterion of ['point_size', 'annual_guides', 'series_connections', 'wider_ratio']) {

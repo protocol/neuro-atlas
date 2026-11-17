@@ -16,8 +16,10 @@ const sourceBefore = JSON.stringify(feed);
 // Captured independently from b883bcb before the font normalization. These hash
 // all original text/mark coordinates and content, not just the plotted points.
 const baseline = {
-  // Intentional replacement: three modern electrical observations; no old frontier line.
-  'simultaneously-recorded-neurons': null,
+  // Approved historical-first replacement: 94 selected tracker rows and an OLS
+  // fit. Pin fe6fdd9's compact frame/rate lane; only its screen-space y offset is
+  // normalized below, never any point, fit endpoint, tick or source text.
+  'simultaneously-recorded-neurons': 'f3dff9768df2d91019e95d3f165f2b2a20c6f1e00e352f9650e77494427f7036',
   // Hashes below re-pinned for the 160px compact rail frame (Metrics chapter redesign);
   // only preview frame height changed, expanded/export geometry is unchanged.
   'tissue-mapped': '6282f2ebfc975fcbefc8ee13172c503aa86f13eb8de7864c37a5ca52870643ad',
@@ -60,13 +62,18 @@ function assertFonts(width) {
       `${label.closest('[data-performance-card]').dataset.performanceCard}: ${label.textContent} should render at 12px, not ${renderedFont(label, width)}px`);
   }
 }
+function assertUnitCaption(label) {
+  if (label.closest('[data-performance-card]')?.dataset.performanceCard === 'simultaneously-recorded-neurons') {
+    assert.equal(label.textContent, 'Neurons · log', 'Only the historical preview uses the approved compact unit label');
+  } else assert.match(label.textContent, / · (linear|log) scale$/);
+}
 function assertGeometry() {
   assert.equal(createHash('sha256').update(readFileSync('src/data/field-velocity/citation-latency.bundled-20261106.json')).digest('hex'), '0e43c72e2176e21d5418ff88948f3e61396e36a381dc70b8ccb2cbb2a0866611', 'The new citation geometry is tied to the independently verified November 6 source');
   const cards = [...document.querySelectorAll('[data-performance-card]')];
   assert.deepEqual(cards.map(card => card.dataset.performanceCard), Object.keys(baseline));
   for (const card of cards) {
     const svg = card.querySelector('.pc-preview svg');
-    assert.equal(svg.getAttribute('viewBox'), '0 0 360 160', 'The fixed plot coordinate frame must not change');
+    assert.equal(svg.getAttribute('viewBox'), card.dataset.performanceCard === 'simultaneously-recorded-neurons' ? '0 0 360 144' : '0 0 360 160', 'Only the approved historical preview adopts the shorter frame');
     // Only the readable unit/scale caption may move down to reserve its ascent.
     // Its content/x plus every tick, point, interval and other label remain pinned.
     const normalized = svg.cloneNode(true);
@@ -81,7 +88,7 @@ function assertGeometry() {
       path.setAttribute('stroke-width', '2.5');
     }
     const caption = normalized.querySelector('text');
-    assert.match(caption.textContent, / · (linear|log) scale$/);
+    assertUnitCaption(svg.querySelector('text'));
     caption.setAttribute('y', '16');
     assert.equal(caption.getAttribute('x'), '0', 'The unit caption shares the heading content edge');
     caption.setAttribute('x', '64'); // Restore only its former internal-gutter anchor for the independent geometry golden.
@@ -100,11 +107,15 @@ function assertGeometry() {
       line.setAttribute('stroke', 'var(--border-strong)');
     }
     if (card.dataset.performanceCard === 'simultaneously-recorded-neurons') {
-      assert.equal(normalized.querySelector('polyline'), null);
-      assert.equal(normalized.querySelectorAll('circle').length, 3);
-      assert.match(caption.textContent, /electrical units/);
+      assert.equal(normalized.querySelectorAll('polyline').length, 1, 'One bounded historical fit, not a connected frontier or extrapolation');
+      assert.ok(normalized.querySelector('[data-historical-fit] polyline'));
+      assert.equal(normalized.querySelectorAll('circle').length, 94);
+      assert.equal(caption.textContent, 'Neurons · log');
+      assert.deepEqual([...svg.querySelectorAll('[data-year-guide]')].map(line => Number(line.dataset.yearGuide)), [1970, 1980, 1990, 2000, 2010]);
       for (const p of normalized.querySelectorAll('circle')) for (const a of ['cx', 'cy']) assert.ok(Number.isFinite(Number(p.getAttribute(a))));
-      continue;
+      const label = normalized.querySelector('[data-historical-fit-label]');
+      assert.equal(Number(label.getAttribute('y')), 48 - Number.parseFloat(svg.style.fontSize), 'The reserved lane keeps a 12-screen-pixel gap at every preview width');
+      label.setAttribute('y', '36'); // Canonical 360px-width screen-space offset only.
     }
     assert.equal(createHash('sha256').update(normalized.innerHTML).digest('hex'), baseline[card.dataset.performanceCard],
       'All scientific geometry/content remain unchanged apart from separately tested presentation styles');
@@ -118,7 +129,7 @@ test('preview unit and scale captions reserve their full readable ascent inside 
     try {
       for (const svg of document.querySelectorAll('.pc-preview svg')) {
         const caption = svg.querySelector('text');
-        assert.match(caption.textContent, / · (linear|log) scale$/);
+        assertUnitCaption(caption);
         assert.ok(Number(caption.getAttribute('y')) >= Number.parseFloat(svg.style.fontSize) * 1.2,
           'Readable unit/scale caption must not clip above the preview SVG');
       }

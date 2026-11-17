@@ -31,7 +31,7 @@ import FieldVelocityPage from '../src/app/field-velocity/page.tsx';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 import { navigatePerformance } from '../src/lib/field-velocity/navigation.ts';
 const Page = FieldVelocityPage.default ?? FieldVelocityPage;
-for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics belongs to Cost and automation without changing its values or scope`, async () => {
+for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence`, async () => {
   const anchor = `${prefix}-panel-acquisition-economics`;
   const scrolled = [];
   const cleanup = await mount(React.createElement(Page), `#${anchor}`, win => {
@@ -45,12 +45,19 @@ for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics 
     assert.deepEqual(scrolled, [], 'popup navigation does not scroll the page');
     const source = DRAFT_CHART_EVIDENCE['Connectomics imaging throughput over time'].plots.find(p => p.id === 'acquisition-economics');
     const projected = METRIC_CHART_EVIDENCE['Connectomics imaging cost efficiency'].plots;
-    assert.deepEqual(projected[0].points.map(p => ({ id: p.id, x: p.x, y: p.y, sourceUrl: p.sourceUrl, quote: p.quote })), source.points.map(p => ({ id: p.id, x: p.x, y: p.y * 10_000_000, sourceUrl: p.sourceUrl, quote: p.quote })), 'Per-million unit conversion retains exact source identity and precision');
+    const preserved = projected[0].points.filter(p => p.id !== 'exaspim2024');
+    assert.deepEqual(preserved.map(p => ({ id: p.id, x: p.x, y: p.y, sourceUrl: p.sourceUrl, quote: p.quote })), source.points.map(p => ({ id: p.id, x: p.x, y: 1 / p.y, sourceUrl: p.sourceUrl, quote: p.quote })), 'Reciprocal units retain exact source identity and precision');
+    assert.equal(projected[0].points.length, source.points.length + 1);
+    const authorEstimate = projected[0].points.find(p => p.id === 'exaspim2024');
+    assert.equal(authorEstimate.y, 1e11);
+    assert.match(authorEstimate.note, /author estimate.*citation mismatch/is);
     assert.equal(panel.closest('article').dataset.draftChartCard, 'Connectomics imaging cost efficiency');
     assert.ok(document.getElementById('metric-imaging-cost-efficiency'));
-    assert.equal(panel.querySelector('figcaption').textContent, projected[0].title);
-    assert.deepEqual([...panel.querySelectorAll('[data-draft-preview] [data-source-observation]')].map(n => n.dataset.sourceObservation), source.points.map(p => p.id));
-    assert.ok(panel.textContent.includes(source.scope));
+    assert.equal(panel.querySelector('figcaption').textContent, 'Imaging efficiency');
+    assert.equal(document.querySelector('dialog[open] figcaption').textContent, projected[0].title, 'Compact preview copy never replaces the full modal identity');
+    assert.deepEqual([...panel.querySelectorAll('[data-draft-preview] [data-source-observation]')].map(n => n.dataset.sourceObservation), [...source.points.map(p => p.id), 'exaspim2024']);
+    assert.ok(panel.textContent.includes(projected[0].scope));
+    assert.match(panel.textContent, /heterogeneous resolutions.*cost coverage.*unspecified.*PEEM.*prospective.*citation mismatch/is);
     const acquisition = document.getElementById('draft-panel-acquisition-rates');
     assert.equal(acquisition.closest('[data-metrics-category]').dataset.metricsCategory, 'Mapping Scale');
     assert.equal(acquisition.closest('article').querySelectorAll('[data-draft-panel]').length, 1);

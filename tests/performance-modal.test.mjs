@@ -43,7 +43,7 @@ test('chart opens in a named modal, locks scroll, traps focus, closes visibly an
   } finally { await cleanup(); }
 });
 
-for (const [id, count] of [['simultaneously-recorded-neurons', 3], ['tissue-mapped', 7], ['neural-recording-hours', 11]]) test(`${id} fresh URL mounts only its selected source observations; backdrop closes`, async () => {
+for (const [id, count] of [['simultaneously-recorded-neurons', 94], ['tissue-mapped', 7], ['neural-recording-hours', 11]]) test(`${id} fresh URL mounts only its selected source observations; backdrop closes`, async () => {
   const cleanup = await mount(React.createElement(PerformanceCurves, { data, provenance }), '#' + id);
   try {
     const dialog = document.querySelector('dialog[open]');

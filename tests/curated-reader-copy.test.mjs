@@ -13,9 +13,10 @@ globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
 const raw = JSON.parse(bytes);
 // This suite pins the original curated scientific corpus and its copy rewrite.
-// The additive slide-digitized BCI corpus has its own data/integration contracts;
-// do not regenerate these scientific goldens to absorb a new evidence basis.
+// The additive BCI corpus and approved acquisition projection have separate
+// contracts; neither may silently regenerate the unchanged scientific golden.
 const legacyMetricEvidence = Object.fromEntries(Object.entries(METRIC_CHART_EVIDENCE).filter(([title]) => title !== 'BCI communication rates over time'));
+const unchangedMetricEvidence = Object.fromEntries(Object.entries(legacyMetricEvidence).filter(([title]) => title !== 'Connectomics imaging cost efficiency'));
 const charts = METRIC_CHARTS.filter(chart => chart.title !== 'BCI communication rates over time' && isVisibleMetric(chart));
 const plots = charts.flatMap(chart => METRIC_CHART_EVIDENCE[chart.title].plots);
 const plot = id => plots.find(item => item.id === id);
@@ -36,18 +37,39 @@ function scientificFields(evidence) {
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
   assert.equal(digest(bytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
   assert.equal(digest(JSON.stringify(scientificFields(DRAFT_CHART_EVIDENCE))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
-  assert.equal(digest(JSON.stringify(scientificFields(legacyMetricEvidence))), 'cbe28e7f7fff6aed35c27af8702b0fc827bb1c5817510ca0ac5d7d94afc499df');
+  // Computed from 1c54bff's projection with only the approved cost plot omitted;
+  // independently confirmed equal on 255e91d. Raw/archive hashes above stay fixed.
+  assert.equal(digest(JSON.stringify(scientificFields(unchangedMetricEvidence))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 7], ['largest-connectome-neurons', 5], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],
-    ['recording-hours', 12], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 9],
+    ['recording-hours', 12], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 10],
   ]);
   for (const item of plots) for (const observation of item.points) {
+    if (observation.id === 'exaspim2024') {
+      assert.equal(item.id, 'acquisition-economics');
+      assert.equal(observation.x, 2024);
+      assert.equal(observation.y, 1e11);
+      assert.equal(observation.qualifier, '≈');
+      assert.match(observation.note, /author estimate.*citation mismatch.*HiExM/is);
+      continue;
+    }
     const archived = Object.values(raw).flatMap(e => e.plots).flatMap(p => p.points).find(p => p.id === observation.id);
     assert.deepEqual(observation.dateLabel.match(/\d{4}(?:-\d{2}){0,2}/g), archived.dateLabel.match(/\d{4}(?:-\d{2}){0,2}/g), `${observation.id}: display dates stay exact`);
   }
   assert.equal(charts.length, 13);
-  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 78);
+  const acquisition = plot('acquisition-economics');
+  const archivedAcquisition = DRAFT_CHART_EVIDENCE['Connectomics imaging throughput over time'].plots.find(item => item.id === acquisition.id);
+  assert.deepEqual(acquisition.points.filter(point => point.id !== 'exaspim2024').map(point => point.id), archivedAcquisition.points.map(point => point.id));
+  for (const archived of archivedAcquisition.points) {
+    const projected = acquisition.points.find(point => point.id === archived.id);
+    assert.equal(projected.y, 1 / archived.y, `${archived.id}: exact reciprocal only`);
+    // Group, marker and color distinguish the approved method families; all
+    // remaining source fields, including quotations and dates, stay unchanged.
+    const presentation = ['y', 'group', 'marker', 'color', 'dateLabel', 'exportAnnotation', 'note', 'exportNote'];
+    assert.deepEqual(omit(projected, presentation), omit(archived, presentation), archived.id);
+  }
+  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 79);
   assert.deepEqual(METRIC_CHART_EVIDENCE['Demonstrated applications enabled by connectomics over time'].timeline.events.map(item => item.id), ['application-0', 'application-2']);
 });
 
@@ -115,13 +137,17 @@ test('cost and throughput retain acquisition boundaries, estimates, resolution a
   assert.match(plot('acquisition-rates').scope, /acquisition.*resolution.*lower bound/i);
   assert.match(point('fib-sem-2017').note, /100-day.*interruptions.*8×8×8 nm/);
   assert.match(point('autotem-2020').note, />70.*40 nm/);
-  assert.match(plot('acquisition-economics').scope, /acquisition.*resolution.*PEEM.*prospective/i);
-  assert.match(plot('acquisition-economics').seriesNote, /10,000,000.*Table A1.*Voxels\/\$.*Figure 2/);
+  assert.match(plot('acquisition-economics').scope, /acquisition.*cost.*coverage.*unspecified/i);
+  assert.match(plot('acquisition-economics').scope, /heterogeneous resolutions.*PEEM.*prospective/i);
+  assert.match(plot('acquisition-economics').seriesNote, /Table A1.*Voxels\/\$.*rather than.*Figure 2.*throughput\/hour divided by cost\/hour/);
   assert.match(point('exllsm2019').note, /1,000,000,000/);
   assert.match(point('peem2024').note, /2024.*2025/);
   assert.match(point('peem2024').note, /8x8x30 nm.*prospective/);
   assert.match(point('bdtem2024').note, /0\.3 Gpixel\/s.*projection/);
-  assert.match(charts.find(item => item.title === 'Connectomics imaging cost efficiency').constraint, /preparation.*reconstruction.*storage.*proofreading/i);
+  const doc = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot: plot('acquisition-economics') })));
+  try {
+    assert.match(doc.window.document.body.textContent, /Preparation.*labeling.*alignment.*reconstruction.*proofreading.*storage require additional budgets/i, 'The active source disclosure retains additional all-in cost boundaries');
+  } finally { doc.window.close(); }
 });
 
 test('benchmark and effort descriptions keep fixed evaluations, test subsets and version-specific labor', () => {

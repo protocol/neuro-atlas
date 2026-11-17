@@ -80,16 +80,18 @@ test('canonical source bytes and unmodified tissue chart are preserved', async (
   } finally { await cleanup(); }
 });
 
-// The refreshed recording card deliberately removes the historical growth UI.
-// Pure legacy-fit math is still covered by extrapolation*.test.mjs. A changed
-// inherited reference can never become a fit over new mixed measurements.
+// Historical electrical recording is now the main default, with its own
+// source-selected descriptive fit. The three modern measurement views still
+// cannot acquire a fit from the separate inherited reference archive.
 for (const [name, transform] of [['flat', () => 651], ['decreasing', (_, i) => 100 - i], ['slow', (_, i) => 2 + i / 100]]) test(`${name} inherited neuron history never enables a fit in modern recording views`, async () => {
   const changed = structuredClone(data);
   changed.record.series = changed.record.series.map((p, i) => ({ ...p, y: transform(p.y, i) }));
   const cleanup = await mount(React.createElement(PerformanceCurves, { data: changed, provenance }), '#simultaneously-recorded-neurons');
   try {
     const dialog = document.querySelector('dialog');
-    assert.equal(dialog.querySelector('[role=switch], [data-extrapolation-line], [data-target-line], [data-fit-diagnostics]'), null);
+    const select = dialog.querySelector('[data-recording-view-select]');
+    await act(async () => { select.value = 'electrical'; select.dispatchEvent(new Event('change', { bubbles: true })); });
+    assert.equal(dialog.querySelector('[role=switch], [data-extrapolation-line], [data-target-line], [data-fit-diagnostics], [data-historical-fit]'), null);
     assert.deepEqual([...dialog.querySelectorAll('[data-curve-point]')].map(p => Number(p.dataset.value)), [741, 2668, 1012]);
   } finally { await cleanup(); }
 });

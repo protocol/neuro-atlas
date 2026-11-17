@@ -49,7 +49,8 @@ test('acquisition preview and details use voxels per dollar with the exact unit 
   }
   for (const preview of [true, false]) {
     const doc = documentFor(plot, preview);
-    assert.match(doc.querySelector('svg').textContent, /Approx\. voxels\/\$ \(log\)/);
+    assert.equal(doc.querySelector('.draft-plot-axis-title').textContent, preview ? '≈ voxels/$ · log' : 'Approx. voxels/$ (log)');
+    assert.equal(doc.querySelector('figcaption').textContent, preview ? 'Imaging efficiency' : plot.title);
     assert.doesNotMatch(doc.body.textContent, /\$\/voxel\b/);
     if (!preview) {
       const row = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('ExLLSM'));
