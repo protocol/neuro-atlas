@@ -13,6 +13,7 @@ import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
+import { compactCount, countWords } from "@/lib/large-count-label";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
@@ -130,17 +131,18 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
   const active = tooltip.active;
-  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
+  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
   const { width, figure } = usePlotWidth();
   const previewExtra = useMetricPreviewSpace(figure, preview);
   const yLabel = preview && plot.previewYLabel ? plot.previewYLabel : preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const fittedLabels = referenceTrendlines.filter(line => line.fit);
+  const compactFit = preview && fittedLabels.length > 0;
   const fitLabelTop = 28 + yTitle.length * 16;
   const top = fitLabelTop + fittedLabels.length * 16 + (fittedLabels.length && benchmark ? 16 : 0);
-  const bottom = top + (preview ? 84 : 232) + previewExtra;
-  const baseHeight = bottom + 64 + (xTitle.length - 1) * 16;
+  const bottom = top + (compactFit ? 56 : preview ? 84 : 232) + previewExtra;
+  const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
   const xs = plot.points.map(point => point.x);
   const ys = plot.points.map(point => point.y);
   const numericX = plot.xKind === "number";
@@ -182,7 +184,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     points: series.pointIds.map(id => plot.points.find(point => point.id === id)).filter((point): point is DraftObservation => !!point).sort((a, b) => a.x - b.x),
   })).filter(series => series.points.length > 1);
   const connectionNote = connections.length ? `Lines connect only ${connections.map(series => series.label).join("; ")}; other observations remain separate.` : "Unconnected observations";
-  const axisLabel = preview ? previewTickLabel : tickLabel;
+  const axisLabel = plot.id === "acquisition-economics" ? compactCount : preview ? previewTickLabel : tickLabel;
   const baselineLeft = Math.max(46, ...baselineYTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
   const targetLeft = Math.max(46, ...targetYTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
   const left = baselineLeft + (targetLeft - baselineLeft) * benchmarkProgress;
@@ -295,7 +297,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </g>
       </> : <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />}
       {(energyAxis?.ticks ?? xTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
-      <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      {!compactFit && <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>}
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
       </text>}
@@ -331,6 +333,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
+    {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">M = million · B = billion · T = trillion · Q = quadrillion</p>}
     {benchmark && <div className="brain-scale-controls">
       <button type="button" role="switch" data-brain-scale-toggle aria-checked={benchmarkEnabled}
         onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>

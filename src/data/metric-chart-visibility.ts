@@ -1,3 +1,4 @@
+import { countWords } from "@/lib/large-count-label";
 import { DRAFT_CHARTS, type DraftChart } from "./draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
 import { BCI_BITRATE_CHART, BCI_BITRATE_EVIDENCE } from "./bci-bitrate";
@@ -34,7 +35,7 @@ const acquisitionPoints = acquisitionSource.points.map(point => ({
   marker: point.id === "peem2024" ? "triangle" as const : point.id === "mesospim2024" ? "diamond" as const : "circle" as const,
   color: point.id === "mesospim2024" ? "#238e91" : point.color,
   dateLabel: `${point.x} · year as printed in Table A1`,
-  exportAnnotation: `${point.label} · ≈${(1 / point.y).toExponential(1).replace("e+", "e")} vox/$${point.id === "peem2024" ? " · prospective" : ""}`,
+  exportAnnotation: `${point.label} · ≈${countWords(1 / point.y)} vox/$${point.id === "peem2024" ? " · prospective" : ""}`,
   note: point.note?.replace(/Display transformation:.*$/, "Display uses the published Table A1 Approx. Voxels/$ column; heterogeneous sampling and cost scopes.")
     .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
     .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
@@ -45,7 +46,7 @@ acquisitionPoints.push({
   ...acquisitionPoints.find(point => point.id === "exaspim2023")!,
   id: "exaspim2024", x: 2024, y: 1e11,
   label: "ExA-SPIM 2024 · author estimate", annotation: "ExA-SPIM 2024 · author estimate",
-  exportAnnotation: "ExA-SPIM 2024 · ≈1e11 vox/$ · author estimate; citation mismatch",
+  exportAnnotation: "ExA-SPIM 2024 · ≈100 billion vox/$ · author estimate; citation mismatch",
   dateLabel: "2024 · year as printed in Table A1",
   note: "Table A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors’ estimate, with the mismatch disclosed.",
 });

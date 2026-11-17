@@ -1,3 +1,5 @@
+import { compactCount } from "./large-count-label";
+
 /** Modeled context only: never merge these scenarios into source observations.
  * Volume sources and demonstrated EM sampling are independent inputs. Applying
  * that sampling densely across an entire brain is an image-capacity scenario,
@@ -52,7 +54,7 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
     references: [1e9, 1e8, 1e7, 1e6, 1e5].map((budget, index) => {
       const value = brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human) / budget;
       const name = ["$1B", "$100M", "$10M", "$1M", "$100K"][index];
-      return { id: `human-budget-${budget}`, budget, value, label: `${name} · ${value.toExponential(1).replace("e+", "e")}` };
+      return { id: `human-budget-${budget}`, budget, value, label: `${name} · ${compactCount(value)}` };
     }),
   };
   return undefined;
