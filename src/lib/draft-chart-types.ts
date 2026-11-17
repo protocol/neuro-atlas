@@ -34,6 +34,9 @@ export type DraftObservation = {
 export type DraftPlot = {
   id: string;
   title: string;
+  /** Concise card labels; full chart, exports and link identity retain title/units. */
+  previewTitle?: string;
+  previewYLabel?: string;
   xLabel: string;
   yLabel: string;
   scale: "linear" | "log";

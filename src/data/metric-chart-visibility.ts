@@ -53,6 +53,8 @@ export const ACQUISITION_FITS = [expansionIds, emIds].map(ids => fitHistoricalLo
 const acquisitionEconomics: DraftPlot = {
   ...acquisitionSource,
   title: "Estimated acquisition efficiency — voxels per dollar",
+  previewTitle: "Imaging efficiency",
+  previewYLabel: "≈ voxels/$ · log",
   yLabel: "Approx. voxels/$ (log)", valueSignificantDigits: 3,
   scope: "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate with a citation mismatch.",
   seriesNote: "Table A1 Approx. Voxels/$ values, rather than digitized Figure 2 marks or throughput/hour divided by cost/hour. Figure 2 has TEMCA-GridTape without an exact table row, omits mesoSPIM, and differs for MultiSEM 706. mesoSPIM stays separate from expansion microscopy. PEEM is excluded from the historical EM fit.",

@@ -71,7 +71,7 @@ export function fiveYearLabels(first: number, last: number) {
 /** A compact coordinate frame keeps card ticks readable without changing full-chart geometry. */
 function compactChartGeometry(data: PlotData, extraHeight = 0, width = 360) {
   const full = chartGeometry(data);
-  const height = 160 + extraHeight, left = 64, right = 16, top = data.historicalFit ? 62 : 30, bottom = 44;
+  const height = (data.historicalFit ? 144 : 160) + extraHeight, left = 64, right = 16, top = data.historicalFit ? 48 : 30, bottom = 44;
   return { ...full, width, height, left, right,
     x: (date: string) => left + (full.x(date) - full.left) / (full.width - full.left - full.right) * (width - left - right),
     y: (value: number) => top + (full.y(value) - full.top) / (full.height - full.top - full.bottom) * (height - top - bottom),
@@ -261,7 +261,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
       <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.connectTracks ? "Lines connect successive reliable observations within each measurement series." : data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
-        <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{data.unit} · {scale} scale</text>
+        <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{compact && data.historicalFit ? "Neurons · log" : `${data.unit} · ${scale} scale`}</text>
         <ChartYearGuides years={data.historicalFit ? historicalYears : annualDateYears(original.minTime, original.maxTime)} x={year => g.x(`${year}-01-01`)} top={g.y(g.ticks.at(-1)!)} bottom={g.y(g.ticks[0])} />
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
@@ -335,7 +335,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   </div></>;
 }
 
-export function CurveCard({ id, title, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
+export function CurveCard({ id, title, previewTitle, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const open = hash === `#${canonicalPerformanceAnchor(id)}`;
@@ -344,7 +344,7 @@ export function CurveCard({ id, title, coverage, plot, children, sourceLinks, pr
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
 
-      <span className="pc-card-title">{title}</span>
+      <span className="pc-card-title">{previewTitle ?? title}</span>
       {plot && <CurvePlot data={plot} compact />}
     </button>
     <div className="pc-card-share" data-metric-card-footer>
@@ -430,7 +430,7 @@ function selectRecordingView(id: RecordingViewId) {
 function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
   const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
   const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
-  return <CurveCard id={recordingAnchor} title={recordingTitle} eyebrow="Recording evidence"
+  return <CurveCard id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
     coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
     previewNote="Historical reported neurons per experiment · mixed preparations."
     plot={recordingPlot(HISTORICAL_RECORDING)}
