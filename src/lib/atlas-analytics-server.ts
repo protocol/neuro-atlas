@@ -1,8 +1,8 @@
-// Server time is the only launch authority. Never import launch-access's crypto into the client.
-const launchAt = Date.parse("2026-11-19T14:00:00Z");
+// Password access is enforced by the proxy, independently of Analytics eligibility.
+// Keep authorized prelaunch content measurable without tracking the password screen.
 
 export function analyticsContext(now: number, environment?: string, measurementId?: string) {
-  if (!Number.isFinite(now) || now < launchAt || environment !== "production" ||
+  if (!Number.isFinite(now) || environment !== "production" ||
       !measurementId || !/^G-[A-Z0-9]{6,20}$/.test(measurementId) ||
       measurementId === "G-XPSNFVNHGB") return { eligible: false as const };
   return { eligible: true as const, measurementId };

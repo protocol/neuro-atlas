@@ -13,7 +13,7 @@ The owner approved a separate **Neuro Atlas** web stream within the existing PL 
 
 ## Collection policy
 
-The standalone password landing page has no Analytics, remote assets, or tracking. Authorized prelaunch content also stays tracker-free. The context endpoint enables Analytics only after `2026-11-19T14:00:00Z`, in `VERCEL_ENV=production`, with a valid dedicated measurement ID. This is server-controlled, not a browser-clock or URL override.
+The standalone password landing page has no Analytics, remote assets, or tracking. Per the owner's November 17 correction, pages viewed after entering the password may collect before launch under the existing consent policy. The public-launch date controls access only. The context endpoint requires `VERCEL_ENV=production` and a valid dedicated measurement ID, independently of the launch date. The proxy continues to deny unauthenticated prelaunch access to content, assets and this endpoint.
 
 The companion PL Neuro host PR overwrites `x-atlas-consent-region` on all rewritten Atlas requests from trusted Vercel geography. Absent provider geography requires explicit consent; country classification otherwise follows the host's existing policy. The context endpoint returns that policy with private/no-store and CDN no-store headers; stale public cookies cannot relax it. A direct origin is not an eligible client hostname.
 
@@ -25,6 +25,6 @@ Only canonical Atlas content routes collect. Page locations omit queries and fra
 
 Focused controller, mounted component and server-route tests exercise consent, withdrawal, cross-tab updates, StrictMode/remount, history, redaction and failure cases with synthetic IDs and no network execution. See `tests/atlas-analytics-*.test.mjs`.
 
-Stream creation/settings and production environment configuration were verified separately from application activation. This is a PR-first implementation: **no production merge/deployment and no live Atlas GA collection are claimed**. Preview and prelaunch pages are intentionally silent, so a Realtime zero there is expected, not an end-to-end collection proof. After the approved production release and launch boundary, verify one eligible consented navigation in the network panel and GA Realtime/DebugView, then verify rejection/withdrawal silence. Keep this distinct from local fixture checks.
+Stream creation/settings and production environment configuration were verified separately from application activation. This correction is PR-first: **no production merge/deployment or live collection is claimed by its local tests**. Preview deployments and the standalone password screen remain silent. After the approved production release, verify an authorized, consent-permitted prelaunch page navigation in the network panel and GA Realtime/DebugView, then verify rejection/withdrawal silence. Keep real ingestion distinct from local fixture checks.
 
-A prelaunch tab whose context was ineligible needs a full reload after launch. A failed initial context fetch or tag load fails closed until reload. New public content routes must be added deliberately to the allowlist and cookie-cleanup paths.
+A tab opened under the previous launch-gated implementation needs a full reload after this correction is released. A failed initial context fetch or tag load fails closed until reload. New public content routes must be added deliberately to the allowlist and cookie-cleanup paths. Campaign attribution and custom chart-interaction instrumentation remain separate from this eligibility correction.
