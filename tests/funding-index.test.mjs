@@ -66,7 +66,7 @@ test("aggregates investor participation across financing rounds", async () => {
 
   assert.deepEqual(
     { roundCount: khosla.roundCount, companyCount: khosla.companyCount },
-    { roundCount: 5, companyCount: 2 },
+    { roundCount: 6, companyCount: 2 },
   );
 });
 

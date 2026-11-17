@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useId, useRef, useState } from "react";
 import { atlasPath, atlasPathname } from "@/lib/atlas-path";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { usePathname } from "next/navigation";
@@ -67,23 +68,6 @@ function VItem({ tab, active }: { tab: { href: string; label: string }; active: 
   );
 }
 
-function HItem({ tab, active }: { tab: { href: string; label: string }; active: boolean }) {
-  return (
-    <Link
-      href={tab.href}
-      target={tab.href === NEUROFOUNDERS_MAP_URL ? "_blank" : undefined}
-      rel={tab.href === NEUROFOUNDERS_MAP_URL ? "noopener noreferrer" : undefined}
-      aria-label={tab.href === NEUROFOUNDERS_MAP_URL ? "Ecosystem on Neurofounders (opens in a new tab)" : undefined}
-      title={tab.href === NEUROFOUNDERS_MAP_URL ? "Neurofounders startup map" : undefined}
-      aria-current={active ? "page" : undefined}
-      className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-        active ? "bg-surface text-foreground shadow-sm" : "text-muted hover:text-foreground"
-      }`}
-    >
-      {tab.label}
-    </Link>
-  );
-}
 
 // Vertical sidebar (lg+): brand top, nav in the grey chrome, Methodology below a
 // divider, theme toggle pinned at the bottom. The active item is the white pill.
@@ -112,24 +96,63 @@ export function SideNav() {
   );
 }
 
-// Mobile top bar (below lg): brand + theme toggle, then a horizontal scroll nav.
+// A single, non-sticky mobile header. The native modal supplies focus trapping,
+// Escape dismissal and an inert background without freezing a second tab row.
 export function MobileBar() {
   const pathname = atlasPathname(usePathname());
+  const menuId = useId();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    // Layouts persist across client navigation, including back and forward.
+    if (dialogRef.current?.open) dialogRef.current.close();
+  }, [pathname]);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches && dialogRef.current?.open) dialogRef.current.close(); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+
   return (
-    <div className="lg:hidden">
-      <div className="flex flex-wrap items-center justify-between gap-y-2 px-1 py-3">
+    <div className="mobile-site-header lg:hidden">
+      <div className="flex items-center justify-between gap-2 px-1 py-2">
         <BrandMark />
-        <div className="ml-auto flex items-center gap-2 pr-2">
-          <ThemeToggle />
-        </div>
+        <button ref={triggerRef} type="button" aria-label="Open navigation" aria-haspopup="dialog" aria-expanded={open} aria-controls={menuId}
+          onClick={() => { dialogRef.current?.showModal(); setOpen(true); dialogRef.current?.querySelector<HTMLAnchorElement>("nav a")?.focus(); }}
+          className="mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border text-foreground hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
       </div>
-      <nav className="overflow-x-auto px-3 pb-2">
-        <div className="flex min-w-max items-center gap-1">
-          {TABS.map((t) => (
-            <HItem key={t.href} tab={t} active={pathname === t.href} />
-          ))}
+      <dialog ref={dialogRef} id={menuId} aria-labelledby={`${menuId}-title`} className="mobile-nav-dialog rounded-2xl border border-border bg-surface p-4 text-foreground shadow-xl"
+        onClose={() => { setOpen(false); if (!window.matchMedia("(min-width: 1024px)").matches) triggerRef.current?.focus(); }}
+        onClick={(event) => {
+          // Dismiss on every destination, even the already-active route or an
+          // external new-tab link. The anchor itself still owns navigation.
+          if ((event.target as HTMLElement).closest("a")) dialogRef.current?.close();
+          else if (event.target === event.currentTarget) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialogRef.current?.close();
+          }
+        }}>
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h2 id={`${menuId}-title`} className="px-3 text-base font-semibold">Navigation</h2>
+          <button type="button" aria-label="Close navigation" onClick={() => dialogRef.current?.close()}
+            className="flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm text-muted hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-accent">
+            Close <span aria-hidden>×</span>
+          </button>
         </div>
-      </nav>
+        <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
+          {TABS.map((tab) => <VItem key={tab.href} tab={tab} active={pathname === tab.href} />)}
+        </nav>
+        <div className="mt-4 flex items-center justify-between border-t border-border px-3 pt-4">
+          <span className="text-sm text-muted">Appearance</span><ThemeToggle />
+        </div>
+        <PoweredBy />
+      </dialog>
     </div>
   );
 }

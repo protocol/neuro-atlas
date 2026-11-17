@@ -48,6 +48,12 @@ export type FundingCompanyRow = FundingCompany & {
   rounds: FundingRound[];
 };
 
+export function normalizeFundingStage(stage: string): string {
+  const normalized = stage.trim().toLowerCase().replace(/[()[\]–—-]/g, " ").replace(/\s+/g, " ").trim();
+  const undisclosed = /^(?:(?:investment|financing)(?: (?:stage undisclosed|undisclosed(?: stage)?))?|stage undisclosed|undisclosed(?: stage)?|unspecified)$/;
+  return !normalized || undisclosed.test(normalized) ? "Undisclosed" : stage;
+}
+
 export function buildCompanyRows(
   companies: FundingCompany[],
   rounds: FundingRound[],
@@ -78,7 +84,7 @@ export function buildCompanyRows(
       return {
         ...company,
         observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + round.amountUsdM, 0).toFixed(2)),
-        latestStage: companyRounds.at(-1)?.stage ?? "Undisclosed",
+        latestStage: normalizeFundingStage(companyRounds.at(-1)?.stage ?? "Undisclosed"),
         rounds: companyRounds,
       };
     })
@@ -109,8 +115,71 @@ export type FundingInvestor = {
   associatedCapitalUsdM: number;
 };
 
+export type FundingPortfolioDisclosure = {
+  investorName: string;
+  sourceInvestorName?: string;
+  sourceUrl: string;
+  reviewedOn: string;
+  sourceExcerpt?: string;
+  note?: string;
+  familyGrouping?: {
+    memberNames: string[];
+    reviewedOn: string;
+    sourceUrls: string[];
+    note: string;
+  };
+  companies: {
+    name: string;
+    website: string;
+    companySlug?: string;
+    matchSourceUrls?: string[];
+    matchNote?: string;
+  }[];
+};
+
+export function summarizePortfolioEvidence(
+  disclosure: FundingPortfolioDisclosure,
+  companies: FundingCompany[],
+  rounds: FundingRound[],
+) {
+  const screenedSlugs = new Set(companies.map((company) => company.slug));
+  const matchedSlugs = new Set(disclosure.companies.flatMap((company) =>
+    company.companySlug && screenedSlugs.has(company.companySlug) ? [company.companySlug] : [],
+  ));
+  // Only an explicitly reviewed display family can join distinct source investor names.
+  const memberNames = disclosure.familyGrouping?.memberNames ?? [disclosure.sourceInvestorName ?? disclosure.investorName];
+  const records = new Map<string, { round: FundingRound; investors: Set<string> }>();
+  for (const round of rounds) {
+    if (!round.investors?.some((name) => memberNames.includes(name))) continue;
+    // The canonical financing identity is company + announced date + source stage.
+    // A second source or two family members in one record must not double count it.
+    const identity = JSON.stringify([round.companySlug, round.announcedOn, round.stage]);
+    const record = records.get(identity) ?? { round, investors: new Set<string>() };
+    for (const name of round.investors) record.investors.add(name);
+    records.set(identity, record);
+  }
+  const indexed = [...records.values()];
+  const capital = (items: typeof indexed) => Number(items.reduce((sum, item) => sum + item.round.amountUsdM, 0).toFixed(2));
+  return {
+    matchedCompanyCount: matchedSlugs.size,
+    indexedFinancingCount: indexed.length,
+    indexedCompanyCount: new Set(indexed.map(({ round }) => round.companySlug)).size,
+    associatedCapitalUsdM: capital(indexed),
+    members: memberNames.map((name) => {
+      const memberRecords = indexed.filter((record) => record.investors.has(name));
+      return {
+        name,
+        roundCount: memberRecords.length,
+        companyCount: new Set(memberRecords.map(({ round }) => round.companySlug)).size,
+        associatedCapitalUsdM: capital(memberRecords),
+      };
+    }),
+  };
+}
+
 export type FundingIndexData = {
   companies: FundingCompany[];
+  portfolioDisclosures?: FundingPortfolioDisclosure[];
   rounds: FundingRound[];
   milestones: FundingMilestone[];
   investors: FundingInvestor[];

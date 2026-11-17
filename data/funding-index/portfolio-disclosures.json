@@ -1,0 +1,40 @@
+[
+  {
+    "investorName": "Protocol Labs / PLC Neurotech",
+    "sourceInvestorName": "PLC Neurotech",
+    "sourceUrl": "https://plcapital.xyz/neurotech",
+    "reviewedOn": "2026-11-17",
+    "sourceExcerpt": "A selection of our portfolio, spanning BCIs, NeuroAi, and Connectomics:",
+    "note": "Selected published portfolio, not exhaustive and not proof of financing dates, stages, amounts, check sizes, current ownership, or a single legal investment vehicle. The platform disclaimer says certain investments may be held through affiliated vehicles or warehousing arrangements; these examples illustrate the investing experience of the PL Capital network. Companies outside the selected BCI roster remain portfolio disclosures only and do not enter indexed financing totals.",
+    "familyGrouping": {
+      "memberNames": ["Protocol Labs", "PLC Neurotech"],
+      "reviewedOn": "2026-11-17",
+      "sourceUrls": ["https://plcapital.xyz/neurotech", "https://plcapital.xyz/disclaimer"],
+      "note": "Explicitly reviewed display-only family grouping for Neuro Atlas. Protocol Labs and PLC Neurotech remain distinct source investor labels, not spelling aliases or an assertion of legal identity. The PLC page identifies Juan Benet as founder of Protocol Labs and General Partner of PLC Neurotech; the disclaimer explicitly separates advisers and vehicles. Do not add a portfolio company to an investor's financing records without round-specific evidence."
+    },
+    "companies": [
+      {
+        "name": "Echo",
+        "website": "https://www.echo.bio/",
+        "companySlug": "echo-neurotech",
+        "matchSourceUrls": ["https://www.echo.bio/", "https://www.bloomberg.com/news/articles/2025-01-30/andreessen-horowitz-backs-rival-to-musk-s-neuralink-in-new-funding-round"],
+        "matchNote": "The PLC-linked company site's title is Echo Neurotechnologies, matching the Echo Neurotechnologies Corp. named in the existing Bloomberg financing source. The roster's Echo Neurotech label is abbreviated; its legacy echoneurotech.com domain was not used as identity proof. This establishes the company match, not PLC participation in its indexed Series A."
+      },
+      { "name": "EON", "website": "https://eon.systems/" },
+      { "name": "Hemispheric", "website": "https://www.hemispheric.ai/" },
+      { "name": "Integral Neuro", "website": "https://www.integralneuro.com/" },
+      {
+        "name": "Merge Labs",
+        "website": "https://merge.io/blog",
+        "companySlug": "merge-labs",
+        "matchSourceUrls": ["https://merge.io/blog"],
+        "matchNote": "The PLC-linked first-party introduction identifies Merge Labs and its molecular/ultrasound BCI program, matching the screened company. This is not evidence of PLC participation in the indexed seed financing."
+      },
+      { "name": "Netholabs", "website": "https://netholabs.com/" },
+      { "name": "Paradromics", "website": "https://www.paradromics.com/", "companySlug": "paradromics" },
+      { "name": "Precision", "website": "https://precisionneuro.io/", "companySlug": "precision-neuroscience" },
+      { "name": "Science Corp", "website": "https://science.xyz/", "companySlug": "science-corporation" },
+      { "name": "Synchron", "website": "https://synchron.com/", "companySlug": "synchron" }
+    ]
+  }
+]

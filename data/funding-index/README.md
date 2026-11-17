@@ -24,6 +24,10 @@ The v1 list was seeded from the project's BCI company tracker, then screened and
 
 Investor participation is counted once per indexed financing event. Associated capital is the full size of rounds in which an investor appears; it is **not** an estimate of that investor's check size or ownership. Investor names are normalized only for obvious spelling consistency.
 
+`portfolio-disclosures.json` is a separate evidence class: source-published portfolio relationships, including companies outside this screened BCI roster. A portfolio listing does not establish a round date, stage, amount, check size, ownership, or participation in a particular indexed financing. It never adds to the financing roster, round count, or associated-capital totals. `sourceInvestorName` preserves the publisher's investor identity; `investorName` can be an explicitly reviewed display family, whose distinct source labels and grouping rationale remain in `familyGrouping`. This is not a legal-entity alias. Company names and website links preserve the published list; an optional reviewed `companySlug` joins only an existing screened company.
+
+Latest-stage company grouping maps generic Investment, Financing, stage-undisclosed variants, blank and unspecified labels to **Undisclosed**. Original record `stage` labels are retained unchanged. Named stages and distinct financing forms are not rewritten.
+
 ## Regulatory markers
 
 `milestones.csv` contains selected public inflection points that help explain capital timing:
@@ -42,6 +46,8 @@ The set is illustrative and source-linked, not a complete regulatory history.
 - `companies.csv` — the screened company universe and classification fields
 - `foundings.csv` — one reviewed founding-year record per company, with source URL, source kind, review date and a concise origin/registration/rebrand note; blank years remain unknown
 - `rounds.csv` — disclosed financing events, investor participants, and sources
+- `portfolio-disclosures.json` — independently sourced selected portfolio relationships; never financing events
+- `source-review-20261117.md` — Science Series D and PLC portfolio evidence, identity matches, and coverage limits
 - `milestones.csv` — selected regulatory inflection points and sources
 - `src/data/funding-index.json` — generated client payload; do not edit by hand
 
@@ -51,7 +57,7 @@ The set is illustrative and source-linked, not a complete regulatory history.
 2. Run `npm run data:generate`.
 3. Run `npm test`, `npm run lint`, and `npm run build`.
 4. Check `/funding` in both themes and at desktop and mobile widths.
-5. Update `metadata.asOf` in `scripts/generate-derived.mjs` only when the source review actually advanced.
+5. Update `summary.asOf` in `scripts/generate-derived.mjs` only when the source review actually advanced. It is the most recent selective review date, not proof that every source was re-reviewed on that date.
 
 ## Founding years
 
@@ -61,4 +67,4 @@ Founding-year review: **2026-10-15**, 25/25 companies with source-linked years. 
 
 ## Coverage date
 
-Source review current through **2026-09-30**. Every shipped financing and regulatory marker carries a direct source URL. Rows reviewed on that date carry `source_kind` and `reviewed_on`; older rows remain unlabeled rather than being marked reviewed.
+Baseline financing/regulatory source review: **2026-09-30**. Selective additions and corrections are reviewed through **2026-11-17**, including Science's Series D and PLC's selected published portfolio. This is not a fresh exhaustive review of every company's funding history. Every shipped financing and regulatory marker carries a direct source URL. Reviewed rows carry `source_kind` and `reviewed_on`; older rows remain unlabeled rather than being marked reviewed. Portfolio disclosures carry their own independent review date.

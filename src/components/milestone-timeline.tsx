@@ -2,9 +2,9 @@
 
 // Timeline of implanted-BCI milestones across 2024–2026. Three year columns sit
 // side by side: click a year to focus it (smooth width slide). The focused year
-// shows the full-year lane timeline that scrolls horizontally (the scrollbar
-// itself signals there's more). 2026 also draws a live "today" line and a faint
-// sourced cumulative-capital line in the Capital lane. The right
+// opens at the current UTC date in detail mode; Fit year packs full-size marks
+// into more rows without horizontal scrolling. The current year draws a live
+// "today" line; the Capital lane keeps its sourced cumulative line. The right
 // summary rail is collapsible. Legend pills expand inline into subcategories
 // (acronyms carry a tooltip; ✕ collapses). Undated milestones sit in a
 // "date TBD" shelf.
@@ -48,7 +48,8 @@ const LANE_GAP = 8;
 const MARKER_GAP = 4;
 const FOCUS_W = 78; // focused year column width (% of the columns area)
 const NARROW_W = 9; // collapsed year column width (%)
-const FULL_W = 1360; // px width of the 2026 full-year plot (scrolls inside its column)
+const FULL_W = 1360; // px width of a detailed full-year plot
+const PLOT_INSET = 28; // protects first/last marks, including their hover enlargement
 const YEAR_EASE = "width 500ms cubic-bezier(0.22,1,0.36,1)";
 const DOCK_RADIUS = 100;
 const DOCK_MAX = 0.5;
@@ -143,9 +144,14 @@ export function MilestoneTimeline() {
   });
   const [scopeFilter, setScopeFilter] = useState<"all" | "bci">("all");
   const [openStage, setOpenStage] = useState<StageKey | null>(null);
-  const [focusYear, setFocusYearRaw] = useState(2026);
+  const [selectedYear, setFocusYearRaw] = useState<number | null>(null);
   const [railOpen, setRailOpen] = useState(true);
+  const [viewMode, setViewMode] = useState<"detail" | "fit">("detail");
   const [now, setNow] = useState<number | null>(null);
+  // A manual year always wins, even if clicked before the clock initializes.
+  const currentYear = now == null ? YEARS[YEARS.length - 1] : new Date(now).getUTCFullYear();
+  const focusYear = selectedYear ?? YEARS.reduce<number>((nearest, candidate) =>
+    Math.abs(candidate - currentYear) < Math.abs(nearest - currentYear) ? candidate : nearest, YEARS[YEARS.length - 1]);
   const [dock, setDock] = useState<{ x: number; y: number; w: number } | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ m: Milestone; x: number; y: number; below: boolean } | null>(null);
@@ -161,7 +167,17 @@ export function MilestoneTimeline() {
   const dragStart = useRef<number | null>(null);
   const dragged = useRef(false);
 
-  useEffect(() => setNow(Date.now()), []);
+  useEffect(() => {
+    const utcToday = () => {
+      const date = new Date(Date.now());
+      return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+    };
+    // Initialize after hydration so server and client markup agree. The manual
+    // year selection is deliberately independent of this external clock.
+    const initialize = window.setTimeout(() => setNow(utcToday()), 0);
+    const timer = window.setInterval(() => setNow(utcToday()), 60_000);
+    return () => { window.clearTimeout(initialize); window.clearInterval(timer); };
+  }, []);
 
   // Pack in rendered pixels, but retain the exact date-derived x coordinate.
   // The folded plot changes width; extra rows grow each lane instead of shrinking logos.
@@ -177,7 +193,7 @@ export function MilestoneTimeline() {
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [focusYear, railOpen]);
+  }, [focusYear, railOpen, viewMode]);
 
   const matches = (m: Milestone) => {
     if (scopeFilter === "bci" && (m as { scope?: string }).scope !== "bci") return false;
@@ -186,9 +202,10 @@ export function MilestoneTimeline() {
 
   const { lanes, totalH, undated } = useMemo(() => {
     let y = PLOT_TOP;
-    const lanes = STAGES.filter((s) => sel[s.key].size > 0).flatMap((stage) => {
+    const lanes = [];
+    for (const stage of STAGES.filter((s) => sel[s.key].size > 0)) {
       const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m)).sort((a, b) => (a.date! < b.date! ? -1 : 1));
-      if (evs.length === 0) return [];
+      if (evs.length === 0) continue;
       const rowLast: number[] = [];
       const placed = evs.map((m) => {
         const left = pctIn(m.date!, boundsOf(focusYear).t0, boundsOf(focusYear).t1);
@@ -200,8 +217,8 @@ export function MilestoneTimeline() {
       const height = LANE_LABEL_H + nRows * ROW_H + LANE_PAD_BOTTOM;
       const top = y;
       y += height + LANE_GAP;
-      return [{ stage, placed, height, top }];
-    });
+      lanes.push({ stage, placed, height, top });
+    }
     const undated = MILESTONES.filter((m) => !m.date && matches(m));
     return { lanes, totalH: Math.max(y, PLOT_TOP + 120), undated };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -235,7 +252,7 @@ export function MilestoneTimeline() {
       return { ...v, [stage]: next };
     });
 
-  const showTip = (e: React.MouseEvent<HTMLElement>, m: Milestone) => {
+  const showTip = (e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>, m: Milestone) => {
     const r = e.currentTarget.getBoundingClientRect();
     const x = clampCenteredTooltipX(r.left + r.width / 2, 288);
     const below = r.top < 190;
@@ -244,7 +261,7 @@ export function MilestoneTimeline() {
   const stageColor = (key: string) => STAGES.find((s) => s.key === key)?.color;
 
   const dockScale = (leftPct: number, absY: number) => {
-    if (!dock) return 1;
+    if (!dock || viewMode === "fit") return 1;
     const mx = (leftPct / 100) * dock.w;
     const dist = Math.hypot(mx - dock.x, absY - dock.y);
     return 1 + DOCK_MAX * Math.max(0, 1 - dist / DOCK_RADIUS);
@@ -297,17 +314,30 @@ export function MilestoneTimeline() {
   };
   useEffect(() => {
     const el = plotScrollRef.current;
-    if (!el || typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(() => {
-      requestAnimationFrame(syncPlotScroll);
-    });
-    observer.observe(el);
-    const frame = requestAnimationFrame(syncPlotScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
+    if (!el || now == null) return;
+    let lastWidth = -1;
+    const position = () => {
+      // Year-column transitions and responsive layout can change the visible
+      // width after mount. Reposition only on width changes, not lane filtering.
+      if (el.clientWidth !== lastWidth) {
+        lastWidth = el.clientWidth;
+        const { t0, t1 } = boundsOf(focusYear);
+        const anchor = new Date(now).getUTCFullYear() === focusYear
+          ? Math.min(1, Math.max(0, (now - t0) / (t1 - t0))) : 0;
+        const width = plotRef.current?.getBoundingClientRect().width ?? 0;
+        el.scrollLeft = Math.max(0, Math.min(el.scrollWidth - el.clientWidth, PLOT_INSET + anchor * width - el.clientWidth / 2));
+      }
+      syncPlotScroll();
     };
-  }, [focusYear, railOpen, totalH]);
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(position);
+    observer?.observe(el);
+    const frame = window.requestAnimationFrame?.(position);
+    if (frame == null) position();
+    return () => {
+      if (frame != null) window.cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
+  }, [focusYear, railOpen, now, viewMode]);
   const scrollPlotTo = (edge: "start" | "end") => {
     const el = plotScrollRef.current;
     if (!el) return;
@@ -342,12 +372,18 @@ export function MilestoneTimeline() {
         className="milestone-year-scroll"
         style={{ height: totalH + 22 }}
         tabIndex={0}
-        aria-label={`${focusYear} timeline. Scroll horizontally for later months.`}
+        aria-label={`${focusYear} timeline. ${viewMode === "fit" ? "January–December: full year visible without horizontal scrolling." : "Scroll horizontally for earlier or later months."}`}
+      >
+      <div
+        data-milestone-frame
+        className="box-border"
+        style={{ width: viewMode === "fit" ? "100%" : FULL_W, paddingInline: PLOT_INSET }}
       >
       <div
         ref={plotRef}
+        data-milestone-plot
         className="relative cursor-crosshair select-none"
-        style={{ width: railOpen ? FULL_W : "100%", height: totalH }}
+        style={{ width: "100%", height: totalH }}
         onPointerDown={(e) => { dragStart.current = xToPct(e.clientX); dragged.current = false; setSelRange(null); }}
         onPointerMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -378,23 +414,23 @@ export function MilestoneTimeline() {
           <div className="pointer-events-none absolute bottom-0 top-0 rounded-md border-x" style={{ left: `${Math.min(selRange.a, selRange.b)}%`, width: `${Math.abs(selRange.a - selRange.b)}%`, background: "var(--accent-soft)", borderColor: "var(--accent)", opacity: 0.6, zIndex: 3 }} />
         )}
 
-        {monthsOf(focusYear).map((mo) => {
+        {monthsOf(focusYear).map((mo, monthIndex) => {
           const { t0, t1 } = boundsOf(focusYear);
           const left = ((mo.t - t0) / (t1 - t0)) * 100;
           return (
             <div key={mo.label} className="absolute bottom-0 top-0" style={{ left: `${left}%`, zIndex: 1 }}>
               <div className="absolute bottom-0 top-5 border-l border-border/70" />
-              <div className={`absolute top-0 whitespace-nowrap text-[12px] font-medium text-muted ${left === 0 ? "" : "-translate-x-1/2"}`}>{mo.label}</div>
+              <div className={`absolute top-0 whitespace-nowrap text-[12px] font-medium text-muted ${left === 0 ? "" : "-translate-x-1/2"} ${viewMode === "fit" && plotWidth < 480 && monthIndex % 3 !== 0 ? "hidden" : ""}`}>{mo.label}</div>
             </div>
           );
         })}
 
-        {now != null && focusYear === 2026 && (() => {
+        {now != null && focusYear === new Date(now).getUTCFullYear() && (() => {
           const { t0, t1 } = boundsOf(focusYear);
           const p = ((now - t0) / (t1 - t0)) * 100;
           if (p < 0 || p > 100) return null;
           return (
-            <div className="pointer-events-none absolute bottom-0 top-0" style={{ left: `${p}%`, zIndex: 2 }}>
+            <div data-milestone-today aria-label={`Today: ${new Date(now).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}`} className="pointer-events-none absolute bottom-0 top-0" style={{ left: `${p}%`, zIndex: 2 }}>
               <div className="absolute bottom-0 top-5 border-l-2 border-dashed" style={{ borderColor: "var(--accent)" }} />
               <div className="absolute top-5 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent px-1.5 py-0.5 text-[12px] font-semibold" style={{ color: "var(--accent-foreground)" }}>today</div>
             </div>
@@ -407,7 +443,7 @@ export function MilestoneTimeline() {
             const scale = dockScale(left, top + MARKER / 2);
             const color = l.stage.color;
             const key = `${m.company}-${m.activity}-${m.date}`;
-            const isHover = hovered === key;
+            const isHover = hovered === key && viewMode === "detail" && left >= 5 && left <= 95;
             return (
               <a
                 key={key}
@@ -416,8 +452,12 @@ export function MilestoneTimeline() {
                 rel="noreferrer"
                 onMouseEnter={(e) => { setHovered(key); showTip(e, m); }}
                 onMouseLeave={() => { setHovered(null); setTip(null); }}
+                onFocus={(e) => showTip(e, m)}
+                onBlur={() => setTip(null)}
+                onKeyDown={(e) => { if (e.key === "Escape") { setTip(null); setHovered(null); } }}
+                aria-describedby={tip?.m === m ? `${filterId}-detail` : undefined}
                 onClick={(e) => { if (dragged.current) e.preventDefault(); }}
-                className={`absolute flex items-center rounded-full border-2 bg-surface shadow-sm transition-transform duration-100 ease-out ${m.sourceUrl ? "cursor-pointer" : "cursor-default"}`}
+                className={`absolute flex items-center rounded-full border-2 bg-surface shadow-sm transition-transform duration-100 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${m.sourceUrl ? "cursor-pointer" : "cursor-default"}`}
                 style={{
                   left: `${left}%`, top, height: MARKER,
                   width: isHover ? "auto" : MARKER,
@@ -436,6 +476,7 @@ export function MilestoneTimeline() {
             );
           }),
         )}
+      </div>
       </div>
       </div>
       {canScrollLater && (
@@ -545,10 +586,24 @@ export function MilestoneTimeline() {
         <span className="ml-auto hidden text-[12px] text-muted md:block">click a year to focus · drag across to summarize · hover a logo for details</span>
       </div>
 
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <span className="mr-1 text-sm font-semibold">{focusYear}</span>
+        <div className="inline-flex rounded-full border border-border bg-surface-raised p-0.5" role="group" aria-label="Timeline layout">
+          {([['detail', 'Detail'], ['fit', 'Fit year']] as const).map(([mode, label]) => (
+            <button key={mode} type="button" aria-pressed={viewMode === mode}
+              onClick={() => { setViewMode(mode); setDock(null); setHovered(null); setTip(null); }}
+              className={`rounded-full px-3 py-1.5 text-[12px] font-medium ${viewMode === mode ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <span className="text-[12px] text-muted">{viewMode === "fit" ? "Jan–Dec visible · same-size marks, more rows" : "Roomier timeline · scroll to explore"}</span>
+      </div>
+
       <div className="flex gap-4">
         {/* Year columns */}
         <div className="min-w-0 flex-1">
-          <div className="milestone-year-strip -mt-7 flex gap-2 overflow-x-auto pb-2 pt-7">
+          <div data-view={viewMode} className="milestone-year-strip -mt-7 flex gap-2 overflow-x-auto pb-2 pt-7">
             {YEARS.map((year) => {
               const focused = focusYear === year;
               const w = `${focused ? FOCUS_W : NARROW_W}%`;
@@ -582,6 +637,9 @@ export function MilestoneTimeline() {
               {undated.map((m) => (
                 <a key={`${m.company}-${m.activity}-${m.date ?? "undated"}`} href={m.sourceUrl ?? undefined} target="_blank" rel="noreferrer"
                   onMouseEnter={(e) => showTip(e, m)} onMouseLeave={() => setTip(null)}
+                  onFocus={(e) => showTip(e, m)} onBlur={() => setTip(null)}
+                  onKeyDown={(e) => { if (e.key === "Escape") setTip(null); }}
+                  aria-describedby={tip?.m === m ? `${filterId}-detail` : undefined}
                   className={`grid place-items-center rounded-full border-2 border-dashed bg-surface transition-transform hover:scale-110 ${m.sourceUrl ? "cursor-pointer hover:border-solid" : "cursor-default"}`}
                   style={{ width: MARKER, height: MARKER, borderColor: stageColor(m.stage) }} aria-label={`${m.company} — ${m.activity} (date TBD)`}>
                   <FirmLogo src={m.logo} name={m.company} size={LOGO} />
@@ -596,7 +654,7 @@ export function MilestoneTimeline() {
           <aside className="hidden w-48 shrink-0 lg:block">
             <div className="mb-3 flex items-center justify-between gap-2">
               <span className="text-[12px] font-semibold text-muted">Indexed financing</span>
-              <button type="button" onClick={() => setRailOpen(false)} aria-label="Fold side panel to show the full year" title="Fold panel — show the full year"
+              <button type="button" onClick={() => { setRailOpen(false); setViewMode("fit"); }} aria-label="Fold side panel to show the full year" title="Fold panel — show the full year"
                 className="flex shrink-0 items-center gap-1 rounded-full border border-border px-1.5 py-0.5 text-[12px] font-medium text-muted transition-colors hover:border-border-strong hover:text-foreground">
                 Fold
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
@@ -612,7 +670,7 @@ export function MilestoneTimeline() {
                 {year === 2026 && cumulativeCapital(2026, scopeFilter).length > 1 && <span className="mt-0.5 block"><Sparkline series={cumulativeCapital(2026, scopeFilter)} width={166} height={22} /></span>}
               </button>
             ))}
-            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Disclosed financing, including labeled commitments — not cash receipts, valuations, or transaction values. Fold this panel to see a full year without scrolling.</div>
+            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Disclosed financing, including labeled commitments — not cash receipts, valuations, or transaction values. Use Fit year to see Jan–Dec without scrolling, with this panel open or folded.</div>
 
             <div className="mt-4 border-t border-border pt-3">
               <div className="mb-1 flex items-center justify-between">
@@ -657,7 +715,7 @@ export function MilestoneTimeline() {
       )}
 
       {tip && (
-        <div data-milestone-detail className={`pointer-events-none fixed z-50 w-72 -translate-x-1/2 rounded-xl bg-foreground p-3 shadow-2xl ${tip.below ? "" : "-translate-y-full"}`} style={{ left: tip.x, top: tip.y }}>
+        <div id={`${filterId}-detail`} role="tooltip" data-milestone-detail className={`pointer-events-none fixed z-50 w-72 -translate-x-1/2 rounded-xl bg-foreground p-3 shadow-2xl ${tip.below ? "" : "-translate-y-full"}`} style={{ left: tip.x, top: tip.y }}>
           <div className="mb-1 flex items-center gap-2">
             <FirmLogo src={tip.m.logo} name={tip.m.company} size={18} />
             <span className="text-[13px] font-semibold text-background">{tip.m.company}</span>

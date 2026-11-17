@@ -170,3 +170,16 @@ body {
   .milestone-year-strip > .milestone-focused-year { order: 1; width: 100% !important; min-width: 0 !important; }
   .milestone-year-strip > .milestone-collapsed-year { width: calc(50% - 4px) !important; min-width: 0 !important; height: 88px !important; }
 }
+
+/* Fit year spends vertical space rather than shrinking logos or hiding sources.
+   Compact year selectors stop competing with the full Jan–Dec plotting width. */
+.milestone-year-strip[data-view="fit"] { flex-wrap: wrap; overflow-x: visible; }
+.milestone-year-strip[data-view="fit"] > .milestone-focused-year { order: 1; width: 100% !important; min-width: 0 !important; }
+.milestone-year-strip[data-view="fit"] > .milestone-collapsed-year { width: calc(50% - 4px) !important; min-width: 0 !important; height: 76px !important; }
+
+/* Mobile navigation occupies no chart space until deliberately opened. Native
+   dialog top-layer behavior supplies the keyboard trap and inert background. */
+.mobile-nav-dialog { position: fixed; inset: 12px 12px auto auto; margin: 0; width: min(22rem, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow-y: auto; }
+.mobile-nav-dialog::backdrop { background: rgb(0 0 0 / 35%); }
+.mobile-nav-dialog nav a { min-height: 44px; }
+body:has(.mobile-nav-dialog[open]) { overflow: hidden; }
