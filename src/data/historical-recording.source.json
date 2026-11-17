@@ -1,0 +1,1473 @@
+{
+  "sourceUrl": "https://stevenson.lab.uconn.edu/scaling/",
+  "csvUrl": "https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Ai7vcDJIlD6AdF9vQWlNRDh2S1dub09jMWRvTFRpemc&single=true&gid=0&output=csv",
+  "retrievedAt": "2026-11-17T15:43:45.295575+00:00",
+  "csvSha256": "b2971bb3fc6da9bd95407ca55febceaedcfb0dfd3020480ea1746516090d009b",
+  "producerCommit": "2bb7a59bc0bd7f490a0e10316b8907bf5d14a287",
+  "producerUrl": "https://github.com/ihstevenson/scaling/blob/2bb7a59bc0bd7f490a0e10316b8907bf5d14a287/scaling.py",
+  "producerSha256": "4649763bb47ebddd516eff217c3dae2a1874f52b12551921510957e5419acd78",
+  "dataWindow": [
+    1957,
+    2022
+  ],
+  "rows": [
+    {
+      "Year": "1957",
+      "Month": "7",
+      "Neurons": "2",
+      "Authors": "Mountcastle, Davies, and Berman",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1957.20.4.374"
+    },
+    {
+      "Year": "1957",
+      "Month": "8",
+      "Neurons": "2",
+      "Authors": "Baumgarten and Schaefer",
+      "Publication": "Pflüger's Archiv für die gesamte Physiologie des Menschen und der Tiere",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00595651"
+    },
+    {
+      "Year": "1959",
+      "Month": "3",
+      "Neurons": "3",
+      "Authors": "Amassian et al.",
+      "Publication": "Trans. of the New York Academy of Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1111/j.2164-0947.1959.tb01676.x"
+    },
+    {
+      "Year": "1961",
+      "Month": "1",
+      "Neurons": "2",
+      "Authors": "Amassian et al.",
+      "Publication": "Annals of the New York Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1111/j.1749-6632.1961.tb20184.x"
+    },
+    {
+      "Year": "1962",
+      "Month": "1",
+      "Neurons": "3",
+      "Authors": "Hubel and Wiesel",
+      "Publication": "Journal of Physiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1113/jphysiol.1962.sp006837"
+    },
+    {
+      "Year": "1963",
+      "Month": "8",
+      "Neurons": "2",
+      "Authors": "Griffith and Horn",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/199876a0"
+    },
+    {
+      "Year": "1964",
+      "Month": "3",
+      "Neurons": "3",
+      "Authors": "Gerstein and Clark",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.143.3612.1325"
+    },
+    {
+      "Year": "1964",
+      "Month": "10",
+      "Neurons": "2",
+      "Authors": "Braitenberg et al.",
+      "Publication": "Biological Cybernetics",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00306415"
+    },
+    {
+      "Year": "1965",
+      "Month": "2",
+      "Neurons": "2",
+      "Authors": "Oikawa et al.",
+      "Publication": "Yonago acta medica",
+      "Method Note": "",
+      "DOI": "https://www.ncbi.nlm.nih.gov/pubmed/14287709"
+    },
+    {
+      "Year": "1965",
+      "Month": "3",
+      "Neurons": "2",
+      "Authors": "Evarts",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "Single electrode picked up 2 units",
+      "DOI": "https://doi.org/10.1152/jn.1965.28.2.216"
+    },
+    {
+      "Year": "1967",
+      "Month": "9",
+      "Neurons": "2",
+      "Authors": "Rodieck",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1967.30.5.1043"
+    },
+    {
+      "Year": "1969",
+      "Month": "3",
+      "Neurons": "2",
+      "Authors": "O'Keefe and Bouma",
+      "Publication": "Experimental Neurology",
+      "Method Note": "8 fixed wires",
+      "DOI": "https://doi.org/10.1016/0014-4886(69)90086-7"
+    },
+    {
+      "Year": "1970",
+      "Month": "9",
+      "Neurons": "3",
+      "Authors": "Kristan and Gerstein",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.169.3952.1336"
+    },
+    {
+      "Year": "1970",
+      "Month": "9",
+      "Neurons": "2",
+      "Authors": "Noda and Adey",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "Single electrode picked up 2 units",
+      "DOI": "https://doi.org/10.1152/jn.1970.33.5.672"
+    },
+    {
+      "Year": "1970",
+      "Month": "11",
+      "Neurons": "8",
+      "Authors": "Humphrey, Schmidt, and Thompson",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.170.3959.758"
+    },
+    {
+      "Year": "1970",
+      "Month": "12",
+      "Neurons": "5",
+      "Authors": "Humphrey",
+      "Publication": "Electroencephalography and Clinical Neurophysiology",
+      "Method Note": "5 electrode microdrive",
+      "DOI": "https://doi.org/10.1016/0013-4694(70)90105-7"
+    },
+    {
+      "Year": "1972",
+      "Month": "1",
+      "Neurons": "3",
+      "Authors": "Gerstein and Perkel",
+      "Publication": "Biophysical Journal",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0006-3495(72)86097-1"
+    },
+    {
+      "Year": "1974",
+      "Month": "1",
+      "Neurons": "3",
+      "Authors": "Dickson and Gerstein",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "3 electrodes",
+      "DOI": "https://doi.org/10.1152/jn.1974.37.6.1239"
+    },
+    {
+      "Year": "1975",
+      "Month": "7",
+      "Neurons": "5",
+      "Authors": "Voronin et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(75)90324-8"
+    },
+    {
+      "Year": "1976",
+      "Month": "9",
+      "Neurons": "12",
+      "Authors": "Schmidt et al.",
+      "Publication": "Experimental Neurology",
+      "Method Note": "12 electrodes",
+      "DOI": "https://doi.org/10.1016/0014-4886(76)90220-X"
+    },
+    {
+      "Year": "1976",
+      "Month": "9",
+      "Neurons": "4",
+      "Authors": "Schmidt et al.",
+      "Publication": "Experimental Neurology",
+      "Method Note": "7 electrode assembly",
+      "DOI": "https://doi.org/10.1016/0014-4886(76)90217-X"
+    },
+    {
+      "Year": "1977",
+      "Month": "3",
+      "Neurons": "2",
+      "Authors": "Schmidt et al.",
+      "Publication": "Experimental Neurology",
+      "Method Note": "12 electrodes",
+      "DOI": "https://doi.org/10.1016/0014-4886(77)90250-3"
+    },
+    {
+      "Year": "1977",
+      "Month": "5",
+      "Neurons": "6",
+      "Authors": "Abeles and Goldstein",
+      "Publication": "Proceedings of the IEEE",
+      "Method Note": "1 electrode - focus on sorting",
+      "DOI": "https://doi.org/10.1109/PROC.1977.10559"
+    },
+    {
+      "Year": "1977",
+      "Month": "9",
+      "Neurons": "3",
+      "Authors": "Loeb et al.",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.897663"
+    },
+    {
+      "Year": "1978",
+      "Month": "7",
+      "Neurons": "7",
+      "Authors": "Durelli et al.",
+      "Publication": "Experimental Neurology",
+      "Method Note": "7 electrode assembly",
+      "DOI": "https://doi.org/10.1016/0014-4886(78)90270-4"
+    },
+    {
+      "Year": "1978",
+      "Month": "9",
+      "Neurons": "2",
+      "Authors": "Schmidt et al.",
+      "Publication": "Experimental Neurology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0014-4886(78)90252-2"
+    },
+    {
+      "Year": "1981",
+      "Month": "1",
+      "Neurons": "2",
+      "Authors": "Costanzo and Gardner",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(81)91196-3"
+    },
+    {
+      "Year": "1981",
+      "Month": "1",
+      "Neurons": "18",
+      "Authors": "Kruger and Bach",
+      "Publication": "Experimental Brain Research",
+      "Method Note": "30 channel array",
+      "DOI": "https://doi.org/10.1007/BF00236609"
+    },
+    {
+      "Year": "1981",
+      "Month": "3",
+      "Neurons": "5",
+      "Authors": "Kuperstein and Whittington",
+      "Publication": "IEEE Transactions in Biomedical Engineering",
+      "Method Note": "24 channel microelectrode",
+      "DOI": "https://doi.org/10.1109/TBME.1981.324702"
+    },
+    {
+      "Year": "1982",
+      "Month": "5",
+      "Neurons": "6",
+      "Authors": "Kruger",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "12 glass-coated wire microelectrodes of different lengths ",
+      "DOI": "https://doi.org/10.1016/0165-0270(82)90035-8"
+    },
+    {
+      "Year": "1982",
+      "Month": "6",
+      "Neurons": "7",
+      "Authors": "Reitboeck and Werner",
+      "Publication": "Experimentia",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF01955338"
+    },
+    {
+      "Year": "1982",
+      "Month": "12",
+      "Neurons": "5",
+      "Authors": "Wheeler and Heetderks",
+      "Publication": "IEEE Transactions in Biomedical Engineering",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/TBME.1982.324870"
+    },
+    {
+      "Year": "1983",
+      "Month": "6",
+      "Neurons": "5",
+      "Authors": "Michalski et al.",
+      "Publication": "Experimental Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00236807"
+    },
+    {
+      "Year": "1983",
+      "Month": "8",
+      "Neurons": "6",
+      "Authors": "Frostig et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(83)90567-X"
+    },
+    {
+      "Year": "1983",
+      "Month": "8",
+      "Neurons": "5",
+      "Authors": "McNaughton et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "Stereotrode",
+      "DOI": "https://doi.org/10.1016/0165-0270(83)90097-3"
+    },
+    {
+      "Year": "1984",
+      "Month": "1",
+      "Neurons": "10",
+      "Authors": "Kubie",
+      "Publication": "Physiology and Behavior",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0031-9384(84)90080-5"
+    },
+    {
+      "Year": "1984",
+      "Month": "1",
+      "Neurons": "4",
+      "Authors": "Frostig et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(84)91181-8"
+    },
+    {
+      "Year": "1984",
+      "Month": "9",
+      "Neurons": "3",
+      "Authors": "Legendy et al.",
+      "Publication": "Electroencephalography and Clinical Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0013-4694(84)90115-9"
+    },
+    {
+      "Year": "1985",
+      "Month": "4",
+      "Neurons": "7",
+      "Authors": "Legendy and Salcman",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1985.53.4.926"
+    },
+    {
+      "Year": "1985",
+      "Month": "7",
+      "Neurons": "19",
+      "Authors": "Kuperstein and Eichenbaum",
+      "Publication": "Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0306-4522(85)90072-7"
+    },
+    {
+      "Year": "1986",
+      "Month": "1",
+      "Neurons": "14",
+      "Authors": "Kuperstein et al.",
+      "Publication": "Experimental Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00239532"
+    },
+    {
+      "Year": "1986",
+      "Month": "2",
+      "Neurons": "6",
+      "Authors": "Lou and Bloedel",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(86)91646-X"
+    },
+    {
+      "Year": "1987",
+      "Month": "4",
+      "Neurons": "8",
+      "Authors": "Lindsey et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1987.57.4.1101"
+    },
+    {
+      "Year": "1988",
+      "Month": "5",
+      "Neurons": "15",
+      "Authors": "Espinosa and Gerstein",
+      "Publication": "Brain Research",
+      "Method Note": "Bundle of 7 microeelctrodes",
+      "DOI": "https://doi.org/10.1016/0006-8993(88)91542-9"
+    },
+    {
+      "Year": "1988",
+      "Month": "6",
+      "Neurons": "8",
+      "Authors": "Mioche and Singer",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "Floating",
+      "DOI": "https://doi.org/10.1016/0165-0270(88)90131-8"
+    },
+    {
+      "Year": "1988",
+      "Month": "7",
+      "Neurons": "19",
+      "Authors": "Eckhorn et al.",
+      "Publication": "Biological Cybernetics",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00202899"
+    },
+    {
+      "Year": "1988",
+      "Month": "8",
+      "Neurons": "29",
+      "Authors": "Aiple and Kruger",
+      "Publication": "Experimental Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/BF00248509"
+    },
+    {
+      "Year": "1988",
+      "Month": "9",
+      "Neurons": "8",
+      "Authors": "Abeles and Gerstein",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "6-electrode",
+      "DOI": "https://doi.org/10.1152/jn.1988.60.3.909"
+    },
+    {
+      "Year": "1988",
+      "Month": "9",
+      "Neurons": "8",
+      "Authors": "Drake et al.",
+      "Publication": "IEEE Transactions in Biomedical Engineering",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/10.7273"
+    },
+    {
+      "Year": "1989",
+      "Month": "4",
+      "Neurons": "9",
+      "Authors": "Lindsey et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(89)90183-2"
+    },
+    {
+      "Year": "1989",
+      "Month": "6",
+      "Neurons": "14",
+      "Authors": "Buzsaki et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0165-0270(89)90038-1"
+    },
+    {
+      "Year": "1990",
+      "Month": "11",
+      "Neurons": "11",
+      "Authors": "Ahissar and Vaadia",
+      "Publication": "Proc. of the National Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.87.22.8935"
+    },
+    {
+      "Year": "1991",
+      "Month": "1",
+      "Neurons": "10",
+      "Authors": "Mountcastle et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0165-0270(91)90140-U"
+    },
+    {
+      "Year": "1991",
+      "Month": "5",
+      "Neurons": "82",
+      "Authors": "Meister et al.",
+      "Publication": "Science",
+      "Method Note": "isolated retina",
+      "DOI": "https://doi.org/10.1126/science.2035024"
+    },
+    {
+      "Year": "1991",
+      "Month": "11",
+      "Neurons": "4",
+      "Authors": "Eggermont.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1991.66.5.1549"
+    },
+    {
+      "Year": "1992",
+      "Month": "1",
+      "Neurons": "9",
+      "Authors": "Ahissar et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1992.67.1.203"
+    },
+    {
+      "Year": "1992",
+      "Month": "9",
+      "Neurons": "10",
+      "Authors": "Ahissar et al.",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "http://doi.org/10.1126/science.1529342"
+    },
+    {
+      "Year": "1993",
+      "Month": "2",
+      "Neurons": "30",
+      "Authors": "Shaw et al.",
+      "Publication": "Neurological Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1080/01616412.1993.11740106"
+    },
+    {
+      "Year": "1993",
+      "Month": "3",
+      "Neurons": "23",
+      "Authors": "Nicolelis et al.",
+      "Publication": "Proc. of the National Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.90.6.2212"
+    },
+    {
+      "Year": "1993",
+      "Month": "8",
+      "Neurons": "148",
+      "Authors": "Wilson and McNaughton",
+      "Publication": "Science",
+      "Method Note": "Tetrodes HC",
+      "DOI": "https://doi.org/10.1126/science.8351520"
+    },
+    {
+      "Year": "1993",
+      "Month": "10",
+      "Neurons": "10",
+      "Authors": "Abeles et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1993.70.4.1629"
+    },
+    {
+      "Year": "1994",
+      "Month": "7",
+      "Neurons": "74",
+      "Authors": "Wilson and McNaughton",
+      "Publication": "Science",
+      "Method Note": "Tetrodes HC",
+      "DOI": "https://doi.org/10.1126/science.8036517"
+    },
+    {
+      "Year": "1994",
+      "Month": "10",
+      "Neurons": "5",
+      "Authors": "Lindsey et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1994.72.4.1830"
+    },
+    {
+      "Year": "1995",
+      "Month": "2",
+      "Neurons": "16",
+      "Authors": "Vaadia et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/373515a0"
+    },
+    {
+      "Year": "1995",
+      "Month": "6",
+      "Neurons": "48",
+      "Authors": "Nicolelis et al.",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.7761855"
+    },
+    {
+      "Year": "1995",
+      "Month": "10",
+      "Neurons": "8",
+      "Authors": "Nini et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1995.74.4.1800"
+    },
+    {
+      "Year": "1995",
+      "Month": "12",
+      "Neurons": "9",
+      "Authors": "Gray et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "Tetrode",
+      "DOI": "https://doi.org/10.1016/0165-0270(95)00085-2"
+    },
+    {
+      "Year": "1996",
+      "Month": "1",
+      "Neurons": "23",
+      "Authors": "Gothard et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.16-02-00823.1996"
+    },
+    {
+      "Year": "1996",
+      "Month": "1",
+      "Neurons": "16",
+      "Authors": "Seidemann et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.16-02-00752.1996"
+    },
+    {
+      "Year": "1996",
+      "Month": "2",
+      "Neurons": "117",
+      "Authors": "Skaggs et al.",
+      "Publication": "Hippocampus",
+      "Method Note": "Tetrodes",
+      "DOI": "https://doi.org/10.1002/(SICI)1098-1063(1996)6:2%3C149::AID-HIPO6%3E3.0.CO;2-K"
+    },
+    {
+      "Year": "1996",
+      "Month": "3",
+      "Neurons": "57",
+      "Authors": "Skaggs et al.",
+      "Publication": "Science",
+      "Method Note": "Tetrodes",
+      "DOI": "https://doi.org/10.1126/science.271.5257.1870"
+    },
+    {
+      "Year": "1996",
+      "Month": "7",
+      "Neurons": "51",
+      "Authors": "Nordhausen et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0006-8993(96)00321-6"
+    },
+    {
+      "Year": "1996",
+      "Month": "7",
+      "Neurons": "15",
+      "Authors": "Chang et al.",
+      "Publication": "Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/0306-4522(96)00144-3"
+    },
+    {
+      "Year": "1996",
+      "Month": "12",
+      "Neurons": "29",
+      "Authors": "McHugh et al.",
+      "Publication": "Cell",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0092-8674(00)81828-0"
+    },
+    {
+      "Year": "1997",
+      "Month": "4",
+      "Neurons": "32",
+      "Authors": "Chang et al.",
+      "Publication": "Brain Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0006-8993(97)00012-7"
+    },
+    {
+      "Year": "1997",
+      "Month": "4",
+      "Neurons": "100",
+      "Authors": "Nicolelis et al.",
+      "Publication": "Neuron",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0896-6273(00)80295-0"
+    },
+    {
+      "Year": "1998",
+      "Month": "6",
+      "Neurons": "16",
+      "Authors": "Prut et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.1998.79.6.2857"
+    },
+    {
+      "Year": "1998",
+      "Month": "7",
+      "Neurons": "21",
+      "Authors": "Rousche and Normann",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0165-0270(98)00031-4"
+    },
+    {
+      "Year": "1998",
+      "Month": "9",
+      "Neurons": "34",
+      "Authors": "Brown et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.18-18-07411.1998"
+    },
+    {
+      "Year": "1998",
+      "Month": "11",
+      "Neurons": "135",
+      "Authors": "Nicolelis et al.",
+      "Publication": "Nature Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/2855"
+    },
+    {
+      "Year": "1999",
+      "Month": "2",
+      "Neurons": "15",
+      "Authors": "Villa et al.",
+      "Publication": "Proc. of the National Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.96.3.1106"
+    },
+    {
+      "Year": "1999",
+      "Month": "7",
+      "Neurons": "46",
+      "Authors": "Chapin et al.",
+      "Publication": "Nature Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/10223"
+    },
+    {
+      "Year": "1999",
+      "Month": "7",
+      "Neurons": "68",
+      "Authors": "Normann et al.",
+      "Publication": "Vision Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0042-6989(99)00040-1"
+    },
+    {
+      "Year": "1999",
+      "Month": "11",
+      "Neurons": "5",
+      "Authors": "Kay et al.",
+      "Publication": "Nature Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/14801"
+    },
+    {
+      "Year": "1999",
+      "Month": "12",
+      "Neurons": "23",
+      "Authors": "Chapin and Nicolelis",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0165-0270(99)00130-2"
+    },
+    {
+      "Year": "1999",
+      "Month": "12",
+      "Neurons": "62",
+      "Authors": "Williams et al.",
+      "Publication": "Brain Research Protocols",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S1385-299X(99)00034-3"
+    },
+    {
+      "Year": "2000",
+      "Month": "1",
+      "Neurons": "52",
+      "Authors": "Porada et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0165-0270(99)00139-9"
+    },
+    {
+      "Year": "2000",
+      "Month": "6",
+      "Neurons": "30",
+      "Authors": "Isaacs et al.",
+      "Publication": "IEEE TNSRE",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/86.847814"
+    },
+    {
+      "Year": "2000",
+      "Month": "6",
+      "Neurons": "32",
+      "Authors": "Laubach et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/35014604"
+    },
+    {
+      "Year": "2000",
+      "Month": "8",
+      "Neurons": "31",
+      "Authors": "Chang et al.",
+      "Publication": "Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0306-4522(00)00218-9"
+    },
+    {
+      "Year": "2000",
+      "Month": "11",
+      "Neurons": "100",
+      "Authors": "Wessberg et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/35042582"
+    },
+    {
+      "Year": "2001",
+      "Month": "5",
+      "Neurons": "23",
+      "Authors": "Normann et al.",
+      "Publication": "Vision Research",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0042-6989(00)00273-X"
+    },
+    {
+      "Year": "2001",
+      "Month": "11",
+      "Neurons": "32",
+      "Authors": "Giszter et al.",
+      "Publication": "Robotics and Autonomous Sys",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/S0921-8890(01)00159-2"
+    },
+    {
+      "Year": "2002",
+      "Month": "6",
+      "Neurons": "64",
+      "Authors": "Taylor et al.",
+      "Publication": "Science",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/science.1070291"
+    },
+    {
+      "Year": "2003",
+      "Month": "7",
+      "Neurons": "68",
+      "Authors": "Harris et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nature01834"
+    },
+    {
+      "Year": "2003",
+      "Month": "7",
+      "Neurons": "247",
+      "Authors": "Nicolelis et al.",
+      "Publication": "Proc. of the National Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.1934665100"
+    },
+    {
+      "Year": "2003",
+      "Month": "8",
+      "Neurons": "96",
+      "Authors": "Csicsvari et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.00116.2003"
+    },
+    {
+      "Year": "2003",
+      "Month": "10",
+      "Neurons": "90",
+      "Authors": "Carmena et al.",
+      "Publication": "PLoS Biology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1371/journal.pbio.0000042"
+    },
+    {
+      "Year": "2004",
+      "Month": "1",
+      "Neurons": "19",
+      "Authors": "Paninski et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.00587.2002"
+    },
+    {
+      "Year": "2004",
+      "Month": "1",
+      "Neurons": "19",
+      "Authors": "Laubach",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/j.jneumeth.2003.11.007"
+    },
+    {
+      "Year": "2004",
+      "Month": "3",
+      "Neurons": "143",
+      "Authors": "Hatsopoulos et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.01245.2003"
+    },
+    {
+      "Year": "2004",
+      "Month": "6",
+      "Neurons": "185",
+      "Authors": "Sanchez et al.",
+      "Publication": "IEEE BME",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/TBME.2004.827061"
+    },
+    {
+      "Year": "2004",
+      "Month": "7",
+      "Neurons": "55",
+      "Authors": "Patil et al.",
+      "Publication": "Neurosurgery",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1227/01.NEU.0000126872.23715.E5"
+    },
+    {
+      "Year": "2004",
+      "Month": "7",
+      "Neurons": "64",
+      "Authors": "Stein et al.",
+      "Publication": "Canadian Journal of Physiology and Pharmacology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1139/y04-075"
+    },
+    {
+      "Year": "2004",
+      "Month": "7",
+      "Neurons": "45",
+      "Authors": "Bartho et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.01170.2003"
+    },
+    {
+      "Year": "2004",
+      "Month": "10",
+      "Neurons": "90",
+      "Authors": "Stein et al.",
+      "Publication": "Journal of Physiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1113/jphysiol.2004.068668"
+    },
+    {
+      "Year": "2005",
+      "Month": "5",
+      "Neurons": "177",
+      "Authors": "Lebedev et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.4088-04.2005"
+    },
+    {
+      "Year": "2005",
+      "Month": "5",
+      "Neurons": "100",
+      "Authors": "Blanche et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.01023.2004"
+    },
+    {
+      "Year": "2005",
+      "Month": "6",
+      "Neurons": "44",
+      "Authors": "Barbieri et al.",
+      "Publication": "IEEE TNSRE",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/TNSRE.2005.847368"
+    },
+    {
+      "Year": "2005",
+      "Month": "7",
+      "Neurons": "147",
+      "Authors": "Santucci et al.",
+      "Publication": "Eur. Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1111/j.1460-9568.2005.04320.x"
+    },
+    {
+      "Year": "2006",
+      "Month": "5",
+      "Neurons": "192",
+      "Authors": "Kim et al.",
+      "Publication": "Journal of Neural Engineering",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1088/1741-2560/3/2/009"
+    },
+    {
+      "Year": "2006",
+      "Month": "7",
+      "Neurons": "57",
+      "Authors": "Hochberg et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nature04970"
+    },
+    {
+      "Year": "2006",
+      "Month": "7",
+      "Neurons": "260",
+      "Authors": "Lin et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/j.jneumeth.2005.12.032"
+    },
+    {
+      "Year": "2007",
+      "Month": "5",
+      "Neurons": "68",
+      "Authors": "Hatsopoulos et al. ",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.3570-06.2007"
+    },
+    {
+      "Year": "2007",
+      "Month": "7",
+      "Neurons": "183",
+      "Authors": "Zacksenhouse et al.",
+      "Publication": "PLoS ONE",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1371/journal.pone.0000619"
+    },
+    {
+      "Year": "2007",
+      "Month": "8",
+      "Neurons": "60",
+      "Authors": "Weber et al.",
+      "Publication": "Journal of Neural Engineering",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1088/1741-2560/4/3/S04"
+    },
+    {
+      "Year": "2008",
+      "Month": "5",
+      "Neurons": "116",
+      "Authors": "Velliste et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nature06996"
+    },
+    {
+      "Year": "2008",
+      "Month": "10",
+      "Neurons": "81",
+      "Authors": "Hernandez et al.",
+      "Publication": "Proc. of the National Academy of Sciences",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.0808702105"
+    },
+    {
+      "Year": "2008",
+      "Month": "11",
+      "Neurons": "179",
+      "Authors": "Kim et al.",
+      "Publication": "Journal of Neural Engineering",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1088/1741-2560/5/4/010"
+    },
+    {
+      "Year": "2009",
+      "Month": "3",
+      "Neurons": "334",
+      "Authors": "Fitzsimmons et al.",
+      "Publication": "Frontiers in Integrative Neurosci",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.3389/neuro.07.003.2009"
+    },
+    {
+      "Year": "2009",
+      "Month": "6",
+      "Neurons": "116",
+      "Authors": "Nuding et al. ",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.91305.2008"
+    },
+    {
+      "Year": "2009",
+      "Month": "7",
+      "Neurons": "100",
+      "Authors": "Ganguly and Carmena",
+      "Publication": "PLoS Biology",
+      "Method Note": "192 Microwires",
+      "DOI": "https://doi.org/10.1371/journal.pbio.1000153"
+    },
+    {
+      "Year": "2009",
+      "Month": "8",
+      "Neurons": "161",
+      "Authors": "Dickey et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.90920.2008"
+    },
+    {
+      "Year": "2009",
+      "Month": "10",
+      "Neurons": "744",
+      "Authors": "Stafford et al.",
+      "Publication": "Neuron",
+      "Method Note": "retina MEA",
+      "DOI": "https://doi.org/10.1016/j.neuron.2009.09.021"
+    },
+    {
+      "Year": "2010",
+      "Month": "1",
+      "Neurons": "68",
+      "Authors": "Thiagarajan et al.",
+      "Publication": "PLoS Biology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1371/journal.pbio.1000278"
+    },
+    {
+      "Year": "2010",
+      "Month": "1",
+      "Neurons": "129",
+      "Authors": "Kelly et al. ",
+      "Publication": "Journal of Computational Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/s10827-009-0208-9"
+    },
+    {
+      "Year": "2010",
+      "Month": "2",
+      "Neurons": "60",
+      "Authors": "Schnupp et al.",
+      "Publication": "The Neurophysiological Bases of Auditory Perception",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/978-1-4419-5686-6_38"
+    },
+    {
+      "Year": "2010",
+      "Month": "7",
+      "Neurons": "122",
+      "Authors": "Vargas-Irwin et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.5443-09.2010"
+    },
+    {
+      "Year": "2010",
+      "Month": "12",
+      "Neurons": "61",
+      "Authors": "Suminski et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.3967-10.2010"
+    },
+    {
+      "Year": "2011",
+      "Month": "1",
+      "Neurons": "127",
+      "Authors": "Lambacher et al.",
+      "Publication": "Applied Physics A",
+      "Method Note": "in vitro - culture",
+      "DOI": "https://doi.org/10.1007/s00339-010-6046-9"
+    },
+    {
+      "Year": "2011",
+      "Month": "2",
+      "Neurons": "107",
+      "Authors": "Cerquera et al.",
+      "Publication": "Biological Cybernetics",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/s00422-011-0418-x"
+    },
+    {
+      "Year": "2011",
+      "Month": "2",
+      "Neurons": "115",
+      "Authors": "Quinn et al.",
+      "Publication": "Journal of Computational Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1007/s10827-010-0247-2"
+    },
+    {
+      "Year": "2011",
+      "Month": "3",
+      "Neurons": "149",
+      "Authors": "Truccolo et al.",
+      "Publication": "Nature Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nn.2782"
+    },
+    {
+      "Year": "2011",
+      "Month": "4",
+      "Neurons": "99",
+      "Authors": "Kim et al.",
+      "Publication": "IEEE TNSRE",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1109/TNSRE.2011.2107750"
+    },
+    {
+      "Year": "2011",
+      "Month": "11",
+      "Neurons": "200",
+      "Authors": "O'Doherty et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nature10489"
+    },
+    {
+      "Year": "2012",
+      "Month": "1",
+      "Neurons": "82",
+      "Authors": "Saleh et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.2438-11.2012"
+    },
+    {
+      "Year": "2012",
+      "Month": "1",
+      "Neurons": "90",
+      "Authors": "Peyrache et al.",
+      "Publication": "PNAS",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1073/pnas.1109895109"
+    },
+    {
+      "Year": "2012",
+      "Month": "3",
+      "Neurons": "257",
+      "Authors": "Bansal et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.00781.2011"
+    },
+    {
+      "Year": "2012",
+      "Month": "4",
+      "Neurons": "106",
+      "Authors": "Fraser et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.01012.2010"
+    },
+    {
+      "Year": "2012",
+      "Month": "6",
+      "Neurons": "218",
+      "Authors": "Churchland et al.",
+      "Publication": "Nature",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nature11129"
+    },
+    {
+      "Year": "2012",
+      "Month": "10",
+      "Neurons": "228",
+      "Authors": "Marre et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "in vitro - retina",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.0723-12.2012"
+    },
+    {
+      "Year": "2013",
+      "Month": "6",
+      "Neurons": "134",
+      "Authors": "Aggarwal et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.01038.2011"
+    },
+    {
+      "Year": "2013",
+      "Month": "11",
+      "Neurons": "497",
+      "Authors": "Ifft et al.",
+      "Publication": "Science Translational Medicine",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1126/scitranslmed.3006159"
+    },
+    {
+      "Year": "2014",
+      "Month": "1",
+      "Neurons": "3200",
+      "Authors": "Maccione et al.",
+      "Publication": "Journal of Physiology",
+      "Method Note": "retina MEA, approximate",
+      "DOI": "https://doi.org/10.1113/jphysiol.2013.262840"
+    },
+    {
+      "Year": "2014",
+      "Month": "3",
+      "Neurons": "163",
+      "Authors": "Berenyi et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.00785.2013"
+    },
+    {
+      "Year": "2014",
+      "Month": "4",
+      "Neurons": "136",
+      "Authors": "Goris et al.",
+      "Publication": "Nature Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nn.3711"
+    },
+    {
+      "Year": "2014",
+      "Month": "4",
+      "Neurons": "565",
+      "Authors": "Schwarz et al.",
+      "Publication": "Nature Methods",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/nmeth.2936"
+    },
+    {
+      "Year": "2014",
+      "Month": "8",
+      "Neurons": "315",
+      "Authors": "Ito et al.",
+      "Publication": "PLoS One",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1371/journal.pone.0105324"
+    },
+    {
+      "Year": "2014",
+      "Month": "11",
+      "Neurons": "88",
+      "Authors": "Diba et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.1091-14.2014"
+    },
+    {
+      "Year": "2015",
+      "Month": "7",
+      "Neurons": "418",
+      "Authors": "Shobe et al.",
+      "Publication": "Journal of Neurophysiology",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1152/jn.00464.2015"
+    },
+    {
+      "Year": "2016",
+      "Month": "3",
+      "Neurons": "144",
+      "Authors": "Rajangam et al.",
+      "Publication": "Scientific Reports",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1038/srep22170"
+    },
+    {
+      "Year": "2017",
+      "Month": "3",
+      "Neurons": "2234",
+      "Authors": "Hilgen et al.",
+      "Publication": "Cell Reports",
+      "Method Note": "MEA",
+      "DOI": "https://doi.org/10.1016/j.celrep.2017.02.038"
+    },
+    {
+      "Year": "2017",
+      "Month": "9",
+      "Neurons": "807",
+      "Authors": "Mitz et al.",
+      "Publication": "Journal of Neuroscience Methods",
+      "Method Note": "8 utah arrays (n is an average)",
+      "DOI": "https://dx.doi.org/10.1016%2Fj.jneumeth.2017.07.001"
+    },
+    {
+      "Year": "2017",
+      "Month": "11",
+      "Neurons": "741",
+      "Authors": "Jun et al.",
+      "Publication": "Nature",
+      "Method Note": "Neuropixels",
+      "DOI": "https://doi.org/10.1038/nature24636"
+    },
+    {
+      "Year": "2018",
+      "Month": "1",
+      "Neurons": "146",
+      "Authors": "Rutishauser et al.",
+      "Publication": "Neuron",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1016/j.neuron.2017.11.029"
+    },
+    {
+      "Year": "2018",
+      "Month": "4",
+      "Neurons": "2998",
+      "Authors": "Stringer et al.",
+      "Publication": "Biorxiv",
+      "Method Note": "Neuropixels",
+      "DOI": "https://doi.org/10.1101/306019"
+    },
+    {
+      "Year": "2018",
+      "Month": "4",
+      "Neurons": "375",
+      "Authors": "Chung et al.",
+      "Publication": "Biorxiv",
+      "Method Note": "",
+      "DOI": "https://doi.org/10.1101/242693"
+    },
+    {
+      "Year": "2019",
+      "Month": "10",
+      "Neurons": "1026",
+      "Authors": "Bartolo et al.",
+      "Publication": "Biorxiv",
+      "Method Note": "8 utah arrays",
+      "DOI": "https://doi.org/10.1101/823377"
+    },
+    {
+      "Year": "2019",
+      "Month": "11",
+      "Neurons": "1769",
+      "Authors": "Steinmetz et al.",
+      "Publication": "Nature",
+      "Method Note": "Neuropixels (max count - from shared data)",
+      "DOI": "https://doi.org/10.1038/s41586-019-1787-x"
+    },
+    {
+      "Year": "2020",
+      "Month": "2",
+      "Neurons": "828",
+      "Authors": "Bartolo et al.",
+      "Publication": "Journal of Neuroscience",
+      "Method Note": "8 utah arrays",
+      "DOI": "https://doi.org/10.1523/JNEUROSCI.2072-19.2019 "
+    },
+    {
+      "Year": "2020",
+      "Month": "7",
+      "Neurons": "791",
+      "Authors": "Sahasrabuddhe et al.",
+      "Publication": "Biorxiv",
+      "Method Note": "1300 Microwires",
+      "DOI": "https://doi.org/10.1101/2020.07.17.209403"
+    },
+    {
+      "Year": "2022",
+      "Month": "10",
+      "Neurons": "1224",
+      "Authors": "Zhao et al.",
+      "Publication": "Nature Biomedical Engineering",
+      "Method Note": "flexible array",
+      "DOI": "https://doi.org/10.1038/s41551-022-00941-y"
+    }
+  ]
+}

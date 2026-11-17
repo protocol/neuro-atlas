@@ -31,12 +31,12 @@ test('whole-brain benchmarks use source-qualified volumes and demonstrated 4×4�
   assert.match(context.sources[3].title, /§4.1/);
 });
 
-test('human acquisition budgets use the same whole-brain voxel denominator and displayed $/10M units', () => {
+test('human acquisition budgets use the same whole-brain voxel denominator and displayed voxels/$ units', () => {
   const context = brainBenchmarkContext('acquisition-economics');
   assert.equal(context.toggleLabel, 'Human-brain cost targets');
   assert.deepEqual(context.references.map(ref => ref.budget), [1e9, 1e8, 1e7, 1e6, 1e5]);
   for (const ref of context.references) {
-    assert.equal(ref.value, ref.budget / (1_200_000 * 1e18 / (4 * 4 * 40) / 10_000_000));
+    assert.equal(ref.value, (1_200_000 * 1e18 / (4 * 4 * 40)) / ref.budget);
     assert.match(ref.label, /^\$/);
   }
   assert.match(context.disclosure, /image-acquisition-only/i);

@@ -1,6 +1,7 @@
 import { DRAFT_CHARTS, type DraftChart } from "./draft-charts";
 import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
 import { BCI_BITRATE_CHART, BCI_BITRATE_EVIDENCE } from "./bci-bitrate";
+import { fitHistoricalLog, historicalFitNote } from "@/lib/historical-log-fit";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
 // Shared axes change presentation, not source records, dates or measured values.
@@ -23,30 +24,59 @@ const recordingHoursPlot: DraftPlot = {
   legend: recordingHours.plots.map((plot, index) => ({ label: plot.title, color: recordingColors[index] })),
 };
 
-// A separate acquisition-cost reading, not the unsupported end-to-end mapping-cost proposal.
+// Keep the source archive in $/voxel; this selected view restores Table A1 voxels/$.
 const acquisitionSource = DRAFT_CHART_EVIDENCE["Connectomics imaging throughput over time"].plots.find(plot => plot.id === "acquisition-economics")!;
+const expansionIds = ["exm2015", "exllsm2019", "exaspim2023", "exaspim2024"];
+const emIds = ["sem2018", "multisem506", "multisem706", "bdtem2024"];
+const acquisitionPoints = acquisitionSource.points.map(point => ({
+  ...point, y: 1 / point.y,
+  group: expansionIds.includes(point.id) ? "Expansion microscopy" : point.id === "mesospim2024" ? "mesoSPIM · optical" : point.group,
+  marker: point.id === "peem2024" ? "triangle" as const : point.id === "mesospim2024" ? "diamond" as const : "circle" as const,
+  color: point.id === "mesospim2024" ? "#238e91" : point.color,
+  dateLabel: `${point.x} · year as printed in Table A1`,
+  exportAnnotation: `${point.label} · ≈${(1 / point.y).toExponential(1).replace("e+", "e")} vox/$${point.id === "peem2024" ? " · prospective" : ""}`,
+  note: point.note?.replace(/Display transformation:.*$/, "Display uses the published Table A1 Approx. Voxels/$ column; heterogeneous sampling and cost scopes.")
+    .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
+    .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
+    .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
+    .replace("Published technology; cost/throughput are crowdsourced estimates, not project accounting.", "Cost and throughput are crowdsourced estimates."),
+}));
+acquisitionPoints.push({
+  ...acquisitionPoints.find(point => point.id === "exaspim2023")!,
+  id: "exaspim2024", x: 2024, y: 1e11,
+  label: "ExA-SPIM 2024 · author estimate", annotation: "ExA-SPIM 2024 · author estimate",
+  exportAnnotation: "ExA-SPIM 2024 · ≈1e11 vox/$ · author estimate; citation mismatch",
+  dateLabel: "2024 · year as printed in Table A1",
+  note: "Table A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors’ estimate, with the mismatch disclosed.",
+});
+export const ACQUISITION_FITS = [expansionIds, emIds].map(ids => fitHistoricalLog(ids.map(id => acquisitionPoints.find(p => p.id === id)!))!);
 const acquisitionEconomics: DraftPlot = {
   ...acquisitionSource,
-  title: "Estimated acquisition cost per 10M voxels — optical and EM",
-  yLabel: "Approx. $/10M voxels (log)",
-  valueSignificantDigits: 3,
-  seriesNote: "Estimated cost per 10M voxels is 10,000,000 divided by the published Table A1 Approx. Voxels/$ value. Table A1 and Figure 2 differ; the chart uses Table A1.",
-  points: acquisitionSource.points.map(point => ({
-    ...point,
-    y: point.y * 10_000_000,
-    dateLabel: `${point.x} · year as printed in Table A1`,
-    note: point.note?.replace(/Display transformation:.*$/, `Estimated acquisition cost: ${Number((point.y * 10_000_000).toPrecision(3)).toLocaleString("en-US", { maximumFractionDigits: 10 })} $/10M voxels.`)
-      .replace(/(Approx\. Voxels\/\$ = )(\d+)/, (_, label, value) => `${label}${Number(value).toLocaleString("en-US")}`)
-      .replace("Verbatim numeric column transcription; not recomputed from cost/hour and throughput. Acquisition economics.", "Published Table A1 efficiency.")
-      .replace("Not verified all-in tissue preparation, reconstruction, storage or proofreading cost.", "Coverage of tissue preparation, reconstruction, storage and proofreading costs is unverified.")
-      .replace("Published technology; cost/throughput are crowdsourced estimates, not project accounting.", "Cost and throughput are crowdsourced estimates."),
+  title: "Estimated acquisition efficiency — voxels per dollar",
+  yLabel: "Approx. voxels/$ (log)", valueSignificantDigits: 3,
+  scope: "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate with a citation mismatch.",
+  seriesNote: "Table A1 Approx. Voxels/$ values, rather than digitized Figure 2 marks or throughput/hour divided by cost/hour. Figure 2 has TEMCA-GridTape without an exact table row, omits mesoSPIM, and differs for MultiSEM 706. mesoSPIM stays separate from expansion microscopy. PEEM is excluded from the historical EM fit.",
+  points: acquisitionPoints,
+  exportPointKey: true, exportPointKeyNote: "All efficiencies ≈ author estimates; heterogeneous resolution and cost scope. PEEM prospective; ExA-SPIM 2024 citation mismatch.",
+  legend: [
+    {label: "Expansion microscopy · estimates", color: "#9275ca"},
+    {label: "EM · reported-tech estimates", color: "#cd732f"},
+    {label: "mesoSPIM · optical", color: "#238e91", marker: "diamond"},
+    {label: "PEEM · prospective", color: "#cd732f", marker: "triangle"},
+  ],
+  referenceTrendlines: ACQUISITION_FITS.map((fit, i) => ({
+    id: i ? "em" : "expansion", fit,
+    label: `${i ? "EM" : "Expansion"} fit · doubling ≈${fit.doublingYears!.toFixed(1)} y`,
+    color: i ? "#cd732f" : "#9275ca", points: fit.points,
+    note: `${historicalFitNote(fit)} Source: arXiv:2603.25713v1 Table A1 (p. 18). ${i ? "PEEM excluded as prospective; heterogeneous reported-tech estimates." : "ExA-SPIM 2024 author estimate included; reference 54 cites HiExM (citation mismatch). mesoSPIM excluded from expansion family."}`,
+    methodologyUrl: "https://arxiv.org/pdf/2603.25713v1", methodologyLabel: "Source table ↗",
   })),
 };
 const costEfficiency: DraftChart = {
   category: "Cost and automation",
   title: "Connectomics imaging cost efficiency",
   axes: `${acquisitionEconomics.xLabel} · ${acquisitionEconomics.yLabel}`,
-  definition: "Source-estimated acquisition costs per 10M voxels at each protocol's stated resolution and scope.",
+  definition: "Source-estimated voxels acquired per dollar at each protocol's stated resolution and scope.",
   constraint: acquisitionEconomics.scope,
 };
 export const METRIC_CHARTS: readonly DraftChart[] = [...DRAFT_CHARTS, costEfficiency, BCI_BITRATE_CHART];
@@ -77,7 +107,7 @@ export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.
     } : {}),
   }]).concat([[costEfficiency.title, {
     status: "plotted",
-    summary: "Source-estimated acquisition costs at each protocol's stated resolution and scope.",
+    summary: "Source-estimated acquisition efficiency with separate descriptive method-family fits.",
     plots: [acquisitionEconomics],
   }], [BCI_BITRATE_CHART.title, BCI_BITRATE_EVIDENCE]]),
 );

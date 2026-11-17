@@ -6,9 +6,11 @@ export type RecordingObservation = MeasurementPoint & {
   unit: string;
   preparation: string;
   quote: string;
+  /** Producer decimal-year coordinate, distinct from source date precision. */
+  plotYear?: number;
 };
 export type RecordingView = {
-  id: "electrical" | "human-channels" | "optical";
+  id: "historical" | "electrical" | "human-channels" | "optical";
   label: string;
   unit: string;
   description: string;

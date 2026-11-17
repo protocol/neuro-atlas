@@ -17,7 +17,7 @@
   ["Selected published maps — synapse counts", "selected-published-maps-synapse-counts"],
   ["Selected EM acquisition rates", "selected-em-acquisition-rates"],
   ["Selected structure–function matches", "selected-structure-function-matches"],
-  ["Estimated acquisition cost per 10M voxels — optical and EM", "estimated-acquisition-cost-per-10m-voxels-optical-and-em"],
+  ["Estimated acquisition efficiency — voxels per dollar", "estimated-acquisition-efficiency-voxels-per-dollar"],
   ["Human and mouse cortex: split–merge error trade-offs", "human-and-mouse-cortex-split-merge-error-trade-offs"],
   ["Reported project proofreading effort", "reported-project-proofreading-effort"],
   ["PATHFINDER v1: axon tracing benchmark", "pathfinder-v1-axon-tracing-benchmark"],

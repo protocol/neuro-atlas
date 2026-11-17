@@ -18,9 +18,9 @@ test("performance UI offers three compact dialog triggers and share controls wit
   assert.equal((html.match(/data-performance-card=/g) ?? []).length, 3);
   assert.equal((html.match(/data-source-observation=/g) ?? []).length, 0);
   assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 3);
-  // This card now previews audited modern electrical observations, not the
-  // retired pooled historical frontier. The original data live in its disclosure.
-  assert.match(html, /Selected studies: electrical units, human implant channels and optical cellular signals/);
-  assert.match(html, /Preview: in-vivo electrical units/);
+  // Historical source-selected electrical literature is the approved default;
+  // modern electrical, channel and optical observations remain separate views.
+  assert.match(html, /Historical electrical recordings.*1957–2022/);
+  assert.match(html, /Historical reported neurons per experiment/);
   assert.doesNotMatch(html, /<dialog|bci-implants|<details[^>]*data-performance-card/);
 });

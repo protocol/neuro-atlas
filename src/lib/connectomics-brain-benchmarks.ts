@@ -47,12 +47,12 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
   if (plotId === "acquisition-economics") return {
     toggleLabel: "Human-brain cost targets",
     scopeLabel: `Human · ${sampling} nm cost scenario`,
-    disclosure: `Human-brain image-acquisition-only budget scenarios: $1B, $100M, $10M, $1M and $100K. Human volume ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³ at dense ${sampling} nm sampling gives ${number(brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human))} voxels. Target $/10M voxels = budget ÷ (human voxels ÷ 10,000,000). Preparation, labeling, alignment, reconstruction, proofreading and storage require additional budgets. Optical and EM observations retain their own resolution and biological scope; the common voxel scenario is a scale comparison.`,
+    disclosure: `Human-brain image-acquisition-only budget scenarios: $1B, $100M, $10M, $1M and $100K. Human volume ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³ at dense ${sampling} nm sampling gives ${number(brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human))} voxels. Target voxels/$ = human voxels ÷ budget. Preparation, labeling, alignment, reconstruction, proofreading and storage require additional budgets. Optical and EM observations retain their own resolution and biological scope; the common voxel scenario is a scale comparison.`,
     sources: [volumeSource, samplingSource],
     references: [1e9, 1e8, 1e7, 1e6, 1e5].map((budget, index) => {
-      const value = budget / (brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human) / 10_000_000);
+      const value = brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human) / budget;
       const name = ["$1B", "$100M", "$10M", "$1M", "$100K"][index];
-      return { id: `human-budget-${budget}`, budget, value, label: `${name} · $${value.toExponential(2).replace("e+", "e")}` };
+      return { id: `human-budget-${budget}`, budget, value, label: `${name} · ${value.toExponential(2).replace("e+", "e")} vox/$` };
     }),
   };
   return undefined;

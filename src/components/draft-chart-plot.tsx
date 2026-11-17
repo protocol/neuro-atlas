@@ -126,10 +126,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     const point = plot.points.find(point => (point.group ?? "Other observations") === group);
     return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
   }) : []);
-  const referenceTrendline = plot.referenceTrendline;
-  const exportLegend = referenceTrendline
-    ? [...legend, { label: referenceTrendline.label, color: referenceTrendline.color, marker: "line" as const }]
-    : legend;
+  const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
+  const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
   const active = tooltip.active;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
@@ -266,7 +264,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       })) : undefined,
       pointKeyNote: plot.exportPointKey ? plot.exportPointKeyNote : undefined,
       notes: [plot.scope, plot.seriesNote ?? "",
-        ...(referenceTrendline ? [referenceTrendline.note] : []),
+        ...referenceTrendlines.map(line => line.note),
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
@@ -299,12 +297,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
       </text>}
-      {referenceTrendline && <polyline data-reference-trendline={plot.id}
+      {referenceTrendlines.map(referenceTrendline => <polyline key={referenceTrendline.id ?? plot.id} data-reference-trendline={referenceTrendline.id ?? plot.id}
         points={referenceTrendline.points.map(point => `${x(point.x)},${y(point.y)}`).join(" ")}
         fill="none" stroke={referenceTrendline.color} strokeWidth={2} vectorEffect="non-scaling-stroke"
         data-export-stroke-width={2} pointerEvents="none" aria-label={referenceTrendline.label}>
         <title>{referenceTrendline.note}</title>
-      </polyline>}
+      </polyline>)}
+      {referenceTrendlines.filter(line => line.fit).map(line => {
+        const end = line.points.at(-1)!;
+        return <text key={line.id} data-fit-direct-label={line.id} x={x(end.x) - 6} y={Math.max(top + 14, y(end.y) - 10)} textAnchor="end" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.label}</text>;
+      })}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
@@ -354,12 +356,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
-    {referenceTrendline && <p className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
+    {referenceTrendlines.map(referenceTrendline => <p key={referenceTrendline.id ?? plot.id} className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
       <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
         <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />
       </svg>{referenceTrendline.label}
-      {referenceTrendline.methodologyUrl && <> · <a data-fit-methodology href={referenceTrendline.methodologyUrl} target="_blank" rel="noreferrer">Data and fit code ↗</a></>}
-    </p>}
+      {referenceTrendline.methodologyUrl && <> · <a data-fit-methodology href={referenceTrendline.methodologyUrl} target="_blank" rel="noreferrer">{referenceTrendline.methodologyLabel ?? "Data and fit code ↗"}</a></>}
+    </p>)}
     {plot.points.some(point => point.qualifier) && <p className="draft-plot-qualifications" data-visible-qualifications>
       {plot.points.every(point => point.qualifier === "≈") ? "All plotted values are approximate (≈)." : <>
         <span>{plot.yLabel}: </span>
@@ -368,6 +370,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         </span>)}
       </>}
     </p>}
+    {plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">PEEM: prospective. ExA-SPIM 2024: author estimate; citation mismatch (HiExM).</p>}
     {preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
     {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {scaleNote} · {connectionNote}</p>}
     {!preview && <><PointTooltip {...tooltip.tooltipProps}>
@@ -389,8 +392,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{plot.scope}</p>
+      {plot.referenceTrendlines && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data &amp; fits JSON</a>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
-      {referenceTrendline && <p>{referenceTrendline.note}</p>}
+      {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
           <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>

@@ -15,16 +15,16 @@ const changeView = async value => act(async () => {
   select.value = value; select.dispatchEvent(new Event('change', { bubbles: true }));
 });
 
-test('the original recording anchor opens three source-qualified scatter views with no extrapolation or prefilled detail', async () => {
+test('the original recording anchor opens historical plus three source-qualified scatter views with no extrapolation or prefilled detail', async () => {
   const cleanup = await mount(chart(), '#simultaneously-recorded-neurons');
   try {
     const modal = document.querySelector('dialog[open]');
     const select = modal.querySelector('[data-recording-view-select]');
     assert.ok(select, 'Recording measurement selector is available');
-    assert.deepEqual([...select.options].map(o => o.value), ['electrical', 'human-channels', 'optical']);
+    assert.deepEqual([...select.options].map(o => o.value), ['historical', 'electrical', 'human-channels', 'optical']);
     assert.equal(select.labels[0].textContent.startsWith('Measurement view'), true);
     for (const view of RECORDING_VIEWS) {
-      if (view.id !== 'electrical') await changeView(view.id);
+      await changeView(view.id);
       assert.equal(modal.querySelector('[data-recording-view]').dataset.recordingView, view.id);
       assert.equal(window.location.hash, '#simultaneous-neural-recordings');
       assert.equal(modal.querySelectorAll('[data-curve-point]').length, view.points.length);
@@ -83,11 +83,11 @@ for (const [query, expected] of [
   ['recordingView=human-channels', 'human-channels'],
   ['recordingView=optical', 'optical'],
   ['recordingView=electrical', 'electrical'],
-  ['recordingView=unknown', 'electrical'],
-  ['recordingView=optical&recordingView=human-channels', 'electrical'],
-  ['recordingView=optical&recordingView=optical', 'electrical'],
-  ['recordingView=OPTICAL', 'electrical'],
-  ['recordingView=optical%20', 'electrical'],
+  ['recordingView=unknown', 'historical'],
+  ['recordingView=optical&recordingView=human-channels', 'historical'],
+  ['recordingView=optical&recordingView=optical', 'historical'],
+  ['recordingView=OPTICAL', 'historical'],
+  ['recordingView=optical%20', 'historical'],
 ]) test(`fresh recording query ${query} resolves only an exact unambiguous view`, async () => {
   const cleanup = await mount(chart(), '', win => win.history.replaceState(null, '', `/field-velocity?${query}#simultaneously-recorded-neurons`));
   try {
@@ -115,7 +115,7 @@ test('recording presentation names the measurement family, keeps actions first a
     assert.match(history.textContent, /Isolated neonatal mouse retina.*ex vivo/i);
     assert.match(history.textContent, /Historical tracker values with year precision and mixed preparations.*Experiment dates.*unverified/is);
     assert.match(history.textContent, /Export SHA-256/);
-    assert.equal(modal.querySelectorAll('[data-curve-point]').length, 3, 'Historical mixed-preparation values are never pooled into modern brain-unit points');
+    assert.equal(modal.querySelectorAll('[data-curve-point]').length, 94, 'The default is the source-selected historical tracker; modern studies remain separate');
     await changeView('human-channels');
     assert.match(modal.textContent, /Neural activity was recorded from 256 electrodes/);
     assert.doesNotMatch(modal.querySelector('h2').textContent, /neurons/);

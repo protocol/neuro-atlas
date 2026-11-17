@@ -1,5 +1,5 @@
 export const recordingViewQuery = "recordingView";
-export const recordingViewIds = ["electrical", "human-channels", "optical"] as const;
+export const recordingViewIds = ["historical", "electrical", "human-channels", "optical"] as const;
 export type RecordingViewId = typeof recordingViewIds[number];
 
 /** Only one exact enum value may carry chart state; duplicates fail closed. */

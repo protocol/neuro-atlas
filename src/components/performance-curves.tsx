@@ -17,6 +17,9 @@ import { usePreviewFont } from "@/components/use-preview-font";
 import { ChartYearGuides, annualDateYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import type { PerformanceData } from "@/lib/field-velocity/performance";
+import { HISTORICAL_RECORDING, HISTORICAL_RECORDING_FIT, HISTORICAL_RECORDING_FIT_NOTE, HISTORICAL_RECORDING_SOURCE, historicalYearDate } from "@/data/historical-recording";
+import { recordingViewCsv } from "@/lib/recording-source-export";
+import type { HistoricalLogFit } from "@/lib/historical-log-fit";
 import { RECORDING_VIEWS, RECORDING_CHECKED_AT, type RecordingView } from "@/data/recording-evidence";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
 import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
@@ -38,7 +41,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -46,7 +49,7 @@ export function chartGeometry(data: PlotData) {
   const times = data.points.map(p => Date.parse(p.date));
   const minTime = Math.min(...times), maxTime = Math.max(...times);
   const padding = Math.max((maxTime - minTime) * 0.035, 86400000 * 30);
-  const values = data.points.flatMap(p => [p.value, ...(p.lo != null ? [p.lo] : []), ...(p.hi != null ? [p.hi] : [])]);
+  const values = [...data.points.flatMap(p => [p.value, ...(p.lo != null ? [p.lo] : []), ...(p.hi != null ? [p.hi] : [])]), ...(data.historicalFit?.points.map(p => p.y) ?? [])];
   const minValue = Math.min(...values), maxValue = Math.max(...values);
   const low = Math.floor(Math.log10(Math.max(minValue, Number.MIN_VALUE))), high = Math.max(low + 1, Math.ceil(Math.log10(maxValue)));
   const magnitude = 10 ** Math.floor(Math.log10(maxValue / 4));
@@ -182,7 +185,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
   const points = data.points.filter(p => !track || p.track === track);
-  const recordingDateTicks = inspectOnActivate ? [...new Set([g.minTime, g.maxTime])].map(time => ({
+  const recordingDateTicks = inspectOnActivate && !data.historicalFit ? [...new Set([g.minTime, g.maxTime])].map(time => ({
     date: new Date(time).toISOString(),
     label: g.minTime !== g.maxTime && new Date(g.minTime).getUTCFullYear() === new Date(g.maxTime).getUTCFullYear()
       ? new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" }).format(time)
@@ -218,7 +221,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
       return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes,
-        legend: data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })),
+        legend: [...data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })), ...(data.historicalFit ? [{ label: `Historical fit · N=${data.historicalFit.n} · R²(log10)=${data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈${data.historicalFit.doublingYears!.toFixed(1)} y`, color: "#087f8c", marker: "line" as const }] : [])],
         notes: [
           ...(data.exportNotes ?? []),
         ...points.flatMap(point => point.qualifiedValueLabel ? [point.qualifiedValueLabel] : []),
@@ -263,6 +266,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
+        {data.historicalFit && <g data-historical-fit>
+          <polyline points={data.historicalFit.points.map(p => `${g.x(historicalYearDate(p.x))},${g.y(p.y)}`).join(" ")} fill="none" stroke="#087f8c" strokeWidth={2} vectorEffect="non-scaling-stroke" data-export-stroke-width={2} />
+          <text data-historical-fit-label x={g.x(historicalYearDate(data.historicalFit.window[0] + (data.historicalFit.window[1]-data.historicalFit.window[0])*.62))} y={g.y(10 ** (data.historicalFit.interceptLog10 + data.historicalFit.slopeLog10PerYear * (data.historicalFit.window[1]-data.historicalFit.window[0])*.62)) - 12 * unitsPerPixel} textAnchor="middle" fill="#087f8c" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">Fit · ≈{data.historicalFit.doublingYears!.toFixed(1)} y doubling</text>
+        </g>}
         {connections.map(series => <polyline key={series.id} data-curve-series={series.id} data-frontier-line={data.line || undefined} points={series.points.map(p => `${g.x(p.date)},${g.y(p.value)}`).join(" ")} fill="none" stroke={colors[series.points[0].trackIndex % colors.length]} strokeWidth={1.5} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
         {scenario && future && <g className="pc-extrapolation-overlay" opacity={moving ? reveal : undefined}>
           {scenario.targets.map(target => <g key={target.id}>
@@ -279,7 +286,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           data-export-r={CHART_PRESENTATION.expandedRadius} tabIndex={compact ? undefined : 0} role={compact ? undefined : inspectOnActivate ? "button" : "img"} aria-label={compact ? undefined : p.label}
           {...(!compact ? tooltip.pointProps(p) : {})} />)}
         {measure.marks}
-        {!compact && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
+        {!compact && !data.historicalFit && clusters.filter(c => c.length > 1).map(c => <text key={`${c[0].track}:${c[0].date}`} x={Math.min(g.width - 100, g.x(c[0].date))} y={g.y(c[0].value) + 20}>{c.length} checkpoints</text>)}
         {moving && future ? <>
           <text x={mix(g.left, future.x(new Date(original.minTime).toISOString().slice(0, 10)))} y={g.height - 20} opacity={1 - progress}>{new Date(original.minTime).getUTCFullYear()}</text>
           <text x={mix(g.width - g.right, future.x(new Date(original.maxTime).toISOString().slice(0, 10)))} y={g.height - 20} textAnchor="end" opacity={1 - progress}>{new Date(original.maxTime).getUTCFullYear()}</text>
@@ -299,6 +306,10 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       <p data-point-description>{active.label}</p>
       {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
     </>}</PointTooltip>}
+    {!compact && data.historicalFit && <div className="pc-chart-note" data-historical-fit-diagnostics>
+      <p>{data.historicalFit.n} selected papers · 1957–2022 · R²(log10)={data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈{data.historicalFit.doublingYears!.toFixed(1)} years.</p>
+      <details><summary>Fit method &amp; selected inputs</summary><p>{HISTORICAL_RECORDING_FIT_NOTE}</p></details>
+    </div>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : data.connectTracks?.length ? "Lines connect successive reliable observations within each measurement series; other source observations remain separate." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
     {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
     {extrapolate && scenario && <>
@@ -378,21 +389,25 @@ export function MeasurementCard({ series, provenance, anchor = series.id, previe
 
 const recordingAnchor = "simultaneously-recorded-neurons";
 const recordingTitle = "Simultaneous neural recordings";
+const ALL_RECORDING_VIEWS = [HISTORICAL_RECORDING, ...RECORDING_VIEWS];
 function recordingPlot(view: RecordingView): PlotData {
   return {
     title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
-    xLabel: "Source publication / disclosure date",
-    tracks: [{ id: view.id, label: view.label }],
+    xLabel: view.id === "historical" ? "Publication year · tracker month convention" : "Source publication / disclosure date",
+    historicalFit: view.id === "historical" ? HISTORICAL_RECORDING_FIT : undefined,
+    yearLabels: view.id === "historical",
+    tracks: [{ id: view.id, label: view.id === "historical" ? "Historical electrical tracker · mixed preparations · first 10 papers/count" : view.label }],
     exportCaptionNotes: [
       view.description,
-      ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit} · ${p.preparation.split(" · ")[0]} · ${pointDate(p)} (${p.dateBasis}). ${p.sourceLabel}.`),
-      `Selected individual sessions · source-specific quality criteria · source checked ${RECORDING_CHECKED_AT}. Full evidence and methods at the chart link.`,
+      ...(view.id === "historical" ? [`Tracker selection: first 10 papers at each count · N=${HISTORICAL_RECORDING_FIT.n} · R²(log10)=${HISTORICAL_RECORDING_FIT.rSquaredLog10!.toFixed(3)} · mixed preparations. Frozen 2026-11-17; data through 2022.`] : view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit} · ${p.preparation.split(" · ")[0]} · ${pointDate(p)} (${p.dateBasis}). ${p.sourceLabel}.`)),
+      view.id === "historical" ? "Original tracker criteria; preprint/final entries may overlap. Data and methods at the chart link." : `Selected individual sessions · source-specific quality criteria · source checked ${RECORDING_CHECKED_AT}. Full evidence and methods at the chart link.`,
     ],
     exportNotes: [
-      `Source checked ${RECORDING_CHECKED_AT}. Dates identify source publication or disclosure, with the stated precision. Selected observed values.`,
+      ...(view.id === "historical" ? [HISTORICAL_RECORDING_FIT_NOTE, JSON.stringify(HISTORICAL_RECORDING_SOURCE)] : []),
+      `Source checked ${view.id === "historical" ? "2026-11-17" : RECORDING_CHECKED_AT}. Dates identify source publication or disclosure, with the stated precision. Selected observed values.`,
       ...view.points.map(p => `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} Source: ${p.sourceLabel} — ${p.sourceUrl}`),
     ],
-    points: view.points.map(p => ({ ...p, track: view.id, trackIndex: 0,
+    points: view.points.map(p => ({ ...p, date: p.plotYear == null ? p.date : historicalYearDate(p.plotYear), track: view.id, trackIndex: 0,
       label: `${p.label}: ${pointValue(p)} ${p.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.preparation}. ${p.note} ${p.sourceLabel}`,
     })),
   };
@@ -402,7 +417,7 @@ function subscribeRecordingView(callback: () => void) {
   events.forEach(event => window.addEventListener(event, callback));
   return () => events.forEach(event => window.removeEventListener(event, callback));
 }
-const recordingViewSnapshot = () => recordingViewToken(new URL(window.location.href)) ?? "electrical";
+const recordingViewSnapshot = () => recordingViewToken(new URL(window.location.href)) ?? "historical";
 function selectRecordingView(id: RecordingViewId) {
   const url = new URL(window.location.href);
   url.searchParams.set(recordingViewQuery, id);
@@ -412,17 +427,17 @@ function selectRecordingView(id: RecordingViewId) {
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
 function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
-  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "electrical");
-  const view = RECORDING_VIEWS.find(v => v.id === viewId)!;
+  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
+  const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
   return <CurveCard id={recordingAnchor} title={recordingTitle} eyebrow="Recording evidence"
-    coverage="Selected studies: electrical units, human implant channels and optical cellular signals."
-    previewNote="Preview: in-vivo electrical units per session."
-    plot={recordingPlot(RECORDING_VIEWS[0])}
+    coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
+    previewNote="Historical reported neurons per experiment · mixed preparations."
+    plot={recordingPlot(HISTORICAL_RECORDING)}
     modalPlot={<div data-recording-view={view.id}>
       <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
         <label className="pc-track-select pc-recording-view">Measurement view
           <select data-recording-view-select value={view.id} onChange={event => selectRecordingView(event.target.value as RecordingViewId)}>
-            {RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
+            {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
           </select>
         </label>
       } />
@@ -430,16 +445,20 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
     <ModalReading><section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
       <h4>Definition and methodology · {view.label}</h4>
       <p>{view.description}</p><p className="pc-caveat">{view.caveat}</p>
-      <p>Dates identify source publication or disclosure, with the stated precision. Source checked {RECORDING_CHECKED_AT}.</p>
+      <p>Dates identify source publication or disclosure, with the stated precision. Source checked {view.id === "historical" ? "2026-11-17" : RECORDING_CHECKED_AT}.</p>
+      {view.id === "historical" && <p><a href={HISTORICAL_RECORDING_SOURCE.sourceUrl}>Stevenson–Kording tracker ↗</a> · <a href={HISTORICAL_RECORDING_SOURCE.producerUrl}>Pinned selection / plotting code ↗</a>. Code last updated in 2020; the separately captured live CSV includes entries through 2022.</p>}
     </section></ModalReading>
-    <ModalTable summary={<>Sources &amp; chart data · {view.points.length} observations</>}><div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
+    <ModalTable summary={<>Sources &amp; chart data · {view.points.length} observations</>}>
+      <a data-recording-source-csv download={`neuro-atlas-recording-${view.id}.csv`} href={`data:text/csv;charset=utf-8,${encodeURIComponent(recordingViewCsv(view, view.id === "historical" ? HISTORICAL_RECORDING_FIT : undefined))}`}>Download selected CSV</a>{" · "}
+      <a data-recording-source-json download={`neuro-atlas-recording-${view.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify({view, ...(view.id === "historical" ? {fit:HISTORICAL_RECORDING_FIT,source:HISTORICAL_RECORDING_SOURCE} : {})},null,2))}`}>Download selected data &amp; fit JSON</a>
+      <div className="pc-table-scroll" role="region" aria-label={`${view.label} source data`} tabIndex={0}>
       <table><caption>Sources &amp; chart data · {view.points.length} observations</caption>
         <thead><tr><th scope="col">Study / preparation</th><th scope="col">Date &amp; basis</th><th scope="col">Value &amp; units</th><th scope="col">Source &amp; context</th></tr></thead>
         <tbody>{view.points.map(p => <tr key={p.id} data-source-observation={p.id}>
           <th scope="row">{p.label}<small>{p.preparation}</small></th>
           <td>{pointDate(p)}<small>{p.datePrecision} precision · {p.dateBasis}</small></td>
           <td>{pointValue(p)} {p.unit}</td>
-          <td><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a><p>{p.note}</p><p>Source excerpt: “{p.quote}”</p></td>
+          <td><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.sourceLabel} ↗</a><p>{p.note}</p><p>{view.id === "historical" ? "Tracker fields" : "Source excerpt"}: “{p.quote}”</p></td>
         </tr>)}</tbody>
       </table>
     </div></ModalTable>
