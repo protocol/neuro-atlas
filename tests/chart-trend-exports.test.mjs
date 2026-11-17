@@ -38,6 +38,8 @@ test('historical PNG labels the real selected tracker and diagnostics; full fit 
   const visible=[...doc.querySelectorAll('text')].map(n=>n.textContent).join(' ');
   assert.match(visible,/mixed preparations/);
   assert.match(visible,/N=94.*R²/);
+  assert.match(visible,/Maccione.*Approximately 3,200.*retina/);
+  assert.match(visible,/Mitz.*Approximately 807.*average.*session/);
   const svg=document.querySelector('dialog .pc-chart-scroll svg');
   const line=svg.querySelector('[data-historical-fit] polyline');
   const coordinates=line.getAttribute('points').split(' ').map(s=>s.split(',').map(Number));

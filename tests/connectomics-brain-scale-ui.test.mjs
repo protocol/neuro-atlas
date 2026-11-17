@@ -19,11 +19,11 @@ const supported = ['public-data-size', 'acquisition-economics'];
 // Public-data goldens remain those captured from untouched 5015d2c.
 // Acquisition is intentionally re-pinned for the approved reciprocal units,
 // ExA-SPIM 2024 author estimate and two family fits, with d819dec label lanes
-// and fe6fdd9 compact preview copy; no geometry normalization hides these
+// and bfe169f compact date axes/readable M/B/T labels; no geometry normalization hides these
 // changes. Source/fit math is checked separately.
 const baseline = {
   'public-data-size': { preview: '5f685a0387cb23d85d4a83b6e807bc7afc416b70b84d927fdf50894858211482', svg: '4a2d0d3bd865a7c03983bed2045b8c5a40ac4e2e7f5a292671c5b2f66fada6a2' },
-  'acquisition-economics': { preview: '119a0d3f5aec7eb5704561c74896a79b2947e90a0a0b5c4a8bed05ec468ca411', svg: '0daa9990cdbb566e4fc4686bda13fcb9fca2b4458117409154e8f9feaeedd1d0' },
+  'acquisition-economics': { preview: '6f5f48d3f31136316ddeb68c79225e9688bf9888e24022fb7bb1c64091bb2c30', svg: 'e253e93e73203fe43a2306def0706b086e993edcb50350e282eb0ad1c53f50f4' },
 };
 const normalize = html => html.replace(/_R_[^"]*/g, 'ID').replace(/ data-brain-scale-(?:progress|state|log-min|log-max)="[^"]*"/g, '');
 const hash = node => createHash('sha256').update(normalize(node.outerHTML)).digest('hex');

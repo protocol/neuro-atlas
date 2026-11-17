@@ -20,5 +20,5 @@ test('voxel axes, image keys and budget labels use the readable scale without ch
 test('voxel scale uses readable billion and trillion labels without scientific notation',async()=>{
  assert.ok(existsSync('src/lib/large-count-label.ts'),'shared display-only count formatter');
  const {compactCount,countWords}=await import('../src/lib/large-count-label.ts');
- for(const [value,short,words] of [[1e8,'100M','100 million'],[1e9,'1B','1 billion'],[1e11,'100B','100 billion'],[1e12,'1T','1 trillion'],[1.875e16,'18.8Q','18.8 quadrillion'],[6.5e9,'6.5B','6.5 billion']]){assert.equal(compactCount(value),short);assert.equal(countWords(value),words);}
+ for(const [value,short,words] of [[1e8,'100M','100 million'],[1e9,'1B','1 billion'],[1/(1e-9),'1B','1 billion'],[1e11,'100B','100 billion'],[1e12,'1T','1 trillion'],[1.875e16,'18.8Q','18.8 quadrillion'],[6.5e9,'6.5B','6.5 billion']]){assert.equal(compactCount(value),short);assert.equal(countWords(value),words);}
 });

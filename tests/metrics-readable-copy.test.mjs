@@ -54,9 +54,9 @@ test('acquisition preview and details use voxels per dollar with the exact unit 
     assert.doesNotMatch(doc.body.textContent, /\$\/voxel\b/);
     if (!preview) {
       const row = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('ExLLSM'));
-      assert.equal(row.cells[2].textContent, '≈1,000,000,000');
+      assert.equal(row.cells[2].textContent, '≈1 billion');
       const bdtem = [...doc.querySelectorAll('tbody tr')].find(r => r.textContent.startsWith('bdTEM'));
-      assert.equal(bdtem.cells[2].textContent, '≈6,500,000,000', 'Approximate efficiencies retain published values');
+      assert.equal(bdtem.cells[2].textContent, '≈6.5 billion', 'Approximate efficiencies retain published values');
     }
   }
 });

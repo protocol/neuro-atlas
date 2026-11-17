@@ -41,7 +41,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean; exportPointKey?: {label: string; color: string}[]; exportPointKeyNote?: string };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -221,7 +221,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare key={inspectOnActivate ? data.title : undefined} anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
-      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes,
+      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes, pointKey: data.exportPointKey, pointKeyNote: data.exportPointKeyNote,
         legend: [...data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })), ...(data.historicalFit ? [{ label: `Historical fit · N=${data.historicalFit.n} · R²(log10)=${data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈${data.historicalFit.doublingYears!.toFixed(1)} y`, color: "#087f8c", marker: "line" as const }] : [])],
         notes: [
           ...(data.exportNotes ?? []),
@@ -396,6 +396,8 @@ function recordingPlot(view: RecordingView): PlotData {
     title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
     xLabel: view.id === "historical" ? "Publication year · tracker month convention" : "Source publication / disclosure date",
     historicalFit: view.id === "historical" ? HISTORICAL_RECORDING_FIT : undefined,
+    exportPointKey: view.id === "historical" ? view.points.filter(p => ["stevenson-r145", "stevenson-r154"].includes(p.id)).map(p => ({ label: `${p.label} · ${pointValue(p)} · ${p.id === "stevenson-r145" ? "isolated neonatal mouse retina" : "average units per session"}`, color: "#1266f1" })) : undefined,
+    exportPointKeyNote: view.id === "historical" ? "Selected tracker qualifications · mixed preparations and source-defined count criteria" : undefined,
     yearLabels: view.id === "historical",
     tracks: [{ id: view.id, label: view.id === "historical" ? "Historical electrical tracker · mixed preparations · first 10 papers/count" : view.label }],
     exportCaptionNotes: [
