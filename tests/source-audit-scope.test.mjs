@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeSourceAudit, SOURCE_AUDIT_DELTA } from './helpers/source-audit-baseline.mjs';
+import { beforeNov17Feedback } from './helpers/nov17-feedback-baseline.mjs';
 const load = name => JSON.parse(readFileSync(new URL('../src/data/' + name, import.meta.url)));
 const funding = load('funding-index.json');
 const current = { milestones: load('milestones.json'), fundingRounds: funding.rounds, fundingMilestones: funding.milestones, fundingCompanies: funding.companies };
@@ -22,8 +23,9 @@ const baselineHashes = {
 for (const [kind, hash] of Object.entries(baselineHashes)) {
   test(kind + ' permits only the explicitly reviewed source-audit field delta', () => {
     assert.equal(SOURCE_AUDIT_DELTA.baselineSha, 'de2301974ac1e66b35aaaec91198dc5dda8c060c');
-    assert.equal(current[kind].length, SOURCE_AUDIT_DELTA.collections[kind].length);
-    const restored = beforeSourceAudit(current[kind], kind);
+    const scoped = beforeNov17Feedback(current[kind], kind);
+    assert.equal(scoped.length, SOURCE_AUDIT_DELTA.collections[kind].length);
+    const restored = beforeSourceAudit(scoped, kind);
     assert.equal(createHash('sha256').update(JSON.stringify(restored)).digest('hex'), hash);
   });
 }

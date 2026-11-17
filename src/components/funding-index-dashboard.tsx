@@ -387,10 +387,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
           )}
 
           {primaryView === "companies" && companyView === "stage" && (
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
               {stageGroups.map((group) => (
-                <article key={group.stage} className="rounded-3xl border border-border bg-surface-raised p-6 shadow-[0_12px_40px_rgba(28,34,55,0.06)]">
-                  <div className="flex items-start justify-between gap-4 border-b border-border pb-5">
+                <article key={group.stage} className="min-w-0 rounded-3xl border border-border bg-surface-raised p-4 shadow-[0_12px_40px_rgba(28,34,55,0.06)] sm:p-6">
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-border pb-5">
                     <div>
                       <div className="text-xs font-bold text-muted">Latest indexed stage</div>
                       <h2 className="mt-1 text-base font-semibold tracking-[-0.01em]">{group.stage}</h2>
