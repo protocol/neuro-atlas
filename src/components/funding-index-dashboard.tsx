@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import { FirmLogo } from "@/components/firm-logo";
 import { lookupAcronym } from "@/components/abbr";
 import {
@@ -9,6 +9,8 @@ import {
   formatFundingDate,
   formatFundingRecordDate,
   getTimelinePosition,
+  summarizePortfolioEvidence,
+  type FundingPortfolioDisclosure,
   type FundingCompanyRow,
   type FundingIndexData,
 } from "@/lib/funding-index";
@@ -31,10 +33,77 @@ function markerTitle(marker: string, indication?: string) {
 type PrimaryView = "companies" | "investors";
 type CompanyView = "timeline" | "stage";
 
+const fundingViewEvent = "funding-index:view-change";
+function subscribeFundingView(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener(fundingViewEvent, onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener(fundingViewEvent, onChange);
+  };
+}
+function currentFundingView(): PrimaryView {
+  return new URLSearchParams(window.location.search).get("view") === "investors" ? "investors" : "companies";
+}
+function navigateFundingView(view: PrimaryView) {
+  if (currentFundingView() === view) return;
+  const url = new URL(window.location.href);
+  if (view === "investors") url.searchParams.set("view", view);
+  else url.searchParams.delete("view");
+  // Next.js integrates native history updates without a route reload or scroll reset.
+  window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  window.dispatchEvent(new Event(fundingViewEvent));
+}
+
+function FundingPortfolioPanel({ data, disclosure, index, onSelectCompany }: {
+  data: FundingIndexData;
+  disclosure: FundingPortfolioDisclosure;
+  index: number;
+  onSelectCompany: (slug: string) => void;
+}) {
+  const summary = summarizePortfolioEvidence(disclosure, data.companies, data.rounds);
+  const screenedSlugs = new Set(data.companies.map((company) => company.slug));
+  return (
+    <section id={`funding-portfolio-${index}`} data-funding-portfolio={disclosure.investorName} aria-labelledby={`funding-portfolio-title-${index}`} className="scroll-mt-32 rounded-3xl border border-border bg-surface-raised p-5 sm:p-6">
+      <div className="text-xs font-bold text-muted">Portfolio context · separate evidence</div>
+      <h2 id={`funding-portfolio-title-${index}`} className="mt-2 text-base font-semibold tracking-[-0.01em]">{disclosure.investorName}</h2>
+      <p className="mt-2 max-w-4xl text-sm leading-relaxed text-muted">Published selection, not an exhaustive portfolio. It spans neurotech beyond BCIs; a portfolio listing does not establish participation in an indexed financing round, its date, stage, amount, or check size.</p>
+      <div className="mt-5 grid gap-3 sm:grid-cols-3">
+        <div className="rounded-2xl border border-border p-4"><div data-portfolio-total className="text-2xl font-semibold tabular-nums">{disclosure.companies.length}</div><div className="mt-1 text-xs text-muted">selected neurotech portfolio companies</div></div>
+        <div className="rounded-2xl border border-border p-4"><div data-portfolio-matched className="text-2xl font-semibold tabular-nums">{summary.matchedCompanyCount}</div><div className="mt-1 text-xs text-muted">in this BCI screen</div></div>
+        <div className="rounded-2xl border border-border bg-nav p-4"><div data-family-financing-count className="text-2xl font-semibold tabular-nums">{summary.indexedFinancingCount}</div><div className="mt-1 text-xs text-muted">distinct indexed financing records</div><div className="mt-2 text-xs text-muted">{summary.indexedCompanyCount} {summary.indexedCompanyCount === 1 ? "company" : "companies"} · <span data-family-associated-capital className="font-semibold text-foreground">{formatCapital(summary.associatedCapitalUsdM)}</span> associated financing, not check size</div></div>
+      </div>
+      <div className="mt-4 space-y-1 text-xs leading-relaxed text-muted">
+        {summary.members.map((member) => <p key={member.name} data-indexed-investor={member.name}><span className="font-semibold text-foreground">{member.name}:</span> {member.roundCount} financing {member.roundCount === 1 ? "record" : "records"} · {member.companyCount} {member.companyCount === 1 ? "company" : "companies"} · {formatCapital(member.associatedCapitalUsdM)} associated financing</p>)}
+        {disclosure.familyGrouping && <p>Display-only family grouping; the distinct source investor names are retained, not merged into one legal identity. Jointly named financing records count once in the family total.</p>}
+      </div>
+      <ul className="mt-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        {disclosure.companies.map((company) => {
+          const matched = !!company.companySlug && screenedSlugs.has(company.companySlug);
+          return <li key={company.website} data-portfolio-company className="min-w-0 rounded-xl border border-border p-3">
+            <a href={company.website} target="_blank" rel="noreferrer" className="text-sm font-semibold underline decoration-border underline-offset-4 outline-none ring-accent focus-visible:ring-2 [overflow-wrap:anywhere]">{company.name} ↗</a>
+            {matched ? <button type="button" data-portfolio-screen-match={company.companySlug} onClick={() => onSelectCompany(company.companySlug!)} className="mt-2 block min-h-8 rounded-full bg-nav px-2.5 text-xs font-medium outline-none ring-accent hover:text-accent focus-visible:ring-2" aria-label={`Open ${company.name} BCI company detail`}>In BCI screen →</button> : <div className="mt-2 text-xs text-muted">Outside this BCI screen</div>}
+          </li>;
+        })}
+      </ul>
+      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted">
+        <a href={disclosure.sourceUrl} target="_blank" rel="noreferrer" className="font-semibold text-accent underline underline-offset-4">Published portfolio ↗</a>
+        {disclosure.familyGrouping?.sourceUrls.filter((url) => url !== disclosure.sourceUrl).map((url) => <a key={url} href={url} target="_blank" rel="noreferrer" className="font-semibold text-accent underline underline-offset-4">Platform disclaimer ↗</a>)}
+        <span>{sourceReviewLabel(disclosure.reviewedOn)}</span>
+      </div>
+    </section>
+  );
+}
+
 export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
-  const [primaryView, setPrimaryView] = useState<PrimaryView>("companies");
+  const primaryView = useSyncExternalStore(subscribeFundingView, currentFundingView, () => "companies");
   const [companyView, setCompanyView] = useState<CompanyView>("timeline");
   const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const searchToggleRef = useRef<HTMLButtonElement>(null);
+  const filtersToggleRef = useRef<HTMLButtonElement>(null);
   const [scope, setScope] = useState("All");
   const [modality, setModality] = useState("All");
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -76,6 +145,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
   }, [rows]);
 
   useEffect(() => {
+    if (searchOpen) searchRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
     if (!selectedSlug) return;
     const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     closeRef.current?.focus();
@@ -108,86 +181,119 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
 
   return (
     <div>
-      <section className="sticky top-0 z-30 -mx-5 mt-8 border-y border-border bg-background/95 px-5 py-4 backdrop-blur-md sm:-mx-7 sm:px-7 lg:-mx-9 lg:px-9">
-        <div className="flex flex-col gap-3 xl:flex-row xl:flex-wrap xl:items-center xl:justify-between">
-          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-            <div className="inline-flex rounded-full border border-border bg-nav p-0.5" aria-label="Index lens">
-              {(["companies", "investors"] as PrimaryView[]).map((view) => (
+      <section data-funding-toolbar className="sticky top-0 z-30 -mx-5 mt-8 border-y border-border bg-background/95 px-5 py-2 backdrop-blur-md sm:-mx-7 sm:px-7 sm:py-4 lg:-mx-9 lg:px-9">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-2 sm:flex sm:flex-wrap sm:gap-3 xl:justify-between">
+          <div className="inline-flex w-fit rounded-full border border-border bg-nav p-0.5" aria-label="Index lens">
+            {(["companies", "investors"] as PrimaryView[]).map((view) => (
+              <button
+                key={view}
+                type="button"
+                aria-pressed={primaryView === view}
+                onClick={() => navigateFundingView(view)}
+                className={`min-h-9 rounded-full px-3 py-1.5 text-sm font-medium capitalize outline-none ring-accent transition-colors focus-visible:ring-2 sm:px-4 ${primaryView === view ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}
+              >
+                {view}
+              </button>
+            ))}
+          </div>
+          {primaryView === "companies" && <>
+            <button
+              ref={searchToggleRef}
+              type="button"
+              aria-label="Toggle company search"
+              aria-controls="funding-company-search"
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen(!searchOpen)}
+              className={`relative col-start-2 row-start-1 flex h-10 w-10 items-center justify-center rounded-full border border-border outline-none ring-accent focus-visible:ring-2 sm:hidden ${query || searchOpen ? "bg-foreground text-background" : "bg-surface-raised text-muted"}`}
+            >
+              <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8"><circle cx="8.5" cy="8.5" r="5.5" /><path d="m12.5 12.5 4 4" /></svg>
+              {query && <span className="sr-only">Search active</span>}
+            </button>
+            <div className="col-start-1 row-start-2 inline-flex w-fit rounded-full border border-border bg-nav p-0.5" aria-label="Company view">
+              {(["timeline", "stage"] as CompanyView[]).map((view) => (
                 <button
                   key={view}
                   type="button"
-                  aria-pressed={primaryView === view}
-                  onClick={() => setPrimaryView(view)}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-colors ${primaryView === view ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}
+                  aria-pressed={companyView === view}
+                  onClick={() => setCompanyView(view)}
+                  className={`min-h-9 rounded-full px-3 py-1.5 text-sm font-medium capitalize outline-none ring-accent transition-colors focus-visible:ring-2 sm:px-4 ${companyView === view ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}
                 >
                   {view}
                 </button>
               ))}
             </div>
-            {primaryView === "companies" && (
-              <div className="inline-flex rounded-full border border-border bg-nav p-0.5" aria-label="Company view">
-                {(["timeline", "stage"] as CompanyView[]).map((view) => (
-                  <button
-                    key={view}
-                    type="button"
-                    aria-pressed={companyView === view}
-                    onClick={() => setCompanyView(view)}
-                    className={`rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-colors ${companyView === view ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}
-                  >
-                    {view}
-                  </button>
+            <button
+              ref={filtersToggleRef}
+              type="button"
+              aria-label="Toggle company filters"
+              aria-controls="funding-company-filters"
+              aria-expanded={filtersOpen}
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className={`col-start-2 row-start-2 min-h-10 rounded-full border border-border px-3 text-xs font-medium outline-none ring-accent focus-visible:ring-2 sm:hidden ${scope !== "All" || modality !== "All" ? "bg-foreground text-background" : "bg-surface-raised text-muted"}`}
+            >
+              Filters{scope !== "All" || modality !== "All" ? ` · ${Number(scope !== "All") + Number(modality !== "All")}` : ""}
+            </button>
+            <label id="funding-company-search" className={`${searchOpen ? "block" : "hidden"} relative col-span-2 sm:block xl:ml-auto`}>
+              <span className="sr-only">Search companies</span>
+              <svg aria-hidden="true" viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 fill-none stroke-current text-muted" strokeWidth="1.8">
+                <circle cx="8.5" cy="8.5" r="5.5" /><path d="m12.5 12.5 4 4" />
+              </svg>
+              <input
+                ref={searchRef}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") {
+                    setSearchOpen(false);
+                    searchToggleRef.current?.focus();
+                  }
+                }}
+                placeholder="Search name or modality…"
+                className="h-10 w-full min-w-0 rounded-full border border-border bg-surface-raised pl-10 pr-4 text-sm outline-none ring-accent placeholder:text-muted focus:ring-2 sm:w-[260px]"
+              />
+            </label>
+            <div
+              id="funding-company-filters"
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  setFiltersOpen(false);
+                  filtersToggleRef.current?.focus();
+                }
+              }}
+              className={`${filtersOpen ? "block" : "hidden"} absolute inset-x-0 top-full max-h-[70dvh] space-y-3 overflow-y-auto border-b border-border bg-background p-4 shadow-lg sm:static sm:flex sm:max-h-none sm:flex-wrap sm:items-center sm:gap-2 sm:space-y-0 sm:overflow-visible sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}
+            >
+              <label className="block sm:hidden">
+                <span className="mb-1 block text-xs font-medium text-muted">Scope</span>
+                <select aria-label="Filter by scope" value={scope} onChange={(event) => setScope(event.target.value)} className="h-10 w-full rounded-full border border-border bg-surface-raised px-4 text-sm outline-none ring-accent focus:ring-2">
+                  {["All", "Implanted", "Minimally invasive", "Implant-adjacent"].map((item) => <option key={item}>{item}</option>)}
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-1 block text-xs font-medium text-muted sm:hidden">Modality</span>
+                <select aria-label="Filter by modality" value={modality} onChange={(event) => setModality(event.target.value)} className="h-10 w-full rounded-full border border-border bg-surface-raised px-4 text-sm font-medium outline-none ring-accent focus:ring-2 sm:w-[190px]">
+                  {modalities.map((item) => <option key={item}>{item}</option>)}
+                </select>
+              </label>
+              <div className="hidden max-w-full overflow-x-auto rounded-full border border-border bg-surface-raised p-1 sm:flex" aria-label="Filter by scope">
+                {["All", "Implanted", "Minimally invasive", "Implant-adjacent"].map((item) => (
+                  <button key={item} type="button" aria-pressed={scope === item} onClick={() => setScope(item)} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium outline-none ring-accent focus-visible:ring-2 ${scope === item ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}>{item}</button>
                 ))}
               </div>
-            )}
-          </div>
-
-          {primaryView === "companies" && (
-            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center xl:justify-end">
-              <label className="relative">
-                <span className="sr-only">Search companies</span>
-                <svg aria-hidden="true" viewBox="0 0 20 20" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 fill-none stroke-current text-muted" strokeWidth="1.8">
-                  <circle cx="8.5" cy="8.5" r="5.5" />
-                  <path d="m12.5 12.5 4 4" />
-                </svg>
-                <input
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search name or modality…"
-                  className="h-10 w-full min-w-0 rounded-full border border-border bg-surface-raised pl-10 pr-4 text-sm outline-none ring-accent placeholder:text-muted focus:ring-2 sm:w-[260px]"
-                />
-              </label>
-              <select
-                aria-label="Filter by modality"
-                value={modality}
-                onChange={(event) => setModality(event.target.value)}
-                className="h-10 w-full rounded-full border border-border bg-surface-raised px-4 sm:w-[190px] text-sm font-medium outline-none ring-accent focus:ring-2"
-              >
-                {modalities.map((item) => <option key={item}>{item}</option>)}
-              </select>
-              <div className="flex max-w-full overflow-x-auto rounded-full border border-border bg-surface-raised p-1" aria-label="Filter by scope">
-                {["All", "Implanted", "Minimally invasive", "Implant-adjacent"].map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    aria-pressed={scope === item}
-                    onClick={() => setScope(item)}
-                    className={`whitespace-nowrap rounded-full px-2 py-1.5 text-xs font-medium sm:px-3 sm:text-xs ${scope === item ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}
-                  >
-                    {item}
-                  </button>
-                ))}
+              <div className="flex items-center justify-between gap-3 sm:contents">
+                {(query || scope !== "All" || modality !== "All") && <button type="button" onClick={() => { setQuery(""); setScope("All"); setModality("All"); }} className="min-h-10 rounded-full px-3 text-xs font-medium underline underline-offset-4 outline-none ring-accent focus-visible:ring-2">Reset filters</button>}
+                <button type="button" onClick={() => { setFiltersOpen(false); filtersToggleRef.current?.focus(); }} className="ml-auto min-h-10 rounded-full bg-foreground px-4 text-xs font-medium text-background outline-none ring-accent focus-visible:ring-2 sm:hidden">Done</button>
               </div>
             </div>
-          )}
+          </>}
         </div>
       </section>
 
       <section className="py-8 lg:py-10">
         <div className="mx-auto max-w-[1480px]">
           {primaryView === "companies" && companyView === "timeline" && (
-            <div className="overflow-x-auto rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
-              <div className="grid min-w-[1055px] grid-cols-[220px_minmax(700px,1fr)_110px] sm:min-w-[1120px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] border-b border-border bg-nav px-5 py-3 text-xs font-bold text-muted">
-                <div><span className="hidden sm:inline">Company · click for detail</span><span className="sm:hidden">Tap company · swipe years →</span></div>
+            <div role="region" aria-label="Company financing timeline. Scroll horizontally for later years." tabIndex={0} className="isolate overflow-x-auto rounded-3xl border border-border bg-surface-raised outline-none ring-accent focus-visible:ring-2 shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
+              <div className="grid min-w-[1055px] grid-cols-[100px_minmax(700px,1fr)_110px] sm:min-w-[1120px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] border-b border-border bg-nav px-5 py-3 text-xs font-bold text-muted">
+                <div className="sticky left-0 z-30 -ml-5 bg-nav px-3 sm:px-5"><span className="hidden sm:inline">Company · click for detail</span><span className="sm:hidden">Company</span></div>
                 <div className="relative h-4">
                   {years.map((year, index) => (
                     <span
@@ -209,14 +315,14 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                       key={row.slug}
                       type="button"
                       onClick={() => setSelectedSlug(row.slug)}
-                      className={`grid w-full grid-cols-[220px_minmax(700px,1fr)_110px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] items-center px-5 py-3.5 text-left transition hover:bg-nav/60 focus:bg-nav/60 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent ${rowIndex ? "border-t border-border" : ""}`}
+                      className={`group grid w-full grid-cols-[100px_minmax(700px,1fr)_110px] sm:grid-cols-[330px_minmax(655px,1fr)_110px] items-center px-5 py-3.5 text-left transition hover:bg-nav/60 focus:bg-nav/60 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent ${rowIndex ? "border-t border-border" : ""}`}
                     >
-                      <div className="flex min-w-0 items-center gap-3 pr-5">
-                        <FirmLogo name={row.name} src={row.logo} size={38} />
+                      <div data-funding-company-identity={row.slug} className="sticky left-0 z-30 -my-3.5 -ml-5 flex min-w-0 self-stretch items-center gap-3 bg-surface-raised px-3 py-3.5 group-hover:bg-nav group-focus:bg-nav sm:px-5">
+                        <span className="hidden sm:block"><FirmLogo name={row.name} src={row.logo} size={38} /></span>
                         <div className="min-w-0">
-                          <div className="truncate text-sm font-semibold tracking-[-0.01em]">{row.name}</div>
+                          <div className="truncate text-xs font-semibold tracking-[-0.01em] sm:text-sm" title={row.name}>{row.name}</div>
                           <div className="mt-0.5 text-xs text-muted" data-founding-year={row.slug}>Founding year · <span className="font-medium tabular-nums text-foreground">{row.founding?.year ?? "Unknown"}</span></div>
-                          <div className="mt-0.5 truncate text-xs text-muted" title={`${row.modality} · ${row.latestStage}`}>{row.modality} · {row.latestStage}</div>
+                          <div className="mt-0.5 hidden truncate text-xs text-muted sm:block" title={`${row.modality} · ${row.latestStage}`}>{row.modality} · {row.latestStage}</div>
                         </div>
                       </div>
                       <div className="min-w-0">
@@ -281,10 +387,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
           )}
 
           {primaryView === "companies" && companyView === "stage" && (
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
               {stageGroups.map((group) => (
-                <article key={group.stage} className="rounded-3xl border border-border bg-surface-raised p-6 shadow-[0_12px_40px_rgba(28,34,55,0.06)]">
-                  <div className="flex items-start justify-between gap-4 border-b border-border pb-5">
+                <article key={group.stage} className="min-w-0 rounded-3xl border border-border bg-surface-raised p-4 shadow-[0_12px_40px_rgba(28,34,55,0.06)] sm:p-6">
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-border pb-5">
                     <div>
                       <div className="text-xs font-bold text-muted">Latest indexed stage</div>
                       <h2 className="mt-1 text-base font-semibold tracking-[-0.01em]">{group.stage}</h2>
@@ -314,6 +420,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
           )}
 
           {primaryView === "investors" && (
+            <div className="space-y-6">
+              {data.portfolioDisclosures?.map((disclosure, index) => <FundingPortfolioPanel key={disclosure.investorName} data={data} disclosure={disclosure} index={index} onSelectCompany={setSelectedSlug} />)}
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
               <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
                 <div className="border-b border-border px-6 py-5">
@@ -322,7 +430,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 </div>
                 <div className="divide-y divide-black/[0.07]">
                   {data.investors.slice(0, 24).map((investor, index) => (
-                    <div key={investor.name} className="grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6">
+                    <div key={investor.name} data-indexed-investor={investor.name} className="grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6">
                       <div className="text-xs font-semibold text-muted">{String(index + 1).padStart(2, "0")}</div>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold [overflow-wrap:anywhere]">{investor.name}</div>
@@ -333,6 +441,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                             ))}
                           </div>
                           <span className="text-xs text-muted">{investor.roundCount} financing {investor.roundCount === 1 ? "record" : "records"} · {investor.companyCount} {investor.companyCount === 1 ? "company" : "companies"}</span>
+                          {data.portfolioDisclosures?.map((disclosure, portfolioIndex) => disclosure.familyGrouping?.memberNames.includes(investor.name) && <a key={disclosure.investorName} href={`#funding-portfolio-${portfolioIndex}`} className="text-xs text-accent underline underline-offset-4">Source-name count, not portfolio size · see family context ↑</a>)}
                         </div>
                       </div>
                       <div className="col-start-2 min-w-0 sm:col-start-3 sm:row-start-1 sm:text-right">
@@ -349,6 +458,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts named backer appearances in indexed financing records, including funding commitments. It does not estimate check size, cash received, ownership, reserves, or returns.</p>
                 <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Round announcements do not always publish every participant. A low count may mean incomplete disclosure, not low conviction.</div>
               </aside>
+            </div>
             </div>
           )}
 

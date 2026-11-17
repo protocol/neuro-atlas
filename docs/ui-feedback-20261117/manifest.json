@@ -1,0 +1,86 @@
+{
+  "runtimeRevision": "586750124dff528c8239a39e3b87162dd64129ab",
+  "captures": "Actual local production-built application, not hosted authentication or physical-phone touch",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 5206,
+      "sha256": "2df402d86d0d2e201e5df69a4b61bcbd02ea1132a4096a62f5f20b9aa34514c5"
+    },
+    {
+      "file": "before-funding-390.png",
+      "bytes": 52153,
+      "sha256": "0ae2a0d9f796babf2af8d9c7e12b76b843eea07de007058749ba5a1ed45f890e"
+    },
+    {
+      "file": "funding-compact-390.png",
+      "bytes": 47680,
+      "sha256": "e40f906937238b99fea2580df75c47f88679f484fdef408ad12e266b169a546c"
+    },
+    {
+      "file": "funding-native.json",
+      "bytes": 11070,
+      "sha256": "56dad9c1916077fafc9945dad99cbd44797b4912bb265310c582f35644ddd1c5"
+    },
+    {
+      "file": "funding-pinned-390.png",
+      "bytes": 67923,
+      "sha256": "a19c5f4f0d3c6e903b6192ac8f6493991580583ee3d85364d6be168a5faa10c6"
+    },
+    {
+      "file": "funding-stages-320.png",
+      "bytes": 48490,
+      "sha256": "d12b62c6ad268487228f57c18933997ef582d12792ceeb531194e376d9cf28c1"
+    },
+    {
+      "file": "investors-1440.png",
+      "bytes": 141080,
+      "sha256": "1cddba09f6a4749e4fb0565055afc62c4026bf39799af1a9b15770aa7fd482a8"
+    },
+    {
+      "file": "investors-320.png",
+      "bytes": 40054,
+      "sha256": "593aa0ed4dc79576c7100ad3a5bd0ac3a97a71df914866243a97b8687539ce4a"
+    },
+    {
+      "file": "investors-dark-390.png",
+      "bytes": 55033,
+      "sha256": "4c92e384e7c45d0907dd0e890067dad792210b714b0ff45c7a6a5b2232e45538"
+    },
+    {
+      "file": "milestones-current-1440.png",
+      "bytes": 187668,
+      "sha256": "13056b821b10bed3eb91865453661482e651982af44145ef68593c77f25c37c3"
+    },
+    {
+      "file": "milestones-fit-1440.png",
+      "bytes": 204108,
+      "sha256": "1cad2243d0feff64cfb0518efcaed0ab4607ab4d60e4a7e2f05f916e955b5f4a"
+    },
+    {
+      "file": "milestones-fit-390.png",
+      "bytes": 75241,
+      "sha256": "6f65848c2f7223e888c2c078ba89d18dd2b42b38c89b39474974506602ece071"
+    },
+    {
+      "file": "milestones-native.json",
+      "bytes": 123706,
+      "sha256": "93d2ad9d15569936a0c19ba1b0f925f1cea71cbfd966f73f24804d8dd0ab0653"
+    },
+    {
+      "file": "mobile-menu-390.png",
+      "bytes": 42301,
+      "sha256": "e3861ef95a80b759a8adfd14cff23d2d3707d17b2b68ad8718ec0e3a72a5ff7f"
+    },
+    {
+      "file": "runtime-parity.json",
+      "bytes": 518,
+      "sha256": "bb0bf7f10dfcbcc3c5cb44dda6464ada01a9e8690c701ebf77335ab334101529"
+    },
+    {
+      "file": "verification.json",
+      "bytes": 623,
+      "sha256": "a25da09d0e4804bb78f645818d7a23e706da01e60aac44c0caee5ffa2d085ca6"
+    }
+  ]
+}

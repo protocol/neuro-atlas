@@ -8,6 +8,16 @@ const SOURCE_KINDS = new Set(["primary", "reporting"]);
 // Official brand: https://themdadvantage.com/ (NeuroTechnology Investors / NTI).
 const INVESTOR_ALIASES = new Map([["Neurotechnology Investors", "NeuroTechnology Investors"]]);
 
+function isHttpsUrl(value) {
+  try { return new URL(value).protocol === "https:"; } catch { return false; }
+}
+
+function isReviewDate(value) {
+  const timestamp = Date.parse(`${value}T00:00:00Z`);
+  return /^\d{4}-\d{2}-\d{2}$/.test(value ?? "") && Number.isFinite(timestamp) &&
+    new Date(timestamp).toISOString().slice(0, 10) === value;
+}
+
 export function sourceDateBasis(value) {
   if (!value) return "unverified";
   if (!["event", "announcement", "reported", "unverified"].includes(value)) {
@@ -42,19 +52,52 @@ export function parseCsv(text) {
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones, foundings, fxConversions] = await Promise.all([
+  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
     load("foundings.csv"),
     readFile(path.join(directory, "fx-conversions.json"), "utf8").then(JSON.parse),
+    readFile(path.join(directory, "portfolio-disclosures.json"), "utf8").then(JSON.parse),
   ]);
-  return { companies, rounds, milestones, foundings, fxConversions };
+  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [] }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [] }) {
   const roster = new Set(companies.map((company) => company.slug));
   if (roster.size !== companies.length) throw new Error("Duplicate company slug");
+  // Portfolio relationships are a separate evidence class, never synthetic rounds.
+  for (const disclosure of portfolioDisclosures) {
+    if (!disclosure.investorName?.trim() || !disclosure.sourceInvestorName?.trim() ||
+        !isHttpsUrl(disclosure.sourceUrl) || !isReviewDate(disclosure.reviewedOn) ||
+        !disclosure.sourceExcerpt?.trim() || !disclosure.note?.trim() || !disclosure.companies?.length) {
+      throw new Error("Invalid portfolio provenance");
+    }
+    const family = disclosure.familyGrouping;
+    if (family && (!isReviewDate(family.reviewedOn) || !family.note?.trim() ||
+        !Array.isArray(family.memberNames) || !family.memberNames.includes(disclosure.sourceInvestorName) ||
+        family.memberNames.some((name) => !name?.trim()) || new Set(family.memberNames).size !== family.memberNames.length ||
+        !family.sourceUrls?.length || !family.sourceUrls.every(isHttpsUrl))) {
+      throw new Error("Invalid portfolio family grouping");
+    }
+    const seenCompanies = new Set();
+    const seenWebsites = new Set();
+    const seenSlugs = new Set();
+    for (const company of disclosure.companies) {
+      if (!company.name?.trim() || !isHttpsUrl(company.website) ||
+          (company.matchSourceUrls && !company.matchSourceUrls.every(isHttpsUrl))) {
+        throw new Error("Invalid portfolio company");
+      }
+      if (company.companySlug && !roster.has(company.companySlug)) throw new Error(`Unknown portfolio company: ${company.companySlug}`);
+      if (seenCompanies.has(company.name) || seenWebsites.has(company.website) ||
+          (company.companySlug && seenSlugs.has(company.companySlug))) throw new Error(`Duplicate portfolio company: ${company.name}`);
+      seenCompanies.add(company.name);
+      seenWebsites.add(company.website);
+      if (company.companySlug) seenSlugs.add(company.companySlug);
+      const financingFields = ["announcedOn", "announced_on", "date", "stage", "amountUsdM", "amount_usd_m", "roundCount", "associatedCapitalUsdM"];
+      if (financingFields.some((field) => field in company)) throw new Error("Portfolio relationship cannot contain financing fields");
+    }
+  }
   const foundingBySlug = new Map();
   for (const row of foundings ?? []) {
     const slug = row.company_slug;
@@ -173,8 +216,15 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
     rounds: includedRounds,
     milestones: normalizedMilestones,
     investors,
+    portfolioDisclosures: structuredClone(portfolioDisclosures),
     summary: { excludedBelowThreshold },
   };
+}
+
+export function normalizeFundingStage(stage) {
+  const normalized = stage.trim().toLowerCase().replace(/[()[\]–—-]/g, " ").replace(/\s+/g, " ").trim();
+  const undisclosed = /^(?:(?:investment|financing)(?: (?:stage undisclosed|undisclosed(?: stage)?))?|stage undisclosed|undisclosed(?: stage)?|unspecified)$/;
+  return !normalized || undisclosed.test(normalized) ? "Undisclosed" : stage;
 }
 
 export function buildCompanyRows(companies, rounds, filters) {
@@ -203,7 +253,7 @@ export function buildCompanyRows(companies, rounds, filters) {
       return {
         ...company,
         observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + round.amountUsdM, 0).toFixed(2)),
-        latestStage: companyRounds.at(-1)?.stage ?? "Undisclosed",
+        latestStage: normalizeFundingStage(companyRounds.at(-1)?.stage ?? "Undisclosed"),
         rounds: companyRounds,
       };
     })

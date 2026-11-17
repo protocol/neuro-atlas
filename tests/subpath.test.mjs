@@ -51,7 +51,11 @@ for (const prefix of ["", "/neuro-atlas"]) {
         assert.deepEqual([...nav.querySelectorAll('a')].filter(a => a.textContent.trim() === 'by PL R&D').map(a => a.getAttribute('href')), ['https://www.plrd.org/', 'https://www.plrd.org/']);
         assert.equal(nav.querySelector('a a'), null, 'Return link must not be nested in the Atlas home link');
         assert.deepEqual([...nav.querySelectorAll('[aria-current="page"]')].map(a => a.getAttribute('href')), [prefix + '/funding', prefix + '/funding']);
-        assert.deepEqual([...nav.querySelectorAll('img')].map(i => i.getAttribute('src')), [prefix + '/powered-plneuro.svg', prefix + '/powered-neurotechfutures.png']);
+        // Sidebar and the mobile native-menu each carry their own powered-by marks.
+        for (const shell of [nav.querySelector('aside'), nav.querySelector('dialog')]) {
+          assert.ok(shell);
+          assert.deepEqual([...shell.querySelectorAll('img')].map(i => i.getAttribute('src')), [prefix + '/powered-plneuro.svg', prefix + '/powered-neurotechfutures.png']);
+        }
         for (const a of nav.querySelectorAll('a[href^="/"]')) assert.ok(!a.getAttribute('href').includes('/neuro-atlas/neuro-atlas'));
       }
       const home = render(React.createElement(Home));

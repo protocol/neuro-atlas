@@ -121,7 +121,7 @@ test('All blog-review additions render once in the 2026 Milestone timeline with 
   globalThis.React = React;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(MilestoneTimeline)));
   try {
-    const timeline = dom.window.document.querySelector('[aria-label="2026 timeline. Scroll horizontally for later months."]');
+    const timeline = dom.window.document.querySelector('[aria-label^="2026 timeline."]');
     assert.ok(timeline);
     for (const url of [...scienceSources, ...paradromicsSources, ...precisionSources, studySource]) {
       const row = one(url);

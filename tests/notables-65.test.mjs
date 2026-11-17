@@ -15,6 +15,10 @@ const milestones = load('../src/data/milestones.json');
 const funding = load('../src/data/funding-index.json');
 const canonical = parseCsv(readFileSync(new URL('../data/market-memo-q1-2026/milestones.csv', import.meta.url), 'utf8'));
 const sources = fixture.milestones.map(row => row.sourceUrl);
+// Retain the frozen historical hashes; later additions have their own exact-source regressions.
+const laterSource = 'https://science.xyz/news/series-d/';
+const issueMilestones = milestones.filter(row => row.sourceUrl !== laterSource);
+const laterFinancing = funding.rounds.filter(row => row.sourceUrl === laterSource);
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const one = source => {
   const rows = milestones.filter(row => row.sourceUrl === source);
@@ -25,8 +29,8 @@ const one = source => {
 test('Notables 65 adds only six reviewed source-bound milestones; all pre-65 generated events are unchanged', () => {
   assert.equal(sources.length, 6);
   assert.equal(new Set(sources).size, 6);
-  assert.equal(milestones.length, 90);
-  assert.equal(digest(beforeSourceAudit(milestones, 'milestones').filter(row => !sources.includes(row.sourceUrl))), fixture.baselineMilestonesSha256);
+  assert.equal(issueMilestones.length, 90);
+  assert.equal(digest(beforeSourceAudit(issueMilestones, 'milestones').filter(row => !sources.includes(row.sourceUrl))), fixture.baselineMilestonesSha256);
   for (const expected of fixture.milestones) {
     const row = one(expected.sourceUrl);
     for (const key of Object.keys(expected)) assert.deepEqual(row[key], expected[key], key);
@@ -50,7 +54,7 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.equal(rounds[0].announcedOn, '2026-10-21');
   assert.equal(rounds[0].sourceKind, 'primary');
   assert.equal(rounds[0].reviewedOn, '2026-11-09');
-  const baselineRounds = beforeSourceAudit(funding.rounds, 'fundingRounds').filter(round => !sources.includes(round.sourceUrl));
+  const baselineRounds = beforeSourceAudit(funding.rounds, 'fundingRounds').filter(round => !sources.includes(round.sourceUrl) && round.sourceUrl !== laterSource);
   const precisionSeriesC = baselineRounds.find(round => round.companySlug === 'precision-neuroscience'
     && round.announcedOn === '2024-12-16' && round.stage === 'Series C');
   // Keep the historical pre-65 golden intact while allowing only this later citation repair.
@@ -76,14 +80,25 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.match(nx.note, /RMB 700m/);
   assert.match(nx.note, /announcement-date fallback/);
   assert.equal(funding.rounds.filter(round => round.sourceUrl === nx.sourceUrl).length, 1);
-  assert.equal(funding.summary.asOf, fixture.baselineSummary.asOf);
-  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 2);
-  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45 + nx.amountUsdM).toFixed(2)));
+  assert.equal(laterFinancing.length, 1);
+  assert.equal(laterFinancing[0].amountUsdM, 400);
+  assert.equal(funding.summary.asOf, '2026-11-17');
+  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 2 + laterFinancing.length);
+  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45 + nx.amountUsdM + laterFinancing[0].amountUsdM).toFixed(2)));
 });
 
 test('Notables 65 corrects only the existing Coherence indication and keeps the company roster unchanged', () => {
   assert.equal(funding.companies.length, 25);
   const companies = beforeSourceAudit(funding.companies, 'fundingCompanies');
+  // Source-verified current websites are asserted before reconstructing historical-only fields.
+  for (const [slug, current, previous] of [
+    ['echo-neurotech', 'https://www.echo.bio/', 'https://echoneurotech.com'],
+    ['merge-labs', 'https://merge.io/', 'https://merge.xyz'],
+  ]) {
+    const row = companies.find(company => company.slug === slug);
+    assert.equal(row.website, current);
+    row.website = previous;
+  }
   const co = companies.find(company => company.slug === 'coherence-neuro');
   assert.equal(co.indication, 'Cancer');
   co.indication = 'Neurodegenerative conditions';
@@ -111,7 +126,7 @@ test('All six Notables 65 events render exactly once as direct source links on t
   globalThis.React = React;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(MilestoneTimeline)));
   try {
-    const timeline = dom.window.document.querySelector('[aria-label="2026 timeline. Scroll horizontally for later months."]');
+    const timeline = dom.window.document.querySelector('[aria-label^="2026 timeline."]');
     assert.ok(timeline);
     for (const expected of fixture.milestones) {
       const links = timeline.querySelectorAll(`a[href="${expected.sourceUrl}"]`);

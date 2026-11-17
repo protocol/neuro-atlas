@@ -25,7 +25,8 @@ const sources = {
 
 const additions = [sources.newronika, sources.neuralink, sources.inbrain];
 // Later reviewed issues are independently frozen by their own exact-delta tests.
-const laterSources = JSON.parse(readFileSync(new URL('./fixtures/notables-65.json', import.meta.url))).milestones.map(row => row.sourceUrl);
+const laterSources = [...JSON.parse(readFileSync(new URL('./fixtures/notables-65.json', import.meta.url))).milestones.map(row => row.sourceUrl),
+  'https://science.xyz/news/series-d/']; // independently asserted by funding-feedback-data.test.mjs
 const baseline = {
   canonicalRows: 81,
   canonicalSha256: '77d68a2db3bafc43faf4dced3517cce12a664623fcc3dcb54854660d470e8d0e',
@@ -180,7 +181,7 @@ test('Notables 64 additions each render once on the 2026 Milestone timeline with
   globalThis.React = React;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(MilestoneTimeline)));
   try {
-    const timeline = dom.window.document.querySelector('[aria-label="2026 timeline. Scroll horizontally for later months."]');
+    const timeline = dom.window.document.querySelector('[aria-label^="2026 timeline."]');
     assert.ok(timeline);
     for (const url of additions) {
       const row = one(url);
