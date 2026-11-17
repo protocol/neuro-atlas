@@ -30,7 +30,7 @@ for width, height in [(1440,1000), (768,1024), (390,844), (320,800)]:
     wait(lambda: js("document.querySelectorAll('[data-indexed-investor]').length===24 && document.fonts.status==='loaded'"), 'investors not hydrated')
     cdp('Page.bringToFront')
     assert js("!document.querySelector('[data-funding-portfolio]') && !document.querySelector('a[href^=\"#funding-portfolio\"]')"), 'PL showcase remains'
-    assert js("[...document.querySelectorAll('h2')][0]?.textContent==='Most active indexed investors and funders'"), 'ranking does not lead the lens'
+    assert js("[...document.querySelectorAll('h2')].find(e=>e.getBoundingClientRect().width>0)?.textContent==='Most active indexed investors and funders'"), 'ranking does not lead the lens'
     rows = js("[...document.querySelectorAll('[data-indexed-investor]')].map(e=>({name:e.dataset.indexedInvestor,text:e.innerText,classes:e.className,rank:e.firstElementChild.textContent}))")
     assert [row['name'] for row in rows] == [row['name'] for row in expected], 'ranking/order diverges from source model'
     assert len({row['classes'] for row in rows}) == 1, 'investor-specific styling'
