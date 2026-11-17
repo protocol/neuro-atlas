@@ -7,6 +7,13 @@ const root = new URL("../", import.meta.url);
 const readJson = async (name) => JSON.parse(await readFile(new URL(name, root), "utf8"));
 const sources = await loadFundingIndexSources(new URL("data/funding-index/", root).pathname);
 const scienceSource = "https://science.xyz/news/series-d/";
+const mergeInvestorEvidence = {
+  investorName: "PL Capital",
+  sourceUrl: "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL",
+  sourceKind: "primary",
+  reviewedOn: "2026-11-17",
+  sourceExcerpt: "Congrats to Merge Labs on its $250M+ seed round, which we were proud to join alongside OpenAI, Bain Capital, and Gabe Newell.",
+};
 
 test("Science's November 17 Series D appears once in both canonical datasets and their generated consumers", async () => {
   const milestoneRows = parseCsv(await readFile(new URL("data/market-memo-q1-2026/milestones.csv", root), "utf8"));
@@ -35,6 +42,104 @@ test("Science's November 17 Series D appears once in both canonical datasets and
   assert.deepEqual(milestones.filter((row) => row.sourceUrl === scienceSource).map((row) => [row.company, row.date, row.stage, row.amountUsdM, row.dateBasis]), [
     ["Science Corp", "2026-11-17", "capital", 400, "announcement"],
   ]);
+});
+
+test("Merge's existing seed retains its amount and date semantics while recording the verified named participants", () => {
+  const rows = sources.rounds.filter((row) => row.company_slug === "merge-labs");
+  assert.equal(rows.length, 1, "Attribution corrects the existing financing, never creates a round");
+  const [source] = rows;
+  assert.deepEqual(
+    [source.announced_on, source.date_precision, source.date_basis, source.stage, source.amount_usd_m, source.amount_native_m, source.currency, source.display_amount],
+    ["2026-01-15", "day", "unverified", "Seed", "252", "", "USD", "$252m"],
+    "No promotion of the original unverified date basis or reported amount",
+  );
+  assert.equal(source.investors, "OpenAI;Bain Capital;Gabe Newell;PL Capital");
+  assert.equal(source.source_url, "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/");
+  assert.equal(source.source_kind, "reporting", "The precise $252M is reporting, not an issuer-confirmed amount");
+  assert.equal(source.reviewed_on, "2026-11-17");
+  assert.match(source.note, /WIRED reports \$252 million/);
+  assert.match(source.note, /PL Capital.*\$250M\+/);
+  assert.match(source.note, /TechCrunch.*\$250 million/);
+  assert.match(source.note, /(?:check size|checksize).*not disclosed/i);
+  assert.match(source.note, /(?:legal |investment )?vehicle.*not disclosed/i);
+  const index = buildFundingIndex(sources);
+  const round = index.rounds.find((row) => row.companySlug === "merge-labs");
+  assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital"]);
+  assert.equal(round.amountUsdM, 252);
+  assert.equal(index.rounds.length, 42);
+  assert.equal(index.companies.length, 25);
+  assert.equal(Number(index.rounds.reduce((sum, row) => sum + row.amountUsdM, 0).toFixed(2)), 3553.96);
+});
+
+test("participant evidence loads from the canonical sidecar onto only the exact existing round", async () => {
+  assert.deepEqual(sources.investorEvidence, [{
+    companySlug: "merge-labs", announcedOn: "2026-01-15", stage: "Seed", ...mergeInvestorEvidence,
+  }]);
+  const before = structuredClone(sources);
+  const index = buildFundingIndex(sources);
+  const merge = index.rounds.find((row) => row.companySlug === "merge-labs");
+  assert.deepEqual(merge.investorEvidence, [mergeInvestorEvidence]);
+  const generated = await readJson("src/data/funding-index.json");
+  assert.deepEqual(generated.rounds, index.rounds, "Every generated financing matches the canonical builder, including participant evidence");
+  assert.deepEqual(generated.investors, index.investors);
+  assert.deepEqual([generated.summary.indexedRounds, generated.summary.selectedCompanies, generated.summary.observedCapitalUsdM], [42, 25, 3553.96]);
+  assert.ok(index.rounds.filter((row) => row !== merge).every((row) => !Object.hasOwn(row, "investorEvidence")));
+  const withoutEvidence = buildFundingIndex({ ...sources, investorEvidence: [] });
+  const comparableRounds = structuredClone(index.rounds);
+  for (const round of comparableRounds) delete round.investorEvidence;
+  assert.deepEqual(comparableRounds, withoutEvidence.rounds, "Evidence cannot invent participants, amounts, dates, or rounds");
+  assert.deepEqual(index.investors, withoutEvidence.investors, "Evidence is provenance, not a participation input");
+  merge.investorEvidence[0].sourceExcerpt = "Caller mutation";
+  assert.deepEqual(sources, before, "Attached evidence must not mutate its canonical source");
+});
+
+test("participant evidence rejects an unknown event instead of manufacturing or loosely matching a financing", () => {
+  for (const [field, value] of [["companySlug", "not-in-the-screen"], ["announcedOn", "2026-01-16"], ["stage", "Series A"]]) {
+    const invalid = structuredClone(sources);
+    invalid.investorEvidence[0][field] = value;
+    assert.throws(() => buildFundingIndex(invalid), /Unknown investor evidence event/, field);
+  }
+});
+
+test("participant evidence cannot introduce an investor or borrow a display-family member's participation", () => {
+  for (const investorName of ["Protocol Labs", "PLC Neurotech", "PL Capital-like", "pl capital"]) {
+    const invalid = structuredClone(sources);
+    invalid.investorEvidence[0].investorName = investorName;
+    assert.throws(() => buildFundingIndex(invalid), /Investor evidence participant is not listed on event/, investorName);
+  }
+  const missing = structuredClone(sources);
+  missing.rounds.find((row) => row.company_slug === "merge-labs").investors = "OpenAI;Bain Capital;Gabe Newell";
+  assert.throws(() => buildFundingIndex(missing), /Investor evidence participant is not listed on event/, "Evidence does not create the missing raw participant");
+});
+
+test("participant evidence fails closed on malformed or unreviewed provenance", () => {
+  const invalidFields = [
+    ["sourceUrl", ""], ["sourceUrl", "http://example.org/post"], ["sourceUrl", "javascript:alert(1)"],
+    ["reviewedOn", ""], ["reviewedOn", "2026-02-30"],
+    ["sourceKind", ""], ["sourceKind", "portfolio"],
+    ["sourceExcerpt", ""], ["sourceExcerpt", "   "], ["sourceExcerpt", 123],
+    ["investorName", ""], ["investorName", " PL Capital"],
+    ["companySlug", ""], ["announcedOn", ""], ["stage", ""],
+  ];
+  for (const [field, value] of invalidFields) {
+    const invalid = structuredClone(sources);
+    invalid.investorEvidence[0][field] = value;
+    assert.throws(() => buildFundingIndex(invalid), /Invalid investor evidence/, field + ": " + JSON.stringify(value));
+  }
+  for (const investorEvidence of [null, {}, "not-an-array", [null], [[]]]) {
+    assert.throws(() => buildFundingIndex({ ...sources, investorEvidence }), /Invalid investor evidence/);
+  }
+});
+
+test("participant evidence rejects repeated event-investor-source citations", () => {
+  const invalid = structuredClone(sources);
+  invalid.investorEvidence.push({ ...invalid.investorEvidence[0], sourceExcerpt: "A second excerpt cannot duplicate the same citation." });
+  assert.throws(() => buildFundingIndex(invalid), /Duplicate investor evidence/);
+  const distinct = structuredClone(sources);
+  distinct.investorEvidence.push({ ...distinct.investorEvidence[0], sourceUrl: "https://example.org/second-disclosure" });
+  distinct.investorEvidence.push({ ...distinct.investorEvidence[0], investorName: "Bain Capital" });
+  const index = buildFundingIndex(distinct);
+  assert.equal(index.rounds.find((row) => row.companySlug === "merge-labs").investorEvidence.length, 3, "Separate sources or named participants are not duplicate citations");
 });
 
 test("PLC's ten published portfolio relationships stay separate from indexed financing and exact investor identities", async () => {
@@ -66,13 +171,14 @@ test("PLC's ten published portfolio relationships stay separate from indexed fin
   // The neutral ranking now aggregates reviewed families; source-label counts
   // remain reproducible without grouping and round histories remain exact.
   const ungrouped = buildFundingIndex({ ...sources, investorGroups: [] });
-  assert.deepEqual(ungrouped.investors.filter((investor) => ["Protocol Labs", "PLC Neurotech"].includes(investor.name)).sort((a, b) => a.name.localeCompare(b.name)), [
+  assert.deepEqual(ungrouped.investors.filter((investor) => ["Protocol Labs", "PLC Neurotech", "PL Capital"].includes(investor.name)).sort((a, b) => a.name.localeCompare(b.name)), [
+    { name: "PL Capital", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 252 },
     { name: "PLC Neurotech", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 400 },
     { name: "Protocol Labs", roundCount: 2, companyCount: 2, associatedCapitalUsdM: 207.5 },
   ]);
   assert.deepEqual(index.rounds, ungrouped.rounds, "Display grouping does not rename source investors in financing histories");
   assert.deepEqual(index.investors.find((investor) => investor.name === "Protocol Labs / PLC Neurotech"), {
-    name: "Protocol Labs / PLC Neurotech", roundCount: 3, companyCount: 3, associatedCapitalUsdM: 607.5,
+    name: "Protocol Labs / PLC Neurotech", roundCount: 4, companyCount: 4, associatedCapitalUsdM: 859.5,
   });
   for (const company of disclosure.companies) {
     for (const field of ["announcedOn", "stage", "amountUsdM", "roundCount", "associatedCapitalUsdM"]) {

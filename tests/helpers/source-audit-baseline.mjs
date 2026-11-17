@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { beforeMergeAttribution } from './merge-attribution-baseline.mjs';
 export const SOURCE_AUDIT_DELTA = JSON.parse(readFileSync(new URL('../fixtures/source-audit-delta-20261116.json', import.meta.url)));
 
 // Historical issue goldens stay pinned. Assert each reviewed later field first,
@@ -9,7 +10,7 @@ export function beforeSourceAudit(rows, collection) {
   const allowance = SOURCE_AUDIT_DELTA.collections[collection];
   assert.ok(allowance, collection);
   assert.ok(rows.length >= allowance.length, `${collection}: historical rows were removed`);
-  const restored = structuredClone(rows);
+  const restored = beforeMergeAttribution(rows, collection);
   for (const change of allowance.changes) {
     const row = restored[change.index];
     assert.equal(row.slug ?? row.companySlug ?? row.company ?? row.company_slug, change.identity, `${collection}: row identity`);

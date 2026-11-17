@@ -30,6 +30,13 @@ export type FundingRound = {
   currency?: string;
   displayAmount?: string;
   investors?: string[];
+  investorEvidence?: {
+    investorName: string;
+    sourceUrl: string;
+    sourceKind: "primary" | "reporting";
+    reviewedOn: string;
+    sourceExcerpt: string;
+  }[];
   sourceUrl?: string;
   note?: string;
   sourceKind?: "primary" | "reporting";

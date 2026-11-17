@@ -52,7 +52,7 @@ export function parseCsv(text) {
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups] = await Promise.all([
+  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
@@ -60,11 +60,12 @@ export async function loadFundingIndexSources(directory) {
     readFile(path.join(directory, "fx-conversions.json"), "utf8").then(JSON.parse),
     readFile(path.join(directory, "portfolio-disclosures.json"), "utf8").then(JSON.parse),
     readFile(path.join(directory, "investor-groups.json"), "utf8").then(JSON.parse),
+    readFile(path.join(directory, "investor-evidence.json"), "utf8").then(JSON.parse),
   ]);
-  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups };
+  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [], investorGroups = [] }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [], investorGroups = [], investorEvidence = [] }) {
   const investorGroupNames = new Map();
   const displayNames = new Set();
   if (!Array.isArray(investorGroups)) throw new Error("Invalid investor grouping");
@@ -192,6 +193,33 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       ...(round.reviewed_on?.trim() ? { reviewedOn: round.reviewed_on.trim() } : {}),
     };
   });
+  const sourceParticipantNames = new Set(parsedRounds.flatMap((round) => round.investors));
+  for (const group of investorGroups) {
+    if (sourceParticipantNames.has(group.name) && !group.memberNames.includes(group.name)) {
+      throw new Error(`Invalid investor grouping: display name collides with source participant: ${group.name}`);
+    }
+  }
+  // Per-participant citations can qualify an existing event, never create one.
+  if (!Array.isArray(investorEvidence)) throw new Error("Invalid investor evidence");
+  for (const evidence of investorEvidence) {
+    if (!evidence || ["companySlug", "announcedOn", "stage", "investorName"].some((field) =>
+      typeof evidence[field] !== "string" || !evidence[field].trim() || evidence[field] !== evidence[field].trim()) ||
+      !isHttpsUrl(evidence.sourceUrl) || !SOURCE_KINDS.has(evidence.sourceKind) ||
+      !isReviewDate(evidence.reviewedOn) || typeof evidence.sourceExcerpt !== "string" || !evidence.sourceExcerpt.trim()) {
+      throw new Error("Invalid investor evidence provenance");
+    }
+    const round = parsedRounds.find((round) => round.companySlug === evidence.companySlug &&
+      round.announcedOn === evidence.announcedOn && round.stage === evidence.stage);
+    if (!round) throw new Error(`Unknown investor evidence event: ${evidence.companySlug}, ${evidence.announcedOn}, ${evidence.stage}`);
+    if (!round.investors.includes(evidence.investorName)) {
+      throw new Error(`Investor evidence participant is not listed on event: ${evidence.investorName}`);
+    }
+    const { investorName, sourceUrl, sourceKind, reviewedOn, sourceExcerpt } = evidence;
+    if (round.investorEvidence?.some((citation) => citation.investorName === investorName && citation.sourceUrl === sourceUrl)) {
+      throw new Error(`Duplicate investor evidence: ${investorName}, ${sourceUrl}`);
+    }
+    (round.investorEvidence ??= []).push({ investorName, sourceUrl, sourceKind, reviewedOn, sourceExcerpt });
+  }
   const includedRounds = parsedRounds.filter((round) =>
     Number.isFinite(round.amountUsdM) && round.amountUsdM >= MINIMUM_ROUND_USD_M,
   );

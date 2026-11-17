@@ -39,7 +39,7 @@ for width, height in [(1440,1000), (768,1024), (390,844), (320,800)]:
         label = f"{model['roundCount']} financing " + ('record' if model['roundCount']==1 else 'records')
         assert label in actual['text'], (actual, model)
     family = next(row for row in rows if row['name']==family_name)
-    assert '3 financing records' in family['text'], family
+    assert '4 financing records' in family['text'], family
     geometry = js("({inner:innerWidth,client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth})")
     assert geometry['inner']==width and geometry['scroll']<=geometry['client']+1, geometry
     js("[...document.querySelectorAll('h2')].find(e=>e.textContent==='Most active indexed investors and funders').scrollIntoView({block:'start',behavior:'instant'});window.scrollBy(0,-85)")
@@ -59,7 +59,22 @@ for width, height in [(1440,1000), (768,1024), (390,844), (320,800)]:
     cdp('Page.reload', ignoreCache=True); wait_for_load()
     wait(lambda: js("document.querySelectorAll('[data-indexed-investor]').length===24"), 'reload failed')
     assert js("!document.querySelector('[data-funding-portfolio]')"), 'showcase returned on reload'
-    cases.append({'width':width,'height':height,'rows':rows,'family':family,'familyBounds':rect,'document':geometry,'historyReload':True})
+    click_button('companies')
+    wait(lambda: js("!!document.querySelector('[data-funding-company-identity=\"merge-labs\"]')"), 'Merge company row absent')
+    point = js("""(() => {const e=document.querySelector('[data-funding-company-identity="merge-labs"]');e.scrollIntoView({block:'center',behavior:'instant'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()""")
+    click_at_xy(point['x'], point['y'])
+    wait(lambda: js("document.querySelector('#company-detail-title')?.textContent==='Merge Labs'"), 'wrong company detail')
+    evidence = js("""(() => {const d=document.querySelector('[role=dialog]'),a=d.querySelector('article');return {text:a.innerText,links:[...a.querySelectorAll('a')].map(e=>({text:e.textContent,href:e.getAttribute('href')})),rect:d.getBoundingClientRect().toJSON()}})()""")
+    merge = next(row for row in data['rounds'] if row['companySlug']=='merge-labs')
+    assert all(name in evidence['text'] for name in merge['investors']), evidence
+    assert any(link['href']==merge['sourceUrl'] for link in evidence['links'])
+    assert any(link['href']==merge['investorEvidence'][0]['sourceUrl'] and link['text']=='PL Capital participation source ↗' for link in evidence['links']), evidence
+    assert evidence['rect']['left']>=0 and evidence['rect']['right']<=width, evidence['rect']
+    js("document.querySelector('[role=dialog] article').scrollIntoView({block:'start',behavior:'instant'})")
+    capture_screenshot(str(OUT/f'merge-participation-source-{width}.png'))
+    press_key('Escape')
+    wait(lambda: js("!document.querySelector('[role=dialog]')"), 'company detail did not dismiss')
+    cases.append({'width':width,'height':height,'rows':rows,'family':family,'familyBounds':rect,'document':geometry,'historyReload':True,'mergeEvidence':evidence})
 cdp('Emulation.clearDeviceMetricsOverride')
 (OUT/'investors-native.json').write_text(json.dumps({'revision':QA_REVISION,'fixture':'Exact production-built HTML/assets, Host-restricted loopback; native pointer and viewport emulation, not hosted authentication or physical-phone touch','cases':cases}, indent=2)+'\n')
 print(json.dumps({'investors':'PASS','cases':len(cases)}))
