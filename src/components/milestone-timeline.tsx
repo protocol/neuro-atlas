@@ -399,13 +399,13 @@ export function MilestoneTimeline() {
         {lanes.map((l) => {
           const cap = l.stage.key === "capital" ? capitalLine(l.height) : null;
           return (
-            <div key={l.stage.key} className="absolute left-0 right-0 overflow-hidden rounded-xl" style={{ top: l.top, height: l.height, background: l.stage.soft }}>
+            <div key={l.stage.key} className="absolute left-0 right-0 rounded-xl" style={{ top: l.top, height: l.height, background: l.stage.soft }}>
               {cap && (
                 <svg className="pointer-events-none absolute inset-0" width="100%" height={l.height} viewBox={`0 0 100 ${l.height}`} preserveAspectRatio="none" aria-hidden>
                   <polyline points={cap.solid} fill="none" stroke={l.stage.color} strokeWidth={1} opacity={0.4} vectorEffect="non-scaling-stroke" />
                 </svg>
               )}
-              <span className="absolute left-2.5 top-1.5 text-[12px] font-semibold text-foreground">{l.stage.label}</span>
+              <span data-milestone-lane-label className="sticky left-2.5 z-[3] ml-2.5 mt-0.5 inline-block text-[12px] font-semibold leading-4 text-foreground">{l.stage.label}</span>
             </div>
           );
         })}
