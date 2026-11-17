@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 
 const launch = Date.parse('2026-11-19T14:00:00Z');
 
+test('prelaunch content is eligible for analytics independently of the password launch date', async () => {
+  const { analyticsContext } = await import('../src/lib/atlas-analytics-server.ts');
+  assert.deepEqual(analyticsContext(launch - 86_400_000, 'production', 'G-ATLAS12345'), {
+    eligible: true,
+    measurementId: 'G-ATLAS12345',
+  });
+});
+
 test('real GET uses server state, ignores request overrides, and forbids caching', async () => {
   const { GET, dynamic } = await import('../src/app/api/analytics-context/route.ts');
   const saved = { env: process.env.VERCEL_ENV, id: process.env.NEXT_PUBLIC_ATLAS_GA_ID };
@@ -13,7 +21,7 @@ test('real GET uses server state, ignores request overrides, and forbids caching
     Date.now = () => launch - 1;
     const request = new Request('https://www.plneuro.xyz/neuro-atlas/api/analytics-context?eligible=true&now=9999999999999');
     const before = await GET(request);
-    assert.deepEqual(await before.json(), { eligible: false, consentRequired: true });
+    assert.deepEqual(await before.json(), { eligible: true, measurementId: 'G-ATLAS12345', consentRequired: true });
     assert.match(before.headers.get('cache-control'), /no-store/);
     assert.equal(dynamic, 'force-dynamic');
     Date.now = () => launch;
@@ -30,12 +38,14 @@ test('real GET uses server state, ignores request overrides, and forbids caching
   }
 });
 
-test('server eligibility is launch-, production-, and dedicated-ID-gated', async () => {
+test('server eligibility remains production- and dedicated-ID-gated at every launch phase', async () => {
   const { analyticsContext } = await import('../src/lib/atlas-analytics-server.ts');
   const valid = 'G-ATLAS12345';
-  assert.deepEqual(analyticsContext(launch, 'production', valid), { eligible: true, measurementId: valid });
+  for (const now of [launch - 86_400_000, launch - 1, launch, launch + 1]) {
+    assert.deepEqual(analyticsContext(now, 'production', valid), { eligible: true, measurementId: valid });
+  }
   for (const [now, env, id] of [
-    [launch - 1, 'production', valid], [launch, 'preview', valid],
+    [launch - 1, 'preview', valid], [launch, 'preview', valid],
     [launch, undefined, valid], [launch, 'production', undefined],
     [launch, 'production', 'G-XPSNFVNHGB'], [launch, 'production', 'G-bad?password=secret'],
     [NaN, 'production', valid],
