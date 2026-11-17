@@ -52,18 +52,39 @@ export function parseCsv(text) {
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures] = await Promise.all([
+  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
     load("foundings.csv"),
     readFile(path.join(directory, "fx-conversions.json"), "utf8").then(JSON.parse),
     readFile(path.join(directory, "portfolio-disclosures.json"), "utf8").then(JSON.parse),
+    readFile(path.join(directory, "investor-groups.json"), "utf8").then(JSON.parse),
   ]);
-  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures };
+  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [] }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [], investorGroups = [] }) {
+  const investorGroupNames = new Map();
+  const displayNames = new Set();
+  if (!Array.isArray(investorGroups)) throw new Error("Invalid investor grouping");
+  for (const group of investorGroups) {
+    if (typeof group.name !== "string" || !group.name.trim() || group.name !== group.name.trim() ||
+        displayNames.has(group.name) || !isReviewDate(group.reviewedOn) || !group.note?.trim() ||
+        !Array.isArray(group.sourceUrls) || !group.sourceUrls.length || !group.sourceUrls.every(isHttpsUrl) ||
+        !Array.isArray(group.memberNames) || !group.memberNames.length ||
+        group.memberNames.some((name) => typeof name !== "string" || !name.trim() || name !== name.trim())) {
+      throw new Error("Invalid investor grouping");
+    }
+    displayNames.add(group.name);
+    for (const name of group.memberNames) {
+      if (investorGroupNames.has(name)) throw new Error("Invalid investor grouping: overlapping member");
+      investorGroupNames.set(name, group.name);
+    }
+  }
+  for (const [name, displayName] of investorGroupNames) {
+    if (displayNames.has(name) && name !== displayName) throw new Error("Invalid investor grouping: nested display name");
+  }
   const roster = new Set(companies.map((company) => company.slug));
   if (roster.size !== companies.length) throw new Error("Duplicate company slug");
   // Portfolio relationships are a separate evidence class, never synthetic rounds.
@@ -180,7 +201,10 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
 
   const investorMap = new Map();
   for (const round of includedRounds) {
-    for (const name of round.investors) {
+    // Display families affect only this ranking, never the source participants.
+    // Multiple named members in the same financing contribute one appearance.
+    const rankedNames = new Set(round.investors.map((name) => investorGroupNames.get(name) ?? name));
+    for (const name of rankedNames) {
       const current = investorMap.get(name) ?? { name, roundCount: 0, companySlugs: new Set(), associatedCapitalUsdM: 0 };
       current.roundCount += 1;
       current.companySlugs.add(round.companySlug);

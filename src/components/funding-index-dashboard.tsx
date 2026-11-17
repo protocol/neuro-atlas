@@ -9,8 +9,6 @@ import {
   formatFundingDate,
   formatFundingRecordDate,
   getTimelinePosition,
-  summarizePortfolioEvidence,
-  type FundingPortfolioDisclosure,
   type FundingCompanyRow,
   type FundingIndexData,
 } from "@/lib/funding-index";
@@ -53,46 +51,6 @@ function navigateFundingView(view: PrimaryView) {
   // Next.js integrates native history updates without a route reload or scroll reset.
   window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
   window.dispatchEvent(new Event(fundingViewEvent));
-}
-
-function FundingPortfolioPanel({ data, disclosure, index, onSelectCompany }: {
-  data: FundingIndexData;
-  disclosure: FundingPortfolioDisclosure;
-  index: number;
-  onSelectCompany: (slug: string) => void;
-}) {
-  const summary = summarizePortfolioEvidence(disclosure, data.companies, data.rounds);
-  const screenedSlugs = new Set(data.companies.map((company) => company.slug));
-  return (
-    <section id={`funding-portfolio-${index}`} data-funding-portfolio={disclosure.investorName} aria-labelledby={`funding-portfolio-title-${index}`} className="scroll-mt-32 rounded-3xl border border-border bg-surface-raised p-5 sm:p-6">
-      <div className="text-xs font-bold text-muted">Portfolio context · separate evidence</div>
-      <h2 id={`funding-portfolio-title-${index}`} className="mt-2 text-base font-semibold tracking-[-0.01em]">{disclosure.investorName}</h2>
-      <p className="mt-2 max-w-4xl text-sm leading-relaxed text-muted">Published selection, not an exhaustive portfolio. It spans neurotech beyond BCIs; a portfolio listing does not establish participation in an indexed financing round, its date, stage, amount, or check size.</p>
-      <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl border border-border p-4"><div data-portfolio-total className="text-2xl font-semibold tabular-nums">{disclosure.companies.length}</div><div className="mt-1 text-xs text-muted">selected neurotech portfolio companies</div></div>
-        <div className="rounded-2xl border border-border p-4"><div data-portfolio-matched className="text-2xl font-semibold tabular-nums">{summary.matchedCompanyCount}</div><div className="mt-1 text-xs text-muted">in this BCI screen</div></div>
-        <div className="rounded-2xl border border-border bg-nav p-4"><div data-family-financing-count className="text-2xl font-semibold tabular-nums">{summary.indexedFinancingCount}</div><div className="mt-1 text-xs text-muted">distinct indexed financing records</div><div className="mt-2 text-xs text-muted">{summary.indexedCompanyCount} {summary.indexedCompanyCount === 1 ? "company" : "companies"} · <span data-family-associated-capital className="font-semibold text-foreground">{formatCapital(summary.associatedCapitalUsdM)}</span> associated financing, not check size</div></div>
-      </div>
-      <div className="mt-4 space-y-1 text-xs leading-relaxed text-muted">
-        {summary.members.map((member) => <p key={member.name} data-indexed-investor={member.name}><span className="font-semibold text-foreground">{member.name}:</span> {member.roundCount} financing {member.roundCount === 1 ? "record" : "records"} · {member.companyCount} {member.companyCount === 1 ? "company" : "companies"} · {formatCapital(member.associatedCapitalUsdM)} associated financing</p>)}
-        {disclosure.familyGrouping && <p>Display-only family grouping; the distinct source investor names are retained, not merged into one legal identity. Jointly named financing records count once in the family total.</p>}
-      </div>
-      <ul className="mt-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
-        {disclosure.companies.map((company) => {
-          const matched = !!company.companySlug && screenedSlugs.has(company.companySlug);
-          return <li key={company.website} data-portfolio-company className="min-w-0 rounded-xl border border-border p-3">
-            <a href={company.website} target="_blank" rel="noreferrer" className="text-sm font-semibold underline decoration-border underline-offset-4 outline-none ring-accent focus-visible:ring-2 [overflow-wrap:anywhere]">{company.name} ↗</a>
-            {matched ? <button type="button" data-portfolio-screen-match={company.companySlug} onClick={() => onSelectCompany(company.companySlug!)} className="mt-2 block min-h-8 rounded-full bg-nav px-2.5 text-xs font-medium outline-none ring-accent hover:text-accent focus-visible:ring-2" aria-label={`Open ${company.name} BCI company detail`}>In BCI screen →</button> : <div className="mt-2 text-xs text-muted">Outside this BCI screen</div>}
-          </li>;
-        })}
-      </ul>
-      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 text-xs text-muted">
-        <a href={disclosure.sourceUrl} target="_blank" rel="noreferrer" className="font-semibold text-accent underline underline-offset-4">Published portfolio ↗</a>
-        {disclosure.familyGrouping?.sourceUrls.filter((url) => url !== disclosure.sourceUrl).map((url) => <a key={url} href={url} target="_blank" rel="noreferrer" className="font-semibold text-accent underline underline-offset-4">Platform disclaimer ↗</a>)}
-        <span>{sourceReviewLabel(disclosure.reviewedOn)}</span>
-      </div>
-    </section>
-  );
 }
 
 export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
@@ -420,8 +378,6 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
           )}
 
           {primaryView === "investors" && (
-            <div className="space-y-6">
-              {data.portfolioDisclosures?.map((disclosure, index) => <FundingPortfolioPanel key={disclosure.investorName} data={data} disclosure={disclosure} index={index} onSelectCompany={setSelectedSlug} />)}
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
               <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
                 <div className="border-b border-border px-6 py-5">
@@ -441,7 +397,6 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                             ))}
                           </div>
                           <span className="text-xs text-muted">{investor.roundCount} financing {investor.roundCount === 1 ? "record" : "records"} · {investor.companyCount} {investor.companyCount === 1 ? "company" : "companies"}</span>
-                          {data.portfolioDisclosures?.map((disclosure, portfolioIndex) => disclosure.familyGrouping?.memberNames.includes(investor.name) && <a key={disclosure.investorName} href={`#funding-portfolio-${portfolioIndex}`} className="text-xs text-accent underline underline-offset-4">Source-name count, not portfolio size · see family context ↑</a>)}
                         </div>
                       </div>
                       <div className="col-start-2 min-w-0 sm:col-start-3 sm:row-start-1 sm:text-right">
@@ -456,9 +411,9 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 <div className="text-xs font-bold text-white/80">How to read this</div>
                 <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em]">Participation, not portfolio exposure.</h3>
                 <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts named backer appearances in indexed financing records, including funding commitments. It does not estimate check size, cash received, ownership, reserves, or returns.</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/75">Reviewed investor families are grouped for counting only; company records retain the original investor names. A grouping does not imply a single legal entity.</p>
                 <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Round announcements do not always publish every participant. A low count may mean incomplete disclosure, not low conviction.</div>
               </aside>
-            </div>
             </div>
           )}
 

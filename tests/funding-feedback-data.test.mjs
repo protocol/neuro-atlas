@@ -63,11 +63,17 @@ test("PLC's ten published portfolio relationships stay separate from indexed fin
   assert.deepEqual(index.rounds, withoutPortfolio.rounds, "A portfolio listing is never synthesized into a financing");
   assert.deepEqual(index.investors, withoutPortfolio.investors, "A portfolio listing never increases financing counts or associated capital");
   assert.deepEqual(index.companies, withoutPortfolio.companies, "Off-screen portfolio companies must not expand the screened financing roster");
-  assert.deepEqual(index.investors.filter((investor) => ["Protocol Labs", "PLC Neurotech"].includes(investor.name)).sort((a, b) => a.name.localeCompare(b.name)), [
+  // The neutral ranking now aggregates reviewed families; source-label counts
+  // remain reproducible without grouping and round histories remain exact.
+  const ungrouped = buildFundingIndex({ ...sources, investorGroups: [] });
+  assert.deepEqual(ungrouped.investors.filter((investor) => ["Protocol Labs", "PLC Neurotech"].includes(investor.name)).sort((a, b) => a.name.localeCompare(b.name)), [
     { name: "PLC Neurotech", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 400 },
     { name: "Protocol Labs", roundCount: 2, companyCount: 2, associatedCapitalUsdM: 207.5 },
   ]);
-  assert.equal(index.investors.some((investor) => investor.name === "Protocol Labs / PLC Neurotech"), false, "Display grouping does not rename source investors");
+  assert.deepEqual(index.rounds, ungrouped.rounds, "Display grouping does not rename source investors in financing histories");
+  assert.deepEqual(index.investors.find((investor) => investor.name === "Protocol Labs / PLC Neurotech"), {
+    name: "Protocol Labs / PLC Neurotech", roundCount: 3, companyCount: 3, associatedCapitalUsdM: 607.5,
+  });
   for (const company of disclosure.companies) {
     for (const field of ["announcedOn", "stage", "amountUsdM", "roundCount", "associatedCapitalUsdM"]) {
       assert.equal(field in company, false, `A portfolio relationship must not invent ${field}`);
