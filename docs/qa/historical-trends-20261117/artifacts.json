@@ -1,0 +1,62 @@
+[
+  {
+    "file": "baseline-acquisition-1440.png",
+    "sha256": "48e17267e03cb43afa4b9a7e3b6bda461aaa2f9adfe8958a22d55a06bcc56670",
+    "runtimeSourceRevision": "1c54bff72177e227fb0e5c4ca1e7794427233744"
+  },
+  {
+    "file": "baseline-acquisition-320.png",
+    "sha256": "471400e6e551ffdcde39315e3135d7a2c0be8900e84105205f31b9698c3f0445",
+    "runtimeSourceRevision": "1c54bff72177e227fb0e5c4ca1e7794427233744"
+  },
+  {
+    "file": "baseline-recording-1440.png",
+    "sha256": "ec772867fb716e0ef9a5bd6b3a3f35629bbd6f931b3d393445918ae284769ae9",
+    "runtimeSourceRevision": "1c54bff72177e227fb0e5c4ca1e7794427233744"
+  },
+  {
+    "file": "baseline-recording-320.png",
+    "sha256": "2c9c5f296069c184a26ae6e51697d8a50891f2fb18d902b20233847fa6223021",
+    "runtimeSourceRevision": "1c54bff72177e227fb0e5c4ca1e7794427233744"
+  },
+  {
+    "file": "candidate-acquisition-1440.png",
+    "sha256": "378c1632a37f38276e882e81ac94faff241e663148451d45e4d309d6418372db",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "candidate-acquisition-320.png",
+    "sha256": "4fca81d97c0b9d43c730d61bcf747fda5c817b314feb5813a973b8adb683bd10",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "candidate-recording-1440.png",
+    "sha256": "1c8c3fed16e1accbeb17ba95cb3452945964da57470d7aea889cd756d5871828",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "candidate-recording-320.png",
+    "sha256": "c380ceb174fbd4f013a952277a9c833f0727fa5d304597d323e4c871884a2a62",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "candidate-acquisition-preview-320.png",
+    "sha256": "acde19493e87028bf7004e1a08f938fdd1565a036d1b154749ffc79dc5877f26",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "candidate-recording-preview-320.png",
+    "sha256": "34ea4dca3bc10f06d35a8b9739ca1f02ac0ee8dd1f2a4702b1042a791ace8c6f",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "native-acquisition.png",
+    "sha256": "543ca3bddac8c7d41b8771a2069429398c99232bac502bafdf1d853f4c6ab34a",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  },
+  {
+    "file": "native-recording.png",
+    "sha256": "46e81781b158f14519f169e829662a336d0b51980358440c046209a700f96e8a",
+    "runtimeSourceRevision": "2207d8818742af548102a5118d25f9c2c0781cbe"
+  }
+]

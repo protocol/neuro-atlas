@@ -248,7 +248,7 @@ test('all 15 curated images keep exact geometry, refer to Atlas, and retain sour
       const numeric = rows => rows.map(({ fill, stroke, ...rest }) => rest);
       assert.deepEqual(numeric(geometry(marks)), numeric(geometry(source)), panel.id);
       const text = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ');
-      assert.ok(text.includes(panel.querySelector('figcaption').textContent), panel.id);
+      assert.ok(text.includes(modal.querySelector('figcaption').textContent), panel.id);
       const scope = panel.querySelector('.draft-plot-scope').textContent.replace(/\s+/g, ' ');
       assert.ok(exportEvidence(out.window.document).includes(scope), `Source evidence retained: ${panel.id}`);
       assert.ok(!text.includes(scope), `Long scope is not painted into the image: ${panel.id}`);
