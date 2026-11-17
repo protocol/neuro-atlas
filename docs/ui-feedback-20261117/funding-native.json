@@ -1,0 +1,466 @@
+{
+  "revision": "5867501",
+  "fixture": "Exact Next production HTML/RSC/assets, Host-restricted loopback viewer; native pointer and viewport emulation, not hosted auth or physical-phone touch",
+  "cases": [
+    {
+      "width": 1440,
+      "toolbar": {
+        "x": 249,
+        "y": 0,
+        "width": 1159,
+        "height": 128,
+        "top": 0,
+        "right": 1408,
+        "bottom": 128,
+        "left": 249
+      },
+      "pinned": {
+        "slug": "neuralink",
+        "text": "Neuralink\nFounding year \u00b7 2016\nFlexible Threads \u00b7 Series E",
+        "rect": {
+          "x": 286,
+          "y": 210,
+          "width": 350,
+          "height": 136,
+          "top": 210,
+          "right": 636,
+          "bottom": 346,
+          "left": 286
+        },
+        "viewport": {
+          "x": 285,
+          "y": 168,
+          "width": 1087,
+          "height": 3271.5,
+          "top": 168,
+          "right": 1372,
+          "bottom": 3439.5,
+          "left": 285
+        },
+        "font": "16px",
+        "bg": "rgb(255, 255, 255)",
+        "scroll": 35
+      },
+      "stages": [
+        "Series D",
+        "Series E",
+        "Seed",
+        "Undisclosed",
+        "Series B",
+        "Series A",
+        "Strategic round",
+        "Venture round",
+        "Government backing",
+        "Seed extension",
+        "Early-stage financing",
+        "Funding commitment",
+        "Series B1",
+        "Equity financing"
+      ],
+      "stageBounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "portfolio": {
+        "total": "10",
+        "matched": "6",
+        "financing": "3",
+        "links": [
+          {
+            "name": "Echo",
+            "href": "https://www.echo.bio/"
+          },
+          {
+            "name": "EON",
+            "href": "https://eon.systems/"
+          },
+          {
+            "name": "Hemispheric",
+            "href": "https://www.hemispheric.ai/"
+          },
+          {
+            "name": "Integral Neuro",
+            "href": "https://www.integralneuro.com/"
+          },
+          {
+            "name": "Merge Labs",
+            "href": "https://merge.io/blog"
+          },
+          {
+            "name": "Netholabs",
+            "href": "https://netholabs.com/"
+          },
+          {
+            "name": "Paradromics",
+            "href": "https://www.paradromics.com/"
+          },
+          {
+            "name": "Precision",
+            "href": "https://precisionneuro.io/"
+          },
+          {
+            "name": "Science Corp",
+            "href": "https://science.xyz/"
+          },
+          {
+            "name": "Synchron",
+            "href": "https://synchron.com/"
+          }
+        ]
+      },
+      "investorBounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "historyReload": true,
+      "mobileMenuSearchFilters": false
+    },
+    {
+      "width": 768,
+      "toolbar": {
+        "x": 17,
+        "y": 0.453125,
+        "width": 719,
+        "height": 128,
+        "top": 0.453125,
+        "right": 736,
+        "bottom": 128.453125,
+        "left": 17
+      },
+      "pinned": {
+        "slug": "neuralink",
+        "text": "Neuralink\nFounding year \u00b7 2016\nFlexible Threads \u00b7 Series E",
+        "rect": {
+          "x": 46,
+          "y": 202.453125,
+          "width": 350,
+          "height": 136,
+          "top": 202.453125,
+          "right": 396,
+          "bottom": 338.453125,
+          "left": 46
+        },
+        "viewport": {
+          "x": 45,
+          "y": 160.453125,
+          "width": 663,
+          "height": 3271.5,
+          "top": 160.453125,
+          "right": 708,
+          "bottom": 3431.953125,
+          "left": 45
+        },
+        "font": "16px",
+        "bg": "rgb(255, 255, 255)",
+        "scroll": 459
+      },
+      "stages": [
+        "Series D",
+        "Series E",
+        "Seed",
+        "Undisclosed",
+        "Series B",
+        "Series A",
+        "Strategic round",
+        "Venture round",
+        "Government backing",
+        "Seed extension",
+        "Early-stage financing",
+        "Funding commitment",
+        "Series B1",
+        "Equity financing"
+      ],
+      "stageBounds": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      },
+      "portfolio": {
+        "total": "10",
+        "matched": "6",
+        "financing": "3",
+        "links": [
+          {
+            "name": "Echo",
+            "href": "https://www.echo.bio/"
+          },
+          {
+            "name": "EON",
+            "href": "https://eon.systems/"
+          },
+          {
+            "name": "Hemispheric",
+            "href": "https://www.hemispheric.ai/"
+          },
+          {
+            "name": "Integral Neuro",
+            "href": "https://www.integralneuro.com/"
+          },
+          {
+            "name": "Merge Labs",
+            "href": "https://merge.io/blog"
+          },
+          {
+            "name": "Netholabs",
+            "href": "https://netholabs.com/"
+          },
+          {
+            "name": "Paradromics",
+            "href": "https://www.paradromics.com/"
+          },
+          {
+            "name": "Precision",
+            "href": "https://precisionneuro.io/"
+          },
+          {
+            "name": "Science Corp",
+            "href": "https://science.xyz/"
+          },
+          {
+            "name": "Synchron",
+            "href": "https://synchron.com/"
+          }
+        ]
+      },
+      "investorBounds": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      },
+      "historyReload": true,
+      "mobileMenuSearchFilters": false
+    },
+    {
+      "width": 390,
+      "toolbar": {
+        "x": 13,
+        "y": 0.203125,
+        "width": 364,
+        "height": 110,
+        "top": 0.203125,
+        "right": 377,
+        "bottom": 110.203125,
+        "left": 13
+      },
+      "pinned": {
+        "slug": "neuralink",
+        "text": "Neuralink\nFounding year \u00b7 2016",
+        "rect": {
+          "x": 34,
+          "y": 184.203125,
+          "width": 120,
+          "height": 136,
+          "top": 184.203125,
+          "right": 154,
+          "bottom": 320.203125,
+          "left": 34
+        },
+        "viewport": {
+          "x": 33,
+          "y": 142.203125,
+          "width": 324,
+          "height": 3308.5,
+          "top": 142.203125,
+          "right": 357,
+          "bottom": 3450.703125,
+          "left": 33
+        },
+        "font": "16px",
+        "bg": "rgb(255, 255, 255)",
+        "scroll": 733
+      },
+      "stages": [
+        "Series D",
+        "Series E",
+        "Seed",
+        "Undisclosed",
+        "Series B",
+        "Series A",
+        "Strategic round",
+        "Venture round",
+        "Government backing",
+        "Seed extension",
+        "Early-stage financing",
+        "Funding commitment",
+        "Series B1",
+        "Equity financing"
+      ],
+      "stageBounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "portfolio": {
+        "total": "10",
+        "matched": "6",
+        "financing": "3",
+        "links": [
+          {
+            "name": "Echo",
+            "href": "https://www.echo.bio/"
+          },
+          {
+            "name": "EON",
+            "href": "https://eon.systems/"
+          },
+          {
+            "name": "Hemispheric",
+            "href": "https://www.hemispheric.ai/"
+          },
+          {
+            "name": "Integral Neuro",
+            "href": "https://www.integralneuro.com/"
+          },
+          {
+            "name": "Merge Labs",
+            "href": "https://merge.io/blog"
+          },
+          {
+            "name": "Netholabs",
+            "href": "https://netholabs.com/"
+          },
+          {
+            "name": "Paradromics",
+            "href": "https://www.paradromics.com/"
+          },
+          {
+            "name": "Precision",
+            "href": "https://precisionneuro.io/"
+          },
+          {
+            "name": "Science Corp",
+            "href": "https://science.xyz/"
+          },
+          {
+            "name": "Synchron",
+            "href": "https://synchron.com/"
+          }
+        ]
+      },
+      "investorBounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "historyReload": true,
+      "mobileMenuSearchFilters": true
+    },
+    {
+      "width": 320,
+      "toolbar": {
+        "x": 13,
+        "y": 0,
+        "width": 294,
+        "height": 110,
+        "top": 0,
+        "right": 307,
+        "bottom": 110,
+        "left": 13
+      },
+      "pinned": {
+        "slug": "neuralink",
+        "text": "Neuralink\nFounding year \u00b7 2016",
+        "rect": {
+          "x": 34,
+          "y": 183.65625,
+          "width": 120,
+          "height": 136,
+          "top": 183.65625,
+          "right": 154,
+          "bottom": 319.65625,
+          "left": 34
+        },
+        "viewport": {
+          "x": 33,
+          "y": 141.65625,
+          "width": 254,
+          "height": 3344.5,
+          "top": 141.65625,
+          "right": 287,
+          "bottom": 3486.15625,
+          "left": 33
+        },
+        "font": "16px",
+        "bg": "rgb(255, 255, 255)",
+        "scroll": 803
+      },
+      "stages": [
+        "Series D",
+        "Series E",
+        "Seed",
+        "Undisclosed",
+        "Series B",
+        "Series A",
+        "Strategic round",
+        "Venture round",
+        "Government backing",
+        "Seed extension",
+        "Early-stage financing",
+        "Funding commitment",
+        "Series B1",
+        "Equity financing"
+      ],
+      "stageBounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      },
+      "portfolio": {
+        "total": "10",
+        "matched": "6",
+        "financing": "3",
+        "links": [
+          {
+            "name": "Echo",
+            "href": "https://www.echo.bio/"
+          },
+          {
+            "name": "EON",
+            "href": "https://eon.systems/"
+          },
+          {
+            "name": "Hemispheric",
+            "href": "https://www.hemispheric.ai/"
+          },
+          {
+            "name": "Integral Neuro",
+            "href": "https://www.integralneuro.com/"
+          },
+          {
+            "name": "Merge Labs",
+            "href": "https://merge.io/blog"
+          },
+          {
+            "name": "Netholabs",
+            "href": "https://netholabs.com/"
+          },
+          {
+            "name": "Paradromics",
+            "href": "https://www.paradromics.com/"
+          },
+          {
+            "name": "Precision",
+            "href": "https://precisionneuro.io/"
+          },
+          {
+            "name": "Science Corp",
+            "href": "https://science.xyz/"
+          },
+          {
+            "name": "Synchron",
+            "href": "https://synchron.com/"
+          }
+        ]
+      },
+      "investorBounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      },
+      "historyReload": true,
+      "mobileMenuSearchFilters": true
+    }
+  ]
+}

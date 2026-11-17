@@ -1,0 +1,20 @@
+{
+  "runtimeRevision": "5867501",
+  "pages": [
+    {
+      "route": "funding",
+      "htmlSha256": "850036946980940e99258077aa6ae30d4523630eb55d0f3c7d8e229295eabc2f",
+      "revision": "5867501",
+      "noindex": true
+    },
+    {
+      "route": "milestones",
+      "htmlSha256": "e350ffd761801ff8748f3af8caaf46e3fad847086d01bac4275f48f677f6071c",
+      "revision": "5867501",
+      "noindex": true
+    }
+  ],
+  "verifiedExactStaticAssets": 14,
+  "loopbackHostRestriction": "403",
+  "authLaunchRoutingDiff": "empty"
+}

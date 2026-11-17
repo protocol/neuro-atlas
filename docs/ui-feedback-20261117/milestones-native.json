@@ -1,0 +1,3510 @@
+{
+  "revision": "5867501",
+  "fixture": "Exact production-built HTML/RSC/assets, Host-restricted loopback viewer; not hosted auth or physical touch",
+  "cases": [
+    {
+      "surface": "milestones",
+      "width": 1440,
+      "current": {
+        "left": 674,
+        "scroll": 1360,
+        "client": 686,
+        "today": {
+          "x": 959.578125,
+          "y": 639,
+          "width": 0,
+          "height": 610,
+          "top": 639,
+          "right": 959.578125,
+          "bottom": 1249,
+          "left": 959.578125
+        },
+        "viewport": {
+          "x": 459.21875,
+          "y": 639,
+          "width": 685.609375,
+          "height": 632,
+          "top": 639,
+          "right": 1144.828125,
+          "bottom": 1271,
+          "left": 459.21875
+        },
+        "label": "Today: Nov 17, 2026",
+        "laneLabels": [
+          {
+            "text": "Capital",
+            "rect": {
+              "x": 469.21875,
+              "y": 668,
+              "width": 41.140625,
+              "height": 16,
+              "top": 668,
+              "right": 510.359375,
+              "bottom": 684,
+              "left": 469.21875
+            }
+          },
+          {
+            "text": "Clinical / regulatory",
+            "rect": {
+              "x": 469.21875,
+              "y": 848,
+              "width": 114.171875,
+              "height": 16,
+              "top": 848,
+              "right": 583.390625,
+              "bottom": 864,
+              "left": 469.21875
+            }
+          },
+          {
+            "text": "Commercial",
+            "rect": {
+              "x": 469.21875,
+              "y": 1120,
+              "width": 68.515625,
+              "height": 16,
+              "top": 1120,
+              "right": 537.734375,
+              "bottom": 1136,
+              "left": 469.21875
+            }
+          }
+        ]
+      },
+      "fit": {
+        "scroll": 801,
+        "client": 801,
+        "viewport": {
+          "x": 285,
+          "y": 614,
+          "width": 801.15625,
+          "height": 770,
+          "top": 614,
+          "right": 1086.15625,
+          "bottom": 1384,
+          "left": 285
+        },
+        "marks": [
+          {
+            "label": "Enspire DBS \u2014 $10.3m",
+            "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+            "rect": {
+              "x": 320.5625,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 354.5625,
+              "bottom": 692,
+              "left": 320.5625
+            }
+          },
+          {
+            "label": "Merge Labs \u2014 $252m",
+            "source": "https://openai.com/index/investing-in-merge-labs/",
+            "rect": {
+              "x": 324.65625,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 358.65625,
+              "bottom": 738,
+              "left": 324.65625
+            }
+          },
+          {
+            "label": "Envoy Medical \u2014 $30m",
+            "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+            "rect": {
+              "x": 381.96875,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 415.96875,
+              "bottom": 692,
+              "left": 381.96875
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 $5m",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 408.578125,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 442.578125,
+              "bottom": 738,
+              "left": 408.578125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $230m",
+            "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+            "rect": {
+              "x": 424.96875,
+              "y": 750,
+              "width": 34,
+              "height": 34,
+              "top": 750,
+              "right": 458.96875,
+              "bottom": 784,
+              "left": 424.96875
+            }
+          },
+          {
+            "label": "Gestala \u2014 $21.6m",
+            "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+            "rect": {
+              "x": 437.25,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 471.25,
+              "bottom": 692,
+              "left": 437.25
+            }
+          },
+          {
+            "label": "Ruten Neuro \u2014 $2m",
+            "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+            "rect": {
+              "x": 449.53125,
+              "y": 796,
+              "width": 34,
+              "height": 34,
+              "top": 796,
+              "right": 483.53125,
+              "bottom": 830,
+              "left": 449.53125
+            }
+          },
+          {
+            "label": "NeuCyber NeuroTech \u2014 $29m",
+            "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+            "rect": {
+              "x": 455.671875,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 489.671875,
+              "bottom": 738,
+              "left": 455.671875
+            }
+          },
+          {
+            "label": "StairMed \u2014 $73m",
+            "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+            "rect": {
+              "x": 482.28125,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 516.28125,
+              "bottom": 692,
+              "left": 482.28125
+            }
+          },
+          {
+            "label": "Onward Medical \u2014 $47m",
+            "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+            "rect": {
+              "x": 508.890625,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 542.890625,
+              "bottom": 738,
+              "left": 508.890625
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 award",
+            "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+            "rect": {
+              "x": 521.171875,
+              "y": 750,
+              "width": 34,
+              "height": 34,
+              "top": 750,
+              "right": 555.171875,
+              "bottom": 784,
+              "left": 521.171875
+            }
+          },
+          {
+            "label": "Axoft \u2014 $55m",
+            "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+            "rect": {
+              "x": 537.546875,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 571.546875,
+              "bottom": 692,
+              "left": 537.546875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+            "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+            "rect": {
+              "x": 580.546875,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 614.546875,
+              "bottom": 738,
+              "left": 580.546875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 $250m",
+            "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+            "rect": {
+              "x": 840.53125,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 874.53125,
+              "bottom": 692,
+              "left": 840.53125
+            }
+          },
+          {
+            "label": "Coherence Neuro \u2014 $45m",
+            "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+            "rect": {
+              "x": 895.796875,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 929.796875,
+              "bottom": 692,
+              "left": 895.796875
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 Series B",
+            "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+            "rect": {
+              "x": 910.125,
+              "y": 704,
+              "width": 34,
+              "height": 34,
+              "top": 704,
+              "right": 944.125,
+              "bottom": 738,
+              "left": 910.125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $400m",
+            "source": "https://science.xyz/news/series-d/",
+            "rect": {
+              "x": 951.078125,
+              "y": 658,
+              "width": 34,
+              "height": 34,
+              "top": 658,
+              "right": 985.078125,
+              "bottom": 692,
+              "left": 951.078125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 study",
+            "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+            "rect": {
+              "x": 359.453125,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 393.453125,
+              "bottom": 918,
+              "left": 359.453125
+            }
+          },
+          {
+            "label": "CorTec \u2014 implantation",
+            "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+            "rect": {
+              "x": 377.875,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 411.875,
+              "bottom": 964,
+              "left": 377.875
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 408.578125,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 442.578125,
+              "bottom": 918,
+              "left": 408.578125
+            }
+          },
+          {
+            "label": "Nia Therapeutics \u2014 BDD",
+            "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+            "rect": {
+              "x": 441.34375,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 475.34375,
+              "bottom": 964,
+              "left": 441.34375
+            }
+          },
+          {
+            "label": "ReVision Implant \u2014 BDD",
+            "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+            "rect": {
+              "x": 447.484375,
+              "y": 976,
+              "width": 34,
+              "height": 34,
+              "top": 976,
+              "right": 481.484375,
+              "bottom": 1010,
+              "left": 447.484375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+            "rect": {
+              "x": 449.53125,
+              "y": 1022,
+              "width": 34,
+              "height": 34,
+              "top": 1022,
+              "right": 483.53125,
+              "bottom": 1056,
+              "left": 449.53125
+            }
+          },
+          {
+            "label": "Phantom Neuro \u2014 FIH approved",
+            "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+            "rect": {
+              "x": 508.890625,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 542.890625,
+              "bottom": 918,
+              "left": 508.890625
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+            "rect": {
+              "x": 519.125,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 553.125,
+              "bottom": 964,
+              "left": 519.125
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD/TAP",
+            "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+            "rect": {
+              "x": 525.265625,
+              "y": 976,
+              "width": 34,
+              "height": 34,
+              "top": 976,
+              "right": 559.265625,
+              "bottom": 1010,
+              "left": 525.265625
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 clinical case",
+            "source": "https://www.neuroxess.com/news/kejixiangshan/",
+            "rect": {
+              "x": 525.265625,
+              "y": 1022,
+              "width": 34,
+              "height": 34,
+              "top": 1022,
+              "right": 559.265625,
+              "bottom": 1056,
+              "left": 525.265625
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 IDE",
+            "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+            "rect": {
+              "x": 533.453125,
+              "y": 1068,
+              "width": 34,
+              "height": 34,
+              "top": 1068,
+              "right": 567.453125,
+              "bottom": 1102,
+              "left": 533.453125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+            "rect": {
+              "x": 539.59375,
+              "y": 1114,
+              "width": 34,
+              "height": 34,
+              "top": 1114,
+              "right": 573.59375,
+              "bottom": 1148,
+              "left": 539.59375
+            }
+          },
+          {
+            "label": "Synchron \u2014 pivotal planned",
+            "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+            "rect": {
+              "x": 615.34375,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 649.34375,
+              "bottom": 918,
+              "left": 615.34375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+            "rect": {
+              "x": 637.859375,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 671.859375,
+              "bottom": 964,
+              "left": 637.859375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 HUD",
+            "source": "https://science.xyz/news/hud-designation/",
+            "rect": {
+              "x": 709.515625,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 743.515625,
+              "bottom": 918,
+              "left": 709.515625
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+            "rect": {
+              "x": 781.15625,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 815.15625,
+              "bottom": 918,
+              "left": 781.15625
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD",
+            "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+            "rect": {
+              "x": 791.390625,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 825.390625,
+              "bottom": 964,
+              "left": 791.390625
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+            "rect": {
+              "x": 820.0625,
+              "y": 976,
+              "width": 34,
+              "height": 34,
+              "top": 976,
+              "right": 854.0625,
+              "bottom": 1010,
+              "left": 820.0625
+            }
+          },
+          {
+            "label": "Newronika \u2014 pivotal",
+            "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+            "rect": {
+              "x": 834.390625,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 868.390625,
+              "bottom": 918,
+              "left": 834.390625
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+            "rect": {
+              "x": 854.859375,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 888.859375,
+              "bottom": 964,
+              "left": 854.859375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/long-term-prima-results/",
+            "rect": {
+              "x": 863.046875,
+              "y": 1022,
+              "width": 34,
+              "height": 34,
+              "top": 1022,
+              "right": 897.046875,
+              "bottom": 1056,
+              "left": 863.046875
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+            "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+            "rect": {
+              "x": 867.140625,
+              "y": 976,
+              "width": 34,
+              "height": 34,
+              "top": 976,
+              "right": 901.140625,
+              "bottom": 1010,
+              "left": 867.140625
+            }
+          },
+          {
+            "label": "Paradromics \u2014 preclinical",
+            "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+            "rect": {
+              "x": 869.1875,
+              "y": 1068,
+              "width": 34,
+              "height": 34,
+              "top": 1068,
+              "right": 903.1875,
+              "bottom": 1102,
+              "left": 869.1875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 research",
+            "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+            "rect": {
+              "x": 869.1875,
+              "y": 1114,
+              "width": 34,
+              "height": 34,
+              "top": 1114,
+              "right": 903.1875,
+              "bottom": 1148,
+              "left": 869.1875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/stargardt-first-rehab/",
+            "rect": {
+              "x": 879.421875,
+              "y": 884,
+              "width": 34,
+              "height": 34,
+              "top": 884,
+              "right": 913.421875,
+              "bottom": 918,
+              "left": 879.421875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+            "rect": {
+              "x": 895.796875,
+              "y": 1160,
+              "width": 34,
+              "height": 34,
+              "top": 1160,
+              "right": 929.796875,
+              "bottom": 1194,
+              "left": 895.796875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+            "rect": {
+              "x": 906.03125,
+              "y": 930,
+              "width": 34,
+              "height": 34,
+              "top": 930,
+              "right": 940.03125,
+              "bottom": 964,
+              "left": 906.03125
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://x.com/neuralink/status/2115534593147187397",
+            "rect": {
+              "x": 910.125,
+              "y": 1022,
+              "width": 34,
+              "height": 34,
+              "top": 1022,
+              "right": 944.125,
+              "bottom": 1056,
+              "left": 910.125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+            "rect": {
+              "x": 318.515625,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 352.515625,
+              "bottom": 1282,
+              "left": 318.515625
+            }
+          },
+          {
+            "label": "Penumbra \u2014 $14.5b EV",
+            "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+            "rect": {
+              "x": 324.65625,
+              "y": 1294,
+              "width": 34,
+              "height": 34,
+              "top": 1294,
+              "right": 358.65625,
+              "bottom": 1328,
+              "left": 324.65625
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+            "rect": {
+              "x": 398.34375,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 432.34375,
+              "bottom": 1282,
+              "left": 398.34375
+            }
+          },
+          {
+            "label": "Neuracle \u2014 approval",
+            "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+            "rect": {
+              "x": 441.34375,
+              "y": 1294,
+              "width": 34,
+              "height": 34,
+              "top": 1294,
+              "right": 475.34375,
+              "bottom": 1328,
+              "left": 441.34375
+            }
+          },
+          {
+            "label": "EpiAneura \u2014 spinout",
+            "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+            "rect": {
+              "x": 482.28125,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 516.28125,
+              "bottom": 1282,
+              "left": 482.28125
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 partner",
+            "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+            "rect": {
+              "x": 539.59375,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 573.59375,
+              "bottom": 1282,
+              "left": 539.59375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 CE",
+            "source": "https://science.xyz/news/ce-mark/",
+            "rect": {
+              "x": 709.515625,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 743.515625,
+              "bottom": 1282,
+              "left": 709.515625
+            }
+          },
+          {
+            "label": "Neuracle \u2014 sales",
+            "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+            "rect": {
+              "x": 793.453125,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 827.453125,
+              "bottom": 1282,
+              "left": 793.453125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 leadership",
+            "source": "https://science.xyz/news/leadership-shahida/",
+            "rect": {
+              "x": 826.203125,
+              "y": 1294,
+              "width": 34,
+              "height": 34,
+              "top": 1294,
+              "right": 860.203125,
+              "bottom": 1328,
+              "left": 826.203125
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+            "rect": {
+              "x": 840.53125,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 874.53125,
+              "bottom": 1282,
+              "left": 840.53125
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+            "rect": {
+              "x": 891.703125,
+              "y": 1248,
+              "width": 34,
+              "height": 34,
+              "top": 1248,
+              "right": 925.703125,
+              "bottom": 1282,
+              "left": 891.703125
+            }
+          }
+        ]
+      },
+      "page": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      }
+    },
+    {
+      "surface": "milestones",
+      "width": 768,
+      "current": {
+        "left": 843,
+        "scroll": 1360,
+        "client": 517,
+        "today": {
+          "x": 536.359375,
+          "y": 902.703125,
+          "width": 0,
+          "height": 610,
+          "top": 902.703125,
+          "right": 536.359375,
+          "bottom": 1512.703125,
+          "left": 536.359375
+        },
+        "viewport": {
+          "x": 205,
+          "y": 902.703125,
+          "width": 517.125,
+          "height": 632,
+          "top": 902.703125,
+          "right": 722.125,
+          "bottom": 1534.703125,
+          "left": 205
+        },
+        "label": "Today: Nov 17, 2026",
+        "laneLabels": [
+          {
+            "text": "Capital",
+            "rect": {
+              "x": 215,
+              "y": 931.703125,
+              "width": 41.140625,
+              "height": 16,
+              "top": 931.703125,
+              "right": 256.140625,
+              "bottom": 947.703125,
+              "left": 215
+            }
+          },
+          {
+            "text": "Clinical / regulatory",
+            "rect": {
+              "x": 215,
+              "y": 1111.703125,
+              "width": 114.171875,
+              "height": 16,
+              "top": 1111.703125,
+              "right": 329.171875,
+              "bottom": 1127.703125,
+              "left": 215
+            }
+          },
+          {
+            "text": "Commercial",
+            "rect": {
+              "x": 215,
+              "y": 1383.703125,
+              "width": 68.515625,
+              "height": 16,
+              "top": 1383.703125,
+              "right": 283.515625,
+              "bottom": 1399.703125,
+              "left": 215
+            }
+          }
+        ]
+      },
+      "fit": {
+        "scroll": 644,
+        "client": 644,
+        "viewport": {
+          "x": 45,
+          "y": 625.703125,
+          "width": 643.546875,
+          "height": 908,
+          "top": 625.703125,
+          "right": 688.546875,
+          "bottom": 1533.703125,
+          "left": 45
+        },
+        "marks": [
+          {
+            "label": "Enspire DBS \u2014 $10.3m",
+            "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+            "rect": {
+              "x": 75.359375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 109.359375,
+              "bottom": 703.703125,
+              "left": 75.359375
+            }
+          },
+          {
+            "label": "Merge Labs \u2014 $252m",
+            "source": "https://openai.com/index/investing-in-merge-labs/",
+            "rect": {
+              "x": 78.59375,
+              "y": 715.703125,
+              "width": 34,
+              "height": 34,
+              "top": 715.703125,
+              "right": 112.59375,
+              "bottom": 749.703125,
+              "left": 78.59375
+            }
+          },
+          {
+            "label": "Envoy Medical \u2014 $30m",
+            "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+            "rect": {
+              "x": 123.78125,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 157.78125,
+              "bottom": 703.703125,
+              "left": 123.78125
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 $5m",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 144.765625,
+              "y": 715.703125,
+              "width": 34,
+              "height": 34,
+              "top": 715.703125,
+              "right": 178.765625,
+              "bottom": 749.703125,
+              "left": 144.765625
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $230m",
+            "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+            "rect": {
+              "x": 157.6875,
+              "y": 761.703125,
+              "width": 34,
+              "height": 34,
+              "top": 761.703125,
+              "right": 191.6875,
+              "bottom": 795.703125,
+              "left": 157.6875
+            }
+          },
+          {
+            "label": "Gestala \u2014 $21.6m",
+            "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+            "rect": {
+              "x": 167.375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 201.375,
+              "bottom": 703.703125,
+              "left": 167.375
+            }
+          },
+          {
+            "label": "Ruten Neuro \u2014 $2m",
+            "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+            "rect": {
+              "x": 177.046875,
+              "y": 807.703125,
+              "width": 34,
+              "height": 34,
+              "top": 807.703125,
+              "right": 211.046875,
+              "bottom": 841.703125,
+              "left": 177.046875
+            }
+          },
+          {
+            "label": "NeuCyber NeuroTech \u2014 $29m",
+            "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+            "rect": {
+              "x": 181.890625,
+              "y": 853.703125,
+              "width": 34,
+              "height": 34,
+              "top": 853.703125,
+              "right": 215.890625,
+              "bottom": 887.703125,
+              "left": 181.890625
+            }
+          },
+          {
+            "label": "StairMed \u2014 $73m",
+            "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+            "rect": {
+              "x": 202.875,
+              "y": 715.703125,
+              "width": 34,
+              "height": 34,
+              "top": 715.703125,
+              "right": 236.875,
+              "bottom": 749.703125,
+              "left": 202.875
+            }
+          },
+          {
+            "label": "Onward Medical \u2014 $47m",
+            "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+            "rect": {
+              "x": 223.859375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 257.859375,
+              "bottom": 703.703125,
+              "left": 223.859375
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 award",
+            "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+            "rect": {
+              "x": 233.546875,
+              "y": 761.703125,
+              "width": 34,
+              "height": 34,
+              "top": 761.703125,
+              "right": 267.546875,
+              "bottom": 795.703125,
+              "left": 233.546875
+            }
+          },
+          {
+            "label": "Axoft \u2014 $55m",
+            "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+            "rect": {
+              "x": 246.453125,
+              "y": 715.703125,
+              "width": 34,
+              "height": 34,
+              "top": 715.703125,
+              "right": 280.453125,
+              "bottom": 749.703125,
+              "left": 246.453125
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+            "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+            "rect": {
+              "x": 280.359375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 314.359375,
+              "bottom": 703.703125,
+              "left": 280.359375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 $250m",
+            "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+            "rect": {
+              "x": 485.359375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 519.359375,
+              "bottom": 703.703125,
+              "left": 485.359375
+            }
+          },
+          {
+            "label": "Coherence Neuro \u2014 $45m",
+            "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+            "rect": {
+              "x": 528.9375,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 562.9375,
+              "bottom": 703.703125,
+              "left": 528.9375
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 Series B",
+            "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+            "rect": {
+              "x": 540.234375,
+              "y": 715.703125,
+              "width": 34,
+              "height": 34,
+              "top": 715.703125,
+              "right": 574.234375,
+              "bottom": 749.703125,
+              "left": 540.234375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $400m",
+            "source": "https://science.xyz/news/series-d/",
+            "rect": {
+              "x": 572.515625,
+              "y": 669.703125,
+              "width": 34,
+              "height": 34,
+              "top": 669.703125,
+              "right": 606.515625,
+              "bottom": 703.703125,
+              "left": 572.515625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 study",
+            "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+            "rect": {
+              "x": 106.03125,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 140.03125,
+              "bottom": 975.703125,
+              "left": 106.03125
+            }
+          },
+          {
+            "label": "CorTec \u2014 implantation",
+            "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+            "rect": {
+              "x": 120.5625,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 154.5625,
+              "bottom": 1021.703125,
+              "left": 120.5625
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 144.765625,
+              "y": 1033.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1033.703125,
+              "right": 178.765625,
+              "bottom": 1067.703125,
+              "left": 144.765625
+            }
+          },
+          {
+            "label": "Nia Therapeutics \u2014 BDD",
+            "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+            "rect": {
+              "x": 170.59375,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 204.59375,
+              "bottom": 975.703125,
+              "left": 170.59375
+            }
+          },
+          {
+            "label": "ReVision Implant \u2014 BDD",
+            "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+            "rect": {
+              "x": 175.4375,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 209.4375,
+              "bottom": 1021.703125,
+              "left": 175.4375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+            "rect": {
+              "x": 177.046875,
+              "y": 1079.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1079.703125,
+              "right": 211.046875,
+              "bottom": 1113.703125,
+              "left": 177.046875
+            }
+          },
+          {
+            "label": "Phantom Neuro \u2014 FIH approved",
+            "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+            "rect": {
+              "x": 223.859375,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 257.859375,
+              "bottom": 975.703125,
+              "left": 223.859375
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+            "rect": {
+              "x": 231.9375,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 265.9375,
+              "bottom": 1021.703125,
+              "left": 231.9375
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD/TAP",
+            "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+            "rect": {
+              "x": 236.78125,
+              "y": 1033.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1033.703125,
+              "right": 270.78125,
+              "bottom": 1067.703125,
+              "left": 236.78125
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 clinical case",
+            "source": "https://www.neuroxess.com/news/kejixiangshan/",
+            "rect": {
+              "x": 236.78125,
+              "y": 1079.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1079.703125,
+              "right": 270.78125,
+              "bottom": 1113.703125,
+              "left": 236.78125
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 IDE",
+            "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+            "rect": {
+              "x": 243.234375,
+              "y": 1125.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1125.703125,
+              "right": 277.234375,
+              "bottom": 1159.703125,
+              "left": 243.234375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+            "rect": {
+              "x": 248.078125,
+              "y": 1171.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1171.703125,
+              "right": 282.078125,
+              "bottom": 1205.703125,
+              "left": 248.078125
+            }
+          },
+          {
+            "label": "Synchron \u2014 pivotal planned",
+            "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+            "rect": {
+              "x": 307.796875,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 341.796875,
+              "bottom": 975.703125,
+              "left": 307.796875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+            "rect": {
+              "x": 325.546875,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 359.546875,
+              "bottom": 1021.703125,
+              "left": 325.546875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 HUD",
+            "source": "https://science.xyz/news/hud-designation/",
+            "rect": {
+              "x": 382.046875,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 416.046875,
+              "bottom": 975.703125,
+              "left": 382.046875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+            "rect": {
+              "x": 438.546875,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 472.546875,
+              "bottom": 975.703125,
+              "left": 438.546875
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD",
+            "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+            "rect": {
+              "x": 446.609375,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 480.609375,
+              "bottom": 1021.703125,
+              "left": 446.609375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+            "rect": {
+              "x": 469.21875,
+              "y": 1033.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1033.703125,
+              "right": 503.21875,
+              "bottom": 1067.703125,
+              "left": 469.21875
+            }
+          },
+          {
+            "label": "Newronika \u2014 pivotal",
+            "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+            "rect": {
+              "x": 480.515625,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 514.515625,
+              "bottom": 975.703125,
+              "left": 480.515625
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+            "rect": {
+              "x": 496.65625,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 530.65625,
+              "bottom": 1021.703125,
+              "left": 496.65625
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/long-term-prima-results/",
+            "rect": {
+              "x": 503.109375,
+              "y": 1079.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1079.703125,
+              "right": 537.109375,
+              "bottom": 1113.703125,
+              "left": 503.109375
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+            "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+            "rect": {
+              "x": 506.34375,
+              "y": 1125.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1125.703125,
+              "right": 540.34375,
+              "bottom": 1159.703125,
+              "left": 506.34375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 preclinical",
+            "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+            "rect": {
+              "x": 507.953125,
+              "y": 1171.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1171.703125,
+              "right": 541.953125,
+              "bottom": 1205.703125,
+              "left": 507.953125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 research",
+            "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+            "rect": {
+              "x": 507.953125,
+              "y": 1217.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1217.703125,
+              "right": 541.953125,
+              "bottom": 1251.703125,
+              "left": 507.953125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/stargardt-first-rehab/",
+            "rect": {
+              "x": 516.015625,
+              "y": 1033.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1033.703125,
+              "right": 550.015625,
+              "bottom": 1067.703125,
+              "left": 516.015625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+            "rect": {
+              "x": 528.9375,
+              "y": 941.703125,
+              "width": 34,
+              "height": 34,
+              "top": 941.703125,
+              "right": 562.9375,
+              "bottom": 975.703125,
+              "left": 528.9375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+            "rect": {
+              "x": 537,
+              "y": 1263.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1263.703125,
+              "right": 571,
+              "bottom": 1297.703125,
+              "left": 537
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://x.com/neuralink/status/2115534593147187397",
+            "rect": {
+              "x": 540.234375,
+              "y": 987.703125,
+              "width": 34,
+              "height": 34,
+              "top": 987.703125,
+              "right": 574.234375,
+              "bottom": 1021.703125,
+              "left": 540.234375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+            "rect": {
+              "x": 73.75,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 107.75,
+              "bottom": 1385.703125,
+              "left": 73.75
+            }
+          },
+          {
+            "label": "Penumbra \u2014 $14.5b EV",
+            "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+            "rect": {
+              "x": 78.59375,
+              "y": 1397.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1397.703125,
+              "right": 112.59375,
+              "bottom": 1431.703125,
+              "left": 78.59375
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+            "rect": {
+              "x": 136.703125,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 170.703125,
+              "bottom": 1385.703125,
+              "left": 136.703125
+            }
+          },
+          {
+            "label": "Neuracle \u2014 approval",
+            "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+            "rect": {
+              "x": 170.59375,
+              "y": 1397.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1397.703125,
+              "right": 204.59375,
+              "bottom": 1431.703125,
+              "left": 170.59375
+            }
+          },
+          {
+            "label": "EpiAneura \u2014 spinout",
+            "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+            "rect": {
+              "x": 202.875,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 236.875,
+              "bottom": 1385.703125,
+              "left": 202.875
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 partner",
+            "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+            "rect": {
+              "x": 248.078125,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 282.078125,
+              "bottom": 1385.703125,
+              "left": 248.078125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 CE",
+            "source": "https://science.xyz/news/ce-mark/",
+            "rect": {
+              "x": 382.046875,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 416.046875,
+              "bottom": 1385.703125,
+              "left": 382.046875
+            }
+          },
+          {
+            "label": "Neuracle \u2014 sales",
+            "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+            "rect": {
+              "x": 448.234375,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 482.234375,
+              "bottom": 1385.703125,
+              "left": 448.234375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 leadership",
+            "source": "https://science.xyz/news/leadership-shahida/",
+            "rect": {
+              "x": 474.046875,
+              "y": 1397.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1397.703125,
+              "right": 508.046875,
+              "bottom": 1431.703125,
+              "left": 474.046875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+            "rect": {
+              "x": 485.359375,
+              "y": 1443.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1443.703125,
+              "right": 519.359375,
+              "bottom": 1477.703125,
+              "left": 485.359375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+            "rect": {
+              "x": 525.703125,
+              "y": 1351.703125,
+              "width": 34,
+              "height": 34,
+              "top": 1351.703125,
+              "right": 559.703125,
+              "bottom": 1385.703125,
+              "left": 525.703125
+            }
+          }
+        ]
+      },
+      "page": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      }
+    },
+    {
+      "surface": "milestones",
+      "width": 390,
+      "current": {
+        "left": 1012,
+        "scroll": 1360,
+        "client": 324,
+        "today": {
+          "x": 195.359375,
+          "y": 1076.453125,
+          "width": 0,
+          "height": 610,
+          "top": 1076.453125,
+          "right": 195.359375,
+          "bottom": 1686.453125,
+          "left": 195.359375
+        },
+        "viewport": {
+          "x": 33,
+          "y": 1076.453125,
+          "width": 324,
+          "height": 632,
+          "top": 1076.453125,
+          "right": 357,
+          "bottom": 1708.453125,
+          "left": 33
+        },
+        "label": "Today: Nov 17, 2026",
+        "laneLabels": [
+          {
+            "text": "Capital",
+            "rect": {
+              "x": 43,
+              "y": 1105.453125,
+              "width": 41.140625,
+              "height": 16,
+              "top": 1105.453125,
+              "right": 84.140625,
+              "bottom": 1121.453125,
+              "left": 43
+            }
+          },
+          {
+            "text": "Clinical / regulatory",
+            "rect": {
+              "x": 43,
+              "y": 1285.453125,
+              "width": 114.171875,
+              "height": 16,
+              "top": 1285.453125,
+              "right": 157.171875,
+              "bottom": 1301.453125,
+              "left": 43
+            }
+          },
+          {
+            "text": "Commercial",
+            "rect": {
+              "x": 43,
+              "y": 1557.453125,
+              "width": 68.515625,
+              "height": 16,
+              "top": 1557.453125,
+              "right": 111.515625,
+              "bottom": 1573.453125,
+              "left": 43
+            }
+          }
+        ]
+      },
+      "fit": {
+        "scroll": 324,
+        "client": 324,
+        "viewport": {
+          "x": 33,
+          "y": 562.453125,
+          "width": 324,
+          "height": 1184,
+          "top": 562.453125,
+          "right": 357,
+          "bottom": 1746.453125,
+          "left": 33
+        },
+        "marks": [
+          {
+            "label": "Enspire DBS \u2014 $10.3m",
+            "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+            "rect": {
+              "x": 52.828125,
+              "y": 606.453125,
+              "width": 34,
+              "height": 34,
+              "top": 606.453125,
+              "right": 86.828125,
+              "bottom": 640.453125,
+              "left": 52.828125
+            }
+          },
+          {
+            "label": "Merge Labs \u2014 $252m",
+            "source": "https://openai.com/index/investing-in-merge-labs/",
+            "rect": {
+              "x": 54.296875,
+              "y": 652.453125,
+              "width": 34,
+              "height": 34,
+              "top": 652.453125,
+              "right": 88.296875,
+              "bottom": 686.453125,
+              "left": 54.296875
+            }
+          },
+          {
+            "label": "Envoy Medical \u2014 $30m",
+            "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+            "rect": {
+              "x": 74.921875,
+              "y": 698.453125,
+              "width": 34,
+              "height": 34,
+              "top": 698.453125,
+              "right": 108.921875,
+              "bottom": 732.453125,
+              "left": 74.921875
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 $5m",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 84.484375,
+              "y": 744.453125,
+              "width": 34,
+              "height": 34,
+              "top": 744.453125,
+              "right": 118.484375,
+              "bottom": 778.453125,
+              "left": 84.484375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $230m",
+            "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+            "rect": {
+              "x": 90.375,
+              "y": 790.453125,
+              "width": 34,
+              "height": 34,
+              "top": 790.453125,
+              "right": 124.375,
+              "bottom": 824.453125,
+              "left": 90.375
+            }
+          },
+          {
+            "label": "Gestala \u2014 $21.6m",
+            "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+            "rect": {
+              "x": 94.796875,
+              "y": 606.453125,
+              "width": 34,
+              "height": 34,
+              "top": 606.453125,
+              "right": 128.796875,
+              "bottom": 640.453125,
+              "left": 94.796875
+            }
+          },
+          {
+            "label": "Ruten Neuro \u2014 $2m",
+            "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+            "rect": {
+              "x": 99.21875,
+              "y": 652.453125,
+              "width": 34,
+              "height": 34,
+              "top": 652.453125,
+              "right": 133.21875,
+              "bottom": 686.453125,
+              "left": 99.21875
+            }
+          },
+          {
+            "label": "NeuCyber NeuroTech \u2014 $29m",
+            "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+            "rect": {
+              "x": 101.421875,
+              "y": 836.453125,
+              "width": 34,
+              "height": 34,
+              "top": 836.453125,
+              "right": 135.421875,
+              "bottom": 870.453125,
+              "left": 101.421875
+            }
+          },
+          {
+            "label": "StairMed \u2014 $73m",
+            "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+            "rect": {
+              "x": 111,
+              "y": 882.453125,
+              "width": 34,
+              "height": 34,
+              "top": 882.453125,
+              "right": 145,
+              "bottom": 916.453125,
+              "left": 111
+            }
+          },
+          {
+            "label": "Onward Medical \u2014 $47m",
+            "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+            "rect": {
+              "x": 120.5625,
+              "y": 698.453125,
+              "width": 34,
+              "height": 34,
+              "top": 698.453125,
+              "right": 154.5625,
+              "bottom": 732.453125,
+              "left": 120.5625
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 award",
+            "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+            "rect": {
+              "x": 124.984375,
+              "y": 744.453125,
+              "width": 34,
+              "height": 34,
+              "top": 744.453125,
+              "right": 158.984375,
+              "bottom": 778.453125,
+              "left": 124.984375
+            }
+          },
+          {
+            "label": "Axoft \u2014 $55m",
+            "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+            "rect": {
+              "x": 130.875,
+              "y": 790.453125,
+              "width": 34,
+              "height": 34,
+              "top": 790.453125,
+              "right": 164.875,
+              "bottom": 824.453125,
+              "left": 130.875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+            "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+            "rect": {
+              "x": 146.328125,
+              "y": 606.453125,
+              "width": 34,
+              "height": 34,
+              "top": 606.453125,
+              "right": 180.328125,
+              "bottom": 640.453125,
+              "left": 146.328125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 $250m",
+            "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+            "rect": {
+              "x": 239.84375,
+              "y": 606.453125,
+              "width": 34,
+              "height": 34,
+              "top": 606.453125,
+              "right": 273.84375,
+              "bottom": 640.453125,
+              "left": 239.84375
+            }
+          },
+          {
+            "label": "Coherence Neuro \u2014 $45m",
+            "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+            "rect": {
+              "x": 259.71875,
+              "y": 652.453125,
+              "width": 34,
+              "height": 34,
+              "top": 652.453125,
+              "right": 293.71875,
+              "bottom": 686.453125,
+              "left": 259.71875
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 Series B",
+            "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+            "rect": {
+              "x": 264.875,
+              "y": 698.453125,
+              "width": 34,
+              "height": 34,
+              "top": 698.453125,
+              "right": 298.875,
+              "bottom": 732.453125,
+              "left": 264.875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $400m",
+            "source": "https://science.xyz/news/series-d/",
+            "rect": {
+              "x": 279.59375,
+              "y": 606.453125,
+              "width": 34,
+              "height": 34,
+              "top": 606.453125,
+              "right": 313.59375,
+              "bottom": 640.453125,
+              "left": 279.59375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 study",
+            "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+            "rect": {
+              "x": 66.8125,
+              "y": 970.453125,
+              "width": 34,
+              "height": 34,
+              "top": 970.453125,
+              "right": 100.8125,
+              "bottom": 1004.453125,
+              "left": 66.8125
+            }
+          },
+          {
+            "label": "CorTec \u2014 implantation",
+            "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+            "rect": {
+              "x": 73.4375,
+              "y": 1016.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1016.453125,
+              "right": 107.4375,
+              "bottom": 1050.453125,
+              "left": 73.4375
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 84.484375,
+              "y": 1062.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1062.453125,
+              "right": 118.484375,
+              "bottom": 1096.453125,
+              "left": 84.484375
+            }
+          },
+          {
+            "label": "Nia Therapeutics \u2014 BDD",
+            "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+            "rect": {
+              "x": 96.265625,
+              "y": 1108.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1108.453125,
+              "right": 130.265625,
+              "bottom": 1142.453125,
+              "left": 96.265625
+            }
+          },
+          {
+            "label": "ReVision Implant \u2014 BDD",
+            "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+            "rect": {
+              "x": 98.46875,
+              "y": 1154.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1154.453125,
+              "right": 132.46875,
+              "bottom": 1188.453125,
+              "left": 98.46875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+            "rect": {
+              "x": 99.21875,
+              "y": 1200.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1200.453125,
+              "right": 133.21875,
+              "bottom": 1234.453125,
+              "left": 99.21875
+            }
+          },
+          {
+            "label": "Phantom Neuro \u2014 FIH approved",
+            "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+            "rect": {
+              "x": 120.5625,
+              "y": 970.453125,
+              "width": 34,
+              "height": 34,
+              "top": 970.453125,
+              "right": 154.5625,
+              "bottom": 1004.453125,
+              "left": 120.5625
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+            "rect": {
+              "x": 124.25,
+              "y": 1016.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1016.453125,
+              "right": 158.25,
+              "bottom": 1050.453125,
+              "left": 124.25
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD/TAP",
+            "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+            "rect": {
+              "x": 126.453125,
+              "y": 1062.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1062.453125,
+              "right": 160.453125,
+              "bottom": 1096.453125,
+              "left": 126.453125
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 clinical case",
+            "source": "https://www.neuroxess.com/news/kejixiangshan/",
+            "rect": {
+              "x": 126.453125,
+              "y": 1246.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1246.453125,
+              "right": 160.453125,
+              "bottom": 1280.453125,
+              "left": 126.453125
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 IDE",
+            "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+            "rect": {
+              "x": 129.40625,
+              "y": 1292.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1292.453125,
+              "right": 163.40625,
+              "bottom": 1326.453125,
+              "left": 129.40625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+            "rect": {
+              "x": 131.609375,
+              "y": 1338.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1338.453125,
+              "right": 165.609375,
+              "bottom": 1372.453125,
+              "left": 131.609375
+            }
+          },
+          {
+            "label": "Synchron \u2014 pivotal planned",
+            "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+            "rect": {
+              "x": 158.84375,
+              "y": 970.453125,
+              "width": 34,
+              "height": 34,
+              "top": 970.453125,
+              "right": 192.84375,
+              "bottom": 1004.453125,
+              "left": 158.84375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+            "rect": {
+              "x": 166.953125,
+              "y": 1016.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1016.453125,
+              "right": 200.953125,
+              "bottom": 1050.453125,
+              "left": 166.953125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 HUD",
+            "source": "https://science.xyz/news/hud-designation/",
+            "rect": {
+              "x": 192.71875,
+              "y": 1062.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1062.453125,
+              "right": 226.71875,
+              "bottom": 1096.453125,
+              "left": 192.71875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+            "rect": {
+              "x": 218.484375,
+              "y": 970.453125,
+              "width": 34,
+              "height": 34,
+              "top": 970.453125,
+              "right": 252.484375,
+              "bottom": 1004.453125,
+              "left": 218.484375
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD",
+            "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+            "rect": {
+              "x": 222.171875,
+              "y": 1016.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1016.453125,
+              "right": 256.171875,
+              "bottom": 1050.453125,
+              "left": 222.171875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+            "rect": {
+              "x": 232.46875,
+              "y": 1062.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1062.453125,
+              "right": 266.46875,
+              "bottom": 1096.453125,
+              "left": 232.46875
+            }
+          },
+          {
+            "label": "Newronika \u2014 pivotal",
+            "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+            "rect": {
+              "x": 237.625,
+              "y": 1108.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1108.453125,
+              "right": 271.625,
+              "bottom": 1142.453125,
+              "left": 237.625
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+            "rect": {
+              "x": 245,
+              "y": 1154.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1154.453125,
+              "right": 279,
+              "bottom": 1188.453125,
+              "left": 245
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/long-term-prima-results/",
+            "rect": {
+              "x": 247.9375,
+              "y": 1200.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1200.453125,
+              "right": 281.9375,
+              "bottom": 1234.453125,
+              "left": 247.9375
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+            "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+            "rect": {
+              "x": 249.40625,
+              "y": 1246.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1246.453125,
+              "right": 283.40625,
+              "bottom": 1280.453125,
+              "left": 249.40625
+            }
+          },
+          {
+            "label": "Paradromics \u2014 preclinical",
+            "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+            "rect": {
+              "x": 250.140625,
+              "y": 1292.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1292.453125,
+              "right": 284.140625,
+              "bottom": 1326.453125,
+              "left": 250.140625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 research",
+            "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+            "rect": {
+              "x": 250.140625,
+              "y": 1338.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1338.453125,
+              "right": 284.140625,
+              "bottom": 1372.453125,
+              "left": 250.140625
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/stargardt-first-rehab/",
+            "rect": {
+              "x": 253.828125,
+              "y": 1384.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1384.453125,
+              "right": 287.828125,
+              "bottom": 1418.453125,
+              "left": 253.828125
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+            "rect": {
+              "x": 259.71875,
+              "y": 970.453125,
+              "width": 34,
+              "height": 34,
+              "top": 970.453125,
+              "right": 293.71875,
+              "bottom": 1004.453125,
+              "left": 259.71875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+            "rect": {
+              "x": 263.40625,
+              "y": 1016.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1016.453125,
+              "right": 297.40625,
+              "bottom": 1050.453125,
+              "left": 263.40625
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://x.com/neuralink/status/2115534593147187397",
+            "rect": {
+              "x": 264.875,
+              "y": 1430.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1430.453125,
+              "right": 298.875,
+              "bottom": 1464.453125,
+              "left": 264.875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+            "rect": {
+              "x": 52.09375,
+              "y": 1518.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1518.453125,
+              "right": 86.09375,
+              "bottom": 1552.453125,
+              "left": 52.09375
+            }
+          },
+          {
+            "label": "Penumbra \u2014 $14.5b EV",
+            "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+            "rect": {
+              "x": 54.296875,
+              "y": 1564.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1564.453125,
+              "right": 88.296875,
+              "bottom": 1598.453125,
+              "left": 54.296875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+            "rect": {
+              "x": 80.8125,
+              "y": 1610.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1610.453125,
+              "right": 114.8125,
+              "bottom": 1644.453125,
+              "left": 80.8125
+            }
+          },
+          {
+            "label": "Neuracle \u2014 approval",
+            "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+            "rect": {
+              "x": 96.265625,
+              "y": 1518.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1518.453125,
+              "right": 130.265625,
+              "bottom": 1552.453125,
+              "left": 96.265625
+            }
+          },
+          {
+            "label": "EpiAneura \u2014 spinout",
+            "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+            "rect": {
+              "x": 111,
+              "y": 1564.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1564.453125,
+              "right": 145,
+              "bottom": 1598.453125,
+              "left": 111
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 partner",
+            "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+            "rect": {
+              "x": 131.609375,
+              "y": 1610.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1610.453125,
+              "right": 165.609375,
+              "bottom": 1644.453125,
+              "left": 131.609375
+            }
+          },
+          {
+            "label": "Science Corp \u2014 CE",
+            "source": "https://science.xyz/news/ce-mark/",
+            "rect": {
+              "x": 192.71875,
+              "y": 1518.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1518.453125,
+              "right": 226.71875,
+              "bottom": 1552.453125,
+              "left": 192.71875
+            }
+          },
+          {
+            "label": "Neuracle \u2014 sales",
+            "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+            "rect": {
+              "x": 222.90625,
+              "y": 1564.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1564.453125,
+              "right": 256.90625,
+              "bottom": 1598.453125,
+              "left": 222.90625
+            }
+          },
+          {
+            "label": "Science Corp \u2014 leadership",
+            "source": "https://science.xyz/news/leadership-shahida/",
+            "rect": {
+              "x": 234.6875,
+              "y": 1518.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1518.453125,
+              "right": 268.6875,
+              "bottom": 1552.453125,
+              "left": 234.6875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+            "rect": {
+              "x": 239.84375,
+              "y": 1610.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1610.453125,
+              "right": 273.84375,
+              "bottom": 1644.453125,
+              "left": 239.84375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+            "rect": {
+              "x": 258.25,
+              "y": 1656.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1656.453125,
+              "right": 292.25,
+              "bottom": 1690.453125,
+              "left": 258.25
+            }
+          }
+        ]
+      },
+      "page": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "surface": "milestones",
+      "width": 320,
+      "current": {
+        "left": 1047,
+        "scroll": 1360,
+        "client": 254,
+        "today": {
+          "x": 160.359375,
+          "y": 1172.453125,
+          "width": 0,
+          "height": 610,
+          "top": 1172.453125,
+          "right": 160.359375,
+          "bottom": 1782.453125,
+          "left": 160.359375
+        },
+        "viewport": {
+          "x": 33,
+          "y": 1172.453125,
+          "width": 254,
+          "height": 632,
+          "top": 1172.453125,
+          "right": 287,
+          "bottom": 1804.453125,
+          "left": 33
+        },
+        "label": "Today: Nov 17, 2026",
+        "laneLabels": [
+          {
+            "text": "Capital",
+            "rect": {
+              "x": 43,
+              "y": 1201.453125,
+              "width": 41.140625,
+              "height": 16,
+              "top": 1201.453125,
+              "right": 84.140625,
+              "bottom": 1217.453125,
+              "left": 43
+            }
+          },
+          {
+            "text": "Clinical / regulatory",
+            "rect": {
+              "x": 43,
+              "y": 1381.453125,
+              "width": 114.171875,
+              "height": 16,
+              "top": 1381.453125,
+              "right": 157.171875,
+              "bottom": 1397.453125,
+              "left": 43
+            }
+          },
+          {
+            "text": "Commercial",
+            "rect": {
+              "x": 43,
+              "y": 1653.453125,
+              "width": 68.515625,
+              "height": 16,
+              "top": 1653.453125,
+              "right": 111.515625,
+              "bottom": 1669.453125,
+              "left": 43
+            }
+          }
+        ]
+      },
+      "fit": {
+        "scroll": 254,
+        "client": 254,
+        "viewport": {
+          "x": 33,
+          "y": 540.453125,
+          "width": 254,
+          "height": 1368,
+          "top": 540.453125,
+          "right": 287,
+          "bottom": 1908.453125,
+          "left": 33
+        },
+        "marks": [
+          {
+            "label": "Enspire DBS \u2014 $10.3m",
+            "source": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
+            "rect": {
+              "x": 50.515625,
+              "y": 584.453125,
+              "width": 34,
+              "height": 34,
+              "top": 584.453125,
+              "right": 84.515625,
+              "bottom": 618.453125,
+              "left": 50.515625
+            }
+          },
+          {
+            "label": "Merge Labs \u2014 $252m",
+            "source": "https://openai.com/index/investing-in-merge-labs/",
+            "rect": {
+              "x": 51.609375,
+              "y": 630.453125,
+              "width": 34,
+              "height": 34,
+              "top": 630.453125,
+              "right": 85.609375,
+              "bottom": 664.453125,
+              "left": 51.609375
+            }
+          },
+          {
+            "label": "Envoy Medical \u2014 $30m",
+            "source": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
+            "rect": {
+              "x": 66.84375,
+              "y": 676.453125,
+              "width": 34,
+              "height": 34,
+              "top": 676.453125,
+              "right": 100.84375,
+              "bottom": 710.453125,
+              "left": 66.84375
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 $5m",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 73.90625,
+              "y": 722.453125,
+              "width": 34,
+              "height": 34,
+              "top": 722.453125,
+              "right": 107.90625,
+              "bottom": 756.453125,
+              "left": 73.90625
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $230m",
+            "source": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
+            "rect": {
+              "x": 78.265625,
+              "y": 768.453125,
+              "width": 34,
+              "height": 34,
+              "top": 768.453125,
+              "right": 112.265625,
+              "bottom": 802.453125,
+              "left": 78.265625
+            }
+          },
+          {
+            "label": "Gestala \u2014 $21.6m",
+            "source": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
+            "rect": {
+              "x": 81.53125,
+              "y": 814.453125,
+              "width": 34,
+              "height": 34,
+              "top": 814.453125,
+              "right": 115.53125,
+              "bottom": 848.453125,
+              "left": 81.53125
+            }
+          },
+          {
+            "label": "Ruten Neuro \u2014 $2m",
+            "source": "https://ohyashima.com/technology/ruten-raises-2-million-to-develop-bmi-for-swallowing-disorders/",
+            "rect": {
+              "x": 84.78125,
+              "y": 860.453125,
+              "width": 34,
+              "height": 34,
+              "top": 860.453125,
+              "right": 118.78125,
+              "bottom": 894.453125,
+              "left": 84.78125
+            }
+          },
+          {
+            "label": "NeuCyber NeuroTech \u2014 $29m",
+            "source": "https://www.reuters.com/business/healthcare-pharmaceuticals/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink-2026-03-20/",
+            "rect": {
+              "x": 86.421875,
+              "y": 906.453125,
+              "width": 34,
+              "height": 34,
+              "top": 906.453125,
+              "right": 120.421875,
+              "bottom": 940.453125,
+              "left": 86.421875
+            }
+          },
+          {
+            "label": "StairMed \u2014 $73m",
+            "source": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+            "rect": {
+              "x": 93.5,
+              "y": 584.453125,
+              "width": 34,
+              "height": 34,
+              "top": 584.453125,
+              "right": 127.5,
+              "bottom": 618.453125,
+              "left": 93.5
+            }
+          },
+          {
+            "label": "Onward Medical \u2014 $47m",
+            "source": "https://www.massdevice.com/onward-raise-47m-in-private-placement/",
+            "rect": {
+              "x": 100.5625,
+              "y": 630.453125,
+              "width": 34,
+              "height": 34,
+              "top": 630.453125,
+              "right": 134.5625,
+              "bottom": 664.453125,
+              "left": 100.5625
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 award",
+            "source": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
+            "rect": {
+              "x": 103.828125,
+              "y": 952.453125,
+              "width": 34,
+              "height": 34,
+              "top": 952.453125,
+              "right": 137.828125,
+              "bottom": 986.453125,
+              "left": 103.828125
+            }
+          },
+          {
+            "label": "Axoft \u2014 $55m",
+            "source": "https://www.bloomberg.com/news/articles/2026-04-29/us-brain-implant-company-axoft-tests-on-patient-in-china-raises-more-money",
+            "rect": {
+              "x": 108.171875,
+              "y": 676.453125,
+              "width": 34,
+              "height": 34,
+              "top": 676.453125,
+              "right": 142.171875,
+              "bottom": 710.453125,
+              "left": 108.171875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 $7.5m",
+            "source": "https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/",
+            "rect": {
+              "x": 119.609375,
+              "y": 722.453125,
+              "width": 34,
+              "height": 34,
+              "top": 722.453125,
+              "right": 153.609375,
+              "bottom": 756.453125,
+              "left": 119.609375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 $250m",
+            "source": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+            "rect": {
+              "x": 188.6875,
+              "y": 584.453125,
+              "width": 34,
+              "height": 34,
+              "top": 584.453125,
+              "right": 222.6875,
+              "bottom": 618.453125,
+              "left": 188.6875
+            }
+          },
+          {
+            "label": "Coherence Neuro \u2014 $45m",
+            "source": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
+            "rect": {
+              "x": 203.375,
+              "y": 630.453125,
+              "width": 34,
+              "height": 34,
+              "top": 630.453125,
+              "right": 237.375,
+              "bottom": 664.453125,
+              "left": 203.375
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 Series B",
+            "source": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
+            "rect": {
+              "x": 207.171875,
+              "y": 676.453125,
+              "width": 34,
+              "height": 34,
+              "top": 676.453125,
+              "right": 241.171875,
+              "bottom": 710.453125,
+              "left": 207.171875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 $400m",
+            "source": "https://science.xyz/news/series-d/",
+            "rect": {
+              "x": 218.0625,
+              "y": 722.453125,
+              "width": 34,
+              "height": 34,
+              "top": 722.453125,
+              "right": 252.0625,
+              "bottom": 756.453125,
+              "left": 218.0625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 study",
+            "source": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
+            "rect": {
+              "x": 60.859375,
+              "y": 1040.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1040.453125,
+              "right": 94.859375,
+              "bottom": 1074.453125,
+              "left": 60.859375
+            }
+          },
+          {
+            "label": "CorTec \u2014 implantation",
+            "source": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
+            "rect": {
+              "x": 65.75,
+              "y": 1086.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1086.453125,
+              "right": 99.75,
+              "bottom": 1120.453125,
+              "left": 65.75
+            }
+          },
+          {
+            "label": "Blue Arbor Technologies \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260225970384/en/Blue-Arbor-Technologies-Announces-Strategic-Partnership-with-Ottobock-and-%245-Million-Investment-to-Advance-RESTORE-Neuromuscular-Interface-System",
+            "rect": {
+              "x": 73.90625,
+              "y": 1132.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1132.453125,
+              "right": 107.90625,
+              "bottom": 1166.453125,
+              "left": 73.90625
+            }
+          },
+          {
+            "label": "Nia Therapeutics \u2014 BDD",
+            "source": "https://www.businesswire.com/news/home/20260313678930/en/Nia-Therapeutics-Receives-FDA-Breakthrough-Device-Designation-for-AI-Guided-Brain-Implant-to-Treat-Memory-Loss",
+            "rect": {
+              "x": 82.609375,
+              "y": 1178.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1178.453125,
+              "right": 116.609375,
+              "bottom": 1212.453125,
+              "left": 82.609375
+            }
+          },
+          {
+            "label": "ReVision Implant \u2014 BDD",
+            "source": "https://insidebci.com/news/2026-03-16-revision-implant-secures-fda-breakthrough-device-designation-for-visual-cortical-prosthesis/",
+            "rect": {
+              "x": 84.25,
+              "y": 1224.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1224.453125,
+              "right": 118.25,
+              "bottom": 1258.453125,
+              "left": 84.25
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
+            "rect": {
+              "x": 84.78125,
+              "y": 1270.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1270.453125,
+              "right": 118.78125,
+              "bottom": 1304.453125,
+              "left": 84.78125
+            }
+          },
+          {
+            "label": "Phantom Neuro \u2014 FIH approved",
+            "source": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
+            "rect": {
+              "x": 100.5625,
+              "y": 1040.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1040.453125,
+              "right": 134.5625,
+              "bottom": 1074.453125,
+              "left": 100.5625
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 FIH",
+            "source": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
+            "rect": {
+              "x": 103.28125,
+              "y": 1316.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1316.453125,
+              "right": 137.28125,
+              "bottom": 1350.453125,
+              "left": 103.28125
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD/TAP",
+            "source": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
+            "rect": {
+              "x": 104.921875,
+              "y": 1086.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1086.453125,
+              "right": 138.921875,
+              "bottom": 1120.453125,
+              "left": 104.921875
+            }
+          },
+          {
+            "label": "NeuroXess \u2014 clinical case",
+            "source": "https://www.neuroxess.com/news/kejixiangshan/",
+            "rect": {
+              "x": 104.921875,
+              "y": 1362.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1362.453125,
+              "right": 138.921875,
+              "bottom": 1396.453125,
+              "left": 104.921875
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 IDE",
+            "source": "https://www.businesswire.com/news/home/20260427361988/en/Motif-Neurotech-Receives-FDA-Approval-to-Begin-First-Clinical-Trial-of-its-Therapeutic-BCI-for-Treatment-Resistant-Depression",
+            "rect": {
+              "x": 107.09375,
+              "y": 1408.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1408.453125,
+              "right": 141.09375,
+              "bottom": 1442.453125,
+              "left": 107.09375
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
+            "rect": {
+              "x": 108.71875,
+              "y": 1454.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1454.453125,
+              "right": 142.71875,
+              "bottom": 1488.453125,
+              "left": 108.71875
+            }
+          },
+          {
+            "label": "Synchron \u2014 pivotal planned",
+            "source": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
+            "rect": {
+              "x": 128.84375,
+              "y": 1132.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1132.453125,
+              "right": 162.84375,
+              "bottom": 1166.453125,
+              "left": 128.84375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
+            "rect": {
+              "x": 134.828125,
+              "y": 1178.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1178.453125,
+              "right": 168.828125,
+              "bottom": 1212.453125,
+              "left": 134.828125
+            }
+          },
+          {
+            "label": "Science Corp \u2014 HUD",
+            "source": "https://science.xyz/news/hud-designation/",
+            "rect": {
+              "x": 153.875,
+              "y": 1040.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1040.453125,
+              "right": 187.875,
+              "bottom": 1074.453125,
+              "left": 153.875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
+            "rect": {
+              "x": 172.90625,
+              "y": 1086.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1086.453125,
+              "right": 206.90625,
+              "bottom": 1120.453125,
+              "left": 172.90625
+            }
+          },
+          {
+            "label": "CorTec \u2014 BDD",
+            "source": "https://finanzwire.com/press-release/cortec-receives-second-fda-breakthrough-device-designation-for-brain-interchange-MkxNs0M6Rmp",
+            "rect": {
+              "x": 175.625,
+              "y": 1132.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1132.453125,
+              "right": 209.625,
+              "bottom": 1166.453125,
+              "left": 175.625
+            }
+          },
+          {
+            "label": "Paradromics \u2014 trial",
+            "source": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
+            "rect": {
+              "x": 183.25,
+              "y": 1178.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1178.453125,
+              "right": 217.25,
+              "bottom": 1212.453125,
+              "left": 183.25
+            }
+          },
+          {
+            "label": "Newronika \u2014 pivotal",
+            "source": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
+            "rect": {
+              "x": 187.046875,
+              "y": 1224.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1224.453125,
+              "right": 221.046875,
+              "bottom": 1258.453125,
+              "left": 187.046875
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+            "rect": {
+              "x": 192.5,
+              "y": 1040.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1040.453125,
+              "right": 226.5,
+              "bottom": 1074.453125,
+              "left": 192.5
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/long-term-prima-results/",
+            "rect": {
+              "x": 194.671875,
+              "y": 1270.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1270.453125,
+              "right": 228.671875,
+              "bottom": 1304.453125,
+              "left": 194.671875
+            }
+          },
+          {
+            "label": "INBRAIN Neuroelectronics \u2014 preclinical",
+            "source": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
+            "rect": {
+              "x": 195.75,
+              "y": 1316.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1316.453125,
+              "right": 229.75,
+              "bottom": 1350.453125,
+              "left": 195.75
+            }
+          },
+          {
+            "label": "Paradromics \u2014 preclinical",
+            "source": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
+            "rect": {
+              "x": 196.296875,
+              "y": 1362.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1362.453125,
+              "right": 230.296875,
+              "bottom": 1396.453125,
+              "left": 196.296875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 research",
+            "source": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
+            "rect": {
+              "x": 196.296875,
+              "y": 1408.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1408.453125,
+              "right": 230.296875,
+              "bottom": 1442.453125,
+              "left": 196.296875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 trial",
+            "source": "https://science.xyz/news/stargardt-first-rehab/",
+            "rect": {
+              "x": 199.015625,
+              "y": 1454.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1454.453125,
+              "right": 233.015625,
+              "bottom": 1488.453125,
+              "left": 199.015625
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
+            "rect": {
+              "x": 203.375,
+              "y": 1500.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1500.453125,
+              "right": 237.375,
+              "bottom": 1534.453125,
+              "left": 203.375
+            }
+          },
+          {
+            "label": "Paradromics \u2014 IDE",
+            "source": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
+            "rect": {
+              "x": 206.09375,
+              "y": 1546.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1546.453125,
+              "right": 240.09375,
+              "bottom": 1580.453125,
+              "left": 206.09375
+            }
+          },
+          {
+            "label": "Neuralink \u2014 research",
+            "source": "https://x.com/neuralink/status/2115534593147187397",
+            "rect": {
+              "x": 207.171875,
+              "y": 1592.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1592.453125,
+              "right": 241.171875,
+              "bottom": 1626.453125,
+              "left": 207.171875
+            }
+          },
+          {
+            "label": "Precision Neuroscience \u2014 partner",
+            "source": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
+            "rect": {
+              "x": 49.96875,
+              "y": 1680.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1680.453125,
+              "right": 83.96875,
+              "bottom": 1714.453125,
+              "left": 49.96875
+            }
+          },
+          {
+            "label": "Penumbra \u2014 $14.5b EV",
+            "source": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
+            "rect": {
+              "x": 51.609375,
+              "y": 1726.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1726.453125,
+              "right": 85.609375,
+              "bottom": 1760.453125,
+              "left": 51.609375
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://www.businesswire.com/news/home/20260220875211/en/Science-Corp.-and-Neurosoft-Bioelectronics-Announce-Novel-BCI-Ecosystem-Partnership",
+            "rect": {
+              "x": 71.1875,
+              "y": 1772.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1772.453125,
+              "right": 105.1875,
+              "bottom": 1806.453125,
+              "left": 71.1875
+            }
+          },
+          {
+            "label": "Neuracle \u2014 approval",
+            "source": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+            "rect": {
+              "x": 82.609375,
+              "y": 1818.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1818.453125,
+              "right": 116.609375,
+              "bottom": 1852.453125,
+              "left": 82.609375
+            }
+          },
+          {
+            "label": "EpiAneura \u2014 spinout",
+            "source": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
+            "rect": {
+              "x": 93.5,
+              "y": 1680.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1680.453125,
+              "right": 127.5,
+              "bottom": 1714.453125,
+              "left": 93.5
+            }
+          },
+          {
+            "label": "Motif Neurotech \u2014 partner",
+            "source": "https://www.prnewswire.com/news-releases/mintneuro-and-motif-neurotech-partner-to-advance-miniature-brain-computer-interface-therapy-for-mental-health-302758663.html",
+            "rect": {
+              "x": 108.71875,
+              "y": 1726.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1726.453125,
+              "right": 142.71875,
+              "bottom": 1760.453125,
+              "left": 108.71875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 CE",
+            "source": "https://science.xyz/news/ce-mark/",
+            "rect": {
+              "x": 153.875,
+              "y": 1680.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1680.453125,
+              "right": 187.875,
+              "bottom": 1714.453125,
+              "left": 153.875
+            }
+          },
+          {
+            "label": "Neuracle \u2014 sales",
+            "source": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
+            "rect": {
+              "x": 176.171875,
+              "y": 1726.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1726.453125,
+              "right": 210.171875,
+              "bottom": 1760.453125,
+              "left": 176.171875
+            }
+          },
+          {
+            "label": "Science Corp \u2014 leadership",
+            "source": "https://science.xyz/news/leadership-shahida/",
+            "rect": {
+              "x": 184.875,
+              "y": 1772.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1772.453125,
+              "right": 218.875,
+              "bottom": 1806.453125,
+              "left": 184.875
+            }
+          },
+          {
+            "label": "Neurosoft Bioelectronics \u2014 partner",
+            "source": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
+            "rect": {
+              "x": 188.6875,
+              "y": 1818.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1818.453125,
+              "right": 222.6875,
+              "bottom": 1852.453125,
+              "left": 188.6875
+            }
+          },
+          {
+            "label": "Paradromics \u2014 partner",
+            "source": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
+            "rect": {
+              "x": 202.28125,
+              "y": 1680.453125,
+              "width": 34,
+              "height": 34,
+              "top": 1680.453125,
+              "right": 236.28125,
+              "bottom": 1714.453125,
+              "left": 202.28125
+            }
+          }
+        ]
+      },
+      "page": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ]
+}

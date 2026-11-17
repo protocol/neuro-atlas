@@ -1,0 +1,23 @@
+{
+  "runtimeRevision": "586750124dff528c8239a39e3b87162dd64129ab",
+  "fullSuite": {
+    "tests": 1426,
+    "pass": 1426,
+    "fail": 0
+  },
+  "fullSuiteCommand": "node --import tsx --test --test-concurrency=6 tests/*.test.mjs",
+  "productionWebpackBuild": "passed",
+  "typecheck": "passed",
+  "changedSourceLint": "passed",
+  "independentFeatureReview": {
+    "blockingFindings": [],
+    "scopeLimit": "Fit year removes horizontal scrolling, not vertical page scrolling",
+    "handoff": "Remote PR and preview gates verified separately at handoff"
+  },
+  "nativeViewportWidths": [
+    1440,
+    768,
+    390,
+    320
+  ]
+}
