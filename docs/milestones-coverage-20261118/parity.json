@@ -1,0 +1,71 @@
+{
+  "revision": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+  "pages": 2,
+  "assets": 14,
+  "checks": [
+    {
+      "path": "milestones",
+      "sha256": "e1ebdcfd8b64ac88be85977952d3eebfb7f12984508e82b0dbdaa05510080a74"
+    },
+    {
+      "path": "funding",
+      "sha256": "8696ed5b23a63491a70e9eba646ec1fa6f43c4d54c5f95544b82feac21e35ebc"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/11-5424fd1cd695327f.js",
+      "sha256": "3c5623d9b4488cbb686b6168a45eba0b91584a4aa5615e8dd32e2d5dd735c5dc"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/505-16edf18b47d829b6.js",
+      "sha256": "705f4acfc9839a238fdb8d866c4e5eb3bbebbd1202c6ec2dae51b5630397e3bd"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/app/funding/page-a2bfc5e8df2ed0f2.js",
+      "sha256": "a96f518952b797eb60f9069102e63e04181193d6f8555acee327dc2518fbc531"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/app/layout-bb27acdbdd9f5b56.js",
+      "sha256": "427f8875271b4eed7e1177b5f9c355a3ceb7f046770e36fd13a33bc680da9bcd"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/app/milestones/page-f6b62b4c47e661d9.js",
+      "sha256": "9f5fa311ee5241cbcab891900ff549b881dc6f5bbe8342b792c646af3314c6d3"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/e1fde684-990d915815b79c35.js",
+      "sha256": "b3a62c032aaa3ca1799214024f3a02f7a1885f4cffa8c9901c85a8fb53e2e205"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/main-app-8a6e91428ac07d06.js",
+      "sha256": "2e0c23e2d57f1e242345ff00579e28d43509b162d035058d7a2d91de576e6295"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/chunks/webpack-b3a8f60f8809102c.js",
+      "sha256": "4f752cb132591882ed046af17a45e42f98c55de344eee26601d1a480675ad104"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/css/0abf9a2d0da5d31c.css",
+      "sha256": "7d3d4d4efe039db16682e4a92a7eeeeee837e8e178328029fa2090e2c9135acf"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/css/9662ce1261c5d653.css",
+      "sha256": "218793e79ae4cd39f70c995df874ed843b24e756adf3b4418996177c504f9365"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/css/f920aebef99bd67f.css",
+      "sha256": "72c39be0c62f93580264752ed109c7fe499c321f471cf1eefe4e64482534df2a"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/22a5144ee8d83bca-s.p.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608"
+    },
+    {
+      "path": "/neuro-atlas/_next/static/media/7d4881bb7e1bf84d-s.p.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    }
+  ]
+}

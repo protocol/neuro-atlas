@@ -8,6 +8,7 @@ import { JSDOM } from 'jsdom';
 import { MilestoneTimeline } from '../src/components/milestone-timeline.tsx';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeSourceAudit } from './helpers/source-audit-baseline.mjs';
+import { beforeNeuroWideMilestones } from './helpers/neuro-wide-milestones-baseline.mjs';
 
 const load = file => JSON.parse(readFileSync(new URL(file, import.meta.url)));
 const fixture = load('./fixtures/notables-65.json');
@@ -17,7 +18,7 @@ const canonical = parseCsv(readFileSync(new URL('../data/market-memo-q1-2026/mil
 const sources = fixture.milestones.map(row => row.sourceUrl);
 // Retain the frozen historical hashes; later additions have their own exact-source regressions.
 const laterSource = 'https://science.xyz/news/series-d/';
-const issueMilestones = milestones.filter(row => row.sourceUrl !== laterSource);
+const issueMilestones = beforeNeuroWideMilestones(milestones, 'milestones').filter(row => row.sourceUrl !== laterSource);
 const laterFinancing = funding.rounds.filter(row => row.sourceUrl === laterSource);
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const one = source => {

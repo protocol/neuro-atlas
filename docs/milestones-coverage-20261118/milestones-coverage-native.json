@@ -1,0 +1,338 @@
+{
+  "revision": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+  "base": "509ad21e8b33ef076bdcd055f26f4c4aedf011b1",
+  "fixture": "Exact production-built HTML/RSC/assets, Host-restricted loopback viewer; native pointer with viewport emulation, not hosted authentication or physical-phone touch",
+  "allScopeTotals": {
+    "2024": 459.75,
+    "2025": 1176.5,
+    "2026": 1562.4073505145361
+  },
+  "baselineAllScopeTotals": {
+    "2024": 459.75,
+    "2025": 1173,
+    "2026": 1562.4073505145361
+  },
+  "cases": [
+    {
+      "width": 1440,
+      "events": [
+        {
+          "company": "EON Systems",
+          "source": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+          "label": "EON Systems \u2014 $3.5m",
+          "tooltip": {
+            "text": "E\nEON Systems\nNeuro\ncapital\n$3.5m financing \u00b7 Announced Dec 30, 2025\nUntapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.\nclick to open source \u2197",
+            "rect": {
+              "x": 989.734375,
+              "y": 214,
+              "width": 288,
+              "height": 215,
+              "top": 214,
+              "right": 1277.734375,
+              "bottom": 429,
+              "left": 989.734375
+            }
+          }
+        },
+        {
+          "company": "Hemispheric",
+          "source": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
+          "label": "Hemispheric \u2014 $52m aggregate",
+          "tooltip": {
+            "text": "H\nHemispheric\nNeuro\ncapital\n$52m aggregate \u00b7 Announced Jul 15, 2026\nDisclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.\nclick to open source \u2197",
+            "rect": {
+              "x": 609.890625,
+              "y": 182,
+              "width": 288,
+              "height": 293,
+              "top": 182,
+              "right": 897.890625,
+              "bottom": 475,
+              "left": 609.890625
+            }
+          }
+        },
+        {
+          "company": "Paradromics",
+          "source": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
+          "label": "Paradromics \u2014 strategic investment",
+          "tooltip": {
+            "text": "Paradromics\nBCI\ncapital\nstrategic investment \u00b7 Announced Feb 12, 2025\nAnnounced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.\nclick to open source \u2197",
+            "rect": {
+              "x": 263.953125,
+              "y": 221,
+              "width": 288,
+              "height": 254,
+              "top": 221,
+              "right": 551.953125,
+              "bottom": 475,
+              "left": 263.953125
+            }
+          }
+        }
+      ],
+      "scopeChecks": [
+        {
+          "company": "EON Systems",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Hemispheric",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Paradromics",
+          "visibleInBciOnly": true
+        }
+      ],
+      "capitalLinePointCount": 17,
+      "annualRail": [
+        "2024\n$460m",
+        "2025\n$1.2b",
+        "2026\n$1.6b"
+      ],
+      "bounds": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      }
+    },
+    {
+      "width": 768,
+      "events": [
+        {
+          "company": "EON Systems",
+          "source": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+          "label": "EON Systems \u2014 $3.5m",
+          "tooltip": {
+            "text": "E\nEON Systems\nNeuro\ncapital\n$3.5m financing \u00b7 Announced Dec 30, 2025\nUntapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.\nclick to open source \u2197",
+            "rect": {
+              "x": 468,
+              "y": 271.703125,
+              "width": 288,
+              "height": 215,
+              "top": 271.703125,
+              "right": 756,
+              "bottom": 486.703125,
+              "left": 468
+            }
+          }
+        },
+        {
+          "company": "Hemispheric",
+          "source": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
+          "label": "Hemispheric \u2014 $52m aggregate",
+          "tooltip": {
+            "text": "H\nHemispheric\nNeuro\ncapital\n$52m aggregate \u00b7 Announced Jul 15, 2026\nDisclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.\nclick to open source \u2197",
+            "rect": {
+              "x": 254.171875,
+              "y": 193.703125,
+              "width": 288,
+              "height": 293,
+              "top": 193.703125,
+              "right": 542.171875,
+              "bottom": 486.703125,
+              "left": 254.171875
+            }
+          }
+        },
+        {
+          "company": "Paradromics",
+          "source": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
+          "label": "Paradromics \u2014 strategic investment",
+          "tooltip": {
+            "text": "Paradromics\nBCI\ncapital\nstrategic investment \u00b7 Announced Feb 12, 2025\nAnnounced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.\nclick to open source \u2197",
+            "rect": {
+              "x": 12,
+              "y": 232.703125,
+              "width": 288,
+              "height": 254,
+              "top": 232.703125,
+              "right": 300,
+              "bottom": 486.703125,
+              "left": 12
+            }
+          }
+        }
+      ],
+      "scopeChecks": [
+        {
+          "company": "EON Systems",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Hemispheric",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Paradromics",
+          "visibleInBciOnly": true
+        }
+      ],
+      "capitalLinePointCount": 17,
+      "bounds": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      }
+    },
+    {
+      "width": 390,
+      "events": [
+        {
+          "company": "EON Systems",
+          "source": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+          "label": "EON Systems \u2014 $3.5m",
+          "tooltip": {
+            "text": "E\nEON Systems\nNeuro\ncapital\n$3.5m financing \u00b7 Announced Dec 30, 2025\nUntapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.\nclick to open source \u2197",
+            "rect": {
+              "x": 90,
+              "y": 182.453125,
+              "width": 288,
+              "height": 215,
+              "top": 182.453125,
+              "right": 378,
+              "bottom": 397.453125,
+              "left": 90
+            }
+          }
+        },
+        {
+          "company": "Hemispheric",
+          "source": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
+          "label": "Hemispheric \u2014 $52m aggregate",
+          "tooltip": {
+            "text": "H\nHemispheric\nNeuro\ncapital\n$52m aggregate \u00b7 Announced Jul 15, 2026\nDisclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.\nclick to open source \u2197",
+            "rect": {
+              "x": 60.5625,
+              "y": 104.453125,
+              "width": 288,
+              "height": 293,
+              "top": 104.453125,
+              "right": 348.5625,
+              "bottom": 397.453125,
+              "left": 60.5625
+            }
+          }
+        },
+        {
+          "company": "Paradromics",
+          "source": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
+          "label": "Paradromics \u2014 strategic investment",
+          "tooltip": {
+            "text": "Paradromics\nBCI\ncapital\nstrategic investment \u00b7 Announced Feb 12, 2025\nAnnounced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.\nclick to open source \u2197",
+            "rect": {
+              "x": 12,
+              "y": 143.453125,
+              "width": 288,
+              "height": 254,
+              "top": 143.453125,
+              "right": 300,
+              "bottom": 397.453125,
+              "left": 12
+            }
+          }
+        }
+      ],
+      "scopeChecks": [
+        {
+          "company": "EON Systems",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Hemispheric",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Paradromics",
+          "visibleInBciOnly": true
+        }
+      ],
+      "capitalLinePointCount": 17,
+      "bounds": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "width": 320,
+      "events": [
+        {
+          "company": "EON Systems",
+          "source": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+          "label": "EON Systems \u2014 $3.5m",
+          "tooltip": {
+            "text": "E\nEON Systems\nNeuro\ncapital\n$3.5m financing \u00b7 Announced Dec 30, 2025\nUntapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.\nclick to open source \u2197",
+            "rect": {
+              "x": 20,
+              "y": 160.453125,
+              "width": 288,
+              "height": 215,
+              "top": 160.453125,
+              "right": 308,
+              "bottom": 375.453125,
+              "left": 20
+            }
+          }
+        },
+        {
+          "company": "Hemispheric",
+          "source": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
+          "label": "Hemispheric \u2014 $52m aggregate",
+          "tooltip": {
+            "text": "H\nHemispheric\nNeuro\ncapital\n$52m aggregate \u00b7 Announced Jul 15, 2026\nDisclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.\nclick to open source \u2197",
+            "rect": {
+              "x": 20,
+              "y": 82.453125,
+              "width": 288,
+              "height": 293,
+              "top": 82.453125,
+              "right": 308,
+              "bottom": 375.453125,
+              "left": 20
+            }
+          }
+        },
+        {
+          "company": "Paradromics",
+          "source": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
+          "label": "Paradromics \u2014 strategic investment",
+          "tooltip": {
+            "text": "Paradromics\nBCI\ncapital\nstrategic investment \u00b7 Announced Feb 12, 2025\nAnnounced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.\nclick to open source \u2197",
+            "rect": {
+              "x": 12,
+              "y": 121.453125,
+              "width": 288,
+              "height": 254,
+              "top": 121.453125,
+              "right": 300,
+              "bottom": 375.453125,
+              "left": 12
+            }
+          }
+        }
+      ],
+      "scopeChecks": [
+        {
+          "company": "EON Systems",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Hemispheric",
+          "visibleInBciOnly": false
+        },
+        {
+          "company": "Paradromics",
+          "visibleInBciOnly": true
+        }
+      ],
+      "capitalLinePointCount": 17,
+      "bounds": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ]
+}

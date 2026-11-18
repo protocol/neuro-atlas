@@ -1,0 +1,24 @@
+{
+  "runtime": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+  "base": "509ad21e8b33ef076bdcd055f26f4c4aedf011b1",
+  "originalMilestonesUnchanged": 91,
+  "newMilestones": 3,
+  "fundingFilesByteIdentical": 12,
+  "fundingSha256": "8d3031b32bcf4b3d2020a468d046da52f6ddf0af01d2a003cc0d103e94e379f3",
+  "family": {
+    "name": "Protocol Labs (incl. PLC Neuro)",
+    "roundCount": 4,
+    "companyCount": 4,
+    "associatedCapitalUsdM": 859.5
+  },
+  "beforeTotals": {
+    "2024": 459.75,
+    "2025": 1173,
+    "2026": 1562.4073505145361
+  },
+  "afterTotals": {
+    "2024": 459.75,
+    "2025": 1176.5,
+    "2026": 1562.4073505145361
+  }
+}

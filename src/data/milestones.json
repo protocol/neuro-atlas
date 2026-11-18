@@ -1286,5 +1286,47 @@
     "sourceUrl": "https://science.xyz/news/series-d/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
+  },
+  {
+    "company": "EON Systems",
+    "slug": "eon-systems",
+    "activity": "$3.5m",
+    "stage": "capital",
+    "amountUsdM": 3.5,
+    "date": "2025-12-30",
+    "datePrecision": "day",
+    "dateBasis": "announcement",
+    "note": "Untapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.",
+    "sourceUrl": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+    "logo": null,
+    "scope": "broader"
+  },
+  {
+    "company": "Hemispheric",
+    "slug": "hemispheric",
+    "activity": "$52m aggregate",
+    "stage": "capital",
+    "amountUsdM": null,
+    "date": "2026-07-15",
+    "datePrecision": "day",
+    "dateBasis": "announcement",
+    "note": "Disclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.",
+    "sourceUrl": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
+    "logo": null,
+    "scope": "broader"
+  },
+  {
+    "company": "Paradromics",
+    "slug": "paradromics",
+    "activity": "strategic investment",
+    "stage": "capital",
+    "amountUsdM": null,
+    "date": "2025-02-12",
+    "datePrecision": "day",
+    "dateBasis": "announcement",
+    "note": "Announced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.",
+    "sourceUrl": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
+    "logo": "/logos/paradromics.png",
+    "scope": "bci"
   }
 ]
