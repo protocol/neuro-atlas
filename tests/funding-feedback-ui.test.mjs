@@ -174,6 +174,10 @@ test('mounted Investors starts with the neutral leaderboard, not an investor-spe
 
     const rows = [...document.querySelectorAll('[data-indexed-investor]')];
     const expected = data.investors.slice(0, 24);
+    const family = rows.find(row => row.dataset.indexedInvestor === 'Protocol Labs (incl. PLC Neuro)');
+    assert.ok(family, 'the ordinary ranked row uses the owner-requested display label');
+    assert.ok(family.textContent.includes('4 financing records · 4 companies'), 'renaming does not change sourced counts');
+    assert.ok(!rows.some(row => row.dataset.indexedInvestor === 'Protocol Labs / PLC Neurotech'), 'the previous display label is no longer shown');
     assert.equal(rows.length, expected.length, 'same top-24 display limit, with no extra showcase rows');
     assert.deepEqual(rows.map(row => row.getAttribute('data-indexed-investor')), expected.map(investor => investor.name), 'source leaderboard order and investor names are preserved');
     const neutralStyle = row => [row.className, ...[...row.querySelectorAll('[class]')].filter(el => !el.closest('[aria-hidden="true"]')).map(el => el.className)];

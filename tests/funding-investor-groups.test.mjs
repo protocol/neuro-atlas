@@ -73,9 +73,10 @@ test('canonical PL and PLC records form one neutral ranked family with no new fi
   assert.ok(Array.isArray(sources.investorGroups), 'loader reads separately reviewed grouping, not portfolio membership');
   const grouped = buildFundingIndex(sources);
   const ungrouped = buildFundingIndex({ ...sources, investorGroups: [] });
-  const name = 'Protocol Labs / PLC Neurotech';
+  const name = 'Protocol Labs (incl. PLC Neuro)';
   const members = ['Protocol Labs', 'PLC Neurotech', 'PL Capital'];
   const familyConfig = sources.investorGroups.find(row => row.name === name);
+  assert.ok(familyConfig, 'the reviewed display family uses the owner-requested label');
   assert.deepEqual(familyConfig.memberNames, members, 'only the three reviewed exact source labels form this display family');
   assert.match(familyConfig.note, /PL Capital/);
   assert.match(familyConfig.note, /display.only/);

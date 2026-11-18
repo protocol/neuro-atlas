@@ -177,8 +177,8 @@ test("PLC's ten published portfolio relationships stay separate from indexed fin
     { name: "Protocol Labs", roundCount: 2, companyCount: 2, associatedCapitalUsdM: 207.5 },
   ]);
   assert.deepEqual(index.rounds, ungrouped.rounds, "Display grouping does not rename source investors in financing histories");
-  assert.deepEqual(index.investors.find((investor) => investor.name === "Protocol Labs / PLC Neurotech"), {
-    name: "Protocol Labs / PLC Neurotech", roundCount: 4, companyCount: 4, associatedCapitalUsdM: 859.5,
+  assert.deepEqual(index.investors.find((investor) => investor.name === "Protocol Labs (incl. PLC Neuro)"), {
+    name: "Protocol Labs (incl. PLC Neuro)", roundCount: 4, companyCount: 4, associatedCapitalUsdM: 859.5,
   });
   for (const company of disclosure.companies) {
     for (const field of ["announcedOn", "stage", "amountUsdM", "roundCount", "associatedCapitalUsdM"]) {

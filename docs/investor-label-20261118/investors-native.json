@@ -1,0 +1,786 @@
+{
+  "revision": "7df838cecad5059f28c920ba04ed77512d996326",
+  "fixture": "Exact production-built HTML/assets, Host-restricted loopback; native pointer and viewport emulation, not hosted authentication or physical-phone touch",
+  "cases": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "rows": [
+        {
+          "name": "Khosla Ventures",
+          "text": "01\nKhosla Ventures\n6 financing records \u00b7 2 companies\nassociated financing\n$1.05B",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "01"
+        },
+        {
+          "name": "Protocol Labs (incl. PLC Neuro)",
+          "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "02"
+        },
+        {
+          "name": "Dolby Family Ventures",
+          "text": "03\nDolby Family Ventures\n4 financing records \u00b7 3 companies\nassociated financing\n$76.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "03"
+        },
+        {
+          "name": "NeuroTechnology Investors",
+          "text": "04\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "04"
+        },
+        {
+          "name": "Alumni Ventures",
+          "text": "05\nAlumni Ventures\n3 financing records \u00b7 3 companies\nassociated financing\n$124M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "05"
+        },
+        {
+          "name": "re.Mind Capital",
+          "text": "06\nre.Mind Capital\n3 financing records \u00b7 3 companies\nassociated financing\n$99.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "06"
+        },
+        {
+          "name": "Forepont Capital Partners",
+          "text": "07\nForepont Capital Partners\n3 financing records \u00b7 2 companies\nassociated financing\n$156M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "07"
+        },
+        {
+          "name": "Founders Fund",
+          "text": "08\nFounders Fund\n3 financing records \u00b7 2 companies\nassociated financing\n$975M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "08"
+        },
+        {
+          "name": "Shanda Group",
+          "text": "09\nShanda Group\n3 financing records \u00b7 2 companies\nassociated financing\n$130M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "09"
+        },
+        {
+          "name": "Steadview Capital",
+          "text": "10\nSteadview Capital\n3 financing records \u00b7 1 company\nassociated financing\n$155M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "10"
+        },
+        {
+          "name": "Ackman Oxman Institute",
+          "text": "11\nAckman Oxman Institute\n2 financing records \u00b7 2 companies\nassociated financing\n$650M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "11"
+        },
+        {
+          "name": "ARK Invest",
+          "text": "12\nARK Invest\n2 financing records \u00b7 2 companies\nassociated financing\n$900M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "12"
+        },
+        {
+          "name": "IQT",
+          "text": "13\nIQT\n2 financing records \u00b7 2 companies\nassociated financing\n$430M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "13"
+        },
+        {
+          "name": "Jumpspace Ventures",
+          "text": "14\nJumpspace Ventures\n2 financing records \u00b7 2 companies\nassociated financing\n$15M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "14"
+        },
+        {
+          "name": "Lightspeed Venture Partners",
+          "text": "15\nLightspeed Venture Partners\n2 financing records \u00b7 2 companies\nassociated financing\n$880M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "15"
+        },
+        {
+          "name": "Alpha Edison",
+          "text": "16\nAlpha Edison\n2 financing records \u00b7 1 company\nassociated financing\n$27M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "16"
+        },
+        {
+          "name": "Artesian",
+          "text": "17\nArtesian\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "17"
+        },
+        {
+          "name": "B Capital",
+          "text": "18\nB Capital\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "18"
+        },
+        {
+          "name": "B Capital Group",
+          "text": "19\nB Capital Group\n2 financing records \u00b7 1 company\nassociated financing\n$53M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "19"
+        },
+        {
+          "name": "Bezos Expeditions",
+          "text": "20\nBezos Expeditions\n2 financing records \u00b7 1 company\nassociated financing\n$275M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "20"
+        },
+        {
+          "name": "Blackbird",
+          "text": "21\nBlackbird\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "21"
+        },
+        {
+          "name": "Divergent",
+          "text": "22\nDivergent\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "22"
+        },
+        {
+          "name": "Duquesne Family Office",
+          "text": "23\nDuquesne Family Office\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "23"
+        },
+        {
+          "name": "FountainBridge Capital",
+          "text": "24\nFountainBridge Capital\n2 financing records \u00b7 1 company\nassociated financing\n$121M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "24"
+        }
+      ],
+      "family": {
+        "name": "Protocol Labs (incl. PLC Neuro)",
+        "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+        "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+        "rank": "02"
+      },
+      "familyBounds": {
+        "x": 286,
+        "y": 454,
+        "width": 701,
+        "height": 91,
+        "top": 454,
+        "right": 987,
+        "bottom": 545,
+        "left": 286
+      },
+      "document": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "historyReload": true,
+      "mergeEvidence": {
+        "text": "Seed\nDate unverified Jan 15, 2026\n$252m\n\nReported source \u00b7 Source reviewed Nov 17, 2026\n\nOpenAI \u00b7 Bain Capital \u00b7 Gabe Newell \u00b7 PL Capital\n\nWIRED reports $252 million from OpenAI, Bain Capital, Gabe Newell and others. PL Capital's public participation disclosure describes a $250M+ seed round; TechCrunch reports $250 million. The indexed $252m remains a reporting figure, not an issuer-confirmed amount. PL Capital's check size and investment vehicle are not disclosed. Original date precision and unverified date basis are retained.\n\nSource \u2197\nPL Capital participation source \u2197",
+        "links": [
+          {
+            "text": "Source \u2197",
+            "href": "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/"
+          },
+          {
+            "text": "PL Capital participation source \u2197",
+            "href": "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL"
+          }
+        ],
+        "rect": {
+          "x": 849,
+          "y": 0,
+          "width": 576,
+          "height": 1000,
+          "top": 0,
+          "right": 1425,
+          "bottom": 1000,
+          "left": 849
+        }
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "rows": [
+        {
+          "name": "Khosla Ventures",
+          "text": "01\nKhosla Ventures\n6 financing records \u00b7 2 companies\nassociated financing\n$1.05B",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "01"
+        },
+        {
+          "name": "Protocol Labs (incl. PLC Neuro)",
+          "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "02"
+        },
+        {
+          "name": "Dolby Family Ventures",
+          "text": "03\nDolby Family Ventures\n4 financing records \u00b7 3 companies\nassociated financing\n$76.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "03"
+        },
+        {
+          "name": "NeuroTechnology Investors",
+          "text": "04\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "04"
+        },
+        {
+          "name": "Alumni Ventures",
+          "text": "05\nAlumni Ventures\n3 financing records \u00b7 3 companies\nassociated financing\n$124M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "05"
+        },
+        {
+          "name": "re.Mind Capital",
+          "text": "06\nre.Mind Capital\n3 financing records \u00b7 3 companies\nassociated financing\n$99.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "06"
+        },
+        {
+          "name": "Forepont Capital Partners",
+          "text": "07\nForepont Capital Partners\n3 financing records \u00b7 2 companies\nassociated financing\n$156M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "07"
+        },
+        {
+          "name": "Founders Fund",
+          "text": "08\nFounders Fund\n3 financing records \u00b7 2 companies\nassociated financing\n$975M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "08"
+        },
+        {
+          "name": "Shanda Group",
+          "text": "09\nShanda Group\n3 financing records \u00b7 2 companies\nassociated financing\n$130M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "09"
+        },
+        {
+          "name": "Steadview Capital",
+          "text": "10\nSteadview Capital\n3 financing records \u00b7 1 company\nassociated financing\n$155M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "10"
+        },
+        {
+          "name": "Ackman Oxman Institute",
+          "text": "11\nAckman Oxman Institute\n2 financing records \u00b7 2 companies\nassociated financing\n$650M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "11"
+        },
+        {
+          "name": "ARK Invest",
+          "text": "12\nARK Invest\n2 financing records \u00b7 2 companies\nassociated financing\n$900M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "12"
+        },
+        {
+          "name": "IQT",
+          "text": "13\nIQT\n2 financing records \u00b7 2 companies\nassociated financing\n$430M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "13"
+        },
+        {
+          "name": "Jumpspace Ventures",
+          "text": "14\nJumpspace Ventures\n2 financing records \u00b7 2 companies\nassociated financing\n$15M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "14"
+        },
+        {
+          "name": "Lightspeed Venture Partners",
+          "text": "15\nLightspeed Venture Partners\n2 financing records \u00b7 2 companies\nassociated financing\n$880M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "15"
+        },
+        {
+          "name": "Alpha Edison",
+          "text": "16\nAlpha Edison\n2 financing records \u00b7 1 company\nassociated financing\n$27M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "16"
+        },
+        {
+          "name": "Artesian",
+          "text": "17\nArtesian\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "17"
+        },
+        {
+          "name": "B Capital",
+          "text": "18\nB Capital\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "18"
+        },
+        {
+          "name": "B Capital Group",
+          "text": "19\nB Capital Group\n2 financing records \u00b7 1 company\nassociated financing\n$53M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "19"
+        },
+        {
+          "name": "Bezos Expeditions",
+          "text": "20\nBezos Expeditions\n2 financing records \u00b7 1 company\nassociated financing\n$275M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "20"
+        },
+        {
+          "name": "Blackbird",
+          "text": "21\nBlackbird\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "21"
+        },
+        {
+          "name": "Divergent",
+          "text": "22\nDivergent\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "22"
+        },
+        {
+          "name": "Duquesne Family Office",
+          "text": "23\nDuquesne Family Office\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "23"
+        },
+        {
+          "name": "FountainBridge Capital",
+          "text": "24\nFountainBridge Capital\n2 financing records \u00b7 1 company\nassociated financing\n$121M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "24"
+        }
+      ],
+      "family": {
+        "name": "Protocol Labs (incl. PLC Neuro)",
+        "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+        "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+        "rank": "02"
+      },
+      "familyBounds": {
+        "x": 46,
+        "y": 466.453125,
+        "width": 661,
+        "height": 91,
+        "top": 466.453125,
+        "right": 707,
+        "bottom": 557.453125,
+        "left": 46
+      },
+      "document": {
+        "inner": 768,
+        "client": 753,
+        "scroll": 753
+      },
+      "historyReload": true,
+      "mergeEvidence": {
+        "text": "Seed\nDate unverified Jan 15, 2026\n$252m\n\nReported source \u00b7 Source reviewed Nov 17, 2026\n\nOpenAI \u00b7 Bain Capital \u00b7 Gabe Newell \u00b7 PL Capital\n\nWIRED reports $252 million from OpenAI, Bain Capital, Gabe Newell and others. PL Capital's public participation disclosure describes a $250M+ seed round; TechCrunch reports $250 million. The indexed $252m remains a reporting figure, not an issuer-confirmed amount. PL Capital's check size and investment vehicle are not disclosed. Original date precision and unverified date basis are retained.\n\nSource \u2197\nPL Capital participation source \u2197",
+        "links": [
+          {
+            "text": "Source \u2197",
+            "href": "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/"
+          },
+          {
+            "text": "PL Capital participation source \u2197",
+            "href": "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL"
+          }
+        ],
+        "rect": {
+          "x": 177,
+          "y": 0,
+          "width": 576,
+          "height": 1024,
+          "top": 0,
+          "right": 753,
+          "bottom": 1024,
+          "left": 177
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "rows": [
+        {
+          "name": "Khosla Ventures",
+          "text": "01\nKhosla Ventures\n6 financing records \u00b7 2 companies\nassociated financing\n$1.05B",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "01"
+        },
+        {
+          "name": "Protocol Labs (incl. PLC Neuro)",
+          "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "02"
+        },
+        {
+          "name": "Dolby Family Ventures",
+          "text": "03\nDolby Family Ventures\n4 financing records \u00b7 3 companies\nassociated financing\n$76.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "03"
+        },
+        {
+          "name": "NeuroTechnology Investors",
+          "text": "04\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "04"
+        },
+        {
+          "name": "Alumni Ventures",
+          "text": "05\nAlumni Ventures\n3 financing records \u00b7 3 companies\nassociated financing\n$124M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "05"
+        },
+        {
+          "name": "re.Mind Capital",
+          "text": "06\nre.Mind Capital\n3 financing records \u00b7 3 companies\nassociated financing\n$99.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "06"
+        },
+        {
+          "name": "Forepont Capital Partners",
+          "text": "07\nForepont Capital Partners\n3 financing records \u00b7 2 companies\nassociated financing\n$156M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "07"
+        },
+        {
+          "name": "Founders Fund",
+          "text": "08\nFounders Fund\n3 financing records \u00b7 2 companies\nassociated financing\n$975M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "08"
+        },
+        {
+          "name": "Shanda Group",
+          "text": "09\nShanda Group\n3 financing records \u00b7 2 companies\nassociated financing\n$130M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "09"
+        },
+        {
+          "name": "Steadview Capital",
+          "text": "10\nSteadview Capital\n3 financing records \u00b7 1 company\nassociated financing\n$155M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "10"
+        },
+        {
+          "name": "Ackman Oxman Institute",
+          "text": "11\nAckman Oxman Institute\n2 financing records \u00b7 2 companies\nassociated financing\n$650M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "11"
+        },
+        {
+          "name": "ARK Invest",
+          "text": "12\nARK Invest\n2 financing records \u00b7 2 companies\nassociated financing\n$900M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "12"
+        },
+        {
+          "name": "IQT",
+          "text": "13\nIQT\n2 financing records \u00b7 2 companies\nassociated financing\n$430M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "13"
+        },
+        {
+          "name": "Jumpspace Ventures",
+          "text": "14\nJumpspace Ventures\n2 financing records \u00b7 2 companies\nassociated financing\n$15M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "14"
+        },
+        {
+          "name": "Lightspeed Venture Partners",
+          "text": "15\nLightspeed Venture Partners\n2 financing records \u00b7 2 companies\nassociated financing\n$880M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "15"
+        },
+        {
+          "name": "Alpha Edison",
+          "text": "16\nAlpha Edison\n2 financing records \u00b7 1 company\nassociated financing\n$27M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "16"
+        },
+        {
+          "name": "Artesian",
+          "text": "17\nArtesian\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "17"
+        },
+        {
+          "name": "B Capital",
+          "text": "18\nB Capital\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "18"
+        },
+        {
+          "name": "B Capital Group",
+          "text": "19\nB Capital Group\n2 financing records \u00b7 1 company\nassociated financing\n$53M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "19"
+        },
+        {
+          "name": "Bezos Expeditions",
+          "text": "20\nBezos Expeditions\n2 financing records \u00b7 1 company\nassociated financing\n$275M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "20"
+        },
+        {
+          "name": "Blackbird",
+          "text": "21\nBlackbird\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "21"
+        },
+        {
+          "name": "Divergent",
+          "text": "22\nDivergent\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "22"
+        },
+        {
+          "name": "Duquesne Family Office",
+          "text": "23\nDuquesne Family Office\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "23"
+        },
+        {
+          "name": "FountainBridge Capital",
+          "text": "24\nFountainBridge Capital\n2 financing records \u00b7 1 company\nassociated financing\n$121M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "24"
+        }
+      ],
+      "family": {
+        "name": "Protocol Labs (incl. PLC Neuro)",
+        "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+        "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+        "rank": "02"
+      },
+      "familyBounds": {
+        "x": 34,
+        "y": 355.203125,
+        "width": 322,
+        "height": 133,
+        "top": 355.203125,
+        "right": 356,
+        "bottom": 488.203125,
+        "left": 34
+      },
+      "document": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "historyReload": true,
+      "mergeEvidence": {
+        "text": "Seed\nDate unverified Jan 15, 2026\n$252m\n\nReported source \u00b7 Source reviewed Nov 17, 2026\n\nOpenAI \u00b7 Bain Capital \u00b7 Gabe Newell \u00b7 PL Capital\n\nWIRED reports $252 million from OpenAI, Bain Capital, Gabe Newell and others. PL Capital's public participation disclosure describes a $250M+ seed round; TechCrunch reports $250 million. The indexed $252m remains a reporting figure, not an issuer-confirmed amount. PL Capital's check size and investment vehicle are not disclosed. Original date precision and unverified date basis are retained.\n\nSource \u2197\nPL Capital participation source \u2197",
+        "links": [
+          {
+            "text": "Source \u2197",
+            "href": "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/"
+          },
+          {
+            "text": "PL Capital participation source \u2197",
+            "href": "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL"
+          }
+        ],
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "top": 0,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 320,
+      "height": 800,
+      "rows": [
+        {
+          "name": "Khosla Ventures",
+          "text": "01\nKhosla Ventures\n6 financing records \u00b7 2 companies\nassociated financing\n$1.05B",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "01"
+        },
+        {
+          "name": "Protocol Labs (incl. PLC Neuro)",
+          "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "02"
+        },
+        {
+          "name": "Dolby Family Ventures",
+          "text": "03\nDolby Family Ventures\n4 financing records \u00b7 3 companies\nassociated financing\n$76.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "03"
+        },
+        {
+          "name": "NeuroTechnology Investors",
+          "text": "04\nNeuroTechnology Investors\n4 financing records \u00b7 1 company\nassociated financing\n$325M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "04"
+        },
+        {
+          "name": "Alumni Ventures",
+          "text": "05\nAlumni Ventures\n3 financing records \u00b7 3 companies\nassociated financing\n$124M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "05"
+        },
+        {
+          "name": "re.Mind Capital",
+          "text": "06\nre.Mind Capital\n3 financing records \u00b7 3 companies\nassociated financing\n$99.8M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "06"
+        },
+        {
+          "name": "Forepont Capital Partners",
+          "text": "07\nForepont Capital Partners\n3 financing records \u00b7 2 companies\nassociated financing\n$156M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "07"
+        },
+        {
+          "name": "Founders Fund",
+          "text": "08\nFounders Fund\n3 financing records \u00b7 2 companies\nassociated financing\n$975M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "08"
+        },
+        {
+          "name": "Shanda Group",
+          "text": "09\nShanda Group\n3 financing records \u00b7 2 companies\nassociated financing\n$130M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "09"
+        },
+        {
+          "name": "Steadview Capital",
+          "text": "10\nSteadview Capital\n3 financing records \u00b7 1 company\nassociated financing\n$155M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "10"
+        },
+        {
+          "name": "Ackman Oxman Institute",
+          "text": "11\nAckman Oxman Institute\n2 financing records \u00b7 2 companies\nassociated financing\n$650M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "11"
+        },
+        {
+          "name": "ARK Invest",
+          "text": "12\nARK Invest\n2 financing records \u00b7 2 companies\nassociated financing\n$900M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "12"
+        },
+        {
+          "name": "IQT",
+          "text": "13\nIQT\n2 financing records \u00b7 2 companies\nassociated financing\n$430M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "13"
+        },
+        {
+          "name": "Jumpspace Ventures",
+          "text": "14\nJumpspace Ventures\n2 financing records \u00b7 2 companies\nassociated financing\n$15M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "14"
+        },
+        {
+          "name": "Lightspeed Venture Partners",
+          "text": "15\nLightspeed Venture Partners\n2 financing records \u00b7 2 companies\nassociated financing\n$880M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "15"
+        },
+        {
+          "name": "Alpha Edison",
+          "text": "16\nAlpha Edison\n2 financing records \u00b7 1 company\nassociated financing\n$27M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "16"
+        },
+        {
+          "name": "Artesian",
+          "text": "17\nArtesian\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "17"
+        },
+        {
+          "name": "B Capital",
+          "text": "18\nB Capital\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "18"
+        },
+        {
+          "name": "B Capital Group",
+          "text": "19\nB Capital Group\n2 financing records \u00b7 1 company\nassociated financing\n$53M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "19"
+        },
+        {
+          "name": "Bezos Expeditions",
+          "text": "20\nBezos Expeditions\n2 financing records \u00b7 1 company\nassociated financing\n$275M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "20"
+        },
+        {
+          "name": "Blackbird",
+          "text": "21\nBlackbird\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "21"
+        },
+        {
+          "name": "Divergent",
+          "text": "22\nDivergent\n2 financing records \u00b7 1 company\nassociated financing\n$55M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "22"
+        },
+        {
+          "name": "Duquesne Family Office",
+          "text": "23\nDuquesne Family Office\n2 financing records \u00b7 1 company\nassociated financing\n$352M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "23"
+        },
+        {
+          "name": "FountainBridge Capital",
+          "text": "24\nFountainBridge Capital\n2 financing records \u00b7 1 company\nassociated financing\n$121M",
+          "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+          "rank": "24"
+        }
+      ],
+      "family": {
+        "name": "Protocol Labs (incl. PLC Neuro)",
+        "text": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+        "classes": "grid grid-cols-[24px_minmax(0,1fr)] items-start gap-x-3 gap-y-2 px-4 py-4 sm:grid-cols-[32px_minmax(0,1fr)_140px] sm:items-center sm:gap-x-4 sm:px-6",
+        "rank": "02"
+      },
+      "familyBounds": {
+        "x": 34,
+        "y": 315.65625,
+        "width": 252,
+        "height": 169,
+        "top": 315.65625,
+        "right": 286,
+        "bottom": 484.65625,
+        "left": 34
+      },
+      "document": {
+        "inner": 320,
+        "client": 320,
+        "scroll": 320
+      },
+      "historyReload": true,
+      "mergeEvidence": {
+        "text": "Seed\nDate unverified Jan 15, 2026\n$252m\n\nReported source \u00b7 Source reviewed Nov 17, 2026\n\nOpenAI \u00b7 Bain Capital \u00b7 Gabe Newell \u00b7 PL Capital\n\nWIRED reports $252 million from OpenAI, Bain Capital, Gabe Newell and others. PL Capital's public participation disclosure describes a $250M+ seed round; TechCrunch reports $250 million. The indexed $252m remains a reporting figure, not an issuer-confirmed amount. PL Capital's check size and investment vehicle are not disclosed. Original date precision and unverified date basis are retained.\n\nSource \u2197\nPL Capital participation source \u2197",
+        "links": [
+          {
+            "text": "Source \u2197",
+            "href": "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/"
+          },
+          {
+            "text": "PL Capital participation source \u2197",
+            "href": "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL"
+          }
+        ],
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 800,
+          "top": 0,
+          "right": 320,
+          "bottom": 800,
+          "left": 0
+        }
+      }
+    }
+  ]
+}

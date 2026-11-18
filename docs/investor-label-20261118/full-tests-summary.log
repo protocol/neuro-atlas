@@ -1,0 +1,10 @@
+✔ voxel axes, image keys and budget labels use the readable scale without changing exact values (424.62228ms)
+✔ voxel scale uses readable billion and trillion labels without scientific notation (1.820362ms)
+ℹ tests 1440
+ℹ suites 0
+ℹ pass 1440
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 498603.791446
