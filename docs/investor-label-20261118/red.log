@@ -1,0 +1,81 @@
+✔ Science's November 17 Series D appears once in both canonical datasets and their generated consumers (23.903756ms)
+✔ Merge's existing seed retains its amount and date semantics while recording the verified named participants (1.946546ms)
+✔ participant evidence loads from the canonical sidecar onto only the exact existing round (5.83443ms)
+✔ participant evidence rejects an unknown event instead of manufacturing or loosely matching a financing (3.059134ms)
+✔ participant evidence cannot introduce an investor or borrow a display-family member's participation (3.778495ms)
+✔ participant evidence fails closed on malformed or unreviewed provenance (11.205839ms)
+✔ participant evidence rejects repeated event-investor-source citations (1.738497ms)
+✖ PLC's ten published portfolio relationships stay separate from indexed financing and exact investor identities (7.093723ms)
+✔ portfolio provenance fails closed on unsupported relationships or financing-shaped data (3.135205ms)
+✔ latest-stage grouping unifies unlabeled investment and financing without mutating source round labels (2.355903ms)
+✔ mounted Stage view groups undisclosed equivalents together without changing original financing wording (174.341121ms)
+✔ real funding route restores its Investors URL and preserves unrelated query, hash, Back and Forward (272.966761ms)
+✔ mounted mobile controls at 320px start collapsed, focus search, filter companies and close with Escape (68.006442ms)
+✔ mounted mobile controls at 390px start collapsed, focus search, filter companies and close with Escape (53.917815ms)
+✔ mounted timeline keeps a compact opaque company identity in the sticky lane while scrolling later years (28.79866ms)
+✖ mounted Investors starts with the neutral leaderboard, not an investor-specific showcase (53.88855ms)
+✔ mounted Investors explains reviewed family counting without promoting a particular investor (33.597191ms)
+✔ mounted company financing detail retains exact source investor names without portfolio UI (224.210566ms)
+✔ reviewed investor families count distinct financings in the ordinary ranking without rewriting source participants (3.110297ms)
+✔ investor family groups reject missing provenance and overlapping or ambiguous member names (1.51548ms)
+✔ investor family display names cannot absorb unrelated named source participants (11.25873ms)
+✖ canonical PL and PLC records form one neutral ranked family with no new financing or portfolio inference (16.018377ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 19
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2777.163734
+
+✖ failing tests:
+
+test at tests/funding-feedback-data.test.mjs:145:1
+✖ PLC's ten published portfolio relationships stay separate from indexed financing and exact investor identities (7.093723ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   associatedCapitalUsdM: 859.5,
+  -   companyCount: 4,
+  -   name: 'Protocol Labs (incl. PLC Neuro)',
+  -   roundCount: 4
+  - }
+  
+      at TestContext.<anonymous> (/opt/data/tmp/neuro-atlas-investor-correction-20261117/tests/funding-feedback-data.test.mjs:180:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'Protocol Labs (incl. PLC Neuro)', roundCount: 4, companyCount: 4, associatedCapitalUsdM: 859.5 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/funding-feedback-ui.test.mjs:155:1
+✖ mounted Investors starts with the neutral leaderboard, not an investor-specific showcase (53.88855ms)
+  AssertionError [ERR_ASSERTION]: the ordinary ranked row uses the owner-requested display label
+      at TestContext.<anonymous> (/opt/data/tmp/neuro-atlas-investor-correction-20261117/tests/funding-feedback-ui.test.mjs:178:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/funding-investor-groups.test.mjs:71:1
+✖ canonical PL and PLC records form one neutral ranked family with no new financing or portfolio inference (16.018377ms)
+  TypeError: Cannot read properties of undefined (reading 'memberNames')
+      at TestContext.<anonymous> (file:///opt/data/tmp/neuro-atlas-investor-correction-20261117/tests/funding-investor-groups.test.mjs:79:33)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

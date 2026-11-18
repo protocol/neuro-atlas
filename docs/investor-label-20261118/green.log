@@ -1,0 +1,31 @@
+✔ Science's November 17 Series D appears once in both canonical datasets and their generated consumers (37.091388ms)
+✔ Merge's existing seed retains its amount and date semantics while recording the verified named participants (1.73905ms)
+✔ participant evidence loads from the canonical sidecar onto only the exact existing round (5.618395ms)
+✔ participant evidence rejects an unknown event instead of manufacturing or loosely matching a financing (2.621044ms)
+✔ participant evidence cannot introduce an investor or borrow a display-family member's participation (4.195486ms)
+✔ participant evidence fails closed on malformed or unreviewed provenance (11.632677ms)
+✔ participant evidence rejects repeated event-investor-source citations (1.774079ms)
+✔ PLC's ten published portfolio relationships stay separate from indexed financing and exact investor identities (4.850835ms)
+✔ portfolio provenance fails closed on unsupported relationships or financing-shaped data (3.24306ms)
+✔ latest-stage grouping unifies unlabeled investment and financing without mutating source round labels (2.184988ms)
+✔ mounted Stage view groups undisclosed equivalents together without changing original financing wording (185.804123ms)
+✔ real funding route restores its Investors URL and preserves unrelated query, hash, Back and Forward (269.764438ms)
+✔ mounted mobile controls at 320px start collapsed, focus search, filter companies and close with Escape (66.933727ms)
+✔ mounted mobile controls at 390px start collapsed, focus search, filter companies and close with Escape (56.531938ms)
+✔ mounted timeline keeps a compact opaque company identity in the sticky lane while scrolling later years (28.510778ms)
+✔ mounted Investors starts with the neutral leaderboard, not an investor-specific showcase (101.566321ms)
+✔ mounted Investors explains reviewed family counting without promoting a particular investor (37.135518ms)
+✔ mounted company financing detail retains exact source investor names without portfolio UI (212.238872ms)
+✔ company financing detail links additional named-participant evidence beside the ordinary financing source (204.625395ms)
+✔ reviewed investor families count distinct financings in the ordinary ranking without rewriting source participants (3.715363ms)
+✔ investor family groups reject missing provenance and overlapping or ambiguous member names (1.164093ms)
+✔ investor family display names cannot absorb unrelated named source participants (10.719782ms)
+✔ canonical PL and PLC records form one neutral ranked family with no new financing or portfolio inference (15.115646ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2077.367444
