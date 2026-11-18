@@ -56,6 +56,23 @@ def click_expr(expr):
     p = js("""(() => {const e=EXPR;if(!e)throw Error('Missing target');e.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});const r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;if(!e.contains(document.elementFromPoint(x,y)))throw Error('Occluded target');return {x,y}})()""".replace('EXPR', expr))
     click_at_xy(p['x'], p['y'])
 
+def stable_target_geometry(expr):
+    # React's Fit-year ResizeObserver can repack marks after the first width
+    # predicate becomes true. Scroll once, then require stable painted bounds
+    # and an exact hit identity before dispatching native pointer movement.
+    js("(" + expr + ").scrollIntoView({block:'center',inline:'nearest',behavior:'instant'})")
+    previous = None
+    stable_reads = 0
+    end = time.monotonic() + 15
+    while time.monotonic() < end:
+        candidate = js("""(() => {const e=EXPR,r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,hit:e.contains(document.elementFromPoint(x,y)),label:e.getAttribute('aria-label'),href:e.getAttribute('href')}})()""".replace('EXPR', expr))
+        stable_reads = stable_reads + 1 if candidate == previous else 0
+        if candidate['hit'] and stable_reads >= 3:
+            return candidate
+        previous = candidate
+        time.sleep(.06)
+    raise AssertionError('Target geometry did not settle: ' + expr)
+
 def button_starts(label):
     return "[...document.querySelectorAll('button')].find(e=>e.textContent.trim().startsWith(" + json.dumps(label) + "))"
 
@@ -91,7 +108,7 @@ for width, height in [(1440, 1000), (768, 1024), (390, 844), (320, 800)]:
         set_year(year)
         expr = source_anchor(row['sourceUrl'])
         wait(lambda: js('Boolean(' + expr + ')'), name + ' is rendered')
-        p = js("""(() => {const e=EXPR;e.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});const r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,hit:e.contains(document.elementFromPoint(x,y)),label:e.getAttribute('aria-label'),href:e.getAttribute('href')}})()""".replace('EXPR', expr))
+        p = stable_target_geometry(expr)
         assert p['hit'] and p['label'] == row['company'] + ' — ' + row['activity'], p
         cdp('Input.dispatchMouseEvent', type='mouseMoved', x=p['x'], y=p['y'])
         wait(lambda: js("document.querySelector('[data-milestone-detail]')?.textContent.includes(" + json.dumps(row['note']) + ")"), name + ' exact note')
@@ -100,7 +117,7 @@ for width, height in [(1440, 1000), (768, 1024), (390, 844), (320, 800)]:
         if name == 'Hemispheric':
             assert '$52' in detail['text'] and 'aggregate' in detail['text'].lower(), detail
         if name == 'Paradromics':
-            assert 'undisclosed' in detail['text'].lower(), detail
+            assert 'Financing amount and round stage are not disclosed.' in detail['text'], detail
         assert detail['rect']['left'] >= -1 and detail['rect']['right'] <= width + 1, detail
         capture_screenshot(str(OUT / (name.lower().replace(' ', '-') + '-' + str(width) + '.png')))
         cdp('Input.dispatchMouseEvent', type='mouseMoved', x=2, y=2)
