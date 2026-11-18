@@ -1,0 +1,72 @@
+[
+  {
+    "file": "README.md",
+    "sha256": "3533423915d7ce9356b70005a3dc3bc0da1832bbc85903e46be1d9b8f1f6cee5",
+    "bytes": 5629
+  },
+  {
+    "file": "before-milestones-2025-1440.png",
+    "sha256": "c7c1c1f174670d68aa92e928b2b1164d20bd51f16a68d05d9b97406bf3cbc82e",
+    "bytes": 169196
+  },
+  {
+    "file": "before-milestones-2026-1440.png",
+    "sha256": "8693f27c8ade8f2a7765bafeac08baa18fc7f5621a236d39ad092b778532310e",
+    "bytes": 203685
+  },
+  {
+    "file": "eon-systems-1440.png",
+    "sha256": "96ae02ba6b53bca62032ae082a14022a199e5eb5c943234737a396fcb2735bab",
+    "bytes": 191410
+  },
+  {
+    "file": "eon-systems-320.png",
+    "sha256": "35147b06355a79b964722caf7ff2629ad832e3355d36d45f5bf29152a30bd4a6",
+    "bytes": 62097
+  },
+  {
+    "file": "hemispheric-1440.png",
+    "sha256": "8dcf7edc244512d04adf05ca9c3239968b92c5c070c9b7786bdf54828732a257",
+    "bytes": 245073
+  },
+  {
+    "file": "hemispheric-320.png",
+    "sha256": "f006384da355cd94cfc803dd2be72fb6e1f2a73ab425ff368ac488b8d8c90c9d",
+    "bytes": 73763
+  },
+  {
+    "file": "invariance.json",
+    "sha256": "dfec5232171127840e0114e4a4695cb4a0f0ed5113394ee13acd5b1e970babd1",
+    "bytes": 629
+  },
+  {
+    "file": "investor-native-preservation.json",
+    "sha256": "3c507aede310ba36cb23c7ad253b67f6baeae72a14c113ac1d2bf28d361a53c7",
+    "bytes": 305
+  },
+  {
+    "file": "milestones-coverage-native.json",
+    "sha256": "4fe6208ea1c6f5b5b4b71b64c8eb2d780e2ebf5f46679a3489b9339cb6025f6f",
+    "bytes": 14409
+  },
+  {
+    "file": "paradromics-1440.png",
+    "sha256": "e4d4f901e62c059f96394dfff72a966501756db3f046d27474c7f0872a16b8c4",
+    "bytes": 195889
+  },
+  {
+    "file": "paradromics-390.png",
+    "sha256": "0def4f22e81ac3eb66383452ee46e4804515eb88cbb677808e7637be51aaa478",
+    "bytes": 71890
+  },
+  {
+    "file": "parity.json",
+    "sha256": "b730bdc0a4a60ce12b0619689c491c0364b2ce61015dca2f310c8eaf993aebc8",
+    "bytes": 2774
+  },
+  {
+    "file": "validation.json",
+    "sha256": "ccf6555f6563d60305b4d2044753e3185131bbf5f1d06947359d5e44ffbff9dc",
+    "bytes": 1762
+  }
+]

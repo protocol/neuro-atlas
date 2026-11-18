@@ -1,0 +1,66 @@
+{
+  "runtimeRevision": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+  "qaRevision": "d8a0f591ef58740a7d1b27d7771a41e359ae8a2f",
+  "tests": {
+    "tests": 1445,
+    "pass": 1445,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 581110.890804,
+    "command": "npm test"
+  },
+  "build": {
+    "passed": true,
+    "command": "NEXT_PUBLIC_BASE_PATH=/neuro-atlas ATLAS_SITE_URL=https://www.plneuro.xyz ATLAS_INDEXABLE=false npm run build -- --webpack"
+  },
+  "typecheck": {
+    "passed": true,
+    "command": "npm run typecheck"
+  },
+  "lint": {
+    "changedFilesErrors": 0,
+    "baselineErrors": 3,
+    "baselineWarnings": 12,
+    "candidateMatchesBaselineExactly": true,
+    "knownBaselineFiles": [
+      "src/components/theme-toggle.tsx",
+      "tests/draft-chart-plot.test.mjs"
+    ]
+  },
+  "native": {
+    "widths": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "eventChecks": 12,
+    "passed": true,
+    "fixture": "Exact production-static loopback; native pointer with viewport emulation, not hosted authentication or physical-phone touch"
+  },
+  "applicationParity": {
+    "pages": 2,
+    "assets": 14,
+    "passed": true
+  },
+  "initialIndependentReview": {
+    "verdict": "PASS",
+    "revision": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+    "scope": "Full coherent data/test/QA diff and provided primary/reporting source bodies"
+  },
+  "qaClosureReview": {
+    "verdict": "PASS",
+    "revision": "d8a0f591ef58740a7d1b27d7771a41e359ae8a2f",
+    "scope": "Independent bounded review of QA-only closure and the actual four-width, twelve-event native receipt",
+    "findings": []
+  },
+  "cleanup": {
+    "preexistingTabsPreserved": true,
+    "taskTabClosed": true,
+    "taskPortsClosed": [
+      37948,
+      37949
+    ]
+  }
+}

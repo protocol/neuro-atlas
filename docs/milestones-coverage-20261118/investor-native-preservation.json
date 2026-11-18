@@ -1,0 +1,9 @@
+{
+  "runtime": "e6e4eec09ea7d236ef86c8e305d0453d92fa5bb2",
+  "fixture": "production-static loopback, native desktop1440",
+  "result": {
+    "familyText": "02\nProtocol Labs (incl. PLC Neuro)\n4 financing records \u00b7 4 companies\nassociated financing\n$860M",
+    "showcase": false,
+    "rows": 24
+  }
+}
