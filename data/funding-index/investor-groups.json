@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Protocol Labs / PLC Neurotech",
+    "memberNames": ["Protocol Labs", "PLC Neurotech", "PL Capital"],
+    "reviewedOn": "2026-11-17",
+    "sourceUrls": ["https://plcapital.xyz/neurotech", "https://plcapital.xyz/disclaimer", "https://www.linkedin.com/posts/protocolvc_congrats-to-merge-labs-on-its-250m-seed-activity-7418000018110009344-7fBL"],
+    "note": "Reviewed display-only investor family for the ordinary financing leaderboard, not a spelling alias, single legal identity, or pooled investment vehicle. The PLC page identifies Juan Benet as founder of Protocol Labs and General Partner of PLC Neurotech; the platform disclaimer describes affiliated and warehousing arrangements while explicitly separating advisers and vehicles. The official PL Capital post explicitly says it joined Merge Labs' seed round; PL Capital is retained as that source's participant label, without inferring a specific legal investing vehicle or fund. Preserve exact named participants in each financing record. Count each qualifying financing once across these three source names; do not infer any financing participation from portfolio membership."
+  }
+]

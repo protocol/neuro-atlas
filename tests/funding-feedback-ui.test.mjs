@@ -4,7 +4,7 @@ import React, { act } from 'react';
 import { readFileSync } from 'node:fs';
 import { FundingIndexDashboard } from '../src/components/funding-index-dashboard.tsx';
 import FundingPage from '../src/app/funding/page.tsx';
-import { buildCompanyRows } from '../src/lib/funding-index.ts';
+import { buildCompanyRows, formatCapital } from '../src/lib/funding-index.ts';
 import { JSDOM } from 'jsdom';
 
 // Initialize React DOM's event support against a DOM, not its server-only fallback.
@@ -152,62 +152,71 @@ test('mounted timeline keeps a compact opaque company identity in the sticky lan
   } finally { await cleanup(); }
 });
 
-test('mounted Investors lens reconciles the reviewed family portfolio and financing evidence without aliasing source labels', async () => {
-  const data = sourceData;
-  const disclosure = data.portfolioDisclosures.find(row => row.investorName === 'Protocol Labs / PLC Neurotech');
-  assert.ok(disclosure, 'source-backed portfolio disclosure exists');
+test('mounted Investors starts with the neutral leaderboard, not an investor-specific showcase', async () => {
+  const data = structuredClone(sourceData);
+  // Legacy disclosure metadata is only a renderer fixture, not financing evidence.
+  // Keeping it in the input proves that metadata cannot opt an investor into a showcase.
+  data.portfolioDisclosures = [{
+    investorName: 'Protocol Labs / PLC Neurotech', sourceInvestorName: 'PLC Neurotech',
+    sourceUrl: 'https://example.org/fixture-portfolio', reviewedOn: '2026-11-17',
+    familyGrouping: { memberNames: ['Protocol Labs', 'PLC Neurotech'], reviewedOn: '2026-11-17', sourceUrls: ['https://example.org/fixture-disclaimer'], note: 'Renderer fixture only.' },
+    companies: [{ name: 'Fixture portfolio company', website: 'https://example.org/fixture-company', companySlug: data.companies[0].slug }],
+  }];
   const before = structuredClone(data);
-  const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }));
+  const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }), '', win => win.history.replaceState(null, '', '/funding?view=investors'));
   try {
-    await click(button('investors'));
-    const portfolio = document.querySelector('[data-funding-portfolio="Protocol Labs / PLC Neurotech"]');
-    assert.ok(portfolio, 'portfolio evidence is prominent and separate from financing leaderboard rows');
-    assert.equal(portfolio.querySelector('[data-portfolio-total]')?.textContent, '10');
-    assert.equal(portfolio.querySelector('[data-portfolio-matched]')?.textContent, '6');
-    assert.equal(portfolio.querySelector('[data-family-financing-count]')?.textContent, '3');
-    assert.match(portfolio.textContent, /selected neurotech portfolio companies/i);
-    assert.match(portfolio.textContent, /in this BCI screen/i);
-    assert.match(portfolio.textContent, /distinct indexed financing records/i);
-    assert.match(portfolio.textContent, /Protocol Labs: 2 financing records/);
-    assert.match(portfolio.textContent, /PLC Neurotech: 1 financing record/);
-    assert.match(portfolio.textContent, /display-only.*distinct.*legal/i);
-    assert.match(portfolio.textContent, /does not establish.*round|not.*financing dates/i);
-    assert.equal(portfolio.querySelectorAll('[data-portfolio-company]').length, 10);
-    assert.equal(portfolio.querySelectorAll('button[data-portfolio-screen-match]').length, 6);
-    assert.ok([...portfolio.querySelectorAll('a')].some(a => a.href === disclosure.sourceUrl));
-    assert.ok([...portfolio.querySelectorAll('a')].some(a => a.href === 'https://plcapital.xyz/disclaimer'));
-    for (const name of disclosure.familyGrouping.memberNames) {
-      const investor = data.investors.find(row => row.name === name);
-      const label = [...document.querySelectorAll('[data-indexed-investor]')].find(el => el.getAttribute('data-indexed-investor') === name);
-      assert.ok(label, 'original exact-name leaderboard row stays visible');
-      assert.ok(label.textContent.includes(`${investor.roundCount} financing record`));
+    assert.equal(document.querySelector('h2')?.textContent, 'Most active indexed investors and funders', 'Investors content begins with the shared financing leaderboard');
+    assert.equal(document.querySelectorAll('[data-funding-portfolio], [data-portfolio-company], [data-portfolio-screen-match], [data-family-financing-count]').length, 0, 'no investor showcase, portfolio cards or family totals');
+    const links = [...document.querySelectorAll('a')];
+    assert.ok(!links.some(el => /portfolio|disclaimer|family context/i.test(el.textContent) || el.getAttribute('href')?.startsWith('#funding-portfolio') || el.href.startsWith('https://example.org/fixture-')), 'no portfolio, company-card, disclaimer or family-context links');
+    assert.ok(!document.body.textContent.includes('Fixture portfolio company'));
+    assert.ok(![...document.querySelectorAll('h2, h3')].some(el => el.textContent === 'Protocol Labs / PLC Neurotech'), 'an investor family may be an ordinary row, never a showcase heading');
+
+    const rows = [...document.querySelectorAll('[data-indexed-investor]')];
+    const expected = data.investors.slice(0, 24);
+    assert.equal(rows.length, expected.length, 'same top-24 display limit, with no extra showcase rows');
+    assert.deepEqual(rows.map(row => row.getAttribute('data-indexed-investor')), expected.map(investor => investor.name), 'source leaderboard order and investor names are preserved');
+    const neutralStyle = row => [row.className, ...[...row.querySelectorAll('[class]')].filter(el => !el.closest('[aria-hidden="true"]')).map(el => el.className)];
+    for (const [index, row] of rows.entries()) {
+      const investor = expected[index];
+      assert.equal(row.firstElementChild.textContent, String(index + 1).padStart(2, '0'));
+      assert.ok(row.textContent.includes(`${investor.roundCount} financing ${investor.roundCount === 1 ? 'record' : 'records'} · ${investor.companyCount} ${investor.companyCount === 1 ? 'company' : 'companies'}`), 'financing and company counts remain data-driven');
+      assert.equal(row.querySelectorAll('.bg-accent').length, investor.roundCount, 'participation dots keep the sourced count');
+      assert.equal(row.lastElementChild.lastElementChild.textContent, formatCapital(investor.associatedCapitalUsdM), 'associated financing remains data-driven');
+      assert.deepEqual(neutralStyle(row), neutralStyle(rows[0]), `${investor.name} uses the same unhighlighted row and label styling as every other investor`);
     }
-    await click(portfolio.querySelector('[data-portfolio-screen-match="science-corporation"]'));
-    const detail = document.querySelector('[role="dialog"]');
-    const scienceD = [...detail.querySelectorAll('article')].find(el => el.querySelector('a')?.href === 'https://science.xyz/news/series-d/');
-    assert.ok(scienceD.textContent.includes('PLC Neurotech'));
-    assert.ok(!scienceD.textContent.includes('Protocol Labs'), 'reviewed family grouping never replaces source investor names in round histories');
-    assert.deepEqual(data, before, 'view-level portfolio display does not mutate counts, records or names');
+    assert.deepEqual(data, before, 'the Investors lens does not mutate financing, names, order or legacy metadata');
   } finally { await cleanup(); }
 });
 
-test('display-only family financing union deduplicates a jointly named financing and ignores portfolio-only relationships', async () => {
-  const data = fixture(['Series A', 'Seed']);
-  data.rounds = [
-    { ...data.rounds[0], investors: ['Protocol Labs', 'PLC Neurotech'], sourceUrl: 'https://example.org/joint' },
-    { ...data.rounds[0], investors: ['PLC Neurotech'], sourceUrl: 'https://example.org/joint-secondary' },
-    { ...data.rounds[1], investors: ['Protocol Labs-like name'] },
-  ];
-  data.portfolioDisclosures = [{
-    investorName: 'Reviewed display family', sourceInvestorName: 'PLC Neurotech', sourceUrl: 'https://example.org/portfolio', reviewedOn: '2026-11-17',
-    familyGrouping: { memberNames: ['Protocol Labs', 'PLC Neurotech'], reviewedOn: '2026-11-17', sourceUrls: ['https://example.org/disclaimer'], note: 'Display-only grouping, not legal identity.' },
-    companies: data.companies.map(company => ({ name: company.name, website: 'https://example.org/' + company.slug, companySlug: company.slug })),
-  }];
+test('mounted Investors explains reviewed family counting without promoting a particular investor', async () => {
+  const data = structuredClone(sourceData);
   const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }), '', win => win.history.replaceState(null, '', '/funding?view=investors'));
   try {
-    const portfolio = document.querySelector('[data-funding-portfolio]');
-    assert.equal(portfolio?.querySelector('[data-family-financing-count]')?.textContent, '1', 'stable company/date/stage identity deduplicates the union, not a sum of member counts');
-    assert.equal(portfolio?.querySelector('[data-family-associated-capital]')?.textContent, '$5M');
-    assert.equal(portfolio?.querySelector('[data-portfolio-matched]')?.textContent, '2', 'matched-screen portfolio count is not the financing participant count');
+    const aside = document.querySelector('aside');
+    assert.ok(aside?.textContent.includes('Reviewed investor families are grouped for counting only; company records retain the original investor names. A grouping does not imply a single legal entity.'), 'the shared reading guide explains the counting rule and legal-identity limitation');
+    assert.doesNotMatch(aside.textContent, /Protocol Labs|PLC Neurotech/);
+  } finally { await cleanup(); }
+});
+
+test('mounted company financing detail retains exact source investor names without portfolio UI', async () => {
+  const data = structuredClone(sourceData);
+  delete data.portfolioDisclosures;
+  const before = structuredClone(data);
+  const science = data.companies.find(company => company.slug === 'science-corporation');
+  const round = data.rounds.find(round => round.companySlug === science.slug && round.sourceUrl === 'https://science.xyz/news/series-d/');
+  assert.ok(round.investors.includes('PLC Neurotech'), 'the sourced round names PLC Neurotech');
+  const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }));
+  try {
+    await click(companyButton(science.name));
+    const detail = document.querySelector('[role="dialog"]');
+    const scienceD = [...detail.querySelectorAll('article')].find(el => el.querySelector('a')?.href === round.sourceUrl);
+    assert.ok(scienceD, 'the normal company row opens the sourced financing history');
+    assert.ok([...scienceD.querySelectorAll('p')].some(el => el.textContent === round.investors.join(' · ')), 'round detail displays the exact source names, not an aggregated family label');
+    assert.ok(!scienceD.textContent.includes('Protocol Labs'), 'family counting does not rewrite source investor names');
+    await click(document.querySelector('[aria-label="Close detail panel"]'));
+    await click(button('investors'));
+    await click(button('companies'));
+    assert.deepEqual(data, before, 'company detail and lens switches do not mutate records, counts or names');
   } finally { await cleanup(); }
 });

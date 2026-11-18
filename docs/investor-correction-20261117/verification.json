@@ -1,0 +1,38 @@
+{
+  "runtimeRevision": "6e4a7ff73a620ac873860938d22fa895db975600",
+  "reviewedRevision": "b555ec15a68f25461fad2427397478b6006fd65f",
+  "build": "PASS",
+  "typecheck": "PASS",
+  "changedFileLint": "PASS",
+  "repositoryLint": {
+    "sameAsBase": true,
+    "existingErrors": 3,
+    "existingWarnings": 12
+  },
+  "tests": {
+    "tests": 1440,
+    "pass": 1440,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 693626.278208,
+    "revision": "6e4a7ff73a620ac873860938d22fa895db975600",
+    "exitCode": 0
+  },
+  "native": {
+    "verdict": "PASS",
+    "viewports": [
+      1440,
+      768,
+      390,
+      320
+    ]
+  },
+  "independentReview": {
+    "verdict": "PASS",
+    "blockingFindings": 0,
+    "parentFullSuiteJoin": "PASS"
+  },
+  "hostedAuthenticatedInteraction": "not verified; access gate preserved",
+  "mergeOrProductionRelease": "not performed"
+}
