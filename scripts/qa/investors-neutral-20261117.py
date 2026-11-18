@@ -8,7 +8,7 @@ assert urlparse(QA_BASE).hostname == '127.0.0.1'
 OUT = Path(QA_OUT); OUT.mkdir(parents=True, exist_ok=True)
 data = json.loads((Path(QA_ROOT) / 'src/data/funding-index.json').read_text())
 expected = data['investors'][:24]
-family_name = 'Protocol Labs / PLC Neurotech'
+family_name = 'Protocol Labs (incl. PLC Neuro)'
 
 def wait(probe, label, timeout=15):
     end = time.monotonic() + timeout
@@ -44,8 +44,8 @@ for width, height in [(1440,1000), (768,1024), (390,844), (320,800)]:
     assert geometry['inner']==width and geometry['scroll']<=geometry['client']+1, geometry
     js("[...document.querySelectorAll('h2')].find(e=>e.textContent==='Most active indexed investors and funders').scrollIntoView({block:'start',behavior:'instant'});window.scrollBy(0,-85)")
     capture_screenshot(str(OUT/f'investors-neutral-{width}.png'))
-    js("document.querySelector('[data-indexed-investor=\"Protocol Labs / PLC Neurotech\"]').scrollIntoView({block:'center',behavior:'instant'})")
-    rect = js("document.querySelector('[data-indexed-investor=\"Protocol Labs / PLC Neurotech\"]').getBoundingClientRect().toJSON()")
+    js("document.querySelector('[data-indexed-investor=\"Protocol Labs (incl. PLC Neuro)\"]').scrollIntoView({block:'center',behavior:'instant'})")
+    rect = js("document.querySelector('[data-indexed-investor=\"Protocol Labs (incl. PLC Neuro)\"]').getBoundingClientRect().toJSON()")
     assert rect['left']>=0 and rect['right']<=width and rect['top']>=0 and rect['bottom']<=height, rect
     capture_screenshot(str(OUT/f'investors-family-row-{width}.png'))
     click_button('companies')
