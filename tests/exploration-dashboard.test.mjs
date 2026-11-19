@@ -45,9 +45,75 @@ const setInput = async (selector, value) => act(async () => {
   input.dispatchEvent(new Event('input', { bubbles: true }));
 });
 
+const catalogToggle = () => button('[data-dashboard-catalog-toggle]');
+const openCatalog = async () => { if (catalogToggle()?.getAttribute('aria-expanded') === 'false') await click(catalogToggle()); };
+
+test('Add chart opens a focused catalog and Escape returns to the trigger', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const trigger = catalogToggle();
+    assert.ok(trigger, 'a populated dashboard has an Add chart disclosure');
+    assert.equal(trigger.type, 'button');
+    assert.equal(trigger.textContent.trim(), 'Add chart');
+    const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    assert.equal(trigger.getAttribute('aria-expanded'), 'false');
+    assert.equal(panel?.hidden, true);
+    await click(trigger);
+    assert.equal(trigger.getAttribute('aria-expanded'), 'true');
+    assert.equal(panel.hidden, false);
+    const search = button('[data-dashboard-search]');
+    assert.ok(document.activeElement === search, 'opening moves focus into search');
+    await setInput('[data-dashboard-search]', 'bitrate');
+    const result = button(`[data-dashboard-add="${bitrate}"]`);
+    result.focus();
+    await click(result);
+    assert.equal(cards().length, 2);
+    assert.equal(trigger.getAttribute('aria-expanded'), 'true');
+    assert.ok(document.activeElement === result, 'adding a chart keeps focus available for repeat adds');
+    await act(async () => result.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })));
+    assert.equal(trigger.getAttribute('aria-expanded'), 'false');
+    assert.equal(panel.hidden, true);
+    assert.ok(document.activeElement === trigger, 'Escape restores focus to Add chart');
+    await click(trigger);
+    assert.equal(search.value, 'bitrate');
+  } finally { await close(); }
+});
+
+test('an empty dashboard starts with its chart catalog open without stealing focus', async () => {
+  const close = await dashboard();
+  try {
+    assert.equal(cards().length, 0);
+    assert.equal(catalogToggle()?.getAttribute('aria-expanded'), 'true');
+    assert.ok(!button('[data-dashboard-search]').closest('[hidden]'));
+    assert.ok(document.activeElement === document.body);
+  } finally { await close(); }
+});
+
+test('the open catalog disables results at the card cap without stranding focus', async () => {
+  const { CARD_LIMIT, dashboardHash } = await import('../src/lib/dashboard-state.ts');
+  const close = await dashboard({ search: dashboardHash({ name: 'Almost full', cards: Array.from({ length: CARD_LIMIT - 1 }, () => ({ slug: bitrate })) }) });
+  try {
+    await openCatalog();
+    const result = button(`[data-dashboard-add="${bitrate}"]`);
+    result.focus();
+    await click(result);
+    assert.equal(cards().length, CARD_LIMIT);
+    const results = [...loc().querySelectorAll('[data-dashboard-add]')];
+    assert.equal(results.length, 25);
+    assert.ok(results.every(option => option.disabled));
+    assert.match(loc().textContent, /Dashboard full/);
+    assert.ok(document.activeElement === button('[data-dashboard-search]'), 'a result disabled by the last add returns focus to search');
+    await click(result);
+    assert.equal(cards().length, CARD_LIMIT);
+    await click(cards().at(-1).querySelector('[data-dashboard-remove]'));
+    assert.ok(results.every(option => !option.disabled));
+  } finally { await close(); }
+});
+
 test('catalog search can add an independent duplicate; controls reorder and return focus on removal', async () => {
   const close = await dashboard({ search: '?add=' + bitrate });
   try {
+    await openCatalog();
     assert.ok(button('[data-dashboard-search]'), 'dashboard has a searchable chart catalog');
     await setInput('[data-dashboard-search]', 'zzzz-nonmatch');
     assert.ok(button('[data-dashboard-no-match]'));
@@ -63,6 +129,7 @@ test('catalog search can add an independent duplicate; controls reorder and retu
     await click(cards()[0].querySelector('[data-dashboard-remove]'));
     assert.equal(cards()[0].dataset.dashboardCard, a);
     assert.ok(document.activeElement.hasAttribute('data-dashboard-remove'));
+    await click(catalogToggle());
     await click(cards()[0].querySelector('[data-dashboard-remove]'));
     assert.ok(button('[data-dashboard-empty]'));
     assert.ok(document.activeElement.hasAttribute('data-dashboard-search'));
@@ -150,6 +217,7 @@ test('layout changes animate card rectangles without scaling content; reduced mo
     };
   });
   try {
+    await openCatalog();
     const add = button(`[data-dashboard-add="${bitrate}"]`);
     const existing = cards()[0].dataset.dashboardCard;
     const start = runs.length;
@@ -173,6 +241,7 @@ const recording = 'simultaneous-neural-recordings';
 test('recording cards select views independently and never register dashboard charts in the graph export API', async () => {
   const close = await dashboard({ search: '?add=' + recording + '&recordingView=electrical' });
   try {
+    await openCatalog();
     await click(button(`[data-dashboard-add="${recording}"]`));
     const controls = cards().map(c => c.querySelector('[data-recording-view-select]'));
     const before = window.location.href;
@@ -424,6 +493,7 @@ test('growth comparison baselines survive a shared dashboard and stay independen
   });
   const states = () => cards().map(card => card.querySelector('[data-growth-baseline]').dataset.growthBaseline);
   try {
+    await openCatalog();
     await click(button(`[data-dashboard-add="${slug}"]`));
     await click(cards()[0].querySelector('[data-baseline-option="matched"]'));
     assert.deepEqual(states(), ['matched','science']);

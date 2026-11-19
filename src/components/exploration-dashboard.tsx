@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { FieldVelocityGraphDetail } from "@/components/field-velocity-graph";
 import { FIELD_VELOCITY_GRAPHS, graphPath } from "@/data/field-velocity-links";
 import { recordingViewToken } from "@/lib/recording-view";
@@ -10,11 +10,14 @@ import { atlasPath } from "@/lib/atlas-path";
 import { CARD_LIMIT, DASHBOARD_ROUTE, DASHBOARD_STORAGE, NAME_LIMIT, SAVE_LIMIT, dashboardHash, isDashboardGraph, readDashboardLink, readDashboards, type CardState, type DashboardState } from "@/lib/dashboard-state";
 
 type Card = CardState & { id: number };
-type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search" | "name";
+type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search" | "name" | "catalog-toggle";
 
 export function ExplorationDashboard() {
   const [cards, setCards] = useState<Card[]>([]);
   const [search, setSearch] = useState("");
+  const [catalogOpen, setCatalogOpen] = useState<boolean | null>(null);
+  const catalogId = useId();
+  const showCatalog = catalogOpen ?? cards.length === 0;
   const [name, setName] = useState("Untitled dashboard");
   const [saved, setSaved] = useState<DashboardState[] | null>(null);
   const [storageError, setStorageError] = useState("");
@@ -50,7 +53,7 @@ export function ExplorationDashboard() {
     pendingFocus.current = null;
     if (focus) root.current?.querySelector<HTMLElement>(typeof focus === "string" ? `[data-dashboard-${focus}]` :
       `[data-dashboard-card="${focus.id}"] [data-dashboard-${focus.action}]`)?.focus();
-  }, [cards]);
+  }, [cards, showCatalog]);
 
   const snapshot = (title: string): DashboardState => ({ name: title, cards: cards.map(({ id: _id, ...card }) => card) });
   async function copyLink() {
@@ -95,8 +98,14 @@ export function ExplorationDashboard() {
 
   const query = search.trim().toLowerCase();
   const matches = FIELD_VELOCITY_GRAPHS.filter(entry => `${entry.title} ${entry.slug} ${entry.graph.description} ${entry.graph.renderer === "draft" ? entry.graph.plot : ""}`.toLowerCase().includes(query));
+  function toggleCatalog(open: boolean) {
+    pendingFocus.current = open ? "search" : "catalog-toggle";
+    setCatalogOpen(open);
+  }
   function add(slug: string) {
     if (cards.length >= CARD_LIMIT) return;
+    setCatalogOpen(true);
+    if (cards.length === CARD_LIMIT - 1) pendingFocus.current = "search";
     captureLayout();
     setCards([...cards, { id: next.current++, slug }]);
   }
@@ -113,6 +122,7 @@ export function ExplorationDashboard() {
   function remove(index: number) {
     const peer = cards[index + 1] ?? cards[index - 1];
     pendingFocus.current = peer ? { id: peer.id, action: "remove" } : "search";
+    if (!peer) setCatalogOpen(true);
     captureLayout();
     setCards(cards.filter((_, i) => i !== index));
   }
@@ -140,16 +150,24 @@ export function ExplorationDashboard() {
     {linkFallback && <div className="dashboard-saves"><label>Dashboard link
       <input data-dashboard-copy-fallback readOnly value={linkFallback} onFocus={event => event.currentTarget.select()} />
     </label></div>}
-    <div className="dashboard-catalog">
-      <label>Find charts <input type="search" data-dashboard-search value={search} maxLength={100} onInput={event => setSearch(event.currentTarget.value)} /></label>
-      <ul aria-label="Charts to add">{matches.map(entry => <li key={entry.slug}>
-        <button className="dashboard-pill" type="button" data-dashboard-add={entry.slug} disabled={cards.length >= CARD_LIMIT}
-          aria-label={`Add ${entry.title}`} onClick={() => add(entry.slug)}>{entry.title} <span aria-hidden="true">+</span></button>
-      </li>)}</ul>
-      {!matches.length && <p data-dashboard-no-match role="status">No charts match “{search}”.</p>}
+    <div className="dashboard-catalog" onKeyDown={event => {
+      if (event.key !== "Escape" || !showCatalog) return;
+      event.preventDefault();
+      event.stopPropagation();
+      toggleCatalog(false);
+    }}>
+      <button className="dashboard-pill" type="button" data-dashboard-catalog-toggle aria-expanded={showCatalog} aria-controls={catalogId}
+        onClick={() => toggleCatalog(!showCatalog)}>Add chart</button>
+      <div id={catalogId} className="dashboard-catalog-panel" data-dashboard-catalog-panel hidden={!showCatalog}>
+        <label>Find charts <input type="search" data-dashboard-search value={search} maxLength={100} onInput={event => setSearch(event.currentTarget.value)} /></label>
+        {matches.length > 0 ? <ul aria-label="Charts to add">{matches.map(entry => <li key={entry.slug}>
+          <button className="dashboard-pill" type="button" data-dashboard-add={entry.slug} disabled={cards.length >= CARD_LIMIT}
+            aria-label={`Add ${entry.title}`} onClick={() => add(entry.slug)}>{entry.title} <span aria-hidden="true">+</span></button>
+        </li>)}</ul> : <p data-dashboard-no-match role="status">No charts match “{search}”.</p>}
+      </div>
       {cards.length >= CARD_LIMIT && <p role="status">Dashboard full · remove a chart to add another.</p>}
     </div>
-    {!cards.length && <p data-dashboard-empty>Choose a chart above to start comparing.</p>}
+    {!cards.length && <p data-dashboard-empty>Add a chart to start comparing.</p>}
     <div className="dashboard-grid" data-dashboard-grid>
       {cards.map((card, index) => {
         const entry = FIELD_VELOCITY_GRAPHS.find(graph => graph.slug === card.slug)!;
