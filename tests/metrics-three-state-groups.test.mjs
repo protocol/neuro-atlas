@@ -45,7 +45,7 @@ test('five ordered groups default to all charts, with independent collapsed/full
     assert.ok(names.every(name => group(name).dataset.metricState === 'full'));
     assert.equal(visible('[data-draft-chart-card]').length, 16, 'Each of the 15 numeric plots and the timeline is a peer tile');
     assert.equal(visible('svg.draft-plot-svg:not([data-draft-event-timeline])').length, 15);
-    assert.equal(visible('[data-source-observation]').length, 93, '78 preserved original observations plus 14 BCI marks and the qualified ExA-SPIM 2024 estimate');
+    assert.equal(visible('[data-source-observation]').length, 99, '78 preserved original observations, 14 BCI marks, the ExA-SPIM 2024 estimate, and 6 connectomics checkpoints');
     assert.equal(visible('[data-trends-card]').length, 1);
     assert.equal(visible('[data-performance-card]').length, 8);
     const ids = [...document.querySelectorAll('[id]')].map(n => n.id);
