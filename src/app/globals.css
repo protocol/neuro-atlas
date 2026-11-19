@@ -4,6 +4,7 @@
 @import "../components/draft-chart-plot.css";
 @import "../components/draft-chart-panel.css";
 @import "../components/landing.css";
+@import "../components/not-found.css";
 @import "../components/google-trends.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
