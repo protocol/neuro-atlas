@@ -5,7 +5,9 @@ import { FIELD_VELOCITY_GRAPHS, GRAPH_GROUP_ANCHORS, graphPath } from "@/data/fi
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { atlasPath } from "@/lib/atlas-path";
 
-export const dynamicParams = false;
+// With a basePath, Next16 fallback:false misses can re-enter legacy redirects.
+// Known graphs remain prerendered; unknown paths must reach our explicit 404.
+export const dynamicParams = true;
 export function generateStaticParams() {
   return FIELD_VELOCITY_GRAPHS.map(({ slug }) => ({ slug }));
 }
