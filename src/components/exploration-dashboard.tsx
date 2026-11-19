@@ -10,7 +10,7 @@ import { atlasPath } from "@/lib/atlas-path";
 import { CARD_LIMIT, DASHBOARD_ROUTE, DASHBOARD_STORAGE, NAME_LIMIT, SAVE_LIMIT, dashboardHash, isDashboardGraph, readDashboardLink, readDashboards, type CardState, type DashboardState } from "@/lib/dashboard-state";
 
 type Card = CardState & { id: number };
-type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search";
+type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search" | "name";
 
 export function ExplorationDashboard() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -48,7 +48,7 @@ export function ExplorationDashboard() {
   useLayoutEffect(() => {
     const focus = pendingFocus.current;
     pendingFocus.current = null;
-    if (focus) root.current?.querySelector<HTMLElement>(focus === "search" ? "[data-dashboard-search]" :
+    if (focus) root.current?.querySelector<HTMLElement>(typeof focus === "string" ? `[data-dashboard-${focus}]` :
       `[data-dashboard-card="${focus.id}"] [data-dashboard-${focus.action}]`)?.focus();
   }, [cards]);
 
@@ -84,11 +84,13 @@ export function ExplorationDashboard() {
       setStatus(`Saved “${trimmed}” in this browser.`);
     } catch { setStorageError("Could not save this dashboard. Try again or copy a dashboard link."); }
   }
-  function reopen(snapshot: DashboardState) {
+  function reopen(snapshot: DashboardState, appendCurrent = false) {
     setName(snapshot.name);
     captureLayout();
-    setCards(snapshot.cards.map(card => ({ ...card, id: next.current++ })));
-    setStatus(`Opened “${snapshot.name}”.`);
+    if (appendCurrent) pendingFocus.current = "name";
+    const opened = snapshot.cards.map(card => ({ ...card, id: next.current++ }));
+    setCards(appendCurrent ? [...opened, ...cards] : opened);
+    setStatus(appendCurrent ? `Added charts to “${snapshot.name}”. Save locally to keep the changes.` : `Opened “${snapshot.name}”.`);
   }
 
   const query = search.trim().toLowerCase();
@@ -124,7 +126,12 @@ export function ExplorationDashboard() {
       <button className="dashboard-pill" type="button" data-dashboard-save disabled={!saved || !name.trim()} onClick={save}>Save locally</button>
       <button className="dashboard-pill" type="button" data-dashboard-copy disabled={!cards.length} onClick={copyLink}>Copy dashboard link</button>
       {saved && saved.length > 0 && <details><summary>Saved in this browser</summary><ul>
-        {saved.map(snapshot => <li key={snapshot.name}><button className="dashboard-pill" type="button" data-dashboard-reopen onClick={() => reopen(snapshot)}>{snapshot.name}</button></li>)}
+        {saved.map(snapshot => <li key={snapshot.name}>
+          <button className="dashboard-pill" type="button" data-dashboard-reopen onClick={() => reopen(snapshot)}>{snapshot.name}</button>
+          {cards.length > 0 && name !== snapshot.name && <button className="dashboard-pill" type="button" data-dashboard-append-saved
+            aria-label={`Add current charts to ${snapshot.name}`} disabled={cards.length + snapshot.cards.length > CARD_LIMIT}
+            onClick={() => reopen(snapshot, true)}>Add current charts</button>}
+        </li>)}
       </ul></details>}
     </div>
     {storageError && <p data-dashboard-error role="alert">{storageError}</p>}

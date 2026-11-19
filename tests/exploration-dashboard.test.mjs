@@ -381,3 +381,21 @@ test('growth comparison baselines survive a shared dashboard and stay independen
   try { assert.deepEqual(states(), ['matched','science'], 'copied comparison reproduces its selected baselines'); }
   finally { await close(); }
 });
+
+test('a chart brought from another graph can be added to a saved dashboard without overwriting the saved original', async () => {
+  const saved = JSON.stringify([{ name: 'Signal comparison', cards: [{ slug: recording, settings: { recordingView: 'optical' } }] }]);
+  const close = await dashboard({ search: '?add=' + bitrate }, win => win.localStorage.setItem(storage, saved));
+  try {
+    const action = button('[data-dashboard-append-saved]');
+    assert.ok(action, 'a new chart can be appended to a named dashboard');
+    action.focus();
+    await click(action);
+    assert.ok(document.activeElement.hasAttribute('data-dashboard-name'), 'focus moves to the dashboard name when the append control disappears');
+    assert.deepEqual(cards().map(card => card.dataset.dashboardGraph), [recording, bitrate]);
+    assert.equal(cards()[0].querySelector('[data-recording-view]').dataset.recordingView, 'optical');
+    assert.equal(button('[data-dashboard-name]').value, 'Signal comparison');
+    assert.equal(window.localStorage.getItem(storage), saved);
+    await click(button('[data-dashboard-save]'));
+    assert.equal(JSON.parse(window.localStorage.getItem(storage))[0].cards.length, 2);
+  } finally { await close(); }
+});
