@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
-import { whenChartRegistered } from "@/lib/chart-export-api";
+import { hasGraphExportHost, withGraphExport, whenChartRegistered } from "@/lib/chart-export-api";
 import type { ChartExport } from "@/lib/chart-export";
 
 /**
@@ -23,6 +23,7 @@ export function useCardExporting(anchor: string) {
 
 export async function withCardExport<T>(anchor: string, run: (getChart: () => ChartExport) => T | Promise<T>): Promise<T> {
   const slug = canonicalPerformanceAnchor(anchor);
+  if (hasGraphExportHost()) return withGraphExport(slug, run);
   exporting.add(slug);
   emit();
   try {

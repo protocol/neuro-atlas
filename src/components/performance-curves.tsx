@@ -1,11 +1,13 @@
 "use client";
 
+import { GraphExportContext } from "@/components/graph-export-context";
+import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 import { useMetricPreviewWidth } from "./use-metric-preview-width";
 
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
-import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExternalStore } from "react";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
@@ -335,18 +337,33 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   </div></>;
 }
 
-export function CurveCard({ id, title, previewTitle, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
+type CurveCardProps = { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode };
+
+export function CurveCard({ detail = false, ...props }: CurveCardProps & { detail?: boolean }) {
+  return detail ? <CurveDetail {...props} /> : <CurvePreviewCard {...props} />;
+}
+
+function CurveDetail({ id, title, plot, children, modalIntro, modalPlot }: CurveCardProps) {
+  return <>
+    {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
+    {children}
+  </>;
+}
+
+function CurvePreviewCard(props: CurveCardProps) {
+  const { id, title, previewTitle, coverage, plot, sourceLinks, previewNote } = props;
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
-  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
+  const href = useGraphHref(id);
+  const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
-    <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-
-      <span className="pc-card-title">{previewTitle ?? title}</span>
-      {plot && <CurvePlot data={plot} compact />}
-    </button>
+    {href ? <a href={href} data-graph-link={id} className="pc-trigger" data-metric-card-body>
+      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+    </a> : <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+    </button>}
     <div className="pc-card-share" data-metric-card-footer>
       {sourceLinks?.length ? <div className="pc-preview-sources">{sourceLinks.map(source => <a key={source.url} data-curve-source-link href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>)}</div> : null}
       {/* Coverage stays complete; in the footer a capped preview can never clip it. */}
@@ -354,17 +371,16 @@ export function CurveCard({ id, title, previewTitle, coverage, plot, children, s
       {share}
       {plot && <CardPngButton anchor={id} title={title} />}
     </div>
-    {(open || exporting) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>
-      {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
-      {children}
+    {(open || (!href && exporting)) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>
+      <CurveDetail {...props} />
     </ChartModal>}
   </article>;
 }
 
-export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {
+export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks, detail }: { detail?: boolean; series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks, connectTracks };
-  return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
+  return <CurveCard detail={detail} id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <ModalReading><section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
       <h4>Definitions &amp; methodology</h4>
       <p>{series.description}</p>
@@ -429,10 +445,12 @@ function selectRecordingView(id: RecordingViewId) {
   window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
-function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
-  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
+function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+  const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
+  const exportRequest = useContext(GraphExportContext);
+  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
   const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
-  return <CurveCard id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
+  return <CurveCard detail={detail} id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
     coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
     previewNote="Historical reported neurons per experiment · mixed preparations."
     plot={recordingPlot(HISTORICAL_RECORDING)}
@@ -486,7 +504,7 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
 }
 
 type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: string; source: { repository: string } };
-export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
+export function PerformanceCurves({ data, provenance, selection, flat = false, detail = false }: { detail?: boolean; data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
   const includes = (id: string) => !selection || selection.includes(id);
   const provenanceDetails = <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
       <p>Archived PL R&amp;D source snapshot.</p>
@@ -495,7 +513,7 @@ export function PerformanceCurves({ data, provenance, selection, flat = false }:
       <p>Export SHA-256: <code>{provenance.sha256}</code></p>
     </details>;
   const cards = <>
-      {includes("simultaneously-recorded-neurons") && <RecordingCard historical={data.record} historicalProvenance={provenanceDetails} />}
+      {includes("simultaneously-recorded-neurons") && <RecordingCard detail={detail} historical={data.record} historicalProvenance={provenanceDetails} />}
       {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} provenance={flat ? provenanceDetails : undefined} />)}
       {!flat && includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>

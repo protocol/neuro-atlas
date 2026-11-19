@@ -1,5 +1,7 @@
 "use client";
 
+import { chartShareUrl } from "@/lib/chart-export";
+import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
@@ -104,17 +106,14 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const id = `google-trends-${group.id}`;
-  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
+  const href = useGraphHref(id);
+  const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
   const [copyStatus, setCopyStatus] = useState('');
   const [copyFallback, setCopyFallback] = useState('');
-  const [valuesOpen, setValuesOpen] = useState(false);
-  const latest = group.rows.filter(row => !row.partial).at(-1)!;
-  const normalization = group.id === 'neurotech' ? 'English search terms compared in one request on a shared 0–100 scale.' : 'Independently normalized English brand-search interest.';
-  const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
   const share = <div className="pc-share">
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
-      const url = performanceUrl(window.location.href, id);
+      const url = (href ? chartShareUrl : performanceUrl)(window.location.href, id);
       try { await navigator.clipboard.writeText(url); setCopyFallback(''); setCopyStatus('Link copied'); }
       catch { setCopyFallback(url); setCopyStatus('Select and copy the chart URL below.'); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
@@ -122,11 +121,15 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id} data-trends-revision={revision}>
     <div data-metric-card-body>
-    <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+    {href ? <a href={href} data-graph-link={id} className="pc-trigger" aria-label={`Open ${group.title}`}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
       <TrendPlot key={group.rawSha256} group={group} compact />
-    </button>
+    </a> : <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+      <h3>{group.title}</h3>
+      <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
+      <TrendPlot key={group.rawSha256} group={group} compact />
+    </button>}
     <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Independently normalized brand-search interest.</p>}</div>
     </div>
     <div data-metric-card-footer>
@@ -134,8 +137,19 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
       {share}
       <CardPngButton anchor={id} title={group.title} />
     </div>
-    {(open || exporting) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
-      <TrendPlot key={group.rawSha256} group={group} link={share} intro={<ModalSources><p className="gt-scope mx-scope-line">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p></ModalSources>} /><Legend group={group} />
+    {(open || (!href && exporting)) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
+      <TrendDetail group={group} revision={revision} link={share} />
+    </ChartModal>}
+  </article>;
+}
+
+function TrendDetail({group, revision, link}: {group: Group; revision: string; link?: React.ReactNode}) {
+  const [valuesOpen, setValuesOpen] = useState(false);
+  const latest = group.rows.filter(row => !row.partial).at(-1)!;
+  const normalization = group.id === 'neurotech' ? 'English search terms compared in one request on a shared 0–100 scale.' : 'Independently normalized English brand-search interest.';
+  const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
+  return <>
+      <TrendPlot key={group.rawSha256} group={group} link={link} intro={<ModalSources><p className="gt-scope mx-scope-line">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p></ModalSources>} /><Legend group={group} />
       <ModalReading>{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
@@ -161,12 +175,15 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
           </table>
         </div>
       </details></ModalData>
-    </ChartModal>}
-  </article>;
+  </>;
 }
 
-export function GoogleTrends({ selection, flat = false }: { selection?: readonly string[]; flat?: boolean } = {}) {
+export function GoogleTrends({ selection, flat = false, detail = false }: { selection?: readonly string[]; flat?: boolean; detail?: boolean } = {}) {
   const { revision, snapshot: { groups } } = useTrendsView();
+  if (detail) {
+    const group = groups.find(group => selection?.includes(group.id));
+    return group ? <TrendDetail group={group} revision={revision} /> : null;
+  }
   const cards = groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} revision={revision} />);
   if (flat) return <>{cards}</>;
   const sectionId = selection ? `google-trends-${selection.join("-")}-section` : "google-trends";

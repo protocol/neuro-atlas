@@ -1,5 +1,6 @@
 "use client";
 
+import { useGraphHref } from "@/components/field-velocity-route-context";
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -350,7 +351,8 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
   </>;
 }
 function PublicationCard({index,snapshot,data}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData}) {
-  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${canonicalPerformanceAnchor(anchor)}`, trigger=useRef<HTMLButtonElement>(null);
+  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), trigger=useRef<HTMLButtonElement>(null);
+  const href=useGraphHref(anchor), open=!href&&hash===`#${canonicalPerformanceAnchor(anchor)}`;
   const exporting=useCardExporting(anchor);
   const hasScience=annualScienceAvailable(data);
   const preview=useRef<HTMLDivElement>(null);
@@ -358,8 +360,8 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
   const previewHeight=170+previewExtra;
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
     <div data-metric-card-body>
-      <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span></button>
-      <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}><button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button></div>
+      {href ? <a href={href} data-graph-link={anchor} className="pc-trigger"><span className="pc-card-title">{titles[index]}</span></a> : <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span></button>}
+      <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}>{href ? <a href={href} data-graph-link={anchor} className="publication-preview-trigger" aria-label={`Enlarge ${titles[index]}`}><Plot index={index} data={data} compact previewHeight={previewHeight}/></a> : <button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button>}</div>
       {index===0&&<p className="publication-preview-note publication-preview-legend" data-annual-preview-key={hasScience?"":undefined}>{hasScience?<><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span><span data-series-key="all-research" style={{color:teal}}>● All research</span><span data-series-key="four-domain"><span aria-hidden="true" style={{color:gray}}>■</span> Four-domain range</span></>:data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
       {index===1&&<p className="publication-preview-note">21 groups · scroll for all</p>}
       {index===2&&<ul className="publication-preview-sectors">{data.sectors.map(s=><li key={s.sector}><span style={{background:s.color}}/>{s.label}: {number(s.count)} ({number(s.share)}%)</li>)}</ul>}
@@ -369,15 +371,20 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
       <DraftChartShare anchor={anchor} label={titles[index]} className="pc-share"/>
       <CardPngButton anchor={anchor} title={titles[index]} disabled={index===3&&!data.endpointTransitions}/>
     </div>
-    {(open||exporting)&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger} offscreen={!open}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
+    {(open||(!href&&exporting))&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger} offscreen={!open}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}
   </article>;
 }
 /** Anonymous compiled aggregates only. No network access, author records or production fallback. */
-export function PublicationCharts({snapshot,query="",allowTestFixture=false}:{snapshot:PublicationSnapshot|unknown;query?:string;allowTestFixture?:boolean}) {
+export function PublicationCharts({snapshot,query="",allowTestFixture=false,detail}:{snapshot:PublicationSnapshot|unknown;query?:string;allowTestFixture?:boolean;detail?:string}) {
   const latest=usePublicationSource();
   const selected=allowTestFixture?snapshot:(latest??snapshot);
   const validated=useMemo(()=>parsePublicationSnapshot(selected,{allowTestFixture}),[selected,allowTestFixture]);
   const data=useMemo(()=>selectPublicationCharts(validated),[validated]);
+  if (detail) {
+    const index = PUBLICATION_ANCHORS.findIndex(anchor => anchor === detail);
+    const anchor = PUBLICATION_ANCHORS[index];
+    return anchor ? <PublicationDetails key={`${anchor}:${validated.source.sourceHash}`} index={index} snapshot={validated} data={data} anchor={anchor} /> : null;
+  }
   const term=query.trim().toLocaleLowerCase();
   return <>{PUBLICATION_ANCHORS.map((anchor,index)=><div key={anchor} className="metric-chart-fragment" {...metricSizingVisibility(!!term&&!JSON.stringify([titles[index],scope(index,validated),PUBLICATION_SEARCH_TEXT,index===1?data.growth:[]]).toLocaleLowerCase().includes(term))}><PublicationCard index={index} snapshot={validated} data={data}/></div>)}</>;
 }

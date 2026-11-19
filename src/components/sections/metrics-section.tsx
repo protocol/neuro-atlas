@@ -1,5 +1,6 @@
 "use client";
 
+import { readOverviewReturn, type OverviewSnapshot } from "@/lib/field-velocity/overview-return";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { installChartExportApi } from "@/lib/chart-export-api";
 import { fieldVelocityLink, performanceTarget, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
@@ -43,11 +44,31 @@ export type MetricReferences = { recording: React.ReactNode };
 export function MetricsSection({ performance, references, engagementPreview }: { performance: React.ReactNode; references?: MetricReferences; engagementPreview?: React.ReactNode }) {
   const [states, setStates] = useState<Record<string, GroupState>>({});
   const [query, setQuery] = useState("");
+  const restored = useRef<OverviewSnapshot | null>(null);
   const pendingReveal = useRef<string | null>(null);
   const cancelReveal = useRef<(() => void) | undefined>(undefined);
   const hash = usePerformanceHash();
   // Publish window.neuroAtlas up front so automation can call exportAll before opening any chart.
   useEffect(() => { installChartExportApi(); }, []);
+  useLayoutEffect(() => {
+    const snapshot = readOverviewReturn(window);
+    if (!snapshot) return;
+    restored.current = snapshot;
+    let frame = requestAnimationFrame(() => {
+      setStates(snapshot.groups);
+      setQuery(snapshot.query);
+      frame = requestAnimationFrame(() => {
+        const link = [...document.querySelectorAll<HTMLAnchorElement>("a[data-graph-link]")].find(link => link.dataset.graphLink === snapshot.anchor && !link.closest("[hidden]"));
+        link?.focus({ preventScroll: true });
+        for (const [id, left] of Object.entries(snapshot.rails)) {
+          const rail = document.getElementById(id);
+          if (rail) rail.scrollLeft = left;
+        }
+        window.scrollTo({ top: snapshot.scrollY, behavior: "instant" });
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   useLayoutEffect(() => {
     const reveal = () => {
       const anchor = performanceTarget(hash.slice(1));
@@ -66,7 +87,8 @@ export function MetricsSection({ performance, references, engagementPreview }: {
         setStates(previous => ({ ...previous, [group.name]: "full" }));
       }
     };
-    reveal();
+    const location = window.location;
+    if (restored.current?.href !== location.pathname + location.search + location.hash) reveal();
     window.addEventListener("atlas-metric-reveal", reveal);
     return () => {
       window.removeEventListener("atlas-metric-reveal", reveal);
@@ -150,7 +172,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
       const open = state !== "collapsed";
       const contentId = `metric-category-${group.id}`;
       const count = chartCounts[group.name];
-      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} style={{ "--metric-tone": METRIC_GROUP_TONES[index % METRIC_GROUP_TONES.length] } as React.CSSProperties} {...metricSizingVisibility(!!term && !matched)}>
+      return <section key={group.name} className="metric-category" data-metrics-category={group.name} data-metric-state={state} data-metric-preference={states[group.name] ?? "full"} style={{ "--metric-tone": METRIC_GROUP_TONES[index % METRIC_GROUP_TONES.length] } as React.CSSProperties} {...metricSizingVisibility(!!term && !matched)}>
         {retiredAnchors.map(id => <span key={id} id={id} className="metric-anchor" data-retired-metric-anchor aria-hidden="true" />)}
         <header className="metric-category-head">
           <span className="metric-category-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>

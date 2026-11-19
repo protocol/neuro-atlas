@@ -1,31 +1,82 @@
 "use client";
 
-/**
- * Programmatic access to the same branded PNG the Download PNG control produces.
- *
- * The export UI lives inside each chart's top-layer <dialog>, and it hands bytes
- * off through a blob <a download> / clipboard write — both of which headless and
- * CDP-driven browsers cannot open or capture. This module exposes the identical,
- * already-built image as retrievable data on `window.neuroAtlas`, so automation
- * (and any script) can pull every chart without driving the dialog or a download
- * sink. It reuses buildChartImage/chartPng verbatim — no second rendering path.
- *
- * Usage (from a page console / automation eval):
- *   await window.neuroAtlas.exportChart("citation-latency") // one open chart
- *   await window.neuroAtlas.exportAll()                     // opens each, exports
- *   window.neuroAtlas.charts()                              // anchors + titles
- */
-
 import { buildChartImage, chartPng, type ChartExport } from "@/lib/chart-export";
-import { FIELD_VELOCITY_LINKS, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+import { FIELD_VELOCITY_GRAPHS, canonicalPerformanceAnchor, fieldVelocityGraph, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
+import { atlasPath } from "@/lib/atlas-path";
 
 type Registration = { title: string; getChart: () => ChartExport };
 export type ExportedChart = { anchor: string; title: string; filename: string; url: string; width: number; height: number; pngBase64: string };
+export type GraphExportRequest = { id: number; entry: FieldVelocityGraph; url: string };
+const visible = new Map<string, Map<symbol, Registration>>();
+const hosted = new Map<number, Registration>();
+const activeRegistration = (slug: string) => Array.from(visible.get(slug)?.values() ?? []).at(-1);
+const hosts = new Set<symbol>();
+const listeners = new Set<() => void>();
+let request: GraphExportRequest | null = null;
+let requestId = 0;
+let queue: Promise<unknown> = Promise.resolve();
 
-/** Only mounted ChartShare controls register, so a registered anchor always has a laid-out, exportable SVG. */
-const registry = new Map<string, Registration>();
+export function subscribeGraphExport(listener: () => void) {
+  listeners.add(listener);
+  return () => { listeners.delete(listener); };
+}
+export const currentGraphExport = () => request;
+function publish(next: GraphExportRequest | null) {
+  request = next;
+  for (const listener of listeners) listener();
+}
+export function attachGraphExportHost() {
+  const owner = Symbol();
+  hosts.add(owner);
+  installChartExportApi();
+  return () => {
+    hosts.delete(owner);
+    if (!hosts.size) publish(null);
+  };
+}
 
-const chartAnchors = () => FIELD_VELOCITY_LINKS.filter(link => link.kind === "chart").map(link => link.slug);
+/** A bounded wait which also terminates in background tabs or after route unmount. */
+async function waitFor(get: () => Registration | undefined, active = () => true, timeout = 4000) {
+  const deadline = Date.now() + timeout;
+  while (active() && Date.now() < deadline) {
+    const entry = get();
+    if (entry) return entry;
+    await new Promise(resolve => setTimeout(resolve, 16));
+  }
+}
+export function whenChartRegistered(anchor: string) {
+  return waitFor(() => activeRegistration(canonicalPerformanceAnchor(anchor)));
+}
+export function hasGraphExportHost() { return hosts.size > 0; }
+
+export function withGraphExport<T>(anchor: string, run: (getChart: () => ChartExport, url: string) => T | Promise<T>, url = window.location.href): Promise<T> {
+  const entry = fieldVelocityGraph(anchor);
+  if (!entry) return Promise.reject(new Error("Unknown graph"));
+  const owner = Array.from(hosts).at(-1);
+  const job = async () => {
+    const { slug } = entry;
+    const live = activeRegistration(slug);
+    if (live) return run(live.getChart, url);
+    if (!owner || !hosts.has(owner)) throw new Error(`Graph export host unavailable: ${slug}`);
+    if (window.location.pathname === atlasPath(graphPath(entry))) {
+      // Do not silently substitute a default view for the visible chart during a transition.
+      throw new Error(`Graph not ready to export: ${slug}`);
+    }
+    const active = { id: ++requestId, entry, url };
+    publish(active);
+    try {
+      const registration = await waitFor(() => hosted.get(active.id), () => request === active && hosts.has(owner));
+      if (!registration) throw new Error(`Graph did not register for export: ${slug}`);
+      return await run(registration.getChart, url);
+    } finally {
+      hosted.delete(active.id);
+      if (request === active) publish(null);
+    }
+  };
+  const result = queue.then(job);
+  queue = result.catch(() => {});
+  return result;
+}
 
 async function blobToBase64(blob: Blob) {
   const bytes = new Uint8Array(await blob.arrayBuffer());
@@ -33,80 +84,50 @@ async function blobToBase64(blob: Blob) {
   for (let i = 0; i < bytes.length; i += 8192) binary += String.fromCharCode(...bytes.subarray(i, i + 8192));
   return btoa(binary);
 }
-
-async function exportChart(anchor: string): Promise<ExportedChart> {
-  const slug = canonicalPerformanceAnchor(anchor);
-  const entry = registry.get(slug);
-  if (!entry) throw new Error(`Chart "${slug}" is not open. Set location.hash to "#${slug}" (or call exportAll) so its panel mounts, then retry.`);
-  const image = buildChartImage(entry.getChart(), window.location.href);
-  const png = await chartPng(image);
-  return { anchor: slug, title: image.title, filename: `neuro-atlas-${slug}.png`, url: image.url, width: image.width, height: image.height, pngBase64: await blobToBase64(png) };
+async function exportChart(anchor: string, url = window.location.href): Promise<ExportedChart> {
+  return withGraphExport(anchor, async (getChart, current) => {
+    const { title, filename, url, width, height, svg } = buildChartImage(getChart(), current);
+    const png = await chartPng({ title, filename, url, width, height, svg });
+    return { anchor: canonicalPerformanceAnchor(anchor), title, filename, url, width, height, pngBase64: await blobToBase64(png) };
+  }, url);
 }
-
-/** Wait a bounded number of frames for the hash-opened panel to mount and register. */
-function waitForRegistration(slug: string, frames = 40) {
-  return new Promise<boolean>(resolve => {
-    const tick = (left: number) => {
-      if (registry.has(slug)) return resolve(true);
-      if (left <= 0) return resolve(false);
-      requestAnimationFrame(() => tick(left - 1));
-    };
-    tick(frames);
-  });
-}
-
-/** Open each chart's panel by hash in turn, export it, and restore the original location. */
 async function exportAll(): Promise<{ exported: ExportedChart[]; skipped: string[] }> {
-  const previousHash = window.location.hash;
-  const exported: ExportedChart[] = [];
-  const skipped: string[] = [];
-  try {
-    for (const slug of chartAnchors()) {
-      if (!registry.has(slug)) {
-        window.location.hash = "";
-        window.location.hash = slug;
-        window.dispatchEvent(new HashChangeEvent("hashchange"));
-        if (!(await waitForRegistration(slug))) { skipped.push(slug); continue; }
-      }
-      try { exported.push(await exportChart(slug)); }
-      catch { skipped.push(slug); }
-    }
-  } finally {
-    window.location.hash = previousHash;
-    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  const url = window.location.href;
+  const exported: ExportedChart[] = [], skipped: string[] = [];
+  for (const { slug } of FIELD_VELOCITY_GRAPHS) {
+    try { exported.push(await exportChart(slug, url)); }
+    catch { skipped.push(slug); }
   }
   return { exported, skipped };
 }
 
-function install() {
+/** Public API uses the same full renderer and image serialization as the chart controls. */
+export function installChartExportApi() {
   if (typeof window === "undefined") return;
-  const existing = (window as unknown as { neuroAtlas?: { version?: number } }).neuroAtlas;
-  if (existing?.version === 1) return;
-  (window as unknown as { neuroAtlas?: unknown }).neuroAtlas = {
+  const win = window as unknown as { neuroAtlas?: { version: number } };
+  if (win.neuroAtlas?.version === 1) return;
+  const api = {
     version: 1,
-    charts: () => FIELD_VELOCITY_LINKS.filter(link => link.kind === "chart").map(link => ({ anchor: link.slug, title: link.title, open: registry.has(link.slug) })),
-    exportChart,
+    charts: () => FIELD_VELOCITY_GRAPHS.map(({ slug, title }) => ({ anchor: slug, title, open: !!activeRegistration(slug) })),
+    exportChart: (anchor: string) => exportChart(anchor),
     exportAll,
   };
+  win.neuroAtlas = api;
 }
 
-/** Resolve a chart's registration once its share control mounts (or undefined after the frame budget). */
-export async function whenChartRegistered(anchor: string, frames = 60): Promise<Registration | undefined> {
+export function registerChart(anchor: string, registration: Registration, requestId?: number) {
+  if (requestId !== undefined) {
+    if (request?.id === requestId && request.entry.slug === canonicalPerformanceAnchor(anchor)) hosted.set(requestId, registration);
+    return () => { if (hosted.get(requestId) === registration) hosted.delete(requestId); };
+  }
   const slug = canonicalPerformanceAnchor(anchor);
-  return await waitForRegistration(slug, frames) ? registry.get(slug) : undefined;
-}
-
-/** Make window.neuroAtlas available before any chart panel opens, so exportAll can bootstrap. */
-export function installChartExportApi() {
-  install();
-}
-
-export function registerChart(anchor: string, registration: Registration) {
-  if (typeof window === "undefined") return;
-  registry.set(canonicalPerformanceAnchor(anchor), registration);
-  install();
-}
-
-export function unregisterChart(anchor: string) {
-  registry.delete(canonicalPerformanceAnchor(anchor));
+  const registrations = visible.get(slug) ?? new Map<symbol, Registration>();
+  visible.set(slug, registrations);
+  const owner = Symbol();
+  registrations.set(owner, registration);
+  installChartExportApi();
+  return () => {
+    registrations.delete(owner);
+    if (!registrations.size) visible.delete(slug);
+  };
 }

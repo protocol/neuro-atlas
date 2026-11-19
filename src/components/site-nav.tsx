@@ -63,7 +63,7 @@ export function SideNav() {
       <nav className="flex flex-1 flex-col px-2">
         <div className="flex flex-col gap-0.5">
           {TABS.map((t) => (
-            <VItem key={t.href} tab={t} active={pathname === t.href} />
+            <VItem key={t.href} tab={t} active={pathname === t.href || (t.href === "/field-velocity" && pathname.startsWith("/field-velocity/"))} />
           ))}
         </div>
         <div className="mt-auto flex flex-col gap-2 pt-4">

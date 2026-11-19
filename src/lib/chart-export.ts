@@ -1,11 +1,11 @@
-import { performanceUrl } from "@/lib/field-velocity/navigation";
-import { performanceTarget } from "@/data/field-velocity-links";
+import { atlasBasePath } from "@/lib/atlas-path";
+import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
 export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
-export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
+export type ChartImage = { svg: string; width: number; height: number; url: string; title: string; filename: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
 const attributes = new Set(["viewBox", "preserveAspectRatio", "x", "y", "x1", "x2", "y1", "y2", "cx", "cy", "r", "rx", "ry", "width", "height", "d", "points", "dx", "dy", "transform", "textLength", "lengthAdjust"]);
@@ -51,13 +51,31 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
 /** Share stable chart identity, never credentials or arbitrary query tokens.
  * Only this chart's exact, single enum may carry measurement-view state.
  * Navigation and existing Copy link controls retain their original URL contract. */
+function mountedBase(url: URL) {
+  // Accept the app’s current validated mount, including the public proxy prefix.
+  const path = url.pathname.match(/^((?:\/[a-z0-9_-]+)*)\/field-velocity(?:\/[a-z0-9-]+)?\/?$/i);
+  return path?.[1] ?? atlasBasePath;
+}
+
 export function chartShareUrl(current: string, anchor: string) {
-  const url = new URL(performanceUrl(current, anchor));
+  const link = fieldVelocityLink(anchor);
+  if (!link) throw new Error("Unknown chart link");
+  const url = new URL(current);
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
-  const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
+  const recordingView = link.graph?.renderer === "recording" ? recordingViewToken(url) : undefined;
+  const base = mountedBase(url);
+  url.pathname = base + (link.graph ? graphPath(link as FieldVelocityGraph) : "/field-velocity");
+  url.hash = link.graph ? "" : link.slug;
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   return url.href;
+}
+
+export function chartImageFilename(anchor: string, currentUrl: string) {
+  const link = fieldVelocityLink(anchor);
+  if (link?.kind !== "chart") throw new Error("Unknown chart filename");
+  const view = link.graph?.renderer === "recording" ? recordingViewToken(new URL(currentUrl)) : undefined;
+  return `neuro-atlas-${link.slug}${view ? `-${view}` : ""}.png`;
 }
 
 function resolved(value: string, source: Element): string {
@@ -283,7 +301,7 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const evidence = `<desc>${escape(chart.notes.join("\n"))}</desc>`;
   // Fail explicitly rather than silently clipping scientific scope or overflowing a canvas.
   if (height > 6000 || body.join("").length + evidence.length > 4_000_000) throw new Error("Chart export exceeds safe image bounds");
-  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"${chart.pointKey?.length ? ` data-export-crop-bottom="${cropBottom}"` : ""}>${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
+  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"${chart.pointKey?.length ? ` data-export-crop-bottom="${cropBottom}"` : ""}>${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title, filename: chartImageFilename(anchor, url) };
 }
 
 export async function chartPng(image: ChartImage): Promise<Blob> {
@@ -339,7 +357,7 @@ export async function downloadChartImage(image: ChartImage) {
   const png = await chartPng(image);
   const url = URL.createObjectURL(png);
   const link = document.createElement("a");
-  link.href = url; link.download = `neuro-atlas-${new URL(image.url).hash.slice(1)}.png`;
+  link.href = url; link.download = image.filename;
   document.body.append(link);
   try { link.click(); } finally { link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
 }

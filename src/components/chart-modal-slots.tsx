@@ -12,13 +12,16 @@ import { createPortal } from "react-dom";
 export type ModalSlotKind = "actions" | "reading" | "sources" | "data";
 export type ModalSlots = Partial<Record<ModalSlotKind, HTMLElement | null>>;
 export const ModalSlotsContext = createContext<ModalSlots | null>(null);
+// Standalone charts stay inline in document order, including their SSR evidence.
+export const InlineChartDetail = createContext(false);
 
 export function ModalSlot({ kind, children, modalOnly = false }: { kind: ModalSlotKind; children: ReactNode; modalOnly?: boolean }) {
   const slots = useContext(ModalSlotsContext);
+  const inline = useContext(InlineChartDetail);
   const target = slots?.[kind];
   if (target) return createPortal(children, target);
   // Inside a pop-out whose region is still mounting, wait one commit rather than flash inline.
-  if (slots || modalOnly) return null;
+  if (slots || (modalOnly && !inline)) return null;
   return <>{children}</>;
 }
 

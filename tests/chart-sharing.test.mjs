@@ -1,4 +1,4 @@
-import { canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
+import { fieldVelocityGraph, canonicalPerformanceAnchor } from "../src/data/field-velocity-links.ts";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { StrictMode } from 'react';
@@ -75,7 +75,7 @@ test('each curated numeric panel offers a single-item PNG + absolute chart URL +
     assert.deepEqual(items[0].types.sort(), ['image/png', 'text/html', 'text/plain']);
     for (const mime of items[0].types) assert.equal((await items[0].getType(mime)).type, mime);
     const link = await (await items[0].getType('text/plain')).text();
-    assert.equal(link, `https://atlas.example/neuro-atlas/field-velocity#${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}`);
+    assert.equal(link, `https://atlas.example/neuro-atlas/field-velocity/${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}`);
     const html = await (await items[0].getType('text/html')).text();
     assert.match(html, /<img[^>]+src="data:image\/png;base64,/);
     assert.ok(html.includes(`href="${link}"`));
@@ -123,7 +123,7 @@ for (const id of ['simultaneously-recorded-neurons', 'tissue-mapped', 'neural-re
       assert.match(exported.window.document.documentElement.textContent, /Sources?:/);
       assert.match(exported.window.document.documentElement.textContent, id.startsWith('google-trends') ? /0–100.*weekly|weekly.*0–100/i : /scale/);
       assert.ok(exported.window.document.documentElement.textContent.includes(modal.querySelector('h2').textContent));
-      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), `https://atlas.example/field-velocity#${canonicalPerformanceAnchor(id)}`);
+      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), `https://atlas.example/field-velocity${fieldVelocityGraph(id) ? "/" : "#"}${canonicalPerformanceAnchor(id)}`);
       assert.ok(modal.querySelector('[aria-label^="Copy link"]'));
       exported.window.close();
     } finally { await cleanup(); boundary.restore(); }
@@ -357,7 +357,7 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     assert.deepEqual([...card.querySelectorAll('[data-copy-draft-link]')].map(button => button.dataset.copyDraftLink), ['metric-recording-hours']);
     assert.equal(card.querySelectorAll('.draft-chart-share a').length, 0, 'Copy link replaces duplicate Direct link');
     await click(card.querySelector('[data-copy-chart]'));
-    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#neural-recording-hours-selected-datasets');
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity/neural-recording-hours-selected-datasets');
     const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
     const doc = exported.window.document;
     assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
@@ -390,7 +390,7 @@ test('NeuroAI clipboard export uses the corrected performance–cost title with 
     assert.equal(boundary.writes.length, 1);
     assert.match(boundary.svgs[0], /NeuroAI performance–cost frontier/);
     assert.doesNotMatch(boundary.svgs[0], /frontier over time/);
-    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity#neuroai-performance-cost-frontier');
+    assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity/neuroai-performance-cost-frontier');
   } finally { await cleanup(); boundary.restore(); }
 });
 
@@ -427,7 +427,7 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
     assert.ok(modal.querySelector('[data-point-description]').textContent);
     await click(modal.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes.length, 1, modal.textContent);
-    const url = `https://atlas.example/field-velocity?recordingView=${view.id}#simultaneous-neural-recordings`;
+    const url = `https://atlas.example/field-velocity/simultaneous-neural-recordings?recordingView=${view.id}`;
     assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), url);
     await click(modal.querySelector('[data-download-chart]'));
     assert.equal(boundary.downloads.length, 1);
@@ -455,5 +455,64 @@ for (const view of RECORDING_VIEWS) test(`recording ${view.id}: actual Copy char
       out.window.close();
     }
     if (view.id === 'human-channels') assert.match(boundary.svgs[0], /Approximately 3,000/);
+  } finally { await cleanup(); boundary.restore(); }
+});
+
+
+test('route exportAll, concurrent single export and a card copy serialize without changing the overview', {timeout: 60000}, async () => {
+  globalThis.React = React;
+  const { AppRouterContext } = await import('next/dist/shared/lib/app-router-context.shared-runtime.js');
+  const l = await import('../src/app/field-velocity/layout.tsx');
+  const o = await import('../src/app/field-velocity/page.tsx');
+  const Layout = l.default?.default ?? l.default;
+  const Overview = o.default?.default ?? o.default;
+  let boundary;
+  const cleanup = await mount(React.createElement(StrictMode, null, React.createElement(AppRouterContext.Provider,
+    { value: { replace() { assert.fail('Export must not navigate'); } } }, React.createElement(Layout, null, React.createElement(Overview)))), '#metrics', win => {
+    win.history.replaceState({keep: 'router'}, '', '/field-velocity?review=1&recordingView=optical#metrics');
+    boundary = browserBoundaries(win);
+  });
+  try {
+    const api = window.neuroAtlas;
+    const url = window.location.href;
+    const length = window.history.length;
+    const rail = document.querySelector('[data-metric-rail]');
+    rail.scrollLeft = 191;
+    await click(document.querySelector('#metric-category-1-toggle'));
+    const owned = new Set();
+    const observer = new window.MutationObserver(() => {
+      const hosts = [...document.querySelectorAll('[data-graph-export-host]')];
+      if (hosts.length === 1) owned.add(hosts[0].dataset.graphExportHost);
+      assert.ok(hosts.length <= 1);
+    });
+    observer.observe(document.body, {subtree:true, childList:true});
+    try {
+      let done = false;
+      let batch, single;
+      await act(async () => {
+        batch = api.exportAll();
+        single = api.exportChart('draft-panel-bci-bitrate');
+      });
+      const pending = Promise.all([batch, single]).finally(() => { done = true; });
+      await click(document.querySelector('[data-copy-card-png="idea_vintage"]'));
+      for (let i = 0; !done && i < 240; i++) await settle();
+      const [all, one] = await pending;
+      assert.deepEqual(all.skipped, []);
+      assert.equal(all.exported.length, 25);
+      assert.equal(owned.size, 25);
+      assert.equal(new Set(all.exported.map(item => item.anchor)).size, 25);
+      assert.equal(one.url, 'https://atlas.example/field-velocity/bci-information-transfer-over-time');
+      assert.equal(all.exported.find(item => item.anchor === 'simultaneous-neural-recordings').filename, 'neuro-atlas-simultaneous-neural-recordings-optical.png');
+      assert.match(all.exported.find(item => item.anchor === 'simultaneous-neural-recordings').title, /optical/i);
+      assert.equal(window.location.href, url);
+      assert.equal(window.history.length, length);
+      assert.deepEqual(window.history.state, {keep: 'router'});
+      assert.equal(rail.scrollLeft, 191);
+      assert.equal(document.querySelector('#metric-category-1-toggle').getAttribute('aria-expanded'), 'false');
+      assert.equal(document.querySelector('dialog, [data-graph-export-host]'), null);
+      assert.equal(boundary.writes.length, 1);
+      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity/citation-latency');
+      assert.equal(api.charts().filter(chart => chart.open).length, 0);
+    } finally { observer.disconnect(); }
   } finally { await cleanup(); boundary.restore(); }
 });

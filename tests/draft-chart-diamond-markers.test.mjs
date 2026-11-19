@@ -78,7 +78,7 @@ test('native branded exports retain both diamond source marks and a matching dia
     assert.equal(points[1][1], points[3][1]);
     assert.equal(mark(doc).localName, 'polygon');
     assert.equal(mark(doc).getAttribute('points'), mark(dom.window.document).getAttribute('points'));
-    assert.equal(image.url, 'https://atlas.example/neuro-atlas/field-velocity#bci-information-transfer-over-time');
+    assert.equal(image.url, 'https://atlas.example/neuro-atlas/field-velocity/bci-information-transfer-over-time');
     assert.equal(doc.querySelector('[data-export-signature]').getAttribute('fill'), '#115EF7');
     assert.ok(doc.querySelector('[data-export-brand="pl-rd"]'));
     assert.equal(svg.outerHTML, before, 'Native export does not modify the original plot');
