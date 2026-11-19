@@ -1,0 +1,150 @@
+{
+  "runtime": "99fd09eccbfea3b73fafbcd8f78690f83c3e2736",
+  "routes": [
+    {
+      "path": "/neuro-atlas",
+      "agent": "Twitterbot/1.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/milestones",
+      "agent": "Twitterbot/1.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/milestones",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Milestones \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/funding",
+      "agent": "Twitterbot/1.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/funding",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "BCI Funding Index \u00b7 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/field-velocity",
+      "agent": "Twitterbot/1.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/field-velocity",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Field velocity \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/methodology",
+      "agent": "Twitterbot/1.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/methodology",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Methodology \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas",
+      "agent": "facebookexternalhit/1.1",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/milestones",
+      "agent": "facebookexternalhit/1.1",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/milestones",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Milestones \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/funding",
+      "agent": "facebookexternalhit/1.1",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/funding",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "BCI Funding Index \u00b7 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/field-velocity",
+      "agent": "facebookexternalhit/1.1",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/field-velocity",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Field velocity \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/methodology",
+      "agent": "facebookexternalhit/1.1",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/methodology",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Methodology \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas",
+      "agent": "Mozilla/5.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/milestones",
+      "agent": "Mozilla/5.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/milestones",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Milestones \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/funding",
+      "agent": "Mozilla/5.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/funding",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "BCI Funding Index \u00b7 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/field-velocity",
+      "agent": "Mozilla/5.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/field-velocity",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Field velocity \u2014 Neuro Atlas"
+    },
+    {
+      "path": "/neuro-atlas/methodology",
+      "agent": "Mozilla/5.0",
+      "status": 200,
+      "canonical": "https://www.plneuro.xyz/neuro-atlas/methodology",
+      "ogImage": "https://www.plneuro.xyz/neuro-atlas/social/neuro-atlas-launch.png",
+      "twitterCard": "summary_large_image",
+      "title": "Methodology \u2014 Neuro Atlas"
+    }
+  ],
+  "image": {
+    "status": 200,
+    "mime": "image/png",
+    "dimensions": [
+      2400,
+      1350
+    ],
+    "sha256": "628f0ecd450acd8deb7600d710709c6d1b3dfe06d289362383352b93b08fac84",
+    "bytes": 145679
+  }
+}
