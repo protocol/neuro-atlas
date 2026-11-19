@@ -72,5 +72,7 @@ test("contribution actions are removed without deleting the methodology document
     assert.doesNotMatch(source, /Contribute via PR|github\.com\/protocol\/neuro-atlas\/pulls/);
   }
   const methodology = await readFile(path.join(root, "src", "app", "methodology", "page.tsx"), "utf8");
-  assert.match(methodology, /Open a Pull Request on GitHub/);
+  assert.match(methodology, /href="https:\/\/github\.com\/protocol\/neuro-atlas\/pulls"/);
+  assert.match(methodology, /View existing pull requests/);
+  assert.doesNotMatch(methodology, /Open a Pull Request on GitHub/);
 });
