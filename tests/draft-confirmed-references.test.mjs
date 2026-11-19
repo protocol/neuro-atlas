@@ -98,7 +98,7 @@ test('legacy single-source output remains unchanged, including unlinked unresolv
 
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 const affectedPlotIds = ['tissue-cm3', 'largest-connectome-neurons', 'largest-connectome-synapses', 'proofreading-effort', 'public-data-size'];
-const compactCredit = 'EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)';
+const compactCredit = 'FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)';
 for (const plotId of affectedPlotIds) test(`${plotId}: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit`, async () => {
   const selected = Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots).find(plot => plot.id === plotId);
   const observed = selected.points.find(point => point.id.startsWith('flywire-') || point.id === 'fafb-image-download-2018');

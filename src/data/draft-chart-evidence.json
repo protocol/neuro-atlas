@@ -5,7 +5,7 @@
     "plots": [
       {
         "id": "tissue-cm3",
-        "datasetCredit": "EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected tissue-volume checkpoints",
         "xLabel": "Release / publication year",
         "xKind": "year",
@@ -124,7 +124,7 @@
     "plots": [
       {
         "id": "largest-connectome-neurons",
-        "datasetCredit": "EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected published connectomes — neuron counts",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -210,7 +210,7 @@
       },
       {
         "id": "largest-connectome-synapses",
-        "datasetCredit": "EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected published maps — synapse counts",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -713,7 +713,7 @@
     "plots": [
       {
         "id": "proofreading-effort",
-        "datasetCredit": "EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Reported project proofreading effort",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -1322,7 +1322,7 @@
     "plots": [
       {
         "id": "public-data-size",
-        "datasetCredit": "EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected public image/resource footprints",
         "xLabel": "Report / measurement year",
         "xKind": "year",
