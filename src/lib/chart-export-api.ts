@@ -58,7 +58,11 @@ export function withGraphExport<T>(anchor: string, run: (getChart: () => ChartEx
     const live = activeRegistration(slug);
     if (live) return run(live.getChart, url);
     if (!owner || !hosts.has(owner)) throw new Error(`Graph export host unavailable: ${slug}`);
-    if (window.location.pathname === atlasPath(graphPath(entry))) {
+    const detailPath = atlasPath(graphPath(entry));
+    const currentPath = window.location.pathname;
+    const onRecordingDetail = entry.graph.renderer === "recording" && [new URL(url).pathname, currentPath]
+      .some(path => path.replace(/\/$/, "") === detailPath);
+    if (onRecordingDetail || currentPath === detailPath) {
       // Do not silently substitute a default view for the visible chart during a transition.
       throw new Error(`Graph not ready to export: ${slug}`);
     }
@@ -86,6 +90,7 @@ async function blobToBase64(blob: Blob) {
 }
 async function exportChart(anchor: string, url = window.location.href): Promise<ExportedChart> {
   return withGraphExport(anchor, async (getChart, current) => {
+    // Resolve the live registration and freeze the validated SVG before any raster await.
     const { title, filename, url, width, height, svg } = buildChartImage(getChart(), current);
     const png = await chartPng({ title, filename, url, width, height, svg });
     return { anchor: canonicalPerformanceAnchor(anchor), title, filename, url, width, height, pngBase64: await blobToBase64(png) };

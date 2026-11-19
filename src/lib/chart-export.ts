@@ -1,10 +1,10 @@
 import { atlasBasePath } from "@/lib/atlas-path";
 import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
-import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
+import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string; filename: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -214,10 +214,16 @@ function wrap(text: string, columns: number) {
 
 /** Snapshot synchronously on the click: never screenshot a clipped viewport or UI. */
 export function buildChartImage(chart: ChartExport, currentUrl: string): ChartImage {
-  const { svg: source, title, anchor } = chart;
+  const { svg: source, title, anchor, recordingView } = chart;
   const box = (source.getAttribute("viewBox") ?? "").trim().split(/[ ,]+/).map(Number);
   if (box.length !== 4 || !box.every(Number.isFinite) || box[2] <= 0 || box[3] <= 0) throw new Error("Chart has no usable viewBox");
   const url = chartShareUrl(currentUrl, anchor);
+  // A registration can lag the committed SVG, and a queued URL can lag both.
+  // Validate all three in the same synchronous step that serializes the plot.
+  if (recordingView !== undefined && (
+    source.closest("[data-recording-view]")?.getAttribute("data-recording-view") !== recordingView ||
+    (recordingViewToken(new URL(url)) ?? "historical") !== recordingView
+  )) throw new Error("Recording view changed or is not ready. Retry export.");
   const width = 1200, inset = 48, plotWidth = width - inset * 2;
   const background = "#ffffff", ink = INK;
   const palette = exportPalette(source);
