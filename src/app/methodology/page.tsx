@@ -1,6 +1,5 @@
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { atlasPath } from "@/lib/atlas-path";
-import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { PlateHero } from "@/components/plate-header";
 import { Abbr } from "@/components/abbr";
 import { FeedbackTrigger } from "@/components/feedback/feedback-trigger";
@@ -8,51 +7,18 @@ import sourceCatalog from "@/data/methodology-sources.json";
 
 export const metadata = atlasMetadata("/methodology", "Data sources and data gathering procedures — Neuro Atlas");
 
-const SOURCES = [
-  {
-    name: "Neurofounders start-up map",
-    what: "Ecosystem links directly to the startup map maintained and hosted by Neurofounders.",
-    cadence: "External resource · maintained by Neurofounders",
-    url: NEUROFOUNDERS_MAP_URL,
-  },
-  {
-    name: "Q1+ 2026 BCI Market Memo",
-    what: "The January–April 2026 implanted BCI memo from Neurotech Futures and PL Neuro seeded milestone and financing research. Neuro Atlas adds dated primary evidence and later events.",
-    cadence: "Point-in-time memo plus verified 2026 releases",
-    url: "https://neurotechnology.substack.com/p/representations2",
-  },
-  {
-    name: "BCI Funding Index",
-    what: "A screened set of implanted and implant-adjacent brain-computer interface companies, with disclosed financing rounds, investor participation, and selected regulatory markers.",
-    cadence: "Baseline review: September 30, 2026 · selective later updates",
-    url: "/funding",
-  },
-  {
-    name: "PL R&D field-velocity framework",
-    what: "The shared framework for field-velocity measurements, inflection points, and forecast-market mappings.",
-    cadence: "Versioned snapshot · dates vary by reading",
-    url: "https://www.plrd.org/",
-  },
-  {
-    name: "Forecast markets",
-    what: "Kalshi, Polymarket, Metaculus questions mapped to inflection points.",
-    cadence: "External forecasts · selected questions",
-    url: null,
-  },
-];
-
 const SOURCE_GROUPS = {
-  datasets: { title: "Datasets and registries", description: "Bibliographic and search data, trial and regulatory records, exchange rates, and research dataset releases." },
+  datasets: { title: "Datasets and registries", description: "OpenAlex publications and reference data; Google Trends search interest; ClinicalTrials.gov and FDA records; historical recording compilations, research dataset releases, and exchange-rate records." },
   studies: { title: "Papers, preprints, and study evidence", description: "Research publications and supporting materials behind chart observations, comparisons, and historical series." },
   disclosures: { title: "Company and institutional disclosures", description: "Company sites, investor and institution statements, and issuer releases distributed by newswires. A homepage identifies the organization; individual announcements support specific events." },
-  discovery: { title: "Reporting and discovery", description: "Trade and general reporting, profiles, newsletters, and the market memo. These help find and cross-check records; individual records identify their evidence." },
-  ecosystems: { title: "External ecosystem and forecast sources", description: "The independently maintained startup map and forecast questions or markets linked to selected inflection points." },
-  reference: { title: "Methodology and reference", description: "Frameworks, definitions, model assumptions, and contextual references used to interpret the data." },
+  discovery: { title: "Reporting, curation, and discovery", description: "Neurotech Futures’ BCI Market Memo and Notables; the EM Datasets curation shared by Forrest Collman; trade and general reporting. These help find and cross-check records, alongside each observation’s evidence." },
+  ecosystems: { title: "External ecosystem and forecast sources", description: "The Neurofounders startup map and selected Kalshi, Polymarket, and Metaculus questions linked to inflection points. Forecast links lead to the platforms’ own current questions." },
+  reference: { title: "Methodology and reference", description: "The PL R&D field-velocity framework, OpenAlex and Google Trends definitions, source-selection methods, conversion assumptions, and contextual references." },
 } satisfies Record<keyof typeof sourceCatalog, { title: string; description: string }>;
 
 const PRINCIPLES = [
   {
-    title: "Never fabricate a reading",
+    title: "Source-linked readings",
     body: "Readings are sourced; missing readings are labeled. Dates without confirmation stay off the time axis.",
   },
   {
@@ -87,13 +53,14 @@ export default function MethodologyPage() {
         <h2 id="data-gathering" className="mb-3 text-base font-semibold">How data is gathered</h2>
         <div className="card space-y-3 p-5 text-sm leading-relaxed text-muted">
           <p><strong className="text-foreground">Milestones.</strong> Selected clinical, commercial, and financing events cover neurotechnology broadly. Entries cite public evidence and distinguish event, announcement, and reported dates where known. Date precision reflects the source.</p>
-          <p><strong className="text-foreground">BCI Funding Index.</strong> The narrower index tracks disclosed financings of at least USD 2 million (or the qualifying local-currency equivalent) across a screened set of implanted and implant-adjacent companies. Capital means the amount raised in included rounds. Investor-associated capital is the total size of rounds the investor appears in; separately sourced portfolio relationships do not contribute to round totals. A financing can appear in both views.</p>
-          <p><strong className="text-foreground">Field Velocity.</strong> Chart sources include study results, dataset releases, and reported observations. Some series come from the shared PL R&D snapshot; other charts use curated point-level evidence or validated data feeds. Units, sample scope, and observation dates are shown with the relevant chart. Forecasts are separate from observed measurements.</p>
+          <p><strong className="text-foreground"><a className="underline underline-offset-4" href={atlasPath("/funding")}>BCI Funding Index.</a></strong> The narrower index tracks disclosed financings of at least USD 2 million (or the qualifying local-currency equivalent) across a screened set of implanted and implant-adjacent companies. Capital means the amount raised in included rounds. Investor-associated capital is the total size of rounds the investor appears in; separately sourced portfolio relationships do not contribute to round totals. A financing can appear in both views.</p>
+          <p><strong className="text-foreground">Field Velocity.</strong> Chart sources include study results, dataset releases, and reported observations. Some series come from the shared <a href="https://www.plrd.org/" className="underline underline-offset-4">PL R&D</a> snapshot; other charts use curated point-level evidence or validated data feeds. Units, sample scope, and observation dates are shown with the relevant chart. Forecasts are separate from observed measurements.</p>
           <p><strong className="text-foreground">Updates and limitations.</strong> We aim to review and update Neuro Atlas daily. Source publication, observation, and check dates vary by record. OpenAlex publication and citation feeds and Google Trends are refreshed on a weekly schedule when validated data is available. See the <a className="font-medium text-accent underline underline-offset-4" href="#data-disclaimer">data and errors disclaimer</a> for limitations and how to use the data.</p>
         </div>
       </section>
       <section className="mt-8 mb-8">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Principles</h2>
+        <details>
+        <summary className="mb-3 cursor-pointer text-sm font-semibold text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent">Principles and glossary</summary>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {PRINCIPLES.map((p) => (
             <div key={p.title} className="card p-5">
@@ -113,32 +80,12 @@ export default function MethodologyPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="mb-3 text-base font-semibold">Source overview</h2>
-        <div className="card divide-y divide-border">
-          {SOURCES.map((s) => (
-            <div key={s.name} className="grid gap-1 p-4 sm:grid-cols-[minmax(9rem,1fr)_minmax(0,2fr)] sm:gap-x-4">
-              <div className="text-sm font-semibold sm:row-span-2">
-                {s.url ? (
-                  <a href={atlasPath(s.url)} target="_blank" rel="noreferrer" className="hover:text-accent">
-                    {s.name} ↗
-                  </a>
-                ) : (
-                  s.name
-                )}
-              </div>
-              <div className="text-sm leading-relaxed text-muted">{s.what}</div>
-              <div className="text-xs text-muted">{s.cadence}</div>
-            </div>
-          ))}
-        </div>
+        </details>
       </section>
 
       <section id="source-directory" aria-labelledby="directory-heading" className="mb-8 scroll-mt-4">
         <h2 id="directory-heading" className="mb-2 text-base font-semibold">Source directory</h2>
-        <p className="mb-4 max-w-3xl text-sm leading-relaxed text-muted">Open a category to see the linked evidence and references used in Neuro Atlas and its source reviews. Follow the citation on an individual record or chart to see what supports that observation.</p>
+        <p className="mb-4 max-w-3xl text-sm leading-relaxed text-muted">Open a category to see source links, including retained research and methodology references. Each record or chart’s own citations show which evidence supports that observation.</p>
         <div className="card divide-y divide-border">
           {(Object.keys(SOURCE_GROUPS) as (keyof typeof sourceCatalog)[]).map((key) => {
             const { title, description } = SOURCE_GROUPS[key];
@@ -146,10 +93,10 @@ export default function MethodologyPage() {
             return (
               <details id={`sources-${key}`} key={key} name="methodology-source-group" className="scroll-mt-4">
                 <summary className="cursor-pointer p-4 text-sm font-semibold marker:text-muted hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent">
-                  {title} <span className="ml-1 font-normal text-muted">({entries.length})</span>
+                  {title} <span className="ml-1 font-normal text-muted">({entries.length} links)</span>
+                  <span className="mt-1 block max-w-3xl font-normal leading-relaxed text-muted">{description}</span>
                 </summary>
                 <div className="px-4 pb-4">
-                  <p className="mb-3 max-w-3xl text-sm leading-relaxed text-muted">{description}</p>
                   <ul className="grid gap-x-6 gap-y-2 border-t border-border pt-3 text-sm leading-relaxed sm:grid-cols-2">
                     {entries.map(([url, label]) => (
                       <li key={url} className="min-w-0">
@@ -165,7 +112,8 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Status legend</h2>
+        <details>
+        <summary className="mb-3 cursor-pointer text-sm font-semibold text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent">Status legend</summary>
         <div className="card flex flex-wrap gap-x-8 gap-y-3 p-5 text-xs text-muted">
           <span className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-positive" /> Live — real data, sourced and dated
@@ -177,6 +125,7 @@ export default function MethodologyPage() {
             <span className="h-2 w-2 rounded-full border border-border-strong" /> Coming soon — metric named, pipeline not built
           </span>
         </div>
+        </details>
       </section>
 
       <section id="contribute" aria-labelledby="contribute-heading" className="mb-8 scroll-mt-4">
@@ -193,7 +142,8 @@ export default function MethodologyPage() {
       </section>
 
       <section>
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Changelog</h2>
+        <details>
+        <summary className="mb-3 cursor-pointer text-sm font-semibold text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent">Changelog</summary>
         <div className="card p-5">
           <ul className="space-y-2 text-xs leading-relaxed text-muted">
             <li>
@@ -226,6 +176,7 @@ export default function MethodologyPage() {
             </li>
           </ul>
         </div>
+        </details>
       </section>
     </>
   );

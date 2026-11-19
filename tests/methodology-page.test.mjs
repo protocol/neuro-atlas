@@ -55,6 +55,28 @@ test("the methodology Feedback button opens the existing selector without a logi
 });
 
 
+test("legacy glossary, status notes and changelog remain available without crowding the source directory", () => {
+  const { window } = new JSDOM(renderToStaticMarkup(React.createElement(MethodologyPage)));
+  try {
+    for (const label of ["Principles and glossary", "Status legend", "Changelog"]) {
+      const summary = [...window.document.querySelectorAll("summary")].find((e) => e.textContent.trim() === label);
+      assert.ok(summary, `Additional reading should be a native disclosure: ${label}`);
+      assert.equal(summary.closest("details").open, false);
+    }
+  } finally { window.close(); }
+});
+
+test("closed source-family summaries identify the actual providers before expanding hundreds of links", () => {
+  const { window } = new JSDOM(renderToStaticMarkup(React.createElement(MethodologyPage)));
+  try {
+    const doc = window.document;
+    assert.match(doc.querySelector("#sources-datasets summary").textContent, /OpenAlex.*Google Trends/);
+    assert.match(doc.querySelector("#sources-discovery summary").textContent, /Neurotech Futures/);
+    assert.match(doc.querySelector("#sources-reference summary").textContent, /PL R&D/);
+    assert.ok(![...doc.querySelectorAll("h2")].some((h) => h.textContent === "Source overview"), "Use one categorized source overview instead of duplicate partial catalogs");
+  } finally { window.close(); }
+});
+
 test("the methodology directory renders every classified link under its own disclosure", () => {
   const { window } = new JSDOM(renderToStaticMarkup(React.createElement(MethodologyPage)));
   try {

@@ -37,11 +37,18 @@ function exclusion(literal, url) {
   if (literal.includes("${") || literal.includes("[0-9") || literal.includes("%7B") || literal.endsWith("?date=")) return "computed URL/template; see its public provider, literal request metadata or pinned reference";
   if (/^(localhost|127\.|\[::1\])/.test(host) || /(?:\.example(?:\.com|\.org)?|\.invalid|\.local)$/.test(host)) return "dev or example";
   if (/\/impact-preview-[a-z0-9]+/.test(path)) return "unpublished provider surface";
-  if (/^(docs|drive)\.google\.com$/.test(host)) return "document access/publication not established";
+  // Public compilation URLs were read cookieless on 2026-11-19. Preserve exact
+  // query multiplicity; other Google documents still require publication review.
+  const publicCompilations = [
+    "https://docs.google.com/spreadsheets/d/1PukHvhxTqC72tau9HDnq1LKIl3F6V_FGr_y3G-jjZ-k/edit#gid=0",
+    "https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Ai7vcDJIlD6AdF9vQWlNRDh2S1dub09jMWRvTFRpemc&single=true&gid=0&output=csv",
+  ];
+  if (/^(docs|drive)\.google\.com$/.test(host) && !publicCompilations.includes(url.href)) return "document access/publication not established";
   if (host === "openalex.org" && /^\/[WAI]123$/.test(path)) return "example identifier";
   if (host === "www.google.com" && /^\/(s2\/favicons|search)/.test(path)) return path.startsWith("/search") ? "discovery search query, no citable result" : "favicon asset provenance";
   if (/^(icons\.duckduckgo\.com|favicon\.yandex\.net|www\.googleusercontent\.com)$/.test(host)) return "favicon asset provenance";
   if (host === "neuro-atlas-app.vercel.app") return "deployment navigation";
+  if (host === "gamma-api.polymarket.com" || host === "api.elections.kalshi.com" || host === "www.metaculus.com" && path === "/api") return "configured forecast endpoint; current view links external questions without fetching prices";
   if (literal.includes(")?(")) return "regular-expression literal";
   if (host === "openapi.vercel.sh" || host === "www.w3.org" || host === "api.github.com" || host === "raw.githubusercontent.com" && path.startsWith("/protocol/neuro-atlas/")) return "hosting, namespace or feed transport";
   if (host === "github.com" && /^\/protocol\/neuro-atlas(?:\.git|\/.*)?\/?$/.test(path)) return "Neuro Atlas repository or contribution navigation";
@@ -57,7 +64,20 @@ export function scanSources() {
   const excluded = new Map();
   for (const path of paths) {
     const content = readFileSync(path, "utf8");
-    const fields = path.endsWith(".csv") && !content.startsWith("#") ? parseCsv(content).flatMap(Object.values).join("\n") : content;
+    let relevant = content;
+    if (path === "src/data/field-velocity/neurotech.snapshot.json") {
+      // Schema validation retains the upstream toolkit, but no current Neuro Atlas
+      // route renders it or uses its examples as measurement/method evidence.
+      const { toolkit, ...usedSnapshot } = JSON.parse(content);
+      relevant = JSON.stringify(usedSnapshot);
+      for (const match of JSON.stringify(toolkit).matchAll(links)) {
+        const literal = cleanLiteral(match[0]);
+        const href = canonicalSource(literal);
+        if (!excluded.has(href)) excluded.set(href, []);
+        excluded.get(href).push({ path, literal, reason: "unused inherited toolkit example" });
+      }
+    }
+    const fields = path.endsWith(".csv") && !content.startsWith("#") ? parseCsv(content).flatMap(Object.values).join("\n") : relevant;
     for (const match of fields.matchAll(links)) {
       const literal = cleanLiteral(match[0]);
       // The published citation method is pinned in the reader, not a transport ref.
