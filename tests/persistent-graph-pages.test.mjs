@@ -12,7 +12,7 @@ const inventory = JSON.parse(readFileSync(new URL("./fixtures/readable-atlas-url
 test("each catalog identity has one real statically rendered graph and its evidence", async () => {
   const mod = await import("../src/app/field-velocity/[slug]/page.tsx");
   const { default: GraphPage, generateStaticParams, generateMetadata, dynamicParams } = mod.default?.default ? mod.default : mod;
-  assert.equal(dynamicParams, false);
+  assert.equal(dynamicParams, true, "unknown paths must reach the explicit 404 guard instead of framework fallback rerouting");
   assert.deepEqual(generateStaticParams().map(v => v.slug).sort(), inventory.map(v => v[1]).sort());
   for (const [title, slug] of inventory) {
     const props = { params: Promise.resolve({slug}) };
