@@ -21,10 +21,13 @@ export function ExplorationDashboard() {
   const [name, setName] = useState("Untitled dashboard");
   const [saved, setSaved] = useState<DashboardState[] | null>(null);
   const [storageError, setStorageError] = useState("");
+  const [saveConflict, setSaveConflict] = useState("");
   const [status, setStatus] = useState("");
   const [linkError, setLinkError] = useState("");
   const [linkFallback, setLinkFallback] = useState("");
   const next = useRef(1);
+  const openedSave = useRef<DashboardState | null>(null);
+  const draftRevision = useRef(0);
   const root = useRef<HTMLElement>(null);
   const captureLayout = useDashboardLayout(root, cards);
   const pendingFocus = useRef<Focus | null>(null);
@@ -42,11 +45,24 @@ export function ExplorationDashboard() {
       const recordingView = add[0] === "simultaneous-neural-recordings" ? recordingViewToken(new URL(window.location.href)) : undefined;
       setCards([{ id: 0, slug: add[0], ...(recordingView && { settings: { recordingView } }) }]);
     } else if (add.length) setLinkError("That chart could not be added. Choose a chart below.");
-    try {
-      const existing = readDashboards(window.localStorage.getItem(DASHBOARD_STORAGE));
-      setSaved(existing);
-      if (!existing) setStorageError("Saved dashboards could not be read. The original was left unchanged.");
-    } catch { setStorageError("Local storage is unavailable. You can still compare charts."); }
+  }, []);
+  useEffect(() => {
+    function refresh(event?: StorageEvent) {
+      if (event && event.key !== DASHBOARD_STORAGE && event.key !== null) return;
+      try {
+        const storage = window.localStorage;
+        if (event && event.storageArea !== storage) return;
+        const existing = readDashboards(storage.getItem(DASHBOARD_STORAGE));
+        setSaved(existing);
+        setStorageError(existing ? "" : "Saved dashboards could not be read. The original was left unchanged.");
+      } catch {
+        setSaved(null);
+        setStorageError("Local storage is unavailable. You can still compare charts.");
+      }
+    }
+    refresh();
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
   }, []);
   useLayoutEffect(() => {
     const focus = pendingFocus.current;
@@ -54,6 +70,7 @@ export function ExplorationDashboard() {
     if (focus) root.current?.querySelector<HTMLElement>(typeof focus === "string" ? `[data-dashboard-${focus}]` :
       `[data-dashboard-card="${focus.id}"] [data-dashboard-${focus.action}]`)?.focus();
   }, [cards, showCatalog]);
+  useLayoutEffect(() => () => { draftRevision.current += 1; }, [cards, name]);
 
   const snapshot = (title: string): DashboardState => ({ name: title, cards: cards.map(({ id: _id, ...card }) => card) });
   async function copyLink() {
@@ -67,27 +84,58 @@ export function ExplorationDashboard() {
       setStatus("Copy the dashboard link below.");
     }
   }
-  function save() {
+  async function save() {
     const trimmed = name.trim();
     if (!saved || !trimmed) return;
+    const revision = draftRevision.current;
+    const address = window.location.href;
+    const opened = openedSave.current;
+    const stillCurrent = () => draftRevision.current === revision && window.location.href === address && openedSave.current === opened;
+    setStatus("");
+    setSaveConflict("");
     try {
-      // Re-read on user action so a different tab's malformed data is never overwritten.
-      const current = readDashboards(window.localStorage.getItem(DASHBOARD_STORAGE));
-      if (!current) { setSaved(null); setStorageError("Saved dashboards could not be read. The original was left unchanged."); return; }
-      const pending = [...current];
-      const index = pending.findIndex(item => item.name === trimmed);
-      const item = snapshot(trimmed);
-      if (index >= 0) pending[index] = item;
-      else if (pending.length < SAVE_LIMIT) pending.push(item);
-      else { setStorageError(`You can save up to ${SAVE_LIMIT} dashboards in this browser. Use an existing name to update it.`); return; }
-      window.localStorage.setItem(DASHBOARD_STORAGE, JSON.stringify(pending));
-      setSaved(pending);
-      setName(trimmed);
-      setStorageError("");
-      setStatus(`Saved “${trimmed}” in this browser.`);
-    } catch { setStorageError("Could not save this dashboard. Try again or copy a dashboard link."); }
+      const locks = window.navigator.locks;
+      if (locks) {
+        await locks.request(DASHBOARD_STORAGE, { ifAvailable: true }, lock => {
+          if (!stillCurrent()) return;
+          if (lock) writeSave(trimmed, opened);
+          else setStorageError("Another tab is saving dashboards. Try saving again.");
+        });
+      } else {
+        // Older contexts can check for stale versions but cannot serialize peers' writes.
+        writeSave(trimmed, opened);
+      }
+    } catch { if (stillCurrent()) setStorageError("Could not save this dashboard. Try again or copy a dashboard link."); }
+  }
+  function writeSave(trimmed: string, opened: DashboardState | null) {
+    const storage = window.localStorage;
+    const current = readDashboards(storage.getItem(DASHBOARD_STORAGE));
+    setSaved(current);
+    if (!current) { setStorageError("Saved dashboards could not be read. The original was left unchanged."); return; }
+    setStorageError("");
+    const index = current.findIndex(item => item.name === trimmed);
+    // Never acquire update rights just by typing a name or importing a link.
+    const expected = opened?.name === trimmed ? opened : undefined;
+    if (JSON.stringify(current[index]) !== JSON.stringify(expected)) {
+      setSaveConflict(`“${trimmed}” no longer matches the saved version this draft can update. Your draft was kept. Save with a new name, or reopen the latest version if listed to replace this draft.`);
+      return;
+    }
+    if (index < 0 && current.length >= SAVE_LIMIT) { setStorageError(`You can save up to ${SAVE_LIMIT} dashboards in this browser. Open an existing dashboard to update it.`); return; }
+    const pending = [...current];
+    const target = index < 0 ? pending.length : index;
+    pending[target] = snapshot(trimmed);
+    const bytes = JSON.stringify(pending);
+    const validated = readDashboards(bytes);
+    if (!validated) { setStorageError("Could not save this dashboard. The original was left unchanged."); return; }
+    storage.setItem(DASHBOARD_STORAGE, bytes);
+    setSaved(validated);
+    openedSave.current = validated[target];
+    setName(trimmed);
+    setStatus(`Saved “${trimmed}” in this browser.`);
   }
   function reopen(snapshot: DashboardState, appendCurrent = false) {
+    openedSave.current = snapshot;
+    setSaveConflict("");
     setName(snapshot.name);
     captureLayout();
     if (appendCurrent) pendingFocus.current = "name";
@@ -146,6 +194,7 @@ export function ExplorationDashboard() {
     </div>
     {cards.length > 0 && <p className="exploration-export-note" data-dashboard-export-note>Image export is unavailable here. Use Copy dashboard link to share these views.</p>}
     {storageError && <p data-dashboard-error role="alert">{storageError}</p>}
+    {saveConflict && <p data-dashboard-save-conflict role="alert">{saveConflict}</p>}
     {linkError && <p data-dashboard-link-error role="alert">{linkError}</p>}
     <p role="status">{status}</p>
     {linkFallback && <div className="dashboard-saves"><label>Dashboard link

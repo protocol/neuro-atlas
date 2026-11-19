@@ -410,6 +410,140 @@ test('draft dashboard cards show one visual title without losing the SVG label o
 });
 
 const tissue = 'selected-tissue-volume-checkpoints';
+const named = (name, ...slugs) => ({ name, cards: slugs.map(slug => ({ slug })) });
+const savedRaw = () => window.localStorage.getItem(storage);
+const writeFromPeer = (raw, notify = true) => act(async () => {
+  const local = window.localStorage;
+  const oldValue = local.getItem(storage);
+  if (raw === null) local.removeItem(storage); else local.setItem(storage, raw);
+  if (notify) window.dispatchEvent(new window.StorageEvent('storage', { key: storage, storageArea: local, oldValue, newValue: raw }));
+});
+const reopenNamed = name => click([...document.querySelectorAll('[data-dashboard-reopen]')].find(el => el.textContent === name));
+const slugsShown = () => cards().map(card => card.dataset.dashboardGraph);
+const saveLocally = () => click(button('[data-dashboard-save]'));
+
+test('custody: a peer update cannot overwrite the opened draft or be overwritten by it', async () => {
+  const old = JSON.stringify([named('Comparison', bitrate)]);
+  const latest = [named('Comparison', tissue), named('Other', recording)];
+  const peerBytes = JSON.stringify(latest, null, 2);
+  const close = await dashboard({}, win => {
+    win.localStorage.setItem(storage, old);
+    win.localStorage.setItem('unrelated', 'untouched');
+  });
+  try {
+    await reopenNamed('Comparison');
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    await writeFromPeer(peerBytes);
+    assert.deepEqual(slugsShown(), [bitrate]);
+    await saveLocally();
+    assert.equal(savedRaw(), peerBytes, 'a stale Save must preserve exact peer bytes');
+    assert.match(button('[data-dashboard-save-conflict]')?.textContent ?? '', /new name.*reopen/i);
+    assert.equal(cards()[0].querySelector('[data-exploration-fit-line]')?.dataset.fitN, '9');
+    assert.deepEqual([...document.querySelectorAll('[data-dashboard-reopen]')].map(el => el.textContent), ['Comparison', 'Other']);
+    await saveLocally();
+    assert.equal(savedRaw(), peerBytes, 'an ordinary retry still cannot take custody');
+    await setInput('[data-dashboard-name]', 'My comparison');
+    await saveLocally();
+    assert.deepEqual(JSON.parse(savedRaw()), [...latest, { name: 'My comparison', cards: [{ slug: bitrate, settings: { extrapolate: true } }] }]);
+    assert.equal(window.localStorage.getItem('unrelated'), 'untouched');
+    await reopenNamed('Comparison');
+    assert.deepEqual(slugsShown(), [tissue]);
+    assert.equal(Boolean(button('[data-dashboard-save-conflict]')), false);
+  } finally { await close(); }
+});
+
+test('custody: storage events refresh the saved list before a reopen, not the active draft', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate }, win => {
+    win.localStorage.setItem(storage, JSON.stringify([named('Comparison', bitrate)]));
+  });
+  try {
+    await setInput('[data-dashboard-name]', 'Unsaved draft');
+    const newer = JSON.stringify([named('Comparison', tissue), named('Other', recording)]);
+    await writeFromPeer(newer);
+    assert.equal(button('[data-dashboard-name]').value, 'Unsaved draft');
+    assert.deepEqual(slugsShown(), [bitrate]);
+    assert.deepEqual([...document.querySelectorAll('[data-dashboard-reopen]')].map(el => el.textContent), ['Comparison', 'Other']);
+    await reopenNamed('Comparison');
+    assert.deepEqual(slugsShown(), [tissue]);
+    assert.equal(savedRaw(), newer);
+  } finally { await close(); }
+});
+
+test('custody: appending binds the target version even if a peer deletes it before the storage event', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate }, win => {
+    win.localStorage.setItem(storage, JSON.stringify([named('Comparison', tissue)]));
+  });
+  try {
+    await click(button('[data-dashboard-append-saved]'));
+    const newer = JSON.stringify([named('Other', recording)]);
+    await writeFromPeer(newer, false);
+    await saveLocally();
+    assert.equal(savedRaw(), newer);
+    assert.deepEqual(slugsShown(), [tissue, bitrate]);
+    assert.ok(button('[data-dashboard-save-conflict]'));
+  } finally { await close(); }
+});
+
+test('custody: ordinary rename saves a copy and later updates obey the newly saved version', async () => {
+  const initial = { name: 'Comparison', cards: [{ slug: bitrate, settings: { sensory: true, extrapolate: false } }] };
+  const close = await dashboard({}, win => win.localStorage.setItem(storage, JSON.stringify([initial])));
+  try {
+    await reopenNamed('Comparison');
+    await setInput('[data-dashboard-name]', 'New name');
+    await saveLocally();
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    await saveLocally();
+    assert.deepEqual(JSON.parse(savedRaw()), [initial, { name: 'New name', cards: [{ slug: bitrate, settings: { sensory: true, extrapolate: true } }] }]);
+  } finally { await close(); }
+});
+
+test('custody: a same-name imported link never claims the saved dashboard', async () => {
+  const { dashboardHash } = await import('../src/lib/dashboard-state.ts');
+  const local = JSON.stringify([named('Comparison', tissue)]);
+  const close = await dashboard({ search: dashboardHash(named('Comparison', bitrate)) }, win => win.localStorage.setItem(storage, local));
+  try {
+    await saveLocally();
+    assert.equal(savedRaw(), local);
+    assert.deepEqual(slugsShown(), [bitrate]);
+    assert.ok(button('[data-dashboard-save-conflict]'));
+  } finally { await close(); }
+});
+
+test('custody lock: save checks storage only after obtaining the same-origin dashboard lock', async () => {
+  const original = JSON.stringify([named('Comparison', bitrate)]);
+  const close = await dashboard({}, win => win.localStorage.setItem(storage, original));
+  let grant;
+  const installLock = () => Object.defineProperty(window.navigator, 'locks', { value: {
+    request(key, opts, callback) {
+      assert.equal(key, storage);
+      assert.equal(opts.ifAvailable, true);
+      return new Promise(resolve => { grant = lock => resolve(callback(lock)); });
+    },
+  } });
+  try {
+    await reopenNamed('Comparison');
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    installLock();
+    await saveLocally();
+    assert.equal(typeof grant, 'function', 'Save must request a lock when available');
+    await act(async () => grant(null));
+    assert.equal(savedRaw(), original);
+    assert.match(button('[data-dashboard-error]')?.textContent ?? '', /another tab/i);
+    await saveLocally();
+    const peer = JSON.stringify([named('Comparison', tissue)]);
+    await writeFromPeer(peer, false);
+    await act(async () => grant({ name: storage }));
+    assert.equal(savedRaw(), peer);
+    assert.ok(button('[data-dashboard-save-conflict]'));
+    await setInput('[data-dashboard-name]', 'New draft');
+    await saveLocally();
+    await setInput('[data-dashboard-name]', 'Changed while waiting');
+    await act(async () => grant({ name: storage }));
+    assert.equal(savedRaw(), peer);
+    assert.equal(button('[data-dashboard-name]').value, 'Changed while waiting');
+  } finally { await close(); }
+});
+
 test('tissue reference lines and the nominal voxel view reuse the brain model without changing original evidence', async () => {
   const close = await dashboard({ search: '?add=' + tissue }, win => { win.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} }); });
   try {
