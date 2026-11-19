@@ -46,7 +46,7 @@ export function ExplorationDashboard() {
   const cleanDraft = useRef<{ name: string; cards: Card[] } | null>(null);
   const draftRevision = useRef(0);
   const root = useRef<HTMLElement>(null);
-  const captureLayout = useDashboardLayout(root, cards);
+  const captureLayout = useDashboardLayout(root, cards.map(card => card.id).join(","));
   const pendingFocus = useRef<Focus | null>(null);
   function openAddress(snapshot: DashboardState, href: string) {
     draftAddress.current = href;

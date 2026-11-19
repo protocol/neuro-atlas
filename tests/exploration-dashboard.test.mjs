@@ -410,6 +410,28 @@ test('draft dashboard cards show one visual title without losing the SVG label o
 });
 
 const tissue = 'selected-tissue-volume-checkpoints';
+test('motion: changing a real card setting or legend does not animate either existing card', async () => {
+  const animated = [];
+  const close = await dashboard({ search: '?add=' + bitrate }, win => {
+    win.HTMLElement.prototype.getBoundingClientRect = () => ({ left: 0, top: 0, width: 480, height: 400 });
+    win.HTMLElement.prototype.animate = function () {
+      animated.push(this.dataset.dashboardGraph);
+      return { cancel() {} };
+    };
+  });
+  try {
+    await click(button(`[data-dashboard-add="${tissue}"]`));
+    assert.ok(animated.includes(tissue), 'the real structural add animates the entering sibling');
+    animated.length = 0;
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    assert.equal(cards()[0].querySelector('[data-exploration-fit-line]')?.dataset.fitN, '9');
+    assert.deepEqual(animated, [], 'no layout animation after an extrapolation-only change');
+    await click(cards()[0].querySelector('[data-exploration-series="Speech decoding"]'));
+    assert.equal(cards()[0].querySelector('[data-exploration-fit-line]')?.dataset.fitN, '4');
+    assert.deepEqual(animated, [], 'no layout animation after a legend-only change');
+  } finally { await close(); }
+});
+
 const named = (name, ...slugs) => ({ name, cards: slugs.map(slug => ({ slug })) });
 const savedRaw = () => window.localStorage.getItem(storage);
 const writeFromPeer = (raw, notify = true) => act(async () => {
