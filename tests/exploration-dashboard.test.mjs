@@ -251,7 +251,7 @@ test('recording cards select views independently and never register dashboard ch
     assert.deepEqual(views(), ['optical', 'historical']);
     assert.equal(window.location.href, before);
     assert.ok(cards().every(c => c.querySelector('svg [data-curve-point]')));
-    assert.ok(cards().every(c => /dashboard link/i.test(c.querySelector('[data-exploration-export-disabled]')?.textContent ?? '')));
+    assert.ok(cards().every(c => c.querySelector('[data-exploration-export-disabled]')?.hidden));
     const api = await import('../src/lib/chart-export-api.ts');
     let canonical;
     const dispose = api.registerChart(recording, { title: 'independent canonical sentinel', getChart() { return canonical; } });
@@ -263,6 +263,30 @@ test('recording cards select views independently and never register dashboard ch
       assert.match(raw, /optical/);
       assert.match(raw, /human-channels/);
     } finally { dispose(); }
+  } finally { await close(); }
+});
+
+test('image export guidance appears once above cards and the dashboard link remains copyable on clipboard failure', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate }, win => {
+    Object.defineProperty(win.navigator, 'clipboard', { value: { async writeText() { throw new Error('clipboard unavailable'); } } });
+  });
+  try {
+    await openCatalog();
+    await click(button(`[data-dashboard-add="${bitrate}"]`));
+    const notes = [...document.querySelectorAll('.exploration-export-note')];
+    assert.equal(notes.length, 1, 'only one dashboard export explanation is rendered');
+    assert.ok(!notes[0].closest('[data-dashboard-card]'));
+    assert.match(notes[0].textContent, /Image export is unavailable.*Copy dashboard link/);
+    assert.equal(document.querySelectorAll('[data-chart-actions], [data-copy-chart], [data-download-chart], [data-copy-draft-link]').length, 0);
+    await click(button('[data-dashboard-copy]'));
+    const fallback = button('[data-dashboard-copy-fallback]');
+    assert.ok(fallback?.readOnly);
+    assert.equal(new URL(fallback.value).pathname, atlasPath(route));
+    fallback.focus();
+    assert.equal(fallback.selectionStart, 0);
+    assert.equal(fallback.selectionEnd, fallback.value.length);
+    const { readDashboardLink } = await import('../src/lib/dashboard-state.ts');
+    assert.deepEqual(readDashboardLink(new URL(fallback.value).hash)?.cards, [{ slug: bitrate }, { slug: bitrate }]);
   } finally { await close(); }
 });
 
@@ -367,6 +391,24 @@ test('the long dashboard Source key starts collapsed with every standalone annot
   } finally { await close(); }
 });
 
+test('draft dashboard cards show one visual title without losing the SVG label or full graph link', async () => {
+  const standalone = await mount(await graphPage({ params: Promise.resolve({ slug: bitrate }) }));
+  try { assert.ok(!button('.draft-plot > figcaption').classList.contains('sr-only')); }
+  finally { await standalone(); }
+
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const card = cards()[0];
+    const svg = card.querySelector('svg.draft-plot-svg');
+    const caption = document.getElementById(svg.getAttribute('aria-labelledby'));
+    assert.equal(card.querySelector('h2').textContent, `1. ${caption.textContent}`);
+    assert.ok(caption.classList.contains('sr-only'), 'the duplicate caption is visually suppressed but still names the SVG');
+    const link = card.querySelector('[data-dashboard-open-graph]');
+    assert.equal(link?.textContent, 'Open full graph');
+    assert.equal(link?.getAttribute('href'), atlasPath('/field-velocity/' + bitrate));
+  } finally { await close(); }
+});
+
 const tissue = 'selected-tissue-volume-checkpoints';
 test('tissue reference lines and the nominal voxel view reuse the brain model without changing original evidence', async () => {
   const close = await dashboard({ search: '?add=' + tissue }, win => { win.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} }); });
@@ -435,7 +477,9 @@ test('Add to dashboard carries an explored standalone view into an independently
   try {
     await click(button('[data-exploration-series="Speech decoding"]'));
     await click(button('[data-exploration-fit-toggle]'));
-    assert.ok(button('[data-exploration-export-disabled]'));
+    const notice = button('[data-exploration-export-disabled]');
+    assert.ok(notice && !notice.hidden, 'standalone views still explain unsupported export');
+    assert.match(notice.textContent, /unavailable for this exploration/);
     href = button('[data-add-to-dashboard]').href;
     assert.match(new URL(href).hash, /^#d=/, 'Add link carries the selected exploration');
   } finally { await close(); }

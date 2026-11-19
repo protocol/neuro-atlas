@@ -342,7 +342,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           : plot.points.map(point => point.sourceTitle))].join("; ")}`,
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
-    <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
+    <figcaption id={`${id}-title`} className={!preview && exploration?.dashboard ? "sr-only" : undefined}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>

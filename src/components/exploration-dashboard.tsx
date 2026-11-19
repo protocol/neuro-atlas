@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FieldVelocityGraphDetail } from "@/components/field-velocity-graph";
 import { FIELD_VELOCITY_GRAPHS, graphPath } from "@/data/field-velocity-links";
 import { recordingViewToken } from "@/lib/recording-view";
@@ -11,13 +11,13 @@ import { CARD_LIMIT, DASHBOARD_ROUTE, DASHBOARD_STORAGE, NAME_LIMIT, SAVE_LIMIT,
 
 type Card = CardState & { id: number };
 type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search" | "name" | "catalog-toggle";
+const catalogId = "dashboard-chart-catalog";
 
 export function ExplorationDashboard() {
   const [cards, setCards] = useState<Card[]>([]);
   const [search, setSearch] = useState("");
   const [catalogOpen, setCatalogOpen] = useState<boolean | null>(null);
-  const catalogId = useId();
-  const showCatalog = catalogOpen ?? cards.length === 0;
+  const showCatalog = catalogOpen ?? (cards.length === 0);
   const [name, setName] = useState("Untitled dashboard");
   const [saved, setSaved] = useState<DashboardState[] | null>(null);
   const [storageError, setStorageError] = useState("");
@@ -144,6 +144,7 @@ export function ExplorationDashboard() {
         </li>)}
       </ul></details>}
     </div>
+    {cards.length > 0 && <p className="exploration-export-note" data-dashboard-export-note>Image export is unavailable here. Use Copy dashboard link to share these views.</p>}
     {storageError && <p data-dashboard-error role="alert">{storageError}</p>}
     {linkError && <p data-dashboard-link-error role="alert">{linkError}</p>}
     <p role="status">{status}</p>
@@ -178,7 +179,7 @@ export function ExplorationDashboard() {
               <button className="dashboard-pill" type="button" data-dashboard-earlier disabled={!index} onClick={() => move(index, -1)}>Move earlier</button>
               <button className="dashboard-pill" type="button" data-dashboard-later disabled={index === cards.length - 1} onClick={() => move(index, 1)}>Move later</button>
               <button className="dashboard-pill" type="button" data-dashboard-remove onClick={() => remove(index)}>Remove</button>
-              <a className="dashboard-pill" href={atlasPath(graphPath(entry))}>Open graph</a>
+              <a className="dashboard-pill" data-dashboard-open-graph href={atlasPath(graphPath(entry))}>Open full graph</a>
             </div>
           </header>
           <FieldVelocityGraphDetail entry={entry} instance={{ dashboard: true, settings: card.settings ?? {}, update: change => {
