@@ -52,7 +52,7 @@ const summaries: Record<string, Pick<DraftChartEvidence, "summary"> & Partial<Pi
 
 const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot, "seriesNote" | "observationBasis">>> = {
   "tissue-cm3": {
-    scope: "Selected human, rodent and fruit fly tissue volumes at synapse resolution, including rat CA1. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are in cm³; ≈ denotes approximate volumes or sample bounds.",
+    scope: "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted to cm³; ≈ denotes approximate volumes or sample bounds.",
   },
   "largest-connectome-neurons": {
     scope: "Selected study-reported neuronal counts across whole and partial maps. Somatic segmentation, targeted boundary-truncated reconstructions and proofread cell counts have different completeness criteria.",

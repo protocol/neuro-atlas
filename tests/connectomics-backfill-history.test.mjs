@@ -23,18 +23,19 @@ for (const [id, year, count, sheetRow, dateLabel, sourceUrl, quote, scope] of ex
   });
 }
 
-test('Mishchenko uses the published 336 µm³ for a single rat CA1 V1 volume and converts to cm³', () => {
-  const id = 'mishchenko-2010-v1-neuropil';
+test('Helmstaedter uses approximate physical imaged bounds from the catalog-linked primary paper', () => {
+  const id = 'helmstaedter-2013-retina-volume';
   const point = tissue.points.find(point => point.id === id);
-  assert.ok(point, 'Missing the pre-2011 rat CA1 tissue checkpoint');
-  assert.deepEqual([point.x, point.y, point.qualifier, point.dateLabel, point.sourceUrl], [2010, 3.36e-10, '≈', '2010-09-23 · journal issue', 'https://doi.org/10.1016/j.neuron.2010.08.014']);
-  assert.equal(point.quote, '9.1 × 9.0 × 4.1 = 336μm3');
-  assert.match(point.note, /one.*V1.*336 µm³.*0\.000000336 mm³.*processed/i);
-  assert.doesNotMatch(point.note, /EM Datasets row/);
-  assert.match(point.exportAnnotation, /≈336 µm³/);
-  assert.match(tissue.scope, /rat/);
-  assert.equal(tissue.curationSource, undefined);
+  assert.ok(point, 'Missing the selected historical retina tissue checkpoint');
+  assert.deepEqual([point.x, point.y, point.qualifier, point.dateLabel, point.sourceUrl], [2013, 0.00000120384, '≈', '2013-08-07 · online publication', 'https://www.nature.com/articles/nature12346']);
+  assert.equal(point.quote, 'this corresponds to a physical size of about 132 µm × 114 µm for each slice and a total thickness of 80 µm.');
+  assert.match(point.note, /132 × 114 × 80 µm.*0\.00120384 mm³.*processed.*shrinkage/i);
+  assert.match(point.note, /EM Datasets row 28/);
+  assert.match(point.exportAnnotation, /≈1,203,840 µm³/);
+  assert.match(tissue.curationSource.title, /shared by Forrest Collman/);
   assert.equal(tissue.connections, undefined);
   const record = CONNECTOMICS_BACKFILL.find(item => item.id === id);
-  assert.deepEqual([record.value, record.unit, record.sheetRow], [336, 'µm³', null]);
+  assert.deepEqual([record.value, record.unit, record.sheetRow], [132 * 114 * 80, 'µm³', 28]);
+  assert.equal(CONNECTOMICS_BACKFILL.length, 6);
+  assert.ok(CONNECTOMICS_BACKFILL.every(record => Number.isInteger(record.sheetRow) && record.sheetRow > 1), 'Every selected observation retains its source-catalog row');
 });
