@@ -95,3 +95,26 @@ test("the methodology directory renders every classified link under its own disc
     }
   } finally { window.close(); }
 });
+
+
+test("Field Velocity credits researcher correspondence and invites missing references through Feedback", () => {
+  const { window } = new JSDOM(renderToStaticMarkup(React.createElement(MethodologyPage)));
+  try {
+    const doc = window.document;
+    const credit = doc.querySelector("#field-velocity-methodology");
+    assert.ok(credit, "Field Velocity needs an explicit researcher acknowledgment");
+    assert.match(credit.textContent, /contacted and corresponded with many of the original researchers around the world/);
+    assert.match(credit.textContent, /grateful for their feedback.*represent their work accurately/);
+    assert.match(credit.textContent, /research that makes this resource so valuable/);
+    assert.match(credit.textContent, /missing credit or references/);
+    assert.equal(credit.querySelector('a[href="#contribute"]')?.textContent, "Feedback");
+    for (const [href, title] of [
+      ["https://www.nature.com/articles/s41586-023-06377-x", "A high-performance speech neuroprosthesis"],
+      ["https://www.nature.com/articles/s41586-024-07558-y", "Neuronal wiring diagram of an adult brain"],
+      ["https://www.nature.com/articles/s41586-025-08790-w", "Functional connectomics spanning multiple areas of mouse visual cortex"],
+    ]) {
+      const link = doc.querySelector(`#sources-studies a[href="${href}"]`);
+      assert.ok(link?.textContent.includes(title), title);
+    }
+  } finally { window.close(); }
+});
