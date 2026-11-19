@@ -4,7 +4,7 @@ import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -244,6 +244,12 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   };
   for (const entry of chart.legend ?? []) {
     body.push(legendMarker(entry, inset, cursor + 21)); text(entry.label, 18, false, 82);
+  }
+  if (chart.datasetCredit) {
+    body.push('<g data-export-dataset-credit="true">');
+    text(chart.datasetCredit, 16);
+    body.push('</g>');
+    cursor += 8;
   }
   cursor += 20;
   const footerY = cursor + 20;

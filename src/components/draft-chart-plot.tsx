@@ -14,6 +14,7 @@ import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
+import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
@@ -68,6 +69,17 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
     return <polygon points={`${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`} {...props} />;
   }
   return <circle cx={cx} cy={cy} r={r} {...props} />;
+}
+
+function ReferenceLink({ reference }: { reference: ConfirmedReference }) {
+  return <>{reference.role && <>{reference.role}: </>}{reference.url ? <a href={reference.url} target="_blank" rel="noreferrer">{reference.title} ↗</a> : <span>{reference.title}</span>}</>;
+}
+
+function ObservationSources({ point }: { point: DraftObservation }) {
+  const references = observationReferences(point);
+  return point.sourceRole || point.supportingReferences?.length
+    ? <div data-confirmed-references>{references.map((reference, index) => <p key={index}><ReferenceLink reference={reference} /></p>)}</div>
+    : <ReferenceLink reference={references[0]} />;
 }
 
 function CalculationSource({ source }: { source?: DraftObservation["calculationSource"] }) {
@@ -254,7 +266,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   });
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
-    "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${point.sourceTitle}`,
+    "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${observationSourceDescription(point)}`,
     ...tooltip.pointProps(point, trigger => Array.from(trigger.closest("figure")?.querySelectorAll("[data-source-observation]") ?? [])
       .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null),
   });
@@ -263,6 +275,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend: exportLegend,
+      datasetCredit: plot.datasetCredit,
       pointKey: plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
       })) : undefined,
@@ -276,7 +289,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         `${observationBasis} · ${scaleNote} · ${connectionNote}`,
         ...annotations.map(({ text }, index) => `${index + 1}. ${text}`),
         ...plot.points.filter(point => point.exportNote).map(point => `${point.label} · ${point.dateLabel}. ${point.exportNote}`),
-        `Sources: ${[...new Set(plot.points.map(point => point.sourceTitle))].join("; ")}`],
+        `Sources: ${[...new Set(plot.points.some(point => point.sourceRole || point.supportingReferences?.length)
+          ? plot.points.flatMap(point => observationReferences(point).map(reference => `${reference.role ? `${reference.role}: ` : ""}${reference.title}${reference.url ? `: ${reference.url}` : ""}`))
+          : plot.points.map(point => point.sourceTitle))].join("; ")}`],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
@@ -381,7 +396,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         {active.group && <p>{active.group}</p>}
         <p>{active.dateLabel}{numericX && ` · ${plot.xLabel}: ${exactNumber(active.x)}`}</p>
         <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
-        {active.sourceUrl ? <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceTitle} ↗</a> : <span>{active.sourceTitle}</span>}
+        <ObservationSources point={active} />
         {active.note && <p>{active.note}</p>}
         <CandidateSources sources={active.candidateSources} />
         <CalculationSource source={active.calculationSource} />
@@ -389,7 +404,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     </PointTooltip>
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
-      <ul className="pc-sources">{[...new Map(plot.points.flatMap(point => point.sourceUrl ? [[point.sourceUrl, point.sourceTitle] as const] : [])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
+      <ul className="pc-sources">{[...new Map(plot.points.flatMap(point => observationReferences(point).flatMap(reference => reference.url ? [[reference.url, reference] as const] : []))).entries()].map(([url, reference]) => <li key={url}><ReferenceLink reference={reference} /></li>)}</ul>
     </ModalSources>
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
@@ -405,7 +420,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
             <td>{numericX && <>{exactNumber(point.x)}<br /></>}{point.dateLabel}</td>
             <td>{qualifiedValue(point)}</td>
-            <td>{point.sourceUrl ? <a href={point.sourceUrl} target="_blank" rel="noreferrer">{point.sourceTitle} ↗</a> : <span>{point.sourceTitle}</span>}<blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}<CandidateSources sources={point.candidateSources} /><CalculationSource source={point.calculationSource} /></td>
+            <td><ObservationSources point={point} /><blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}<CandidateSources sources={point.candidateSources} /><CalculationSource source={point.calculationSource} /></td>
           </tr>)}</tbody>
         </table>
       </div>
