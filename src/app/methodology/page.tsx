@@ -2,6 +2,8 @@ import { atlasMetadata } from "@/lib/atlas-metadata";
 import { atlasPath } from "@/lib/atlas-path";
 import { FeedbackTrigger } from "@/components/feedback/feedback-trigger";
 import sourceCatalog from "@/data/methodology-sources.json";
+import { SourceBrandMark, SourceBrandStrip } from "@/components/source-brand";
+import { sourceBrandForUrl } from "@/data/source-brands";
 
 export const metadata = atlasMetadata("/methodology", "Sources & methodology — Neuro Atlas");
 
@@ -49,14 +51,21 @@ export default function MethodologyPage() {
                 <summary className="cursor-pointer p-4 text-sm font-semibold marker:text-muted hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent">
                   {title} <span className="ml-1 font-normal text-muted">({entries.length} links)</span>
                   <span className="mt-1 block max-w-3xl font-normal leading-relaxed text-muted">{description}</span>
+                  <SourceBrandStrip group={key} />
                 </summary>
                 <div className="px-4 pb-4">
                   <ul className="grid gap-x-6 gap-y-2 border-t border-border pt-3 text-sm leading-relaxed sm:grid-cols-2">
-                    {entries.map(([url, label]) => (
-                      <li key={url} className="min-w-0">
-                        <a href={url} className="wrap-anywhere text-foreground underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{label}</a>
-                      </li>
-                    ))}
+                    {entries.map(([url, label]) => {
+                      const brand = sourceBrandForUrl(url);
+                      return (
+                        <li key={url} className="min-w-0">
+                          <a href={url} className="flex items-start gap-2 text-foreground underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                            {brand && <SourceBrandMark brand={brand} compact />}
+                            <span className="min-w-0 wrap-anywhere">{label}</span>
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </details>

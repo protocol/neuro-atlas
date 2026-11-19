@@ -1,0 +1,167 @@
+[
+  {
+    "key": "neurofounders-wordmark",
+    "name": "Neurofounders wordmark",
+    "source_page": "https://www.neurofounders.co/resources/start-up-map",
+    "asset_url": "https://cdn.prod.website-files.com/693b05b9f4432e0ac89f952c/693d6cdc6d70d49437271d94_Asset%2039.png",
+    "filename": "neurofounders-wordmark.png",
+    "format": "PNG",
+    "dimensions": [
+      1761,
+      315
+    ],
+    "sha256": "e2dec4a61d0d5321128348cbfbbbec577dc2af2faf72c6d8ae5c5229a0cfce1f",
+    "official_evidence": "Header home link .navbar .link-block-25 > img.image.",
+    "dark_light_notes": "Official black Neurofounders header wordmark with genuine transparent outer background; use a light plate on dark UI. Useful for the sources callout; keep aspect ratio, no recoloring."
+  },
+  {
+    "key": "openalex",
+    "name": "OpenAlex",
+    "source_page": "https://openalex.org/",
+    "asset_url": "https://openalex.org/tricon-outlined.png",
+    "filename": "openalex.png",
+    "format": "PNG",
+    "dimensions": [
+      512,
+      481
+    ],
+    "sha256": "dfb2cd7139197fdfb98507802d762d4f9df8c363feb41adb38ab315a26e91a29",
+    "official_evidence": "Official homepage link rel=icon.",
+    "dark_light_notes": "Official black tricon with white keyline and transparent outer background. Black silhouette shows on white; white outline shows on dark. Preserve original outlined artwork and label OpenAlex."
+  },
+  {
+    "key": "google-trends",
+    "name": "Google Trends",
+    "source_page": "https://trends.google.com/trends/",
+    "asset_url": "https://www.gstatic.com/trends/favicon.ico",
+    "filename": "google-trends.ico",
+    "format": "ICO",
+    "dimensions": [
+      48,
+      48
+    ],
+    "sha256": "1b439272e0223c9a983821ba61cb9ebc82081b24a1624ad00bf4bfcb37e3888e",
+    "official_evidence": "Official Trends homepage link rel=icon and apple-touch-icon-precomposed.",
+    "dark_light_notes": "Official multicolor rising Trends arrow, transparent outside. Native ICO has 16, 32 and 48px frames; 48px decoded for QC. Suitable for ~20–24 CSS px, do not over-enlarge."
+  },
+  {
+    "key": "clinicaltrials",
+    "name": "ClinicalTrials.gov",
+    "source_page": "https://clinicaltrials.gov/",
+    "asset_url": "https://clinicaltrials.gov/assets/favicons/favicon.svg?v=2",
+    "filename": "clinicaltrials.svg",
+    "format": "SVG",
+    "dimensions": [
+      260.0,
+      260.0
+    ],
+    "sha256": "556dc1a62bd2155e506d0085de99641625bf91a57da4c9941561640365436cc8",
+    "official_evidence": "Official homepage rel=icon / shortcut icon / apple-touch-icon-precomposed.",
+    "dark_light_notes": "Official site favicon is the NIH gray/blue chevron logomark (no ClinicalTrials.gov text). Transparent outside; light plate improves contrast of dark gray on dark UI. Keep ClinicalTrials.gov label; not an endorsement badge."
+  },
+  {
+    "key": "nature",
+    "name": "Nature",
+    "source_page": "https://www.nature.com/",
+    "asset_url": "https://www.nature.com/static/images/logos/nature-logo.svg",
+    "filename": "nature.svg",
+    "format": "SVG",
+    "dimensions": [
+      200.0,
+      49.0
+    ],
+    "sha256": "46814980216fa173ed06de0287aef7200f704160a97ef432bebd069192fa2b4e",
+    "official_evidence": "Nature official branded 404 template at /favicon.ico contains img alt=Nature with this src; evidence/template-0.response.",
+    "dark_light_notes": "Official black Nature wordmark on transparent outside. Requires a light plate on dark UI. Homepage was challenged; exact logo is linked from the official Nature branded 404 template."
+  },
+  {
+    "key": "science",
+    "name": "Science journal",
+    "source_page": "https://www.science.org/journal/science",
+    "asset_url": "https://www.science.org/pb-assets/images/logos/science-logo-1655832633326.svg",
+    "filename": "science.svg",
+    "format": "SVG",
+    "dimensions": [
+      138.0,
+      64.0
+    ],
+    "sha256": "5374e70a242ee8b6308d71e7e41f7810a903aa394861e75f13c3604b07e57674",
+    "official_evidence": "Direct public asset served by science.org; URL corroborated by recorded science.org resource in urlscan 019c2396-eceb-700f-b541-ff00c845cc10.",
+    "dark_light_notes": "Official red Science journal wordmark on transparent outside, with original top/bottom viewBox whitespace. Legible on light; darker red has less contrast on dark. Use object-fit:contain, no crop. Live journal HTML was blocked; official asset bytes verified directly."
+  },
+  {
+    "key": "cell-press",
+    "name": "Cell Press",
+    "source_page": "https://www.cell.com/",
+    "asset_url": "https://www.cell.com/pb-assets/ux3/logos/cell/CellPress_rebrand-1578336322460.svg",
+    "filename": "cell-press.svg",
+    "format": "SVG",
+    "dimensions": [
+      165.0,
+      32.0
+    ],
+    "sha256": "e84744877c06bbf5796599c0a0dfbb7883ea45b4bb887c15a6c108ee3a93d494",
+    "official_evidence": "Direct public asset served by cell.com; URL discovered in live public accessibility audit of cell.com homepage journal-logos img.",
+    "dark_light_notes": "Official WHITE CellPress wordmark on transparent outside, no separate CP symbol in this file. MUST use a dark plate; invisible on white. Live homepage HTML was blocked; official cell.com asset verified directly."
+  },
+  {
+    "key": "biorxiv",
+    "name": "bioRxiv",
+    "source_page": "https://connect.biorxiv.org/resources/",
+    "asset_url": "https://connect.biorxiv.org/biorxiv_article.jpg",
+    "filename": "biorxiv.jpg",
+    "format": "JPEG",
+    "dimensions": [
+      222,
+      81
+    ],
+    "sha256": "b33c335fede28966f918bfb661661743dfd0481adf531333272e8ad560b9f77d",
+    "official_evidence": "Official bioRxiv subdomain header img#logo alt=bioRxiv points to /biorxiv_article.jpg; main-site logo URLs were HTTP 429.",
+    "dark_light_notes": "Official bioRxiv header JPEG, black/red wordmark plus small tagline. Opaque near-white rectangular matte, not transparent. Best on a light plate. 222×81px; keep aspect ratio and do not enlarge beyond native size."
+  },
+  {
+    "key": "arxiv",
+    "name": "arXiv",
+    "source_page": "https://arxiv.org/",
+    "asset_url": "https://static.arxiv.org/static/design-system/latest/logos/arxiv-logo.svg",
+    "filename": "arxiv.svg",
+    "format": "SVG",
+    "dimensions": [
+      246.98,
+      111.12
+    ],
+    "sha256": "ce0353650c0d4c1af4e2a777dfd0b64e7079a42d16dbb2aa4fe3d924975d9000",
+    "official_evidence": "Homepage img alt=archive points here.",
+    "dark_light_notes": "Official gray/red arXiv wordmark with transparent outside. Better on a light plate; gray/red lose contrast on dark. SVG has viewBox only, no explicit intrinsic width/height."
+  },
+  {
+    "key": "elife",
+    "name": "eLife",
+    "source_page": "https://elifesciences.org/",
+    "asset_url": "https://elifesciences.org/assets/favicons/favicon.e086b7f6.svg",
+    "filename": "elife.svg",
+    "format": "SVG",
+    "dimensions": [
+      500.0,
+      500.0
+    ],
+    "sha256": "21b8b4335d62297bb164c25a30c584c1de8e4b46a51b6f4689c76ec4f305b124",
+    "official_evidence": "eLife official branded 404 template links this exact rel=icon; evidence/template-1.response.",
+    "dark_light_notes": "Official multicolor eLife favicon emblem; white circular/oval backing is part of the artwork, outside corners transparent. Works on light and dark. Official eLife branded 404 template links this exact favicon."
+  },
+  {
+    "key": "github",
+    "name": "GitHub",
+    "source_page": "https://github.com/",
+    "asset_url": "https://github.githubassets.com/favicons/favicon.svg",
+    "filename": "github.svg",
+    "format": "SVG",
+    "dimensions": [
+      32.0,
+      32.0
+    ],
+    "sha256": "6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60",
+    "official_evidence": "Homepage rel=icon .js-site-favicon.",
+    "dark_light_notes": "Official GitHub dark charcoal Octocat favicon on transparent outside; NO adaptive theme CSS in this particular response. Requires a light plate on dark UI; do not assume it turns white."
+  }
+]
