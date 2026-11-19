@@ -13,7 +13,7 @@ export const DASHBOARD_SERIES: Readonly<Record<string, readonly string[]>> = Obj
   "estimated-acquisition-efficiency-voxels-per-dollar": ["Expansion microscopy · estimates", "EM · reported-tech estimates", "mesoSPIM · optical", "PEEM · prospective"],
 }));
 const DASHBOARD_FITS = new Set(Object.keys(DASHBOARD_SERIES));
-export type CardSettings = { recordingView?: RecordingViewId; hidden?: string[]; extrapolate?: boolean };
+export type CardSettings = { recordingView?: RecordingViewId; hidden?: string[]; extrapolate?: boolean; sensory?: boolean; benchmark?: boolean; voxels?: boolean };
 export type CardState = { slug: string; settings?: CardSettings };
 export type DashboardState = { name: string; cards: CardState[] };
 
@@ -24,13 +24,16 @@ function record(value: unknown): value is Record<string, unknown> {
 function validateCard(raw: unknown): CardState | null {
   if (!record(raw) || !isDashboardGraph(raw.slug) || Object.keys(raw).some(key => key !== "slug" && key !== "settings")) return null;
   if (raw.settings === undefined) return { slug: raw.slug };
-  if (!record(raw.settings) || Object.keys(raw.settings).some(key => !["recordingView", "hidden", "extrapolate"].includes(key))) return null;
-  const { recordingView, hidden, extrapolate } = raw.settings;
+  if (!record(raw.settings) || Object.keys(raw.settings).some(key => !["recordingView", "hidden", "extrapolate", "sensory", "benchmark", "voxels"].includes(key))) return null;
+  const { recordingView, hidden, extrapolate, sensory, benchmark, voxels } = raw.settings;
   if (recordingView !== undefined && (raw.slug !== "simultaneous-neural-recordings" || !recordingViewIds.some(view => view === recordingView))) return null;
   const series = DASHBOARD_SERIES[raw.slug];
   if (hidden !== undefined && (!series || !Array.isArray(hidden) || hidden.length > series.length || new Set(hidden).size !== hidden.length || hidden.some(id => !series.includes(id)))) return null;
   if (extrapolate !== undefined && (typeof extrapolate !== "boolean" || !DASHBOARD_FITS.has(raw.slug))) return null;
-  return { slug: raw.slug, settings: { recordingView: recordingView as RecordingViewId | undefined, hidden: hidden as string[] | undefined, extrapolate } };
+  if (sensory !== undefined && (typeof sensory !== "boolean" || raw.slug !== "bci-information-transfer-over-time")) return null;
+  if (benchmark !== undefined && (typeof benchmark !== "boolean" || !["selected-tissue-volume-checkpoints", "selected-public-image-resource-footprints", "estimated-acquisition-efficiency-voxels-per-dollar"].includes(raw.slug))) return null;
+  if (voxels !== undefined && (typeof voxels !== "boolean" || raw.slug !== "selected-tissue-volume-checkpoints")) return null;
+  return { slug: raw.slug, settings: { recordingView: recordingView as RecordingViewId | undefined, hidden: hidden as string[] | undefined, extrapolate, sensory, benchmark, voxels } };
 }
 
 function validateDashboard(raw: unknown): DashboardState | null {

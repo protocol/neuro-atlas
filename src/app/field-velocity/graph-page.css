@@ -52,3 +52,7 @@
 .exploration-series small { font-size: .7rem; font-weight: 650; }
 .exploration-empty, .exploration-model, .exploration-export-note { margin-block: .7rem; color: var(--muted); font-size: .85rem; }
 .exploration-model p { margin-top: .3rem; }
+
+.sensory-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .85rem; border: 1px dashed var(--border); border-radius: .65rem; padding: .8rem; margin-top: .6rem; }
+.sensory-panel strong { color: var(--foreground); }
+.sensory-panel a { color: var(--accent); text-decoration: underline; }

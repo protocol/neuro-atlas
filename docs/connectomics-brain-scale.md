@@ -1,6 +1,6 @@
 # Whole-brain scale and acquisition-budget references
 
-These two optional, default-off modal overlays add scale context to the existing observations. They do not alter the observed dataset, estimate completion percentages, fit a frontier, or project a completion date.
+These optional, default-off overlays add scale context to the existing observations. They do not alter the observed dataset, estimate completion percentages, fit a frontier, or project a completion date.
 
 ## Common image model
 
@@ -28,29 +28,29 @@ The comparative paper's own storage calculation uses **18 nm isotropic** samplin
 
 ## Human acquisition-budget targets
 
-Owner-selected budgets are scenarios, not measurements or cost forecasts. Each horizontal line is the per-10M-voxel acquisition price that would imply the selected **image-acquisition-only** budget for the same 1.875 × 10²¹-voxel human model:
+Each horizontal line shows the efficiency in **voxels per US dollar** that would imply the selected image-acquisition-only budget for the 1.875 × 10²¹-voxel human model.
 
-```
-USD_per_10M_voxels = budget_USD * 10,000,000 / 1.875e21
-```
-
-| Human image-acquisition budget | USD per 10M voxels |
+| Human image-acquisition budget | Target voxels per US dollar (`nominal voxels / budget`) |
 |---|---:|
-| $1B | 5.333333333333333 × 10⁻⁶ |
-| $100M | 5.333333333333333 × 10⁻⁷ |
-| $10M | 5.333333333333333 × 10⁻⁸ |
-| $1M | 5.333333333333333 × 10⁻⁹ |
-| $100K | 5.333333333333333 × 10⁻¹⁰ |
+| $1B | 1.875 × 10¹² |
+| $100M | 1.875 × 10¹³ |
+| $10M | 1.875 × 10¹⁴ |
+| $1M | 1.875 × 10¹⁵ |
+| $100K | 1.875 × 10¹⁶ |
 
 The observed cost points retain the published rough Table A1 estimates and their protocol-specific resolutions/labeling. [Kording et al., arXiv:2603.25713v1, Table A1, p.18](https://arxiv.org/pdf/2603.25713v1) states: “No claim beyond rough size (order of magnitude) is made.” Crossing a target does not demonstrate human-connectome feasibility. Preparation, storage, reconstruction, proofreading and other complete-project costs are outside these acquisition-budget lines.
 
+## Tissue-volume and nominal-voxel views
+
+The standalone tissue plot and dashboard reuse the same mouse (≈0.45 cm³), rhesus macaque (≈78.55 cm³) and human (≈1,200 cm³) volume assumptions. The optional voxel view transforms the displayed volume by `cm³ × 10²¹ / 640`; approximate dense reference capacities are 7.0 × 10¹⁷, 1.2 × 10²⁰ and 1.9 × 10²¹ voxels respectively. MICrONS uses ≈4 nm acquired pixels and nominal 40 nm sections; aligned imagery was generated at 8 nm laterally. The model describes nominal acquisition grid capacity only. Source observations and tables retain their individual tissue and volume bases in cm³.
+
 ## Presentation / interaction contract
 
-- Controls exist only in the two supported pop-out charts; previews and observed source tables remain unchanged.
-- Both switches start off. Switching back restores the original axis and point geometry.
+- Controls exist on the supported expanded charts; previews and original source tables remain unchanged.
+- All switches start off. Switching back restores the original axis and point geometry.
 - Domain limits and observed point positions interpolate in log space. Dotted target lines reveal as space opens; interrupted reversals begin at the current position.
 - Reduced-motion preference settles directly. Motion is cancelled on unmount.
-- Native exports use the selected settled view, with concise scenario labels; sharing is unavailable during transition rather than exporting a transient scale.
+- The existing footprint and acquisition-budget native exports use the selected settled view. Dashboard PNGs and standalone tissue exploration PNGs are unavailable; share the dashboard state with its dashboard link.
 - Existing source inspection, modal focus/history behavior, stable links and access controls remain in force.
 
 Sources independently retrieved November 13, 2026; source quotations and arithmetic were checked separately from the implementation.

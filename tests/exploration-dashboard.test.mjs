@@ -227,3 +227,46 @@ test('bitrate legend changes actual marks and recomputes the visible eligible mo
     assert.equal(marks(), 14);
   } finally { await close(); }
 });
+
+test('retinal context is opt-in, animal-extrapolated and geometrically separate from the BCI plot and fit', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const chart = cards()[0];
+    assert.ok(chart.querySelector('[data-sensory-toggle]'), 'BCI exposes sensory context');
+    assert.ok(!chart.querySelector('[data-sensory-context]'));
+    await click(chart.querySelector('[data-exploration-fit-toggle]'));
+    const svg = chart.querySelector('svg.draft-plot-svg').outerHTML;
+    await click(chart.querySelector('[data-sensory-toggle]'));
+    const panel = chart.querySelector('[data-sensory-context]');
+    assert.equal(panel.querySelector('[data-retinal-bits-per-second]').dataset.retinalBitsPerSecond, '8750000');
+    assert.match(panel.textContent, /≈9 Mb\/s.*guinea pig/s);
+    assert.match(panel.textContent, /ear.*no verified direct human whole-auditory-nerve rate/is);
+    assert.equal(panel.querySelector('a').href, 'https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/');
+    assert.equal(chart.querySelector('svg.draft-plot-svg').outerHTML, svg);
+  } finally { await close(); }
+});
+
+const tissue = 'selected-tissue-volume-checkpoints';
+test('tissue reference lines and the nominal voxel view reuse the brain model without changing original evidence', async () => {
+  const close = await dashboard({ search: '?add=' + tissue }, win => { win.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} }); });
+  try {
+    const chart = cards()[0];
+    const el = s => chart.querySelector(s);
+    const references = () => [...chart.querySelectorAll('[data-brain-scale-reference]')].map(ref => +ref.dataset.value);
+    const axes = () => el('svg.draft-plot-svg text').textContent;
+    const svg = () => el('svg.draft-plot-svg').outerHTML;
+    const original = svg();
+    const evidence = el('.draft-plot-data table').textContent;
+    assert.deepEqual(references(), []);
+    assert.ok(el('[data-brain-scale-toggle]'), 'tissue chart has an anatomical scale switch');
+    await click(el('[data-brain-scale-toggle]'));
+    assert.deepEqual(references(), [.45, 78.55, 1200]);
+    await click(el('[data-voxel-view-toggle]'));
+    assert.match(axes(), /Nominal image voxels/);
+    assert.deepEqual(references().map(n => n.toPrecision(5)), ['7.0313e+17', '1.2273e+20', '1.8750e+21']);
+    assert.equal(el('.draft-plot-data table').textContent, evidence);
+    await click(el('[data-voxel-view-toggle]'));
+    await click(el('[data-brain-scale-toggle]'));
+    assert.equal(svg(), original);
+  } finally { await close(); }
+});
