@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import React, { StrictMode } from 'react';
 import { mount, click, settle } from './modal-helpers.mjs';
 import { DraftChartsSection } from '../src/components/sections/draft-charts-section.tsx';
+import { atlasPath } from '../src/lib/atlas-path.ts';
 
 // Only browser raster/clipboard boundaries are fixtures. Real components, SVG
 // geometry, export serialization and MIME payload construction run unchanged.
@@ -469,7 +470,7 @@ test('route exportAll, concurrent single export and a card copy serialize withou
   let boundary;
   const cleanup = await mount(React.createElement(StrictMode, null, React.createElement(AppRouterContext.Provider,
     { value: { replace() { assert.fail('Export must not navigate'); } } }, React.createElement(Layout, null, React.createElement(Overview)))), '#metrics', win => {
-    win.history.replaceState({keep: 'router'}, '', '/field-velocity?review=1&recordingView=optical#metrics');
+    win.history.replaceState({keep: 'router'}, '', atlasPath('/field-velocity?review=1&recordingView=optical#metrics'));
     boundary = browserBoundaries(win);
   });
   try {
@@ -501,7 +502,7 @@ test('route exportAll, concurrent single export and a card copy serialize withou
       assert.equal(all.exported.length, 25);
       assert.equal(owned.size, 25);
       assert.equal(new Set(all.exported.map(item => item.anchor)).size, 25);
-      assert.equal(one.url, 'https://atlas.example/field-velocity/bci-information-transfer-over-time');
+      assert.equal(one.url, 'https://atlas.example' + atlasPath('/field-velocity/bci-information-transfer-over-time'));
       assert.equal(all.exported.find(item => item.anchor === 'simultaneous-neural-recordings').filename, 'neuro-atlas-simultaneous-neural-recordings-optical.png');
       assert.match(all.exported.find(item => item.anchor === 'simultaneous-neural-recordings').title, /optical/i);
       assert.equal(window.location.href, url);
@@ -511,7 +512,7 @@ test('route exportAll, concurrent single export and a card copy serialize withou
       assert.equal(document.querySelector('#metric-category-1-toggle').getAttribute('aria-expanded'), 'false');
       assert.equal(document.querySelector('dialog, [data-graph-export-host]'), null);
       assert.equal(boundary.writes.length, 1);
-      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example/field-velocity/citation-latency');
+      assert.equal(await (await boundary.writes[0][0].getType('text/plain')).text(), 'https://atlas.example' + atlasPath('/field-velocity/citation-latency'));
       assert.equal(api.charts().filter(chart => chart.open).length, 0);
     } finally { observer.disconnect(); }
   } finally { await cleanup(); boundary.restore(); }

@@ -3,12 +3,14 @@ import test from 'node:test';
 import React, { act } from 'react';
 import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime.js';
 import layout from '../src/app/field-velocity/layout.tsx';
+import { ExplorationDashboard } from '../src/components/exploration-dashboard.tsx';
 import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
+import { GraphExportHost } from '../src/components/graph-export-host.tsx';
 import { FIELD_VELOCITY_GRAPHS, fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 import { atlasPath } from '../src/lib/atlas-path.ts';
 import { currentGraphExport, registerChart, subscribeGraphExport, whenChartRegistered, withGraphExport } from '../src/lib/chart-export-api.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
-import { mount } from './modal-helpers.mjs';
+import { mount, settle } from './modal-helpers.mjs';
 
 globalThis.React = React;
 const FieldVelocityLayout = layout.default ?? layout;
@@ -204,6 +206,133 @@ test('a queued request from an unready recording detail does not switch to the o
   } finally {
     await release();
     unsubscribe();
+    raster.restore();
+    await cleanup();
+  }
+});
+
+const bci = 'bci-information-transfer-over-time';
+const bciPath = atlasPath(`/field-velocity/${bci}`);
+const bciMarks = (root = document) => [...root.querySelectorAll('svg [data-source-observation]')]
+  .map(mark => mark.getAttribute('data-source-observation'));
+const serializedBciMarks = svg => (svg.match(/data-source-observation=/g) ?? []).length;
+
+async function hideSpeech() {
+  const toggle = document.querySelector('[data-exploration-series="Speech decoding"]');
+  assert.ok(toggle);
+  await act(async () => { toggle.click(); });
+  assert.equal(bciMarks().length, 9);
+  assert.ok(!document.querySelector(`[data-download-chart="${bci}"]`));
+  assert.equal(window.neuroAtlas.charts().find(chart => chart.anchor === bci).open, false);
+}
+
+test('queued BCI single export rejects an unsupported graph after departing its detail', { timeout: 15000 }, async () => {
+  let setVisible;
+  function RetainedLayout() {
+    const [visible, set] = React.useState(true);
+    setVisible = set;
+    return React.createElement(React.Fragment, null,
+      visible && React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(bci) }),
+      React.createElement(GraphExportHost));
+  }
+  const cleanup = await mount(React.createElement(RetainedLayout), '', win => {
+    win.history.replaceState({}, '', `${bciPath}/?token=fixture#detail`);
+  });
+  const raster = rasterFixture();
+  const release = await holdQueue();
+  try {
+    const defaults = bciMarks();
+    assert.equal(defaults.length, 14);
+    await hideSpeech();
+    const pending = window.neuroAtlas.exportChart('draft-panel-bci-bitrate').then(result => ({ result }), error => ({ error }));
+    await act(async () => {
+      window.history.pushState({ keep: 'destination' }, '', atlasPath('/field-velocity') + '#metrics');
+      setVisible(false);
+    });
+    assert.equal(bciMarks().length, 0);
+    const before = locationState();
+    await act(async () => { await release(); });
+    let outcome;
+    await act(async () => { outcome = await pending; });
+    const serializedMarks = serializedBciMarks(raster.svgs[0] ?? '');
+    assert.match(outcome.error?.message ?? '', /graph not ready/i, JSON.stringify({
+      invocationMarks: 9, serializedMarks, url: outcome.result?.url,
+    }));
+    assert.equal(raster.svgs.length, 0);
+    assert.deepEqual(locationState(), before);
+    assert.equal(currentGraphExport(), null);
+    assert.ok(!document.querySelector('[data-graph-export-host]'));
+  } finally {
+    await release();
+    raster.restore();
+    await cleanup();
+  }
+});
+
+test('queued BCI bulk export skips the unsupported invocation after Speech is restored', { timeout: 15000 }, async () => {
+  const cleanup = await mount(React.createElement(React.Fragment, null,
+    React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(bci) }),
+    React.createElement(GraphExportHost)), '', win => {
+    win.history.replaceState({ keep: 'detail' }, '', `${bciPath}?token=fixture#detail`);
+  });
+  const raster = rasterFixture();
+  const release = await holdQueue();
+  try {
+    const defaults = bciMarks();
+    assert.equal(defaults.length, 14);
+    await hideSpeech();
+    const batch = window.neuroAtlas.exportAll();
+    await act(async () => { document.querySelector('[data-exploration-series="Speech decoding"]').click(); });
+    assert.deepEqual(bciMarks(), defaults);
+    assert.equal(window.neuroAtlas.charts().find(chart => chart.anchor === bci).open, true);
+    const before = locationState();
+    let result;
+    const done = batch.then(value => { result = value; });
+    await act(async () => { await release(); });
+    for (let i = 0; !result && i < 240; i++) await settle();
+    assert.ok(result, 'bulk export settles with the retained host');
+    await done;
+    assert.deepEqual(result.skipped, [bci], JSON.stringify({
+      invocationMarks: 9, restoredMarks: defaults.length, exportedBci: result.exported.some(chart => chart.anchor === bci), skipped: result.skipped,
+    }));
+    assert.deepEqual(result.exported.map(chart => chart.anchor), FIELD_VELOCITY_GRAPHS.map(graph => graph.slug).filter(slug => slug !== bci));
+    assert.ok(result.exported.every(chart => chart.url === window.location.origin + atlasPath(`/field-velocity/${chart.anchor}`)));
+    assert.equal(raster.svgs.length, result.exported.length);
+    assert.deepEqual(locationState(), before);
+    assert.equal(currentGraphExport(), null);
+    assert.ok(!document.querySelector('[data-graph-export-host]'));
+    assert.deepEqual(bciMarks(), defaults);
+  } finally {
+    await release();
+    raster.restore();
+    await cleanup();
+  }
+});
+
+test('generic export from the dashboard uses the canonical BCI graph, not its filtered card', async () => {
+  const cleanup = await mount(React.createElement(React.Fragment, null,
+    React.createElement(ExplorationDashboard), React.createElement(GraphExportHost)), '', win => {
+    win.history.replaceState({ keep: 'dashboard' }, '', atlasPath(`/field-velocity/dashboard?add=${bci}&token=fixture`));
+  });
+  const raster = rasterFixture();
+  try {
+    const card = document.querySelector(`[data-dashboard-graph="${bci}"]`);
+    assert.ok(card);
+    assert.equal(bciMarks(card).length, 14);
+    await hideSpeech();
+    const filtered = bciMarks(card);
+    const before = locationState();
+    let job, result;
+    await act(async () => { job = window.neuroAtlas.exportChart(bci); });
+    await act(async () => { result = await job; });
+    assert.equal(result.url, window.location.origin + bciPath);
+    assert.deepEqual(raster.svgs.map(serializedBciMarks), [14]);
+    assert.deepEqual(bciMarks(card), filtered);
+    assert.equal(window.neuroAtlas.charts().find(chart => chart.anchor === bci).open, false);
+    assert.equal(currentGraphExport(), null);
+    assert.ok(!document.querySelector('[data-graph-export-host]'));
+    assert.deepEqual(locationState(), before);
+  } finally {
     raster.restore();
     await cleanup();
   }

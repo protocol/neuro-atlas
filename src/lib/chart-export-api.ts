@@ -2,7 +2,7 @@
 
 import { buildChartImage, chartPng, type ChartExport } from "@/lib/chart-export";
 import { FIELD_VELOCITY_GRAPHS, canonicalPerformanceAnchor, fieldVelocityGraph, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
-import { atlasPath } from "@/lib/atlas-path";
+import { atlasPathname } from "@/lib/atlas-path";
 
 type Registration = { title: string; getChart: () => ChartExport };
 export type ExportedChart = { anchor: string; title: string; filename: string; url: string; width: number; height: number; pngBase64: string };
@@ -49,22 +49,24 @@ export function whenChartRegistered(anchor: string) {
 }
 export function hasGraphExportHost() { return hosts.size > 0; }
 
+const isDetailPath = (entry: FieldVelocityGraph, pathname: string) => atlasPathname(pathname) === graphPath(entry);
+
 export function withGraphExport<T>(anchor: string, run: (getChart: () => ChartExport, url: string) => T | Promise<T>, url = window.location.href): Promise<T> {
   const entry = fieldVelocityGraph(anchor);
   if (!entry) return Promise.reject(new Error("Unknown graph"));
+  const fromDetail = isDetailPath(entry, window.location.pathname);
+  const notReady = () => new Error(`Graph not ready to export: ${entry.slug}`);
+  // An unavailable detail at invocation must not become exportable while queued.
+  if (fromDetail && !activeRegistration(entry.slug)) return Promise.reject(notReady());
   const owner = Array.from(hosts).at(-1);
   const job = async () => {
     const { slug } = entry;
     const live = activeRegistration(slug);
     if (live) return run(live.getChart, url);
     if (!owner || !hosts.has(owner)) throw new Error(`Graph export host unavailable: ${slug}`);
-    const detailPath = atlasPath(graphPath(entry));
-    const currentPath = window.location.pathname;
-    const onRecordingDetail = entry.graph.renderer === "recording" && [new URL(url).pathname, currentPath]
-      .some(path => path.replace(/\/$/, "") === detailPath);
-    if (onRecordingDetail || currentPath === detailPath) {
-      // Do not silently substitute a default view for the visible chart during a transition.
-      throw new Error(`Graph not ready to export: ${slug}`);
+    // A detail that lost its registration must not fall back to a default graph.
+    if (fromDetail || isDetailPath(entry, new URL(url).pathname) || isDetailPath(entry, window.location.pathname)) {
+      throw notReady();
     }
     const active = { id: ++requestId, entry, url };
     publish(active);
@@ -97,9 +99,13 @@ async function exportChart(anchor: string, url = window.location.href): Promise<
   }, url);
 }
 async function exportAll(): Promise<{ exported: ExportedChart[]; skipped: string[] }> {
-  const url = window.location.href;
+  const { href: url, pathname } = window.location;
+  // The loop reaches later graphs after awaits, possibly after the detail changed.
+  const unreadyDetail = FIELD_VELOCITY_GRAPHS.find(entry => isDetailPath(entry, pathname) && !activeRegistration(entry.slug));
   const exported: ExportedChart[] = [], skipped: string[] = [];
-  for (const { slug } of FIELD_VELOCITY_GRAPHS) {
+  for (const entry of FIELD_VELOCITY_GRAPHS) {
+    const { slug } = entry;
+    if (entry === unreadyDetail) { skipped.push(slug); continue; }
     try { exported.push(await exportChart(slug, url)); }
     catch { skipped.push(slug); }
   }
