@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "verified": "Fixture is exactly the independently recomputed delta from three immutable commits, with complete canonical/projected attribution and upstream plot/point additions.",
+  "commits": {
+    "base": "0f2045b102828b2d6bf6a7ce5d3756c379647d44",
+    "attribution": "73226ca0bc3548954048439ba77c497e32f51cdb",
+    "backfill": "fa32fcd7984fe2d4ddd4cc68be745409caf76603"
+  },
+  "backfillPointCount": 6
+}

@@ -1,0 +1,108 @@
+{
+  "verdict": "PASS",
+  "base": "fa32fcd7984fe2d4ddd4cc68be745409caf76603",
+  "reviewedAttributionHead": "73226ca0bc3548954048439ba77c497e32f51cdb",
+  "attributionChanges": [
+    {
+      "family": "draft",
+      "id": "flywire-fly-neuropil-2024-01-01",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "draft",
+      "id": "flywire-neurons",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "draft",
+      "id": "flywire-synapses",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "draft",
+      "id": "flywire-proofreading",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "draft",
+      "id": "fafb-image-download-2018",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "sourceUrl"
+      ]
+    },
+    {
+      "family": "metric",
+      "id": "flywire-fly-neuropil-2024-01-01",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "metric",
+      "id": "flywire-neurons",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "metric",
+      "id": "flywire-synapses",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "metric",
+      "id": "flywire-proofreading",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "family": "metric",
+      "id": "fafb-image-download-2018",
+      "fields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "sourceUrl"
+      ]
+    }
+  ],
+  "preservation": "Complete draft and metric projections equal current main plus the exact previously reviewed attribution field delta; all upstream additions and discovery metadata retained."
+}

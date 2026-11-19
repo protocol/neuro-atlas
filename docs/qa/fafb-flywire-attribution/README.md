@@ -1,5 +1,7 @@
 # FAFB / FlyWire attribution — verification
 
+**Current integration:** [PR128 × PR129 conflict-resolution verification](reconciliation-20261119.md) records the later main merge, combined credits, exact data preservation and fresh native/source/export checks. The original implementation evidence below retains its original runtime and test scope.
+
 Runtime revision: `acb276abcc039237f59ca4cfca0d77722d03c084`  
 Baseline: `0f2045b102828b2d6bf6a7ce5d3756c379647d44`
 
