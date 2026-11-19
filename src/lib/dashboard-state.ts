@@ -1,3 +1,4 @@
+import { recordingViewIds, type RecordingViewId } from "@/lib/recording-view";
 import { FIELD_VELOCITY_GRAPHS } from "@/data/field-velocity-links";
 
 export const DASHBOARD_ROUTE = "/field-velocity/dashboard";
@@ -7,7 +8,8 @@ export const SAVE_LIMIT = 12;
 export const NAME_LIMIT = 64;
 const slugs = new Set(FIELD_VELOCITY_GRAPHS.map(entry => entry.slug));
 export const isDashboardGraph = (value: unknown): value is string => typeof value === "string" && slugs.has(value);
-export type CardState = { slug: string };
+export type CardSettings = { recordingView?: RecordingViewId };
+export type CardState = { slug: string; settings?: CardSettings };
 export type DashboardState = { name: string; cards: CardState[] };
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -15,7 +17,13 @@ function record(value: unknown): value is Record<string, unknown> {
 }
 
 function validateCard(raw: unknown): CardState | null {
-  return record(raw) && isDashboardGraph(raw.slug) && Object.keys(raw).length === 1 ? { slug: raw.slug } : null;
+  if (!record(raw) || !isDashboardGraph(raw.slug) || Object.keys(raw).some(key => key !== "slug" && key !== "settings")) return null;
+  if (raw.settings === undefined) return { slug: raw.slug };
+  if (!record(raw.settings) || Object.keys(raw.settings).some(key => key !== "recordingView")) return null;
+  const { recordingView } = raw.settings;
+  if (recordingView === undefined) return { slug: raw.slug };
+  if (raw.slug !== "simultaneous-neural-recordings" || !recordingViewIds.some(view => view === recordingView)) return null;
+  return { slug: raw.slug, settings: { recordingView: recordingView as RecordingViewId } };
 }
 
 function validateDashboard(raw: unknown): DashboardState | null {

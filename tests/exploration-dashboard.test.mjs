@@ -168,3 +168,31 @@ test('layout changes animate card rectangles without scaling content; reduced mo
     assert.ok(runs.every(run => run.cancelled));
   } finally { await close(); }
 });
+
+const recording = 'simultaneous-neural-recordings';
+test('recording cards select views independently and never register dashboard charts in the graph export API', async () => {
+  const close = await dashboard({ search: '?add=' + recording + '&recordingView=electrical' });
+  try {
+    await click(button(`[data-dashboard-add="${recording}"]`));
+    const controls = cards().map(c => c.querySelector('[data-recording-view-select]'));
+    const before = window.location.href;
+    const views = () => cards().map(c => c.querySelector('[data-recording-view]').dataset.recordingView);
+    assert.deepEqual(views(), ['electrical', 'historical'], 'only the incoming card takes the explicitly linked recording view');
+    await act(async () => { controls[0].value = 'optical'; controls[0].dispatchEvent(new Event('change', { bubbles: true })); });
+    assert.deepEqual(views(), ['optical', 'historical']);
+    assert.equal(window.location.href, before);
+    assert.ok(cards().every(c => c.querySelector('svg [data-curve-point]')));
+    assert.ok(cards().every(c => /dashboard link/i.test(c.querySelector('[data-exploration-export-disabled]')?.textContent ?? '')));
+    const api = await import('../src/lib/chart-export-api.ts');
+    let canonical;
+    const dispose = api.registerChart(recording, { title: 'independent canonical sentinel', getChart() { return canonical; } });
+    try {
+      await act(async () => { controls[1].value = 'human-channels'; controls[1].dispatchEvent(new Event('change', { bubbles: true })); });
+      assert.equal((await api.whenChartRegistered(recording)).title, 'independent canonical sentinel');
+      await click(button('[data-dashboard-save]'));
+      const raw = window.localStorage.getItem(storage);
+      assert.match(raw, /optical/);
+      assert.match(raw, /human-channels/);
+    } finally { dispose(); }
+  } finally { await close(); }
+});

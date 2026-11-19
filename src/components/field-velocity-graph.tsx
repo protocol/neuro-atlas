@@ -1,5 +1,6 @@
 "use client";
 
+import { ChartExplorationContext, type ChartExploration } from "@/components/chart-exploration-context";
 import { InlineChartDetail } from "@/components/chart-modal-slots";
 import { DraftChartMethodology, DraftPanelDetail } from "@/components/draft-chart-panel";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
@@ -53,6 +54,8 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
   }
 }
 
-export function FieldVelocityGraphDetail({ entry }: { entry: FieldVelocityGraph }) {
-  return <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>;
+export function FieldVelocityGraphDetail({ entry, instance }: { entry: FieldVelocityGraph; instance?: ChartExploration }) {
+  return <ChartExplorationContext.Provider value={instance ?? null}>
+    <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
+  </ChartExplorationContext.Provider>;
 }

@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FieldVelocityGraphDetail } from "@/components/field-velocity-graph";
 import { FIELD_VELOCITY_GRAPHS, graphPath } from "@/data/field-velocity-links";
+import { recordingViewToken } from "@/lib/recording-view";
 import { useDashboardLayout } from "@/components/use-dashboard-layout";
 import { atlasPath } from "@/lib/atlas-path";
 
@@ -35,7 +36,8 @@ export function ExplorationDashboard() {
         next.current = linked.cards.length;
       } else setLinkError("This dashboard link could not be opened. Choose charts below to start a new one.");
     } else if (add.length === 1 && isDashboardGraph(add[0])) {
-      setCards([{ id: 0, slug: add[0] }]);
+      const recordingView = add[0] === "simultaneous-neural-recordings" ? recordingViewToken(new URL(window.location.href)) : undefined;
+      setCards([{ id: 0, slug: add[0], ...(recordingView && { settings: { recordingView } }) }]);
     } else if (add.length) setLinkError("That chart could not be added. Choose a chart below.");
     try {
       const existing = readDashboards(window.localStorage.getItem(DASHBOARD_STORAGE));
@@ -154,7 +156,9 @@ export function ExplorationDashboard() {
               <a className="dashboard-pill" href={atlasPath(graphPath(entry))}>Open graph</a>
             </div>
           </header>
-          <FieldVelocityGraphDetail entry={entry} />
+          <FieldVelocityGraphDetail entry={entry} instance={{ dashboard: true, settings: card.settings ?? {}, update: change => {
+            setCards(current => current.map(item => item.id === card.id ? { ...item, settings: { ...item.settings, ...change } } : item));
+          } }} />
         </article>;
       })}
     </div>

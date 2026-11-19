@@ -11,6 +11,7 @@ import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExt
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
+import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { DraftChartShare } from "@/components/draft-chart-share";
@@ -447,9 +448,10 @@ function selectRecordingView(id: RecordingViewId) {
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
 function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+  const instance = useContext(ChartExplorationContext);
   const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
   const exportRequest = useContext(GraphExportContext);
-  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
+  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : instance?.dashboard ? instance.settings.recordingView ?? "historical" : liveView;
   const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
   return <CurveCard detail={detail} id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
     coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
@@ -458,7 +460,11 @@ function RecordingCard({ historical, historicalProvenance, detail }: { detail?: 
     modalPlot={<div data-recording-view={view.id}>
       <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
         <label className="pc-track-select pc-recording-view">Measurement view
-          <select data-recording-view-select value={view.id} onChange={event => selectRecordingView(event.target.value as RecordingViewId)}>
+          <select data-recording-view-select value={view.id} onChange={event => {
+            const recordingView = event.target.value as RecordingViewId;
+            if (instance?.dashboard) instance.update({ recordingView });
+            else selectRecordingView(recordingView);
+          }}>
             {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
           </select>
         </label>

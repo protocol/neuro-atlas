@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { buildChartImage, copyChartImage, downloadChartImage, type ChartExport } from "@/lib/chart-export";
+import { ChartExplorationContext, explorationExportReason } from "@/components/chart-exploration-context";
 import { GraphExportContext } from "@/components/graph-export-context";
 import { registerChart } from "@/lib/chart-export-api";
 
@@ -9,15 +10,16 @@ import { registerChart } from "@/lib/chart-export-api";
 export function ChartShare({ anchor, title, getChart, disabled = false }: {
   anchor: string; title: string; getChart: () => ChartExport; disabled?: boolean;
 }) {
+  const unavailable = explorationExportReason(useContext(ChartExplorationContext));
   const exportRequest = useContext(GraphExportContext);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
   // Expose this chart's exact export (same svg/notes/legend) on window.neuroAtlas while mounted.
   useEffect(() => {
-    if (disabled) return;
+    if (disabled || unavailable) return;
     return registerChart(anchor, { title, getChart }, exportRequest?.id);
-  }, [anchor, title, getChart, disabled, exportRequest]);
+  }, [anchor, title, getChart, disabled, exportRequest, unavailable]);
   async function run(download: boolean) {
     if (pending.current) return;
     pending.current = true; setBusy(true); setStatus(download ? "Preparing PNG…" : "Preparing chart…");
@@ -29,6 +31,7 @@ export function ChartShare({ anchor, title, getChart, disabled = false }: {
       setStatus(download ? "PNG unavailable. Try again, or use Copy link." : "Chart copy unavailable. Use Download PNG and Copy link instead.");
     } finally { pending.current = false; setBusy(false); }
   }
+  if (unavailable) return <p className="exploration-export-note" data-exploration-export-disabled>{unavailable}</p>;
   return <div className="pc-share" data-chart-share>
     <button type="button" data-copy-chart={anchor} aria-label={`Copy chart: ${title}`} disabled={busy || disabled} onClick={() => void run(false)}>Copy chart</button>
     <button type="button" data-download-chart={anchor} aria-label={`Download PNG: ${title}`} disabled={busy || disabled} onClick={() => void run(true)}>Download PNG</button>
