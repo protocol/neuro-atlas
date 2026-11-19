@@ -5,12 +5,16 @@
       "api.crossref.org — adb88e"
     ],
     [
-      "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
-      "api.dandiarchive.org — 0.220127.0436"
+      "https://trends.google.com/trends/explore?date=2023-10-15+2026-10-15&q=Neuralink&hl=en-US",
+      "Archived brand context — Google Trends — Neuralink (2023-10-15 to 2026-10-15)"
+    ],
+    [
+      "https://trends.google.com/trends/explore?date=2023-11-06+2026-11-06&q=Neuralink&hl=en-US",
+      "Archived brand context — Google Trends — Neuralink (2023-11-06 to 2026-11-06)"
     ],
     [
       "https://cellimagelibrary.org/images/40263",
-      "cellimagelibrary.org — 40263"
+      "Bock mouse V1 — Cell Image Library dataset"
     ],
     [
       "https://clinicaltrials.gov/api/v2/studies/NCT06891781",
@@ -37,6 +41,10 @@
       "cordis.europa.eu"
     ],
     [
+      "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
+      "DANDI AJILE12 — frozen release 0.220127.0436"
+    ],
+    [
       "https://dvid.io/blog/release/",
       "dvid.io — release"
     ],
@@ -54,7 +62,7 @@
     ],
     [
       "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
-      "FDA — K242618"
+      "FDA — Layer 7-T clearance letter K242618"
     ],
     [
       "https://www.federalreserve.gov/releases/h10/20261102/",
@@ -65,20 +73,8 @@
       "fish1-release.storage.googleapis.com — index"
     ],
     [
-      "https://github.com/ihstevenson/scaling/blob/2bb7a59bc0bd7f490a0e10316b8907bf5d14a287/scaling.py",
-      "github.com — scaling.py"
-    ],
-    [
       "https://trends.google.com/",
       "Google Trends"
-    ],
-    [
-      "https://trends.google.com/trends/explore?date=2023-10-15+2026-10-15&q=Neuralink&hl=en-US",
-      "Google Trends — Neuralink (2023-10-15 to 2026-10-15)"
-    ],
-    [
-      "https://trends.google.com/trends/explore?date=2023-11-06+2026-11-06&q=Neuralink&hl=en-US",
-      "Google Trends — Neuralink (2023-11-06 to 2026-11-06)"
     ],
     [
       "https://trends.google.com/trends/explore?date=2023-10-15+2026-10-15&q=neurotechnology%2Cbrain-computer+interface&hl=en-US",
@@ -1961,6 +1957,10 @@
       "tsinghua.edu.cn — 12706.htm"
     ],
     [
+      "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
+      "Untapped Ventures — EON Systems seed investment announcement"
+    ],
+    [
       "https://www.venturelab.swiss/neurosoft-bioelectronics",
       "venturelab.swiss — neurosoft bioelectronics"
     ],
@@ -2167,10 +2167,6 @@
       "uk.advfn.com"
     ],
     [
-      "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
-      "untappedventures.substack.com — untapped ventures invests in eon"
-    ],
-    [
       "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/",
       "wired.com — openai invests in sam altmans new brain tech startup merge labs"
     ],
@@ -2249,6 +2245,14 @@
     [
       "https://metr.org/time-horizons/",
       "METR — time horizon methodology"
+    ],
+    [
+      "https://github.com/protocol/neuro-atlas/blob/c49484c2773866a12531d23007208a15207ff5fd/docs/public-data-size-audit.md#malecns-measured-public-jpeg-image-pyramid",
+      "Neuro Atlas measurement audit — MaleCNS public image inventory"
+    ],
+    [
+      "https://github.com/protocol/neuro-atlas/blob/845e4a614c5209dd045f2accba1f71709d118006/docs/bci-bitrate.md",
+      "Neuro Atlas methodology — BCI communication-rate conversions and fit"
     ],
     [
       "https://openalex.org/source-types/book%20series",
@@ -2341,6 +2345,10 @@
     [
       "https://github.com/protocol/plrd.org/blob/main/scripts/velocity/field_velocity_openalex.py",
       "scripts/velocity/field_velocity_openalex.py"
+    ],
+    [
+      "https://github.com/ihstevenson/scaling/blob/2bb7a59bc0bd7f490a0e10316b8907bf5d14a287/scaling.py",
+      "Stevenson–Kording recording selection method — pinned producer code"
     ],
     [
       "https://unstats.un.org/unsd/methodology/m49/overview/",

@@ -46,6 +46,38 @@ test("configured forecast API origins stay out of the evidence catalog while que
   }
 });
 
+test("active chart measurement audits and fit methods are sources rather than repository navigation", () => {
+  const { included } = scanSources();
+  const catalog = JSON.parse(readFileSync("src/data/methodology-sources.json", "utf8"));
+  const hrefs = new Set(catalog.reference.map(([url]) => url));
+  const evidence = JSON.parse(readFileSync("src/data/draft-chart-evidence.json", "utf8"));
+  const points = Object.values(evidence).flatMap((record) => record.plots ?? []).flatMap((plot) => plot.points ?? []);
+  const audit = points.find((point) => point.id === "malecns-jpeg-inventory-2026")?.sourceUrl;
+  const method = /methodologyUrl: "(https:\/\/github.com\/protocol\/neuro-atlas\/blob\/[^\"]+)"/.exec(readFileSync("src/data/bci-bitrate.ts", "utf8"))?.[1];
+  assert.ok(audit && method, "Read the operative URLs from actual chart bindings");
+  for (const url of [audit, method]) {
+    assert.ok(included.has(url), `Active chart source was excluded as navigation: ${url}`);
+    assert.ok(hrefs.has(url), `Active chart method is missing from the reference category: ${url}`);
+  }
+});
+
+test("catalog labels distinguish investor disclosure, archived brand context, and compilation method code", () => {
+  const catalog = JSON.parse(readFileSync("src/data/methodology-sources.json", "utf8"));
+  const milestones = JSON.parse(readFileSync("src/data/milestones.json", "utf8"));
+  const investor = milestones.find((row) => row.sourceUrl.includes("untappedventures.substack.com"));
+  assert.ok(investor);
+  const disclosure = catalog.disclosures.find(([url]) => url === investor.sourceUrl);
+  assert.ok(disclosure, "A participating investor’s statement is a primary disclosure even on Substack");
+  assert.match(disclosure[1], /Untapped Ventures.*EON.*seed/i);
+  const archived = catalog.datasets.filter(([url]) => url.includes("trends.google.com") && /neuralink/i.test(decodeURIComponent(url)));
+  assert.equal(archived.length, 2);
+  for (const [, label] of archived) assert.match(label, /archived.*context/i);
+  const all = Object.values(catalog).flat();
+  const producer = all.find(([url]) => url.includes("github.com/ihstevenson/scaling/blob/") && url.endsWith("scaling.py"));
+  assert.ok(producer);
+  assert.ok(catalog.reference.some(([url]) => url === producer[0]), "The selection script is method provenance, separate from the compiled data");
+});
+
 test("the classified directory covers the exact external evidence inventory", () => {
   const { paths, included } = scanSources();
   for (const path of ["src/data/field-velocity/neurotech.snapshot.json", "data/market-memo-q1-2026/milestones.csv", "src/data/funding-index.json", "scripts/publications/acquire.py", "public/data/google-trends/google-trends.json"]) assert.ok(paths.includes(path), path);

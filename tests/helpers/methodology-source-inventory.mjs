@@ -51,7 +51,9 @@ function exclusion(literal, url) {
   if (host === "gamma-api.polymarket.com" || host === "api.elections.kalshi.com" || host === "www.metaculus.com" && path === "/api") return "configured forecast endpoint; current view links external questions without fetching prices";
   if (literal.includes(")?(")) return "regular-expression literal";
   if (host === "openapi.vercel.sh" || host === "www.w3.org" || host === "api.github.com" || host === "raw.githubusercontent.com" && path.startsWith("/protocol/neuro-atlas/")) return "hosting, namespace or feed transport";
-  if (host === "github.com" && /^\/protocol\/neuro-atlas(?:\.git|\/.*)?\/?$/.test(path)) return "Neuro Atlas repository or contribution navigation";
+  // Published, immutable measurement/method documents are first-party sources.
+  // Repo roots, PRs and QA receipts remain navigation rather than evidence.
+  if (host === "github.com" && /^\/protocol\/neuro-atlas(?:\.git|\/.*)?\/?$/.test(path) && !/^\/protocol\/neuro-atlas\/blob\/[a-f0-9]{40}\/docs\/(?!qa\/)/.test(path)) return "Neuro Atlas repository or contribution navigation";
   if (host === "www.protocol.ai" || host === "www.plneuro.xyz" && /^(\/privacy-policy\/?|\/neuro-atlas(?:\/.*)?)$/.test(path) || host === "x.com" && path === "/protocollabs_rd") return "organization, policy or site navigation";
   return null;
 }

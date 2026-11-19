@@ -6,6 +6,7 @@ import { JSDOM } from "jsdom";
 import Home from "../src/app/page.tsx";
 import EcosystemPage from "../src/app/ecosystem/page.tsx";
 import * as Nav from "../src/components/site-nav.tsx";
+import { SiteFooter } from "../src/components/site-footer.tsx";
 
 globalThis.React = React;
 const moduleValue = (x) => x.default ?? x;
@@ -15,25 +16,25 @@ test("old Ecosystem bookmarks redirect to the original map", () => {
 });
 const render = (Component) => new JSDOM(renderToStaticMarkup(React.createElement(Component))).window.document;
 
-test("sidebar and mobile header follow Milestones, Field Velocity, BCI Funding Index, Ecosystem order", () => {
+test("sidebar and mobile header retain the three native Atlas destinations in order", () => {
   const nav = moduleValue(Nav);
   for (const Component of [nav.SideNav, nav.MobileBar]) {
     const doc = render(Component);
-    const links = [...doc.querySelectorAll("nav a")].filter(link => ["/milestones", "/field-velocity", "/funding", MAP].includes(link.getAttribute("href")));
-    assert.deepEqual(links.map(link => link.getAttribute("href")), ["/milestones", "/field-velocity", "/funding", MAP]);
-    assert.deepEqual(links.map(link => link.textContent), ["Milestones", "Field Velocity", "BCI Funding Index", "Ecosystem ↗"]);
+    const links = [...doc.querySelectorAll("nav a")];
+    assert.deepEqual(links.map(link => link.getAttribute("href")), ["/milestones", "/field-velocity", "/funding"]);
+    assert.deepEqual(links.map(link => link.textContent), ["Milestones", "Field Velocity", "BCI Funding Index"]);
   }
 });
 
-test("Ecosystem links directly to Neurofounders from home and both navigation layouts", () => {
+test("Neurofounders source discovery is in the footer instead of the home and primary navigation", () => {
   const nav = moduleValue(Nav);
   for (const Component of [moduleValue(Home), nav.SideNav, nav.MobileBar]) {
     const doc = render(Component);
-    const link = doc.querySelector(`a[href="${MAP}"]`);
-    assert.ok(link, "Ecosystem must link to the original map");
-    assert.equal(link.target, "_blank");
-    assert.match(link.rel, /noreferrer/);
-    assert.match(link.getAttribute("aria-label") ?? link.textContent, /Neurofounders/);
+    assert.equal(doc.querySelector(`a[href="${MAP}"]`), null);
     assert.equal(doc.querySelector('a[href="/ecosystem"]'), null);
   }
+  const footer = render(SiteFooter);
+  const link = footer.querySelector(`a[href="${MAP}"]`);
+  assert.ok(link);
+  assert.equal(link.textContent, "Neurofounders");
 });

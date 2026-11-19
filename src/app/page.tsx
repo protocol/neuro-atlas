@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { atlasMetadata } from "@/lib/atlas-metadata";
-import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { LandingVisual } from "@/components/landing-visual";
 
 export const metadata = atlasMetadata("/", "Neuro Atlas");
@@ -9,7 +8,6 @@ const PLATES = [
   { href: "/milestones", title: "Milestones", view: "milestones", blurb: "Follow the scientific, clinical, and commercial breakthroughs." },
   { href: "/field-velocity", title: "Field Velocity", view: "velocity", blurb: "See how capabilities are advancing — and what could come next." },
   { href: "/funding", title: "BCI Funding Index", view: "funding", blurb: "Explore funding rounds and investors in brain-computer interfaces." },
-  { href: NEUROFOUNDERS_MAP_URL, title: "Ecosystem", view: "ecosystem", blurb: "Explore the startup map on Neurofounders. Opens in a new tab." },
 ] as const;
 
 export default function Home() {
@@ -33,8 +31,6 @@ export default function Home() {
             <Link
               key={plate.href}
               href={plate.href}
-              target={plate.view === "ecosystem" ? "_blank" : undefined}
-              rel={plate.view === "ecosystem" ? "noopener noreferrer" : undefined}
               className="landing-tile"
               aria-labelledby={`tile-${plate.view}`}
               aria-describedby={`tile-description-${plate.view}`}
@@ -50,7 +46,6 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <Link href="/methodology" className="landing-methodology">Sources and methodology <span aria-hidden="true">→</span></Link>
       </section>
     </div>
   );

@@ -15,7 +15,7 @@ test("the canonical methodology page explains purpose, selection and refresh lim
     React.createElement("main", null, React.createElement(MethodologyPage)), React.createElement(SiteFooter))));
   try {
     const { document } = window;
-    assert.equal(document.querySelector("h1")?.textContent, "Data sources and data gathering procedures");
+    assert.equal(document.querySelector("h1")?.textContent, "Sources & methodology");
     const main = document.querySelector("main");
     const copy = main.textContent.replace(/\s+/g, " ");
     assert.ok(copy.includes("At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves."));
@@ -24,7 +24,7 @@ test("the canonical methodology page explains purpose, selection and refresh lim
     const hrefs = [...main.querySelectorAll("a[href]")].map((a) => a.getAttribute("href"));
     for (const href of [NEUROFOUNDERS_MAP_URL, "https://neurotechnology.substack.com/p/representations2", atlasPath("/funding"), "https://www.plrd.org/", "https://github.com/protocol/neuro-atlas/pulls", "#data-disclaimer"]) assert.ok(hrefs.includes(href), href);
     assert.match(document.getElementById("data-disclaimer").textContent, /may contain errors/);
-    for (const text of ["FIH", "BDD", "IDE", "Status legend", "Changelog"]) assert.ok(copy.includes(text), text);
+    for (const text of ["Principles and glossary", "Status legend", "Changelog", "Acronyms get tooltips", "Every reading carries provenance"]) assert.ok(!copy.includes(text), `Removed content must stay absent: ${text}`);
   } finally { window.close(); }
 });
 
@@ -55,14 +55,16 @@ test("the methodology Feedback button opens the existing selector without a logi
 });
 
 
-test("legacy glossary, status notes and changelog remain available without crowding the source directory", () => {
+test("the rebuilt page removes old principles and status/history sections and keeps a compact header", () => {
   const { window } = new JSDOM(renderToStaticMarkup(React.createElement(MethodologyPage)));
   try {
-    for (const label of ["Principles and glossary", "Status legend", "Changelog"]) {
-      const summary = [...window.document.querySelectorAll("summary")].find((e) => e.textContent.trim() === label);
-      assert.ok(summary, `Additional reading should be a native disclosure: ${label}`);
-      assert.equal(summary.closest("details").open, false);
+    const document = window.document;
+    assert.equal(document.querySelector("h1").textContent, "Sources & methodology");
+    assert.equal(document.querySelector("header p"), null, "Remove the old subheader rather than hiding it");
+    for (const label of ["Principles", "Status legend", "Changelog", "Acronyms get tooltips"]) {
+      assert.ok(![...document.querySelectorAll("h2,h3,summary")].some((element) => element.textContent.includes(label)), label);
     }
+    assert.equal(document.querySelectorAll("details").length, 6, "Only the six source categories remain as disclosures");
   } finally { window.close(); }
 });
 

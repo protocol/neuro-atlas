@@ -69,7 +69,7 @@ for (const chrome of ["SideNav", "MobileBar"]) {
       const logo = attribution.querySelector("img");
       assert.ok(logo?.getAttribute("src")?.endsWith("/powered-plneuro.svg"));
       assert.doesNotMatch(document.body.textContent, /powered by|by PL R&D|Neurotech Futures/i);
-      assert.ok(document.querySelector(`a[href="${NEUROFOUNDERS_MAP_URL}"]`), "Keep the Ecosystem destination");
+      assert.equal(document.querySelector(`a[href="${NEUROFOUNDERS_MAP_URL}"]`), null, "The footer now owns the external source destination");
     } finally { window.close(); }
   });
 }
