@@ -110,6 +110,18 @@ test('the open catalog disables results at the card cap without stranding focus'
   } finally { await close(); }
 });
 
+test('default action: a customized dashboard card explicitly labels its canonical default destination', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    assert.ok(cards()[0].querySelector('[data-exploration-fit-line]'));
+    const action = cards()[0].querySelector('header a');
+    assert.equal(action?.getAttribute('href'), atlasPath(`/field-velocity/${bitrate}`));
+    assert.equal(action.textContent, 'Open default graph');
+
+  } finally { await close(); }
+});
+
 test('catalog search can add an independent duplicate; controls reorder and return focus on removal', async () => {
   const close = await dashboard({ search: '?add=' + bitrate });
   try {

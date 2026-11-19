@@ -288,7 +288,7 @@ export function ExplorationDashboard() {
               <button className="dashboard-pill" type="button" data-dashboard-earlier disabled={!index} onClick={() => move(index, -1)}>Move earlier</button>
               <button className="dashboard-pill" type="button" data-dashboard-later disabled={index === cards.length - 1} onClick={() => move(index, 1)}>Move later</button>
               <button className="dashboard-pill" type="button" data-dashboard-remove onClick={() => remove(index)}>Remove</button>
-              <a className="dashboard-pill" data-dashboard-open-graph href={atlasPath(graphPath(entry))}>Open full graph</a>
+              <a className="dashboard-pill" data-dashboard-open-graph href={atlasPath(graphPath(entry))}>Open default graph</a>
             </div>
           </header>
           <FieldVelocityGraphDetail entry={entry} instance={{ dashboard: true, settings: card.settings ?? {}, update: change => {
