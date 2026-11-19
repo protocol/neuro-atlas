@@ -26,10 +26,18 @@ export function atlasMetadata(path: string, title: string, description = atlasDe
   const basic = { title, description };
   if (!atlasSiteUrl) return basic;
   const canonical = new URL(atlasPath(path), atlasSiteUrl).href;
+  const image = {
+    url: new URL(atlasPath("/social/neuro-atlas-launch.png"), atlasSiteUrl).href,
+    width: 2400,
+    height: 1350,
+    type: "image/png",
+    alt: "Neuro Atlas — Neurotechnology, mapped. PL Neuro. plneuro.xyz/neuro-atlas",
+  };
   return {
     ...basic,
     alternates: { canonical },
-    openGraph: { title, description, url: canonical, siteName: "Neuro Atlas", type: "website" },
+    openGraph: { title, description, url: canonical, siteName: "Neuro Atlas", type: "website", images: [image] },
+    twitter: { card: "summary_large_image", title, description, images: [{ url: image.url, alt: image.alt }] },
     robots: { index: atlasIndexable, follow: atlasIndexable },
   };
 }
