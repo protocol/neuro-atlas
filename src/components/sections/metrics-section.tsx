@@ -1,6 +1,6 @@
 "use client";
 
-import { readOverviewReturn, type OverviewSnapshot } from "@/lib/field-velocity/overview-return";
+import { readOverviewReturn, suspendOverviewAnchoring, type OverviewSnapshot } from "@/lib/field-velocity/overview-return";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { installChartExportApi } from "@/lib/chart-export-api";
 import { fieldVelocityLink, performanceTarget, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
@@ -53,6 +53,7 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   useLayoutEffect(() => {
     const snapshot = readOverviewReturn(window);
     if (!snapshot) return;
+    const releaseAnchoring = suspendOverviewAnchoring(window);
     restored.current = snapshot;
     let frame = requestAnimationFrame(() => {
       setStates(snapshot.groups);
@@ -65,9 +66,10 @@ export function MetricsSection({ performance, references, engagementPreview }: {
           if (rail) rail.scrollLeft = left;
         }
         window.scrollTo({ top: snapshot.scrollY, behavior: "instant" });
+        frame = requestAnimationFrame(releaseAnchoring);
       });
     });
-    return () => cancelAnimationFrame(frame);
+    return () => { cancelAnimationFrame(frame); releaseAnchoring(); };
   }, []);
   useLayoutEffect(() => {
     const reveal = () => {

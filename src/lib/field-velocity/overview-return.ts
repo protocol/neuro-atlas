@@ -10,6 +10,21 @@ const originKey = "atlasOverviewOrigin";
 const ticketKey = "atlasGraphReturnTicket";
 const currentHref = (win: Window) => win.location.pathname + win.location.search + win.location.hash;
 
+/** Keep browser scroll anchoring from undoing an explicit restored viewport during layout. */
+export function suspendOverviewAnchoring(win: Window) {
+  const style = win.document.documentElement.style;
+  const value = style.getPropertyValue("overflow-anchor");
+  const priority = style.getPropertyPriority("overflow-anchor");
+  let released = false;
+  style.setProperty("overflow-anchor", "none");
+  return () => {
+    if (released) return;
+    released = true;
+    if (value) style.setProperty("overflow-anchor", value, priority);
+    else style.removeProperty("overflow-anchor");
+  };
+}
+
 function putEntry(win: Window, key: string, snapshot: OverviewSnapshot) {
   win.history.replaceState({ ...win.history.state, [key]: snapshot }, "");
 }
