@@ -270,3 +270,40 @@ test('tissue reference lines and the nominal voxel view reuse the brain model wi
     assert.equal(svg(), original);
   } finally { await close(); }
 });
+
+test('Trends legend hides the selected keyword line and hit targets, preserving source rows', async () => {
+  const close = await dashboard({ search: '?add=neurotech-search-terms' });
+  try {
+    const card = cards()[0];
+    assert.equal(card.querySelectorAll('[data-trend-line]').length, 2);
+    const keys = [...card.querySelectorAll('[data-exploration-series]')];
+    assert.equal(keys.length, 2, 'mounted Trends plot has two keyword filters');
+    const rows = card.querySelectorAll('[data-trends-row]').length;
+    const hidden = keys[0].dataset.explorationSeries;
+    await click(keys[0]);
+    assert.equal(card.querySelectorAll('[data-trend-line]').length, 1);
+    assert.ok([...card.querySelectorAll('[data-trend-point]')].every(p => p.dataset.term !== hidden));
+    await click(keys[1]);
+    assert.equal(card.querySelectorAll('[data-trend-line]').length, 0);
+    assert.ok(card.querySelector('[data-exploration-empty]'));
+    assert.equal(card.querySelectorAll('[data-trends-row]').length, rows);
+  } finally { await close(); }
+});
+
+test('publication filter hides the selected comparison line and its targets without rebasing the axis', async () => {
+  const close = await dashboard({ search: '?add=neurotech-papers-per-year' });
+  try {
+    const card = cards()[0];
+    const ticks = () => [...card.querySelectorAll('[data-annual-index-tick]')].map(t => t.textContent);
+    const initial = ticks();
+    assert.ok(initial.length > 0);
+    const key = card.querySelector('[data-exploration-series="all-research"]');
+    assert.ok(key, 'annual publications exposes its science reference key');
+    await click(key);
+    assert.equal(card.querySelector('polyline[data-science-context]'), null);
+    assert.equal(card.querySelectorAll('[data-science-year]').length, 0);
+    assert.ok(card.querySelector('polygon[data-science-context]'));
+    assert.deepEqual(ticks(), initial);
+    assert.ok(card.querySelector('table'));
+  } finally { await close(); }
+});

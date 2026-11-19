@@ -9,10 +9,12 @@ export const NAME_LIMIT = 64;
 const slugs = new Set(FIELD_VELOCITY_GRAPHS.map(entry => entry.slug));
 export const isDashboardGraph = (value: unknown): value is string => typeof value === "string" && slugs.has(value);
 export const DASHBOARD_SERIES: Readonly<Record<string, readonly string[]>> = Object.freeze(Object.assign(Object.create(null), {
+  "neurotech-papers-per-year": ["neurotech", "all-research", "four-domain"],
+  "neurotech-search-terms": ["neurotechnology", "brain-computer interface"],
   "bci-information-transfer-over-time": ["Cursor / grid control", "Endovascular switch", "Text selection / scanning", "Speech decoding", "Handwriting decoding"],
   "estimated-acquisition-efficiency-voxels-per-dollar": ["Expansion microscopy · estimates", "EM · reported-tech estimates", "mesoSPIM · optical", "PEEM · prospective"],
 }));
-const DASHBOARD_FITS = new Set(Object.keys(DASHBOARD_SERIES));
+const DASHBOARD_FITS = new Set(["bci-information-transfer-over-time", "estimated-acquisition-efficiency-voxels-per-dollar"]);
 export type CardSettings = { recordingView?: RecordingViewId; hidden?: string[]; extrapolate?: boolean; sensory?: boolean; benchmark?: boolean; voxels?: boolean };
 export type CardState = { slug: string; settings?: CardSettings };
 export type DashboardState = { name: string; cards: CardState[] };
