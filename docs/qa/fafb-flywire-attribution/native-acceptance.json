@@ -1,0 +1,136 @@
+{
+  "runtimeSha": "acb276abcc039237f59ca4cfca0d77722d03c084",
+  "baselineSha": "0f2045b102828b2d6bf6a7ce5d3756c379647d44",
+  "source": "Production-built local application; test-only loopback auth fixture, not hosted authenticated acceptance",
+  "cases": [
+    {
+      "width": 1440,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "exportBytes": 258532
+    },
+    {
+      "width": 1440,
+      "anchor": "selected-published-maps-synapse-counts",
+      "point": "flywire-synapses",
+      "geometryComparison": "15px native-scrollbar responsive rescale; all scientific marks and units preserved",
+      "exportBytes": 260432
+    },
+    {
+      "width": 1440,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "exportBytes": 247131
+    },
+    {
+      "width": 1440,
+      "anchor": "selected-public-image-resource-footprints",
+      "point": "fafb-image-download-2018",
+      "geometryComparison": "exact",
+      "exportBytes": 263371
+    },
+    {
+      "width": 1440,
+      "anchor": "reported-project-proofreading-effort",
+      "point": "flywire-proofreading",
+      "geometryComparison": "15px native-scrollbar responsive rescale; all scientific marks and units preserved",
+      "exportBytes": 215349
+    },
+    {
+      "width": 390,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 390,
+      "anchor": "selected-published-maps-synapse-counts",
+      "point": "flywire-synapses",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 390,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 390,
+      "anchor": "selected-public-image-resource-footprints",
+      "point": "fafb-image-download-2018",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 390,
+      "anchor": "reported-project-proofreading-effort",
+      "point": "flywire-proofreading",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 320,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 320,
+      "anchor": "selected-published-maps-synapse-counts",
+      "point": "flywire-synapses",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 320,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 320,
+      "anchor": "selected-public-image-resource-footprints",
+      "point": "fafb-image-download-2018",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    },
+    {
+      "width": 320,
+      "anchor": "reported-project-proofreading-effort",
+      "point": "flywire-proofreading",
+      "geometryComparison": "exact",
+      "exportBytes": null
+    }
+  ],
+  "pngCount": 5,
+  "physicalDeviceTouch": false,
+  "artifacts": [
+    {
+      "file": "baseline-selected-published-connectomes-neuron-counts-1440-source.png",
+      "sha256": "0a2006a15b365613e3fb7a36da3ec6acd5e52c445c2857d2d0fc2a1565e6f273"
+    },
+    {
+      "file": "candidate-selected-published-connectomes-neuron-counts-1440-source.png",
+      "sha256": "480682c77487834c512e56fbbf2271ae77315db709d1ce1e1ba713bbcb6f970f"
+    },
+    {
+      "file": "candidate-selected-published-connectomes-neuron-counts-320-source.png",
+      "sha256": "210c25f8f6960d49a4180ffe81d0474eaf12d7014e7fc364ce88ab60ff5bc792"
+    },
+    {
+      "file": "candidate-selected-public-image-resource-footprints-320-source.png",
+      "sha256": "06f4deb16499f9efbab6a40da291cb84cc44242b47dc9bd07558bd6b8242ceb7"
+    },
+    {
+      "file": "candidate-selected-published-connectomes-neuron-counts-1440-export.png",
+      "sha256": "37d4d14ad38cc203c23a2386f3614dd6633c610b8bd46650cd454676dcf1382f"
+    }
+  ]
+}

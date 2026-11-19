@@ -9,6 +9,8 @@ import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, RETIRED_METRIC_PLOT_IDS, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
 import { CONNECTOMICS_BACKFILL } from '../src/data/connectomics-backfill.ts';
 import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-chart-plot.tsx';
+import { beforeFafbAttribution, preAttributionBytes, preAttributionEvidence } from './helpers/fafb-attribution-baseline.mjs';
+import { withoutConnectomicsBackfill } from './helpers/connectomics-provenance-baseline.mjs';
 
 globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
@@ -25,20 +27,7 @@ const point = id => plots.flatMap(item => item.points).find(item => item.id === 
 const omit = (object, fields) => Object.fromEntries(Object.entries(object).filter(([key]) => !fields.includes(key)));
 const digest = value => createHash('sha256').update(value).digest('hex');
 const backfillIds = new Set(CONNECTOMICS_BACKFILL.map(point => point.id));
-// Remove only the explicitly tested additions before checking historical goldens.
-function withoutConnectomicsBackfill(evidence) {
-  return Object.fromEntries(Object.entries(evidence).map(([title, item]) => [title, {
-    ...item,
-    plots: item.plots.map(plot => {
-      if (!CONNECTOMICS_BACKFILL.some(point => point.plotId === plot.id)) return plot;
-      const legacy = omit(plot, ['curationSource', 'exportPointKey', 'observationBasis']);
-      const scope = plot.id === 'largest-connectome-neurons'
-        ? 'Selected published neuronal counts across whole-brain and partial maps. Somatic neuron counts and targeted boundary-truncated reconstructions have different completeness criteria.'
-        : 'Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted from mm³ ÷ 1,000; ≈ denotes approximate sample bounds.';
-      return { ...legacy, scope, points: plot.points.filter(point => !backfillIds.has(point.id)) };
-    }),
-  }]));
-}
+// Both narrowly asserted branch deltas compose before historical goldens.
 // Pin the actual pre-edit scientific contract, independently of the rewritten prose.
 function scientificFields(evidence) {
   return Object.fromEntries(Object.entries(evidence).map(([title, item]) => [title, {
@@ -51,11 +40,12 @@ function scientificFields(evidence) {
 }
 
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
-  assert.equal(digest(bytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
-  assert.equal(digest(JSON.stringify(scientificFields(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE)))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
+  assert.equal(digest(preAttributionBytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
+  assert.deepEqual(beforeFafbAttribution(raw, true), preAttributionEvidence, 'Only the five approved attribution records and compact credits differ from the frozen original corpus');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE))))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
   // Computed from 1c54bff's projection with only the approved cost plot omitted;
   // independently confirmed equal on 255e91d. Raw/archive hashes above stay fixed.
-  assert.equal(digest(JSON.stringify(scientificFields(withoutConnectomicsBackfill(unchangedMetricEvidence)))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(withoutConnectomicsBackfill(unchangedMetricEvidence))))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 8], ['largest-connectome-neurons', 10], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],
@@ -92,8 +82,10 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
 
 test('full pre-backfill evidence projections are unchanged outside the explicitly added points and chart copy', () => {
   // Captured from the running projections at 0f2045b, including exact notes and dates.
-  assert.equal(digest(JSON.stringify(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE))), 'c231dfa219a15927b66ddafe492b3975d2457c8dab1b76082b1e1091acda4731');
-  assert.equal(digest(JSON.stringify(withoutConnectomicsBackfill(METRIC_CHART_EVIDENCE))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
+  // Restore only the separately asserted FAFB attribution delta from PR128;
+  // never substitute raw archive notes for the original reader projection.
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE)))), 'c231dfa219a15927b66ddafe492b3975d2457c8dab1b76082b1e1091acda4731');
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(METRIC_CHART_EVIDENCE)))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
 });
 
 test('only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata', () => {

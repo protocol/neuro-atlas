@@ -5,6 +5,7 @@
     "plots": [
       {
         "id": "tissue-cm3",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected tissue-volume checkpoints",
         "xLabel": "Release / publication year",
         "xKind": "year",
@@ -73,11 +74,19 @@
             "label": "FlyWire whole-brain neuropil",
             "dateLabel": "2024 · publication",
             "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
-            "sourceTitle": "FlyWire whole-brain neuropil — primary source",
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "The whole brain contains 0.0175 mm3 of neuropil volume",
             "qualifier": "",
-            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024.",
-            "group": "Fruit fly"
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "group": "Fruit fly",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
           },
           {
             "id": "liconn-mouse-native-2025-01-01",
@@ -115,6 +124,7 @@
     "plots": [
       {
         "id": "largest-connectome-neurons",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected published connectomes — neuron counts",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -169,11 +179,19 @@
             "label": "FlyWire v783 adult whole brain",
             "dateLabel": "2024 · paper publication year",
             "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
-            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
             "qualifier": "",
-            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment.",
-            "group": "Whole adult fly"
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "group": "Whole adult fly",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
           },
           {
             "id": "microns-neurons",
@@ -192,6 +210,7 @@
       },
       {
         "id": "largest-connectome-synapses",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected published maps — synapse counts",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -232,11 +251,19 @@
             "label": "FlyWire v783 adult whole brain",
             "dateLabel": "2024 · paper publication year",
             "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
-            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
             "qualifier": "≈",
-            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges.",
-            "group": "Whole adult fly"
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges. The 54.5 million synapses are between the reconstructed neurons. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "group": "Whole adult fly",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
           },
           {
             "id": "microns-synapses",
@@ -686,6 +713,7 @@
     "plots": [
       {
         "id": "proofreading-effort",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Reported project proofreading effort",
         "xLabel": "Publication year",
         "xKind": "year",
@@ -713,11 +741,19 @@
             "label": "FlyWire proofreading effort",
             "dateLabel": "2024 · paper publication year",
             "sourceUrl": "https://www.nature.com/articles/s41586-024-07558-y",
-            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "We estimate that FlyWire’s brain reconstruction took around 33 person-years of manual proofreading.",
             "qualifier": "≈",
-            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain.",
-            "group": "FlyWire"
+            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "group": "FlyWire",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
           }
         ],
         "seriesNote": "MICrONS axon proofreading has varying extension in subvolume 65, not equivalent completed neurons. NeuVue merge-cleanup hours are not full axonal tracing or total MICrONS effort. No full-volume numeric extrapolation, assumed work-year conversion or productivity trend."
@@ -1286,6 +1322,7 @@
     "plots": [
       {
         "id": "public-data-size",
+        "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)",
         "title": "Selected public image/resource footprints",
         "xLabel": "Report / measurement year",
         "xKind": "year",
@@ -1314,14 +1351,15 @@
             "y": 0.012,
             "label": "FAFB public JPEG image pyramid (source for FlyWire)",
             "dateLabel": "2018-07-19 publication; first release not established",
-            "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6063995/fullTextXML",
-            "sourceTitle": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster",
+            "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/",
+            "sourceTitle": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
             "quote": "The full 12 TB image volume is downloaded over the Internet.",
             "group": "Published image sizes",
             "qualifier": "≈",
-            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
+            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB image volume publicly available in 2018; this imagery underlies the later FlyWire reconstruction. Date is the July 19, 2018 paper publication; the exact earliest public-release day remains unknown. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
             "annotation": "FAFB / FlyWire · ≈0.012 PB JPEG imagery",
-            "marker": "circle"
+            "marker": "circle",
+            "sourceRole": "Underlying EM image volume — FAFB"
           },
           {
             "id": "hemibrain-v1",

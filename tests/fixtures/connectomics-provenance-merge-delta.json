@@ -1,0 +1,420 @@
+{
+  "commits": {
+    "base": "0f2045b102828b2d6bf6a7ce5d3756c379647d44",
+    "attribution": "73226ca0bc3548954048439ba77c497e32f51cdb",
+    "backfill": "fa32fcd7984fe2d4ddd4cc68be745409caf76603"
+  },
+  "fafb": {
+    "canonical": {
+      "plots": [
+        {
+          "id": "tissue-cm3",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "largest-connectome-neurons",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "largest-connectome-synapses",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "proofreading-effort",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "public-data-size",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        }
+      ],
+      "points": [
+        {
+          "plotId": "tissue-cm3",
+          "id": "flywire-fly-neuropil-2024-01-01",
+          "before": {
+            "sourceTitle": "FlyWire whole-brain neuropil — primary source",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "largest-connectome-neurons",
+          "id": "flywire-neurons",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "largest-connectome-synapses",
+          "id": "flywire-synapses",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges. The 54.5 million synapses are between the reconstructed neurons. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "proofreading-effort",
+          "id": "flywire-proofreading",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "public-data-size",
+          "id": "fafb-image-download-2018",
+          "before": {
+            "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6063995/fullTextXML",
+            "sourceTitle": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster",
+            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB imagery underlies FlyWire. Date is the July 19, 2018 publication; the first public release date remains unestablished. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding."
+          },
+          "after": {
+            "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/",
+            "sourceTitle": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB image volume publicly available in 2018; this imagery underlies the later FlyWire reconstruction. Date is the July 19, 2018 paper publication; the exact earliest public-release day remains unknown. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
+            "sourceRole": "Underlying EM image volume — FAFB"
+          }
+        }
+      ]
+    },
+    "projected": {
+      "plots": [
+        {
+          "id": "tissue-cm3",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "largest-connectome-neurons",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "largest-connectome-synapses",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "proofreading-effort",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        },
+        {
+          "id": "public-data-size",
+          "before": {},
+          "after": {
+            "datasetCredit": "FAFB / FlyWire — EM imagery: Zheng, Lauritzen et al. (2018) · Connectome: Dorkenwald et al. / FlyWire Consortium (2024)"
+          }
+        }
+      ],
+      "points": [
+        {
+          "plotId": "tissue-cm3",
+          "id": "flywire-fly-neuropil-2024-01-01",
+          "before": {
+            "sourceTitle": "FlyWire whole-brain neuropil — primary source",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint; the reconstruction reuses FAFB imagery."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint; the reconstruction reuses FAFB imagery. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "largest-connectome-neurons",
+          "id": "flywire-neurons",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Whole adult female fly brain including optic lobes. Neuronal morphology is proofread; the paper reports 44.7% postsynapse attachment."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Whole adult female fly brain including optic lobes. Neuronal morphology is proofread; the paper reports 44.7% postsynapse attachment. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "largest-connectome-synapses",
+          "id": "flywire-synapses",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Whole adult female fly brain including optic lobes. Morphology is proofread; the paper reports 44.7% postsynapse attachment. Synapses count paired pre/post contacts; multiple contacts can join the same neuron pair."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Whole adult female fly brain including optic lobes. Morphology is proofread; the paper reports 44.7% postsynapse attachment. Synapses count paired pre/post contacts; multiple contacts can join the same neuron pair. The 54.5 million synapses are between the reconstructed neurons. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "proofreading-effort",
+          "id": "flywire-proofreading",
+          "before": {
+            "sourceTitle": "Neuronal wiring diagram of an adult brain",
+            "note": "Around 33 person-years of estimated adult whole-brain effort. Twig attachment remains partial; completeness standards differ from hemibrain."
+          },
+          "after": {
+            "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
+            "note": "Around 33 person-years of estimated adult whole-brain effort. Twig attachment remains partial; completeness standards differ from hemibrain. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
+            "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
+            "supportingReferences": [
+              {
+                "role": "Underlying EM image volume — FAFB",
+                "title": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/"
+              }
+            ]
+          }
+        },
+        {
+          "plotId": "public-data-size",
+          "id": "fafb-image-download-2018",
+          "before": {
+            "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6063995/fullTextXML",
+            "sourceTitle": "Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster",
+            "note": "The July 19, 2018 paper reports a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The plotted value covers the download product. FAFB imagery underlies FlyWire; first release timing is unestablished. Paper alignment v13 is retired in favor of v14; lossless PNG is an alternate encoding."
+          },
+          "after": {
+            "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/",
+            "sourceTitle": "Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.",
+            "note": "The July 19, 2018 paper publication reports a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The plotted value covers the download product. FAFB image volume publicly available in 2018; this imagery underlies the later FlyWire reconstruction. The exact earliest public-release day remains unknown. Paper alignment v13 is retired in favor of v14; lossless PNG is an alternate encoding.",
+            "sourceRole": "Underlying EM image volume — FAFB"
+          }
+        }
+      ]
+    }
+  },
+  "backfill": {
+    "plots": [
+      {
+        "id": "tissue-cm3",
+        "before": {
+          "scope": "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted from mm³ ÷ 1,000; ≈ denotes approximate sample bounds."
+        },
+        "after": {
+          "scope": "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted to cm³; ≈ denotes approximate volumes or sample bounds.",
+          "exportPointKey": true,
+          "curationSource": {
+            "title": "EM Datasets, shared by Forrest Collman",
+            "url": "https://docs.google.com/spreadsheets/d/1PukHvhxTqC72tau9HDnq1LKIl3F6V_FGr_y3G-jjZ-k/edit#gid=0"
+          }
+        }
+      },
+      {
+        "id": "largest-connectome-neurons",
+        "before": {
+          "scope": "Selected published neuronal counts across whole-brain and partial maps. Somatic neuron counts and targeted boundary-truncated reconstructions have different completeness criteria."
+        },
+        "after": {
+          "scope": "Selected study-reported neuronal counts across whole and partial maps. Somatic segmentation, targeted boundary-truncated reconstructions and proofread cell counts have different completeness criteria.",
+          "observationBasis": "Source-reported and source-derived",
+          "exportPointKey": true,
+          "curationSource": {
+            "title": "EM Datasets, shared by Forrest Collman",
+            "url": "https://docs.google.com/spreadsheets/d/1PukHvhxTqC72tau9HDnq1LKIl3F6V_FGr_y3G-jjZ-k/edit#gid=0"
+          }
+        }
+      }
+    ],
+    "points": [
+      {
+        "plotId": "tissue-cm3",
+        "point": {
+          "id": "helmstaedter-2013-retina-volume",
+          "x": 2013,
+          "y": 1.20384e-06,
+          "label": "Helmstaedter mouse retina",
+          "group": "Mouse",
+          "annotation": "Helmstaedter · retina imaged bounds",
+          "exportAnnotation": "Helmstaedter · retina imaged bounds · 2013 online publication · ≈1,203,840 µm³",
+          "qualifier": "≈",
+          "dateLabel": "2013-08-07 · online publication",
+          "sourceUrl": "https://www.nature.com/articles/nature12346",
+          "sourceTitle": "Helmstaedter et al. · Connectomic reconstruction of the inner plexiform layer",
+          "quote": "this corresponds to a physical size of about 132 µm × 114 µm for each slice and a total thickness of 80 µm.",
+          "note": "Inner retinal imaged stack (Mus musculus). Serial block-face electron microscopy. Approximate physical imaged bounds: 132 × 114 × 80 µm = 1,203,840 µm³ (0.00120384 mm³). The dimensions describe unexpanded, processed EM tissue. The volume retains processed-tissue dimensions; living-tissue shrinkage correction is unspecified. EM Datasets row 28."
+        }
+      },
+      {
+        "plotId": "largest-connectome-neurons",
+        "point": {
+          "id": "malecns-neurons-2025",
+          "x": 2025,
+          "y": 166691,
+          "label": "MaleCNS",
+          "group": "Adult male fly CNS",
+          "annotation": "MaleCNS · adult male fly CNS",
+          "exportAnnotation": "MaleCNS · adult male fly CNS · 2025 preprint v2 · 166,691 neurons",
+          "dateLabel": "2025-10-30 · preprint v2",
+          "sourceUrl": "https://www.biorxiv.org/content/10.1101/2025.10.09.680999v2.full",
+          "sourceTitle": "Berg et al. · MaleCNS (bioRxiv v2)",
+          "quote": "In total, we identified, proofread and annotated 166,691 neurons (including sensory axons) across the entire volume",
+          "note": "Adult male brain and nerve cord (Drosophila melanogaster). Enhanced focused ion beam scanning electron microscopy (FIB-SEM). Proofread and annotated neurons across the central nervous system, including sensory axons. EM Datasets row 115."
+        }
+      },
+      {
+        "plotId": "largest-connectome-neurons",
+        "point": {
+          "id": "eyewire-ii-neurons-2026",
+          "x": 2026,
+          "y": 25000,
+          "label": "Eyewire II",
+          "group": "Partial mouse retina",
+          "annotation": "Eyewire II · partial mouse retina",
+          "exportAnnotation": "Eyewire II · partial mouse retina · 2026 preprint v1 · >25,000 neurons",
+          "qualifier": ">",
+          "dateLabel": "2026-06-01 · preprint v1",
+          "sourceUrl": "https://www.biorxiv.org/content/10.64898/2026.05.28.727403v1",
+          "sourceTitle": "Stroeh et al. · Eyewire II (bioRxiv v1)",
+          "quote": "Human proofreading of an automated reconstruction has so far yielded more than 8, 000 bipolar cells, 13, 000 amacrine cells, and 4, 000 retinal ganglion cells.",
+          "note": "Adult mouse retina (Mus musculus). Electron microscopy (EM). Partial retinal map. Lower bound from the sum of three cell classes after human proofreading: 8,000 bipolar + 13,000 amacrine + 4,000 retinal ganglion cells. Automated detection is complete for synaptic ribbons; conventional synapse detection is in progress. EM Datasets row 124."
+        }
+      },
+      {
+        "plotId": "largest-connectome-neurons",
+        "point": {
+          "id": "white-1986-canonical-neurons",
+          "x": 1986,
+          "y": 302,
+          "label": "White C. elegans",
+          "group": "Canonical hermaphrodite worm",
+          "annotation": "White · canonical worm composite",
+          "exportAnnotation": "White · canonical worm composite · 1986 print publication · 302 neurons",
+          "dateLabel": "1986-11-12 · print publication",
+          "sourceUrl": "https://doi.org/10.1098/rstb.1986.0056",
+          "sourceTitle": "White et al. · The structure of the nervous system of C. elegans",
+          "quote": "The hermaphrodite nervous system has a total complement of 302 neurons, which are arranged in an essentially invariant structure.",
+          "note": "Canonical hermaphrodite nervous system (Caenorhabditis elegans). Serial-section electron microscopy with manual reconstruction. Canonical complement in a composite of overlapping specimen series; pharyngeal connectivity was reported previously. EM Datasets row 9."
+        }
+      },
+      {
+        "plotId": "largest-connectome-neurons",
+        "point": {
+          "id": "helmstaedter-2013-retina-neurons",
+          "x": 2013,
+          "y": 950,
+          "label": "Helmstaedter mouse retina",
+          "group": "Partial mouse retina",
+          "annotation": "Helmstaedter · partial retina",
+          "exportAnnotation": "Helmstaedter · partial retina · 2013 online publication · 950 neurons",
+          "dateLabel": "2013-08-07 · online publication",
+          "sourceUrl": "https://www.nature.com/articles/nature12346",
+          "sourceTitle": "Helmstaedter et al. · Connectomic reconstruction of the inner plexiform layer",
+          "quote": "Here we present for the mouse inner plexiform layer—the main computational neuropil region in the mammalian retina—the dense reconstruction of 950 neurons and their mutual contacts.",
+          "note": "Inner plexiform layer, partial mouse retina (Mus musculus). Serial block-face electron microscopy with manual skeleton tracing and machine-learning segmentation. The neuronal cohort includes 840 classified neurons and 110 orphan reconstructions. The 173 glial cells are counted separately. Ganglion-cell dendrites and many amacrine dendrites are boundary-truncated. EM Datasets row 28."
+        }
+      },
+      {
+        "plotId": "largest-connectome-neurons",
+        "point": {
+          "id": "ryan-2016-ciona-cns-neurons",
+          "x": 2016,
+          "y": 177,
+          "label": "Ryan Ciona larva",
+          "group": "Larval Ciona CNS",
+          "annotation": "Ryan · larval Ciona CNS",
+          "exportAnnotation": "Ryan · larval Ciona CNS · 2016 online publication · 177 neurons",
+          "dateLabel": "2016-12-06 · online publication",
+          "sourceUrl": "https://elifesciences.org/articles/16962",
+          "sourceTitle": "Ryan et al. · The CNS connectome of a Ciona tadpole larva",
+          "quote": "Using serial-section EM we document the synaptic connectome of the larva’s 177 CNS neurons.",
+          "note": "Larval central nervous system (CNS), otolith through caudal nerve cord (Ciona intestinalis). Serial-section transmission electron microscopy with manual tracing. Neurons with axons and presynaptic sites among 301 imaged CNS cells in one larva, two hours after hatching. The series omits rostral and caudal cells. EM Datasets row 39."
+        }
+      }
+    ]
+  }
+}

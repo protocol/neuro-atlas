@@ -1,0 +1,125 @@
+{
+  "runtimeRevision": "9060d8da4aaeced0b9d1f664ab96ef9dc4970b3c",
+  "cases": [
+    {
+      "width": 1440,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons",
+        "malecns-neurons-2025",
+        "eyewire-ii-neurons-2026",
+        "white-1986-canonical-neurons",
+        "helmstaedter-2013-retina-neurons",
+        "ryan-2016-ciona-cns-neurons"
+      ]
+    },
+    {
+      "width": 1440,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "bock-mouse-imaged-2011-01-01",
+        "hemibrain-fly-bounds-2020-01-01",
+        "h01-human-imaged-2021-06-01",
+        "microns-mouse-imaged-2021-07-01",
+        "flywire-fly-neuropil-2024-01-01",
+        "liconn-mouse-native-2025-01-01",
+        "malecns-fly-imaged-2025-10-03",
+        "helmstaedter-2013-retina-volume"
+      ]
+    },
+    {
+      "width": 390,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons",
+        "malecns-neurons-2025",
+        "eyewire-ii-neurons-2026",
+        "white-1986-canonical-neurons",
+        "helmstaedter-2013-retina-neurons",
+        "ryan-2016-ciona-cns-neurons"
+      ]
+    },
+    {
+      "width": 390,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "bock-mouse-imaged-2011-01-01",
+        "hemibrain-fly-bounds-2020-01-01",
+        "h01-human-imaged-2021-06-01",
+        "microns-mouse-imaged-2021-07-01",
+        "flywire-fly-neuropil-2024-01-01",
+        "liconn-mouse-native-2025-01-01",
+        "malecns-fly-imaged-2025-10-03",
+        "helmstaedter-2013-retina-volume"
+      ]
+    },
+    {
+      "width": 320,
+      "anchor": "selected-published-connectomes-neuron-counts",
+      "point": "flywire-neurons",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "lee-reid-2016-neuronal-targets",
+        "hemibrain-neurons",
+        "larval-brain-neurons",
+        "flywire-neurons",
+        "microns-neurons",
+        "malecns-neurons-2025",
+        "eyewire-ii-neurons-2026",
+        "white-1986-canonical-neurons",
+        "helmstaedter-2013-retina-neurons",
+        "ryan-2016-ciona-cns-neurons"
+      ]
+    },
+    {
+      "width": 320,
+      "anchor": "selected-tissue-volume-checkpoints",
+      "point": "flywire-fly-neuropil-2024-01-01",
+      "geometryComparison": "exact",
+      "downloadPointIds": [
+        "bock-mouse-imaged-2011-01-01",
+        "hemibrain-fly-bounds-2020-01-01",
+        "h01-human-imaged-2021-06-01",
+        "microns-mouse-imaged-2021-07-01",
+        "flywire-fly-neuropil-2024-01-01",
+        "liconn-mouse-native-2025-01-01",
+        "malecns-fly-imaged-2025-10-03",
+        "helmstaedter-2013-retina-volume"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "candidate-combined-sources-desktop.png",
+      "sha256": "bb6dd7e78ee89b88dedd8054c461751fffe3048fb2bf8e290960713d31465763"
+    },
+    {
+      "file": "candidate-selected-published-connectomes-neuron-counts-320-source.png",
+      "sha256": "62463d7d7edac2837eb3582bcfc97c13c0587077a004fbe92a5b1d4794fccf01"
+    },
+    {
+      "file": "candidate-selected-published-connectomes-neuron-counts-1440-export.png",
+      "sha256": "565ff9d4e508a1da317c07b66c836d63c4faea73071df93eaecda361b1f5e668"
+    },
+    {
+      "file": "candidate-selected-tissue-volume-checkpoints-1440-export.png",
+      "sha256": "55b0b2d9e4d86e8443f1cc00f96c30fd40190f92e7e68affcc2be89d271c0449"
+    }
+  ]
+}

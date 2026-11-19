@@ -21,7 +21,8 @@ for (const sourceUrl of [undefined, '']) test(`a ${sourceUrl === undefined ? 'mi
     assert.equal(rows[0].querySelectorAll('a').length, 0, 'An unidentified source has no clickable placeholder');
     assert.ok(rows[0].textContent.includes(first.sourceTitle), 'The unresolved source title remains readable');
     assert.equal(rows[0].querySelector('blockquote').textContent, first.quote);
-    const expectedLinks = [...new Set(plot.points.filter(point => point.sourceUrl).map(point => point.sourceUrl))];
+    const expectedLinks = [...new Set(plot.points.flatMap(point => [point.sourceUrl, ...(point.supportingReferences ?? []).map(reference => reference.url)]).filter(Boolean))];
+    assert.ok(expectedLinks.includes('https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/'), 'The confirmed original FAFB reference remains a real source alongside the other intact principal URLs');
     assert.deepEqual([...dialog.querySelectorAll('.pc-sources a')].map(link => link.href), expectedLinks, 'Only verified nonempty source URLs populate Sources');
     assert.equal(dialog.querySelector('[role=tooltip]'), null);
     const mark = dialog.querySelector(`[data-source-observation="${first.id}"]`);

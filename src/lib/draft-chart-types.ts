@@ -10,6 +10,10 @@ export type DraftObservation = {
   /** Omit when the source identity or a verifiable public record is unresolved. */
   sourceUrl?: string;
   sourceTitle: string;
+  /** Confirmed contribution of the principal measurement citation. */
+  sourceRole?: string;
+  /** Confirmed provenance, distinct from candidate attributions and calculation methods. */
+  supportingReferences?: { role: string; title: string; url: string }[];
   quote: string;
   dateLabel: string;
   qualifier?: string;
@@ -64,6 +68,8 @@ export type DraftPlot = {
   exportPointKey?: boolean;
   /** One shared scope label for the compact image-only study key. */
   exportPointKeyNote?: string;
+  /** Opt-in compact dataset attribution, separate from long source/method notes. */
+  datasetCredit?: string;
   /** Optional dataset key; use the same colors and markers as the observations. */
   legend?: { label: string; color: string; marker?: DraftObservation["marker"] }[];
 };
