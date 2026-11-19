@@ -2,6 +2,8 @@ import { AtlasCookieSettings } from "@/components/atlas-analytics";
 import { atlasPath } from "@/lib/atlas-path";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { FeedbackTrigger } from "./feedback/feedback-trigger";
+import { SourceBrandMark } from "./source-brand";
+import { sourceBrandForUrl } from "@/data/source-brands";
 
 const linkGroups = [
   {
@@ -27,7 +29,7 @@ const linkGroups = [
     ],
   },
   {
-    label: "Data sources & methodology",
+    label: "Data & Methodology",
     links: [
       { label: "Neurotech Futures", href: "https://neurotechnology.substack.com" },
       { label: "Neurofounders", href: NEUROFOUNDERS_MAP_URL },
@@ -59,13 +61,17 @@ export function SiteFooter() {
                   {group.label}
                 </h2>
                 <ul>
-                  {group.links.map((link) => (
-                    <li key={link.href}>
-                      <a href={atlasPath(link.href)} className={linkClass} aria-label={link.label === "Learn more" ? "Learn more about data sources and methodology" : undefined}>
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
+                  {group.links.map((link) => {
+                    const brand = group.label === "Data & Methodology" ? sourceBrandForUrl(link.href) : undefined;
+                    return (
+                      <li key={link.href}>
+                        <a href={atlasPath(link.href)} className={`${linkClass} gap-2`} aria-label={link.label === "Learn more" ? "Learn more about data sources and methodology" : undefined}>
+                          {brand && <SourceBrandMark brand={brand} compact={!brand.wordmark} />}
+                          <span className={brand?.wordmark ? "sr-only" : undefined}>{link.label}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
                   {group.label === "Legal" && <li><AtlasCookieSettings /></li>}
                 </ul>
               </div>

@@ -47,7 +47,7 @@ test("the fourth footer group identifies the two sources and opens the existing 
   const { window } = new JSDOM(renderToStaticMarkup(React.createElement(SiteFooter)));
   try {
     const groups = [...window.document.querySelectorAll('nav[aria-label="Footer"] h2')];
-    assert.deepEqual(groups.map((heading) => heading.textContent), ["Explore", "Connect", "Legal", "Data sources & methodology"]);
+    assert.deepEqual(groups.map((heading) => heading.textContent), ["Explore", "Connect", "Legal", "Data & Methodology"]);
     const links = [...groups[3].parentElement.querySelectorAll("a")];
     assert.deepEqual(links.map((a) => [a.textContent, a.getAttribute("href")]), [
       ["Neurotech Futures", "https://neurotechnology.substack.com"],
