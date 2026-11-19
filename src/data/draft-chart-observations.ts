@@ -1,4 +1,5 @@
 import raw from "./draft-chart-evidence.json";
+import { CONNECTOMICS_BACKFILL, CONNECTOMICS_CURATION_SOURCE, connectomicsCheckpoints } from "./connectomics-backfill";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
 // Reader copy is projected separately so source quotations and archived evidence stay exact.
@@ -49,12 +50,13 @@ const summaries: Record<string, Pick<DraftChartEvidence, "summary"> & Partial<Pi
   },
 };
 
-const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot, "seriesNote">>> = {
+const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot, "seriesNote" | "observationBasis">>> = {
   "tissue-cm3": {
-    scope: "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted from mm³ ÷ 1,000; ≈ denotes approximate sample bounds.",
+    scope: "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted to cm³; ≈ denotes approximate volumes or sample bounds.",
   },
   "largest-connectome-neurons": {
-    scope: "Selected published neuronal counts across whole-brain and partial maps. Somatic neuron counts and targeted boundary-truncated reconstructions have different completeness criteria.",
+    scope: "Selected study-reported neuronal counts across whole and partial maps. Somatic segmentation, targeted boundary-truncated reconstructions and proofread cell counts have different completeness criteria.",
+    observationBasis: "Source-reported and source-derived",
   },
   "largest-connectome-synapses": {
     scope: "Selected counts of paired pre/post contacts or automatically detected clefts. Whole and partial maps differ in coverage, synapse attachment and proofreading.",
@@ -204,11 +206,21 @@ export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.f
   Object.entries(source).map(([title, evidence]) => [title, {
     ...evidence,
     ...summaries[title],
-    plots: evidence.plots.map(plot => plotCopy[plot.id] ? {
-      ...plot,
-      ...plotCopy[plot.id],
-      points: plot.points.map(point => ({ ...point, dateLabel: displayDate(point.dateLabel), ...(pointNotes[point.id] ? { note: pointNotes[point.id] } : {}) })),
-    } : plot),
+    plots: evidence.plots.map(plot => {
+      const copy = plotCopy[plot.id];
+      const additions = connectomicsCheckpoints(plot.id);
+      if (!copy && !additions.length) return plot;
+      return {
+        ...plot,
+        ...copy,
+        ...(additions.length ? { exportPointKey: true } : {}),
+        ...(CONNECTOMICS_BACKFILL.some(record => record.plotId === plot.id && record.sheetRow !== null) ? { curationSource: CONNECTOMICS_CURATION_SOURCE } : {}),
+        points: [
+          ...plot.points.map(point => ({ ...point, dateLabel: displayDate(point.dateLabel), ...(pointNotes[point.id] ? { note: pointNotes[point.id] } : {}) })),
+          ...additions,
+        ],
+      };
+    }),
     ...(evidence.timeline ? { timeline: {
       ...evidence.timeline,
       scope: "Selected synaptic-connectome research applications, grouped by demonstration or biological-validation stage. Dates identify publications; first-use timing remains uncertain. The selection covers synaptic-connectome studies.",

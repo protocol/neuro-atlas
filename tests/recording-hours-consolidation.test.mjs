@@ -150,7 +150,7 @@ for (const anchor of ['neural-recording-hours', ...['draft', 'metric'].flatMap(p
 }
 
 
-test('tissue-mapped opens the curated popup with seven preserved observations, not a duplicate reference or self-link', async () => {
+test('tissue-mapped opens eight source observations in the curated popup and retains native navigation', async () => {
   const scrolled = [];
   const cleanup = await mount(React.createElement(StrictMode, null, React.createElement(Page)), '#tissue-mapped', win => {
     win.HTMLElement.prototype.scrollIntoView = function() { scrolled.push(this.id); };
@@ -167,7 +167,8 @@ test('tissue-mapped opens the curated popup with seven preserved observations, n
     assert.deepEqual(scrolled, []);
     assert.equal(modal.querySelectorAll('svg.draft-plot-svg').length, 1);
     assert.deepEqual([...modal.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation), DRAFT_CHART_EVIDENCE['Brain tissue mapped over time'].plots.flatMap(plot => plot.points.map(p => p.id)));
-    assert.equal(modal.querySelectorAll('[data-source-observation]').length, 7);
+    assert.equal(modal.querySelectorAll('[data-source-observation]').length, 8, 'seven preserved observations plus the source-qualified Helmstaedter retina volume');
+    assert.equal(modal.querySelectorAll('[data-source-observation="helmstaedter-2013-retina-volume"]').length, 1);
     assert.equal(tissue.querySelector('a[href="#tissue-mapped"]'), null);
     assert.doesNotMatch(document.body.textContent, /reference views?/i);
     assert.equal(document.querySelectorAll('#metric-category-0 [data-metric-tile]').length, 6);
