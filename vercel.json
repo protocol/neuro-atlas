@@ -5,7 +5,8 @@
       "data/google-trends-feed": false,
       "data/openalex-citation-latency-feed": false,
       "data/openalex-publications-feed": false,
-      "feat/persistent-graph-pages-20261119": false
+      "feat/persistent-graph-pages-20261119": false,
+      "feat/graph-comparison-dashboards-20261119": false
     }
   }
 }
