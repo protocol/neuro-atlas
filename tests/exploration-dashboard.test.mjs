@@ -307,3 +307,24 @@ test('publication filter hides the selected comparison line and its targets with
     assert.ok(card.querySelector('table'));
   } finally { await close(); }
 });
+
+test('Add to dashboard carries an explored standalone view into an independently shareable card', async () => {
+  let href, shared;
+  const close = await mount(await graphPage({ params: Promise.resolve({ slug: bitrate }) }));
+  try {
+    await click(button('[data-exploration-series="Speech decoding"]'));
+    await click(button('[data-exploration-fit-toggle]'));
+    assert.ok(button('[data-exploration-export-disabled]'));
+    href = button('[data-add-to-dashboard]').href;
+    assert.match(new URL(href).hash, /^#d=/, 'Add link carries the selected exploration');
+  } finally { await close(); }
+  const done = await dashboard({ search: new URL(href).hash }, win => {
+    Object.defineProperty(win.navigator, 'clipboard', { value: { async writeText(value) { shared = value; } } });
+  });
+  try {
+    assert.equal(button('[data-exploration-series="Speech decoding"]').getAttribute('aria-pressed'), 'false');
+    assert.equal(button('[data-exploration-fit-line]').dataset.fitN, '4');
+    await click(button('[data-dashboard-copy]'));
+    assert.equal(new URL(shared).hash, new URL(href).hash);
+  } finally { await done(); }
+});

@@ -59,7 +59,9 @@ export function readDashboards(raw: string | null): DashboardState[] | null {
 
 // Fragment payloads stay off the HTTP request and contain only validated dashboard state.
 export function dashboardHash(snapshot: DashboardState): string {
-  const bytes = new TextEncoder().encode(JSON.stringify([1, snapshot.name, snapshot.cards]));
+  const validated = validateDashboard(snapshot);
+  if (!validated) throw new Error("Invalid dashboard state");
+  const bytes = new TextEncoder().encode(JSON.stringify([1, validated.name, validated.cards]));
   return "#d=" + btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 

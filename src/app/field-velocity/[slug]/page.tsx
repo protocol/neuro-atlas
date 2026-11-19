@@ -28,13 +28,11 @@ export default async function GraphPage(props: GraphPageProps) {
   const entry = await graphForRoute(props);
   const related = FIELD_VELOCITY_GRAPHS.filter(peer => peer.graph.group === entry.graph.group && peer.slug !== entry.slug);
   return <article className="graph-page" data-graph-page={entry.slug}>
-    <header>
+    <FieldVelocityGraphDetail entry={entry} pageHeading={<>
       <GraphBackLink fallback={atlasPath(`/field-velocity#${GRAPH_GROUP_ANCHORS[entry.graph.group]}`)} />
       <h1>{entry.title}</h1>
       <p className="graph-description">{entry.graph.description}</p>
-      <a className="dashboard-pill" data-add-to-dashboard href={atlasPath(`/field-velocity/dashboard?add=${entry.slug}`)}>Add to dashboard</a>
-    </header>
-    <FieldVelocityGraphDetail entry={entry} />
+    </>} />
     <nav className="graph-related" aria-label="More in this group">
       <h2>More in this group</h2>
       <ul>{related.map(peer => <li key={peer.slug}><a href={atlasPath(graphPath(peer))}>{peer.title}</a></li>)}</ul>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useState, type ReactNode } from "react";
+import { DashboardAddLink } from "@/components/dashboard-add-link";
 import type { CardSettings } from "@/lib/dashboard-state";
 import { GraphExportContext } from "@/components/graph-export-context";
 import { ChartExplorationContext, type ChartExploration } from "@/components/chart-exploration-context";
@@ -57,12 +58,13 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
   }
 }
 
-export function FieldVelocityGraphDetail({ entry, instance }: { entry: FieldVelocityGraph; instance?: ChartExploration }) {
+export function FieldVelocityGraphDetail({ entry, instance, pageHeading }: { entry: FieldVelocityGraph; instance?: ChartExploration; pageHeading?: ReactNode }) {
   const request = useContext(GraphExportContext);
   const [settings, setSettings] = useState<CardSettings>({});
   return <ChartExplorationContext.Provider value={instance ?? (request ? null : {
     dashboard: false, settings, update: change => setSettings(current => ({ ...current, ...change })),
   })}>
+    {pageHeading && <header>{pageHeading}<DashboardAddLink entry={entry} /></header>}
     <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }
