@@ -64,7 +64,7 @@ function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight, h
   const scienceAt = (year: number) => hasScience ? data.baseline.find(row => row.year === year) : undefined;
   const inspection = (year: number) => {
     const actual = data.annual.find(row => row.year === year)!, science = scienceAt(year);
-    return `${year}: ${[neuroOn && `Neurotech papers ${number(actual.papers)}`, allOn && science && `All research index ${number(index(science.all))}`, bandOn && science && `Four-domain index band ${number(index(science.low))}–${number(index(science.high))}`, !science && (allOn || bandOn) && "Science index unavailable for this year."].filter(Boolean).join("; ")}`;
+    return `${year}: ${[neuroOn && `Neurotech papers ${number(actual.papers)}`, allOn && science && `All research index ${number(index(science.all))}`, bandOn && science && `Four-domain index band ${number(index(science.low))}–${number(index(science.high))}`, !science && (allOn || bandOn) && "Science index unavailable for this year."].filter(Boolean).join("; ")}${science && (allOn || bandOn) ? " (2022 = 100)." : ""}`;
   };
   const yearEvents = (year: number) => {
     const events = inspect?.(inspection(year));
