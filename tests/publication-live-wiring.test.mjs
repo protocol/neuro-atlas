@@ -6,12 +6,18 @@ import {JSDOM} from 'jsdom';
 import * as Source from '../src/components/publication-source-provider.tsx';
 import {PublicationCharts} from '../src/components/publication-charts.tsx';
 import PageModule from '../src/app/field-velocity/page.tsx';
+import LayoutModule from '../src/app/field-velocity/layout.tsx';
 import {syntheticPublicationSnapshot} from './fixtures/publication-synthetic.mjs';
 const Page=PageModule.default??PageModule;
 
-test('actual synchronous page places the native chart tree inside its live publication provider',()=>{
- const contains=node=>React.isValidElement(node)&&(node.type===Source.PublicationSourceProvider||React.Children.toArray(node.props.children).some(contains));
- assert.ok(contains(Page()),'PublicationSourceProvider must wrap the actual page content');
+test('actual route layout wraps the overview chart tree in its live publication provider',()=>{
+ const Layout=LayoutModule.default??LayoutModule;
+ const Marker=({children})=>children;
+ const tree=Layout({children:React.createElement(Marker,null,Page())});
+ const contains=(node,inside=false)=>React.isValidElement(node)&&(node.type===Marker
+   ? inside
+   : React.Children.toArray(node.props.children).some(child=>contains(child,inside||node.type===Source.PublicationSourceProvider)));
+ assert.ok(contains(tree),'PublicationSourceProvider must wrap the actual page inside the shared route layout');
 });
 
 test('native publication marks use the provider snapshot instead of a superseded bundle',()=>{
