@@ -7,18 +7,26 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, "..");
 
-test("every content plate uses the shared dark PlateHero", async () => {
+test("data plates use the shared dark PlateHero", async () => {
   const pages = [
     "src/app/milestones/page.tsx",
     "src/app/funding/page.tsx",
     "src/app/field-velocity/page.tsx",
-    "src/app/methodology/page.tsx",
   ];
   for (const rel of pages) {
     const src = await readFile(path.join(root, rel), "utf8");
     assert.match(src, /PlateHero/, rel);
     assert.doesNotMatch(src, /PlateHeader/, rel);
   }
+});
+
+test("methodology uses the requested compact dark title without a subtitle", async () => {
+  const src = await readFile(path.join(root, "src/app/methodology/page.tsx"), "utf8");
+  const header = src.match(/<header\b[\s\S]*?<\/header>/)?.[0];
+  assert.ok(header, "methodology retains a semantic header");
+  assert.match(header, /bg-\[#101217\]/);
+  assert.match(header, /<h1\b[^>]*>Sources &amp; methodology<\/h1>/);
+  assert.doesNotMatch(header, /<p\b|subtitle=|PlateHero|PlateHeader/);
 });
 
 test("funding-index markers use a real hover tooltip, not native title", async () => {
