@@ -416,7 +416,7 @@ test('draft dashboard cards show one visual title without losing the SVG label o
     assert.equal(card.querySelector('h2').textContent, `1. ${caption.textContent}`);
     assert.ok(caption.classList.contains('sr-only'), 'the duplicate caption is visually suppressed but still names the SVG');
     const link = card.querySelector('[data-dashboard-open-graph]');
-    assert.equal(link?.textContent, 'Open full graph');
+    assert.equal(link?.textContent, 'Open default graph');
     assert.equal(link?.getAttribute('href'), atlasPath('/field-velocity/' + bitrate));
   } finally { await close(); }
 });
