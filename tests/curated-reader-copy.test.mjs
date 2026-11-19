@@ -8,6 +8,7 @@ import { JSDOM } from 'jsdom';
 import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, RETIRED_METRIC_PLOT_IDS, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
 import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-chart-plot.tsx';
+import { beforeFafbAttribution, preAttributionBytes, preAttributionEvidence } from './helpers/fafb-attribution-baseline.mjs';
 
 globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
@@ -35,11 +36,12 @@ function scientificFields(evidence) {
 }
 
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
-  assert.equal(digest(bytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
-  assert.equal(digest(JSON.stringify(scientificFields(DRAFT_CHART_EVIDENCE))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
+  assert.equal(digest(preAttributionBytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
+  assert.deepEqual(beforeFafbAttribution(raw, true), preAttributionEvidence, 'Only the five approved attribution records and compact credits differ from the frozen original corpus');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(DRAFT_CHART_EVIDENCE)))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
   // Computed from 1c54bff's projection with only the approved cost plot omitted;
   // independently confirmed equal on 255e91d. Raw/archive hashes above stay fixed.
-  assert.equal(digest(JSON.stringify(scientificFields(unchangedMetricEvidence))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(unchangedMetricEvidence)))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 7], ['largest-connectome-neurons', 5], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],

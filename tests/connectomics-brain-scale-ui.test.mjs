@@ -26,7 +26,19 @@ const baseline = {
   'acquisition-economics': { preview: '6f5f48d3f31136316ddeb68c79225e9688bf9888e24022fb7bb1c64091bb2c30', svg: 'e253e93e73203fe43a2306def0706b086e993edcb50350e282eb0ad1c53f50f4' },
 };
 const normalize = html => html.replace(/_R_[^"]*/g, 'ID').replace(/ data-brain-scale-(?:progress|state|log-min|log-max)="[^"]*"/g, '');
-const hash = node => createHash('sha256').update(normalize(node.outerHTML)).digest('hex');
+const hash = node => {
+  const clone = node.cloneNode(true);
+  const mark = clone.querySelector('[data-source-observation="fafb-image-download-2018"]');
+  if (mark?.hasAttribute('aria-label')) {
+    // Only the approved source-credit suffix changes. Keep the original visual
+    // SVG golden and every quantitative/identity prefix, rather than rehashing it.
+    const suffix = 'Underlying EM image volume — FAFB: Zheng, Lauritzen et al., Cell (2018). Bock lab–led team at HHMI Janelia and collaborators.';
+    const label = mark.getAttribute('aria-label');
+    assert.ok(label.endsWith(suffix), 'The new original-imagery attribution must remain accessible');
+    mark.setAttribute('aria-label', label.slice(0, -suffix.length) + 'Zheng et al., Cell 2018, A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster');
+  }
+  return createHash('sha256').update(normalize(clone.outerHTML)).digest('hex');
+};
 
 test('only the two supported full plots offer a default-off accessible switch; previews and off SVGs match the independent baseline', () => {
   for (const plot of plots) for (const preview of [true, false]) {

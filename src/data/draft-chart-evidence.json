@@ -77,7 +77,7 @@
             "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "The whole brain contains 0.0175 mm3 of neuropil volume",
             "qualifier": "",
-            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024. FAFB image volume publicly available in 2018, from the Bock lab–led team at HHMI Janelia and collaborators; the reconstruction and its reported measurements are from the 2024 FlyWire paper, not a complete connectome in 2018.",
+            "note": "Source: “The whole brain contains 0.0175 mm³ of neuropil volume.” Publication-year checkpoint for this reported value; the reconstruction reuses FAFB imagery and is not new tissue acquired in 2024. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
             "group": "Fruit fly",
             "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
             "supportingReferences": [
@@ -182,7 +182,7 @@
             "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
             "qualifier": "",
-            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. FAFB image volume publicly available in 2018, from the Bock lab–led team at HHMI Janelia and collaborators; the reconstruction and its reported measurements are from the 2024 FlyWire paper, not a complete connectome in 2018.",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
             "group": "Whole adult fly",
             "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
             "supportingReferences": [
@@ -254,7 +254,7 @@
             "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "Our reconstruction of an entire adult brain contains 139,255 neurons (Fig. 1a and Supplementary Video 1) and 54.5 million synapses between these neurons.",
             "qualifier": "≈",
-            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges. The 54.5 million synapses are between the reconstructed neurons. FAFB image volume publicly available in 2018, from the Bock lab–led team at HHMI Janelia and collaborators; the reconstruction and its reported measurements are from the 2024 FlyWire paper, not a complete connectome in 2018.",
+            "note": "Whole adult female brain including optic lobes. Morphology proofread, not all synapses attached; paper reports 44.7% postsynapse attachment. Counts paired pre/post contacts, not unique neuron-pair graph edges. The 54.5 million synapses are between the reconstructed neurons. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
             "group": "Whole adult fly",
             "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
             "supportingReferences": [
@@ -744,7 +744,7 @@
             "sourceTitle": "Dorkenwald et al. and the FlyWire Consortium, Nature (2024).",
             "quote": "We estimate that FlyWire’s brain reconstruction took around 33 person-years of manual proofreading.",
             "qualifier": "≈",
-            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain. FAFB image volume publicly available in 2018, from the Bock lab–led team at HHMI Janelia and collaborators; the reconstruction and its reported measurements are from the 2024 FlyWire paper, not a complete connectome in 2018.",
+            "note": "Around 33 person-years; estimated total effort for adult whole brain. Not normalized by neuropil volume; incomplete twig attachment and different standard from hemibrain. FAFB image volume publicly available in 2018; this point reports a 2024 FlyWire measurement.",
             "group": "FlyWire",
             "sourceRole": "Whole-brain connectome reconstruction — FlyWire",
             "supportingReferences": [
@@ -1356,7 +1356,7 @@
             "quote": "The full 12 TB image volume is downloaded over the Internet.",
             "group": "Published image sizes",
             "qualifier": "≈",
-            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB image volume publicly available in 2018, from the Bock lab–led team at HHMI Janelia and collaborators; this imagery underlies the later FlyWire reconstruction. Date is the July 19, 2018 paper publication; the exact earliest public-release day remains unknown. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
+            "note": "The paper describes a downloadable 12 TB image representation and approximately 106 TB of acquired camera images. The 12 TB value is the published download product. FAFB image volume publicly available in 2018; this imagery underlies the later FlyWire reconstruction. Date is the July 19, 2018 paper publication; the exact earliest public-release day remains unknown. The paper alignment v13 is retired; the producer now recommends v14. Its separately offered lossless PNG product is an alternate encoding.",
             "annotation": "FAFB / FlyWire · ≈0.012 PB JPEG imagery",
             "marker": "circle",
             "sourceRole": "Underlying EM image volume — FAFB"
