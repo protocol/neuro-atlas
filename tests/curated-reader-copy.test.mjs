@@ -7,8 +7,10 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 import { METRIC_CHARTS, METRIC_CHART_EVIDENCE, RETIRED_METRIC_PLOT_IDS, isVisibleMetric } from '../src/data/metric-chart-visibility.ts';
+import { CONNECTOMICS_BACKFILL } from '../src/data/connectomics-backfill.ts';
 import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-chart-plot.tsx';
 import { beforeFafbAttribution, preAttributionBytes, preAttributionEvidence } from './helpers/fafb-attribution-baseline.mjs';
+import { withoutConnectomicsBackfill } from './helpers/connectomics-provenance-baseline.mjs';
 
 globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
@@ -24,6 +26,8 @@ const plot = id => plots.find(item => item.id === id);
 const point = id => plots.flatMap(item => item.points).find(item => item.id === id);
 const omit = (object, fields) => Object.fromEntries(Object.entries(object).filter(([key]) => !fields.includes(key)));
 const digest = value => createHash('sha256').update(value).digest('hex');
+const backfillIds = new Set(CONNECTOMICS_BACKFILL.map(point => point.id));
+// Both narrowly asserted branch deltas compose before historical goldens.
 // Pin the actual pre-edit scientific contract, independently of the rewritten prose.
 function scientificFields(evidence) {
   return Object.fromEntries(Object.entries(evidence).map(([title, item]) => [title, {
@@ -38,16 +42,17 @@ function scientificFields(evidence) {
 test('curated copy preserves raw evidence bytes, coordinates, dates, units, source quotations and presentation identities', () => {
   assert.equal(digest(preAttributionBytes), 'cd4673696ac960651b2ffd01fe11f080e6d15ef60a700e0fff3ed7f88c6a1ecd');
   assert.deepEqual(beforeFafbAttribution(raw, true), preAttributionEvidence, 'Only the five approved attribution records and compact credits differ from the frozen original corpus');
-  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(DRAFT_CHART_EVIDENCE)))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE))))), 'db2ed3e3470b3bd2291750ed7498e1e695d865a3a2bbc54fb103e9175a87e8bf');
   // Computed from 1c54bff's projection with only the approved cost plot omitted;
   // independently confirmed equal on 255e91d. Raw/archive hashes above stay fixed.
-  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(unchangedMetricEvidence)))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
+  assert.equal(digest(JSON.stringify(scientificFields(beforeFafbAttribution(withoutConnectomicsBackfill(unchangedMetricEvidence))))), '1cf5ae41d0dfb5d00dbe9f4593c79526712f51ea8441ef7f4f2c54cc197733de');
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
-    ['tissue-cm3', 7], ['largest-connectome-neurons', 5], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
+    ['tissue-cm3', 8], ['largest-connectome-neurons', 10], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],
     ['recording-hours', 12], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 10],
   ]);
   for (const item of plots) for (const observation of item.points) {
+    if (backfillIds.has(observation.id)) continue; // Exact source date and version pinned by the backfill contract.
     if (observation.id === 'exaspim2024') {
       assert.equal(item.id, 'acquisition-economics');
       assert.equal(observation.x, 2024);
@@ -71,8 +76,16 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
     const presentation = ['y', 'group', 'marker', 'color', 'dateLabel', 'exportAnnotation', 'note', 'exportNote'];
     assert.deepEqual(omit(projected, presentation), omit(archived, presentation), archived.id);
   }
-  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 79);
+  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 85);
   assert.deepEqual(METRIC_CHART_EVIDENCE['Demonstrated applications enabled by connectomics over time'].timeline.events.map(item => item.id), ['application-0', 'application-2']);
+});
+
+test('full pre-backfill evidence projections are unchanged outside the explicitly added points and chart copy', () => {
+  // Captured from the running projections at 0f2045b, including exact notes and dates.
+  // Restore only the separately asserted FAFB attribution delta from PR128;
+  // never substitute raw archive notes for the original reader projection.
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE)))), 'c231dfa219a15927b66ddafe492b3975d2457c8dab1b76082b1e1091acda4731');
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(METRIC_CHART_EVIDENCE)))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
 });
 
 test('only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata', () => {

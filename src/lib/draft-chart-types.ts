@@ -62,6 +62,8 @@ export type DraftPlot = {
   connections?: { id: string; label: string; pointIds: string[] }[];
   /** Optional evidence basis; default preserves source-reported charts. */
   observationBasis?: string;
+  /** Discovery index for selected observations; numerical evidence stays with the point sources. */
+  curationSource?: { title: string; url: string };
   /** Append concise numbered observation identities to the exported image key. */
   exportPointKey?: boolean;
   /** One shared scope label for the compact image-only study key. */
