@@ -6,10 +6,10 @@ Rebuild the existing `/neuro-atlas/methodology` page and relocate its discovery 
 
 ## Runtime revision
 
-The screenshots were captured from the local production build of `34e31522b1746467f5d8d63b2a8572488c9f8058`, built with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`, the public PL Neuro origin, and preview noindex. Later test/evidence-only commits retain identical runtime sources and assets.
+The screenshots were captured from the local production build of `471e5497b58b7f70e6fba7dcfbcca32779688115`, built with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`, the public PL Neuro origin, and preview noindex. Later test/evidence-only commits retain identical runtime sources and assets.
 
-- Build ID: `rcMH9eVPXwnKbXJjRZ7LR`.
-- Methodology HTML SHA-256: `acf440a39befb842cc1dbc85a1482f7e8cf1703cc218aef8b23cfe3e6ad2112b`.
+- Build ID: `78EGiHWEB3dLSMdExMtlF`.
+- Methodology HTML SHA-256: `3500127395a896eb36405a1037e7d98fec59560635149e26279eb98cc5549c0c`.
 - Served page matched its built HTML exactly; all 13 referenced static JS/CSS/preload assets matched build bytes.
 
 ## Native browser checks
@@ -17,6 +17,7 @@ The screenshots were captured from the local production build of `34e31522b17464
 Actual Chrome, viewport-emulated pointer/keyboard input at 1440, 768, 390, and 320 pixels, light and dark:
 
 - Short title with no subtitle; Principles, Status legend, and Changelog removed.
+- Researcher correspondence/accuracy acknowledgment, thanks for the underlying research, and missing-credit invitation linked to the existing contribution/Feedback action. Three cited studies use verified full titles in the directory.
 - Exact href/label equality for all 587 catalog links; six expandable source categories.
 - Four footer link groups; Neurotech Futures, Neurofounders, and Learn more in the sources group.
 - Logo and “by PL Neuro” attribution; preserved disclaimer and legal links.
@@ -36,3 +37,10 @@ These are local production-build captures, not screenshots of a hosted or live r
 - `footer-390-dark.png`: responsive footer.
 - `sources-expanded.png`: expanded source directory.
 - `home-1440.png`: remaining primary exploration tiles after source relocation.
+
+- `source-directory-overview.png`: all six categories and contribution guidance.
+- `researcher-acknowledgment.png`: Field Velocity credit and missing-reference invitation.
+
+## Test receipts
+
+The complete 1,497-case run had 1,496 passing cases and one obsolete requirement that methodology keep its old shared hero. The test-only correction retains shared-hero coverage for the three data plates and adds the requested compact title/no-subtitle contract; its isolated replay passed. A second all-files-except-unchanged-chart-sharing run had 1,472 passing cases and one untouched analytics-history assertion failure; that assertion passed in the first run and the isolated replay. Neither failed aggregate is relabeled as green. Every affected page/footer/source/header contract passed again after the final researcher copy. Production build, typecheck, changed-file lint, and the final native production-build replay passed. This update changes no analytics or chart renderer/export implementation.
