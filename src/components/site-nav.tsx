@@ -21,26 +21,12 @@ function BrandMark() {
   return (
     <div className="px-3">
       <Link href="/" className="block text-xl font-semibold tracking-tight">Neuro Atlas</Link>
-      <a href="https://www.plrd.org/" className="inline-block rounded-sm text-[11px] text-muted underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">by PL R&amp;D</a>
-    </div>
-  );
-}
-
-/* eslint-disable @next/next/no-img-element */
-function PoweredBy() {
-  return (
-    <div className="mt-3 px-3">
-      <div className="mb-2 text-[9px] font-medium uppercase tracking-wider text-faint">powered by</div>
-      <div className="flex flex-col gap-2">
-        <a href="https://www.plneuro.xyz" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-muted transition-colors hover:text-foreground">
-          <img src={atlasPath("/powered-plneuro.svg")} alt="PL Neuro" className="h-6 w-6" />
-          <span className="text-[12px] font-medium">PL Neuro</span>
-        </a>
-        <a href="https://neurotechnology.substack.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-muted transition-colors hover:text-foreground">
-          <img src={atlasPath("/powered-neurotechfutures.png")} alt="Neurotech Futures" className="h-6 w-6 rounded-[4px]" />
-          <span className="text-[12px] font-medium">Neurotech Futures</span>
-        </a>
-      </div>
+      <a href="https://www.plneuro.xyz/" className="mt-0.5 inline-flex items-center gap-1.5 rounded-sm text-[11px] text-muted underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+        {/* The existing local vector is served directly, with no image optimization. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={atlasPath("/powered-plneuro.svg")} width={18} height={18} alt="" />
+        <span>by PL Neuro</span>
+      </a>
     </div>
   );
 }
@@ -69,8 +55,7 @@ function VItem({ tab, active }: { tab: { href: string; label: string }; active: 
 }
 
 
-// Vertical sidebar (lg+): brand top, nav in the grey chrome, Methodology below a
-// divider, theme toggle pinned at the bottom. The active item is the white pill.
+// The vertical sidebar is used on desktop; the active item is a pill.
 export function SideNav() {
   const pathname = atlasPathname(usePathname());
   return (
@@ -80,7 +65,6 @@ export function SideNav() {
           <BrandMark />
           <ThemeToggle />
         </div>
-        <PoweredBy />
       </div>
       <nav className="flex flex-1 flex-col px-2">
         <div className="flex flex-col gap-0.5">
@@ -151,7 +135,6 @@ export function MobileBar() {
         <div className="mt-4 flex items-center justify-between border-t border-border px-3 pt-4">
           <span className="text-sm text-muted">Appearance</span><ThemeToggle />
         </div>
-        <PoweredBy />
       </dialog>
     </div>
   );

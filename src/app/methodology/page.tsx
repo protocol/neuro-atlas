@@ -3,58 +3,69 @@ import { atlasPath } from "@/lib/atlas-path";
 import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { PlateHero } from "@/components/plate-header";
 import { Abbr } from "@/components/abbr";
+import { FeedbackTrigger } from "@/components/feedback/feedback-trigger";
+import sourceCatalog from "@/data/methodology-sources.json";
 
-export const metadata = atlasMetadata("/methodology", "Methodology — Neuro Atlas");
+export const metadata = atlasMetadata("/methodology", "Data sources and data gathering procedures — Neuro Atlas");
 
 const SOURCES = [
   {
     name: "Neurofounders start-up map",
-    what: "External directory maintained by Neurofounders. Ecosystem links to their original startup map; Atlas does not host a copy of the directory.",
+    what: "Ecosystem links directly to the startup map maintained and hosted by Neurofounders.",
     cadence: "External resource · maintained by Neurofounders",
     url: NEUROFOUNDERS_MAP_URL,
   },
   {
     name: "Q1+ 2026 BCI Market Memo",
-    what: "2026 milestone events, deals, and ecosystem firms. By Neurotech Futures & PL Neuro; enriched here with primary-source dates and post-memo additions through September 2026.",
+    what: "The January–April 2026 implanted BCI memo from Neurotech Futures and PL Neuro seeded milestone and financing research. Neuro Atlas adds dated primary evidence and later events.",
     cadence: "Point-in-time memo plus verified 2026 releases",
     url: "https://neurotechnology.substack.com/p/representations2",
   },
   {
     name: "BCI Funding Index",
-    what: "A screened 25-company capital plate: sourced financings of $2m+, investor participation, and selected regulatory markers. Independently sourced, not a replacement ecosystem census.",
-    cadence: "Source review through 2026-09-07",
+    what: "A screened set of implanted and implant-adjacent brain-computer interface companies, with disclosed financing rounds, investor participation, and selected regulatory markers.",
+    cadence: "Baseline review: September 30, 2026 · selective later updates",
     url: "/funding",
   },
   {
     name: "PL R&D field-velocity framework",
-    what: "The five velocity instruments, neurotech readings, inflection points, and forecast-market mappings.",
-    cadence: "Inherited from plrd.org · per-reading measuredAt/checkedAt",
+    what: "The shared framework for field-velocity measurements, inflection points, and forecast-market mappings.",
+    cadence: "Versioned snapshot · dates vary by reading",
     url: "https://www.plrd.org/",
   },
   {
     name: "Forecast markets",
     what: "Kalshi, Polymarket, Metaculus questions mapped to inflection points.",
-    cadence: "Live pulls coming soon",
+    cadence: "External forecasts · selected questions",
     url: null,
   },
 ];
 
+const SOURCE_GROUPS = {
+  datasets: { title: "Datasets and registries", description: "Bibliographic and search data, trial and regulatory records, exchange rates, and research dataset releases." },
+  studies: { title: "Papers, preprints, and study evidence", description: "Research publications and supporting materials behind chart observations, comparisons, and historical series." },
+  disclosures: { title: "Company and institutional disclosures", description: "Company sites, investor and institution statements, and issuer releases distributed by newswires. A homepage identifies the organization; individual announcements support specific events." },
+  discovery: { title: "Reporting and discovery", description: "Trade and general reporting, profiles, newsletters, and the market memo. These help find and cross-check records; individual records identify their evidence." },
+  ecosystems: { title: "External ecosystem and forecast sources", description: "The independently maintained startup map and forecast questions or markets linked to selected inflection points." },
+  reference: { title: "Methodology and reference", description: "Frameworks, definitions, model assumptions, and contextual references used to interpret the data." },
+} satisfies Record<keyof typeof sourceCatalog, { title: string; description: string }>;
+
 const PRINCIPLES = [
   {
     title: "Never fabricate a reading",
-    body: "Every metric is live, or it is honestly marked unwired (a named candidate metric plus its blocker) or not applicable (a reason). Dates without confirmation sit in a 'date TBD' shelf instead of being faked onto an axis.",
+    body: "Readings are sourced; missing readings are labeled. Dates without confirmation stay off the time axis.",
   },
   {
-    title: "Measurement with a feed underneath",
-    body: "Every plate is a measurement whose drill-down is its evidence: the deal table under Capital, the event sources under Milestones, the article stream under future plates. The feed is the footnote apparatus, never the product.",
+    title: "Evidence at the point of use",
+    body: "Deal records, event citations, and chart source notes give readers the evidence behind each view.",
   },
   {
     title: "Every reading carries provenance",
-    body: "Sources, observation date (measuredAt) and pipeline-run date (checkedAt) travel with each number. Queries behind derived series get frozen and versioned — a changed query is a new series, not a silent update.",
+    body: "Source, observation date, and check date have distinct meanings. Derived series use versioned queries.",
   },
   {
     title: "Acronyms get tooltips",
-    body: "Any acronym from the glossary rendered in this UI carries its expansion and a one-line definition on hover — like FIH, BDD, or IDE. The glossary is a data file, not hardcoded strings.",
+    body: "Glossary acronyms have a short definition.",
   },
 ];
 
@@ -62,16 +73,25 @@ export default function MethodologyPage() {
   return (
     <>
       <PlateHero
-        kicker="How this is built"
-        meta={["Versioned"]}
-        title="Methodology"
-        description="What each reading means, where the data comes from, and how to contribute. The methodology is versioned: when a method changes, the change is logged here."
-        status="live"
-        stats={[
-          { value: String(SOURCES.length), label: "named sources" },
-          { value: String(PRINCIPLES.length), label: "working principles" },
-        ]}
+        kicker="Methodology"
+        title="Data sources and data gathering procedures"
+        description="Where Neuro Atlas gets its data, how records are selected, and how to suggest a correction."
+        stats={[]}
       />
+      <section aria-labelledby="why-we-built-it" className="my-8 max-w-3xl space-y-3 text-sm leading-relaxed text-muted">
+        <h2 id="why-we-built-it" className="text-base font-semibold text-foreground">Why we built Neuro Atlas</h2>
+        <p>At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves.</p>
+        <p>This is the kind of field building we’re proud to do at PL Neuro: turning scattered evidence into a useful public resource that researchers, builders, and funders can work from – and we hope to work with the community to improve it together.</p>
+      </section>
+      <section aria-labelledby="data-gathering" className="mb-8">
+        <h2 id="data-gathering" className="mb-3 text-base font-semibold">How data is gathered</h2>
+        <div className="card space-y-3 p-5 text-sm leading-relaxed text-muted">
+          <p><strong className="text-foreground">Milestones.</strong> Selected clinical, commercial, and financing events cover neurotechnology broadly. Entries cite public evidence and distinguish event, announcement, and reported dates where known. Date precision reflects the source.</p>
+          <p><strong className="text-foreground">BCI Funding Index.</strong> The narrower index tracks disclosed financings of at least USD 2 million (or the qualifying local-currency equivalent) across a screened set of implanted and implant-adjacent companies. Capital means the amount raised in included rounds. Investor-associated capital is the total size of rounds the investor appears in; separately sourced portfolio relationships do not contribute to round totals. A financing can appear in both views.</p>
+          <p><strong className="text-foreground">Field Velocity.</strong> Chart sources include study results, dataset releases, and reported observations. Some series come from the shared PL R&D snapshot; other charts use curated point-level evidence or validated data feeds. Units, sample scope, and observation dates are shown with the relevant chart. Forecasts are separate from observed measurements.</p>
+          <p><strong className="text-foreground">Updates and limitations.</strong> We aim to review and update Neuro Atlas daily. Source publication, observation, and check dates vary by record. OpenAlex publication and citation feeds and Google Trends are refreshed on a weekly schedule when validated data is available. See the <a className="font-medium text-accent underline underline-offset-4" href="#data-disclaimer">data and errors disclaimer</a> for limitations and how to use the data.</p>
+        </div>
+      </section>
       <section className="mt-8 mb-8">
         <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Principles</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -96,11 +116,11 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Data sources</h2>
+        <h2 className="mb-3 text-base font-semibold">Source overview</h2>
         <div className="card divide-y divide-border">
           {SOURCES.map((s) => (
-            <div key={s.name} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-baseline sm:gap-4">
-              <div className="w-56 shrink-0 text-[13px] font-semibold">
+            <div key={s.name} className="grid gap-1 p-4 sm:grid-cols-[minmax(9rem,1fr)_minmax(0,2fr)] sm:gap-x-4">
+              <div className="text-sm font-semibold sm:row-span-2">
                 {s.url ? (
                   <a href={atlasPath(s.url)} target="_blank" rel="noreferrer" className="hover:text-accent">
                     {s.name} ↗
@@ -109,10 +129,38 @@ export default function MethodologyPage() {
                   s.name
                 )}
               </div>
-              <div className="flex-1 text-xs leading-relaxed text-muted">{s.what}</div>
-              <div className="shrink-0 text-[11px] text-faint">{s.cadence}</div>
+              <div className="text-sm leading-relaxed text-muted">{s.what}</div>
+              <div className="text-xs text-muted">{s.cadence}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="source-directory" aria-labelledby="directory-heading" className="mb-8 scroll-mt-4">
+        <h2 id="directory-heading" className="mb-2 text-base font-semibold">Source directory</h2>
+        <p className="mb-4 max-w-3xl text-sm leading-relaxed text-muted">Open a category to see the linked evidence and references used in Neuro Atlas and its source reviews. Follow the citation on an individual record or chart to see what supports that observation.</p>
+        <div className="card divide-y divide-border">
+          {(Object.keys(SOURCE_GROUPS) as (keyof typeof sourceCatalog)[]).map((key) => {
+            const { title, description } = SOURCE_GROUPS[key];
+            const entries = sourceCatalog[key];
+            return (
+              <details id={`sources-${key}`} key={key} name="methodology-source-group" className="scroll-mt-4">
+                <summary className="cursor-pointer p-4 text-sm font-semibold marker:text-muted hover:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent">
+                  {title} <span className="ml-1 font-normal text-muted">({entries.length})</span>
+                </summary>
+                <div className="px-4 pb-4">
+                  <p className="mb-3 max-w-3xl text-sm leading-relaxed text-muted">{description}</p>
+                  <ul className="grid gap-x-6 gap-y-2 border-t border-border pt-3 text-sm leading-relaxed sm:grid-cols-2">
+                    {entries.map(([url, label]) => (
+                      <li key={url} className="min-w-0">
+                        <a href={url} className="wrap-anywhere text-foreground underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            );
+          })}
         </div>
       </section>
 
@@ -131,26 +179,15 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">Contribute</h2>
+      <section id="contribute" aria-labelledby="contribute-heading" className="mb-8 scroll-mt-4">
+        <h2 id="contribute-heading" className="mb-3 text-base font-semibold">Contribute</h2>
         <div className="card p-5">
-          <p className="text-sm leading-relaxed text-muted">
-            This atlas is built in the open. The data layer is CSV and JSON with
-            provenance fields. Corrections with a primary source beat opinions; a dated number with a
-            link beats both.
+          <p className="max-w-3xl text-sm leading-relaxed text-muted">
+            We welcome corrections and new sources from the community. We plan to enable contributions through GitHub pull requests. In the meantime, use Feedback to select the part of the page you’re commenting on and include a source link and date if available.
           </p>
-          <div className="mt-4">
-            <a
-              href="https://github.com/protocol/neuro-atlas/pulls"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-            >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
-              </svg>
-              Open a Pull Request on GitHub ↗
-            </a>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <FeedbackTrigger className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
+            <a href="https://github.com/protocol/neuro-atlas/pulls" target="_blank" rel="noreferrer" className="text-sm text-muted underline underline-offset-4 hover:text-foreground">View existing pull requests ↗</a>
           </div>
         </div>
       </section>
