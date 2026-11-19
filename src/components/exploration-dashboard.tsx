@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useLayoutEffect, useRef, useState } from "react";
 import { FieldVelocityGraphDetail } from "@/components/field-velocity-graph";
 import { FIELD_VELOCITY_GRAPHS, graphPath } from "@/data/field-velocity-links";
 import { recordingViewToken } from "@/lib/recording-view";
@@ -12,39 +12,79 @@ import { CARD_LIMIT, DASHBOARD_ROUTE, DASHBOARD_STORAGE, NAME_LIMIT, SAVE_LIMIT,
 type Card = CardState & { id: number };
 type Focus = { id: number; action: "earlier" | "later" | "remove" } | "search" | "name" | "catalog-toggle";
 const catalogId = "dashboard-chart-catalog";
+type LinkIssue = { error: string; retained: boolean } | { href: string; snapshot: DashboardState; kept: boolean };
+const DEFAULT_NAME = "Untitled dashboard";
+
+function readDashboardAddress(url: URL): DashboardState | string {
+  const add = url.searchParams.getAll("add");
+  if (url.hash.startsWith("#d=")) {
+    const linked = readDashboardLink(url.hash);
+    return linked && !add.length ? linked : "This dashboard link could not be opened.";
+  }
+  if (!add.length) return { name: DEFAULT_NAME, cards: [] };
+  if (add.length !== 1 || !isDashboardGraph(add[0])) return "That chart could not be added.";
+  const recordingView = add[0] === "simultaneous-neural-recordings" ? recordingViewToken(url) : undefined;
+  return { name: DEFAULT_NAME, cards: [{ slug: add[0], ...(recordingView && { settings: { recordingView } }) }] };
+}
 
 export function ExplorationDashboard() {
   const [cards, setCards] = useState<Card[]>([]);
   const [search, setSearch] = useState("");
   const [catalogOpen, setCatalogOpen] = useState<boolean | null>(null);
   const showCatalog = catalogOpen ?? (cards.length === 0);
-  const [name, setName] = useState("Untitled dashboard");
+  const [name, setName] = useState(DEFAULT_NAME);
   const [saved, setSaved] = useState<DashboardState[] | null>(null);
   const [storageError, setStorageError] = useState("");
   const [saveConflict, setSaveConflict] = useState("");
   const [status, setStatus] = useState("");
-  const [linkError, setLinkError] = useState("");
+  const [linkIssue, setLinkIssue] = useState<LinkIssue | null>(null);
   const [linkFallback, setLinkFallback] = useState("");
   const next = useRef(1);
+  const seenAddress = useRef<string | null>(null);
+  const draftAddress = useRef<string | null>(null);
   const openedSave = useRef<DashboardState | null>(null);
+  const cleanDraft = useRef<{ name: string; cards: Card[] } | null>(null);
   const draftRevision = useRef(0);
   const root = useRef<HTMLElement>(null);
   const captureLayout = useDashboardLayout(root, cards);
   const pendingFocus = useRef<Focus | null>(null);
+  function openAddress(snapshot: DashboardState, href: string) {
+    draftAddress.current = href;
+    openedSave.current = null;
+    setSaveConflict("");
+    setStatus("");
+    setLinkFallback("");
+    setLinkIssue(null);
+    captureLayout();
+    const opened = snapshot.cards.map(card => ({ ...card, id: next.current++ }));
+    cleanDraft.current = { name: snapshot.name, cards: opened };
+    setName(snapshot.name);
+    setCards(opened);
+  }
+  const syncAddress = useEffectEvent(() => {
+    const { href } = window.location;
+    if (seenAddress.current === href) return; // Back/Forward can dispatch both events for one address.
+    const retained = seenAddress.current !== null;
+    seenAddress.current = href;
+    const incoming = readDashboardAddress(new URL(href));
+    // Card state is immutable. Protect any new card array, including settings-only edits.
+    const clean = cleanDraft.current;
+    const dirty = clean ? clean.name !== name || clean.cards !== cards : name !== DEFAULT_NAME || cards.length > 0;
+    if (typeof incoming === "string") setLinkIssue({ error: incoming, retained });
+    else if (href === draftAddress.current) setLinkIssue(null);
+    else if (dirty) setLinkIssue({ href, snapshot: incoming, kept: false });
+    else openAddress(incoming, href);
+  });
   useEffect(() => {
-    const { search, hash } = window.location;
-    const add = new URLSearchParams(search).getAll("add");
-    if (hash.startsWith("#d=")) {
-      const linked = readDashboardLink(hash);
-      if (linked && !add.length) {
-        setName(linked.name);
-        setCards(linked.cards.map((card, id) => ({ ...card, id })));
-        next.current = linked.cards.length;
-      } else setLinkError("This dashboard link could not be opened. Choose charts below to start a new one.");
-    } else if (add.length === 1 && isDashboardGraph(add[0])) {
-      const recordingView = add[0] === "simultaneous-neural-recordings" ? recordingViewToken(new URL(window.location.href)) : undefined;
-      setCards([{ id: 0, slug: add[0], ...(recordingView && { settings: { recordingView } }) }]);
-    } else if (add.length) setLinkError("That chart could not be added. Choose a chart below.");
+    const path = window.location.pathname;
+    const onNavigation = () => { if (window.location.pathname === path) syncAddress(); };
+    onNavigation();
+    window.addEventListener("hashchange", onNavigation);
+    window.addEventListener("popstate", onNavigation);
+    return () => {
+      window.removeEventListener("hashchange", onNavigation);
+      window.removeEventListener("popstate", onNavigation);
+    };
   }, []);
   useEffect(() => {
     function refresh(event?: StorageEvent) {
@@ -74,7 +114,7 @@ export function ExplorationDashboard() {
 
   const snapshot = (title: string): DashboardState => ({ name: title, cards: cards.map(({ id: _id, ...card }) => card) });
   async function copyLink() {
-    const url = window.location.origin + atlasPath(DASHBOARD_ROUTE) + dashboardHash(snapshot(name.trim() || "Untitled dashboard"));
+    const url = window.location.origin + atlasPath(DASHBOARD_ROUTE) + dashboardHash(snapshot(name.trim() || DEFAULT_NAME));
     setLinkFallback("");
     try {
       await window.navigator.clipboard.writeText(url);
@@ -130,16 +170,19 @@ export function ExplorationDashboard() {
     storage.setItem(DASHBOARD_STORAGE, bytes);
     setSaved(validated);
     openedSave.current = validated[target];
+    cleanDraft.current = { name: trimmed, cards };
     setName(trimmed);
     setStatus(`Saved “${trimmed}” in this browser.`);
   }
   function reopen(snapshot: DashboardState, appendCurrent = false) {
+    draftAddress.current = null;
     openedSave.current = snapshot;
     setSaveConflict("");
     setName(snapshot.name);
     captureLayout();
     if (appendCurrent) pendingFocus.current = "name";
     const opened = snapshot.cards.map(card => ({ ...card, id: next.current++ }));
+    if (!appendCurrent) cleanDraft.current = { name: snapshot.name, cards: opened };
     setCards(appendCurrent ? [...opened, ...cards] : opened);
     setStatus(appendCurrent ? `Added charts to “${snapshot.name}”. Save locally to keep the changes.` : `Opened “${snapshot.name}”.`);
   }
@@ -195,7 +238,24 @@ export function ExplorationDashboard() {
     {cards.length > 0 && <p className="exploration-export-note" data-dashboard-export-note>Image export is unavailable here. Use Copy dashboard link to share these views.</p>}
     {storageError && <p data-dashboard-error role="alert">{storageError}</p>}
     {saveConflict && <p data-dashboard-save-conflict role="alert">{saveConflict}</p>}
-    {linkError && <p data-dashboard-link-error role="alert">{linkError}</p>}
+    {linkIssue && ("error" in linkIssue
+      ? <p data-dashboard-link-error role="alert">{linkIssue.error} {linkIssue.retained
+        ? <>“{name.trim() || DEFAULT_NAME}” was kept and is not the dashboard at this address.</>
+        : "Choose charts below to start a new one."}</p>
+      : <div data-dashboard-pending-link>
+        <p role="status">{linkIssue.kept
+          ? <>“{name.trim() || DEFAULT_NAME}” was kept and is not the dashboard at this address.</>
+          : <>Your draft “{name.trim() || DEFAULT_NAME}” is still open. The address points to “{linkIssue.snapshot.name}”.</>}</p>
+        <button className="dashboard-pill" type="button" data-dashboard-open-link onClick={() => {
+          if (window.location.href !== linkIssue.href) return;
+          pendingFocus.current = "name";
+          openAddress(linkIssue.snapshot, linkIssue.href);
+        }}>Open linked dashboard (replace draft)</button>{" "}
+        {!linkIssue.kept && <button className="dashboard-pill" type="button" data-dashboard-keep-draft onClick={() => {
+          setLinkIssue({ ...linkIssue, kept: true });
+          root.current?.querySelector<HTMLElement>("[data-dashboard-open-link]")?.focus();
+        }}>Keep draft</button>}
+      </div>)}
     <p role="status">{status}</p>
     {linkFallback && <div className="dashboard-saves"><label>Dashboard link
       <input data-dashboard-copy-fallback readOnly value={linkFallback} onFocus={event => event.currentTarget.select()} />

@@ -544,6 +544,83 @@ test('custody lock: save checks storage only after obtaining the same-origin das
   } finally { await close(); }
 });
 
+const hashNavigation = navigate => act(async () => {
+  await new Promise(resolve => {
+    window.addEventListener('hashchange', resolve, { once: true });
+    navigate();
+  });
+});
+
+test('history: pristine linked comparisons follow actual hash changes, Back and Forward', { timeout: 5000 }, async () => {
+  const { dashboardHash } = await import('../src/lib/dashboard-state.ts');
+  const first = dashboardHash(named('First', bitrate));
+  const second = dashboardHash(named('Second', tissue));
+  const close = await dashboard({ search: first });
+  try {
+    assert.deepEqual(slugsShown(), [bitrate]);
+    await hashNavigation(() => { window.location.hash = second; });
+    assert.equal(button('[data-dashboard-name]').value, 'Second');
+    assert.deepEqual(slugsShown(), [tissue]);
+    assert.ok(cards()[0].querySelector('svg [data-source-observation]'));
+    const sameCard = cards()[0].dataset.dashboardCard;
+    await act(async () => window.dispatchEvent(new window.HashChangeEvent('hashchange')));
+    assert.equal(cards()[0].dataset.dashboardCard, sameCard, 'repeat events do not reset the mounted card');
+    await hashNavigation(() => window.history.back());
+    assert.equal(button('[data-dashboard-name]').value, 'First');
+    assert.deepEqual(slugsShown(), [bitrate]);
+    await hashNavigation(() => window.history.forward());
+    assert.equal(button('[data-dashboard-name]').value, 'Second');
+    assert.deepEqual(slugsShown(), [tissue]);
+    assert.equal(savedRaw(), null);
+  } finally { await close(); }
+});
+
+test('history: a settings-only draft stays put until the user chooses to open the linked comparison', { timeout: 5000 }, async () => {
+  const { dashboardHash } = await import('../src/lib/dashboard-state.ts');
+  const first = dashboardHash(named('First', bitrate));
+  const second = dashboardHash(named('Second', tissue));
+  const close = await dashboard({ search: first });
+  try {
+    await click(cards()[0].querySelector('[data-exploration-fit-toggle]'));
+    await hashNavigation(() => { window.location.hash = second; });
+    assert.deepEqual(slugsShown(), [bitrate], 'navigation alone must not replace a changed chart');
+    assert.match(button('[data-dashboard-pending-link]')?.textContent ?? '', /First.*Second/s);
+    await click(button('[data-dashboard-keep-draft]'));
+    assert.match(button('[data-dashboard-pending-link]')?.textContent ?? '', /not the dashboard at this address/i);
+    assert.equal(Boolean(button('[data-dashboard-keep-draft]')), false);
+    assert.equal(window.location.hash, second);
+    assert.equal(cards()[0].querySelector('[data-exploration-fit-line]')?.dataset.fitN, '9');
+    await hashNavigation(() => window.history.back());
+    assert.equal(Boolean(button('[data-dashboard-pending-link]')), false);
+    assert.deepEqual(slugsShown(), [bitrate]);
+    assert.equal(cards()[0].querySelector('[data-exploration-fit-line]')?.dataset.fitN, '9');
+    await hashNavigation(() => window.history.forward());
+    await click(button('[data-dashboard-open-link]'));
+    assert.equal(button('[data-dashboard-name]').value, 'Second');
+    assert.deepEqual(slugsShown(), [tissue]);
+    assert.equal(Boolean(button('[data-dashboard-pending-link]')), false);
+    assert.equal(savedRaw(), null);
+  } finally { await close(); }
+});
+
+test('history: an invalid destination identifies the retained draft and invalidates the prior pending link', { timeout: 5000 }, async () => {
+  const { dashboardHash } = await import('../src/lib/dashboard-state.ts');
+  const close = await dashboard({ search: dashboardHash(named('First', bitrate)) });
+  try {
+    await setInput('[data-dashboard-name]', 'My unsaved title');
+    const second = dashboardHash(named('Second', tissue));
+    await hashNavigation(() => { window.location.hash = second; });
+    await hashNavigation(() => { window.location.hash = '#d=invalid'; });
+    assert.match(button('[data-dashboard-link-error]')?.textContent ?? '', /could not be opened.*My unsaved title.*not the dashboard at this address/s);
+    assert.equal(Boolean(button('[data-dashboard-open-link]')), false);
+    assert.deepEqual(slugsShown(), [bitrate]);
+    assert.equal(savedRaw(), null);
+    await hashNavigation(() => window.history.back());
+    assert.equal(Boolean(button('[data-dashboard-link-error]')), false);
+    assert.match(button('[data-dashboard-pending-link]')?.textContent ?? '', /My unsaved title.*Second/s);
+  } finally { await close(); }
+});
+
 test('tissue reference lines and the nominal voxel view reuse the brain model without changing original evidence', async () => {
   const close = await dashboard({ search: '?add=' + tissue }, win => { win.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} }); });
   try {
