@@ -302,6 +302,23 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null),
   });
 
+  const dashboardControls = interactive && exploration.dashboard;
+  const studyList = !preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
+    <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
+      <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
+      <span>{text}</span>
+    </button>
+  </li>)}</ul>;
+  // Use the full series to keep the disclosure stable as visible study counts change.
+  const studyKey = studyList && exploration?.dashboard && plot.points.filter(point => point.annotation?.trim()).length > 4
+    ? <details className="dashboard-source-key" data-dashboard-source-key><summary>Source key ({annotations.length})</summary>{studyList}</details>
+    : studyList;
+  const fitToggle = interactive && <button className="dashboard-pill" type="button" role="switch" aria-checked={extrapolate} data-exploration-fit-toggle onClick={() => {
+    tooltip.clear(); exploration.update({ extrapolate: !extrapolate });
+  }}>Extrapolation <span aria-hidden="true">{extrapolate ? "On" : "Off"}</span></button>;
+  const sensoryToggle = interactive && isBitrate && <button className="dashboard-pill" type="button" role="switch" data-sensory-toggle aria-checked={!!exploration.settings.sensory}
+    onClick={() => exploration.update({ sensory: !exploration.settings.sensory })}>Sensory context <span aria-hidden="true">{exploration.settings.sensory ? "On" : "Off"}</span></button>;
+
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
@@ -406,12 +423,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       style={benchmark && !overlapNote ? { visibility: "hidden" } : undefined}>
       {overlapNote ?? "Rings keep overlapping observations visible at their source positions."}
     </p>}
-    {!preview && annotations.length > 0 && <ul className="draft-point-annotations" aria-label="Labeled observations">{annotations.map(({ point, text }, index) => <li key={point.id}>
-      <button type="button" data-point-annotation={point.id} {...inspectProps(point)}>
-        <span className="draft-annotation-number" aria-hidden="true" style={{ color: groupColor(point) }}>{index + 1}</span>
-        <span>{text}</span>
-      </button>
-    </li>)}</ul>}
+    {!dashboardControls && studyKey}
     {legend.length > 0 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{legend.map(entry => {
       const key = <><span aria-hidden="true" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox="0 0 14 14" aria-hidden="true" focusable="false">
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
@@ -420,20 +432,18 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, entry.label) });
       }}>{key}</SeriesButton> : key}</li>;
     })}</ul>}
+    {dashboardControls && <div className="dashboard-plot-switches" role="group" aria-label="Plot options">{fitToggle}{sensoryToggle}</div>}
     {interactive && !shown.length && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
-    {interactive && <section className="exploration-model" aria-label="Trend exploration">
-      <button className="dashboard-pill" type="button" role="switch" aria-checked={extrapolate} data-exploration-fit-toggle onClick={() => {
-        tooltip.clear(); exploration.update({ extrapolate: !extrapolate });
-      }}>Extrapolation <span aria-hidden="true">{extrapolate ? "On" : "Off"}</span></button>
+    {interactive && (!dashboardControls || extrapolate) && <section className="exploration-model" aria-label="Trend exploration">
+      {!dashboardControls && fitToggle}
       {extrapolate && <div data-exploration-fit-diagnostics>
         {fits.length ? <><p>Dashed lines extend each eligible series ten years beyond its last input. R² describes historical fit quality in log₁₀ space.</p>
           {fits.map(fit => <p key={fit.label}><strong>{fit.label}</strong> · {fit.window.join("–")} · N={fit.n} · log-linear OLS · R²(log₁₀)={fit.rSquaredLog10?.toFixed(3)} · {fit.equation}</p>)}</>
           : <p role="status">No continuation for the visible series. The model needs at least three eligible points across multiple years and a positive slope.</p>}
       </div>}
     </section>}
-    {interactive && isBitrate && <section className="exploration-model sensory-context" aria-label="Sensory bitrate context">
-      <button className="dashboard-pill" type="button" role="switch" data-sensory-toggle aria-checked={!!exploration.settings.sensory}
-        onClick={() => exploration.update({ sensory: !exploration.settings.sensory })}>Sensory context <span aria-hidden="true">{exploration.settings.sensory ? "On" : "Off"}</span></button>
+    {interactive && isBitrate && (!dashboardControls || exploration.settings.sensory) && <section className="exploration-model sensory-context" aria-label="Sensory bitrate context">
+      {!dashboardControls && sensoryToggle}
       {exploration.settings.sensory && <div className="sensory-panel" data-sensory-context>
         <div><strong>Eye → brain</strong><p data-retinal-bits-per-second={humanRetinalScenario}>≈{Math.round(humanRetinalScenario / 1e6)} Mb/s · human retinal output extrapolated from guinea pig</p>
           <details><summary>Source and assumptions</summary><p><a href={RETINAL_OUTPUT.source}>Koch et al. (2006) ↗</a> estimated ≈875,000 bits/s by treating guinea pig retinal ganglion cells as independent channels. Scaling by ≈1,000,000 human ganglion cells ÷ ≈100,000 guinea pig optic-nerve axons assumes the same average per-cell rate. Correlations and species differences remain unaccounted for.</p></details>
@@ -441,6 +451,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <div><strong>Ear → brain</strong><p>No verified direct human whole-auditory-nerve rate is available for this comparison.</p></div>
       </div>}
     </section>}
+    {dashboardControls && studyKey}
     {referenceTrendlines.map(referenceTrendline => <p key={referenceTrendline.id ?? plot.id} className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
       <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
         <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />

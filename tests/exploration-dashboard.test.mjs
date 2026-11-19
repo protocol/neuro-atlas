@@ -228,6 +228,26 @@ test('bitrate legend changes actual marks and recomputes the visible eligible mo
   } finally { await close(); }
 });
 
+test('bitrate controls sit between the plot and the study key even with diagnostics open', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const chart = cards()[0];
+    const el = selector => chart.querySelector(selector);
+    const before = (a, b) => !!(a.compareDocumentPosition(b) & window.Node.DOCUMENT_POSITION_FOLLOWING);
+    const svg = el('svg.draft-plot-svg');
+    const study = el('[data-point-annotation]');
+    const fit = el('[data-exploration-fit-toggle]');
+    const sensory = el('[data-sensory-toggle]');
+    const filters = [...chart.querySelectorAll('[data-exploration-series]')];
+    assert.ok(filters.length > 0);
+    for (const control of [...filters, fit, sensory]) {
+      assert.ok(before(svg, control) && before(control, study), 'plot controls precede the long study key');
+    }
+    await click(fit);
+    assert.ok(before(sensory, el('[data-exploration-fit-diagnostics]')), 'both switches are reachable before fit diagnostics');
+  } finally { await close(); }
+});
+
 test('retinal context is opt-in, animal-extrapolated and geometrically separate from the BCI plot and fit', async () => {
   const close = await dashboard({ search: '?add=' + bitrate });
   try {
@@ -243,6 +263,38 @@ test('retinal context is opt-in, animal-extrapolated and geometrically separate 
     assert.match(panel.textContent, /ear.*no verified direct human whole-auditory-nerve rate/is);
     assert.equal(panel.querySelector('a').href, 'https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/');
     assert.equal(chart.querySelector('svg.draft-plot-svg').outerHTML, svg);
+  } finally { await close(); }
+});
+
+test('the long dashboard Source key starts collapsed with every standalone annotation and source row intact', async () => {
+  const keyRows = () => [...document.querySelectorAll('[data-point-annotation]')].map(row => [row.dataset.pointAnnotation, row.textContent, row.getAttribute('aria-label')]);
+  const sourceRows = () => [...document.querySelectorAll('.draft-plot-data tbody tr')].map(row => row.innerHTML);
+  const standalone = await mount(await graphPage({ params: Promise.resolve({ slug: bitrate }) }));
+  let expectedKey, expectedSources;
+  try {
+    expectedKey = keyRows();
+    expectedSources = sourceRows();
+    assert.equal(expectedKey.length, 14);
+    assert.equal(expectedSources.length, 14);
+    assert.ok(!button('[data-point-annotation]').closest('details'), 'standalone annotations remain visible');
+  } finally { await standalone(); }
+
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const disclosure = button('details[data-dashboard-source-key]');
+    assert.ok(disclosure, 'long dashboard annotation keys have a native disclosure');
+    const summary = disclosure.querySelector('summary');
+    assert.match(summary.textContent, /Source key.*14/);
+    assert.equal(disclosure.open, false);
+    assert.equal(disclosure.querySelectorAll('[data-point-annotation]').length, 14);
+    const svg = button('svg.draft-plot-svg').outerHTML;
+    await click(summary);
+    assert.equal(disclosure.open, true);
+    assert.deepEqual(keyRows(), expectedKey);
+    assert.deepEqual(sourceRows(), expectedSources);
+    await click(summary);
+    assert.equal(disclosure.open, false);
+    assert.equal(button('svg.draft-plot-svg').outerHTML, svg);
   } finally { await close(); }
 });
 

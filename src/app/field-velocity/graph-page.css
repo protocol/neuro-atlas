@@ -47,6 +47,9 @@
 
 .dashboard-grid { isolation: isolate; }
 .dashboard-card { box-sizing: border-box; }
+.dashboard-plot-switches { display: flex; flex-wrap: wrap; gap: .35rem; margin-block: .45rem; }
+.dashboard-source-key { margin-block: .55rem; font-size: .8125rem; }
+.dashboard-source-key summary { width: fit-content; color: var(--muted); font-weight: 550; cursor: pointer; }
 
 .exploration-series[aria-pressed="false"] { border-style: dashed; color: var(--muted); }
 .exploration-series small { font-size: .7rem; font-weight: 650; }
