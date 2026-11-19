@@ -48,24 +48,23 @@ for (const prefix of ["", "/neuro-atlas"]) {
       assert.equal(logo.querySelector('img').getAttribute('src'), prefix + '/logos/neuralink.png');
       for (const pathname of ['/funding', prefix + '/funding/']) {
         const nav = render(React.createElement(PathnameContext.Provider, {value: pathname}, React.createElement(React.Fragment, null, React.createElement(SideNav), React.createElement(MobileBar))));
-        assert.deepEqual([...nav.querySelectorAll('a')].filter(a => a.textContent.trim() === 'by PL R&D').map(a => a.getAttribute('href')), ['https://www.plrd.org/', 'https://www.plrd.org/']);
+        assert.deepEqual([...nav.querySelectorAll('a')].filter(a => a.textContent.trim() === 'by PL Neuro').map(a => a.getAttribute('href')), ['https://www.plneuro.xyz/', 'https://www.plneuro.xyz/']);
         assert.equal(nav.querySelector('a a'), null, 'Return link must not be nested in the Atlas home link');
         assert.deepEqual([...nav.querySelectorAll('[aria-current="page"]')].map(a => a.getAttribute('href')), [prefix + '/funding', prefix + '/funding']);
-        // Sidebar and the mobile native-menu each carry their own powered-by marks.
-        for (const shell of [nav.querySelector('aside'), nav.querySelector('dialog')]) {
-          assert.ok(shell);
-          assert.deepEqual([...shell.querySelectorAll('img')].map(i => i.getAttribute('src')), [prefix + '/powered-plneuro.svg', prefix + '/powered-neurotechfutures.png']);
-        }
+        // Both attribution marks are local assets; neither menu adds partner branding.
+        assert.deepEqual([...nav.querySelectorAll('a img')].map(i => i.getAttribute('src')), [prefix + '/powered-plneuro.svg', prefix + '/powered-plneuro.svg']);
+        assert.equal(nav.querySelector('dialog img'), null);
         for (const a of nav.querySelectorAll('a[href^="/"]')) assert.ok(!a.getAttribute('href').includes('/neuro-atlas/neuro-atlas'));
       }
       const home = render(React.createElement(Home));
-      assert.deepEqual([...home.querySelectorAll('.landing-tile')].map(a => a.getAttribute('href')), [prefix + '/milestones', prefix + '/field-velocity', prefix + '/funding', 'https://www.neurofounders.co/resources/start-up-map']);
+      assert.deepEqual([...home.querySelectorAll('.landing-tile')].map(a => a.getAttribute('href')), [prefix + '/milestones', prefix + '/field-velocity', prefix + '/funding']);
       assert.ok(home.querySelector('a[href="#explore"]'));
       const methodology = render(React.createElement(MethodologyImport.default ?? MethodologyImport));
-      const fundingSource = [...methodology.querySelectorAll('a')].find(a => a.textContent.trim() === 'BCI Funding Index ↗');
+      const fundingSource = [...methodology.querySelectorAll('a')].find(a => a.textContent.trim() === 'BCI Funding Index.');
       assert.equal(fundingSource.getAttribute('href'), prefix + '/funding');
       const footer = render(React.createElement(SiteFooter));
       assert.ok(footer.querySelector('a[href="https://www.plrd.org/"]'));
+      assert.ok(footer.querySelector('a[href="' + prefix + '/methodology"]'));
     `, prefix, { __NEXT_ROUTER_BASEPATH: prefix });
   });
 }

@@ -17,12 +17,12 @@ test("landing introduces the whole neurotechnology field without context-free sn
   assert.doesNotMatch(document.querySelector("h1").className, /max-w/);
 });
 
-test("four visual tiles keep all destinations and accessible names", () => {
+test("three visual tiles keep the native Atlas destinations and accessible names", () => {
   const document = render();
   const tiles = [...document.querySelectorAll(".landing-tile")];
-  assert.equal(tiles.length, 4);
-  assert.deepEqual(tiles.map((a) => a.getAttribute("href")), ["/milestones", "/field-velocity", "/funding", "https://www.neurofounders.co/resources/start-up-map"]);
-  assert.deepEqual(tiles.map((a) => a.querySelector("h3").textContent), ["Milestones", "Field Velocity", "BCI Funding Index", "Ecosystem"]);
+  assert.equal(tiles.length, 3);
+  assert.deepEqual(tiles.map((a) => a.getAttribute("href")), ["/milestones", "/field-velocity", "/funding"]);
+  assert.deepEqual(tiles.map((a) => a.querySelector("h3").textContent), ["Milestones", "Field Velocity", "BCI Funding Index"]);
   for (const tile of tiles) {
     assert.ok(tile.querySelector("h3"));
     assert.equal(tile.getAttribute("aria-labelledby"), tile.querySelector("h3").id);
@@ -47,5 +47,5 @@ test("hero offers the explore anchor without duplicate contribution or Feedback 
   assert.equal(document.querySelector("#explore").getAttribute("tabindex"), "-1");
   assert.equal(hero.querySelector('a[href*="github.com/protocol/neuro-atlas/"]'), null);
   assert.equal(hero.querySelector('[data-feedback-trigger]'), null);
-  assert.ok(document.querySelector('a[href="/methodology"]'));
+  assert.equal(document.querySelector('a[href="/methodology"]'), null, "Methodology discovery moved into the shared footer");
 });

@@ -63,8 +63,6 @@
 .landing-tile:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 24px -16px color-mix(in srgb, var(--accent) 40%, transparent); }
 .landing-tile:hover .landing-tile-arrow { background: var(--accent-on-dark); color: #101217; }
 .landing :is(a, button):focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-.landing-methodology { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; margin-top: .75rem; font-size: .75rem; color: var(--muted); }
-.landing-methodology:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 639px) {
   .landing-title { font-size: clamp(1.875rem, 12cqi, 2.35rem); }
   .landing-hero { padding-top: 1.75rem; padding-bottom: 1.75rem; }
@@ -73,6 +71,7 @@
 @media (min-width: 640px) {
   .landing-hero { margin: -1.75rem -1.75rem 0; padding: 2.5rem 1.75rem 2.75rem; }
   .landing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .landing-tile:last-child { grid-column: 1 / -1; }
 }
 @media (min-width: 1024px) {
   .landing-hero { margin: -2.25rem -2.25rem 0; padding: 2.75rem 2.25rem 3rem; }
@@ -80,6 +79,10 @@
   .landing-tile-heading { padding: 1.25rem 1.5rem 0; }
   .landing-tile-heading h3 { font-size: 1.5rem; }
   .landing-tile-description { padding: 1rem 1.5rem; }
+}
+@media (min-width: 1280px) {
+  .landing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .landing-tile:last-child { grid-column: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .landing *, .landing *::before, .landing *::after { transition: none; scroll-behavior: auto; }

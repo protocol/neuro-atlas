@@ -23,11 +23,13 @@ for width, height in [(320, 740), (390, 844), (768, 1024), (1024, 900), (1440, 1
     if width >= 1024:
         assert measured['heading']['height'] <= measured['line'] + 1, measured
     tiles = measured['tiles']
-    assert len(tiles) == 4
-    if width >= 640:
+    assert len(tiles) == 3
+    if width >= 1280:
+        assert all(abs(tile['top'] - tiles[0]['top']) < 1 for tile in tiles)
+    elif width >= 640:
         assert abs(tiles[0]['top'] - tiles[1]['top']) < 1
-        assert abs(tiles[2]['top'] - tiles[3]['top']) < 1
         assert tiles[2]['top'] > tiles[0]['bottom']
+        assert tiles[2]['width'] > tiles[0]['width'] * 1.9
     else:
         assert all(abs(tile['x'] - tiles[0]['x']) < 1 for tile in tiles)
     results.append(measured)

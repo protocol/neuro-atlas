@@ -1,4 +1,6 @@
 import { AtlasCookieSettings } from "@/components/atlas-analytics";
+import { atlasPath } from "@/lib/atlas-path";
+import { NEUROFOUNDERS_MAP_URL } from "@/lib/ecosystem";
 import { FeedbackTrigger } from "./feedback/feedback-trigger";
 
 const linkGroups = [
@@ -24,7 +26,17 @@ const linkGroups = [
       { label: "Terms of Service", href: "https://www.protocol.ai/legal/#terms-conditions" },
     ],
   },
+  {
+    label: "Data sources & methodology",
+    links: [
+      { label: "Neurotech Futures", href: "https://neurotechnology.substack.com" },
+      { label: "Neurofounders", href: NEUROFOUNDERS_MAP_URL },
+      { label: "Learn more", href: "/methodology" },
+    ],
+  },
 ];
+
+const linkClass = "inline-flex min-h-7 items-center rounded-sm py-1 text-[13px] leading-5 text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent pointer-coarse:min-h-11 pointer-coarse:py-2";
 
 export function SiteFooter() {
   return (
@@ -40,7 +52,7 @@ export function SiteFooter() {
               A field guide to neurotechnology.
             </p>
           </div>
-          <nav aria-label="Footer" className="grid grid-cols-3 gap-4 sm:gap-6">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-4 sm:gap-6">
             {linkGroups.map((group) => (
               <div key={group.label}>
                 <h2 className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-foreground/70">
@@ -49,10 +61,7 @@ export function SiteFooter() {
                 <ul>
                   {group.links.map((link) => (
                     <li key={link.href}>
-                      <a
-                        href={link.href}
-                        className="inline-flex min-h-7 items-center rounded-sm py-1 text-[13px] leading-5 text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent pointer-coarse:min-h-11 pointer-coarse:py-2"
-                      >
+                      <a href={atlasPath(link.href)} className={linkClass} aria-label={link.label === "Learn more" ? "Learn more about data sources and methodology" : undefined}>
                         {link.label}
                       </a>
                     </li>
@@ -63,7 +72,7 @@ export function SiteFooter() {
             ))}
           </nav>
         </div>
-        <div className="border-t border-border-strong pt-5 text-[12px] leading-6 text-foreground/70">
+        <div id="data-disclaimer" className="scroll-mt-4 border-t border-border-strong pt-5 text-[12px] leading-6 text-foreground/70">
           <p>
             Neuro Atlas is for informational purposes only and is not investment,
             legal, or medical advice. It is not an offer, solicitation, or

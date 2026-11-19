@@ -61,7 +61,7 @@ for route in ['/', '/milestones', '/funding', '/field-velocity', '/methodology']
     goto_url(base+route)
     wait_for_load()
     report=js("(() => ({url:location.href,footerCount:document.querySelectorAll('footer').length,outsideMain:!document.querySelector('footer').closest('main'),links:document.querySelectorAll('footer a').length}))()")
-    assert report['footerCount']==1 and report['outsideMain'] and report['links']==7, report
+    assert report['footerCount']==1 and report['outsideMain'] and report['links']==10, report
     reports.append(report)
 (out/'report.json').write_text(json.dumps(reports, indent=2))
 print(json.dumps({'verdict':'PASS','screenshots':8,'routeChecks':5,'report':str(out/'report.json')}))
