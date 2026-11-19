@@ -137,12 +137,12 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const plot = voxels ? { ...sourcePlot, yLabel: "Nominal image voxels · 4×4×40 nm", points: sourcePlot.points.map(point => ({ ...point, y: brainImageVoxels(point.y * 1000) })) } : sourcePlot;
   const benchmark = preview ? undefined : tissue ? tissueBenchmark(voxels) : brainBenchmarkContext(plot.id);
   const [localBenchmark, setLocalBenchmark] = useState(false);
-  const controlledBenchmark = !!exploration && (tissue || exploration.dashboard);
+  const controlledBenchmark = !!exploration && !!benchmark;
   const benchmarkEnabled = controlledBenchmark ? !!exploration.settings.benchmark : localBenchmark;
   const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
   const benchmarkMoving = !!benchmark && benchmarkProgress !== (benchmarkEnabled ? 1 : 0);
   const benchmarkReveal = benchmarkProgress === 1 ? 1 : Math.max(0, (benchmarkProgress - .8) / .2);
-  const observationBasis = plot.observationBasis ?? "Source-reported";
+  const observationBasis = voxels ? "Modeled equivalents" : plot.observationBasis ?? "Source-reported";
   const groups = [...new Set(plot.points.map(point => point.group ?? "Other observations"))];
   const groupColor = ({ group = "Other observations", color }: Pick<DraftObservation, "group" | "color">) => color ?? SPECIES_COLORS[group]
     ?? GROUP_COLORS[groups.indexOf(group) % GROUP_COLORS.length];
@@ -178,7 +178,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const { width, figure } = usePlotWidth();
   const previewExtra = useMetricPreviewSpace(figure, preview);
   const yLabel = preview && plot.previewYLabel ? plot.previewYLabel : preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
-  const yTitle = wrapLabel(yLabel, width - 12);
+  const yTitle = wrapLabel(voxels ? `${yLabel} · ${observationBasis}` : yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const fittedLabels = referenceTrendlines.filter(line => line.fit);
   const compactFit = preview && fittedLabels.length > 0;
@@ -489,7 +489,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       <p className="draft-plot-scope">{sourcePlot.scope}</p>
-      {(plot.referenceTrendlines || plot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
+      {(sourcePlot.referenceTrendlines || sourcePlot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${sourcePlot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download selected data{sourcePlot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {historicalLines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>

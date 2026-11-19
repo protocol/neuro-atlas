@@ -61,8 +61,11 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
 export function FieldVelocityGraphDetail({ entry, instance, pageHeading }: { entry: FieldVelocityGraph; instance?: ChartExploration; pageHeading?: ReactNode }) {
   const request = useContext(GraphExportContext);
   const [settings, setSettings] = useState<CardSettings>({});
+  const { graph } = entry;
+  // These two established overlays support settled image exports; tissue modes do not.
+  const supportsBenchmarkExport = graph.renderer === "draft" && (graph.plot === "public-data-size" || graph.plot === "acquisition-economics");
   return <ChartExplorationContext.Provider value={instance ?? (request ? null : {
-    dashboard: false, settings, update: change => setSettings(current => ({ ...current, ...change })),
+    dashboard: false, settings, supportsBenchmarkExport, update: change => setSettings(current => ({ ...current, ...change })),
   })}>
     {pageHeading && <header>{pageHeading}<DashboardAddLink entry={entry} /></header>}
     <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
