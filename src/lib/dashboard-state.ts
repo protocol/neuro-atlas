@@ -8,7 +8,12 @@ export const SAVE_LIMIT = 12;
 export const NAME_LIMIT = 64;
 const slugs = new Set(FIELD_VELOCITY_GRAPHS.map(entry => entry.slug));
 export const isDashboardGraph = (value: unknown): value is string => typeof value === "string" && slugs.has(value);
-export type CardSettings = { recordingView?: RecordingViewId };
+export const DASHBOARD_SERIES: Readonly<Record<string, readonly string[]>> = Object.freeze(Object.assign(Object.create(null), {
+  "bci-information-transfer-over-time": ["Cursor / grid control", "Endovascular switch", "Text selection / scanning", "Speech decoding", "Handwriting decoding"],
+  "estimated-acquisition-efficiency-voxels-per-dollar": ["Expansion microscopy · estimates", "EM · reported-tech estimates", "mesoSPIM · optical", "PEEM · prospective"],
+}));
+const DASHBOARD_FITS = new Set(Object.keys(DASHBOARD_SERIES));
+export type CardSettings = { recordingView?: RecordingViewId; hidden?: string[]; extrapolate?: boolean };
 export type CardState = { slug: string; settings?: CardSettings };
 export type DashboardState = { name: string; cards: CardState[] };
 
@@ -19,11 +24,13 @@ function record(value: unknown): value is Record<string, unknown> {
 function validateCard(raw: unknown): CardState | null {
   if (!record(raw) || !isDashboardGraph(raw.slug) || Object.keys(raw).some(key => key !== "slug" && key !== "settings")) return null;
   if (raw.settings === undefined) return { slug: raw.slug };
-  if (!record(raw.settings) || Object.keys(raw.settings).some(key => key !== "recordingView")) return null;
-  const { recordingView } = raw.settings;
-  if (recordingView === undefined) return { slug: raw.slug };
-  if (raw.slug !== "simultaneous-neural-recordings" || !recordingViewIds.some(view => view === recordingView)) return null;
-  return { slug: raw.slug, settings: { recordingView: recordingView as RecordingViewId } };
+  if (!record(raw.settings) || Object.keys(raw.settings).some(key => !["recordingView", "hidden", "extrapolate"].includes(key))) return null;
+  const { recordingView, hidden, extrapolate } = raw.settings;
+  if (recordingView !== undefined && (raw.slug !== "simultaneous-neural-recordings" || !recordingViewIds.some(view => view === recordingView))) return null;
+  const series = DASHBOARD_SERIES[raw.slug];
+  if (hidden !== undefined && (!series || !Array.isArray(hidden) || hidden.length > series.length || new Set(hidden).size !== hidden.length || hidden.some(id => !series.includes(id)))) return null;
+  if (extrapolate !== undefined && (typeof extrapolate !== "boolean" || !DASHBOARD_FITS.has(raw.slug))) return null;
+  return { slug: raw.slug, settings: { recordingView: recordingView as RecordingViewId | undefined, hidden: hidden as string[] | undefined, extrapolate } };
 }
 
 function validateDashboard(raw: unknown): DashboardState | null {

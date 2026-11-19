@@ -47,3 +47,8 @@
 
 .dashboard-grid { isolation: isolate; }
 .dashboard-card { box-sizing: border-box; }
+
+.exploration-series[aria-pressed="false"] { border-style: dashed; color: var(--muted); }
+.exploration-series small { font-size: .7rem; font-weight: 650; }
+.exploration-empty, .exploration-model, .exploration-export-note { margin-block: .7rem; color: var(--muted); font-size: .85rem; }
+.exploration-model p { margin-top: .3rem; }

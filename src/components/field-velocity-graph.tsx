@@ -1,5 +1,8 @@
 "use client";
 
+import { useContext, useState } from "react";
+import type { CardSettings } from "@/lib/dashboard-state";
+import { GraphExportContext } from "@/components/graph-export-context";
 import { ChartExplorationContext, type ChartExploration } from "@/components/chart-exploration-context";
 import { InlineChartDetail } from "@/components/chart-modal-slots";
 import { DraftChartMethodology, DraftPanelDetail } from "@/components/draft-chart-panel";
@@ -55,7 +58,11 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
 }
 
 export function FieldVelocityGraphDetail({ entry, instance }: { entry: FieldVelocityGraph; instance?: ChartExploration }) {
-  return <ChartExplorationContext.Provider value={instance ?? null}>
+  const request = useContext(GraphExportContext);
+  const [settings, setSettings] = useState<CardSettings>({});
+  return <ChartExplorationContext.Provider value={instance ?? (request ? null : {
+    dashboard: false, settings, update: change => setSettings(current => ({ ...current, ...change })),
+  })}>
     <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }

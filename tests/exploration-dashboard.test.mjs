@@ -196,3 +196,34 @@ test('recording cards select views independently and never register dashboard ch
     } finally { dispose(); }
   } finally { await close(); }
 });
+
+test('bitrate legend changes actual marks and recomputes the visible eligible model without removing evidence', async () => {
+  const close = await dashboard({ search: '?add=' + bitrate });
+  try {
+    const chart = cards()[0];
+    const toggle = () => chart.querySelector('[data-exploration-fit-toggle]');
+    const fit = () => chart.querySelector('[data-exploration-fit-line]');
+    const key = term => [...chart.querySelectorAll('[data-exploration-series]')].find(b => b.textContent.includes(term));
+    const marks = () => chart.querySelectorAll('svg [data-source-observation]').length;
+    assert.equal(marks(), 14);
+    assert.equal(fit(), null);
+    assert.ok(toggle(), 'extrapolation is opt-in');
+    await click(toggle());
+    assert.equal(fit()?.dataset.fitN, '9');
+    const geometry = fit().getAttribute('points');
+    await click(key('Speech decoding'));
+    assert.equal(key('Speech decoding').getAttribute('aria-pressed'), 'false');
+    assert.equal(marks(), 9);
+    assert.equal(fit()?.dataset.fitN, '4');
+    assert.notEqual(fit().getAttribute('points'), geometry);
+    await click(key('Cursor / grid control'));
+    assert.equal(fit()?.dataset.fitN, '4');
+    for (const term of ['Endovascular switch', 'Text selection', 'Handwriting']) await click(key(term));
+    assert.equal(marks(), 0);
+    assert.equal(fit(), null);
+    assert.ok(chart.querySelector('[data-exploration-empty]'));
+    assert.equal(chart.querySelectorAll('.draft-plot-data tbody tr').length, 14);
+    await click(chart.querySelector('[data-exploration-reset]'));
+    assert.equal(marks(), 14);
+  } finally { await close(); }
+});
