@@ -118,7 +118,12 @@ for (const prefix of ["", "/neuro-atlas"]) {
       const { atlasMetadata } = await import('./src/lib/atlas-metadata.ts');
       const metadata = atlasMetadata('/funding', 'Funding');
       if (process.env.ATLAS_INDEXABLE === 'true') {
-        assert.deepEqual(rows.map(row => row.url), ['/', '/milestones', '/funding', '/field-velocity', '/methodology'].map(route => 'https://www.plrd.org' + process.env.NEXT_PUBLIC_BASE_PATH + route));
+        const overviewRoutes = ['/', '/milestones', '/funding', '/field-velocity', '/methodology'];
+        const inventory = JSON.parse(fs.readFileSync('./tests/fixtures/readable-atlas-urls.json', 'utf8'));
+        const graphRoutes = inventory.map(([, slug]) => '/field-velocity/' + slug);
+        const origin = 'https://www.plrd.org' + process.env.NEXT_PUBLIC_BASE_PATH;
+        assert.deepEqual(rows.slice(0, overviewRoutes.length).map(row => row.url), overviewRoutes.map(route => origin + route));
+        assert.deepEqual(rows.slice(overviewRoutes.length).map(row => row.url).sort(), graphRoutes.map(route => origin + route).sort());
         assert.deepEqual(metadata.robots, { index: true, follow: true });
       } else {
         assert.deepEqual(rows, []);
