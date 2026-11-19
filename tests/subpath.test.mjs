@@ -60,7 +60,7 @@ for (const prefix of ["", "/neuro-atlas"]) {
       assert.deepEqual([...home.querySelectorAll('.landing-tile')].map(a => a.getAttribute('href')), [prefix + '/milestones', prefix + '/field-velocity', prefix + '/funding', 'https://www.neurofounders.co/resources/start-up-map']);
       assert.ok(home.querySelector('a[href="#explore"]'));
       const methodology = render(React.createElement(MethodologyImport.default ?? MethodologyImport));
-      const fundingSource = [...methodology.querySelectorAll('a')].find(a => a.textContent.trim() === 'BCI Funding Index ↗');
+      const fundingSource = [...methodology.querySelectorAll('a')].find(a => a.textContent.trim() === 'BCI Funding Index.');
       assert.equal(fundingSource.getAttribute('href'), prefix + '/funding');
       const footer = render(React.createElement(SiteFooter));
       assert.ok(footer.querySelector('a[href="https://www.plrd.org/"]'));
