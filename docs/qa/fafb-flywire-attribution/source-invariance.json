@@ -1,0 +1,54 @@
+{
+  "verdict": "PASS",
+  "pointCount": 86,
+  "targetedPoints": 5,
+  "changes": [
+    {
+      "id": "flywire-fly-neuropil-2024-01-01",
+      "changedFields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "id": "flywire-neurons",
+      "changedFields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "id": "flywire-synapses",
+      "changedFields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "id": "flywire-proofreading",
+      "changedFields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "supportingReferences"
+      ]
+    },
+    {
+      "id": "fafb-image-download-2018",
+      "changedFields": [
+        "note",
+        "sourceRole",
+        "sourceTitle",
+        "sourceUrl"
+      ]
+    }
+  ],
+  "unchanged": "All point IDs, coordinates, FlyWire metric principal URLs, dates, qualifiers, quotes, groups, annotation/export identities; all other data records and plot structure.",
+  "boundedCitationUrlChange": "Only the existing FAFB image point moves from EuropePMC fullTextXML to the approved readable PMC article for the same PMCID6063995 / DOI10.1016/j.cell.2018.06.019."
+}
