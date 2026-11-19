@@ -9,6 +9,7 @@ export const NAME_LIMIT = 64;
 const slugs = new Set(FIELD_VELOCITY_GRAPHS.map(entry => entry.slug));
 export const isDashboardGraph = (value: unknown): value is string => typeof value === "string" && slugs.has(value);
 export const DASHBOARD_SERIES: Readonly<Record<string, readonly string[]>> = Object.freeze(Object.assign(Object.create(null), {
+  "simultaneous-neural-recordings": recordingViewIds,
   "neurotech-papers-per-year": ["neurotech", "all-research", "four-domain"],
   "neurotech-search-terms": ["neurotechnology", "brain-computer interface"],
   "bci-information-transfer-over-time": ["Cursor / grid control", "Endovascular switch", "Text selection / scanning", "Speech decoding", "Handwriting decoding"],

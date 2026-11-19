@@ -328,3 +328,22 @@ test('Add to dashboard carries an explored standalone view into an independently
     assert.equal(new URL(shared).hash, new URL(href).hash);
   } finally { await done(); }
 });
+
+test('a recording legend hides the plotted view without conflating its track with another recording view', async () => {
+  const close = await dashboard({ search: '?add=' + recording });
+  try {
+    const key = button('[data-exploration-series="historical"]');
+    assert.ok(key, 'recording plot exposes its track in the legend');
+    await click(key);
+    assert.equal(document.querySelectorAll('[data-curve-point]').length, 0);
+    assert.equal(document.querySelectorAll('svg [data-historical-fit]').length, 0);
+    assert.ok(button('[data-exploration-empty]'));
+    assert.ok(button('[data-recording-source-json]'));
+    const selector = button('[data-recording-view-select]');
+    await act(async () => { selector.value = 'optical'; selector.dispatchEvent(new Event('change', { bubbles: true })); });
+    assert.ok(document.querySelectorAll('[data-curve-point]').length > 0);
+    assert.equal(button('[data-exploration-empty]'), null);
+    await act(async () => { selector.value = 'historical'; selector.dispatchEvent(new Event('change', { bubbles: true })); });
+    assert.equal(document.querySelectorAll('[data-curve-point]').length, 0);
+  } finally { await close(); }
+});

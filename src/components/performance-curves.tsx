@@ -11,6 +11,7 @@ import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExt
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
+import { EmptySeries, SeriesButton, toggleSeries } from "@/components/exploration-legend";
 import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
@@ -130,6 +131,10 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
 }
 
 function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
+  const exploration = useContext(ChartExplorationContext);
+  const interactive = !compact && !!exploration && !!data.recordingView;
+  const hidden = interactive ? exploration.settings.hidden ?? [] : [];
+  const measurementVisible = !data.recordingView || !hidden.includes(data.recordingView);
   const plotRef = useRef<HTMLDivElement>(null);
   const previewWidth = useMetricPreviewWidth(plotRef, compact);
   const previewExtra = useMetricPreviewSpace(plotRef, compact, previewWidth);
@@ -152,7 +157,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
   // Validate against the visible source set so measurement/track changes clear
   // stale inspection without remounting the native selector.
-  const tooltip = usePointTooltip(data.points.filter(point => !track || point.track === track));
+  const tooltip = usePointTooltip(data.points.filter(point => measurementVisible && (!track || point.track === track)));
   const active = tooltip.active;
   const extrapolationHint = useId();
   const progress = useExtrapolationMotion(!compact && !!extrapolation && extrapolate);
@@ -187,7 +192,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const tickY = (tick: number) => original.ticks.includes(tick) ? g.y(tick) : enteringY(tick);
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
-  const points = data.points.filter(p => !track || p.track === track);
+  const points = data.points.filter(p => measurementVisible && (!track || p.track === track));
   const historicalYears = data.historicalFit ? Array.from({length: 8}, (_, i) => 1960 + i * 10).filter(year => year >= new Date(g.minTime).getUTCFullYear() + 8 && year <= new Date(g.maxTime).getUTCFullYear() - 8) : [];
   const recordingDateTicks = inspectOnActivate && !data.historicalFit ? [...new Set([g.minTime, g.maxTime])].map(time => ({
     date: new Date(time).toISOString(),
@@ -270,7 +275,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
-        {data.historicalFit && <g data-historical-fit>
+        {measurementVisible && data.historicalFit && <g data-historical-fit>
           <polyline points={data.historicalFit.points.map(p => `${g.x(historicalYearDate(p.x))},${g.y(p.y)}`).join(" ")} fill="none" stroke="#087f8c" strokeWidth={2} vectorEffect="non-scaling-stroke" data-export-stroke-width={2} />
           <text data-historical-fit-label x={compact ? 0 : g.left} y={g.y(g.ticks.at(-1)!) - 12 * unitsPerPixel} textAnchor="start" fill="#087f8c" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{compact ? "≈" : "Fit · ≈"}{data.historicalFit.doublingYears!.toFixed(1)}{compact ? " y/2×" : " y doubling"}</text>
         </g>}
@@ -310,12 +315,18 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       <p data-point-description>{active.label}</p>
       {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
     </>}</PointTooltip>}
-    {!compact && data.historicalFit && <div className="pc-chart-note" data-historical-fit-diagnostics>
+    {!compact && measurementVisible && data.historicalFit && <div className="pc-chart-note" data-historical-fit-diagnostics>
       <p>{data.historicalFit.n} selected papers · 1957–2022 · R²(log10)={data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈{data.historicalFit.doublingYears!.toFixed(1)} years.</p>
       <details><summary>Fit method &amp; selected inputs</summary><p>{HISTORICAL_RECORDING_FIT_NOTE}</p></details>
     </div>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : data.connectTracks?.length ? "Lines connect successive reliable observations within each measurement series; other source observations remain separate." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
-    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
+    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => {
+      const key = <><span aria-hidden="true" style={{ background: colors[i % colors.length] }} />{t.label}</>;
+      return <li key={t.id}>{interactive ? <SeriesButton id={t.id} visible={measurementVisible} toggle={() => {
+        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, t.id) });
+      }}>{key}</SeriesButton> : key}</li>;
+    })}</ul>}
+    {interactive && !measurementVisible && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
     {extrapolate && scenario && <>
       <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records stop in 2014. Neuron-count equivalence is not successful whole-brain live recording." : "TUSZ corpus only — not worldwide human data. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
       <label className="pc-track-select pc-scenario-select">Growth scenario
