@@ -311,8 +311,13 @@ function SourceTable({name,table}:{name:string;table:PublicationTable}) {
 }
 function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:PublicationSnapshot;data:PublicationChartData;anchor:PublicationAnchor}) {
   const tooltip=usePointTooltip<string>();
-  const [baseline,setBaseline]=useState<GrowthBaseline>("science");
+  const [localBaseline,setLocalBaseline]=useState<GrowthBaseline>("science");
   const exploration=useContext(ChartExplorationContext);
+  const baseline=exploration?.settings.growthBaseline ?? localBaseline;
+  const setBaseline=(growthBaseline: GrowthBaseline) => {
+    if (exploration) exploration.update({growthBaseline});
+    else setLocalBaseline(growthBaseline);
+  };
   const interactive=index===0 && !!exploration;
   const hidden=interactive ? exploration.settings.hidden ?? [] : [];
   const available=data.growth.filter(row=>row.referenceGrowth!==null).length;

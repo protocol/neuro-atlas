@@ -347,3 +347,37 @@ test('a recording legend hides the plotted view without conflating its track wit
     assert.equal(document.querySelectorAll('[data-curve-point]').length, 0);
   } finally { await close(); }
 });
+
+test('acquisition continuations stay in separate method families and omit prospective observations', async () => {
+  const close = await dashboard({ search: '?add=estimated-acquisition-efficiency-voxels-per-dollar' });
+  try {
+    const chart = cards()[0];
+    await click(chart.querySelector('[data-exploration-fit-toggle]'));
+    const fitted = () => [...chart.querySelectorAll('[data-exploration-fit-line]')].map(node => [node.dataset.explorationFitLine, node.dataset.fitN, node.getAttribute('points')]);
+    const before = fitted();
+    assert.deepEqual(before.map(row => row.slice(0,2)), [['Expansion microscopy · estimates','4'], ['EM · reported-tech estimates','4']]);
+    await click(chart.querySelector('[data-exploration-series="PEEM · prospective"]'));
+    assert.equal(chart.querySelector('svg [data-source-observation="peem2024"]'), null);
+    assert.deepEqual(fitted(), before);
+    await click(chart.querySelector('[data-exploration-series="Expansion microscopy · estimates"]'));
+    assert.deepEqual(fitted().map(row => row.slice(0,2)), [['EM · reported-tech estimates','4']]);
+  } finally { await close(); }
+});
+
+test('growth comparison baselines survive a shared dashboard and stay independent between cards', async () => {
+  let shared;
+  const slug = 'publication-growth-by-group';
+  let close = await dashboard({ search: '?add=' + slug }, win => {
+    Object.defineProperty(win.navigator, 'clipboard', { value: { async writeText(value) { shared = value; } } });
+  });
+  const states = () => cards().map(card => card.querySelector('[data-growth-baseline]').dataset.growthBaseline);
+  try {
+    await click(button(`[data-dashboard-add="${slug}"]`));
+    await click(cards()[0].querySelector('[data-baseline-option="matched"]'));
+    assert.deepEqual(states(), ['matched','science']);
+    await click(button('[data-dashboard-copy]'));
+  } finally { await close(); }
+  close = await dashboard({ search: new URL(shared).hash });
+  try { assert.deepEqual(states(), ['matched','science'], 'copied comparison reproduces its selected baselines'); }
+  finally { await close(); }
+});
