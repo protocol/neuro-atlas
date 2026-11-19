@@ -32,7 +32,7 @@ export default async function GraphPage(props: GraphPageProps) {
       <GraphBackLink fallback={atlasPath(`/field-velocity#${GRAPH_GROUP_ANCHORS[entry.graph.group]}`)} />
       <h1>{entry.title}</h1>
       <p className="graph-description">{entry.graph.description}</p>
-      <a className="chart-action-pill" data-add-to-dashboard href={atlasPath(`/field-velocity/dashboard?add=${entry.slug}`)}>Add to dashboard</a>
+      <a className="dashboard-pill" data-add-to-dashboard href={atlasPath(`/field-velocity/dashboard?add=${entry.slug}`)}>Add to dashboard</a>
     </header>
     <FieldVelocityGraphDetail entry={entry} />
     <nav className="graph-related" aria-label="More in this group">
