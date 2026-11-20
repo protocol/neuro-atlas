@@ -238,6 +238,11 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
   const energyAxis = neuroaiEnergyAxis(plot, left, right);
   const x = energyAxis?.x ?? ((value: number) => left + (value - xMin) / (xMax - xMin) * (right - left));
+  // Wider log-rate labels leave less horizontal room; thin only optional-context
+  // calendar labels, keeping every year guide and observation at its source x.
+  const calendarTickStride = sensoryOn && !numericX && xTicks.length > 1
+    ? Math.max(1, Math.ceil(36 / Math.max(1, x(xTicks[1]) - x(xTicks[0])))) : 1;
+  const visibleXTicks = xTicks.filter((_, index) => index % calendarTickStride === 0);
   const breakNote = energyAxis ? wrapLabel(energyAxis.note, width - 12) : [];
   const height = baseHeight + (energyAxis ? breakNote.length * 16 + 12 : 0);
   const scaleNote = energyAxis ? "Piecewise linear x-axis · Linear y-axis" : `${log ? "Log" : "Linear"} scale`;
@@ -367,7 +372,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           {[-3, 3].map(offset => <line key={offset} x1={energyAxis.center + offset - 2} x2={energyAxis.center + offset + 2} y1={bottom + 4} y2={bottom - 4} />)}
         </g>
       </> : <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />}
-      {(energyAxis?.ticks ?? xTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
+      {(energyAxis?.ticks ?? visibleXTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
       {!compactFit && <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>}
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}

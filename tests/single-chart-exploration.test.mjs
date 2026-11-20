@@ -162,6 +162,11 @@ test('retinal reference wraps within narrow plots, clears numbered badges and ke
             || top + +rect.getAttribute('height') < region.top || top > region.bottom,
           `numbered study badge clears the sensory label at ${width}px`);
         }
+        const calendarTicks = [...svg.children].filter(node => node.matches('text.draft-plot-tick[text-anchor="middle"]'));
+        for (let index = 1; index < calendarTicks.length; index++) {
+          assert.ok(+calendarTicks[index].getAttribute('x') - +calendarTicks[index - 1].getAttribute('x') >= 36,
+            `calendar labels retain a readable gap in sensory view at ${width}px`);
+        }
         const centers = [...svg.querySelectorAll('[data-annotation-leader]')].map(leader => +leader.getAttribute('y1'));
         assert.equal(centers.length, 14, 'all measured/context BCI marks retain their study key');
         assert.ok(Math.max(...centers) - Math.min(...centers) >= 80, 'extending the log domain must not squash the measured range into a tiny strip');
