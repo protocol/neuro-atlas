@@ -1,0 +1,502 @@
+{
+  "baselineSha": "b6f99efaa80251c4fbbe608a329776617ae383ac",
+  "collections": {
+    "milestones": {
+      "changes": [
+        {
+          "index": 50,
+          "identity": "science-corp",
+          "before": {
+            "dateBasis": "unverified",
+            "note": "$103.6m financing led with Khosla Ventures",
+            "sourceUrl": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise"
+          },
+          "after": {
+            "dateBasis": "reported",
+            "note": "Convertible-note financing; $104m rounded from $103,604,355 sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28.",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "fundingRounds": {
+      "changes": [
+        {
+          "index": 7,
+          "identity": "science-corporation",
+          "before": {
+            "dateBasis": "unverified",
+            "investors": [
+              "Khosla Ventures",
+              "New Enterprise Associates"
+            ],
+            "sourceUrl": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+            "note": "Rounded from the publicly reported $103.6m financing."
+          },
+          "after": {
+            "dateBasis": "reported",
+            "investors": [
+              "Khosla Ventures"
+            ],
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
+            "note": "Rounded from $103,604,355 sold in convertible promissory notes (Form D Item 13); $110m was offered, not sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28. Khosla lead is separately sourced to Crunchbase News. NEA participation is not established by the retrieved evidence.",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-20",
+            "investorEvidence": [
+              {
+                "investorName": "Khosla Ventures",
+                "sourceUrl": "https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/",
+                "sourceKind": "reporting",
+                "reviewedOn": "2026-11-20",
+                "sourceExcerpt": "The Alameda, California-based company’s most recent raise previously was a $104 million convertible note led by Khosla last April."
+              }
+            ]
+          },
+          "added": [
+            "sourceKind",
+            "reviewedOn",
+            "investorEvidence"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {
+            "sourceUrl": "https://www.businesswire.com/news/home/20180611005260/en/Brain-Machine-Interface-Company-Paradromics-Secures-7-Million"
+          },
+          "after": {
+            "sourceUrl": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "subsense",
+          "before": {
+            "sourceUrl": "https://www.businesswire.com/news/home/20251211216731/en/SubSense-Raises-Additional-%2410-Million-to-Advance-Non-Surgical-Nanoparticle-Brain-Computer-Interface"
+          },
+          "after": {
+            "sourceUrl": "https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "fundingCompanies": {
+      "changes": [
+        {
+          "index": 18,
+          "identity": "neucyber-neurotech",
+          "before": {
+            "website": "https://www.neucyber.cn"
+          },
+          "after": {
+            "website": "https://en.cibr.ac.cn/detail/cibrNewsnews/b8dbf43633cc4311a9798874fb0d435e",
+            "websiteLabel": "Institutional profile (CIBR)"
+          },
+          "added": [
+            "websiteLabel"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "subsense",
+          "before": {
+            "website": "https://subsense.com"
+          },
+          "after": {
+            "website": "https://subsense-bci.com/"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalMilestones": {
+      "changes": [
+        {
+          "index": 50,
+          "identity": "Science Corp",
+          "before": {
+            "note": "$103.6m financing led with Khosla Ventures",
+            "source_url": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+            "date_basis": "unverified"
+          },
+          "after": {
+            "note": "Convertible-note financing; $104m rounded from $103,604,355 sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28.",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
+            "date_basis": "reported"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalRounds": {
+      "changes": [
+        {
+          "index": 7,
+          "identity": "science-corporation",
+          "before": {
+            "investors": "Khosla Ventures;New Enterprise Associates",
+            "source_url": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+            "note": "Rounded from the publicly reported $103.6m financing.",
+            "source_kind": "",
+            "reviewed_on": "",
+            "date_basis": "unverified"
+          },
+          "after": {
+            "investors": "Khosla Ventures",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
+            "note": "Rounded from $103,604,355 sold in convertible promissory notes (Form D Item 13); $110m was offered, not sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28. Khosla lead is separately sourced to Crunchbase News. NEA participation is not established by the retrieved evidence.",
+            "source_kind": "primary",
+            "reviewed_on": "2026-11-20",
+            "date_basis": "reported"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "paradromics",
+          "before": {
+            "source_url": "https://www.businesswire.com/news/home/20180611005260/en/Brain-Machine-Interface-Company-Paradromics-Secures-7-Million"
+          },
+          "after": {
+            "source_url": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures"
+          },
+          "added": [],
+          "removed": []
+        },
+        {
+          "index": 36,
+          "identity": "subsense",
+          "before": {
+            "source_url": "https://www.businesswire.com/news/home/20251211216731/en/SubSense-Raises-Additional-%2410-Million-to-Advance-Non-Surgical-Nanoparticle-Brain-Computer-Interface"
+          },
+          "after": {
+            "source_url": "https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces"
+          },
+          "added": [],
+          "removed": []
+        }
+      ]
+    },
+    "canonicalCompanies": {
+      "changes": [
+        {
+          "index": 0,
+          "identity": "blackrock-neurotech",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 1,
+          "identity": "synchron",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 2,
+          "identity": "neuralink",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 3,
+          "identity": "science-corporation",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 4,
+          "identity": "precision-neuroscience",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 5,
+          "identity": "paradromics",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 6,
+          "identity": "inbrain-neuroelectronics",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 7,
+          "identity": "neurosoft-bioelectronics",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 8,
+          "identity": "axoft",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 9,
+          "identity": "cortec",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 10,
+          "identity": "neurobionics",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 11,
+          "identity": "nia-therapeutics",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 12,
+          "identity": "echo-neurotech",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 13,
+          "identity": "coherence-neuro",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 14,
+          "identity": "merge-labs",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 15,
+          "identity": "newronika",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 16,
+          "identity": "neuracle-technology",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 17,
+          "identity": "neuroxess",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 18,
+          "identity": "neucyber-neurotech",
+          "before": {
+            "website": "https://www.neucyber.cn"
+          },
+          "after": {
+            "website": "https://en.cibr.ac.cn/detail/cibrNewsnews/b8dbf43633cc4311a9798874fb0d435e",
+            "website_label": "Institutional profile (CIBR)"
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 19,
+          "identity": "stairmed",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 20,
+          "identity": "gestala",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 21,
+          "identity": "forest-neurotech",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 22,
+          "identity": "subsense",
+          "before": {
+            "website": "https://subsense.com"
+          },
+          "after": {
+            "website": "https://subsense-bci.com/",
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 23,
+          "identity": "motif-neurotech",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        },
+        {
+          "index": 24,
+          "identity": "enspire-dbs",
+          "before": {},
+          "after": {
+            "website_label": ""
+          },
+          "added": [
+            "website_label"
+          ],
+          "removed": []
+        }
+      ]
+    }
+  }
+}
