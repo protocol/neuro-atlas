@@ -192,7 +192,8 @@ for (const plotId of supported) test(`${plotId}: source disclosure stays below t
     for (const ref of context.references) assert.ok([...exported.querySelectorAll('text')].some(label => label.textContent === ref.label), ref.label);
     assert.ok([...exported.querySelectorAll('text')].some(label => label.textContent === context.scopeLabel));
     assert.ok(selected.notes.includes(context.disclosure));
-    assert.equal(image.url, original.url, 'stable share identity is unchanged');
+    assert.equal(new URL(image.url).hash, new URL(original.url).hash, 'stable chart fragment is unchanged');
+    assert.equal(new URL(image.url).search, `?brainScale=${plotId}`, 'the selected-view export link restores its benchmark');
     await click(toggle); await clock.advance(350);
     assert.equal(await whenChartRegistered(anchor, 0), undefined);
     await clock.advance(350);

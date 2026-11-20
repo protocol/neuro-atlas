@@ -1,6 +1,7 @@
 import { performanceUrl } from "@/lib/field-velocity/navigation";
 import { performanceTarget } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
+import { chartToggle, chartToggleEnabled } from "@/lib/chart-toggle-url";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
@@ -49,14 +50,16 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
 }
 
 /** Share stable chart identity, never credentials or arbitrary query tokens.
- * Only this chart's exact, single enum may carry measurement-view state.
+ * Only exact single, chart-scoped view/toggle tokens cross the image boundary.
  * Navigation and existing Copy link controls retain their original URL contract. */
 export function chartShareUrl(current: string, anchor: string) {
   const url = new URL(performanceUrl(current, anchor));
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
   const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
+  const toggle = chartToggleEnabled(url, anchor) ? chartToggle(anchor) : undefined;
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
+  if (toggle) url.searchParams.set(toggle.query, toggle.value);
   return url.href;
 }
 
