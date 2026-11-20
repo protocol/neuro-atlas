@@ -10,6 +10,45 @@ import { atlasPath } from "../src/lib/atlas-path.ts";
 const Page = PageModule.default?.default ?? PageModule.default;
 const catalog = JSON.parse(readFileSync("src/data/methodology-sources.json", "utf8"));
 
+test("every source logo wall ends with a small non-exhaustive + more cue", () => {
+  const dom = page();
+  try {
+    const strips = [...dom.window.document.querySelectorAll("#source-directory [data-source-brands]")];
+    assert.equal(strips.length, Object.keys(catalog).length);
+    for (const strip of strips) {
+      const more = strip.querySelector("[data-source-more]");
+      assert.ok(more, "A curated logo strip must not look exhaustive");
+      assert.equal(more.textContent, "+ more");
+      assert.equal(strip.lastElementChild, more);
+      assert.equal(more.querySelector("a, button"), null, "The cue belongs to the category disclosure, not a fake link");
+    }
+  } finally { dom.window.close(); }
+});
+
+test("every expanded source link has a decorative logo or matching placeholder without changing link names", () => {
+  const dom = page();
+  try {
+    const doc = dom.window.document;
+    let fallbackCount = 0;
+    let brandCount = 0;
+    for (const link of doc.querySelectorAll("#source-directory li a[data-source-link]")) {
+      const marks = link.querySelectorAll("[data-source-brand-id], [data-source-placeholder]");
+      assert.equal(marks.length, 1, `Missing or duplicate source mark: ${link.textContent}`);
+      assert.equal(marks[0].getAttribute("aria-hidden"), "true");
+      if (marks[0].hasAttribute("data-source-placeholder")) {
+        fallbackCount++;
+        assert.ok(marks[0].querySelector("svg"), "Unknown providers use a bundled neutral icon");
+        assert.equal(marks[0].querySelector("img"), null);
+        assert.equal(marks[0].textContent, "", "The placeholder must not alter the link's name");
+      } else brandCount++;
+    }
+    assert.ok(fallbackCount > 0 && brandCount > 0, "Check both known and unknown providers");
+    for (const [key, rows] of Object.entries(catalog)) {
+      assert.deepEqual([...doc.querySelectorAll(`#sources-${key} li a[data-source-link]`)].map(a => [a.getAttribute("href"), a.textContent]), rows);
+    }
+  } finally { dom.window.close(); }
+});
+
 function page() { return new JSDOM(renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement("main", null, React.createElement(Page)), React.createElement(SiteFooter)))); }
 
 test("each source category has a restrained real-brand strip with legible source names", () => {
@@ -19,7 +58,7 @@ test("each source category has a restrained real-brand strip with legible source
       const summary = dom.window.document.querySelector(`#sources-${key} summary`);
       const strip = summary.querySelector("[data-source-brands]");
       assert.ok(strip, `${key} needs visible source logos before expanding`);
-      const brands = [...strip.children];
+      const brands = [...strip.children].filter(element => element.querySelector("[data-source-brand-id]"));
       assert.ok(brands.length >= 1 && brands.length <= 4, `${key} should have a bounded source strip`);
       for (const brand of brands) {
         assert.ok(brand.textContent.trim(), "Keep readable source names with logomarks");
@@ -34,13 +73,13 @@ test("recognized publisher and company links gain correct logos without changing
   try {
     const doc = dom.window.document;
     for (const [key, rows] of Object.entries(catalog)) {
-      assert.deepEqual([...doc.querySelectorAll(`#sources-${key} li a`)].map(a => [a.getAttribute("href"), a.textContent]), rows);
+      assert.deepEqual([...doc.querySelectorAll(`#sources-${key} li a[data-source-link]`)].map(a => [a.getAttribute("href"), a.textContent]), rows);
     }
     for (const [url, brand] of [
       ["https://www.nature.com/articles/s41586-023-06377-x", "nature"],
       ["https://neuralink.com/", "neuralink"],
     ]) {
-      const link = [...doc.querySelectorAll("#source-directory li a")].find(a => a.getAttribute("href") === url);
+      const link = [...doc.querySelectorAll("#source-directory li a[data-source-link]")].find(a => a.getAttribute("href") === url);
       assert.ok(link, url);
       assert.equal(link.querySelector("[data-source-brand-id]")?.getAttribute("data-source-brand-id"), brand, url);
     }

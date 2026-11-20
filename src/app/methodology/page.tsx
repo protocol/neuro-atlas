@@ -2,8 +2,9 @@ import { atlasMetadata } from "@/lib/atlas-metadata";
 import { atlasPath } from "@/lib/atlas-path";
 import { FeedbackTrigger } from "@/components/feedback/feedback-trigger";
 import sourceCatalog from "@/data/methodology-sources.json";
-import { SourceBrandMark, SourceBrandStrip } from "@/components/source-brand";
+import { SourceLinkMark, SourceBrandStrip } from "@/components/source-brand";
 import { sourceBrandForUrl } from "@/data/source-brands";
+import { sourceContextsForUrl } from "@/lib/source-context";
 
 export const metadata = atlasMetadata("/methodology", "Sources & methodology — Neuro Atlas");
 
@@ -54,15 +55,23 @@ export default function MethodologyPage() {
                   <SourceBrandStrip group={key} />
                 </summary>
                 <div className="px-4 pb-4">
-                  <ul className="grid gap-x-6 gap-y-2 border-t border-border pt-3 text-sm leading-relaxed sm:grid-cols-2">
+                  <ul className="grid gap-x-6 gap-y-3 border-t border-border pt-3 text-sm leading-relaxed sm:grid-cols-2">
                     {entries.map(([url, label]) => {
                       const brand = sourceBrandForUrl(url);
+                      const contexts = sourceContextsForUrl(url);
+                      const context = contexts[0];
                       return (
                         <li key={url} className="min-w-0">
-                          <a href={url} className="flex items-start gap-2 text-foreground underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-                            {brand && <SourceBrandMark brand={brand} compact />}
+                          <a data-source-link href={url} className="flex items-start gap-2 text-foreground underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                            <SourceLinkMark brand={brand} />
                             <span className="min-w-0 wrap-anywhere">{label}</span>
                           </a>
+                          {context && (
+                            <div className={`${brand?.wordmark ? "ml-16" : "ml-9"} mt-0.5 flex flex-wrap items-center gap-x-2 text-xs leading-5 text-muted`}>
+                              <a data-source-context href={atlasPath(context.href)} aria-label={`See in context: ${context.label}`} title={context.label} className="underline decoration-border-strong underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">See in context</a>
+                              {contexts.length > 1 && <span data-source-context-more title={contexts.slice(1).map(item => item.label).join("; ")}>+ {contexts.length - 1} more</span>}
+                            </div>
+                          )}
                         </li>
                       );
                     })}
