@@ -89,7 +89,10 @@ test('one default-off human-brain $1B reference is available only in voxels per 
     await select('dollars-per-voxel');
     assert.equal(document.querySelectorAll('[data-brain-scale-reference]').length,0);
     assert.equal(document.querySelector('[data-brain-scale-toggle]'),null);
-    assert.match(document.querySelector('.acquisition-metric-controls').textContent,/reference.*only.*voxels.*\$/i);
+    assert.ok(document.querySelector('.acquisition-reference-unavailable')===null,'no redundant availability notice in the reciprocal view');
+    assert.doesNotMatch(document.querySelector('.acquisition-metric-controls').textContent,/human.brain|reference|only available/i);
+    await select('voxels-per-dollar');
+    assert.equal(document.querySelector('[data-brain-scale-toggle]').getAttribute('aria-checked'),'false','the reference control returns only in the efficiency view, still off');
   }finally{await cleanup();}
 });
 

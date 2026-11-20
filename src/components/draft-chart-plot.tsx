@@ -368,7 +368,6 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           aria-pressed={acquisitionMetric === option.id} onClick={() => { tooltip.clear(); setAcquisitionMetric(option.id); }}>{option.label}</button>)}
       </div>
       {benchmarkToggle}
-      {costMetric && <span className="acquisition-reference-unavailable">Human-brain reference is only available in voxels/$.</span>}
     </div>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>

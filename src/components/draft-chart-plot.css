@@ -416,4 +416,3 @@
 .acquisition-metric-options button + button { border-left: 1px solid var(--border-strong); }
 .acquisition-metric-options button[aria-pressed=true] { background: var(--accent); color: var(--surface); }
 .acquisition-metric-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
-.acquisition-reference-unavailable { color: var(--muted); font-size: .75rem; }
