@@ -38,6 +38,7 @@ jobs:
           tests/contributor-readiness.test.mjs
           tests/methodology-page.test.mjs
           tests/footer-source-relocation.test.mjs
+          tests/site-footer.test.mjs
           tests/ecosystem-link.test.mjs
           tests/public-data-inventory.test.mjs
       - name: Typecheck routes and application code
