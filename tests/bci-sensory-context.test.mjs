@@ -143,9 +143,17 @@ for (const path of ['/field-velocity', '/neuro-atlas/field-velocity']) {
   });
 }
 
-test('all current-main default and preview plot SVGs are byte-identical to the pinned base', () => {
-  // Captured before production edits at 913eb58f69ef385b5e4fc2cbc02c532bdb7a8a13.
-  const expected = JSON.parse(readFileSync(new URL('./fixtures/bci-sensory-default-svg.json', import.meta.url), 'utf8'));
+test('all default and preview plot SVGs match pinned main plus the isolated acquisition display baseline', () => {
+  // Frozen main SVGs captured at 913eb58f69ef385b5e4fc2cbc02c532bdb7a8a13 stay untouched.
+  const frozenMain = JSON.parse(readFileSync(new URL('./fixtures/bci-sensory-default-svg.json', import.meta.url), 'utf8'));
+  // Only acquisition's two display states use the independently captured premerge baseline.
+  const acquisition = JSON.parse(readFileSync(new URL('./fixtures/bci-sensory-acquisition-approved-svg.json', import.meta.url), 'utf8'));
+  assert.equal(acquisition.source, '6eabb6726ff8d47e0611e7b5e027739e0bd67344');
+  assert.deepEqual(Object.keys(acquisition).sort(), ['hashes', 'source']);
+  assert.deepEqual(Object.keys(acquisition.hashes).sort(), ['acquisition-economics:default', 'acquisition-economics:preview']);
+  assert.equal(Object.keys(frozenMain).length, 30);
+  for (const key of Object.keys(acquisition.hashes)) assert.ok(Object.hasOwn(frozenMain, key), key);
+  const expected = { ...frozenMain, ...acquisition.hashes };
   const plots = [...new Map(Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext } from "react";
+import type { AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 
 export type ChartExplorationSettings = {
   hidden?: string[];
@@ -9,6 +10,7 @@ export type ChartExplorationSettings = {
   benchmark?: boolean;
   voxels?: boolean;
   growthBaseline?: "science" | "matched";
+  acquisitionMetric?: AcquisitionMetricSelection;
 };
 
 export type ChartExploration = {

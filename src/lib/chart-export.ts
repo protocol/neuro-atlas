@@ -2,6 +2,7 @@ import { atlasBasePath } from "@/lib/atlas-path";
 import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { readStandaloneChartSettings, standaloneChartParams, standaloneChartStateKeys } from "@/lib/standalone-chart-state";
+import { acquisitionMetricQuery, type AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
@@ -14,7 +15,7 @@ export type ChartPointKeyEntry = ChartLegendEntry & {
   bars?: readonly [PointKeyBar | null, PointKeyBar | null];
   barLabels?: readonly [string, string];
 };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; chartState?: string; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; chartState?: string; acquisitionMetric?: AcquisitionMetricSelection; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string; filename: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -230,16 +231,23 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   if (box.length !== 4 || !box.every(Number.isFinite) || box[2] <= 0 || box[3] <= 0) throw new Error("Chart has no usable viewBox");
   const url = chartShareUrl(currentUrl, anchor);
   const entry = fieldVelocityLink(anchor);
-  const expectedState = entry?.graph ? standaloneChartParams(entry as FieldVelocityGraph, readStandaloneChartSettings(new URL(currentUrl), entry as FieldVelocityGraph)).toString() : "";
+  const settings = entry?.graph ? readStandaloneChartSettings(new URL(currentUrl), entry as FieldVelocityGraph) : {};
+  const expectedState = entry?.graph ? standaloneChartParams(entry as FieldVelocityGraph, settings).toString() : "";
   const stateRoot = source.closest("[data-chart-state]");
   const renderedState = stateRoot?.getAttribute("data-chart-state") ?? "";
   // Existing component-only popouts still own #138's legacy switch contract.
   // They may emit a migrated link, but cannot claim typed state they never render.
   const legacyComponent = !stateRoot && !chart.chartState
-    && !standaloneChartStateKeys.some(key => new URL(currentUrl).searchParams.has(key));
+    && !standaloneChartStateKeys.some(key => (key !== acquisitionMetricQuery || chart.acquisitionMetric === undefined) && new URL(currentUrl).searchParams.has(key));
   if (!legacyComponent && ((chart.chartState ?? "") !== expectedState || renderedState !== (chart.chartState ?? ""))) {
     throw new Error("Chart state changed or is not ready. Retry export.");
   }
+  // Legacy quantity controls also export canonical links. Bind their captured
+  // metric to both the actual SVG owner and the validated source-scoped URL.
+  if (chart.acquisitionMetric !== undefined && (
+    chart.acquisitionMetric !== (settings.acquisitionMetric ?? "voxels-per-dollar") ||
+    source.closest("[data-acquisition-metric-state]")?.getAttribute("data-acquisition-metric-state") !== chart.acquisitionMetric
+  )) throw new Error("Acquisition state changed or is not ready. Retry export.");
   // A registration can lag the committed SVG, and a queued URL can lag both.
   // Validate all three in the same synchronous step that serializes the plot.
   if (recordingView !== undefined && (

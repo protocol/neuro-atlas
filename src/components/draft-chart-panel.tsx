@@ -8,6 +8,7 @@ import { useRef, type ReactNode } from "react";
 import { ChartModal } from "@/components/chart-modal";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
+import { ACQUISITION_CHART_TITLE, supportsAcquisitionMetrics } from "@/lib/acquisition-metric";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import { useCardExporting } from "@/lib/field-velocity/card-export";
 import { ModalReading } from "@/components/chart-modal-slots";
@@ -39,7 +40,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
 }
 
 export function DraftChartPanel({ plot, ...location }: PanelLocation & { plot: DraftPlot }) {
-  return <DraftPanel {...location} title={plot.title} preview={<DraftChartPlot plot={plot} preview />}>
+  return <DraftPanel {...location} title={supportsAcquisitionMetrics(plot) ? ACQUISITION_CHART_TITLE : plot.title} preview={<DraftChartPlot plot={plot} preview />}>
     <DraftChartPlot plot={plot} shareAnchor={location.anchor} />
   </DraftPanel>;
 }

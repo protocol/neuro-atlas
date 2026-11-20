@@ -31,18 +31,25 @@ test('whole-brain benchmarks use source-qualified volumes and demonstrated 4×4�
   assert.match(context.sources[3].title, /§4.1/);
 });
 
-test('human acquisition budgets use the same whole-brain voxel denominator and displayed voxels/$ units', () => {
+test('single human acquisition reference uses the unchanged whole-brain denominator and voxels/$ units', () => {
   const context = brainBenchmarkContext('acquisition-economics');
-  assert.equal(context.toggleLabel, 'Human-brain cost targets');
-  assert.deepEqual(context.references.map(ref => ref.budget), [1e9, 1e8, 1e7, 1e6, 1e5]);
+  assert.equal(context.toggleLabel, 'Human-brain reference ($1B)');
+  assert.deepEqual(context.references.map(ref => ref.budget), [1e9]);
   for (const ref of context.references) {
     assert.equal(ref.value, (1_200_000 * 1e18 / (4 * 4 * 40)) / ref.budget);
     assert.match(ref.label, /^\$/);
   }
-  assert.match(context.disclosure, /image-acquisition-only/i);
-  assert.match(context.scopeLabel, /Human.*cost scenario/);
+  assert.match(context.disclosure, /Image acquisition only/i);
+  assert.match(context.scopeLabel, /image-only/i);
   assert.match(context.disclosure, /reconstruction/);
   assert.equal(context.sources.length, 2);
   assert.equal(brainBenchmarkContext('tissue-cm3'), undefined);
   assert.equal(brainBenchmarkContext('largest-connectome-neurons'), undefined);
+});
+
+test('raster-visible human reference scope retains its modeled sampling and acquisition-only boundary', () => {
+  const context = brainBenchmarkContext('acquisition-economics');
+  assert.match(context.scopeLabel, /Human/);
+  assert.match(context.scopeLabel, /4×4×40 nm/);
+  assert.match(context.scopeLabel, /image-only/);
 });

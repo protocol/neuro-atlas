@@ -16,11 +16,14 @@ test("each catalog identity has one real statically rendered graph and its evide
   assert.deepEqual(generateStaticParams().map(v => v.slug).sort(), inventory.map(v => v[1]).sort());
   for (const [title, slug] of inventory) {
     const props = { params: Promise.resolve({slug}) };
-    assert.equal((await generateMetadata(props)).title, `${title} — Neuro Atlas`);
+    // The published slug and overview-title inventory stay frozen. #141 makes
+    // this two-unit chart’s standalone heading deliberately quantity-neutral.
+    const currentTitle = slug === "estimated-acquisition-efficiency-voxels-per-dollar" ? "Estimated acquisition efficiency" : title;
+    assert.equal((await generateMetadata(props)).title, `${currentTitle} — Neuro Atlas`);
     const dom = new JSDOM(renderToStaticMarkup(await GraphPage(props)));
     try {
       const doc = dom.window.document;
-      assert.equal(doc.querySelector("h1")?.textContent, title, slug);
+      assert.equal(doc.querySelector("h1")?.textContent, currentTitle, slug);
       assert.ok(doc.querySelector("[data-graph-page] svg"), slug);
       assert.ok(doc.querySelector("[data-graph-page] a[href^='https://']"), slug);
       assert.ok(doc.querySelector("[data-graph-page] table, [data-graph-page] .draft-event-list"), slug);

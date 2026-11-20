@@ -126,7 +126,9 @@ test('every canonical chart clears stale search/collapse, opens one real modal a
       await until(() => document.activeElement === document.querySelector('dialog[open] .pc-modal-header button'));
       assert.equal(window.location.hash, `#${slug}`);
       assert.equal(document.querySelectorAll('dialog[open]').length, 1);
-      assert.equal(document.querySelector('dialog[open] h2').textContent, title);
+      // The published efficiency slug/inventory stays stable; its modal heading
+      // is neutral now that this chart can display three y quantities.
+      assert.equal(document.querySelector('dialog[open] h2').textContent, slug === 'estimated-acquisition-efficiency-voxels-per-dollar' ? 'Estimated acquisition efficiency' : title);
       assert.equal(document.querySelector('dialog[open]').closest('[hidden]'), null);
       assert.equal(search.value, '');
       const length = window.history.length;

@@ -84,7 +84,7 @@ const referenceLines = root => [...root.querySelectorAll('[data-brain-scale-refe
 
 for (const [slug, lineCount] of [
   ['selected-public-image-resource-footprints', 3],
-  ['estimated-acquisition-efficiency-voxels-per-dollar', 5],
+  ['estimated-acquisition-efficiency-voxels-per-dollar', 1],
 ]) test(`F9: ${slug} retains its live benchmark export, sources, and exact reset`, async () => {
   const anchor = fieldVelocityGraph(slug).target;
   const clock = brainScaleClock();

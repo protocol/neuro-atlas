@@ -26,19 +26,18 @@ PB is decimal. This is **nominal uncompressed raw-image capacity**, not an expec
 
 The comparative paper's own storage calculation uses **18 nm isotropic** sampling. Its published 85.7 PB / 205.7 EB figures are **not** the values plotted by this overlay, which explicitly uses the separately stated 4 × 4 × 40 nm scenario. Anatomical inputs are approximate even where the arithmetic is exact. Plot labels should be rounded and marked ≈; formulas retain the unrounded derivations.
 
-## Human acquisition-budget targets
+## Single human acquisition reference ($1B)
 
-Each horizontal line shows the efficiency in **voxels per US dollar** that would imply the selected image-acquisition-only budget for the 1.875 × 10²¹-voxel human model.
+The acquisition-efficiency chart offers one **default-off, illustrative $1B image-acquisition-only scenario**, available only in **voxels per dollar**. It is a reference, not an observation, cost forecast or future crossing date. The same human model uses 1,200,000 mm³ at 4 × 4 × 40 nm, giving **H = 1.875 × 10²¹ voxels (~1.9 sextillion)**:
 
-| Human image-acquisition budget | Target voxels per US dollar (`nominal voxels / budget`) |
-|---|---:|
-| $1B | 1.875 × 10¹² |
-| $100M | 1.875 × 10¹³ |
-| $10M | 1.875 × 10¹⁴ |
-| $1M | 1.875 × 10¹⁵ |
-| $100K | 1.875 × 10¹⁶ |
+```
+reference_voxels_per_dollar = H / 1e9
+                           = 1.875e12 voxels/$
+```
 
-The observed cost points retain the published rough Table A1 estimates and their protocol-specific resolutions/labeling. [Kording et al., arXiv:2603.25713v1, Table A1, p.18](https://arxiv.org/pdf/2603.25713v1) states: “No claim beyond rough size (order of magnitude) is made.” Crossing a target does not demonstrate human-connectome feasibility. Preparation, storage, reconstruction, proofreading and other complete-project costs are outside these acquisition-budget lines.
+The reference label rounds this to **$1B · 1.88T**. There is no five-budget ladder. Selecting **$ per voxel** clears the reference state from the URL and immediately returns to historical bounds; the reciprocal view and its shared/exported state do not retain an active reference. The preview always shows historical efficiency with the reference off.
+
+Point details separately retain the illustrative human-brain acquisition-cost conversion `H / source_estimated_voxels_per_dollar`. The 10 observed efficiencies preserve the published rough Table A1 estimates and protocol-specific resolutions/labeling. [Kording et al., arXiv:2603.25713v1, Table A1, p.18](https://arxiv.org/pdf/2603.25713v1) states: “No claim beyond rough size (order of magnitude) is made.” Optical/EM resolutions, biological scope and cost definitions differ: neither the reference nor the detail conversion is a matched whole-brain project budget or demonstration of human-connectome feasibility. Preparation, reconstruction, proofreading and storage are excluded. The ExA-SPIM author-estimate/citation-mismatch and PEEM prospective qualifications remain explicit.
 
 ## Tissue-volume and nominal-voxel views
 

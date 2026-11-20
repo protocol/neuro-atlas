@@ -410,3 +410,9 @@
 .brain-scale-controls summary { cursor: pointer; width: fit-content; }
 .brain-scale-controls details p { margin: .5rem 0; }
 .brain-scale-controls details ul { margin: .4rem 0 0; padding-left: 1.25rem; }
+.acquisition-metric-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.acquisition-metric-options { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; max-width: 100%; }
+.acquisition-metric-options button { min-height: 44px; padding: .35rem .7rem; border: 0; background: var(--surface); color: var(--muted); font: inherit; cursor: pointer; }
+.acquisition-metric-options button + button { border-left: 1px solid var(--border-strong); }
+.acquisition-metric-options button[aria-pressed=true] { background: var(--accent); color: var(--surface); }
+.acquisition-metric-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }

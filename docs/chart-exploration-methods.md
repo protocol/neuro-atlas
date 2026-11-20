@@ -8,6 +8,10 @@ For BCI, the eligible selection is the existing nine mixed-convention text-equiv
 
 Each displayed conditional model uses equal-weight OLS of log₁₀(y) against year, the visible eligible input count and date window, and a ten-year dashed continuation of that fit. At least three eligible finite positive observations, nonzero year span, and a positive nonflat slope are required. Log-space R² describes the historical fit, not confidence in the continuation. No target crossings or completion dates are produced.
 
+## Acquisition quantities
+
+Historical voxels/$ remains the default. The existing public `acquisitionMetric=dollars-per-voxel` token restores the reciprocal view on either legacy chart fragments or the standalone path; invalid, repeated and wrong-chart tokens default safely. Choosing reciprocal clears the efficiency-only human-brain reference. Legend selections and optional refits remain independently restorable. Refits and diagnostics use selected original voxels/$ observations; only their displayed y-values are reciprocated. Original source JSON, table values and fit records stay unchanged, while the separate selected-view JSON records its display transformation.
+
 ## Sensory context
 
 The standalone BCI chart’s sensory switch is off by default. Enabling it adds a dotted horizontal reference at exactly 8,750,000 bits/s on the same logarithmic y-axis, with a wrapped “Eye → brain ≈9 Mb/s · animal-scaled human retinal scenario” label. Only this view expands the display domain and plot height to keep the reference and original BCI marks readable; the reference label reserves space clear of numbered study badges. Turning the switch off restores the original plot geometry. Filtering, conditional refits and all-hidden/reset states retain the reference independently of observation visibility; source rows, downloads and model inputs remain unchanged. The unfiltered sensory-only view retains the merged native image export with its plotted reference and source assumptions. Filtered/refit/model combinations that are not supported remain link-only with explicit guidance.
@@ -18,6 +22,6 @@ See [connectomics brain-scale models](connectomics-brain-scale.md) for the separ
 
 ## URL continuity and legacy hours
 
-Typed, chart-scoped `chartHidden`, `chartModel` and `chartBaseline` selections restore the rendered view; recording measurements retain `recordingView`. Old fragment aliases and merged `brainScale`/`extrapolation` tokens are translated to the same chart and validated state, preserving repeated unrelated navigation queries. Copy link and image footers sanitize unrelated queries. Defaults are never rewritten on mount.
+Typed, chart-scoped `chartHidden`, `chartModel` and `chartBaseline` selections restore the rendered view; recording measurements retain `recordingView`; acquisition units retain the original `acquisitionMetric` vocabulary scoped to the source chart. Old fragment aliases and merged `brainScale`/`extrapolation` tokens are translated to the same chart and validated state, preserving repeated unrelated navigation queries. Copy link and image footers sanitize unrelated queries. Defaults are never rewritten on mount.
 
 The merged recording-hours coverage chart remains the default, including bars, participant counts and averages. The older component-only `extrapolation=neural-recording-hours` link restores the existing historical TUSZ scenario as an explicit compatibility view (one chart, unchanged source and fit method). Its switch returns to the current coverage chart. This compatibility view does not introduce a new default scenario control or unpersisted alternative-model/track controls.
