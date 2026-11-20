@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 
+import * as coverageMetrics from '../src/data/recording-hours-coverage.ts';
+
 const title = 'Neural recording hours collected over time';
 const plot = METRIC_CHART_EVIDENCE[title].plots[0];
 export const expectedCoverage = [
@@ -38,6 +40,26 @@ test('each duration has its own matched participant/animal denominator and relea
   for (const [otherTitle, evidence] of Object.entries(METRIC_CHART_EVIDENCE)) {
     if (otherTitle !== title) assert.ok(evidence.plots.every(p => p.points.every(point => !point.recordingCoverage)), 'other charts unchanged');
   }
+});
+
+test('coverage calculations fail closed on invalid denominators or hours; qualified hours are never rounded up', () => {
+  const { recordingAverages, recordingBar, recordingReferences } = coverageMetrics;
+  assert.equal(typeof recordingAverages, 'function', 'Provide shared coverage derivations');
+  const exact = plot.points.find(point => point.id === 'tusz-scalp-eeg-2020-05-09');
+  const poyo = plot.points.find(point => point.id.startsWith('poyo-'));
+  assert.match(recordingAverages(poyo), /^Calculated average: >14\.2 h\/animal · — h\/session \(both values are lower bounds\)$/);
+  for (const value of [undefined, null, 0, -1, 1.5, NaN, Infinity]) {
+    if (value !== 1.5) assert.equal(recordingBar(value, 692), null);
+    assert.match(recordingAverages({ ...exact, recordingCoverage: { ...exact.recordingCoverage, count: value, sessions: value } }), /— h\/patient.*— h\/session/);
+  }
+  for (const y of [undefined, null, 0, -1, NaN, Infinity]) {
+    const point = { ...exact, y };
+    assert.match(recordingAverages(point), /— h\/patient.*— h\/session/);
+    assert.deepEqual(recordingReferences([point]), { hours: 0, contributors: 692, hoursLowerBound: false });
+  }
+  assert.equal(recordingBar(7, 0), null);
+  assert.equal(recordingBar(7, Infinity), null);
+  assert.match(recordingAverages({ ...poyo, y: 100.05 }), />100\.05 ÷ 7 h\/animal/);
 });
 
 test('JapanEEG uses dated v2 controlled-access evidence and a qualified calculated per-person range without redating the checkpoint', () => {

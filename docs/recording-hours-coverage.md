@@ -73,6 +73,8 @@ A concise derived range is **≈60–814 h per participant (calculated from Tabl
 
 ## Presentation and verification
 
-Implementation should keep coverage discoverable in the full comparison, selected-point readouts, accessible point labels and source table. Standalone PNGs must retain the paired duration/contributor values, including Neuralink's unknown denominator, POYO's animal unit and both greater-than duration qualifiers. Keep compact preview sizing and historical chart links intact.
+The full comparison and standalone PNG show two independent linear scales relative to the largest displayed figures: 50,000 h (the endpoint of Neuralink's strict lower bound, not a measured maximum) and 692 contributors. Arrows identify lower bounds. The contributor track compares the number of individuals; source labels distinguish patients, participants, and nonhuman primates. An unknown contributor count has no bar. PNG key badges use the same observation IDs and numbering as the plotted overlap badges at the current width.
+
+The comparison, selected readout, source table, and PNG label hours divided by the matching contributor or session count as a **calculated average** of the reported totals, not a typical duration. TUSZ v1.5.2 gives ≈1.552 h/patient and ≈0.4118 h/session; earlier releases use their own denominators. AJILE12 gives ≈106.7 h/participant and JapanEEG ≈340 h/participant; the latter's separate ≈60–814 h range remains visible. Neither supplies a session denominator. POYO yields >100 ÷ 7 h/animal, displayed conservatively as >14.2 h/animal; two lower bounds cannot establish h/session. Neuralink supplies neither denominator. Compact previews and chart links are unchanged.
 
 Verification status: implementation/native review in progress. No production release or merge is authorized by this PR.

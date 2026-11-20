@@ -30,6 +30,54 @@ export const RECORDING_HOURS_COVERAGE: Record<string, NonNullable<DraftObservati
   },
 };
 
+const positive = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && value > 0;
+const validCount = (value: unknown): value is number => positive(value) && Number.isSafeInteger(value);
+const means = new Intl.NumberFormat("en-US", { maximumSignificantDigits: 4 });
+
+function ratio(hours: number, count: number, unit: string, lowerBound: boolean) {
+  if (!lowerBound) return `≈${means.format(hours / count)} ${unit}`;
+  // Floor the exact rational, not a floating-point approximation at a decimal boundary.
+  if (Number.isSafeInteger(hours)) {
+    const ten = BigInt(10);
+    const tenths = BigInt(hours) * ten / BigInt(count);
+    if (tenths > 0) return `>${(tenths / ten).toLocaleString("en-US")}.${tenths % ten} ${unit}`;
+  }
+  return `>${hours} ÷ ${count} ${unit}`;
+}
+
+/** Derived from like-for-like source-reported totals; not typical recording durations. */
+export function recordingAverages({ y: hours, qualifier, recordingCoverage: coverage }: DraftObservation) {
+  if (!coverage) return undefined;
+  const { count, sessions, sessionsQualifier } = coverage;
+  const unit = coverage.unit === "patients" ? "h/patient" : coverage.unit === "nonhuman primates" ? "h/animal" : "h/participant";
+  const lowerBound = qualifier === ">";
+  const usableHours = positive(hours) && (!qualifier || qualifier === "≈" || lowerBound);
+  const individual = !validCount(count) ? `— ${unit} (${count == null ? "count undisclosed" : "invalid count"})`
+    : usableHours ? ratio(hours, count, unit, lowerBound) : `— ${unit} (hours unavailable)`;
+  const session = !validCount(sessions) ? `— h/session (${sessions == null ? "count not reported" : "invalid count"})`
+    : !usableHours ? "— h/session (hours unavailable)"
+      : sessionsQualifier ? `— h/session (${lowerBound ? "both values are lower bounds" : "session count is a lower bound"})`
+        : ratio(hours, sessions, "h/session", lowerBound);
+  return `Calculated average: ${individual} · ${session}`;
+}
+
+export function recordingReferences(points: DraftObservation[]) {
+  let hours = 0, contributors = 0, hoursLowerBound = false;
+  for (const point of points) {
+    if (!point.recordingCoverage) continue;
+    if (positive(point.y) && point.y >= hours) {
+      hoursLowerBound = point.qualifier === ">" || (point.y === hours && hoursLowerBound);
+      hours = point.y;
+    }
+    if (validCount(point.recordingCoverage.count)) contributors = Math.max(contributors, point.recordingCoverage.count);
+  }
+  return { hours, contributors, hoursLowerBound };
+}
+
+export function recordingBar(value: number | null, reference: number, lowerBound = false) {
+  return positive(value) && positive(reference) && value <= reference ? { fraction: value / reference, lowerBound } : null;
+}
+
 export const JAPANEEG_CURRENT_REFERENCES = [
   { role: "Current access and participant-duration evidence", title: "JapanEEG descriptor v2 · November 17, 2026 · Tables 3–4 and Data Records", url: "https://arxiv.org/html/2606.01264v2" },
   { role: "Author-reported controlled-access repository", title: "Harvard Dataverse · JapanEEG (files not inspected)", url: "https://doi.org/10.7910/DVN/5RM3OT" },
