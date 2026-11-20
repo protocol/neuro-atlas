@@ -24,13 +24,13 @@ Search existing issues and PRs before starting. This application is separate fro
    npm run dev
    ```
 
-   Replace `YOUR-GITHUB-USERNAME` with your GitHub username. Use **Node.js 24 LTS**. The bundled local website does not require production secrets or organization membership.
+   Replace `YOUR-GITHUB-USERNAME` with your GitHub username. Use **Node.js 24 LTS** and **Python 3** (some source-integrity tests invoke `python3`). The bundled local website does not require production secrets or organization membership.
 
 3. Make a focused change and add or update regression tests. Keep existing source attributions and historical URLs working.
 4. Run the checks below, commit the specific changed files, and push the branch to your fork.
 5. Open a PR from your fork against **`protocol/neuro-atlas:main`**. Fill out the PR template with the actual results, sources, and known limitations.
 
-**Lukas Bresser (`@lksbrssr`) is the review owner.** Community contributions need his review before merge. Additional commits may require a fresh review. CI passing is not approval to merge or deploy. Repository administrators retain their normal emergency override; no new contributor receives write, secret, or deployment access. Self-authored maintainer PRs use an explicit maintainer merge decision rather than impossible self-approval.
+**Lukas Bresser (`@lksbrssr`) is the review owner.** Community contributions need his review before merge. Additional commits may require a fresh review. CI passing is not approval to merge or deploy. Administrators can bypass these protections; no new contributor receives write, secret, or deployment access. Self-authored maintainer PRs use an explicit maintainer merge decision rather than impossible self-approval.
 
 ## Data, units, and evidence
 
@@ -52,6 +52,8 @@ npm run build
 ```
 
 For canonical data edits, also run `npm run data:generate` and inspect the diff. For routing/asset changes, run `node scripts/verify-hosting.mjs` and repeat the relevant build/HTTP tests with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`. See [hosting history and boundaries](docs/plrd-hosting.md). The CI workflow runs a secret-free local build; it does not deploy.
+
+**Current CI scope:** the required **Contributor checks** job verifies the contribution, methodology, navigation, and Feedback contracts, then typechecks and builds the whole application. It is **not** a clean-full-suite certification. The wider `npm test` suite has existing legacy failures; report actual results and do not silently remove scientific assertions to get a green check. Maintainers can run the separate **Full regression suite** workflow for the complete suite. Changes outside the required check's test coverage still need relevant regression tests and maintainer review.
 
 Visual PRs should include real desktop and mobile screenshots, labeled with the tested revision and whether they are localhost or hosted evidence. Keep keyboard access, focus, and old chart/deep links working. Include a working preview if a maintainer provides one; a preview is not production approval.
 

@@ -16,7 +16,7 @@ Corrections, new primary sources, documentation, accessibility improvements, and
 
 ## Run locally
 
-Use **Node.js 24 LTS** and npm with the checked-in lockfile. No production account or API credentials are required for the bundled website.
+Use **Node.js 24 LTS** and npm with the checked-in lockfile. The complete test suite also uses **Python 3**. No production account or API credentials are required for the bundled website.
 
 ```sh
 npm ci
@@ -31,7 +31,7 @@ npm run typecheck
 npm run build
 ```
 
-[Contributor checks](.github/workflows/contributor-checks.yml) run without production secrets. Data acquisition, weekly refreshes, private feedback processing, and deployment are separate operator workflows—not requirements for a first contribution.
+[Contributor checks](.github/workflows/contributor-checks.yml) run contribution/navigation/Feedback tests plus whole-app typecheck/build without production secrets. The wider `npm test` suite currently has legacy failures; this required check does not certify that entire suite is green. The separate [Full regression suite](.github/workflows/full-regressions.yml) remains available for complete runs. Data acquisition, weekly refreshes, private feedback processing, and deployment are separate operator workflows—not requirements for a first contribution.
 
 ## Where things live
 

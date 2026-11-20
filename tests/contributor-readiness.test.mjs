@@ -67,3 +67,8 @@ test("fork CI has read-only credentials and never executes PR code in a privileg
   assert.ok(actions.length >= 2);
   for (const [, , revision] of actions) assert.match(revision, /^[a-f0-9]{40}$/);
 });
+
+
+test("public-data test fixtures do not require a Henry container directory", () => {
+  assert.doesNotMatch(read("tests/public-data-inventory.test.mjs"), /mkdtempSync\(['"]\/opt\/data\//);
+});

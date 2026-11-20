@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {gzipSync} from 'node:zlib';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 const script='scripts/research/audit-malecns-image-size.py';
 const run=(...args)=>spawnSync('python3',[script,...args],{encoding:'utf8'});
 test('stored-object snapshot reproduces the measured integer-byte total',()=>{
@@ -16,7 +18,7 @@ for(const [kind,items,error] of [
  ['outside scope',[{name:'v1.0/segmentation/0.shard',size:'2'}],'scope'],
  ['negative bytes',[{name:'em/em-clahe-jpeg/8x8x8/0.shard',size:'-1'}],'size'],
 ]) test(`stored-object inventory rejects ${kind}`,()=>{
- const dir=mkdtempSync('/opt/data/tmp/malecns-regression-');
+ const dir=mkdtempSync(join(tmpdir(),'malecns-regression-'));
  try {const path=dir+'/bad.jsonl.gz';writeFileSync(path,gzipSync(items.map(x=>JSON.stringify(x)).join('\n')));const r=run('--snapshot',path);assert.notEqual(r.status,0);assert.match(r.stderr,new RegExp(error));}
  finally{rmSync(dir,{recursive:true,force:true});}
 });

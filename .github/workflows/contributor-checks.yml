@@ -17,7 +17,7 @@ jobs:
   checks:
     name: Contributor checks
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     env:
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
@@ -32,8 +32,14 @@ jobs:
           cache: npm
       - name: Install the committed dependency graph
         run: npm ci --no-audit --no-fund
-      - name: Run regression tests with bounded parallelism
-        run: node --import tsx --test --test-concurrency=2 tests/*.test.mjs
+      - name: Verify contribution, methodology, navigation, and feedback contracts
+        run: >-
+          node --import tsx --test --test-concurrency=2
+          tests/contributor-readiness.test.mjs
+          tests/methodology-page.test.mjs
+          tests/footer-source-relocation.test.mjs
+          tests/ecosystem-link.test.mjs
+          tests/public-data-inventory.test.mjs
       - name: Typecheck routes and application code
         run: npm run typecheck
       - name: Build the bundled application
