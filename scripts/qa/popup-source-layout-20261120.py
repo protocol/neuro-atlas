@@ -41,7 +41,7 @@ GEOMETRY = '''(()=>{
  client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,
  body:{client:d.querySelector('.pc-detail').clientWidth,scroll:d.querySelector('.pc-detail').scrollWidth},
  grid:rect(g),left:rect(l),right:rect(r),sources:rect(s),
- links:[...s.querySelectorAll('a')].map(e=>({text:e.innerText,href:e.href})),
+ links:[...d.querySelectorAll('.mx-sources a, .mx-data tbody td a')].filter(e=>!e.closest('[data-calculation-source]')).map(e=>({text:e.textContent,href:e.href})),
  cells:table?[...table.querySelectorAll('thead th')].map(e=>({text:e.innerText,rect:rect(e),font:getComputedStyle(e).fontSize})):[],
  table:rect(table),tableScroll:rect(d.querySelector('.draft-plot-table-scroll')),
  points:d.querySelectorAll('[data-source-observation]').length};
@@ -55,7 +55,7 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
     for anchor, expected in list(CHARTS.items())[:1 if MODE == 'before' else None]:
         goto_url(BASE + '#' + anchor)
         wait_for_load()
-        poll('document.querySelector("dialog[open] .mx-sources a")', 'Populated source region did not mount')
+        poll('document.querySelector("dialog[open] .mx-sources > *")', 'Populated source region did not mount')
         poll('document.querySelector("dialog[open] h2")?.innerText==='+json.dumps(expected), 'Wrong chart title: '+anchor)
         title=js('return document.querySelector("dialog[open] h2").innerText')
         js('return document.fonts.ready.then(()=>true)')
@@ -87,7 +87,8 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
             capture_screenshot(path=str(OUT / f'{MODE}-{anchor}-{width}-table.png'))
             table=js('return ' + GEOMETRY)
             assert table['points'] == 14, table
-            assert len(table['links']) == 13, table
+            assert len(set(link['href'] for link in table['links'])) == 13, table
+            assert js('return document.querySelectorAll("dialog[open] .mx-sources .pc-sources").length') == 0
             assert len(table['cells']) == 4, table
             assert min(c['rect']['width'] for c in table['cells'][:3]) >= 110, table
             assert table['cells'][-1]['rect']['width'] >= 320, table
@@ -96,8 +97,11 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
             js('return (()=>{const e=document.querySelector('+json.dumps(scroll)+');e.scrollLeft=e.scrollWidth})()')
             assert js('return (()=>{const e=document.querySelector('+json.dumps(scroll)+');return e.scrollWidth-e.clientWidth-e.scrollLeft<=1})()')
             # Opening definitions remains a native, keyboard-reachable disclosure.
+            assert js('return document.querySelector("dialog[open] [data-draft-methodology]").open'), 'Definitions must start open'
             click('dialog[open] [data-draft-methodology] > summary')
-            poll('document.querySelector("dialog[open] [data-draft-methodology]").open','Definitions did not open')
+            poll('!document.querySelector("dialog[open] [data-draft-methodology]").open','Definitions did not collapse')
+            click('dialog[open] [data-draft-methodology] > summary')
+            poll('document.querySelector("dialog[open] [data-draft-methodology]").open','Definitions did not reopen')
             js('return document.querySelector("dialog[open] .mx-grid").scrollIntoView({block:"start",behavior:"instant"})')
             capture_screenshot(path=str(OUT / f'{MODE}-{anchor}-{width}-definitions.png'))
         press_key('Escape')
@@ -109,7 +113,7 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
 goto_url(BASE+'#metric-panel-bci-bitrate');wait_for_load()
 poll('document.querySelector("dialog[open] h2")?.innerText==="BCI communication rates over time"','Legacy fragment failed')
 cdp('Page.reload',ignoreCache=True);wait_for_load()
-poll('document.querySelector("dialog[open] .mx-sources a")','Reload lost popup')
+poll('document.querySelector("dialog[open] .mx-sources > *")','Reload lost popup')
 click('dialog[open] [data-copy-chart-link]') if js('return !!document.querySelector("dialog[open] [data-copy-chart-link]")') else None
 (OUT/'report.json').write_text(json.dumps({'mode':MODE,'cases':report},indent=2)+'\n')
 print(json.dumps({'mode':MODE,'cases':len(report),'report':str(OUT/'report.json')}))

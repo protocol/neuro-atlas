@@ -27,7 +27,7 @@ test('modal Sources credits the discovery spreadsheet separately from the primar
     const credit = [...sources.querySelectorAll('a')].filter(link => link.href === sheetCredit.url);
     assert.equal(credit.length, 1, 'Expected one linked discovery-source credit in Sources');
     assert.equal(credit[0].textContent.trim(), `${sheetCredit.title} ↗`);
-    for (const point of neurons.points) assert.ok(sources.querySelector(`a[href="${point.sourceUrl}"]`));
+    for (const point of neurons.points) assert.ok(modal.querySelector(`.mx-data a[href="${point.sourceUrl}"]`));
     const row = [...modal.querySelectorAll('tbody tr')].find(row => row.querySelector('th').textContent.includes('Eyewire II'));
     assert.ok(row, 'Eyewire II has a source row');
     assert.equal(row.cells[2].textContent, '>25,000');

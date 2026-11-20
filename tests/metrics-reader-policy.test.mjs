@@ -32,7 +32,7 @@ test('curated chart context is preserved verbatim in modal definition details, n
       const modal = card.querySelector('dialog[open]');
       assert.equal(modal.querySelector('.draft-chart-summary').textContent, evidence.summary, 'Full original context stays with the chart');
       if (evidence.gapReason) {
-        const details = modal.querySelector('details[data-draft-methodology]:not([open])');
+        const details = modal.querySelector('details[data-draft-methodology][open]');
         assert.ok(details.textContent.includes(evidence.gapReason), `${card.dataset.draftChartCard}: context must be disclosed without losing wording`);
       }
       assert.equal(card.querySelectorAll(':scope > [data-draft-still-missing]').length, 0);

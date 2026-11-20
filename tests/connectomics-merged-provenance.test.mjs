@@ -38,8 +38,9 @@ for (const [plotId, count, pointId] of [
     const sources = modal.querySelector('.mx-sources');
     const refs = [{ role: point.sourceRole, title: point.sourceTitle, url: point.sourceUrl }, ...point.supportingReferences];
     for (const ref of refs) {
-      assert.ok(sources.querySelector(`.pc-sources a[href="${ref.url}"]`));
-      assert.ok(sources.textContent.includes(`${ref.role}:`));
+      const rowReferences = modal.querySelector(".mx-data");
+      assert.ok(rowReferences.querySelector(`a[href="${ref.url}"]`));
+      assert.ok(rowReferences.textContent.includes(`${ref.role}:`));
     }
     const catalog = sources.querySelector(`a[href="${plot.curationSource.url}"]`);
     assert.ok(catalog.parentElement.textContent.startsWith('Dataset discovery:'));
