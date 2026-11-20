@@ -1,5 +1,7 @@
 # Recording hours: participant breadth, relative bars, and calculated averages
 
+Historical initial implementation evidence. The current one-decimal/minute-format and direct-bar-label correction is verified in [the readability QA package](../recording-hours-readability-20261120/README.md).
+
 Runtime verified: `664e4fb614faea1dee579142531e6efc39744509` (November 20, 2026).
 
 This is PR evidence, not a production release. Native screenshots and downloads came from an isolated production build at loopback `/neuro-atlas/field-velocity#metric-recording-hours` through the existing headed Chrome. Mobile widths are viewport emulation, not physical-phone touch tests. `before-1440.png` is the production baseline inspected before implementation; other main chart, comparison, table and export images are from the final runtime above. The two supplementary 320px table-position screenshots, row activation and settled preview-parity receipts are retained from `2bb8fb4`; the count-validation fix did not alter layout or any of the 12 shipped values.
