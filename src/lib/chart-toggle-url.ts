@@ -12,6 +12,18 @@ export function chartToggle(anchor: string) {
   return chartToggles[performanceTarget(anchor)];
 }
 
+export const acquisitionMetricQuery = "acquisitionMetric";
+export type AcquisitionMetricSelection = "voxels-per-dollar" | "dollars-per-voxel" | "human-brain";
+
+/** Absent, invalid, duplicate or cross-chart selections use the human-brain default. */
+export function acquisitionMetricFromUrl(url: URL, anchor: string): AcquisitionMetricSelection {
+  if (performanceTarget(anchor) !== "metric-panel-acquisition-economics"
+    || performanceTarget(url.hash.slice(1)) !== performanceTarget(anchor)) return "human-brain";
+  const values = url.searchParams.getAll(acquisitionMetricQuery);
+  return values.length === 1 && (values[0] === "voxels-per-dollar" || values[0] === "dollars-per-voxel")
+    ? values[0] : "human-brain";
+}
+
 /** Only an exact, single chart-qualified token enables its own chart. */
 export function chartToggleEnabled(url: URL, anchor: string) {
   const toggle = chartToggle(anchor);
