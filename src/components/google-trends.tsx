@@ -1,15 +1,19 @@
 "use client";
 
+import { chartShareUrl } from "@/lib/chart-export";
+import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTrendsView } from '@/components/google-trends-provider';
 import type { TrendsData } from '@/lib/field-velocity/google-trends';
 import { atlasPath } from '@/lib/atlas-path';
 import { ChartModal } from '@/components/chart-modal';
 import { ChartShare } from '@/components/chart-share';
+import { ChartExplorationContext } from '@/components/chart-exploration-context';
+import { EmptySeries, SeriesButton, toggleSeries } from '@/components/exploration-legend';
 import { ChartActions } from '@/components/chart-actions';
 import { MetricCardScope } from '@/components/metric-card-scope';
 import { useChartMeasure } from '@/components/chart-measure';
@@ -27,6 +31,10 @@ type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha
 const colors = ['var(--accent)', '#087f8c'];
 
 function TrendPlot({ group, compact = false, link, intro }: { group: Group; compact?: boolean; link?: React.ReactNode; intro?: React.ReactNode }) {
+  const exploration = useContext(ChartExplorationContext);
+  const interactive = !compact && !!exploration && group.terms.length > 1;
+  const hidden = interactive ? exploration.settings.hidden ?? [] : [];
+  const visible = (term: string) => !hidden.includes(term);
   const plotRef = useRef<HTMLDivElement>(null);
   const previewExtra = useMetricPreviewSpace(plotRef, compact);
   const baseHeight = compact ? 150 : 270;
@@ -52,8 +60,8 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
   const weekLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
   const measure = useChartMeasure({
     svgRef: presentationRef, enabled: !compact, frame: { left: 48, right, top: y(100), bottom: y(0) },
-    series: group.terms.map((term, index) => ({ id: term, name: term, color: colors[index],
-      points: rows.flatMap(row => row.values[index] === null ? [] : [{ x: x(row.date), y: y(row.values[index]!), value: row.values[index]!, label: weekLabel(row.date) }]) })),
+    series: group.terms.flatMap((term, index) => visible(term) ? [{ id: term, name: term, color: colors[index],
+      points: rows.flatMap(row => row.values[index] === null ? [] : [{ x: x(row.date), y: y(row.values[index]!), value: row.values[index]!, label: weekLabel(row.date) }]) }] : []),
   });
   return <>
     {!compact && <ChartActions anchor={`google-trends-${group.id}`} title={group.title} link={link}><ChartShare anchor={`google-trends-${group.id}`} title={group.title} getChart={() => ({
@@ -73,6 +81,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
       <ChartYearGuides years={annualDateYears(start, end)} x={year => x(`${year}-01-01`)} top={y(100)} bottom={y(0)} />
       {[0, 50, 100].map(tick => <g key={tick}><line x1={48} x2={right} y1={y(tick)} y2={y(tick)} stroke="var(--border-strong)" strokeDasharray="3 5" /><text data-trends-axis="y" x={38} y={y(tick) + 5} textAnchor="end">{tick}</text></g>)}
       {group.terms.map((term, index) => {
+        if (!visible(term)) return null;
         let gap = true;
         const path = rows.map(row => {
           const value = row.values[index];
@@ -83,7 +92,7 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
         return <path key={term} data-trend-line={term} d={path} fill="none" stroke={colors[index]} strokeWidth={2.5} strokeDasharray={index ? '7 3' : undefined} />;
       })}
       {!compact && rows.flatMap(row => row.values.map((value, i) => {
-        if (value === null) return null;
+        if (value === null || !visible(group.terms[i])) return null;
         const label = `${row.date} · ${group.terms[i]}: ${row.displayValues[i]}`;
         return <circle key={`${row.date}:${i}`} data-trend-point="true" data-date={row.date} data-term={group.terms[i]} data-value={value} cx={x(row.date)} cy={y(value)} data-export-r={CHART_PRESENTATION.denseLineRadius} r={CHART_PRESENTATION.denseLineRadius * unitsPerPixel} fill={colors[i]} tabIndex={0} role="button" aria-label={label} {...tooltip.pointProps(label)}><title>{label}</title></circle>;
       }))}
@@ -92,6 +101,12 @@ function TrendPlot({ group, compact = false, link, intro }: { group: Group; comp
     </svg>
   </div>
   {measure.readout}{measure.hint}
+  {!compact && (interactive ? <ul className="gt-legend" aria-label="Search keywords">{group.terms.map((term, i) => <li key={term}>
+    <SeriesButton id={term} visible={visible(term)} toggle={() => { tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, term) }); }}>
+      <span aria-hidden="true" style={{ borderColor: colors[i], borderTopStyle: i ? 'dashed' : 'solid' }} />{term}
+    </SeriesButton>
+  </li>)}</ul> : <Legend group={group} />)}
+  {interactive && !group.terms.some(visible) && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
   {!compact && <PointTooltip {...tooltip.tooltipProps}><strong>{tooltip.active}</strong><p>Google Trends weekly index · 0–100 · captured {group.capturedAt}</p><p><a href={group.sourceUrl} target="_blank" rel="noreferrer">Open source query ↗</a></p></PointTooltip>}
   </>;
 }
@@ -104,17 +119,14 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
   const id = `google-trends-${group.id}`;
-  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
+  const href = useGraphHref(id);
+  const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
   const [copyStatus, setCopyStatus] = useState('');
   const [copyFallback, setCopyFallback] = useState('');
-  const [valuesOpen, setValuesOpen] = useState(false);
-  const latest = group.rows.filter(row => !row.partial).at(-1)!;
-  const normalization = group.id === 'neurotech' ? 'English search terms compared in one request on a shared 0–100 scale.' : 'Independently normalized English brand-search interest.';
-  const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
   const share = <div className="pc-share">
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
-      const url = performanceUrl(window.location.href, id);
+      const url = (href ? chartShareUrl : performanceUrl)(window.location.href, id);
       try { await navigator.clipboard.writeText(url); setCopyFallback(''); setCopyStatus('Link copied'); }
       catch { setCopyFallback(url); setCopyStatus('Select and copy the chart URL below.'); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
@@ -122,11 +134,15 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id} data-trends-revision={revision}>
     <div data-metric-card-body>
-    <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+    {href ? <a href={href} data-graph-link={id} className="pc-trigger" aria-label={`Open ${group.title}`}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
       <TrendPlot key={group.rawSha256} group={group} compact />
-    </button>
+    </a> : <button ref={ref} type="button" className="pc-trigger" aria-label={`Open ${group.title}`} aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+      <h3>{group.title}</h3>
+      <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
+      <TrendPlot key={group.rawSha256} group={group} compact />
+    </button>}
     <div className="gt-card-notes"><Legend group={group} />{group.id !== 'neurotech' && <p className="gt-scale">Independently normalized brand-search interest.</p>}</div>
     </div>
     <div data-metric-card-footer>
@@ -134,8 +150,19 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
       {share}
       <CardPngButton anchor={id} title={group.title} />
     </div>
-    {(open || exporting) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
-      <TrendPlot key={group.rawSha256} group={group} link={share} intro={<ModalSources><p className="gt-scope mx-scope-line">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p></ModalSources>} /><Legend group={group} />
+    {(open || (!href && exporting)) && <ChartModal id={id} title={group.title} returnFocus={ref} offscreen={!open}>
+      <TrendDetail group={group} revision={revision} link={share} />
+    </ChartModal>}
+  </article>;
+}
+
+function TrendDetail({group, revision, link}: {group: Group; revision: string; link?: React.ReactNode}) {
+  const [valuesOpen, setValuesOpen] = useState(false);
+  const latest = group.rows.filter(row => !row.partial).at(-1)!;
+  const normalization = group.id === 'neurotech' ? 'English search terms compared in one request on a shared 0–100 scale.' : 'Independently normalized English brand-search interest.';
+  const latestReading = <p className="gt-latest" data-trends-latest={latest.date}>Latest complete week · {latest.date}<br />{group.terms.map((term, i) => `${term}: ${latest.displayValues[i]}`).join(' · ')}</p>;
+  return <>
+      <TrendPlot key={group.rawSha256} group={group} link={link} intro={<ModalSources><p className="gt-scope mx-scope-line">Past 36 months · {group.start}–{group.end}<br />Worldwide · Web Search · All categories · weekly UTC · index 0–100</p></ModalSources>} />
       <ModalReading>{latestReading}
       <section className="pc-methodology" aria-label="Google Trends methodology">
         <h3>How to read this chart</h3>
@@ -161,12 +188,15 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
           </table>
         </div>
       </details></ModalData>
-    </ChartModal>}
-  </article>;
+  </>;
 }
 
-export function GoogleTrends({ selection, flat = false }: { selection?: readonly string[]; flat?: boolean } = {}) {
+export function GoogleTrends({ selection, flat = false, detail = false }: { selection?: readonly string[]; flat?: boolean; detail?: boolean } = {}) {
   const { revision, snapshot: { groups } } = useTrendsView();
+  if (detail) {
+    const group = groups.find(group => selection?.includes(group.id));
+    return group ? <TrendDetail group={group} revision={revision} /> : null;
+  }
   const cards = groups.filter(group => !selection || selection.includes(group.id)).map(group => <TrendCard key={group.id} group={group} revision={revision} />);
   if (flat) return <>{cards}</>;
   const sectionId = selection ? `google-trends-${selection.join("-")}-section` : "google-trends";

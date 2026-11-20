@@ -43,7 +43,7 @@ test('every rendered chart shares its actual visible title, including exports an
       const button = buttons.find(b => b.getAttribute('aria-label') === `Copy link to ${title}`);
       const anchor = button.dataset.copyDraftLink ?? `google-trends-${button.closest('[data-trends-card]').dataset.trendsCard}`;
       assert.equal(performanceUrl('https://www.plneuro.xyz/neuro-atlas/field-velocity?x=1&x=2', anchor), `https://www.plneuro.xyz/neuro-atlas/field-velocity?x=1&x=2#${slug}`);
-      assert.equal(new URL(chartShareUrl('https://www.plneuro.xyz/neuro-atlas/field-velocity?token=private&view=all', anchor)).hash, `#${slug}`);
+      assert.equal(new URL(chartShareUrl('https://www.plneuro.xyz/neuro-atlas/field-velocity?token=private&view=all', anchor)).pathname, `/neuro-atlas/field-velocity/${slug}`);
     }
     const expectedRelated = ['selected-chronic-intracortical-recipients', 'neural-recording-hours-selected-datasets', 'neuroai-performance-cost-frontier', 'selected-structure-function-matches', 'flyvis-correct-contrast-preference'];
     assert.deepEqual([...doc.querySelectorAll('[data-related-measurement]')].map(a => a.getAttribute('href')), expectedRelated.map(s => `#${s}`));
@@ -196,8 +196,8 @@ test('actual copy controls and their denied-clipboard fallback use canonical URL
 
 test('canonical recording export preserves exactly the same allowlisted view as its legacy alias', () => {
   const current = 'https://user:secret@atlas.example/neuro-atlas/field-velocity?recordingView=optical&token=private';
-  assert.equal(chartShareUrl(current, 'simultaneous-neural-recordings'), 'https://atlas.example/neuro-atlas/field-velocity?recordingView=optical#simultaneous-neural-recordings');
-  assert.equal(chartShareUrl(current + '&recordingView=optical', 'simultaneous-neural-recordings'), 'https://atlas.example/neuro-atlas/field-velocity#simultaneous-neural-recordings');
+  assert.equal(chartShareUrl(current, 'simultaneous-neural-recordings'), 'https://atlas.example/neuro-atlas/field-velocity/simultaneous-neural-recordings?recordingView=optical');
+  assert.equal(chartShareUrl(current + '&recordingView=optical', 'simultaneous-neural-recordings'), 'https://atlas.example/neuro-atlas/field-velocity/simultaneous-neural-recordings');
 });
 
 

@@ -1,0 +1,55 @@
+{
+  "runtime": "dc49959d8f17cdd24322162c5b4d61cb21f7fde6",
+  "fullSuite": {
+    "tests": 1581,
+    "passed": 1581,
+    "failed": 0,
+    "skipped": 0
+  },
+  "nativeDashboardGroups": 7,
+  "nativeControlGroups": 3,
+  "nativeCoreJourneys": 7,
+  "nativeExportCases": 4,
+  "artifacts": {
+    "acquisition-native-ui-benchmark.png": {
+      "bytes": 498533,
+      "sha256": "88cdb099cfc80d5ea88f8bc1d6438b7bcb35bc808657fbe69b9fa2d44ea1ecb1"
+    },
+    "bci-canonical-after-dashboard.png": {
+      "bytes": 585110,
+      "sha256": "4bb2398fef60c9cfa439befca139329a5adbe3217ac56aba416fd0b83497d52d"
+    },
+    "comparison-final-dark-1440.png": {
+      "bytes": 203555,
+      "sha256": "b151e71c339225af147de001f9ca1f1f22cbd868e0e88192bf4eed3c3a855098"
+    },
+    "comparison-final-light-1440.png": {
+      "bytes": 194115,
+      "sha256": "d0d5795fa4a37585754b7920aa07673ac906e64f13e922fc7e0f4fb0275a1881"
+    },
+    "comparison-final-light-390.png": {
+      "bytes": 78453,
+      "sha256": "4d8b9b50f9c1eaa3b96a3685afd25d07faa3a45d771d3f00b8371d6da913da2d"
+    },
+    "dashboard-native-add.gif": {
+      "bytes": 390613,
+      "sha256": "8ebfbcdaa9cd050fb58be5e7635527f0a87385cd18be6b70f3f3ac7cd7c7355e"
+    },
+    "footprint-native-ui-benchmark.png": {
+      "bytes": 302984,
+      "sha256": "6ec5f1ffcc6ce3227997fdb42dbd04b5634a5ae3ba299cb4f94d6c2af4038403"
+    },
+    "optical-native-clipboard.png": {
+      "bytes": 180539,
+      "sha256": "7300f86a74458e4596ee07966c8e56f08c753297731a7ad71fb5fd8dea843763"
+    },
+    "sensory-context-1440.png": {
+      "bytes": 211799,
+      "sha256": "52e7aea86e13cee71b01175082f4abed891bb0c5787f3165646ca761c0ad35f4"
+    },
+    "tissue-voxels-1440.png": {
+      "bytes": 153029,
+      "sha256": "a5b3d461f0d61d9fc05ec77cb2c1e9b1208d58242e0642d827331ecd1fea28e0"
+    }
+  }
+}

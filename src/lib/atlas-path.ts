@@ -18,3 +18,9 @@ export function atlasPathname(pathname: string | null): string {
     ? pathname.slice(atlasBasePath.length) : pathname;
   return path.replace(/\/+$/, "") || "/";
 }
+
+/** A graph remains in Field velocity in both desktop and mobile navigation. */
+export function atlasSectionActive(pathname: string, section: string) {
+  const path = atlasPathname(pathname);
+  return path === section || (section === "/field-velocity" && path.startsWith("/field-velocity/"));
+}
