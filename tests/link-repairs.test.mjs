@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import fs from 'node:fs';
+import { syncBuiltinESMExports } from 'node:module';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { scanSources } from './helpers/methodology-source-inventory.mjs';
 import { createHash } from 'node:crypto';
@@ -77,4 +79,33 @@ test('verified company, dataset, schema, curation and syndicated-release destina
   assert.equal(json('src/data/field-velocity/neurotech.snapshot.json.provenance.json').schemaSource, schema);
   assert.ok(readFileSync('scripts/sync-performance-curves.ts', 'utf8').includes(schema));
   assert.ok(scanSources().included.has(schema));
+});
+
+
+test('an unrelated active citation cannot hide behind historical replacement aliases', () => {
+  const originalRead = fs.readFileSync;
+  const bad = 'https://www.businesswire.com/news/home/20180611005260/en/Brain-Machine-Interface-Company-Paradromics-Secures-7-Million';
+  let injected = false;
+  fs.readFileSync = (path, ...options) => {
+    const bytes = originalRead(path, ...options);
+    if (path !== 'src/data/draft-chart-evidence.json') return bytes;
+    const evidence = JSON.parse(bytes);
+    const point = Object.values(evidence).flatMap(record => record.plots ?? []).flatMap(plot => plot.points ?? []).find(point => point.sourceUrl);
+    assert.ok(point);
+    point.sourceUrl = bad;
+    injected = true;
+    return JSON.stringify(evidence);
+  };
+  syncBuiltinESMExports();
+  try {
+    const { included } = scanSources();
+    assert.equal(injected, true, 'Probe must actually replace an active sourceUrl in memory');
+    assert.ok(included.has(bad), 'Unmapped active broken literal must remain visible to exact-directory coverage');
+    assert.ok(included.get(bad).some(row => row.path === 'src/data/draft-chart-evidence.json'));
+    const catalog = new Set(Object.values(json('src/data/methodology-sources.json')).flat().map(([url]) => url));
+    assert.equal(catalog.has(bad), false, 'Exact coverage must now report the unexpected active citation');
+  } finally {
+    fs.readFileSync = originalRead;
+    syncBuiltinESMExports();
+  }
 });

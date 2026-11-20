@@ -27,7 +27,7 @@ Replacement bodies above were re-read on November 20, 2026. PubMed itself return
 
 The 13 `openalex.org/source-types/*` and `openalex.org/types/*` URLs came only from `groups[].key` fields in the publication baseline fixture. They are analytical identifiers, not cited source documents. Two were confirmed unusable. All 13 are excluded consistently rather than keeping the same category error for the other 11. Fixture bytes, group keys and counts remain unchanged; actual API request/documentation references remain cataloged.
 
-Historical audit records keep their original URLs. The explicit alternate map makes the current directory use the reviewed replacement for those superseded literals; the regressions separately require canonical records and rendered data to use their new destinations. The source inventory narrowly admits the public schema citation rather than broadly admitting repository navigation.
+Historical audit records keep their original URLs. The directory remaps only the three reviewed financial originals in the named November 16 date-review file and the two DOI originals in the frozen tracker inputs used by the actual runtime alternate resolver. The map configuration itself is not a citation. An original appearing in any unrelated active source remains inventoried as that literal, so exact-directory coverage catches the mismatch. The regressions separately require canonical records and rendered data to use their new destinations. The source inventory narrowly admits the public schema citation rather than broadly admitting repository navigation.
 
 ## Scientific and financial limits
 

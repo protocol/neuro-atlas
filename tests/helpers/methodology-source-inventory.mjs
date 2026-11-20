@@ -59,9 +59,22 @@ function exclusion(literal, url) {
   return null;
 }
 
+// Only the frozen tracker actually resolves these DOI links at runtime. Old
+// financial URLs are retained solely in the dated audit, not active citations.
+function permittedAlternate(literal, path) {
+  let href;
+  try { href = canonicalSource(literal); } catch { return undefined; }
+  const alternate = sourceLinkAlternates[href];
+  if (!alternate) return undefined;
+  const isStudy = href.startsWith("https://doi.org/");
+  if (isStudy && ["docs/sources/recording-scaling/scaling.csv", "src/data/historical-recording.source.json"].includes(path)) return alternate;
+  if (!isStudy && path === "docs/source-audit-20261116/date-basis-review.json") return alternate;
+  return undefined;
+}
+
 export function scanSources() {
   const paths = execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" }).split("\0").filter((path) =>
-    scopes.some((pattern) => pattern.test(path)) && inputs.test(path) && !ignored.test(path) && !/^src\/data\/methodology-sources\.json$|^docs\/(?:publication-growth-20261106|recording-evidence)\//.test(path)
+    scopes.some((pattern) => pattern.test(path)) && inputs.test(path) && !ignored.test(path) && !/^src\/data\/(?:methodology-sources|source-link-alternates)\.json$|^docs\/(?:publication-growth-20261106|recording-evidence)\//.test(path)
   );
   const included = new Map();
   const excluded = new Map();
@@ -87,7 +100,7 @@ export function scanSources() {
       const revision = path === "src/lib/field-velocity/citation-latency-feed.ts"
         ? /const CITATION_SOURCE_REVISION = '([a-f0-9]{40})'/.exec(content)?.[1]
         : undefined;
-      const alternate = sourceLinkAlternates[canonicalSource(literal)];
+      const alternate = permittedAlternate(literal, path);
       if (alternate) {
         const original = canonicalSource(literal);
         if (!excluded.has(original)) excluded.set(original, []);
