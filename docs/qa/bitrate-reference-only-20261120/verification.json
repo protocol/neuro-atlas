@@ -1,0 +1,34 @@
+{
+  "runtime": "a433ef4aa6958314a7c6918b37ea076be97951c9",
+  "base": "913eb58f69ef385b5e4fc2cbc02c532bdb7a8a13",
+  "affectedTests": {
+    "tests": 92,
+    "suites": 0,
+    "pass": 92,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "independentReview": {
+    "verdict": "PASS",
+    "focusedTests": 25,
+    "exactBaseSVGs": 30
+  },
+  "productionBuildAndGeneratedTypes": "PASS",
+  "scopedLint": "PASS",
+  "nativePNG": [
+    2400,
+    2840
+  ],
+  "nativeClipboardPixelsIdentical": true,
+  "defaultRasterRegionsExact": true,
+  "otherNativeChartParity": 3,
+  "broadRun": {
+    "boundSeconds": 300,
+    "exitCode": 124,
+    "aggregateAvailable": false,
+    "observedFailureCases": 3,
+    "pairedReplay": "Two chart-sharing null.textContent cases reproduced on baseline and candidate; analytics history case passed isolated on both. No root cause asserted."
+  }
+}

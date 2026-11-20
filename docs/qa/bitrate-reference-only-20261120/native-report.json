@@ -1,0 +1,28 @@
+{
+  "source": "a433ef4aa6958314a7c6918b37ea076be97951c9",
+  "exactCurrentMainDefaultSvg": true,
+  "marks": 14,
+  "sourceRowsAndFitUnchanged": true,
+  "sameLogAxis": true,
+  "referenceBitsPerSecond": 8750000,
+  "urlsUnchangedByNewControl": true,
+  "viewports": [
+    1440,
+    390,
+    320
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "defaultOffRestored": true,
+  "nativePNGGenerated": [
+    "sensory.png",
+    "off.png"
+  ],
+  "aliases": [
+    "metric-panel-bci-bitrate",
+    "draft-bci-bitrate"
+  ],
+  "escapeAndReopen": true
+}

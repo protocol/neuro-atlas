@@ -1,0 +1,77 @@
+{
+  "head": "a433ef4aa6958314a7c6918b37ea076be97951c9",
+  "checks": [
+    {
+      "path": "/field-velocity",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/field-velocity",
+      "method": "HEAD",
+      "status": 200
+    },
+    {
+      "path": "/field-velocity/bci-information-transfer-over-time",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path": "/field-velocity/bci-information-transfer-over-time",
+      "method": "HEAD",
+      "status": 404
+    }
+  ],
+  "servedAssets": [
+    {
+      "path": "chunks/0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "path": "chunks/0l7g6rqbkb6-t.css",
+      "sha256": "e376ead2b0e572aab0dfd18cc7c05cc93707d45481e45dbd4e16baacec2d76e9"
+    },
+    {
+      "path": "chunks/0q56tw78qi0jl.js",
+      "sha256": "c51ffd20f5ae5d28a2d2ea6ec23de2cf7c6b8abe8d9d716d1c99b85bb3a5eaf2"
+    },
+    {
+      "path": "chunks/0uxhp5jxmgpy_.js",
+      "sha256": "d84eae3848ef9735935ab2a681253c0b81bfe23c05eb9f020fba10927f59317b"
+    },
+    {
+      "path": "chunks/1y86c1wevkk0q.css",
+      "sha256": "1d3f0289c4451275ec086bc9e30dc5629151e28f7617935b4481f5d32b75732e"
+    },
+    {
+      "path": "chunks/24wctxwvyldqq.js",
+      "sha256": "67263adb9c4ccc083daa8764305982c5da5ae5b0a84d2dd05213e58d13c92c54"
+    },
+    {
+      "path": "chunks/2rv5jvl35qh22.js",
+      "sha256": "e5f2ab68dddb4aba54fa30f77bba20b82751ca39a0db569577f1ee00a42df38c"
+    },
+    {
+      "path": "chunks/361w87mea3yxc.css",
+      "sha256": "d07e13825554b4d4246d85a791325dcbd1a75836e36f2b6b1e85be3e535dba63"
+    },
+    {
+      "path": "chunks/39_j1bdzreq0m.js",
+      "sha256": "a0cb7a4a53fbd01da1ea4c537d56e06ebcef9d3fdd6e79cb7b24809c70b41f82"
+    },
+    {
+      "path": "chunks/3qfy96eoyh-ek.js",
+      "sha256": "0f13eecc75702fa059f047636cf8814acbb7acaf3702e75d5835ef85a49528b1"
+    },
+    {
+      "path": "chunks/3y705tc4v-41-.js",
+      "sha256": "0dbdf7507714978d76a1e2564e25cb104e5e573730eed842fd3c3a3b1542d7ec"
+    },
+    {
+      "path": "chunks/turbopack-02l0y6tds02kn.js",
+      "sha256": "5effb0bc12342d279f51a82beb579ce1a5e8e31a4690739b0a4a53dbb6fb9723"
+    }
+  ],
+  "assetCount": 12,
+  "noStandaloneRouteIntroduced": true
+}
