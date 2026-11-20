@@ -48,7 +48,7 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
   };
   if (plotId === "acquisition-economics") return {
     toggleLabel: "Human-brain reference ($1B)",
-    scopeLabel: "Human · $1B acquisition only",
+    scopeLabel: `Human · ${sampling} nm · image-only`,
     disclosure: `Single illustrative $1B human-brain acquisition scenario. Human volume ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³ at dense ${sampling} nm sampling gives 1.875×10²¹ voxels (~1.9 sextillion). Target voxels/$ = human voxels ÷ budget = 1.875×10¹² voxels/$. Image acquisition only; excludes preparation, reconstruction, proofreading and storage. Optical and EM scopes and resolutions differ; this is not a matched whole-brain project budget.`,
     sources: [volumeSource, samplingSource],
     references: [1e9].map(budget => {

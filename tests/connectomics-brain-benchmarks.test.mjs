@@ -40,9 +40,16 @@ test('single human acquisition reference uses the unchanged whole-brain denomina
     assert.match(ref.label, /^\$/);
   }
   assert.match(context.disclosure, /Image acquisition only/i);
-  assert.match(context.scopeLabel, /\$1B.*acquisition/i);
+  assert.match(context.scopeLabel, /image-only/i);
   assert.match(context.disclosure, /reconstruction/);
   assert.equal(context.sources.length, 2);
   assert.equal(brainBenchmarkContext('tissue-cm3'), undefined);
   assert.equal(brainBenchmarkContext('largest-connectome-neurons'), undefined);
+});
+
+test('raster-visible human reference scope retains its modeled sampling and acquisition-only boundary', () => {
+  const context = brainBenchmarkContext('acquisition-economics');
+  assert.match(context.scopeLabel, /Human/);
+  assert.match(context.scopeLabel, /4×4×40 nm/);
+  assert.match(context.scopeLabel, /image-only/);
 });
