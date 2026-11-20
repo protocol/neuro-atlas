@@ -19,7 +19,7 @@ export function syncSnapshot(input: string, providerCommit: string, output = "sr
   const provenance = {
     generatedBy: "npm run performance:sync -- <provider-export.json> <provider-commit-sha>",
     providerCommit,
-    schemaSource: "https://github.com/protocol/plneuro.xyz/blob/7c8f709091b1475ed19ac4bac98caf869642db01/src/lib/field-velocity/schema.ts",
+    schemaSource: "https://github.com/protocol/neuro-atlas/blob/b6f99efaa80251c4fbbe608a329776617ae383ac/src/lib/field-velocity/schema.ts",
     source: feed.source,
     exportGeneratedAt: feed.generatedAt,
     sha256: createHash("sha256").update(bytes).digest("hex"),

@@ -1,7 +1,7 @@
 {
   "generatedBy": "npm run performance:sync -- <provider-export.json> <provider-commit-sha>",
   "providerCommit": "4b3ac510355212ff4d127badafa994a182aa862f",
-  "schemaSource": "https://github.com/protocol/plneuro.xyz/blob/7c8f709091b1475ed19ac4bac98caf869642db01/src/lib/field-velocity/schema.ts",
+  "schemaSource": "https://github.com/protocol/neuro-atlas/blob/b6f99efaa80251c4fbbe608a329776617ae383ac/src/lib/field-velocity/schema.ts",
   "source": {
     "url": "https://www.plrd.org/impact-preview-eb61fba1b98e/?area=neurotech#field-velocity",
     "repository": "https://github.com/protocol/plrd.org",

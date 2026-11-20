@@ -11,6 +11,7 @@ const scopes = [
 ];
 const ignored = /(?:^|\/)(?:qa|verification(?:-[^/]*)?|integration-20261106|feedback(?:-public)?)(?:\/|\.|$)|\/test_[^/]+$|(?:^|\/)(?:atlas-analytics[^/]*|feedback(?:-[^/]*)?|site-icons|launch-logo|chart-export-brand|chart-export)\.[^/]+$/;
 const inputs = /\.(?:ts|tsx|csv|json|py|mjs|md)$/;
+const sourceLinkAlternates = JSON.parse(readFileSync(new URL("../../src/data/source-link-alternates.json", import.meta.url), "utf8"));
 const links = /https?:\/\/[^\s<>"`'\\|\]}]+/g;
 
 function cleanLiteral(literal) {
@@ -53,7 +54,7 @@ function exclusion(literal, url) {
   if (host === "openapi.vercel.sh" || host === "www.w3.org" || host === "api.github.com" || host === "raw.githubusercontent.com" && path.startsWith("/protocol/neuro-atlas/")) return "hosting, namespace or feed transport";
   // Published, immutable measurement/method documents are first-party sources.
   // Repo roots, PRs and QA receipts remain navigation rather than evidence.
-  if (host === "github.com" && /^\/protocol\/neuro-atlas(?:\.git|\/.*)?\/?$/.test(path) && !/^\/protocol\/neuro-atlas\/blob\/[a-f0-9]{40}\/docs\/(?!qa\/)/.test(path)) return "Neuro Atlas repository or contribution navigation";
+  if (host === "github.com" && /^\/protocol\/neuro-atlas(?:\.git|\/.*)?\/?$/.test(path) && !/^\/protocol\/neuro-atlas\/blob\/[a-f0-9]{40}\/docs\/(?!qa\/)/.test(path) && url.href !== "https://github.com/protocol/neuro-atlas/blob/b6f99efaa80251c4fbbe608a329776617ae383ac/src/lib/field-velocity/schema.ts") return "Neuro Atlas repository or contribution navigation";
   if (host === "www.protocol.ai" || host === "www.plneuro.xyz" && /^(\/privacy-policy\/?|\/neuro-atlas(?:\/.*)?)$/.test(path) || host === "x.com" && path === "/protocollabs_rd") return "organization, policy or site navigation";
   return null;
 }
@@ -86,7 +87,13 @@ export function scanSources() {
       const revision = path === "src/lib/field-velocity/citation-latency-feed.ts"
         ? /const CITATION_SOURCE_REVISION = '([a-f0-9]{40})'/.exec(content)?.[1]
         : undefined;
-      const destination = revision ? literal.replace("${CITATION_SOURCE_REVISION", revision + "/scripts/velocity/field_velocity_openalex.py") : literal;
+      const alternate = sourceLinkAlternates[canonicalSource(literal)];
+      if (alternate) {
+        const original = canonicalSource(literal);
+        if (!excluded.has(original)) excluded.set(original, []);
+        excluded.get(original).push({ path, literal, reason: "superseded original citation retained for provenance; verified replacement used for the reader link" });
+      }
+      const destination = alternate ?? (revision ? literal.replace("${CITATION_SOURCE_REVISION", revision + "/scripts/velocity/field_velocity_openalex.py") : literal);
       let href, reason;
       try {
         href = canonicalSource(destination);
@@ -95,6 +102,7 @@ export function scanSources() {
         href = literal;
         reason = "malformed URL literal";
       }
+      if (path === "docs/publications/matched-baselines-fixtures.json" && new URL(href).hostname === "openalex.org" && /^\/(?:source-types|types)\//.test(new URL(href).pathname)) reason = "OpenAlex response group identifier, not a source citation";
       if (path.startsWith("data/logos/")) reason = "logo asset provenance (not scientific or market evidence)";
       const map = reason ? excluded : included;
       if (!map.has(href)) map.set(href, []);

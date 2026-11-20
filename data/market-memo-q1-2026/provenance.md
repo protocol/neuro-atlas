@@ -5,7 +5,7 @@
 There is **no public machine-readable dataset** behind the infographic. The chain is:
 
 1. **Primary sources** — public deal/milestone announcements (BusinessWire, GlobeNewswire, MassDevice, Bloomberg, Wired, Sixth Tone, company newsrooms). Linked per-row in `milestones.csv` where the memo post cites them.
-2. **Neurotech Notables** — Naveen Rao's biweekly tracking column on [neurotechnology.substack.com](https://neurotechnology.substack.com/t/notables). Issues **#46–#53** itemize the Jan–Apr 2026 deals that feed this memo. Prior-year baselines come from his [2024](https://neurotechnology.substack.com/p/2024-snapshot) and [2025 Funding Snapshot](https://neurotechnology.substack.com/p/2025-snapshot) reports ($4.8b across 140 neurotech deals in 2025; $1.46b implanted-BCI).
+2. **Neurotech Notables** — Naveen Rao's biweekly tracking column on [neurotechnology.substack.com](https://neurotechnology.substack.com/t/notables). Issues **#46–#53** itemize the Jan–Apr 2026 deals that feed this memo. Prior-year baselines come from his [2024](https://neurotechnology.substack.com/p/2024-funding-snapshot) and [2025 Funding Snapshot](https://neurotechnology.substack.com/p/2025-snapshot) reports ($4.8b across 140 neurotech deals in 2025; $1.46b implanted-BCI).
 3. **Patchwise Labs' internal database** — the actual tracking layer ("200+ global neurotech startups... history, leadership, clearances, patents, trials"). Not public.
 4. **The memo** — [Representations #2](https://neurotechnology.substack.com/p/representations2) (Neurotech Futures × PL Neuro), which renders the tally as the infographic committed here.
 
