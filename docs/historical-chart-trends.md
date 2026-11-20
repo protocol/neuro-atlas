@@ -1,10 +1,16 @@
 # Historical recording and acquisition-efficiency trends
 
-These views use descriptive fits to selected published estimates or compiled literature. They do not extrapolate beyond the observed years or establish a normalized cross-method performance frontier.
+These views use descriptive historical fits to selected published estimates or compiled literature, confined to observed years. Neither acquisition quantity draws a future continuation or crossing date. The views retain heterogeneous measurement scopes.
 
 ## Acquisition efficiency
 
-The default acquisition-economics chart displays **approximate voxels per dollar** on a log scale. The original nine `$ / voxel` observations remain unchanged in the source archive; the presentation takes their reciprocal and adds Table A1's 2024 ExA-SPIM estimate. The 10 plotted points use the printed **Approx. Voxels/$** column from [arXiv:2603.25713v1](https://arxiv.org/pdf/2603.25713v1), Table A1, PDF p. 18. Rounded efficiencies are not replaced by throughput/hour divided by hourly cost.
+The acquisition-economics preview and expanded chart default to **approximate voxels per dollar** on a log scale. Two expanded-chart buttons select **voxels per dollar** or **dollars per voxel** (reciprocal, cheaper at the top). The original nine `$ / voxel` observations remain unchanged in the source archive; the canonical efficiency presentation takes their reciprocal and adds Table A1's 2024 ExA-SPIM estimate. The 10 plotted points use the printed **Approx. Voxels/$** column from [arXiv:2603.25713v1](https://arxiv.org/pdf/2603.25713v1), Table A1, PDF p. 18. Rounded efficiencies are not replaced by throughput/hour divided by hourly cost.
+
+For canonical efficiency `e`, the selected y value is `e` or `1/e`. Optional point details also show **Illustrative human-brain acquisition cost**: `1.875e21/e`. The denominator models 1,200,000 mm³ at 4×4×40 nm: **1.875×10²¹ voxels (~1.9 sextillion)**. The conversion uses source-estimated efficiency, covers image acquisition only and excludes preparation, reconstruction, proofreading and storage. Optical/EM scopes and resolutions differ; this is not a matched whole-brain project budget.
+
+The x domain stays **2015–2025**, including the original pixel positions of all year ticks and observations. The reciprocal cost axis preserves the source efficiencies' log-space ordering and relative positions. Per-voxel ticks use compact SI dollars (n$, p$, f$, a$), with a dedicated explanation rather than an M/B/T/Q cost legend. Source popups use scientific per-voxel dollars and retain all three quantities, year, source and qualifications. Human-cost detail uses at most four significant digits. Efficiency above 10¹⁵ uses scientific notation; shared formatters are unchanged. The compact preview always uses efficiency with reference off, a short unit heading and a single row of separate family-rate labels.
+
+The fixed modal heading is “Estimated acquisition efficiency”; the figure and image-export title identify the selected quantity. Selected JSON includes `acquisitionView` metric, unit, transformation and original `voxels/$` fit basis, without a human-axis field. The source table and separate original-source JSON retain canonical source values and units regardless of the displayed quantity. Trend endpoints are transformed, while retained fit intercepts, slopes, equations, diagnostics and input cohorts stay in original efficiency units, explicitly identified in each fit note. Stable fragments and aliases are unchanged. The archived raw $/voxel plot is not eligible for these controls.
 
 - **Expansion microscopy:** `exm2015`, `exllsm2019`, `exaspim2023`, `exaspim2024`; N=4, 2015–2024. Doubling 1.490465588 years; R²(log10)=0.752798925.
 - **Reported-technology EM estimates:** `sem2018`, `multisem506`, `multisem706`, `bdtem2024`; N=4, 2018–2025. Doubling 1.526369132 years; R²(log10)=0.682759742.
@@ -15,7 +21,13 @@ The default acquisition-economics chart displays **approximate voxels per dollar
 
 Figure 2 and Table A1 differ: TEMCA-GridTape has no exact dollar-efficiency table row, mesoSPIM is absent from the figure, and MultiSEM706's visual position differs from the table's 1e9. No TEMCA value or traced source line is invented. Optical/EM resolutions, labeling, utilization, cost composition and price year differ or are unspecified; the efficiencies are rough order-of-magnitude source estimates.
 
-The optional, default-off human-brain budget model keeps its original volume/sampling/budget assumptions. Its threshold is now reciprocal: `target voxels/$ = human image voxels / budget`. Source observations never change when the model is toggled. Animation, reduced-motion behavior and export-during-motion guards are retained.
+One optional, default-off **Human-brain reference ($1B)** sits beside the expanded-chart quantity buttons, available only in voxels/$. Its value is `1.875e21 / 1e9 = 1.875e12`, displayed as **1.88T voxels/$**. It is a separate illustrative acquisition-only scenario, not data or a budget ladder. Choosing reciprocal clears `brainScale` through the existing URL helpers, immediately restores the historical domain and omits the reference from shared/exported state. Incoming reciprocal-plus-reference links are sanitized. Reference animation, reduced-motion behavior and export-during-motion guards remain in efficiency mode.
+
+The two source fits remain separate: efficiency labels show “2×/1.5y”; reciprocal cost labels show “cost halves every 1.5y”, derived independently from each fit. Fits end at their observed-year endpoints: 2024 for expansion and 2025 for EM. No future crossing calculation, forecast path or human-brain axis remains. The short on-site caveat identifies heterogeneous resolutions, scope and cost definitions.
+
+### Illustrative point conversions
+
+Point **#10** is `exaspim2024`, the Table A1 author estimate of **1e11 voxels/$**, giving **$18.75B** for this illustrative human model. Point **#8**, `peem2024`, is the prospective **2e10 voxels/$** estimate, giving **$93.75B**. Source identities, values and model assumptions remain unchanged; the ExA-SPIM citation mismatch and PEEM prospective status stay visible.
 
 ## Historical simultaneous electrical recordings
 

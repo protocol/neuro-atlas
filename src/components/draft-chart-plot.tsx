@@ -2,7 +2,7 @@
 
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
-import { useContext, useEffect, useId, useRef, useState, type SVGAttributes } from "react";
+import { useContext, useEffect, useId, useMemo, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
 import { ChartNoteList } from "@/components/chart-note-list";
@@ -14,8 +14,9 @@ import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
+import { ACQUISITION_HUMAN_COST_NOTE, ACQUISITION_METRICS, HUMAN_IMAGE_VOXELS, acquisitionAxisTick, acquisitionBenchmark, acquisitionEfficiency, acquisitionMetricPlot, acquisitionNumber, acquisitionValue, supportsAcquisitionMetrics } from "@/lib/acquisition-metric";
 import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
-import { useChartToggle } from "@/lib/field-velocity/navigation";
+import { useAcquisitionMetric, useChartToggle } from "@/lib/field-velocity/navigation";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 import { recordingAverages, recordingBar, recordingReferences, validRecordingCount } from "@/data/recording-hours-coverage";
 import { RETINAL_OUTPUT, humanRetinalScenario, retinalScenarioLabel, retinalScenarioAssumptions } from "@/data/sensory-context";
@@ -149,15 +150,24 @@ function usePlotWidth() {
   return { width, figure };
 }
 
-export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
+export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
   const modalSlots = useContext(ModalSlotsContext);
-  const benchmark = preview ? undefined : brainBenchmarkContext(plot.id);
+  const acquisition = supportsAcquisitionMetrics(sourcePlot);
+  const [acquisitionMetric, setAcquisitionMetric] = useAcquisitionMetric(acquisition && !preview ? shareAnchor ?? `metric-panel-${sourcePlot.id}` : undefined);
+  const plot = useMemo(() => acquisition ? acquisitionMetricPlot(sourcePlot, acquisitionMetric) : sourcePlot, [acquisition, sourcePlot, acquisitionMetric]);
+  const costMetric = acquisition && acquisitionMetric !== "voxels-per-dollar";
+  const displayedValue = (efficiency: number) => acquisition ? acquisitionValue(efficiency, acquisitionMetric) : efficiency;
+  const benchmarkBase = preview ? undefined : brainBenchmarkContext(plot.id);
+  const benchmark = acquisition && benchmarkBase ? acquisitionBenchmark(benchmarkBase, acquisitionMetric) : benchmarkBase;
   const sensory = !preview && plot.id === "bci-bitrate";
   const [sensoryEnabled, setSensoryEnabled] = useState(false);
   const showSensory = sensory && sensoryEnabled;
   const [benchmarkEnabled, setBenchmarkEnabled] = useChartToggle(benchmark ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
-  const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
+  const benchmarkMotion = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
+  // Reciprocal acquisition has no scenario domain, including while the old
+  // efficiency reference is animating out. Exports must see historical bounds.
+  const benchmarkProgress = benchmark ? benchmarkMotion : 0;
   const benchmarkMoving = !!benchmark && benchmarkProgress !== (benchmarkEnabled ? 1 : 0);
   const benchmarkReveal = benchmarkProgress === 1 ? 1 : Math.max(0, (benchmarkProgress - .8) / .2);
   const observationBasis = plot.observationBasis ?? "Source-reported";
@@ -172,7 +182,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
   const active = tooltip.active;
-  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
+  const tablePlot = acquisition ? sourcePlot : plot;
+  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${acquisition ? acquisitionNumber(point.y, acquisitionMetric) : plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
   const recordingPoints = plot.points.filter(point => point.recordingCoverage);
   const recordingRefs = recordingReferences(recordingPoints);
   const hoursReference = `Hours (left) · ${exactNumber(recordingRefs.hours)} h${recordingRefs.hoursLowerBound ? " (lower bound)" : ""}`;
@@ -191,17 +202,21 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const yTitle = wrapLabel(yLabel, width - 12);
   const xTitle = wrapLabel(plot.xLabel, width - 12);
   const fittedLabels = referenceTrendlines.filter(line => line.fit);
+  const compactAcquisition = preview && acquisition;
+  const fitTextLines = fittedLabels.map(line => compactAcquisition ? [(line.directLabel ?? line.label).replace(" · ", " ")]
+    : costMetric ? wrapLabel(line.directLabel ?? line.label, width - 12) : [line.directLabel ?? line.label]);
   const compactFit = preview && fittedLabels.length > 0;
-  const fitLabelTop = 28 + yTitle.length * 16;
-  const top = fitLabelTop + fittedLabels.length * 16 + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);
+  const fitLabelTop = 28 + yTitle.length * 16 + (costMetric ? 16 : 0);
+  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);
   const bottom = top + (compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232) + previewExtra;
   const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
   const xs = plot.points.map(point => point.x);
-  const ys = plot.points.map(point => point.y);
+  const ys = (acquisition ? sourcePlot : plot).points.map(point => point.y);
   const numericX = plot.xKind === "number";
   let xMin = numericX ? Math.min(...xs) : Math.floor(Math.min(...xs));
   let xMax = numericX ? Math.max(...xs) : Math.ceil(Math.max(...xs));
   if (xMin === xMax) { xMin -= 1; xMax += 1; }
+
   const log = plot.scale === "log";
   let minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
@@ -221,7 +236,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const baselineYTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
   // Interpolate the bounds in log space, never the underlying observations.
   // Padding leaves room for direct labels at the extremes of the expanded view.
-  const referencePowers = benchmark?.references.map(ref => Math.log10(ref.value)) ?? [];
+  const referencePowers = benchmarkBase?.references.map(ref => Math.log10(ref.value)) ?? [];
   const targetMinPower = referencePowers.length ? Math.min(minPower, Math.floor(Math.min(...referencePowers) - .15)) : minPower;
   const targetMaxPower = referencePowers.length ? Math.max(maxPower, Math.ceil(Math.max(...referencePowers) + .15)) : maxPower;
   const targetPowerStep = Math.max(1, Math.ceil((targetMaxPower - targetMinPower) / 5));
@@ -253,7 +268,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const height = baseHeight + (energyAxis ? breakNote.length * 16 + 12 : 0);
   const scaleNote = energyAxis ? "Piecewise linear x-axis · Linear y-axis" : `${log ? "Log" : "Linear"} scale`;
   const y = (value: number) => bottom - (log
-    ? (Math.log10(value) - minPower) / (maxPower - minPower)
+    ? (Math.log10(acquisition ? acquisitionEfficiency(value, acquisitionMetric) : value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
   const sensoryLabelY = y(humanRetinalScenario) - 6 - (sensoryLabel.length - 1) * 16;
   // Preserve the quantitative centers. Earlier overlapping marks become outer
@@ -321,6 +336,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null : undefined),
     };
   };
+  const benchmarkToggle = benchmark && <button type="button" role="switch" data-brain-scale-toggle aria-checked={benchmarkEnabled}
+    onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>;
 
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
@@ -341,6 +358,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       notes: [plot.scope, plot.seriesNote ?? "",
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
         ...referenceTrendlines.map(line => line.note),
+
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(showSensory ? [retinalScenarioAssumptions, `Koch et al. (2006): ${RETINAL_OUTPUT.source}`] : []),
         ...(energyAxis ? [energyAxis.note] : []),
@@ -355,16 +373,24 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
+    {acquisition && !preview && <div className="brain-scale-controls acquisition-metric-controls">
+      <div className="acquisition-metric-options" role="group" aria-label="Acquisition y-axis metric">
+        {ACQUISITION_METRICS.map(option => <button key={option.id} type="button" data-acquisition-metric={option.id}
+          aria-pressed={acquisitionMetric === option.id} onClick={() => { tooltip.clear(); setAcquisitionMetric(option.id); }}>{option.label}</button>)}
+      </div>
+      {benchmarkToggle}
+    </div>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      {costMetric && <text data-cheaper-direction x={0} y={fitLabelTop - 20} fill="var(--muted)" fontSize={CHART_PRESENTATION.labelFontSize}>↑ cheaper</text>}
       {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
         <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
       </g>}
       {!numericX && <ChartYearGuides years={annualYears(xMin, xMax)} x={x} top={top} bottom={bottom} />}
       {yTicks.map(tick => <g key={tick} opacity={benchmarkProgress > 0 ? (Math.log10(tick) < minPower || Math.log10(tick) > maxPower ? 0 : baselineYTicks.includes(tick) && targetYTicks.includes(tick) ? 1 : baselineYTicks.includes(tick) ? 1 - benchmarkProgress : Math.max(0, (benchmarkProgress - .4) / .6)) : undefined}>
-        {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(tick)} y2={y(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
-        <text data-preview-y-tick={preview ? tick : undefined} className="draft-plot-tick" x={left - 10} y={y(tick) + 4} textAnchor="end">{axisLabel(tick)}</text>
+        {(energyAxis?.segments ?? [{ start: left, end: right }]).map((segment, index) => <line key={index} className="draft-plot-gridline" x1={segment.start} x2={segment.end} y1={y(displayedValue(tick))} y2={y(displayedValue(tick))} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />)}
+        <text data-acquisition-y-tick={acquisition ? displayedValue(tick) : undefined} data-preview-y-tick={preview ? displayedValue(tick) : undefined} className="draft-plot-tick" x={left - (costMetric ? 8 : 10)} y={y(displayedValue(tick)) + 4} textAnchor="end">{acquisition ? acquisitionAxisTick(displayedValue(tick), acquisitionMetric) : axisLabel(tick)}</text>
       </g>)}
       {energyAxis ? <>
         {energyAxis.segments.map((segment, index) => <line key={index} className="draft-plot-axis" data-x-axis-segment={index} x1={segment.start} x2={segment.end} y1={bottom} y2={bottom} />)}
@@ -383,7 +409,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         data-export-stroke-width={2} pointerEvents="none" aria-label={referenceTrendline.label}>
         <title>{referenceTrendline.note}</title>
       </polyline>)}
-      {fittedLabels.map((line, index) => <text key={line.id} data-fit-direct-label={line.id} x={0} y={fitLabelTop + index * 16 - 4} textAnchor="start" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{line.directLabel ?? line.label}</text>)}
+      {fittedLabels.map((line, index) => <text key={line.id} data-fit-direct-label={line.id} x={compactAcquisition ? index * width / 2 : 0} y={fitLabelTop + (compactAcquisition ? 0 : fitTextLines.slice(0, index).flat().length * 16) - 4} textAnchor="start" fill={line.color} stroke="var(--surface)" strokeWidth={3} paintOrder="stroke" fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>{acquisition ? fitTextLines[index].map((text, row) => <tspan key={row} x={compactAcquisition ? index * width / 2 : 0} dy={row ? 16 : 0}>{text}{row < fitTextLines[index].length - 1 ? " " : ""}</tspan>) : line.directLabel ?? line.label}</text>)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }) => <line key={point.id} className="draft-annotation-leader" data-annotation-leader={point.id}
         x1={x(point.x)} y1={y(point.y)} x2={labelX} y2={labelY} stroke={groupColor(point)} aria-hidden="true" />)}
       {!preview && annotations.map(({ point, x: labelX, y: labelY }, index) => <g key={point.id} className="draft-annotation-key" data-annotation-key={point.id} aria-hidden="true">
@@ -410,17 +436,18 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
           {sensoryLabel.map((line, index) => <tspan key={index} x={left + 4} dy={index ? 16 : 0}>{line}{index < sensoryLabel.length - 1 ? " " : ""}</tspan>)}
         </text>
       </g>}
-      {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
+      {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} data-acquisition-value={acquisition ? point.y : undefined} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
         strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
         data-export-stroke-width={CHART_PRESENTATION.markerStrokeWidth} pointerEvents={markerRadius(index) > baseRadius ? "stroke" : undefined}
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">M = million · B = billion · T = trillion · Q = quadrillion</p>}
+    {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition rates, not a forecast. Method resolutions, scope and cost definitions differ.</p>}
+    {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">{acquisition && acquisitionMetric === "dollars-per-voxel" ? "SI dollar ticks: n$ = nanodollars · p$ = picodollars · f$ = femtodollars · a$ = attodollars" : acquisition ? "M = million · B = billion · T = trillion · Q = quadrillion; scientific notation above 10¹⁵" : "M = million · B = billion · T = trillion · Q = quadrillion"}</p>}
+
     {benchmark && <div className="brain-scale-controls">
-      <button type="button" role="switch" data-brain-scale-toggle aria-checked={benchmarkEnabled}
-        onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />{benchmark.toggleLabel}</button>
+      {!acquisition && benchmarkToggle}
       <details data-brain-scale-assumptions>
         <summary>Benchmark assumptions &amp; sources</summary>
         <p>{benchmark.disclosure}</p>
@@ -488,7 +515,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <strong>{active.label}</strong>
         {active.group && <p>{active.group}</p>}
         <p>{active.dateLabel}{numericX && ` · ${plot.xLabel}: ${exactNumber(active.x)}`}</p>
-        <p>{plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>
+        {acquisition ? <>{ACQUISITION_METRICS.map(option => <p key={option.id} data-acquisition-tooltip-value={option.id}>
+          <strong>{active.qualifier ?? ""}{acquisitionNumber(acquisitionValue(sourcePlot.points.find(point => point.id === active.id)!.y, option.id), option.id)}</strong>
+          {option.id === "voxels-per-dollar" ? " voxels/$" : " per voxel"}
+        </p>)}
+          <p data-acquisition-tooltip-value="human-brain">Illustrative human-brain acquisition cost: <strong>{acquisitionNumber(HUMAN_IMAGE_VOXELS / sourcePlot.points.find(point => point.id === active.id)!.y, "human-brain")}</strong> per human brain</p>
+          <p>{ACQUISITION_HUMAN_COST_NOTE}</p>
+        </> : <p>{plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>}
         {active.recordingCoverage && <div data-recording-coverage-readout>
           <p>{recordingAverages(active)}</p>
           {active.recordingCoverage.durationSummary && <p>{active.recordingCoverage.durationSummary}</p>}
@@ -508,16 +541,17 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       <summary>Data and sources ({plot.points.length})</summary>
       {!modalSlots && <p className="draft-plot-scope">{plot.scope}</p>}
       {(plot.referenceTrendlines || plot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
+      {acquisition && <p><a data-source-plot-json download={`neuro-atlas-${plot.id}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download original source data &amp; fits JSON (voxels/$)</a></p>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}
       <div className="draft-plot-table-scroll" data-recording-source-table={recordingPoints.length > 0 || undefined} tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
-          <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>
-          <thead><tr><th scope="col">Observation</th><th scope="col">{plot.xLabel}</th><th scope="col">{recordingPoints.length ? "Recording hours / coverage" : plot.yLabel}</th><th scope="col">Source and scope notes</th></tr></thead>
-          <tbody>{plot.points.map(point => <tr key={point.id}>
+          <caption>{tablePlot.title} — {tablePlot.observationBasis ?? "source-reported"} observations</caption>
+          <thead><tr><th scope="col">Observation</th><th scope="col">{tablePlot.xLabel}</th><th scope="col">{recordingPoints.length ? "Recording hours / coverage" : tablePlot.yLabel}</th><th scope="col">Source and scope notes</th></tr></thead>
+          <tbody>{tablePlot.points.map(point => <tr key={point.id}>
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
             <td>{numericX && <>{exactNumber(point.x)}<br /></>}{point.dateLabel}</td>
-            <td>{recordingPair(point) ?? qualifiedValue(point)}{point.recordingCoverage && <div data-recording-coverage-source>
+            <td>{recordingPair(point) ?? (acquisition ? `${point.qualifier ?? ""}${acquisitionNumber(point.y, "voxels-per-dollar")}` : qualifiedValue(point))}{point.recordingCoverage && <div data-recording-coverage-source>
               <p>{recordingAverages(point)}</p>
               {point.recordingCoverage.durationSummary && <p>{point.recordingCoverage.durationSummary}</p>}
             </div>}</td>
