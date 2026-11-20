@@ -1,0 +1,24 @@
+✔ the catalog reserves one natural-content maximum independent of which panels are open (2717.921177ms)
+✔ natural-size observers can grow and shrink all cards and ignore deliveries after cleanup (1172.643042ms)
+✔ equalized cards declare full-card overlay geometry and a separate footer stacking layer (1017.846468ms)
+✔ hidden chart regions remain measurable but inert and visually excluded in every panel state (1002.28836ms)
+✔ sizing visibility overrides Tailwind base-layer hidden rules while retaining local rail stacking (528.115844ms)
+✔ full rows reserve card and scrollbar space without obsolete expansion-action space (454.319491ms)
+✔ every real Metrics chart has separately measurable natural content and a footer (701.410286ms)
+✔ equal cards allocate spare space to one preview without feeding expansion back into natural sizing (1118.038536ms)
+✔ a CSS height cap keeps rail cards compact and marks only taller previews as clipped (641.990672ms)
+Could not parse CSS @import URL "./point-source-tooltip.css" relative to base URL "about:blank"
+Could not parse CSS @import URL "./point-source-tooltip.css" relative to base URL "about:blank"
+✔ wide rails use fixed compact peer columns with a visible peek, never the retired wrapping grid (390.459786ms)
+✔ narrow rails reclaim 16px of excess peek for unclipped growth headings at the native 320px width (31.292824ms)
+✔ commitments renders sourced participant observations over time without an unwired Markets section (333.588149ms)
+✔ channel-count frontier is only a noninteractive coming-soon chart in the Performance grid (128.440112ms)
+✔ every desktop Metrics grid reserves three tracks even with one, two or more than three cards (222.637215ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11135.367594

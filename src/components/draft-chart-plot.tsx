@@ -2,12 +2,12 @@
 
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
-import { useEffect, useId, useRef, useState, type SVGAttributes } from "react";
+import { useContext, useEffect, useId, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
 import { ChartNoteList } from "@/components/chart-note-list";
 import { ChartActions } from "@/components/chart-actions";
-import { ModalData, ModalSources } from "@/components/chart-modal-slots";
+import { ModalData, ModalSources, ModalSlotsContext } from "@/components/chart-modal-slots";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
@@ -126,6 +126,7 @@ function usePlotWidth() {
 
 export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: DraftPlot; shareAnchor?: string; preview?: boolean }) {
   const id = useId();
+  const modalSlots = useContext(ModalSlotsContext);
   const benchmark = preview ? undefined : brainBenchmarkContext(plot.id);
   const [benchmarkEnabled, setBenchmarkEnabled] = useState(false);
   const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
@@ -405,12 +406,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     </PointTooltip>
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
-      <ul className="pc-sources">{[...new Map(plot.points.flatMap(point => observationReferences(point).flatMap(reference => reference.url ? [[reference.url, reference] as const] : []))).entries()].map(([url, reference]) => <li key={url}><ReferenceLink reference={reference} /></li>)}</ul>
       {plot.curationSource && <p className="mx-scope-line">Dataset discovery: <a href={plot.curationSource.url} target="_blank" rel="noreferrer">{plot.curationSource.title} ↗</a></p>}
     </ModalSources>
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
-      <p className="draft-plot-scope">{plot.scope}</p>
+      {!modalSlots && <p className="draft-plot-scope">{plot.scope}</p>}
       {(plot.referenceTrendlines || plot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}
@@ -466,9 +466,6 @@ export function DraftEventTimeline({ timeline, preview = false, shareAnchor }: {
       {ticks.map(year => <text key={year} className="draft-plot-tick" x={x(year)} y={baseHeight - 45} textAnchor="middle">{year}</text>)}
       <text className="draft-plot-axis-title" x={0} y={baseHeight - 16} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>
     </svg>
-    {!preview && <ModalSources modalOnly>
-      <ul className="pc-sources">{[...new Map(timeline.events.map(event => [event.sourceUrl, event.sourceTitle])).entries()].map(([url, title]) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{title} ↗</a></li>)}</ul>
-    </ModalSources>}
     {!preview && <ul className="draft-event-list">{timeline.events.map(event => <li key={event.id} data-draft-event={event.id}>
       <p className="draft-event-date">{event.dateLabel} · {event.stage}</p>
       <strong>{event.label}</strong>

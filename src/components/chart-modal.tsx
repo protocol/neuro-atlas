@@ -55,7 +55,7 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
       {children}
       <div className="mx-grid">
         <div className="mx-left" ref={slotRef("reading")} />
-        <aside className="mx-right" aria-label="Sources and data"><h3 className="mx-k">Sources &amp; data</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>
+        <aside className="mx-right" aria-label="Source notes"><h3 className="mx-k">Source notes</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>
       </div>
       <div className="mx-data" ref={slotRef("data")} />
     </div>
