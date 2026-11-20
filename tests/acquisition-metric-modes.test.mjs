@@ -199,8 +199,9 @@ test('cost ticks use compact precision and SI dollars to fit the unchanged effic
   const cleanup=await mount(React.createElement(DraftChartPlot,{plot}));
   try{
     assert.deepEqual([...document.querySelectorAll('[data-acquisition-y-tick]')].map(n=>n.textContent),['$19T','$1.9T','$190B','$19B']);
+    assert.equal(Number(document.querySelector('[data-acquisition-y-tick]').getAttribute('x')),38,'cost labels gain two pixels without moving the axis/points');
     await select('dollars-per-voxel');
-    assert.deepEqual([...document.querySelectorAll('[data-acquisition-y-tick]')].map(n=>n.textContent),['10 n$','1 n$','100 p$','10 p$']);
+    assert.deepEqual([...document.querySelectorAll('[data-acquisition-y-tick]')].map(n=>n.textContent),['10 n$','1 n$','0.1 n$','10 p$']);
   }finally{await cleanup();}
 });
 

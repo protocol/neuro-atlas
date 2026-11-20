@@ -29,7 +29,12 @@ export function acquisitionAxisTick(value: number, metric: AcquisitionMetric) {
   if (metric === "human-brain") return acquisitionNumber(value, metric, 2);
   if (metric === "voxels-per-dollar") return value > 1e15 ? value.toExponential(0).replace("e+", "e") : compactCount(value);
   const prefixes = [[1, ""], [1e-3, "m"], [1e-6, "µ"], [1e-9, "n"], [1e-12, "p"], [1e-15, "f"], [1e-18, "a"], [1e-21, "z"], [1e-24, "y"]] as const;
-  const scale = prefixes.find(([unit]) => Number(value.toPrecision(3)) >= unit);
+  const rounded = Number(value.toPrecision(3));
+  let index = prefixes.findIndex(([unit]) => rounded >= unit);
+  // 0.1 n$ is narrower than 100 p$ in the actual chart font; keep the
+  // original point/x-axis geometry and readable type instead of shrinking it.
+  if (index > 0 && rounded / prefixes[index][0] >= 100) index -= 1;
+  const scale = prefixes[index];
   return scale ? `${Number((value / scale[0]).toPrecision(3))} ${scale[1]}$` : `$${value.toExponential(0)}`;
 }
 
