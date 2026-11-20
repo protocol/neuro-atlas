@@ -1,10 +1,8 @@
 "use client";
 
 import { useContext, useState, type ReactNode } from "react";
-import { DashboardAddLink } from "@/components/dashboard-add-link";
-import type { CardSettings } from "@/lib/dashboard-state";
 import { GraphExportContext } from "@/components/graph-export-context";
-import { ChartExplorationContext, type ChartExploration } from "@/components/chart-exploration-context";
+import { ChartExplorationContext, type ChartExplorationSettings } from "@/components/chart-exploration-context";
 import { InlineChartDetail } from "@/components/chart-modal-slots";
 import { DraftChartMethodology, DraftPanelDetail } from "@/components/draft-chart-panel";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
@@ -58,16 +56,16 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
   }
 }
 
-export function FieldVelocityGraphDetail({ entry, instance, pageHeading }: { entry: FieldVelocityGraph; instance?: ChartExploration; pageHeading?: ReactNode }) {
+export function FieldVelocityGraphDetail({ entry, pageHeading }: { entry: FieldVelocityGraph; pageHeading?: ReactNode }) {
   const request = useContext(GraphExportContext);
-  const [settings, setSettings] = useState<CardSettings>({});
+  const [settings, setSettings] = useState<ChartExplorationSettings>({});
   const { graph } = entry;
   // These two established overlays support settled image exports; tissue modes do not.
   const supportsBenchmarkExport = graph.renderer === "draft" && (graph.plot === "public-data-size" || graph.plot === "acquisition-economics");
-  return <ChartExplorationContext.Provider value={instance ?? (request ? null : {
-    dashboard: false, settings, supportsBenchmarkExport, update: change => setSettings(current => ({ ...current, ...change })),
-  })}>
-    {pageHeading && <header>{pageHeading}<DashboardAddLink entry={entry} /></header>}
+  return <ChartExplorationContext.Provider value={request ? null : {
+    settings, supportsBenchmarkExport, update: change => setSettings(current => ({ ...current, ...change })),
+  }}>
+    {pageHeading && <header>{pageHeading}</header>}
     <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }

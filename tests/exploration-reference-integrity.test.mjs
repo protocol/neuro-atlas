@@ -2,19 +2,16 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
 import React from 'react';
-import dashboardModule from '../src/app/field-velocity/dashboard/page.tsx';
 import * as graphModule from '../src/app/field-velocity/[slug]/page.tsx';
 import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 import { atlasPath } from '../src/lib/atlas-path.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
 import { whenChartRegistered } from '../src/lib/chart-export-api.ts';
-import { readDashboardLink } from '../src/lib/dashboard-state.ts';
 import { brainScaleClock } from './brain-scale-helpers.mjs';
 import { click, mount } from './modal-helpers.mjs';
 
 globalThis.React = React;
 const graphPage = graphModule.default.default ?? graphModule.default;
-const DashboardPage = dashboardModule.default ?? dashboardModule;
 const tissue = 'selected-tissue-volume-checkpoints';
 const query = selector => document.querySelector(selector);
 const checksum = data => createHash('sha256').update(data).digest('hex');
@@ -79,33 +76,23 @@ test('F6: modeled marks are labeled in the SVG even without references; revertin
   } finally { await close(); }
 });
 
-const dashboardPath = atlasPath('/field-velocity/dashboard');
 const referenceLines = root => [...root.querySelectorAll('[data-brain-scale-reference]')].map(line => ({
   id: line.getAttribute('data-brain-scale-reference'),
   value: line.getAttribute('data-value'),
   label: line.parentElement.querySelector('text').textContent,
 }));
-const mountDashboard = (url, writeText) => mount(React.createElement(DashboardPage), '', win => {
-  win.history.replaceState({}, '', url);
-  brainScaleClock(true).configure(win);
-  if (writeText) Object.defineProperty(win.navigator, 'clipboard', { value: { writeText } });
-});
 
 for (const [slug, lineCount] of [
   ['selected-public-image-resource-footprints', 3],
   ['estimated-acquisition-efficiency-voxels-per-dollar', 5],
-]) test(`F9: ${slug} transfers its live benchmark and reopens with the same references`, async () => {
+]) test(`F9: ${slug} retains its live benchmark export, sources, and exact reset`, async () => {
   const anchor = fieldVelocityGraph(slug).target;
   const clock = brainScaleClock();
   const close = await mountGraph(slug, clock);
-  let href, references;
   try {
-    const addLink = () => new URL(query('[data-add-to-dashboard]').href);
     const graph = () => query('figure.draft-plot');
     const download = () => query('[data-download-chart]');
     const registered = () => whenChartRegistered(anchor, 0);
-    assert.equal(addLink().pathname + addLink().search, `${dashboardPath}?add=${slug}`);
-    assert.equal(addLink().hash, '');
     assert.deepEqual(referenceLines(graph()), []);
     const original = (await registered()).getChart();
     const originalImage = buildChartImage(original, window.location.href);
@@ -123,7 +110,7 @@ for (const [slug, lineCount] of [
     assert.equal(graph().dataset.brainScaleState, 'on');
     assert.equal(download()?.disabled, false);
     assert.equal(query('[data-copy-chart]')?.disabled, false);
-    references = referenceLines(graph());
+    const references = referenceLines(graph());
     assert.equal(references.length, lineCount);
     const selected = (await registered()).getChart();
     const image = buildChartImage(selected, window.location.href);
@@ -136,15 +123,6 @@ for (const [slug, lineCount] of [
     assert.equal(query('[data-selected-plot-json]')?.getAttribute('href'), sourceHref);
     assert.equal(query('.draft-plot-data table').textContent, sourceTable);
 
-    href = addLink();
-    assert.equal(href.pathname, dashboardPath);
-    const incoming = readDashboardLink(href.hash);
-    assert.ok(incoming, 'Add must encode the visible benchmark in a dashboard snapshot');
-    assert.equal(href.search, '');
-    assert.equal(incoming.cards.length, 1);
-    assert.equal(incoming.cards[0].slug, slug);
-    assert.equal(incoming.cards[0].settings.benchmark, true);
-
     if (slug === 'estimated-acquisition-efficiency-voxels-per-dollar') {
       const filter = query('[data-exploration-series="EM · reported-tech estimates"]');
       await click(filter);
@@ -154,27 +132,6 @@ for (const [slug, lineCount] of [
     }
     await click(query('[data-brain-scale-toggle]'));
     await clock.advance(700);
-    assert.equal(addLink().search, `?add=${slug}`);
-    assert.equal(addLink().hash, '');
     assert.equal(checksum(buildChartImage((await registered()).getChart(), window.location.href).svg), checksum(originalImage.svg));
   } finally { await close(); }
-
-  const verifyCard = () => {
-    const card = query(`[data-dashboard-graph="${slug}"]`);
-    assert.ok(card, 'the dashboard mounted the transferred graph');
-    assert.equal(card.querySelector('[data-brain-scale-toggle]').getAttribute('aria-checked'), 'true');
-    assert.deepEqual(referenceLines(card), references);
-    assert.equal(card.querySelectorAll('[data-download-chart]').length, 0);
-  };
-  let copied;
-  const closeDashboard = await mountDashboard(href, async url => { copied = new URL(url); });
-  try {
-    verifyCard();
-    await click(query('[data-dashboard-copy]'));
-    assert.equal(copied.hash, href.hash);
-    assert.equal(readDashboardLink(copied.hash).cards[0].settings.benchmark, true);
-  } finally { await closeDashboard(); }
-
-  const closeReopened = await mountDashboard(copied);
-  try { verifyCard(); } finally { await closeReopened(); }
 });

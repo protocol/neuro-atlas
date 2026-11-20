@@ -11,9 +11,7 @@ export function ChartActions({ anchor, title, link, children }: {
 }) {
   const exploration = useContext(ChartExplorationContext);
   const reason = explorationExportReason(exploration);
-  if (reason) return exploration?.dashboard
-    ? <span hidden data-exploration-export-disabled />
-    : <p className="exploration-export-note" data-exploration-export-disabled>{reason}</p>;
+  if (reason) return <p className="exploration-export-note" data-exploration-export-disabled>{reason}</p>;
   // In a pop-out the row sits in the header, beside Close.
   return <ModalSlot kind="actions"><div className="chart-actions" data-chart-actions role="group" aria-label={`${title} sharing actions`}>
     {link ?? <DraftChartShare anchor={anchor} label={title} />}

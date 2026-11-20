@@ -1,4 +1,3 @@
-import { atlasPath } from "@/lib/atlas-path";
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import { PlateHero } from "@/components/plate-header";
 import { VelocityTabs } from "@/components/sections/velocity-tabs";
@@ -18,7 +17,6 @@ export default function FieldVelocityPage() {
     <>
       <PlateHero kicker="Pace" meta={["PL R&D metrics"]} title="Field velocity" description="Measurements and inflection points across neurotechnology." stats={[]} />
         <div className="mt-8">
-          <a className="dashboard-pill" data-open-dashboard href={atlasPath("/field-velocity/dashboard")}>Compare charts</a>
           <VelocityTabs engagementPreview={<GoogleTrends flat selection={["neurotech"]} />} references={{
             recording: <PerformanceCurves flat data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons"]} />,
           }} performance={<PaceReadings flat data={selectPace(feed)} />} />

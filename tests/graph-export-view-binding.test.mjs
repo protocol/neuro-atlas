@@ -3,7 +3,6 @@ import test from 'node:test';
 import React, { act } from 'react';
 import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime.js';
 import layout from '../src/app/field-velocity/layout.tsx';
-import { ExplorationDashboard } from '../src/components/exploration-dashboard.tsx';
 import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
 import { GraphExportHost } from '../src/components/graph-export-host.tsx';
 import { FIELD_VELOCITY_GRAPHS, fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
@@ -309,25 +308,21 @@ test('queued BCI bulk export skips the unsupported invocation after Speech is re
   }
 });
 
-test('generic export from the dashboard uses the canonical BCI graph, not its filtered card', async () => {
+test('generic export from an unsupported filtered standalone graph never substitutes the canonical default', async () => {
   const cleanup = await mount(React.createElement(React.Fragment, null,
-    React.createElement(ExplorationDashboard), React.createElement(GraphExportHost)), '', win => {
-    win.history.replaceState({ keep: 'dashboard' }, '', atlasPath(`/field-velocity/dashboard?add=${bci}&token=fixture`));
+    React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(bci) }), React.createElement(GraphExportHost)), '', win => {
+    win.history.replaceState({ keep: 'single-chart' }, '', `${bciPath}?token=fixture`);
   });
   const raster = rasterFixture();
   try {
-    const card = document.querySelector(`[data-dashboard-graph="${bci}"]`);
-    assert.ok(card);
-    assert.equal(bciMarks(card).length, 14);
+    const chart = document.querySelector('.graph-detail');
+    assert.equal(bciMarks(chart).length, 14);
     await hideSpeech();
-    const filtered = bciMarks(card);
+    const filtered = bciMarks(chart);
     const before = locationState();
-    let job, result;
-    await act(async () => { job = window.neuroAtlas.exportChart(bci); });
-    await act(async () => { result = await job; });
-    assert.equal(result.url, window.location.origin + bciPath);
-    assert.deepEqual(raster.svgs.map(serializedBciMarks), [14]);
-    assert.deepEqual(bciMarks(card), filtered);
+    await assert.rejects(window.neuroAtlas.exportChart(bci), /graph not ready/i);
+    assert.equal(raster.svgs.length, 0, 'unsupported selections must not silently export defaults');
+    assert.deepEqual(bciMarks(chart), filtered);
     assert.equal(window.neuroAtlas.charts().find(chart => chart.anchor === bci).open, false);
     assert.equal(currentGraphExport(), null);
     assert.ok(!document.querySelector('[data-graph-export-host]'));

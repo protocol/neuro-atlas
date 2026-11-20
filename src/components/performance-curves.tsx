@@ -459,10 +459,9 @@ function selectRecordingView(id: RecordingViewId) {
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
 function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
-  const instance = useContext(ChartExplorationContext);
   const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
   const exportRequest = useContext(GraphExportContext);
-  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : instance?.dashboard ? instance.settings.recordingView ?? "historical" : liveView;
+  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
   const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
   return <CurveCard detail={detail} id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
     coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
@@ -473,8 +472,7 @@ function RecordingCard({ historical, historicalProvenance, detail }: { detail?: 
         <label className="pc-track-select pc-recording-view">Measurement view
           <select data-recording-view-select value={view.id} onChange={event => {
             const recordingView = event.target.value as RecordingViewId;
-            if (instance?.dashboard) instance.update({ recordingView });
-            else selectRecordingView(recordingView);
+            selectRecordingView(recordingView);
           }}>
             {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
           </select>

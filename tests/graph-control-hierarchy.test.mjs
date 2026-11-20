@@ -13,7 +13,7 @@ test('standalone BCI filters and scenario switches precede the long visible sour
     const doc=dom.window.document,key=doc.querySelector('.draft-point-annotations');
     assert.ok(key);
     assert.equal(key.querySelectorAll('[data-point-annotation]').length,14);
-    assert.equal(key.closest('[data-dashboard-source-key]'),null,'standalone evidence stays visible');
+    assert.equal(key.closest('details'),null,'standalone evidence stays visible');
     for(const selector of ['[data-exploration-series]','[data-exploration-fit-toggle]','[data-sensory-toggle]']){
       const control=doc.querySelector(selector);assert.ok(control,selector);
       assert.ok(control.compareDocumentPosition(key)&4,`${selector} must precede the long source key`);

@@ -309,14 +309,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       <span>{text}</span>
     </button>
   </li>)}</ul>;
-  // Use the full series to keep the disclosure stable as visible study counts change.
-  const studyKey = studyList && exploration?.dashboard && plot.points.filter(point => point.annotation?.trim()).length > 4
-    ? <details className="dashboard-source-key" data-dashboard-source-key><summary>Source key ({annotations.length})</summary>{studyList}</details>
-    : studyList;
-  const fitToggle = interactive && <button className="dashboard-pill" type="button" role="switch" aria-checked={extrapolate} data-exploration-fit-toggle onClick={() => {
+  const fitToggle = interactive && <button className="exploration-pill" type="button" role="switch" aria-checked={extrapolate} data-exploration-fit-toggle onClick={() => {
     tooltip.clear(); exploration.update({ extrapolate: !extrapolate });
   }}>Extrapolation <span aria-hidden="true">{extrapolate ? "On" : "Off"}</span></button>;
-  const sensoryToggle = interactive && isBitrate && <button className="dashboard-pill" type="button" role="switch" data-sensory-toggle aria-checked={!!exploration.settings.sensory}
+  const sensoryToggle = interactive && isBitrate && <button className="exploration-pill" type="button" role="switch" data-sensory-toggle aria-checked={!!exploration.settings.sensory}
     onClick={() => exploration.update({ sensory: !exploration.settings.sensory })}>Sensory context <span aria-hidden="true">{exploration.settings.sensory ? "On" : "Off"}</span></button>;
 
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
@@ -342,7 +338,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           : plot.points.map(point => point.sourceTitle))].join("; ")}`,
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
-    <figcaption id={`${id}-title`} className={!preview && exploration?.dashboard ? "sr-only" : undefined}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
+    <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
@@ -423,7 +419,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       style={benchmark && !overlapNote ? { visibility: "hidden" } : undefined}>
       {overlapNote ?? "Rings keep overlapping observations visible at their source positions."}
     </p>}
-    {!controlsBeforeSourceKey && studyKey}
+    {!controlsBeforeSourceKey && studyList}
     {legend.length > 0 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{legend.map(entry => {
       const key = <><span aria-hidden="true" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox="0 0 14 14" aria-hidden="true" focusable="false">
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
@@ -432,7 +428,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, entry.label) });
       }}>{key}</SeriesButton> : key}</li>;
     })}</ul>}
-    {controlsBeforeSourceKey && <div className="dashboard-plot-switches" role="group" aria-label="Plot options">{fitToggle}{sensoryToggle}</div>}
+    {controlsBeforeSourceKey && <div className="exploration-plot-switches" role="group" aria-label="Plot options">{fitToggle}{sensoryToggle}</div>}
     {interactive && !shown.length && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
     {interactive && (!controlsBeforeSourceKey || extrapolate) && <section className="exploration-model" aria-label="Trend exploration">
       {!controlsBeforeSourceKey && fitToggle}
@@ -451,7 +447,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <div><strong>Ear → brain</strong><p>No verified direct human whole-auditory-nerve rate is available for this comparison.</p></div>
       </div>}
     </section>}
-    {controlsBeforeSourceKey && studyKey}
+    {controlsBeforeSourceKey && studyList}
     {referenceTrendlines.map(referenceTrendline => <p key={referenceTrendline.id ?? plot.id} className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
       <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
         <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />
