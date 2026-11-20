@@ -5,7 +5,7 @@ import { GraphExportContext } from "@/components/graph-export-context";
 import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { useStandaloneChartSettings } from "@/components/use-standalone-chart-settings";
 import { standaloneChartParams } from "@/lib/standalone-chart-state";
-import { InlineChartDetail } from "@/components/chart-modal-slots";
+import { InlineChartDetail, StandaloneChartSupport } from "@/components/chart-modal-slots";
 import { DraftChartMethodology, DraftPanelDetail } from "@/components/draft-chart-panel";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
 import { PaceReadings } from "@/components/pace-readings";
@@ -74,6 +74,6 @@ export function FieldVelocityGraphDetail({ entry, pageHeading }: { entry: FieldV
     settings, supportsBenchmarkExport, supportsSensoryExport: graph.renderer === "draft" && graph.plot === "bci-bitrate", update,
   }}>
     {pageHeading && <header>{pageHeading}</header>}
-    <InlineChartDetail.Provider value><div className="pc-detail graph-detail" data-chart-state={request ? "" : standaloneChartParams(entry, settings).toString()}><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
+    <InlineChartDetail.Provider value><StandaloneChartSupport state={request ? "" : standaloneChartParams(entry, settings).toString()}><SelectedDetail entry={entry} /></StandaloneChartSupport></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }

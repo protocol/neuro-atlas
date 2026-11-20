@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -15,13 +15,32 @@ export const ModalSlotsContext = createContext<ModalSlots | null>(null);
 // Standalone charts stay inline in document order, including their SSR evidence.
 export const InlineChartDetail = createContext(false);
 
+/** Reuse the merged reading/source/table layout without a dialog. Until the
+ * client targets mount, evidence remains inline so server HTML never loses it. */
+export function StandaloneChartSupport({ children, state }: { children: ReactNode; state: string }) {
+  const [slots, setSlots] = useState<ModalSlots>({});
+  const refs = useRef<Partial<Record<ModalSlotKind, (node: HTMLElement | null) => void>>>({});
+  const slotRef = (kind: ModalSlotKind) => refs.current[kind] ??= (node: HTMLElement | null) =>
+    setSlots(previous => previous[kind] === node ? previous : { ...previous, [kind]: node });
+  return <ModalSlotsContext.Provider value={slots}>
+    <div className="pc-detail graph-detail metrics-index" data-chart-state={state}>
+      {children}
+      <div className="mx-grid">
+        <div className="mx-left" ref={slotRef("reading")} />
+        <aside className="mx-right" aria-label="Source notes"><h3 className="mx-k">Source notes</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>
+      </div>
+      <div className="mx-data" ref={slotRef("data")} />
+    </div>
+  </ModalSlotsContext.Provider>;
+}
+
 export function ModalSlot({ kind, children, modalOnly = false }: { kind: ModalSlotKind; children: ReactNode; modalOnly?: boolean }) {
   const slots = useContext(ModalSlotsContext);
   const inline = useContext(InlineChartDetail);
   const target = slots?.[kind];
   if (target) return createPortal(children, target);
   // Inside a pop-out whose region is still mounting, wait one commit rather than flash inline.
-  if (slots || (modalOnly && !inline)) return null;
+  if ((slots && !inline) || (modalOnly && !inline)) return null;
   return <>{children}</>;
 }
 

@@ -268,7 +268,7 @@ test('queued BCI single export rejects an unsupported graph after departing its 
   }
 });
 
-test('queued BCI bulk export skips the unsupported invocation after Speech is restored', { timeout: 15000 }, async () => {
+test('queued BCI bulk export skips the unsupported invocation after Speech is restored', { timeout: 45000 }, async () => {
   const cleanup = await mount(React.createElement(React.Fragment, null,
     React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(bci) }),
     React.createElement(GraphExportHost)), '', win => {
@@ -276,11 +276,15 @@ test('queued BCI bulk export skips the unsupported invocation after Speech is re
   });
   const raster = rasterFixture();
   const release = await holdQueue();
+  let batch;
+  let batchSettled = false;
   try {
     const defaults = bciMarks();
     assert.equal(defaults.length, 14);
     await hideSpeech();
-    const batch = window.neuroAtlas.exportAll();
+    // This is the real serial 25-chart path, not a single-image timing test.
+    batch = window.neuroAtlas.exportAll();
+    void batch.then(() => { batchSettled = true; }, () => { batchSettled = true; });
     await act(async () => { document.querySelector('[data-exploration-series="Speech decoding"]').click(); });
     assert.deepEqual(bciMarks(), defaults);
     assert.equal(window.neuroAtlas.charts().find(chart => chart.anchor === bci).open, true);
@@ -302,9 +306,15 @@ test('queued BCI bulk export skips the unsupported invocation after Speech is re
     assert.ok(!document.querySelector('[data-graph-export-host]'));
     assert.deepEqual(bciMarks(), defaults);
   } finally {
-    await release();
-    raster.restore();
-    await cleanup();
+    try {
+      await release();
+      // Drain the retained host before restoring globals used by pending exports.
+      while (batch && !batchSettled) await settle();
+      if (batch) await batch;
+    } finally {
+      raster.restore();
+      await cleanup();
+    }
   }
 });
 
