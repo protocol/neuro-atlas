@@ -511,7 +511,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 </section>
               )}
 
-              {selected.website && <a href={selected.website} target="_blank" rel="noreferrer" className="mt-8 flex w-full items-center justify-between rounded-2xl border border-border bg-surface-raised px-5 py-4 text-sm font-semibold hover:border-black/25"><span>Visit company website</span><span>↗</span></a>}
+              {selected.website && <a href={selected.website} target="_blank" rel="noreferrer" className="mt-8 flex w-full items-center justify-between rounded-2xl border border-border bg-surface-raised px-5 py-4 text-sm font-semibold hover:border-black/25"><span>{selected.websiteLabel || "Visit company website"}</span><span>↗</span></a>}
             </div>
           </aside>
         </div>

@@ -71,9 +71,19 @@ test("Merge's existing seed retains its amount and date semantics while recordin
   assert.equal(Number(index.rounds.reduce((sum, row) => sum + row.amountUsdM, 0).toFixed(2)), 3553.96);
 });
 
-test("participant evidence loads from the canonical sidecar onto only the exact existing round", async () => {
+const scienceInvestorEvidence = {
+  investorName: "Khosla Ventures",
+  sourceUrl: "https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/",
+  sourceKind: "reporting",
+  reviewedOn: "2026-11-20",
+  sourceExcerpt: "The Alameda, California-based company’s most recent raise previously was a $104 million convertible note led by Khosla last April.",
+};
+
+test("participant evidence loads from the canonical sidecar onto only the exact existing rounds", async () => {
   assert.deepEqual(sources.investorEvidence, [{
     companySlug: "merge-labs", announcedOn: "2026-01-15", stage: "Seed", ...mergeInvestorEvidence,
+  }, {
+    companySlug: "science-corporation", announcedOn: "2025-04-14", stage: "Financing", ...scienceInvestorEvidence,
   }]);
   const before = structuredClone(sources);
   const index = buildFundingIndex(sources);
@@ -83,7 +93,9 @@ test("participant evidence loads from the canonical sidecar onto only the exact 
   assert.deepEqual(generated.rounds, index.rounds, "Every generated financing matches the canonical builder, including participant evidence");
   assert.deepEqual(generated.investors, index.investors);
   assert.deepEqual([generated.summary.indexedRounds, generated.summary.selectedCompanies, generated.summary.observedCapitalUsdM], [42, 25, 3553.96]);
-  assert.ok(index.rounds.filter((row) => row !== merge).every((row) => !Object.hasOwn(row, "investorEvidence")));
+  const science = index.rounds.find((row) => row.companySlug === "science-corporation" && row.announcedOn === "2025-04-14");
+  assert.deepEqual(science.investorEvidence, [scienceInvestorEvidence]);
+  assert.ok(index.rounds.filter((row) => row !== merge && row !== science).every((row) => !Object.hasOwn(row, "investorEvidence")));
   const withoutEvidence = buildFundingIndex({ ...sources, investorEvidence: [] });
   const comparableRounds = structuredClone(index.rounds);
   for (const round of comparableRounds) delete round.investorEvidence;

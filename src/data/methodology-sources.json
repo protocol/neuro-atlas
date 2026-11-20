@@ -189,8 +189,8 @@
       "storage.googleapis.com — o"
     ],
     [
-      "https://www.temca2data.org/data.html",
-      "temca2data.org — data"
+      "https://github.com/bocklab/temca2-catmaid/blob/7449966d688e3d8adc9455bd93d0fca84bad410a/download/README.md",
+      "Bock Lab — FAFB historical ~12 TB dataset downloader documentation"
     ]
   ],
   "studies": [
@@ -639,8 +639,8 @@
       "Kim et al. — DOI 10.1088/1741-2560/3/2/009"
     ],
     [
-      "https://doi.org/10.1088/1741-2560/5/4/010",
-      "Kim et al. — DOI 10.1088/1741-2560/5/4/010"
+      "https://europepmc.org/article/MED/19015583",
+      "Kim et al. — Neural control of computer cursor velocity (Europe PMC abstract)"
     ],
     [
       "https://doi.org/10.1109/tnsre.2011.2107750",
@@ -1207,8 +1207,8 @@
       "Voronin et al. — DOI 10.1016/0006-8993(75)90324-8"
     ],
     [
-      "https://doi.org/10.1088/1741-2560/4/3/s04",
-      "Weber et al. — DOI 10.1088/1741-2560/4/3/s04"
+      "https://europepmc.org/article/MED/17873416",
+      "Weber et al. — Limb-state feedback from dorsal root ganglion neurons (Europe PMC abstract)"
     ],
     [
       "https://doi.org/10.1038/35042582",
@@ -1240,6 +1240,10 @@
     ]
   ],
   "disclosures": [
+    [
+      "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/xslFormDX01/primary_doc.xml",
+      "Science Corp — Form D: convertible notes and amount sold (April 2025)"
+    ],
     [
       "https://alleninstitute.org/news/scientists-complete-largest-wiring-diagram-and-functional-map-of-the-brain-to-date",
       "alleninstitute.org — scientists complete largest wiring diagram and functional map of the brain to date"
@@ -1297,8 +1301,8 @@
       "businesswire.com — Blue Arbor Technologies Receives FDA Breakthrough Device Designation and TAP Enrollment for the RESTORE™ Neuromuscular Interface System"
     ],
     [
-      "https://www.businesswire.com/news/home/20180611005260/en/Brain-Machine-Interface-Company-Paradromics-Secures-7-Million",
-      "businesswire.com — Brain Machine Interface Company Paradromics Secures 7 Million"
+      "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures",
+      "BioSpace — Paradromics $7m seed issuer release"
     ],
     [
       "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
@@ -1341,8 +1345,8 @@
       "businesswire.com — Science Corporation Closes $230 Million Series C to Accelerate Commercialization of Its PRIMA BCI Retinal Implant the Worlds Most Advanced Vision Restoration Technology"
     ],
     [
-      "https://www.businesswire.com/news/home/20251211216731/en/SubSense-Raises-Additional-%2410-Million-to-Advance-Non-Surgical-Nanoparticle-Brain-Computer-Interface",
-      "businesswire.com — SubSense Raises Additional $10 Million to Advance Non Surgical Nanoparticle Brain Computer Interface"
+      "https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces",
+      "BioSpace — SubSense additional $10m issuer release"
     ],
     [
       "https://www.businesswire.com/news/home/20251106150841/en/Synchron-Raises-%24200-Million-Series-D-to-Advance-Brain-Computer-Interface-Technology",
@@ -1607,10 +1611,6 @@
     [
       "https://netholabs.com/",
       "Netholabs"
-    ],
-    [
-      "https://www.neucyber.cn/",
-      "NeuCyber NeuroTech"
     ],
     [
       "https://www.neuracle.cn/",
@@ -1933,8 +1933,8 @@
       "stairmed.com — jietijianjie"
     ],
     [
-      "https://subsense.com/",
-      "SubSense"
+      "https://subsense-bci.com/",
+      "SubSense — official company website"
     ],
     [
       "https://x.com/SumnerLN/status/2069192808016273813",
@@ -1971,13 +1971,13 @@
     [
       "https://www.youtube.com/watch?v=_j806JHhCRo&t=170s",
       "YouTube — _j806JHhCRo"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
+      "Science Corp — April 14, 2025 Form D filing and underlying document"
     ]
   ],
   "discovery": [
-    [
-      "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
-      "axios.com — science corp bci 100m fundraise"
-    ],
     [
       "https://www.bloomberg.com/news/articles/2025-01-30/andreessen-horowitz-backs-rival-to-musk-s-neuralink-in-new-funding-round",
       "bloomberg.com — andreessen horowitz backs rival to musk s neuralink in new funding round"
@@ -2087,8 +2087,8 @@
       "neurofounders.co — how subsense is reimagining bcis with a nasal spray instead of brain surgery"
     ],
     [
-      "https://neurotechnology.substack.com/p/2024-snapshot",
-      "Neurotech Futures — 2024 snapshot"
+      "https://neurotechnology.substack.com/p/2024-funding-snapshot",
+      "Neurotech Futures — 2024 Neurotech Funding Snapshot"
     ],
     [
       "https://neurotechnology.substack.com/p/2025-snapshot",
@@ -2177,6 +2177,10 @@
     [
       "https://www.yicaiglobal.com/news/chinese-bci-startup-neuroxess-bags-usd152-million-as-of-pre-series-a-round",
       "yicaiglobal.com — chinese bci startup neuroxess bags usd152 million as of pre series a round"
+    ],
+    [
+      "https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/",
+      "Crunchbase News — Science financing history; April 2025 Khosla-led convertible note"
     ]
   ],
   "ecosystems": [
@@ -2219,8 +2223,8 @@
       "FDA — Humanitarian Use Device designation program"
     ],
     [
-      "https://github.com/protocol/plneuro.xyz/blob/7c8f709091b1475ed19ac4bac98caf869642db01/src/lib/field-velocity/schema.ts",
-      "github.com — schema.ts"
+      "https://github.com/protocol/neuro-atlas/blob/b6f99efaa80251c4fbbe608a329776617ae383ac/src/lib/field-velocity/schema.ts",
+      "Neuro Atlas — immutable public feed schema"
     ],
     [
       "https://support.google.com/trends/answer/4359550?hl=en",
@@ -2253,58 +2257,6 @@
     [
       "https://github.com/protocol/neuro-atlas/blob/845e4a614c5209dd045f2accba1f71709d118006/docs/bci-bitrate.md",
       "Neuro Atlas methodology — BCI communication-rate conversions and fit"
-    ],
-    [
-      "https://openalex.org/source-types/book%20series",
-      "OpenAlex — source-types: book series"
-    ],
-    [
-      "https://openalex.org/source-types/conference",
-      "OpenAlex — source-types: conference"
-    ],
-    [
-      "https://openalex.org/source-types/ebook%20platform",
-      "OpenAlex — source-types: ebook platform"
-    ],
-    [
-      "https://openalex.org/source-types/journal",
-      "OpenAlex — source-types: journal"
-    ],
-    [
-      "https://openalex.org/source-types/metadata",
-      "OpenAlex — source-types: metadata"
-    ],
-    [
-      "https://openalex.org/source-types/other",
-      "OpenAlex — source-types: other"
-    ],
-    [
-      "https://openalex.org/source-types/repository",
-      "OpenAlex — source-types: repository"
-    ],
-    [
-      "https://openalex.org/source-types/unknown",
-      "OpenAlex — source-types: unknown"
-    ],
-    [
-      "https://openalex.org/types/article",
-      "OpenAlex — types: article"
-    ],
-    [
-      "https://openalex.org/types/book-chapter",
-      "OpenAlex — types: book-chapter"
-    ],
-    [
-      "https://openalex.org/types/conference-paper",
-      "OpenAlex — types: conference-paper"
-    ],
-    [
-      "https://openalex.org/types/preprint",
-      "OpenAlex — types: preprint"
-    ],
-    [
-      "https://openalex.org/types/review",
-      "OpenAlex — types: review"
     ],
     [
       "https://www.plneuro.xyz/",

@@ -1,4 +1,4 @@
-slug,name,hq,modality,interface_depth,indication,website,scope
+slug,name,hq,modality,interface_depth,indication,website,scope,website_label
 blackrock-neurotech,Blackrock Neurotech,"Salt Lake City, USA",Utah Array,Intracortical,Motor and sensory restoration,https://blackrockneurotech.com,Implanted
 synchron,Synchron,"Brooklyn, USA",Stentrode,Endovascular,Paralysis,https://synchron.com,Implanted
 neuralink,Neuralink,"Fremont, USA",Flexible Threads,Intracortical,Paralysis and vision,https://neuralink.com,Implanted
@@ -17,10 +17,10 @@ merge-labs,Merge Labs,"San Francisco, USA",Focused Ultrasound and Molecular Inte
 newronika,Newronika,"Cologno Monzese (Milan metropolitan area), Italy",Adaptive Deep Brain Stimulation,Deep Brain,Parkinson's disease,https://newronika.com,Implanted
 neuracle-technology,Neuracle Technology,"Changzhou, China",Implantable BCI,Cortical Surface,Neurological disorders,https://www.neuracle.cn,Implanted
 neuroxess,NeuroXess,"Shanghai, China",Implantable Flexible BCI,Cortical Surface,Motor and speech restoration,https://neuroxess.com,Implanted
-neucyber-neurotech,NeuCyber NeuroTech,"Beijing, China",Flexible Neural Interface,Intracortical,Motor restoration,https://www.neucyber.cn,Implanted
+neucyber-neurotech,NeuCyber NeuroTech,"Beijing, China",Flexible Neural Interface,Intracortical,Motor restoration,https://en.cibr.ac.cn/detail/cibrNewsnews/b8dbf43633cc4311a9798874fb0d435e,Implanted,Institutional profile (CIBR)
 stairmed,StairMed,"Shanghai, China",Ultra-flexible Neural Interface,Intracortical,Motor restoration,https://www.stairmed.com,Implanted
 gestala,Gestala,"Beijing, China",Ultrasound BCI,Transcranial,Neurological disorders (in development),https://gestala.com,Implant-adjacent
 forest-neurotech,Forest Neurotech,"Los Angeles, USA",Focused Ultrasound,Transcranial,Neuropsychiatric and neurological disorders,https://forestneurotech.org,Implant-adjacent
-subsense,SubSense,"Palo Alto, USA",Nanoparticle BCI,Transcranial,Motor and cognitive restoration,https://subsense.com,Implant-adjacent
+subsense,SubSense,"Palo Alto, USA",Nanoparticle BCI,Transcranial,Motor and cognitive restoration,https://subsense-bci.com/,Implant-adjacent
 motif-neurotech,Motif Neurotech,"Houston, USA",DOT Neuromodulation,,Treatment-resistant depression (in development),https://motifneuro.tech,Implanted
 enspire-dbs,Enspire DBS,"Cleveland, USA",Deep Brain Stimulation,Deep Brain,Stroke rehabilitation,https://enspiredbs.com,Implanted
