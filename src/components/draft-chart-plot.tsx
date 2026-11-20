@@ -14,9 +14,9 @@ import { CHART_PRESENTATION } from "@/lib/chart-presentation";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
-import { ACQUISITION_HUMAN_COST_NOTE, ACQUISITION_METRICS, acquisitionAxisTick, acquisitionBenchmark, acquisitionBillionCrossing, acquisitionEfficiency, acquisitionMetricPlot, acquisitionNumber, acquisitionValue, supportsAcquisitionMetrics, type AcquisitionMetric } from "@/lib/acquisition-metric";
+import { ACQUISITION_HUMAN_COST_NOTE, ACQUISITION_METRICS, acquisitionAxisTick, acquisitionBenchmark, acquisitionBillionCrossing, acquisitionEfficiency, acquisitionMetricPlot, acquisitionNumber, acquisitionValue, supportsAcquisitionMetrics } from "@/lib/acquisition-metric";
 import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
-import { useChartToggle } from "@/lib/field-velocity/navigation";
+import { useAcquisitionMetric, useChartToggle } from "@/lib/field-velocity/navigation";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
@@ -130,7 +130,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const id = useId();
   const modalSlots = useContext(ModalSlotsContext);
   const acquisition = supportsAcquisitionMetrics(sourcePlot);
-  const [acquisitionMetric, setAcquisitionMetric] = useState<AcquisitionMetric>("human-brain");
+  const [acquisitionMetric, setAcquisitionMetric] = useAcquisitionMetric(acquisition && !preview ? shareAnchor ?? `metric-panel-${sourcePlot.id}` : undefined);
   const plot = useMemo(() => acquisition ? acquisitionMetricPlot(sourcePlot, acquisitionMetric) : sourcePlot, [acquisition, sourcePlot, acquisitionMetric]);
   const costMetric = acquisition && acquisitionMetric !== "voxels-per-dollar";
   const displayedValue = (efficiency: number) => acquisition ? acquisitionValue(efficiency, acquisitionMetric) : efficiency;
