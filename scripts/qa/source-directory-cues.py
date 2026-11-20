@@ -71,14 +71,14 @@ for kind in ('milestones', 'funding'):
     goto_url(QA_BASE + '/methodology')
     wait_for_load()
     assert wait_for_element('button[aria-label^="Switch to"]')
-    target = js('return (()=>{const a=[...document.querySelectorAll("[data-source-context]")].find(a=>a.getAttribute("href").includes(' + json.dumps('/' + kind + '?source=') + ')); if(!a)return null; a.setAttribute("data-qa-record-target",""); return {category:a.closest("details").id,href:a.getAttribute("href"),source:a.closest("li").querySelector("[data-source-link]").getAttribute("href")}})()')
+    target = js('return (()=>{const a=[...document.querySelectorAll("[data-source-context]")].find(a=>a.getAttribute("href").includes(' + json.dumps('/' + kind + '?source=') + ')); if(!a)return null; a.setAttribute("data-qa-record-target",""); return {category:a.closest("details").id,href:a.getAttribute("href"),source:a.closest("li").querySelector("[data-source-link]").href}})()')
     assert target, f'No {kind} citation action'
     native_click('#' + target['category'] + ' summary')
     assert js('return document.getElementById(' + json.dumps(target['category']) + ').open')
     native_click('[data-qa-record-target]')
     wait_for_load()
     assert wait_for_element('#source-context', visible=True)
-    state = js('return {path:location.pathname,hash:location.hash,text:document.getElementById("source-context").innerText,sources:[...document.querySelectorAll("#source-context a")].map(a=>a.getAttribute("href"))}')
+    state = js('return {path:location.pathname,hash:location.hash,text:document.getElementById("source-context").innerText,sources:[...document.querySelectorAll("#source-context a")].map(a=>a.href)}')
     assert state['path'].endswith('/' + kind) and state['hash'] == '#source-context'
     assert target['source'] in state['sources'], state
     assert len(state['text']) > 60

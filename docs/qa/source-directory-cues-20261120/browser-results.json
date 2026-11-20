@@ -1,0 +1,99 @@
+{
+  "revision": "39218e58ba0fef885c725df0e6f3b002b2e33334",
+  "surface": "Local exact production build; emulated viewports, no physical-phone claim",
+  "cases": [
+    {
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "more": 6,
+      "marks": 587,
+      "contexts": 358,
+      "multiples": 56,
+      "theme": "light"
+    },
+    {
+      "width": 768,
+      "client": 753,
+      "scroll": 753,
+      "more": 6,
+      "marks": 587,
+      "contexts": 358,
+      "multiples": 56,
+      "theme": "dark"
+    },
+    {
+      "width": 390,
+      "client": 390,
+      "scroll": 390,
+      "more": 6,
+      "marks": 587,
+      "contexts": 358,
+      "multiples": 56,
+      "theme": "light"
+    },
+    {
+      "width": 320,
+      "client": 320,
+      "scroll": 320,
+      "more": 6,
+      "marks": 587,
+      "contexts": 358,
+      "multiples": 56,
+      "theme": "dark"
+    }
+  ],
+  "nativeChartContext": {
+    "path": "/neuro-atlas/field-velocity",
+    "hash": "#selected-tissue-volume-checkpoints",
+    "title": "Selected tissue-volume checkpoints\nClose\nCopy link\nCopy chart\nDownload PNG\nSelected tissue-volume checkpoints\nTissue volume (cm\u00b3 \u00b7 log)\n0.0000001\n0.00",
+    "sources": [
+      "https://cellimagelibrary.org/images/40263",
+      "https://elifesciences.org/articles/57443",
+      "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+      "https://microns-explorer.org/manifests/mm3-v117",
+      "https://www.nature.com/articles/s41586-024-07558-y",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/",
+      "https://www.nature.com/articles/s41586-025-08985-1",
+      "https://biorxiv.org/content/10.1101/2025.10.09.680999v2.full",
+      "https://www.nature.com/articles/nature12346",
+      "https://docs.google.com/spreadsheets/d/1PukHvhxTqC72tau9HDnq1LKIl3F6V_FGr_y3G-jjZ-k/edit#gid=0",
+      "data:application/json;charset=utf-8,%7B%0A%20%20%22id%22%3A%20%22tissue-cm3%22%2C%0A%20%20%22datasetCredit%22%3A%20%22FAFB%20%2F%20FlyWire%20%E2%80%94%20EM%20imagery%3A%20Zheng%2C%20Lauritzen%20et%20al.%20(2018)%20%C2%B7%20Connectome%3A%20Dorkenwald%20et%20al.%20%2F%20FlyWire%20Consortium%20(2024)%22%2C%0A%20%20%22title%22%3A%20%22Selected%20tissue-volume%20checkpoints%22%2C%0A%20%20%22xLabel%22%3A%20%22Release%20%2F%20publication%20year%22%2C%0A%20%20%22xKind%22%3A%20%22year%22%2C%0A%20%20%22yLabel%22%3A%20%22Tissue%20volume%20(cm%C2%B3%20%C2%B7%20log)%22%2C%0A%20%20%22scale%22%3A%20%22log%22%2C%0A%20%20%22scope%22%3A%20%22Selected%20human%2C%20mouse%20and%20fruit%20fly%20tissue%20volumes%20at%20synapse%20resolution.%20Sample%20bounds%2C%20imaged%20volume%20and%20neuropil%20volume%20describe%20different%20specimen%20extents%3B%20reconstruction%20completeness%20varies.%20Values%20are%20converted%20to%20cm%C2%B3%3B%20%E2%89%88%20denotes%20approximate%20volumes%20or%20sample%20bounds.%22%2C%0A%20%20%22points%22%3A%20%5B%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22bock-mouse-imaged-2011-01-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202011%2C%0A%20%20%20%20%20%20%22y%22%3A%200.00000819%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22Bock%20mouse%20V1%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222011%20%C2%B7%20publication%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fcellimagelibrary.org%2Fimages%2F40263%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22Bock%20mouse%20V1%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22Reconstruction%20encompasses%20450%20X%20350%20X%2052%20um%20volume%20of%20tissue%20and%20contains%20~%201500%20cell%20bodies.%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Source%3A%20%E2%80%9CReconstruction%20encompasses%20450%20X%20350%20X%2052%20um%20volume%20of%20tissue.%E2%80%9D%20Geometric%20volume%3A%20450%20%C3%97%20350%20%C3%97%2052%20%2F%2010%E2%81%B9%20%3D%200.00819%20mm%C2%B3.%20Publication-year%20checkpoint%3B%20first%20release%20timing%20and%20dense%20reconstruction%20completeness%20are%20unspecified.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Mouse%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22hemibrain-fly-bounds-2020-01-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202020%2C%0A%20%20%20%20%20%20%22y%22%3A%200.0000156%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22Hemibrain%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222020%20%C2%B7%20publication%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Felifesciences.org%2Farticles%2F57443%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22Hemibrain%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22The%20hemibrain%20sample%20is%20roughly%20250%20%C3%97%20250%20%C3%97%20250%20%CE%BCm%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Source%3A%20%E2%80%9CThe%20hemibrain%20sample%20is%20roughly%20250%20%C3%97%20250%20%C3%97%20250%20%CE%BCm.%E2%80%9D%20Geometric%20product%3A%200.015625%20mm%C2%B3%2C%20displayed%20approximately%200.0156.%20The%20value%20describes%20approximate%20sample%20bounds%3B%20acquisition-mask%20volume%20and%20exact%20release%20timing%20are%20unspecified.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Fruit%20fly%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22h01-human-imaged-2021-06-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202021.4136986301369%2C%0A%20%20%20%20%20%20%22y%22%3A%200.001%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22H01%20first%20public%20release%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222021-06-01%20%C2%B7%20release%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fresearch.google%2Fblog%2Fa-browsable-petascale-reconstruction-of-the-human-cortex%2F%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22H01%20first%20public%20release%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22imaging%20data%20that%20covers%20roughly%20one%20cubic%20millimeter%20of%20brain%20tissue%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Source%3A%20%E2%80%9Croughly%20one%20cubic%20millimeter%20of%20brain%20tissue.%E2%80%9D%20June%201%2C%202021%20release%20announcement.%20Automated%20segmentation%20and%20annotated%20synapses%3B%20selected%20cells%20proofread.%20The%20later%201.05-mm%C2%B3%20compression-corrected%20estimate%20describes%20the%20same%20specimen.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Human%22%2C%0A%20%20%20%20%20%20%22annotation%22%3A%20%22H01%20%C2%B7%20human%20%C2%B7%20%E2%89%881%20mm%C2%B3%20%C2%B7%20released%20Jun%202021%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22microns-mouse-imaged-2021-07-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202021.495890410959%2C%0A%20%20%20%20%20%20%22y%22%3A%200.001%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22MICrONS%20v117%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222021-07%20%C2%B7%20release%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fmicrons-explorer.org%2Fmanifests%2Fmm3-v117%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22MICrONS%20v117%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22the%20first%20public%20data%20released%20on%20the%20cubic%20millimeter%20dataset%20in%20July%202021%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Source%3A%20%E2%80%9Cfirst%20public%20data%20released%20on%20the%20cubic%20millimeter%20dataset%20in%20July%202021.%E2%80%9D%20Approximate%20nominal%20sample%20volume%2C%20dated%20to%20the%20release%20month.%20The%202025%20paper%20analyzes%20the%20same%20specimen%3B%20valid%20segmentation-mask%20volume%20is%20unspecified.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Mouse%22%2C%0A%20%20%20%20%20%20%22annotation%22%3A%20%22MICrONS%20%C2%B7%20mouse%20%C2%B7%20%E2%89%881%20mm%C2%B3%20%C2%B7%20released%20Jul%202021%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22flywire-fly-neuropil-2024-01-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202024%2C%0A%20%20%20%20%20%20%22y%22%3A%200.000017500000000000002%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22FlyWire%20whole-brain%20neuropil%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222024%20%C2%B7%20publication%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-024-07558-y%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22Dorkenwald%20et%20al.%20and%20the%20FlyWire%20Consortium%2C%20Nature%20(2024).%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22The%20whole%20brain%20contains%200.0175%20mm3%20of%20neuropil%20volume%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Source%3A%20%E2%80%9CThe%20whole%20brain%20contains%200.0175%20mm%C2%B3%20of%20neuropil%20volume.%E2%80%9D%20Publication-year%20checkpoint%3B%20the%20reconstruction%20reuses%20FAFB%20imagery.%20FAFB%20image%20volume%20publicly%20available%20in%202018%3B%20this%20point%20reports%20a%202024%20FlyWire%20measurement.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Fruit%20fly%22%2C%0A%20%20%20%20%20%20%22sourceRole%22%3A%20%22Whole-brain%20connectome%20reconstruction%20%E2%80%94%20FlyWire%22%2C%0A%20%20%20%20%20%20%22supportingReferences%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%22role%22%3A%20%22Underlying%20EM%20image%20volume%20%E2%80%94%20FAFB%22%2C%0A%20%20%20%20%20%20%20%20%20%20%22title%22%3A%20%22Zheng%2C%20Lauritzen%20et%20al.%2C%20Cell%20(2018).%20Bock%20lab%E2%80%93led%20team%20at%20HHMI%20Janelia%20and%20collaborators.%22%2C%0A%20%20%20%20%20%20%20%20%20%20%22url%22%3A%20%22https%3A%2F%2Fpmc.ncbi.nlm.nih.gov%2Farticles%2FPMC6063995%2F%22%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%5D%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22liconn-mouse-native-2025-01-01%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202025%2C%0A%20%20%20%20%20%20%22y%22%3A%209.5e-7%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22LICONN%20native%20tissue%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222025%20%C2%B7%20publication%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-025-08985-1%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22LICONN%20native%20tissue%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%220.95%20%C3%97%2010%5E6%20%C2%B5m%5E3%20before%20and%203.5%20%C3%97%2010%5E9%20%C2%B5m%5E3%20after%20hydrogel%20expansion%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Figure%201%3A%20%E2%80%9C0.95%20%C3%97%2010%E2%81%B6%20%C2%B5m%C2%B3%20before%E2%80%9D%20expansion%2C%20equivalent%20to%200.00095%20mm%C2%B3%20of%20native%20tissue.%20Automated%20dense%20reconstruction%20with%20synaptic%20molecular%20predictions%20and%20selected%20traced%20validation%20regions.%20Publication-year%20checkpoint%3B%20first%20final-dataset%20release%20timing%20is%20unspecified.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Mouse%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22malecns-fly-imaged-2025-10-03%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202025.7534246575344%2C%0A%20%20%20%20%20%20%22y%22%3A%200.000082%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22MaleCNS%20v0.9%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222025-10-03%20%C2%B7%20release%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fbiorxiv.org%2Fcontent%2F10.1101%2F2025.10.09.680999v2.full%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22MaleCNS%20v0.9%20%E2%80%94%20primary%20source%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22160%20teravoxels%20at%208%C3%978%C3%978%20nm%20isotropic%20resolution%20(0.082%20mm3%20total%20volume)%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Preprint%3A%20%E2%80%9C0.082%20mm3%20total%20volume%E2%80%9D%20(160%20teravoxels%20at%208-nm%20isotropic%20resolution).%20Release%20history%20at%20https%3A%2F%2Fmale-cns.janelia.org%2F%20%3A%20%E2%80%9C2025-10-03%20-%20MaleCNS%20v0.9%20released%E2%80%9D.%20Later%20v1.0%20and%20the%202026%20publication%20reuse%20this%20specimen%3B%20synaptic%20partner%20proofreading%20remains%20partial.%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Fruit%20fly%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22id%22%3A%20%22helmstaedter-2013-retina-volume%22%2C%0A%20%20%20%20%20%20%22x%22%3A%202013%2C%0A%20%20%20%20%20%20%22y%22%3A%200.00000120384%2C%0A%20%20%20%20%20%20%22label%22%3A%20%22Helmstaedter%20mouse%20retina%22%2C%0A%20%20%20%20%20%20%22group%22%3A%20%22Mouse%22%2C%0A%20%20%20%20%20%20%22annotation%22%3A%20%22Helmstaedter%20%C2%B7%20retina%20imaged%20bounds%22%2C%0A%20%20%20%20%20%20%22exportAnnotation%22%3A%20%22Helmstaedter%20%C2%B7%20retina%20imaged%20bounds%20%C2%B7%202013%20online%20publication%20%C2%B7%20%E2%89%881%2C203%2C840%20%C2%B5m%C2%B3%22%2C%0A%20%20%20%20%20%20%22qualifier%22%3A%20%22%E2%89%88%22%2C%0A%20%20%20%20%20%20%22dateLabel%22%3A%20%222013-08-07%20%C2%B7%20online%20publication%22%2C%0A%20%20%20%20%20%20%22sourceUrl%22%3A%20%22https%3A%2F%2Fwww.nature.com%2Farticles%2Fnature12346%22%2C%0A%20%20%20%20%20%20%22sourceTitle%22%3A%20%22Helmstaedter%20et%20al.%20%C2%B7%20Connectomic%20reconstruction%20of%20the%20inner%20plexiform%20layer%22%2C%0A%20%20%20%20%20%20%22quote%22%3A%20%22this%20corresponds%20to%20a%20physical%20size%20of%20about%20132%20%C2%B5m%20%C3%97%20114%20%C2%B5m%20for%20each%20slice%20and%20a%20total%20thickness%20of%2080%20%C2%B5m.%22%2C%0A%20%20%20%20%20%20%22note%22%3A%20%22Inner%20retinal%20imaged%20stack%20(Mus%20musculus).%20Serial%20block-face%20electron%20microscopy.%20Approximate%20physical%20imaged%20bounds%3A%20132%20%C3%97%20114%20%C3%97%2080%20%C2%B5m%20%3D%201%2C203%2C840%20%C2%B5m%C2%B3%20(0.00120384%20mm%C2%B3).%20The%20dimensions%20describe%20unexpanded%2C%20processed%20EM%20tissue.%20The%20volume%20retains%20processed-tissue%20dimensions%3B%20living-tissue%20shrinkage%20correction%20is%20unspecified.%20EM%20Datasets%20row%2028.%22%0A%20%20%20%20%7D%0A%20%20%5D%2C%0A%20%20%22exportPointKey%22%3A%20true%2C%0A%20%20%22curationSource%22%3A%20%7B%0A%20%20%20%20%22title%22%3A%20%22EM%20Datasets%2C%20shared%20by%20Forrest%20Collman%22%2C%0A%20%20%20%20%22url%22%3A%20%22https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1PukHvhxTqC72tau9HDnq1LKIl3F6V_FGr_y3G-jjZ-k%2Fedit%23gid%3D0%22%0A%20%20%7D%0A%7D",
+      "https://cellimagelibrary.org/images/40263",
+      "https://elifesciences.org/articles/57443",
+      "https://research.google/blog/a-browsable-petascale-reconstruction-of-the-human-cortex/",
+      "https://microns-explorer.org/manifests/mm3-v117",
+      "https://www.nature.com/articles/s41586-024-07558-y",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC6063995/",
+      "https://www.nature.com/articles/s41586-025-08985-1",
+      "https://biorxiv.org/content/10.1101/2025.10.09.680999v2.full",
+      "https://www.nature.com/articles/nature12346"
+    ]
+  },
+  "nativeRecordContexts": [
+    {
+      "kind": "milestones",
+      "source": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
+      "state": {
+        "path": "/neuro-atlas/milestones",
+        "hash": "#source-context",
+        "text": "Milestone source context\n\nMilestone references citing this source. The full timeline remains below.\n\nPrecision Neuroscience \u00b7 510(k)\n\nEvent date Mar 30, 2025\n\nFDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.\n\nOriginal source\nfor Precision Neuroscience \u00b7 510(k) (opens in a new tab)",
+        "sources": [
+          "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf"
+        ]
+      }
+    },
+    {
+      "kind": "funding",
+      "source": "https://axoft.us/",
+      "state": {
+        "path": "/neuro-atlas/funding",
+        "hash": "#source-context",
+        "text": "Funding source context\n\nReferences citing this source, with their evidence role. The full dashboard remains below.\n\nAxoft\nCompany website",
+        "sources": [
+          "https://axoft.us/"
+        ]
+      }
+    }
+  ]
+}

@@ -2,13 +2,13 @@
 
 `src/lib/source-context.ts` builds a reverse index from the same canonical data used by the current Neuro Atlas views. It does not scan files, invoke Git, fetch external pages, infer article aliases, or treat a publisher domain as a citation match. No source-directory href or label is changed.
 
-## Parent integration API
+## Directory integration API
 
 ```ts
 import { sourceContextsForUrl, type SourceContext } from "@/lib/source-context";
 
 // SourceContext = { href: string; label: string }
-const contexts: SourceContext[] = sourceContextsForUrl(url: unknown);
+const contexts: SourceContext[] = sourceContextsForUrl(sourceUrl);
 ```
 
 - Paths exclude the deployment basePath. Apply `atlasPath(contexts[0].href)` in the caller.
@@ -23,7 +23,7 @@ Both receivers must accompany this integration:
 - `/milestones?source=<encoded original bound URL>#source-context`
 - `/funding?source=<encoded original bound URL>#source-context`
 
-The parent/receiver child owns the server-rendered matched-record blocks and native browser validation; this change does not modify either existing page or timeline/dashboard component. Main had no event selector or native company-detail URL, so no unsupported company slug route is invented. The source query preserves a real canonical-data URL. Equivalent root-slash/tracking/DOI variants share one deterministic original binding and destination.
+The Milestones and Funding pages render exact matched-record blocks before their unchanged timeline/dashboard components. The existing views had no event selector or native company-detail URL, so no unsupported company slug route is invented. The source query preserves a real canonical-data URL. Equivalent root-slash/tracking/DOI variants share one deterministic original binding and destination.
 
 ```ts
 import {
@@ -49,7 +49,7 @@ type FundingSourceMatch = {
 
 The match helpers return canonical records, not fabricated excerpts. They return new result arrays, but records retain their source-data identities and should be treated as read-only. Render only the company facts selected by `website`/`founding`, the selected rounds, and selected regulatory milestones. A round can match through its principal `sourceUrl` **or** a named investor's `investorEvidence[].sourceUrl`; the latter supports participation, not independently every amount/date in the record. Compare those URLs with the shared normalizer when labeling the role of that citation. Unrendered portfolio-disclosure research fields do not get Funding contexts.
 
-`recordSourceContextsForUrl(url)` and `RECORD_CONTEXT_SOURCE_URLS` are the reverse-index plumbing; receiver pages only need the match helpers above. A malformed/unknown source returns no matches. Receivers should accept exactly one source query value, render an explicit no-match state for unsupported values, and give the matched block `id="source-context"`.
+`recordSourceContextsForUrl(url)` and `RECORD_CONTEXT_SOURCE_URLS` are the reverse-index plumbing; receiver pages only need the match helpers above. A malformed/unknown source returns no matches. Receivers accept exactly one source query value and give the matched block `id="source-context"`. Missing, repeated, malformed, or unmatched values leave the default page unchanged.
 
 ## Evidence and destination selection
 
@@ -81,7 +81,7 @@ Measured against the unchanged 587-entry catalog on this implementation:
 | Reference | 39 | 10 |
 | **Total** | **587** | **358** |
 
-229 entries correctly have no mapped context; 56 entries have multiple destinations. Catalog entries reach 229 distinct destinations: 29 Field Velocity chart/view/tab destinations, 93 Milestones matched-source blocks, 105 Funding matched-source blocks, and two existing methodology sections. The record destination totals require the parent-owned receiver integration. One real multiple: the FlyWire paper supports four separate visible chart contexts (proofreading effort, neuron counts, synapse counts, and tissue volume), yielding `+3 more`, not one entry per repeated observation.
+229 entries correctly have no mapped context; 56 entries have multiple destinations. Catalog entries reach 229 distinct destinations: 29 Field Velocity chart/view/tab destinations, 93 Milestones matched-source blocks, 105 Funding matched-source blocks, and two existing methodology sections. The record destinations are handled by the matching Milestones/Funding receiver blocks. One real multiple: the FlyWire paper supports four separate visible chart contexts (proofreading effort, neuron counts, synapse counts, and tissue volume), yielding `+3 more`, not one entry per repeated observation.
 
 ## Validation
 
@@ -90,4 +90,4 @@ node --import tsx --test tests/source-context.test.mjs
 npx tsc --noEmit
 ```
 
-13 focused tests pass. The implementation was developed in red/green slices with observed failing assertions for the missing API, confirmed plot references, normalization, recording selection, participants, latency, publication/Trends cards, visible methodology/forecasts, exact record helpers, deterministic multiples, and repaired malformed authorities. Tests use actual runtime records, exercise true chart multiples, archival no-context behavior, stable deduplication, unknown/malformed input, and ensure new runtime URL literals are already in the existing catalog so these helpers cannot inflate the source inventory. TypeScript passes. Full build, full-suite validation, and native receiver checks remain parent-owned.
+13 focused tests pass. The implementation was developed in red/green slices with observed failing assertions for the missing API, confirmed plot references, normalization, recording selection, participants, latency, publication/Trends cards, visible methodology/forecasts, exact record helpers, deterministic multiples, and repaired malformed authorities. Tests use actual runtime records, exercise true chart multiples, archival no-context behavior, stable deduplication, unknown/malformed input, and ensure new runtime URL literals are already in the existing catalog so these helpers cannot inflate the source inventory. TypeScript passes. Full build, full-suite validation, and native receiver checks are recorded separately in the PR verification evidence.
