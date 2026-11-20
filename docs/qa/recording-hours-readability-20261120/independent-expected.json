@@ -1,0 +1,138 @@
+[
+  {
+    "id": "neuralink-reported-hours-2026-10-01",
+    "individual": null,
+    "session": null
+  },
+  {
+    "id": "tusz-scalp-eeg-2017-04-17",
+    "individual": {
+      "value": "1.5",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "20.0",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2017-08-04",
+    "individual": {
+      "value": "1.7",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "37.2",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2018-04-15",
+    "individual": {
+      "value": "1.6",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "36.8",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2018-08-16",
+    "individual": {
+      "value": "1.8",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "40.3",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2018-11-14",
+    "individual": {
+      "value": "1.8",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "40.3",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2019-07-22",
+    "individual": {
+      "value": "1.6",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "38.8",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2020-04-23",
+    "individual": {
+      "value": "1.6",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "40.9",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "tusz-scalp-eeg-2020-05-09",
+    "individual": {
+      "value": "1.6",
+      "unit": "h",
+      "bound": false
+    },
+    "session": {
+      "value": "24.7",
+      "unit": "min",
+      "bound": false
+    }
+  },
+  {
+    "id": "ajile12-intracranial-2022-01-27",
+    "individual": {
+      "value": "106.7",
+      "unit": "h",
+      "bound": false
+    },
+    "session": null
+  },
+  {
+    "id": "poyo-primate-training-2023-10-24",
+    "individual": {
+      "value": "14.2",
+      "unit": "h",
+      "bound": true
+    },
+    "session": null
+  },
+  {
+    "id": "japaneeg-scalp-eeg-2026-05-31",
+    "individual": {
+      "value": "340.0",
+      "unit": "h",
+      "bound": false
+    },
+    "session": null
+  }
+]

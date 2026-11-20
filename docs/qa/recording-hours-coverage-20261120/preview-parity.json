@@ -1,0 +1,22 @@
+{
+  "source": "2362021 vs 2bb8fb4",
+  "measurements": [
+    {
+      "port": 36481,
+      "settled": {
+        "height": 513.703125,
+        "width": 271.484375,
+        "view": "0 0 271 208"
+      }
+    },
+    {
+      "port": 36483,
+      "settled": {
+        "height": 513.703125,
+        "width": 271.484375,
+        "view": "0 0 271 208"
+      }
+    }
+  ],
+  "result": "PASS"
+}

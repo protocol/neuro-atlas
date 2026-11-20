@@ -1,0 +1,65 @@
+{
+  "runtimeSha": "d431cdb047bd276c0886fb3833460cb8c1a034d8",
+  "files": {
+    "native-export-390.svg": {
+      "sha256": "5fbb96a5ad72d9f99e45b4dfe3c84a819800e7796ec13eeff3a1c7d9414f590c",
+      "bytes": 75360
+    },
+    "comparison-320.png": {
+      "sha256": "ca04f621512b524c47371ee58ae2e840c0d0254bfe4e98968ca671de7d52c592",
+      "bytes": 83941
+    },
+    "native-results.json": {
+      "sha256": "d7c6255c8f354f8f112a2a609d01af45c99b6327938489a8e88edd844b832097",
+      "bytes": 18743
+    },
+    "comparison-1440.png": {
+      "sha256": "c3062482843953873e0412503fa7b69d539e210589fbf1619e685e5e881057a3",
+      "bytes": 234006
+    },
+    "build.log": {
+      "sha256": "f78bd217b077801bec22b4255b43f136b226ba1a5f87fef953aa8878931c00e3",
+      "bytes": 1532
+    },
+    "README.md": {
+      "sha256": "72b68727d80d99c2b52e4ee6e396e96da76f52faab5ef112d0c215a056dec6d7",
+      "bytes": 3239
+    },
+    "native-export-1440.png": {
+      "sha256": "ad4b8c9d2001a3e6ba168473f97f366c82665605d737096ce86398732c1edc3e",
+      "bytes": 886712
+    },
+    "comparison-390.png": {
+      "sha256": "0cb8a0d98e8301cb424461929aee768f630a073552dafca0f0503cdf9b0049ac",
+      "bytes": 90170
+    },
+    "critic.md": {
+      "sha256": "520be202a1229ede6370cab00c15a37c9e8b4d03b8d4aa1d4a8ebb6f4bddf63d",
+      "bytes": 2983
+    },
+    "native-export-320.svg": {
+      "sha256": "ef5e6842ca9e6fa5d396a4808364a8936aa33e36124edfe86e106986d60dd245",
+      "bytes": 79738
+    },
+    "native-export-1440.svg": {
+      "sha256": "1969eb9009f6c482ce98a306fc3d692c157c0eeee78164a8208fbed75bbbe076",
+      "bytes": 69983
+    },
+    "served-assets.json": {
+      "sha256": "d39f9d1a1e027d2b400d7e4cc485aa8b1245acc683b59492198076b9668f6f0f",
+      "bytes": 1774
+    },
+    "independent-expected.json": {
+      "sha256": "2eda12cd0ca22a9816b659659b76f340f225bd6656444af3a5efdc620dbc5633",
+      "bytes": 2396
+    },
+    "after-1440.png": {
+      "sha256": "f59579c22f52a7ba380177d92ba1043ece87efaefb9e691e0a54a22ee029f9d5",
+      "bytes": 186778
+    },
+    "tests.log": {
+      "sha256": "6960df2e780af15757ddc5ba908f99f261b39eee571d9679f0989391c48f1273",
+      "bytes": 1694
+    }
+  }
+}

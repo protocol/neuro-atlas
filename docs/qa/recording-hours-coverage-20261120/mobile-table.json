@@ -1,0 +1,156 @@
+[
+  {
+    "width": 390,
+    "sourceTable": {
+      "client": 294,
+      "scroll": 784,
+      "left": 40.390625,
+      "right": 334.609375,
+      "dl": 8,
+      "dr": 382,
+      "dates": [
+        {
+          "text": "2026-10-01 \u00b7 disclosure",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2017-04-17 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2017-08-04 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-04-15 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-08-16 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-11-14 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2019-07-22 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2020-04-23 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2020-05-09 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2022-01-27 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2023-10-24 \u00b7 publication",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2026-05-31 \u00b7 publication",
+          "wrap": "nowrap"
+        }
+      ],
+      "labels": [
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block"
+      ],
+      "nativeScrollLeft": 400
+    },
+    "result": "PASS"
+  },
+  {
+    "width": 320,
+    "sourceTable": {
+      "client": 224,
+      "scroll": 784,
+      "left": 40.390625,
+      "right": 264.609375,
+      "dl": 8,
+      "dr": 312,
+      "dates": [
+        {
+          "text": "2026-10-01 \u00b7 disclosure",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2017-04-17 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2017-08-04 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-04-15 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-08-16 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2018-11-14 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2019-07-22 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2020-04-23 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2020-05-09 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2022-01-27 \u00b7 release",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2023-10-24 \u00b7 publication",
+          "wrap": "nowrap"
+        },
+        {
+          "text": "2026-05-31 \u00b7 publication",
+          "wrap": "nowrap"
+        }
+      ],
+      "labels": [
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block",
+        "block"
+      ],
+      "nativeScrollLeft": 400
+    },
+    "result": "PASS"
+  }
+]

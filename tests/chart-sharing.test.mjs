@@ -313,7 +313,12 @@ test('curated exports keep source-qualified evidence and identity without adding
       const evidence = exportEvidence(exported.window.document);
       for (const row of rows) {
         const label = row.querySelector('th').firstChild.textContent;
-        const qualified = row.querySelectorAll('td')[1].textContent;
+        // Coverage now has separate derived/context elements. Audit the original
+        // qualified measurement here; matched counts/means have dedicated export tests.
+        const cell = row.querySelectorAll('td')[1];
+        const qualified = row.querySelector('[data-recording-coverage-source]')
+          ? cell.firstChild.textContent.split(' h · ')[0]
+          : cell.textContent;
         assert.ok(evidence.includes(`${label}: ${qualified}`), `${panel.id}: missing source association ${label}: ${qualified}`);
         qualifiedCount++;
       }
