@@ -193,9 +193,9 @@ for (const plotId of supported) test(`${plotId}: source disclosure stays below t
     assert.ok([...exported.querySelectorAll('text')].some(label => label.textContent === context.scopeLabel));
     assert.ok(selected.notes.includes(context.disclosure));
     assert.equal(new URL(image.url).hash, new URL(original.url).hash, 'stable chart fragment is unchanged');
-    assert.equal(new URL(image.url).search, `?brainScale=${plotId}`, 'the selected-view export link restores its benchmark');
+    assert.equal(new URL(image.url).searchParams.get('chartModel'), `${new URL(image.url).pathname.split('/').at(-1)}:brain-scale`, 'the migrated selected-view export link restores its benchmark');
     const defaultViewUrl = new URL(image.url);
-    defaultViewUrl.searchParams.delete('brainScale');
+    defaultViewUrl.searchParams.delete('chartModel');
     assert.equal(defaultViewUrl.href, original.url, 'only the selected-state token changes; origin and base path are retained');
     await click(toggle); await clock.advance(350);
     assert.equal(await whenChartRegistered(anchor, 0), undefined);

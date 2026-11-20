@@ -32,7 +32,7 @@ test('selected A export is white with the official blue signature and a small au
     assert.match(logo.textContent, /R&D/);
     const footer = doc.querySelector('[data-export-footer]');
     assert.match(footer.textContent, /Neuro Atlas/);
-    assert.match(footer.textContent, /https:\/\/atlas.example\/neuro-atlas\/field-velocity\?recordingView=electrical#simultaneous-neural-recordings/);
+    assert.match(footer.textContent, /https:\/\/atlas.example\/neuro-atlas\/field-velocity\/simultaneous-neural-recordings\?recordingView=electrical/);
     assert.match(doc.documentElement.textContent, /Selected in-vivo observations/);
     assert.match(doc.documentElement.textContent, /Sources: Jun et al/);
     assert.match(doc.documentElement.textContent, /Electrical units/);
@@ -54,7 +54,7 @@ test('every exported chart replaces long notes with one Neuro Atlas referral and
       const out = parse(image.svg), doc = out.window.document;
       const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
       assert.equal((visible.match(/More information on Neuro Atlas\./g) ?? []).length, 1);
-      const expectedLink = 'https://atlas.example/neuro-atlas/field-velocity#selected-tissue-volume-checkpoints';
+      const expectedLink = 'https://atlas.example/neuro-atlas/field-velocity/selected-tissue-volume-checkpoints';
       assert.equal(image.url, expectedLink);
       // Long title-aligned URLs can span several SVG text rows; concatenating
       // the footer preserves their exact bytes without inserting artificial spaces.
@@ -283,7 +283,7 @@ test('large chart dimensions remain bounded while supporting notes are nonvisual
 });
 
 test('share link validates chart identity and strips URL credentials/query while preserving origin and basePath', () => {
-  assert.equal(chartShareUrl('https://name:secret@atlas.example/neuro-atlas/field-velocity?token=a&token=b#previous', 'tissue-mapped'), 'https://atlas.example/neuro-atlas/field-velocity#selected-tissue-volume-checkpoints');
+  assert.equal(chartShareUrl('https://name:secret@atlas.example/neuro-atlas/field-velocity?token=a&token=b#previous', 'tissue-mapped'), 'https://atlas.example/neuro-atlas/field-velocity/selected-tissue-volume-checkpoints');
   assert.throws(() => chartShareUrl('https://atlas.example/', 'made-up-target'), /Unknown/);
   assert.throws(() => chartShareUrl('javascript:alert(1)', 'tissue-mapped'), /HTTP/);
 });
@@ -293,11 +293,11 @@ test('recording image URLs retain only an exact single allowlisted measurement v
   const anchor = 'simultaneously-recorded-neurons';
   const clean = 'https://atlas.example/neuro-atlas/field-velocity';
   for (const view of ['electrical', 'human-channels', 'optical']) {
-    assert.equal(chartShareUrl(`https://name:secret@atlas.example/neuro-atlas/field-velocity?token=private&review=1&recordingView=${view}`, anchor), `${clean}?recordingView=${view}#${canonicalPerformanceAnchor(anchor)}`);
-    assert.equal(chartShareUrl(`${clean}?recordingView=${view}`, 'tissue-mapped'), `${clean}#selected-tissue-volume-checkpoints`);
+    assert.equal(chartShareUrl(`https://name:secret@atlas.example/neuro-atlas/field-velocity?token=private&review=1&recordingView=${view}`, anchor), `${clean}/${canonicalPerformanceAnchor(anchor)}?recordingView=${view}`);
+    assert.equal(chartShareUrl(`${clean}?recordingView=${view}`, 'tissue-mapped'), `${clean}/selected-tissue-volume-checkpoints`);
   }
   for (const query of ['recordingView=unknown', 'recordingView=OPTICAL', 'recordingView=optical%20', 'recordingView=', 'recordingView=optical&recordingView=human-channels', 'recordingView=optical&recordingView=optical', 'recordingView=%3Cscript%3E', 'recordingView=%E0%A4%A']) {
-    assert.equal(chartShareUrl(`${clean}?token=private&${query}`, anchor), `${clean}#${canonicalPerformanceAnchor(anchor)}`, query);
+    assert.equal(chartShareUrl(`${clean}?token=private&${query}`, anchor), `${clean}/${canonicalPerformanceAnchor(anchor)}`, query);
   }
 });
 

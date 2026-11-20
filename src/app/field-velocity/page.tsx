@@ -8,9 +8,6 @@ import { selectPerformance, selectPace } from "@/lib/field-velocity/performance"
 import { PerformanceCurves } from "@/components/performance-curves";
 import { PaceReadings } from "@/components/pace-readings";
 import { GoogleTrends } from "@/components/google-trends";
-import { GoogleTrendsProvider } from "@/components/google-trends-provider";
-import { CitationLatencyProvider } from "@/components/citation-latency-provider";
-import { PublicationSourceProvider } from "@/components/publication-source-provider";
 
 export const metadata = atlasMetadata("/field-velocity", "Field velocity — Neuro Atlas");
 const feed = parseFeed(SNAPSHOT);
@@ -19,13 +16,11 @@ export default function FieldVelocityPage() {
   return (
     <>
       <PlateHero kicker="Pace" meta={["PL R&D metrics"]} title="Field velocity" description="Measurements and inflection points across neurotechnology." stats={[]} />
-      <GoogleTrendsProvider><CitationLatencyProvider><PublicationSourceProvider>
         <div className="mt-8">
           <VelocityTabs engagementPreview={<GoogleTrends flat selection={["neurotech"]} />} references={{
             recording: <PerformanceCurves flat data={selectPerformance(feed)} provenance={PROVENANCE} selection={["simultaneously-recorded-neurons"]} />,
           }} performance={<PaceReadings flat data={selectPace(feed)} />} />
         </div>
-      </PublicationSourceProvider></CitationLatencyProvider></GoogleTrendsProvider>
     </>
   );
 }

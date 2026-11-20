@@ -11,6 +11,16 @@ const chart = snapshot => React.createElement(PublicationCharts, { snapshot, all
 const annualSvg = () => document.querySelector('dialog .publication-full-plot svg');
 const points = element => element.getAttribute('points').trim().split(/\s+/).map(pair => pair.split(',').map(Number));
 
+test('each interactive annual mark retains the science index base-year qualifier', async () => {
+  const cleanup = await mount(chart(syntheticPublicationSnapshot()), '#publication-output');
+  try {
+    const marks = [...annualSvg().querySelectorAll('[data-publication-mark][aria-label]')]
+      .filter(mark => /All research index|Four-domain index band/.test(mark.getAttribute('aria-label')));
+    assert.ok(marks.length > 0);
+    for (const mark of marks) assert.match(mark.getAttribute('aria-label'), /\(2022 = 100\)\.$/);
+  } finally { await cleanup(); }
+});
+
 test('annual dual axes lock the science index to the actual 2022 count with an explicit shared anchor', async () => {
   const snapshot = syntheticPublicationSnapshot();
   const cleanup = await mount(chart(snapshot), '#publication-output');

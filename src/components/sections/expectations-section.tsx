@@ -1,6 +1,8 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
+import { FieldVelocityRouteContext } from "@/components/field-velocity-route-context";
+import { graphNavigationHref } from "@/lib/field-velocity/graph-navigation";
 import { canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import MARKETS from "@/data/velocity/neurotech_market_signals.json";
@@ -15,6 +17,7 @@ const PLATFORM_LABEL: Record<string, string> = {
 };
 
 export function ExpectationsSection() {
+  const current = useContext(FieldVelocityRouteContext);
   const hash = usePerformanceHash();
   useLayoutEffect(() => {
     const anchor = window.history.state?.atlasRelatedMeasurement;
@@ -70,7 +73,9 @@ export function ExpectationsSection() {
               <ul className="mt-3 space-y-4">
                 {RELATED_MEASUREMENTS[point.title]?.map(measurement => <li key={measurement.anchor}>
                   <p data-measurement-relationship>{measurement.relationship}</p>
-                  <a data-related-measurement={measurement.anchor} href={`#${canonicalPerformanceAnchor(measurement.anchor)}`} onClick={event => {
+                  <a data-related-measurement={measurement.anchor} data-graph-link={current === null ? undefined : measurement.anchor}
+                    href={current === null ? `#${canonicalPerformanceAnchor(measurement.anchor)}` : graphNavigationHref(measurement.anchor, current || undefined)} onClick={event => {
+                    if (current !== null) return;
                     if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
                       event.preventDefault();
                       // Bind return focus to this history entry, not the latest clicked link.

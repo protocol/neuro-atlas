@@ -1,5 +1,6 @@
 /** Browser-safe frozen DTOs. No database/provider credentials in this module. */
 import { draftChartAnchors, metricChartAnchors } from "../../data/draft-chart-links";
+import { FIELD_VELOCITY_GRAPHS } from "../../data/field-velocity-links";
 export type FeedbackInput = {
   privateComment: string;
   publicTask: {title: string; summary: string; acceptance: string[]};
@@ -38,6 +39,7 @@ export const FEEDBACK_POLICY_VERSION = "atlas-feedback-v1" as const;
 // Shared curated identities keep browser selection and strict server intake aligned.
 export const FEEDBACK_SELECTABLE_CHART_IDS = [
   ...draftChartAnchors, ...metricChartAnchors,
+  ...FIELD_VELOCITY_GRAPHS.map(entry => entry.target),
   "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours",
   "idea_vintage", "latency_compression", "google-trends-neurotech", "google-trends-neuralink",
 ] as const;

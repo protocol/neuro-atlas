@@ -9,6 +9,7 @@ import { PerformanceCurves } from '../src/components/performance-curves.tsx';
 import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { readFileSync } from 'node:fs';
 import { chartShareUrl } from '../src/lib/chart-export.ts';
+import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 const hours = () => React.createElement(PerformanceCurves, { data, provenance, flat: true, selection: ['neural-recording-hours'] });
@@ -37,10 +38,11 @@ test('image-export links retain the exact selected toggle but never arbitrary qu
   ]) {
     const current = `https://private:secret@atlas.example/neuro-atlas/field-velocity?token=private&ref=a&ref=b&recordingView=optical&${query}=${value}#${anchor}`;
     const exported = new URL(chartShareUrl(current, anchor));
-    assert.equal(exported.search, `?${query}=${value}`);
+    const slug = (fieldVelocityGraph(anchor)).slug;
+    assert.equal(exported.searchParams.get('chartModel'), `${slug}:${query === 'brainScale' ? 'brain-scale' : 'fit'}`);
     assert.equal(exported.username, '');
     assert.equal(exported.password, '');
-    assert.equal(exported.pathname, '/neuro-atlas/field-velocity');
+    assert.equal(exported.pathname, `/neuro-atlas/field-velocity/${slug}`);
     for (const suffix of [`${value}&${query}=${value}`, '', '0', '%3Cscript%3E']) {
       const invalid = current.replace(`${query}=${value}`, `${query}=${suffix}`);
       assert.equal(new URL(chartShareUrl(invalid, anchor)).search, '');

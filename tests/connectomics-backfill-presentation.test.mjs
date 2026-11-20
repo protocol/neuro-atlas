@@ -65,6 +65,6 @@ test('the actual chart export shows the Eyewire II lower bound and keeps the Neu
     const key = [...doc.querySelectorAll('[data-export-point-key-entry]')].map(entry => [...entry.querySelectorAll('text')].map(line => line.textContent).join(' '));
     assert.ok(key.some(text => /Eyewire II.*2026 preprint.*>25,000 neurons/.test(text)), 'Eyewire II bound must be visible in the image key');
     assert.equal(doc.querySelector('[data-export-info]')?.textContent, 'More information on Neuro Atlas.');
-    assert.ok(doc.querySelector('[data-export-footer]').textContent.includes('#selected-published-connectomes-neuron-counts'));
+    assert.ok(doc.querySelector('[data-export-footer]').textContent.includes('/field-velocity/selected-published-connectomes-neuron-counts'));
   } finally { output?.window.close(); await cleanup(); }
 });
