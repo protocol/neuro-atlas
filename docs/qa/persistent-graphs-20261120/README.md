@@ -1,5 +1,7 @@
 # Persistent graph pages and interactive comparisons — local verification
 
+> Historical comparison-candidate evidence. The current scope removes custom dashboards; see [single-chart follow-up](../single-chart-pages-20261120/README.md).
+
 ## Release boundary
 
 This is an **unmerged, undeployed implementation candidate** for [PLR-136](https://linear.app/protocollabs/issue/PLR-136/give-every-field-velocity-graph-a-persistent-page-while-preserving). The implementation plan lives in that Backlog issue, not in this PR or the former methodology PR. No manual preview or production deployment was performed. `vercel.json` disables automatic deployment of both task feature branches without changing main's deployment behavior.
