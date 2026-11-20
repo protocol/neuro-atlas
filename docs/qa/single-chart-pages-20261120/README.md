@@ -1,5 +1,7 @@
 # Single-chart pages — removal follow-up, November 20, 2026
 
+> Historical removal evidence at the source below. The later [exact chart-view URL follow-up](../chart-state-urls-20261120/README.md) supersedes this runtime’s filtered-link restriction: Copy link now restores legend/model settings, while unsupported selected-view images remain disabled.
+
 ## Scope and source
 
 The current product is **one real chart per standalone page**. Custom composition, add/remove/reorder, named saves, dashboard sharing and reflow/bounce machinery are removed. The existing Field velocity catalog and unrelated Funding features remain. This is PR134 / PLR-136, **preview only; no merge or production approval**.

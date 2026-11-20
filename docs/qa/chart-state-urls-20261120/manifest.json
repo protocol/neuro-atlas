@@ -1,0 +1,76 @@
+{
+  "runtime": "c56b76f6183cc2b1ed00858f1464133612bb3182",
+  "rootAffectedTests": 152,
+  "prefixedStateAndAliasTests": 21,
+  "native": {
+    "stage": "local-final",
+    "base": "http://127.0.0.1:34967/neuro-atlas",
+    "legendCases": 19,
+    "freshEachLegend": true,
+    "modelN": [
+      9,
+      4
+    ],
+    "history": true,
+    "reload": true,
+    "allHiddenReset": true,
+    "companionViews": 3,
+    "legacyBciAliases": 3,
+    "nativeClipboardExact": true,
+    "viewports": [
+      1440,
+      390,
+      320
+    ],
+    "example": "http://127.0.0.1:34967/neuro-atlas/field-velocity/bci-information-transfer-over-time?chartHidden=bci-information-transfer-over-time%3Aspeech&chartModel=bci-information-transfer-over-time%3Afit%2Csensory",
+    "serverWrites": false
+  },
+  "independentBCISubsets": 32,
+  "independentAdversarialGroups": 51,
+  "servedAssetByteMatches": 14,
+  "review": {
+    "source": "c56b76f6183cc2b1ed00858f1464133612bb3182",
+    "passed": true,
+    "priorFullReview": {
+      "source": "94934925eaf3b6a987571675e4007e9a99de30b3",
+      "passed": true,
+      "report": "critic/review-report.md",
+      "reportSha256": "ab6b725d09cb62e5d6ee21a9e17b0184afca0d02c67418d3686dadc119c61ee8",
+      "reconciledReviewTests": {
+        "targeted-standard-tests.tap": {
+          "tests": 19,
+          "pass": 19,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0
+        },
+        "independent-probes.tap": {
+          "tests": 6,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0
+        }
+      }
+    },
+    "boundedReport": "critic-layout/review-report.md",
+    "boundedReportSha256": "02861ef6d7e0919c4358bdf7c090458d4e94e4419cdcddb2315fdde3386646cb",
+    "boundedTests": {
+      "new-layout-regression.tap": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "essential-layout-semantics.tap": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "dataScienceAuthAndLocksPreserved": true
+}
