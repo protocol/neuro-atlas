@@ -41,7 +41,7 @@ test('curated pop-outs show definitions by default and keep each observation wit
     assert.ok(rows.length >= 5, 'All point citations remain with the observations');
     assert.ok(modal.querySelector('.mx-sources [data-draft-sources-scope]')?.textContent.trim());
     assert.ok(modal.querySelector('.mx-data .draft-plot-scope') === null, 'Scope is not repeated above the table');
-    assert.equal(modal.querySelector('.mx-k').textContent, 'Source notes', 'Only the table is labeled Data and sources');
+    assert.equal(modal.querySelector('.mx-right .mx-k').textContent, 'Source notes', 'Only the table is labeled Data and sources');
   } finally { await cleanup(); }
 });
 
