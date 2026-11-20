@@ -79,7 +79,12 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
             assert g['sources']['width'] >= g['grid']['width']-1, g
         for detail_index in range(js('return document.querySelectorAll("dialog[open] .mx-data > details").length')):
             selector=f'dialog[open] .mx-data > details:nth-child({detail_index+1})'
-            click(selector+' > summary')
+            if not js('return document.querySelector('+json.dumps(selector)+').open'):
+                click(selector+' > summary')
+                # A first native click after a navigation can be dropped by the harness.
+                # Re-measure the same visible control and retry only while it remains closed.
+                if not js('return document.querySelector('+json.dumps(selector)+').open'):
+                    click(selector+' > summary')
             poll('document.querySelector('+json.dumps(selector)+').open','Data disclosure did not open')
         if anchor == 'metric-panel-bci-bitrate':
             # A portaled table must retain its own readable columns, not rely on .draft-plot ancestry.
