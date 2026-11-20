@@ -1,55 +1,61 @@
-# Acquisition metric modes — implementation verification
+# Historical-first acquisition view — implementation verification
 
-Base: `b6f99efaa80251c4fbbe608a329776617ae383ac`.
+Implementation base: `60dab9a3c50ce7993916a269183801e171a3e0ed`, rebased on main `c0ebfcbc22328f94692b503371cb316c10814df6`.
 
-## TDD evidence
+## Display contract
 
-Each behavior slice was exercised red before its implementation. Raw logs are retained in the task worktree under `.qa/acquisition-modes/` (ignored local evidence).
+- Historical acquisition efficiency is the default: **Voxels per $**. The only alternative is **$ per voxel**, with cheaper values at the top. There is no human-brain axis.
+- All 10 qualified observations, 2015–2025 dates and original x geometry remain intact. Expansion and EM fits keep their original independent inputs, equations and diagnostics; only displayed quantity is transformed.
+- No future crossing helper, crossing-year label or dashed forecast continuation remains. The on-site caveat identifies historical rates and heterogeneous resolutions, scope and cost definitions.
+- One default-off **Human-brain reference ($1B)** is available only in voxels/$. It is `1.875e12 voxels/$`, displayed as **1.88T**, separate from observations. No five-budget ladder remains.
+- Switching reference-on efficiency to reciprocal clears the reference URL state and immediately uses historical bounds, including during ordinary motion. Reciprocal share/export links cannot retain an active reference.
+- Point details retain efficiency, reciprocal cost and **Illustrative human-brain acquisition cost**, plus source/year and the original estimate/prospective qualifications. The human conversion is acquisition-only, source-estimated and explicitly not a matched whole-brain project budget.
+- The compact preview always shows historical efficiency, reference off, a short heading and one row of separate family-rate labels. Equal-height card CSS and shared type/data sizes are unchanged.
+- Reciprocal ticks use SI dollars; their explanation does not use the efficiency M/B/T/Q legend. Human-cost detail has at most four significant digits; large efficiency values use scientific notation without changing the shared formatter.
+- Selected JSON identifies the selected quantity and original efficiency fit basis without orphaned human-axis metadata. The source table and a separate original-source JSON retain canonical source values/units regardless of quantity selection. The archived raw $/voxel plot is unchanged.
+- Published fragments, earlier aliases, unrelated duplicate query entries, router state and Back/Forward are preserved. Default/invalid/duplicate/unpublished `acquisitionMetric=human-brain` selections sanitize to efficiency. Existing valid `brainScale` tokens remain usable in the eligible view.
 
-| Slice | Red log | Green log |
+## Focused TDD evidence
+
+Local ignored logs are under `.qa/acquisition-reframe/`:
+
+| Behavior slice | RED | GREEN |
 |---|---|---|
-| Mode controls, reciprocal values, inverted ordering, original x geometry and default preview | `01-modes-red.log` | `01-modes-green.log` |
-| Above-chart default-off target toggle and converted thresholds | `02-targets-red.log` | `02-targets-green.log` |
-| Independent cost-halving labels, bounded dashed extension and computed crossing years | `03-trends-red.log` | `03-trends-green.log` |
-| Stable focus/pinned popups with all three values and source qualifications | `04-tooltip-red.log` | `04-tooltip-green.log` |
-| Readable assumptions, neutral modal title, selected image/data units and original fit-basis metadata | `05-display-export-red.log` | `05-display-export-green.log` |
-| Compact SI per-voxel ticks and cost-axis precision within original margin | `07-si-ticks-red.log` | `07-si-ticks-green.log` |
-| Visible crossing/extrapolation keys in image exports, not merely hidden descriptions | `09-visible-extrapolation-red.log` | `09-visible-extrapolation-green.log` |
-| Compact preview key; long crossing explanations only in the expanded chart | `10-compact-preview-red.log` | `final-preview-regressions.log` |
+| Two quantity buttons, efficiency default and original observation geometry | `01-two-quantities-red.log` | `01-two-quantities-green.log` |
+| Single optional efficiency-only $1B reference | `02-single-reference-red.log` | `02-single-reference-green.log` |
+| Actual mounted controls clear reciprocal reference URL state | `03-reciprocal-url-red.log` | `03-reciprocal-url-green.log` |
+| Compact historical preview and one short fit-label row | `04-compact-preview-red.log` | `04-compact-preview-green.log` |
+| Stable source details with explicitly illustrative human conversion | `05-illustrative-detail-red.log` | `05-illustrative-detail-green.log` |
+| Visible historical-rate/scope caveat | `06-historical-scope-red.log` | `06-historical-scope-green.log` |
+| Selected export metadata and separate unchanged source table/download | `07-source-and-selected-export-red.log` | `07-source-and-selected-export-green.log` |
+| Ordinary-motion reciprocal domain is historical before export registration | `09-reference-motion-red.log` | `09-reference-motion-green.log` |
 
-The popup red run caught projected-point identity churn: `usePointTooltip` could not retain selected cloned points. The projected plot is now memoized by source plot and selected metric. Both native focus-style events and pinning are tested in all modes; switching metrics clears stale inspection without restoring focus to a mark.
+The ordinary-motion regression reproduced a hidden leftover scenario domain while reciprocal exports were enabled. Effective benchmark progress is now zero whenever that view has no benchmark. The test compares all rendered point positions before reference activation and immediately after switching to reciprocal, then checks export registration and later animation frames.
 
-## Passing verification
+## Passing bounded verification
 
-- **101 affected tests passed** (`focused-final.log`): acquisition modes/source math, connectomics provenance and model/UI/motion/export behavior, historical fits/layout/previews, unchanged shared count formatting, curated source preservation, chart inventory, BCI trend rendering, and the full readable-URL navigation suite including Back/Forward. This run preceded only the final two-paragraph-to-compact-preview-key change.
-- **35 affected tests passed on the final implementation** (`final-preview-regressions.log`), including all 11 new acquisition tests, acquisition source math, benchmark animation/reversals/reduced motion, source inspection, narrow target/badge clearance, export checks and preview behavior.
-- `npm run typecheck` passed (`typecheck.log`).
-- ESLint passed for every changed TS/TSX/test file (`lint.log`). npm emits an existing environment warning about its `jobs` configuration; no TypeScript or ESLint diagnostics remained.
-- `git diff --check` passed. `src/data/` and `src/lib/large-count-label.ts` remain byte-for-byte unchanged from the base.
+- **76 affected tests passed**, zero failures, in `focused-final.log`.
+- `npm run typecheck` passed in `typecheck-final.log` (existing npm `jobs` environment warning only; no TypeScript diagnostics).
+- Changed-file ESLint, including the new motion regression, passed without diagnostics in `eslint.log`.
+- `git diff --check` passed.
+- No changes to `src/data/`, `docs/data/`, source/provenance goldens, source normalizers or `src/lib/large-count-label.ts` relative to the implementation base.
 
-Final focused command:
+Focused command:
 
 ```sh
-node --import tsx --test --test-concurrency=2 \
-  tests/acquisition-*.test.mjs \
-  tests/connectomics-brain-scale-ui.test.mjs \
-  tests/connectomics-tooltip-clear.test.mjs \
-  tests/connectomics-benchmark-collisions.test.mjs \
+node --import tsx --test \
+  tests/acquisition*.test.mjs \
+  tests/chart-toggle-urls.test.mjs \
+  tests/chart-trend-exports.test.mjs \
+  tests/historical-trend-layout.test.mjs \
   tests/historical-trend-preview.test.mjs \
+  tests/connectomics-brain-benchmarks.test.mjs \
+  tests/connectomics-brain-scale-ui.test.mjs \
+  tests/connectomics-benchmark-collisions.test.mjs \
+  tests/connectomics-tooltip-clear.test.mjs \
   tests/voxel-number-readability.test.mjs
 ```
 
-The original acquisition-only opaque preview/SVG hashes no longer describe the intentionally changed default cost view. They were replaced by explicit independent x-coordinate, source-value, reciprocal, fit and displayed-unit assertions rather than regenerating opaque hashes. Public-data SVG goldens and all source/provenance goldens and normalizers are unchanged.
+Source math remains unchanged: `exaspim2024` is the author estimate `1e11 voxels/$` → illustrative **$18.75B**; `peem2024` is prospective `2e10 voxels/$` → **$93.75B**, using `H=1.875e21` voxels. The ExA-SPIM/HiExM citation mismatch stays visible.
 
-An initial repository-wide parallel test attempt was intentionally terminated under shared CPU load; `.qa/acquisition-modes/02-regression.log` is an interrupted record, not a suite verdict. Initial bounded regressions exposed stale expectations for the old acquisition default/heading; those expectations were updated narrowly. The final readable-URL suite and source/provenance checks passed. No production build, browser screenshots, native clipboard/raster QA, review, PR, push, merge or deployment is claimed by this implementation handoff.
-
-## Source discrepancy and display boundary
-
-- Point #10 `exaspim2024`: `1e11 voxels/$` → **$18.75B**, not the requested roughly $50–100B.
-- Point #8 `peem2024`: prospective `2e10 voxels/$` → **$93.75B**.
-- Human image denominator: **1.875×10²¹ voxels** at 1,200,000 mm³ and 4×4×40 nm.
-- Original x domain remains **2015–2025**. Expansion continues dashed only from 2024 to 2025; EM ends at the chart edge and has no visible forward interval.
-- Computed $1B crossings are **2032.741933127535** and **2039.3328704849728**. Both are explicitly labeled extrapolations beyond the displayed range, including visible image-export keys.
-- The archived raw $/voxel plot sharing the internal ID is excluded from the new modes. No source observations, source quotations, model inputs, published fragments or aliases were altered.
-
-Production-build/native QA, integration with concurrent work, and release review remain separate verification stages.
+Production build, native browser geometry at 320/390/desktop widths, real clipboard/raster PNG checks and release-stage review are separate verification. This implementation verification does not claim push, PR, merge or deployment.

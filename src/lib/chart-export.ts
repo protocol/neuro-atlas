@@ -61,7 +61,7 @@ export function chartShareUrl(current: string, anchor: string) {
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   if (toggle) url.searchParams.set(toggle.query, toggle.value);
-  if (acquisitionMetric !== "human-brain") url.searchParams.set(acquisitionMetricQuery, acquisitionMetric);
+  if (acquisitionMetric !== "voxels-per-dollar") url.searchParams.set(acquisitionMetricQuery, acquisitionMetric);
   return url.href;
 }
 

@@ -9,7 +9,7 @@ globalThis.React=React;
 const plot=METRIC_CHART_EVIDENCE['Connectomics imaging cost efficiency'].plots[0];
 const anchor='metric-panel-acquisition-economics';
 const slug='estimated-acquisition-efficiency-voxels-per-dollar';
-test('actual acquisition controls restore and share their URL metric independently of human-brain targets',async()=>{
+test('actual acquisition controls restore and share their URL metric and clear the efficiency-only reference when switching to reciprocal',async()=>{
  const clock=brainScaleClock(true);
  const cleanup=await mount(React.createElement(DraftChartPanel,{plot,anchor}),'#'+slug,win=>{
   clock.configure(win);
@@ -22,16 +22,16 @@ test('actual acquisition controls restore and share their URL metric independent
   await click(document.querySelector('dialog[open] [data-acquisition-metric=dollars-per-voxel]'));
   assert.equal(new URL(window.location.href).searchParams.get('acquisitionMetric'),'dollars-per-voxel');
   assert.deepEqual(new URL(window.location.href).searchParams.getAll('tag'),['first','second']);
-  assert.equal(new URL(window.location.href).searchParams.get('brainScale'),'acquisition-economics');
+  assert.equal(new URL(window.location.href).searchParams.has('brainScale'),false,'reciprocal clears reference URL state');
   assert.equal(window.history.state.kept,'router-state');
   assert.equal(chosen(),'dollars-per-voxel');
   await act(async()=>window.history.back());await settle();
   assert.equal(chosen(),'voxels-per-dollar');
   await act(async()=>window.history.forward());await settle();
   assert.equal(chosen(),'dollars-per-voxel');
-  await click(document.querySelector('dialog[open] [data-acquisition-metric=human-brain]'));
+  await click(document.querySelector('dialog[open] [data-acquisition-metric=voxels-per-dollar]'));
   assert.equal(new URL(window.location.href).searchParams.has('acquisitionMetric'),false,'default needs no query token');
-  assert.equal(new URL(window.location.href).searchParams.get('brainScale'),'acquisition-economics');
-  assert.equal(chosen(),'human-brain');
+  assert.equal(new URL(window.location.href).searchParams.has('brainScale'),false,'reciprocal clears reference URL state');
+  assert.equal(chosen(),'voxels-per-dollar');
  }finally{await cleanup();}
 });

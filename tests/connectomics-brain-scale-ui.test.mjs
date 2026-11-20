@@ -18,7 +18,7 @@ globalThis.React = React;
 const plots = Object.values(METRIC_CHART_EVIDENCE).flatMap(item => item.plots);
 const supported = ['public-data-size', 'acquisition-economics'];
 // Public-data goldens remain those captured from untouched 5015d2c.
-// Acquisition's human-brain default intentionally changes its preview and SVG.
+// Acquisition's historical two-quantity view has explicit rendering tests.
 // Its source, fit, reciprocal modes and original x geometry are independently
 // checked in acquisition-metric-modes; do not regenerate an opaque SVG golden.
 const baseline = {
@@ -49,7 +49,7 @@ test('only the two supported full plots offer a default-off accessible switch; u
       assert.equal(toggle.getAttribute('role'), 'switch');
       assert.equal(toggle.getAttribute('aria-checked'), 'false');
       assert.equal(doc.querySelector('figure').dataset.brainScaleState, 'off');
-      assert.ok(toggle.textContent.length < 25);
+      assert.ok(toggle.textContent.length <= (plot.id === 'acquisition-economics' ? 32 : 24));
     }
     assert.equal(doc.querySelector('[data-brain-scale-reference]'), null);
     // Acquisition's requested default/units/labels intentionally replace the old
@@ -81,7 +81,7 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
       return Number(p.getAttribute('cy'));
     });
     const before = coordinates();
-    const [startMin, startMax, endMin, endMax] = plotId === 'public-data-size' ? [-3, 1, -3, 7] : [8, 11, 8, 17];
+    const [startMin, startMax, endMin, endMax] = plotId === 'public-data-size' ? [-3, 1, -3, 7] : [8, 11, 8, 13];
     await click(toggle);
     assert.equal(figure.dataset.brainScaleState, 'animating');
     assert.equal(toggle.getAttribute('aria-checked'), 'true');
@@ -92,9 +92,8 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
     await clock.advance(175);
     assert.equal(Number(svg.dataset.brainScaleLogMin), (startMin + endMin) / 2);
     assert.equal(Number(svg.dataset.brainScaleLogMax), (startMax + endMax) / 2);
-    // Human-brain cost mode adds a dedicated cheaper-direction header lane.
-    // Coordinates still use the original efficiency-domain animation.
-    const top = plotId === 'acquisition-economics' ? 108 : 44, bottom = top + 232;
+    // Historical efficiency retains the original efficiency-domain animation.
+    const top = plotId === 'acquisition-economics' ? 92 : 44, bottom = top + 232;
     for (const [index, point] of plot.points.entries()) {
       const expected = bottom - (Math.log10(point.y) - (startMin + endMin) / 2) / (((startMax + endMax) - (startMin + endMin)) / 2) * (bottom - top);
       assert.ok(Math.abs(coordinates()[index] - expected) < 1e-9, 'mark follows the interpolated log domain');
@@ -105,7 +104,7 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
     assert.equal(figure.querySelectorAll('.draft-plot-overlap-note').length, overlapRows, 'overlap explanations must not grow the figure while rescaling');
     assert.deepEqual([...svg.querySelectorAll('[data-source-observation]')], points, 'preserve inspection/focus nodes');
     const references = [...svg.querySelectorAll('[data-brain-scale-reference]')];
-    assert.equal(references.length, plotId === 'public-data-size' ? 3 : 5);
+    assert.equal(references.length, plotId === 'public-data-size' ? 3 : 1);
     for (const line of references) {
       assert.equal(line.getAttribute('stroke-dasharray'), '2 5');
       assert.equal(line.parentElement.getAttribute('opacity'), '1');
@@ -179,7 +178,7 @@ for (const plotId of supported) test(`${plotId}: source disclosure stays below t
     assert.equal(disclosure.open, false);
     assert.ok(svg.compareDocumentPosition(disclosure) & window.Node.DOCUMENT_POSITION_FOLLOWING);
     const baseContext = brainBenchmarkContext(plotId);
-    const context = plotId === 'acquisition-economics' ? acquisitionBenchmark(baseContext, 'human-brain') : baseContext;
+    const context = plotId === 'acquisition-economics' ? acquisitionBenchmark(baseContext, 'voxels-per-dollar') : baseContext;
     assert.ok(disclosure.textContent.includes(context.disclosure));
     assert.deepEqual([...disclosure.querySelectorAll('a')].map(a => a.href), context.sources.map(source => source.url));
     const off = (await whenChartRegistered(anchor, 0)).getChart();

@@ -28,7 +28,7 @@ export function performanceUrl(currentUrl: string, anchor: string) {
   for (const query of ["brainScale", "extrapolation"]) {
     if (query !== toggle?.query || !chartToggleEnabled(url, anchor)) url.searchParams.delete(query);
   }
-  if (acquisitionMetricFromUrl(url, anchor) === "human-brain") url.searchParams.delete(acquisitionMetricQuery);
+  if (acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar") url.searchParams.delete(acquisitionMetricQuery);
   url.hash = canonicalPerformanceAnchor(anchor);
   return url.href;
 }
@@ -37,8 +37,9 @@ export function performanceUrl(currentUrl: string, anchor: string) {
 export function acquisitionMetricUrl(currentUrl: string, anchor: string, metric: AcquisitionMetricSelection) {
   const url = new URL(performanceUrl(currentUrl, anchor));
   if (performanceTarget(anchor) === "metric-panel-acquisition-economics"
-    && (metric === "voxels-per-dollar" || metric === "dollars-per-voxel")) url.searchParams.set(acquisitionMetricQuery, metric);
+    && metric === "dollars-per-voxel") url.searchParams.set(acquisitionMetricQuery, metric);
   else url.searchParams.delete(acquisitionMetricQuery);
+  if (metric === "dollars-per-voxel") url.searchParams.delete("brainScale");
   return url.href;
 }
 
@@ -122,8 +123,10 @@ function canonicalizePerformanceLocation() {
   const anchor = window.location.hash.slice(1);
   const link = fieldVelocityLink(anchor);
   const url = new URL(window.location.href);
-  const clearMetric = url.searchParams.has(acquisitionMetricQuery) && acquisitionMetricFromUrl(url, anchor) === "human-brain";
-  if (link && (anchor !== link.slug || clearMetric)) {
+  const clearMetric = url.searchParams.has(acquisitionMetricQuery) && acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar";
+  const clearReference = performanceTarget(anchor) === "metric-panel-acquisition-economics"
+    && acquisitionMetricFromUrl(url, anchor) === "dollars-per-voxel" && url.searchParams.has("brainScale");
+  if (link && (anchor !== link.slug || clearMetric || clearReference)) {
     window.history.replaceState(window.history.state, "", performanceUrl(window.location.href, anchor));
   }
 }
@@ -156,7 +159,7 @@ export function useChartToggle(anchor?: string) {
 /** Acquisition units share the existing location subscription/history contract. */
 export function useAcquisitionMetric(anchor?: string) {
   const metric = useSyncExternalStore(subscribe,
-    () => anchor ? acquisitionMetricFromUrl(new URL(window.location.href), anchor) : "human-brain", () => "human-brain" as const);
+    () => anchor ? acquisitionMetricFromUrl(new URL(window.location.href), anchor) : "voxels-per-dollar", () => "voxels-per-dollar" as const);
   const setMetric = (next: AcquisitionMetricSelection) => {
     if (!anchor || performanceTarget(anchor) !== "metric-panel-acquisition-economics") return;
     const url = acquisitionMetricUrl(window.location.href, anchor, next);
