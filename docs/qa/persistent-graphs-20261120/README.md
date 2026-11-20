@@ -27,9 +27,9 @@ At the final runtime, real overview → chart → reload → arrow, browser Back
 Actual native input exercised:
 
 - Adding, removing and reordering real charts; independent duplicate recording views.
-- The original full-width card shrinking into a two-column layout with a bounded inward overshoot. Actual RAF rectangles, not endpoint screenshots, established the motion; settings-only changes produced no card-layout animation.
-- Reduced-motion additions/removals without card animations.
-- Chart/card/document bounds at 1440, 1024, 768, 390 and 320px, plus keyboard reorder/Escape/focus behavior.
+- The original full-width card shrinking into a two-column layout with a bounded inward overshoot. Actual RAF rectangles, not endpoint screenshots, established the motion; the measured fit toggle produced no card-layout animation.
+- Reduced-motion Add produced zero measured card animations; subsequent removal succeeded.
+- Numeric card/document bounds at 1024, 768, 390 and 320px, plus 1440px measured reflow and light/dark visuals. A separate native Enter follow-up verified reorder, legend and extrapolation activation; Escape/focus behavior also passed.
 - Explicit save, reload/reopen, native clipboard link and encoded-settings roundtrip.
 - **Two real same-origin Chrome tabs:** a newer save survived a stale tab's attempted overwrite; the stale draft remained editable and could be saved under a new name.
 - Malformed storage remained byte-identical and saving was disabled; no repair-by-overwrite.
@@ -48,7 +48,7 @@ The GIF contains actual browser screenshots during addition, with measured captu
 
 ### Images and privacy
 
-Native default optical Copy link, PNG clipboard readback and API image generation passed after dashboard use, with the correct view suffix/URL and unchanged navigation. A filtered dashboard's generic BCI API export produced the canonical **14-mark** image without changing its **nine-mark** card. Actual Download PNG handlers produced BCI default, modeled footprint and modeled acquisition images; their real Blob bytes were intercepted before OS file-save. This verifies raster/handler output, not a filesystem-download receipt or recipient-editor paste. Existing reference images retain their scientific model captions and qualified units.
+Native optical-view Copy link, PNG clipboard readback and API image generation passed after dashboard use, with the correct view suffix/URL and unchanged navigation. A filtered dashboard's generic BCI API export produced the canonical **14-mark** image without changing its **nine-mark** card. Actual Download PNG handlers produced BCI default, modeled footprint and modeled acquisition images; their real Blob bytes were intercepted before OS file-save. This verifies raster/handler output, not a filesystem-download receipt or recipient-editor paste. Existing reference images retain their scientific model captions and qualified units.
 
 Unsupported selected-view image exports reject rather than silently substitute the canonical default; batch behavior and all-graph invocation boundaries were independently checked before rasterization. Curated Feedback identity, path-only privacy sanitization, existing consent gates and access behavior remain covered without submitting Feedback or real analytics.
 
