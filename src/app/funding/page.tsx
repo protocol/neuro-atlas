@@ -1,6 +1,7 @@
 import { atlasMetadata } from "@/lib/atlas-metadata";
 import fundingData from "@/data/funding-index.json";
 import { FundingIndexDashboard } from "@/components/funding-index-dashboard";
+import { FundingSourceContext } from "@/components/funding-source-context";
 import { PlateHero } from "@/components/plate-header";
 import { formatCapital, type FundingIndexData } from "@/lib/funding-index";
 
@@ -10,7 +11,12 @@ export const metadata = atlasMetadata(
   "A screened view of BCI financing rounds, investors, and regulatory milestones.",
 );
 
-export default function FundingPage() {
+export default async function FundingPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+} = {}) {
+  const source = (await searchParams)?.source;
   const data = fundingData as FundingIndexData;
   return (
     <>
@@ -27,6 +33,7 @@ export default function FundingPage() {
           { value: String(data.summary.regulatoryMilestones), label: "regulatory markers" },
         ]}
       />
+      <FundingSourceContext source={source} />
       <FundingIndexDashboard data={data} />
     </>
   );

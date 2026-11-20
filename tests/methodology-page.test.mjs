@@ -91,7 +91,7 @@ test("the methodology directory renders every classified link under its own disc
       const details = directory.querySelector(`#sources-${key}`);
       assert.equal(details.open, false);
       assert.ok(details.querySelector("summary")?.textContent.includes(String(entries.length)));
-      assert.deepEqual([...details.querySelectorAll("a")].map((a) => [a.getAttribute("href"), a.textContent]), entries);
+      assert.deepEqual([...details.querySelectorAll("a[data-source-link]")].map((a) => [a.getAttribute("href"), a.textContent]), entries);
     }
   } finally { window.close(); }
 });

@@ -59,7 +59,7 @@ async function travel(direction) {
 test('real funding route restores its Investors URL and preserves unrelated query, hash, Back and Forward', async () => {
   const route = FundingPage.default ?? FundingPage;
   const startUrl = '/funding?review=1&tag=a&tag=b&view=investors#sources';
-  let cleanup = await mount(React.createElement(route), '', win => win.history.replaceState(null, '', startUrl));
+  let cleanup = await mount(await route(), '', win => win.history.replaceState(null, '', startUrl));
   try {
     assert.equal(button('investors').getAttribute('aria-pressed'), 'true', 'direct Investors URL opens the Investors lens');
     assert.ok([...document.querySelectorAll('h2')].some(el => el.textContent.includes('Most active indexed investors')));
@@ -77,7 +77,7 @@ test('real funding route restores its Investors URL and preserves unrelated quer
     await click(button('investors'));
     assert.equal(window.history.length, length, 'clicking the active lens does not add a duplicate entry');
     await cleanup();
-    cleanup = await mount(React.createElement(route), '', win => win.history.replaceState(null, '', investorsUrl));
+    cleanup = await mount(await route(), '', win => win.history.replaceState(null, '', investorsUrl));
     assert.equal(button('investors').getAttribute('aria-pressed'), 'true', 'remount/reload restores the same Investors lens');
   } finally { await cleanup(); }
 });
