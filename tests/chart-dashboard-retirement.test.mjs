@@ -36,8 +36,10 @@ test('unsupported selected-view exports give honest reset guidance without offer
   for (const settings of [{ hidden: ['Speech decoding'] }, { extrapolate: true }, { sensory: true }, { voxels: true }, { benchmark: true }]) {
     const html = renderToStaticMarkup(React.createElement(ChartExplorationContext.Provider, { value: { settings, update() {} } },
       React.createElement(ChartActions, { anchor: 'fixture', title: 'Selected chart' })));
-    assert.match(html, /Chart images and graph links are unavailable/);
-    assert.match(html, /Reset the view/);
+    assert.match(html, /Chart images are unavailable/);
+    assert.match(html, />Copy link<\/button>/);
+    assert.match(html, /Use Copy link to share this view/);
+    assert.match(html, /reset the view to export an image/);
     assert.doesNotMatch(html, /dashboard/i);
   }
 });

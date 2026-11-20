@@ -1,8 +1,10 @@
 "use client";
 
-import { useContext, useState, type ReactNode } from "react";
+import { useContext, type ReactNode } from "react";
 import { GraphExportContext } from "@/components/graph-export-context";
-import { ChartExplorationContext, type ChartExplorationSettings } from "@/components/chart-exploration-context";
+import { ChartExplorationContext } from "@/components/chart-exploration-context";
+import { useStandaloneChartSettings } from "@/components/use-standalone-chart-settings";
+import { standaloneChartParams } from "@/lib/standalone-chart-state";
 import { InlineChartDetail } from "@/components/chart-modal-slots";
 import { DraftChartMethodology, DraftPanelDetail } from "@/components/draft-chart-panel";
 import { DraftChartPlot, DraftEventTimeline } from "@/components/draft-chart-plot";
@@ -58,14 +60,14 @@ function SelectedDetail({ entry }: { entry: FieldVelocityGraph }) {
 
 export function FieldVelocityGraphDetail({ entry, pageHeading }: { entry: FieldVelocityGraph; pageHeading?: ReactNode }) {
   const request = useContext(GraphExportContext);
-  const [settings, setSettings] = useState<ChartExplorationSettings>({});
+  const { settings, update } = useStandaloneChartSettings(entry);
   const { graph } = entry;
   // These two established overlays support settled image exports; tissue modes do not.
   const supportsBenchmarkExport = graph.renderer === "draft" && (graph.plot === "public-data-size" || graph.plot === "acquisition-economics");
   return <ChartExplorationContext.Provider value={request ? null : {
-    settings, supportsBenchmarkExport, update: change => setSettings(current => ({ ...current, ...change })),
+    settings, supportsBenchmarkExport, update,
   }}>
     {pageHeading && <header>{pageHeading}</header>}
-    <InlineChartDetail.Provider value><div className="pc-detail graph-detail"><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
+    <InlineChartDetail.Provider value><div className="pc-detail graph-detail" data-chart-state={request ? "" : standaloneChartParams(entry, settings).toString()}><SelectedDetail entry={entry} /></div></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }

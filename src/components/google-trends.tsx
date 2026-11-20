@@ -122,13 +122,14 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const href = useGraphHref(id);
   const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
-  const [copyStatus, setCopyStatus] = useState('');
-  const [copyFallback, setCopyFallback] = useState('');
+  const [copyResult, setCopyResult] = useState({ url: '', status: '', fallback: '' });
+  const currentCopy = copyResult.url && typeof window !== 'undefined' && copyResult.url === (href ? chartShareUrl : performanceUrl)(window.location.href, id);
+  const { status: copyStatus, fallback: copyFallback } = currentCopy ? copyResult : { status: '', fallback: '' };
   const share = <div className="pc-share">
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
       const url = (href ? chartShareUrl : performanceUrl)(window.location.href, id);
-      try { await navigator.clipboard.writeText(url); setCopyFallback(''); setCopyStatus('Link copied'); }
-      catch { setCopyFallback(url); setCopyStatus('Select and copy the chart URL below.'); }
+      try { await navigator.clipboard.writeText(url); setCopyResult({ url, fallback: '', status: 'Link copied' }); }
+      catch { setCopyResult({ url, fallback: url, status: 'Select and copy the chart URL below.' }); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;

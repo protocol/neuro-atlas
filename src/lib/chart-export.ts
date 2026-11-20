@@ -1,10 +1,11 @@
 import { atlasBasePath } from "@/lib/atlas-path";
 import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
+import { readStandaloneChartSettings, standaloneChartParams } from "@/lib/standalone-chart-state";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; chartState?: string; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string; filename: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -48,9 +49,8 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
   return paint;
 }
 
-/** Share stable chart identity, never credentials or arbitrary query tokens.
- * Only this chart's exact, single enum may carry measurement-view state.
- * Navigation and existing Copy link controls retain their original URL contract. */
+/** Share stable chart identity and bounded chart-scoped settings, never userinfo
+ * or arbitrary query tokens. App navigation retains its separate query contract. */
 function mountedBase(url: URL) {
   // Accept the app’s current validated mount, including the public proxy prefix.
   const path = url.pathname.match(/^((?:\/[a-z0-9_-]+)*)\/field-velocity(?:\/[a-z0-9-]+)?\/?$/i);
@@ -63,11 +63,13 @@ export function chartShareUrl(current: string, anchor: string) {
   const url = new URL(current);
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
   const recordingView = link.graph?.renderer === "recording" ? recordingViewToken(url) : undefined;
+  const settings = link.graph ? standaloneChartParams(link as FieldVelocityGraph, readStandaloneChartSettings(url, link as FieldVelocityGraph)) : new URLSearchParams();
   const base = mountedBase(url);
   url.pathname = base + (link.graph ? graphPath(link as FieldVelocityGraph) : "/field-velocity");
   url.hash = link.graph ? "" : link.slug;
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
+  settings.forEach((value, key) => url.searchParams.set(key, value));
   return url.href;
 }
 
@@ -218,6 +220,12 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const box = (source.getAttribute("viewBox") ?? "").trim().split(/[ ,]+/).map(Number);
   if (box.length !== 4 || !box.every(Number.isFinite) || box[2] <= 0 || box[3] <= 0) throw new Error("Chart has no usable viewBox");
   const url = chartShareUrl(currentUrl, anchor);
+  const entry = fieldVelocityLink(anchor);
+  const expectedState = entry?.graph ? standaloneChartParams(entry as FieldVelocityGraph, readStandaloneChartSettings(new URL(currentUrl), entry as FieldVelocityGraph)).toString() : "";
+  const renderedState = source.closest("[data-chart-state]")?.getAttribute("data-chart-state") ?? "";
+  if ((chart.chartState ?? "") !== expectedState || renderedState !== (chart.chartState ?? "")) {
+    throw new Error("Chart state changed or is not ready. Retry export.");
+  }
   // A registration can lag the committed SVG, and a queued URL can lag both.
   // Validate all three in the same synchronous step that serializes the plot.
   if (recordingView !== undefined && (

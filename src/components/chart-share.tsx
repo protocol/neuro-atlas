@@ -1,16 +1,22 @@
 "use client";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { buildChartImage, copyChartImage, downloadChartImage, type ChartExport } from "@/lib/chart-export";
 import { ChartExplorationContext, explorationExportReason } from "@/components/chart-exploration-context";
 import { GraphExportContext } from "@/components/graph-export-context";
 import { registerChart } from "@/lib/chart-export-api";
+import { fieldVelocityGraph } from "@/data/field-velocity-links";
+import { standaloneChartParams } from "@/lib/standalone-chart-state";
 
 /** Only explicit clicks snapshot/export. Mounting, hovering and permission failure never write. */
 export function ChartShare({ anchor, title, getChart, disabled = false }: {
   anchor: string; title: string; getChart: () => ChartExport; disabled?: boolean;
 }) {
-  const unavailable = explorationExportReason(useContext(ChartExplorationContext));
+  const exploration = useContext(ChartExplorationContext);
+  const unavailable = explorationExportReason(exploration);
+  const entry = fieldVelocityGraph(anchor);
+  const chartState = exploration && entry ? standaloneChartParams(entry, exploration.settings).toString() : "";
+  const captureChart = useCallback(() => ({ ...getChart(), chartState }), [getChart, chartState]);
   const exportRequest = useContext(GraphExportContext);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
@@ -18,13 +24,13 @@ export function ChartShare({ anchor, title, getChart, disabled = false }: {
   // Expose this chart's exact export (same svg/notes/legend) on window.neuroAtlas while mounted.
   useEffect(() => {
     if (disabled || unavailable) return;
-    return registerChart(anchor, { title, getChart }, exportRequest?.id);
-  }, [anchor, title, getChart, disabled, exportRequest, unavailable]);
+    return registerChart(anchor, { title, getChart: captureChart }, exportRequest?.id);
+  }, [anchor, title, captureChart, disabled, exportRequest, unavailable]);
   async function run(download: boolean) {
     if (pending.current) return;
     pending.current = true; setBusy(true); setStatus(download ? "Preparing PNG…" : "Preparing chart…");
     try {
-      const image = buildChartImage(getChart(), window.location.href);
+      const image = buildChartImage(captureChart(), window.location.href);
       if (download) { await downloadChartImage(image); setStatus("PNG downloaded."); }
       else { await copyChartImage(image); setStatus("Chart copied. The receiving app chooses which clipboard formats to paste."); }
     } catch {

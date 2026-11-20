@@ -21,6 +21,6 @@ export const ChartExplorationContext = createContext<ChartExploration | null>(nu
 export function explorationExportReason(exploration: ChartExploration | null): string | undefined {
   const settings = exploration?.settings;
   if (settings?.hidden?.length || settings?.extrapolate || settings?.sensory || settings?.voxels
-    || (settings?.benchmark && !exploration?.supportsBenchmarkExport)) return "Chart images and graph links are unavailable for this exploration. Reset the view to export or share the graph.";
+    || (settings?.benchmark && !exploration?.supportsBenchmarkExport)) return "Chart images are unavailable for this exploration. Use Copy link to share this view, or reset the view to export an image.";
   return undefined;
 }

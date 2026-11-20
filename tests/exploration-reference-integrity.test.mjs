@@ -118,7 +118,8 @@ for (const [slug, lineCount] of [
     const exportedLabels = [...exported.querySelectorAll('text')].map(text => text.textContent);
     for (const { label } of references) assert.ok(exportedLabels.includes(label), `export preserves reference label: ${label}`);
     assert.ok(original.notes.every(note => selected.notes.includes(note)), 'existing source qualifiers survive selected export');
-    assert.equal(image.url, originalImage.url);
+    assert.equal(new URL(image.url).searchParams.get("chartModel"), `${slug}:brain-scale`);
+    assert.equal(new URL(originalImage.url).search, "");
     assert.equal(image.filename, originalImage.filename);
     assert.equal(query('[data-selected-plot-json]')?.getAttribute('href'), sourceHref);
     assert.equal(query('.draft-plot-data table').textContent, sourceTable);

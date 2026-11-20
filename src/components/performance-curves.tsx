@@ -5,7 +5,8 @@ import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 import { useMetricPreviewWidth } from "./use-metric-preview-width";
 
-import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+import { updateStandaloneChartUrl } from "@/lib/standalone-chart-state";
+import { fieldVelocityGraph, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
 import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExternalStore } from "react";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
@@ -450,15 +451,21 @@ function subscribeRecordingView(callback: () => void) {
   return () => events.forEach(event => window.removeEventListener(event, callback));
 }
 const recordingViewSnapshot = () => recordingViewToken(new URL(window.location.href)) ?? "historical";
-function selectRecordingView(id: RecordingViewId) {
-  const url = new URL(window.location.href);
-  url.searchParams.set(recordingViewQuery, id);
+function selectRecordingView(id: RecordingViewId, standalone = false) {
+  let url = new URL(window.location.href);
+  if (standalone && id === "historical") url.searchParams.delete(recordingViewQuery);
+  else url.searchParams.set(recordingViewQuery, id);
+  if (standalone) {
+    url = updateStandaloneChartUrl(url, fieldVelocityGraph(recordingAnchor)!, {});
+    if (url.href === window.location.href) return;
+  }
   // A view change gets its own Back/Forward entry. Close must dismiss the modal,
   // not just back into its previous view; direct-link close uses the same rule.
-  window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+  window.history.pushState(standalone ? window.history.state : { ...window.history.state, atlasModalFrom: null }, "", url);
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
 function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+  const exploration = useContext(ChartExplorationContext);
   const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
   const exportRequest = useContext(GraphExportContext);
   const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
@@ -472,7 +479,7 @@ function RecordingCard({ historical, historicalProvenance, detail }: { detail?: 
         <label className="pc-track-select pc-recording-view">Measurement view
           <select data-recording-view-select value={view.id} onChange={event => {
             const recordingView = event.target.value as RecordingViewId;
-            selectRecordingView(recordingView);
+            selectRecordingView(recordingView, !!exploration);
           }}>
             {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
           </select>

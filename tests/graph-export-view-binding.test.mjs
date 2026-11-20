@@ -421,3 +421,42 @@ test('the real offscreen host exports the requested view without changing the ov
     await cleanup();
   }
 });
+
+
+test('offscreen default export cannot carry a legacy scoped filtered-state link in its image footer', async () => {
+  const cleanup = await mount(React.createElement(GraphExportHost), '', win => {
+    win.history.replaceState({ keep: 'overview' }, '', atlasPath('/field-velocity') + `?chartHidden=${bci}:speech#${bci}`);
+  });
+  const raster = rasterFixture();
+  try {
+    let outcome;
+    await act(async () => {
+      outcome = window.neuroAtlas.exportChart(bci).then(result=>({result}), error=>({error}));
+    });
+    let result;
+    await act(async () => { result = await outcome; });
+    assert.match(result.error?.message ?? '', /chart (state|exploration).*retry/i, JSON.stringify(result));
+    assert.equal(raster.svgs.length,0,'a default host must not rasterize a picture labeled with a selected-view URL');
+  } finally { raster.restore(); await cleanup(); }
+});
+
+test('image snapshots bind a supported baseline to the actual rendered state and captured registration', async () => {
+  const growth='publication-growth-by-group';
+  const cleanup=await mount(React.createElement(FieldVelocityGraphDetail,{entry:fieldVelocityGraph(growth)}),'',win=>{
+    win.history.replaceState({ keep: 'growth detail' },'',atlasPath(`/field-velocity/${growth}`));
+    win.matchMedia=()=>({matches:true,addEventListener(){},removeEventListener(){}});
+  });
+  try {
+    const originalUrl=window.location.href;
+    const original=await whenChartRegistered(growth);
+    await act(async()=>{document.querySelector('[data-baseline-option="matched"]').click();});
+    const matched=await whenChartRegistered(growth);
+    const selected=window.location.href;
+    assert.throws(()=>buildChartImage(original.getChart(),selected),/chart (state|exploration).*retry/i,'old registration cannot describe the newly rendered matched chart');
+    const image=buildChartImage(matched.getChart(),selected);
+    assert.equal(new URL(image.url).searchParams.get('chartBaseline'),`${growth}:matched`);
+    assert.throws(()=>buildChartImage(matched.getChart(),originalUrl),/chart (state|exploration).*retry/i,'selected picture cannot be labeled with a default URL');
+    await act(async()=>{document.querySelector('[data-baseline-option="science"]').click();});
+    assert.throws(()=>buildChartImage(matched.getChart(),selected),/chart (state|exploration).*retry/i,'a callback cannot pair old metadata with a newly reset SVG');
+  } finally {await cleanup();}
+});

@@ -1,6 +1,7 @@
 import { fieldVelocityGraph, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
 import { atlasBasePath, atlasPath } from "@/lib/atlas-path";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
+import { readStandaloneChartSettings, standaloneChartParams, standaloneChartStateKeys } from "@/lib/standalone-chart-state";
 
 export const overviewPath = "/field-velocity";
 export const nativeOverviewPath = atlasPath(overviewPath);
@@ -11,6 +12,8 @@ function graphSearch(source: URL, entry: FieldVelocityGraph) {
   const params = new URLSearchParams(source.search);
   for (const key of Array.from(params.keys())) if (privateQuery.test(key)) params.delete(key);
   if (entry.graph.renderer !== "recording" || !recordingViewToken(source)) params.delete(recordingViewQuery);
+  standaloneChartStateKeys.forEach(key => params.delete(key));
+  standaloneChartParams(entry, readStandaloneChartSettings(source, entry)).forEach((value, key) => params.set(key, value));
   const search = params.toString();
   return search ? `?${search}` : "";
 }
