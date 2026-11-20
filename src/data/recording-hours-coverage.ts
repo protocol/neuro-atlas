@@ -31,7 +31,7 @@ export const RECORDING_HOURS_COVERAGE: Record<string, NonNullable<DraftObservati
 };
 
 const positive = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && value > 0;
-const validCount = (value: unknown): value is number => positive(value) && Number.isSafeInteger(value);
+export const validRecordingCount = (value: unknown): value is number => positive(value) && Number.isSafeInteger(value);
 const means = new Intl.NumberFormat("en-US", { maximumSignificantDigits: 4 });
 
 function ratio(hours: number, count: number, unit: string, lowerBound: boolean) {
@@ -52,9 +52,9 @@ export function recordingAverages({ y: hours, qualifier, recordingCoverage: cove
   const unit = coverage.unit === "patients" ? "h/patient" : coverage.unit === "nonhuman primates" ? "h/animal" : "h/participant";
   const lowerBound = qualifier === ">";
   const usableHours = positive(hours) && (!qualifier || qualifier === "≈" || lowerBound);
-  const individual = !validCount(count) ? `— ${unit} (${count == null ? "count undisclosed" : "invalid count"})`
+  const individual = !validRecordingCount(count) ? `— ${unit} (${count == null ? "count undisclosed" : "invalid count"})`
     : usableHours ? ratio(hours, count, unit, lowerBound) : `— ${unit} (hours unavailable)`;
-  const session = !validCount(sessions) ? `— h/session (${sessions == null ? "count not reported" : "invalid count"})`
+  const session = !validRecordingCount(sessions) ? `— h/session (${sessions == null ? "count not reported" : "invalid count"})`
     : !usableHours ? "— h/session (hours unavailable)"
       : sessionsQualifier ? `— h/session (${lowerBound ? "both values are lower bounds" : "session count is a lower bound"})`
         : ratio(hours, sessions, "h/session", lowerBound);
@@ -69,7 +69,7 @@ export function recordingReferences(points: DraftObservation[]) {
       hoursLowerBound = point.qualifier === ">" || (point.y === hours && hoursLowerBound);
       hours = point.y;
     }
-    if (validCount(point.recordingCoverage.count)) contributors = Math.max(contributors, point.recordingCoverage.count);
+    if (validRecordingCount(point.recordingCoverage.count)) contributors = Math.max(contributors, point.recordingCoverage.count);
   }
   return { hours, contributors, hoursLowerBound };
 }

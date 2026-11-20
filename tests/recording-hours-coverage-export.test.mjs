@@ -124,3 +124,33 @@ test('the raster input paints proportionate bars, calculated averages and the ex
     else globalThis.ResizeObserver = previous;
   }
 });
+
+
+test('fractional contributor and session counts never become numerical labels or contributor bars in UI or PNG', async () => {
+  const { METRIC_CHART_EVIDENCE } = await import('../src/data/metric-chart-visibility.ts');
+  const point = METRIC_CHART_EVIDENCE['Neural recording hours collected over time'].plots[0].points.find(p => p.id === 'tusz-scalp-eeg-2017-04-17');
+  const original = point.recordingCoverage;
+  point.recordingCoverage = { ...original, count: 1.5, sessions: 2.5 };
+  let cleanup, output;
+  try {
+    cleanup = await mount(React.createElement(DraftChartsSection));
+    await click(document.querySelector('#draft-recording-hours [data-draft-popout-trigger]'));
+    const row = document.querySelector('[data-recording-coverage-row="tusz-scalp-eeg-2017-04-17"]');
+    assert.doesNotMatch(row.querySelector('strong').textContent, /1\.5|2\.5/, 'Invalid individuals/sessions must not be presented as source counts');
+    assert.equal(row.querySelectorAll('[data-recording-bar="contributors"] [data-recording-bar-fill]').length, 0);
+    assert.match(row.textContent, /invalid count/);
+    const spec = (await whenChartRegistered('metric-recording-hours')).getChart();
+    const key = spec.pointKey.find(k => k.pointId === point.id);
+    assert.doesNotMatch(key.label, /1\.5|2\.5/);
+    assert.equal(key.bars[1], null);
+    const image = buildChartImage(spec, window.location.href);
+    output = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
+    const painted = output.window.document.querySelector('[data-export-point-id="tusz-scalp-eeg-2017-04-17"]');
+    assert.doesNotMatch(painted.textContent, /1\.5|2\.5/);
+    assert.equal(painted.querySelectorAll('[data-export-point-key-bar="2"] [data-export-bar-fill]').length, 0);
+  } finally {
+    output?.window.close();
+    await cleanup?.();
+    point.recordingCoverage = original;
+  }
+});

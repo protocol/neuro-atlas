@@ -16,7 +16,7 @@ import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
 import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
-import { recordingAverages, recordingBar, recordingReferences } from "@/data/recording-hours-coverage";
+import { recordingAverages, recordingBar, recordingReferences, validRecordingCount } from "@/data/recording-hours-coverage";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -73,8 +73,11 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
 }
 
 function recordingCoverageLabel(coverage: NonNullable<DraftObservation["recordingCoverage"]>) {
-  const people = coverage.count === null ? `${coverage.unit} not disclosed` : `${exactNumber(coverage.count)} ${coverage.unit}`;
-  return `${people}${coverage.sessions !== undefined ? ` · ${coverage.sessionsQualifier ?? ""}${exactNumber(coverage.sessions)} sessions` : ""}`;
+  const people = coverage.count == null ? `${coverage.unit} not disclosed`
+    : validRecordingCount(coverage.count) ? `${exactNumber(coverage.count)} ${coverage.unit}` : `${coverage.unit} unavailable (invalid count)`;
+  const sessions = coverage.sessions === undefined ? "" : validRecordingCount(coverage.sessions)
+    ? ` · ${coverage.sessionsQualifier ?? ""}${exactNumber(coverage.sessions)} sessions` : " · sessions unavailable (invalid count)";
+  return `${people}${sessions}`;
 }
 
 function RecordingBar({ metric, bar }: { metric: "hours" | "contributors"; bar: ReturnType<typeof recordingBar> }) {
@@ -161,7 +164,10 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const hoursReference = `Hours (left) · ${exactNumber(recordingRefs.hours)} h${recordingRefs.hoursLowerBound ? " (lower bound)" : ""}`;
   const peopleReference = `Contributors (right) · ${exactNumber(recordingRefs.contributors)} individuals`;
   const hoursBar = (point: DraftObservation) => recordingBar(point.y, recordingRefs.hours, point.qualifier === ">");
-  const contributorsBar = (point: DraftObservation) => recordingBar(point.recordingCoverage?.count ?? null, recordingRefs.contributors);
+  const contributorsBar = (point: DraftObservation) => {
+    const count = point.recordingCoverage?.count;
+    return validRecordingCount(count) ? recordingBar(count, recordingRefs.contributors) : null;
+  };
   const recordingPair = (point: DraftObservation) => point.recordingCoverage
     ? `${qualifiedValue(point)} h · ${recordingCoverageLabel(point.recordingCoverage)}` : undefined;
   const recordingKey = (point: DraftObservation) => `${point.label.split(" · ")[0]} · ${recordingPair(point)}${point.recordingCoverage?.durationSummary ? ` · ${point.recordingCoverage.durationSummary}` : ""}`;
