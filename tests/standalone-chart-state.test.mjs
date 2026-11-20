@@ -27,6 +27,8 @@ const bciEvidence = () => ({
   fit: el('[data-exploration-fit-line]')?.getAttribute('points'),
   n: el('[data-exploration-fit-line]')?.dataset.fitN,
   sensory: !!el('[data-sensory-context]'),
+  sensoryReference: el('[data-sensory-reference]')?.outerHTML,
+  sensoryLabel: el('[data-sensory-reference-label]')?.outerHTML,
 });
 
 test('real BCI legend and fit synchronously write stable scoped URLs while retaining focus and history state', async () => {

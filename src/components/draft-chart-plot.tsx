@@ -155,6 +155,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const interactive = !preview && !!exploration && (isBitrate || isAcquisition);
   const hidden = interactive ? exploration.settings.hidden ?? [] : [];
   const extrapolate = interactive && !!exploration.settings.extrapolate;
+  const sensoryOn = interactive && isBitrate && !!exploration.settings.sensory;
   const seriesOf = (point: DraftObservation) => isAcquisition
     ? point.id === "peem2024" ? "PEEM · prospective" : point.group === "Expansion microscopy" ? "Expansion microscopy · estimates"
       : point.id === "mesospim2024" ? "mesoSPIM · optical" : "EM · reported-tech estimates"
@@ -184,7 +185,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const compactFit = preview && fittedLabels.length > 0;
   const fitLabelTop = 28 + yTitle.length * 16;
   const top = fitLabelTop + fittedLabels.length * 16 + (benchmark && (fittedLabels.length || (tissue && benchmarkProgress > 0)) ? 16 : 0);
-  const bottom = top + (compactFit ? 56 : preview ? 84 : 232) + previewExtra;
+  // A multi-decade sensory reference needs more room without flattening the BCI marks.
+  const bottom = top + (compactFit ? 56 : preview ? 84 : sensoryOn ? 464 : 232) + previewExtra;
   const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
   const xs = [...plot.points.map(point => point.x), ...fits.map(fit => fit.end)];
   const ys = [...plot.points.map(point => point.y), ...fits.flatMap(fit => [...fit.points.map(p => p.y), fit.last])];
@@ -195,6 +197,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const log = plot.scale === "log";
   let minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
+  // Context expands only the display domain, never observations or fit inputs.
+  if (sensoryOn) maxPower = Math.max(maxPower, Math.ceil(Math.log10(humanRetinalScenario) + .15));
   if (maxPower === minPower) maxPower += 1;
   const rawYMax = Math.max(...ys) || 1;
   const integerStep = Math.max(1, Math.ceil(rawYMax / 5));
@@ -240,6 +244,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const y = (value: number) => bottom - (log
     ? (Math.log10(value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
+  const sensoryLabel = sensoryOn ? wrapLabel(`Eye → brain · ≈${Math.round(humanRetinalScenario / 1e6)} Mb/s · animal-scaled estimate · human retinal scenario`, right - left - 20) : [];
+  const sensoryLabelY = y(humanRetinalScenario) + 20;
   // Preserve the quantitative centers. Earlier overlapping marks become outer
   // rings, so subsequent filled marks cannot paint them out of the chart.
   const overlaps = shown.map(point => shown.filter(other => other.id !== point.id
@@ -259,8 +265,13 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
     bottom: y(ref.value),
   })) : [];
+  const referenceLabelRegions = [...benchmarkLabelRegions, ...(sensoryOn ? [{
+    left: left + 3, right,
+    top: sensoryLabelY - CHART_PRESENTATION.labelFontSize - 3,
+    bottom: sensoryLabelY + (sensoryLabel.length - 1) * 16 + 3,
+  }] : [])];
   const placedKeys: { x: number; y: number }[] = [];
-  const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;
+  const keySlotStep = referenceLabelRegions.length ? 12 : 24;
   const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / keySlotStep) + 1) }, (_, column) =>
     Array.from({ length: Math.floor((bottom - top - 24) / keySlotStep) + 1 }, (_, row) => ({ x: left + 12 + column * keySlotStep, y: top + 12 + row * keySlotStep }))).flat();
   const annotations = shown.flatMap((point, index) => {
@@ -286,7 +297,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     const position = [preferred, ...segmentSlots]
       .sort((a, b) => Math.hypot(a.x - preferred.x, a.y - preferred.y) - Math.hypot(b.x - preferred.x, b.y - preferred.y))
       .find(candidate => placedKeys.every(other => Math.abs(candidate.x - other.x) >= 23 || Math.abs(candidate.y - other.y) >= 23)
-        && benchmarkLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right
+        && referenceLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right
           || candidate.y + 12 < region.top || candidate.y - 12 > region.bottom)
         && shown.every((other, otherIndex) => Math.hypot(
           Math.max(0, Math.abs(candidate.x - x(other.x)) - 10),
@@ -313,7 +324,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     tooltip.clear(); exploration.update({ extrapolate: !extrapolate });
   }}>Extrapolation <span aria-hidden="true">{extrapolate ? "On" : "Off"}</span></button>;
   const sensoryToggle = interactive && isBitrate && <button className="exploration-pill" type="button" role="switch" data-sensory-toggle aria-checked={!!exploration.settings.sensory}
-    onClick={() => exploration.update({ sensory: !exploration.settings.sensory })}>Sensory context <span aria-hidden="true">{exploration.settings.sensory ? "On" : "Off"}</span></button>;
+    onClick={() => { tooltip.clear(); exploration.update({ sensory: !exploration.settings.sensory }); }}>Sensory context <span aria-hidden="true">{exploration.settings.sensory ? "On" : "Off"}</span></button>;
 
   return <figure ref={figure} className="draft-plot" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? "animating" : benchmarkEnabled ? "on" : "off" : undefined} aria-labelledby={`${id}-title`}>
     {!preview && shareAnchor && <ChartActions anchor={shareAnchor} title={plot.title}><ChartShare anchor={shareAnchor} title={plot.title} disabled={benchmarkMoving} getChart={() => ({
@@ -386,6 +397,15 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
             fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{ref.label}</text>
         </g>;
       })}
+      {sensoryOn && <g pointerEvents="none">
+        <line data-sensory-reference="retinal-human-scenario" data-value={humanRetinalScenario}
+          x1={left} x2={right} y1={y(humanRetinalScenario)} y2={y(humanRetinalScenario)}
+          stroke="var(--muted)" strokeWidth={1.5} strokeDasharray="2 5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+        <text data-sensory-reference-label x={left + 6} y={sensoryLabelY}
+          fontSize={CHART_PRESENTATION.labelFontSize} fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">
+          {sensoryLabel.map((line, index) => <tspan key={index} x={left + 6} dy={index ? 16 : 0}>{line}{index < sensoryLabel.length - 1 ? " " : ""}</tspan>)}
+        </text>
+      </g>}
       {fits.map(fit => <g key={fit.label} pointerEvents="none">
         <polyline data-exploration-fit-window={fit.label} points={fit.points.map(p => `${x(p.x)},${y(p.y)}`).join(" ")} fill="none" stroke={fit.color} strokeWidth={2} />
         <polyline data-exploration-fit-line={fit.label} data-fit-n={fit.n} points={`${x(fit.window[1])},${y(fit.points[1].y)} ${x(fit.end)},${y(fit.last)}`}
@@ -442,7 +462,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       {!controlsBeforeSourceKey && sensoryToggle}
       {exploration.settings.sensory && <div className="sensory-panel" data-sensory-context>
         <div><strong>Eye → brain</strong><p data-retinal-bits-per-second={humanRetinalScenario}>≈{Math.round(humanRetinalScenario / 1e6)} Mb/s · human retinal output extrapolated from guinea pig</p>
-          <details><summary>Source and assumptions</summary><p><a href={RETINAL_OUTPUT.source}>Koch et al. (2006) ↗</a> estimated ≈875,000 bits/s by treating guinea pig retinal ganglion cells as independent channels. Scaling by ≈1,000,000 human ganglion cells ÷ ≈100,000 guinea pig optic-nerve axons assumes the same average per-cell rate. Correlations and species differences remain unaccounted for.</p></details>
+          <details><summary>Source and assumptions</summary><p><a href={RETINAL_OUTPUT.source}>Koch et al. (2006) ↗</a> estimated ≈875,000 bits/s by treating guinea pig retinal ganglion cells as independent channels. Scaling by ≈1,000,000 human ganglion cells ÷ ≈100,000 guinea pig optic-nerve axons assumes the same average per-cell rate. Correlations and species differences remain unaccounted for. This scenario is not a direct human measurement, capacity limit, or BCI target.</p></details>
         </div>
         <div><strong>Ear → brain</strong><p>No verified direct human whole-auditory-nerve rate is available for this comparison.</p></div>
       </div>}

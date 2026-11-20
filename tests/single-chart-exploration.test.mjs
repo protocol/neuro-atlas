@@ -11,9 +11,9 @@ const bitrate = 'bci-information-transfer-over-time';
 const recording = 'simultaneous-neural-recordings';
 const tissue = 'selected-tissue-volume-checkpoints';
 const button = selector => document.querySelector(selector);
-async function standalone(slug) {
+async function standalone(slug, search = '') {
   return mount(await graphPage({ params: Promise.resolve({ slug }) }), '', win => {
-    win.history.replaceState({}, '', atlasPath('/field-velocity/' + slug));
+    win.history.replaceState({}, '', atlasPath('/field-velocity/' + slug) + search);
     win.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });
   });
 }
@@ -69,21 +69,175 @@ test('bitrate controls sit between the plot and the study key even with diagnost
   } finally { await close(); }
 });
 
-test('retinal context is opt-in, animal-extrapolated and geometrically separate from the BCI plot and fit', async () => {
+test('retinal context adds an opt-in exact-rate dotted log-axis reference without becoming BCI evidence or a fit input', async () => {
   const close = await standalone(bitrate);
   try {
     const chart = document.querySelector('.graph-detail');
-    assert.ok(chart.querySelector('[data-sensory-toggle]'), 'BCI exposes sensory context');
-    assert.ok(!chart.querySelector('[data-sensory-context]'));
-    await click(chart.querySelector('[data-exploration-fit-toggle]'));
-    const svg = chart.querySelector('svg.draft-plot-svg').outerHTML;
-    await click(chart.querySelector('[data-sensory-toggle]'));
-    const panel = chart.querySelector('[data-sensory-context]');
+    const el = selector => chart.querySelector(selector);
+    const svg = () => el('svg.draft-plot-svg');
+    assert.equal(el('[data-sensory-toggle]').getAttribute('aria-checked'), 'false');
+    assert.equal(el('[data-sensory-reference]'), null);
+    assert.equal(el('[data-sensory-context]'), null);
+    const original = svg().outerHTML;
+    const rows = el('.draft-plot-data tbody').outerHTML;
+    const sourceLinks = () => [...chart.querySelectorAll('.draft-plot-data a, a[download]')].map(link => [link.getAttribute('href'), link.getAttribute('download'), link.textContent]);
+    const sources = sourceLinks();
+    assert.ok(sources.length > 0, 'retain the chart’s existing source/method links');
+    await click(el('[data-exploration-fit-toggle]'));
+    const modeled = svg().outerHTML;
+    const diagnostics = el('[data-exploration-fit-diagnostics]').textContent;
+    const ids = [...svg().querySelectorAll('[data-source-observation]')].map(mark => mark.dataset.sourceObservation);
+    await click(el('[data-sensory-toggle]'));
+    const line = el('svg [data-sensory-reference]');
+    assert.ok(line, 'sensory context must appear inside the actual chart');
+    assert.equal(line.tagName, 'line');
+    assert.equal(line.dataset.value, '8750000', 'geometry uses the exact source scenario, not rounded 9 Mb/s');
+    assert.equal(line.getAttribute('y1'), line.getAttribute('y2'), 'reference is horizontal');
+    assert.equal(line.getAttribute('stroke-dasharray'), '2 5', 'short dotted reference is distinct from the model continuation');
+    const ticks = [...svg().querySelectorAll('g')].flatMap(group => {
+      const grid = group.querySelector(':scope > .draft-plot-gridline');
+      const label = group.querySelector(':scope > .draft-plot-tick');
+      return grid && label ? [{ value: Number(label.textContent.replaceAll(',', '')), y: +grid.getAttribute('y1'), grid }] : [];
+    });
+    const low = ticks[0], high = ticks.at(-1);
+    const expectedY = low.y + (Math.log10(8750000) - Math.log10(low.value)) / (Math.log10(high.value) - Math.log10(low.value)) * (high.y - low.y);
+    assert.ok(Math.abs(+line.getAttribute('y1') - expectedY) < 1e-9, 'reference uses the same log interpolation as the axis');
+    assert.ok(+line.getAttribute('y1') > high.y && +line.getAttribute('y1') < low.y, 'axis includes the reference with headroom');
+    for (const attr of ['x1', 'x2']) assert.equal(line.getAttribute(attr), low.grid.getAttribute(attr), 'reference spans the plot, not a separate scale');
+    const label = el('svg [data-sensory-reference-label]');
+    assert.match(label.textContent, /Eye → brain.*≈9 Mb\/s.*animal-scaled.*human retinal scenario/s);
+    assert.equal(label.closest('details'), null, 'the qualified label is visible without expanding notes');
+    assert.equal(el('[data-exploration-fit-line]').dataset.fitN, '9');
+    assert.equal(el('[data-exploration-fit-diagnostics]').textContent, diagnostics, 'cohort, coefficients and R² do not change');
+    assert.deepEqual([...svg().querySelectorAll('[data-source-observation]')].map(mark => mark.dataset.sourceObservation), ids);
+    assert.equal(el('.draft-plot-data tbody').outerHTML, rows);
+    assert.deepEqual(sourceLinks(), sources);
+    const panel = el('[data-sensory-context]');
     assert.equal(panel.querySelector('[data-retinal-bits-per-second]').dataset.retinalBitsPerSecond, '8750000');
     assert.match(panel.textContent, /≈9 Mb\/s.*guinea pig/s);
+    assert.match(panel.textContent, /not a direct human measurement, capacity limit, or BCI target/i);
     assert.match(panel.textContent, /ear.*no verified direct human whole-auditory-nerve rate/is);
     assert.equal(panel.querySelector('a').href, 'https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/');
-    assert.equal(chart.querySelector('svg.draft-plot-svg').outerHTML, svg);
+    await click(el('[data-sensory-toggle]'));
+    assert.equal(svg().outerHTML, modeled, 'Off restores exact modeled SVG');
+    await click(el('[data-exploration-fit-toggle]'));
+    assert.equal(svg().outerHTML, original, 'both toggles Off restore the original SVG');
+  } finally { await close(); }
+});
+
+test('retinal reference wraps within narrow plots, clears numbered badges and keeps measured rates readable', async () => {
+  const previous = globalThis.ResizeObserver, observers = [];
+  globalThis.ResizeObserver = class {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe(target) { this.target = target; }
+    disconnect() {}
+  };
+  const close = await standalone(bitrate);
+  try {
+    const chart = document.querySelector('.graph-detail');
+    const el = selector => chart.querySelector(selector);
+    await click(el('[data-sensory-toggle]'));
+    const observer = observers.find(observer => observer.target.matches('figure.draft-plot'));
+    for (const width of [252, 320, 390, 560, 1440]) {
+      await act(async () => observer.callback([{ contentRect: { width } }]));
+      for (const modeled of [false, true]) {
+        if (modeled) await click(el('[data-exploration-fit-toggle]'));
+        const svg = el('svg.draft-plot-svg');
+        assert.equal(+svg.getAttribute('viewBox').split(' ')[2], width);
+        const line = el('[data-sensory-reference]');
+        const label = el('[data-sensory-reference-label]');
+        const lines = [...label.querySelectorAll('tspan')];
+        assert.ok(lines.length >= (width <= 560 ? 2 : 1), `qualified reference wraps as needed at ${width}px`);
+        const fontSize = +label.getAttribute('font-size');
+        const x = +label.getAttribute('x'), firstY = +label.getAttribute('y');
+        const lineHeight = lines.length > 1 ? +lines[1].getAttribute('dy') : 0;
+        const region = { left: x - 3, right: x + Math.max(...lines.map(span => span.textContent.trim().length)) * 7 + 3,
+          top: firstY - fontSize - 3, bottom: firstY + (lines.length - 1) * lineHeight + 3 };
+        assert.ok(region.left > +line.getAttribute('x1') && region.right < +line.getAttribute('x2'), `label stays within plot at ${width}px`);
+        assert.ok(region.top > +line.getAttribute('y1'), 'label is separated below its dotted line, away from the title');
+        assert.ok(lines.every(span => +span.getAttribute('x') === x));
+        for (const rect of svg.querySelectorAll('[data-annotation-key] rect')) {
+          const left = +rect.getAttribute('x'), top = +rect.getAttribute('y');
+          assert.ok(left + +rect.getAttribute('width') < region.left || left > region.right
+            || top + +rect.getAttribute('height') < region.top || top > region.bottom,
+          `numbered study badge clears the sensory label at ${width}px`);
+        }
+        const centers = [...svg.querySelectorAll('[data-annotation-leader]')].map(leader => +leader.getAttribute('y1'));
+        assert.equal(centers.length, 14, 'all measured/context BCI marks retain their study key');
+        assert.ok(Math.max(...centers) - Math.min(...centers) >= 80, 'extending the log domain must not squash the measured range into a tiny strip');
+        assert.ok(region.bottom < Math.min(...centers), 'sensory label clears the observed BCI range');
+        if (modeled) await click(el('[data-exploration-fit-toggle]'));
+      }
+    }
+  } finally {
+    await close();
+    if (previous === undefined) delete globalThis.ResizeObserver; else globalThis.ResizeObserver = previous;
+  }
+});
+
+test('sensory rescaling clears a pinned source tooltip on both toggle directions', async () => {
+  const close = await standalone(bitrate);
+  try {
+    const chart = document.querySelector('.graph-detail');
+    for (const enabled of [true, false]) {
+      await click(chart.querySelector('[data-point-annotation]'));
+      assert.ok(document.querySelector('[role="tooltip"][data-pinned]'), 'pin a real BCI source detail before rescaling');
+      await click(chart.querySelector('[data-sensory-toggle]'));
+      assert.equal(chart.querySelector('[data-sensory-toggle]').getAttribute('aria-checked'), String(enabled));
+      assert.ok(document.querySelector('[role="tooltip"]') === null, 'the old point inspection must not survive changed geometry');
+    }
+  } finally { await close(); }
+});
+
+test('sensory reference composes with filtering, all-hidden, reset and fresh URL state without changing refits or sources', async () => {
+  let close = await standalone(bitrate);
+  let hiddenSearch, hiddenReference, originalRows;
+  const el = selector => document.querySelector('.graph-detail').querySelector(selector);
+  const reference = () => [el('[data-sensory-reference]').outerHTML, el('[data-sensory-reference-label]').outerHTML];
+  try {
+    await click(el('[data-exploration-fit-toggle]'));
+    const originalModeled = el('svg.draft-plot-svg').outerHTML;
+    originalRows = el('.draft-plot-data tbody').outerHTML;
+    for (const selection of ['all', 'no speech', 'none']) {
+      if (selection === 'no speech') await click(el('[data-exploration-series="Speech decoding"]'));
+      if (selection === 'none') for (const control of document.querySelectorAll('[data-exploration-series][aria-pressed="true"]')) await click(control);
+      const offSvg = el('svg.draft-plot-svg').outerHTML;
+      const diagnostics = el('[data-exploration-fit-diagnostics]').textContent;
+      const n = el('[data-exploration-fit-line]')?.dataset.fitN;
+      const marks = [...document.querySelectorAll('svg [data-source-observation]')].map(mark => mark.dataset.sourceObservation);
+      await click(el('[data-sensory-toggle]'));
+      assert.equal(el('[data-sensory-reference]').dataset.value, '8750000');
+      assert.equal(el('[data-exploration-fit-diagnostics]').textContent, diagnostics, `${selection}: no model changes`);
+      assert.equal(el('[data-exploration-fit-line]')?.dataset.fitN, n);
+      assert.deepEqual([...document.querySelectorAll('svg [data-source-observation]')].map(mark => mark.dataset.sourceObservation), marks);
+      assert.equal(el('.draft-plot-data tbody').outerHTML, originalRows);
+      assert.equal(el('[data-copy-chart]'), null, 'sensory views stay link-only');
+      assert.equal(el('[data-download-chart]'), null);
+      if (selection === 'none') {
+        assert.equal(marks.length, 0);
+        assert.ok(el('[data-exploration-empty]'));
+        assert.equal(n, undefined, 'a reference cannot create a model when all observations are hidden');
+        hiddenSearch = window.location.search;
+        hiddenReference = reference();
+      }
+      await click(el('[data-sensory-toggle]'));
+      assert.equal(el('svg.draft-plot-svg').outerHTML, offSvg, `${selection}: Off restores exact filtered SVG`);
+    }
+    await click(el('[data-sensory-toggle]'));
+    await click(el('[data-exploration-reset]'));
+    assert.equal(document.querySelectorAll('svg [data-source-observation]').length, 14);
+    assert.equal(el('[data-exploration-fit-line]').dataset.fitN, '9');
+    assert.ok(el('[data-sensory-reference]'), 'reset restores series without disabling the requested reference');
+    await click(el('[data-sensory-toggle]'));
+    assert.equal(el('svg.draft-plot-svg').outerHTML, originalModeled);
+  } finally { await close(); }
+  close = await standalone(bitrate, hiddenSearch);
+  try {
+    assert.deepEqual(reference(), hiddenReference, 'fresh URL restores the actual reference geometry and wrapped label');
+    assert.equal(document.querySelectorAll('svg [data-source-observation]').length, 0);
+    assert.ok(el('[data-exploration-empty]'));
+    assert.equal(el('[data-exploration-fit-line]'), null);
+    assert.equal(el('.draft-plot-data tbody').outerHTML, originalRows);
   } finally { await close(); }
 });
 
