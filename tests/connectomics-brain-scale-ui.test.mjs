@@ -12,18 +12,17 @@ import { brainScaleClock } from './brain-scale-helpers.mjs';
 import { whenChartRegistered } from '../src/lib/chart-export-api.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
 import { brainBenchmarkContext } from '../src/lib/connectomics-brain-benchmarks.ts';
+import { acquisitionBenchmark } from '../src/lib/acquisition-metric.ts';
 
 globalThis.React = React;
 const plots = Object.values(METRIC_CHART_EVIDENCE).flatMap(item => item.plots);
 const supported = ['public-data-size', 'acquisition-economics'];
 // Public-data goldens remain those captured from untouched 5015d2c.
-// Acquisition is intentionally re-pinned for the approved reciprocal units,
-// ExA-SPIM 2024 author estimate and two family fits, with d819dec label lanes
-// and bfe169f compact date axes/readable M/B/T labels; no geometry normalization hides these
-// changes. Source/fit math is checked separately.
+// Acquisition's human-brain default intentionally changes its preview and SVG.
+// Its source, fit, reciprocal modes and original x geometry are independently
+// checked in acquisition-metric-modes; do not regenerate an opaque SVG golden.
 const baseline = {
   'public-data-size': { preview: '5f685a0387cb23d85d4a83b6e807bc7afc416b70b84d927fdf50894858211482', svg: '4a2d0d3bd865a7c03983bed2045b8c5a40ac4e2e7f5a292671c5b2f66fada6a2' },
-  'acquisition-economics': { preview: '6f5f48d3f31136316ddeb68c79225e9688bf9888e24022fb7bb1c64091bb2c30', svg: 'e253e93e73203fe43a2306def0706b086e993edcb50350e282eb0ad1c53f50f4' },
 };
 const normalize = html => html.replace(/_R_[^"]*/g, 'ID').replace(/ data-brain-scale-(?:progress|state|log-min|log-max)="[^"]*"/g, '');
 const hash = node => {
@@ -40,7 +39,7 @@ const hash = node => {
   return createHash('sha256').update(normalize(clone.outerHTML)).digest('hex');
 };
 
-test('only the two supported full plots offer a default-off accessible switch; previews and off SVGs match the independent baseline', () => {
+test('only the two supported full plots offer a default-off accessible switch; unchanged public-data SVGs match the independent baseline', () => {
   for (const plot of plots) for (const preview of [true, false]) {
     const doc = new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }))).window.document;
     const toggle = doc.querySelector('[data-brain-scale-toggle]');
@@ -53,7 +52,10 @@ test('only the two supported full plots offer a default-off accessible switch; p
       assert.ok(toggle.textContent.length < 25);
     }
     assert.equal(doc.querySelector('[data-brain-scale-reference]'), null);
-    if (supported.includes(plot.id)) assert.equal(hash(doc.querySelector(preview ? 'figure' : 'svg')), baseline[plot.id][preview ? 'preview' : 'svg']);
+    // Acquisition's requested default/units/labels intentionally replace the old
+    // efficiency-only image. acquisition-metric-modes pins independent source,
+    // fit, reciprocal and original x-geometry oracles instead of rehashing it.
+    if (plot.id === 'public-data-size') assert.equal(hash(doc.querySelector(preview ? 'figure' : 'svg')), baseline[plot.id][preview ? 'preview' : 'svg']);
     doc.defaultView.close();
   }
 });
@@ -90,9 +92,9 @@ for (const plotId of supported) test(`${plotId}: a 700ms log-domain expansion mo
     await clock.advance(175);
     assert.equal(Number(svg.dataset.brainScaleLogMin), (startMin + endMin) / 2);
     assert.equal(Number(svg.dataset.brainScaleLogMax), (startMax + endMax) / 2);
-    // Acquisition alone reserves 48 units above its unchanged 232-unit plot
-    // band for the two approved fit labels and benchmark scope annotation.
-    const top = plotId === 'acquisition-economics' ? 92 : 44, bottom = top + 232;
+    // Human-brain cost mode adds a dedicated cheaper-direction header lane.
+    // Coordinates still use the original efficiency-domain animation.
+    const top = plotId === 'acquisition-economics' ? 108 : 44, bottom = top + 232;
     for (const [index, point] of plot.points.entries()) {
       const expected = bottom - (Math.log10(point.y) - (startMin + endMin) / 2) / (((startMax + endMax) - (startMin + endMin)) / 2) * (bottom - top);
       assert.ok(Math.abs(coordinates()[index] - expected) < 1e-9, 'mark follows the interpolated log domain');
@@ -176,7 +178,8 @@ for (const plotId of supported) test(`${plotId}: source disclosure stays below t
     assert.ok(disclosure, 'model assumptions and sources are available below the graph');
     assert.equal(disclosure.open, false);
     assert.ok(svg.compareDocumentPosition(disclosure) & window.Node.DOCUMENT_POSITION_FOLLOWING);
-    const context = brainBenchmarkContext(plotId);
+    const baseContext = brainBenchmarkContext(plotId);
+    const context = plotId === 'acquisition-economics' ? acquisitionBenchmark(baseContext, 'human-brain') : baseContext;
     assert.ok(disclosure.textContent.includes(context.disclosure));
     assert.deepEqual([...disclosure.querySelectorAll('a')].map(a => a.href), context.sources.map(source => source.url));
     const off = (await whenChartRegistered(anchor, 0)).getChart();

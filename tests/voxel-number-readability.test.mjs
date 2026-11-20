@@ -14,7 +14,7 @@ test('voxel axes, image keys and budget labels use the readable scale without ch
  for(const p of plot.points)assert.doesNotMatch(p.exportAnnotation,/\de[+-]?\d/);
  for(const r of brainBenchmarkContext('acquisition-economics').references)assert.doesNotMatch(r.label,/\de[+-]?\d/);
  const cleanup=await mount(React.createElement(DraftChartPlot,{plot,preview:true}));
- try{assert.deepEqual([...document.querySelectorAll('[data-preview-y-tick]')].map(e=>e.textContent),['100M','1B','10B','100B']);}finally{await cleanup();}
+ try{assert.deepEqual([...document.querySelectorAll('[data-preview-y-tick]')].map(e=>e.textContent),['$19T','$1.9T','$190B','$19B']);}finally{await cleanup();}
 });
 
 test('voxel scale uses readable billion and trillion labels without scientific notation',async()=>{
