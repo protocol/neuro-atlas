@@ -222,7 +222,7 @@ test('CLI is dry-run by default and publish requires an explicit expected branch
 });
 
 
-test('app config suppresses only the three approved data branches and leaves application deployments enabled', () => {
+test('app config suppresses approved feed and held feature branches while retaining normal app deployment defaults', () => {
   const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
-  assert.deepEqual(config.git.deploymentEnabled, { 'data/google-trends-feed': false, 'data/openalex-citation-latency-feed': false, 'data/openalex-publications-feed': false });
+  assert.deepEqual(config.git.deploymentEnabled, { 'data/google-trends-feed': false, 'data/openalex-citation-latency-feed': false, 'data/openalex-publications-feed': false, 'feat/bci-sensory-reference-only-20261120': false, 'feat/persistent-graph-pages-20261119': false, 'feat/graph-comparison-dashboards-20261119': false, 'feat/shareable-chart-pages-20261120': false });
 });

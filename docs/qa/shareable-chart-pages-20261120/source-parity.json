@@ -1,0 +1,181 @@
+{
+  "base": "bc92a0bee01d9490808cd501279eef008048568c",
+  "runtime": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+  "pages": [
+    {
+      "slug": "citation-latency",
+      "marks": 54,
+      "events": 0,
+      "rows": 27,
+      "currentMainParity": true
+    },
+    {
+      "slug": "latency-compression",
+      "marks": 10,
+      "events": 0,
+      "rows": 5,
+      "currentMainParity": true
+    },
+    {
+      "slug": "implanted-bci-participants-over-time",
+      "marks": 30,
+      "events": 0,
+      "rows": 15,
+      "currentMainParity": true
+    },
+    {
+      "slug": "neurotech-papers-per-year",
+      "marks": 32,
+      "events": 0,
+      "rows": 64,
+      "currentMainParity": true
+    },
+    {
+      "slug": "publication-growth-by-group",
+      "marks": 21,
+      "events": 0,
+      "rows": 170,
+      "currentMainParity": true
+    },
+    {
+      "slug": "researchers-by-publication-sector",
+      "marks": 104,
+      "events": 0,
+      "rows": 4,
+      "currentMainParity": true
+    },
+    {
+      "slug": "researchers-first-and-latest-affiliations",
+      "marks": 24,
+      "events": 0,
+      "rows": 8,
+      "currentMainParity": true
+    },
+    {
+      "slug": "neurotech-search-terms",
+      "marks": 307,
+      "events": 0,
+      "rows": 157,
+      "currentMainParity": true
+    },
+    {
+      "slug": "simultaneous-neural-recordings",
+      "marks": 188,
+      "events": 0,
+      "rows": 101,
+      "currentMainParity": true
+    },
+    {
+      "slug": "neural-recording-hours-selected-datasets",
+      "marks": 12,
+      "events": 0,
+      "rows": 12,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-chronic-intracortical-recipients",
+      "marks": 7,
+      "events": 0,
+      "rows": 7,
+      "currentMainParity": true
+    },
+    {
+      "slug": "bci-information-transfer-over-time",
+      "marks": 14,
+      "events": 0,
+      "rows": 14,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-public-image-resource-footprints",
+      "marks": 6,
+      "events": 0,
+      "rows": 6,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-tissue-volume-checkpoints",
+      "marks": 8,
+      "events": 0,
+      "rows": 8,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-published-connectomes-neuron-counts",
+      "marks": 10,
+      "events": 0,
+      "rows": 10,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-published-maps-synapse-counts",
+      "marks": 4,
+      "events": 0,
+      "rows": 4,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-em-acquisition-rates",
+      "marks": 2,
+      "events": 0,
+      "rows": 2,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-structure-function-matches",
+      "marks": 3,
+      "events": 0,
+      "rows": 3,
+      "currentMainParity": true
+    },
+    {
+      "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+      "marks": 10,
+      "events": 0,
+      "rows": 10,
+      "currentMainParity": true
+    },
+    {
+      "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+      "marks": 12,
+      "events": 0,
+      "rows": 12,
+      "currentMainParity": true
+    },
+    {
+      "slug": "reported-project-proofreading-effort",
+      "marks": 2,
+      "events": 0,
+      "rows": 2,
+      "currentMainParity": true
+    },
+    {
+      "slug": "pathfinder-v1-axon-tracing-benchmark",
+      "marks": 1,
+      "events": 0,
+      "rows": 1,
+      "currentMainParity": true
+    },
+    {
+      "slug": "neuroai-performance-cost-frontier",
+      "marks": 6,
+      "events": 0,
+      "rows": 6,
+      "currentMainParity": true
+    },
+    {
+      "slug": "flyvis-correct-contrast-preference",
+      "marks": 2,
+      "events": 0,
+      "rows": 2,
+      "currentMainParity": true
+    },
+    {
+      "slug": "selected-application-events",
+      "marks": 0,
+      "events": 2,
+      "rows": 0,
+      "currentMainParity": true
+    }
+  ]
+}

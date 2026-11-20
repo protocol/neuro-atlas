@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
-import { atlasPath, atlasPathname } from "@/lib/atlas-path";
+import { atlasPath, atlasPathname, atlasSectionActive } from "@/lib/atlas-path";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { FeedbackTrigger } from "./feedback/feedback-trigger";
@@ -63,7 +63,7 @@ export function SideNav() {
       <nav className="flex flex-1 flex-col px-2">
         <div className="flex flex-col gap-0.5">
           {TABS.map((t) => (
-            <VItem key={t.href} tab={t} active={pathname === t.href} />
+            <VItem key={t.href} tab={t} active={atlasSectionActive(pathname, t.href)} />
           ))}
         </div>
         <div className="mt-auto flex flex-col gap-2 pt-4">
@@ -124,7 +124,7 @@ export function MobileBar() {
           </button>
         </div>
         <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
-          {TABS.map((tab) => <VItem key={tab.href} tab={tab} active={pathname === tab.href} />)}
+          {TABS.map((tab) => <VItem key={tab.href} tab={tab} active={atlasSectionActive(pathname, tab.href)} />)}
         </nav>
         <div className="mt-4 flex items-center justify-between border-t border-border px-3 pt-4">
           <span className="text-sm text-muted">Appearance</span><ThemeToggle />

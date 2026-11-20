@@ -150,21 +150,25 @@ test('native Copy link success and fallback share current quantity and restore f
 });
 
 test('export links omit default/unpublished human mode and never carry reciprocal reference state or private query data', () => {
-  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle cx="100" cy="200" r="5"/></svg>');
+  const dom = new JSDOM('<div data-chart-state=""><svg viewBox="0 0 720 300"><circle cx="100" cy="200" r="5"/></svg></div>');
   try {
     for (const metric of [...modes, 'human-brain']) for (const reference of [false, true]) {
       const current = selectedUrl(`token=private&recordingView=optical&acquisitionMetric=${metric}${reference ? '&brainScale=acquisition-economics' : ''}`);
       current.username = 'private'; current.password = 'secret';
       const exported = new URL(chartShareUrl(current.href, anchor));
       assert.equal(exported.searchParams.get('acquisitionMetric'), token(metric));
-      assert.equal(exported.searchParams.get('brainScale'), reference && metric !== 'dollars-per-voxel' ? 'acquisition-economics' : null);
+      assert.equal(exported.searchParams.get('chartModel'), reference && metric !== 'dollars-per-voxel' ? `${slug}:brain-scale` : null);
       assert.deepEqual([...exported.searchParams.keys()].sort(), [
-        ...(token(metric) ? ['acquisitionMetric'] : []), ...(reference && metric !== 'dollars-per-voxel' ? ['brainScale'] : []),
+        ...(token(metric) ? ['acquisitionMetric'] : []), ...(reference && metric !== 'dollars-per-voxel' ? ['chartModel'] : []),
       ].sort());
       assert.equal(exported.username, ''); assert.equal(exported.password, '');
-      assert.equal(exported.pathname, '/neuro-atlas/field-velocity');
-      assert.equal(exported.hash, `#${slug}`);
-      const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Quantity fixture', anchor, notes: [] }, current.href);
+      assert.equal(exported.pathname, `/neuro-atlas/field-velocity/${slug}`);
+      assert.equal(exported.hash, '');
+      // This fixture tests only the share allowlist; real rendered-quantity
+      // custody is exercised by standalone-acquisition-reconciliation.
+      const chartState = exported.searchParams.toString();
+      dom.window.document.querySelector('[data-chart-state]').setAttribute('data-chart-state', chartState);
+      const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), chartState, title: 'Quantity fixture', anchor, notes: [] }, current.href);
       assert.equal(image.url, exported.href);
       const parsed = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
       try { assert.ok(parsed.window.document.querySelector('[data-export-footer]').textContent.includes(exported.href)); }

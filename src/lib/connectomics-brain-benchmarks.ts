@@ -35,6 +35,20 @@ const sampling = BRAIN_IMAGE_MODEL.voxelDimensionsNm.join("×");
 const volumeBasis = `Adult mouse ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.mouse)} mm³; human ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³. Rhesus macaque ≈${number(BRAIN_IMAGE_MODEL.volumesMm3.macaque)} mm³: 10 postmortem adolescent–adult MRI specimens, mean 78.55 ± 5.49 mL. Brain extraction and fixation can affect volume; this cohort provides approximate scale context.`;
 const imageBasis = `Dense ${sampling} nm sampling at ${BRAIN_IMAGE_MODEL.bytesPerVoxel} byte/voxel, using demonstrated EM pixel/section dimensions. Voxels = volume in mm³ × 10¹⁸ ÷ (4 × 4 × 40); PB = voxels × bytes/voxel ÷ 10¹⁵.`;
 
+export function tissueBenchmark(voxels: boolean): BrainBenchmarkContext {
+  return {
+    toggleLabel: "Whole-brain scale",
+    scopeLabel: voxels ? `Dense ${sampling} nm grid · modeled` : "Anatomical volume references",
+    disclosure: `${volumeBasis} The voxel view converts each reported tissue extent to a nominal image-grid equivalent at ${sampling} nm: volume in mm³ × 10¹⁸ ÷ 640. Reported volumes can represent bounding extent, imaged tissue or neuropil. These modeled capacities are separate from recorded voxel counts, storage and biological completeness.`,
+    sources: [mouseSource, macaqueSource, volumeSource, samplingSource],
+    references: Object.entries(BRAIN_IMAGE_MODEL.volumesMm3).map(([id, volumeMm3]) => {
+      const value = voxels ? brainImageVoxels(volumeMm3) : volumeMm3 / 1000;
+      const species = id === "mouse" ? "Mouse" : id === "macaque" ? "Rhesus macaque" : "Human";
+      return { id, volumeMm3, value, label: `${species} ≈${voxels ? value.toExponential(1) + " voxels" : number(value) + " cm³"}` };
+    }),
+  };
+}
+
 export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | undefined {
   if (plotId === "public-data-size") return {
     toggleLabel: "Whole-brain scale",

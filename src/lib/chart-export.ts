@@ -1,7 +1,8 @@
-import { performanceUrl } from "@/lib/field-velocity/navigation";
-import { performanceTarget } from "@/data/field-velocity-links";
-import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
-import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery } from "@/lib/chart-toggle-url";
+import { atlasBasePath } from "@/lib/atlas-path";
+import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
+import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
+import { readStandaloneChartSettings, standaloneChartParams, standaloneChartStateKeys } from "@/lib/standalone-chart-state";
+import { acquisitionMetricQuery, type AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
@@ -14,8 +15,8 @@ export type ChartPointKeyEntry = ChartLegendEntry & {
   bars?: readonly [PointKeyBar | null, PointKeyBar | null];
   barLabels?: readonly [string, string];
 };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
-export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; chartState?: string; acquisitionMetric?: AcquisitionMetricSelection; recordingView?: RecordingViewId; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
+export type ChartImage = { svg: string; width: number; height: number; url: string; title: string; filename: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
 const attributes = new Set(["viewBox", "preserveAspectRatio", "x", "y", "x1", "x2", "y1", "y2", "cx", "cy", "r", "rx", "ry", "width", "height", "d", "points", "dx", "dy", "transform", "textLength", "lengthAdjust"]);
@@ -58,20 +59,35 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
   return paint;
 }
 
-/** Share stable chart identity, never credentials or arbitrary query tokens.
- * Only exact single, chart-scoped view/toggle tokens cross the image boundary.
- * Navigation and existing Copy link controls retain their original URL contract. */
+/** Share stable chart identity and bounded chart-scoped settings, never userinfo
+ * or arbitrary query tokens. App navigation retains its separate query contract. */
+function mountedBase(url: URL) {
+  // Accept the app’s current validated mount, including the public proxy prefix.
+  const path = url.pathname.match(/^((?:\/[a-z0-9_-]+)*)\/field-velocity(?:\/[a-z0-9-]+)?\/?$/i);
+  return path?.[1] ?? atlasBasePath;
+}
+
 export function chartShareUrl(current: string, anchor: string) {
-  const url = new URL(performanceUrl(current, anchor));
+  const link = fieldVelocityLink(anchor);
+  if (!link) throw new Error("Unknown chart link");
+  const url = new URL(current);
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
-  const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
-  const toggle = chartToggleEnabled(url, anchor) ? chartToggle(anchor) : undefined;
-  const acquisitionMetric = acquisitionMetricFromUrl(url, anchor);
+  const recordingView = link.graph?.renderer === "recording" ? recordingViewToken(url) : undefined;
+  const settings = link.graph ? standaloneChartParams(link as FieldVelocityGraph, readStandaloneChartSettings(url, link as FieldVelocityGraph)) : new URLSearchParams();
+  const base = mountedBase(url);
+  url.pathname = base + (link.graph ? graphPath(link as FieldVelocityGraph) : "/field-velocity");
+  url.hash = link.graph ? "" : link.slug;
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
-  if (toggle) url.searchParams.set(toggle.query, toggle.value);
-  if (acquisitionMetric !== "voxels-per-dollar") url.searchParams.set(acquisitionMetricQuery, acquisitionMetric);
+  settings.forEach((value, key) => url.searchParams.set(key, value));
   return url.href;
+}
+
+export function chartImageFilename(anchor: string, currentUrl: string) {
+  const link = fieldVelocityLink(anchor);
+  if (link?.kind !== "chart") throw new Error("Unknown chart filename");
+  const view = link.graph?.renderer === "recording" ? recordingViewToken(new URL(currentUrl)) : undefined;
+  return `neuro-atlas-${link.slug}${view ? `-${view}` : ""}.png`;
 }
 
 function resolved(value: string, source: Element): string {
@@ -210,10 +226,34 @@ function wrap(text: string, columns: number) {
 
 /** Snapshot synchronously on the click: never screenshot a clipped viewport or UI. */
 export function buildChartImage(chart: ChartExport, currentUrl: string): ChartImage {
-  const { svg: source, title, anchor } = chart;
+  const { svg: source, title, anchor, recordingView } = chart;
   const box = (source.getAttribute("viewBox") ?? "").trim().split(/[ ,]+/).map(Number);
   if (box.length !== 4 || !box.every(Number.isFinite) || box[2] <= 0 || box[3] <= 0) throw new Error("Chart has no usable viewBox");
   const url = chartShareUrl(currentUrl, anchor);
+  const entry = fieldVelocityLink(anchor);
+  const settings = entry?.graph ? readStandaloneChartSettings(new URL(currentUrl), entry as FieldVelocityGraph) : {};
+  const expectedState = entry?.graph ? standaloneChartParams(entry as FieldVelocityGraph, settings).toString() : "";
+  const stateRoot = source.closest("[data-chart-state]");
+  const renderedState = stateRoot?.getAttribute("data-chart-state") ?? "";
+  // Existing component-only popouts still own #138's legacy switch contract.
+  // They may emit a migrated link, but cannot claim typed state they never render.
+  const legacyComponent = !stateRoot && !chart.chartState
+    && !standaloneChartStateKeys.some(key => (key !== acquisitionMetricQuery || chart.acquisitionMetric === undefined) && new URL(currentUrl).searchParams.has(key));
+  if (!legacyComponent && ((chart.chartState ?? "") !== expectedState || renderedState !== (chart.chartState ?? ""))) {
+    throw new Error("Chart state changed or is not ready. Retry export.");
+  }
+  // Legacy quantity controls also export canonical links. Bind their captured
+  // metric to both the actual SVG owner and the validated source-scoped URL.
+  if (chart.acquisitionMetric !== undefined && (
+    chart.acquisitionMetric !== (settings.acquisitionMetric ?? "voxels-per-dollar") ||
+    source.closest("[data-acquisition-metric-state]")?.getAttribute("data-acquisition-metric-state") !== chart.acquisitionMetric
+  )) throw new Error("Acquisition state changed or is not ready. Retry export.");
+  // A registration can lag the committed SVG, and a queued URL can lag both.
+  // Validate all three in the same synchronous step that serializes the plot.
+  if (recordingView !== undefined && (
+    source.closest("[data-recording-view]")?.getAttribute("data-recording-view") !== recordingView ||
+    (recordingViewToken(new URL(url)) ?? "historical") !== recordingView
+  )) throw new Error("Recording view changed or is not ready. Retry export.");
   const width = 1200, inset = 48, plotWidth = width - inset * 2;
   const background = "#ffffff", ink = INK;
   const palette = exportPalette(source);
@@ -335,7 +375,7 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
   const evidence = `<desc>${escape(chart.notes.join("\n"))}</desc>`;
   // Fail explicitly rather than silently clipping scientific scope or overflowing a canvas.
   if (height > 6000 || body.join("").length + evidence.length > 4_000_000) throw new Error("Chart export exceeds safe image bounds");
-  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"${chart.pointKey?.length ? ` data-export-crop-bottom="${cropBottom}"` : ""}>${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title };
+  return { svg: `<svg xmlns="${NS}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"${chart.pointKey?.length ? ` data-export-crop-bottom="${cropBottom}"` : ""}>${evidence}<rect width="100%" height="100%" fill="${escape(background)}"/>${body.join("")}</svg>`, width, height, url, title, filename: chartImageFilename(anchor, url) };
 }
 
 export async function chartPng(image: ChartImage): Promise<Blob> {
@@ -391,7 +431,7 @@ export async function downloadChartImage(image: ChartImage) {
   const png = await chartPng(image);
   const url = URL.createObjectURL(png);
   const link = document.createElement("a");
-  link.href = url; link.download = `neuro-atlas-${new URL(image.url).hash.slice(1)}.png`;
+  link.href = url; link.download = image.filename;
   document.body.append(link);
   try { link.click(); } finally { link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
 }

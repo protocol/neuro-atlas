@@ -1,0 +1,152 @@
+{
+  "runtime": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+  "currentMainBaseline": "bc92a0bee01d9490808cd501279eef008048568c",
+  "deployment": "none; local production build only",
+  "criticalTests": {
+    "tests": 74,
+    "pass": 74,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "buildAndGeneratedTypes": "PASS",
+  "lint": {
+    "files": 82,
+    "errors": 0,
+    "unusedVariableWarnings": 3
+  },
+  "native": {
+    "currentMainSourceParityPages": 25,
+    "freshLegacyAliases": 150,
+    "legacyMainToggleJourneys": 3,
+    "legendCases": 19,
+    "historyReloadActualClipboard": true,
+    "bciRefitN": [
+      9,
+      4
+    ],
+    "sourceFrameCases": 15,
+    "viewports": [
+      1440,
+      390,
+      320
+    ],
+    "sensoryNativePNG": true,
+    "acquisitionTwoUnitSourceRefitHistoryClipboardPNG": true,
+    "recordingOpticalNativePNGAndClipboard": true,
+    "overviewQueryGroupsRailsFocusRestored": true,
+    "mobileNavigation": true,
+    "overviewVerticalScrollExact": false,
+    "knownVerticalResidualsPx": [
+      4,
+      47
+    ],
+    "latestVerticalResidualsPx": [
+      4,
+      47,
+      4
+    ]
+  },
+  "http": {
+    "GET_HEAD_and_404": 52,
+    "canonicalPages": 25,
+    "servedAssetByteMatches": 14,
+    "privateFile404": 4,
+    "buildId": "716KP_m4LGDuZejEqJLZv"
+  },
+  "sourceCustody": {
+    "frozenObjectsMatched": 139,
+    "sourceRegistryDeltas": [
+      "src/data/field-velocity-links.ts",
+      "src/data/methodology-sources.json"
+    ],
+    "sourceSensoryExactMain": true,
+    "existingDeploymentGuardsRetained": true,
+    "newBranchAutodeploy": false
+  },
+  "review": {
+    "originalFindings": "F1/F2 closed at59533df; final bounded current-main/acquisition reconciliation PASS at runtime SHA",
+    "report": "See review-summary.md"
+  },
+  "limits": [
+    "Known nonblocking overview vertical scroll drift:4px and47px observed; query/groups/rails/focus restore, pixel-exact restoration not certified.",
+    "No full-repository green claim: earlier aggregate runs timed out.",
+    "No current hosted preview, deployment, production activation, merge or physical-phone certification.",
+    "Filtered/refit/unsupported modeled PNG views remain link-only; native supported exports preserved.",
+    "Bulk/offscreen export custody has mounted regression coverage; not a native all-chart raster replay."
+  ],
+  "images": [
+    {
+      "file": "before-current-main-desktop.png",
+      "sha256": "9c3a3d127c1761871f5391303078ec32cc63a79332fdfcfc4d002d6f9be9c0dc",
+      "source": "bc92a0bee01d9490808cd501279eef008048568c",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "standalone-default-desktop.png",
+      "sha256": "7f7b3f5695786e723b07bccc36362f4de459e5853ac90552cc4f72b3e41649c0",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "exact-view-desktop.png",
+      "sha256": "d5713dd36c41291e946d4aabafdb33403a7b943e67252f8f699c74d74cf84a9e",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "exact-view-mobile-390.png",
+      "sha256": "ede5944d799778285c936df54a0fbc016c2a53b04aaa62373376a2d79860e58d",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "exact-view-mobile-320.png",
+      "sha256": "cbd0502e97825ebc04e2560b77bd4ecfd6e870e1d4df5a6535053c9440073beb",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "sources-desktop.png",
+      "sha256": "4621b6e75c6cb24a562a8008ce30410d7cacbe2bad5c16c384e06c1424afb0fd",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "sources-mobile-320.png",
+      "sha256": "84e5fda355e0aecfd250e8ac3fe61ac8b5c31184300a8a555511cc7d99d9a113",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "acquisition-reciprocal-desktop.png",
+      "sha256": "876e9ae90e8ab9404c1c39dd2ee473d38eea8e707c5e45b40c3c501bd7776629",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "acquisition-reciprocal-mobile.png",
+      "sha256": "1632c8b5af0a872fe846de6335cd964704fa67fa880f5e7e70cc43ef5ac2184b",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "local headed-browser capture"
+    },
+    {
+      "file": "native-acquisition-reciprocal.png",
+      "sha256": "23b117cd0c27ea08619a028caf5673b4a72f28a450d80cbb1a953d9d438e005a",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "native PNG export"
+    },
+    {
+      "file": "native-sensory.png",
+      "sha256": "a571063ab69390fc38ee35cde8c9c211ca708cb3019a941bb59838eb020ecf5f",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "native PNG export"
+    },
+    {
+      "file": "native-recording-optical.png",
+      "sha256": "5a1b52f42888cae3b7b057016319630c6eafe61ac990ada96c9091ba4194f17b",
+      "source": "4a5cc6d8a0e196b3a2579c81b0802c8bbd5479ec",
+      "kind": "native PNG export"
+    }
+  ]
+}
