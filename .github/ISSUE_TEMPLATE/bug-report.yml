@@ -1,0 +1,30 @@
+name: Website bug
+description: Report broken behavior, accessibility, or layout.
+title: "Bug: "
+body:
+  - type: markdown
+    attributes:
+      value: "Do not post private information or credentials. Report vulnerabilities through the private security link instead."
+  - type: input
+    id: page
+    attributes:
+      label: Exact page URL
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What did you do, what happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Include viewport size or mobile/desktop if relevant.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshot or additional context
+      description: Remove personal information before attaching screenshots.

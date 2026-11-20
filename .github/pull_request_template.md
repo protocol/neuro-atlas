@@ -1,27 +1,30 @@
-## Summary
+## What changed and why?
 
-What changed and why? Link issues and primary sources.
+Link the relevant issue. Keep this PR focused; explain any changed methodology or behavior.
 
-## Evidence / scope
+## Sources and scope (for data/research changes)
 
-- Primary sources, provenance and retrieval/publication dates:
-- Observation dates/precision, units and definitions:
-- Inclusion/exclusion scope; observed vs announced/estimated; known gaps:
-- Licensing/reuse restrictions (public does not imply permissively licensed):
-- Canonical inputs changed; generation/import command and derived diff:
+- Primary source URLs, publication/access dates, and observation dates/precision:
+- Units, definitions, populations, inclusion/exclusion scope, and uncertainties:
+- Canonical inputs, generation/import command, and derived diff:
+- Third-party terms, required attribution, and any redistribution restrictions:
 
 ## Verification
 
-- [ ] `npm ci` using the frozen lockfile
-- [ ] `npm test` and `npm run typecheck`
-- [ ] `npm run build` and `node scripts/verify-hosting.mjs` in root mode
-- [ ] Repeat with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas` for routing/asset changes
+Record actual commands/results and known gaps; do not check based on intent.
+
+- [ ] Regression tests added or updated; `npm test`
+- [ ] `npm run typecheck`
+- [ ] `npm run build`
 - [ ] Data regeneration/parity checked where applicable
-- [ ] Desktop/mobile screenshots for UI changes, captioned with origin and exact SHA
-- [ ] Independent final-revision review; hosted auth unchanged
+- [ ] Existing chart/deep links and keyboard access preserved
+- [ ] Desktop/mobile screenshots for visual changes, captioned with origin and revision
+- [ ] Routing/asset changes tested with `/neuro-atlas` and the relevant HTTP checks
 
-Actual commands/results and known gaps (do not check based on intent):
+## Rights and privacy
 
-## Release / rollback
+Original work is submitted under the project's **Apache-2.0 OR MIT** choice. Identify any separately licensed third-party material and retain its notices. Do not include credentials, private feedback, private records, or unlicensed source copies.
 
-Preview origins and exact deployed SHAs, auth/consent implications and rollback. Public launch, production settings and collaborator access are separate owner decisions. No secrets or hosted bypasses.
+## Review and release
+
+Lukas Bresser (`@lksbrssr`) owns community review. CI success is not merge or deployment approval. No collaborator access, production settings, private processing, or source-refresh automation is requested by this PR unless explicitly described and separately approved.

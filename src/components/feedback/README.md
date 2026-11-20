@@ -4,7 +4,7 @@ The mounted flow is [visitor feedback → Linear logging](../../../docs/feedback
 
 ## Entry points, native layers and selection
 
-`FeedbackTrigger` is the only feedback/contribution action: bottom-left in the desktop sidebar, and left-aligned in the footer below the large-screen breakpoint. Plate headers, the landing hero and mobile header have no duplicate Feedback or Contribute via PR buttons. The layout mounts one page-lifetime `Feedback` controller with no floating launcher. **Feedback** / **Alt+Shift+F** starts fresh picking, even when unsent text is retained. Curated chart open events can supply an allowlisted target directly.
+`FeedbackTrigger` is the feedback action: bottom-left in the desktop sidebar, and left-aligned in the footer below the large-screen breakpoint. GitHub contributions are separately linked from the shared footer and methodology page. Plate headers, the landing hero and mobile header have no duplicate Feedback or Contribute via PR buttons. The layout mounts one page-lifetime `Feedback` controller with no floating launcher. **Feedback** / **Alt+Shift+F** starts fresh picking, even when unsent text is retained. Curated chart open events can supply an allowlisted target directly.
 
 The picker only highlights elements; there is no visible instruction card, General page or Back button, and those controls/copy are not relocated. Screen-reader-only instructions describe selection/cancel. Clicking pins the structural element and opens a compact native `dialog.showModal()` beside it. Escape cancels fresh selection without opening the composer; pressing Feedback again also cancels, including on mobile. Canceling **Select element** from an active composer returns safely to its still-active pin and text.
 
