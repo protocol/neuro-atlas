@@ -2,6 +2,8 @@
 
 Implementation base: `60dab9a3c50ce7993916a269183801e171a3e0ed`, rebased on main `c0ebfcbc22328f94692b503371cb316c10814df6`.
 
+This records the initial historical-first implementation checks. [Final native evidence](acquisition-historical-20261120/README.md) adds the standalone reference's visible 4×4×40 nm/image-only qualification and the later parent regression run; source observations and numerical transformations remain unchanged.
+
 ## Display contract
 
 - Historical acquisition efficiency is the default: **Voxels per $**. The only alternative is **$ per voxel**, with cheaper values at the top. There is no human-brain axis.
