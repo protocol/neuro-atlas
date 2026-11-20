@@ -15,6 +15,7 @@ import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
 import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
+import { useChartToggle } from "@/lib/field-velocity/navigation";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
@@ -128,7 +129,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const id = useId();
   const modalSlots = useContext(ModalSlotsContext);
   const benchmark = preview ? undefined : brainBenchmarkContext(plot.id);
-  const [benchmarkEnabled, setBenchmarkEnabled] = useState(false);
+  const [benchmarkEnabled, setBenchmarkEnabled] = useChartToggle(benchmark ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
   const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
   const benchmarkMoving = !!benchmark && benchmarkProgress !== (benchmarkEnabled ? 1 : 0);
   const benchmarkReveal = benchmarkProgress === 1 ? 1 : Math.max(0, (benchmarkProgress - .8) / .2);

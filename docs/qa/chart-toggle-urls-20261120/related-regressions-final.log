@@ -1,0 +1,35 @@
+✔ only the two supported full plots offer a default-off accessible switch; previews and off SVGs match the independent baseline (9600.173853ms)
+✔ public-data-size: a 700ms log-domain expansion moves the original marks and ticks, revealing direct targets late (1301.183003ms)
+✔ acquisition-economics: a 700ms log-domain expansion moves the original marks and ticks, revealing direct targets late (1494.663269ms)
+✔ public-data-size: interrupted reversals resume the displayed domain and restore exact off markup (1504.612902ms)
+✔ acquisition-economics: interrupted reversals resume the displayed domain and restore exact off markup (1791.567683ms)
+✔ reduced motion settles immediately, live preference changes finish the destination, and StrictMode/unmount clean up RAF/listeners (2802.481778ms)
+✔ public-data-size: source disclosure stays below the plot and export is disabled until the selected view settles (4307.730258ms)
+✔ acquisition-economics: source disclosure stays below the plot and export is disabled until the selected view settles (4296.923075ms)
+✔ public-data-size: conservative 12px label envelopes fit at 238px internal width without resizing the chart (1494.127234ms)
+✔ acquisition-economics: conservative 12px label envelopes fit at 238px internal width without resizing the chart (1699.169086ms)
+✔ public-data-size: conservative 12px label envelopes fit at 308px internal width without resizing the chart (1097.766963ms)
+✔ acquisition-economics: conservative 12px label envelopes fit at 308px internal width without resizing the chart (1300.023066ms)
+✔ benchmark controls use a fixed touch target and a paint-only checked state below the chart (1409.890477ms)
+✔ enabled-only controls stay below the chart and both hint strings reserve a stable shared row (4892.624372ms)
+✔ unmount during motion cancels RAF and removes the preference listener, including StrictMode replay (2303.958528ms)
+✔ reduced motion snaps both ways without RAF and a live preference change finishes the current destination (2504.039196ms)
+✔ ticks move and crossfade; render constraints and forecast reveal follow the geometry clock (1792.46315ms)
+✔ neural-recording-hours: rapid reversals resume the displayed frame and restore the exact original SVG (2102.27235ms)
+✔ neural-recording-hours: toggle moves the same historical marks and SVG size through eased intermediate frames (1301.428554ms)
+✔ canonical source bytes and unmodified tissue chart are preserved (3597.042385ms)
+✔ flat inherited neuron history never enables a fit in modern recording views (2595.775828ms)
+✔ decreasing inherited neuron history never enables a fit in modern recording views (2598.075862ms)
+✔ slow inherited neuron history never enables a fit in modern recording views (1897.347373ms)
+✔ forecast layout reserves readable label rows and 720px internal scrolling without changing off sizing (2705.789304ms)
+✔ hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppresses unsupported tracks and restores linear geometry (2394.428067ms)
+✔ hours scenarios expose the old flat tail beside the chart and remove optimistic dates under plateau (1301.135821ms)
+✔ copy-link recovery and success state cannot outlive the selected recording view (6002.92773ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62003.252406

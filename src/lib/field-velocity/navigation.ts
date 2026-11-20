@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { chartToggle, chartToggleEnabled } from "@/lib/chart-toggle-url";
 import { fieldVelocityLink, canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
 
 export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink", "revealed_commitments", "publication-output", "publication-growth", "researcher-sectors", "researcher-sector-changes"] as const;
@@ -22,6 +23,11 @@ export function takePerformanceFocusReturn() {
 export function performanceUrl(currentUrl: string, anchor: string) {
   if (!fieldVelocityLink(anchor)) throw new Error("Unknown performance anchor");
   const url = new URL(currentUrl);
+  // A toggle belongs to this exact chart, not the next fragment we navigate to.
+  const toggle = chartToggle(anchor);
+  for (const query of ["brainScale", "extrapolation"]) {
+    if (query !== toggle?.query || !chartToggleEnabled(url, anchor)) url.searchParams.delete(query);
+  }
   url.hash = canonicalPerformanceAnchor(anchor);
   return url.href;
 }
@@ -116,4 +122,21 @@ const snapshot = () => {
 const serverSnapshot = () => "";
 export function usePerformanceHash() {
   return useSyncExternalStore(subscribe, snapshot, serverSnapshot);
+}
+
+/** View changes are history entries, like recordingView. Clearing only the
+ * modal-origin marker lets Close/Escape dismiss in one action after any change. */
+export function useChartToggle(anchor?: string) {
+  const enabled = useSyncExternalStore(subscribe,
+    () => !!anchor && chartToggleEnabled(new URL(window.location.href), anchor), () => false);
+  const setEnabled = (update: (current: boolean) => boolean) => {
+    const toggle = anchor ? chartToggle(anchor) : undefined;
+    if (!toggle || !anchor) return;
+    const url = new URL(performanceUrl(window.location.href, anchor));
+    if (update(chartToggleEnabled(url, anchor))) url.searchParams.set(toggle.query, toggle.value);
+    else url.searchParams.delete(toggle.query);
+    window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+    window.dispatchEvent(new Event(changedEvent));
+  };
+  return [enabled, setEnabled] as const;
 }

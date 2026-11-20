@@ -1,0 +1,34 @@
+✔ chart link construction retains only the selected chart toggle, while preserving repeated unrelated queries (3.13327ms)
+✔ image-export links retain the exact selected toggle but never arbitrary queries or credentials (2.19513ms)
+✔ hours Extrapolation changes the URL and a fresh document restores the selected switch (1420.914462ms)
+✔ Whole-brain scale changes the address bar and switching off restores the original URL and SVG (589.046411ms)
+✔ public-data-size: fresh canonical and legacy links restore only their own switch without adding history (1886.150679ms)
+✔ public-data-size: Back/Forward restores toggle history and chart-to-chart navigation is isolated (2133.002714ms)
+✔ public-data-size: Copy link success/fallback refers to the current URL and fresh recipients restore it (2169.297728ms)
+✔ public-data-size: Close dismisses in one action after 1 toggle changes (604.741822ms)
+✔ public-data-size: Escape dismisses in one action after 1 toggle changes (802.706758ms)
+✔ public-data-size: Close dismisses in one action after 3 toggle changes (1193.576763ms)
+✔ public-data-size: Escape dismisses in one action after 3 toggle changes (910.983336ms)
+✔ acquisition-economics: fresh canonical and legacy links restore only their own switch without adding history (2784.747058ms)
+✔ acquisition-economics: Back/Forward restores toggle history and chart-to-chart navigation is isolated (3005.25231ms)
+✔ acquisition-economics: Copy link success/fallback refers to the current URL and fresh recipients restore it (3003.989713ms)
+✔ acquisition-economics: Close dismisses in one action after 1 toggle changes (1014.175898ms)
+✔ acquisition-economics: Escape dismisses in one action after 1 toggle changes (1186.638657ms)
+✔ acquisition-economics: Close dismisses in one action after 3 toggle changes (2499.883303ms)
+✔ acquisition-economics: Escape dismisses in one action after 3 toggle changes (2499.998114ms)
+✔ neural-recording-hours: fresh canonical and legacy links restore only their own switch without adding history (3286.559967ms)
+✔ neural-recording-hours: Back/Forward restores toggle history and chart-to-chart navigation is isolated (1615.38085ms)
+✔ neural-recording-hours: Copy link success/fallback refers to the current URL and fresh recipients restore it (1385.287625ms)
+✔ neural-recording-hours: Close dismisses in one action after 1 toggle changes (699.990501ms)
+✔ neural-recording-hours: Escape dismisses in one action after 1 toggle changes (699.066314ms)
+✔ neural-recording-hours: Close dismisses in one action after 3 toggle changes (915.303541ms)
+✔ neural-recording-hours: Escape dismisses in one action after 3 toggle changes (1092.772114ms)
+✔ malformed or cross-chart query values fail closed without changing unrelated state (6207.59021ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49100.462923

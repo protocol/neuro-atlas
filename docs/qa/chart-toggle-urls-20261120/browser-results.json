@@ -1,0 +1,84 @@
+[
+  {
+    "width": 1440,
+    "slug": "selected-public-image-resource-footprints",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#selected-public-image-resource-footprints",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=public-data-size#selected-public-image-resource-footprints",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "width": 1440,
+    "slug": "estimated-acquisition-cost-per-10m-voxels-optical-and-em",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#estimated-acquisition-efficiency-voxels-per-dollar",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=acquisition-economics#estimated-acquisition-efficiency-voxels-per-dollar",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "width": 390,
+    "slug": "selected-public-image-resource-footprints",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#selected-public-image-resource-footprints",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=public-data-size#selected-public-image-resource-footprints",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "width": 390,
+    "slug": "estimated-acquisition-cost-per-10m-voxels-optical-and-em",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#estimated-acquisition-efficiency-voxels-per-dollar",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=acquisition-economics#estimated-acquisition-efficiency-voxels-per-dollar",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "width": 320,
+    "slug": "selected-public-image-resource-footprints",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#selected-public-image-resource-footprints",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=public-data-size#selected-public-image-resource-footprints",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "width": 320,
+    "slug": "estimated-acquisition-cost-per-10m-voxels-optical-and-em",
+    "offURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#estimated-acquisition-efficiency-voxels-per-dollar",
+    "onURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b&brainScale=acquisition-economics#estimated-acquisition-efficiency-voxels-per-dollar",
+    "copyExact": true,
+    "reload": true,
+    "freshRestoration": true,
+    "keyboard": true,
+    "singleEscapeCloses": true,
+    "closedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?utm_source=toggle-qa&tag=a&tag=b#metrics",
+    "sourceRowsUnchanged": true
+  },
+  {
+    "nativeOpenToggleBackForwardClose": true,
+    "selectedURL": "http://127.0.0.1:36587/neuro-atlas/field-velocity?history=toggle&brainScale=public-data-size#selected-public-image-resource-footprints"
+  }
+]
