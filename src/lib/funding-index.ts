@@ -14,6 +14,7 @@ export type FundingCompany = {
   interfaceDepth?: string;
   indication: string;
   website?: string;
+  websiteLabel?: string;
   scope: string;
   logo?: string;
   founding?: FundingFounding | null;
