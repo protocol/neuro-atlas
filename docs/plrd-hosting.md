@@ -1,6 +1,12 @@
 # Hosting the separate Atlas
 
-## Current location — October 26, 2026
+## Current public location — November 20, 2026
+
+Neuro Atlas is public at **https://www.plneuro.xyz/neuro-atlas**. It opened on November 19; visitor access does not require a password. The previous PLRD namespace redirects to the corresponding PL Neuro path. Keep the existing base path, deep links, host trust boundaries, and source identity. Community PRs do not authorize deployment or changes to server secrets/settings.
+
+For local development and contributor checks, use the current [README](../README.md) and [CONTRIBUTING](../CONTRIBUTING.md). The [launch-access contract](launch-access.md) documents the retained prelaunch gate and server-time opening. The sections below preserve **historical prelaunch configuration**, not instructions to reapply a gate or disable indexing on the public site.
+
+## Historical domain move — October 26, 2026
 
 The gated home is **https://www.plneuro.xyz/neuro-atlas**. PL Neuro proxies the existing Atlas deployment at `https://neuro-atlas-app.vercel.app`, preserving `/neuro-atlas` for pages and assets. The former PLRD `/neuro-atlas` namespace redirects to the corresponding PL Neuro path; query strings and deep links remain supported. The apex domains retain their existing redirects to `www`.
 
