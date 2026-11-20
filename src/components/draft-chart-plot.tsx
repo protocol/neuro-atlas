@@ -18,6 +18,7 @@ import { observationReferences, observationSourceDescription, type ConfirmedRefe
 import { useChartToggle } from "@/lib/field-velocity/navigation";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 import { recordingAverages, recordingBar, recordingReferences, validRecordingCount } from "@/data/recording-hours-coverage";
+import { RETINAL_OUTPUT, humanRetinalScenario, retinalScenarioLabel, retinalScenarioAssumptions } from "@/data/sensory-context";
 
 const GROUP_COLORS = ["var(--accent)", "#cd732f", "#9275ca", "#238e91", "#cb6285", "#647d3d"];
 const SPECIES_COLORS: Record<string, string> = { Mouse: "#3b8b62", "Partial mouse cortex": "#3b8b62", Human: "#9275ca", "Fruit fly": "#cd732f" };
@@ -152,6 +153,9 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const id = useId();
   const modalSlots = useContext(ModalSlotsContext);
   const benchmark = preview ? undefined : brainBenchmarkContext(plot.id);
+  const sensory = !preview && plot.id === "bci-bitrate";
+  const [sensoryEnabled, setSensoryEnabled] = useState(false);
+  const showSensory = sensory && sensoryEnabled;
   const [benchmarkEnabled, setBenchmarkEnabled] = useChartToggle(benchmark ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
   const benchmarkProgress = useBrainScaleMotion(!!benchmark && benchmarkEnabled);
   const benchmarkMoving = !!benchmark && benchmarkProgress !== (benchmarkEnabled ? 1 : 0);
@@ -189,8 +193,8 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const fittedLabels = referenceTrendlines.filter(line => line.fit);
   const compactFit = preview && fittedLabels.length > 0;
   const fitLabelTop = 28 + yTitle.length * 16;
-  const top = fitLabelTop + fittedLabels.length * 16 + (fittedLabels.length && benchmark ? 16 : 0);
-  const bottom = top + (compactFit ? 56 : preview ? 84 : 232) + previewExtra;
+  const top = fitLabelTop + fittedLabels.length * 16 + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);
+  const bottom = top + (compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232) + previewExtra;
   const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
   const xs = plot.points.map(point => point.x);
   const ys = plot.points.map(point => point.y);
@@ -202,6 +206,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   let minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
   if (maxPower === minPower) maxPower += 1;
+  if (showSensory) maxPower = Math.max(maxPower, Math.ceil(Math.log10(humanRetinalScenario) + .15));
   const rawYMax = Math.max(...ys) || 1;
   const integerStep = Math.max(1, Math.ceil(rawYMax / 5));
   const integerAxis = !log && plot.integerTicks;
@@ -238,14 +243,19 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const targetLeft = Math.max(46, ...targetYTicks.map(tick => axisLabel(tick).length * 6.5 + 12));
   const left = baselineLeft + (targetLeft - baselineLeft) * benchmarkProgress;
   const right = width - Math.max(24, ...xTicks.map(tick => (numericX ? axisLabel(tick) : String(tick)).length * 3.5 + 4));
+  const sensoryLabel = showSensory ? wrapLabel(retinalScenarioLabel, right - left - 8) : [];
   const energyAxis = neuroaiEnergyAxis(plot, left, right);
   const x = energyAxis?.x ?? ((value: number) => left + (value - xMin) / (xMax - xMin) * (right - left));
+  // Thin only optional-view text; every annual guide remains at its calendar position.
+  const calendarStride = showSensory && xTicks.length > 1 ? Math.max(1, Math.ceil(34 / (x(xTicks[1]) - x(xTicks[0])))) : 1;
+  const calendarTicks = calendarStride > 1 ? xTicks.filter((_, index) => index % calendarStride === 0) : xTicks;
   const breakNote = energyAxis ? wrapLabel(energyAxis.note, width - 12) : [];
   const height = baseHeight + (energyAxis ? breakNote.length * 16 + 12 : 0);
   const scaleNote = energyAxis ? "Piecewise linear x-axis · Linear y-axis" : `${log ? "Log" : "Linear"} scale`;
   const y = (value: number) => bottom - (log
     ? (Math.log10(value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
+  const sensoryLabelY = y(humanRetinalScenario) - 6 - (sensoryLabel.length - 1) * 16;
   // Preserve the quantitative centers. Earlier overlapping marks become outer
   // rings, so subsequent filled marks cannot paint them out of the chart.
   const overlaps = plot.points.map(point => plot.points.filter(other => other.id !== point.id
@@ -259,12 +269,12 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   // leave clearance from both source glyphs and already placed badges.
   // Reserve the direct benchmark labels before placing movable annotation badges.
   // Source marks stay at their quantitative centers; only their numbered keys move.
-  const benchmarkLabelRegions = benchmark && benchmarkProgress > .8 ? benchmark.references.map(ref => ({
+  const benchmarkLabelRegions = [...(benchmark && benchmarkProgress > .8 ? benchmark.references.map(ref => ({
     left: right - 4 - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
     right,
     top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
     bottom: y(ref.value),
-  })) : [];
+  })) : []), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];
   const placedKeys: { x: number; y: number }[] = [];
   const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;
   const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / keySlotStep) + 1) }, (_, column) =>
@@ -332,6 +342,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
         ...referenceTrendlines.map(line => line.note),
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
+        ...(showSensory ? [retinalScenarioAssumptions, `Koch et al. (2006): ${RETINAL_OUTPUT.source}`] : []),
         ...(energyAxis ? [energyAxis.note] : []),
         ...(overlapNote ? [overlapNote] : []),
         ...(plot.points.some(point => point.qualifier) ? [`Qualified values (${plot.yLabel}): ${plot.points.filter(point => point.qualifier).map(point => `${point.label}: ${qualifiedValue(point)}`).join("; ")}.`] : []),
@@ -361,7 +372,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
           {[-3, 3].map(offset => <line key={offset} x1={energyAxis.center + offset - 2} x2={energyAxis.center + offset + 2} y1={bottom + 4} y2={bottom - 4} />)}
         </g>
       </> : <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />}
-      {(energyAxis?.ticks ?? xTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
+      {(energyAxis?.ticks ?? calendarTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
       {!compactFit && <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>}
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
@@ -391,6 +402,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
             fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{ref.label}</text>
         </g>;
       })}
+      {showSensory && <g pointerEvents="none">
+        <line data-sensory-reference="retinal-output" data-value={humanRetinalScenario} x1={left} x2={right} y1={y(humanRetinalScenario)} y2={y(humanRetinalScenario)}
+          stroke="var(--muted)" strokeWidth={1} strokeDasharray="2 5" vectorEffect="non-scaling-stroke" />
+        <text data-sensory-reference-label x={left + 4} y={sensoryLabelY}
+          fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">
+          {sensoryLabel.map((line, index) => <tspan key={index} x={left + 4} dy={index ? 16 : 0}>{line}{index < sensoryLabel.length - 1 ? " " : ""}</tspan>)}
+        </text>
+      </g>}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
         strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
@@ -407,6 +426,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <p>{benchmark.disclosure}</p>
         <ul>{benchmark.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></li>)}</ul>
       </details>
+    </div>}
+    {sensory && <div className="brain-scale-controls">
+      <button type="button" role="switch" data-sensory-toggle aria-checked={sensoryEnabled}
+        onClick={() => { tooltip.clear(); setSensoryEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />Sensory context</button>
+      <details data-sensory-assumptions>
+        <summary>Sensory assumptions &amp; source</summary>
+        <p>{retinalScenarioAssumptions}</p>
+        <a href={RETINAL_OUTPUT.source} target="_blank" rel="noreferrer">Koch et al. (2006), How Much the Eye Tells the Brain ↗</a>
+      </details>
+      {showSensory && <p>Sensory context is local to this view. Copy link opens the default chart.</p>}
     </div>}
     {!preview && (overlapNote || benchmark) && <p className="draft-plot-overlap-note" data-overlap-note={overlapNote ? true : undefined}
       style={benchmark && !overlapNote ? { visibility: "hidden" } : undefined}>
