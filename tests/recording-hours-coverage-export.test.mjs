@@ -112,9 +112,9 @@ test('the raster input paints proportionate bars, calculated averages and the ex
         checkBar(10, 0, 100 / 50000, true);
         checkBar(10, 1, 7 / 692);
         const visibleText = key => [...key.querySelectorAll(':scope > text')].map(text => text.textContent).join(' ');
-        assert.match(visibleText(keys[8]), /2020-05-09 · release.*Calculated average: ≈1\.552 h\/patient · ≈0\.4118 h\/session/s);
+        assert.match(visibleText(keys[8]), /2020-05-09 · release.*Calculated average: ≈1\.6 h\/patient · ≈24\.7 min\/session/s);
         assert.match(visibleText(keys[10]), /Calculated average: >14\.2 h\/animal · — h\/session \(both values are lower bounds\)/s);
-        assert.match(visibleText(keys[11]), /≈60–814 h per participant.*≈340 h\/participant/s);
+        assert.match(visibleText(keys[11]), /≈60–814 h per participant.*≈340\.0 h\/participant/s);
       } finally { output.window.close(); }
     }
     assert.ok(counts[0] > 0 && counts[1] > counts[0], 'Exercise two different dynamic badge maps');

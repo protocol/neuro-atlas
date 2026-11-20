@@ -80,9 +80,17 @@ function recordingCoverageLabel(coverage: NonNullable<DraftObservation["recordin
   return `${people}${sessions}`;
 }
 
-function RecordingBar({ metric, bar }: { metric: "hours" | "contributors"; bar: ReturnType<typeof recordingBar> }) {
-  return <span className="recording-bar" data-recording-bar={metric} aria-hidden="true">
-    {bar && <span data-recording-bar-fill data-recording-bar-lower-bound={bar.lowerBound || undefined} style={{ width: `${bar.fraction * 100}%` }} />}
+function recordingBarLabels(point: DraftObservation): readonly [string, string] {
+  const unit = point.recordingCoverage?.unit;
+  return ["Recording hours", unit === "patients" ? "Patient count" : unit === "nonhuman primates" ? "Animal count" : "Participant count"];
+}
+
+function RecordingBar({ metric, label, bar }: { metric: "hours" | "contributors"; label: string; bar: ReturnType<typeof recordingBar> }) {
+  return <span className="recording-bar-labeled" aria-hidden="true">
+    <span data-recording-bar-label={metric}>{label}</span>
+    <span className="recording-bar" data-recording-bar={metric}>
+      {bar && <span data-recording-bar-fill data-recording-bar-lower-bound={bar.lowerBound || undefined} style={{ width: `${bar.fraction * 100}%` }} />}
+    </span>
   </span>;
 }
 
@@ -312,6 +320,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         pointId: point.id, badge: annotationNumbers.get(point.id),
         details: [point.dateLabel, recordingAverages(point)!],
         bars: [hoursBar(point), contributorsBar(point)],
+        barLabels: recordingBarLabels(point),
       })) : plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
       })) : undefined,
@@ -414,13 +423,13 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
     </li>)}</ul>}
     {!preview && recordingPoints.length > 0 && <section className="recording-coverage" data-recording-coverage-list aria-label="Recording duration and participant coverage">
       <h4>Recording coverage</h4>
-      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Contributor counts compare individuals, not recording quality. Overlapping releases are not additive.</p>
+      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Equal contributor counts produce equal bars even when sessions or averages differ. Contributor counts compare individuals, not recording quality. Overlapping releases are not additive.</p>
       <p className="recording-bar-legend">{hoursReference} · {peopleReference}</p>
       <ul>{recordingPoints.map(point => <li key={point.id} data-recording-coverage-row={point.id}>
         <button type="button" {...inspectProps(point, false)}>
           <span className="recording-coverage-identity"><span aria-hidden="true" style={{ color: groupColor(point) }}>●</span> {point.label.split(" · ")[0]}</span>
           <strong>{recordingPair(point)}</strong>
-          <span className="recording-bar-grid"><RecordingBar metric="hours" bar={hoursBar(point)} /><RecordingBar metric="contributors" bar={contributorsBar(point)} /></span>
+          <span className="recording-bar-grid"><RecordingBar metric="hours" label={recordingBarLabels(point)[0]} bar={hoursBar(point)} /><RecordingBar metric="contributors" label={recordingBarLabels(point)[1]} bar={contributorsBar(point)} /></span>
           <small>{recordingAverages(point)}</small>
           {point.recordingCoverage?.durationSummary && <small data-recording-duration-summary>{point.recordingCoverage.durationSummary}</small>}
         </button>

@@ -11,6 +11,7 @@ export type ChartPointKeyEntry = ChartLegendEntry & {
   badge?: number;
   details?: string[];
   bars?: readonly [PointKeyBar | null, PointKeyBar | null];
+  barLabels?: readonly [string, string];
 };
 export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
@@ -294,11 +295,13 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
         let offset = lines.length * size * 1.45;
         if (entry.bars) {
           const trackWidth = (columnWidth - textInset - 28) / 2;
-          const barY = cursor + offset + 8;
+          const captionHeight = entry.barLabels ? rowStep : 0;
+          const barY = cursor + offset + captionHeight + 8;
           entry.bars.forEach((bar, lane) => {
             const barX = textLeft + lane * (trackWidth + 20);
             const paint = lane === 0 ? EXPORT_BLUE : "#52647d";
             body.push(`<g data-export-point-key-bar="${lane + 1}">`);
+            if (entry.barLabels) body.push(`<text data-export-bar-label="true" x="${barX}" y="${barY - 8}" fill="#52647d" font-family="${EXPORT_FONT}" font-size="${size}">${escape(entry.barLabels[lane])}</text>`);
             if (bar && Number.isFinite(bar.fraction) && bar.fraction > 0 && bar.fraction <= 1) {
               const fill = bar.fraction * trackWidth;
               body.push(`<rect data-export-bar-track="true" x="${barX}" y="${barY}" width="${trackWidth}" height="5" fill="#dfe5ec"/>`);
@@ -310,7 +313,7 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
             }
             body.push('</g>');
           });
-          offset += 14;
+          offset += 14 + captionHeight;
         }
         for (const line of details) {
           offset += rowStep;

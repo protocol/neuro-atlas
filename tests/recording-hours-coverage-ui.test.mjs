@@ -39,17 +39,17 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
     assert.match(comparison.textContent, /not recording quality/i);
     const averages = [
       '— h/participant (count undisclosed) · — h/session (count not reported)',
-      '≈1.491 h/patient · ≈0.3333 h/session',
-      '≈1.728 h/patient · ≈0.6195 h/session',
-      '≈1.6 h/patient · ≈0.6131 h/session',
-      '≈1.788 h/patient · ≈0.6711 h/session',
-      '≈1.788 h/patient · ≈0.6718 h/session',
-      '≈1.552 h/patient · ≈0.6466 h/session',
-      '≈1.552 h/patient · ≈0.6819 h/session',
-      '≈1.552 h/patient · ≈0.4118 h/session',
+      '≈1.5 h/patient · ≈20.0 min/session',
+      '≈1.7 h/patient · ≈37.2 min/session',
+      '≈1.6 h/patient · ≈36.8 min/session',
+      '≈1.8 h/patient · ≈40.3 min/session',
+      '≈1.8 h/patient · ≈40.3 min/session',
+      '≈1.6 h/patient · ≈38.8 min/session',
+      '≈1.6 h/patient · ≈40.9 min/session',
+      '≈1.6 h/patient · ≈24.7 min/session',
       '≈106.7 h/participant · — h/session (count not reported)',
       '>14.2 h/animal · — h/session (both values are lower bounds)',
-      '≈340 h/participant · — h/session (count not reported)',
+      '≈340.0 h/participant · — h/session (count not reported)',
     ];
     assert.equal(comparison.querySelectorAll('[data-recording-bar-fill]').length, 23);
     const bar = (id, metric) => comparison.querySelector(`[data-recording-coverage-row="${id}"] [data-recording-bar="${metric}"]`);

@@ -32,17 +32,19 @@ export const RECORDING_HOURS_COVERAGE: Record<string, NonNullable<DraftObservati
 
 const positive = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && value > 0;
 export const validRecordingCount = (value: unknown): value is number => positive(value) && Number.isSafeInteger(value);
-const means = new Intl.NumberFormat("en-US", { maximumSignificantDigits: 4 });
+const means = new Intl.NumberFormat("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
 function ratio(hours: number, count: number, unit: string, lowerBound: boolean) {
-  if (!lowerBound) return `≈${means.format(hours / count)} ${unit}`;
-  // Floor the exact rational, not a floating-point approximation at a decimal boundary.
+  const factor = hours / count < 1 ? 60 : 1;
+  const displayUnit = factor === 60 ? unit.replace(/^h\//, "min/") : unit;
+  if (!lowerBound) return `≈${means.format(hours / count * factor)} ${displayUnit}`;
+  // Floor the exact rational after unit conversion; never round a strict bound up.
   if (Number.isSafeInteger(hours)) {
     const ten = BigInt(10);
-    const tenths = BigInt(hours) * ten / BigInt(count);
-    if (tenths > 0) return `>${(tenths / ten).toLocaleString("en-US")}.${tenths % ten} ${unit}`;
+    const tenths = BigInt(hours) * BigInt(factor) * ten / BigInt(count);
+    if (tenths > 0) return `>${(tenths / ten).toLocaleString("en-US")}.${tenths % ten} ${displayUnit}`;
   }
-  return `>${hours} ÷ ${count} ${unit}`;
+  return `>${hours}${factor === 60 ? " × 60" : ""} ÷ ${count} ${displayUnit}`;
 }
 
 /** Derived from like-for-like source-reported totals; not typical recording durations. */
