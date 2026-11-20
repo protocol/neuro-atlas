@@ -1,0 +1,18 @@
+✔ the actual recording-hours export callback retains every paired value and strict bound in the visible PNG key and full metadata (8118.100785ms)
+✔ the raster input paints proportionate bars, calculated averages and the exact overlap badge key at desktop and phone plot widths (13950.24311ms)
+✔ fractional contributor and session counts never become numerical labels or contributor bars in UI or PNG (6747.253701ms)
+✔ recording source rows retain exact source data in a separately scrollable, styled portal (1162.205921ms)
+✔ the narrow wrap overrides explicit button placement and bounds status only in the recording modal (422.185119ms)
+✔ the current shared chart exposes matched coverage at rest, on selected points, in the source table and accessible marks, without growing previews (1517.260141ms)
+✔ each duration has its own matched participant/animal denominator and release-specific sessions (2.762825ms)
+✔ coverage calculations fail closed on invalid denominators or hours; qualified hours are never rounded up (1.036553ms)
+✔ JapanEEG uses dated v2 controlled-access evidence and a qualified calculated per-person range without redating the checkpoint (0.557801ms)
+✔ historical-golden normalization checks the exact coverage delta and rejects mutated or missing recording evidence (53.52499ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30810.229402

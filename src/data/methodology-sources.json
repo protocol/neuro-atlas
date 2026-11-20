@@ -1,6 +1,10 @@
 {
   "datasets": [
     [
+      "https://doi.org/10.7910/dvn/5rm3ot",
+      "JapanEEG — author-reported Harvard Dataverse release (access not independently verified)"
+    ],
+    [
       "https://api.crossref.org/works/10.1088/1741-2552/adb88e",
       "api.crossref.org — adb88e"
     ],
@@ -194,6 +198,18 @@
     ]
   ],
   "studies": [
+    [
+      "https://www.nature.com/articles/s41597-022-01280-y",
+      "AJILE12 — long-term naturalistic ECoG and behavior dataset descriptor"
+    ],
+    [
+      "https://arxiv.org/html/2606.01264v2",
+      "JapanEEG — version 2 descriptor (November 17, 2026)"
+    ],
+    [
+      "https://arxiv.org/html/2606.01264v2#Sx2.T4",
+      "JapanEEG — version 2 Table 4 recording-hour breakdown"
+    ],
     [
       "https://doi.org/10.1152/jn.1988.60.3.909",
       "Abeles and Gerstein — DOI 10.1152/jn.1988.60.3.909"
