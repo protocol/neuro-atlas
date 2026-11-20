@@ -1,0 +1,333 @@
+{
+  "schema": "implant-data-link-proposal/v0",
+  "snapshot_date": "2026-11-20",
+  "status": "discussion proposal; not a production metric",
+  "definitions": {
+    "channels": "Recording channels digitized at the same time in the described configuration.",
+    "sample_rate_hz": "Per-channel sampling rate of the described configuration.",
+    "adc_bits": "Bits per sample as stated by the source. null when the source read here does not state it.",
+    "raw_rate_bit_s_derived": "channels x sample_rate_hz x adc_bits. DERIVED by this proposal, not reported by the source. Payload only: no framing, line code or protocol overhead. null when any factor is null.",
+    "raw_rate_reported": "The source's own statement of generated data rate, verbatim, when it gives one.",
+    "link_rate_bit_s": "Data rate of the link that carries data out of the body or off the head, as stated by the source. null for wired systems and when not stated.",
+    "power_mw": "Power as stated by the source. power_scope says what the number covers. Scopes differ between records and are not comparable without care.",
+    "raw_rate_bit_s_reported": "The source's own statement of generated data rate as a number, when it gives one in bit/s. raw_rate_reported keeps the wording.",
+    "requirement": "A stated design requirement or target. Not an observation; never plotted as a measurement."
+  },
+  "records": [
+    {
+      "id": "borton-2013-implant",
+      "label": "Borton et al. 2013, hermetic 100-channel implant",
+      "form": "fully implanted",
+      "subjects": "swine and non-human primate",
+      "channels": 100,
+      "sample_rate_hz": 20000,
+      "adc_bits": null,
+      "raw_rate_bit_s_derived": null,
+      "raw_rate_reported": "The neural data (24 Mbps)",
+      "link": "radio, FSK at 3.2 and 3.8 GHz",
+      "link_rate_bit_s": 24000000,
+      "link_rate_qualifier": "reported",
+      "power_mw": 90.6,
+      "power_scope": "complete implant during normal operation",
+      "what_is_sent": "full-spectrum (broadband) samples",
+      "date_basis": "published 2013-02-21",
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3638022/",
+          "doi": "10.1088/1741-2560/10/2/026010",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "The neural data (24 Mbps) was transmitted by a wireless data link carried on an frequency shift key modulated signal at 3.2GHz and 3.8GHz to a receiver 1 meter away",
+            "The present, first version of the completely implantable system consumes 90.6 mW during normal operation while transmitting at data rate of 24 Mbps over a distance of > 1 m.",
+            "enable the neural interface to be operated continuously across all 100 channels for 7 hours on a single charge cycle"
+          ]
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4161037/",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "[table row, Table 5] Borton et al., 2013 | 100 | 20 | Downlink | Raw data | 3.8 GHz | 24 Mbps | 8.6 | 12 | 90.6"
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": 24000000,
+      "requirement": null,
+      "adc_bits_basis": "not confirmed: the paper's Table 1 could not be read with its column headers in this session",
+      "sample_rate_basis": "secondary: Table 5 of Schwarz et al. 2014 lists this device with 'Sampling (ksps)' 20; the primary table headers were not read"
+    },
+    {
+      "id": "simeral-2021-bwd",
+      "label": "Simeral et al. 2021, two pedestal-mounted Brown Wireless Devices",
+      "form": "percutaneous pedestal with external transmitters",
+      "subjects": "human (BrainGate pilot trial, 2 participants)",
+      "channels": 192,
+      "channels_basis": "'192-electrode iBCI'; 'two 96-channel intracortical arrays', one transmitter per array",
+      "sample_rate_hz": 20000,
+      "adc_bits": 12,
+      "raw_rate_bit_s_derived": 46080000,
+      "raw_rate_reported": null,
+      "link": "radio at 3.3 or 3.5 GHz, Manchester encoded",
+      "link_rate_bit_s": null,
+      "link_rate_qualifier": "not stated in the main text read here; Supplemental Table SI was not read. A university news release says 'two devices used together recorded neural signals at 48 megabits per second from 200 electrodes', which does not match this row's 192 channels and is kept as context only.",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "broadband samples",
+      "date_basis": "published 2021 (IEEE TBME); news release 2021-03-31",
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8218873/",
+          "doi": "10.1109/TBME.2021.3069119",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "we replaced the external cables of a 192-electrode iBCI with wireless transmitters",
+            "The BWD applies a hardware filter (1 Hz to 7.8 kHz), digitizes neural activity (20 kS/sec, 12 bits per sample) on each electrode, applies Manchester encoding and transmits it to nearby antennas using a custom low-power protocol.",
+            "Transmission frequency was configurable such that neural activity from two 96-channel intracortical arrays could be recorded simultaneously without interference."
+          ]
+        },
+        {
+          "url": "https://www.brown.edu/news/2021-03-31/braingate-wireless",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "two devices used together recorded neural signals at 48 megabits per second from 200 electrodes with a battery life of over 36 hours"
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    },
+    {
+      "id": "neuralink-2019-system-a",
+      "label": "Neuralink 2019, System A (wired research system)",
+      "form": "implanted package with a wired connector",
+      "subjects": "not recorded here",
+      "channels": 1536,
+      "sample_rate_hz": 19300,
+      "adc_bits": 10,
+      "raw_rate_bit_s_derived": 296448000,
+      "raw_rate_reported": null,
+      "link": "wired, USB-C",
+      "link_rate_bit_s": null,
+      "link_rate_qualifier": "wired system; no wireless link",
+      "power_mw": 550,
+      "power_scope": "total system power consumption (Table 2)",
+      "what_is_sent": "full-bandwidth samples",
+      "date_basis": "published 2019-10-31",
+      "sources": [
+        {
+          "url": "https://www.jmir.org/2019/10/e16194",
+          "doi": "10.2196/16194",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "The on-chip ADC samples at 19.3 kHz with 10-bit resolution.",
+            "[table rows, Table 2, System A] Number of channels 1536 | Sampling rate, kHz 19.3 | Total system power consumption, mW 550",
+            "a single USB-C connector for full-bandwidth data transfer"
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    },
+    {
+      "id": "neuralink-n1-2024-challenge",
+      "label": "Neuralink N1, as stated on the company's compression challenge page",
+      "form": "fully implanted",
+      "subjects": "non-human primate (the data on that page)",
+      "channels": 1024,
+      "sample_rate_hz": 20000,
+      "adc_bits": 10,
+      "raw_rate_bit_s_derived": 204800000,
+      "raw_rate_reported": "~200Mbps",
+      "link": "radio",
+      "link_rate_bit_s": 1000000,
+      "link_rate_qualifier": "approximate ('~1Mbps'), company statement on a web page, not a peer-reviewed measurement",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "not stated on the page",
+      "date_basis": "archived copy dated 2024-06-01; the live URL returned 'NoSuchKey' (404) on 2026-11-20",
+      "sources": [
+        {
+          "url": "http://web.archive.org/web/20240601104231/https://content.neuralink.com/compression-challenge/README.html",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "Compression is essential: N1 implant generates ~200Mbps of eletrode data (1024 electrodes @ 20kHz, 10b resolution) and can transmit ~1Mbps wirelessly. So > 200x compression is needed. Compression must run in real time (< 1ms) at low power (< 10mW, including radio)."
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": 200000000,
+      "requirement": "'Compression must run in real time (< 1ms) at low power (< 10mW, including radio)' and '> 200x compression is needed'"
+    },
+    {
+      "id": "wimagine-2015",
+      "label": "WIMAGINE (Mestais et al. 2015), 32-channel streaming configuration",
+      "form": "active implantable device, powered by an inductive link",
+      "subjects": "device paper",
+      "channels": 32,
+      "channels_basis": "The implant has 64 electrodes. The paper states 'Either up to 32 channels can be transmitted with a sampling frequency of 1 kHz or up to 64 channels with a sampling frequency of 600 Hz.' This record is the 32-channel case.",
+      "sample_rate_hz": 976,
+      "adc_bits": 12,
+      "raw_rate_bit_s_derived": 374784,
+      "raw_rate_reported": "approximately 400 kb/s",
+      "link": "radio, MICS band (400 MHz range)",
+      "link_rate_bit_s": 450000,
+      "link_rate_qualifier": "measured effective throughput at up to 2 m",
+      "power_mw": 75,
+      "power_scope": "maximum implant power consumption",
+      "what_is_sent": "raw ECoG samples",
+      "date_basis": "published online 2014-06-30 (IEEE TNSRE, 2015 volume)",
+      "sources": [
+        {
+          "url": "https://doi.org/10.1109/tnsre.2014.2333541",
+          "doi": "10.1109/TNSRE.2014.2333541",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "The wireless transmission of the raw recorded neural signals requires a high throughput of approximately 400 kb/s for the transmission of 32 channels sampled at 976 Hz on 12 bits.",
+            "An effective data throughput of 450 kb/s between the implant and the base station was measured over several hours at a distance of 2 m.",
+            "The bottleneck of the WIMAGINE acquisition system is the wireless data rate.",
+            "In any case, the maximum power consumption is 75 mW."
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": 400000,
+      "requirement": null
+    },
+    {
+      "id": "paradromics-connexus-2025",
+      "label": "Paradromics Connexus, one cortical module (SONIC preprint)",
+      "form": "fully implanted",
+      "subjects": "sheep",
+      "channels": 421,
+      "sample_rate_hz": 5200,
+      "sample_rate_basis": "the rate used in this study; the source says the module 'provides a tunable sampling rate'",
+      "adc_bits": null,
+      "raw_rate_bit_s_derived": null,
+      "raw_rate_reported": null,
+      "link": "near-infrared optical, through the skin",
+      "link_rate_bit_s": 100000000,
+      "link_rate_qualifier": "upper bound ('supporting speeds of up to 100 Mbps')",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "broadband samples",
+      "date_basis": "bioRxiv preprint v1, 2025-09-30 series",
+      "sources": [
+        {
+          "url": "https://www.biorxiv.org/content/10.1101/2025.09.30.679683v1.full.pdf",
+          "doi": "10.1101/2025.09.30.679683",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "amplified and bandpass filtered between ~10 Hz and 2.2 kHz through a multi-stage analog hardware pipeline before digitization at a 5.2 kHz sampling rate",
+            "The IT distributes power to the Cortical Module and transmits neural data wirelessly through the skin to the ET via a secure near-infrared optical link, supporting speeds of up to 100 Mbps."
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    },
+    {
+      "id": "medtronic-summit-rcs-2018",
+      "label": "Medtronic Summit RC+S (Stanslaski et al. 2018)",
+      "form": "fully implanted (LFP/ECoG sensing with stimulation)",
+      "subjects": "device paper",
+      "channels": 4,
+      "sample_rate_hz": 500,
+      "sample_rate_basis": "Table 1: '4 Time Domain at 250 or 500Hz, 2 Time Domain at 1kHz'. The body text also says '4 independent channels sampled at 1kHz each'; the two statements differ and the table value is used here.",
+      "adc_bits": null,
+      "raw_rate_bit_s_derived": null,
+      "raw_rate_reported": null,
+      "link": "radio, MICS band",
+      "link_rate_bit_s": 195000,
+      "link_rate_qualifier": "reported (Table 1 'Data Rate 195kbits/s')",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "time-domain LFP samples or band power",
+      "date_basis": "published 2018-11-07",
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6415546/",
+          "doi": "10.1109/TBCAS.2018.2880148",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "[table row, Table 1] Data Rate | 195kbits/s",
+            "[table row, Table 1] Data Streaming capability | 4 Time Domain at 250 or 500Hz, 2 Time Domain at 1kHz",
+            "This communication occurs in the MICS-band and allows streaming of local field potentials on 4 independent channels sampled at 1kHz each."
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    },
+    {
+      "id": "precision-layer7-2025",
+      "label": "Precision Layer 7, 1,024-channel array with wired head stage",
+      "form": "subdural array with an external wired head stage",
+      "subjects": "pig, cadaver, 5-patient intraoperative pilot",
+      "channels": 1024,
+      "sample_rate_hz": 20000,
+      "adc_bits": null,
+      "raw_rate_bit_s_derived": null,
+      "raw_rate_reported": "around 2 GB per minute for each set of 1,024 channels",
+      "link": "wired",
+      "link_rate_bit_s": null,
+      "link_rate_qualifier": "wired system; the paper says a wireless package 'is under development and will be described in future studies'",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "broadband samples",
+      "date_basis": "published 2025-10-02",
+      "sources": [
+        {
+          "url": "https://www.nature.com/articles/s41551-025-01501-w",
+          "doi": "10.1038/s41551-025-01501-w",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "The sampling rate for recording is set at 20 kHz per channel, generating data at a rate around 2 GB per minute for each set of 1,024 channels.",
+            "we have not demonstrated the performance of the thin-film electrode interface in the context of a fully integrated package designed for chronic implantation and wireless data transfer"
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    },
+    {
+      "id": "synchron-stentrode-2021",
+      "label": "Synchron Stentrode (Oxley et al. 2021)",
+      "form": "fully implanted (endovascular)",
+      "subjects": "human (2 participants)",
+      "channels": null,
+      "channels_basis": "not stated in the main text read here; the supplementary file was not read",
+      "sample_rate_hz": 2000,
+      "adc_bits": null,
+      "raw_rate_bit_s_derived": null,
+      "raw_rate_reported": null,
+      "link": "infrared light to an external telemetry unit",
+      "link_rate_bit_s": null,
+      "link_rate_qualifier": "not stated",
+      "power_mw": null,
+      "power_scope": null,
+      "what_is_sent": "vascular electrocorticography samples",
+      "date_basis": "published 2021",
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7848062/",
+          "doi": "10.1136/neurintsurg-2020-016862",
+          "accessed": "2026-11-20",
+          "excerpts": [
+            "Vascular electrocorticographic signal (0.125 µV/bit, 2 kHz sampling rate) was transmitted wirelessly to an external telemetry unit (ETU) using infrared light"
+          ]
+        }
+      ],
+      "raw_rate_bit_s_reported": null,
+      "requirement": null
+    }
+  ],
+  "context_sources": [
+    {
+      "label": "Even-Chen et al. 2020, Nature Biomedical Engineering",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32747834/",
+      "doi": "10.1038/s41551-020-0595-9",
+      "accessed": "2026-11-20",
+      "excerpts": [
+        "The efficacy of wireless intracortical brain-computer interfaces (iBCIs) is limited in part by the number of recording channels, which is constrained by the power budget of the implantable system.",
+        "In contrast to the conventional system, whose power consumption would be limited by the transmitter (50-93%), the proposed design's power consumption is limited by the neural amplifier (92%)."
+      ]
+    }
+  ]
+}
