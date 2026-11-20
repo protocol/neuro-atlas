@@ -16,15 +16,23 @@ const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["pathfinder-nerl", 3],
 ]);
 
-function Methodology({ chart, context, axes, expanded = false }: { chart: DraftChart; context?: string; axes?: string; expanded?: boolean }) {
-  return <details className="draft-chart-methodology" data-draft-methodology open={expanded}>
-    <summary>Definition and comparability</summary>
+function Methodology({ chart, context, axes, alwaysVisible = false, summary }: { chart: DraftChart; context?: string; axes?: string; alwaysVisible?: boolean; summary?: string }) {
+  const content = <>
+    {summary && <p className="draft-chart-summary">{summary}</p>}
     <dl>
       <div><dt>Axes</dt><dd>{axes ?? chart.axes}</dd></div>
       <div><dt>Definition</dt><dd>{chart.definition}</dd></div>
       <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>
       {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}
     </dl>
+  </>;
+  if (alwaysVisible) return <section className="draft-chart-methodology" data-draft-methodology aria-label="Definition and comparability">
+    <h3 className="mx-k">Definition and comparability</h3>
+    {content}
+  </section>;
+  return <details className="draft-chart-methodology" data-draft-methodology>
+    <summary>Definition and comparability</summary>
+    {content}
   </details>;
 }
 
@@ -53,7 +61,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <span id={anchor} className="metric-anchor" />
             {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
-              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology expanded chart={chart} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} /></>} />
+              methodology={<Methodology alwaysVisible chart={chart} summary={plot.id === "bci-bitrate" ? undefined : evidence.summary} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} />} />
             {/* Scope sits in the footer row, so a capped preview can never clip it. */}
             <div data-metric-card-footer>
               <MetricCardScope>
@@ -76,7 +84,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <span id={anchor} className="metric-anchor" />
             {ids.filter(id => id !== (cards.length ? panel.id : link.id)).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftTimelinePanel timeline={timeline} anchor={anchor} aliases={ids}
-              methodology={<><p className="draft-chart-summary">{evidence.summary}</p><Methodology expanded chart={chart} context={evidence.gapReason} axes="x-axis: Publication date · y-axis: Reported event stage" /></>} />
+              methodology={<Methodology alwaysVisible chart={chart} summary={evidence.summary} context={evidence.gapReason} axes="x-axis: Publication date · y-axis: Reported event stage" />} />
             <div data-metric-card-footer>
               <MetricCardScope><p data-metric-scope>{timeline.scope.split(/\.(?:\s|$)/)[0]}.</p></MetricCardScope>
               <DraftChartShare anchor={anchor} label="Selected application events" />

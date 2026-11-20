@@ -263,6 +263,7 @@
 .metrics-index .mx-left { min-width: 0; overflow-wrap: anywhere; }
 /* Avoid a second two-column grid inside an already half-width reading region. */
 .metrics-index .mx-left .pc-methodology dl { grid-template-columns: minmax(0, 1fr); }
+.metrics-index .mx-left > .draft-chart-methodology { margin: 0; padding: 0; border: 0; }
 .metrics-index .mx-left .draft-chart-methodology dl { display: grid; gap: .85rem; margin-top: .85rem; line-height: 1.6; }
 .metrics-index .mx-left .draft-chart-methodology dt { color: var(--foreground); font-weight: 600; }
 .metrics-index .mx-left .draft-chart-methodology dd { margin: .2rem 0 0; }

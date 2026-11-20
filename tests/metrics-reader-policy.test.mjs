@@ -30,9 +30,15 @@ test('curated chart context is preserved verbatim in modal definition details, n
       assert.ok(card.querySelector('[data-metric-scope]')?.textContent.trim(), 'Essential scope stays visible');
       await click(card.querySelector('[data-draft-popout-trigger]'));
       const modal = card.querySelector('dialog[open]');
-      assert.equal(modal.querySelector('.draft-chart-summary').textContent, evidence.summary, 'Full original context stays with the chart');
+      const bci = evidence.plots.find(plot => plot.id === 'bci-bitrate');
+      if (bci) {
+        assert.ok(modal.querySelector('.draft-chart-summary') === null, 'BCI coverage is not repeated above definitions');
+        assert.equal(modal.querySelector('[data-draft-sources-scope]').textContent, bci.scope);
+      } else {
+        assert.equal(modal.querySelector('.draft-chart-summary').textContent, evidence.summary, 'Full original context stays inside its definition section');
+      }
       if (evidence.gapReason) {
-        const details = modal.querySelector('details[data-draft-methodology][open]');
+        const details = modal.querySelector('section[data-draft-methodology]');
         assert.ok(details.textContent.includes(evidence.gapReason), `${card.dataset.draftChartCard}: context must be disclosed without losing wording`);
       }
       assert.equal(card.querySelectorAll(':scope > [data-draft-still-missing]').length, 0);

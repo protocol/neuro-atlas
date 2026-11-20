@@ -35,7 +35,7 @@ test('curated pop-outs show definitions by default and keep each observation wit
   const cleanup = await mount(React.createElement(Page), '#metric-recording-hours');
   try {
     const modal = document.querySelector('dialog[open]');
-    assert.equal(modal.querySelector('[data-draft-methodology]').open, true, 'Definitions start expanded');
+    assert.equal(modal.querySelector('[data-draft-methodology]').tagName, 'SECTION', 'Definitions are always visible');
     assert.ok(modal.querySelector('.mx-sources .pc-sources') === null, 'No duplicate standalone reference list');
     const rows = [...new Set([...modal.querySelectorAll('.mx-data tbody td a')].map(link => link.href))];
     assert.ok(rows.length >= 5, 'All point citations remain with the observations');

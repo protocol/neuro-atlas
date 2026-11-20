@@ -101,12 +101,10 @@ for width in ([1440] if MODE == 'before' else [1440,1024,900,768,390,320]):
             scroll='dialog[open] .draft-plot-table-scroll'
             js('return (()=>{const e=document.querySelector('+json.dumps(scroll)+');e.scrollLeft=e.scrollWidth})()')
             assert js('return (()=>{const e=document.querySelector('+json.dumps(scroll)+');return e.scrollWidth-e.clientWidth-e.scrollLeft<=1})()')
-            # Opening definitions remains a native, keyboard-reachable disclosure.
-            assert js('return document.querySelector("dialog[open] [data-draft-methodology]").open'), 'Definitions must start open'
-            click('dialog[open] [data-draft-methodology] > summary')
-            poll('!document.querySelector("dialog[open] [data-draft-methodology]").open','Definitions did not collapse')
-            click('dialog[open] [data-draft-methodology] > summary')
-            poll('document.querySelector("dialog[open] [data-draft-methodology]").open','Definitions did not reopen')
+            # Both supporting columns are static; only the long data table is a disclosure.
+            assert js('return document.querySelector("dialog[open] [data-draft-methodology]").tagName') == 'SECTION'
+            assert js('return document.querySelectorAll("dialog[open] [data-draft-methodology] summary").length') == 0
+            assert js('return document.querySelector("dialog[open] .mx-left .draft-chart-summary") === null')
             js('return document.querySelector("dialog[open] .mx-grid").scrollIntoView({block:"start",behavior:"instant"})')
             capture_screenshot(path=str(OUT / f'{MODE}-{anchor}-{width}-definitions.png'))
         press_key('Escape')
