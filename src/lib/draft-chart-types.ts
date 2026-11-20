@@ -23,6 +23,16 @@ export type DraftObservation = {
   /** Centered on the source coordinates; defaults to a circle. */
   marker?: "circle" | "square" | "triangle" | "diamond";
   note?: string;
+  /** Exact people/animals contributing to this recording dataset/release, never trial enrollment. */
+  recordingCoverage?: {
+    count: number | null;
+    unit: "participants" | "patients" | "nonhuman primates";
+    sessions?: number;
+    sessionsQualifier?: ">";
+    detail: string;
+    /** Source-reported or explicitly calculated duration distribution; not typical session length. */
+    durationSummary?: string;
+  };
   /** Short persistent caption; presentation only, never changes x/y. */
   annotation?: string;
   /** Compact image-only identity; verbose annotation and source notes stay on site. */

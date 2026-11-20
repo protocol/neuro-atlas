@@ -71,6 +71,11 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
   return <circle cx={cx} cy={cy} r={r} {...props} />;
 }
 
+function recordingCoverageLabel(coverage: NonNullable<DraftObservation["recordingCoverage"]>) {
+  const people = coverage.count === null ? `${coverage.unit} not disclosed` : `${exactNumber(coverage.count)} ${coverage.unit}`;
+  return `${people}${coverage.sessions !== undefined ? ` · ${coverage.sessionsQualifier ?? ""}${exactNumber(coverage.sessions)} sessions` : ""}`;
+}
+
 function ReferenceLink({ reference }: { reference: ConfirmedReference }) {
   return <>{reference.role && <>{reference.role}: </>}{reference.url ? <a href={reference.url} target="_blank" rel="noreferrer">{reference.title} ↗</a> : <span>{reference.title}</span>}</>;
 }
@@ -144,6 +149,10 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   const tooltip = usePointTooltip(plot.points);
   const active = tooltip.active;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
+  const recordingPoints = plot.points.filter(point => point.recordingCoverage);
+  const recordingPair = (point: DraftObservation) => point.recordingCoverage
+    ? `${qualifiedValue(point)} h · ${recordingCoverageLabel(point.recordingCoverage)}` : undefined;
+  const recordingKey = (point: DraftObservation) => `${point.label.split(" · ")[0]} · ${recordingPair(point)}${point.recordingCoverage?.durationSummary ? ` · ${point.recordingCoverage.durationSummary}` : ""}`;
   const { width, figure } = usePlotWidth();
   const previewExtra = useMetricPreviewSpace(figure, preview);
   const yLabel = preview && plot.previewYLabel ? plot.previewYLabel : preview && plot.scale === "log" && !/\blog\b/i.test(plot.yLabel) ? `${plot.yLabel} · log` : plot.yLabel;
@@ -266,7 +275,7 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
   });
   const inspectProps = (point: DraftObservation) => ({
     tabIndex: 0, role: "button",
-    "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${qualifiedValue(point)}; ${observationSourceDescription(point)}`,
+    "aria-label": `${point.annotation ? `${point.annotation}; ` : ""}${point.label}; ${point.group ?? ""}; ${point.dateLabel}; ${plot.yLabel}: ${recordingPair(point) ?? qualifiedValue(point)}; ${observationSourceDescription(point)}`,
     ...tooltip.pointProps(point, trigger => Array.from(trigger.closest("figure")?.querySelectorAll("[data-source-observation]") ?? [])
       .find(mark => mark.getAttribute("data-source-observation") === point.id) ?? null),
   });
@@ -276,11 +285,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       svg: figure.current!.querySelector("svg")!, title: plot.title, anchor: shareAnchor,
       legend: exportLegend,
       datasetCredit: plot.datasetCredit,
-      pointKey: plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
+      pointKey: recordingPoints.length ? recordingPoints.map(point => ({
+        label: recordingKey(point), color: groupColor(point), marker: point.marker,
+      })) : plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
       })) : undefined,
-      pointKeyNote: plot.exportPointKey ? plot.exportPointKeyNote : undefined,
+      pointKeyNote: recordingPoints.length ? "Recording coverage · matched dataset/release; overlapping releases not additive" : plot.exportPointKey ? plot.exportPointKeyNote : undefined,
       notes: [plot.scope, plot.seriesNote ?? "",
+        ...recordingPoints.map(point => `${recordingKey(point)}. ${point.recordingCoverage!.detail}`),
         ...referenceTrendlines.map(line => line.note),
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(energyAxis ? [energyAxis.note] : []),
@@ -374,6 +386,16 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}
     </li>)}</ul>}
+    {!preview && recordingPoints.length > 0 && <section className="recording-coverage" data-recording-coverage-list aria-label="Recording duration and participant coverage">
+      <h4>Recording coverage</h4>
+      <p>Counts match each dataset/release. Overlapping releases are not additive.</p>
+      <ul>{recordingPoints.map(point => <li key={point.id} data-recording-coverage-row={point.id}>
+        <button type="button" {...inspectProps(point)}>
+          <span className="recording-coverage-identity"><span aria-hidden="true" style={{ color: groupColor(point) }}>●</span> {point.label.split(" · ")[0]}</span>
+          <span><strong>{recordingPair(point)}</strong>{point.recordingCoverage?.durationSummary && <small data-recording-duration-summary>{point.recordingCoverage.durationSummary}</small>}</span>
+        </button>
+      </li>)}</ul>
+    </section>}
     {referenceTrendlines.map(referenceTrendline => <p key={referenceTrendline.id ?? plot.id} className="draft-plot-qualifications" data-reference-trendline-key title={referenceTrendline.note}>
       <svg width={22} height={12} viewBox="0 0 22 12" aria-hidden="true" style={{ display: "inline-block", verticalAlign: "middle", marginRight: 4 }}>
         <line x1={0} x2={22} y1={6} y2={6} stroke={referenceTrendline.color} strokeWidth={2} />
@@ -396,7 +418,11 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
         <strong>{active.label}</strong>
         {active.group && <p>{active.group}</p>}
         <p>{active.dateLabel}{numericX && ` · ${plot.xLabel}: ${exactNumber(active.x)}`}</p>
-        <p>{plot.yLabel}: <strong>{qualifiedValue(active)}</strong></p>
+        <p>{plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>
+        {active.recordingCoverage && <div data-recording-coverage-readout>
+          {active.recordingCoverage.durationSummary && <p>{active.recordingCoverage.durationSummary}</p>}
+          <p>{active.recordingCoverage.detail}</p>
+        </div>}
         <ObservationSources point={active} />
         {active.note && <p>{active.note}</p>}
         <CandidateSources sources={active.candidateSources} />
@@ -417,11 +443,14 @@ export function DraftChartPlot({ plot, shareAnchor, preview = false }: { plot: D
       <div className="draft-plot-table-scroll" tabIndex={0} role="region" aria-label={`${plot.title} source table`}>
         <table>
           <caption>{plot.title} — {plot.observationBasis ?? "source-reported"} observations</caption>
-          <thead><tr><th scope="col">Observation</th><th scope="col">{plot.xLabel}</th><th scope="col">{plot.yLabel}</th><th scope="col">Source and scope notes</th></tr></thead>
+          <thead><tr><th scope="col">Observation</th><th scope="col">{plot.xLabel}</th><th scope="col">{recordingPoints.length ? "Recording hours / coverage" : plot.yLabel}</th><th scope="col">Source and scope notes</th></tr></thead>
           <tbody>{plot.points.map(point => <tr key={point.id}>
             <th scope="row">{point.label}{point.group && <small>{point.group}</small>}</th>
             <td>{numericX && <>{exactNumber(point.x)}<br /></>}{point.dateLabel}</td>
-            <td>{qualifiedValue(point)}</td>
+            <td>{recordingPair(point) ?? qualifiedValue(point)}{point.recordingCoverage && <div data-recording-coverage-source>
+              {point.recordingCoverage.durationSummary && <p>{point.recordingCoverage.durationSummary}</p>}
+              <p>{point.recordingCoverage.detail}</p>
+            </div>}</td>
             <td><ObservationSources point={point} /><blockquote>{point.quote}</blockquote>{point.note && <p>{point.note}</p>}<CandidateSources sources={point.candidateSources} /><CalculationSource source={point.calculationSource} /></td>
           </tr>)}</tbody>
         </table>

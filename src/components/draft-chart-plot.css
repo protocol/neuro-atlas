@@ -36,6 +36,16 @@
 .draft-annotation-leader { stroke-width: 1; pointer-events: none; }
 .draft-annotation-key rect { fill: var(--surface); stroke-width: 1; }
 .draft-annotation-key text { fill: var(--foreground); font-size: 12px; font-weight: 600; }
+.recording-coverage { margin: .7rem 0; padding: .65rem 0; border-block: 1px solid var(--border); }
+.recording-coverage h4 { margin: 0; font-size: .8rem; font-weight: 600; }
+.recording-coverage > p { margin: .2rem 0 .4rem; font-size: .72rem; color: var(--muted); }
+.recording-coverage ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.1rem; list-style: none; margin: 0; padding: 0; }
+.recording-coverage button { display: grid; grid-template-columns: 1fr; align-items: baseline; gap: .1rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .73rem; line-height: 1.45; cursor: pointer; overflow-wrap: anywhere; }
+.recording-coverage button strong { font-weight: 500; }
+.recording-coverage button small { display: block; margin-top: .15rem; color: var(--muted); }
+.recording-coverage button:is(:hover, :focus-visible) strong { text-decoration: underline; text-underline-offset: 2px; }
+.recording-coverage button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 640px) { .recording-coverage ul { grid-template-columns: 1fr; } }
 .draft-point-annotations { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .25rem .75rem; list-style: none; margin: .5rem 0; padding: 0; }
 .draft-point-annotations button { display: flex; align-items: baseline; gap: .45rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .72rem; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
 .draft-point-annotations button:is(:hover, :focus-visible) > span:last-child { text-decoration: underline; text-underline-offset: 2px; }

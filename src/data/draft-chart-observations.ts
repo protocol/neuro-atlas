@@ -1,4 +1,5 @@
 import raw from "./draft-chart-evidence.json";
+import { RECORDING_HOURS_REFERENCES, RECORDING_HOURS_COVERAGE } from "./recording-hours-coverage";
 import { CONNECTOMICS_BACKFILL, CONNECTOMICS_CURATION_SOURCE, connectomicsCheckpoints } from "./connectomics-backfill";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
@@ -50,7 +51,7 @@ const summaries: Record<string, Pick<DraftChartEvidence, "summary"> & Partial<Pi
   },
 };
 
-const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot, "seriesNote" | "observationBasis">>> = {
+const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot, "title" | "seriesNote" | "observationBasis">>> = {
   "tissue-cm3": {
     scope: "Selected human, mouse and fruit fly tissue volumes at synapse resolution. Sample bounds, imaged volume and neuropil volume describe different specimen extents; reconstruction completeness varies. Values are converted to cm³; ≈ denotes approximate volumes or sample bounds.",
   },
@@ -95,7 +96,8 @@ const plotCopy: Record<string, Pick<DraftPlot, "scope"> & Partial<Pick<DraftPlot
     scope: "Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.",
   },
   "japaneeg-scalp-eeg": {
-    scope: "Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+    title: "JapanEEG · human scalp EEG, controlled access",
+    scope: "Japanese speech dataset from three participants; authors report controlled access through Harvard Dataverse in descriptor v2 (November 17, 2026). Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
   },
   "paired-manual": {
     scope: "Selected same-specimen neuronal matches between calcium recordings and electron microscopy. Lee 2016 uses manual matching; Turner 2022 uses EM-assisted EASE extraction; MICrONS 2025 uses expert alignment. Counts and completeness are study-specific; the automated MICrONS table overlaps the manual table.",
@@ -143,7 +145,7 @@ const pointNotes: Record<string, string> = {
   "neuralink-reported-hours-2026-10-01": "Company-reported accumulated unlabeled freeform neural recording duration from human trial participants. Live-use results use participant-specific encoders pretrained on thousands of hours each. Formal session-union, gap and quality-control rules, contributor count and public access remain unspecified. The first participant's >9,000 hours is a subset of the disclosed total.",
   "ajile12-intracranial-2022-01-27": "Release metadata: “Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.” Published January 27, 2022. Duration counts recording time once across electrodes; gaps and preprocessing affect quality-valid hours.",
   "poyo-primate-training-2023-10-24": "Abstract: “over 100 hours of recordings” from seven nonhuman primates and over 158 sessions. The strict lower bound describes existing recordings reused for training; access varies by constituent dataset.",
-  "japaneeg-scalp-eeg-2026-05-31": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”; authors report an OpenNeuro release under CC0. The point uses descriptor submission timing; archive upload timing remains unverified. Duration counts simultaneous modalities once; the full manifest remains unenumerated.",
+  "japaneeg-scalp-eeg-2026-05-31": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the release manifest remains unenumerated.",
   "lee2016-paired": "GCaMP3 two-photon calcium + serial TEM, with vascular/morphology alignment and manual tracing. 50 functionally characterized identities: 46 L2/3 excitatory cells plus 4 deep-layer neurons represented by apical dendrites. Connectivity is reconstructed locally within the larger set of 1,278 anatomical targets.",
   "turner2022-paired": "Two-photon calcium + EM, with manual soma registration and EM-assisted EASE trace extraction. Matched usable responses for 112 of 363 reconstructed pyramidal cells, restricted to overlapping visually responsive cells. The point uses the 2022 publication year; the anatomical preprint appeared in 2019.",
   "microns2025-manual": "GCaMP6s two-photon + serial TEM, with transform-guided expert matching of unique EM neurons. The 19,181 ROIs are a separate count. The automated table reports 37,364 matches at 83% precision against manual matching and overlaps the same dataset. Matching establishes neuronal identity; proofreading of individual neurites remains partial.",
@@ -216,7 +218,13 @@ export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.f
         ...(additions.length ? { exportPointKey: true } : {}),
         ...(CONNECTOMICS_BACKFILL.some(record => record.plotId === plot.id && record.sheetRow !== null) ? { curationSource: CONNECTOMICS_CURATION_SOURCE } : {}),
         points: [
-          ...plot.points.map(point => ({ ...point, dateLabel: displayDate(point.dateLabel), ...(pointNotes[point.id] ? { note: pointNotes[point.id] } : {}) })),
+          ...plot.points.map(point => ({
+            ...point,
+            dateLabel: displayDate(point.dateLabel),
+            ...(pointNotes[point.id] ? { note: pointNotes[point.id] } : {}),
+            ...(RECORDING_HOURS_COVERAGE[point.id] ? { recordingCoverage: RECORDING_HOURS_COVERAGE[point.id] } : {}),
+            ...(RECORDING_HOURS_REFERENCES[point.id] ? { supportingReferences: RECORDING_HOURS_REFERENCES[point.id] } : {}),
+          })),
           ...additions,
         ],
       };
