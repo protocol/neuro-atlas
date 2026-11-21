@@ -1,0 +1,348 @@
+{
+  "title": "Cost per recording channel",
+  "observedAt": "2026-11-05",
+  "contract": "Nominal hardware purchase price divided by simultaneously acquired electrical recording channels in the priced configuration.",
+  "records": [
+    {
+      "id": "neurorighter-2009",
+      "name": "NeuroRighter",
+      "configuration": "64-channel acquisition build",
+      "short": "NeuroRighter",
+      "scope": "electronics",
+      "currency": "USD",
+      "date": "2009-07-23",
+      "year": 2009,
+      "dateLabel": "Published Jul 23, 2009",
+      "dateBasis": "Plotted by paper publication year (2009). Component prices are October 2008 except recording headstages, November 2007.",
+      "price": {
+        "academic": 9953.97,
+        "list": 9953.97
+      },
+      "quantity": 1,
+      "channels": 64,
+      "bound": "exact",
+      "priceType": "Itemized build",
+      "included": "Recording headstages and cables, filtering and power boards, A/D cards, breakout boxes, circuit components, and a computer.",
+      "excluded": "Monitor (explicit Table 4 footnote), electrodes, and implantation.",
+      "channelBasis": "64 simultaneously acquired broadband inputs at 25 kHz/channel, 16-bit. Spike and LFP bands are not counted twice.",
+      "caveat": "The prose says “with monitor,” but Table 4 explicitly says no monitor. This mock uses the itemized table boundary, not the conflicting prose.",
+      "sources": [
+        {
+          "label": "Paper & Table 4",
+          "url": "https://www.frontiersin.org/journals/neuroengineering/articles/10.3389/neuro.16.012.2009/full"
+        },
+        {
+          "label": "Original cost table",
+          "url": "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price · Table 4",
+          "text": "Total $9,953.97",
+          "url": "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif"
+        },
+        {
+          "label": "Price date · table footnote",
+          "text": "Prices as of October 2008, except for recording headstages: November 2007.",
+          "url": "https://www.frontiersin.org/files/Articles/555/fneng-02-012/image_n/fneng-02-012-t004.gif"
+        },
+        {
+          "label": "Recording denominator",
+          "text": "Our system has 16-bit resolution, and has been used in practice for 64 channels of simultaneous spike and LFP acquisition.",
+          "url": "https://www.frontiersin.org/journals/neuroengineering/articles/10.3389/neuro.16.012.2009/full"
+        }
+      ]
+    },
+    {
+      "id": "open-ephys-2017",
+      "name": "Open Ephys",
+      "configuration": "Published 64-channel system",
+      "short": "Open Ephys",
+      "scope": "electronics",
+      "currency": "USD",
+      "date": "2017-06-05",
+      "year": 2017,
+      "dateLabel": "Published Jun 5, 2017",
+      "dateBasis": "Plotted by paper publication year (2017). This is a published purchase-price bound, not a dated itemized vendor quote.",
+      "price": {
+        "academic": 3000,
+        "list": 3000
+      },
+      "quantity": 1,
+      "channels": 64,
+      "bound": "lt",
+      "priceType": "Published upper bound",
+      "included": "A 64-channel Open Ephys system as described by the authors; the cost passage does not itemize its components.",
+      "excluded": "Computer and electrode inclusion are not specified in the price passage. No implantation cost is established.",
+      "channelBasis": "64 is the priced configuration. The platform’s maximum of 512 simultaneous channels is not the denominator for this price.",
+      "caveat": "Less than stays less than. The downward arrow means the actual ratio is below the plotted ceiling; it is not an error bar or an exact price.",
+      "sources": [
+        {
+          "label": "2017 paper",
+          "url": "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price + priced denominator",
+          "text": "a 64-channel Open Ephys system can be purchased for less than $3000",
+          "url": "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea"
+        },
+        {
+          "label": "Capacity is not the priced denominator",
+          "text": "If eight 64-channel chips are used, a total of 512 channels can be recorded simultaneously.",
+          "url": "https://iopscience.iop.org/article/10.1088/1741-2552/aa5eea"
+        }
+      ]
+    },
+    {
+      "id": "scifi-np1-2026",
+      "name": "Science SciFi 2",
+      "configuration": "Headstage + one Neuropixels 1.0 adapter",
+      "short": "SciFi 2 + NP 1.0",
+      "scope": "electronics",
+      "currency": "USD",
+      "date": "2026-11-05",
+      "year": 2026,
+      "dateLabel": "Observed Nov 5, 2026",
+      "dateBasis": "Plotted by public price observation year (2026), not product launch or a historical SciFi price.",
+      "price": {
+        "academic": 2662,
+        "list": 10584
+      },
+      "quantity": 1,
+      "channels": 384,
+      "bound": "exact",
+      "priceType": "Derived parts sum",
+      "tiered": true,
+      "included": "One SciFi 2 headstage + one Neuropixels 1.0 adapter. Academic: $2,130 + $532. List: $8,454 + $2,130.",
+      "excluded": "Probe, computer, accessories, tax, shipping, surgery, and labor.",
+      "channelBasis": "384 simultaneous recording channels through the priced adapter. AP and LFP from the same inputs are not additional channels.",
+      "caveat": "A derived sum of two public part prices, not a turnkey quote. Academic and commercial list prices must remain visibly separate.",
+      "sources": [
+        {
+          "label": "Public price records",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Adapter specification",
+          "url": "https://science.xyz/technologies/scifi/"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price · SciFi 2 · API cents",
+          "text": "\"unit_price_cents\":845400, \"academic_price_cents\":213000",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Price · adapter · API cents",
+          "text": "\"unit_price_cents\":213000, \"academic_price_cents\":53200",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Recording denominator",
+          "text": "Up to 384 channels of dual band neural recording (AP and LFP bands) from 960 recording sites",
+          "url": "https://science.xyz/technologies/scifi/"
+        }
+      ]
+    },
+    {
+      "id": "scifi-cereport-2026",
+      "name": "Science SciFi 2",
+      "configuration": "Headstage + one Cereport adapter",
+      "short": "SciFi 2 + Cereport",
+      "scope": "electronics",
+      "currency": "USD",
+      "date": "2026-11-05",
+      "year": 2026,
+      "dateLabel": "Observed Nov 5, 2026",
+      "dateBasis": "Plotted by public price observation year (2026), not product launch or a historical SciFi price.",
+      "price": {
+        "academic": 2662,
+        "list": 10584
+      },
+      "quantity": 1,
+      "channels": 96,
+      "bound": "exact",
+      "priceType": "Derived parts sum",
+      "tiered": true,
+      "included": "One SciFi 2 headstage + one Cereport adapter. Academic: $2,130 + $532. List: $8,454 + $2,130.",
+      "excluded": "Probe, computer, accessories, tax, shipping, surgery, and labor. Utah array and pedestal are not included.",
+      "channelBasis": "96 simultaneous recording channels through the priced adapter. The 128 connector pins are not 128 recording channels.",
+      "caveat": "A derived sum of two public part prices, not a turnkey quote. Academic and commercial list prices must remain visibly separate.",
+      "sources": [
+        {
+          "label": "Public price records",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Adapter specification",
+          "url": "https://science.xyz/docs/d/adapt-cereport/index"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price · SciFi 2 · API cents",
+          "text": "\"unit_price_cents\":845400, \"academic_price_cents\":213000",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Price · adapter · API cents",
+          "text": "\"unit_price_cents\":213000, \"academic_price_cents\":53200",
+          "url": "https://science.xyz/foundry/api/products"
+        },
+        {
+          "label": "Recording denominator",
+          "text": "There are 96 broadband channels available from the 128 pin pedestal, following the typical electrode layout of the 96 channel Utah Array.",
+          "url": "https://science.xyz/docs/d/adapt-cereport/index"
+        }
+      ]
+    },
+    {
+      "id": "open-ephys-2026",
+      "name": "Open Ephys",
+      "configuration": "OEPS-9113 · Unipolar · No Training",
+      "short": "Open Ephys bundle",
+      "scope": "electronics",
+      "currency": "EUR",
+      "date": "2026-11-05",
+      "year": 2026,
+      "dateLabel": "Observed Nov 5, 2026",
+      "dateBasis": "Plotted by current variant-price observation year (2026), not the 2017 paper price.",
+      "price": {
+        "academic": 7662.1,
+        "list": 7662.1
+      },
+      "quantity": 1,
+      "channels": 128,
+      "bound": "exact",
+      "priceType": "Specified vendor variant",
+      "included": "Acquisition board, power supply, USB cable, two 64-channel unipolar headstages, two SPI tethers, two I/O boards, and two HDMI cables.",
+      "excluded": "Computer, electrodes, implantation, and training.",
+      "channelBasis": "Two supplied headstages × 64 unipolar channels = 128. Not the 512-channel maximum and not the lower-priced 2 × 16-channel bipolar bundle.",
+      "caveat": "The headline “from” price belongs to a different configuration. This row uses the exact OEPS-9113 / No Training variant.",
+      "sources": [
+        {
+          "label": "Exact variant price JSON",
+          "url": "https://open-ephys.org/acquisition-system/starter-bundles?format=json"
+        },
+        {
+          "label": "Bundle contents",
+          "url": "https://open-ephys.org/acquisition-system/starter-bundles"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price · exact API fields",
+          "text": "\"sku\": \"OEPS-9113\"; \"priceMoney\": {\"currency\": \"EUR\", \"value\": \"7662.10\"}",
+          "url": "https://open-ephys.org/acquisition-system/starter-bundles?format=json"
+        },
+        {
+          "label": "Variant · exact API fields",
+          "text": "Training: \"No Training\"; Headstages: \"[OEPS-6570] Low-profile SPI Headstage 64ch (Hirose)\"",
+          "url": "https://open-ephys.org/acquisition-system/starter-bundles?format=json"
+        },
+        {
+          "label": "Bundle table · quantity + headstage",
+          "text": "2 · [OEPS-6570] Low-profile SPI Headstage 64ch (Hirose)",
+          "url": "https://open-ephys.org/acquisition-system/starter-bundles"
+        }
+      ]
+    },
+    {
+      "id": "utah-2016",
+      "name": "Blackrock Utah array",
+      "configuration": "Reported 96-channel electrode array",
+      "short": "Utah array",
+      "scope": "probes",
+      "currency": "USD",
+      "date": "2016-04-26",
+      "year": 2016,
+      "dateLabel": "Reported Apr 26, 2016",
+      "dateBasis": "Plotted by original article publication year (2016). The approximate price is contemporary journalism, not an original vendor quotation.",
+      "price": {
+        "academic": 6000,
+        "list": 6000
+      },
+      "quantity": 1,
+      "channels": 96,
+      "bound": "approx",
+      "priceType": "Approximate reported price",
+      "included": "Electrode array only, as reported by The Salt Lake Tribune.",
+      "excluded": "Other necessary equipment. Exact SKU and connector/pedestal inclusion are unspecified; no complete recording setup is priced.",
+      "channelBasis": "96 active recording channels in the same article’s photo caption. The body’s 100 physical needles are not the recording denominator.",
+      "caveat": "An approximate, weaker historical checkpoint. Do not present it as an exact manufacturer quote or a full-system baseline.",
+      "sources": [
+        {
+          "label": "Original 2016 reporting",
+          "url": "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Approximate array price",
+          "text": "The array costs about $6,000, not including other necessary equipment.",
+          "url": "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID"
+        },
+        {
+          "label": "Recording denominator · photo caption",
+          "text": "The company has developed the Utah Array, an implantable 96-channel microelectrode that is helping a man paralyzed from the shoulders down restore movement in his hand.",
+          "url": "https://archive.sltrib.com/article.php?id=3808338&itype=CMSID"
+        }
+      ]
+    },
+    {
+      "id": "neuropixels2-2026",
+      "name": "Neuropixels 2.0",
+      "configuration": "Single shank · NP2003 / NP2004",
+      "short": "Neuropixels 2.0",
+      "scope": "probes",
+      "currency": "EUR",
+      "date": "2026-11-05",
+      "year": 2026,
+      "dateLabel": "Observed Nov 5, 2026",
+      "dateBasis": "Plotted by observation year (2026) of the undated official RFQ v9.3.0, not the probe’s release year.",
+      "price": {
+        "academic": 7500,
+        "list": 7500
+      },
+      "quantity": 5,
+      "channels": 384,
+      "bound": "exact",
+      "priceType": "Five-probe box allocation",
+      "included": "A box of five single-shank probes. €7,500 ÷ 5 = €1,500 allocated per probe; minimum priced purchase is the full €7,500 box.",
+      "excluded": "Headstage, cable, acquisition hardware, and surgery. Research use only in nonhuman subjects. No single-unit €1,500 offer is verified.",
+      "channelBasis": "384 parallel full-band recording channels per probe, 30 kHz, 12-bit. The 1,280 selectable sites are not all simultaneous channels.",
+      "caveat": "A per-probe allocation of a box price, not a standalone offer or a complete setup. Do not combine this NP 2.0 price with the NP 1.0 adapter row.",
+      "sources": [
+        {
+          "label": "Official price RFQ (PDF)",
+          "url": "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf"
+        },
+        {
+          "label": "Official specifications (PDF)",
+          "url": "https://www.neuropixels.org/_files/ugd/328966_2b39661f072d405b8d284c3c73588bc6.pdf"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Price · RFQ table row",
+          "text": "NP2003 | Box of 5 Neuropixels 2.0 single shank probes | 7,500",
+          "url": "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf"
+        },
+        {
+          "label": "Alternative cap version · RFQ table row",
+          "text": "NP2004 | Box of 5 Neuropixels 2.0 single shank probes with cap | 7,500",
+          "url": "https://neuropixels.org/_files/ugd/328966_e11ed94dedcb49c9ba0826c45f39897f.pdf"
+        },
+        {
+          "label": "Recording denominator",
+          "text": "384 parallel, full-band (AP, LFP), low-noise recording channels",
+          "url": "https://www.neuropixels.org/_files/ugd/328966_2b39661f072d405b8d284c3c73588bc6.pdf"
+        }
+      ]
+    }
+  ]
+}

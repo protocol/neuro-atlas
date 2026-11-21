@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cost per recording channel · Neuro Atlas discussion mock</title>
+<style>@@CSS@@</style>
+</head>
+<body data-layout="@@LAYOUT@@">
+<a class="skip-link" href="#main">Skip to exploration</a>
+<div class="app">
+  <aside class="sidebar" aria-label="Atlas prototype shell">
+    <div class="brand">Neuro Atlas<span>by PL R&amp;D</span></div>
+    <div class="nav-label">EXPLORE</div>
+    <div class="nav-context">Milestones</div><div class="nav-context">Field Velocity</div><div class="nav-context">BCI Funding Index</div>
+    <div class="nav-current">Cost per channel <span>MOCK</span></div>
+    <div class="sidebar-bottom">A proposed Atlas lens.<br>Not part of the live navigation.</div>
+  </aside>
+  <main id="main" class="main">
+    <header class="topbar"><span class="breadcrumb">Field Velocity <span>/</span> Measurement exploration</span><span class="prototype">Discussion mock · Nov 5, 2026</span></header>
+    <div class="page">
+      <div class="heading-row">
+        <div><p class="eyebrow">ELECTRICAL RECORDING · HARDWARE ECONOMICS</p><h1>Cost per recording channel</h1><p class="intro">Compare priced recording configurations.</p></div>
+        <div class="page-actions"><nav class="layout-switch" aria-label="Discussion layouts"><a data-view="chart" data-testid="view-chart" href="cost-per-channel.html" @@CHART_CURRENT@@>Chart-led</a><a data-view="evidence" data-testid="view-evidence" href="cost-per-channel-evidence.html" @@EVIDENCE_CURRENT@@>Evidence-led</a></nav><button class="print-button" id="print-button" type="button">Print ↗</button></div>
+      </div>
+      <section class="definition" aria-label="Proposed measurement definition"><span class="definition-label">PROPOSED METRIC</span><div class="equation"><span>Price of the specified hardware</span><span>Simultaneously acquired recording channels</span></div><p>One channel ≠ one neuron.<br><span>Nominal prices · original currencies · no amortization</span></p></section>
+      <section class="controls" aria-label="Explore benchmarks">
+        <div class="scope-tabs" role="group" aria-label="Cost layer"><button data-scope="electronics" data-testid="scope-electronics" aria-pressed="true">Recording electronics <span>5</span></button><button data-scope="probes" data-testid="scope-probes" aria-pressed="false">Probes &amp; arrays <span>2</span></button><button data-scope="complete" data-testid="scope-complete" aria-pressed="false">Complete setup <span class="gap-tag">Gap</span></button></div>
+        <div class="filter-row"><div class="control-group"><span class="control-label">Currency</span><div class="segment" role="group" aria-label="Original price currency"><button data-currency="USD" data-testid="currency-USD" aria-pressed="true">USD</button><button data-currency="EUR" data-testid="currency-EUR" aria-pressed="false">EUR</button></div><span class="small-note">No FX conversion</span></div><div class="control-group tier-control"><span class="control-label">Science price tier</span><div class="segment" role="group" aria-label="Science price tier"><button data-tier="academic" data-testid="tier-academic" aria-pressed="true">Academic</button><button data-tier="list" data-testid="tier-list" aria-pressed="false">List</button></div><span class="small-note" id="tier-note">Science rows only</span></div></div>
+      </section>
+      <div class="workspace">
+        <section class="chart-panel panel" aria-labelledby="chart-title">
+          <div class="panel-heading"><div><p class="eyebrow" id="chart-kicker">RECORDING ELECTRONICS · USD</p><h2 id="chart-title">Selected hardware-cost benchmarks</h2></div><span class="count" id="point-count">4 observations</span></div>
+          <div class="chart-meta"><span id="axis-unit">USD per simultaneous channel · log scale</span><span>Lower is less expensive ↓</span></div>
+          <div id="chart-content" data-testid="chart"></div>
+          <div class="chart-footer"><div class="legend"><span><i class="legend-dot"></i>Specified price / build</span><span><i class="legend-bound">↓</i>Upper bound</span><span><i class="legend-approx">◇</i>Approximate</span></div><p id="chart-note">Hover or focus a point to inspect; click to pin, Esc to clear. Different accounting boundaries; no fitted line or improvement factor.</p></div>
+        </section>
+        <aside class="inspector panel" id="detail-pane" data-testid="detail-pane" aria-labelledby="inspector-title"><div class="inspector-top"><h2 id="inspector-title">Point evidence</h2><span id="inspection-state">Nothing selected</span><button id="clear-selection" data-testid="clear-selection" hidden type="button" aria-label="Clear selected evidence">Clear ×</button></div><div id="inspector-body"></div></aside>
+        <section class="ledger panel" aria-labelledby="ledger-title"><div class="panel-heading"><div><p class="eyebrow">@@LEDGER_KICKER@@</p><h2 id="ledger-title">@@LEDGER_TITLE@@</h2></div><a class="ledger-view-link" href="cost-per-channel-evidence.html">All evidence ↗</a></div><p class="ledger-intro">@@LEDGER_INTRO@@</p><div id="evidence-rows" data-testid="evidence-rows"></div></section>
+      </div>
+      <section class="discussion"><span class="eyebrow">FOR DISCUSSION</span><h2>Should Atlas track the cost layers separately?</h2><p>A cheaper headstage is not the same as a cheaper recording setup. This view keeps probe prices, readout electronics, and matched complete setups apart—and leaves the last one open until the evidence is there.</p><div class="discussion-questions"><span><b>01</b> Which hardware belongs in each numerator?</span><span><b>02</b> How should academic pricing sit beside list prices?</span><span><b>03</b> What is the first fully itemized setup to add?</span></div></section>
+      <section class="reference-panel panel" aria-labelledby="references-title"><div class="panel-heading"><div><p class="eyebrow">CONTEXT · NOT PLOTTED</p><h2 id="references-title">Useful references, different denominators</h2></div></div><div class="reference-list">
+        <article><span class="reference-tag">Transport capacity</span><h3>Original SciFi · 2024</h3><p><a href="https://science.xyz/news/scifi-headstage/" target="_blank" rel="noopener noreferrer">$1,024 ÷ ~5,200 bandwidth-equivalent channels ≈ $0.20</a> prices headstage transport capacity, not a populated recording system. It is not the current SciFi 2 price.</p></article>
+        <article><span class="reference-tag">Signal mode matters</span><h3>NYX / Axon</h3><p><a href="https://science.xyz/docs/d/axon-1n-1l/index" target="_blank" rel="noopener noreferrer">512 electrode inputs and 256 differential amplifiers</a> are different counts. Optical-stimulation LEDs are not recording channels.</p></article>
+        <article><span class="reference-tag">Historical context</span><h3>Open-source hardware · 2015</h3><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4447530/" target="_blank" rel="noopener noreferrer">Siegle et al., Figure 1, report a nearly 100-fold decrease over 20 years</a> for selected open-source platforms. Not digitized here; not a Blackrock-to-Science factor.</p></article>
+        <article><span class="reference-tag">Unmatched configuration</span><h3>Modern NHP recording · 2025</h3><p><a href="https://www.nature.com/articles/s41593-025-01976-5" target="_blank" rel="noopener noreferrer">A reported $7,000–15,000 system-cost range</a> has no matched priced channel configuration in this snapshot. No ratio is plotted.</p></article>
+      </div></section>
+      <details class="methodology"><summary>Measurement contract &amp; limits</summary><div><p><strong>Denominator:</strong> simultaneously acquired, spike-capable electrical recording channels in the priced configuration. Selectable sites, connector pins, AP/LFP bands, optical LEDs, isolated neurons, and transport capacity are not interchangeable counts. No equivalence to ECoG direct-spike readout is assumed.</p><p><strong>Accounting:</strong> hardware purchase prices or itemized builds, not manufacturing cost or clinical-procedure cost. USD and EUR remain separate; no inflation adjustment, exchange-rate conversion, lifetime assumptions, or session amortization. The samples are selected public benchmarks, not a market census.</p><p><strong>Dates:</strong> historical points use paper or report publication year; current prices use the November 5, 2026 observation date. Each evidence record retains its actual price-date basis. All data are a fixed discussion snapshot, not live quotes or an availability promise.</p><p><strong>Complete setup:</strong> no matched, same-configuration price points are established. Missing is not zero. In particular, the NP 2.0 probe price cannot be combined with an NP 1.0 adapter into an exact full-setup price.</p></div></details>
+      <footer class="page-footer"><span>Neuro Atlas · Measurement exploration</span><span>Static evidence snapshot · November 5, 2026 · Not a purchasing recommendation</span></footer>
+    </div>
+  </main>
+</div>
+<div class="sr-only" id="selection-announcement" role="status" aria-live="polite"></div>
+<template id="complete-empty"><div class="gap-state"><span class="gap-visual" aria-hidden="true">—</span><span class="eyebrow">EVIDENCE GAP · NOT ZERO</span><h3>Still need an itemized probe + readout setup</h3><p>No matched same-configuration prices in this snapshot. Add a dated parts list with a simultaneous channel count before plotting a complete setup.</p><span class="gap-example">Probe / array + compatible headstage / adapter + acquisition hardware<br>with explicit computer and accessory boundaries</span></div></template>
+<dialog class="mobile-inspection" id="mobile-inspection" aria-labelledby="mobile-inspection-title"><div class="mobile-inspection-heading"><h2 id="mobile-inspection-title">Point evidence</h2><button type="button" id="mobile-inspection-close">Close ×</button></div><div id="mobile-inspection-content"></div></dialog>
+<script id="mock-data" type="application/json">@@DATA@@</script>
+<script>@@JS@@</script>
+</body>
+</html>
