@@ -12,11 +12,11 @@ A true exit via Close, Escape or Done clears the target, pin and hover. Reopenin
 
 The picker is a pointer-pass-through manual popover, portaled into an existing native chart dialog when present. Capture-phase pointerdown/up, mousedown/up and click suppression prevent activation of underlying controls; pinning occurs at click, not pointerup. Escape is handled layer-by-layer without closing the original chart. The composer traps visible controls and returns focus on exit; confirmation focuses Done and remains in the same native dialog.
 
-`selection.ts` sends only bounded tag/nth-of-type selector, tag, optional role/static classes and allowlisted chart context. Its local label never travels. No live input values, DOM/HTML/text snapshots, href/URL, screenshot, query or fragment are captured.
+`selection.ts` sends only bounded tag/nth-of-type selector, tag, optional role/static classes and allowlisted chart context. Its local label never travels. No live input values, DOM/HTML/text dumps, href/URL, query or fragment are serialized. The separate `screenshot.ts` freezes a bounded selected-region PNG at selection, excluding editable/private/feedback overlays; only image bytes, MIME and dimensions accompany the structural reference.
 
 ## Send, confirmation and retry
 
-`PublicFeedbackClient` sends `{feedback, context}` to the mounted `/api/feedback/public`. Enter sends; Shift+Enter and IME/composition Enter do not. The old long helper paragraph is removed entirely, without replacement or tooltip. **Logging and workspace/team visibility are unchanged.**
+`PublicFeedbackClient` sends `{feedback, context, screenshot}` to the mounted `/api/feedback/public`. Enter sends; Shift+Enter and IME/composition Enter do not. The old long helper paragraph is removed entirely, without replacement or tooltip. **Logging and workspace/team visibility are unchanged.**
 
 Only exact `202 {saved:true}` clears the note and replaces the composer content with a persistent accessible status: **“Thanks for your feedback.” / “It’s under review. Check back soon.”** There is no toast, timeout, automatic processing, tracking, polling or PR promise. Close/Done dismiss explicitly; New feedback starts a deliberate new note. The former target is retained internally only to anchor the confirmation until exit/new selection; its outline is hidden.
 

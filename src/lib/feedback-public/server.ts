@@ -1,9 +1,10 @@
 // Server-only: node:crypto deliberately prevents this module entering a browser bundle.
 import {createHash} from 'node:crypto';
 import {z} from 'zod';
+import {admitScreenshot, imageSuffix, screenshotSchema, screenshotHash, storedImageUrl, linearAssetUrl, MAX_SCREENSHOT_BYTES} from './screenshot';
 import {elementReferenceSchema, feedbackText, publicContextSchema} from '../feedback/schema';
 
-const inputSchema = z.object({feedback:feedbackText(3000), context:publicContextSchema.extend({element:elementReferenceSchema.optional()}).strict()}).strict();
+const inputSchema = z.object({feedback:feedbackText(3000), context:publicContextSchema.extend({element:elementReferenceSchema.optional()}).strict(), screenshot:screenshotSchema.optional()}).strict();
 type PublicInput = z.infer<typeof inputSchema>;
 class Rejected extends Error { constructor(public status: number) {super('rejected');} }
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/;
@@ -30,7 +31,7 @@ async function readJson(body: ReadableStream<Uint8Array> | null, limit: number, 
     }
     const bytes = new Uint8Array(size); let offset = 0;
     for (const chunk of chunks) {bytes.set(chunk, offset); offset += chunk.byteLength;}
-    try {return JSON.parse(new TextDecoder('utf-8', {fatal:true}).decode(bytes));} catch {throw new Rejected(400);}
+    try {return JSON.parse(new TextDecoder('utf-8', {fatal:true}).decode(bytes));} catch {throw new Rejected(size > 16384 ? 413 : 400);}
   } finally {void reader.cancel().catch(() => {}); reader.releaseLock();}
 }
 
@@ -93,6 +94,48 @@ export function createPublicFeedbackRoutes(options: Options = {}) {
   }
   const issueSchema = z.object({id:z.string(), title:z.string(), description:z.string(), team:z.object({id:z.string()}), project:z.object({id:z.string()}), state:z.object({id:z.string()}), priority:z.number(), assignee:z.object({id:z.string()}).nullable()});
   const read = async (id: string, signal: AbortSignal) => z.object({nodes:z.array(issueSchema).max(1)}).parse((await graphql(READ, {id}, signal)).issues).nodes[0];
+  async function uploadImage(image: {bytes:Buffer; hash:string}, signal: AbortSignal) {
+    const query = `mutation AtlasFeedbackFileUpload($contentType:String!,$filename:String!,$size:Int!,$makePublic:Boolean!) { fileUpload(contentType:$contentType,filename:$filename,size:$size,makePublic:$makePublic) { success uploadFile { uploadUrl assetUrl contentType size headers { key value } } } }`;
+    const result = z.object({success:z.literal(true),uploadFile:z.object({uploadUrl:z.string().max(8192),assetUrl:z.string().max(512),contentType:z.literal('image/png'),size:z.number().int(),headers:z.array(z.object({key:z.string().max(100),value:z.string().max(2048)})).max(16)})}).parse((await graphql(query,{contentType:'image/png',filename:`neuro-atlas-feedback-${image.hash}.png`,size:image.bytes.length,makePublic:false},signal)).fileUpload).uploadFile;
+    if (!linearAssetUrl(result.assetUrl) || result.size !== image.bytes.length) throw Error('unavailable');
+    const destination = new URL(result.uploadUrl), asset = new URL(result.assetUrl);
+    // Only a native signed destination returned by the fixed Linear API. No caller URLs,
+    // arbitrary cloud hosts, redirects, credentials, private networks or key forwarding.
+    if (destination.protocol !== 'https:' || destination.username || destination.password || destination.port || destination.hash || !destination.search || !['storage.googleapis.com','uploads.linear.app'].includes(destination.hostname) || !destination.pathname.endsWith(asset.pathname)) throw Error('unavailable');
+    const uploadHeaders = new Headers({'Content-Type':'image/png','Cache-Control':'private, no-store'});
+    for (const {key,value} of result.headers) {
+      if (!/^(?:content-type|content-disposition|cache-control|x-goog-[a-z-]+)$/i.test(key)) throw Error('unavailable');
+      if (key.toLowerCase() === 'content-type' && value !== 'image/png') throw Error('unavailable');
+      uploadHeaders.set(key,value);
+    }
+    const response = await within(fetcher(result.uploadUrl,{method:'PUT',headers:uploadHeaders,body:new Uint8Array(image.bytes),redirect:'error',cache:'no-store',signal}),signal);
+    void response.body?.cancel().catch(()=>{});
+    if (!response.ok) throw Error('unavailable');
+    await verifyPrivateImage(result.assetUrl,image.hash,signal);
+    return result.assetUrl;
+  }
+  async function verifyPrivateImage(url: string, expectedHash: string, signal: AbortSignal) {
+    // Native Linear markdown image import keeps custody in its authenticated storage.
+    // Prove it is not a publicly readable link before acknowledging the submission.
+    const anonymous = await within(fetcher(url, {method:'GET', redirect:'error', cache:'no-store', signal}), signal);
+    void anonymous.body?.cancel().catch(() => {});
+    if (![401,403].includes(anonymous.status)) throw Error('unavailable');
+    const response = await within(fetcher(url, {method:'GET', headers:{Authorization:env.FEEDBACK_LINEAR_API_KEY!}, redirect:'error', cache:'no-store', signal}), signal);
+    if (!response.ok || response.headers.get('Content-Type')?.split(';')[0] !== 'image/png') {void response.body?.cancel().catch(() => {}); throw Error('unavailable');}
+    const reader = response.body?.getReader();
+    if (!reader) throw Error('unavailable');
+    const chunks: Uint8Array[] = []; let size = 0;
+    try {
+      while (true) {
+        const {done,value} = await within(reader.read(), signal);
+        if (done) break;
+        size += value.byteLength;
+        if (size > MAX_SCREENSHOT_BYTES) throw Error('unavailable');
+        chunks.push(value);
+      }
+      if (screenshotHash(Buffer.concat(chunks)) !== expectedHash) throw Error('unavailable');
+    } finally {void reader.cancel().catch(() => {}); reader.releaseLock();}
+  }
   async function submit(request: Request) {
     if (!sameOrigin(request, true)) return json({error:'forbidden'}, 403);
     if (!connected) return json({error:'unavailable'}, 503);
@@ -107,13 +150,18 @@ export function createPublicFeedbackRoutes(options: Options = {}) {
     const timer = setTimeout(() => controller.abort(), 12000);
     const signal = controller.signal;
     try {
-      const result = inputSchema.safeParse(await readJson(request.body, 16384, signal));
+      const raw = await readJson(request.body, 1064960, signal);
+      if (!(raw && typeof raw === 'object' && 'screenshot' in raw) && JSON.stringify(raw).length > 16384) throw new Rejected(413);
+      const result = inputSchema.safeParse(raw);
       if (!result.success) throw new Rejected(400);
       const input = result.data;
+      let image;
+      try {image = await within(admitScreenshot(input.screenshot), signal);} catch {throw new Rejected(400);}
       const id = issueId(key);
-      const expected = {id, title:TITLE, description:description(input), teamId:TEAM, projectId:PROJECT, stateId:BACKLOG, priority:0, assigneeId:null, labelIds:[], subscriberIds:[], useDefaultTemplate:false};
+      const expected = {id, title:TITLE, description:description(input) + imageSuffix(input.screenshot, image?.hash), teamId:TEAM, projectId:PROJECT, stateId:BACKLOG, priority:0, assigneeId:null, labelIds:[], subscriberIds:[], useDefaultTemplate:false};
       const previous = await read(id, signal);
       if (!previous) {
+        if (image) expected.description = description(input) + imageSuffix(input.screenshot,image.hash,await uploadImage(image,signal));
         try {
           const created = z.object({success:z.boolean(),issue:z.object({id:z.string()}).nullable()}).parse((await graphql(CREATE, {input:expected}, signal)).issueCreate);
           if (!created.success || created.issue?.id !== id) throw Error('unavailable');
@@ -124,7 +172,17 @@ export function createPublicFeedbackRoutes(options: Options = {}) {
       }
       const saved = previous ?? await read(id, signal);
       if (!saved) return json({error:'unavailable'}, 503);
-      if (saved.id !== id || saved.title !== TITLE || saved.description !== expected.description || saved.team?.id !== TEAM || saved.project?.id !== PROJECT || saved.state?.id !== BACKLOG || saved.priority !== 0 || saved.assignee !== null) return json({error:'conflict'}, 409);
+      let expectedDescription = expected.description;
+      if (image && input.screenshot?.status === 'captured') {
+        const prefix = description(input) + imageSuffix(input.screenshot, image.hash, '').slice(0, -'![Selected element screenshot]()'.length);
+        const url = storedImageUrl(saved.description, prefix);
+        // A changed note/context/hash is a conflict; pending native image import is unavailable.
+        if (!saved.description.startsWith(prefix)) return json({error:'conflict'}, 409);
+        if (!url) return json({error:'unavailable'}, 503);
+        expectedDescription = description(input) + imageSuffix(input.screenshot, image.hash, url);
+        await verifyPrivateImage(url, image.hash, signal);
+      }
+      if (saved.id !== id || saved.title !== TITLE || saved.description !== expectedDescription || saved.team?.id !== TEAM || saved.project?.id !== PROJECT || saved.state?.id !== BACKLOG || saved.priority !== 0 || saved.assignee !== null) return json({error:'conflict'}, 409);
       return json({saved:true}, 202);
     } catch (error) { return json({error:'unavailable'}, error instanceof Rejected ? error.status : 503); }
     finally {clearTimeout(timer); controller.abort(); inFlight--;}
