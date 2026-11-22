@@ -1,0 +1,245 @@
+{
+  "mode": "after",
+  "cases": [
+    {
+      "width": 1440,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "equal columns",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 1440,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "equal columns",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 1440,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "equal columns",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 1440,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "equal columns",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 1440,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "equal columns",
+      "sourceLinks": 4,
+      "points": 27
+    },
+    {
+      "width": 1024,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "equal columns",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 1024,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "equal columns",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 1024,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "equal columns",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 1024,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "equal columns",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 1024,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "equal columns",
+      "sourceLinks": 4,
+      "points": 27
+    },
+    {
+      "width": 900,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "stacked",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 900,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "stacked",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 900,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "stacked",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 900,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "stacked",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 900,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "stacked",
+      "sourceLinks": 4,
+      "points": 27
+    },
+    {
+      "width": 768,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "stacked",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 768,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "stacked",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 768,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "stacked",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 768,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "stacked",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 768,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "stacked",
+      "sourceLinks": 4,
+      "points": 27
+    },
+    {
+      "width": 390,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "stacked",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 390,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "stacked",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 390,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "stacked",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 390,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "stacked",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 390,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "stacked",
+      "sourceLinks": 4,
+      "points": 27
+    },
+    {
+      "width": 320,
+      "anchor": "metric-panel-bci-bitrate",
+      "title": "BCI communication rates over time",
+      "layout": "stacked",
+      "sourceLinks": 13,
+      "points": 14
+    },
+    {
+      "width": 320,
+      "anchor": "simultaneously-recorded-neurons",
+      "title": "Simultaneous neural recordings",
+      "layout": "stacked",
+      "sourceLinks": 189,
+      "points": 94
+    },
+    {
+      "width": 320,
+      "anchor": "neural-recording-hours",
+      "title": "Neural recording hours \u2014 selected datasets",
+      "layout": "stacked",
+      "sourceLinks": 12,
+      "points": 12
+    },
+    {
+      "width": 320,
+      "anchor": "google-trends-neurotech",
+      "title": "Neurotech search terms",
+      "layout": "stacked",
+      "sourceLinks": 5,
+      "points": 0
+    },
+    {
+      "width": 320,
+      "anchor": "idea_vintage",
+      "title": "Citation latency",
+      "layout": "stacked",
+      "sourceLinks": 4,
+      "points": 27
+    }
+  ]
+}

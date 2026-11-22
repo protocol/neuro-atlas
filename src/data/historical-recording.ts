@@ -1,4 +1,5 @@
 import source from "./historical-recording.source.json";
+import sourceLinkAlternates from "./source-link-alternates.json";
 import { fitHistoricalLog, historicalFitNote } from "@/lib/historical-log-fit";
 import type { RecordingView } from "./recording-evidence";
 
@@ -29,7 +30,7 @@ export const HISTORICAL_RECORDING: RecordingView = {
     datePrecision: Number(row.Month) ? "month" as const : "year" as const, dateBasis: "publication" as const,
     value: row.y, plotYear: row.x, label: `${row.Authors.trim()} (${row.Year})`, unit: "reported neurons",
     preparation: row["Method Note"] ? `Tracker method note: ${row["Method Note"]}; species / preparation otherwise unspecified` : "Species / preparation unspecified in tracker",
-    sourceUrl: row.DOI.trim() || source.sourceUrl, sourceLabel: `${row.Authors.trim()}, ${row.Publication} (${row.Year}) · tracker entry`,
+    sourceUrl: sourceLinkAlternates[row.DOI.trim().toLowerCase() as keyof typeof sourceLinkAlternates] ?? (row.DOI.trim() || source.sourceUrl), sourceLabel: `${row.Authors.trim()}, ${row.Publication} (${row.Year}) · tracker entry`,
     qualifier: /approximate|average/i.test(row["Method Note"]) ? "approximate" as const : undefined,
     quote: `${row.Year}, ${row.Month}, ${row.Neurons}, ${row.Authors}, ${row.Publication}, ${row["Method Note"]}, ${row.DOI}`,
     note: `Tracker transcription, CSV row ${Number(row.id.slice(-3))}. Original neuron-count criteria retained; individual primary-study criteria are not harmonized. ${row["Method Note"] || "No method note in tracker."} Plot date follows producer: year + (month − 0.5)/12; missing month is 6.5.`,

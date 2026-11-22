@@ -147,17 +147,27 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
     foundingBySlug.set(slug, { year, sourceUrl, sourceKind, reviewedOn, note });
   }
   if (foundings && foundingBySlug.size !== roster.size) throw new Error("Missing founding roster entries");
-  const normalizedCompanies = companies.map((company) => ({
-    slug: company.slug,
-    name: company.name,
-    hq: company.hq,
-    modality: company.modality,
-    interfaceDepth: company.interface_depth,
-    indication: company.indication,
-    website: company.website,
-    scope: company.scope,
-    founding: foundingBySlug.get(company.slug) ?? null,
-  }));
+  const normalizedCompanies = companies.map((company) => {
+    if (company.website_label !== undefined && typeof company.website_label !== "string") {
+      throw new Error(`Invalid company website label: ${company.slug}`);
+    }
+    const websiteLabel = company.website_label?.trim() ?? "";
+    if (websiteLabel && !isHttpsUrl(company.website)) {
+      throw new Error(`Invalid company website for custom label: ${company.slug}`);
+    }
+    return {
+      slug: company.slug,
+      name: company.name,
+      hq: company.hq,
+      modality: company.modality,
+      interfaceDepth: company.interface_depth,
+      indication: company.indication,
+      website: company.website,
+      ...(websiteLabel ? { websiteLabel } : {}),
+      scope: company.scope,
+      founding: foundingBySlug.get(company.slug) ?? null,
+    };
+  });
   const companySlugs = new Set(normalizedCompanies.map((company) => company.slug));
   const seenEvents = new Set();
   const parsedRounds = rounds.map((round) => {

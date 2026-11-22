@@ -36,6 +36,26 @@
 .draft-annotation-leader { stroke-width: 1; pointer-events: none; }
 .draft-annotation-key rect { fill: var(--surface); stroke-width: 1; }
 .draft-annotation-key text { fill: var(--foreground); font-size: 12px; font-weight: 600; }
+.recording-coverage { margin: .7rem 0; padding: .65rem 0; border-block: 1px solid var(--border); }
+.recording-coverage h4 { margin: 0; font-size: .8rem; font-weight: 600; }
+.recording-coverage > p { margin: .2rem 0 .4rem; font-size: .72rem; color: var(--muted); }
+.recording-coverage ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.1rem; list-style: none; margin: 0; padding: 0; }
+.recording-coverage button { display: grid; grid-template-columns: 1fr; align-items: baseline; gap: .1rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .73rem; line-height: 1.45; cursor: pointer; overflow-wrap: anywhere; }
+.recording-coverage button strong { font-weight: 500; }
+.recording-coverage button small { display: block; margin-top: .15rem; font-size: .72rem; color: var(--muted); }
+.recording-coverage button:is(:hover, :focus-visible) strong { text-decoration: underline; text-underline-offset: 2px; }
+.recording-coverage button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.recording-coverage li { border-top: 1px solid var(--border); min-width: 0; }
+.recording-bar-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: .85rem; }
+.recording-bar-labeled { min-width: 0; }
+[data-recording-bar-label] { display: block; margin-top: .25rem; color: var(--muted); font-size: .68rem; line-height: 1.4; }
+.recording-coverage > .recording-bar-legend { margin: .55rem 0 .35rem; font-weight: 600; }
+.recording-bar { display: block; margin: .3rem 6px .28rem 0; height: 4px; background: var(--border); color: var(--accent); }
+.recording-bar:empty { background: none; }
+.recording-bar[data-recording-bar="contributors"] { color: var(--muted); }
+.recording-bar [data-recording-bar-fill] { position: relative; display: block; height: 100%; background: currentColor; }
+.recording-bar [data-recording-bar-lower-bound]::after { content: ""; position: absolute; left: 100%; top: 50%; width: 5px; height: 5px; border: solid currentColor; border-width: 1.5px 1.5px 0 0; transform: translate(-2px, -50%) rotate(45deg); }
+@media (max-width: 640px) { .recording-coverage ul { grid-template-columns: 1fr; } }
 .draft-point-annotations { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .25rem .75rem; list-style: none; margin: .5rem 0; padding: 0; }
 .draft-point-annotations button { display: flex; align-items: baseline; gap: .45rem; width: 100%; min-height: 44px; padding: .35rem 0; border: 0; background: none; color: var(--foreground); text-align: left; font-size: .72rem; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
 .draft-point-annotations button:is(:hover, :focus-visible) > span:last-child { text-decoration: underline; text-underline-offset: 2px; }
@@ -55,13 +75,22 @@
 .chart-supporting-notes [data-chart-note-key] { width: 8px; height: 8px; margin-top: .45em; border-radius: 50%; }
 .chart-supporting-notes p { margin: 0; }
 .draft-plot-table-scroll { width: 100%; overflow-x: auto; margin-top: .75rem; overscroll-behavior-x: contain; }
-.draft-plot table { width: 100%; border-collapse: collapse; text-align: left; font-size: .72rem; }
-.draft-plot caption { text-align: left; color: var(--muted); margin-bottom: .6rem; }
-.draft-plot th, .draft-plot td { border-top: 1px solid var(--border); padding: .65rem; vertical-align: top; min-width: 7rem; max-width: 24rem; }
-.draft-plot th { font-weight: 600; }
-.draft-plot td:last-child { min-width: 13rem; }
-.draft-plot th small { display: block; margin-top: .25rem; color: var(--muted); font-weight: 400; }
-.draft-plot blockquote { border-left: 2px solid var(--border-strong); padding-left: .65rem; margin: .5rem 0; color: var(--muted); }
+:is(.draft-plot, [data-recording-source-table]) table { width: 100%; border-collapse: collapse; text-align: left; font-size: .72rem; }
+:is(.draft-plot, [data-recording-source-table]) caption { text-align: left; color: var(--muted); margin-bottom: .6rem; }
+:is(.draft-plot, [data-recording-source-table]) :is(th, td) { border-top: 1px solid var(--border); padding: .65rem; vertical-align: top; min-width: 7rem; max-width: 24rem; }
+:is(.draft-plot, [data-recording-source-table]) th { font-weight: 600; }
+:is(.draft-plot, [data-recording-source-table]) td:last-child { min-width: 13rem; }
+:is(.draft-plot, [data-recording-source-table]) th small { display: block; margin-top: .25rem; color: var(--muted); font-weight: 400; }
+:is(.draft-plot, [data-recording-source-table]) blockquote { border-left: 2px solid var(--border-strong); padding-left: .65rem; margin: .5rem 0; color: var(--muted); }
+/* ModalData moves this region out of the figure; keep wide cells inside its own scroll area. */
+[data-recording-source-table] { max-width: 100%; }
+[data-recording-source-table] table { min-width: 49rem; font-size: .78rem; overflow-wrap: normal; }
+[data-recording-source-table] :is(th, td):nth-child(2) { min-width: 9rem; }
+[data-recording-source-table] td:nth-child(2) { white-space: nowrap; }
+[data-recording-source-table] :is(th, td):nth-child(3) { min-width: 13rem; }
+[data-recording-source-table] :is(th, td):last-child { min-width: 17rem; overflow-wrap: anywhere; }
+[data-recording-source-table] a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+[data-recording-source-table] :is([data-recording-coverage-source] p, [data-recording-source-detail]) { margin-top: .35rem; color: var(--muted); }
 .draft-chart-category-gap { margin-top: .5rem; color: var(--muted); font-size: .76rem; }
 .draft-evidence-gaps { margin-top: 2.5rem; border-top: 1px solid var(--border-strong); padding-top: 1.25rem; }
 .draft-evidence-gaps > h3 { font-size: 1rem; font-weight: 650; }
@@ -258,8 +287,15 @@
 .metrics-index .pc-modal-close:hover { background: var(--foreground); color: var(--surface); border-color: var(--foreground); }
 .metrics-index .pc-modal .pc-modal-close:focus-visible { border-radius: 50%; outline: 2px solid var(--accent); outline-offset: 2px; }
 .metrics-index .pc-modal .pc-detail { padding: 1.1rem 1.25rem 1.4rem; }
-/* Reading column beside a "Sources & data" column, then full-width source tables. */
-.metrics-index .mx-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 0 2rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+/* Give both reading and sources a real half-width; stack before either gets cramped. */
+.metrics-index .mx-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 0 2rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.metrics-index .mx-left { min-width: 0; overflow-wrap: anywhere; }
+/* Avoid a second two-column grid inside an already half-width reading region. */
+.metrics-index .mx-left .pc-methodology dl { grid-template-columns: minmax(0, 1fr); }
+.metrics-index .mx-left > .draft-chart-methodology { margin: 0; padding: 0; border: 0; }
+.metrics-index .mx-left .draft-chart-methodology dl { display: grid; gap: .85rem; margin-top: .85rem; line-height: 1.6; }
+.metrics-index .mx-left .draft-chart-methodology dt { color: var(--foreground); font-weight: 600; }
+.metrics-index .mx-left .draft-chart-methodology dd { margin: .2rem 0 0; }
 .metrics-index .mx-grid:not(:has(.mx-left > *)):not(:has(.mx-sources > *)) { display: none; }
 .metrics-index .mx-grid:not(:has(.mx-sources > *)) { grid-template-columns: minmax(0, 1fr); }
 .metrics-index .mx-grid:not(:has(.mx-left > *)) { grid-template-columns: minmax(0, 1fr); }
@@ -268,7 +304,7 @@
 .metrics-index .mx-left .pc-methodology { border-top: 0; padding-top: 0; margin-top: 0; font-size: 13.5px; color: var(--muted); }
 .metrics-index .mx-left .pc-methodology + .pc-methodology { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
 .metrics-index .mx-left :is(.pc-methodology h3, .pc-methodology h4) { color: var(--foreground); font-size: 15px; font-weight: 600; margin: 0 0 .5rem; }
-.metrics-index .mx-right { min-width: 0; padding-left: 1.5rem; border-left: 1px solid var(--border); font-size: 12.5px; line-height: 1.55; color: var(--muted); overflow-wrap: anywhere; }
+.metrics-index .mx-right { min-width: 0; font-size: 13px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
 .metrics-index .mx-right:not(:has(.mx-sources > *)) { display: none; }
 .metrics-index .mx-grid:not(:has(.mx-left > *)) .mx-right { padding-left: 0; border-left: 0; }
 .metrics-index .mx-k { margin: 0 0 .75rem; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
@@ -289,6 +325,21 @@
 .metrics-index .mx-data > details[open] > summary { margin-bottom: .75rem; }
 .metrics-index .mx-data .pc-table-scroll { margin: .5rem 0 0; }
 .metrics-index .mx-data caption { text-align: left; }
+/* Source tables are portaled out of .draft-plot: style the destination too.
+   Bound the prose column so automatic table sizing cannot crush the value columns. */
+.metrics-index .mx-data .draft-plot-table-scroll { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; margin-top: .75rem; }
+.metrics-index .mx-data .draft-plot-table-scroll table { width: 100%; min-width: 52rem; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: 13px; line-height: 1.6; }
+.metrics-index .mx-data .draft-plot-table-scroll caption { margin-bottom: .75rem; color: var(--muted); }
+.metrics-index .mx-data .draft-plot-table-scroll :is(th, td) { padding: .75rem; border-top: 1px solid var(--border); vertical-align: top; overflow-wrap: anywhere; }
+.metrics-index .mx-data .draft-plot-table-scroll th { font-weight: 600; }
+.metrics-index .mx-data .draft-plot-table-scroll thead th:nth-child(1) { width: 18%; }
+.metrics-index .mx-data .draft-plot-table-scroll thead th:nth-child(2) { width: 20%; }
+.metrics-index .mx-data .draft-plot-table-scroll thead th:nth-child(3) { width: 20%; }
+.metrics-index .mx-data .draft-plot-table-scroll thead th:nth-child(4) { width: 42%; }
+.metrics-index .mx-data .draft-plot-table-scroll th small { display: block; margin-top: .25rem; color: var(--muted); font-weight: 400; }
+.metrics-index .mx-data .draft-plot-table-scroll blockquote { border-left: 2px solid var(--border-strong); padding-left: .65rem; margin: .5rem 0; color: var(--muted); }
+.metrics-index .mx-data .draft-plot-table-scroll td p { margin-top: .5rem; }
+.metrics-index .mx-data .draft-plot-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* Native selects in pop-outs: chevron inset from the right edge. */
 .metrics-index .pc-modal select { appearance: none; -webkit-appearance: none; padding-right: 2.2rem; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236b6b74' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E") no-repeat right .8rem center / 12px; }
 /* Drag-to-measure. */
@@ -310,9 +361,10 @@
 .publication-growth-options [role=radio][aria-checked=true] { background: var(--foreground); border-color: var(--foreground); color: var(--surface); }
 .publication-growth-options [role=radio]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .pc-plot circle[aria-describedby], .gt-plot circle[aria-describedby] { stroke: var(--foreground); stroke-width: 2px; }
-@media (max-width: 720px) {
+@media (max-width: 960px) {
   .metrics-index .mx-grid { grid-template-columns: minmax(0, 1fr); }
-  .metrics-index .mx-right { margin-top: 1.25rem; padding: 1.25rem 0 0; border-left: 0; border-top: 1px solid var(--border); }
+  .metrics-index .mx-right { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+  .metrics-index .mx-grid:not(:has(.mx-left > *)) .mx-right { margin-top: 0; padding-top: 0; border-top: 0; }
 }
 @media (max-width: 560px) {
   .metrics-index .pc-modal-panel { max-height: calc(100dvh - 1rem); }
@@ -322,7 +374,14 @@
   .metrics-index .pc-modal .pc-detail { padding: 1rem; }
 }
 
-/* Only the new reconstruction wraps sharing actions on the narrowest viewport. */
+/* The recording dialog cannot fit its three full action labels at phone widths. */
+@media (max-width: 400px) {
+  .metrics-index [data-draft-popout="metric-recording-hours"] .pc-modal-header .chart-actions { width: 100%; grid-template-columns: repeat(2, max-content); justify-items: start; }
+  .metrics-index [data-draft-popout="metric-recording-hours"] .pc-modal-header .chart-actions > :is(.pc-share, .draft-chart-share) button { grid-area: auto; min-height: 44px; }
+  .metrics-index [data-draft-popout="metric-recording-hours"] .pc-modal-header .chart-actions :is([role=status]:not(:empty), .chart-link-fallback) { position: static; order: 1; width: auto; max-width: 100%; min-width: 0; box-shadow: none; }
+}
+
+/* The bitrate reconstruction wraps sharing actions at its own breakpoint. */
 @media (max-width: 360px) {
   .metrics-index [data-draft-popout="metric-panel-bci-bitrate"] .pc-modal-header .chart-actions { grid-template-columns: repeat(2, max-content); row-gap: .4rem; }
   .metrics-index [data-draft-popout="metric-panel-bci-bitrate"] .pc-modal-header .chart-actions > :is(.pc-share, .draft-chart-share) button { grid-area: auto; }
@@ -351,3 +410,9 @@
 .brain-scale-controls summary { cursor: pointer; width: fit-content; }
 .brain-scale-controls details p { margin: .5rem 0; }
 .brain-scale-controls details ul { margin: .4rem 0 0; padding-left: 1.25rem; }
+.acquisition-metric-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.acquisition-metric-options { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; max-width: 100%; }
+.acquisition-metric-options button { min-height: 44px; padding: .35rem .7rem; border: 0; background: var(--surface); color: var(--muted); font: inherit; cursor: pointer; }
+.acquisition-metric-options button + button { border-left: 1px solid var(--border-strong); }
+.acquisition-metric-options button[aria-pressed=true] { background: var(--accent); color: var(--surface); }
+.acquisition-metric-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }

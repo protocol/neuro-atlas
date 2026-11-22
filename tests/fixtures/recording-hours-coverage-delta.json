@@ -1,0 +1,249 @@
+{
+  "baseCommit": "b6f99efaa80251c4fbbe608a329776617ae383ac",
+  "points": [
+    {
+      "id": "neuralink-reported-hours-2026-10-01",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": null,
+          "unit": "participants",
+          "detail": "Recording contributors are not disclosed. Trial enrollment and the six participants in the performance analysis are not the denominator of >50,000 h. The first participant’s >9,000 h is a subset, not a per-person distribution."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-04-17",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 114,
+          "unit": "patients",
+          "sessions": 510,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-08-04",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 246,
+          "unit": "patients",
+          "sessions": 686,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-04-15",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 315,
+          "unit": "patients",
+          "sessions": 822,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-08-16",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 364,
+          "unit": "patients",
+          "sessions": 970,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-11-14",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 364,
+          "unit": "patients",
+          "sessions": 969,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2019-07-22",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 692,
+          "unit": "patients",
+          "sessions": 1661,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-04-23",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 692,
+          "unit": "patients",
+          "sessions": 1575,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-05-09",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 692,
+          "unit": "patients",
+          "sessions": 2608,
+          "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+        }
+      }
+    },
+    {
+      "id": "ajile12-intracranial-2022-01-27",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 12,
+          "unit": "participants",
+          "detail": "Frozen DANDI 000055/0.220127.0436 assetsSummary.numberOfSubjects = 12, matching its reported 1,280 h. The descriptor reports 3–5 recording days per participant and 55 semi-continuous days total; these are not exact session counts or quality-valid hour ranges."
+        },
+        "supportingReferences": [
+          {
+            "role": "Recording-day context (not QC-hour distribution)",
+            "title": "AJILE12 Scientific Data descriptor · 3–5 recording days per participant",
+            "url": "https://www.nature.com/articles/s41597-022-01280-y"
+          }
+        ]
+      }
+    },
+    {
+      "id": "poyo-primate-training-2023-10-24",
+      "before": {},
+      "after": {
+        "recordingCoverage": {
+          "count": 7,
+          "unit": "nonhuman primates",
+          "sessions": 158,
+          "sessionsQualifier": ">",
+          "detail": "The paper’s >100 h training corpus spans seven nonhuman primates and >158 sessions. Existing recordings are reused; constituent access varies. Neither lower bound gives a typical session or a per-animal duration distribution."
+        }
+      }
+    },
+    {
+      "id": "japaneeg-scalp-eeg-2026-05-31",
+      "before": {
+        "note": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”; authors report an OpenNeuro release under CC0. The point uses descriptor submission timing; archive upload timing remains unverified. Duration counts simultaneous modalities once; the full manifest remains unenumerated."
+      },
+      "after": {
+        "note": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the release manifest remains unenumerated.",
+        "recordingCoverage": {
+          "count": 3,
+          "unit": "participants",
+          "durationSummary": "≈60–814 h per participant (calculated from Table 4)",
+          "detail": "Calculated from descriptor v2 Table 4 recording-hour cells: P01 ≈813.8 h, P02 ≈146.2 h, P03 ≈60.3 h. The shared covert-repetition/listening recordings are counted once. Rounded cells sum to 1,020.3 h versus Table 3’s 1,020.4 h; the plotted abstract total stays 1,020 h. These are accumulated per-person durations, not a continuous session or a publisher-reported range."
+        },
+        "supportingReferences": [
+          {
+            "role": "Current access and participant-duration evidence",
+            "title": "JapanEEG descriptor v2 · November 17, 2026 · Tables 3–4 and Data Records",
+            "url": "https://arxiv.org/html/2606.01264v2"
+          },
+          {
+            "role": "Author-reported controlled-access repository",
+            "title": "Harvard Dataverse · JapanEEG (files not inspected)",
+            "url": "https://doi.org/10.7910/DVN/5RM3OT"
+          }
+        ]
+      }
+    }
+  ],
+  "draftPlots": [
+    {
+      "id": "japaneeg-scalp-eeg",
+      "before": {
+        "title": "JapanEEG · human scalp EEG, open release claim",
+        "scope": "Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration."
+      },
+      "after": {
+        "title": "JapanEEG · human scalp EEG, controlled access",
+        "scope": "Japanese speech dataset from three participants; authors report controlled access through Harvard Dataverse in descriptor v2 (November 17, 2026). Simultaneous EEG, EMG and audio contribute one EEG recording duration."
+      }
+    }
+  ],
+  "metricPlots": [
+    {
+      "id": "recording-hours",
+      "before": {
+        "seriesNote": "Neuralink · human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.\n\nTUSZ · human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.\n\nAJILE12 · human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.\n\nPOYO-1 · primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.\n\nJapanEEG · human scalp EEG, open release claim: Author-reported Japanese speech dataset from three participants, released through OpenNeuro under CC0. Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+        "legend": [
+          {
+            "label": "Neuralink · human intracortical, company-held",
+            "color": "#9275ca"
+          },
+          {
+            "label": "TUSZ · human scalp EEG, controlled access",
+            "color": "#238e91"
+          },
+          {
+            "label": "AJILE12 · human intracranial, open",
+            "color": "#cd732f"
+          },
+          {
+            "label": "POYO-1 · primate spikes, training corpus",
+            "color": "#647d3d"
+          },
+          {
+            "label": "JapanEEG · human scalp EEG, open release claim",
+            "color": "#cb6285"
+          }
+        ]
+      },
+      "after": {
+        "seriesNote": "Neuralink · human intracortical, company-held: October 1, 2026 company disclosure of >50,000 hours streamed by human trial participants. Data are company-held; live-use results use participant-specific pretraining. Session-union and quality-filter rules are unspecified.\n\nTUSZ · human scalp EEG, controlled access: Maintainer-reported full TUSZ seizure-corpus release durations, including held-out evaluation data. Registration-controlled TUSZ is a subset of TUEG; releases overlap.\n\nAJILE12 · human intracranial, open: DANDI 000055/0.220127.0436: reported ECoG/depth recording duration from 12 participants, openly released under CC-BY-4.0. Recording gaps and preprocessing affect quality-valid duration.\n\nPOYO-1 · primate spikes, training corpus: Reported model-training corpus drawn from existing recordings of seven nonhuman primates. Constituent datasets have varying access; the duration measures reused training data.\n\nJapanEEG · human scalp EEG, controlled access: Japanese speech dataset from three participants; authors report controlled access through Harvard Dataverse in descriptor v2 (November 17, 2026). Simultaneous EEG, EMG and audio contribute one EEG recording duration.",
+        "legend": [
+          {
+            "label": "Neuralink · human intracortical, company-held",
+            "color": "#9275ca"
+          },
+          {
+            "label": "TUSZ · human scalp EEG, controlled access",
+            "color": "#238e91"
+          },
+          {
+            "label": "AJILE12 · human intracranial, open",
+            "color": "#cd732f"
+          },
+          {
+            "label": "POYO-1 · primate spikes, training corpus",
+            "color": "#647d3d"
+          },
+          {
+            "label": "JapanEEG · human scalp EEG, controlled access",
+            "color": "#cb6285"
+          }
+        ]
+      }
+    }
+  ],
+  "metricPoints": [
+    {
+      "id": "japaneeg-scalp-eeg-2026-05-31",
+      "before": {
+        "group": "JapanEEG · human scalp EEG, open release claim"
+      },
+      "after": {
+        "group": "JapanEEG · human scalp EEG, controlled access"
+      }
+    }
+  ]
+}

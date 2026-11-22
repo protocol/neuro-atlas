@@ -8,5 +8,15 @@
     "sourceKind": "primary",
     "reviewedOn": "2026-11-17",
     "sourceExcerpt": "Congrats to Merge Labs on its $250M+ seed round, which we were proud to join alongside OpenAI, Bain Capital, and Gabe Newell."
+  },
+  {
+    "companySlug": "science-corporation",
+    "announcedOn": "2025-04-14",
+    "stage": "Financing",
+    "investorName": "Khosla Ventures",
+    "sourceUrl": "https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-20",
+    "sourceExcerpt": "The Alameda, California-based company’s most recent raise previously was a $104 million convertible note led by Khosla last April."
   }
 ]

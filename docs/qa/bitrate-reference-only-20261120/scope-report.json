@@ -1,0 +1,37 @@
+{
+  "head": "a433ef4aa6958314a7c6918b37ea076be97951c9",
+  "base": "913eb58f69ef385b5e4fc2cbc02c532bdb7a8a13",
+  "branch": "feat/bci-sensory-reference-only-20261120",
+  "files": [
+    "src/components/draft-chart-plot.tsx",
+    "src/data/sensory-context.ts",
+    "tests/bci-sensory-context.test.mjs",
+    "tests/fixtures/bci-sensory-default-svg.json",
+    "vercel.json"
+  ],
+  "frozenObjects": {
+    "src/data/bci-bitrate.ts": true,
+    "src/data/bci-bitrate.source.json": true,
+    "src/data/bci-bitrate.candidates.json": true,
+    "src/data/draft-chart-evidence.json": true,
+    "src/data/draft-chart-observations.ts": true,
+    "src/data/field-velocity-links.ts": true,
+    "src/lib/field-velocity": true,
+    "src/lib/chart-toggle-url.ts": true,
+    "src/app": true,
+    "src/components/sections": true,
+    "src/lib/chart-export.ts": true,
+    "package.json": true,
+    "package-lock.json": true,
+    "next.config.ts": true
+  },
+  "noNewRoutesOrURLFramework": true,
+  "securityAddedLines": {
+    "hardcodedSecret": false,
+    "shellTrue": false,
+    "unsafeExec": false,
+    "unsafeDeserialize": false
+  },
+  "autoDeploymentDisabled": true,
+  "diffSHA256": "b78d2635433ad31e2899465ddb1b37313d78e7116a39b35a72ded9134ef960d5"
+}

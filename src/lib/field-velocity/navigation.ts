@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery, type AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 import { fieldVelocityLink, canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
 
 export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink", "revealed_commitments", "publication-output", "publication-growth", "researcher-sectors", "researcher-sector-changes"] as const;
@@ -22,7 +23,23 @@ export function takePerformanceFocusReturn() {
 export function performanceUrl(currentUrl: string, anchor: string) {
   if (!fieldVelocityLink(anchor)) throw new Error("Unknown performance anchor");
   const url = new URL(currentUrl);
+  // A toggle belongs to this exact chart, not the next fragment we navigate to.
+  const toggle = chartToggle(anchor);
+  for (const query of ["brainScale", "extrapolation"]) {
+    if (query !== toggle?.query || !chartToggleEnabled(url, anchor)) url.searchParams.delete(query);
+  }
+  if (acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar") url.searchParams.delete(acquisitionMetricQuery);
   url.hash = canonicalPerformanceAnchor(anchor);
+  return url.href;
+}
+
+/** Set just the acquisition view; the default and invalid runtime values carry no token. */
+export function acquisitionMetricUrl(currentUrl: string, anchor: string, metric: AcquisitionMetricSelection) {
+  const url = new URL(performanceUrl(currentUrl, anchor));
+  if (performanceTarget(anchor) === "metric-panel-acquisition-economics"
+    && metric === "dollars-per-voxel") url.searchParams.set(acquisitionMetricQuery, metric);
+  else url.searchParams.delete(acquisitionMetricQuery);
+  if (metric === "dollars-per-voxel") url.searchParams.delete("brainScale");
   return url.href;
 }
 
@@ -105,7 +122,11 @@ function subscribe(callback: () => void) {
 function canonicalizePerformanceLocation() {
   const anchor = window.location.hash.slice(1);
   const link = fieldVelocityLink(anchor);
-  if (link && anchor !== link.slug) {
+  const url = new URL(window.location.href);
+  const clearMetric = url.searchParams.has(acquisitionMetricQuery) && acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar";
+  const clearReference = performanceTarget(anchor) === "metric-panel-acquisition-economics"
+    && acquisitionMetricFromUrl(url, anchor) === "dollars-per-voxel" && url.searchParams.has("brainScale");
+  if (link && (anchor !== link.slug || clearMetric || clearReference)) {
     window.history.replaceState(window.history.state, "", performanceUrl(window.location.href, anchor));
   }
 }
@@ -116,4 +137,35 @@ const snapshot = () => {
 const serverSnapshot = () => "";
 export function usePerformanceHash() {
   return useSyncExternalStore(subscribe, snapshot, serverSnapshot);
+}
+
+/** View changes are history entries, like recordingView. Clearing only the
+ * modal-origin marker lets Close/Escape dismiss in one action after any change. */
+export function useChartToggle(anchor?: string) {
+  const enabled = useSyncExternalStore(subscribe,
+    () => !!anchor && chartToggleEnabled(new URL(window.location.href), anchor), () => false);
+  const setEnabled = (update: (current: boolean) => boolean) => {
+    const toggle = anchor ? chartToggle(anchor) : undefined;
+    if (!toggle || !anchor) return;
+    const url = new URL(performanceUrl(window.location.href, anchor));
+    if (update(chartToggleEnabled(url, anchor))) url.searchParams.set(toggle.query, toggle.value);
+    else url.searchParams.delete(toggle.query);
+    window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+    window.dispatchEvent(new Event(changedEvent));
+  };
+  return [enabled, setEnabled] as const;
+}
+
+/** Acquisition units share the existing location subscription/history contract. */
+export function useAcquisitionMetric(anchor?: string) {
+  const metric = useSyncExternalStore(subscribe,
+    () => anchor ? acquisitionMetricFromUrl(new URL(window.location.href), anchor) : "voxels-per-dollar", () => "voxels-per-dollar" as const);
+  const setMetric = (next: AcquisitionMetricSelection) => {
+    if (!anchor || performanceTarget(anchor) !== "metric-panel-acquisition-economics") return;
+    const url = acquisitionMetricUrl(window.location.href, anchor, next);
+    if (url === window.location.href) return;
+    window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+    window.dispatchEvent(new Event(changedEvent));
+  };
+  return [metric, setMetric] as const;
 }

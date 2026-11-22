@@ -1,10 +1,20 @@
 import { performanceUrl } from "@/lib/field-velocity/navigation";
 import { performanceTarget } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
+import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery } from "@/lib/chart-toggle-url";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
-export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartLegendEntry[]; pointKeyNote?: string };
+type PointKeyBar = { fraction: number; lowerBound: boolean };
+export type ChartPointKeyEntry = ChartLegendEntry & {
+  pointId?: string;
+  /** The number already painted next to this observation at the source layout width. */
+  badge?: number;
+  details?: string[];
+  bars?: readonly [PointKeyBar | null, PointKeyBar | null];
+  barLabels?: readonly [string, string];
+};
+export type ChartExport = { svg: SVGSVGElement; title: string; anchor: string; notes: string[]; captionNotes?: string[]; datasetCredit?: string; legend?: ChartLegendEntry[]; pointKey?: ChartPointKeyEntry[]; pointKeyNote?: string; pointKeyScaleNote?: string };
 export type ChartImage = { svg: string; width: number; height: number; url: string; title: string };
 const NS = "http://www.w3.org/2000/svg";
 const tags = new Set(["svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan", "title", "desc"]);
@@ -49,14 +59,18 @@ function exportPaint(value: string, source: Element, palette: Map<string, string
 }
 
 /** Share stable chart identity, never credentials or arbitrary query tokens.
- * Only this chart's exact, single enum may carry measurement-view state.
+ * Only exact single, chart-scoped view/toggle tokens cross the image boundary.
  * Navigation and existing Copy link controls retain their original URL contract. */
 export function chartShareUrl(current: string, anchor: string) {
   const url = new URL(performanceUrl(current, anchor));
   if (!/^https?:$/.test(url.protocol)) throw new Error("Chart links require HTTP(S)");
   const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
+  const toggle = chartToggleEnabled(url, anchor) ? chartToggle(anchor) : undefined;
+  const acquisitionMetric = acquisitionMetricFromUrl(url, anchor);
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
+  if (toggle) url.searchParams.set(toggle.query, toggle.value);
+  if (acquisitionMetric !== "voxels-per-dollar") url.searchParams.set(acquisitionMetricQuery, acquisitionMetric);
   return url.href;
 }
 
@@ -264,18 +278,56 @@ export function buildChartImage(chart: ChartExport, currentUrl: string): ChartIm
     cursor = cropBottom + 18;
     body.push('<g data-export-point-key="true">');
     text(chart.pointKeyNote ?? "Study key", 16, true);
+    if (chart.pointKeyScaleNote) text(chart.pointKeyScaleNote, 16);
     cursor += 8;
     const size = 16, gap = 32, columnWidth = (plotWidth - gap) / 2, textInset = 26;
     const columns = Math.floor((columnWidth - textInset) / (size * .62));
     for (let index = 0; index < chart.pointKey.length; index += 2) {
-      const entries = chart.pointKey.slice(index, index + 2).map(entry => ({ entry, lines: wrap(entry.label, columns) }));
-      entries.forEach(({ entry, lines }, column) => {
-        const left = inset + column * (columnWidth + gap);
-        body.push(`<g data-export-point-key-entry="${index + column + 1}">`, legendMarker(entry, left, cursor + size * 1.1));
-        lines.forEach((line, row) => body.push(`<text x="${left + textInset}" y="${cursor + (row + 1) * size * 1.45}" fill="${ink}" font-family="${EXPORT_FONT}" font-size="${size}">${escape(line)}</text>`));
+      const entries = chart.pointKey.slice(index, index + 2).map(entry => ({
+        entry, lines: wrap(entry.label, columns), details: entry.details?.flatMap(detail => wrap(detail, columns)) ?? [],
+      }));
+      const rowHeights = entries.map(({ entry, lines, details }, column) => {
+        const left = inset + column * (columnWidth + gap), textLeft = left + textInset;
+        const pointId = entry.pointId ? ` data-export-point-id="${escape(entry.pointId)}"` : "";
+        body.push(`<g data-export-point-key-entry="${index + column + 1}"${pointId}>`);
+        const cy = cursor + size * 1.1;
+        if (entry.badge !== undefined && Number.isSafeInteger(entry.badge) && entry.badge > 0) {
+          const color = escape(exportPaint(entry.color, source, palette) || ink);
+          body.push(`<g data-export-point-key-badge="true"><rect x="${left}" y="${cy - 9}" width="19" height="18" rx="4" fill="${background}" stroke="${color}"/><text x="${left + 9.5}" y="${cy + 4.5}" text-anchor="middle" fill="${ink}" font-family="${EXPORT_FONT}" font-size="14" font-weight="700">${entry.badge}</text></g>`);
+        } else body.push(legendMarker(entry, left, cy));
+        const rowStep = size * 1.45;
+        lines.forEach((line, row) => body.push(`<text x="${textLeft}" y="${cursor + (row + 1) * rowStep}" fill="${ink}" font-family="${EXPORT_FONT}" font-size="${size}">${escape(line)}</text>`));
+        let offset = lines.length * size * 1.45;
+        if (entry.bars) {
+          const trackWidth = (columnWidth - textInset - 28) / 2;
+          const captionHeight = entry.barLabels ? rowStep : 0;
+          const barY = cursor + offset + captionHeight + 8;
+          entry.bars.forEach((bar, lane) => {
+            const barX = textLeft + lane * (trackWidth + 20);
+            const paint = lane === 0 ? EXPORT_BLUE : "#52647d";
+            body.push(`<g data-export-point-key-bar="${lane + 1}">`);
+            if (entry.barLabels) body.push(`<text data-export-bar-label="true" x="${barX}" y="${barY - 8}" fill="#52647d" font-family="${EXPORT_FONT}" font-size="${size}">${escape(entry.barLabels[lane])}</text>`);
+            if (bar && Number.isFinite(bar.fraction) && bar.fraction > 0 && bar.fraction <= 1) {
+              const fill = bar.fraction * trackWidth;
+              body.push(`<rect data-export-bar-track="true" x="${barX}" y="${barY}" width="${trackWidth}" height="5" fill="#dfe5ec"/>`);
+              body.push(`<rect data-export-bar-fill="true" x="${barX}" y="${barY}" width="${fill}" height="5" fill="${paint}"/>`);
+              if (bar.lowerBound) {
+                const end = barX + fill;
+                body.push(`<path data-export-bar-lower-bound="true" d="M${end},${barY - 3} l5,5.5 -5,5.5" fill="none" stroke="${paint}" stroke-width="2"/>`);
+              }
+            }
+            body.push('</g>');
+          });
+          offset += 14 + captionHeight;
+        }
+        for (const line of details) {
+          offset += rowStep;
+          body.push(`<text data-export-point-key-detail="true" x="${textLeft}" y="${cursor + offset}" fill="#52647d" font-family="${EXPORT_FONT}" font-size="${size}">${escape(line)}</text>`);
+        }
         body.push('</g>');
+        return offset;
       });
-      cursor += Math.max(...entries.map(entry => entry.lines.length)) * size * 1.45 + 8;
+      cursor += Math.max(...rowHeights) + 8;
     }
     body.push('</g>');
   }

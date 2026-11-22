@@ -22,7 +22,7 @@ import { recordingViewCsv } from "@/lib/recording-source-export";
 import type { HistoricalLogFit } from "@/lib/historical-log-fit";
 import { RECORDING_VIEWS, RECORDING_CHECKED_AT, type RecordingView } from "@/data/recording-evidence";
 import type { MeasurementPoint, MeasurementSeries } from "@/lib/field-velocity/schema";
-import { usePerformanceHash, navigatePerformance } from "@/lib/field-velocity/navigation";
+import { usePerformanceHash, useChartToggle, navigatePerformance } from "@/lib/field-velocity/navigation";
 import { decimalYear, extrapolationScenario, type Crossing, type ExtrapolationKind, type ExtrapolationMode, type ExtrapolationScenario } from "@/lib/extrapolation";
 import { MetricCardScope } from "@/components/metric-card-scope";
 import { useChartMeasure } from "@/components/chart-measure";
@@ -145,7 +145,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     return () => observer.disconnect();
   }, [inspectOnActivate, singleObservation, data.title]);
   const [track, setTrack] = useState("");
-  const [extrapolate, setExtrapolate] = useState(false);
+  const [extrapolate, setExtrapolate] = useChartToggle(!compact && extrapolation ? shareAnchor : undefined);
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
   // Validate against the visible source set so measurement/track changes clear
   // stale inspection without remounting the native selector.

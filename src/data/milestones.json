@@ -707,9 +707,9 @@
     "amountUsdM": 104,
     "date": "2025-04-14",
     "datePrecision": "day",
-    "dateBasis": "unverified",
-    "note": "$103.6m financing led with Khosla Ventures",
-    "sourceUrl": "https://www.axios.com/pro/health-tech-deals/2025/04/14/science-corp-bci-100m-fundraise",
+    "dateBasis": "reported",
+    "note": "Convertible-note financing; $104m rounded from $103,604,355 sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28.",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
   },
