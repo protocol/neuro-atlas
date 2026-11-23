@@ -17,7 +17,7 @@ The fixed modal heading is “Estimated acquisition efficiency”; the figure an
 - **mesoSPIM:** separate optical singleton; no expansion-family fit.
 - **PEEM:** a prospective/mixed estimate, rendered with a triangle and excluded from the historical EM fit.
 
-**ExA-SPIM 2024 is an author estimate**, 1e11 voxels/$, Table A1 row 2. Its reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. The citation mismatch and lack of independently matched ExA-SPIM throughput/cost configuration remain explicit. As a sensitivity, fitting only the other three expansion points yields approximately 2.40824-year doubling; the selected four-point fit retains the 2024 estimate.
+**ExA-SPIM 2024 is an author estimate**, 1e11 voxels/$, Table A1 row 2. Its corrected method reference is [Glaser et al. (2025), *Expansion-assisted selective plane illumination microscopy for nanoscale imaging of centimeter-scale tissues*, eLife 12, RP91979](https://doi.org/10.7554/eLife.91979). The original v1 table's reference 54 points to HiExM; the corrected method citation is retained separately from the numerical Table A1 estimate. The specific throughput/cost assumptions behind the efficiency estimate remain unverified. The point keeps the table's 2024 year; 2025 is the method paper's publication year. As a sensitivity, fitting only the other three expansion points yields approximately 2.40824-year doubling; the selected four-point fit retains the 2024 estimate.
 
 Figure 2 and Table A1 differ: TEMCA-GridTape has no exact dollar-efficiency table row, mesoSPIM is absent from the figure, and MultiSEM706's visual position differs from the table's 1e9. No TEMCA value or traced source line is invented. Optical/EM resolutions, labeling, utilization, cost composition and price year differ or are unspecified; the efficiencies are rough order-of-magnitude source estimates.
 
@@ -27,7 +27,7 @@ The two source fits remain separate: efficiency labels show “2×/1.5y”; reci
 
 ### Illustrative point conversions
 
-Point **#10** is `exaspim2024`, the Table A1 author estimate of **1e11 voxels/$**, giving **$18.75B** for this illustrative human model. Point **#8**, `peem2024`, is the prospective **2e10 voxels/$** estimate, giving **$93.75B**. Source identities, values and model assumptions remain unchanged; the ExA-SPIM citation mismatch and PEEM prospective status stay visible.
+Point **#10** is `exaspim2024`, the Table A1 author estimate of **1e11 voxels/$**, giving **$18.75B** for this illustrative human model. Point **#8**, `peem2024`, is the prospective **2e10 voxels/$** estimate, giving **$93.75B**. Source identities, values and model assumptions remain unchanged; the ExA-SPIM author-estimate qualification, corrected method reference and PEEM prospective status stay visible.
 
 ## Historical simultaneous electrical recordings
 

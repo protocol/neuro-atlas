@@ -11,6 +11,7 @@ import { CONNECTOMICS_BACKFILL } from '../src/data/connectomics-backfill.ts';
 import { DraftChartPlot, DraftEventTimeline } from '../src/components/draft-chart-plot.tsx';
 import { beforeFafbAttribution, preAttributionBytes, preAttributionEvidence } from './helpers/fafb-attribution-baseline.mjs';
 import { withoutConnectomicsBackfill } from './helpers/connectomics-provenance-baseline.mjs';
+import { beforeExaspimReferenceCorrection } from './helpers/exaspim-reference-baseline.mjs';
 
 globalThis.React = React;
 const bytes = readFileSync('src/data/draft-chart-evidence.json');
@@ -58,7 +59,7 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
       assert.equal(observation.x, 2024);
       assert.equal(observation.y, 1e11);
       assert.equal(observation.qualifier, '≈');
-      assert.match(observation.note, /author estimate.*citation mismatch.*HiExM/is);
+      assert.match(observation.note, /author estimate.*Glaser.*2025/is);
       continue;
     }
     const archived = Object.values(raw).flatMap(e => e.plots).flatMap(p => p.points).find(p => p.id === observation.id);
@@ -85,7 +86,7 @@ test('full pre-backfill evidence projections are unchanged outside the explicitl
   // Restore only the separately asserted FAFB attribution delta from PR128;
   // never substitute raw archive notes for the original reader projection.
   assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE)))), 'c231dfa219a15927b66ddafe492b3975d2457c8dab1b76082b1e1091acda4731');
-  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(METRIC_CHART_EVIDENCE)))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(beforeExaspimReferenceCorrection(METRIC_CHART_EVIDENCE))))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
 });
 
 test('only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata', () => {

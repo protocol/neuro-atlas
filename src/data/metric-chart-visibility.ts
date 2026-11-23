@@ -46,9 +46,15 @@ acquisitionPoints.push({
   ...acquisitionPoints.find(point => point.id === "exaspim2023")!,
   id: "exaspim2024", x: 2024, y: 1e11,
   label: "ExA-SPIM 2024 · author estimate", annotation: "ExA-SPIM 2024 · author estimate",
-  exportAnnotation: "ExA-SPIM 2024 · ≈100 billion vox/$ · author estimate; citation mismatch",
+  exportAnnotation: "ExA-SPIM 2024 · ≈100 billion vox/$ · author estimate",
+  sourceRole: "Acquisition-efficiency estimate",
+  supportingReferences: [{
+    role: "ExA-SPIM method",
+    title: "Glaser et al. (2025) · Expansion-assisted selective plane illumination microscopy for nanoscale imaging of centimeter-scale tissues",
+    url: "https://doi.org/10.7554/eLife.91979",
+  }],
   dateLabel: "2024 · year as printed in Table A1",
-  note: "Table A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors’ estimate, with the mismatch disclosed.",
+  note: "Table A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Method reference: Glaser et al. (2025), Expansion-assisted selective plane illumination microscopy for nanoscale imaging of centimeter-scale tissues, eLife 12, RP91979. The specific throughput/cost assumptions behind this efficiency estimate remain unverified. The plotted year is 2024 as printed in Table A1; the method paper was published in 2025.",
 });
 export const ACQUISITION_FITS = [expansionIds, emIds].map(ids => fitHistoricalLog(ids.map(id => acquisitionPoints.find(p => p.id === id)!))!);
 const acquisitionEconomics: DraftPlot = {
@@ -57,10 +63,10 @@ const acquisitionEconomics: DraftPlot = {
   previewTitle: "Imaging efficiency",
   previewYLabel: "≈ voxels/$ · log",
   yLabel: "Approx. voxels/$ (log)", valueSignificantDigits: 3,
-  scope: "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate with a citation mismatch.",
+  scope: "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate.",
   seriesNote: "Table A1 Approx. Voxels/$ values, rather than digitized Figure 2 marks or throughput/hour divided by cost/hour. Figure 2 has TEMCA-GridTape without an exact table row, omits mesoSPIM, and differs for MultiSEM 706. mesoSPIM stays separate from expansion microscopy. PEEM is excluded from the historical EM fit.",
   points: acquisitionPoints,
-  exportPointKey: true, exportPointKeyNote: "All efficiencies ≈ author estimates; heterogeneous resolution and cost scope. PEEM prospective; ExA-SPIM 2024 citation mismatch.",
+  exportPointKey: true, exportPointKeyNote: "All efficiencies ≈ author estimates; heterogeneous resolution and cost scope. PEEM prospective.",
   legend: [
     {label: "Expansion microscopy · estimates", color: "#9275ca"},
     {label: "EM · reported-tech estimates", color: "#cd732f"},
@@ -72,7 +78,7 @@ const acquisitionEconomics: DraftPlot = {
     label: `${i ? "EM" : "Expansion"} fit · doubling ≈${fit.doublingYears!.toFixed(1)} y`,
     directLabel: `${i ? "EM" : "ExM"} · 2×/${fit.doublingYears!.toFixed(1)}y`,
     color: i ? "#cd732f" : "#9275ca", points: fit.points,
-    note: `${historicalFitNote(fit)} Source: arXiv:2603.25713v1 Table A1 (p. 18). ${i ? "PEEM excluded as prospective; heterogeneous reported-tech estimates." : "ExA-SPIM 2024 author estimate included; reference 54 cites HiExM (citation mismatch). mesoSPIM excluded from expansion family."}`,
+    note: `${historicalFitNote(fit)} Source: arXiv:2603.25713v1 Table A1 (p. 18). ${i ? "PEEM excluded as prospective; heterogeneous reported-tech estimates." : "ExA-SPIM 2024 author estimate included. mesoSPIM excluded from expansion family."}`,
     methodologyUrl: "https://arxiv.org/pdf/2603.25713v1", methodologyLabel: "Source table ↗",
   })),
 };

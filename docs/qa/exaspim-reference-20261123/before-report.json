@@ -1,0 +1,32 @@
+[
+  {
+    "width": 1440,
+    "client": 1440,
+    "scroll": 1440,
+    "warning": true,
+    "marks": 10,
+    "source": {
+      "text": "\u00d7\nExA-SPIM 2024 \u00b7 author estimate\n\nExpansion microscopy\n\n2024 \u00b7 year as printed in Table A1\n\n\u2248100 billion voxels/$\n\n\u2248$1\u00d710\u207b\u00b9\u00b9 per voxel\n\nIllustrative human-brain acquisition cost: $18.75B per human brain\n\nIllustrative conversion: 1.875\u00d710\u00b2\u00b9 voxels (~1.9 sextillion), at 4\u00d74\u00d740 nm across 1,200,000 mm\u00b3, \u00f7 source-estimated voxels per dollar. Image acquisition only; excludes preparation, reconstruction, proofreading and storage. Optical and EM scopes and resolutions differ; this is not a matched whole-brain project budget.\n\nCompiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197\n\nTable A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors\u2019 estimate, with the mismatch disclosed.",
+      "links": [
+        "https://arxiv.org/pdf/2603.25713v1"
+      ],
+      "left": 702.6875,
+      "right": 1054.6875
+    }
+  },
+  {
+    "width": 320,
+    "client": 320,
+    "scroll": 320,
+    "warning": true,
+    "marks": 10,
+    "source": {
+      "text": "\u00d7\nExA-SPIM 2024 \u00b7 author estimate\n\nExpansion microscopy\n\n2024 \u00b7 year as printed in Table A1\n\n\u2248100 billion voxels/$\n\n\u2248$1\u00d710\u207b\u00b9\u00b9 per voxel\n\nIllustrative human-brain acquisition cost: $18.75B per human brain\n\nIllustrative conversion: 1.875\u00d710\u00b2\u00b9 voxels (~1.9 sextillion), at 4\u00d74\u00d740 nm across 1,200,000 mm\u00b3, \u00f7 source-estimated voxels per dollar. Image acquisition only; excludes preparation, reconstruction, proofreading and storage. Optical and EM scopes and resolutions differ; this is not a matched whole-brain project budget.\n\nCompiling molecular ultrastructure into neural dynamics \u2014 arXiv:2603.25713v1, Table A1 (p. 18) \u2197\n\nTable A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors\u2019 estimate, with the mismatch disclosed.",
+      "links": [
+        "https://arxiv.org/pdf/2603.25713v1"
+      ],
+      "left": 8,
+      "right": 312
+    }
+  }
+]

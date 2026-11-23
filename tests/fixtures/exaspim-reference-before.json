@@ -1,0 +1,10 @@
+{
+  "base": "56395db93182d41e61703a0bfbf89616f467bdbd",
+  "point": {
+    "note": "Table A1 row 2: ExA-SPIM; Approx. Voxels/$ = 100,000,000,000. Rough order-of-magnitude author estimate. Citation mismatch: reference 54 is Day et al. (2024), HiExM, rather than ExA-SPIM. Independent ExA-SPIM throughput and this cost configuration are unverified. Included as the authors\u2019 estimate, with the mismatch disclosed.",
+    "exportAnnotation": "ExA-SPIM 2024 \u00b7 \u2248100 billion vox/$ \u00b7 author estimate; citation mismatch"
+  },
+  "scope": "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate with a citation mismatch.",
+  "exportPointKeyNote": "All efficiencies \u2248 author estimates; heterogeneous resolution and cost scope. PEEM prospective; ExA-SPIM 2024 citation mismatch.",
+  "fitNote": "Equal-weight unconstrained OLS of log10(y) against year; N=4, 2015\u20132024. log10(y) = 8.689655172 + 0.2019704433 \u00d7 (year \u2212 2015). R\u00b2 in log10 space = 0.753; doubling time = 1.49 years. Input IDs: exm2015, exllsm2019, exaspim2023, exaspim2024. Descriptive fit, confined to observed years; no future projection or confidence interval. Source: arXiv:2603.25713v1 Table A1 (p. 18). ExA-SPIM 2024 author estimate included; reference 54 cites HiExM (citation mismatch). mesoSPIM excluded from expansion family."
+}
