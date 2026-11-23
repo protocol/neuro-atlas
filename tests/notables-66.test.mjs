@@ -42,6 +42,23 @@ test('Notables 66 historical exclusion rejects changed, missing, duplicate and e
   }
 });
 
+test('Notables 66 adds only its eleven source-directory links, retaining every prior classification', async () => {
+  const { scanSources } = await import('./helpers/methodology-source-inventory.mjs');
+  const catalog = load('../src/data/methodology-sources.json');
+  const { included } = scanSources();
+  const additions = Object.values(fixture.sourceCatalogAdditions).flat();
+  assert.equal(additions.length, 11);
+  const urls = additions.map(([url]) => url);
+  for (const [category, items] of Object.entries(fixture.sourceCatalogAdditions)) {
+    for (const pair of items) {
+      assert.ok(included.has(pair[0]), pair[0]);
+      assert.deepEqual(catalog[category].filter(([url]) => url === pair[0]), [pair]);
+    }
+  }
+  const original = Object.fromEntries(Object.entries(catalog).map(([key,items]) => [key,items.filter(([url]) => !urls.includes(url))]));
+  assert.equal(hash(original), fixture.baselineSourceCatalogSha256);
+});
+
 test('Notables 66 is exactly three source-bound additions; every prior timeline record is unchanged', () => {
   assert.equal(sources.length, 3);
   assert.equal(hash(milestones.filter(row => !sources.includes(row.sourceUrl))), fixture.baselineMilestonesSha256);
