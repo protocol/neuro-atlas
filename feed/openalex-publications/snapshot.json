@@ -1,0 +1,6324 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://api.openalex.org",
+    "capturedAt": "2026-11-23T08:36:56.462393+00:00",
+    "paperAsOf": "2026-11-23",
+    "authorAsOf": "2026-11-23",
+    "observedThrough": "2025-12-31",
+    "baselineYear": 2022,
+    "paperEndYear": 2025,
+    "authorEndYear": 2025,
+    "methodologyVersion": "atlas-primary-publications-v1",
+    "methodSha256": "4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9",
+    "sourceHash": "46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df",
+    "testOnly": false,
+    "corpus": "core",
+    "worksMaxUpdatedDate": "2026-11-22T12:46:00.618207",
+    "authorsMaxUpdatedDate": "2026-11-22T12:46:00.618207",
+    "inputByteHashes": {
+      "works": "12bdd1c1877618fa3b5668121ccd6c6e05d60bda6c359aab897efa2cc65cd535",
+      "author_histories": "94dfe3f56245f3bbf43b6ee29bee2f0b128417b0ac1f8129d69d670627230f94"
+    },
+    "coveragePolicy": {
+      "minimum_known_share": {
+        "region": 0.5,
+        "institution_type": 0.5,
+        "career_stage": 0.5,
+        "pedigree": 0.5
+      }
+    },
+    "scienceBaseline": {
+      "methodId": "openalex-primary-domain-work-count-v1",
+      "acquiredAt": "2026-11-23T08:38:26.782478+00:00",
+      "sourceHash": "1dcfad3f52f857c520929b5eabbc999776ef56de84f9a12835a25cb12b4359d1",
+      "url": "https://api.openalex.org"
+    }
+  },
+  "tables": {
+    "nt_yearly": {
+      "columns": [
+        {
+          "name": "year",
+          "type": "string"
+        },
+        {
+          "name": "series",
+          "type": "string"
+        },
+        {
+          "name": "papers",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "2010",
+          "Neurotech papers",
+          4870
+        ],
+        [
+          "2011",
+          "Neurotech papers",
+          5378
+        ],
+        [
+          "2012",
+          "Neurotech papers",
+          5374
+        ],
+        [
+          "2013",
+          "Neurotech papers",
+          6843
+        ],
+        [
+          "2014",
+          "Neurotech papers",
+          6475
+        ],
+        [
+          "2015",
+          "Neurotech papers",
+          7173
+        ],
+        [
+          "2016",
+          "Neurotech papers",
+          7562
+        ],
+        [
+          "2017",
+          "Neurotech papers",
+          8327
+        ],
+        [
+          "2018",
+          "Neurotech papers",
+          8666
+        ],
+        [
+          "2019",
+          "Neurotech papers",
+          9949
+        ],
+        [
+          "2020",
+          "Neurotech papers",
+          9051
+        ],
+        [
+          "2021",
+          "Neurotech papers",
+          10202
+        ],
+        [
+          "2022",
+          "Neurotech papers",
+          9594
+        ],
+        [
+          "2023",
+          "Neurotech papers",
+          11324
+        ],
+        [
+          "2024",
+          "Neurotech papers",
+          12105
+        ],
+        [
+          "2025",
+          "Neurotech papers",
+          15945
+        ],
+        [
+          "2010",
+          "All research",
+          8082
+        ],
+        [
+          "2010",
+          "Science baseline, low",
+          7378
+        ],
+        [
+          "2010",
+          "Science baseline, high",
+          8434
+        ],
+        [
+          "2011",
+          "All research",
+          8423
+        ],
+        [
+          "2011",
+          "Science baseline, low",
+          7667
+        ],
+        [
+          "2011",
+          "Science baseline, high",
+          8737
+        ],
+        [
+          "2012",
+          "All research",
+          8821
+        ],
+        [
+          "2012",
+          "Science baseline, low",
+          7989
+        ],
+        [
+          "2012",
+          "Science baseline, high",
+          9301
+        ],
+        [
+          "2013",
+          "All research",
+          9212
+        ],
+        [
+          "2013",
+          "Science baseline, low",
+          8307
+        ],
+        [
+          "2013",
+          "Science baseline, high",
+          9865
+        ],
+        [
+          "2014",
+          "All research",
+          9479
+        ],
+        [
+          "2014",
+          "Science baseline, low",
+          8528
+        ],
+        [
+          "2014",
+          "Science baseline, high",
+          10322
+        ],
+        [
+          "2015",
+          "All research",
+          9601
+        ],
+        [
+          "2015",
+          "Science baseline, low",
+          8757
+        ],
+        [
+          "2015",
+          "Science baseline, high",
+          10553
+        ],
+        [
+          "2016",
+          "All research",
+          9782
+        ],
+        [
+          "2016",
+          "Science baseline, low",
+          8852
+        ],
+        [
+          "2016",
+          "Science baseline, high",
+          10557
+        ],
+        [
+          "2017",
+          "All research",
+          9604
+        ],
+        [
+          "2017",
+          "Science baseline, low",
+          8994
+        ],
+        [
+          "2017",
+          "Science baseline, high",
+          10422
+        ],
+        [
+          "2018",
+          "All research",
+          9757
+        ],
+        [
+          "2018",
+          "Science baseline, low",
+          8958
+        ],
+        [
+          "2018",
+          "Science baseline, high",
+          10511
+        ],
+        [
+          "2019",
+          "All research",
+          10117
+        ],
+        [
+          "2019",
+          "Science baseline, low",
+          9479
+        ],
+        [
+          "2019",
+          "Science baseline, high",
+          10812
+        ],
+        [
+          "2020",
+          "All research",
+          10590
+        ],
+        [
+          "2020",
+          "Science baseline, low",
+          9945
+        ],
+        [
+          "2020",
+          "Science baseline, high",
+          11470
+        ],
+        [
+          "2021",
+          "All research",
+          10124
+        ],
+        [
+          "2021",
+          "Science baseline, low",
+          9772
+        ],
+        [
+          "2021",
+          "Science baseline, high",
+          10445
+        ],
+        [
+          "2022",
+          "All research",
+          9594
+        ],
+        [
+          "2022",
+          "Science baseline, low",
+          9594
+        ],
+        [
+          "2022",
+          "Science baseline, high",
+          9594
+        ],
+        [
+          "2023",
+          "All research",
+          10291
+        ],
+        [
+          "2023",
+          "Science baseline, low",
+          9800
+        ],
+        [
+          "2023",
+          "Science baseline, high",
+          10431
+        ],
+        [
+          "2024",
+          "All research",
+          11123
+        ],
+        [
+          "2024",
+          "Science baseline, low",
+          10705
+        ],
+        [
+          "2024",
+          "Science baseline, high",
+          11335
+        ],
+        [
+          "2025",
+          "All research",
+          12751
+        ],
+        [
+          "2025",
+          "Science baseline, low",
+          12056
+        ],
+        [
+          "2025",
+          "Science baseline, high",
+          13422
+        ]
+      ]
+    },
+    "neurotech_topics_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Invasive",
+          995,
+          1524,
+          53.2,
+          null
+        ],
+        [
+          "Ultrasound, TMS and MEG",
+          1750,
+          3256,
+          86.1,
+          null
+        ],
+        [
+          "EEG",
+          3776,
+          6387,
+          69.1,
+          null
+        ],
+        [
+          "No technique named",
+          3073,
+          4778,
+          55.5,
+          null
+        ]
+      ]
+    },
+    "neurotech_bciflag_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "About BCI",
+          1682,
+          2815,
+          67.4,
+          null
+        ],
+        [
+          "Not about BCI",
+          7912,
+          13130,
+          66,
+          null
+        ]
+      ]
+    },
+    "neurotech_venues_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Journal",
+          6489,
+          10327,
+          59.1,
+          null
+        ],
+        [
+          "Conference",
+          1918,
+          3261,
+          70,
+          null
+        ],
+        [
+          "Preprint",
+          679,
+          1798,
+          164.8,
+          null
+        ]
+      ]
+    },
+    "neurotech_regions_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Asia",
+          3349,
+          6099,
+          82.1,
+          null
+        ],
+        [
+          "North America",
+          937,
+          1317,
+          40.6,
+          null
+        ],
+        [
+          "Europe",
+          1592,
+          1929,
+          21.2,
+          null
+        ]
+      ]
+    },
+    "neurotech_institutions_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Universities",
+          5697,
+          9029,
+          58.5,
+          null
+        ],
+        [
+          "Companies",
+          62,
+          100,
+          61.3,
+          null
+        ],
+        [
+          "National institutes",
+          361,
+          499,
+          38.2,
+          null
+        ]
+      ]
+    },
+    "neurotech_career_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Early career (1-5 years)",
+          1233,
+          2065,
+          67.5,
+          null
+        ],
+        [
+          "Mid career (6-15 years)",
+          2279,
+          3263,
+          43.2,
+          null
+        ],
+        [
+          "Late career (16+ years)",
+          2827,
+          4639,
+          64.1,
+          null
+        ]
+      ]
+    },
+    "neurotech_pedigree_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "y2022",
+          "type": "number"
+        },
+        {
+          "name": "ylast",
+          "type": "number"
+        },
+        {
+          "name": "g",
+          "type": "number"
+        },
+        {
+          "name": "place",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "Top 1%",
+          78,
+          132,
+          69.2,
+          null
+        ],
+        [
+          "Top 1-10%",
+          783,
+          1112,
+          42,
+          null
+        ],
+        [
+          "Top 10-50%",
+          2826,
+          4296,
+          52,
+          null
+        ]
+      ]
+    },
+    "nt_talent_table": {
+      "columns": [
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "a2022",
+          "type": "number"
+        },
+        {
+          "name": "alast",
+          "type": "number"
+        },
+        {
+          "name": "growth",
+          "type": "number"
+        },
+        {
+          "name": "new",
+          "type": "number"
+        },
+        {
+          "name": "other",
+          "type": "number"
+        },
+        {
+          "name": "back",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "Academic",
+          16047,
+          24342,
+          51.7,
+          13920,
+          77.1,
+          30.9
+        ],
+        [
+          "Industry",
+          219,
+          342,
+          56.2,
+          186,
+          79.6,
+          24.4
+        ],
+        [
+          "Other institutions",
+          1880,
+          2840,
+          51.1,
+          1502,
+          86.6,
+          28.8
+        ],
+        [
+          "No listed affiliation",
+          1749,
+          3661,
+          109.3,
+          2819,
+          59.6,
+          19.4
+        ]
+      ]
+    },
+    "nt_talent_moves": {
+      "columns": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to0",
+          "type": "number"
+        },
+        {
+          "name": "to1",
+          "type": "number"
+        },
+        {
+          "name": "to2",
+          "type": "number"
+        },
+        {
+          "name": "to3",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "Academic",
+          null,
+          91,
+          734,
+          1024
+        ],
+        [
+          "Industry",
+          50,
+          null,
+          8,
+          44
+        ],
+        [
+          "Other institutions",
+          716,
+          18,
+          null,
+          144
+        ],
+        [
+          "No listed affiliation",
+          1470,
+          21,
+          215,
+          null
+        ]
+      ]
+    },
+    "nt_talent_endpoints": {
+      "columns": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to0",
+          "type": "number"
+        },
+        {
+          "name": "to1",
+          "type": "number"
+        },
+        {
+          "name": "to2",
+          "type": "number"
+        },
+        {
+          "name": "to3",
+          "type": "number"
+        }
+      ],
+      "rows": [
+        [
+          "Academic",
+          18830,
+          91,
+          734,
+          1024
+        ],
+        [
+          "Industry",
+          50,
+          199,
+          8,
+          44
+        ],
+        [
+          "Other institutions",
+          716,
+          18,
+          1623,
+          144
+        ],
+        [
+          "No listed affiliation",
+          1470,
+          21,
+          215,
+          1064
+        ]
+      ]
+    }
+  },
+  "audit": {
+    "paperCohort": {
+      "topics": [
+        "T10429",
+        "T11601",
+        "T10614",
+        "T10958",
+        "T12015",
+        "T11993",
+        "T10094",
+        "T10581",
+        "T10241",
+        "T10919"
+      ],
+      "firstYear": 2010,
+      "lastYear": 2025,
+      "works": 138838,
+      "counting": "one-openalex-work-id"
+    },
+    "authorCohort": {
+      "topics": [
+        "T10429",
+        "T11601"
+      ],
+      "firstYear": 2000,
+      "lastYear": 2025,
+      "works": 110049,
+      "authors": 167526,
+      "unidentifiedBylineSlots": 28953,
+      "duplicateIdentifiedBylineSlots": 119,
+      "worksWithoutBylines": 996
+    },
+    "affiliationEndpointCohort": {
+      "methodId": "atlas-publication-affiliation-endpoints-v1",
+      "firstYearMin": 2016,
+      "lastYearMax": 2025,
+      "minActiveYears": 2,
+      "eligibleAuthors": 26251,
+      "sameSectorAuthors": 21716,
+      "changedSectorAuthors": 4535
+    },
+    "coverage": [
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "total": 1795,
+        "known": 1523.765804315224,
+        "unknown": 271.2341956847762,
+        "knownShare": 0.8488945985043029,
+        "scale": 1.178002547974666
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "total": 1314,
+        "known": 1156.0543624675977,
+        "unknown": 157.94563753240223,
+        "knownShare": 0.8797978405385066,
+        "scale": 1.1366247493718784
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "total": 1553,
+        "known": 1384.0119537869539,
+        "unknown": 168.9880462130462,
+        "knownShare": 0.8911860616786567,
+        "scale": 1.122100134865641
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "total": 1676,
+        "known": 1483.2987873237873,
+        "unknown": 192.70121267621266,
+        "knownShare": 0.8850231427946225,
+        "scale": 1.1299139555179507
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "total": 1978,
+        "known": 1611.178634201048,
+        "unknown": 366.821365798952,
+        "knownShare": 0.8145493600611972,
+        "scale": 1.2276726850842654
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "total": 1610,
+        "known": 1397.9949803165907,
+        "unknown": 212.00501968340922,
+        "knownShare": 0.8683198635506775,
+        "scale": 1.151649342571601
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "total": 1671,
+        "known": 1457.8113296207414,
+        "unknown": 213.1886703792586,
+        "knownShare": 0.8724185096473617,
+        "scale": 1.1462388623600017
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "total": 1933,
+        "known": 1663.233658111754,
+        "unknown": 269.7663418882459,
+        "knownShare": 0.8604416234411557,
+        "scale": 1.1621938929461708
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "total": 2148,
+        "known": 1790.3349429094633,
+        "unknown": 357.6650570905366,
+        "knownShare": 0.8334892657865286,
+        "scale": 1.1997754992757372
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "total": 1691,
+        "known": 1456.9953961623507,
+        "unknown": 234.00460383764917,
+        "knownShare": 0.861617620439001,
+        "scale": 1.1606076480776844
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "total": 1886,
+        "known": 1634.5296417693796,
+        "unknown": 251.47035823062038,
+        "knownShare": 0.8666647093156837,
+        "scale": 1.153848759792697
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "total": 2381,
+        "known": 2010.0514048518473,
+        "unknown": 370.9485951481526,
+        "knownShare": 0.844204705943657,
+        "scale": 1.1845468201722402
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "total": 2732,
+        "known": 2167.7506755651248,
+        "unknown": 564.249324434875,
+        "knownShare": 0.7934665723151995,
+        "scale": 1.2602925376959124
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "total": 2076,
+        "known": 1727.2235377029863,
+        "unknown": 348.7764622970138,
+        "knownShare": 0.83199592374903,
+        "scale": 1.2019289655818652
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "total": 2349,
+        "known": 1973.3349956630916,
+        "unknown": 375.66500433690834,
+        "knownShare": 0.8400744979408649,
+        "scale": 1.1903706188571774
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "total": 2811,
+        "known": 2313.6186396745015,
+        "unknown": 497.38136032549824,
+        "knownShare": 0.8230589255334406,
+        "scale": 1.2149798379889756
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "total": 1795,
+        "known": 1523.765804315224,
+        "unknown": 271.2341956847762,
+        "knownShare": 0.8488945985043029,
+        "scale": 1.178002547974666
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "total": 1314,
+        "known": 1156.0543624675977,
+        "unknown": 157.94563753240223,
+        "knownShare": 0.8797978405385066,
+        "scale": 1.1366247493718784
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "total": 1553,
+        "known": 1384.0119537869539,
+        "unknown": 168.9880462130462,
+        "knownShare": 0.8911860616786567,
+        "scale": 1.122100134865641
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "total": 1676,
+        "known": 1483.2987873237873,
+        "unknown": 192.70121267621266,
+        "knownShare": 0.8850231427946225,
+        "scale": 1.1299139555179507
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "total": 1978,
+        "known": 1611.178634201048,
+        "unknown": 366.821365798952,
+        "knownShare": 0.8145493600611972,
+        "scale": 1.2276726850842654
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "total": 1610,
+        "known": 1397.9949803165907,
+        "unknown": 212.00501968340922,
+        "knownShare": 0.8683198635506775,
+        "scale": 1.151649342571601
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "total": 1671,
+        "known": 1457.8113296207414,
+        "unknown": 213.1886703792586,
+        "knownShare": 0.8724185096473617,
+        "scale": 1.1462388623600017
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "total": 1933,
+        "known": 1663.733658111754,
+        "unknown": 269.2663418882459,
+        "knownShare": 0.8607002887282742,
+        "scale": 1.1618446201261856
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "total": 2148,
+        "known": 1790.3349429094633,
+        "unknown": 357.6650570905366,
+        "knownShare": 0.8334892657865286,
+        "scale": 1.1997754992757372
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "total": 1691,
+        "known": 1457.3287294956842,
+        "unknown": 233.67127050431583,
+        "knownShare": 0.8618147424575305,
+        "scale": 1.160342183458621
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "total": 1886,
+        "known": 1634.5296417693796,
+        "unknown": 251.47035823062038,
+        "knownShare": 0.8666647093156837,
+        "scale": 1.153848759792697
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "total": 2381,
+        "known": 2010.0514048518473,
+        "unknown": 370.9485951481526,
+        "knownShare": 0.844204705943657,
+        "scale": 1.1845468201722402
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "total": 2732,
+        "known": 2167.7506755651248,
+        "unknown": 564.249324434875,
+        "knownShare": 0.7934665723151995,
+        "scale": 1.2602925376959124
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "total": 2076,
+        "known": 1727.2235377029863,
+        "unknown": 348.7764622970138,
+        "knownShare": 0.83199592374903,
+        "scale": 1.2019289655818652
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "total": 2349,
+        "known": 1973.3349956630916,
+        "unknown": 375.66500433690834,
+        "knownShare": 0.8400744979408649,
+        "scale": 1.1903706188571774
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "total": 2811,
+        "known": 2313.8686396745015,
+        "unknown": 497.13136032549824,
+        "knownShare": 0.8231478618550344,
+        "scale": 1.2148485665095625
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 1,
+        "total": 1795,
+        "known": 1488.1627096295053,
+        "unknown": 306.8372903704947,
+        "knownShare": 0.8290600053646269,
+        "scale": 1.206185310507401
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 2,
+        "total": 1314,
+        "known": 1089.2146333241922,
+        "unknown": 224.78536667580786,
+        "knownShare": 0.8289304667611812,
+        "scale": 1.206373803471389
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 3,
+        "total": 1553,
+        "known": 1291.235933804471,
+        "unknown": 261.76406619552904,
+        "knownShare": 0.8314461904729369,
+        "scale": 1.202723653627167
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 4,
+        "total": 1676,
+        "known": 1319.9072398834396,
+        "unknown": 356.09276011656044,
+        "knownShare": 0.7875341526750833,
+        "scale": 1.2697862011485042
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 1,
+        "total": 1978,
+        "known": 1643.8247829473135,
+        "unknown": 334.1752170526866,
+        "knownShare": 0.8310539853120896,
+        "scale": 1.2032912634724509
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 2,
+        "total": 1610,
+        "known": 1342.027889482588,
+        "unknown": 267.9721105174118,
+        "knownShare": 0.8335576953308002,
+        "scale": 1.1996770056848276
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 3,
+        "total": 1671,
+        "known": 1398.0249679542953,
+        "unknown": 272.9750320457047,
+        "knownShare": 0.8366397175070588,
+        "scale": 1.1952576229344059
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 4,
+        "total": 1933,
+        "known": 1541.394471958783,
+        "unknown": 391.60552804121687,
+        "knownShare": 0.7974104873040782,
+        "scale": 1.254059252946178
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 1,
+        "total": 2148,
+        "known": 1770.9699044115864,
+        "unknown": 377.0300955884137,
+        "knownShare": 0.8244738847353754,
+        "scale": 1.2128946938337068
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 2,
+        "total": 1691,
+        "known": 1394.346824329781,
+        "unknown": 296.653175670219,
+        "knownShare": 0.8245693816261271,
+        "scale": 1.2127542233352244
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 3,
+        "total": 1886,
+        "known": 1524.4871369703194,
+        "unknown": 361.51286302968055,
+        "knownShare": 0.8083176760181969,
+        "scale": 1.2371373652572308
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 4,
+        "total": 2381,
+        "known": 1816.4314404329514,
+        "unknown": 564.5685595670487,
+        "knownShare": 0.7628859472628943,
+        "scale": 1.310811928818234
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 1,
+        "total": 2732,
+        "known": 2086.312998092187,
+        "unknown": 645.6870019078129,
+        "knownShare": 0.7636577591845487,
+        "scale": 1.3094871203401677
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 2,
+        "total": 2076,
+        "known": 1605.0955912070383,
+        "unknown": 470.9044087929617,
+        "knownShare": 0.7731674331440455,
+        "scale": 1.293380912247625
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 3,
+        "total": 2349,
+        "known": 1785.5211653418721,
+        "unknown": 563.478834658128,
+        "knownShare": 0.7601196957606947,
+        "scale": 1.315582276813974
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 4,
+        "total": 2811,
+        "known": 1906.6670247455588,
+        "unknown": 904.3329752544412,
+        "knownShare": 0.6782878067397933,
+        "scale": 1.4743004224217506
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "total": 1795,
+        "known": 1488.1627096295053,
+        "unknown": 306.8372903704947,
+        "knownShare": 0.8290600053646269,
+        "scale": 1.206185310507401
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "total": 1314,
+        "known": 1089.2146333241922,
+        "unknown": 224.78536667580786,
+        "knownShare": 0.8289304667611812,
+        "scale": 1.206373803471389
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "total": 1553,
+        "known": 1291.235933804471,
+        "unknown": 261.76406619552904,
+        "knownShare": 0.8314461904729369,
+        "scale": 1.202723653627167
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "total": 1676,
+        "known": 1319.9072398834396,
+        "unknown": 356.09276011656044,
+        "knownShare": 0.7875341526750833,
+        "scale": 1.2697862011485042
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "total": 1978,
+        "known": 1643.8247829473135,
+        "unknown": 334.1752170526866,
+        "knownShare": 0.8310539853120896,
+        "scale": 1.2032912634724509
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "total": 1610,
+        "known": 1342.027889482588,
+        "unknown": 267.9721105174118,
+        "knownShare": 0.8335576953308002,
+        "scale": 1.1996770056848276
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "total": 1671,
+        "known": 1398.0249679542953,
+        "unknown": 272.9750320457047,
+        "knownShare": 0.8366397175070588,
+        "scale": 1.1952576229344059
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "total": 1933,
+        "known": 1541.394471958783,
+        "unknown": 391.60552804121687,
+        "knownShare": 0.7974104873040782,
+        "scale": 1.254059252946178
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "total": 2148,
+        "known": 1770.9699044115864,
+        "unknown": 377.0300955884137,
+        "knownShare": 0.8244738847353754,
+        "scale": 1.2128946938337068
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "total": 1691,
+        "known": 1394.346824329781,
+        "unknown": 296.653175670219,
+        "knownShare": 0.8245693816261271,
+        "scale": 1.2127542233352244
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "total": 1886,
+        "known": 1524.4871369703194,
+        "unknown": 361.51286302968055,
+        "knownShare": 0.8083176760181969,
+        "scale": 1.2371373652572308
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "total": 2381,
+        "known": 1816.4314404329514,
+        "unknown": 564.5685595670487,
+        "knownShare": 0.7628859472628943,
+        "scale": 1.310811928818234
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "total": 2732,
+        "known": 2086.312998092187,
+        "unknown": 645.6870019078129,
+        "knownShare": 0.7636577591845487,
+        "scale": 1.3094871203401677
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "total": 2076,
+        "known": 1605.0955912070383,
+        "unknown": 470.9044087929617,
+        "knownShare": 0.7731674331440455,
+        "scale": 1.293380912247625
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "total": 2349,
+        "known": 1785.5211653418721,
+        "unknown": 563.478834658128,
+        "knownShare": 0.7601196957606947,
+        "scale": 1.315582276813974
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "total": 2811,
+        "known": 1906.6670247455588,
+        "unknown": 904.3329752544412,
+        "knownShare": 0.6782878067397933,
+        "scale": 1.4743004224217506
+      }
+    ],
+    "quarterlyFractionalOutput": [
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Asia",
+        "rawFraction": [
+          "370723384357",
+          "453332880"
+        ],
+        "scaledFraction": [
+          "12643521023495485",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Europe",
+        "rawFraction": [
+          "3561279581",
+          "9444435"
+        ],
+        "scaledFraction": [
+          "5829957125280240",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "group": "North America",
+        "rawFraction": [
+          "328458441",
+          "1407406"
+        ],
+        "scaledFraction": [
+          "3608247357761400",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Rest of world",
+        "rawFraction": [
+          "2706883981",
+          "28333305"
+        ],
+        "scaledFraction": [
+          "1477092450752080",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "63141302773",
+          "232792560"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Asia",
+        "rawFraction": [
+          "196477103",
+          "340340"
+        ],
+        "scaledFraction": [
+          "4647076440156",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Europe",
+        "rawFraction": [
+          "1195342111",
+          "4084080"
+        ],
+        "scaledFraction": [
+          "2356019300781",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "group": "North America",
+        "rawFraction": [
+          "140672474",
+          "765765"
+        ],
+        "scaledFraction": [
+          "1478749046688",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Rest of world",
+        "rawFraction": [
+          "418097959",
+          "4084080"
+        ],
+        "scaledFraction": [
+          "824071077189",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "967593929",
+          "6126120"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Asia",
+        "rawFraction": [
+          "2837990411",
+          "4108104"
+        ],
+        "scaledFraction": [
+          "22036995541415",
+          "28428325217"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Europe",
+        "rawFraction": [
+          "7025713",
+          "18018"
+        ],
+        "scaledFraction": [
+          "654655937340",
+          "1496227643"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "group": "North America",
+        "rawFraction": [
+          "1071061891",
+          "5135130"
+        ],
+        "scaledFraction": [
+          "6653436466892",
+          "28428325217"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Rest of world",
+        "rawFraction": [
+          "324135463",
+          "3423420"
+        ],
+        "scaledFraction": [
+          "3020294244234",
+          "28428325217"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "182689597",
+          "1081080"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Asia",
+        "rawFraction": [
+          "101436553",
+          "120120"
+        ],
+        "scaledFraction": [
+          "510022988484",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Europe",
+        "rawFraction": [
+          "93145933",
+          "278460"
+        ],
+        "scaledFraction": [
+          "3434476841576",
+          "9086866367"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "group": "North America",
+        "rawFraction": [
+          "2381006633",
+          "12252240"
+        ],
+        "scaledFraction": [
+          "1995283558454",
+          "9086866367"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Rest of world",
+        "rawFraction": [
+          "26426993",
+          "240240"
+        ],
+        "scaledFraction": [
+          "66437460402",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "69441809",
+          "360360"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Asia",
+        "rawFraction": [
+          "684266959",
+          "720720"
+        ],
+        "scaledFraction": [
+          "19625460651079",
+          "16837525646"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Europe",
+        "rawFraction": [
+          "55524029",
+          "163800"
+        ],
+        "scaledFraction": [
+          "17517331433239",
+          "42093814115"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "group": "North America",
+        "rawFraction": [
+          "7797370913",
+          "34834800"
+        ],
+        "scaledFraction": [
+          "23134799498871",
+          "84187628230"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Rest of world",
+        "rawFraction": [
+          "2285611",
+          "23100"
+        ],
+        "scaledFraction": [
+          "5113181509098",
+          "42093814115"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "1916722337",
+          "5225220"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Asia",
+        "rawFraction": [
+          "2778789973",
+          "3864168"
+        ],
+        "scaledFraction": [
+          "44738518565300",
+          "54020874671"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Europe",
+        "rawFraction": [
+          "2079081611",
+          "6846840"
+        ],
+        "scaledFraction": [
+          "4666166022831740",
+          "13343156043737"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "group": "North America",
+        "rawFraction": [
+          "5470018003",
+          "20051460"
+        ],
+        "scaledFraction": [
+          "4192002996779080",
+          "13343156043737"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Rest of world",
+        "rawFraction": [
+          "1135667",
+          "11088"
+        ],
+        "scaledFraction": [
+          "6372057186950",
+          "54020874671"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "8192230129",
+          "38641680"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Asia",
+        "rawFraction": [
+          "351668769206563",
+          "495266171400"
+        ],
+        "scaledFraction": [
+          "587638513344166773",
+          "722004635844808"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Europe",
+        "rawFraction": [
+          "18606526423",
+          "46966920"
+        ],
+        "scaledFraction": [
+          "17255785637322315",
+          "38000243991832"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "group": "North America",
+        "rawFraction": [
+          "7927545762113",
+          "33017744760"
+        ],
+        "scaledFraction": [
+          "198703934527362345",
+          "722004635844808"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Rest of world",
+        "rawFraction": [
+          "2501819",
+          "22440"
+        ],
+        "scaledFraction": [
+          "211138149922245",
+          "1652184521384"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "30201698102",
+          "141666525"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Asia",
+        "rawFraction": [
+          "299845951",
+          "308880"
+        ],
+        "scaledFraction": [
+          "1310480626842863",
+          "1161565263450"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Europe",
+        "rawFraction": [
+          "1277120633",
+          "3695120"
+        ],
+        "scaledFraction": [
+          "51842157855369",
+          "129062807050"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "group": "North America",
+        "rawFraction": [
+          "113484235",
+          "513513"
+        ],
+        "scaledFraction": [
+          "5966728714136",
+          "23231305269"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Rest of world",
+        "rawFraction": [
+          "1374413",
+          "10920"
+        ],
+        "scaledFraction": [
+          "9439398388937",
+          "64531403525"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "2093319911",
+          "7759752"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Asia",
+        "rawFraction": [
+          "527762098181",
+          "513873360"
+        ],
+        "scaledFraction": [
+          "19271760777177396",
+          "15640092354851"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Europe",
+        "rawFraction": [
+          "1928076329",
+          "5250960"
+        ],
+        "scaledFraction": [
+          "222260926901804",
+          "504519108221"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "group": "North America",
+        "rawFraction": [
+          "153789951599",
+          "569729160"
+        ],
+        "scaledFraction": [
+          "5065225845864664",
+          "15640092354851"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Rest of world",
+        "rawFraction": [
+          "635981",
+          "5040"
+        ],
+        "scaledFraction": [
+          "76382032942644",
+          "504519108221"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "100790556739",
+          "281801520"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Asia",
+        "rawFraction": [
+          "507288197",
+          "637560"
+        ],
+        "scaledFraction": [
+          "14408017633569092",
+          "15602173656319"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Europe",
+        "rawFraction": [
+          "20023407533",
+          "64664600"
+        ],
+        "scaledFraction": [
+          "28035734010514884",
+          "78010868281595"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "group": "North America",
+        "rawFraction": [
+          "2151629551829",
+          "8923714800"
+        ],
+        "scaledFraction": [
+          "21830433432857034",
+          "78010868281595"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Rest of world",
+        "rawFraction": [
+          "6810509",
+          "61600"
+        ],
+        "scaledFraction": [
+          "10010122652959767",
+          "78010868281595"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "2505828415841",
+          "10708457760"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Asia",
+        "rawFraction": [
+          "1846232573",
+          "2018940"
+        ],
+        "scaledFraction": [
+          "27702749297586168",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Europe",
+        "rawFraction": [
+          "2725531117",
+          "7351344"
+        ],
+        "scaledFraction": [
+          "591140443966130",
+          "1381838812607"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "group": "North America",
+        "rawFraction": [
+          "49490473",
+          "197505"
+        ],
+        "scaledFraction": [
+          "7591076800839584",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Rest of world",
+        "rawFraction": [
+          "8667587",
+          "87780"
+        ],
+        "scaledFraction": [
+          "2991317477177016",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "19326744323",
+          "76854960"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Asia",
+        "rawFraction": [
+          "9502882589",
+          "7447440"
+        ],
+        "scaledFraction": [
+          "1512821286256630149",
+          "1000891601239237"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Europe",
+        "rawFraction": [
+          "3539199929189",
+          "9221171960"
+        ],
+        "scaledFraction": [
+          "455049091695546486",
+          "1000891601239237"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "group": "North America",
+        "rawFraction": [
+          "2064133983779",
+          "8891844390"
+        ],
+        "scaledFraction": [
+          "275223368861156744",
+          "1000891601239237"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Rest of world",
+        "rawFraction": [
+          "429913",
+          "3640"
+        ],
+        "scaledFraction": [
+          "4517069539912578",
+          "32286825846427"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "5958431043413",
+          "16062686640"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Asia",
+        "rawFraction": [
+          "622293830761",
+          "464582664"
+        ],
+        "scaledFraction": [
+          "187011742020295720",
+          "110780932211603"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Europe",
+        "rawFraction": [
+          "10767878189573",
+          "25552046520"
+        ],
+        "scaledFraction": [
+          "58835686427826872",
+          "110780932211603"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "group": "North America",
+        "rawFraction": [
+          "1686955383011",
+          "6388011630"
+        ],
+        "scaledFraction": [
+          "36870096851088416",
+          "110780932211603"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Rest of world",
+        "rawFraction": [
+          "10746997621",
+          "75263760"
+        ],
+        "scaledFraction": [
+          "205525582504004",
+          "1142071466099"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "297272680141",
+          "526846320"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Asia",
+        "rawFraction": [
+          "2760878276701",
+          "2677114440"
+        ],
+        "scaledFraction": [
+          "469989830799364632",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Europe",
+        "rawFraction": [
+          "20486055697",
+          "58198140"
+        ],
+        "scaledFraction": [
+          "160419582736938384",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "group": "North America",
+        "rawFraction": [
+          "10406458800473",
+          "43904676816"
+        ],
+        "scaledFraction": [
+          "108019042348909740",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Rest of world",
+        "rawFraction": [
+          "104566337",
+          "978120"
+        ],
+        "scaledFraction": [
+          "48720068893663608",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "5889583791607",
+          "16886414160"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Asia",
+        "rawFraction": [
+          "181958347951",
+          "150345195"
+        ],
+        "scaledFraction": [
+          "10258083824085576",
+          "7120354433359"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Europe",
+        "rawFraction": [
+          "643317743",
+          "1595880"
+        ],
+        "scaledFraction": [
+          "3416717788352127",
+          "7120354433359"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "group": "North America",
+        "rawFraction": [
+          "496425703",
+          "1861860"
+        ],
+        "scaledFraction": [
+          "2259909506160486",
+          "7120354433359"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Rest of world",
+        "rawFraction": [
+          "143719",
+          "1540"
+        ],
+        "scaledFraction": [
+          "25516175656842",
+          "229688852689"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "43726009031",
+          "116396280"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Asia",
+        "rawFraction": [
+          "89434640363",
+          "62792730"
+        ],
+        "scaledFraction": [
+          "36453112238756985",
+          "21065372431787"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Europe",
+        "rawFraction": [
+          "35251087587467",
+          "86496985575"
+        ],
+        "scaledFraction": [
+          "198181614416739474",
+          "400242076203953"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "group": "North America",
+        "rawFraction": [
+          "18135040760033",
+          "57664657050"
+        ],
+        "scaledFraction": [
+          "152932798729358289",
+          "400242076203953"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Rest of world",
+        "rawFraction": [
+          "15072293",
+          "90090"
+        ],
+        "scaledFraction": [
+          "6143391265335",
+          "30222915971"
+        ]
+      },
+      {
+        "dimension": "region",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "6497317579",
+          "13063050"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Companies",
+        "rawFraction": [
+          "318436",
+          "18315"
+        ],
+        "scaledFraction": [
+          "268813150074560",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "group": "National institutes",
+        "rawFraction": [
+          "1132701593",
+          "10793640"
+        ],
+        "scaledFraction": [
+          "1622493088829130",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Other institutions",
+        "rawFraction": [
+          "900106673",
+          "18643560"
+        ],
+        "scaledFraction": [
+          "746449462852170",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Universities",
+        "rawFraction": [
+          "3885062628697",
+          "2871108240"
+        ],
+        "scaledFraction": [
+          "20921062255533345",
+          "13124689669799"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "63141302773",
+          "232792560"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Companies",
+        "rawFraction": [
+          "7134691",
+          "765765"
+        ],
+        "scaledFraction": [
+          "74999871792",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "group": "National institutes",
+        "rawFraction": [
+          "318368123",
+          "6126120"
+        ],
+        "scaledFraction": [
+          "418335713622",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Other institutions",
+        "rawFraction": [
+          "55256029",
+          "1225224"
+        ],
+        "scaledFraction": [
+          "363032110530",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Universities",
+        "rawFraction": [
+          "1286080391",
+          "1225224"
+        ],
+        "scaledFraction": [
+          "8449548168870",
+          "7082127751"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "967593929",
+          "6126120"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Companies",
+        "rawFraction": [
+          "4155241",
+          "235620"
+        ],
+        "scaledFraction": [
+          "503340963294",
+          "25435869931"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "group": "National institutes",
+        "rawFraction": [
+          "650185",
+          "8316"
+        ],
+        "scaledFraction": [
+          "131265849650",
+          "1496227643"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Other institutions",
+        "rawFraction": [
+          "221591",
+          "4004"
+        ],
+        "scaledFraction": [
+          "92915322210",
+          "1496227643"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Universities",
+        "rawFraction": [
+          "22657749593",
+          "18378360"
+        ],
+        "scaledFraction": [
+          "35187485117929",
+          "25435869931"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "182689597",
+          "1081080"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Companies",
+        "rawFraction": [
+          "171517",
+          "18018"
+        ],
+        "scaledFraction": [
+          "5749249840",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "group": "National institutes",
+        "rawFraction": [
+          "6407211",
+          "80080"
+        ],
+        "scaledFraction": [
+          "48323185362",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Other institutions",
+        "rawFraction": [
+          "5095247",
+          "120120"
+        ],
+        "scaledFraction": [
+          "25618901916",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Universities",
+        "rawFraction": [
+          "973946041",
+          "720720"
+        ],
+        "scaledFraction": [
+          "816166782358",
+          "534521551"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "69441809",
+          "360360"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Companies",
+        "rawFraction": [
+          "25531",
+          "1890"
+        ],
+        "scaledFraction": [
+          "418849637492",
+          "25256288469"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "group": "National institutes",
+        "rawFraction": [
+          "59077063",
+          "600600"
+        ],
+        "scaledFraction": [
+          "5083167731709",
+          "42093814115"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Other institutions",
+        "rawFraction": [
+          "44242873",
+          "900900"
+        ],
+        "scaledFraction": [
+          "2537859681026",
+          "42093814115"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Universities",
+        "rawFraction": [
+          "6495084863",
+          "4478760"
+        ],
+        "scaledFraction": [
+          "44965472506549",
+          "25256288469"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "1916722337",
+          "5225220"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Companies",
+        "rawFraction": [
+          "9693",
+          "616"
+        ],
+        "scaledFraction": [
+          "978947442900",
+          "54020874671"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "group": "National institutes",
+        "rawFraction": [
+          "2563735519",
+          "29549520"
+        ],
+        "scaledFraction": [
+          "70169441155030",
+          "702271370723"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Other institutions",
+        "rawFraction": [
+          "2593659",
+          "52360"
+        ],
+        "scaledFraction": [
+          "3081733750620",
+          "54020874671"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Universities",
+        "rawFraction": [
+          "52158313157",
+          "41861820"
+        ],
+        "scaledFraction": [
+          "1007698610193240",
+          "702271370723"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "8192230129",
+          "38641680"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Companies",
+        "rawFraction": [
+          "4872017",
+          "240240"
+        ],
+        "scaledFraction": [
+          "76811659740045",
+          "3304369042768"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "group": "National institutes",
+        "rawFraction": [
+          "50012930761",
+          "574221648"
+        ],
+        "scaledFraction": [
+          "6267870547622325",
+          "62783011812592"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Other institutions",
+        "rawFraction": [
+          "17424528449",
+          "318704100"
+        ],
+        "scaledFraction": [
+          "22623432728742783",
+          "361002317922404"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Universities",
+        "rawFraction": [
+          "80218358923424",
+          "61908271425"
+        ],
+        "scaledFraction": [
+          "134044877761041504",
+          "90250579480601"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "30201698102",
+          "141666525"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Companies",
+        "rawFraction": [
+          "38853517",
+          "1801800"
+        ],
+        "scaledFraction": [
+          "24258543020603",
+          "968262043575"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "group": "National institutes",
+        "rawFraction": [
+          "501660997",
+          "6126120"
+        ],
+        "scaledFraction": [
+          "18424503436819",
+          "193652408715"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Other institutions",
+        "rawFraction": [
+          "555413497",
+          "10270260"
+        ],
+        "scaledFraction": [
+          "36502885849834",
+          "580957226145"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Universities",
+        "rawFraction": [
+          "375677627731",
+          "249420600"
+        ],
+        "scaledFraction": [
+          "5083293980828161",
+          "2904786130725"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "2089440035",
+          "7759752"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Companies",
+        "rawFraction": [
+          "4570597",
+          "240240"
+        ],
+        "scaledFraction": [
+          "11516094483588",
+          "504519108221"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "group": "National institutes",
+        "rawFraction": [
+          "23902599169",
+          "253212960"
+        ],
+        "scaledFraction": [
+          "1771326014017914",
+          "15640092354851"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Other institutions",
+        "rawFraction": [
+          "703097973401",
+          "10824854040"
+        ],
+        "scaledFraction": [
+          "23157234851935336",
+          "297161754742169"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Universities",
+        "rawFraction": [
+          "1605329721835391",
+          "995886571680"
+        ],
+        "scaledFraction": [
+          "574708040417069978",
+          "297161754742169"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "100790556739",
+          "281801520"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Companies",
+        "rawFraction": [
+          "9847889707",
+          "581981400"
+        ],
+        "scaledFraction": [
+          "1532055897497404",
+          "78028715711195"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "group": "National institutes",
+        "rawFraction": [
+          "44488977307",
+          "563603040"
+        ],
+        "scaledFraction": [
+          "1429386351896603",
+          "15605743142239"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Other institutions",
+        "rawFraction": [
+          "32791221289",
+          "594914320"
+        ],
+        "scaledFraction": [
+          "998099193594582",
+          "15605743142239"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Universities",
+        "rawFraction": [
+          "8743130887247",
+          "6692786100"
+        ],
+        "scaledFraction": [
+          "118277074642677416",
+          "78028715711195"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "2502258929921",
+          "10708457760"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Companies",
+        "rawFraction": [
+          "5998",
+          "385"
+        ],
+        "scaledFraction": [
+          "24840023727168",
+          "1381838812607"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "group": "National institutes",
+        "rawFraction": [
+          "312737707",
+          "2738736"
+        ],
+        "scaledFraction": [
+          "3459313744832730",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Other institutions",
+        "rawFraction": [
+          "84687641809",
+          "1396755360"
+        ],
+        "scaledFraction": [
+          "1836790263195401",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Universities",
+        "rawFraction": [
+          "9278631506281",
+          "6425074656"
+        ],
+        "scaledFraction": [
+          "43748747552114915",
+          "26254937439533"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "19326744323",
+          "76854960"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Companies",
+        "rawFraction": [
+          "79570",
+          "3003"
+        ],
+        "scaledFraction": [
+          "1013378318589600",
+          "32286825846427"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "group": "National institutes",
+        "rawFraction": [
+          "463397744179",
+          "4445922195"
+        ],
+        "scaledFraction": [
+          "123575203235702288",
+          "1000891601239237"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Other institutions",
+        "rawFraction": [
+          "1146060029",
+          "20540520"
+        ],
+        "scaledFraction": [
+          "2133897302516318",
+          "32286825846427"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Universities",
+        "rawFraction": [
+          "908014344838571",
+          "497943285840"
+        ],
+        "scaledFraction": [
+          "2161982155060637551",
+          "1000891601239237"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "5958431043413",
+          "16062686640"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Companies",
+        "rawFraction": [
+          "12166659671",
+          "501020520"
+        ],
+        "scaledFraction": [
+          "3390410050559544",
+          "110780932211603"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "group": "National institutes",
+        "rawFraction": [
+          "100017852934193",
+          "845927600700"
+        ],
+        "scaledFraction": [
+          "36068838196540416432",
+          "242056336882352555"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Other institutions",
+        "rawFraction": [
+          "63982102318291",
+          "970977767760"
+        ],
+        "scaledFraction": [
+          "174799103533571012",
+          "2104837712020457"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Universities",
+        "rawFraction": [
+          "7813730538841423",
+          "3987944403300"
+        ],
+        "scaledFraction": [
+          "597719131299213493808",
+          "242056336882352555"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "297272680141",
+          "526846320"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Companies",
+        "rawFraction": [
+          "2226573",
+          "180880"
+        ],
+        "scaledFraction": [
+          "431530180464636",
+          "29166612004553"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "group": "National institutes",
+        "rawFraction": [
+          "126430569007",
+          "1363499280"
+        ],
+        "scaledFraction": [
+          "42257647662623652",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Other institutions",
+        "rawFraction": [
+          "342817506719",
+          "5776931160"
+        ],
+        "scaledFraction": [
+          "27044187470048472",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Universities",
+        "rawFraction": [
+          "343081308911447",
+          "219523384080"
+        ],
+        "scaledFraction": [
+          "712236797300163972",
+          "379165956059189"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "5889583791607",
+          "16886414160"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Companies",
+        "rawFraction": [
+          "18098681",
+          "720720"
+        ],
+        "scaledFraction": [
+          "13731957939087",
+          "459377705378"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "group": "National institutes",
+        "rawFraction": [
+          "19671455",
+          "203112"
+        ],
+        "scaledFraction": [
+          "820889522078175",
+          "7120354433359"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Other institutions",
+        "rawFraction": [
+          "25060213559",
+          "379819440"
+        ],
+        "scaledFraction": [
+          "1118462391351729",
+          "14240708866718"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Universities",
+        "rawFraction": [
+          "2147402653349",
+          "1202761560"
+        ],
+        "scaledFraction": [
+          "15132746498150403",
+          "7120354433359"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "43726009031",
+          "116396280"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Companies",
+        "rawFraction": [
+          "5555189",
+          "267960"
+        ],
+        "scaledFraction": [
+          "3045049074405",
+          "120904726934"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "group": "National institutes",
+        "rawFraction": [
+          "16193857057",
+          "159352050"
+        ],
+        "scaledFraction": [
+          "55444495404042486",
+          "449100608196343"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Other institutions",
+        "rawFraction": [
+          "17212600547",
+          "197397200"
+        ],
+        "scaledFraction": [
+          "435461581238553",
+          "4110760715756"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Universities",
+        "rawFraction": [
+          "96100805800631",
+          "45668422800"
+        ],
+        "scaledFraction": [
+          "270139365105573741",
+          "105670731340316"
+        ]
+      },
+      {
+        "dimension": "institution_type",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "12988103633",
+          "26126100"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "798951613547",
+          "2871108240"
+        ],
+        "scaledFraction": [
+          "1434118146316865",
+          "4272676218078"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "62092480907",
+          "94651920"
+        ],
+        "scaledFraction": [
+          "10142496293753915",
+          "12818028654234"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "298172378191",
+          "538332795"
+        ],
+        "scaledFraction": [
+          "4281755350822760",
+          "6409014327117"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "146827178787",
+          "478518040"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "158423887",
+          "720720"
+        ],
+        "scaledFraction": [
+          "3538872787806",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "3060364453",
+          "6126120"
+        ],
+        "scaledFraction": [
+          "8042637782484",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "2265692057",
+          "6126120"
+        ],
+        "scaledFraction": [
+          "5954238725796",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "393446323",
+          "1750320"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "12538867441",
+          "49884120"
+        ],
+        "scaledFraction": [
+          "272620055902222",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "4787767757",
+          "8314020"
+        ],
+        "scaledFraction": [
+          "624573879436164",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "324053720021",
+          "698377680"
+        ],
+        "scaledFraction": [
+          "503255427192613",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "16619107387",
+          "63488880"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "30196907513",
+          "116396280"
+        ],
+        "scaledFraction": [
+          "101220033983576",
+          "307264585335"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "67836554479",
+          "116396280"
+        ],
+        "scaledFraction": [
+          "227388130613608",
+          "307264585335"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "311478043",
+          "652080"
+        ],
+        "scaledFraction": [
+          "62122426808092",
+          "102421528445"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "5526383015",
+          "15519504"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "2801463775679",
+          "8438730300"
+        ],
+        "scaledFraction": [
+          "66495544179516744",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "76641647218613",
+          "101264763600"
+        ],
+        "scaledFraction": [
+          "151597178198416514",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "936705258637",
+          "1687746060"
+        ],
+        "scaledFraction": [
+          "111168180095039160",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "137004754477",
+          "409978800"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "508059869939",
+          "1908898992"
+        ],
+        "scaledFraction": [
+          "2044940976504475",
+          "6404489213673"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "7236359061",
+          "12051130"
+        ],
+        "scaledFraction": [
+          "1537871027643720",
+          "2134829737891"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "648211814477",
+          "1363499280"
+        ],
+        "scaledFraction": [
+          "3652673574577895",
+          "6404489213673"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "22435600511",
+          "83723640"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "69053416101797",
+          "247633085700"
+        ],
+        "scaledFraction": [
+          "153851011074803716",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "645285386084639",
+          "990532342800"
+        ],
+        "scaledFraction": [
+          "359423960049143923",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "115822474077209",
+          "247633085700"
+        ],
+        "scaledFraction": [
+          "258052472244021652",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "30043399779793",
+          "110059149200"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "53436085699",
+          "166280400"
+        ],
+        "scaledFraction": [
+          "2169131026779507",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "485386760009",
+          "698377680"
+        ],
+        "scaledFraction": [
+          "4691263035486985",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "1833285876733",
+          "3491888400"
+        ],
+        "scaledFraction": [
+          "3543741599724889",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "1367442800743",
+          "3491888400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "379776002252671",
+          "995886571680"
+        ],
+        "scaledFraction": [
+          "67979904403228109",
+          "146973762221076"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "267839100630757",
+          "331962190560"
+        ],
+        "scaledFraction": [
+          "1653213759065707",
+          "1689353588748"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "58039184250797",
+          "99588657168"
+        ],
+        "scaledFraction": [
+          "51945069904463315",
+          "73486881110538"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "124166405197",
+          "329327570"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "1000162847501",
+          "3346393050"
+        ],
+        "scaledFraction": [
+          "6765101500496764",
+          "18664130088907"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "11776436076851",
+          "17847429600"
+        ],
+        "scaledFraction": [
+          "59741860217865123",
+          "74656520355628"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "23324606565059",
+          "53542288800"
+        ],
+        "scaledFraction": [
+          "39441909701514769",
+          "74656520355628"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "172646630491",
+          "581981400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "1641499575263",
+          "5354228880"
+        ],
+        "scaledFraction": [
+          "3095868198946018",
+          "8162453055955"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "3849490549013",
+          "5354228880"
+        ],
+        "scaledFraction": [
+          "7260139175438518",
+          "8162453055955"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "296829214631",
+          "594914320"
+        ],
+        "scaledFraction": [
+          "5038379089146594",
+          "8162453055955"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "35193138395",
+          "97349616"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "16618698467801",
+          "45267571440"
+        ],
+        "scaledFraction": [
+          "435260331570175991",
+          "904479839952268"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "209402213694787",
+          "248971642920"
+        ],
+        "scaledFraction": [
+          "498586670807287847",
+          "452239919976134"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "302869729416883",
+          "497943285840"
+        ],
+        "scaledFraction": [
+          "721132825741598423",
+          "904479839952268"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "70280780908193",
+          "124485821460"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "1242370345967599",
+          "2791561082310"
+        ],
+        "scaledFraction": [
+          "135766231407339218720",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "380833720866751",
+          "391798046640"
+        ],
+        "scaledFraction": [
+          "296524751741269663620",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "37365191276968937",
+          "55831221646200"
+        ],
+        "scaledFraction": [
+          "204163405137358271768",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "72098988235170931",
+          "111662443292400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "13950833266655",
+          "43904676816"
+        ],
+        "scaledFraction": [
+          "108607236980909175",
+          "264267011965243"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "35270825548297",
+          "47040725160"
+        ],
+        "scaledFraction": [
+          "36611116919132286",
+          "37752430280749"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "354013991184989",
+          "658570152240"
+        ],
+        "scaledFraction": [
+          "183733261425009291",
+          "264267011965243"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "11075842435331",
+          "23520362580"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "2152736741723203",
+          "6141300525360"
+        ],
+        "scaledFraction": [
+          "5056778606307803847",
+          "10965422070755438"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "578026782876327",
+          "682366725040"
+        ],
+        "scaledFraction": [
+          "12220064216788429107",
+          "10965422070755438"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "902611070786323",
+          "1535325131340"
+        ],
+        "scaledFraction": [
+          "4240466810554145454",
+          "5482711035377719"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "12099625396207",
+          "21473078760"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Early career (1-5 years)",
+        "rawFraction": [
+          "439384396897837",
+          "1061029689720"
+        ],
+        "scaledFraction": [
+          "7410657238078918842",
+          "12138181929990815"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Late career (16+ years)",
+        "rawFraction": [
+          "6920932681962251",
+          "7957722672900"
+        ],
+        "scaledFraction": [
+          "77818967075983550244",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Mid career (6-15 years)",
+        "rawFraction": [
+          "2832235287881423",
+          "4547270098800"
+        ],
+        "scaledFraction": [
+          "55729893759642760371",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "career_stage",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "1151428963365341",
+          "1273235627664"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "24725095939",
+          "41410215"
+        ],
+        "scaledFraction": [
+          "4615680909892520",
+          "6409014327117"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Top 1%",
+        "rawFraction": [
+          "179793839",
+          "8888880"
+        ],
+        "scaledFraction": [
+          "104241770944615",
+          "4272676218078"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "559935634327",
+          "2871108240"
+        ],
+        "scaledFraction": [
+          "1005084463616965",
+          "4272676218078"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "582118156595",
+          "861332472"
+        ],
+        "scaledFraction": [
+          "5224510455440125",
+          "6409014327117"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "146827178787",
+          "478518040"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "5561187391",
+          "12252240"
+        ],
+        "scaledFraction": [
+          "7307400231774",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Top 1%",
+        "rawFraction": [
+          "61578311",
+          "6126120"
+        ],
+        "scaledFraction": [
+          "161827801308",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "7102999",
+          "52360"
+        ],
+        "scaledFraction": [
+          "2184001720524",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "1514867",
+          "3094"
+        ],
+        "scaledFraction": [
+          "7882519542480",
+          "13345319099"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "393446323",
+          "1750320"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "23204793158",
+          "43648605"
+        ],
+        "scaledFraction": [
+          "576592700389984",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Top 1%",
+        "rawFraction": [
+          "5568940799",
+          "349188840"
+        ],
+        "scaledFraction": [
+          "17297130121694",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "4391276123",
+          "26860680"
+        ],
+        "scaledFraction": [
+          "177310947294494",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "135060868153",
+          "232792560"
+        ],
+        "scaledFraction": [
+          "629248584724827",
+          "901770355783"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "16619107387",
+          "63488880"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "68167611529",
+          "116396280"
+        ],
+        "scaledFraction": [
+          "228497833845208",
+          "307264585335"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Top 1%",
+        "rawFraction": [
+          "104878969",
+          "5969040"
+        ],
+        "scaledFraction": [
+          "2285102976572",
+          "102421528445"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "17210817433",
+          "116396280"
+        ],
+        "scaledFraction": [
+          "57690660035416",
+          "307264585335"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "6620872381",
+          "11639628"
+        ],
+        "scaledFraction": [
+          "44386328442224",
+          "61452917067"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2022,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "5526383015",
+          "15519504"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "6894041093257",
+          "10126476360"
+        ],
+        "scaledFraction": [
+          "136364132824623460",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Top 1%",
+        "rawFraction": [
+          "11570641",
+          "432432"
+        ],
+        "scaledFraction": [
+          "282078921342850",
+          "8761133054999"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "3566576595629",
+          "16877460600"
+        ],
+        "scaledFraction": [
+          "42328131036924972",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "12235350447077",
+          "16877460600"
+        ],
+        "scaledFraction": [
+          "145209139105909836",
+          "166461528044981"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "137004754477",
+          "409978800"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "120208319069",
+          "216920340"
+        ],
+        "scaledFraction": [
+          "4257778661423980",
+          "6404489213673"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Top 1%",
+        "rawFraction": [
+          "77751361",
+          "4221360"
+        ],
+        "scaledFraction": [
+          "7448191626995",
+          "337078379667"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "1593587487917",
+          "9544494960"
+        ],
+        "scaledFraction": [
+          "1282837927773185",
+          "6404489213673"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "12080733347",
+          "20051460"
+        ],
+        "scaledFraction": [
+          "4629095403903460",
+          "6404489213673"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "22435600511",
+          "83723640"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "7005524497063",
+          "11792051700"
+        ],
+        "scaledFraction": [
+          "109258160056194548",
+          "153865438533407"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Top 1%",
+        "rawFraction": [
+          "8473797929",
+          "332952048"
+        ],
+        "scaledFraction": [
+          "14041718703197675",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "23252526154279",
+          "141504620400"
+        ],
+        "scaledFraction": [
+          "90661599475533821",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "608347657128643",
+          "990532342800"
+        ],
+        "scaledFraction": [
+          "338849645020654151",
+          "461596315600221"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "30043399779793",
+          "110059149200"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "120551800597",
+          "174594420"
+        ],
+        "scaledFraction": [
+          "4660532611080020",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Top 1%",
+        "rawFraction": [
+          "183500783",
+          "9237800"
+        ],
+        "scaledFraction": [
+          "134079251117742",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "8705789219",
+          "55426800"
+        ],
+        "scaledFraction": [
+          "1060182305300601",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "130750747097",
+          "193993800"
+        ],
+        "scaledFraction": [
+          "4549341494493018",
+          "5382377476457"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2023,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "1367442800743",
+          "3491888400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "4231190551097",
+          "5471904240"
+        ],
+        "scaledFraction": [
+          "9845980412402719",
+          "10498125872934"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Top 1%",
+        "rawFraction": [
+          "492423319",
+          "20717424"
+        ],
+        "scaledFraction": [
+          "2118535610517535",
+          "73486881110538"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "26250509859047",
+          "124485821460"
+        ],
+        "scaledFraction": [
+          "9397682529538826",
+          "36743440555269"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "2878536358093",
+          "3772297620"
+        ],
+        "scaledFraction": [
+          "390885385454146",
+          "422338397187"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "124166405197",
+          "329327570"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "32241454379777",
+          "53542288800"
+        ],
+        "scaledFraction": [
+          "54520299356202907",
+          "74656520355628"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Top 1%",
+        "rawFraction": [
+          "288679763",
+          "11639628"
+        ],
+        "scaledFraction": [
+          "24407873961650",
+          "811483916909"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "32380429229",
+          "174974800"
+        ],
+        "scaledFraction": [
+          "8377561791414567",
+          "37328260177814"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "944809930969",
+          "1622493600"
+        ],
+        "scaledFraction": [
+          "52723228577863107",
+          "74656520355628"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "172646630491",
+          "581981400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "5092431328429",
+          "8031343320"
+        ],
+        "scaledFraction": [
+          "19208650970834188",
+          "24487359167865"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Top 1%",
+        "rawFraction": [
+          "1579938307",
+          "82162080"
+        ],
+        "scaledFraction": [
+          "582543792988891",
+          "24487359167865"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "103679285933",
+          "535422888"
+        ],
+        "scaledFraction": [
+          "391078266539276",
+          "1632490611191"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "21766479987997",
+          "32125373280"
+        ],
+        "scaledFraction": [
+          "20525790628681171",
+          "24487359167865"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "35193138395",
+          "97349616"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "18445411194373",
+          "22633785720"
+        ],
+        "scaledFraction": [
+          "483103764591823243",
+          "452239919976134"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Top 1%",
+        "rawFraction": [
+          "4910690509",
+          "232792560"
+        ],
+        "scaledFraction": [
+          "25009945424026131",
+          "904479839952268"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "5026263222611",
+          "26207541360"
+        ],
+        "scaledFraction": [
+          "227383121927699029",
+          "904479839952268"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "196338912723851",
+          "248971642920"
+        ],
+        "scaledFraction": [
+          "467482951195489231",
+          "452239919976134"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2024,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "70280780908193",
+          "124485821460"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "226242120779683",
+          "248138762872"
+        ],
+        "scaledFraction": [
+          "278142063286542280200",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Top 1%",
+        "rawFraction": [
+          "427255786447",
+          "16129198800"
+        ],
+        "scaledFraction": [
+          "8080960423752291292",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "1329667621310311",
+          "5317259204400"
+        ],
+        "scaledFraction": [
+          "76285690769815162692",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "11141437847968823",
+          "12406938143600"
+        ],
+        "scaledFraction": [
+          "273945673805857419924",
+          "232962806839665869"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 1,
+        "group": "Unknown",
+        "rawFraction": [
+          "72098988235170931",
+          "111662443292400"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "28282628519777",
+          "41160634515"
+        ],
+        "scaledFraction": [
+          "234858947228228208",
+          "264267011965243"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Top 1%",
+        "rawFraction": [
+          "18143691659",
+          "764889840"
+        ],
+        "scaledFraction": [
+          "1158238844435583",
+          "37752430280749"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "5850690194779",
+          "31360483440"
+        ],
+        "scaledFraction": [
+          "9109524633270903",
+          "37752430280749"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "233029889467891",
+          "329285076120"
+        ],
+        "scaledFraction": [
+          "241885025267670858",
+          "264267011965243"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 2,
+        "group": "Unknown",
+        "rawFraction": [
+          "11075842435331",
+          "23520362580"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "279078388156171",
+          "361252972080"
+        ],
+        "scaledFraction": [
+          "11144437274240376543",
+          "10965422070755438"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Top 1%",
+        "rawFraction": [
+          "10123255001",
+          "436295860"
+        ],
+        "scaledFraction": [
+          "167360303969342262",
+          "5482711035377719"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "57848256961457",
+          "292442882160"
+        ],
+        "scaledFraction": [
+          "2853596667651712353",
+          "10965422070755438"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "1222669969461",
+          "1543816120"
+        ],
+        "scaledFraction": [
+          "439423919014375017",
+          "421747002721363"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 3,
+        "group": "Unknown",
+        "rawFraction": [
+          "12099625396207",
+          "21473078760"
+        ],
+        "scaledFraction": null
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Bottom 50%",
+        "rawFraction": [
+          "1593279205346207",
+          "1768382816200"
+        ],
+        "scaledFraction": [
+          "80616741232107381786",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Top 1%",
+        "rawFraction": [
+          "275522741213",
+          "11251640400"
+        ],
+        "scaledFraction": [
+          "2191044729880222947",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Top 1-10%",
+        "rawFraction": [
+          "1530102492178831",
+          "7957722672900"
+        ],
+        "scaledFraction": [
+          "17204472422058775764",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Top 10-50%",
+        "rawFraction": [
+          "5595369908671",
+          "7092444450"
+        ],
+        "scaledFraction": [
+          "70589888641974524328",
+          "60690909649954075"
+        ]
+      },
+      {
+        "dimension": "pedigree",
+        "year": 2025,
+        "quarter": 4,
+        "group": "Unknown",
+        "rawFraction": [
+          "1151428963365341",
+          "1273235627664"
+        ],
+        "scaledFraction": null
+      }
+    ],
+    "baselineStatus": "primary-four-domain-context",
+    "matchedBaselineStatus": "partial-primary-matched-inventory"
+  },
+  "matchedGrowth": {
+    "schemaVersion": 1,
+    "method": "atlas-matched-indexed-works-v1",
+    "measurement": {
+      "countUnit": "OpenAlex work ID",
+      "identity": "one indexed work ID; no title collapse",
+      "corpus": "OpenAlex default core (no expansion)",
+      "years": [
+        "2022",
+        "2025"
+      ],
+      "types": [
+        "article",
+        "review",
+        "conference-paper",
+        "book-chapter",
+        "preprint"
+      ],
+      "affiliations": "whole-work involvement; nonexclusive groups",
+      "union": "government|facility OR query; never bucket sum"
+    },
+    "rows": [
+      {
+        "id": "invasive",
+        "label": "Invasive",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 995,
+          "2025": 1524
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 53.165829145728644,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "high",
+        "label": "Ultrasound, TMS and MEG",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 1750,
+          "2025": 3256
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 86.05714285714286,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "eeg",
+        "label": "EEG",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 3776,
+          "2025": 6387
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 69.14724576271186,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "no-technique",
+        "label": "No technique named",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 3073,
+          "2025": 4778
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 55.483241132443865,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "bci",
+        "label": "About BCI",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 1682,
+          "2025": 2815
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 67.3602853745541,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "not-bci",
+        "label": "Not about BCI",
+        "dimension": "method",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete identically classified all-field acquisition awaits a separately scoped bulk or multi-day acquisition. No comparable denominator has been acquired.",
+        "countingMethod": "atlas-primary-publications-v1",
+        "denominatorUniverse": "Selected: all-field core five-type indexed works under the identical local title/abstract classifier and priority rules",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 7912,
+          "2025": 13130
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 65.95045500505562,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "journal",
+        "label": "Journal",
+        "dimension": "venue",
+        "baselineStatus": "matched",
+        "reason": "Complete independently selected NT10 raw indexed works and exhaustive all-science venue cells under identical venue/identity rules.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works classified Journal by preprint > conference > book chapter > journal fallback",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 6489,
+          "2025": 10327
+        },
+        "referenceCounts": {
+          "2022": 5165564,
+          "2025": 6824769
+        },
+        "evidence": [
+          "venue-d",
+          "venue-n"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 59.14624749576206,
+        "referenceGrowthPct": 32.12050029774096,
+        "shares": {
+          "2022": 0.0012562035820289905,
+          "2025": 0.0015131647679210828
+        },
+        "relativeShareGrowthPct": 20.455377581160423,
+        "growthGapPercentagePoints": 27.0257471980211
+      },
+      {
+        "id": "conference",
+        "label": "Conference",
+        "dimension": "venue",
+        "baselineStatus": "matched",
+        "reason": "Complete independently selected NT10 raw indexed works and exhaustive all-science venue cells under identical venue/identity rules.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works classified Conference by preprint > conference > book chapter > journal fallback",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 1918,
+          "2025": 3261
+        },
+        "referenceCounts": {
+          "2022": 569937,
+          "2025": 831882
+        },
+        "evidence": [
+          "venue-d",
+          "venue-n"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 70.02085505735141,
+        "referenceGrowthPct": 45.96034298527732,
+        "shares": {
+          "2022": 0.0033652842331696312,
+          "2025": 0.003920027119230852
+        },
+        "relativeShareGrowthPct": 16.484280305165502,
+        "growthGapPercentagePoints": 24.06051207207409
+      },
+      {
+        "id": "preprint",
+        "label": "Preprint",
+        "dimension": "venue",
+        "baselineStatus": "matched",
+        "reason": "Complete independently selected NT10 raw indexed works and exhaustive all-science venue cells under identical venue/identity rules.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works classified Preprint by preprint > conference > book chapter > journal fallback",
+        "numeratorUniverse": "NT10",
+        "numeratorCounts": {
+          "2022": 679,
+          "2025": 1798
+        },
+        "referenceCounts": {
+          "2022": 627699,
+          "2025": 1213624
+        },
+        "evidence": [
+          "venue-d",
+          "venue-n"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 164.80117820324006,
+        "referenceGrowthPct": 93.34489938648939,
+        "shares": {
+          "2022": 0.0010817286629419515,
+          "2025": 0.0014815132199099555
+        },
+        "relativeShareGrowthPct": 36.95793322890416,
+        "growthGapPercentagePoints": 71.45627881675067
+      },
+      {
+        "id": "asia",
+        "label": "Asia",
+        "dimension": "region",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with Asia affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 3275,
+          "2025": 5624
+        },
+        "referenceCounts": {
+          "2022": 2641747,
+          "2025": 3789590
+        },
+        "evidence": [
+          "asia-n",
+          "asia-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 71.72519083969466,
+        "referenceGrowthPct": 43.45014870841152,
+        "shares": {
+          "2022": 0.0012397099343729736,
+          "2025": 0.0014840655585432725
+        },
+        "relativeShareGrowthPct": 19.71070952931342,
+        "growthGapPercentagePoints": 28.275042131283143
+      },
+      {
+        "id": "us-canada",
+        "label": "US and Canada",
+        "dimension": "region",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with US and Canada affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 1088,
+          "2025": 1487
+        },
+        "referenceCounts": {
+          "2022": 919981,
+          "2025": 1031301
+        },
+        "evidence": [
+          "us-canada-n",
+          "us-canada-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 36.67279411764706,
+        "referenceGrowthPct": 12.100249896465254,
+        "shares": {
+          "2022": 0.0011826331195970352,
+          "2025": 0.0014418680870085456
+        },
+        "relativeShareGrowthPct": 21.920151153879477,
+        "growthGapPercentagePoints": 24.572544221181804
+      },
+      {
+        "id": "europe",
+        "label": "Europe",
+        "dimension": "region",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with Europe affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 1767,
+          "2025": 2099
+        },
+        "referenceCounts": {
+          "2022": 1658704,
+          "2025": 1768724
+        },
+        "evidence": [
+          "europe-n",
+          "europe-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 18.788907753254104,
+        "referenceGrowthPct": 6.63288929188089,
+        "shares": {
+          "2022": 0.0010652895272453675,
+          "2025": 0.0011867312254484022
+        },
+        "relativeShareGrowthPct": 11.399877225589517,
+        "growthGapPercentagePoints": 12.156018461373215
+      },
+      {
+        "id": "education",
+        "label": "Universities",
+        "dimension": "institution",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with Universities affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 5559,
+          "2025": 8384
+        },
+        "referenceCounts": {
+          "2022": 4804750,
+          "2025": 6219019
+        },
+        "evidence": [
+          "institutions-n",
+          "institutions-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 50.81849253462853,
+        "referenceGrowthPct": 29.434809303293616,
+        "shares": {
+          "2022": 0.001156980071803944,
+          "2025": 0.0013481225897524996
+        },
+        "relativeShareGrowthPct": 16.5208133317741,
+        "growthGapPercentagePoints": 21.383683231334917
+      },
+      {
+        "id": "company",
+        "label": "Companies",
+        "dimension": "institution",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with Companies affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 164,
+          "2025": 227
+        },
+        "referenceCounts": {
+          "2022": 183045,
+          "2025": 215061
+        },
+        "evidence": [
+          "institutions-n",
+          "institutions-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 38.41463414634146,
+        "referenceGrowthPct": 17.490780955502746,
+        "shares": {
+          "2022": 0.0008959545466961676,
+          "2025": 0.0010555144819376827
+        },
+        "relativeShareGrowthPct": 17.808931918465333,
+        "growthGapPercentagePoints": 20.923853190838717
+      },
+      {
+        "id": "government-facility",
+        "label": "Government agencies and research facilities",
+        "dimension": "institution",
+        "baselineStatus": "matched",
+        "reason": "Independent P2 and all-research API counts under identical whole-work rules; not legacy author-fractional growth.",
+        "countingMethod": "atlas-matched-indexed-works-v1",
+        "denominatorUniverse": "All five-type core indexed works with Government agencies and research facilities affiliation involvement; OR union for government/facility",
+        "numeratorUniverse": "P2",
+        "numeratorCounts": {
+          "2022": 1238,
+          "2025": 1523
+        },
+        "referenceCounts": {
+          "2022": 1102082,
+          "2025": 1154648
+        },
+        "evidence": [
+          "government-facility-n",
+          "government-facility-d"
+        ],
+        "countUnit": "OpenAlex work ID",
+        "neuroGrowthPct": 23.021001615508887,
+        "referenceGrowthPct": 4.769699532339699,
+        "shares": {
+          "2022": 0.0011233283911723448,
+          "2025": 0.001319016704658043
+        },
+        "relativeShareGrowthPct": 17.420401284567472,
+        "growthGapPercentagePoints": 18.251302083169186
+      },
+      {
+        "id": "early",
+        "label": "Early career (1-5 years)",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "6491216461143628074801143029255123870460985247777/5266428023739459302882684608922988630639533070",
+          "2025": "16924683908186593333951625050956422645300860118876940327061755442817/8194237357839957596526857220518031116100446594451936746607698990"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 67.57224498327275,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "mid",
+        "label": "Mid career (6-15 years)",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "18002192880595202633407025853281249058256657852463/7899642035609188954324026913384482945959299605",
+          "2025": "66850978720626337020460106162477438851456204990484371116845518535708/20485593394599893991317143051295077790251116486129841866519247475"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 43.19940814414423,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "late",
+        "label": "Late career (16+ years)",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "44657827298760789693793884359733836095083810344723/15799284071218377908648053826768965891918599210",
+          "2025": "27153630418936835128602889470125954271004221098875869083132557625157/5853026684171398283233469443227165082928890424608526247576927850"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 64.12971541047882,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "top-1",
+        "label": "Top 1%",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "410863315918529817625348743493621573834740721147/5266428023739459302882684608922988630639533070",
+          "2025": "386283416145784279769733966087501005063562039073322028250833928258/2926513342085699141616734721613582541464445212304263123788463925"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 69.18986398206562,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "top-1-10",
+        "label": "Top 1-10%",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "4125031886813233363603722234102781708604228240177/5266428023739459302882684608922988630639533070",
+          "2025": "6511304231965575883938928214555215265493786643992649682845594360017/5853026684171398283233469443227165082928890424608526247576927850"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 42.02877020172491,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      },
+      {
+        "id": "top-10-50",
+        "label": "Top 10-50%",
+        "dimension": "author",
+        "baselineStatus": "unavailable",
+        "reason": "Reference selected; complete type-filtered full-byline all-field cohort acquisition and count-only sizing remain pending. Author histories alone cannot provide this fractional denominator.",
+        "countingMethod": "atlas-primary-publications-v1:quarterly-known-scaled-exact",
+        "denominatorUniverse": "Selected: all-field five-type fractional output of the same historically P2-active author cohort, identical year-specific career/citation-rank bins and coverage policy",
+        "numeratorUniverse": "P2 author-fractional",
+        "numeratorCounts": {
+          "2022": "4464741743588065336445151299563592761750434282206/1579928407121837790864805382676896589191859921",
+          "2025": "6770085181781204773857269573387464807851496876786300122541625567763/1575814876507684153178241773176544445403932037394603220501480575"
+        },
+        "referenceCounts": null,
+        "evidence": [
+          "owned-primary:46787725a33799d92a62c178177f7f2e0e5c53474a5f15ea02febb919888d2df"
+        ],
+        "countUnit": "author-fractional works",
+        "neuroGrowthPct": 52.03024727421056,
+        "referenceGrowthPct": null,
+        "shares": null,
+        "relativeShareGrowthPct": null,
+        "growthGapPercentagePoints": null
+      }
+    ],
+    "venueDenominatorDetail": {
+      "Journal": {
+        "2022": 5165564,
+        "2025": 6824769
+      },
+      "Conference": {
+        "2022": 569937,
+        "2025": 831882
+      },
+      "Preprint": {
+        "2022": 627699,
+        "2025": 1213624
+      },
+      "Book chapter": {
+        "2022": 963946,
+        "2025": 868173
+      }
+    },
+    "evidence": {
+      "asia-d": {
+        "retrievedAt": "2026-11-23T08:38:22.317309+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.continent%3Aasia&group_by=publication_year&per_page=100",
+        "responseSha256": "d53769bf028b2475477f7622f25f1c7316d7614a0a5197ccecf840559eafe2e5",
+        "sourceSha256": null
+      },
+      "asia-n": {
+        "retrievedAt": "2026-11-23T08:38:24.059076+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.continent%3Aasia&group_by=publication_year&per_page=100",
+        "responseSha256": "8b4d13ba791b58cdf5a6aff344920cbe36f749922a32652cd27d7ee2cad2d987",
+        "sourceSha256": null
+      },
+      "europe-d": {
+        "retrievedAt": "2026-11-23T08:38:22.589015+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.continent%3Aeurope&group_by=publication_year&per_page=100",
+        "responseSha256": "e5bbc5a5fa1e97fe08063befba95300cad37cdfd048b18b97d6ce3c541a52fdb",
+        "sourceSha256": null
+      },
+      "europe-n": {
+        "retrievedAt": "2026-11-23T08:38:24.315738+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.continent%3Aeurope&group_by=publication_year&per_page=100",
+        "responseSha256": "1626cf32d9d41669a0f9ac420e898ea142e05b0e993b3fa48fa00ce4351cd418",
+        "sourceSha256": null
+      },
+      "government-facility-d": {
+        "retrievedAt": "2026-11-23T08:38:23.798655+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.institutions.type%3Agovernment%7Cfacility&group_by=publication_year&per_page=100",
+        "responseSha256": "399dd8478b0b56b90e9ae827cc394dcffe2097822ef22ae8831a1f79b8fa49ef",
+        "sourceSha256": null
+      },
+      "government-facility-n": {
+        "retrievedAt": "2026-11-23T08:38:25.278733+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.institutions.type%3Agovernment%7Cfacility&group_by=publication_year&per_page=100",
+        "responseSha256": "39db5408c1f7e856dfa805b4d638e74f52e2cd90b12268738cbc256ca8eccaf8",
+        "sourceSha256": null
+      },
+      "institutions-d": {
+        "retrievedAt": "2026-11-23T08:38:23.561215+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint&group_by=publication_year%2Cauthorships.institutions.type%3Ainclude_unknown&per_page=100",
+        "responseSha256": "5f4cdfe8fca4a9f302f814434bf8fc80c56219cb0a1c1cf20b94ef2fe6cbd4a5",
+        "sourceSha256": null
+      },
+      "institutions-n": {
+        "retrievedAt": "2026-11-23T08:38:25.013358+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601&group_by=publication_year%2Cauthorships.institutions.type%3Ainclude_unknown&per_page=100",
+        "responseSha256": "40c60e45ea01a2a82122c9eb8e086991974384a089ae519f1e6c3e5ba77e0323",
+        "sourceSha256": null
+      },
+      "us-canada-d": {
+        "retrievedAt": "2026-11-23T08:38:22.856215+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cauthorships.countries%3Aus%7Cca&group_by=publication_year&per_page=100",
+        "responseSha256": "fecaf631922f094087aa255f050b927ff21efa74033e28bf0e24ee05573192c8",
+        "sourceSha256": null
+      },
+      "us-canada-n": {
+        "retrievedAt": "2026-11-23T08:38:24.548090+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint%2Cprimary_topic.id%3AT10429%7CT11601%2Cauthorships.countries%3Aus%7Cca&group_by=publication_year&per_page=100",
+        "responseSha256": "3d33723a71307642928d05890da985f6e8969ff6f3b31d1e979c17c22b4e32af",
+        "sourceSha256": null
+      },
+      "venue-d": {
+        "retrievedAt": "2026-11-23T08:38:23.231286+00:00",
+        "url": "https://api.openalex.org/works?filter=publication_year%3A2022%7C2025%2Ctype%3Aarticle%7Creview%7Cconference-paper%7Cbook-chapter%7Cpreprint&group_by=publication_year%2Ctype%2Cprimary_location.source.type%3Ainclude_unknown&per_page=100",
+        "responseSha256": "ccceeab20d512c8aef0e8933b7da14bb69e68ec1c5604cb25fd83bf7c0d5b318",
+        "sourceSha256": null
+      },
+      "venue-n": {
+        "workCount": 25539,
+        "selection": "NT10-v1",
+        "completeYears": [
+          "2022",
+          "2025"
+        ],
+        "normalizedInputSha256": "c52d63d9842290cb100e59aa711934986b81a0cc47239f4727c87614e605d107"
+      }
+    },
+    "completeMatchedInventory": false
+  }
+}

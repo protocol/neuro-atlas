@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "snapshotSha256": "3259b33af5ce7171d1a843f16110ae44475fc1a42f6301deee909f6403ae3802",
+  "fingerprint": "93c4fa6547a4e4afaeda6ab745e8d649a4588416b6bd4a3857557d3213693c3e",
+  "capturedAt": "2026-11-23T08:36:56.462393+00:00",
+  "testOnly": false,
+  "runtimeHashes": {
+    "scripts/publications/acquire.py": "8c06b4156795c7c20bd7d905aa2398e424555e33c822a2e3dcec5da74fa1f1ad",
+    "scripts/publications/transport.py": "f6042d30b4e3f6d443bcae3cd3f5fafbe7f2f88188040bea93f30266912656f2",
+    "scripts/publications/derive.py": "4680e5fb712dd63681ba8297d3003c078d716e9f75bd4e61bdb53814ba9b1ec9",
+    "scripts/publications/matched_baselines.py": "b9bf321f88a88f699bc029433c3f0f2cd21e64be8c2ef6cfd44692daf84f4d77",
+    "scripts/publications/refresh.py": "e1513ad20dd339be0ebebccf94c9c5ee02c8d56004d0fbf33dfcada439d40d90",
+    "scripts/publications/acquire_baselines.py": "1038e2326825e0d9cfdf6b42e866604cfed6347173cc8acd07c7470161fbe1ed",
+    "scripts/weekly-publications-feed.ts": "1cec26843d7d0e3e384a1ce2e1f2fbfe75a8477a0ccedfca8e710ab3c9d77ae1",
+    "src/lib/publication-data.ts": "9445f2aefd0c6e555134baa21d54515c7fd3e446679e696663de6cddabc53e55",
+    "src/lib/publication-feed-server.ts": "f84c58d5622aa77124805623abe302100f3d6da30113349946253c31365d9dd7",
+    "src/components/publication-source-provider.tsx": "7177a3d8614ef8b9564aade9ebb428aefd79d3c960b24f561427de4f3c8085f1",
+    "src/app/api/publications/route.ts": "2b8b4308420204cdd591fa41d3552de2d758e3433f97a4e437be354c58e5573e",
+    "package.json": "1e60b4d53c90b107e9d43c517b1565f49cbb3cb6d0f2ffb7550e1d858c54c2bb",
+    "package-lock.json": "ace29d5542dae10b2665dc21aba6a7f4b32318d94ba21c90ace025d6427bc3a9",
+    "tsconfig.json": "5c51df4c59f4510d8c7dadf07a5c32132228826a3b331da5e286207b4df7ef9c"
+  },
+  "sourceProof": {
+    "acquisitionManifestSha256": "0b8131a4cb4aedce03bdac2bbfc9c309b15904e6c8134f1b977dc6e122f3b2c6",
+    "normalizedSha256": "85d2d9c10cb75975b0d9d4920beeb72080edd966739361aaa3fb3b02ac4877e3",
+    "acquisitionMethodSha256": "0e388e4f7001179e8a0c2760689f2bb58317f5149e009a64af0a2f4f049df249",
+    "historyCoverageSha256": "dc13593f77cf486bd9bc7cea8cffaeae6e297353ac772f8c37cbda0ed26eb5a4",
+    "acquisitionStartedAt": "2026-11-23T08:10:12.830522+00:00",
+    "acquisitionCompletedAt": "2026-11-23T08:36:56.462393+00:00",
+    "rawReceiptCount": 5371,
+    "scienceInputSha256": "18a986f53e536b5afd2f300bcedbac036fcc0a11979cc1ae75e7bdc6d25b802f",
+    "matchedInputSha256": "f9a18fb81bc175772bd4b96e76938109ae481344f964e77ec992e17a99789d3f",
+    "derivationManifestSha256": "e8b03d860ae51bd1814068b6f80c877a479add8c6c88b0c646f7dd31edd6cc57",
+    "scienceEvidence": {
+      "all": {
+        "responseSha256": "56e3b021d4cf682a47084e39bfa0e0583e6fbe61a220697a021743069ac2e113",
+        "requestSha256": "c32ba358d73634ac589003577f4d308e76d5b6133c435fc594297136f203e9b4",
+        "retrievedAt": "2026-11-23T08:38:25.632630+00:00"
+      },
+      "life": {
+        "responseSha256": "f23fdaf94ad4df041abe92754518abcbe25a4c176dd93e743bd4f1d5fb6bfedf",
+        "requestSha256": "74597e499728278bff7a479546d490e52e41e66a7d6a0819db54531f4435fcc2",
+        "retrievedAt": "2026-11-23T08:38:25.899897+00:00"
+      },
+      "social": {
+        "responseSha256": "4fc2a6ef8bc2037c352c5775fcbbfe1d31bbb57c6ddeb61d22c386fc406ada6b",
+        "requestSha256": "438c31407a9cd4cf17d6abcb6fd88ec5c28d75fba244141b46ee837d917b2a29",
+        "retrievedAt": "2026-11-23T08:38:26.190504+00:00"
+      },
+      "physical": {
+        "responseSha256": "4f263cb4482e751858d048a503ee1f7e4329dbd8472e48c194fbba70e0f33fa5",
+        "requestSha256": "856ba5c4ce3a376a0a40a0336e4100b0347956de47076513831a6046cf36c551",
+        "retrievedAt": "2026-11-23T08:38:26.504605+00:00"
+      },
+      "health": {
+        "responseSha256": "e5f7b6461a8ae535d70d92188ca931272fb78839200ce35d823a7782fe64c3a0",
+        "requestSha256": "27cdef3f254cb8f65a93a09c2a40a39250501b7ae4380fa1c989263ac7c6b260",
+        "retrievedAt": "2026-11-23T08:38:26.782478+00:00"
+      }
+    }
+  }
+}
