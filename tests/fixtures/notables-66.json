@@ -1,0 +1,90 @@
+{
+  "baselineSha": "bc92a0bee01d9490808cd501279eef008048568c",
+  "sources": [
+    "https://neurobionics.io/press/news/aria-grant-award/",
+    "https://www.wired.com/story/synchron-pauses-trials-of-its-brain-implant-due-to-performance-issues/",
+    "https://paper.xinmin.cn/html/xmwb/2026-11-13/6/252131.html"
+  ],
+  "baselineMilestonesSha256": "eb9ff5c53660f395759a471b1f0bc05de0d6124b7b9ea42b087d1e8e4f1ba561",
+  "baselineCanonicalMilestonesSha256": "4e53a2bf0ec8e8a064808e7081f34dadf7d6947cd03560ba69bb16a26052bbb9",
+  "baselineRoundsSha256": "4f06d5a65f6a88cdebf704b51071e38f366e5eda9966146499d9d2861b826713",
+  "baselineFundingWithoutRoundsAndSummarySha256": "7262e0915e398240ff533b96ceba07c4dc9e3d5da1d5e8b3038168a1cbd525f0",
+  "baselineSummary": {
+    "excludedBelowThreshold": 0,
+    "selectedCompanies": 25,
+    "indexedRounds": 42,
+    "regulatoryMilestones": 15,
+    "observedCapitalUsdM": 3553.96,
+    "firstYear": 2017,
+    "lastYear": 2026,
+    "asOf": "2026-11-17"
+  },
+  "baselineFxSha256": "6dcf7fef3d3276b4dfd1b3ad9f4c8ded6417791b98446eb3141c5222db268b9c",
+  "expectedMilestones": [
+    {
+      "company": "NeuroBionics",
+      "nf_slug": "neurobionics",
+      "activity": "grant",
+      "stage": "capital",
+      "amount_usd_m": "",
+      "date": "2026-11-05",
+      "date_precision": "day",
+      "note": "Announced a £4.6m ARIA grant (6927) to advance endovascular neuromodulation and evStim preclinical validation. A 36-month preclinical feasibility project, not clinical approval. USD estimate uses Federal Reserve H.10 Nov 5 observation: $1.3483 per GBP (0.7416747014759326 GBP per USD), an announcement-date fallback because the grant-agreement date is undisclosed; not issuer-reported dollars or cash received. £50m is the full ARIA program, not this award.",
+      "source_url": "https://neurobionics.io/press/news/aria-grant-award/",
+      "scope": "broader",
+      "date_basis": "announcement"
+    },
+    {
+      "company": "Synchron",
+      "nf_slug": "synchron",
+      "activity": "enrollment paused",
+      "stage": "clinical",
+      "amount_usd_m": "",
+      "date": "2026-11-12",
+      "date_precision": "day",
+      "note": "WIRED reported a voluntary enrollment pause for second-generation Stentrode studies after a lead performance issue. Synchron told WIRED no device-related safety issues had been identified and the pause was not FDA-directed; hardware upgrades were planned before resuming enrollment. Nov 12 is the report date, not the undisclosed pause-decision day. U.S. INTENT and FOCUS-AUS registries corroborate non-recruitment; Canada separately lists termination for insufficient recruitment.",
+      "source_url": "https://www.wired.com/story/synchron-pauses-trials-of-its-brain-implant-due-to-performance-issues/",
+      "scope": "bci",
+      "date_basis": "reported"
+    },
+    {
+      "company": "Neuracle",
+      "nf_slug": "neuracle",
+      "activity": "adoption",
+      "stage": "commercial",
+      "amount_usd_m": "",
+      "date": "2026-11-13",
+      "date_precision": "day",
+      "note": "Xinmin Evening News reported from the Nov 12 BCI conference briefing that Neuracle NEO had completed 12 commercial implants and was included in Shanghai Huibao supplementary insurance with reimbursement up to 30%. Nov 13 is the report date; individual implant dates and the coverage-effective date were not established. Reporting-only update, not national medical-insurance coverage, new regulatory approval, or an implant-count chart update. Original Chinese report names 博睿康 (Neuracle); the linked BigGo English summary misattributes NEO to NeuroXess.",
+      "source_url": "https://paper.xinmin.cn/html/xmwb/2026-11-13/6/252131.html",
+      "scope": "bci",
+      "date_basis": "reported"
+    }
+  ],
+  "expectedRound": {
+    "company_slug": "neurobionics",
+    "announced_on": "2026-11-05",
+    "date_precision": "day",
+    "stage": "Grant",
+    "amount_usd_m": "",
+    "amount_native_m": "4.6",
+    "currency": "GBP",
+    "display_amount": "£4.6m (~$6.20m)",
+    "investors": "Advanced Research + Invention Agency (ARIA)",
+    "source_url": "https://neurobionics.io/press/news/aria-grant-award/",
+    "note": "ARIA grant 6927 for a 36-month preclinical endovascular neuromodulation feasibility project, not an equity round. £4.6m is this award; £50m is the program-wide budget. USD estimate uses Federal Reserve H.10 Nov 5 observation of $1.3483 per GBP, stored as 0.7416747014759326 GBP per USD. Explicit announcement-date fallback: grant-agreement date and disbursement schedule are undisclosed; not issuer-reported USD or cash received.",
+    "source_kind": "primary",
+    "reviewed_on": "2026-11-23",
+    "date_basis": "announcement"
+  },
+  "baselineExactFiles": {
+    "data/funding-index/companies.csv": "281543d6a10cec7e3a13db41d0f775b8a36845d8999a3b714a022c75b31cabb0",
+    "data/funding-index/milestones.csv": "3f293dd5f23ffd1cb749472894f17db51cf8fd2e389d763ae0ea823cede602e0"
+  },
+  "baseline2026Capital": {
+    "financingRecords": 17,
+    "awards": 1,
+    "usdM": 1562.4073505145361
+  },
+  "baselineInvestorsSha256": "0e3820f9cbd53e5db151b76d29a1e3968a9323211e29e06539543587f8cfc2ee"
+}

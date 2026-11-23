@@ -12,5 +12,19 @@
     "rateSource": "Federal Reserve H.10",
     "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261102/",
     "reviewedOn": "2026-11-09"
+  },
+  {
+    "sourceUrl": "https://neurobionics.io/press/news/aria-grant-award/",
+    "companySlug": "neurobionics",
+    "currency": "GBP",
+    "amountNativeM": 4.6,
+    "investmentDate": null,
+    "announcedOn": "2026-11-05",
+    "dateBasis": "announcement_date",
+    "rateDate": "2026-11-05",
+    "nativePerUsd": 0.7416747014759326,
+    "rateSource": "Federal Reserve H.10 (published USD per GBP; reciprocal stored as GBP per USD)",
+    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+    "reviewedOn": "2026-11-23"
   }
 ]
