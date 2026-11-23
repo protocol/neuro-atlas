@@ -1,0 +1,28 @@
+name: Data correction or new source
+description: Suggest a sourced correction, missing measurement, or attribution fix.
+title: "Data: "
+body:
+  - type: markdown
+    attributes:
+      value: "Please use public sources only. Do not include private records, credentials, or personal information. For vulnerabilities, use private security reporting."
+  - type: input
+    id: page
+    attributes:
+      label: Page or chart URL
+      description: Include the exact chart link or view state when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should change?
+      description: Describe the current value/claim and the proposed correction or addition.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary sources and dates
+      description: Link the paper, dataset release, or first-party announcement. Include observation/publication dates, units, population, and any uncertainty or reuse restrictions.
+    validations:
+      required: true

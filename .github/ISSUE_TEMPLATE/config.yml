@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability privately
+    url: https://github.com/protocol/neuro-atlas/security/advisories/new
+    about: Do not disclose vulnerabilities or credentials in a public issue.
+  - name: Contribution guide
+    url: https://github.com/protocol/neuro-atlas/blob/main/CONTRIBUTING.md
+    about: Fork setup, sources, licenses, verification, and maintainer review.

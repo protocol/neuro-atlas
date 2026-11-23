@@ -1,0 +1,29 @@
+name: Full regression suite
+
+# Existing legacy failures are recorded separately from the required scoped check.
+# Maintainers can run this complete, non-deploying suite without making a broken
+# baseline the required gate for every unrelated community contribution.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-regressions:
+    name: Full regression suite (includes legacy failures)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Run all regression tests without suppressing failures
+        run: node --import tsx --test --test-concurrency=2 tests/*.test.mjs

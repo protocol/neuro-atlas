@@ -1,57 +1,48 @@
 # Neuro Atlas
 
-An interactive atlas of the brain-computer interface field — milestones, capital, velocity, landscape, and the people building it. Neobank-grade UI, light and dark mode.
+An interactive atlas of neurotechnology: scientific and clinical milestones, technical progress, companies, and funding. Built by PL Neuro.
 
-**Status:** taking shape. The atlas includes Milestones, the BCI Funding Index, Field velocity, and Methodology. Ecosystem links to the [Neurofounders startup map](https://www.neurofounders.co/resources/start-up-map), rather than hosting a copy of their directory. Canonical Atlas data lives in `data/` (CSV/JSON with provenance); `scripts/generate-derived.mjs` builds the `src/data/*.json` the app consumes.
+[Explore Neuro Atlas](https://www.plneuro.xyz/neuro-atlas) · [Sources & methodology](https://www.plneuro.xyz/neuro-atlas/methodology)
 
-**Gated home:** [plneuro.xyz/neuro-atlas](https://www.plneuro.xyz/neuro-atlas). The previous PLRD address redirects here. Hosting configuration and access-preservation rules: [hosting guide](docs/plrd-hosting.md).
+## Contribute
 
-## Stack
+Corrections, new sources, and code improvements are welcome. Fork this repository and open a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and data guidelines.
 
-The Field velocity plate groups source-backed charts into [five three-state groups](docs/metrics-navigation.md). [Recording hours](docs/recording-hours-consolidation.md) uses one shared log scatter; duplicate tissue/hours reference views are retired with their original evidence and URLs retained. [Shared performance curves](docs/performance-curves.md) documents the pinned provider source, refresh/parity commands and counting limits.
+You can also [report a correction or bug](https://github.com/protocol/neuro-atlas/issues/new/choose), use **Feedback** on the website, or [browse existing pull requests](https://github.com/protocol/neuro-atlas/pulls). Report security vulnerabilities through [private reporting](SECURITY.md).
 
-- [Next.js](https://nextjs.org) (App Router, TypeScript)
-- [Tailwind CSS v4](https://tailwindcss.com) — design tokens in `src/app/globals.css`
-- [next-themes](https://github.com/pacocoursey/next-themes) — class-based light/dark with system default
+## Run locally
 
-## Develop
+Use **Node.js 24 LTS** and npm. The full test suite also uses **Python 3**.
 
-```bash
+```sh
 npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open <http://localhost:3000>. To match the website's `/neuro-atlas` path, run `NEXT_PUBLIC_BASE_PATH=/neuro-atlas npm run dev` and open <http://localhost:3000/neuro-atlas>.
 
-## Structure
-
-```
-src/
-  app/
-    layout.tsx        # Root layout + ThemeProvider
-    page.tsx          # Dashboard shell (placeholder modules)
-    globals.css       # Design tokens (light/dark), card primitive
-  components/
-    site-header.tsx   # Sticky header + theme toggle
-    theme-provider.tsx
-    theme-toggle.tsx
-    stat-card.tsx     # Headline metric card
-    placeholder-panel.tsx
+```sh
+npm test
+npm run typecheck
+npm run build
 ```
 
-## Design language
+[Contributor checks](.github/workflows/contributor-checks.yml) run contribution, navigation, and Feedback tests, then typecheck and build the app. The full `npm test` suite has existing failures; include relevant test results with your PR. Maintainers can run the [Full regression suite](.github/workflows/full-regressions.yml) workflow.
 
-- Surfaces: soft neutral background, white/near-black cards, 1px borders, `rounded-2xl`-ish radii, restrained shadows
-- Accent: official PL R&D logo blue (`#115EF7`, `--accent`), with a readable light-blue variant in dark mode; shared with chart-export branding.
-- Numbers: always tabular (`.tnum`)
-- All tokens are CSS variables — restyle in one file
+## Project structure
 
-## Owner feedback
+- `src/app/` — pages and routes.
+- `src/components/` — charts, navigation, and feedback controls.
+- `data/` — source inputs and provenance.
+- `src/data/` — generated data and curated snapshots.
+- `scripts/` — data acquisition, generation, and verification.
+- `tests/` — regression and source-integrity tests.
+- `docs/` — chart definitions, source guides, and hosting documentation.
 
-The [feedback workflow](docs/feedback.md) adds private owner-authenticated intake and a narrowly scoped, tested draft-PR pipeline. It is **disabled by default** and requires separate access, isolation and spending-limit configuration before live use. That guide separates implemented behavior, v1 exclusions and activation acceptance.
+For canonical data changes, run `npm run data:generate` and include the generated files. Follow [performance-curves.md](docs/performance-curves.md) for changes to the shared Field Velocity feed.
 
-## Deploy
+## License
 
-Hosted on Vercel. After the transfer to [protocol/neuro-atlas](https://github.com/protocol/neuro-atlas), verify the existing project's GitHub App access and Git connection before relying on automatic main/PR deployments.
+Original software and documentation use **Apache-2.0 OR MIT**, following the [IPFS/Kubo convention](https://github.com/ipfs/kubo/blob/master/LICENSE). See [LICENSE](LICENSE), [LICENSE-APACHE](LICENSE-APACHE), and [LICENSE-MIT](LICENSE-MIT).
 
-See [Contributing](CONTRIBUTING.md) for source/units/provenance and tests, and [PLRD hosting](docs/plrd-hosting.md) for opt-in `/neuro-atlas`, canonical metadata, the existing hosted Basic-auth gate, launch and rollback. Root hosting remains the default. This change alone does not authorize public launch or change production settings.
+Third-party data, papers, figures, logos, fonts, and trademarks retain their source terms and attribution. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
