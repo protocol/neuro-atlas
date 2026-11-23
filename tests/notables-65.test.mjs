@@ -18,7 +18,9 @@ const canonical = parseCsv(readFileSync(new URL('../data/market-memo-q1-2026/mil
 const sources = fixture.milestones.map(row => row.sourceUrl);
 // Retain the frozen historical hashes; later additions have their own exact-source regressions.
 const laterSource = 'https://science.xyz/news/series-d/';
-const issueMilestones = beforeNeuroWideMilestones(milestones, 'milestones').filter(row => row.sourceUrl !== laterSource);
+const issue66 = load('./fixtures/notables-66.json');
+const issue66Sources = issue66.sources;
+const issueMilestones = beforeNeuroWideMilestones(milestones, 'milestones').filter(row => row.sourceUrl !== laterSource && !issue66Sources.includes(row.sourceUrl));
 const laterFinancing = funding.rounds.filter(row => row.sourceUrl === laterSource);
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const one = source => {
@@ -55,7 +57,7 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.equal(rounds[0].announcedOn, '2026-10-21');
   assert.equal(rounds[0].sourceKind, 'primary');
   assert.equal(rounds[0].reviewedOn, '2026-11-09');
-  const baselineRounds = beforeSourceAudit(funding.rounds, 'fundingRounds').filter(round => !sources.includes(round.sourceUrl) && round.sourceUrl !== laterSource);
+  const baselineRounds = beforeSourceAudit(funding.rounds, 'fundingRounds').filter(round => !sources.includes(round.sourceUrl) && round.sourceUrl !== laterSource && !issue66Sources.includes(round.sourceUrl));
   const precisionSeriesC = baselineRounds.find(round => round.companySlug === 'precision-neuroscience'
     && round.announcedOn === '2024-12-16' && round.stage === 'Series C');
   // Keep the historical pre-65 golden intact while allowing only this later citation repair.

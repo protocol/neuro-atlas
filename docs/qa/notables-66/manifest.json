@@ -1,0 +1,108 @@
+{
+  "baselineSha": "bc92a0bee01d9490808cd501279eef008048568c",
+  "candidateRuntimeSha": "55671b985c9f0608d18907538728ff49f91d55d5",
+  "reviewedSourceSha": "daa8be97f37ec0ca4bb13c14ab26e5c77ed8416c",
+  "origin": "Local headed Chrome against loopback-only production builds, not production or hosted preview. 390px viewport emulation, not physical-phone touch.",
+  "timelineSourceInvariantThroughReviewedSha": true,
+  "fundingPayloadUnchanged": true,
+  "images": [
+    {
+      "name": "before-timeline-1440.png",
+      "sha256": "589b7628588df07f87f7dcfb4e955f5d105ac1003e8081c47a88b13b8fca2e82",
+      "sourceSha": "bc92a0bee01d9490808cd501279eef008048568c"
+    },
+    {
+      "name": "after-timeline-1440.png",
+      "sha256": "160b931cec8b56f066d7b5ea590914448ced55c6921d2046fdb4a162b57ee873",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    },
+    {
+      "name": "after-neurobionics-detail-1440.png",
+      "sha256": "14b642a843c4a4a11eb9f76ab446bc20be8193184b818a456302addeb56d8a21",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    },
+    {
+      "name": "after-synchron-detail-1440.png",
+      "sha256": "032c83ffbdb3eec514a48fae92f7d82cb5b10bab0eb9f5aff040b502089ae89f",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    },
+    {
+      "name": "after-neuracle-detail-1440.png",
+      "sha256": "fdc416d33006808f0a48acdb8f069ea798bc635fddb617400a30fe03a4181894",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    },
+    {
+      "name": "after-neurobionics-detail-390.png",
+      "sha256": "ca4ac8b7f7430ee5a4dfba51bb25e42ed2d302ad2591e7e15de1b3174f4641f3",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    },
+    {
+      "name": "after-neuracle-detail-390.png",
+      "sha256": "7492db8b6de3b9b35570c6ded9a4ccda8aa1a22eb045e94442af3e034be176ac",
+      "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
+    }
+  ],
+  "currentMainBaselineSha": "5e9b68881261297a59b43d442fead2eed7a2bc37",
+  "currentMainCandidateSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d",
+  "currentMainCaptures": [
+    {
+      "name": "after-neuracle-detail-390.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "ecf6134ec8aa9486e785d302ba2f164d08d206b875ad1d0c9b2fce03a9d294dd",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neurobionics-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "139b7bfe92cdb4572a4aeea5eb3d5fb4e4cf45679ce69795e78f7f4174cf3c4e",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neuracle-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "e1da3e330c857cc2d1f95c29f54c65050ba15431dd5085df5af241ee3dfbf6dc",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-timeline-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "a4d26e6d0567464b4166e04d17d42b5fed1981367effa9145667b1003a1a20b7",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-synchron-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "4510eb6827a50ace3306a22fa65b7a13c2d5573586c38ca435a841d37ec277da",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neurobionics-detail-390.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "70b9b453f1aba97bb07a649ce2c7b08199d76027562bf05a306a97e3cd25327f",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    }
+  ],
+  "currentMainImagesPixelIdenticalToIndependentReviewed": true,
+  "currentMainFullSuite": {
+    "baseline": {
+      "tests": 1618,
+      "pass": 1591,
+      "fail": 27,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "candidate": {
+      "tests": 1624,
+      "pass": 1597,
+      "fail": 27,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "newFailures": 0
+  },
+  "currentMainScopedTests": {
+    "tests": 50,
+    "pass": 50,
+    "fail": 0
+  }
+}

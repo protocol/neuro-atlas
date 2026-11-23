@@ -25,7 +25,7 @@ test('Milestones plots sourced cumulative capital only, scaled to observations i
         const line = svg.querySelector('polyline');
         assert.equal(line.hasAttribute('stroke-dasharray'), false);
         const actual = line.getAttribute('points').split(' ').map(point => point.split(',').map(Number));
-        const rows = milestones.filter(m => m.stage === 'capital' && m.amountUsdM && m.date && Number(m.date.slice(0, 4)) === year && (scope === 'all' || m.scope === 'bci')).sort((a, b) => a.date.localeCompare(b.date));
+        const rows = milestones.filter(m => m.stage === 'capital' && !['grant', 'award'].includes(m.activity.trim().toLowerCase()) && m.amountUsdM && m.date && Number(m.date.slice(0, 4)) === year && (scope === 'all' || m.scope === 'bci')).sort((a, b) => a.date.localeCompare(b.date));
         assert.equal(actual.length, rows.length + 1, 'One point per source record plus origin');
         const total = rows.reduce((sum, m) => sum + m.amountUsdM, 0);
         const height = Number(svg.getAttribute('height'));
