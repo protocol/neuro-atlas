@@ -72,5 +72,63 @@
     "usdM": 1562.4073505145361
   },
   "baselineInvestorsSha256": "0e3820f9cbd53e5db151b76d29a1e3968a9323211e29e06539543587f8cfc2ee",
-  "fundingDisposition": "Unchanged: current rendered coverage explicitly excludes standalone grants. ARIA award remains in timeline; Funding index inclusion deferred, not mislabeled as equity."
+  "fundingDisposition": "Unchanged: current rendered coverage explicitly excludes standalone grants. ARIA award remains in timeline; Funding index inclusion deferred, not mislabeled as equity.",
+  "expectedGeneratedMilestones": [
+    {
+      "company": "NeuroBionics",
+      "slug": "neurobionics",
+      "activity": "grant",
+      "stage": "capital",
+      "amountUsdM": 6.20218,
+      "fx": {
+        "sourceUrl": "https://neurobionics.io/press/news/aria-grant-award/",
+        "companySlug": "neurobionics",
+        "currency": "GBP",
+        "amountNativeM": 4.6,
+        "investmentDate": null,
+        "announcedOn": "2026-11-05",
+        "dateBasis": "announcement_date",
+        "rateDate": "2026-11-05",
+        "nativePerUsd": 0.7416747014759326,
+        "rateSource": "Federal Reserve H.10 (published USD per GBP; reciprocal stored as GBP per USD)",
+        "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+        "reviewedOn": "2026-11-23"
+      },
+      "date": "2026-11-05",
+      "datePrecision": "day",
+      "dateBasis": "announcement",
+      "note": "Announced a £4.6m ARIA grant (6927) to advance endovascular neuromodulation and evStim preclinical validation. A 36-month preclinical feasibility project, not clinical approval. USD estimate uses Federal Reserve H.10 Nov 5 observation: $1.3483 per GBP (0.7416747014759326 GBP per USD), an announcement-date fallback because the grant-agreement date is undisclosed; not issuer-reported dollars or cash received. £50m is the full ARIA program, not this award.",
+      "sourceUrl": "https://neurobionics.io/press/news/aria-grant-award/",
+      "logo": null,
+      "scope": "broader"
+    },
+    {
+      "company": "Synchron",
+      "slug": "synchron",
+      "activity": "enrollment paused",
+      "stage": "clinical",
+      "amountUsdM": null,
+      "date": "2026-11-12",
+      "datePrecision": "day",
+      "dateBasis": "reported",
+      "note": "WIRED reported a voluntary enrollment pause for second-generation Stentrode studies after a lead performance issue. Synchron told WIRED no device-related safety issues had been identified and the pause was not FDA-directed; hardware upgrades were planned before resuming enrollment. Nov 12 is the report date, not the undisclosed pause-decision day. U.S. INTENT and FOCUS-AUS registries corroborate non-recruitment; Canada separately lists termination for insufficient recruitment.",
+      "sourceUrl": "https://www.wired.com/story/synchron-pauses-trials-of-its-brain-implant-due-to-performance-issues/",
+      "logo": "/logos/synchron.png",
+      "scope": "bci"
+    },
+    {
+      "company": "Neuracle",
+      "slug": "neuracle",
+      "activity": "adoption",
+      "stage": "commercial",
+      "amountUsdM": null,
+      "date": "2026-11-13",
+      "datePrecision": "day",
+      "dateBasis": "reported",
+      "note": "Xinmin Evening News reported from the Nov 12 BCI conference briefing that Neuracle NEO had completed 12 commercial implants and was included in Shanghai Huibao supplementary insurance with reimbursement up to 30%. Nov 13 is the report date; individual implant dates and the coverage-effective date were not established. Reporting-only update, not national medical-insurance coverage, new regulatory approval, or an implant-count chart update. Original Chinese report names 博睿康 (Neuracle); the linked BigGo English summary misattributes NEO to NeuroXess.",
+      "sourceUrl": "https://paper.xinmin.cn/html/xmwb/2026-11-13/6/252131.html",
+      "logo": "/logos/neuracle.png",
+      "scope": "bci"
+    }
+  ]
 }

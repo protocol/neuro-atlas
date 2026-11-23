@@ -4,11 +4,14 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeNeuroWideMilestones } from './helpers/neuro-wide-milestones-baseline.mjs';
+import { beforeNotables66 } from './helpers/notables-66-baseline.mjs';
 
-const canonicalText = readFileSync(new URL('../data/market-memo-q1-2026/milestones.csv', import.meta.url), 'utf8');
+const fullCanonicalText = readFileSync(new URL('../data/market-memo-q1-2026/milestones.csv', import.meta.url), 'utf8');
+const laterSources = JSON.parse(readFileSync(new URL('./fixtures/notables-66.json', import.meta.url))).sources;
+const canonicalText = fullCanonicalText.split('\n').filter(line => !laterSources.some(source => line.includes(source))).join('\n');
 const collections = {
-  canonicalMilestones: parseCsv(canonicalText),
-  milestones: JSON.parse(readFileSync(new URL('../src/data/milestones.json', import.meta.url))),
+  canonicalMilestones: beforeNotables66(parseCsv(fullCanonicalText), 'canonicalMilestones'),
+  milestones: beforeNotables66(JSON.parse(readFileSync(new URL('../src/data/milestones.json', import.meta.url))), 'milestones'),
 };
 const sources = [
   'https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon',

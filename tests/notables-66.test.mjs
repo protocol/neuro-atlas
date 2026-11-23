@@ -7,6 +7,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { MilestoneTimeline } from '../src/components/milestone-timeline.tsx';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
+import { beforeNotables66 } from './helpers/notables-66-baseline.mjs';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const load = path => JSON.parse(read(path));
@@ -20,6 +21,26 @@ const one = source => {
   assert.equal(rows.length, 1, source);
   return rows[0];
 };
+
+test('Notables 66 historical exclusion rejects changed, missing, duplicate and extra-field records', () => {
+  for (const [kind, rows] of Object.entries({canonicalMilestones:parseCsv(read('../data/market-memo-q1-2026/milestones.csv')),milestones})) {
+    const key = kind === 'canonicalMilestones' ? 'source_url' : 'sourceUrl';
+    const original = structuredClone(rows);
+    assert.deepEqual(beforeNotables66(rows,kind), rows.filter(row => !sources.includes(row[key])));
+    assert.deepEqual(rows,original);
+    const index = rows.findIndex(row => row[key] === sources[0]);
+    for (const field of Object.keys(rows[index])) {
+      const changed = structuredClone(rows);changed[index][field] = 'unreviewed';
+      assert.throws(() => beforeNotables66(changed,kind),assert.AssertionError);
+    }
+    const extra = structuredClone(rows);extra[index].unreviewed = true;
+    assert.throws(() => beforeNotables66(extra,kind),assert.AssertionError);
+    assert.throws(() => beforeNotables66(rows.filter((_,i)=>i!==index),kind),assert.AssertionError);
+    assert.throws(() => beforeNotables66([...rows,rows[index]],kind),assert.AssertionError);
+    const unknown = {...rows[index],[key]:'https://example.org/not-reviewed'};
+    assert.deepEqual(beforeNotables66([...rows,unknown],kind), [...beforeNotables66(rows,kind),unknown]);
+  }
+});
 
 test('Notables 66 is exactly three source-bound additions; every prior timeline record is unchanged', () => {
   assert.equal(sources.length, 3);
