@@ -15,7 +15,7 @@ test('voxels per dollar retains nine archived observations and fits the two spec
   for(const p of raw.points) assert.ok(Math.abs(plot.points.find(q=>q.id===p.id).y*p.y-1)<1e-12,p.id);
   assert.equal(raw.points.length,9);assert.equal(plot.points.length,10);
   assert.equal(plot.points.find(p=>p.id==='exaspim2024').y,1e11);
-  assert.match(plot.points.find(p=>p.id==='exaspim2024').note,/citation mismatch.*HiExM/i);
+  assert.match(plot.points.find(p=>p.id==='exaspim2024').note,/author estimate.*Glaser.*2025/i);
   assert.deepEqual(plot.referenceTrendlines.map(f=>f.fit.inputIds),[
     ['exm2015','exllsm2019','exaspim2023','exaspim2024'],
     ['sem2018','multisem506','multisem706','bdtem2024'],
@@ -25,7 +25,8 @@ test('voxels per dollar retains nine archived observations and fits the two spec
     const doc=new JSDOM(renderToStaticMarkup(React.createElement(DraftChartPlot,{plot,preview}))).window.document;
     assert.equal(doc.querySelectorAll('[data-reference-trendline]').length,2);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length,10);
-    assert.match(doc.body.textContent,/citation mismatch/i);
+    assert.match(doc.body.textContent,/author estimate/i);
+    assert.doesNotMatch(doc.body.textContent,/citation mismatch|HiExM/i);
     assert.match(doc.body.textContent,/prospective/i);
   }
 });

@@ -50,14 +50,14 @@ for (const prefix of ['draft', 'metric']) test(`${prefix} acquisition economics 
     assert.equal(projected[0].points.length, source.points.length + 1);
     const authorEstimate = projected[0].points.find(p => p.id === 'exaspim2024');
     assert.equal(authorEstimate.y, 1e11);
-    assert.match(authorEstimate.note, /author estimate.*citation mismatch/is);
+    assert.match(authorEstimate.note, /author estimate.*Glaser.*2025/is);
     assert.equal(panel.closest('article').dataset.draftChartCard, 'Connectomics imaging cost efficiency');
     assert.ok(document.getElementById('metric-imaging-cost-efficiency'));
     assert.equal(panel.querySelector('figcaption').textContent, 'Imaging efficiency');
     assert.equal(document.querySelector('dialog[open] figcaption').textContent, projected[0].title, 'Compact preview copy never replaces the full modal identity');
     assert.deepEqual([...panel.querySelectorAll('[data-draft-preview] [data-source-observation]')].map(n => n.dataset.sourceObservation), [...source.points.map(p => p.id), 'exaspim2024']);
     assert.ok(panel.textContent.includes(projected[0].scope));
-    assert.match(panel.textContent, /heterogeneous resolutions.*cost coverage.*unspecified.*PEEM.*prospective.*citation mismatch/is);
+    assert.match(panel.textContent, /heterogeneous resolutions.*cost coverage.*unspecified.*PEEM.*prospective.*ExA-SPIM.*author estimate/is);
     const acquisition = document.getElementById('draft-panel-acquisition-rates');
     assert.equal(acquisition.closest('[data-metrics-category]').dataset.metricsCategory, 'Mapping Scale');
     assert.equal(acquisition.closest('article').querySelectorAll('[data-draft-panel]').length, 1);

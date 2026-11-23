@@ -21,7 +21,8 @@ test('acquisition export carries two paths, precise fit inputs and decisive visi
   const spec=(await whenChartRegistered('metric-panel-acquisition-economics')).getChart();
   const doc=new JSDOM(buildChartImage(spec,window.location.href).svg,{contentType:'image/svg+xml'}).window.document;
   assert.equal(doc.querySelectorAll('[data-source-observation]').length,10);
-  assert.match([...doc.querySelectorAll('text')].map(n=>n.textContent).join(' '),/citation mismatch/);
+  assert.match([...doc.querySelectorAll('text')].map(n=>n.textContent).join(' '),/ExA-SPIM 2024.*author estimate/);
+  assert.doesNotMatch(doc.documentElement.textContent,/citation mismatch|HiExM/);
   assert.match(doc.documentElement.textContent,/prospective/);
   assert.ok(spec.legend.filter(e=>e.marker==='line').length===2);
   assert.match(spec.notes.join(' '),/Input IDs/);
