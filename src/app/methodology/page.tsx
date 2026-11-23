@@ -87,7 +87,7 @@ export default function MethodologyPage() {
         <h2 id="contribute-heading" className="mb-3 text-base font-semibold">Contribute</h2>
         <div className="card p-5">
           <p className="max-w-3xl text-sm leading-relaxed text-muted">
-            We welcome corrections, new sources, and code improvements from the community. Fork Neuro Atlas and open a pull request on GitHub; contributions are reviewed before they are merged. Or use Feedback without a GitHub account to select the part of the page you’re commenting on and include a source link and date if available.
+            We welcome corrections, new sources, and code improvements from the community. Fork Neuro Atlas and open a pull request on GitHub. Or use Feedback without a GitHub account.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
             <FeedbackTrigger className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />

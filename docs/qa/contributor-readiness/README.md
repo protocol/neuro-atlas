@@ -4,7 +4,7 @@
 
 This change adds public-fork onboarding, ownership/review routing, a secret-free GitHub Actions check, issue/PR templates, software licensing, and contribution discovery. It does not change scientific data, chart calculations, existing routes, visitor feedback processing, or production deployment settings.
 
-The actual UI production build and screenshots use runtime revision `1a521d2` (based on `bc92a0bee01d9490808cd501279eef008048568c`). Later evidence/test-only commits do not alter that runtime.
+The original November 20 UI build and `contribute-*.png` screenshots use runtime revision `1a521d2` (based on `bc92a0bee01d9490808cd501279eef008048568c`). The November 23 copy revision and its new captures are documented below.
 
 ## Actual local execution
 
@@ -23,6 +23,15 @@ Screenshots are **actual localhost UI captures**, not hosted preview/production 
 - `contribute-1440.png`
 - `contribute-390.png`
 - `contribute-320.png`
+
+### November 23 copy revision
+
+The contribution invitation now ends: “Fork Neuro Atlas and open a pull request on GitHub. Or use Feedback without a GitHub account.” The README and contributor guide were shortened; the invitation omits review, access, and repository-transfer boilerplate. Review settings, license files, workflow definitions, routes, and Feedback behavior are unchanged.
+
+- The updated copy assertion failed against the previous paragraph, then passed after the requested removals.
+- All 25 required scoped tests passed on Node.js 24. The prefixed typecheck and production build also passed.
+- The new localhost build returned HTTP 200. Headed Chrome checked the paragraph and links at 1440, 390, and 320px with no horizontal overflow.
+- Current copy captures: `contribute-copy-1440.png`, `contribute-copy-390.png`, and `contribute-copy-320.png`. The earlier `contribute-*.png` files remain as historical evidence of the November 20 wording.
 
 ## Licensing and source preservation
 

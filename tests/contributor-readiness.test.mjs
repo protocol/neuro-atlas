@@ -21,7 +21,8 @@ test("readers can start a fork contribution from the footer and methodology with
   }
   const document = render(Methodology);
   assert.doesNotMatch(document.querySelector("#contribute").textContent, /plan to enable|in the meantime/i);
-  assert.match(document.querySelector("#contribute").textContent, /reviewed before/i);
+  assert.equal(document.querySelector("#contribute p").textContent.trim(), "We welcome corrections, new sources, and code improvements from the community. Fork Neuro Atlas and open a pull request on GitHub. Or use Feedback without a GitHub account.");
+  assert.doesNotMatch(document.querySelector("#contribute").textContent, /reviewed before|to select the part of the page|include a source link and date/i);
   assert.ok(document.querySelector('a[href="https://github.com/protocol/neuro-atlas/pulls"]'), "Existing PR discovery remains available");
 });
 
