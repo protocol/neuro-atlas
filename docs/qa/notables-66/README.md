@@ -12,11 +12,12 @@ Science's $400m Series D is already indexed and remains unchanged. **Funding ind
 
 ## Revision and visual evidence
 
-- Baseline: `bc92a0bee01d9490808cd501279eef008048568c`.
-- Captured candidate runtime: `55671b985c9f0608d18907538728ff49f91d55d5`.
-- Reviewed source: `daa8be97f37ec0ca4bb13c14ab26e5c77ed8416c`; later evidence-only commit does not change runtime/data/tests.
+- Original baseline capture: `bc92a0bee01d9490808cd501279eef008048568c`.
+- Current main base after the concurrent contributor-readiness merge: `5e9b68881261297a59b43d442fead2eed7a2bc37`. Its roster, financing, timeline component and payload are byte-identical to the captured baseline.
+- Final tested/built/captured candidate: `3a3187a717f2238a485fcf6e828a9fcbd3ff585d`; later commits add evidence only.
+- `current-main/` contains six fresh exact-candidate captures; all six are pixel-identical to the independently reviewed earlier captures. Earlier originals remain intact, not overwritten.
 - Captures: actual headed Chrome on loopback-only production builds, **not production or hosted-preview screenshots**. No hosted authentication, noindex, or routing settings were changed. 390px is viewport emulation, not a physical-phone touch test.
-- Timeline component, canonical timeline, generated timeline and FX bytes are identical between captured runtime and reviewed source. The later runtime-data change is only the additive source-directory catalog, not timeline rendering or numbers.
+- All three complete source-bound tooltips, financing/award summary, narrow bounds and the eleven rendered source-directory links were reverified on that final production build.
 
 Before/after desktop captures show **$1.6b / 17 financing records** unchanged, and awards **1 → 2**. All three new marks render exactly once in 2026, with direct source URLs and announced/reported date labels. All three complete tooltips were read back and visually inspected; desktop and narrow captures are legible and in bounds. 390px has matching inner/client/scroll widths. No Funding index change or metric/implant-chart update is claimed.
 
@@ -27,8 +28,8 @@ Before/after desktop captures show **$1.6b / 17 financing records** unchanged, a
 - Frozen `npm ci` from the native lockfile; no dependency changes.
 - Scanner unit tests: 4 passed.
 - Deterministic `npm run data:generate`: stable output on repeated generation.
-- Final affected regression set at `daa8be9`: **45 passed, 0 failed**, including all six #66 checks, #64/#65 historical goldens, source-audit scopes, historical FX, grant/financing semantics, actual SSR links and cumulative-capital geometry.
-- Complete bounded repository replay (`npm test -- --test-concurrency=2`) at `5b649be`: **1,618 tests, 1,591 passed, 27 failed**. Untouched baseline replay: **1,613 tests, 1,586 passed, the same 27 failures**. These are pre-existing chart/export/config/source-history failures, not a clean full-suite claim. No historical golden was repinned. The subsequent source-directory-only addition has its own exact-delta and inventory checks; all 11 new URLs are indexed and the one unrelated baseline directory gap is unchanged.
+- Final affected regression set, including current-main contributor-readiness checks: **50 passed, 0 failed**, including all six #66 checks, #64/#65 historical goldens, source-audit scopes, historical FX, grant/financing semantics, actual SSR links and cumulative-capital geometry.
+- Complete bounded repository replay (`npm test -- --test-concurrency=2`) at `3a3187a`: **1,624 tests, 1,597 passed, 27 failed**. Untouched current-main `5e9b688` replay: **1,618 tests, 1,591 passed, the same 27 failures**. These are pre-existing chart/export/config/source-history failures, not a clean full-suite claim. No historical golden was repinned. All 11 newly introduced evidence URLs are indexed; the one unrelated baseline source-directory gap is unchanged.
 - Whole-app typecheck and `/neuro-atlas` production build pass at final reviewed source.
 - `git diff --check` passes; no app/component/generator/auth/routing/dependency changes.
 - Independent source/diff clean-critic review passed factual, dates/FX, materiality, deduplication and preservation gates. It caught the initial grant/Funding coverage conflict; that was fixed by removing the Funding index addition. Two bounded re-reviews passed the resolution, exact-source historical exclusions, native screenshot distinction and additive citation catalog.

@@ -41,5 +41,68 @@
       "sha256": "7492db8b6de3b9b35570c6ded9a4ccda8aa1a22eb045e94442af3e034be176ac",
       "sourceSha": "55671b985c9f0608d18907538728ff49f91d55d5"
     }
-  ]
+  ],
+  "currentMainBaselineSha": "5e9b68881261297a59b43d442fead2eed7a2bc37",
+  "currentMainCandidateSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d",
+  "currentMainCaptures": [
+    {
+      "name": "after-neuracle-detail-390.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "ecf6134ec8aa9486e785d302ba2f164d08d206b875ad1d0c9b2fce03a9d294dd",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neurobionics-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "139b7bfe92cdb4572a4aeea5eb3d5fb4e4cf45679ce69795e78f7f4174cf3c4e",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neuracle-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "e1da3e330c857cc2d1f95c29f54c65050ba15431dd5085df5af241ee3dfbf6dc",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-timeline-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "a4d26e6d0567464b4166e04d17d42b5fed1981367effa9145667b1003a1a20b7",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-synchron-detail-1440.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "4510eb6827a50ace3306a22fa65b7a13c2d5573586c38ca435a841d37ec277da",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    },
+    {
+      "name": "after-neurobionics-detail-390.png",
+      "pixelIdenticalToReviewed": true,
+      "sha256": "70b9b453f1aba97bb07a649ce2c7b08199d76027562bf05a306a97e3cd25327f",
+      "sourceSha": "3a3187a717f2238a485fcf6e828a9fcbd3ff585d"
+    }
+  ],
+  "currentMainImagesPixelIdenticalToIndependentReviewed": true,
+  "currentMainFullSuite": {
+    "baseline": {
+      "tests": 1618,
+      "pass": 1591,
+      "fail": 27,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "candidate": {
+      "tests": 1624,
+      "pass": 1597,
+      "fail": 27,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "newFailures": 0
+  },
+  "currentMainScopedTests": {
+    "tests": 50,
+    "pass": 50,
+    "fail": 0
+  }
 }
