@@ -11,19 +11,17 @@ const Methodology = MethodologyModule.default?.default ?? MethodologyModule.defa
 const guide = "https://github.com/protocol/neuro-atlas/blob/main/CONTRIBUTING.md";
 const render = (Component) => new JSDOM(renderToStaticMarkup(React.createElement(Component))).window.document;
 
-test("readers can start a fork contribution from the footer and methodology without losing Feedback", () => {
+test("repository readiness leaves the existing website contribution surfaces unchanged", () => {
   for (const Component of [SiteFooter, Methodology]) {
     const document = render(Component);
-    const link = document.querySelector(`a[href="${guide}"]`);
-    assert.ok(link, "A contribution starts with the fork and review guide, not a write-access invitation");
-    assert.match(link.textContent, /contribute on github/i);
-    assert.ok([...document.querySelectorAll("button")].some((button) => /feedback/i.test(button.textContent)), "Keep account-free Feedback as the alternative");
+    assert.ok(!document.querySelector(`a[href="${guide}"]`), "Keep the new GitHub contribution CTA off the website");
+    assert.doesNotMatch(document.body.textContent, /contribute on github|fork neuro atlas and open a pull request/i);
+    assert.ok([...document.querySelectorAll("button")].some((button) => /feedback/i.test(button.textContent)), "Keep the existing Feedback entry point");
   }
+  const footer = render(SiteFooter);
+  assert.equal(footer.querySelector('a[href="https://github.com/protocol/neuro-atlas"]')?.textContent, "GitHub");
   const document = render(Methodology);
-  assert.doesNotMatch(document.querySelector("#contribute").textContent, /plan to enable|in the meantime/i);
-  assert.equal(document.querySelector("#contribute p").textContent.trim(), "We welcome corrections, new sources, and code improvements from the community. Fork Neuro Atlas and open a pull request on GitHub. Or use Feedback without a GitHub account.");
-  assert.doesNotMatch(document.querySelector("#contribute").textContent, /reviewed before|to select the part of the page|include a source link and date/i);
-  assert.ok(document.querySelector('a[href="https://github.com/protocol/neuro-atlas/pulls"]'), "Existing PR discovery remains available");
+  assert.ok(document.querySelector('a[href="https://github.com/protocol/neuro-atlas/pulls"]'), "Keep the existing PR link unchanged");
 });
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");

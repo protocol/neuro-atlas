@@ -87,11 +87,10 @@ export default function MethodologyPage() {
         <h2 id="contribute-heading" className="mb-3 text-base font-semibold">Contribute</h2>
         <div className="card p-5">
           <p className="max-w-3xl text-sm leading-relaxed text-muted">
-            We welcome corrections, new sources, and code improvements from the community. Fork Neuro Atlas and open a pull request on GitHub. Or use Feedback without a GitHub account.
+            We welcome corrections and new sources from the community. We plan to enable contributions through GitHub pull requests. In the meantime, use Feedback to select the part of the page you’re commenting on and include a source link and date if available.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
             <FeedbackTrigger className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
-            <a href="https://github.com/protocol/neuro-atlas/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">Contribute on GitHub ↗</a>
             <a href="https://github.com/protocol/neuro-atlas/pulls" target="_blank" rel="noreferrer" className="text-sm text-muted underline underline-offset-4 hover:text-foreground">View existing pull requests ↗</a>
           </div>
         </div>

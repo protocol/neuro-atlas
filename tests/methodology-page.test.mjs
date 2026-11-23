@@ -43,7 +43,7 @@ test("the methodology Feedback button opens the existing selector without a logi
   try {
     const trigger = document.querySelector("#contribute button[data-feedback-trigger]");
     assert.ok(trigger, "The methodology page needs a working Feedback button");
-    assert.match(document.querySelector("#contribute").textContent, /Fork Neuro Atlas and open a pull request on GitHub/);
+    assert.match(document.querySelector("#contribute").textContent, /plan to enable contributions through GitHub pull requests/);
     trigger.focus();
     await click(trigger);
     assert.equal(document.querySelector("[data-feedback-selection]")?.getAttribute("aria-label"), "Select feedback element");

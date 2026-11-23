@@ -204,7 +204,7 @@ test('rendered metric cards omit the generic Bounded evidence eyebrow, retaining
       for (const panel of card.querySelectorAll('[data-draft-panel]')) {
         if (!panel.querySelector('[data-source-observation]')) continue;
         const modal = await openPanel(panel);
-        assert.ok(modal.querySelector('[data-draft-sources-scope]').textContent.length > 0);
+        assert.ok(modal.querySelector('.draft-plot-scope').textContent.length > 0);
       }
     }
   } finally { await cleanup(); }
@@ -249,7 +249,7 @@ test('all 15 curated images keep exact geometry, refer to Atlas, and retain sour
       assert.deepEqual(numeric(geometry(marks)), numeric(geometry(source)), panel.id);
       const text = [...out.window.document.querySelectorAll('text')].map(n => n.textContent).join(' ');
       assert.ok(text.includes(modal.querySelector('figcaption').textContent), panel.id);
-      const scope = modal.querySelector('[data-draft-sources-scope]').textContent.replace(/\s+/g, ' ');
+      const scope = panel.querySelector('.draft-plot-scope').textContent.replace(/\s+/g, ' ');
       assert.ok(exportEvidence(out.window.document).includes(scope), `Source evidence retained: ${panel.id}`);
       assert.ok(!text.includes(scope), `Long scope is not painted into the image: ${panel.id}`);
       assert.ok(text.includes('More information on Neuro Atlas.'), panel.id);
