@@ -61,22 +61,7 @@
       "date_basis": "reported"
     }
   ],
-  "expectedRound": {
-    "company_slug": "neurobionics",
-    "announced_on": "2026-11-05",
-    "date_precision": "day",
-    "stage": "Grant",
-    "amount_usd_m": "",
-    "amount_native_m": "4.6",
-    "currency": "GBP",
-    "display_amount": "£4.6m (~$6.20m)",
-    "investors": "Advanced Research + Invention Agency (ARIA)",
-    "source_url": "https://neurobionics.io/press/news/aria-grant-award/",
-    "note": "ARIA grant 6927 for a 36-month preclinical endovascular neuromodulation feasibility project, not an equity round. £4.6m is this award; £50m is the program-wide budget. USD estimate uses Federal Reserve H.10 Nov 5 observation of $1.3483 per GBP, stored as 0.7416747014759326 GBP per USD. Explicit announcement-date fallback: grant-agreement date and disbursement schedule are undisclosed; not issuer-reported USD or cash received.",
-    "source_kind": "primary",
-    "reviewed_on": "2026-11-23",
-    "date_basis": "announcement"
-  },
+  "expectedRound": null,
   "baselineExactFiles": {
     "data/funding-index/companies.csv": "281543d6a10cec7e3a13db41d0f775b8a36845d8999a3b714a022c75b31cabb0",
     "data/funding-index/milestones.csv": "3f293dd5f23ffd1cb749472894f17db51cf8fd2e389d763ae0ea823cede602e0"
@@ -86,5 +71,6 @@
     "awards": 1,
     "usdM": 1562.4073505145361
   },
-  "baselineInvestorsSha256": "0e3820f9cbd53e5db151b76d29a1e3968a9323211e29e06539543587f8cfc2ee"
+  "baselineInvestorsSha256": "0e3820f9cbd53e5db151b76d29a1e3968a9323211e29e06539543587f8cfc2ee",
+  "fundingDisposition": "Unchanged: current rendered coverage explicitly excludes standalone grants. ARIA award remains in timeline; Funding index inclusion deferred, not mislabeled as equity."
 }

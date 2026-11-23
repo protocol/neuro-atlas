@@ -86,10 +86,8 @@ test('Notables 65 adds Coherence and historically converted NeuroXess once, with
   assert.equal(laterFinancing.length, 1);
   assert.equal(laterFinancing[0].amountUsdM, 400);
   assert.equal(funding.summary.asOf, '2026-11-17');
-  const issue66Rounds = funding.rounds.filter(round => issue66Sources.includes(round.sourceUrl));
-  assert.equal(issue66Rounds.length, 1); // exact delta independently frozen by Notables 66
-  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 2 + laterFinancing.length + issue66Rounds.length);
-  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45 + nx.amountUsdM + laterFinancing[0].amountUsdM + issue66Rounds[0].amountUsdM).toFixed(2)));
+  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 2 + laterFinancing.length);
+  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + 45 + nx.amountUsdM + laterFinancing[0].amountUsdM).toFixed(2)));
 });
 
 test('Notables 65 corrects only the existing Coherence indication and keeps the company roster unchanged', () => {

@@ -35,34 +35,22 @@ test('Notables 66 is exactly three source-bound additions; every prior timeline 
   }
 });
 
-test('Notables 66 adds only the ARIA grant to Funding index and retains every prior record and coverage date', () => {
-  const rows = funding.rounds.filter(row => sources.includes(row.sourceUrl));
-  assert.equal(rows.length, 1);
-  const grant = rows[0];
-  const canonicalRounds = parseCsv(read('../data/funding-index/rounds.csv'));
-  assert.deepEqual(canonicalRounds.filter(row => row.source_url === sources[0]), [fixture.expectedRound]);
-  assert.equal(hash(funding.rounds.filter(row => !sources.includes(row.sourceUrl))), fixture.baselineRoundsSha256);
+test('Notables 66 retains the entire Funding index and coverage contract; only timeline gets the grant', () => {
+  assert.equal(funding.rounds.filter(row => sources.includes(row.sourceUrl)).length, 0);
+  assert.equal(hash(funding.rounds), fixture.baselineRoundsSha256);
   assert.equal(hash(Object.fromEntries(Object.entries(funding).filter(([key]) => !['rounds','summary','investors'].includes(key)))), fixture.baselineFundingWithoutRoundsAndSummarySha256);
-  assert.equal(hash(funding.investors.filter(row => row.name !== 'Advanced Research + Invention Agency (ARIA)')), fixture.baselineInvestorsSha256);
-  assert.deepEqual(funding.investors.filter(row => row.name === 'Advanced Research + Invention Agency (ARIA)'), [{name:'Advanced Research + Invention Agency (ARIA)', roundCount:1, companyCount:1, associatedCapitalUsdM:6.2}]);
-  assert.equal(grant.companySlug, 'neurobionics');
-  assert.equal(grant.stage, 'Grant');
-  assert.equal(grant.currency, 'GBP');
-  assert.equal(grant.amountNativeM, 4.6);
-  assert.equal(grant.sourceKind, 'primary');
-  assert.equal(grant.reviewedOn, '2026-11-23');
+  assert.equal(hash(funding.investors), fixture.baselineInvestorsSha256);
+  assert.deepEqual(funding.summary, fixture.baselineSummary);
+  assert.match(funding.methodology.coverage, /standalone grants and lifetime cumulative totals are not added/);
+  const grant = one(sources[0]);
+  assert.equal(grant.activity, 'grant');
   assert.equal(grant.amountUsdM, 4.6 / (1 / 1.3483));
   assert.equal(grant.fx.nativePerUsd, 1 / 1.3483);
   assert.equal(grant.fx.rateDate, '2026-11-05');
   assert.equal(grant.fx.investmentDate, null);
   assert.equal(grant.fx.dateBasis, 'announcement_date');
   assert.equal(grant.fx.rateSourceUrl, 'https://www.federalreserve.gov/releases/h10/20261109/');
-  assert.equal(one(sources[0]).amountUsdM, grant.amountUsdM);
   assert.match(grant.note, /announcement-date fallback/);
-  assert.match(grant.note, /not an equity round/);
-  assert.equal(funding.summary.asOf, fixture.baselineSummary.asOf);
-  assert.equal(funding.summary.indexedRounds, fixture.baselineSummary.indexedRounds + 1);
-  assert.equal(funding.summary.observedCapitalUsdM, Number((fixture.baselineSummary.observedCapitalUsdM + grant.amountUsdM).toFixed(2)));
   const fx = load('../data/funding-index/fx-conversions.json');
   assert.equal(hash(fx.filter(row => row.sourceUrl !== sources[0])), fixture.baselineFxSha256);
   for (const [path, digest] of Object.entries(fixture.baselineExactFiles)) {
