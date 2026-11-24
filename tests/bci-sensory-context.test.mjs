@@ -12,6 +12,7 @@ import { buildChartImage } from '../src/lib/chart-export.ts';
 import { DraftChartPanel } from '../src/components/draft-chart-panel.tsx';
 import { BCI_BITRATE_EVIDENCE } from '../src/data/bci-bitrate.ts';
 import { mount, click } from './modal-helpers.mjs';
+import { beforeBrainGateAddition } from './helpers/recording-hours-coverage-baseline.mjs';
 
 globalThis.React = React;
 const plot = BCI_BITRATE_EVIDENCE.plots[0];
@@ -154,7 +155,9 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   assert.equal(Object.keys(frozenMain).length, 30);
   for (const key of Object.keys(acquisition.hashes)) assert.ok(Object.hasOwn(frozenMain, key), key);
   const expected = { ...frozenMain, ...acquisition.hashes };
-  const plots = [...new Map(Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
+  // Remove only the exact fixture-checked addition, preserving the independent
+  // historical SVG goldens and every pre-existing recording observation.
+  const plots = [...new Map(Object.values(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
     const markup = renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }));

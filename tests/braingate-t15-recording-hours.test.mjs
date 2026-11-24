@@ -98,6 +98,21 @@ test('BrainGate T15 is one qualified non-public recording observation throughout
   } finally { imageDom?.window.close(); await cleanup(); }
 });
 
+test('BrainGate compatibility normalization removes only the exact additive checkpoint without mutating scientific data', async () => {
+  const helpers = await import('./helpers/recording-hours-coverage-baseline.mjs');
+  assert.equal(typeof helpers.beforeBrainGateAddition, 'function');
+  const original = structuredClone(METRIC_CHART_EVIDENCE);
+  const normalized = helpers.beforeBrainGateAddition(METRIC_CHART_EVIDENCE);
+  const before = original[title].plots[0];
+  const after = normalized[title].plots[0];
+  assert.deepEqual(after.points, before.points.slice(0, -1));
+  assert.deepEqual(after.legend, before.legend.slice(0, -1));
+  assert.deepEqual(METRIC_CHART_EVIDENCE, original, 'Normalization must not change the live chart');
+  const altered = structuredClone(original);
+  altered[title].plots[0].points.find(point => point.id === id).y += 1;
+  assert.throws(() => helpers.beforeBrainGateAddition(altered), /Exact BrainGate T15 metric addition/);
+});
+
 test('BrainGate public figure summaries appear in the classified source directory', () => {
   const catalog = JSON.parse(readFileSync(new URL('../src/data/methodology-sources.json', import.meta.url), 'utf8'));
   const point = METRIC_CHART_EVIDENCE[title].plots[0].points.find(point => point.id === id);

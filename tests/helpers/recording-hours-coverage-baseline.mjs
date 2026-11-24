@@ -23,7 +23,7 @@ function restore(target, change) {
     else delete target[field];
   }
 }
-export function beforeRecordingCoverage(evidence) {
+export function beforeBrainGateAddition(evidence) {
   const restored = structuredClone(evidence);
   const plots = restored[title].plots;
   const metric = plots.some(plot => plot.id === 'recording-hours');
@@ -46,6 +46,12 @@ export function beforeRecordingCoverage(evidence) {
     assert.equal(plots.at(-1).id, addedPlot.id, 'Only the appended source plot is removed');
     plots.pop();
   }
+  return restored;
+}
+export function beforeRecordingCoverage(evidence) {
+  const restored = beforeBrainGateAddition(evidence);
+  const plots = restored[title].plots;
+  const metric = plots.some(plot => plot.id === 'recording-hours');
   const points = plots.flatMap(plot => plot.points);
   for (const change of delta.points) restore(one(points, change.id), change);
   if (metric) for (const change of delta.metricPoints) restore(one(points, change.id), change);
