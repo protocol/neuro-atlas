@@ -59,7 +59,7 @@ test("missing research is shown as Unknown in both views, never zero or financin
       const detail = document.querySelector('[role="dialog"]');
       const section = [...detail.querySelectorAll("section")].find((el) => el.querySelector("h3")?.textContent === "Founding year");
       assert.match(section.textContent, /Unknown/);
-      assert.match(section.textContent, /not yet verified/i);
+      assert.match(section.textContent, /Founding year: unknown\./i);
       assert.equal(section.querySelector("a"), null);
       await click(detail.querySelector('[aria-label="Close detail panel"]'));
     }

@@ -386,7 +386,7 @@
     {
       "path": "src/data/funding-index.json",
       "beforeSha256": "b6fe893f18c8338d3cee0b2bfa0556029a76c30a02bb236ee2e896023702a2e4",
-      "afterSha256": "73310ae38c462669c9f38b54deb33e52d2b873517bf465679257997690b27b46",
+      "afterSha256": "4b985c660c564bfa1dae6da11e7a8ca31ddef4ab8d47e3ffd691d2a447aaa651",
       "encoding": "json",
       "beforeFormat": {
         "space": 0,
@@ -1665,6 +1665,20 @@
             "after": {
               "exists": true,
               "value": "2026-11-24"
+            }
+          },
+          {
+            "path": [
+              "methodology",
+              "coverage"
+            ],
+            "before": {
+              "exists": true,
+              "value": "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added."
+            },
+            "after": {
+              "exists": true,
+              "value": "Selected public financing records, including explicitly labeled philanthropic commitments. Combined multi-round disclosures are counted once at their published total. Associated capital sums the full financing amounts for records naming each backer; individual contributions require separate evidence. Dates identify announcements, reports or documented events; uncertain dates are labeled unverified. Amounts retain the published currency and historical exchange-rate estimates. Each saved conversion keeps its original rate and date; older estimates retain any unresolved rate-source qualifications. Company histories and source access remain partial. Standalone grants and lifetime cumulative totals remain outside the indexed sum."
             }
           }
         ]
