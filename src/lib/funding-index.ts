@@ -20,6 +20,22 @@ export type FundingCompany = {
   founding?: FundingFounding | null;
 };
 
+export type FundingHistoricalFx = {
+  sourceUrl: string;
+  companySlug: string;
+  currency: string;
+  amountNativeM: number;
+  investmentDate: string | null;
+  announcedOn: string;
+  dateBasis: "announcement_date" | "investment_date" | "event_date";
+  rateDate: string;
+  rateDateBasis?: "previous_available_business_day";
+  nativePerUsd: number;
+  rateSource: string;
+  rateSourceUrl: string;
+  reviewedOn: string;
+};
+
 export type FundingRound = {
   companySlug: string;
   announcedOn: string;
@@ -28,6 +44,7 @@ export type FundingRound = {
   stage: string;
   amountUsdM: number;
   amountNativeM?: number | null;
+  fx?: FundingHistoricalFx;
   currency?: string;
   displayAmount?: string;
   investors?: string[];
@@ -217,6 +234,22 @@ export function formatFundingDate(date: string, precision?: string): string {
     ...(precision === "day" ? { day: "numeric" } : {}),
     timeZone: "UTC",
   }).format(parsed);
+}
+
+export function formatFundingFxBasis(fx: {
+  dateBasis: string;
+  announcedOn: string;
+  investmentDate: string | null;
+  rateDate: string;
+  rateDateBasis?: string;
+}): string {
+  const label = fx.dateBasis === "event_date" ? "Documented event-date FX"
+    : fx.dateBasis === "investment_date" ? "Investment-date FX"
+    : fx.dateBasis === "announcement_date" ? "Announcement-date FX fallback" : "Historical FX";
+  const basisDate = fx.dateBasis === "investment_date" ? fx.investmentDate : fx.announcedOn;
+  const observation = fx.rateDateBasis === "previous_available_business_day"
+    ? ` · previous available H.10 day ${formatFundingDate(fx.rateDate, "day")}` : "";
+  return `${label}${basisDate ? ` · ${formatFundingDate(basisDate, "day")}` : ""}${observation}`;
 }
 
 export function formatFundingRecordDate(date: string, precision?: string, basis?: string): string {

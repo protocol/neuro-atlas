@@ -7,6 +7,7 @@ import {
   buildCompanyRows,
   formatCapital,
   formatFundingDate,
+  formatFundingFxBasis,
   formatFundingRecordDate,
   getTimelinePosition,
   type FundingCompanyRow,
@@ -485,6 +486,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                       </div>
                       {round.sourceKind && <p className="mt-3 text-xs font-semibold">{sourceKindLabel(round.sourceKind)}{round.reviewedOn ? ` · ${sourceReviewLabel(round.reviewedOn)}` : ""}</p>}
                       {round.investors && round.investors.length > 0 && <p className="mt-3 text-xs leading-relaxed text-muted">{round.investors.join(" · ")}</p>}
+                      {round.fx && <p className="mt-2 text-xs leading-relaxed text-muted">{formatFundingFxBasis(round.fx)} · {round.fx.nativePerUsd} {round.fx.currency}/USD · <a href={round.fx.rateSourceUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2">Historical FX source</a></p>}
                       {round.note && <p className="mt-2 text-xs leading-relaxed text-muted">{round.note}</p>}
                       {round.sourceUrl && <a href={round.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-accent underline decoration-accent/35 underline-offset-4 hover:decoration-accent">Source ↗</a>}
                       {round.investorEvidence?.map((evidence) => <div key={`${evidence.investorName}-${evidence.sourceUrl}`} className="mt-2">

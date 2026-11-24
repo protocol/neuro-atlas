@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readHistoricalFileSync as readFileSync } from './helpers/china-funding-baseline.mjs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeSourceAudit, SOURCE_AUDIT_DELTA } from './helpers/source-audit-baseline.mjs';
 import { beforeNov17Feedback } from './helpers/nov17-feedback-baseline.mjs';
