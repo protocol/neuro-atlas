@@ -20,6 +20,8 @@
 .chart-plate-footer a { color: #115ef7; font-weight: 550; }
 .chart-plate-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-bottom: .85rem; }
 .chart-plate-controls:empty { display: none; }
+/* Copy feedback is advisory, never a pointer target over the nearby chart controls. */
+.pc-share > [role="status"] { pointer-events: none; }
 .chart-plate-controls > :is(.brain-scale-controls, .exploration-model) { flex: 1 1 100%; margin: 0; }
 .chart-plate-controls :is(.pc-track-select, .publication-growth-options) { margin: 0; }
 .chart-plate-series { display: inline-flex; align-items: center; gap: .35rem; border: 0; border-radius: .2rem; padding: .15rem 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }

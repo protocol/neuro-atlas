@@ -68,3 +68,18 @@ test('the screenshot-ready legend stays directly interactive rather than duplica
     assert.equal(new URL(window.location.href).searchParams.get('chartHidden'), 'bci-information-transfer-over-time:speech');
   } finally { await cleanup(); }
 });
+
+
+test('copy feedback remains readable without intercepting the editing controls below it', async () => {
+  const { JSDOM } = await import('jsdom');
+  const { readFileSync } = await import('node:fs');
+  const css = readFileSync(new URL('../src/components/chart-plate.css', import.meta.url), 'utf8');
+  const dom = new JSDOM(`<style>${css}</style><div class="pc-share"><span role="status" aria-live="polite">Chart copied.</span></div>`);
+  try {
+    const status = dom.window.document.querySelector('[role=status]');
+    assert.equal(dom.window.getComputedStyle(status).pointerEvents, 'none');
+    assert.notEqual(dom.window.getComputedStyle(status).display, 'none');
+    assert.equal(status.getAttribute('aria-live'), 'polite');
+    assert.equal(status.textContent, 'Chart copied.');
+  } finally { dom.window.close(); }
+});
