@@ -15,7 +15,7 @@ export default async function FundingPage({
   searchParams,
 }: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
-} = {}) {
+}) {
   const source = (await searchParams)?.source;
   const data = fundingData as FundingIndexData;
   return (

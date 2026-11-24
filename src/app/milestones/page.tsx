@@ -13,7 +13,7 @@ export default async function MilestonesPage({
   searchParams,
 }: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
-} = {}) {
+}) {
   const source = (await searchParams)?.source;
   return (
     <>

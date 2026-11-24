@@ -11,7 +11,7 @@ const MilestonesPage = MilestonesPageModule.default ?? MilestonesPageModule;
 globalThis.React = React;
 
 test('Milestones omits the reported Live pill and its separator while preserving header context', async () => {
-  const dom = new JSDOM(renderToStaticMarkup(await MilestonesPage()));
+  const dom = new JSDOM(renderToStaticMarkup(await MilestonesPage({})));
   try {
     const hero = dom.window.document.querySelector('section');
     assert.equal(hero.querySelector('h1').textContent, 'Milestones');
