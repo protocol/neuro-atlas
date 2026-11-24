@@ -73,6 +73,9 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   }, []);
   useLayoutEffect(() => {
     const reveal = () => {
+      // A card-opened dialog keeps the mounted catalog/search/rails untouched.
+      // Fresh historical fragment entries still reveal their source category.
+      if (window.history.state?.atlasModalFrom) return;
       const anchor = performanceTarget(hash.slice(1));
       pendingReveal.current = anchor;
       const legacy = anchor.replace(/^metric-/, "draft-");

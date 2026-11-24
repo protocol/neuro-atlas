@@ -62,12 +62,15 @@ test('overview card opens live exploration, shares its exact state and closes ba
   let shared, geometry;
   try {
     const before = window.location.href;
+    const search = document.querySelector('#metrics-search');
+    await act(async () => { search.value = 'BCI'; search.dispatchEvent(new Event('input', { bubbles: true })); });
     const rail = document.querySelector('[data-metric-rail]'); rail.scrollLeft = 183;
     const trigger = document.querySelector('[data-draft-popout-trigger="metric-panel-bci-bitrate"]');
     assert.equal(trigger.tagName, 'BUTTON', 'ordinary card opens a dialog rather than navigating');
     trigger.focus();
     await click(trigger);
     const modal = document.querySelector('dialog[open]'); assert.ok(modal);
+    assert.equal(search.value, 'BCI', 'ordinary chart opening retains the live overview search');
     assert.deepEqual(replacements, [], 'exploration hashes must not be redirected');
     await click(modal.querySelector('[data-exploration-series="Speech decoding"]'));
     await click(modal.querySelector('[data-exploration-fit-toggle]'));
