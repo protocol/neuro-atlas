@@ -1,0 +1,157 @@
+{
+  "scope": "branding",
+  "builtRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac",
+  "validationHeadBeforeEvidence": "95ea2ddb7dc81ea6d1cfb4c82ca2bf6f437f70d4",
+  "runtimePublicConfigPackageDeltaAfterBuild": false,
+  "viewer": "exact Next production-static assets on Host-restricted noindex loopback; no hosted auth/server API certification",
+  "productionBuildExit": 0,
+  "nativeFlow": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "senderNoNavigation": true,
+    "recipientStateEqual": true,
+    "overviewRestored": true
+  },
+  "matrix": {
+    "revision": "b5ab3293a3806ec32a083d7175bd6458d465cbac",
+    "tests": 228,
+    "pass": 225,
+    "fail": 3,
+    "cancelled": 0,
+    "skipped": 0,
+    "duration_ms": 381154.02328,
+    "failureNames": [
+      "archived source snapshots and provenance remain byte-identical to base",
+      "legacy fragment translation preserves exactly the current catalog URL's relevant state",
+      "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view"
+    ]
+  },
+  "targetedClosure": {
+    "case": "legacy incoming campaign inventory expected URL",
+    "fullFileResult": "6 passed / 0 failed",
+    "testOnlyReviewHeads": {
+      "pages": "a91b8d47eb3fb75f4f2fc1d22af0f1b26a2cb208",
+      "branding": "359b6fdb6254c595787e5260042a2d0ba4eb2f0b"
+    },
+    "sourceChanged": false
+  },
+  "retainedIntakeFailures": [
+    "archived source snapshots and provenance remain byte-identical to base",
+    "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view"
+  ],
+  "repositoryWideGreen": false,
+  "independentSplitClosure": "PASS; no P0/P1; test expectation SPLIT-1 closed, subsequent unused import cleanup only",
+  "http": {
+    "revision": "b5ab3293a3806ec32a083d7175bd6458d465cbac",
+    "frozenDataFiles": 140,
+    "dataFilesChanged": [],
+    "hostGuard": 403
+  },
+  "pngFiles": [
+    {
+      "file": "before-desktop.png",
+      "sha256": "a100b783cd9f086933dcb1d9ccdaa69e0373d20038bfc01f4b56726888144d36",
+      "width": 1440,
+      "height": 1100,
+      "capturedRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e"
+    },
+    {
+      "file": "after-desktop.png",
+      "sha256": "4042ef8424b4680e327d8dfada809c60175295768861e6ef5702a1c369ef8c53",
+      "width": 1440,
+      "height": 1100,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    },
+    {
+      "file": "after-mobile.png",
+      "sha256": "196fa002b49ba9f6f8b89d2904c02e8f7be09415d1765206b425a797d3dfbbeb",
+      "width": 390,
+      "height": 844,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    },
+    {
+      "file": "after-mobile-320.png",
+      "sha256": "3f41754e580c117275de7e2a17bf3b55253aacac152c7e2c200b294115cd795d",
+      "width": 320,
+      "height": 740,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    },
+    {
+      "file": "native-default.png",
+      "sha256": "9acae64c25ea1b96c8d3b10bf0fee5cd3387894f247a8c0f93230d3166f22abe",
+      "width": 2400,
+      "height": 2292,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    },
+    {
+      "file": "native-sensory.png",
+      "sha256": "84968779d2754432efba2b80d20426a81a1a607b7bbbd5ad459b5f341a80167d",
+      "width": 2400,
+      "height": 2986,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    },
+    {
+      "file": "native-reciprocal.png",
+      "sha256": "854a8154ad58895354f19c4b260d64b145e29000aeb6224b2ffa4ad5c6f4c270",
+      "width": 2400,
+      "height": 2176,
+      "capturedRuntime": "b5ab3293a3806ec32a083d7175bd6458d465cbac"
+    }
+  ],
+  "limits": [
+    "local viewer, not hosted preview",
+    "viewport-emulated pointer, not physical-phone touch",
+    "no GA server delivery certification",
+    "no merge or deployment authorized"
+  ],
+  "nativeUIImageCases": [
+    {
+      "case": "explore-bci-default",
+      "slug": "bci-information-transfer-over-time",
+      "filename": "neuro-atlas-bci-information-transfer-over-time.png",
+      "bytes": 527246,
+      "sha256": "9acae64c25ea1b96c8d3b10bf0fee5cd3387894f247a8c0f93230d3166f22abe",
+      "canonicalURL": "http://127.0.0.1:38928/neuro-atlas/field-velocity/bci-information-transfer-over-time",
+      "noNavigation": true
+    },
+    {
+      "case": "explore-bci-sensory",
+      "slug": "bci-information-transfer-over-time",
+      "filename": "neuro-atlas-bci-information-transfer-over-time.png",
+      "bytes": 605091,
+      "sha256": "84968779d2754432efba2b80d20426a81a1a607b7bbbd5ad459b5f341a80167d",
+      "canonicalURL": "http://127.0.0.1:38928/neuro-atlas/field-velocity/bci-information-transfer-over-time?chartModel=bci-information-transfer-over-time%3Asensory",
+      "noNavigation": true,
+      "nativeBrowserHistory": {
+        "BackDismissedInOneEntry": true,
+        "queryAndFocusPreserved": true,
+        "ForwardRestoredExactSensoryReference": "8750000"
+      }
+    },
+    {
+      "case": "recipient-acquisition-reciprocal",
+      "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+      "filename": "neuro-atlas-estimated-acquisition-efficiency-voxels-per-dollar.png",
+      "bytes": 510555,
+      "sha256": "854a8154ad58895354f19c4b260d64b145e29000aeb6224b2ffa4ad5c6f4c270",
+      "canonicalURL": "http://127.0.0.1:38928/neuro-atlas/field-velocity/estimated-acquisition-efficiency-voxels-per-dollar?acquisitionMetric=dollars-per-voxel",
+      "noNavigation": true
+    }
+  ],
+  "clipboard": {
+    "nativeReadback": true,
+    "types": [
+      "text/plain",
+      "text/html",
+      "image/png"
+    ],
+    "bytes": 471431,
+    "sha256": "ffbeebaa6d7d43c4dae86f502ce03b69cfb95d1b145ee9bf0ffeb24079c3d717",
+    "samePNGAsDownload": false,
+    "receivingAppPasteNotTested": true,
+    "filesystemDownloadNotExercised": true
+  }
+}
