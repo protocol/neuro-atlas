@@ -13,7 +13,7 @@ import * as pageModule from '../src/app/field-velocity/[slug]/page.tsx';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
-import { readStandaloneChartSettings, standaloneChartParams, updateStandaloneChartUrl } from '../src/lib/standalone-chart-state.ts';
+import { readStandaloneChartSettings, standaloneChartParams } from '../src/lib/standalone-chart-state.ts';
 import { chartShareUrl } from '../src/lib/chart-export.ts';
 import { graphNavigationHref, legacyGraphDestination } from '../src/lib/field-velocity/graph-navigation.ts';
 
