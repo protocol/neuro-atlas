@@ -7,6 +7,8 @@ import * as graphModule from '../src/app/field-velocity/[slug]/page.tsx';
 import { FIELD_VELOCITY_GRAPHS } from '../src/data/field-velocity-links.ts';
 import { atlasBasePath, atlasPath } from '../src/lib/atlas-path.ts';
 import { legacyComparisonDestination } from '../src/lib/field-velocity/legacy-comparison.ts';
+import { legacyGraphDestination, graphNavigationHref } from '../src/lib/field-velocity/graph-navigation.ts';
+import { chartCopiedUrl } from '../src/lib/chart-export.ts';
 import { mount } from './modal-helpers.mjs';
 
 globalThis.React = React;
@@ -123,4 +125,28 @@ test('hash and history changes on a retained legacy route translate once without
     });
     assert.equal(calls.length, 2, 'canonical addresses are never bounced back to the catalog');
   } finally { await cleanup(); }
+});
+
+
+test('incoming legacy campaigns survive translation while internal navigation and deliberate shares remain separately sanitized', () => {
+  for (const base of ['', '/neuro-atlas']) {
+    const source = `https://atlas.example${base}/field-velocity?recordingView=optical&utm_campaign=a&utm_campaign=b&token=private&review=1&review=2#simultaneously-recorded-neurons`;
+    const legacy = new URL(legacyGraphDestination(source, base), source);
+    assert.equal(legacy.pathname, `${base}/field-velocity/${recording}`);
+    assert.deepEqual(legacy.searchParams.getAll('utm_campaign'), ['a', 'b']);
+    assert.deepEqual(legacy.searchParams.getAll('review'), ['1', '2']);
+    assert.equal(legacy.searchParams.get('recordingView'), 'optical');
+    assert.equal(legacy.searchParams.has('token'), false);
+    const internal = new URL(graphNavigationHref(recording, source), source);
+    assert.equal(internal.searchParams.has('utm_campaign'), false);
+    assert.equal(internal.searchParams.has('token'), false);
+    assert.deepEqual(internal.searchParams.getAll('review'), ['1', '2']);
+    const copied = new URL(chartCopiedUrl(source, recording));
+    assert.equal(copied.searchParams.get('utm_source'), 'neuro_atlas');
+    assert.equal(copied.searchParams.get('utm_medium'), 'share');
+    assert.deepEqual(copied.searchParams.getAll('utm_campaign'), ['chart_share']);
+    assert.equal(copied.searchParams.get('utm_content'), recording);
+    assert.equal(copied.searchParams.has('token'), false);
+    assert.equal(copied.searchParams.has('review'), false);
+  }
 });
