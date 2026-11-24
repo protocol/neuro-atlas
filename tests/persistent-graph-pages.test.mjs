@@ -54,7 +54,7 @@ test("legacy fragment translation preserves exactly the current catalog URL's re
       for (const view of ["historical", "electrical", "human-channels", "optical", "unknown", "", "optical&recordingView=electrical", "optical&recordingView=optical"]) {
         const search = "?utm_campaign=a&utm_campaign=b&token=secret&review=1&recordingView=" + view;
         const expected = entry.kind === "chart" && !entry.fallback
-          ? `${prefix}/field-velocity/${entry.slug}?review=1${entry.target === "simultaneously-recorded-neurons" && /^(historical|electrical|human-channels|optical)$/.test(view) ? `&recordingView=${view}` : ""}` : null;
+          ? `${prefix}/field-velocity/${entry.slug}?utm_campaign=a&utm_campaign=b&review=1${entry.target === "simultaneously-recorded-neurons" && /^(historical|electrical|human-channels|optical)$/.test(view) ? `&recordingView=${view}` : ""}` : null;
         assert.equal(legacyGraphDestination(`${overview}${search}#${anchor}`, prefix), expected, anchor);
       }
     }
