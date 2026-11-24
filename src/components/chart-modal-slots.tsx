@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useRef, useState, type ReactNode } from "react";
+import { ChartPlate } from "@/components/chart-plate";
 import { createPortal } from "react-dom";
 
 /**
@@ -17,14 +18,15 @@ export const InlineChartDetail = createContext(false);
 
 /** Reuse the merged reading/source/table layout without a dialog. Until the
  * client targets mount, evidence remains inline so server HTML never loses it. */
-export function StandaloneChartSupport({ children, state }: { children: ReactNode; state: string }) {
+export function StandaloneChartSupport({ children, state, anchor, title }: { children: ReactNode; state: string; anchor: string; title: string }) {
   const [slots, setSlots] = useState<ModalSlots>({});
   const refs = useRef<Partial<Record<ModalSlotKind, (node: HTMLElement | null) => void>>>({});
   const slotRef = (kind: ModalSlotKind) => refs.current[kind] ??= (node: HTMLElement | null) =>
     setSlots(previous => previous[kind] === node ? previous : { ...previous, [kind]: node });
   return <ModalSlotsContext.Provider value={slots}>
     <div className="pc-detail graph-detail metrics-index" data-chart-state={state}>
-      {children}
+      <div className="graph-chart-actions" ref={slotRef("actions")} />
+      <ChartPlate anchor={anchor} title={title}>{children}</ChartPlate>
       <div className="mx-grid">
         <div className="mx-left" ref={slotRef("reading")} />
         <aside className="mx-right" aria-label="Source notes"><h3 className="mx-k">Source notes</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>

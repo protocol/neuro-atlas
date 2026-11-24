@@ -4,6 +4,7 @@ import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
 import { useContext, useEffect, useId, useMemo, useRef, useState, type SVGAttributes } from "react";
 import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
+import { ChartControls } from "@/components/chart-plate";
 import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { EmptySeries, SeriesButton, toggleSeries } from "@/components/exploration-legend";
 import { exploreFit } from "@/lib/exploration-fit";
@@ -427,7 +428,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
-    {acquisition && !preview && <div className="brain-scale-controls acquisition-metric-controls">
+    {acquisition && !preview && <ChartControls><div className="brain-scale-controls acquisition-metric-controls">
       <div className="acquisition-metric-options" role="group" aria-label="Acquisition y-axis metric">
         {ACQUISITION_METRICS.map(option => <button key={option.id} type="button" data-acquisition-metric={option.id}
           aria-pressed={acquisitionMetric === option.id} onClick={() => {
@@ -437,7 +438,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           }}>{option.label}</button>)}
       </div>
       {benchmarkToggle}
-    </div>}
+    </div></ChartControls>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
       <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
@@ -509,7 +510,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition rates, not a forecast. Method resolutions, scope and cost definitions differ.</p>}
     {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">{acquisition && acquisitionMetric === "dollars-per-voxel" ? "SI dollar ticks: n$ = nanodollars · p$ = picodollars · f$ = femtodollars · a$ = attodollars" : acquisition ? "M = million · B = billion · T = trillion · Q = quadrillion; scientific notation above 10¹⁵" : "M = million · B = billion · T = trillion · Q = quadrillion"}</p>}
 
-    {benchmark && <div className="brain-scale-controls">
+    {benchmark && <ChartControls><div className="brain-scale-controls">
       {!acquisition && benchmarkToggle}
       {tissue && <button type="button" role="switch" data-voxel-view-toggle aria-checked={voxels} onClick={() => {
         tooltip.clear(); exploration.update({ voxels: !voxels });
@@ -519,8 +520,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <p>{benchmark.disclosure}</p>
         <ul>{benchmark.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></li>)}</ul>
       </details>
-    </div>}
-    {sensory && <div className="brain-scale-controls">
+    </div></ChartControls>}
+    {sensory && <ChartControls><div className="brain-scale-controls">
       <button type="button" role="switch" data-sensory-toggle aria-checked={sensoryEnabled}
         onClick={() => {
           tooltip.clear();
@@ -533,7 +534,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <a href={RETINAL_OUTPUT.source} target="_blank" rel="noreferrer">Koch et al. (2006), How Much the Eye Tells the Brain ↗</a>
       </details>
       {showSensory && !exploration && <p>Sensory context is local to this view. Copy link opens the default chart.</p>}
-    </div>}
+    </div></ChartControls>}
     {!preview && (overlapNote || benchmark) && <p className="draft-plot-overlap-note" data-overlap-note={overlapNote ? true : undefined}
       style={benchmark && !overlapNote ? { visibility: "hidden" } : undefined}>
       {overlapNote ?? "Rings keep overlapping observations visible at their source positions."}
@@ -547,16 +548,16 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, entry.label) });
       }}>{key}</SeriesButton> : key}</li>;
     })}</ul>}
-    {controlsBeforeSourceKey && <div className="exploration-plot-switches" role="group" aria-label="Plot options">{fitToggle}</div>}
+    {controlsBeforeSourceKey && <ChartControls><div className="exploration-plot-switches" role="group" aria-label="Plot options">{fitToggle}</div></ChartControls>}
     {interactive && !shown.length && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
-    {interactive && (!controlsBeforeSourceKey || extrapolate) && <section className="exploration-model" aria-label="Trend exploration">
+    {interactive && (!controlsBeforeSourceKey || extrapolate) && <ChartControls><section className="exploration-model" aria-label="Trend exploration">
       {!controlsBeforeSourceKey && fitToggle}
       {extrapolate && <div data-exploration-fit-diagnostics>
         {fits.length ? <><p>Dashed lines extend each eligible series ten years beyond its last input. R² describes historical fit quality in log₁₀ space.</p>
           {fits.map(fit => <p key={fit.label}><strong>{fit.label}</strong> · {fit.window.join("–")} · N={fit.n} · log-linear OLS · R²(log₁₀)={fit.rSquaredLog10?.toFixed(3)} · {fit.equation}</p>)}</>
           : <p role="status">No continuation for the visible series. The model needs at least three eligible points across multiple years and a positive slope.</p>}
       </div>}
-    </section>}
+    </section></ChartControls>}
     {controlsBeforeSourceKey && studyList}
     {!preview && recordingPoints.length > 0 && <section className="recording-coverage" data-recording-coverage-list aria-label="Recording duration and participant coverage">
       <h4>Recording coverage</h4>

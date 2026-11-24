@@ -49,7 +49,7 @@ test('bitrate legend changes actual marks and recomputes the visible eligible mo
   } finally { await close(); }
 });
 
-test('bitrate controls sit between the plot and the study key even with diagnostics open', async () => {
+test('bitrate switches stay outside the clean plate while its actual legend stays interactive before the study key', async () => {
   const close = await standalone(bitrate);
   try {
     const chart = document.querySelector('.graph-detail');
@@ -61,9 +61,16 @@ test('bitrate controls sit between the plot and the study key even with diagnost
     const sensory = el('[data-sensory-toggle]');
     const filters = [...chart.querySelectorAll('[data-exploration-series]')];
     assert.ok(filters.length > 0);
-    for (const control of [...filters, fit, sensory]) {
-      assert.ok(before(svg, control) && before(control, study), 'plot controls precede the long study key');
+    for (const control of [fit, sensory]) {
+      assert.ok(before(control, svg) && before(control, study), 'editing switches remain before the clean chart and study key');
+      assert.ok(control.closest('[data-chart-plate]') === null);
     }
+    for (const control of filters) {
+      assert.equal(control.tagName, 'BUTTON');
+      assert.ok(control.closest('[data-chart-plate]'), 'the actual chart legend stays on the branded canvas');
+      assert.ok(before(svg, control) && before(control, study), 'the visible interactive legend follows the plot, before its study key');
+    }
+    assert.equal(chart.querySelectorAll('[data-chart-plate-controls] [data-exploration-series]').length, 0, 'no duplicated legend controls');
     await click(fit);
     assert.ok(before(sensory, el('[data-exploration-fit-diagnostics]')), 'both switches are reachable before fit diagnostics');
   } finally { await close(); }
