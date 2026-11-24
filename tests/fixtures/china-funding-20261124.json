@@ -2052,7 +2052,7 @@
     {
       "path": "src/data/methodology-sources.json",
       "beforeSha256": "3996345a8ca5477b2bb6272c2b75742a7c474f9729911220887c7d21031d4586",
-      "afterSha256": "7e1a7b9660596070c8d6bc281b7390524f0d853b1ce0828c22f6b2bed6d1ab1f",
+      "afterSha256": "8f6c9e741ffb68f3a22a0e781cf21d32254e0c1f05dc13397cc638372c7c7a02",
       "encoding": "json",
       "beforeFormat": {
         "space": 2,
@@ -2070,7 +2070,7 @@
               "disclosures"
             ],
             "beforeLength": 186,
-            "afterLength": 204,
+            "afterLength": 205,
             "edits": [
               {
                 "beforeIndex": 186,
@@ -2078,7 +2078,7 @@
                 "before": [],
                 "after": [
                   [
-                    "https://bciflex.com",
+                    "https://bciflex.com/",
                     "China financing backfill — bciflex.com"
                   ],
                   [
@@ -2096,6 +2096,10 @@
                   [
                     "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
                     "China financing backfill — finance.sina.com.cn"
+                  ],
+                  [
+                    "https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg",
+                    "Xinsheng Shijie — canonical investor WeChat (blocked original; credited syndication used)"
                   ],
                   [
                     "https://gestala.com/news/22",
@@ -2118,7 +2122,7 @@
                     "China financing backfill — static.sse.com.cn"
                   ],
                   [
-                    "https://www.bcisonics.com",
+                    "https://www.bcisonics.com/",
                     "China financing backfill — www.bcisonics.com"
                   ],
                   [
@@ -2126,11 +2130,11 @@
                     "China financing backfill — www.bcisonics.com"
                   ],
                   [
-                    "https://www.conmindmed.com",
+                    "https://www.conmindmed.com/",
                     "China financing backfill — www.conmindmed.com"
                   ],
                   [
-                    "https://www.nanochap.com",
+                    "https://www.nanochap.com/",
                     "China financing backfill — www.nanochap.com"
                   ],
                   [
