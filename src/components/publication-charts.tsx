@@ -1,5 +1,6 @@
 "use client";
 
+import { ChartPreviewBrand, ChartControls } from "@/components/chart-plate";
 import { useGraphHref } from "@/components/field-velocity-route-context";
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
@@ -337,10 +338,10 @@ function PublicationDetails({index,snapshot,data,anchor}:{index:number;snapshot:
     </div> : <p className="publication-legend"><span data-series-key="neurotech" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>)}
     {interactive && hidden.includes("neurotech") && (!hasScience || hidden.includes("all-research") && hidden.includes("four-domain")) && <EmptySeries reset={() => exploration.update({hidden:[]})}/>}
     {index===1&&<>
-      <div className="publication-growth-options" role="radiogroup" aria-label="Comparison baseline" data-growth-baseline={baseline}>
+      <ChartControls><div className="publication-growth-options" role="radiogroup" aria-label="Comparison baseline" data-growth-baseline={baseline}>
         <span className="publication-growth-options-label" aria-hidden="true">Comparison baseline</span>
         {([["science","General science"],["matched",`Matched to each group (${available} available)`]] as const).map(([value,label])=><button key={value} type="button" role="radio" aria-checked={baseline===value} data-baseline-option={value} onClick={()=>{if(baseline!==value){setBaseline(value);tooltip.clear();}}}>{label}</button>)}
-      </div>
+      </div></ChartControls>
       {baseline==="matched"&&<p className="publication-scope" data-growth-coverage>{available} category baselines available; {data.growth.length-available} unavailable (hollow dots). Gray ticks mark each group’s baseline; no general-science fallback.</p>}
     </>}
     <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role="region" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps} baseline={baseline} hidden={hidden} activeInspection={tooltip.active}/></div>
@@ -377,7 +378,7 @@ function PublicationCard({index,snapshot,data}:{index:number;snapshot:Publicatio
   const previewExtra=useMetricPreviewSpace(preview,true);
   const previewHeight=170+previewExtra;
   return <article className="pc-card card publication-card" data-metric-tile data-performance-card={anchor} data-publication-card={anchor}>
-    <div data-metric-card-body>
+    <div data-metric-card-body><ChartPreviewBrand />
       {href ? <a href={href} data-graph-link={anchor} className="pc-trigger"><span className="pc-card-title">{titles[index]}</span></a> : <button ref={trigger} className="pc-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className="pc-card-title">{titles[index]}</span></button>}
       <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role="region" aria-label={`${titles[index]} preview${index===1?"; scroll for all groups":""}`} tabIndex={index===1?0:undefined}>{href ? <a href={href} data-graph-link={anchor} className="publication-preview-trigger" aria-label={`Enlarge ${titles[index]}`}><Plot index={index} data={data} compact previewHeight={previewHeight}/></a> : <button className="publication-preview-trigger" type="button" aria-label={`Enlarge ${titles[index]}`} aria-haspopup="dialog" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button>}</div>
       {index===0&&<p className="publication-preview-note publication-preview-legend" data-annual-preview-key={hasScience?"":undefined}>{hasScience?<><span data-series-key="neurotech" style={{color:blue}}>● Neurotech papers</span><span data-series-key="all-research" style={{color:teal}}>● All research</span><span data-series-key="four-domain"><span aria-hidden="true" style={{color:gray}}>■</span> Four-domain range</span></>:data.baseline.length?"Neurotech papers · science index unavailable (zero 2022 count)":"Neurotech indexed papers · full observed years"}</p>}
