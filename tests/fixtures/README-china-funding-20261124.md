@@ -1,6 +1,6 @@
 # Reviewed China funding compatibility — November 24, 2026
 
-This is an explicit historical-test seam, not application filtering or a source-approval mechanism. Every old digest/expected total stays pinned. `china-funding-20261124.json` is **intentionally empty until the data writer finishes and reviews the exact candidate delta**.
+This is an explicit historical-test seam, not application filtering or a source-approval mechanism. Every old digest/expected total stays pinned. `china-funding-20261124.json` contains the exact nine-file candidate data delta from the pinned baseline; the dedicated compatibility tests verify both current and reconstructed byte hashes. The source review and new current-data regressions establish the separate acceptance evidence.
 
 ## Integration
 
