@@ -140,12 +140,13 @@ test('each chart has only Copy link at rest, with selectable URL fallback only a
     const button = document.querySelector('[data-copy-draft-link="metric-recording-hours"]');
     const before = window.location.href;
     await click(button);
-    assert.equal(copied, 'https://atlas.example/field-velocity?review=1#neural-recording-hours-selected-datasets');
+    assert.equal(copied, 'https://atlas.example/field-velocity/neural-recording-hours-selected-datasets?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=neural-recording-hours-selected-datasets');
     assert.equal(window.location.href, before, 'Copy does not navigate');
     Object.defineProperty(globalThis.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('denied'); } } });
     await click(button);
     const fallback = button.parentElement.querySelector('input[readonly]');
     assert.equal(fallback.value, copied);
+    assert.equal(window.location.href, before, 'Denied clipboard does not navigate or rewrite sender queries');
     assert.equal(button.parentElement.querySelector('a').href, copied);
     // React was imported before jsdom existed; its legacy input-event probe needs this browser seam.
     fallback.attachEvent = () => {};

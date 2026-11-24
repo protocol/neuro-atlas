@@ -62,12 +62,20 @@ test('denied or missing clipboard reveals a selectable native URL fallback only 
         const share = button.parentElement;
         const title = scope.querySelector(modal ? 'h2' : 'h3').textContent;
         assert.equal(share.querySelector('input'), null);
+        const sender = window.location.href;
+        const length = window.history.length;
         await click(button);
+        assert.equal(window.location.href, sender, 'Denied clipboard never navigates its sender');
+        assert.equal(window.history.length, length);
         const fallback = share.querySelector('input');
         assert.ok(fallback, 'Denied copy must reveal a native, keyboard-selectable URL field');
         assert.equal(fallback.readOnly, true);
         assert.equal(fallback.getAttribute('aria-label'), `Chart URL for ${title}`);
-        assert.equal(fallback.value, `https://atlas.example/field-velocity?review=1#${canonicalPerformanceAnchor(`google-trends-${id}`)}`);
+        const slug = canonicalPerformanceAnchor(`google-trends-${id}`);
+        // Retired brand context has a category fallback, not a standalone graph or campaign.
+        assert.equal(fallback.value, id === 'neuralink'
+          ? 'https://atlas.example/field-velocity#neuralink-brand-context'
+          : `https://atlas.example/field-velocity/${slug}?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`);
         assert.match(share.querySelector('[role=status]').textContent, /select and copy.*URL/i);
         await act(async () => fallback.focus());
         assert.equal(document.activeElement, fallback);
@@ -78,6 +86,8 @@ test('denied or missing clipboard reveals a selectable native URL fallback only 
         Object.defineProperty(globalThis.navigator, 'clipboard', { configurable: true, value: { writeText: async url => { copied = url; } } });
         await click(button);
         assert.equal(copied, fallback.value);
+        assert.equal(window.location.href, sender, 'Successful Copy never navigates or rewrites sender queries');
+        assert.equal(window.history.length, length);
         assert.equal(share.querySelector('input'), null);
         assert.equal(share.querySelector('[role=status]').textContent, 'Link copied');
         assert.equal(window.location.hash, modal ? `#${canonicalPerformanceAnchor(`google-trends-${id}`)}` : '', 'Copying must not navigate');
