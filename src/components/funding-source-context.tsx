@@ -1,3 +1,4 @@
+import { CAPITAL_EXCLUSION_LABEL } from "@/lib/funding-capital.mjs";
 import { fundingRecordsForSource } from "@/lib/source-context-records";
 import { normalizeSourceContextUrl } from "@/lib/source-context-url";
 import { formatCapital, formatFundingDate } from "@/lib/funding-index";
@@ -14,7 +15,7 @@ export function FundingSourceContext({ source }: { source: unknown }) {
       <h2 id="source-context-heading" className="text-base font-semibold">Funding source context</h2>
       <p className="mt-1 text-sm text-muted">References citing this source, with their evidence role. The full dashboard remains below.</p>
       <ul className="mt-4 space-y-4">
-        {matches.map(({ company, website, founding, rounds, milestones }) => (
+        {matches.map(({ company, website, founding, rounds, milestones, reportedTotals }) => (
           <li key={company.slug} className="space-y-2 border-t border-border pt-4 first:border-t-0 first:pt-0">
             <h3 className="text-sm font-semibold">{company.name}</h3>
             <ul className="space-y-4 text-sm leading-relaxed">
@@ -30,6 +31,15 @@ export function FundingSourceContext({ source }: { source: unknown }) {
                   <a href={company.founding.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (founding evidence)</a>
                 </li>
               )}
+              {reportedTotals.map((total) => (
+                <li key={`reported-total-${total.reportedOn}`} className="space-y-2">
+                  <p className="font-medium">Company-reported total · {formatCapital(total.amountUsdM)}</p>
+                  <p className="font-medium">{total.scope}</p>
+                  <p className="text-xs text-muted">Public company self-report · Reported <time dateTime={total.reportedOn}>{formatFundingDate(total.reportedOn, "day")}</time> (interview published)</p>
+                  <p>{total.note}</p>
+                  <a href={total.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (company-reported total)</a>
+                </li>
+              ))}
               {rounds.map((round, index) => (
                 <li key={`round-${index}`} className="space-y-2">
                   {isSource(round.sourceUrl) && <>
@@ -40,6 +50,7 @@ export function FundingSourceContext({ source }: { source: unknown }) {
                         {formatFundingDate(round.announcedOn, round.datePrecision)}
                       </time>
                     </p>
+                    {round.capitalTreatment && <p className="font-medium">{CAPITAL_EXCLUSION_LABEL}</p>}
                     {round.note && <p>{round.note}</p>}
                     <a href={round.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (round evidence)</a>
                   </>}

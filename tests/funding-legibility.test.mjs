@@ -1,3 +1,4 @@
+import { CAPITAL_EXCLUSION_LABEL } from "../src/lib/funding-capital.mjs";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React from 'react';
@@ -33,14 +34,14 @@ test('every financing amount has a readable visible readout without expanding th
       const readouts = [...company.querySelectorAll('[data-financing-readout]')];
       assert.equal(readouts.length, row.rounds.length);
       row.rounds.forEach((round, index) => {
-        const mark = [...company.querySelectorAll('[title]')].find(el => el.title === `${row.name} · ${round.stage} · ${round.displayAmount}`);
+        const mark = [...company.querySelectorAll('[title]')].find(el => el.title === `${row.name} · ${round.stage} · ${round.displayAmount}${round.capitalTreatment ? ` · ${CAPITAL_EXCLUSION_LABEL}` : ""}`);
         const width = Math.min(76, 20 + Math.sqrt(round.amountUsdM) * 2.1);
         assert.equal(mark.style.width, `${width}px`, 'amount-encoded width is unchanged');
         const expected = document.createElement('span');
         expected.style.left = `calc(${getTimelinePosition(round.announcedOn, data.summary.firstYear, data.summary.lastYear)}% - ${width / 2}px)`;
         assert.equal(mark.style.left, expected.style.left);
         assert.equal(mark.textContent, '', 'narrow marks do not contain enlarged overflowing text');
-        assert.match(mark.className, /bg-accent/);
+        assert.match(mark.className, round.capitalTreatment ? /border-dashed.*bg-surface-raised/ : /bg-accent/);
         const readout = readouts[index];
         assert.ok(readout.textContent.includes(round.displayAmount));
         assert.ok(readout.textContent.includes(round.stage));

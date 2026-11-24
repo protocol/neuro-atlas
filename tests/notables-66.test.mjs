@@ -1,3 +1,4 @@
+import { beforeParadromicsFunding, beforeParadromicsCatalog } from './helpers/paradromics-funding-baseline.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -14,7 +15,7 @@ const load = path => JSON.parse(read(path));
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const fixture = load('./fixtures/notables-66.json');
 const milestones = load('../src/data/milestones.json');
-const funding = load('../src/data/funding-index.json');
+const funding = beforeParadromicsFunding(load('../src/data/funding-index.json'));
 const sources = fixture.sources;
 const one = source => {
   const rows = milestones.filter(row => row.sourceUrl === source);
@@ -44,7 +45,7 @@ test('Notables 66 historical exclusion rejects changed, missing, duplicate and e
 
 test('Notables 66 adds only its eleven source-directory links, retaining every prior classification', async () => {
   const { scanSources } = await import('./helpers/methodology-source-inventory.mjs');
-  const catalog = load('../src/data/methodology-sources.json');
+  const catalog = beforeParadromicsCatalog(load('../src/data/methodology-sources.json'));
   const { included } = scanSources();
   const additions = Object.values(fixture.sourceCatalogAdditions).flat();
   assert.equal(additions.length, 11);

@@ -17,8 +17,17 @@ The v1 list was seeded from the project's BCI company tracker, then screened and
 - Publicly disclosed rounds of at least USD 2 million, or a clearly qualifying local-currency equivalent, are eligible.
 - Amounts are round sizes, not company valuations and not all-time company funding.
 - `amount_usd_m` is used for visual comparison. When a release disclosed another currency, `display_amount` and `note` preserve that original amount and identify the USD figure as approximate.
+- Optional `capital_treatment=overlap-unresolved` retains the disclosed amount and financing record but excludes it from indexed and investor/portfolio-associated capital totals until conversion overlap is reconciled. A nonempty explanatory `note` is required; unknown treatments fail generation. Blank treatment retains the normal counted-capital behavior.
 - Strategic investments, grants, and government-backed financings are retained when they are material and sourceable; `stage` names the financing form rather than forcing it into a venture round taxonomy.
 - A company can have older or smaller financings that are not shown. Missing rounds should not be read as zero funding.
+
+## Company-reported totals
+
+`reported-totals.json` records public company-reported funding totals separately from itemized financing. Each current company record requires an existing company slug, a positive finite USD-million amount, valid `reportedOn` and `reviewedOn` dates, an HTTPS source, a `primary` or `reporting` source kind, a scope label, and an interpretation note. Duplicate company records fail generation. An absent file or empty collection retains the legacy payload and UI behavior.
+
+The optional generated top-level `reportedTotals` collection leaves the company roster, financing records, indexed-capital calculations, stage bars, investor-associated capital, and portfolio metrics unchanged. Company detail presents the reported total with scope, report date, and a source link; indexed financing remains separately labeled. Timeline and stage company rows show a distinct reported-total annotation, with the source available in detail. Full source notes are in a native collapsed disclosure and exact-source context.
+
+Paradromics has a **$180M company-reported total**, **Includes federal funding**, reported in an interview published November 18, 2026. Its separately itemized indexed financing remains **$85.37M** (displayed **$85.4M**). See the [November 24 source review](source-review-20261124.md) for the public source, date basis, and evidence limits.
 
 ## Investor view
 
@@ -46,6 +55,7 @@ The set is illustrative and source-linked, not a complete regulatory history.
 - `companies.csv` — the screened company universe and classification fields
 - `foundings.csv` — one reviewed founding-year record per company, with source URL, source kind, review date and a concise origin/registration/rebrand note; blank years remain unknown
 - `rounds.csv` — disclosed financing events, investor participants, and sources
+- `reported-totals.json` — separately scoped public company funding self-reports; context outside indexed-capital totals
 - `portfolio-disclosures.json` — independently sourced selected portfolio relationships; never financing events
 - `source-review-20261117.md` — Science Series D and PLC portfolio evidence, identity matches, and coverage limits
 - `milestones.csv` — selected regulatory inflection points and sources
@@ -57,7 +67,7 @@ The set is illustrative and source-linked, not a complete regulatory history.
 2. Run `npm run data:generate`.
 3. Run `npm test`, `npm run lint`, and `npm run build`.
 4. Check `/funding` in both themes and at desktop and mobile widths.
-5. Update `summary.asOf` in `scripts/generate-derived.mjs` only when the source review actually advanced. It is the most recent selective review date, not proof that every source was re-reviewed on that date.
+5. Update `summary.asOf` in `scripts/generate-derived.mjs` only when the index-wide coverage checkpoint actually advances; it is not proof that every source was re-reviewed on that date. A bounded record correction can retain that checkpoint and use the affected rows' `reviewed_on` dates plus a source-review note.
 
 ## Founding years
 
@@ -67,4 +77,4 @@ Founding-year review: **2026-10-15**, 25/25 companies with source-linked years. 
 
 ## Coverage date
 
-Baseline financing/regulatory source review: **2026-09-30**. Selective additions and corrections are reviewed through **2026-11-17**, including Science's Series D and PLC's selected published portfolio. This is not a fresh exhaustive review of every company's funding history. Every shipped financing and regulatory marker carries a direct source URL. Reviewed rows carry `source_kind` and `reviewed_on`; older rows remain unlabeled rather than being marked reviewed. Portfolio disclosures carry their own independent review date.
+Baseline financing/regulatory source review: **2026-09-30**. The index-wide coverage checkpoint remains **2026-11-17**, including Science's Series D and PLC's selected published portfolio. A bounded [Paradromics financing correction](source-review-20261124.md) was reviewed **2026-11-24**; its three affected records carry their own review dates without advancing that checkpoint. This is not a fresh exhaustive review of every company's funding history. Every shipped financing and regulatory marker carries a direct source URL. Reviewed rows carry `source_kind` and `reviewed_on`; older rows remain unlabeled rather than being marked reviewed. Portfolio disclosures carry their own independent review date.

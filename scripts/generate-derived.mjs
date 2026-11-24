@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { buildFundingIndex, loadFundingIndexSources, sourceDateBasis } from "./lib/funding-index.mjs";
 import { historicalFxFor } from "./lib/historical-fx.mjs";
+import { countedCapital } from "../src/lib/funding-capital.mjs";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const DATA = path.join(ROOT, "data");
@@ -110,7 +111,7 @@ fundingIndex.companies = fundingIndex.companies.map((company) => {
   }
   return { ...company, logo: logoFile ? `/logos/${logoFile}` : "" };
 });
-const observedCapitalUsdM = fundingIndex.rounds.reduce((total, round) => total + round.amountUsdM, 0);
+const observedCapitalUsdM = fundingIndex.rounds.reduce((total, round) => total + countedCapital(round), 0);
 const years = fundingIndex.rounds.map((round) => Number(round.announcedOn.slice(0, 4)));
 fundingIndex.summary = {
   ...fundingIndex.summary,
@@ -125,7 +126,7 @@ fundingIndex.summary = {
 fundingIndex.methodology = {
   thresholdUsdM: 2,
   scope: "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
-  coverage: "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added.",
+  coverage: "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other coverage dates are unchanged.",
 };
 fs.writeFileSync(path.join(OUT, "funding-index.json"), JSON.stringify(fundingIndex));
 
