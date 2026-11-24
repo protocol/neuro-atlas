@@ -8,6 +8,7 @@ import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
 import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
 import { MetricCardScope } from "@/components/metric-card-scope";
 import { CardPngButton } from "@/components/card-png-button";
+import { chartAxesDescription } from "@/lib/chart-axis-help";
 
 const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["acquisition-economics", 0],
@@ -61,7 +62,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <span id={anchor} className="metric-anchor" />
             {ids.filter(id => id !== anchor && id !== cardId).map(id => <span key={id} id={id} className="metric-anchor" data-panel-alias />)}
             <DraftChartPanel plot={displayPlot} anchor={anchor} aliases={ids.filter(id => id !== anchor)}
-              methodology={<Methodology alwaysVisible chart={chart} summary={plot.id === "bci-bitrate" ? undefined : evidence.summary} context={evidence.gapReason} axes={`x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`} />} />
+              methodology={<Methodology alwaysVisible chart={chart} summary={plot.id === "bci-bitrate" ? undefined : evidence.summary} context={evidence.gapReason} axes={chartAxesDescription(plot)} />} />
             {/* Scope sits in the footer row, so a capped preview can never clip it. */}
             <div data-metric-card-footer>
               <MetricCardScope>
@@ -155,7 +156,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                   ]} />
                   <DraftChartShare anchor={linksFor(chart).panels.find(panel => panel.plotId === null)!.id} label="Selected application events" />
                 </div>}
-                <Methodology chart={chart} context={evidence.gapReason} axes={evidence.plots.map(plot => `${plot.title}: x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}`).join("; ") || "x-axis: Publication date · y-axis: Reported event stage"} />
+                <Methodology chart={chart} context={evidence.gapReason} axes={evidence.plots.map(plot => `${plot.title}: ${chartAxesDescription(plot)}`).join("; ") || "x-axis: Publication date · y-axis: Reported event stage"} />
               </article>;
             })}
           </div> : <p className="draft-chart-category-gap">No plotted observations yet. See the evidence gaps below.</p>}
