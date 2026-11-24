@@ -1,61 +1,63 @@
-# China BCI backfill — verification
+# China financing additions — verification
 
-## Revision and scope
+## Revisions and scope
 
-- Runtime/data/code reviewed and exercised: `204cfb81ff2ba00c6338fedaf405368669b4e388`.
-- Exact unchanged baseline: `023598e99d14b799b536df680e07f9d30e83b649`.
-- Six new companies and eleven additional financing records, synchronized across Funding Index and Milestones. The existing screen is unchanged; this is not a China market census.
-- [Admission, date, accounting, metadata and held-out notes](../../data/funding-index/source-review-20261124.md).
-- Evidence-only commits after the runtime revision do not change application/data/test inputs. No merge, production release, background sweep or new monitoring is included.
+- Original source/accounting and code review: `204cfb81ff2ba00c6338fedaf405368669b4e388`.
+- Plain-language revision: `703b72bc00d12aefb44aeb0347b4db4afee82300`.
+- Original baseline: `023598e99d14b799b536df680e07f9d30e83b649`.
+- Six new companies and eleven additional financing records. Each appears once in Funding Index and Milestones, giving 31 companies and 53 records under the existing selection criteria.
+- [Financing records, sources, dates and research limits](../../data/funding-index/source-review-20261124.md).
 
-## Checks actually completed
+## Language revision
 
-| Check | Result |
+The company details name who wrote each announcement and where it was published. For example: “Announcement by the investor 经纬创投, published on Sina on June 18, 2026.” Notes describe approximate amounts, agreement dates and unknown closing dates directly. Coverage explanations and exchange-rate labels use the same approach.
+
+A comparison against the original PR head confirms that amounts, dates, investors, currencies, rates, source URLs, selection criteria and calculated totals retain their original values. Changes cover explanatory text and source-link labels. The historical test fixture retains the same nine files and original baseline hashes.
+
+## Checks
+
+| Check | Language revision result |
 |---|---|
-| Original unchanged-base `npm test` | Exit 1: 1,633 tests; 1,597 pass; 36 fail; zero canceled/skipped |
-| Final pinned `npm test` | Exit 1: 1,651 tests; 1,615 pass; the same 36 fail; zero canceled/skipped |
-| Failure diagnostic comparison | No new failure IDs **and no changed actual error/assertion diagnostics** after removing timing and stack frames. This is not a green full suite. |
-| Focused current backfill, source-directory, exact-delta, roster, FX and mobile-note tests | 22/22 pass, exit 0 |
-| Production `npm run build` | Pass, exit 0 |
-| `npm run typecheck` | Pass, exit 0 |
-| Changed-code ESLint | Pass, exit 0 |
-| Independent direct-source/accounting review | PASS: all eleven accepted financing records and six new companies; actual direct issuer/investor/regulator/Federal Reserve bodies and exact prospectus pages; no material defect |
-| Independent code/report review | Initial CN-CODE-001 identified a worsened source catalog despite an unchanged failing test name; corrected and independently closed on exact revision `204cfb8` |
-| Exact historical fixture | Nine current files reconstruct actual pinned baseline bytes; old goldens were not refreshed; unrelated mutations still reach historical assertions |
-| Source inventory | Candidate and exact base have the same one missing source (`https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/`) and no extra entries. Dedicated regression passes; original test continues to expose that existing gap. |
-| Canonical/builder/generated/Milestones parity | Eleven financing records occur once each with identical native amounts, source/date semantics and source-bound historical FX; 31 companies / 53 financing records |
-| Native local production browser replay | Four desktop/mobile/theme cases pass; details for all six new companies plus Neuracle and Gestala verified against actual generated amounts and source links; stage view contains 31 companies |
+| Focused funding, source, historical-rate and language tests | 98/98 pass |
+| Full `npm test` | 1,652 tests; 1,616 pass; the same 36 pre-existing failures; zero canceled or skipped |
+| Failure comparison | The existing failure IDs and error/assertion diagnostics match the original baseline |
+| Production build, typecheck and changed-code lint | Pass |
+| Independent language and meaning review | Pass after four specific wording corrections |
+| Financial/source comparison | Amounts, dates, investors, currencies, rates, links and calculated totals match the original PR |
+| Desktop/mobile browser checks | Pass in both themes; refreshed screenshots show the reviewed text |
 
-### Exact focused command
+Detailed results: [`qa/language-test-comparison.json`](qa/language-test-comparison.json), [`qa/language-review.json`](qa/language-review.json), and [`qa/language-fidelity.json`](qa/language-fidelity.json).
 
-```sh
-node --import tsx --test \
-  tests/china-source-directory.test.mjs \
-  tests/china-funding-*.test.mjs \
-  tests/funding-roster-growth.test.mjs \
-  tests/historical-fx*.test.mjs \
-  tests/reviewed-delta.test.mjs
-```
+### Original review
 
-## Native evidence and limitations
+| Check | Recorded result |
+|---|---|
+| Original baseline `npm test` | 1,633 tests; 1,597 pass; 36 fail; zero canceled or skipped |
+| Original PR `npm test` | 1,651 tests; 1,615 pass; the same 36 fail; identical error/assertion diagnostics after removing timing and stack frames |
+| Independent source/accounting review | PASS for all eleven financing additions and six companies, including the Chinese company/investor/regulator sources, Federal Reserve releases and exact prospectus pages |
+| Independent code/report review | The source-directory finding CN-CODE-001 was corrected and independently closed at `204cfb8` |
+| Source directory | One pre-existing PMC URL omission remains visible in the original test. Additional entries: zero. |
+| Historical test reconstruction | All nine reviewed files reconstruct the original baseline bytes and expected hashes |
 
-The browser ran the actual production-built Next.js application bound only to loopback. Viewports were 1440×1000 and 390×844, each light/dark, using native Chrome pointer/keyboard input. This is **not** a hosted-preview walkthrough or a physical-phone touch test. `qa/browser-results.json` retains the exercised source revision, case assertions and screenshot hashes.
+The original full-suite comparison is retained in [`qa/test-comparison.json`](qa/test-comparison.json). Results of the language revision are recorded alongside it.
 
-The first native run exposed a long literal WeChat URL overflowing its financing-note card. A mounted RED regression preceded the one-class wrapping fix; the final actual 390px replay measured note `scrollWidth == clientWidth == 278`, dialog `scrollWidth == clientWidth == 360`, and inspected readable source/FX/approximate-amount text. The failed capture and earlier accepted replay remain private historical evidence, not relabeled as final success.
+## Browser checks and screenshots
 
-The funding timeline is intentionally horizontally scrollable inside its own container; the final page and detail-panel bounds do not overflow. Screenshots show real data, not mock values. All task-owned tabs were closed, pre-existing tabs preserved, the loopback runtime stopped and its port verified closed.
+The screenshots show the actual production-built application served locally, using Chrome pointer/keyboard input at 1440×1000 and 390×844 in both themes. These checks cover all six new company details, Neuracle and Gestala, displayed amounts and source links, company counts, and page/detail-panel widths. Physical-phone testing and a signed-in hosted interaction check remain separate verification tasks.
 
-### Representative captures
+The mobile financing note retains its full source text and original WeChat link. A wrapping rule keeps the long URL within the card; `qa/language-mobile-metrics.json` records the measured widths. The funding timeline scrolls horizontally inside its own container.
 
-- [Desktop, dark](qa/funding-dark-1440.png)
-- [Desktop, light](qa/funding-light-1440.png)
-- [Neuracle agreement/date evidence in detail](qa/detail-neuracle-technology-light-1440.png)
-- [Nanochap detail](qa/detail-nanochap-light-1440.png)
-- [Mobile unknown metadata](qa/detail-xinsheng-shijie-light-390.png)
-- [Mobile financing qualification and source-note wrapping](qa/detail-xinsheng-financing-light-390.png)
-- [Mobile stage view, light](qa/stage-light-390.png)
-- [Mobile stage view, dark](qa/stage-dark-390.png)
+- [Funding Index, desktop dark](qa/funding-dark-1440.png)
+- [Funding Index, desktop light](qa/funding-light-1440.png)
+- [Neuracle company details](qa/detail-neuracle-technology-light-1440.png)
+- [Nanochap company details](qa/detail-nanochap-light-1440.png)
+- [Xinsheng Shijie company details, mobile](qa/detail-xinsheng-shijie-light-390.png)
+- [Xinsheng Shijie financing source, amount and date, mobile](qa/detail-xinsheng-financing-light-390.png)
+- [Company stages, mobile light](qa/stage-light-390.png)
+- [Company stages, mobile dark](qa/stage-dark-390.png)
 
-## Scope limits that remain
+## Remaining research
 
-The financing dataset still has partial company histories and legacy unverified timing/FX estimates. Neuracle's old RMB60m investor-page record is not a verified March 2024 cash-flow date; no complete historical total is claimed. Conmind and Xinsheng disclosures are explicitly **nearly** amounts. Mindtrix's combined angel-series total and Ruiyi's individual investor subscription are held outside new round-size totals. Corporate fields not established by direct sources remain unknown. The 36 unrelated original test failures are neither hidden nor resolved by this PR.
+Company financing histories remain partial. Neuracle's earlier RMB 60m investor-page record still needs reconciliation to establish its underlying transaction date. Conmind and Xinsheng amounts retain “nearly.” Mindtrix's combined angel-round amount needs allocation by round and date; Ruiyi's investor contribution needs a verified full-round size. Company fields with unresolved sources stay marked unknown.
+
+The PR remains open for review. Production and existing recurring workflows retain their current state.

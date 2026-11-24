@@ -1,0 +1,23 @@
+{
+  "reviewedRevision": "703b72bc00d12aefb44aeb0347b4db4afee82300",
+  "independentLanguageReview": "PASS",
+  "closedFindings": [
+    "L1 source access",
+    "L2 repeated investor-guide disclaimer",
+    "L3 Jialiang opening",
+    "L4 Conmind implant count"
+  ],
+  "openFindings": [],
+  "focusedTests": {
+    "tests": 98,
+    "pass": 98,
+    "fail": 0
+  },
+  "build": "PASS",
+  "typecheck": "PASS",
+  "changedCodeLint": "PASS",
+  "browserEvidence": "browser-results.json",
+  "fidelityEvidence": "language-fidelity.json",
+  "originalReportSourceUrlsRetained": 44,
+  "verbatimChineseQuotationsRetained": true
+}
