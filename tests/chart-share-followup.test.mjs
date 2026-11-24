@@ -9,6 +9,7 @@ import { settle } from './modal-helpers.mjs';
 import { DraftChartShare } from '../src/components/draft-chart-share.tsx';
 import { GoogleTrends } from '../src/components/google-trends.tsx';
 import { chartShareUrl } from '../src/lib/chart-export.ts';
+import { withGraphExport } from '../src/lib/chart-export-api.ts';
 import { click, mount } from './modal-helpers.mjs';
 
 globalThis.React = React;
@@ -117,4 +118,23 @@ test('recording view edits stay one overview dialog entry, retain exact shared u
     assert.equal(document.querySelector('dialog [data-recording-view-select]').value,'optical');
     assert.equal(document.querySelector('dialog [data-exploration-series="optical"]').getAttribute('aria-pressed'),'false');
   }finally{await cleanup();}
+});
+
+
+test('supported overview export registration binds captured settings to the same live DOM and URL', async () => {
+  const Overview = overviewModule.default.default ?? overviewModule.default;
+  const Layout = layoutModule.default.default ?? layoutModule.default;
+  const cleanup = await mount(React.createElement(Layout, null, React.createElement(Overview)), '#metrics');
+  try {
+    await click(document.querySelector('[data-draft-popout-trigger="metric-panel-bci-bitrate"]'));
+    await click(document.querySelector('dialog[open] [data-sensory-toggle]'));
+    const captured = await withGraphExport(bci, getChart => getChart());
+    const root = captured.svg.closest('[data-chart-state]');
+    assert.ok(root, 'the live SVG must own the DOM state checked by PNG serialization');
+    assert.equal(root.getAttribute('data-chart-state'), captured.chartState);
+    assert.equal(captured.svg.querySelector('[data-sensory-reference]').getAttribute('data-value'), '8750000');
+    const url = new URL(chartShareUrl(window.location.href, bci));
+    assert.equal(url.searchParams.get('chartModel'), bci + ':sensory');
+    assert.equal(url.searchParams.has('utm_source'), false);
+  } finally { await cleanup(); }
 });
