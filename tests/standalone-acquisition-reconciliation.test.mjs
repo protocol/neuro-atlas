@@ -177,7 +177,10 @@ test('actual standalone unit controls clear incompatible reference and share exa
     await click(el('[data-copy-draft-link]'));
     shared = new URL(copied);
     assert.equal(shared.pathname, path);
-    assert.equal(shared.search, '?' + selected);
+    assert.equal(shared.search, '?' + selected + `&utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${entry.slug}`);
+    assert.equal(shared.hash, '');
+    assert.equal(window.location.href, current.href, 'Copy never navigates or rewrites sender queries');
+    assert.deepEqual(window.history.state, state);
     await travel('back');
     assert.equal(chosen(), 'voxels-per-dollar');
     assert.equal(el('[data-brain-scale-toggle]').getAttribute('aria-checked'), 'true');

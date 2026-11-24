@@ -179,12 +179,18 @@ test('actual copy controls and their denied-clipboard fallback use canonical URL
     for (const button of buttons) {
       const title = button.getAttribute('aria-label').slice(13);
       const slug = inventory.find(([name]) => name === title)[1];
+      const sender = window.location.href;
+      const length = window.history.length;
       await click(button);
-      assert.equal(copied, `https://atlas.example/field-velocity?review=1#${slug}`);
+      assert.equal(copied, `https://atlas.example/field-velocity/${slug}?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`);
+      assert.equal(window.location.href, sender, 'Copy never navigates or rewrites sender queries');
+      assert.equal(window.history.length, length);
       assert.equal(window.location.hash, '#metrics');
       globalThis.navigator.clipboard.writeText = async () => { throw new Error('denied'); };
       await click(button);
       assert.equal(button.parentElement.querySelector('input').value, copied);
+      assert.equal(window.location.href, sender, 'Denied clipboard never navigates its sender');
+      assert.equal(window.history.length, length);
       assert.equal(window.location.hash, '#metrics');
       globalThis.navigator.clipboard.writeText = async value => { copied = value; };
     }

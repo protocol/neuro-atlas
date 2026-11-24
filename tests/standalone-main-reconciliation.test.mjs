@@ -97,7 +97,7 @@ test('legacy component-only hours extrapolation stays an explicit compatibility 
   const migrated = new URL(legacyGraphDestination(original, ''), original);
   let close = await standalone(entry, migrated.search);
   try {
-    const toggle = document.querySelector('[data-legacy-hours-view] [role="switch"]');
+    const toggle = document.querySelector('.graph-detail .pc-extrapolation-control [role="switch"]');
     assert.equal(toggle?.getAttribute('aria-checked'), 'true', 'the existing main TUSZ scenario is restored, not a dead query');
     assert.ok(document.querySelector('[data-extrapolation-line]'));
     assert.equal(document.querySelectorAll('[data-legacy-hours-view] svg[role="img"]').length, 1, 'one chart, not a dashboard or duplicated default chart');

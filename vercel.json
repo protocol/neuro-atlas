@@ -8,7 +8,8 @@
       "feat/bci-sensory-reference-only-20261120": false,
       "feat/persistent-graph-pages-20261119": false,
       "feat/graph-comparison-dashboards-20261119": false,
-      "feat/shareable-chart-pages-20261120": false
+      "feat/shareable-chart-pages-20261120": false,
+      "feat/chart-branding-only-20261124": false
     }
   }
 }

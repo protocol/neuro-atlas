@@ -360,7 +360,8 @@ test('all four rendered views and defaulted queries keep SVG evidence, footer, a
       const before = locationState();
       const expectedMarks = marks(document.querySelector('[data-recording-view]'));
       assert.ok(expectedMarks.length > 0 && expectedMarks.every(([id]) => id.startsWith(`${view}:`)));
-      const expectedTitle = document.querySelector('[data-recording-view] [data-download-chart]').getAttribute('aria-label').replace('Download PNG: ', '');
+      assert.equal(document.querySelectorAll('.graph-detail [data-download-chart]').length, 1, 'one current standalone chart action');
+      const expectedTitle = document.querySelector('.graph-detail [data-download-chart]').getAttribute('aria-label').replace('Download PNG: ', '');
       const result = await window.neuroAtlas.exportChart('simultaneously-recorded-neurons');
       const expectedUrl = window.location.origin + path + (token ? `?recordingView=${token}` : '');
       assert.equal(result.anchor, slug);

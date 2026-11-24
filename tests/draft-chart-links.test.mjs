@@ -155,15 +155,26 @@ test("candidate and panel copy controls copy without navigating; failure is visi
     for (const button of buttons) {
       const canonical = button.dataset.copyDraftLink;
       assert.ok(document.getElementById(canonical) ?? document.querySelector(`[data-performance-card="${canonical}"]`), `Share target ${canonical} exists as an inline anchor or modal chart`);
+      const sender = window.location.href;
+      const length = window.history.length;
+      const slug = canonicalPerformanceAnchor(canonical);
       await click(button);
-      assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity?review=1&review=2#${canonicalPerformanceAnchor(canonical)}`);
+      assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity/${slug}?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`);
+      assert.equal(window.location.href, sender, "Copy never navigates or rewrites sender queries");
+      assert.equal(window.history.length, length);
       assert.equal(button.parentElement.querySelector("[role=status]").textContent, "Copied");
       assert.equal(window.location.hash, "#metrics");
     }
     globalThis.navigator.clipboard.writeText = async () => { throw new Error("denied"); };
     const button = document.querySelector("[data-copy-draft-link]");
+    const sender = window.location.href;
+    const length = window.history.length;
     await click(button);
     assert.match(button.parentElement.querySelector("[role=status]").textContent, /Copy failed/);
+    const slug = canonicalPerformanceAnchor(button.dataset.copyDraftLink);
+    assert.equal(button.parentElement.querySelector("input").value, `https://atlas.example/neuro-atlas/field-velocity/${slug}?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`);
+    assert.equal(window.location.href, sender);
+    assert.equal(window.history.length, length);
   } finally {
     await cleanup();
     if (original) Object.defineProperty(globalThis.navigator, "clipboard", original);

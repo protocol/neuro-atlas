@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import React, { act } from 'react';
+import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
+import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 import { PerformanceCurves } from '../src/components/performance-curves.tsx';
 import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { RECORDING_VIEWS } from '../src/data/recording-evidence.ts';
@@ -58,9 +60,14 @@ test('measurement selection roundtrips through copied URLs, fresh mount, Back/Fo
     await changeView('human-channels');
     assert.equal(new URL(window.location.href).searchParams.get('recordingView'), 'human-channels');
     await changeView('optical');
+    const sender = window.location.href;
+    const length = window.history.length;
     await click(document.querySelector('dialog [data-copy-draft-link]'));
+    assert.equal(copied, 'https://atlas.example/field-velocity/simultaneous-neural-recordings?recordingView=optical&utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=simultaneous-neural-recordings');
+    assert.equal(window.location.href, sender, 'Copy never navigates or rewrites sender queries');
+    assert.equal(window.history.length, length);
     assert.equal(new URL(copied).searchParams.get('recordingView'), 'optical');
-    assert.equal(new URL(copied).hash, '#simultaneous-neural-recordings');
+    assert.equal(new URL(copied).hash, '');
     await act(async () => { window.history.back(); await new Promise(resolve => setTimeout(resolve, 40)); });
     assert.equal(document.querySelector('[data-recording-view-select]').value, 'human-channels');
     await act(async () => { window.history.forward(); await new Promise(resolve => setTimeout(resolve, 40)); });
@@ -70,7 +77,7 @@ test('measurement selection roundtrips through copied URLs, fresh mount, Back/Fo
     await click(document.querySelector('.pc-trigger'));
     assert.equal(document.querySelector('[data-recording-view-select]').value, 'optical');
     await cleanup(); cleanup = undefined;
-    cleanup = await mount(chart(), '', win => win.history.replaceState(null, '', copied));
+    cleanup = await mount(React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph('simultaneous-neural-recordings') }), '', win => win.history.replaceState(null, '', copied));
     assert.equal(document.querySelector('[data-recording-view-select]').value, 'optical');
     assert.equal(document.querySelector('[role=tooltip]'), null);
   } finally {
