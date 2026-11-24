@@ -1,0 +1,89 @@
+{
+  "scope": "pages",
+  "builtRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e",
+  "validationHeadBeforeEvidence": "400ef521725329e8c49cdf0e68888f6e992bd41a",
+  "runtimePublicConfigPackageDeltaAfterBuild": false,
+  "viewer": "exact Next production-static assets on Host-restricted noindex loopback; no hosted auth/server API certification",
+  "productionBuildExit": 0,
+  "nativeFlow": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "senderNoNavigation": true,
+    "recipientStateEqual": true,
+    "overviewRestored": true
+  },
+  "matrix": {
+    "revision": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e",
+    "tests": 200,
+    "pass": 197,
+    "fail": 3,
+    "cancelled": 0,
+    "skipped": 0,
+    "duration_ms": 367539.003093,
+    "failureNames": [
+      "archived source snapshots and provenance remain byte-identical to base",
+      "legacy fragment translation preserves exactly the current catalog URL's relevant state",
+      "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view"
+    ]
+  },
+  "targetedClosure": {
+    "case": "legacy incoming campaign inventory expected URL",
+    "fullFileResult": "6 passed / 0 failed",
+    "testOnlyReviewHeads": {
+      "pages": "a91b8d47eb3fb75f4f2fc1d22af0f1b26a2cb208",
+      "branding": "359b6fdb6254c595787e5260042a2d0ba4eb2f0b"
+    },
+    "sourceChanged": false
+  },
+  "retainedIntakeFailures": [
+    "archived source snapshots and provenance remain byte-identical to base",
+    "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view"
+  ],
+  "repositoryWideGreen": false,
+  "independentSplitClosure": "PASS; no P0/P1; test expectation SPLIT-1 closed, subsequent unused import cleanup only",
+  "http": {
+    "revision": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e",
+    "frozenDataFiles": 140,
+    "dataFilesChanged": [],
+    "hostGuard": 403
+  },
+  "pngFiles": [
+    {
+      "file": "recipient-desktop.png",
+      "sha256": "0bc8fcf8b037613fbebee3a30961f611ff3ed2c65f59841ec3dc0578435f30fb",
+      "width": 1440,
+      "height": 1100,
+      "capturedRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e"
+    },
+    {
+      "file": "recipient-mobile.png",
+      "sha256": "8e7d7ae8d0148119bbb9b42469d12463825c1dfb1dc56f1effd4c397223ab7ef",
+      "width": 390,
+      "height": 844,
+      "capturedRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e"
+    },
+    {
+      "file": "explore-desktop.png",
+      "sha256": "a100b783cd9f086933dcb1d9ccdaa69e0373d20038bfc01f4b56726888144d36",
+      "width": 1440,
+      "height": 1100,
+      "capturedRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e"
+    },
+    {
+      "file": "explore-mobile.png",
+      "sha256": "39261b0950c74d22e682ba5725fbed51dd3e0e2c48aed7c0230518503829131a",
+      "width": 390,
+      "height": 844,
+      "capturedRuntime": "bbea2485edce7e8759efaf22deb7a0ef1f3aac6e"
+    }
+  ],
+  "limits": [
+    "local viewer, not hosted preview",
+    "viewport-emulated pointer, not physical-phone touch",
+    "no GA server delivery certification",
+    "no merge or deployment authorized"
+  ]
+}
