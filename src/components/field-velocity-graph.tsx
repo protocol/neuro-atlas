@@ -75,6 +75,6 @@ export function FieldVelocityGraphDetail({ entry, pageHeading }: { entry: FieldV
     settings, supportsBenchmarkExport, supportsSensoryExport: graph.renderer === "draft" && graph.plot === "bci-bitrate", update,
   }}>
     {pageHeading && <header>{pageHeading}</header>}
-    <InlineChartDetail.Provider value><StandaloneChartSupport anchor={entry.slug} title={entry.title} state={request ? "" : standaloneChartParams(entry, settings).toString()}><SelectedDetail entry={entry} /></StandaloneChartSupport></InlineChartDetail.Provider>
+    <InlineChartDetail.Provider value><StandaloneChartSupport state={request ? "" : standaloneChartParams(entry, settings).toString()}><SelectedDetail entry={entry} /></StandaloneChartSupport></InlineChartDetail.Provider>
   </ChartExplorationContext.Provider>;
 }

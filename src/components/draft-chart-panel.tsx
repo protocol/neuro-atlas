@@ -1,6 +1,5 @@
 "use client";
 
-import { ChartPreviewBrand } from "@/components/chart-plate";
 import { useGraphHref } from "@/components/field-velocity-route-context";
 import type { DraftChart } from "@/data/draft-charts";
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
@@ -27,7 +26,6 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
   const exporting = useCardExporting(anchor);
   return <div className="draft-popout" data-draft-popout={anchor} data-draft-popout-aliases={aliases.join(" ")}>
     <div className="draft-popout-card" data-metric-card-body>
-      <ChartPreviewBrand />
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>
       {previewContext}
       {href ? <a href={href} data-graph-link={anchor} className="draft-popout-trigger" data-draft-popout-trigger={anchor} aria-label={`Enlarge ${title}`} />

@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { ModalSlotsContext, type ModalSlots } from "@/components/chart-modal-slots";
 import { FieldVelocityRouteContext } from "@/components/field-velocity-route-context";
 import { fieldVelocityGraph } from "@/data/field-velocity-links";
-import { ChartPlate } from "@/components/chart-plate";
 import { ChartExplorationProvider } from "@/components/chart-exploration-provider";
 import { lockModalScroll } from "@/lib/field-velocity/modal-scroll";
 import { closePerformance, takePerformanceFocusReturn } from "@/lib/field-velocity/navigation";
@@ -60,7 +59,7 @@ export function ChartModal({ id, title, children, returnFocus, offscreen = false
     ? <ChartExplorationProvider entry={entry}>{children}</ChartExplorationProvider> : children;
   const body = <ModalSlotsContext.Provider value={slots}>
     <div className="pc-detail">
-      {entry ? <ChartPlate anchor={entry.slug} title={title}>{content}</ChartPlate> : content}
+      {content}
       <div className="mx-grid">
         <div className="mx-left" ref={slotRef("reading")} />
         <aside className="mx-right" aria-label="Source notes"><h3 className="mx-k">Source notes</h3><div className="mx-sources" ref={slotRef("sources")} /></aside>

@@ -1,7 +1,6 @@
 "use client";
 
 import { chartCopiedUrl } from "@/lib/chart-export";
-import { ChartPreviewBrand } from "@/components/chart-plate";
 import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
@@ -135,7 +134,7 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id} data-trends-revision={revision}>
-    <div data-metric-card-body><ChartPreviewBrand />
+    <div data-metric-card-body>
     {href ? <a href={href} data-graph-link={id} className="pc-trigger" aria-label={`Open ${group.title}`}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>
