@@ -195,6 +195,22 @@
     [
       "https://github.com/bocklab/temca2-catmaid/blob/7449966d688e3d8adc9455bd93d0fca84bad410a/download/README.md",
       "Bock Lab — FAFB historical ~12 TB dataset downloader documentation"
+    ],
+    [
+      "https://clinicaltrials.gov/study/NCT07543367",
+      "Synchron INTENT — sponsor registry: active, not recruiting (November 2026)"
+    ],
+    [
+      "https://clinicaltrials.gov/study/NCT07533903",
+      "Synchron FOCUS-AUS — sponsor registry: active, not recruiting (November 2026)"
+    ],
+    [
+      "https://clinicaltrials.gov/study/NCT07446114",
+      "Synchron FOCUS-CAN — terminated for insufficient recruitment; separate from lead-performance reporting"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20261109/",
+      "Federal Reserve H.10 — November 5, 2026 USD per GBP observation; announcement-date fallback for NeuroBionics grant"
     ]
   ],
   "studies": [
@@ -357,6 +373,10 @@
     [
       "https://cdn.elifesciences.org/articles/91979/elife-91979-v3.pdf",
       "cdn.elifesciences.org — elife 91979 v3.pdf"
+    ],
+    [
+      "https://doi.org/10.7554/elife.91979",
+      "Glaser et al. (2025) — ExA-SPIM imaging method"
     ],
     [
       "https://doi.org/10.1007/s00422-011-0418-x",
@@ -1995,6 +2015,14 @@
     [
       "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
       "Science Corp — April 14, 2025 Form D filing and underlying document"
+    ],
+    [
+      "https://neurobionics.io/press/news/aria-grant-award/",
+      "NeuroBionics — £4.6m ARIA grant 6927, November 5 announcement; preclinical feasibility"
+    ],
+    [
+      "https://aria.org.uk/opportunity-spaces/scalable-neural-interfaces/massively-scalable-neurotechnologies/funded-projects",
+      "ARIA — funded Massively Scalable Neurotechnologies teams; 36-month preclinical feasibility"
     ]
   ],
   "discovery": [
@@ -2201,6 +2229,22 @@
     [
       "https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/",
       "Crunchbase News — Science financing history; April 2025 Khosla-led convertible note"
+    ],
+    [
+      "https://neurotechnology.substack.com/p/notables-66",
+      "Neurotech Notables #66 — November 1–17, 2026 discovery issue"
+    ],
+    [
+      "https://www.wired.com/story/synchron-pauses-trials-of-its-brain-implant-due-to-performance-issues/",
+      "WIRED — Synchron voluntary enrollment pause, reported November 12; directly attributed company statement"
+    ],
+    [
+      "https://paper.xinmin.cn/html/xmwb/2026-11-13/6/252131.html",
+      "Xinmin Evening News — Neuracle NEO commercial adoption and Shanghai supplementary coverage; November 13 reporting"
+    ],
+    [
+      "https://finance.biggo.com/news/f7951592-b01f-4102-9858-3245e931cbc9",
+      "BigGo — discovery summary with erroneous NeuroXess/NEO attribution; use original Xinmin report for Neuracle"
     ]
   ],
   "ecosystems": [
@@ -2329,6 +2373,10 @@
     [
       "https://www.zeiss.com/microscopy/us/products/sem-fib-sem/sem/multisem.html",
       "zeiss.com — multisem"
+    ],
+    [
+      "https://patents.google.com/patent/US20230077899A1/en",
+      "Neuralink cell-based interface application — filed 2021, published 2023; not a November 2026 milestone"
     ]
   ]
 }

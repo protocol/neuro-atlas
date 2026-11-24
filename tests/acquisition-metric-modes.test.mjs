@@ -135,7 +135,7 @@ test('pinned and focused source popups survive rendering in all modes and always
       assert.match(popup.textContent,/not a matched whole-brain project budget/);
       assert.match(popup.textContent,/2024/);
       assert.match(popup.textContent,/author estimate/i);
-      assert.match(popup.textContent,/citation mismatch.*HiExM/i);
+      assert.match(popup.textContent,/author estimate.*Glaser.*2025/i);
       assert.ok(popup.querySelector('a[href]'),'source link retained');
       const button=document.querySelector(`[data-acquisition-metric="${mode==='voxels-per-dollar'?'dollars-per-voxel':'voxels-per-dollar'}"]`);
       await act(async()=>button.focus());await click(button);
@@ -177,7 +177,7 @@ test('selected image and JSON describe only the selected quantity while source t
         for(const [j,point] of line.points.entries()) assert.equal(point.y,convert(plot.referenceTrendlines[i].points[j].y));
       }
       assert.equal(data.points[9].y,convert(1e11));
-      assert.match(data.points[9].note,/citation mismatch.*HiExM/i);
+      assert.match(data.points[9].note,/author estimate.*Glaser.*2025/i);
       const table=document.querySelector('dialog table');
       assert.equal(table.querySelectorAll('thead th')[2].textContent,plot.yLabel,'table stays in source units');
       assert.equal(table.querySelectorAll('tbody tr')[9].querySelectorAll('td')[1].textContent,'≈100 billion');

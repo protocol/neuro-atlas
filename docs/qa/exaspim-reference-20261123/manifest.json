@@ -1,0 +1,22 @@
+{
+  "runtimeRevision": "7235d2860a64a91d32cbb4441018d1a57a6d1ec9",
+  "baselineRevision": "56395db93182d41e61703a0bfbf89616f467bdbd",
+  "candidateOrigin": "http://127.0.0.1:38623",
+  "baselineOrigin": "https://www.plneuro.xyz",
+  "candidateBuildId": "3teE8rnlfNKtgZxRO2mM4",
+  "files": {
+    "after-chart-1440.png": "43d757d96760ee538919968e3e9316a48f61d7052e7c7e313514f994a25f6a1a",
+    "after-native-dollars-per-voxel.png": "2367799d3d91b652444357f3581917e45c2c18a31a012ac290c47cd202e686c4",
+    "after-native-voxels-per-dollar.png": "98fc8651e152d3014c1db8b01f3aadc01ef7855ebc57dcf8563d38a7302b974c",
+    "after-reference-link-320.png": "eda2404cb591184d3931c317108dac0c4b97ff7c4999b6b61df288c269dd5146",
+    "after-report.json": "fe443394d27d54461f5477461e17810faf2d55f7bcd74498cbf8475e3a2b1dcc",
+    "after-source-1440.png": "a704c740967f5c40f26031982fe42f153e864ca84f0ec2886b342607bd5f6b55",
+    "before-chart-1440.png": "aef37473407f7c635d67348d4eac6a91691cd38355f76a7a59de24e7717d78dd",
+    "before-report.json": "05210fe4dd13c034e5bab34972656783e68c610aedfd5e3a1dbdb96e72b9e1aa",
+    "before-source-1440.png": "cb16b761555544996de294decebcbbe7b83313d83e4c3787877135d5db9c86de",
+    "before-source-320.png": "8250c31554b63a03b67786edc675a507c5786c3ea9d8d35ef21067ca612bc1e7",
+    "browser-replay.py": "99550acc68970ce0de2856990b32c62efe56990c3c4f838d22cee81ec1877cda",
+    "focused-tests.log": "fe19380c45706af201c38e02cb2619ce6b8308e6e52720891a6b2a7ce9414aa4",
+    "production-build.log": "8f49dd75efaa4b10eaaef3723e20afa01060df27044ccef271a3bd4c1c6b9313"
+  }
+}

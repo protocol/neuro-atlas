@@ -27,6 +27,7 @@ const sources = {
 const additions = [sources.newronika, sources.neuralink, sources.inbrain];
 // Later reviewed issues are independently frozen by their own exact-delta tests.
 const laterSources = [...JSON.parse(readFileSync(new URL('./fixtures/notables-65.json', import.meta.url))).milestones.map(row => row.sourceUrl),
+  ...JSON.parse(readFileSync(new URL('./fixtures/notables-66.json', import.meta.url))).sources,
   'https://science.xyz/news/series-d/']; // independently asserted by funding-feedback-data.test.mjs
 const baseline = {
   canonicalRows: 81,

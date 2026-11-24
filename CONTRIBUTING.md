@@ -1,34 +1,62 @@
 # Contributing to Neuro Atlas
 
-Atlas is a separate application at [protocol/neuro-atlas](https://github.com/protocol/neuro-atlas). Submit a fork/branch and pull request there; no write access to `protocol/plrd.org` is required. The repository transfer is complete. Direct writes, invitations and organization permissions are separate owner decisions. Never include credentials, private records or production settings in a PR.
+Corrections, new research, clearer explanations, accessibility fixes, and code improvements are welcome. Keep pull requests focused on one change.
 
-## Data and research
+## Getting started
 
-- Edit canonical `data/` CSV/JSON, not just generated `src/data/` output. For the pinned Field velocity import, follow [performance-curves.md](docs/performance-curves.md) instead of hand-editing the snapshot.
-- Supply primary source URLs, publication/access dates, observation dates and precision, units, definitions, inclusion/exclusion scope and provenance. Separate announced/estimated values from observations; do not combine incompatible populations or multiply recording hours by electrode count.
-- Preserve unknown values and qualifiers; do not fill gaps with plausible numbers. Explain the change and add validation/regression tests.
-- For logos, retain source URL, official site, retrieval provenance and integrity in existing source records. Do not copy another directory's dataset.
-- Run `npm run data:generate` after canonical data edits; include the derived diff and verify regeneration is reproducible. Run `npm run performance:verify` for relevant shared-feed changes.
+Use **Feedback** on [Neuro Atlas](https://www.plneuro.xyz/neuro-atlas), [open an issue](https://github.com/protocol/neuro-atlas/issues/new/choose), or send a pull request. Check existing issues and PRs first. For a large feature or methodology change, open an issue to discuss the approach. Report vulnerabilities through [private reporting](SECURITY.md).
 
-**Licensing:** there is currently no repository-wide LICENSE file. A public repository is not a blanket reuse license for code, research data, logos or third-party material. Check each source's terms, obtain permission when needed and record restrictions. Do not claim all Atlas data is open-licensed.
+## Your first pull request
 
-## Development and checks
+1. [Fork Neuro Atlas](https://github.com/protocol/neuro-atlas/fork).
+2. Clone your fork and create a branch:
 
-Read `AGENTS.md` and installed Next.js documentation before routing changes. Use the checked-in npm lockfile:
+   ```sh
+   git clone https://github.com/YOUR-GITHUB-USERNAME/neuro-atlas.git
+   cd neuro-atlas
+   git switch -c fix/describe-your-change
+   npm ci
+   npm run dev
+   ```
+
+   Replace `YOUR-GITHUB-USERNAME` with your username. Use **Node.js 24 LTS** and **Python 3**; some source-integrity tests invoke `python3`.
+
+3. Make your change and add or update the relevant tests. Preserve source credits and existing URLs.
+4. Run the checks below, commit your changes, and push to your fork.
+5. Open a PR against **`protocol/neuro-atlas:main`**. Describe the change and include sources and test results.
+
+Lukas Bresser (`@lksbrssr`) reviews contributions.
+
+## Data and sources
+
+- Use **primary source** links where possible. Record publication, observation, and access dates, date precision, units, definitions, populations, and inclusion criteria.
+- Label reported, announced, estimated, and forecast values. Keep unknown values marked as unknown and retain the source's qualifications.
+- Check for overlapping datasets and incompatible populations before combining values. Keep recording hours separate from electrode counts and distinguish amounts raised from valuations.
+- Edit canonical inputs in `data/`, then run `npm run data:generate` and include the `src/data/` changes. Follow each chart's source guide. For the shared Field Velocity feed, see [performance-curves.md](docs/performance-curves.md) and run `npm run performance:verify` where applicable.
+- Preserve attribution, license notices, and logo provenance. Explain changes to denominators, conversions, cutoffs, or methodology, and add a validation test.
+
+## Checks
+
+The app uses Next.js, React, TypeScript, and Tailwind. Install from the committed lockfile with `npm ci`. Keep dependency updates separate from unrelated changes. For framework changes, read the installed Next.js documentation referenced in `AGENTS.md`.
 
 ```sh
-npm ci
-npm run data:generate
 npm test
 npm run typecheck
 npm run build
-node scripts/verify-hosting.mjs
 ```
 
-Repeat routing/asset checks with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`. See [hosting](docs/plrd-hosting.md) for exact commands, metadata controls and the auth boundary.
+The required **Contributor checks** job tests contribution, methodology, navigation, and Feedback behavior, then typechecks and builds the app. The full `npm test` suite has existing failures. Include the results of relevant regression tests in your PR and preserve scientific assertions. Maintainers can run the **Full regression suite** workflow for a complete run.
 
-Hosted Atlas currently uses HTTP Basic authentication. Do not read/copy/use the hardcoded source credential or add an auth bypass for QA. A local browser fixture must be a separate loopback-only checkout never deployed; label local/synthetic evidence and its exact source SHA. Removing/replacing the hosted gate needs a separate owner decision.
+For routing or asset changes, run `node scripts/verify-hosting.mjs` and test with `NEXT_PUBLIC_BASE_PATH=/neuro-atlas`. See the [hosting guide](docs/plrd-hosting.md).
 
-## PR expectations
+For visual changes, include desktop and mobile screenshots and identify the tested revision. Check keyboard navigation, focus, and existing chart links.
 
-Include scope, source/units/date decisions, commands and actual results, desktop/mobile screenshots for visual changes, and known gaps. Review the exact final SHA and provenance. Same-origin PLRD hosting is a shared browser trust boundary: contributor code needs review before production. Never grant Atlas contributors PLRD secrets or website permissions as a shortcut.
+A maintainer may need to approve the first CI run from a fork. GitHub checks use a read-only token and run without production secrets. Vercel Git Fork Protection remains enabled; maintainers review fork code before approving preview deployments, which may have access to server-side environment variables. Keep private feedback and credentials in private channels.
+
+## License
+
+Original software and documentation use **Apache-2.0 OR MIT**, following the IPFS/Kubo convention. Submitting original work offers it under the same license choice. You retain your copyright.
+
+For third-party material, include the source, license, notices, and attribution. Research data, papers, figures, logos, fonts, and trademarks retain their source terms. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). If rights are unclear, link the source for review.
+
+You are responsible for the evidence, rights, and test results in your contribution.

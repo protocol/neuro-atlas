@@ -586,7 +586,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         </span>)}
       </>}
     </p>}
-    {plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">PEEM: prospective. ExA-SPIM 2024: author estimate; citation mismatch (HiExM).</p>}
+    {plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">PEEM: prospective. ExA-SPIM 2024: author estimate.</p>}
     {preview && overlapNote && <p className="draft-plot-overlap-note" data-overlap-note>{overlapNote}</p>}
     {!preview && <p className="draft-plot-legend"><span aria-hidden="true">●</span> {observationBasis} · {scaleNote} · {connectionNote}</p>}
     {!preview && <><PointTooltip {...tooltip.tooltipProps}>
