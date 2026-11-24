@@ -7,7 +7,7 @@ import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
 // Shared axes change presentation, not source records, dates or measured values.
 const recordingHours = DRAFT_CHART_EVIDENCE["Neural recording hours collected over time"];
-const recordingColors = ["#9275ca", "#238e91", "#cd732f", "#647d3d", "#cb6285"];
+const recordingColors = ["#9275ca", "#238e91", "#cd732f", "#647d3d", "#cb6285", "#4b79b8"];
 const recordingHoursPlot: DraftPlot = {
   id: "recording-hours", // Internal presentation identity; all dataset links remain aliases.
   title: "Neural recording hours — selected datasets",

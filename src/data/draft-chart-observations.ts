@@ -3,6 +3,32 @@ import { RECORDING_HOURS_REFERENCES, RECORDING_HOURS_COVERAGE } from "./recordin
 import { CONNECTOMICS_BACKFILL, CONNECTOMICS_CURATION_SOURCE, connectomicsCheckpoints } from "./connectomics-backfill";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
+// New public-source checkpoint; the archived provider corpus remains immutable.
+const braingateT15: DraftPlot = {
+  id: "braingate-t15-independent-use",
+  title: "BrainGate T15 · human intracortical, non-public",
+  xLabel: "Publication year", xKind: "year",
+  yLabel: "Approximate recording hours", scale: "linear",
+  scope: "One human participant using an intracortical speech and cursor BCI at home. Approximate recording duration is based on reported BCI-use time; session data were saved except during privacy mode. Independent-use neural data and transcripts are non-public; figure and statistical summaries are public.",
+  points: [{
+    id: "braingate-t15-independent-use-2026-06-15",
+    x: 2026.4520547945206, y: 3800, qualifier: "≈",
+    label: "BrainGate T15 · independent speech and cursor BCI use",
+    dateLabel: "2026-06-15 · publication",
+    sourceUrl: "https://www.nature.com/articles/s41591-026-04414-6",
+    sourceTitle: "Card et al. (2026) · Long-term independent use of an intracortical brain–computer interface for speech and cursor control",
+    sourceRole: "Reported BCI-use duration and recording/access methods",
+    quote: "As of 22.6\u2009months after the implant surgery, he had accumulated more than 3,800\u2009h of BCI use",
+    note: "Card et al. report >3,800 h of BCI use by participant T15. The plotted ≈3,800 h uses BCI-use time as an approximate recording-duration basis across speech and cursor operation. Methods state that session data were saved except during privacy mode; the exact retained recording duration is unspecified. Independent-use neural data and speech transcripts are withheld for participant privacy; figure and statistical summaries are public. Dated to June 15, 2026 publication.",
+    recordingCoverage: RECORDING_HOURS_COVERAGE["braingate-t15-independent-use-2026-06-15"],
+    supportingReferences: [{
+      role: "Public figure and statistical summaries",
+      title: "Card et al. · figure and statistical reproduction data",
+      url: "https://github.com/Neuroprosthetics-Lab/NatMed_independent_personal_use",
+    }],
+  }],
+};
+
 // Reader copy is projected separately so source quotations and archived evidence stay exact.
 const summaries: Record<string, Pick<DraftChartEvidence, "summary"> & Partial<Pick<DraftChartEvidence, "gapReason">>> = {
   "Brain tissue mapped over time": {
@@ -228,7 +254,7 @@ export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.f
           ...additions,
         ],
       };
-    }),
+    }).concat(title === "Neural recording hours collected over time" ? [braingateT15] : []),
     ...(evidence.timeline ? { timeline: {
       ...evidence.timeline,
       scope: "Selected synaptic-connectome research applications, grouped by demonstration or biological-validation stage. Dates identify publications; first-use timing remains uncertain. The selection covers synaptic-connectome studies.",

@@ -9,17 +9,17 @@ import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 globalThis.React = React;
 
-test('the actual recording-hours site notes separate five source paragraphs with existing legend color keys', async () => {
+test('the actual recording-hours site notes separate six source paragraphs with distinct legend color keys', async () => {
   const plot = METRIC_CHART_EVIDENCE['Neural recording hours collected over time'].plots[0];
   const cleanup = await mount(React.createElement(DraftChartPlot, { plot, shareAnchor: 'metric-recording-hours' }));
   try {
     const rows = [...document.querySelectorAll('[data-chart-note]')];
-    assert.equal(rows.length, 5);
+    assert.equal(rows.length, 6);
     assert.deepEqual(rows.map(row => row.querySelector('p').textContent), plot.seriesNote.split(/\n\n/));
     assert.deepEqual(rows.map(row => row.querySelector('[data-chart-note-key]').style.backgroundColor), plot.legend.map(entry => {
       const node = document.createElement('span'); node.style.backgroundColor = entry.color; return node.style.backgroundColor;
     }));
-    assert.equal(document.querySelectorAll('[data-source-observation]').length, 12, 'Source marks are not restyled or removed');
+    assert.equal(document.querySelectorAll('[data-source-observation]').length, 13, 'Original source marks are preserved beside the added BrainGate point');
     const css = readFileSync('src/components/draft-chart-plot.css', 'utf8');
     assert.match(css, /\.chart-supporting-notes\s*\{[^}]*font-size:\s*12px/);
     assert.match(css, /\.chart-supporting-notes\s*\{[^}]*color:\s*var\(--muted\)/);

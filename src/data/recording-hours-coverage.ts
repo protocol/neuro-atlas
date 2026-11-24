@@ -3,6 +3,11 @@ import type { DraftObservation } from "@/lib/draft-chart-types";
 // Additional matched-denominator evidence; archived provider records stay immutable.
 const tuszScope = "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations.";
 export const RECORDING_HOURS_COVERAGE: Record<string, NonNullable<DraftObservation["recordingCoverage"]>> = {
+  "braingate-t15-independent-use-2026-06-15": {
+    count: 1, unit: "participants",
+    durationSummary: "Duration basis: reported BCI-use time",
+    detail: "Participant T15 is the single human contributor to the reported >3,800 h of BCI use. The plotted ≈3,800 h is an approximate recording duration across speech and cursor operation. Session data were saved except during privacy mode; the exact retained recording duration is unspecified. Session counts matched to retained recordings are unreported.",
+  },
   "neuralink-reported-hours-2026-10-01": {
     count: null, unit: "participants",
     detail: "Recording contributors are not disclosed. Trial enrollment and the six participants in the performance analysis are not the denominator of >50,000 h. The first participant’s >9,000 h is a subset, not a per-person distribution.",

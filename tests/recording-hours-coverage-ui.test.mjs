@@ -18,6 +18,7 @@ const pairs = [
   ['ajile12-intracranial-2022-01-27', '1,280 h · 12 participants'],
   ['poyo-primate-training-2023-10-24', '>100 h · 7 nonhuman primates · >158 sessions'],
   ['japaneeg-scalp-eeg-2026-05-31', '1,020 h · 3 participants'],
+  ['braingate-t15-independent-use-2026-06-15', '≈3,800 h · 1 participant'],
 ];
 
 test('the current shared chart exposes matched coverage at rest, on selected points, in the source table and accessible marks, without growing previews', async () => {
@@ -50,8 +51,9 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
       '≈106.7 h/participant · — h/session (count not reported)',
       '>14.2 h/animal · — h/session (both values are lower bounds)',
       '≈340.0 h/participant · — h/session (count not reported)',
+      '≈3,800.0 h/participant · — h/session (count not reported)',
     ];
-    assert.equal(comparison.querySelectorAll('[data-recording-bar-fill]').length, 23);
+    assert.equal(comparison.querySelectorAll('[data-recording-bar-fill]').length, 25);
     const bar = (id, metric) => comparison.querySelector(`[data-recording-coverage-row="${id}"] [data-recording-bar="${metric}"]`);
     const width = (id, metric) => Number.parseFloat(bar(id, metric).querySelector('[data-recording-bar-fill]').style.width);
     assert.ok(Math.abs(width(pairs[1][0], 'hours') - 100 * 170 / 50000) < 1e-9);
@@ -61,7 +63,7 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
     assert.deepEqual([...comparison.querySelectorAll('[data-recording-bar-lower-bound]')].map(fill => fill.closest('li').dataset.recordingCoverageRow), [pairs[0][0], pairs[10][0]]);
     assert.ok(dialog.querySelector('[data-draft-group-legend]').compareDocumentPosition(comparison) & window.Node.DOCUMENT_POSITION_FOLLOWING, 'The modality/access legend stays immediately above the coverage list');
     assert.ok([...dialog.querySelectorAll('thead th')].some(th => th.textContent === 'Recording hours / coverage'));
-    assert.equal(comparison.querySelectorAll('[data-recording-coverage-row]').length, 12);
+    assert.equal(comparison.querySelectorAll('[data-recording-coverage-row]').length, 13);
     const sourceRows = [...dialog.querySelectorAll('tbody tr')];
     for (const [index, [id, pair]] of pairs.entries()) {
       assert.ok(comparison.querySelector(`[data-recording-coverage-row="${id}"]`).textContent.includes(pair), `${id}: comparison`);
@@ -78,6 +80,7 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
         ['readout', tooltip.textContent],
       ]) assert.ok(text.includes(`Calculated average: ${averages[index]}`), `${id}: calculated average in ${surface}`);
     }
+    await act(async () => dialog.querySelector('[data-source-observation="japaneeg-scalp-eeg-2026-05-31"]').dispatchEvent(new Event('focusin', { bubbles: true })));
     assert.match(dialog.querySelector('[role=tooltip]').textContent, /≈60–814 h per participant \(calculated from Table 4\)/);
     assert.match(dialog.querySelector('[role=tooltip]').textContent, /not a continuous session/);
     assert.doesNotMatch(dialog.textContent, /OpenNeuro|CC0|open release claim/);

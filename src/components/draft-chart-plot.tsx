@@ -76,8 +76,9 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
 }
 
 function recordingCoverageLabel(coverage: NonNullable<DraftObservation["recordingCoverage"]>) {
+  const unit = coverage.count === 1 ? coverage.unit.replace(/s$/, "") : coverage.unit;
   const people = coverage.count == null ? `${coverage.unit} not disclosed`
-    : validRecordingCount(coverage.count) ? `${exactNumber(coverage.count)} ${coverage.unit}` : `${coverage.unit} unavailable (invalid count)`;
+    : validRecordingCount(coverage.count) ? `${exactNumber(coverage.count)} ${unit}` : `${coverage.unit} unavailable (invalid count)`;
   const sessions = coverage.sessions === undefined ? "" : validRecordingCount(coverage.sessions)
     ? ` · ${coverage.sessionsQualifier ?? ""}${exactNumber(coverage.sessions)} sessions` : " · sessions unavailable (invalid count)";
   return `${people}${sessions}`;
@@ -540,7 +541,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       {!modalSlots && <p className="draft-plot-scope">{plot.scope}</p>}
-      {(plot.referenceTrendlines || plot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
+      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {acquisition && <p><a data-source-plot-json download={`neuro-atlas-${plot.id}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download original source data &amp; fits JSON (voxels/$)</a></p>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}

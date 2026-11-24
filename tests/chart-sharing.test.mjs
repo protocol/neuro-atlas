@@ -350,7 +350,7 @@ test('filtered POYO image keeps its selected point and nonvisual lower-bound evi
 });
 
 
-test('unified recording-hours export has one generic chart URL, all 12 marks and observation-linked lower bounds/scopes', async () => {
+test('unified recording-hours export has one generic chart URL, all 13 marks and observation-linked qualifiers/scopes', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
@@ -366,18 +366,18 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
     const doc = exported.window.document;
     assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 13);
     const text = exportEvidence(doc);
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
     for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Lines connect only TUSZ releases (overlapping, not summed); other observations remain separate.']) assert.ok(text.includes(phrase), phrase);
     const lines = [...doc.querySelectorAll('polyline')];
     assert.equal(lines.length, 1, 'Only the supported TUSZ release sequence is exported; no pooled fit');
     assert.equal(lines[0].getAttribute('points'), card.querySelector('[data-observation-series="tusz-releases"]').getAttribute('points'));
-    for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
+    for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG', 'BrainGate T15']) assert.ok(text.includes(name));
     assert.equal(doc.querySelectorAll('[data-export-note], [data-export-footnotes]').length, 0);
     const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
     assert.ok(visible.includes('More information on Neuro Atlas.'));
-    assert.equal(card.querySelectorAll('[data-chart-note]').length, 5, 'On-site dataset notes are unchanged');
+    assert.equal(card.querySelectorAll('[data-chart-note]').length, 6, 'The five original dataset notes remain beside the new BrainGate note');
     assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
     exported.window.close();
   } finally { await cleanup(); boundary.restore(); }
