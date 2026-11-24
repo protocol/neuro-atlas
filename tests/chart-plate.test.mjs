@@ -23,7 +23,7 @@ for (const entry of FIELD_VELOCITY_GRAPHS) test(`${entry.slug}: shared live char
     const plot = plate.querySelector('svg'); assert.ok(plot, 'real live vector plot, not an image');
     assert.ok(plate.querySelector('[data-chart-plate-brand]').compareDocumentPosition(plot) & window.Node.DOCUMENT_POSITION_FOLLOWING, 'brand is above the actual plot');
     assert.ok(plate.querySelector('[data-chart-plate-title]').textContent.length > 0);
-    assert.ok(plate.querySelector('img, canvas, [data-chart-actions], [data-exploration-series], [role=switch], select, [role=radio], .pc-methodology:not([data-latency-identity]), [data-draft-methodology]') === null, 'controls and long methodology are outside clean screenshot boundary');
+    assert.ok(plate.querySelector('img, canvas, [data-chart-actions], [role=switch], select, [role=radio], .pc-methodology:not([data-latency-identity]), [data-draft-methodology]') === null, 'controls and long methodology are outside clean screenshot boundary');
     assert.ok(document.querySelector('[data-chart-actions]'), 'sharing stays available outside plate');
     assert.ok(document.querySelector('table, .draft-event-list'), 'source evidence retained');
     const original = marks(plate.querySelector('svg'));
@@ -48,7 +48,23 @@ test('overview previews share a restrained Neuro Atlas identity and expanded exp
     await click(document.querySelector('[data-draft-popout-trigger="metric-panel-bci-bitrate"]'));
     const plate=document.querySelector('dialog[open] [data-chart-plate]'); assert.ok(plate);
     assert.equal(plate.querySelector('[data-chart-plate-brand]').textContent,'Neuro Atlas');
-    assert.equal(plate.querySelector('[data-exploration-series], [role=switch], [data-chart-actions]'),null);
+    assert.equal(plate.querySelector('[role=switch], [data-chart-actions]'),null);
+    assert.ok(plate.querySelector('button[data-exploration-series]'), 'the visible chart legend keeps native interaction');
     assert.ok(plate.querySelector('[data-point-annotation]'),'essential visible study key stays with the chart');
+  } finally { await cleanup(); }
+});
+
+
+test('the screenshot-ready legend stays directly interactive rather than duplicating controls above the plot', async () => {
+  const cleanup = await mount(await Page({ params: Promise.resolve({ slug: 'bci-information-transfer-over-time' }) }), '', win => win.history.replaceState({}, '', '/field-velocity/bci-information-transfer-over-time'));
+  try {
+    const plate = document.querySelector('[data-chart-plate]');
+    const speech = plate.querySelector('button[data-exploration-series="Speech decoding"]');
+    assert.ok(speech, 'the visible legend itself remains the interaction target');
+    assert.equal(document.querySelectorAll('button[data-exploration-series="Speech decoding"]').length, 1);
+    await click(speech);
+    assert.equal(speech.getAttribute('aria-pressed'), 'false');
+    assert.equal(plate.querySelectorAll('svg [data-source-observation]').length, 9);
+    assert.equal(new URL(window.location.href).searchParams.get('chartHidden'), 'bci-information-transfer-over-time:speech');
   } finally { await cleanup(); }
 });

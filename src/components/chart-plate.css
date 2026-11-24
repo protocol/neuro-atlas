@@ -22,8 +22,10 @@
 .chart-plate-controls:empty { display: none; }
 .chart-plate-controls > :is(.brain-scale-controls, .exploration-model) { flex: 1 1 100%; margin: 0; }
 .chart-plate-controls :is(.pc-track-select, .publication-growth-options) { margin: 0; }
-.chart-plate-series { display: inline-flex; align-items: center; gap: .35rem; }
-.chart-plate-series[data-visible="false"] { opacity: .5; }
+.chart-plate-series { display: inline-flex; align-items: center; gap: .35rem; border: 0; border-radius: .2rem; padding: .15rem 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.chart-plate-series:hover { text-decoration: underline; text-underline-offset: .2em; }
+.chart-plate-series:focus-visible { outline: 2px solid var(--chart-signature); outline-offset: 3px; }
+.chart-plate-series[aria-pressed="false"] { opacity: .5; }
 .chart-plate-series small { font-size: .7rem; }
 .chart-preview-brand { display: block; color: var(--accent); font-size: .625rem; font-weight: 650; letter-spacing: .025em; line-height: 1.2; margin-bottom: .35rem; }
 [data-metric-card-body] { border-top: 2px solid var(--accent); }
