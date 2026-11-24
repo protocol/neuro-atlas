@@ -11,6 +11,7 @@ import { ModalData, ModalSources, ModalSlotsContext } from "@/components/chart-m
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
+import { chartYAxisHelp } from "@/lib/chart-axis-help";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
@@ -181,6 +182,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
+  const axisHelp = chartYAxisHelp(plot);
+  const axisTooltip = usePointTooltip<string>();
   const active = tooltip.active;
   const tablePlot = acquisition ? sourcePlot : plot;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${acquisition ? acquisitionNumber(point.y, acquisitionMetric) : plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
@@ -382,7 +385,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     </div>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
-      <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      <text className="draft-plot-axis-title" x={0} y={18}
+        {...(!preview && axisHelp ? { "data-erl-axis-help": true, tabIndex: 0, role: "button", "aria-label": `About ${axisHelp.label}`, ...axisTooltip.pointProps(axisHelp.hover) } : {})}>
+        {yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}
+      </text>
       {costMetric && <text data-cheaper-direction x={0} y={fitLabelTop - 20} fill="var(--muted)" fontSize={CHART_PRESENTATION.labelFontSize}>↑ cheaper</text>}
       {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
         <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
@@ -521,7 +527,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         </p>)}
           <p data-acquisition-tooltip-value="human-brain">Illustrative human-brain acquisition cost: <strong>{acquisitionNumber(HUMAN_IMAGE_VOXELS / sourcePlot.points.find(point => point.id === active.id)!.y, "human-brain")}</strong> per human brain</p>
           <p>{ACQUISITION_HUMAN_COST_NOTE}</p>
-        </> : <p>{plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>}
+        </> : <p>{axisHelp?.label ?? plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>}
         {active.recordingCoverage && <div data-recording-coverage-readout>
           <p>{recordingAverages(active)}</p>
           {active.recordingCoverage.durationSummary && <p>{active.recordingCoverage.durationSummary}</p>}
@@ -533,6 +539,9 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <CalculationSource source={active.calculationSource} />
       </> : null}
     </PointTooltip>
+    {axisHelp && <PointTooltip {...axisTooltip.tooltipProps}>
+      {axisTooltip.active && <p>{axisTooltip.active}</p>}
+    </PointTooltip>}
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
       {plot.curationSource && <p className="mx-scope-line">Dataset discovery: <a href={plot.curationSource.url} target="_blank" rel="noreferrer">{plot.curationSource.title} ↗</a></p>}

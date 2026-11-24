@@ -158,8 +158,11 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
     const markup = renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }));
-    const svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
+    let svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
     assert.ok(svg, plot.id);
+    // The ERL disclosure adds only these exact interaction attributes. Keep all
+    // coordinates, labels, source values and the independent SVG goldens pinned.
+    if (plot.id === 'pathfinder-nerl' && !preview) svg = svg.replace(' data-erl-axis-help="true" tabindex="0" role="button" aria-label="About Normalized expected run length (%)"', '');
     actual[`${plot.id}:${preview ? 'preview' : 'default'}`] = createHash('sha256').update(svg).digest('hex');
     if (plot.id !== 'bci-bitrate' || preview) assert.equal(markup.includes('data-sensory-toggle'), false, plot.id);
   }

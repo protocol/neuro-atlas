@@ -10,12 +10,13 @@ import { ACQUISITION_CHART_TITLE, supportsAcquisitionMetrics } from "@/lib/acqui
 import { navigatePerformance, usePerformanceHash } from "@/lib/field-velocity/navigation";
 import { useCardExporting } from "@/lib/field-velocity/card-export";
 import { ModalReading } from "@/components/chart-modal-slots";
+import { chartYAxisHelp } from "@/lib/chart-axis-help";
 
 type PanelLocation = { anchor: string; aliases?: readonly string[]; methodology?: ReactNode; previewContext?: ReactNode };
 
 /** The parent owns stable fragment IDs; each alias belongs to exactly one panel. */
-function DraftPanel({ anchor, aliases = [], title, preview, previewContext, methodology, children }: PanelLocation & {
-  title: string; preview: ReactNode; children: ReactNode;
+function DraftPanel({ anchor, aliases = [], title, preview, previewContext, methodology, children, previewHelp }: PanelLocation & {
+  title: string; preview: ReactNode; children: ReactNode; previewHelp?: string;
 }) {
   const trigger = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash().slice(1);
@@ -26,7 +27,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>
       {previewContext}
       <button ref={trigger} type="button" className="draft-popout-trigger" data-draft-popout-trigger={anchor}
-        aria-label={`Enlarge ${title}`} aria-haspopup="dialog" aria-expanded={open}
+        aria-label={`Enlarge ${title}`} aria-haspopup="dialog" aria-expanded={open} title={previewHelp}
         onClick={() => navigatePerformance(anchor)} />
     </div>
     {(open || exporting) && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger} offscreen={!open}>
@@ -36,7 +37,7 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
 }
 
 export function DraftChartPanel({ plot, ...location }: PanelLocation & { plot: DraftPlot }) {
-  return <DraftPanel {...location} title={supportsAcquisitionMetrics(plot) ? ACQUISITION_CHART_TITLE : plot.title} preview={<DraftChartPlot plot={plot} preview />}>
+  return <DraftPanel {...location} title={supportsAcquisitionMetrics(plot) ? ACQUISITION_CHART_TITLE : plot.title} previewHelp={chartYAxisHelp(plot)?.hover} preview={<DraftChartPlot plot={plot} preview />}>
     <DraftChartPlot plot={plot} shareAnchor={location.anchor} />
   </DraftPanel>;
 }
