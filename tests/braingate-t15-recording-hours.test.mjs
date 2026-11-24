@@ -8,6 +8,7 @@ import { DraftChartsSection } from '../src/components/sections/draft-charts-sect
 import { recordingAverages } from '../src/data/recording-hours-coverage.ts';
 import { whenChartRegistered } from '../src/lib/chart-export-api.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
+import { readFileSync } from 'node:fs';
 import { mount, click } from './modal-helpers.mjs';
 
 globalThis.React = React;
@@ -95,4 +96,14 @@ test('BrainGate T15 is one qualified non-public recording observation throughout
     assert.match(metadata, /neural data and transcripts are non-public/);
     assert.doesNotMatch(metadata, /personal correspondence|author email|largest single/i);
   } finally { imageDom?.window.close(); await cleanup(); }
+});
+
+test('BrainGate public figure summaries appear in the classified source directory', () => {
+  const catalog = JSON.parse(readFileSync(new URL('../src/data/methodology-sources.json', import.meta.url), 'utf8'));
+  const point = METRIC_CHART_EVIDENCE[title].plots[0].points.find(point => point.id === id);
+  for (const ref of point.supportingReferences) {
+    const entries = catalog.reference.filter(([url]) => url === ref.url);
+    assert.equal(entries.length, 1, `Classify the exact public summary source: ${ref.url}`);
+    assert.match(entries[0][1], /figure.*statistical.*summar/i);
+  }
 });
