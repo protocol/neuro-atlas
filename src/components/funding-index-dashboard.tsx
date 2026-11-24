@@ -411,7 +411,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               <aside className="self-start rounded-3xl bg-[#171a21] p-7 text-white lg:sticky lg:top-40">
                 <div className="text-xs font-bold text-white/80">How to read this</div>
                 <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em]">Named participation in indexed financings.</h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts financing records that name each backer, including disclosed funding commitments. Individual contributions, cash received, ownership, reserves and returns require separate evidence.</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts financing records that name each backer, including disclosed funding commitments.</p>
                 <p className="mt-4 text-sm leading-relaxed text-white/75">Reviewed investor families group related names for counting. Company records retain the original investor names; legal identities follow the sources.</p>
                 <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Participant lists reflect each announcement’s disclosures. Counts depend on how fully sources name backers.</div>
               </aside>
