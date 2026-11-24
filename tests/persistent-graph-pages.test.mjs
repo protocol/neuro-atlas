@@ -5,6 +5,7 @@ import { JSDOM } from "jsdom";
 import React from "react";
 import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime.js";
 import { renderToStaticMarkup } from "react-dom/server";
+import { fieldVelocityGraph } from "../src/data/field-velocity-links.ts";
 globalThis.React = React;
 
 const inventory = JSON.parse(readFileSync(new URL("./fixtures/readable-atlas-urls.json", import.meta.url)));
@@ -53,7 +54,7 @@ test("legacy fragment translation preserves exactly the current catalog URL's re
       for (const view of ["historical", "electrical", "human-channels", "optical", "unknown", "", "optical&recordingView=electrical", "optical&recordingView=optical"]) {
         const search = "?utm_campaign=a&utm_campaign=b&token=secret&review=1&recordingView=" + view;
         const expected = entry.kind === "chart" && !entry.fallback
-          ? `${prefix}/field-velocity/${entry.slug}?utm_campaign=a&utm_campaign=b&review=1${entry.target === "simultaneously-recorded-neurons" && /^(historical|electrical|human-channels|optical)$/.test(view) ? `&recordingView=${view}` : ""}` : null;
+          ? `${prefix}/field-velocity/${entry.slug}?review=1${entry.target === "simultaneously-recorded-neurons" && /^(historical|electrical|human-channels|optical)$/.test(view) ? `&recordingView=${view}` : ""}` : null;
         assert.equal(legacyGraphDestination(`${overview}${search}#${anchor}`, prefix), expected, anchor);
       }
     }
@@ -67,7 +68,8 @@ test("legacy fragment translation preserves exactly the current catalog URL's re
 });
 
 
-test("production catalog renders ordinary deep links for every card and related measurement", async () => {
+// Follow-up intentionally supersedes PR144's navigate-on-card contract.
+test("production catalog keeps all25 card identities as exploration buttons, not page navigation", async () => {
   const page = await import("../src/app/field-velocity/page.tsx");
   const layout = await import("../src/app/field-velocity/layout.tsx");
   const Overview = page.default?.default ?? page.default;
@@ -75,13 +77,15 @@ test("production catalog renders ordinary deep links for every card and related 
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(AppRouterContext.Provider, {value: {}}, React.createElement(Layout, null, React.createElement(Overview)))));
   try {
     const doc = dom.window.document;
-    const links = [...doc.querySelectorAll("[data-graph-link]:not([data-related-measurement])")];
-    assert.deepEqual([...new Set(links.map(link => link.getAttribute("href").split("/").at(-1)))].sort(), inventory.map(v => v[1]).sort());
-    for (const link of [...links, ...doc.querySelectorAll("[data-related-measurement]")]) {
-      assert.equal(link.tagName, "A");
-      assert.match(link.getAttribute("href"), /\/field-velocity\/[a-z][a-z0-9-]+$/);
-      assert.equal(link.hasAttribute("aria-haspopup"), false);
-    }
+    const bodies = [...doc.querySelectorAll("[data-metric-card-body]")];
+    const slugs = bodies.map(body => {
+      assert.ok(body.matches('button[aria-haspopup="dialog"]') || body.querySelector('button[aria-haspopup="dialog"]'), 'each preview opens in place');
+      assert.equal(body.querySelectorAll('[data-graph-link]').length, 0);
+      const owner = body.closest('[data-draft-popout], [data-performance-card], [data-trends-card]');
+      const anchor = owner.dataset.draftPopout ?? owner.dataset.performanceCard ?? `google-trends-${owner.dataset.trendsCard}`;
+      return fieldVelocityGraph(anchor).slug;
+    });
+    assert.deepEqual(slugs.sort(), inventory.map(value => value[1]).sort());
   } finally { dom.window.close(); }
 });
 
@@ -140,7 +144,7 @@ test("share URLs and exported filenames use the canonical route with only the ch
 });
 
 
-test("the route layout consumes a native legacy chart hash with one router replacement and no dialog", async () => {
+test("the route layout retains native legacy exploration hashes without standalone redirects", async () => {
   const { mount, settle } = await import("./modal-helpers.mjs");
   const mod = await import("../src/app/field-velocity/layout.tsx");
   const Layout = mod.default?.default ?? mod.default;
@@ -154,12 +158,12 @@ test("the route layout consumes a native legacy chart hash with one router repla
     });
   try {
     await settle();
-    assert.deepEqual(replacements, ["/field-velocity/bci-information-transfer-over-time?review=1&review=2"]);
+    assert.deepEqual(replacements, [], "overview fragments stay exploration locations");
     assert.equal(window.history.length, length);
     assert.equal(window.history.state.keep, "router");
     assert.equal(document.querySelector("dialog"), null);
     await React.act(async () => { window.location.hash = "google-trends-neuralink"; });
     await settle();
-    assert.equal(replacements.length, 1, "retired brand context stays on the overview");
+    assert.equal(replacements.length, 0, "retired brand context stays on the overview");
   } finally { await cleanup(); }
 });

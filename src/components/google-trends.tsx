@@ -1,6 +1,7 @@
 "use client";
 
-import { chartShareUrl } from "@/lib/chart-export";
+import { chartCopiedUrl } from "@/lib/chart-export";
+import { ChartPreviewBrand } from "@/components/chart-plate";
 import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
@@ -24,7 +25,7 @@ import { usePreviewFont } from '@/components/use-preview-font';
 import { PointTooltip, usePointTooltip } from '@/components/point-source-tooltip';
 import { ChartYearGuides, annualDateYears } from '@/components/chart-year-guides';
 import { CHART_PRESENTATION } from '@/lib/chart-presentation';
-import { navigatePerformance, performanceUrl, usePerformanceHash } from '@/lib/field-velocity/navigation';
+import { navigatePerformance, usePerformanceHash } from '@/lib/field-velocity/navigation';
 
 type Group = TrendsData & { id: string; title: string; sourceUrl: string; rawSha256: string };
 
@@ -123,18 +124,18 @@ function TrendCard({ group, revision }: { group: Group; revision: string }) {
   const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
   const [copyResult, setCopyResult] = useState({ url: '', status: '', fallback: '' });
-  const currentCopy = copyResult.url && typeof window !== 'undefined' && copyResult.url === (href ? chartShareUrl : performanceUrl)(window.location.href, id);
+  const currentCopy = copyResult.url && typeof window !== 'undefined' && copyResult.url === chartCopiedUrl(window.location.href, id);
   const { status: copyStatus, fallback: copyFallback } = currentCopy ? copyResult : { status: '', fallback: '' };
   const share = <div className="pc-share">
     <button type="button" aria-label={`Copy link to ${group.title}`} onClick={async () => {
-      const url = (href ? chartShareUrl : performanceUrl)(window.location.href, id);
+      const url = chartCopiedUrl(window.location.href, id);
       try { await navigator.clipboard.writeText(url); setCopyResult({ url, fallback: '', status: 'Link copied' }); }
       catch { setCopyResult({ url, fallback: url, status: 'Select and copy the chart URL below.' }); }
     }}>Copy link</button><span role="status">{copyStatus}</span>
     {copyFallback && <label className="gt-copy-fallback">Chart URL<input type="text" aria-label={`Chart URL for ${group.title}`} readOnly value={copyFallback} onFocus={event => event.currentTarget.select()} /></label>}
   </div>;
   return <article className="pc-card card gt-card" data-trends-card={group.id} data-trends-revision={revision}>
-    <div data-metric-card-body>
+    <div data-metric-card-body><ChartPreviewBrand />
     {href ? <a href={href} data-graph-link={id} className="pc-trigger" aria-label={`Open ${group.title}`}>
       <h3>{group.title}</h3>
       <span className="gt-range">Past 36 months · {group.start.slice(0, 7)}–{group.end.slice(0, 7)}</span>

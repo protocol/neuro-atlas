@@ -6,5 +6,5 @@ import { graphNavigationHref } from "@/lib/field-velocity/graph-navigation";
 export const FieldVelocityRouteContext = createContext<string | null>(null);
 export function useGraphHref(anchor: string) {
   const current = useContext(FieldVelocityRouteContext);
-  return current === null ? undefined : graphNavigationHref(anchor, current || undefined);
+  return !current || /\/field-velocity\/?$/.test(new URL(current).pathname) ? undefined : graphNavigationHref(anchor, current);
 }

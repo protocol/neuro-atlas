@@ -49,7 +49,7 @@ test('bitrate legend changes actual marks and recomputes the visible eligible mo
   } finally { await close(); }
 });
 
-test('bitrate controls sit between the plot and the study key even with diagnostics open', async () => {
+test('bitrate controls stay outside the clean plate, ahead of its plot and essential study key', async () => {
   const close = await standalone(bitrate);
   try {
     const chart = document.querySelector('.graph-detail');
@@ -62,7 +62,8 @@ test('bitrate controls sit between the plot and the study key even with diagnost
     const filters = [...chart.querySelectorAll('[data-exploration-series]')];
     assert.ok(filters.length > 0);
     for (const control of [...filters, fit, sensory]) {
-      assert.ok(before(svg, control) && before(control, study), 'plot controls precede the long study key');
+      assert.ok(before(control, svg) && before(control, study), 'editing is reachable before the clean chart and long study key');
+      assert.ok(control.closest('[data-chart-plate]') === null);
     }
     await click(fit);
     assert.ok(before(sensory, el('[data-exploration-fit-diagnostics]')), 'both switches are reachable before fit diagnostics');

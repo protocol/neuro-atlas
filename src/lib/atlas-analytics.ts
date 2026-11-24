@@ -1,3 +1,4 @@
+import { readChartShareAttribution } from "./chart-share-attribution";
 import { FIELD_VELOCITY_GRAPHS, graphPath } from "../data/field-velocity-links";
 
 export const ATLAS_COOKIE_SETTINGS_EVENT = "pl:open-cookie-settings";
@@ -36,7 +37,10 @@ export function createAtlasAnalytics(window: Window) {
   let failed = false;
   let script: HTMLScriptElement | null = null;
   let lastPath: string | null = null;
-  let pendingPaths: string[] = [];
+  let pendingPaths: { path: string; attribution: string }[] = [];
+  // Ephemeral landing-only evidence; never persisted or reused on internal navigation.
+  const landingPath = canonicalPath(win);
+  let landingAttribution = readChartShareAttribution(new URL(win.location.href));
   let permission = false;
   let settingsOpen = false;
   let localDenial = false;
@@ -68,6 +72,7 @@ export function createAtlasAnalytics(window: Window) {
       purgeCookies();
       lastPath = null;
       pendingPaths = [];
+      landingAttribution = "";
     }
     permission = false;
   }
@@ -102,7 +107,10 @@ export function createAtlasAnalytics(window: Window) {
     if (failed) { disable(true); return; }
     const newlyAllowed = !permission;
     permission = true;
-    if ((pendingPaths.at(-1) ?? lastPath) !== path) pendingPaths.push(path);
+    if ((pendingPaths.at(-1)?.path ?? lastPath) !== path) {
+      pendingPaths.push({ path, attribution: path === landingPath ? landingAttribution : "" });
+      landingAttribution = "";
+    }
     if (!script) {
       disable(true);
       script = win.document.createElement("script");
@@ -124,10 +132,10 @@ export function createAtlasAnalytics(window: Window) {
       configured = true;
     }
     if (configured && newlyAllowed) command("consent", "update", consentFields("granted"));
-    for (const nextPath of pendingPaths) {
+    for (const { path: nextPath, attribution } of pendingPaths) {
       command("event", "page_view", {
         send_to: measurementId, ...fields,
-        page_location: `${origin}${nextPath}`,
+        page_location: `${origin}${nextPath}${attribution ? `?${attribution}` : ""}`,
         page_referrer: lastPath ? `${origin}${lastPath}` : fields.page_referrer,
       });
       lastPath = nextPath;
@@ -147,7 +155,7 @@ export function createAtlasAnalytics(window: Window) {
     refresh,
     choose(choice: Exclude<Choice, null>) {
       if (!connected || !state.eligible) return;
-      if (choice === "denied") { refuse(); purgeCookies(); }
+      if (choice === "denied") { landingAttribution = ""; refuse(); purgeCookies(); }
       settingsOpen = false;
       localDenial = false;
       try { win.localStorage.setItem(storageKey, choice); }

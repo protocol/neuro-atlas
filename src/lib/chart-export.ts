@@ -1,3 +1,4 @@
+import { chartShareAttribution } from "@/lib/chart-share-attribution";
 import { atlasBasePath } from "@/lib/atlas-path";
 import { fieldVelocityLink, graphPath, type FieldVelocityGraph } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
@@ -80,6 +81,14 @@ export function chartShareUrl(current: string, anchor: string) {
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   settings.forEach((value, key) => url.searchParams.set(key, value));
+  return url.href;
+}
+
+/** Deliberate sharing only: canonical/export URLs never carry campaign tags. */
+export function chartCopiedUrl(current: string, anchor: string) {
+  const url = new URL(chartShareUrl(current, anchor));
+  const link = fieldVelocityLink(anchor);
+  if (link?.graph) chartShareAttribution(link.slug).forEach((value, key) => url.searchParams.set(key, value));
   return url.href;
 }
 

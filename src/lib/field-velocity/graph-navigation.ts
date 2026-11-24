@@ -10,7 +10,7 @@ const privateQuery = /^(?:access[_-]?token|auth(?:orization)?|code|credential(?:
 /** App navigation retains same-origin query multiplicity; sharing is stricter. */
 function graphSearch(source: URL, entry: FieldVelocityGraph) {
   const params = new URLSearchParams(source.search);
-  for (const key of Array.from(params.keys())) if (privateQuery.test(key)) params.delete(key);
+  for (const key of Array.from(params.keys())) if (privateQuery.test(key) || /^utm_/i.test(key)) params.delete(key);
   if (entry.graph.renderer !== "recording" || !recordingViewToken(source)) params.delete(recordingViewQuery);
   standaloneChartStateKeys.forEach(key => params.delete(key));
   params.delete("brainScale");

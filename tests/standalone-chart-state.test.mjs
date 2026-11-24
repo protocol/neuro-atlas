@@ -74,7 +74,7 @@ test('a filtered modeled BCI Copy link round-trips a fresh mount and does not en
     await click(copy);
     shared = new URL(clipboard);
     assert.equal(shared.pathname, path(bci));
-    assert.deepEqual([...shared.searchParams.keys()], ['chartHidden', 'chartModel']);
+    assert.deepEqual([...shared.searchParams.keys()], ['chartHidden', 'chartModel', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content']);
     assert.equal(shared.searchParams.get('chartModel'), `${bci}:fit,sensory`);
     assert.equal(shared.searchParams.get('chartHidden'), `${bci}:speech`);
     assert.match(document.body.textContent, /Copied/);

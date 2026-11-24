@@ -22,7 +22,10 @@ export function useStandaloneChartSettings(entry: FieldVelocityGraph) {
     if (next.href === current.href) return;
     // Native history integrates with Next without navigation, scroll, or focus changes.
     // Keep router metadata and the overview-return ticket owned by the current entry.
-    window.history.pushState(window.history.state, "", next);
+    // A dialog is one history entry: edits replace its view so Close/Back returns
+    // to the untouched overview in one step and Forward restores the latest view.
+    if (window.history.state?.atlasModalFrom) window.history.replaceState(window.history.state, "", next);
+    else window.history.pushState(window.history.state, "", next);
     window.dispatchEvent(new Event("atlas-performance-location"));
   }
   return { settings, update };

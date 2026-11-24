@@ -1,7 +1,8 @@
 "use client";
 
-import { useContext, type ReactNode } from "react";
+import { useContext, useEffect, type ReactNode } from "react";
 import { ChartExplorationContext, explorationExportReason } from "@/components/chart-exploration-context";
+import { useChartPlate } from "@/components/chart-plate";
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { ModalSlot } from "@/components/chart-modal-slots";
 
@@ -11,6 +12,9 @@ export function ChartActions({ anchor, title, link, children }: {
 }) {
   const exploration = useContext(ChartExplorationContext);
   const reason = explorationExportReason(exploration);
+  const plate = useChartPlate();
+  const setTitle = plate?.setTitle;
+  useEffect(() => { setTitle?.(title); }, [setTitle, title]);
   // In a pop-out the row sits in the header, beside Close.
   return <ModalSlot kind="actions"><>
     <div className="chart-actions" data-chart-actions role="group" aria-label={`${title} sharing actions`}>

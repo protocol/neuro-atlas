@@ -1,6 +1,7 @@
 "use client";
 
 import { GraphExportContext } from "@/components/graph-export-context";
+import { ChartPreviewBrand, ChartControls } from "@/components/chart-plate";
 import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 import { useMetricPreviewWidth } from "./use-metric-preview-width";
@@ -255,7 +256,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     }} /></ChartActions>}
     {intro}
     <div ref={plotRef} className={compact ? "pc-preview" : "pc-plot"} data-extrapolation={scenario ? "on" : undefined}>
-    {!compact && extrapolation && <div className="pc-extrapolation-control">
+    {!compact && extrapolation && <ChartControls><div className="pc-extrapolation-control">
       <button type="button" role="switch" aria-checked={extrapolate} aria-describedby={extrapolationHint} onClick={() => setExtrapolate(on => !on)}>
         <span className="pc-switch-track" aria-hidden="true" /><span>Extrapolation</span><span className="pc-switch-state" aria-hidden="true">{extrapolate ? "On" : "Off"}</span>
       </button>
@@ -263,14 +264,14 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
         <span aria-hidden={extrapolate} style={{ visibility: extrapolate ? "hidden" : "visible" }}>Off by default · original observations and axes</span>
         <span aria-hidden={!extrapolate} style={{ visibility: extrapolate ? "visible" : "hidden" }}>{extrapolation === "hours" ? "Axis switched from linear to log · targets span 100 million hours" : "Conditional model · expanded time range"}</span>
       </span>
-    </div>}
-    {!compact && !controlledExtrapolation && data.tracks.length > 1 && <label className="pc-track-select">Dataset / track
+    </div></ChartControls>}
+    {!compact && !controlledExtrapolation && data.tracks.length > 1 && <ChartControls><label className="pc-track-select">Dataset / track
       <select value={track} onChange={e => setTrack(e.target.value)}>
         <option value="">All tracks</option>
         {data.tracks.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
       </select>
       <span>Isolate a track · axes stay fixed</span>
-    </label>}
+    </label></ChartControls>}
     <div ref={scrollRef} className="pc-chart-scroll" data-motion={moving || undefined} style={moving ? {
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
@@ -379,9 +380,9 @@ function CurvePreviewCard(props: CurveCardProps) {
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
     {href ? <a href={href} data-graph-link={id} className="pc-trigger" data-metric-card-body>
-      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+      <ChartPreviewBrand /><span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
     </a> : <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+      <ChartPreviewBrand /><span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
     </button>}
     <div className="pc-card-share" data-metric-card-footer>
       {sourceLinks?.length ? <div className="pc-preview-sources">{sourceLinks.map(source => <a key={source.url} data-curve-source-link href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>)}</div> : null}
@@ -467,11 +468,20 @@ function selectRecordingView(id: RecordingViewId, standalone = false) {
   }
   // A view change gets its own Back/Forward entry. Close must dismiss the modal,
   // not just back into its previous view; direct-link close uses the same rule.
-  window.history.pushState(standalone ? window.history.state : { ...window.history.state, atlasModalFrom: null }, "", url);
+  if (standalone && window.history.state?.atlasModalFrom) window.history.replaceState(window.history.state, "", url);
+  else window.history.pushState(standalone ? window.history.state : { ...window.history.state, atlasModalFrom: null }, "", url);
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
-function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+function RecordingViewSelect({ viewId }: { viewId: RecordingViewId }) {
+  // Read exploration at the detail mount, not the overview card that created it.
   const exploration = useContext(ChartExplorationContext);
+  return <ChartControls><label className="pc-track-select pc-recording-view">Measurement view
+    <select data-recording-view-select value={viewId} onChange={event => selectRecordingView(event.target.value as RecordingViewId, !!exploration)}>
+      {ALL_RECORDING_VIEWS.map(view => <option key={view.id} value={view.id}>{view.label}</option>)}
+    </select>
+  </label></ChartControls>;
+}
+function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
   const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
   const exportRequest = useContext(GraphExportContext);
   const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
@@ -482,14 +492,7 @@ function RecordingCard({ historical, historicalProvenance, detail }: { detail?: 
     plot={recordingPlot(HISTORICAL_RECORDING)}
     modalPlot={<div data-recording-view={view.id}>
       <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
-        <label className="pc-track-select pc-recording-view">Measurement view
-          <select data-recording-view-select value={view.id} onChange={event => {
-            const recordingView = event.target.value as RecordingViewId;
-            selectRecordingView(recordingView, !!exploration);
-          }}>
-            {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
-          </select>
-        </label>
+        <RecordingViewSelect viewId={view.id} />
       } />
     </div>}>
     <ModalReading><section className="pc-methodology" aria-label="Recording evidence definitions and methodology">

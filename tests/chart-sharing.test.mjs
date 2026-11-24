@@ -171,7 +171,9 @@ for (const failure of ['unsupported', 'permission']) test(`${failure}: recover w
     assert.equal(boundary.downloads[0].filename, `neuro-atlas-${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}.png`);
     assert.deepEqual(new Uint8Array(await boundary.downloads[0].blob.arrayBuffer()), new Uint8Array(pngBytes));
     await click(panel.querySelector('[data-copy-draft-link]'));
-    assert.equal(boundary.writes.at(-1), `https://atlas.example/field-velocity?review=1#${canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id)}`);
+    // Follow-up: deliberate Copy link uses a dedicated tagged page, never the sender's overview URL.
+    const slug = canonicalPerformanceAnchor(panel.querySelector('.metric-anchor').id);
+    assert.equal(boundary.writes.at(-1), `https://atlas.example/field-velocity/${slug}?utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`);
   } finally { await cleanup(); boundary.restore(); }
 });
 

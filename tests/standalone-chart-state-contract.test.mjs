@@ -46,3 +46,9 @@ test('updates preserve unrelated repeated queries and fragments and remove all d
   assert.equal(next.href,`https://atlas.example/proxy/field-velocity/${bci}?review=1&review=2#legacy`);
   assert.equal(current.searchParams.get('chartHidden'),`${bci}:speech`,'input is not mutated');
 });
+
+test('internal chart navigation drops shared-link UTMs without losing unrelated repeated queries',()=>{
+  const current=`https://atlas.example/field-velocity/${bci}?review=1&review=2&utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${bci}`;
+  const next=new URL(graphNavigationHref(annual,current),'https://atlas.example');
+  assert.deepEqual([...next.searchParams],[['review','1'],['review','2']]);
+});
