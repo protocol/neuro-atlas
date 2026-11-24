@@ -5,7 +5,7 @@
     {
       "path": "data/funding-index/companies.csv",
       "beforeSha256": "281543d6a10cec7e3a13db41d0f775b8a36845d8999a3b714a022c75b31cabb0",
-      "afterSha256": "338ddddbcff8c8bbbab9fb54a18e6a02903951e877f07cc01320a8a47d264803",
+      "afterSha256": "72b6fb5115eedd92d512644f9d2e4190d988bcc92b0439a3d99350aab52eb61c",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -40,11 +40,11 @@
                 "afterIndex": 26,
                 "before": [],
                 "after": [
-                  "zhiran-medical,Zhiran Medical (智冉医疗),HQ unverified — China,Ultra-thin flexible electrode BCI,Implanted neural interface,Neurological disorders (in development),https://bciflex.com,Implanted,",
+                  "zhiran-medical,Zhiran Medical (智冉医疗),China (headquarters unknown),Ultra-thin flexible electrode BCI,Implanted neural interface,Neurological disorders (in development),https://bciflex.com,Implanted,",
                   "nanochap,Nanochap (暖芯迦),\"Hangzhou, China\",Retinal implant and cortical visual BCI,Retinal; cortical pipeline in R&D,Vision restoration (in development),https://www.nanochap.com,Implanted,",
-                  "conmind,Conmind (聚芯医疗),HQ unverified — China,Interventional BCI and closed-loop neuromodulation,Vascular platform (in development),Neurological disorders (in development),https://www.conmindmed.com,Implant-adjacent,",
-                  "xinsheng-shijie,Xinsheng Shijie (芯生视界),HQ unverified — China,Visual cortical prosthesis,Cortical (in development),Vision restoration (in development),https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,Implanted,Investor announcement (syndicated)",
-                  "active-technology,Active Technology (主动科技),\"Shanghai, China\",Flexible electrode BCI,Implanted neural interface,Motor restoration (in development),https://zidonghua.com.cn/news/Finance/394874.html,Implanted,Issuer announcement (syndicated)",
+                  "conmind,Conmind (聚芯医疗),China (headquarters unknown),Interventional BCI and closed-loop neuromodulation,Vascular platform (in development),Neurological disorders (in development),https://www.conmindmed.com,Implant-adjacent,",
+                  "xinsheng-shijie,Xinsheng Shijie (芯生视界),China (headquarters unknown),Visual cortical prosthesis,Cortical (in development),Vision restoration (in development),https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,Implanted,Investor announcement via Sina",
+                  "active-technology,Active Technology (主动科技),\"Shanghai, China\",Flexible electrode BCI,Implanted neural interface,Motor restoration (in development),https://zidonghua.com.cn/news/Finance/394874.html,Implanted,Company announcement via ZiDongHua",
                   "bci-sonics,BCI-Sonics (华超神控),China (Shanghai office),Focused ultrasound BCI,Transcranial,Neurological disorders (in development),https://www.bcisonics.com,Implant-adjacent,"
                 ]
               }
@@ -56,7 +56,7 @@
     {
       "path": "data/funding-index/rounds.csv",
       "beforeSha256": "83ca770db8b11a9f333dc9005b00037973c8434c4f3705fb353d00ef82a9324c",
-      "afterSha256": "41505d8bbbadff84326d59d210dcc0e7e32a2ad737ad053d620b051e1eca1f29",
+      "afterSha256": "88bd551393f337f21d13d8363b659b5f8d43d1bc860271d8421fc5df63dba455",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -71,17 +71,17 @@
                 "afterIndex": 43,
                 "before": [],
                 "after": [
-                  "neuracle-technology,2022-09-24,day,Financing (stage undisclosed),,150,CNY,RMB 150m (≈$21.0m),松禾资本;熔拓兴兆;青岛华控;杭州凯风;红杉恒辰;常州科教城;中健隆岳;百川致新,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,\"Prospectus pp.44–45: RMB150m new-money subscription agreement September 24, 2022; corporate registration completed March 9, 2023. Agreement date is NOT asserted as cash receipt or public announcement date. Parent should retain agreement-date basis or use year precision; do not invent a 2026 financing from filing date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1266 per USD on 2022-09-23. Documented financing-agreement date, not payment timing. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20220926/\",primary,2026-11-24,event",
-                  "neuracle-technology,2024-11-08,day,Financing (stage undisclosed),,250,CNY,RMB 250m (≈$34.8m),国孚领航;浦东创投;联新科技;德同合心;元科创新;元科贰号,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,\"RMB 250m subscription agreement dated November 8, 2024, implemented in two RMB 125m closings (December 2024 and May 2025). Agreement counted once; closings not separately added. Not an announcement date or cash-receipt date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1785 per USD on 2024-11-08. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20241112/\",primary,2026-11-24,event",
-                  "neuracle-technology,2025-10-28,day,Financing (stage undisclosed),,300,CNY,RMB 300m (≈$42.3m),达晨中小;上海宁鋆;千骥资本;熔拓景睿;华控前沿基金;天正投资;产创壹号;未来涌现;达晨财智;厦门雅恒;太嘉杉基金;雅瑞智友;溢联投资;百川致新;德同合心,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,\"Issuer prospectus pp.51–52: RMB300m subscription agreement Oct28,2025; corporate registration completed Nov17,2025. No stage inferred from external reporting. Agreement date, not cash receipt or announcement date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.0988 per USD on 2025-10-28. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20251103/\",primary,2026-11-24,event",
-                  "gestala,2026-07-03,day,Angel+,,420,CNY,RMB 420m (≈$61.9m),HSG;Lens Technology;Sinovation Ventures;C Capital;Dalton Venture;Seas Capital;Tsing Song Capital;Gobi Partners,https://gestala.com/news/22,\"July3 issuer-index date, not closing. August26 issuer release explicitly states JulyRMB420m Angel+; do not add cumulativeRMB570m. One issuer-index media title says4.3亿元, but company announcement title4.2亿元 and issuer release420 corroborate420. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7886 per USD on 2026-07-02. Publication/announcement-date fallback; investment date undisclosed. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20260706/\",primary,2026-11-24,reported",
-                  "zhiran-medical,2026-02-11,day,Series A+,,300,CNY,RMB 300m (≈$43.4m),中科创星,https://bciflex.com/News,\"Issuer news index explicitly datedFeb11. Full linkedWeChat blocked. Prior2025A round reported as overRMB300m is separate, but not independently verified with exact direct financing body; do not add300for that. Approximate USD comparison uses Federal Reserve H.10 CNY 6.9125 per USD on 2026-02-11. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260217/\",primary,2026-11-24,announcement",
-                  "nanochap,2026-11-03,day,Series C+,,500,CNY,RMB 500m (≈$75.0m),高榕创投;人保股权;Monolith砺思资本;建发新兴投资;东方嘉富;丹合资本;杭州产投集团;君联资本,https://www.nanochap.com/news_info/id-105.html,Corroborated by existing investorCaitong. Do not add cumulativeRMB1bn over components. MayRMB300m round exists in reporting but primary amount/stage not retrieved. Secondary stage conflictMaystrategic versusD is unresolved. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6701 per USD on 2026-11-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/,primary,2026-11-24,announcement",
-                  "conmind,2026-04-08,day,Series C,,200,CNY,Nearly RMB 200m (≈$29.3m),,https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,\"Existing investor/incubator NMED direct publication. Approximate disclosed round size, NOT exact RMB200m. Lead article date April 7 is not substituted for this April 8 report. C-round participants are not enumerated in this primary body; leave investor list empty rather than import reporting identities. Approximate USD comparison uses Federal Reserve H.10 CNY 6.8287 per USD on 2026-04-08. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260413/\",primary,2026-11-24,reported",
-                  "xinsheng-shijie,2026-06-18,day,Seed,,100,CNY,Nearly RMB 100m (≈$14.8m),经纬创投,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,\"Investor-authored 经纬创投 release syndicated on Sina, with direct canonical WeChat link https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Primary-origin content, not issuer-hosted. Nearly RMB100m is approximate; no exact transaction close date. Other investors in reporting not copied absent direct-source verification. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7686 per USD on 2026-06-18. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260622/\",primary,2026-11-24,reported",
-                  "active-technology,2026-08-03,day,Angel,,330,CNY,RMB 330m (≈$48.8m),中科创星;联想之星;九合创投;道彤投资;英诺天使基金;华大松禾生科基金;济峰资本;嘉道资本,https://www.zidonghua.com.cn/news/Finance/270129.html,\"Issuer-source release syndicated on ZiDongHua August 12 explicitly says announcement August 3. Primary-origin, not issuer-hosted; independent Shanghai government commission body corroborates the RMB330m Angel amount. Do not replace source investor labels with guessed legal names. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7657 per USD on 2026-08-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260810/\",primary,2026-11-24,announcement",
-                  "active-technology,2026-11-04,day,Angel+,,464,CNY,RMB 464m (≈$69.5m),高榕创投;国投先导;上海科创投;康君资本;中网投;国泰海通;浦东创投;上海科创基金;广药资本;闵金投;云启资本;道彤资本;华大松禾;英诺资本,https://zidonghua.com.cn/news/Finance/394874.html,\"Issuer-source release syndicated on ZiDongHua dated November 4. Preserve 国投先导 source label; quoted investor explicitly calls itself 上海国投先导基金, NOT an inferred central-SDIC legal alias. No transaction close date. Do not add cumulative approximately RMB800m as another event. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6731 per USD on 2026-11-04. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/\",primary,2026-11-24,reported",
-                  "bci-sonics,2026-10-23,day,Pre-A,,200,CNY,RMB 200m (≈$30.0m),红杉中国;云启资本;比邻星投资;元禾控股;徐汇科创投;德石投资;经纬创投;德联资本,https://www.bcisonics.com/article/5786479998588415,\"Issuer page publication Oct23; reporting/investor column dates same round to September. This is one round, not a second October financing. 近3亿元 is cumulative and not added as an event. Earlier angel-series 约1亿元 is not exact nor safely separable. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6702 per USD on 2026-10-23. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261026/\",primary,2026-11-24,reported"
+                  "neuracle-technology,2022-09-24,day,Financing (stage undisclosed),,150,CNY,RMB 150m (≈$21.0m),松禾资本;熔拓兴兆;青岛华控;杭州凯风;红杉恒辰;常州科教城;中健隆岳;百川致新,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,\"The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.\",primary,2026-11-24,event",
+                  "neuracle-technology,2024-11-08,day,Financing (stage undisclosed),,250,CNY,RMB 250m (≈$34.8m),国孚领航;浦东创投;联新科技;德同合心;元科创新;元科贰号,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,\"The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.\",primary,2026-11-24,event",
+                  "neuracle-technology,2025-10-28,day,Financing (stage undisclosed),,300,CNY,RMB 300m (≈$42.3m),达晨中小;上海宁鋆;千骥资本;熔拓景睿;华控前沿基金;天正投资;产创壹号;未来涌现;达晨财智;厦门雅恒;太嘉杉基金;雅瑞智友;溢联投资;百川致新;德同合心,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,\"The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.\",primary,2026-11-24,event",
+                  "gestala,2026-07-03,day,Angel+,,420,CNY,RMB 420m (≈$61.9m),HSG;Lens Technology;Sinovation Ventures;C Capital;Dalton Venture;Seas Capital;Tsing Song Capital;Gobi Partners,https://gestala.com/news/22,\"The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.\",primary,2026-11-24,reported",
+                  "zhiran-medical,2026-02-11,day,Series A+,,300,CNY,RMB 300m (≈$43.4m),中科创星,https://bciflex.com/News,\"The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used that listing; the linked WeChat article presented a verification challenge. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.\",primary,2026-11-24,announcement",
+                  "nanochap,2026-11-03,day,Series C+,,500,CNY,RMB 500m (≈$75.0m),高榕创投;人保股权;Monolith砺思资本;建发新兴投资;东方嘉富;丹合资本;杭州产投集团;君联资本,https://www.nanochap.com/news_info/id-105.html,\"Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.\",primary,2026-11-24,announcement",
+                  "conmind,2026-04-08,day,Series C,,200,CNY,Nearly RMB 200m (≈$29.3m),,https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,\"Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.\",primary,2026-11-24,reported",
+                  "xinsheng-shijie,2026-06-18,day,Seed,,100,CNY,Nearly RMB 100m (≈$14.8m),经纬创投,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,\"Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.\",primary,2026-11-24,reported",
+                  "active-technology,2026-08-03,day,Angel,,330,CNY,RMB 330m (≈$48.8m),中科创星;联想之星;九合创投;道彤投资;英诺天使基金;华大松禾生科基金;济峰资本;嘉道资本,https://www.zidonghua.com.cn/news/Finance/270129.html,\"Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.\",primary,2026-11-24,announcement",
+                  "active-technology,2026-11-04,day,Angel+,,464,CNY,RMB 464m (≈$69.5m),高榕创投;国投先导;上海科创投;康君资本;中网投;国泰海通;浦东创投;上海科创基金;广药资本;闵金投;云启资本;道彤资本;华大松禾;英诺资本,https://zidonghua.com.cn/news/Finance/394874.html,\"Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.\",primary,2026-11-24,reported",
+                  "bci-sonics,2026-10-23,day,Pre-A,,200,CNY,RMB 200m (≈$30.0m),红杉中国;云启资本;比邻星投资;元禾控股;徐汇科创投;德石投资;经纬创投;德联资本,https://www.bcisonics.com/article/5786479998588415,\"Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.\",primary,2026-11-24,reported"
                 ]
               }
             ]
@@ -92,7 +92,7 @@
     {
       "path": "data/funding-index/milestones.csv",
       "beforeSha256": "3f293dd5f23ffd1cb749472894f17db51cf8fd2e389d763ae0ea823cede602e0",
-      "afterSha256": "1683bbbeeb300da7ea9b79d4e2a25775f1eecab371837214ef3bb1bdd273072b",
+      "afterSha256": "d86a2a25e2c576dbb1f5eb440d81d9ff17b29ec356388de50b35352a8de986fa",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -109,7 +109,7 @@
                   "neuracle-technology,2026-03-13,day,NMPA,Hand-motor augmentation after spinal cord injury,https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use,NMPA registration for an implantable BCI.,unverified"
                 ],
                 "after": [
-                  "neuracle-technology,2026-03-13,day,NMPA,Hand-grasp compensation after chronic cervical spinal cord injury,https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html,\"Regulator publication confirms NMPA registration for epidural wireless BCI driving a pneumatic glove; approved indication is bounded chronic cervical spinal cord injury, not general restoration. March 13 is publication date; agency action day not specified.\",reported"
+                  "neuracle-technology,2026-03-13,day,NMPA,Hand-grasp compensation after chronic cervical spinal cord injury,https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html,\"The regulator’s March 13, 2026 publication confirms NMPA registration for an epidural wireless BCI that controls a pneumatic glove. Its approved use is hand-grasp compensation in a defined group of patients with chronic cervical spinal cord injury. Regulatory decision date: unspecified.\",reported"
                 ]
               }
             ]
@@ -120,7 +120,7 @@
     {
       "path": "data/funding-index/foundings.csv",
       "beforeSha256": "54852a5c8802e483f934ded00cae17f3fc0006b32100ad1c09aeaa97ec963928",
-      "afterSha256": "9bdb0bc5e21cc0bf063e4c0b749e7cd8cdf3ff92e266b09f4eaf68032771e3c5",
+      "afterSha256": "146d47cda8bf745612508dd9bfd6fc9b88f9f050305d3d5bbbe4732c17c5f532",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -135,12 +135,12 @@
                 "afterIndex": 26,
                 "before": [],
                 "after": [
-                  "zhiran-medical,2022,https://bciflex.com/About,primary,2026-11-24,Issuer founding year; Beijing and Shanghai offices do not establish a designated headquarters.",
-                  "nanochap,2014,https://www.nanochap.com,primary,2026-11-24,Issuer founding year; retinal clinical program and cortical R&D are distinct.",
-                  "conmind,2020,https://en.conmindmed.com/about.html,primary,2026-11-24,Group business founding in Shenzhen; not a verified current legal-parent headquarters.",
-                  "xinsheng-shijie,,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,primary,2026-11-24,Founding year not established by retrieved participating-investor release; university origins are not company incorporation.",
-                  "active-technology,2026,https://zidonghua.com.cn/news/Finance/394874.html,primary,2026-11-24,Issuer-origin syndicated release dates company establishment to February 2026; core-team November 2025 inspection precedes incorporation.",
-                  "bci-sonics,,https://www.bcisonics.com/article/5786479998588415,primary,2026-11-24,Founding year not established by retrieved issuer announcement; leave unknown rather than infer from financing."
+                  "zhiran-medical,2022,https://bciflex.com/About,primary,2026-11-24,The company dates its founding to 2022 and lists offices in Beijing and Shanghai. Headquarters: unknown.",
+                  "nanochap,2014,https://www.nanochap.com,primary,2026-11-24,The company dates its founding to 2014. Its work covers retinal implants and visual-cortex research.",
+                  "conmind,2020,https://en.conmindmed.com/about.html,primary,2026-11-24,The group dates its founding in Shenzhen to 2020. Current headquarters: unknown.",
+                  "xinsheng-shijie,,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,primary,2026-11-24,The investor’s announcement describes the university research behind the company. Founding year: unknown.",
+                  "active-technology,2026,https://zidonghua.com.cn/news/Finance/394874.html,primary,2026-11-24,The company announcement published on ZiDongHua dates its establishment to February 2026. Its core team completed a device inspection in November 2025.",
+                  "bci-sonics,,https://www.bcisonics.com/article/5786479998588415,primary,2026-11-24,The company announcement describes its financing and technology. Founding year: unknown."
                 ]
               }
             ]
@@ -340,7 +340,7 @@
     {
       "path": "data/market-memo-q1-2026/milestones.csv",
       "beforeSha256": "c1c926e9984eac4d6c923b50665dd03a39e097cbed0671d5994c4770f4f0b2dc",
-      "afterSha256": "71d8b04299ecbe3c133de3edf0e0603c7ee4e04926471c925bcb6a65b33821ad",
+      "afterSha256": "a649f0bca27f4db37a8dd645fa4f14b7ddd8c872adb070e02bb9611fab2c66f2",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -365,17 +365,17 @@
                 "afterIndex": 98,
                 "before": [],
                 "after": [
-                  "Neuracle,neuracle-technology,≈$21.0m,capital,,2022-09-24,day,\"Financing (stage undisclosed); RMB 150m (≈$21.0m). Prospectus pp.44–45: RMB150m new-money subscription agreement September 24, 2022; corporate registration completed March 9, 2023. Agreement date is NOT asserted as cash receipt or public announcement date. Parent should retain agreement-date basis or use year precision; do not invent a 2026 financing from filing date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1266 per USD on 2022-09-23. Documented financing-agreement date, not payment timing. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20220926/\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,bci,event",
-                  "Neuracle,neuracle-technology,≈$34.8m,capital,,2024-11-08,day,\"Financing (stage undisclosed); RMB 250m (≈$34.8m). RMB 250m subscription agreement dated November 8, 2024, implemented in two RMB 125m closings (December 2024 and May 2025). Agreement counted once; closings not separately added. Not an announcement date or cash-receipt date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1785 per USD on 2024-11-08. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20241112/\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,bci,event",
-                  "Neuracle,neuracle-technology,≈$42.3m,capital,,2025-10-28,day,\"Financing (stage undisclosed); RMB 300m (≈$42.3m). Issuer prospectus pp.51–52: RMB300m subscription agreement Oct28,2025; corporate registration completed Nov17,2025. No stage inferred from external reporting. Agreement date, not cash receipt or announcement date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.0988 per USD on 2025-10-28. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20251103/\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,bci,event",
-                  "Gestala,gestala,≈$61.9m,capital,,2026-07-03,day,\"Angel+; RMB 420m (≈$61.9m). July3 issuer-index date, not closing. August26 issuer release explicitly states JulyRMB420m Angel+; do not add cumulativeRMB570m. One issuer-index media title says4.3亿元, but company announcement title4.2亿元 and issuer release420 corroborate420. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7886 per USD on 2026-07-02. Publication/announcement-date fallback; investment date undisclosed. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20260706/\",https://gestala.com/news/22,bci,reported",
-                  "Zhiran Medical (智冉医疗),zhiran-medical,≈$43.4m,capital,,2026-02-11,day,\"Series A+; RMB 300m (≈$43.4m). Issuer news index explicitly datedFeb11. Full linkedWeChat blocked. Prior2025A round reported as overRMB300m is separate, but not independently verified with exact direct financing body; do not add300for that. Approximate USD comparison uses Federal Reserve H.10 CNY 6.9125 per USD on 2026-02-11. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260217/\",https://bciflex.com/News,bci,announcement",
-                  "Nanochap (暖芯迦),nanochap,≈$75.0m,capital,,2026-11-03,day,Series C+; RMB 500m (≈$75.0m). Corroborated by existing investorCaitong. Do not add cumulativeRMB1bn over components. MayRMB300m round exists in reporting but primary amount/stage not retrieved. Secondary stage conflictMaystrategic versusD is unresolved. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6701 per USD on 2026-11-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/,https://www.nanochap.com/news_info/id-105.html,bci,announcement",
-                  "Conmind (聚芯医疗),conmind,≈$29.3m,capital,,2026-04-08,day,\"Series C; Nearly RMB 200m (≈$29.3m). Existing investor/incubator NMED direct publication. Approximate disclosed round size, NOT exact RMB200m. Lead article date April 7 is not substituted for this April 8 report. C-round participants are not enumerated in this primary body; leave investor list empty rather than import reporting identities. Approximate USD comparison uses Federal Reserve H.10 CNY 6.8287 per USD on 2026-04-08. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260413/\",https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,bci,reported",
-                  "Xinsheng Shijie (芯生视界),xinsheng-shijie,≈$14.8m,capital,,2026-06-18,day,\"Seed; Nearly RMB 100m (≈$14.8m). Investor-authored 经纬创投 release syndicated on Sina, with direct canonical WeChat link https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Primary-origin content, not issuer-hosted. Nearly RMB100m is approximate; no exact transaction close date. Other investors in reporting not copied absent direct-source verification. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7686 per USD on 2026-06-18. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260622/\",https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,bci,reported",
-                  "Active Technology (主动科技),active-technology,≈$48.8m,capital,,2026-08-03,day,\"Angel; RMB 330m (≈$48.8m). Issuer-source release syndicated on ZiDongHua August 12 explicitly says announcement August 3. Primary-origin, not issuer-hosted; independent Shanghai government commission body corroborates the RMB330m Angel amount. Do not replace source investor labels with guessed legal names. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7657 per USD on 2026-08-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260810/\",https://www.zidonghua.com.cn/news/Finance/270129.html,bci,announcement",
-                  "Active Technology (主动科技),active-technology,≈$69.5m,capital,,2026-11-04,day,\"Angel+; RMB 464m (≈$69.5m). Issuer-source release syndicated on ZiDongHua dated November 4. Preserve 国投先导 source label; quoted investor explicitly calls itself 上海国投先导基金, NOT an inferred central-SDIC legal alias. No transaction close date. Do not add cumulative approximately RMB800m as another event. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6731 per USD on 2026-11-04. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/\",https://zidonghua.com.cn/news/Finance/394874.html,bci,reported",
-                  "BCI-Sonics (华超神控),bci-sonics,≈$30.0m,capital,,2026-10-23,day,\"Pre-A; RMB 200m (≈$30.0m). Issuer page publication Oct23; reporting/investor column dates same round to September. This is one round, not a second October financing. 近3亿元 is cumulative and not added as an event. Earlier angel-series 约1亿元 is not exact nor safely separable. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6702 per USD on 2026-10-23. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261026/\",https://www.bcisonics.com/article/5786479998588415,bci,reported"
+                  "Neuracle,neuracle-technology,≈$21.0m,capital,,2022-09-24,day,\"Financing (stage undisclosed); RMB 150m (≈$21.0m). The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,bci,event",
+                  "Neuracle,neuracle-technology,≈$34.8m,capital,,2024-11-08,day,\"Financing (stage undisclosed); RMB 250m (≈$34.8m). The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,bci,event",
+                  "Neuracle,neuracle-technology,≈$42.3m,capital,,2025-10-28,day,\"Financing (stage undisclosed); RMB 300m (≈$42.3m). The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,bci,event",
+                  "Gestala,gestala,≈$61.9m,capital,,2026-07-03,day,\"Angel+; RMB 420m (≈$61.9m). The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.\",https://gestala.com/news/22,bci,reported",
+                  "Zhiran Medical (智冉医疗),zhiran-medical,≈$43.4m,capital,,2026-02-11,day,\"Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used that listing; the linked WeChat article presented a verification challenge. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.\",https://bciflex.com/News,bci,announcement",
+                  "Nanochap (暖芯迦),nanochap,≈$75.0m,capital,,2026-11-03,day,\"Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.\",https://www.nanochap.com/news_info/id-105.html,bci,announcement",
+                  "Conmind (聚芯医疗),conmind,≈$29.3m,capital,,2026-04-08,day,\"Series C; Nearly RMB 200m (≈$29.3m). Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.\",https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,bci,reported",
+                  "Xinsheng Shijie (芯生视界),xinsheng-shijie,≈$14.8m,capital,,2026-06-18,day,\"Seed; Nearly RMB 100m (≈$14.8m). Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.\",https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,bci,reported",
+                  "Active Technology (主动科技),active-technology,≈$48.8m,capital,,2026-08-03,day,\"Angel; RMB 330m (≈$48.8m). Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.\",https://www.zidonghua.com.cn/news/Finance/270129.html,bci,announcement",
+                  "Active Technology (主动科技),active-technology,≈$69.5m,capital,,2026-11-04,day,\"Angel+; RMB 464m (≈$69.5m). Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.\",https://zidonghua.com.cn/news/Finance/394874.html,bci,reported",
+                  "BCI-Sonics (华超神控),bci-sonics,≈$30.0m,capital,,2026-10-23,day,\"Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.\",https://www.bcisonics.com/article/5786479998588415,bci,reported"
                 ]
               }
             ]
@@ -386,7 +386,7 @@
     {
       "path": "src/data/funding-index.json",
       "beforeSha256": "b6fe893f18c8338d3cee0b2bfa0556029a76c30a02bb236ee2e896023702a2e4",
-      "afterSha256": "893e7faca770a128ef63afdd9bb10f03088743798158abaeac8392e26cb8ce14",
+      "afterSha256": "73310ae38c462669c9f38b54deb33e52d2b873517bf465679257997690b27b46",
       "encoding": "json",
       "beforeFormat": {
         "space": 0,
@@ -502,7 +502,7 @@
                   {
                     "slug": "zhiran-medical",
                     "name": "Zhiran Medical (智冉医疗)",
-                    "hq": "HQ unverified — China",
+                    "hq": "China (headquarters unknown)",
                     "modality": "Ultra-thin flexible electrode BCI",
                     "interfaceDepth": "Implanted neural interface",
                     "indication": "Neurological disorders (in development)",
@@ -513,7 +513,7 @@
                       "sourceUrl": "https://bciflex.com/About",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Issuer founding year; Beijing and Shanghai offices do not establish a designated headquarters."
+                      "note": "The company dates its founding to 2022 and lists offices in Beijing and Shanghai. Headquarters: unknown."
                     },
                     "logo": ""
                   },
@@ -531,14 +531,14 @@
                       "sourceUrl": "https://www.nanochap.com",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Issuer founding year; retinal clinical program and cortical R&D are distinct."
+                      "note": "The company dates its founding to 2014. Its work covers retinal implants and visual-cortex research."
                     },
                     "logo": ""
                   },
                   {
                     "slug": "conmind",
                     "name": "Conmind (聚芯医疗)",
-                    "hq": "HQ unverified — China",
+                    "hq": "China (headquarters unknown)",
                     "modality": "Interventional BCI and closed-loop neuromodulation",
                     "interfaceDepth": "Vascular platform (in development)",
                     "indication": "Neurological disorders (in development)",
@@ -549,26 +549,26 @@
                       "sourceUrl": "https://en.conmindmed.com/about.html",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Group business founding in Shenzhen; not a verified current legal-parent headquarters."
+                      "note": "The group dates its founding in Shenzhen to 2020. Current headquarters: unknown."
                     },
                     "logo": ""
                   },
                   {
                     "slug": "xinsheng-shijie",
                     "name": "Xinsheng Shijie (芯生视界)",
-                    "hq": "HQ unverified — China",
+                    "hq": "China (headquarters unknown)",
                     "modality": "Visual cortical prosthesis",
                     "interfaceDepth": "Cortical (in development)",
                     "indication": "Vision restoration (in development)",
                     "website": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
-                    "websiteLabel": "Investor announcement (syndicated)",
+                    "websiteLabel": "Investor announcement via Sina",
                     "scope": "Implanted",
                     "founding": {
                       "year": null,
                       "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Founding year not established by retrieved participating-investor release; university origins are not company incorporation."
+                      "note": "The investor’s announcement describes the university research behind the company. Founding year: unknown."
                     },
                     "logo": ""
                   },
@@ -580,14 +580,14 @@
                     "interfaceDepth": "Implanted neural interface",
                     "indication": "Motor restoration (in development)",
                     "website": "https://zidonghua.com.cn/news/Finance/394874.html",
-                    "websiteLabel": "Issuer announcement (syndicated)",
+                    "websiteLabel": "Company announcement via ZiDongHua",
                     "scope": "Implanted",
                     "founding": {
                       "year": 2026,
                       "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Issuer-origin syndicated release dates company establishment to February 2026; core-team November 2025 inspection precedes incorporation."
+                      "note": "The company announcement published on ZiDongHua dates its establishment to February 2026. Its core team completed a device inspection in November 2025."
                     },
                     "logo": ""
                   },
@@ -605,7 +605,7 @@
                       "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
                       "sourceKind": "primary",
                       "reviewedOn": "2026-11-24",
-                      "note": "Founding year not established by retrieved issuer announcement; leave unknown rather than infer from financing."
+                      "note": "The company announcement describes its financing and technology. Founding year: unknown."
                     },
                     "logo": ""
                   }
@@ -661,7 +661,7 @@
                       "百川致新"
                     ],
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
-                    "note": "Prospectus pp.44–45: RMB150m new-money subscription agreement September 24, 2022; corporate registration completed March 9, 2023. Agreement date is NOT asserted as cash receipt or public announcement date. Parent should retain agreement-date basis or use year precision; do not invent a 2026 financing from filing date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1266 per USD on 2022-09-23. Documented financing-agreement date, not payment timing. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20220926/",
+                    "note": "The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -698,7 +698,7 @@
                       "元科贰号"
                     ],
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
-                    "note": "RMB 250m subscription agreement dated November 8, 2024, implemented in two RMB 125m closings (December 2024 and May 2025). Agreement counted once; closings not separately added. Not an announcement date or cash-receipt date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1785 per USD on 2024-11-08. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20241112/",
+                    "note": "The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -744,7 +744,7 @@
                       "德同合心"
                     ],
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
-                    "note": "Issuer prospectus pp.51–52: RMB300m subscription agreement Oct28,2025; corporate registration completed Nov17,2025. No stage inferred from external reporting. Agreement date, not cash receipt or announcement date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.0988 per USD on 2025-10-28. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20251103/",
+                    "note": "The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -784,7 +784,7 @@
                       "Gobi Partners"
                     ],
                     "sourceUrl": "https://gestala.com/news/22",
-                    "note": "July3 issuer-index date, not closing. August26 issuer release explicitly states JulyRMB420m Angel+; do not add cumulativeRMB570m. One issuer-index media title says4.3亿元, but company announcement title4.2亿元 and issuer release420 corroborate420. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7886 per USD on 2026-07-02. Publication/announcement-date fallback; investment date undisclosed. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20260706/",
+                    "note": "The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -816,7 +816,7 @@
                       "中科创星"
                     ],
                     "sourceUrl": "https://bciflex.com/News",
-                    "note": "Issuer news index explicitly datedFeb11. Full linkedWeChat blocked. Prior2025A round reported as overRMB300m is separate, but not independently verified with exact direct financing body; do not add300for that. Approximate USD comparison uses Federal Reserve H.10 CNY 6.9125 per USD on 2026-02-11. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260217/",
+                    "note": "The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used that listing; the linked WeChat article presented a verification challenge. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -855,7 +855,7 @@
                       "君联资本"
                     ],
                     "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
-                    "note": "Corroborated by existing investorCaitong. Do not add cumulativeRMB1bn over components. MayRMB300m round exists in reporting but primary amount/stage not retrieved. Secondary stage conflictMaystrategic versusD is unresolved. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6701 per USD on 2026-11-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/",
+                    "note": "Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -885,7 +885,7 @@
                     "displayAmount": "Nearly RMB 200m (≈$29.3m)",
                     "investors": [],
                     "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
-                    "note": "Existing investor/incubator NMED direct publication. Approximate disclosed round size, NOT exact RMB200m. Lead article date April 7 is not substituted for this April 8 report. C-round participants are not enumerated in this primary body; leave investor list empty rather than import reporting identities. Approximate USD comparison uses Federal Reserve H.10 CNY 6.8287 per USD on 2026-04-08. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260413/",
+                    "note": "Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -917,7 +917,7 @@
                       "经纬创投"
                     ],
                     "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
-                    "note": "Investor-authored 经纬创投 release syndicated on Sina, with direct canonical WeChat link https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Primary-origin content, not issuer-hosted. Nearly RMB100m is approximate; no exact transaction close date. Other investors in reporting not copied absent direct-source verification. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7686 per USD on 2026-06-18. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260622/",
+                    "note": "Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -956,7 +956,7 @@
                       "嘉道资本"
                     ],
                     "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
-                    "note": "Issuer-source release syndicated on ZiDongHua August 12 explicitly says announcement August 3. Primary-origin, not issuer-hosted; independent Shanghai government commission body corroborates the RMB330m Angel amount. Do not replace source investor labels with guessed legal names. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7657 per USD on 2026-08-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260810/",
+                    "note": "Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -1001,7 +1001,7 @@
                       "英诺资本"
                     ],
                     "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
-                    "note": "Issuer-source release syndicated on ZiDongHua dated November 4. Preserve 国投先导 source label; quoted investor explicitly calls itself 上海国投先导基金, NOT an inferred central-SDIC legal alias. No transaction close date. Do not add cumulative approximately RMB800m as another event. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6731 per USD on 2026-11-04. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/",
+                    "note": "Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   },
@@ -1040,7 +1040,7 @@
                       "德联资本"
                     ],
                     "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
-                    "note": "Issuer page publication Oct23; reporting/investor column dates same round to September. This is one round, not a second October financing. 近3亿元 is cumulative and not added as an event. Earlier angel-series 约1亿元 is not exact nor safely separable. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6702 per USD on 2026-10-23. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261026/",
+                    "note": "Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
                     "sourceKind": "primary",
                     "reviewedOn": "2026-11-24"
                   }
@@ -1079,7 +1079,7 @@
                     "marker": "NMPA",
                     "indication": "Hand-grasp compensation after chronic cervical spinal cord injury",
                     "sourceUrl": "https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html",
-                    "note": "Regulator publication confirms NMPA registration for epidural wireless BCI driving a pneumatic glove; approved indication is bounded chronic cervical spinal cord injury, not general restoration. March 13 is publication date; agency action day not specified."
+                    "note": "The regulator’s March 13, 2026 publication confirms NMPA registration for an epidural wireless BCI that controls a pneumatic glove. Its approved use is hand-grasp compensation in a defined group of patients with chronic cervical spinal cord injury. Regulatory decision date: unspecified."
                   }
                 ]
               }
@@ -1673,7 +1673,7 @@
     {
       "path": "src/data/milestones.json",
       "beforeSha256": "a1ed0b5802ab577fa82dae8126012e125550ff51a8a3c6874f524c5d27052f71",
-      "afterSha256": "267e78b202a7c31fa2e52661c999af860da5c1a8205be1776105f3f80ad56f9f",
+      "afterSha256": "c84035db6bf1bb9533b2fae905f808f458a1b4f8efca638595e5fe80b3deac48",
       "encoding": "json",
       "beforeFormat": {
         "space": 2,
@@ -1756,7 +1756,7 @@
                     "date": "2022-09-24",
                     "datePrecision": "day",
                     "dateBasis": "event",
-                    "note": "Financing (stage undisclosed); RMB 150m (≈$21.0m). Prospectus pp.44–45: RMB150m new-money subscription agreement September 24, 2022; corporate registration completed March 9, 2023. Agreement date is NOT asserted as cash receipt or public announcement date. Parent should retain agreement-date basis or use year precision; do not invent a 2026 financing from filing date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1266 per USD on 2022-09-23. Documented financing-agreement date, not payment timing. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20220926/",
+                    "note": "Financing (stage undisclosed); RMB 150m (≈$21.0m). The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.",
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
                     "logo": "/logos/neuracle.png",
                     "scope": "bci"
@@ -1784,7 +1784,7 @@
                     "date": "2024-11-08",
                     "datePrecision": "day",
                     "dateBasis": "event",
-                    "note": "Financing (stage undisclosed); RMB 250m (≈$34.8m). RMB 250m subscription agreement dated November 8, 2024, implemented in two RMB 125m closings (December 2024 and May 2025). Agreement counted once; closings not separately added. Not an announcement date or cash-receipt date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.1785 per USD on 2024-11-08. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20241112/",
+                    "note": "Financing (stage undisclosed); RMB 250m (≈$34.8m). The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.",
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
                     "logo": "/logos/neuracle.png",
                     "scope": "bci"
@@ -1812,7 +1812,7 @@
                     "date": "2025-10-28",
                     "datePrecision": "day",
                     "dateBasis": "event",
-                    "note": "Financing (stage undisclosed); RMB 300m (≈$42.3m). Issuer prospectus pp.51–52: RMB300m subscription agreement Oct28,2025; corporate registration completed Nov17,2025. No stage inferred from external reporting. Agreement date, not cash receipt or announcement date. Approximate USD comparison uses Federal Reserve H.10 CNY 7.0988 per USD on 2025-10-28. Documented financing-agreement date, not payment timing. FX source: https://www.federalreserve.gov/releases/h10/20251103/",
+                    "note": "Financing (stage undisclosed); RMB 300m (≈$42.3m). The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.",
                     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
                     "logo": "/logos/neuracle.png",
                     "scope": "bci"
@@ -1841,7 +1841,7 @@
                     "date": "2026-07-03",
                     "datePrecision": "day",
                     "dateBasis": "reported",
-                    "note": "Angel+; RMB 420m (≈$61.9m). July3 issuer-index date, not closing. August26 issuer release explicitly states JulyRMB420m Angel+; do not add cumulativeRMB570m. One issuer-index media title says4.3亿元, but company announcement title4.2亿元 and issuer release420 corroborate420. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7886 per USD on 2026-07-02. Publication/announcement-date fallback; investment date undisclosed. Previous available H.10 business day; no rate was published on the event date. FX source: https://www.federalreserve.gov/releases/h10/20260706/",
+                    "note": "Angel+; RMB 420m (≈$61.9m). The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.",
                     "sourceUrl": "https://gestala.com/news/22",
                     "logo": "/logos/gestala.png",
                     "scope": "bci"
@@ -1869,7 +1869,7 @@
                     "date": "2026-02-11",
                     "datePrecision": "day",
                     "dateBasis": "announcement",
-                    "note": "Series A+; RMB 300m (≈$43.4m). Issuer news index explicitly datedFeb11. Full linkedWeChat blocked. Prior2025A round reported as overRMB300m is separate, but not independently verified with exact direct financing body; do not add300for that. Approximate USD comparison uses Federal Reserve H.10 CNY 6.9125 per USD on 2026-02-11. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260217/",
+                    "note": "Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used that listing; the linked WeChat article presented a verification challenge. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
                     "sourceUrl": "https://bciflex.com/News",
                     "logo": null,
                     "scope": "bci"
@@ -1897,7 +1897,7 @@
                     "date": "2026-11-03",
                     "datePrecision": "day",
                     "dateBasis": "announcement",
-                    "note": "Series C+; RMB 500m (≈$75.0m). Corroborated by existing investorCaitong. Do not add cumulativeRMB1bn over components. MayRMB300m round exists in reporting but primary amount/stage not retrieved. Secondary stage conflictMaystrategic versusD is unresolved. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6701 per USD on 2026-11-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/",
+                    "note": "Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
                     "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
                     "logo": null,
                     "scope": "bci"
@@ -1925,7 +1925,7 @@
                     "date": "2026-04-08",
                     "datePrecision": "day",
                     "dateBasis": "reported",
-                    "note": "Series C; Nearly RMB 200m (≈$29.3m). Existing investor/incubator NMED direct publication. Approximate disclosed round size, NOT exact RMB200m. Lead article date April 7 is not substituted for this April 8 report. C-round participants are not enumerated in this primary body; leave investor list empty rather than import reporting identities. Approximate USD comparison uses Federal Reserve H.10 CNY 6.8287 per USD on 2026-04-08. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260413/",
+                    "note": "Series C; Nearly RMB 200m (≈$29.3m). Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.",
                     "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
                     "logo": null,
                     "scope": "bci"
@@ -1953,7 +1953,7 @@
                     "date": "2026-06-18",
                     "datePrecision": "day",
                     "dateBasis": "reported",
-                    "note": "Seed; Nearly RMB 100m (≈$14.8m). Investor-authored 经纬创投 release syndicated on Sina, with direct canonical WeChat link https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Primary-origin content, not issuer-hosted. Nearly RMB100m is approximate; no exact transaction close date. Other investors in reporting not copied absent direct-source verification. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7686 per USD on 2026-06-18. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260622/",
+                    "note": "Seed; Nearly RMB 100m (≈$14.8m). Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.",
                     "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
                     "logo": null,
                     "scope": "bci"
@@ -1981,7 +1981,7 @@
                     "date": "2026-08-03",
                     "datePrecision": "day",
                     "dateBasis": "announcement",
-                    "note": "Angel; RMB 330m (≈$48.8m). Issuer-source release syndicated on ZiDongHua August 12 explicitly says announcement August 3. Primary-origin, not issuer-hosted; independent Shanghai government commission body corroborates the RMB330m Angel amount. Do not replace source investor labels with guessed legal names. Approximate USD comparison uses Federal Reserve H.10 CNY 6.7657 per USD on 2026-08-03. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20260810/",
+                    "note": "Angel; RMB 330m (≈$48.8m). Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.",
                     "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
                     "logo": null,
                     "scope": "bci"
@@ -2009,7 +2009,7 @@
                     "date": "2026-11-04",
                     "datePrecision": "day",
                     "dateBasis": "reported",
-                    "note": "Angel+; RMB 464m (≈$69.5m). Issuer-source release syndicated on ZiDongHua dated November 4. Preserve 国投先导 source label; quoted investor explicitly calls itself 上海国投先导基金, NOT an inferred central-SDIC legal alias. No transaction close date. Do not add cumulative approximately RMB800m as another event. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6731 per USD on 2026-11-04. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261109/",
+                    "note": "Angel+; RMB 464m (≈$69.5m). Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.",
                     "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
                     "logo": null,
                     "scope": "bci"
@@ -2037,7 +2037,7 @@
                     "date": "2026-10-23",
                     "datePrecision": "day",
                     "dateBasis": "reported",
-                    "note": "Pre-A; RMB 200m (≈$30.0m). Issuer page publication Oct23; reporting/investor column dates same round to September. This is one round, not a second October financing. 近3亿元 is cumulative and not added as an event. Earlier angel-series 约1亿元 is not exact nor safely separable. Approximate USD comparison uses Federal Reserve H.10 CNY 6.6702 per USD on 2026-10-23. Publication/announcement-date fallback; investment date undisclosed. FX source: https://www.federalreserve.gov/releases/h10/20261026/",
+                    "note": "Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
                     "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
                     "logo": null,
                     "scope": "bci"

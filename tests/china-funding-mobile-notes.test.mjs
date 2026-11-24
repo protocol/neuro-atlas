@@ -10,7 +10,7 @@ test('long primary-source URLs in financing notes wrap inside narrow company det
  const cleanup=await mount(React.createElement(FundingIndexDashboard,{data}));
  try {
   await click(document.querySelector('[data-founding-year="xinsheng-shijie"]'));
-  const note=[...document.querySelectorAll('[role="dialog"] p')].find(p=>p.textContent.includes('canonical WeChat link'));
+  const note=[...document.querySelectorAll('[role="dialog"] p')].find(p=>p.textContent.includes('https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg'));
   assert.ok(note,'The actual financing evidence note is rendered');
   assert.ok(note.classList.contains('[overflow-wrap:anywhere]'),'Long literal evidence URLs must wrap within the note, not force horizontal scrolling');
  }finally {await cleanup();}

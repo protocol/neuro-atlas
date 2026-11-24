@@ -25,8 +25,8 @@ test('real funding details label documented event FX and the previous H.10 obser
     await click([...document.querySelectorAll('button')].find(button => button.textContent.includes('Synthetic FX fixture')));
     const article = document.querySelector('[role="dialog"] article');
     assert.ok(article);
-    assert.match(article.textContent, /Documented event-date FX/);
-    assert.match(article.textContent, /previous available H\.10 day Sep 23, 2022/);
+    assert.match(article.textContent, /Exchange rate for event date/);
+    assert.match(article.textContent, /previous published rate Sep 23, 2022/);
     assert.doesNotMatch(article.textContent, /investment-date FX|announcement-date FX|announcement.*fallback/i);
     const source = article.querySelector(`a[href="${fx.rateSourceUrl}"]`);
     assert.ok(source, 'The historical-rate observation must link to its own source');
@@ -52,8 +52,8 @@ test('the actual milestone tooltip retains the documented event basis and previo
     await act(async () => source.focus());
     const tooltip = document.querySelector('[data-milestone-detail]');
     assert.ok(tooltip);
-    assert.match(tooltip.textContent, /Documented event-date FX/);
-    assert.match(tooltip.textContent, /previous available H\.10 day Sep 23, 2026/);
+    assert.match(tooltip.textContent, /Exchange rate for event date/);
+    assert.match(tooltip.textContent, /previous published rate Sep 23, 2026/);
     assert.doesNotMatch(tooltip.textContent, /announcement.*fallback|Investment-date FX/);
   } finally {
     if (cleanup) await cleanup();
@@ -63,6 +63,6 @@ test('the actual milestone tooltip retains the documented event basis and previo
 
 test('existing investment and announcement FX labels remain distinct from documented event FX', async () => {
   const { formatFundingFxBasis } = await import('../src/lib/funding-index.ts');
-  assert.match(formatFundingFxBasis({ ...fx, investmentDate: '2022-09-22', dateBasis: 'investment_date', rateDateBasis: undefined }), /^Investment-date FX · Sep 22, 2022$/);
-  assert.match(formatFundingFxBasis({ ...fx, dateBasis: 'announcement_date', rateDateBasis: undefined }), /^Announcement-date FX fallback · Sep 24, 2022$/);
+  assert.match(formatFundingFxBasis({ ...fx, investmentDate: '2022-09-22', dateBasis: 'investment_date', rateDateBasis: undefined }), /^Exchange rate for investment date · Sep 22, 2022$/);
+  assert.match(formatFundingFxBasis({ ...fx, dateBasis: 'announcement_date', rateDateBasis: undefined }), /^Exchange rate for announcement date · Sep 24, 2022$/);
 });

@@ -243,12 +243,12 @@ export function formatFundingFxBasis(fx: {
   rateDate: string;
   rateDateBasis?: string;
 }): string {
-  const label = fx.dateBasis === "event_date" ? "Documented event-date FX"
-    : fx.dateBasis === "investment_date" ? "Investment-date FX"
-    : fx.dateBasis === "announcement_date" ? "Announcement-date FX fallback" : "Historical FX";
+  const label = fx.dateBasis === "event_date" ? "Exchange rate for event date"
+    : fx.dateBasis === "investment_date" ? "Exchange rate for investment date"
+    : fx.dateBasis === "announcement_date" ? "Exchange rate for announcement date" : "Historical exchange rate";
   const basisDate = fx.dateBasis === "investment_date" ? fx.investmentDate : fx.announcedOn;
   const observation = fx.rateDateBasis === "previous_available_business_day"
-    ? ` · previous available H.10 day ${formatFundingDate(fx.rateDate, "day")}` : "";
+    ? ` · previous published rate ${formatFundingDate(fx.rateDate, "day")}` : "";
   return `${label}${basisDate ? ` · ${formatFundingDate(basisDate, "day")}` : ""}${observation}`;
 }
 
