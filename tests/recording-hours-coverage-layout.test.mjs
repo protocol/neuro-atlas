@@ -29,7 +29,7 @@ test('recording source rows retain exact source data in a separately scrollable,
     assert.ok(matching(rules, region, 'overflow-x', 'auto'), 'Horizontal scrolling belongs to the table region');
     assert.ok(matching(rules, table, 'min-width', '49rem'), 'The table protects its columns even when the portal is narrow');
     const rows = [...table.tBodies[0].rows];
-    assert.equal(rows.length, 12);
+    assert.equal(rows.length, 13);
     for (const [i, point] of points.entries()) {
       const [label, date, value, notes] = [...rows[i].cells];
       assert.equal(label.firstChild.textContent, point.label);

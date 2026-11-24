@@ -50,10 +50,15 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
   assert.deepEqual(plots.map(item => [item.id, item.points.length]), [
     ['tissue-cm3', 8], ['largest-connectome-neurons', 10], ['largest-connectome-synapses', 4], ['acquisition-rates', 2],
     ['pathfinder-nerl', 1], ['connectomics-roboem-human-split-merge', 12], ['proofreading-effort', 2], ['neuralink-cumulative', 7],
-    ['recording-hours', 12], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 10],
+    ['recording-hours', 13], ['paired-manual', 3], ['public-data-size', 6], ['flyvis-contrast', 2], ['neuroai-imagenet', 6], ['acquisition-economics', 10],
   ]);
   for (const item of plots) for (const observation of item.points) {
     if (backfillIds.has(observation.id)) continue; // Exact source date and version pinned by the backfill contract.
+    if (observation.id === 'braingate-t15-independent-use-2026-06-15') {
+      // Every field is asserted by the additive fixture before the unchanged goldens above.
+      assert.equal(observation.dateLabel, '2026-06-15 · publication');
+      continue;
+    }
     if (observation.id === 'exaspim2024') {
       assert.equal(item.id, 'acquisition-economics');
       assert.equal(observation.x, 2024);
@@ -77,7 +82,7 @@ test('curated copy preserves raw evidence bytes, coordinates, dates, units, sour
     const presentation = ['y', 'group', 'marker', 'color', 'dateLabel', 'exportAnnotation', 'note', 'exportNote'];
     assert.deepEqual(omit(projected, presentation), omit(archived, presentation), archived.id);
   }
-  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 85);
+  assert.equal(plots.reduce((sum, item) => sum + item.points.length, 0), 86);
   assert.deepEqual(METRIC_CHART_EVIDENCE['Demonstrated applications enabled by connectomics over time'].timeline.events.map(item => item.id), ['application-0', 'application-2']);
 });
 

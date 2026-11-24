@@ -13,13 +13,13 @@ test('the default recording card opens one source-qualified detail popup at its 
     assert.ok(trigger, 'real recording chart is a popup trigger');
     const card = document.getElementById('draft-recording-hours');
     assert.equal(card.querySelectorAll('[data-draft-preview] svg.draft-plot-svg').length, 1);
-    assert.equal(card.querySelectorAll('[data-draft-preview] [data-source-observation]').length, 12);
+    assert.equal(card.querySelectorAll('[data-draft-preview] [data-source-observation]').length, 13);
     trigger.focus(); await click(trigger); await settle();
     const modal = document.querySelector('dialog[open]');
     assert.ok(modal);
     assert.equal(window.location.hash, '#neural-recording-hours-selected-datasets');
     assert.equal(modal.querySelectorAll('svg.draft-plot-svg').length, 1);
-    assert.equal(modal.querySelectorAll('[data-source-observation]').length, 12);
+    assert.equal(modal.querySelectorAll('[data-source-observation]').length, 13);
     assert.equal(modal.querySelectorAll('.draft-plot-inspector').length, 0);
     assert.equal(modal.querySelector('[role=tooltip]'), null);
     assert.equal(modal.querySelectorAll('[data-copy-chart="metric-recording-hours"]').length, 1);

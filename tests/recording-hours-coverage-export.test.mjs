@@ -21,6 +21,7 @@ const pairedKeys = [
   'AJILE12 frozen release · 1,280 h · 12 participants',
   'POYO-1 training corpus · >100 h · 7 nonhuman primates · >158 sessions',
   'JapanEEG descriptor · 1,020 h · 3 participants · ≈60–814 h per participant (calculated from Table 4)',
+  'BrainGate T15 · ≈3,800 h · 1 participant · Duration basis: reported BCI-use time',
 ];
 
 test('the actual recording-hours export callback retains every paired value and strict bound in the visible PNG key and full metadata', async () => {
@@ -31,7 +32,7 @@ test('the actual recording-hours export callback retains every paired value and 
     const dialog = document.querySelector('dialog[open]');
     const spec = (await whenChartRegistered('metric-recording-hours')).getChart();
     assert.equal(spec.svg, dialog.querySelector('svg.draft-plot-svg'), 'Use the real open chart, not a hand-built specification');
-    assert.equal(spec.pointKey?.length, 12, 'Every original observation needs a visible paired key');
+    assert.equal(spec.pointKey?.length, 13, 'Every original observation and the BrainGate addition need a visible paired key');
     assert.deepEqual(spec.pointKey.map(entry => entry.label), pairedKeys);
     const before = [...spec.svg.querySelectorAll('[data-source-observation]')].map(mark => [mark.dataset.sourceObservation, mark.getAttribute('cx'), mark.getAttribute('cy')]);
     const image = buildChartImage(spec, window.location.href);
@@ -50,7 +51,7 @@ test('the actual recording-hours export callback retains every paired value and 
     assert.match(metadata, /https:\/\/arxiv.org\/html\/2606.01264v2/);
     assert.doesNotMatch(metadata, /OpenNeuro|CC0|open release claim/);
     assert.deepEqual([...spec.svg.querySelectorAll('[data-source-observation]')].map(mark => [mark.dataset.sourceObservation, mark.getAttribute('cx'), mark.getAttribute('cy')]), before);
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 13);
     assert.ok(image.height < 2600, 'Keep a compact export, not a source-note dump');
     assert.ok(image.url.endsWith('#neural-recording-hours-selected-datasets'), 'Retain the current canonical shared chart URL');
   } finally { output?.window.close(); await cleanup(); }
@@ -95,7 +96,7 @@ test('the raster input paints proportionate bars, calculated averages and the ex
         assert.equal(new Set(visibleBadges.map(([, number]) => number)).size, badgeMap.size);
         const scaleText = [...doc.querySelectorAll('[data-export-point-key] > text')].map(text => text.textContent).join(' ');
         assert.match(scaleText, /50,000 h \(lower bound\).*692 individuals/);
-        assert.equal(doc.querySelectorAll('[data-export-point-key-bar] rect[data-export-bar-fill]').length, 23);
+        assert.equal(doc.querySelectorAll('[data-export-point-key-bar] rect[data-export-bar-fill]').length, 25);
         assert.equal(doc.querySelectorAll('path[data-export-bar-lower-bound]').length, 2);
         const checkBar = (index, lane, fraction, lowerBound = false) => {
           const bar = keys[index].querySelectorAll('[data-export-point-key-bar]')[lane];
