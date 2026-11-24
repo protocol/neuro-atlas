@@ -73,15 +73,18 @@ export function MetricsSection({ performance, references, engagementPreview }: {
   }, []);
   useLayoutEffect(() => {
     const reveal = () => {
-      // A card-opened dialog keeps the mounted catalog/search/rails untouched.
-      // Fresh historical fragment entries still reveal their source category.
-      if (window.history.state?.atlasModalFrom) return;
       const anchor = performanceTarget(hash.slice(1));
-      pendingReveal.current = anchor;
       const legacy = anchor.replace(/^metric-/, "draft-");
       const link = DRAFT_CHART_LINKS.find(link => link.id === legacy || link.panels.some(panel => panel.id === legacy));
       const linkTarget = fieldVelocityLink(hash.slice(1));
       const target = document.getElementById(anchor) ?? (linkTarget?.fallback ? document.getElementById(linkTarget.fallback) : null);
+      // Keep a visible card's catalog context; explicit links to filtered/collapsed
+      // charts must still reveal their hidden ancestor before native dialog focus.
+      if (window.history.state?.atlasModalFrom && target && !target.closest("[hidden]")) {
+        pendingReveal.current = null;
+        return;
+      }
+      pendingReveal.current = anchor;
       const sourceTitle = link?.title ?? target?.closest<HTMLElement>("[data-draft-chart-card]")?.dataset.draftChartCard;
       const candidate = METRIC_CHARTS.find(chart => chart.title === sourceTitle);
       const card = [...document.querySelectorAll<HTMLElement>("[data-performance-card], [data-trends-card]")].find(card => canonicalPerformanceAnchor(card.dataset.performanceCard ?? `google-trends-${card.dataset.trendsCard}`) === hash.slice(1));
