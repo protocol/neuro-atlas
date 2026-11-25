@@ -1,4 +1,6 @@
-# Anatomical reference visibility — native evidence
+# Anatomical reference visibility — historical native evidence
+
+Superseded by the owner’s single grouped-toggle correction. These captures document the earlier per-species implementation only; current evidence and the one-toggle contract are in `../neuron-single-toggle-qa/README.md` and `../neuron-count-reference-lines.md`.
 
 Actual headed-browser captures of the production build at runtime
 `cba20eb3c618ecb6b7e83bf5f76fab8d21d1f68b`, using an isolated loopback-only QA
