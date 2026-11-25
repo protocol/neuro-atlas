@@ -3,10 +3,13 @@ import assert from "node:assert/strict";
 import React from "react";
 import { readFile } from "node:fs/promises";
 import { FundingIndexDashboard } from "../src/components/funding-index-dashboard.tsx";
-import { buildCompanyRows } from "../src/lib/funding-index.ts";
+import { buildCompanyRows, formatFundingDate } from "../src/lib/funding-index.ts";
+import { readHistoricalFile } from "./helpers/china-funding-baseline.mjs";
 import { mount, click } from "./modal-helpers.mjs";
 
 const data = JSON.parse(await readFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
+const historical = JSON.parse(await readHistoricalFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
+const originalSlugs = new Set(historical.companies.map(company => company.slug));
 globalThis.React = React;
 const button = (text) => [...document.querySelectorAll("button")].find((el) => el.textContent === text);
 
@@ -27,7 +30,8 @@ for (const view of ["timeline", "stage"]) {
         assert.ok(section, "founding provenance belongs in company detail");
         assert.ok(section.textContent.includes(String(company.founding?.year ?? "Unknown")));
         assert.ok(section.textContent.includes(company.founding.note));
-        assert.match(section.textContent, /Source reviewed Oct 15, 2026/);
+        if (originalSlugs.has(company.slug)) assert.match(section.textContent, /Source reviewed Oct 15, 2026/);
+        assert.ok(section.textContent.includes(`Source reviewed ${formatFundingDate(company.founding.reviewedOn, "day")}`));
         const source = section.querySelector("a");
         if (company.founding.sourceUrl) {
           assert.equal(source?.getAttribute("href"), company.founding.sourceUrl);
@@ -55,7 +59,7 @@ test("missing research is shown as Unknown in both views, never zero or financin
       const detail = document.querySelector('[role="dialog"]');
       const section = [...detail.querySelectorAll("section")].find((el) => el.querySelector("h3")?.textContent === "Founding year");
       assert.match(section.textContent, /Unknown/);
-      assert.match(section.textContent, /not yet verified/i);
+      assert.match(section.textContent, /Founding year: unknown\./i);
       assert.equal(section.querySelector("a"), null);
       await click(detail.querySelector('[aria-label="Close detail panel"]'));
     }

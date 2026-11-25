@@ -1,0 +1,34 @@
+{
+  "data/funding-index/rounds.csv": {
+    "rows": 53,
+    "changedRows": 11,
+    "allOtherFieldsIdentical": true
+  },
+  "data/market-memo-q1-2026/milestones.csv": {
+    "rows": 108,
+    "changedRows": 11,
+    "allOtherFieldsIdentical": true
+  },
+  "data/funding-index/companies.csv": {
+    "rows": 31,
+    "changedRows": 4,
+    "allOtherFieldsIdentical": true
+  },
+  "data/funding-index/foundings.csv": {
+    "rows": 31,
+    "changedRows": 6,
+    "allOtherFieldsIdentical": true
+  },
+  "data/funding-index/milestones.csv": {
+    "rows": 15,
+    "changedRows": 1,
+    "allOtherFieldsIdentical": true
+  },
+  "src/data/funding-index.json": {
+    "allFinancialAndSourceFieldsIdentical": true
+  },
+  "src/data/milestones.json": {
+    "allFinancialAndSourceFieldsIdentical": true
+  },
+  "reviewedRevision": "703b72bc00d12aefb44aeb0347b4db4afee82300"
+}

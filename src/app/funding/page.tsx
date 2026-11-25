@@ -24,7 +24,7 @@ export default async function FundingPage({
         kicker="Capital intelligence"
         meta={["V1 · 2026"]}
         title="BCI Funding Index"
-        description="A screened view of who has financed 25 implanted and implant-adjacent BCI companies — with round history, investor participation, and regulatory inflection points on one plate."
+        description={`A screened view of who has financed ${data.summary.selectedCompanies} implanted and implant-adjacent BCI companies — with round history, investor participation, and regulatory inflection points on one plate.`}
         status="partial"
         stats={[
           { value: String(data.summary.selectedCompanies), label: "selected companies" },

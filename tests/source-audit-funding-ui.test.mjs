@@ -34,7 +34,7 @@ test('Funding Index describes committed philanthropic funding as financing, not 
     assert.match(detail.textContent, /Indexed financing/);
     assert.match(detail.textContent, /Funding commitment/);
     assert.doesNotMatch(detail.textContent, /capital raised/i);
-    assert.match(detail.textContent, /commitments.*not.*cash/i);
+    assert.match(detail.textContent, /Sum of indexed financing amounts, including labeled commitments\./);
   } finally { await cleanup(); }
 });
 

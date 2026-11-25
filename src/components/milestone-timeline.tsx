@@ -15,6 +15,7 @@ import { FirmLogo } from "@/components/firm-logo";
 import { Sparkline } from "@/components/sparkline";
 import { lookupAcronym } from "@/components/abbr";
 import { clampCenteredTooltipX } from "@/lib/tooltip-position";
+import { formatFundingFxBasis } from "@/lib/funding-index";
 
 type Milestone = (typeof MILESTONES)[number];
 
@@ -731,6 +732,7 @@ export function MilestoneTimeline() {
           {expandActivity(tip.m.activity).filter(([, ex]) => ex).length > 0 && (
             <div className="mt-1 text-[12px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>
           )}
+          {tip.m.fx && <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{formatFundingFxBasis(tip.m.fx)}</div>}
           <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{tip.m.note ?? "Details coming soon."}</div>
           {tip.m.sourceUrl && <div className="mt-1.5 text-[12px] font-medium text-background/50">click to open source ↗</div>}
         </div>
