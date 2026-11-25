@@ -29,7 +29,12 @@ for (const [plotId, count, pointId] of [
   const plot = selected(METRIC_CHART_EVIDENCE, plotId);
   const point = observed(METRIC_CHART_EVIDENCE, pointId);
   const anchor = `metric-panel-${plotId}`;
-  const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), `#${canonicalPerformanceAnchor(anchor)}`);
+  const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), `#${canonicalPerformanceAnchor(anchor)}`, win => {
+    if (plotId !== 'largest-connectome-neurons') return;
+    const url = new URL(win.location.href);
+    url.searchParams.set('neuronRefs', 'mouse,macaque,human');
+    win.history.replaceState(null, '', url);
+  });
   let output;
   try {
     const modal = document.querySelector('dialog[open]');
