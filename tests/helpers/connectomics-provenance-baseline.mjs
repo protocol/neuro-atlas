@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { beforeNeuronReferences } from './neuron-reference-baseline.mjs';
 import { beforeRecordingCoverage } from './recording-hours-coverage-baseline.mjs';
 
 // Exact, enumerated deltas from the runtime projections at the three immutable
@@ -37,7 +38,8 @@ export function reverseFafbAttribution(evidence, mode) {
 // metadata before removing only those exact additions. Unlisted source, numeric,
 // date, note and presentation fields still reach the original full goldens.
 export function withoutConnectomicsBackfill(evidence) {
-  const restored = beforeRecordingCoverage(evidence);
+  const metric = evidence['Neural recording hours collected over time']?.plots.some(plot => plot.id === 'recording-hours');
+  const restored = beforeRecordingCoverage(metric ? beforeNeuronReferences(evidence) : evidence);
   const plots = Object.values(restored).flatMap(entry => entry.plots);
   for (const change of delta.backfill.points) {
     const plot = one(plots, change.plotId);

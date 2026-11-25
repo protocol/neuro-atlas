@@ -44,3 +44,10 @@ then removes only that field when reconstructing the prior presentation. Other
 metadata, coordinates, source values and marks remain subject to the original
 goldens. Existing baseline failures are reported separately rather than repaired
 or hidden by this feature.
+
+Historical whole-file copy/source-ledger checks also opt into
+`neuron-reference-file-delta.json`: exactly the renderer, visibility projection
+and two source-directory additions are reversed to immutable base bytes before
+older copy/funding deltas are applied. The fixture's complete current/base hashes
+are asserted separately. Unknown line or catalog edits survive reconstruction or
+fail closed. No original historical fixture or golden hash is regenerated.

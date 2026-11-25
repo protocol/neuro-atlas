@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readBeforeNeuronLinesFileSync as readFileSync} from './helpers/neuron-reference-baseline.mjs';
 import {createHash} from 'node:crypto';
 import {restoreReviewedFile,validateReviewedFilesFixture} from '../scripts/qa/build-reviewed-delta.mjs';
 import {parseCsv} from '../scripts/lib/funding-index.mjs';

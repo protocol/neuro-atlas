@@ -210,3 +210,34 @@ test('neuron-only compact caption and 152px preview fit marks and date axes insi
     }
   } finally { globalThis.ResizeObserver = previous; }
 });
+
+test('historical byte reconstruction reverses only the three exact neuron feature file deltas and rejects unreviewed changes', async () => {
+  const helpers = await import('./helpers/neuron-reference-baseline.mjs');
+  assert.equal(typeof helpers.restoreBeforeNeuronLinesFile, 'function', 'Exact bounded file reconstruction is available to historical suites');
+  const delta = JSON.parse(readFileSync(new URL('./fixtures/neuron-reference-file-delta.json', import.meta.url), 'utf8'));
+  assert.equal(delta.baselineSha, baseline.base);
+  assert.deepEqual(delta.files.map(file => file.path), ['src/components/draft-chart-plot.tsx', 'src/data/metric-chart-visibility.ts', 'src/data/methodology-sources.json']);
+  for (const file of delta.files) {
+    const current = readFileSync(new URL('../' + file.path, import.meta.url), 'utf8');
+    assert.equal(hash(current), file.afterSha256, file.path + ': exact feature code/catalog bytes');
+    assert.equal(hash(helpers.restoreBeforeNeuronLinesFile(current, file.path)), file.beforeSha256, file.path + ': original base bytes');
+    if (file.encoding === 'lines') {
+      const mutated = '// unreviewed extra line\n' + current;
+      let restored;
+      try { restored = helpers.restoreBeforeNeuronLinesFile(mutated, file.path); } catch { continue; }
+      assert.notEqual(hash(restored), file.beforeSha256, 'Unlisted edits are never hidden');
+    } else {
+      const mutated = JSON.parse(current);
+      mutated.studies.at(-1)[1] += ' UNREVIEWED';
+      const restored = helpers.restoreBeforeNeuronLinesFile(JSON.stringify(mutated), file.path);
+      assert.notEqual(hash(restored), file.beforeSha256, 'Unlisted source-catalog edits survive reconstruction');
+      const alteredReference = JSON.parse(current);
+      alteredReference.studies[0][1] += ' UNREVIEWED';
+      assert.throws(() => helpers.restoreBeforeNeuronLinesFile(JSON.stringify(alteredReference), file.path), undefined, 'New source labels must match the exact approved additions');
+    }
+  }
+  assert.equal(helpers.restoreBeforeNeuronLinesFile('unrelated', 'src/data/draft-chart-evidence.json'), 'unrelated');
+  const changed = structuredClone(METRIC_CHART_EVIDENCE);
+  Object.values(changed).flatMap(e => e.plots).find(p => p.id === plotId).horizontalReferences[0].value++;
+  assert.throws(() => beforeNeuronReferences(changed), /exact reviewed anatomical context/);
+});
