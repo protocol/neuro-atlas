@@ -160,7 +160,7 @@ test('cost and throughput retain acquisition boundaries, estimates, resolution a
   assert.match(point('autotem-2020').note, />70.*40 nm/);
   assert.match(plot('acquisition-economics').scope, /acquisition.*cost.*coverage.*unspecified/i);
   assert.match(plot('acquisition-economics').scope, /heterogeneous resolutions.*PEEM.*prospective/i);
-  assert.match(plot('acquisition-economics').seriesNote, /Table A1.*Voxels\/\$.*rather than.*Figure 2.*throughput\/hour divided by cost\/hour/);
+  assert.match(plot('acquisition-economics').seriesNote, /Values reproduce the Approx\. Voxels\/\$ column in Table A1\. Figure 2/);
   assert.match(point('exllsm2019').note, /1,000,000,000/);
   assert.match(point('peem2024').note, /2024.*2025/);
   assert.match(point('peem2024').note, /8x8x30 nm.*prospective/);

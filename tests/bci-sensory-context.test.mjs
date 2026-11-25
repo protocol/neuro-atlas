@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { DraftChartPlotBeforeAxisCopy } from './helpers/sitewide-copy-svg.mjs';
 import assert from 'node:assert/strict';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -160,7 +161,8 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   const plots = [...new Map(Object.values(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
-    const markup = renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }));
+    const renderer = plot.id === 'neuroai-imagenet' ? DraftChartPlotBeforeAxisCopy : DraftChartPlot;
+    const markup = renderToStaticMarkup(React.createElement(renderer, { plot, preview }));
     let svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
     assert.ok(svg, plot.id);
     // The ERL disclosure adds only these exact interaction attributes. Keep all
