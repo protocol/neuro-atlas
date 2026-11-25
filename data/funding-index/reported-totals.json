@@ -7,6 +7,36 @@
     "sourceKind": "primary",
     "scope": "Includes federal funding",
     "reviewedOn": "2026-11-24",
-    "note": "CEO Matt Angle described $180 million in total funding, including about $18 million from the federal government (43:07\u201343:14). Public company self-report; report date is the interview publication date. Automatically generated captions were reviewed; audio was not independently checked. Kept separately from itemized financing."
+    "note": "CEO Matt Angle described $180 million in total funding, including about $18 million from the federal government (43:07–43:14). Public company self-report; report date is the interview publication date. Automatically generated captions were reviewed; audio was not independently checked. Kept separately from itemized financing."
+  },
+  {
+    "companySlug": "synchron",
+    "amountUsdM": 345,
+    "reportedOn": "2025-11-06",
+    "sourceUrl": "https://finance.yahoo.com/news/synchron-raises-200-million-series-130000093.html",
+    "sourceKind": "primary",
+    "scope": "Company-reported cumulative funding; government-support scope varies across earlier disclosures",
+    "reviewedOn": "2026-11-25",
+    "note": "Synchron’s announcement, published by Business Wire and syndicated on Yahoo Finance, reports $345m total funding. Its four indexed announcement amounts total $325m, including mixed private and government support in Series A. The $20m difference remains unallocated."
+  },
+  {
+    "companySlug": "precision-neuroscience",
+    "amountUsdM": 430,
+    "reportedOn": "2026-09-24",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
+    "sourceKind": "primary",
+    "scope": "Company-reported total capital raised",
+    "reviewedOn": "2026-11-25",
+    "note": "Precision’s announcement, published on GlobeNewswire, reports $430m total capital raised. The previously indexed A/B/C/D announcement amounts total $405m; the continuing-offering amendments, SAFE conversion and SCI Ventures allocation remain unresolved."
+  },
+  {
+    "companySlug": "inbrain-neuroelectronics",
+    "amountUsdM": 68,
+    "reportedOn": "2024-10-29",
+    "sourceUrl": "https://www.imec-int.com/en/press/inbrain-neuroelectronics-raises-50m-series-b-advance-graphene-based-brain-computer-interface",
+    "sourceKind": "primary",
+    "scope": "Company-reported cumulative amount raised at Series B",
+    "reviewedOn": "2026-11-25",
+    "note": "INBRAIN’s announcement, hosted by imec, reports $68m raised since inception and separately describes additional unquantified Merck funding. EIC equity ceilings, grant allocations and the EIB facility have distinct scope."
   }
 ]
