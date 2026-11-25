@@ -2,6 +2,15 @@
 
 This is an editorial pass over the current site, based on merged PR #151 (`9c1ddcca0bb49daf1c825d9b3b6e318fd870ac3b`). It uses direct language and positive definitions while retaining financial and scientific qualifications.
 
+## Owner-requested methodology removal
+
+Lukas requested removal of the entire “Why we built Neuro Atlas” heading and both paragraphs on November 25. Source revision `3202e164938577821e745fb8fc10e8d59fbf2ab4` removes that section; the page now begins with **How data is gathered** after its title. The remaining methodology copy, 620 source links, six source categories and contribution control are unchanged. The first retained section keeps a 32px top gap.
+
+The new absence regression failed before the deletion and passed afterward. The complete focused methodology/copy/historical-parity set passed **15/15**; changed-file lint, production build and typecheck passed. The exact reviewed methodology delta was updated while retaining its original baseline hash and every other fixture entry. Real Chrome at 1440px and 390px confirmed the removal, retained content and horizontal bounds. This is a follow-up to the original full-site checks below, not a new full-suite run or production release.
+
+- [Updated desktop](qa/methodology-without-origin-desktop.png) / [updated mobile](qa/methodology-without-origin-mobile.png)
+- [Native readback](qa/methodology-removal-native.json) / [focused tests](qa/methodology-removal-checks.log)
+
 ## Scope
 
 - Reviewed every page, navigation label, metadata description, shared control, source directory, glossary tooltip and feedback state. Clear existing copy, the home hero, legal disclaimer, source titles and quotations remain unchanged.
@@ -58,9 +67,9 @@ The local production build was exercised in real Chrome: **46 page/detail cases*
 
 A real Download PNG handler produced the [BCI chart image](qa/bci-native-download.png), captured at the browser download-anchor boundary. The local footer URL correctly reflects the loopback runtime. The mobile financing note wraps inside its visible content bounds. Feedback selection/composer was opened read-only; local feedback is disabled and no feedback was submitted. This does not certify production activation, physical-phone touch or hosted authentication.
 
-Application-source review and native captures are bound to `394cfd56fbe859f88ee461a310ee6b31632d7bc9`. Later commits change only regression-test packaging and regenerated CSV comments, plus this evidence. Served script bytes were matched to the built assets. The raw capture records the unique prefix `394cfd5`; the full revision and its receipt hash are bound in [native parity](qa/native-parity.json).
+The original full-site application-source review and native captures are bound to `394cfd56fbe859f88ee461a310ee6b31632d7bc9`. Subsequent commits before the owner-requested methodology removal changed only regression-test packaging, regenerated CSV comments and evidence. The follow-up above records the later source change and its new checks. Served script bytes were matched to the built assets. The original raw capture records the unique prefix `394cfd5`; the full revision and its receipt hash are bound in [native parity](qa/native-parity.json).
 
-## Screenshots
+## Original full-site screenshots
 
 - [Methodology before](qa/methodology-before-desktop.png) / [after](qa/methodology-after-desktop.png)
 - [Mobile methodology](qa/methodology-after-mobile.png)
