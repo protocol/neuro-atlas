@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { restoreMerged151Copy } from './sitewide-copy-baseline.mjs';
+import { beforeMergeParadromicsFile } from './financing-merge-baseline.mjs';
+import { beforeFinancingFixesFile } from './financing-fixes-baseline.mjs';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,7 +27,7 @@ for (const file of CHINA_FUNDING_DELTA.files) assert.ok(CHINA_FUNDING_REVIEWABLE
 
 // Historical tests opt in explicitly. This reader never writes data and is not
 // imported by application code or current-data/source-parity regressions.
-export function createHistoricalFileReader(fixture, directory) {
+export function createHistoricalFileReader(fixture, directory, beforeReviewed = text => text) {
   validateReviewedFilesFixture(fixture);
   const base = path.resolve(directory);
   return (file, options) => {
@@ -34,17 +35,17 @@ export function createHistoricalFileReader(fixture, directory) {
     const relative = path.relative(base, resolved).split(path.sep).join('/');
     const inside = relative !== '..' && !relative.startsWith('../') && !path.isAbsolute(relative);
     const rawBytes = readFileSync(file);
-    const bytes = base === root.replace(/\/$/, '') && inside
-      ? Buffer.from(restoreMerged151Copy(rawBytes.toString('utf8'), relative))
-      : rawBytes;
+    const bytes = rawBytes;
     const reviewed = inside && fixture.files.some(entry => entry.path === relative);
-    const result = reviewed ? Buffer.from(restoreReviewedFile(bytes.toString('utf8'), fixture, relative)) : bytes;
+    const projected = inside ? beforeReviewed(bytes.toString('utf8'), relative) : bytes.toString('utf8');
+    const result = Buffer.from(reviewed ? restoreReviewedFile(projected, fixture, relative) : projected);
     const encoding = typeof options === 'string' ? options : options?.encoding;
     return encoding ? result.toString(encoding) : result;
   };
 }
 
-export const readHistoricalFileSync = createHistoricalFileReader(CHINA_FUNDING_DELTA, root);
+const readChinaHistoricalFileSync = createHistoricalFileReader(CHINA_FUNDING_DELTA, root, (text, file) => beforeMergeParadromicsFile(beforeFinancingFixesFile(text, file), file));
+export const readHistoricalFileSync = readChinaHistoricalFileSync;
 export const readHistoricalFile = async (file, options) => readHistoricalFileSync(file, options);
 
 // The original loader's exact files and parsing, but with only reviewed later

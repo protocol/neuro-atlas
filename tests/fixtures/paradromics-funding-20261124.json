@@ -1,0 +1,565 @@
+{
+  "before": {
+    "canonicalRounds": [
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2018-06-11",
+        "date_precision": "day",
+        "stage": "Seed",
+        "amount_usd_m": "7",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$7m",
+        "investors": "Arkitekt Ventures;Synergy Ventures;IT-Farm;Dolby Ventures;Alpha Edison;Loup Ventures;Fusion Fund",
+        "source_url": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures",
+        "note": "The release separately reports more than $18m in DARPA research funding; that grant funding is not indexed.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-09-30",
+        "date_basis": "unverified"
+      },
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2021-07-22",
+        "date_precision": "day",
+        "stage": "Seed",
+        "amount_usd_m": "20",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$20m",
+        "investors": "Prime Movers Lab;Westcott Investment Group;Dolby Family Ventures;Synergy Ventures;Pureland Global Venture;IT-Farm;Alpha Edison",
+        "source_url": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+        "note": "The release calls this a seed round, not an extension. It separately reports $10m earlier private funding and $15m public funding; neither is indexed.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-09-30",
+        "date_basis": "announcement"
+      },
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2023-05-18",
+        "date_precision": "day",
+        "stage": "Series A",
+        "amount_usd_m": "33",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$33m",
+        "investors": "Prime Movers Lab;Westcott Investment Group;Dolby Family Ventures;Green Sands Equity",
+        "source_url": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+        "note": "",
+        "source_kind": "",
+        "reviewed_on": "",
+        "date_basis": "announcement"
+      }
+    ],
+    "fundingRounds": [
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2018-06-11",
+        "datePrecision": "day",
+        "dateBasis": "unverified",
+        "stage": "Seed",
+        "amountUsdM": 7,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$7m",
+        "investors": [
+          "Arkitekt Ventures",
+          "Synergy Ventures",
+          "IT-Farm",
+          "Dolby Ventures",
+          "Alpha Edison",
+          "Loup Ventures",
+          "Fusion Fund"
+        ],
+        "sourceUrl": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures",
+        "note": "The release separately reports more than $18m in DARPA research funding; that grant funding is not indexed.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-09-30"
+      },
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2021-07-22",
+        "datePrecision": "day",
+        "dateBasis": "announcement",
+        "stage": "Seed",
+        "amountUsdM": 20,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$20m",
+        "investors": [
+          "Prime Movers Lab",
+          "Westcott Investment Group",
+          "Dolby Family Ventures",
+          "Synergy Ventures",
+          "Pureland Global Venture",
+          "IT-Farm",
+          "Alpha Edison"
+        ],
+        "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+        "note": "The release calls this a seed round, not an extension. It separately reports $10m earlier private funding and $15m public funding; neither is indexed.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-09-30"
+      },
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2023-05-18",
+        "datePrecision": "day",
+        "dateBasis": "announcement",
+        "stage": "Series A",
+        "amountUsdM": 33,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$33m",
+        "investors": [
+          "Prime Movers Lab",
+          "Westcott Investment Group",
+          "Dolby Family Ventures",
+          "Green Sands Equity"
+        ],
+        "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+        "note": ""
+      }
+    ],
+    "summary": {
+      "excludedBelowThreshold": 0,
+      "selectedCompanies": 25,
+      "indexedRounds": 42,
+      "regulatoryMilestones": 15,
+      "observedCapitalUsdM": 3553.96,
+      "firstYear": 2017,
+      "lastYear": 2026,
+      "asOf": "2026-11-17"
+    },
+    "methodology": {
+      "thresholdUsdM": 2,
+      "scope": "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
+      "coverage": "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added."
+    }
+  },
+  "unrelatedCanonicalSha256": "bf9881245e242e29d50c4638133dbfb26f4b9140b8884d4927fad2a55605c7d7",
+  "unrelatedRoundsSha256": "7c99c6ed3133c668c86e54be9dea54e325088d62afec9cf2f020d6afb81aecd1",
+  "unchangedFiles": {
+    "src/data/milestones.json": "a1ed0b5802ab577fa82dae8126012e125550ff51a8a3c6874f524c5d27052f71",
+    "data/market-memo-q1-2026/milestones.csv": "c1c926e9984eac4d6c923b50665dd03a39e097cbed0671d5994c4770f4f0b2dc",
+    "data/funding-index/companies.csv": "281543d6a10cec7e3a13db41d0f775b8a36845d8999a3b714a022c75b31cabb0",
+    "data/funding-index/foundings.csv": "54852a5c8802e483f934ded00cae17f3fc0006b32100ad1c09aeaa97ec963928",
+    "data/funding-index/milestones.csv": "3f293dd5f23ffd1cb749472894f17db51cf8fd2e389d763ae0ea823cede602e0",
+    "data/funding-index/portfolio-disclosures.json": "d9fb49aa81d13fb46ce356d51f182ba25cde359598d6bf7e87047c3a550f1b93",
+    "data/funding-index/investor-groups.json": "a34573fa7c077faf10c1ce353d68fd6718f4a1e0e0dc5139332b2b6f08ab2306"
+  },
+  "after": {
+    "fundingRounds": [
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2018-06-11",
+        "datePrecision": "day",
+        "dateBasis": "unverified",
+        "stage": "Seed",
+        "amountUsdM": 7,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$7m",
+        "investors": [
+          "Arkitekt Ventures",
+          "Synergy Ventures",
+          "IT-Farm",
+          "Dolby Ventures",
+          "Alpha Edison",
+          "Loup Ventures",
+          "Fusion Fund"
+        ],
+        "sourceUrl": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures",
+        "note": "The release separately reports more than $18m in DARPA research funding; that grant funding is not indexed.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-09-30"
+      },
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2021-10-19",
+        "datePrecision": "day",
+        "dateBasis": "reported",
+        "stage": "Seed",
+        "amountUsdM": 28.2306,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$28.23m",
+        "investors": [
+          "Prime Movers Lab",
+          "Westcott Investment Group",
+          "Dolby Family Ventures",
+          "Synergy Ventures",
+          "Pureland Global Venture",
+          "IT-Farm",
+          "Alpha Edison"
+        ],
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1668302/000166830221000003/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D/A reports $28,230,600 sold in the same offering (file 021-388012; first sale 2021-01-15), as reported 2021-10-19, not a new round or a closing date. Original announcement: 2021-07-22, $20m Seed; source: https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html. Original note: The release calls this a seed round, not an extension. It separately reports $10m earlier private funding and $15m public funding; neither is indexed. Named investors come from that original announcement and are associated with the whole offering, not verified participants in later sales or attributed check sizes.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-11-24",
+        "investorEvidence": [
+          {
+            "investorName": "Prime Movers Lab",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "Westcott Investment Group",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "Dolby Family Ventures",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "Synergy Ventures",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "Pureland Global Venture",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "IT-Farm",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          },
+          {
+            "investorName": "Alpha Edison",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., a leading developer of high data rate Brain Computer Interfaces (BCI), announced today a $20 million seed funding round led by Prime Movers Lab,  including  investment from Westcott Investment Group, Dolby Family Ventures, Synergy Ventures, Pureland Global Venture, IT-Farm, and Alpha Edison."
+          }
+        ]
+      },
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2022-09-21",
+        "datePrecision": "day",
+        "dateBasis": "reported",
+        "stage": "Equity/debt financing",
+        "amountUsdM": 8.864853,
+        "capitalTreatment": "overlap-unresolved",
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$8.86m",
+        "investors": [],
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1668302/000166830222000002/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D reports $8,864,853 sold in equity and debt securities (file 021-459454; first sale 2022-02-17). Reported 2022-09-21, not a closing date. Conversion overlap unresolved: excluded from indexed and associated capital totals pending reconciliation with later offerings; the source amount is retained, not treated as zero financing or established unique new cash. No named participants are disclosed here.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-11-24"
+      },
+      {
+        "companySlug": "paradromics",
+        "announcedOn": "2023-11-07",
+        "datePrecision": "day",
+        "dateBasis": "reported",
+        "stage": "Series A",
+        "amountUsdM": 50.141276,
+        "amountNativeM": null,
+        "currency": "USD",
+        "displayAmount": "$50.14m",
+        "investors": [
+          "Prime Movers Lab",
+          "Westcott Investment Group",
+          "Dolby Family Ventures",
+          "Green Sands Equity"
+        ],
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1668302/000193459823000003/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D/A reports $50,141,276 sold in the same offering (file 021-478025; first sale 2023-03-21), as reported 2023-11-07, not a new round or a closing date. The $51,012,815 offering target is not the amount sold. Original announcement: 2023-05-18, $33m Series A; source: https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html. Named investors come from that original announcement and are associated with the whole offering, not verified participants in later closings or attributed check sizes.",
+        "sourceKind": "primary",
+        "reviewedOn": "2026-11-24",
+        "investorEvidence": [
+          {
+            "investorName": "Prime Movers Lab",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., the leading developer of high data-rate brain-computer interfaces (BCI), today announced a $33 million Series A funding round led by Prime Movers Lab. Additional investors include Westcott Investment Group, Dolby Family Ventures, and Green Sands Equity."
+          },
+          {
+            "investorName": "Westcott Investment Group",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., the leading developer of high data-rate brain-computer interfaces (BCI), today announced a $33 million Series A funding round led by Prime Movers Lab. Additional investors include Westcott Investment Group, Dolby Family Ventures, and Green Sands Equity."
+          },
+          {
+            "investorName": "Dolby Family Ventures",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., the leading developer of high data-rate brain-computer interfaces (BCI), today announced a $33 million Series A funding round led by Prime Movers Lab. Additional investors include Westcott Investment Group, Dolby Family Ventures, and Green Sands Equity."
+          },
+          {
+            "investorName": "Green Sands Equity",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html",
+            "sourceKind": "primary",
+            "reviewedOn": "2026-11-24",
+            "sourceExcerpt": "Paradromics Inc., the leading developer of high data-rate brain-computer interfaces (BCI), today announced a $33 million Series A funding round led by Prime Movers Lab. Additional investors include Westcott Investment Group, Dolby Family Ventures, and Green Sands Equity."
+          }
+        ]
+      }
+    ],
+    "canonicalRounds": [
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2018-06-11",
+        "date_precision": "day",
+        "stage": "Seed",
+        "amount_usd_m": "7",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$7m",
+        "investors": "Arkitekt Ventures;Synergy Ventures;IT-Farm;Dolby Ventures;Alpha Edison;Loup Ventures;Fusion Fund",
+        "source_url": "https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures",
+        "note": "The release separately reports more than $18m in DARPA research funding; that grant funding is not indexed.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-09-30",
+        "date_basis": "unverified",
+        "capital_treatment": ""
+      },
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2021-10-19",
+        "date_precision": "day",
+        "stage": "Seed",
+        "amount_usd_m": "28.2306",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$28.23m",
+        "investors": "Prime Movers Lab;Westcott Investment Group;Dolby Family Ventures;Synergy Ventures;Pureland Global Venture;IT-Farm;Alpha Edison",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1668302/000166830221000003/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D/A reports $28,230,600 sold in the same offering (file 021-388012; first sale 2021-01-15), as reported 2021-10-19, not a new round or a closing date. Original announcement: 2021-07-22, $20m Seed; source: https://www.prnewswire.com/news-releases/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces-301338989.html. Original note: The release calls this a seed round, not an extension. It separately reports $10m earlier private funding and $15m public funding; neither is indexed. Named investors come from that original announcement and are associated with the whole offering, not verified participants in later sales or attributed check sizes.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-11-24",
+        "date_basis": "reported",
+        "capital_treatment": ""
+      },
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2022-09-21",
+        "date_precision": "day",
+        "stage": "Equity/debt financing",
+        "amount_usd_m": "8.864853",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$8.86m",
+        "investors": "",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1668302/000166830222000002/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D reports $8,864,853 sold in equity and debt securities (file 021-459454; first sale 2022-02-17). Reported 2022-09-21, not a closing date. Conversion overlap unresolved: excluded from indexed and associated capital totals pending reconciliation with later offerings; the source amount is retained, not treated as zero financing or established unique new cash. No named participants are disclosed here.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-11-24",
+        "date_basis": "reported",
+        "capital_treatment": "overlap-unresolved"
+      },
+      {
+        "company_slug": "paradromics",
+        "announced_on": "2023-11-07",
+        "date_precision": "day",
+        "stage": "Series A",
+        "amount_usd_m": "50.141276",
+        "amount_native_m": "",
+        "currency": "USD",
+        "display_amount": "$50.14m",
+        "investors": "Prime Movers Lab;Westcott Investment Group;Dolby Family Ventures;Green Sands Equity",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1668302/000193459823000003/xslFormDX01/primary_doc.xml",
+        "note": "SEC Form D/A reports $50,141,276 sold in the same offering (file 021-478025; first sale 2023-03-21), as reported 2023-11-07, not a new round or a closing date. The $51,012,815 offering target is not the amount sold. Original announcement: 2023-05-18, $33m Series A; source: https://www.prnewswire.com/news-releases/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda-301827969.html. Named investors come from that original announcement and are associated with the whole offering, not verified participants in later closings or attributed check sizes.",
+        "source_kind": "primary",
+        "reviewed_on": "2026-11-24",
+        "date_basis": "reported",
+        "capital_treatment": ""
+      }
+    ],
+    "summary": {
+      "excludedBelowThreshold": 0,
+      "selectedCompanies": 25,
+      "indexedRounds": 43,
+      "regulatoryMilestones": 15,
+      "observedCapitalUsdM": 3579.33,
+      "firstYear": 2017,
+      "lastYear": 2026,
+      "asOf": "2026-11-17"
+    },
+    "methodology": {
+      "thresholdUsdM": 2,
+      "scope": "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
+      "coverage": "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other coverage dates are unchanged."
+    }
+  },
+  "investorChanges": [
+    {
+      "index": 2,
+      "before": {
+        "name": "Dolby Family Ventures",
+        "roundCount": 4,
+        "companyCount": 3,
+        "associatedCapitalUsdM": 76.75
+      },
+      "after": {
+        "name": "Dolby Family Ventures",
+        "roundCount": 4,
+        "companyCount": 3,
+        "associatedCapitalUsdM": 102.12
+      }
+    },
+    {
+      "index": 15,
+      "before": {
+        "name": "Alpha Edison",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 27
+      },
+      "after": {
+        "name": "Alpha Edison",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 35.23
+      }
+    },
+    {
+      "index": 26,
+      "before": {
+        "name": "IT-Farm",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 27
+      },
+      "after": {
+        "name": "IT-Farm",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 35.23
+      }
+    },
+    {
+      "index": 32,
+      "before": {
+        "name": "Prime Movers Lab",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 53
+      },
+      "after": {
+        "name": "Prime Movers Lab",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 78.37
+      }
+    },
+    {
+      "index": 34,
+      "before": {
+        "name": "Synergy Ventures",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 27
+      },
+      "after": {
+        "name": "Synergy Ventures",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 35.23
+      }
+    },
+    {
+      "index": 37,
+      "before": {
+        "name": "Westcott Investment Group",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 53
+      },
+      "after": {
+        "name": "Westcott Investment Group",
+        "roundCount": 2,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 78.37
+      }
+    },
+    {
+      "index": 90,
+      "before": {
+        "name": "Green Sands Equity",
+        "roundCount": 1,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 33
+      },
+      "after": {
+        "name": "Green Sands Equity",
+        "roundCount": 1,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 50.14
+      }
+    },
+    {
+      "index": 125,
+      "before": {
+        "name": "Pureland Global Venture",
+        "roundCount": 1,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 20
+      },
+      "after": {
+        "name": "Pureland Global Venture",
+        "roundCount": 1,
+        "companyCount": 1,
+        "associatedCapitalUsdM": 28.23
+      }
+    }
+  ],
+  "beforeInvestorsSha256": "0e3820f9cbd53e5db151b76d29a1e3968a9323211e29e06539543587f8cfc2ee",
+  "beforeCatalogSha256": "7ea3f64fe4b87076449028d23c9e38e9301bdd2d2009119cd9ed43933f956b11",
+  "catalogAdditions": {
+    "disclosures": [
+      [
+        "https://www.sec.gov/Archives/edgar/data/1668302/000166830221000003/xslFormDX01/primary_doc.xml",
+        "SEC — Paradromics 2021 amended offering: $28,230,600 sold"
+      ],
+      [
+        "https://www.sec.gov/Archives/edgar/data/1668302/000166830222000002/xslFormDX01/primary_doc.xml",
+        "SEC — Paradromics 2022 equity/debt financing: $8,864,853 sold; overlap unresolved"
+      ],
+      [
+        "https://www.sec.gov/Archives/edgar/data/1668302/000193459823000003/xslFormDX01/primary_doc.xml",
+        "SEC — Paradromics 2023 amended offering: $50,141,276 sold"
+      ],
+      [
+        "https://paradromics.com/news/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces/",
+        "Paradromics — original July 2021 seed announcement and named investors"
+      ],
+      [
+        "https://paradromics.com/news/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda/",
+        "Paradromics — original May 2023 Series A announcement and named investors"
+      ],
+      [
+        "https://paradromics.com/blog/bci-news/",
+        "Paradromics — April 2022 cumulative venture/public funding disclosure (not additive)"
+      ],
+      [
+        "https://paradromics.com/news/paradromics-announces-nih-award-to-fund-translational-and-early-stage-clinical-research/",
+        "Paradromics — October 2021 NIH SBIR award (outside Funding index totals)"
+      ],
+      [
+        "https://data.sec.gov/submissions/CIK0001668302.json",
+        "SEC — Paradromics filing dates and offering-file identities"
+      ]
+    ]
+  }
+}

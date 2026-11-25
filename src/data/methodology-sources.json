@@ -211,6 +211,38 @@
     [
       "https://www.federalreserve.gov/releases/h10/20261109/",
       "Federal Reserve H.10 — November 5, 2026 USD per GBP observation; announcement-date fallback for NeuroBionics grant"
+    ],
+    [
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+      "European Central Bank — historical euro foreign exchange reference rates"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20230313/",
+      "Federal Reserve H.10 — published 2023-03-13"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20190903/",
+      "Federal Reserve H.10 — published 2019-09-03"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20210322/",
+      "Federal Reserve H.10 — published 2021-03-22"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20250818/",
+      "Federal Reserve H.10 — published 2025-08-18"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20260511/",
+      "Federal Reserve H.10 — published 2026-05-11"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20230828/",
+      "Federal Reserve H.10 — published 2023-08-28"
+    ],
+    [
+      "https://www.federalreserve.gov/releases/h10/20260615/",
+      "Federal Reserve H.10 — published 2026-06-15"
     ]
   ],
   "studies": [
@@ -2029,6 +2061,42 @@
       "ARIA — funded Massively Scalable Neurotechnologies teams; 36-month preclinical feasibility"
     ],
     [
+      "https://www.sec.gov/Archives/edgar/data/1668302/000166830221000003/xslFormDX01/primary_doc.xml",
+      "SEC — Paradromics 2021 amended offering: $28,230,600 sold"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1668302/000166830222000002/xslFormDX01/primary_doc.xml",
+      "SEC — Paradromics 2022 equity/debt financing: $8,864,853 sold; overlap unresolved"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1668302/000193459823000003/xslFormDX01/primary_doc.xml",
+      "SEC — Paradromics 2023 amended offering: $50,141,276 sold"
+    ],
+    [
+      "https://paradromics.com/news/paradromics-raises-20mm-in-seed-funding-led-by-prime-movers-lab-to-advance-brain-computer-interfaces/",
+      "Paradromics — original July 2021 seed announcement and named investors"
+    ],
+    [
+      "https://paradromics.com/news/paradromics-raises-33-million-in-funding-achieves-breakthrough-medical-device-designation-from-fda/",
+      "Paradromics — original May 2023 Series A announcement and named investors"
+    ],
+    [
+      "https://paradromics.com/blog/bci-news/",
+      "Paradromics — April 2022 cumulative venture/public funding disclosure (not additive)"
+    ],
+    [
+      "https://paradromics.com/news/paradromics-announces-nih-award-to-fund-translational-and-early-stage-clinical-research/",
+      "Paradromics — October 2021 NIH SBIR award (outside Funding index totals)"
+    ],
+    [
+      "https://data.sec.gov/submissions/CIK0001668302.json",
+      "SEC — Paradromics filing dates and offering-file identities"
+    ],
+    [
+      "https://www.youtube.com/watch?v=JMQoWtsMBh0&t=2587s",
+      "State of MedTech — Paradromics CEO: $180M total funding, including federal funding (Nov 18, 2026)"
+    ],
+    [
       "https://bciflex.com/",
       "China financing backfill — bciflex.com"
     ],
@@ -2103,6 +2171,250 @@
     [
       "https://zidonghua.com.cn/news/Finance/394874.html",
       "China financing backfill — zidonghua.com.cn"
+    ],
+    [
+      "https://finance.yahoo.com/news/synchron-raises-75m-series-c-130000371.html",
+      "Synchron — financing disclosure: Series C (2022-12-15)"
+    ],
+    [
+      "https://finance.yahoo.com/news/synchron-raises-200-million-series-130000093.html",
+      "Synchron — financing disclosure: Series D (2025-11-06)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1708503/000170850323000002/xslFormDX01/primary_doc.xml",
+      "Neuralink — financing disclosure: Series D (2023-11-22)"
+    ],
+    [
+      "https://www.imec-int.com/en/press/inbrain-neuroelectronics-raises-50m-series-b-advance-graphene-based-brain-computer-interface",
+      "INBRAIN Neuroelectronics — financing disclosure: Series B (2024-10-29)"
+    ],
+    [
+      "https://finance.yahoo.com/sectors/healthcare/articles/neurosoft-bioelectronics-closes-7-5m-120000993.html",
+      "Neurosoft Bioelectronics — financing disclosure: Seed (2026-05-20)"
+    ],
+    [
+      "https://apnews.com/press-release/business-wire/technology-science-health-business-neurological-disorders-11bfe2385f8c4831ba4859f3a1deaa86",
+      "Axoft — financing disclosure: Seed (2022-10-18)"
+    ],
+    [
+      "https://www.safar.partners/life-sciences/axoft-to-begin-brain-implant-clinical-study-marking-the-first-time-bio-inspired-material-is-authorized-for-use-in-humans/",
+      "Axoft — financing disclosure: Pre-Series A (2024-12-19)"
+    ],
+    [
+      "https://finance.yahoo.com/sectors/healthcare/articles/axoft-secures-55m-series-advance-133000078.html",
+      "Axoft — financing disclosure: Series A (2026-04-29)"
+    ],
+    [
+      "https://cortec-neuro.com/media/pages/news/struengmann-group-invests-in-further-expansion-of-cortec/73f6ceeec6-1793783619/2019-11-07_cortec_pressrelease_2019-02.pdf",
+      "CorTec — financing disclosure: Investment (stage undisclosed) (2019-11-07)"
+    ],
+    [
+      "https://neurobionics.io/press/news/neurobionics-announces-oversubscribed-10m-seed-round-with-second-close-led-by-future-ventures/",
+      "NeuroBionics — financing disclosure: Seed (2025-12-16)"
+    ],
+    [
+      "https://n24.com.tr/en/andreessen-horowitz-invests-in-brain-implant-startup-echo-neurotechnologies/",
+      "Echo Neurotech — financing disclosure: Financing (stage undisclosed) (2025-01-30)"
+    ],
+    [
+      "https://cloud.tencent.cn/developer/news/426207",
+      "Neuracle Technology — financing disclosure: Series A (2019-08-26)"
+    ],
+    [
+      "https://krro.com/2026/03/20/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink/",
+      "NeuCyber NeuroTech — financing disclosure: Government funding received (period undisclosed) (2026-03-20)"
+    ],
+    [
+      "https://www.stairmed.com/xinwenzaixian.html",
+      "StairMed — financing disclosure: Strategic round (2026-03-13)"
+    ],
+    [
+      "https://www.biospace.com/press-releases/subsense-emerges-from-stealth-with-17m-in-seed-funding-for-a-non-surgical-brain-computer-interface",
+      "SubSense — financing disclosure: Seed (2025-02-19)"
+    ],
+    [
+      "https://www.gestala.com/news/22",
+      "Gestala — financing disclosure: Angel+ (2026-07-03)"
+    ],
+    [
+      "https://blackrockneurotech.com/insights/blackrock-neurotech-closes-10m-financing-round-to-advance-development-of-its-world-leading-brain-computer-interface-bci-technology/",
+      "Blackrock Neurotech — financing disclosure: Financing (2021-05-19)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/2022264/000202226424000001/xslFormDX01/primary_doc.xml",
+      "Blackrock Neurotech — financing disclosure: Equity financing (Form D) (2024-05-06)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1708503/000170850317000001/xslFormDX01/primary_doc.xml",
+      "Neuralink — financing disclosure: Equity financing (Form D) (2017-08-25)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1708503/000170850319000001/xslFormDX01/primary_doc.xml",
+      "Neuralink — financing disclosure: Equity financing (Form D) (2019-05-10)"
+    ],
+    [
+      "https://neuralink.com/updates/series-c-funding-round-announcement/",
+      "Neuralink — financing disclosure: Series C (2021-07-29)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1873836/000187383621000002/xslFormDX01/primary_doc.xml",
+      "Science Corporation — financing disclosure: Equity financing (Form D) (2021-07-21)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1873836/000187383624000001/xslFormDX01/primary_doc.xml",
+      "Science Corporation — financing disclosure: Equity financing (Form D) (2024-06-07)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1858288/000112329224000099/xslFormDX01/primary_doc.xml",
+      "Precision Neuroscience — financing disclosure: SAFE (2024-04-02)"
+    ],
+    [
+      "https://asabys.com/inbrain-neuroelectronis-raises-over-14m-series-a/",
+      "INBRAIN Neuroelectronics — financing disclosure: Series A (2021-03-26)"
+    ],
+    [
+      "https://www.eib.org/en/projects/pipelines/all/20220924",
+      "INBRAIN Neuroelectronics — financing disclosure: Signed loan facility (2023-11-28)"
+    ],
+    [
+      "https://www.htgf.de/en/with-cortec-the-high-tech-grunderfonds-invests/",
+      "CorTec — financing disclosure: Seed and public subsidies (2011-10-10)"
+    ],
+    [
+      "https://www.htgf.de/en/cortec-on-the-way-to-the-future-of-neurotechnology-company-closes-second-financing-round/",
+      "CorTec — financing disclosure: Second financing round (2013-08-01)"
+    ],
+    [
+      "https://www.prnewswire.com/news-releases/newronika-raises-an-8-4m-eur-series-a-round-300926133.html",
+      "Newronika — financing disclosure: Series A (2019-09-26)"
+    ],
+    [
+      "https://medicalalley.org/newronika-sercures-initial-e2-million-in-blended-finance-from-eic-accelerator-for-groundbreaking-parkinsons-disease-research/",
+      "Newronika — financing disclosure: EIC equity financing (2024-01-22)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1758725/000175872526000002/xslFormDX01/primary_doc.xml",
+      "Nia Therapeutics — financing disclosure: Equity offering (cumulative Form D) (2026-06-03)"
+    ],
+    [
+      "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-17-6-million-series-b-financing-to-advance-the-development-of-deep-brain-stimulation-dbs-plus-rehabilitation-for-stroke-patients-301890382.html",
+      "Enspire DBS — financing disclosure: Series B (committed capital) (2023-08-01)"
+    ],
+    [
+      "https://www.zidonghua.com.cn/news/Finance/130707.html",
+      "BCI-Sonics (华超神控) — financing disclosure: Angel + Angel+ (combined) (2026-06-09)"
+    ],
+    [
+      "https://www.linkedin.com/feed/update/urn:li:activity:7038851426374053888/",
+      "Coherence Neuro — financing disclosure: Pre-seed (2023-03-07)"
+    ],
+    [
+      "https://www.conmindmed.com/news/list_9_0.html",
+      "Conmind (聚芯医疗) — financing disclosure: Series B (2023-08-22)"
+    ],
+    [
+      "https://news.qq.com/rain/a/20260506A059OH00?media_id=&suid=",
+      "Nanochap (暖芯迦) — financing disclosure: Strategic round (2026-05-06)"
+    ],
+    [
+      "https://finance.sina.com.cn/stock/hkstock/hkstocknews/2026-06-14/doc-iniciymw7538660.shtml",
+      "Neuracle Technology — financing disclosure: Pre-Series A (2018-03-01)"
+    ],
+    [
+      "https://pe.pedaily.cn/202103/468375.shtml",
+      "Neuracle Technology — financing disclosure: Series B (2021-03-19)"
+    ],
+    [
+      "https://m.10jqka.com.cn/20261028/c681199560.shtml",
+      "StairMed — financing disclosure: Financing (H2 2026 aggregate) (2026-10-28)"
+    ],
+    [
+      "https://bciflex.com/News/dpage",
+      "Zhiran Medical (智冉医疗) — financing disclosure: Series A (2025-08-12)"
+    ],
+    [
+      "https://ir.onwd.com/static-files/72b4e1a8-b8fd-40a8-973b-7d0ff0814480",
+      "Onward Medical — financing disclosure: €40.6m (2026-04-16)"
+    ],
+    [
+      "https://bluearbortech.com/blue-arbor-technologies-announces-strategic-partnership-with-ottobock-and-5-million-investment-to-advance-restore-neuromuscular-interface-system/",
+      "Blue Arbor Technologies — financing disclosure: $5m (2026-02-26)"
+    ],
+    [
+      "https://prtimes.jp/main/html/rd/p/000000002.000134786.html",
+      "Ruten Neuro — financing disclosure: $2m (2026-03-17)"
+    ],
+    [
+      "https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Completion-of-Public-Offering-of-Common-Stock-and-Exercise-in-Full-of-Underwriters-Option-to-Purchase-Additional-Shares-02-18-2025/default.aspx",
+      "NeuroPace — financing disclosure: $74.75m (2025-02-18)"
+    ],
+    [
+      "https://www.qimingvc.com/cn/news/%E5%90%AF%E6%98%8E%E6%98%9F-%E9%98%B6%E6%A2%AF%E5%8C%BB%E7%96%97b%E8%BD%AE%E8%9E%8D%E8%B5%8435%E4%BA%BF%E5%85%83%EF%BC%8C%E5%90%AF%E6%98%8E%E5%88%9B%E6%8A%95%E5%85%B1%E5%90%8C%E9%A2%86%E6%8A%95",
+      "StairMed — financing disclosure: $48m (2025-02-10)"
+    ],
+    [
+      "https://bluearbortech.com/blue-arbor-technologies-raises-10-5-million-series-a-led-by-ottobock/",
+      "Blue Arbor Technologies — financing disclosure: $10.5m (2026-10-28)"
+    ],
+    [
+      "https://ir.onwd.com/static-files/2f780a0c-87dc-4137-b23d-939db1efb6ba",
+      "Onward Medical — financing disclosure: €50.85m (2025-10-24)"
+    ],
+    [
+      "https://www.sbir.gov/awards/220776",
+      "NeuroBionics — financing disclosure: grant (2026-07-16)"
+    ],
+    [
+      "https://www.pcb.ub.edu/en/inbrain-neuroelectronics-receives-4-me-from-the-spanish-perte-chip-programme-for-the-development-of-brain-computer-interfaces/",
+      "INBRAIN Neuroelectronics — financing disclosure: grant (2025-05-06)"
+    ],
+    [
+      "https://www.biospace.com/press-releases/motif-neurotech-wins-uk-government-award-to-develop-therapeutic-brain-computer-interface",
+      "Motif Neurotech — financing disclosure: award (2025-01-20)"
+    ],
+    [
+      "https://ir.envoymedical.com/sec-filings/all-sec-filings/content/0001213900-26-015230/ea0276593-424b4_envoy.htm",
+      "Envoy Medical — financing disclosure: $2.5m (2025-09-23)"
+    ],
+    [
+      "https://www.sec.gov/Archives/edgar/data/1528287/000152828726000011/npce-20251231.htm",
+      "NeuroPace — financing disclosure: $3.4m annual ATM (2024-01-01)"
+    ],
+    [
+      "https://cordis.europa.eu/project/id/190118958",
+      "CorTec — financing disclosure: grant ()"
+    ],
+    [
+      "https://www.nrf.gov.au/news-and-media-releases/nrfc-invests-aud-54-million-synchrons-groundbreaking-brain-computer-interface-devices",
+      "synchron — supporting round-participation disclosure"
+    ],
+    [
+      "https://www.bloomberg.com/news/articles/2025-04-14/neuralink-rival-science-corp-raises-104-million-led-by-khosla",
+      "science-corporation — supporting round-participation disclosure"
+    ],
+    [
+      "https://www.vbdata.cn/1519070200",
+      "conmind — supporting round-participation disclosure"
+    ],
+    [
+      "https://ir.butterflynetwork.com/News/press-releases/news-details/2026/Merge-Labs-and-Butterfly-Network-Partner-to-Advance-Ultrasound-Based-Brain-Computer-Interfaces/default.aspx",
+      "merge-labs — supporting round-participation disclosure"
+    ],
+    [
+      "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+      "neuroxess — supporting round-participation disclosure"
+    ],
+    [
+      "https://finance.sina.cn/stock/jdts/2026-06-18/detail-inicuupx3340385.d.html?vt=4",
+      "xinsheng-shijie — supporting round-participation disclosure"
+    ],
+    [
+      "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+      "zhiran-medical — supporting round-participation disclosure"
+    ],
+    [
+      "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+      "zhiran-medical — supporting round-participation disclosure"
     ]
   ],
   "discovery": [

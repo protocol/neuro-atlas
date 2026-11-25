@@ -1,0 +1,91 @@
+entry_id,company,surface,disposition,date,date_precision,source_url
+main-round-001,Blackrock Neurotech,Funding,updated,2024-04-29,day,https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/
+main-round-002,Synchron,Funding,updated,2017-04-04,day,https://www.prnewswire.com/news-releases/synchron-inc-secures-10-million-in-series-a-financing-round-300433942.html
+main-round-003,Synchron,Funding,updated,2021-06-03,day,https://www.businesswire.com/news/home/20210603005055/en/Synchron-Secures-40M-in-Series-B-led-by-Khosla-Ventures-to-Launch-U.S.-Clinical-Trials-of-Minimally-Invasive-Brain-Computer-Interface
+main-round-004,Synchron,Funding,updated,2022-12-15,day,https://finance.yahoo.com/news/synchron-raises-75m-series-c-130000371.html
+main-round-005,Synchron,Funding,updated,2025-11-06,day,https://finance.yahoo.com/news/synchron-raises-200-million-series-130000093.html
+main-timeline-061,Blackrock Neurotech,Milestones,updated,2024-04-29,day,https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/
+main-timeline-063,Synchron,Milestones,updated,2025-11-06,day,https://finance.yahoo.com/news/synchron-raises-200-million-series-130000093.html
+main-timeline-015,Blue Arbor Technologies,Milestones,updated,2026-02-26,day,https://bluearbortech.com/blue-arbor-technologies-announces-strategic-partnership-with-ottobock-and-5-million-investment-to-advance-restore-neuromuscular-interface-system/
+main-timeline-017,Ruten Neuro,Milestones,updated,2026-03-17,day,https://prtimes.jp/main/html/rd/p/000000002.000134786.html
+main-timeline-052,NeuroPace,Milestones,updated,2025-02-18,day,https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Completion-of-Public-Offering-of-Common-Stock-and-Exercise-in-Full-of-Underwriters-Option-to-Purchase-Additional-Shares-02-18-2025/default.aspx
+main-timeline-060,Augmental,Milestones,retained,2024-10-23,day,https://www.forbes.com/sites/naveenrao/2024/10/23/is-the-future-of-bci-right-under-our-nose/
+main-timeline-092,EON Systems,Milestones,retained,2025-12-30,day,https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon
+main-timeline-093,Hemispheric,Milestones,retained,2026-07-15,day,https://www.calcalistech.com/ctechnews/article/rjentgbege
+main-round-006,Neuralink,Funding,updated,2023-11-22,day,https://www.sec.gov/Archives/edgar/data/1708503/000170850323000002/xslFormDX01/primary_doc.xml
+main-round-007,Neuralink,Funding,updated,2025-06-02,day,https://neuralink.com/updates/neuralink-raises-650m-series-e/
+main-round-008,Science Corporation,Funding,updated,2025-04-14,day,https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/xslFormDX01/primary_doc.xml
+main-round-009,Science Corporation,Funding,updated,2026-03-05,day,https://science.xyz/news/series-c/
+main-round-042,Science Corporation,Funding,updated,2026-11-17,day,https://science.xyz/news/series-d/
+main-timeline-003,Science Corporation,Milestones,updated,2026-03-05,day,https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology
+main-timeline-051,Science Corporation,Milestones,updated,2025-04-14,day,https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm
+main-timeline-062,Neuralink,Milestones,updated,2025-06-02,day,https://neuralink.com/updates/neuralink-raises-650m-series-e/
+main-timeline-091,Science Corporation,Milestones,retained,2026-11-17,day,https://science.xyz/news/series-d/
+main-round-010,Precision Neuroscience,Funding,updated,2021-05-25,day,https://www.prnewswire.com/news-releases/precision-neuroscience-raises-12m-to-develop-next-generation-brain-computer-interface-technology-301298952.html
+main-round-011,Precision Neuroscience,Funding,updated,2023-01-25,day,https://www.globenewswire.com/news-release/2023/01/25/2595114/0/en/Precision-Neuroscience-Raises-41-Million-to-Build-and-Scale-the-Next-Generation-of-Treatments-for-Neurological-Illnesses.html
+main-round-012,Precision Neuroscience,Funding,updated,2024-12-16,day,https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html
+main-round-013,Precision Neuroscience,Funding,updated,2026-09-24,day,https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html
+main-round-017,INBRAIN Neuroelectronics,Funding,updated,2024-10-29,day,https://www.imec-int.com/en/press/inbrain-neuroelectronics-raises-50m-series-b-advance-graphene-based-brain-computer-interface
+main-timeline-044,Precision Neuroscience,Milestones,retained,2024-12-16,day,https://www.globenewswire.com/news-release/2024/12/16/2997364/0/en/Precision-Neuroscience-Raises-102-Million-to-Advance-AI-Powered-Brain-Implant.html
+main-timeline-046,INBRAIN Neuroelectronics,Milestones,updated,2024-10-29,day,https://www.imec-int.com/en/press/inbrain-neuroelectronics-raises-50m-series-b-advance-graphene-based-brain-computer-interface
+main-timeline-070,Precision Neuroscience,Milestones,updated,2026-09-24,day,https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html
+main-round-018,Neurosoft Bioelectronics,Funding,updated,2026-05-20,day,https://finance.yahoo.com/sectors/healthcare/articles/neurosoft-bioelectronics-closes-7-5m-120000993.html
+main-round-019,Axoft,Funding,updated,2022-10-18,day,https://apnews.com/press-release/business-wire/technology-science-health-business-neurological-disorders-11bfe2385f8c4831ba4859f3a1deaa86
+main-round-020,Axoft,Funding,updated,2024-12-19,day,https://www.safar.partners/life-sciences/axoft-to-begin-brain-implant-clinical-study-marking-the-first-time-bio-inspired-material-is-authorized-for-use-in-humans/
+main-round-021,Axoft,Funding,updated,2026-04-29,day,https://finance.yahoo.com/sectors/healthcare/articles/axoft-secures-55m-series-advance-133000078.html
+main-round-023,NeuroBionics,Funding,updated,2025-12-16,day,https://neurobionics.io/press/news/neurobionics-announces-oversubscribed-10m-seed-round-with-second-close-led-by-future-ventures/
+main-timeline-007,Axoft,Milestones,updated,2026-04-29,day,https://finance.yahoo.com/sectors/healthcare/articles/axoft-secures-55m-series-advance-133000078.html
+main-timeline-059,NeuroBionics,Milestones,updated,2025-12-16,day,https://neurobionics.io/press/news/neurobionics-announces-oversubscribed-10m-seed-round-with-second-close-led-by-future-ventures/
+main-timeline-065,Neurosoft Bioelectronics,Milestones,updated,2026-05-20,day,https://tech.eu/2026/05/20/neurosoft-bioelectronics-raises-75m-for-scalable-brain-computer-interfaces/
+main-timeline-095,NeuroBionics,Milestones,retained,2026-11-05,day,https://neurobionics.io/press/news/aria-grant-award/
+main-round-022,CorTec,Funding,updated,2019-11-07,day,https://cortec-neuro.com/media/pages/news/struengmann-group-invests-in-further-expansion-of-cortec/73f6ceeec6-1793783619/2019-11-07_cortec_pressrelease_2019-02.pdf
+main-round-024,Nia Therapeutics,Funding,updated,2024-05-03,day,https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/
+main-round-028,Newronika,Funding,updated,2025-02-13,day,https://www.massdevice.com/newronika-closes-14m-series-b/
+main-round-039,Enspire DBS,Funding,updated,2026-01-13,day,https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html
+main-timeline-013,Enspire DBS,Milestones,updated,2026-01-13,day,https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html
+main-timeline-049,Nia Therapeutics,Milestones,updated,2024-05-03,day,https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/
+main-timeline-056,Newronika,Milestones,updated,2025-02-13,day,https://www.massdevice.com/newronika-closes-14m-series-b/
+main-round-025,Echo Neurotech,Funding,updated,2025-01-30,day,https://n24.com.tr/en/andreessen-horowitz-invests-in-brain-implant-startup-echo-neurotechnologies/
+main-round-026,Coherence Neuro,Funding,updated,2025-11-03,day,https://www.linkedin.com/posts/elise-jenkins-_coherence-neuro-has-raised-a-10m-seed-round-activity-7391232963549487105-N1eH/
+main-round-027,Merge Labs,Funding,updated,2026-01-15,day,https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/
+main-round-040,Coherence Neuro,Funding,retained,2026-10-21,day,https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns
+main-timeline-002,Merge Labs,Milestones,updated,2026-01-15,day,https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/
+main-timeline-053,Echo Neurotech,Milestones,updated,2025-01-30,day,https://n24.com.tr/en/andreessen-horowitz-invests-in-brain-implant-startup-echo-neurotechnologies/
+main-timeline-057,Coherence Neuro,Milestones,updated,2025-11-03,day,https://www.linkedin.com/posts/elise-jenkins-_coherence-neuro-has-raised-a-10m-seed-round-activity-7391232963549487105-N1eH/
+main-timeline-085,Coherence Neuro,Milestones,retained,2026-10-21,day,https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns
+main-round-035,Forest Neurotech,Funding,retained,2024-03-11,day,https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech
+main-round-036,SubSense,Funding,updated,2025-02-19,day,https://www.biospace.com/press-releases/subsense-emerges-from-stealth-with-17m-in-seed-funding-for-a-non-surgical-brain-computer-interface
+main-round-037,SubSense,Funding,updated,2025-12-12,day,https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces
+main-round-038,Motif Neurotech,Funding,updated,2024-01-24,day,https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-$18.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression
+main-timeline-018,Motif Neurotech,Milestones,retained,2026-04-21,day,https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral
+main-timeline-047,Motif Neurotech,Milestones,updated,2024-01-24,day,https://www.businesswire.com/news/home/20240124154216/en/Motif-Neurotech-Raises-%2418.75-Million-in-Series-A-Financing-to-Advance-Implantable-Device-for-Treatment-Resistant-Depression
+main-timeline-048,Forest Neurotech,Milestones,retained,2024-03-11,day,https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech
+main-timeline-055,SubSense,Milestones,updated,2025-02-19,day,https://www.biospace.com/press-releases/subsense-emerges-from-stealth-with-17m-in-seed-funding-for-a-non-surgical-brain-computer-interface
+main-timeline-058,SubSense,Milestones,updated,2025-12-11,day,https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/
+main-round-029,Neuracle Technology,Funding,updated,2019-08-26,day,https://cloud.tencent.cn/developer/news/426207
+main-round-030,NeuroXess,Funding,updated,2022-01-11,day,https://www.yicaiglobal.com/news/chinese-bci-startup-neuroxess-bags-usd152-million-as-of-pre-series-a-round
+main-round-031,NeuCyber Neurotech,Funding,updated,2026-03-20,day,https://krro.com/2026/03/20/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink/
+main-round-032,StairMed,Funding,updated,2025-02-12,day,https://www.chinadaily.com.cn/a/202502/12/WS67abf242a310a2ab06eaba81.html
+main-round-033,StairMed,Funding,updated,2026-03-13,day,https://www.stairmed.com/xinwenzaixian.html
+main-round-034,Gestala,Funding,updated,2026-03-11,day,https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/
+main-round-041,NeuroXess,Funding,updated,2026-10-28,day,https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/
+main-timeline-006,StairMed,Milestones,updated,2026-03-13,day,https://www.stairmed.com/xinwenzaixian.html
+main-timeline-012,Gestala,Milestones,updated,2026-03-11,day,https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/
+main-timeline-050,Neuracle Technology,Milestones,updated,2019-08-26,day,https://cloud.tencent.cn/developer/news/426207
+main-timeline-054,StairMed,Milestones,updated,2025-02-10,day,https://www.qimingvc.com/cn/news/%E5%90%AF%E6%98%8E%E6%98%9F-%E9%98%B6%E6%A2%AF%E5%8C%BB%E7%96%97b%E8%BD%AE%E8%9E%8D%E8%B5%8435%E4%BA%BF%E5%85%83%EF%BC%8C%E5%90%AF%E6%98%8E%E5%88%9B%E6%8A%95%E5%85%B1%E5%90%8C%E9%A2%86%E6%8A%95
+main-timeline-064,NeuCyber Neurotech,Milestones,updated,2026-03-20,day,https://krro.com/2026/03/20/beijing-backed-brain-chip-firm-says-it-is-3-years-behind-musks-neuralink/
+main-timeline-086,NeuroXess,Milestones,updated,2026-10-28,day,https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/
+pr151-round-001,Neuracle Technology,Funding,retained,2022-09-24,day,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45
+pr151-round-002,Neuracle Technology,Funding,retained,2024-11-08,day,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48
+pr151-round-003,Neuracle Technology,Funding,updated,2025-10-28,day,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52
+pr151-round-004,Gestala,Funding,updated,2026-07-03,day,https://www.gestala.com/news/22
+pr151-round-005,Zhiran Medical,Funding,updated,2026-02-11,day,https://bciflex.com/News
+pr151-round-006,Nanochap,Funding,updated,2026-11-03,day,https://www.nanochap.com/news_info/id-105.html
+pr151-round-007,Conmind,Funding,updated,2026-04-08,day,https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html
+pr151-round-008,Xinsheng Shijie,Funding,updated,2026-06-18,day,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml
+pr151-round-009,Active Technology,Funding,retained,2026-08-03,day,https://www.zidonghua.com.cn/news/Finance/270129.html
+pr151-round-010,Active Technology,Funding,retained,2026-11-04,day,https://zidonghua.com.cn/news/Finance/394874.html
+pr151-round-011,BCI Sonics,Funding,updated,2026-10-23,day,https://www.bcisonics.com/article/5786479998588415
+main-timeline-005,Envoy Medical,Milestones,retained,2026-02-12,day,https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering
+main-timeline-045,ONWARD Medical,Milestones,updated,2024-10-24,day,https://www.globenewswire.com/news-release/2024/10/24/2968347/0/en/ONWARD-Medical-Successfully-Raises-EUR-50-Million-in-an-Upsized-Capital-Increase-with-Cornerstone-Investment-from-Ottobock-SE-Co-KGaA.html
+main-timeline-008,ONWARD Medical,Milestones,updated,2026-04-16,day,https://ir.onwd.com/static-files/72b4e1a8-b8fd-40a8-973b-7d0ff0814480

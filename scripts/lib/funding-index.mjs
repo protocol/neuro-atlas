@@ -1,3 +1,4 @@
+import { countedCapital } from "../../src/lib/funding-capital.mjs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { historicalFxFor } from "./historical-fx.mjs";
@@ -10,6 +11,17 @@ const INVESTOR_ALIASES = new Map([["Neurotechnology Investors", "NeuroTechnology
 
 function isHttpsUrl(value) {
   try { return new URL(value).protocol === "https:"; } catch { return false; }
+}
+
+function isReportedTotalSourceUrl(value) {
+  // Match the literal citation boundary used by source-context identity.
+  if (typeof value !== "string" || /[\s\\<>"`{}]/.test(value) || /%(?![\da-f]{2})/i.test(value)) return false;
+  const authority = /^https:\/\/([^/?#]+)/i.exec(value)?.[1];
+  if (!authority || /[%@]/.test(authority)) return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && !url.username && !url.password;
+  } catch { return false; }
 }
 
 function isReviewDate(value) {
@@ -46,13 +58,17 @@ export function parseCsv(text) {
   if (rows.length === 0) return [];
   const headers = rows[0].map((value) => value.trim());
   return rows.slice(1).filter((values) => values.some(Boolean)).map((values) =>
-    Object.fromEntries(headers.map((header, index) => [header, (values[index] ?? "").trim()])),
+    Object.fromEntries(headers.map((header, index) => {
+      const value = values[index] ?? "";
+      // Treatment is a literal accounting token; padding must reach validation.
+      return [header, header === "capital_treatment" ? value : value.trim()];
+    })),
   );
 }
 
 export async function loadFundingIndexSources(directory) {
   const load = async (name) => parseCsv(await readFile(path.join(directory, name), "utf8"));
-  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence] = await Promise.all([
+  const [companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence, reportedTotals] = await Promise.all([
     load("companies.csv"),
     load("rounds.csv"),
     load("milestones.csv"),
@@ -61,11 +77,15 @@ export async function loadFundingIndexSources(directory) {
     readFile(path.join(directory, "portfolio-disclosures.json"), "utf8").then(JSON.parse),
     readFile(path.join(directory, "investor-groups.json"), "utf8").then(JSON.parse),
     readFile(path.join(directory, "investor-evidence.json"), "utf8").then(JSON.parse),
+    readFile(path.join(directory, "reported-totals.json"), "utf8").then(JSON.parse).catch((error) => {
+      if (error.code === "ENOENT") return [];
+      throw error;
+    }),
   ]);
-  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence };
+  return { companies, rounds, milestones, foundings, fxConversions, portfolioDisclosures, investorGroups, investorEvidence, reportedTotals };
 }
 
-export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [], investorGroups = [], investorEvidence = [] }) {
+export function buildFundingIndex({ companies, rounds, milestones, foundings, fxConversions = [], portfolioDisclosures = [], investorGroups = [], investorEvidence = [], reportedTotals = [] }) {
   const investorGroupNames = new Map();
   const displayNames = new Set();
   if (!Array.isArray(investorGroups)) throw new Error("Invalid investor grouping");
@@ -88,6 +108,21 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
   }
   const roster = new Set(companies.map((company) => company.slug));
   if (roster.size !== companies.length) throw new Error("Duplicate company slug");
+  // Company self-reports are context, never synthetic financing or investor capital.
+  if (!Array.isArray(reportedTotals)) throw new Error("Invalid reported total collection");
+  const reportedCompanies = new Set();
+  const reportedFields = new Set(["companySlug", "amountUsdM", "reportedOn", "sourceUrl", "sourceKind", "scope", "reviewedOn", "note"]);
+  for (const total of reportedTotals) {
+    if (!total || Object.keys(total).some((key) => !reportedFields.has(key)) || !roster.has(total.companySlug) || reportedCompanies.has(total.companySlug) ||
+        typeof total.amountUsdM !== "number" || !Number.isFinite(total.amountUsdM) || total.amountUsdM <= 0 ||
+        !isReviewDate(total.reportedOn) || !isReviewDate(total.reviewedOn) ||
+        !isReportedTotalSourceUrl(total.sourceUrl) || !SOURCE_KINDS.has(total.sourceKind) ||
+        typeof total.scope !== "string" || !total.scope.trim() ||
+        typeof total.note !== "string" || !total.note.trim()) {
+      throw new Error("Invalid reported total provenance");
+    }
+    reportedCompanies.add(total.companySlug);
+  }
   // Portfolio relationships are a separate evidence class, never synthetic rounds.
   for (const disclosure of portfolioDisclosures) {
     if (!disclosure.investorName?.trim() || !disclosure.sourceInvestorName?.trim() ||
@@ -183,7 +218,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
         converted.fx.currency !== round.currency || converted.fx.amountNativeM !== Number(round.amount_native_m))) {
       throw new Error(`Conflicting historical FX round: ${round.source_url}`);
     }
-    const amountUsdM = converted?.amountUsdM ?? (rawAmount ? Number(rawAmount) : Number.NaN);
+    const amountUsdM = converted?.amountUsdM ?? (rawAmount ? Number(rawAmount) : null);
     if (rawAmount && (!Number.isFinite(amountUsdM) || amountUsdM < 0)) throw new Error(`Invalid disclosed amount: ${rawAmount}`);
     return {
       companySlug: round.company_slug,
@@ -192,6 +227,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       dateBasis: sourceDateBasis(round.date_basis),
       stage: round.stage,
       amountUsdM,
+      ...(round.capital_treatment !== undefined && round.capital_treatment !== "" ? { capitalTreatment: round.capital_treatment } : {}),
       ...(converted ? { fx: converted.fx } : {}),
       amountNativeM: round.amount_native_m ? Number(round.amount_native_m) : null,
       currency: round.currency,
@@ -203,6 +239,8 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       ...(round.reviewed_on?.trim() ? { reviewedOn: round.reviewed_on.trim() } : {}),
     };
   });
+  // Validate every treatment, including unnamed and below-threshold disclosures.
+  for (const round of parsedRounds) countedCapital(round);
   const sourceParticipantNames = new Set(parsedRounds.flatMap((round) => round.investors));
   for (const group of investorGroups) {
     if (sourceParticipantNames.has(group.name) && !group.memberNames.includes(group.name)) {
@@ -246,7 +284,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
       const current = investorMap.get(name) ?? { name, roundCount: 0, companySlugs: new Set(), associatedCapitalUsdM: 0 };
       current.roundCount += 1;
       current.companySlugs.add(round.companySlug);
-      current.associatedCapitalUsdM += round.amountUsdM;
+      current.associatedCapitalUsdM += countedCapital(round);
       investorMap.set(name, current);
     }
   }
@@ -279,6 +317,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
     milestones: normalizedMilestones,
     investors,
     portfolioDisclosures: structuredClone(portfolioDisclosures),
+    ...(reportedTotals.length ? { reportedTotals: structuredClone(reportedTotals) } : {}),
     summary: { excludedBelowThreshold },
   };
 }
@@ -314,7 +353,7 @@ export function buildCompanyRows(companies, rounds, filters) {
       );
       return {
         ...company,
-        observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + round.amountUsdM, 0).toFixed(2)),
+        observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + countedCapital(round), 0).toFixed(2)),
         latestStage: normalizeFundingStage(companyRounds.at(-1)?.stage ?? "Undisclosed"),
         rounds: companyRounds,
       };

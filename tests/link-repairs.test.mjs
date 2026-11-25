@@ -11,28 +11,42 @@ import { HISTORICAL_RECORDING_ROWS, HISTORICAL_RECORDING } from '../src/data/his
 const json = path => JSON.parse(readFileSync(path, 'utf8'));
 const csv = path => parseCsv(readFileSync(path, 'utf8'));
 const scienceIndex = 'https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm';
+const scienceFiling = 'https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/xslFormDX01/primary_doc.xml';
 const scienceNews = 'https://news.crunchbase.com/venture/braintech-ai-startup-science-neuralink-alums-seriesc/';
 
 test('Science April 2025 cites its real filing and separately sources the supported investor', () => {
-  const round = csv('data/funding-index/rounds.csv').find(row => row.company_slug === 'science-corporation' && row.announced_on === '2025-04-14');
-  const milestone = csv('data/market-memo-q1-2026/milestones.csv').find(row => row.company === 'Science Corp' && row.date === '2025-04-14');
-  assert.equal(round.source_url, scienceIndex);
+  const rounds = csv('data/funding-index/rounds.csv').filter(row => row.company_slug === 'science-corporation' && row.announced_on === '2025-04-14' && row.stage === 'Convertible notes');
+  const milestones = csv('data/market-memo-q1-2026/milestones.csv').filter(row => row.company === 'Science Corp' && row.date === '2025-04-14' && row.stage === 'capital');
+  assert.equal(rounds.length, 1, 'exact Science notes identity, not a neighboring financing');
+  assert.equal(milestones.length, 1, 'exact Science capital disclosure');
+  const [round] = rounds, [milestone] = milestones;
+  assert.equal(round.source_url, scienceFiling, 'Funding cites the actual amount-and-instrument filing body');
   assert.equal(milestone.source_url, scienceIndex);
-  assert.equal(round.amount_usd_m, '104');
-  assert.equal(milestone.amount_usd_m, '104');
+  assert.equal(round.amount_usd_m, '103.604355', 'exact sold proceeds, not the rounded $104m report or $110m target');
+  assert.equal(milestone.amount_usd_m, '103.604355');
+  assert.equal(round.display_amount, '$103.604355m');
   assert.equal(round.investors, 'Khosla Ventures');
   for (const row of [round, milestone]) {
     assert.equal(row.date_basis, 'reported');
-    assert.match(row.note, /filing date/i);
-    assert.match(row.note, /not.*closing date/i);
+    assert.equal(row.capital_treatment, 'overlap-unresolved', 'the actual note amount remains disclosed but is not additive capital');
+    assert.match(row.note, /first sale (?:was )?March 28/i);
   }
-  const evidence = json('data/funding-index/investor-evidence.json').find(row => row.companySlug === 'science-corporation' && row.announcedOn === '2025-04-14');
-  assert.equal(evidence.investorName, 'Khosla Ventures');
-  assert.equal(evidence.sourceUrl, scienceNews);
-  const built = json('src/data/funding-index.json').rounds.find(row => row.companySlug === 'science-corporation' && row.announcedOn === '2025-04-14');
+  assert.match(round.note, /April 14, 2025 SEC Form D reports \$103,604,355 in convertible notes sold toward a \$110m target/);
+  assert.match(milestone.note, /April 14 is the SEC filing date; first sale was March 28\. Closing date: unverified\./);
+  const evidence = json('data/funding-index/investor-evidence.json').filter(row => row.companySlug === 'science-corporation' && row.announcedOn === '2025-04-14' && row.stage === 'Convertible notes' && row.sourceUrl === scienceNews);
+  assert.equal(evidence.length, 1, 'the separate Crunchbase investor evidence remains attached to the exact note financing');
+  assert.equal(evidence[0].investorName, 'Khosla Ventures');
+  assert.match(evidence[0].sourceExcerpt, /convertible note led by Khosla last April/);
+  const shipped = json('src/data/funding-index.json').rounds.filter(row => row.companySlug === 'science-corporation' && row.announcedOn === '2025-04-14' && row.stage === 'Convertible notes');
+  assert.equal(shipped.length, 1);
+  const [built] = shipped;
   assert.deepEqual(built.investors, ['Khosla Ventures']);
-  assert.equal(built.sourceUrl, scienceIndex);
-  assert.equal(built.investorEvidence[0].sourceUrl, scienceNews);
+  assert.equal(built.sourceUrl, scienceFiling);
+  assert.equal(built.amountUsdM, 103.604355);
+  assert.equal(built.capitalTreatment, 'overlap-unresolved');
+  const builtEvidence = built.investorEvidence.filter(row => row.sourceUrl === scienceNews);
+  assert.equal(builtEvidence.length, 1);
+  assert.equal(builtEvidence[0].investorName, 'Khosla Ventures');
 });
 
 test('OpenAlex fixture group identifiers are not published as citations and fixture bytes stay unchanged', () => {
@@ -70,7 +84,14 @@ test('verified company, dataset, schema, curation and syndicated-release destina
   assert.equal(neuro.website_label, 'Institutional profile (CIBR)');
   const rounds = csv('data/funding-index/rounds.csv');
   assert.equal(rounds.find(row => row.company_slug === 'paradromics' && row.announced_on === '2018-06-11').source_url, 'https://www.biospace.com/brain-machine-interface-company-paradromics-secures-a-7-million-series-seed-led-by-arkitekt-ventures');
-  assert.equal(rounds.find(row => row.company_slug === 'subsense' && row.announced_on === '2025-12-11').source_url, 'https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces');
+  const subsenseSource = 'https://www.biospace.com/press-releases/subsense-expands-financing-to-27-million-to-accelerate-r-d-for-non-surgical-brain-computer-interfaces';
+  const additional = rounds.filter(row => row.company_slug === 'subsense' && row.source_url === subsenseSource);
+  assert.equal(additional.length, 1, 'one financing for the exact issuer-release identity, never the adjacent $17m seed');
+  assert.equal(additional[0].announced_on, '2025-12-12', 'BioSpace publication date; Dec 11 belongs to the separate HIT Consultant report');
+  assert.equal(additional[0].date_basis, 'reported');
+  assert.equal(additional[0].stage, 'Additional financing', 'the release does not establish a formal seed extension');
+  assert.equal(additional[0].amount_usd_m, '10', 'incremental amount, not $27m cumulative funding');
+  assert.equal(additional[0].investors, 'Golden Falcon Capital');
   assert.match(readFileSync('data/market-memo-q1-2026/provenance.md', 'utf8'), /https:\/\/neurotechnology.substack.com\/p\/2024-funding-snapshot/);
   const size = readFileSync('docs/public-data-size-audit.md', 'utf8');
   assert.match(size, /https:\/\/github.com\/bocklab\/temca2-catmaid\/blob\/7449966d688e3d8adc9455bd93d0fca84bad410a\/download\/README.md/);

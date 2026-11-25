@@ -11,12 +11,10 @@ export const metadata = atlasMetadata(
   "Financing rounds, investors, and regulatory milestones for selected BCI companies.",
 );
 
-export default async function FundingPage({
-  searchParams,
-}: {
+export default async function FundingPage(props: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
-} = {}) {
-  const source = (await searchParams)?.source;
+}) {
+  const source = (await props?.searchParams)?.source;
   const data = fundingData as FundingIndexData;
   return (
     <>

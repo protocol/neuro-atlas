@@ -1,0 +1,2230 @@
+{
+  "version": 1,
+  "baselineSha": "e88186c9930dd00fabf42c72d80b3c0fe13ccb62",
+  "files": [
+    {
+      "path": "data/funding-index/companies.csv",
+      "beforeSha256": "281543d6a10cec7e3a13db41d0f775b8a36845d8999a3b714a022c75b31cabb0",
+      "afterSha256": "72b6fb5115eedd92d512644f9d2e4190d988bcc92b0439a3d99350aab52eb61c",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 27,
+            "afterLength": 33,
+            "edits": [
+              {
+                "beforeIndex": 17,
+                "afterIndex": 17,
+                "before": [
+                  "neuracle-technology,Neuracle Technology,\"Changzhou, China\",Implantable BCI,Cortical Surface,Neurological disorders,https://www.neuracle.cn,Implanted"
+                ],
+                "after": [
+                  "neuracle-technology,Neuracle Technology,\"Shanghai, China\",Epidural wireless BCI,Epidural,Hand-grasp compensation after cervical spinal cord injury,https://www.neuracle.cn,Implanted,"
+                ]
+              },
+              {
+                "beforeIndex": 21,
+                "afterIndex": 21,
+                "before": [
+                  "gestala,Gestala,\"Beijing, China\",Ultrasound BCI,Transcranial,Neurological disorders (in development),https://gestala.com,Implant-adjacent"
+                ],
+                "after": [
+                  "gestala,Gestala,\"Chengdu and Shanghai, China\",Ultrasound BCI,Transcranial,Neurological disorders (in development),https://gestala.com,Implant-adjacent,"
+                ]
+              },
+              {
+                "beforeIndex": 26,
+                "afterIndex": 26,
+                "before": [],
+                "after": [
+                  "zhiran-medical,Zhiran Medical (智冉医疗),China (headquarters unknown),Ultra-thin flexible electrode BCI,Implanted neural interface,Neurological disorders (in development),https://bciflex.com,Implanted,",
+                  "nanochap,Nanochap (暖芯迦),\"Hangzhou, China\",Retinal implant and cortical visual BCI,Retinal; cortical pipeline in R&D,Vision restoration (in development),https://www.nanochap.com,Implanted,",
+                  "conmind,Conmind (聚芯医疗),China (headquarters unknown),Interventional BCI and closed-loop neuromodulation,Vascular platform (in development),Neurological disorders (in development),https://www.conmindmed.com,Implant-adjacent,",
+                  "xinsheng-shijie,Xinsheng Shijie (芯生视界),China (headquarters unknown),Visual cortical prosthesis,Cortical (in development),Vision restoration (in development),https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,Implanted,Investor announcement via Sina",
+                  "active-technology,Active Technology (主动科技),\"Shanghai, China\",Flexible electrode BCI,Implanted neural interface,Motor restoration (in development),https://zidonghua.com.cn/news/Finance/394874.html,Implanted,Company announcement via ZiDongHua",
+                  "bci-sonics,BCI-Sonics (华超神控),China (Shanghai office),Focused ultrasound BCI,Transcranial,Neurological disorders (in development),https://www.bcisonics.com,Implant-adjacent,"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/funding-index/rounds.csv",
+      "beforeSha256": "3fe9ea2a5d66c9a15bacd4bef663510dd030bb9b3c6d52e785762d2eaff36d3e",
+      "afterSha256": "56b696f351013c9fe18f77f3c4e23dcfd8f5c95ea6b538af90715319b7210226",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 45,
+            "afterLength": 56,
+            "edits": [
+              {
+                "beforeIndex": 44,
+                "afterIndex": 44,
+                "before": [],
+                "after": [
+                  "neuracle-technology,2022-09-24,day,Financing (stage undisclosed),,150,CNY,RMB 150m (≈$21.0m),松禾资本;熔拓兴兆;青岛华控;杭州凯风;红杉恒辰;常州科教城;中健隆岳;百川致新,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,\"The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.\",primary,2026-11-24,event,",
+                  "neuracle-technology,2024-11-08,day,Financing (stage undisclosed),,250,CNY,RMB 250m (≈$34.8m),国孚领航;浦东创投;联新科技;德同合心;元科创新;元科贰号,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,\"The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.\",primary,2026-11-24,event,",
+                  "neuracle-technology,2025-10-28,day,Financing (stage undisclosed),,300,CNY,RMB 300m (≈$42.3m),达晨中小;上海宁鋆;千骥资本;熔拓景睿;华控前沿基金;天正投资;产创壹号;未来涌现;达晨财智;厦门雅恒;太嘉杉基金;雅瑞智友;溢联投资;百川致新;德同合心,https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,\"The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.\",primary,2026-11-24,event,",
+                  "gestala,2026-07-03,day,Angel+,,420,CNY,RMB 420m (≈$61.9m),HSG;Lens Technology;Sinovation Ventures;C Capital;Dalton Venture;Seas Capital;Tsing Song Capital;Gobi Partners,https://gestala.com/news/22,\"The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.\",primary,2026-11-24,reported,",
+                  "zhiran-medical,2026-02-11,day,Series A+,,300,CNY,RMB 300m (≈$43.4m),中科创星,https://bciflex.com/News,\"The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.\",primary,2026-11-24,announcement,",
+                  "nanochap,2026-11-03,day,Series C+,,500,CNY,RMB 500m (≈$75.0m),高榕创投;人保股权;Monolith砺思资本;建发新兴投资;东方嘉富;丹合资本;杭州产投集团;君联资本,https://www.nanochap.com/news_info/id-105.html,\"Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.\",primary,2026-11-24,announcement,",
+                  "conmind,2026-04-08,day,Series C,,200,CNY,Nearly RMB 200m (≈$29.3m),,https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,\"Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.\",primary,2026-11-24,reported,",
+                  "xinsheng-shijie,2026-06-18,day,Seed,,100,CNY,Nearly RMB 100m (≈$14.8m),经纬创投,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,\"Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.\",primary,2026-11-24,reported,",
+                  "active-technology,2026-08-03,day,Angel,,330,CNY,RMB 330m (≈$48.8m),中科创星;联想之星;九合创投;道彤投资;英诺天使基金;华大松禾生科基金;济峰资本;嘉道资本,https://www.zidonghua.com.cn/news/Finance/270129.html,\"Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.\",primary,2026-11-24,announcement,",
+                  "active-technology,2026-11-04,day,Angel+,,464,CNY,RMB 464m (≈$69.5m),高榕创投;国投先导;上海科创投;康君资本;中网投;国泰海通;浦东创投;上海科创基金;广药资本;闵金投;云启资本;道彤资本;华大松禾;英诺资本,https://zidonghua.com.cn/news/Finance/394874.html,\"Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.\",primary,2026-11-24,reported,",
+                  "bci-sonics,2026-10-23,day,Pre-A,,200,CNY,RMB 200m (≈$30.0m),红杉中国;云启资本;比邻星投资;元禾控股;徐汇科创投;德石投资;经纬创投;德联资本,https://www.bcisonics.com/article/5786479998588415,\"Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.\",primary,2026-11-24,reported,"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/funding-index/milestones.csv",
+      "beforeSha256": "3f293dd5f23ffd1cb749472894f17db51cf8fd2e389d763ae0ea823cede602e0",
+      "afterSha256": "d86a2a25e2c576dbb1f5eb440d81d9ff17b29ec356388de50b35352a8de986fa",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 17,
+            "afterLength": 17,
+            "edits": [
+              {
+                "beforeIndex": 8,
+                "afterIndex": 8,
+                "before": [
+                  "neuracle-technology,2026-03-13,day,NMPA,Hand-motor augmentation after spinal cord injury,https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use,NMPA registration for an implantable BCI.,unverified"
+                ],
+                "after": [
+                  "neuracle-technology,2026-03-13,day,NMPA,Hand-grasp compensation after chronic cervical spinal cord injury,https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html,\"The regulator’s March 13, 2026 publication confirms NMPA registration for an epidural wireless BCI that controls a pneumatic glove. Its approved use is hand-grasp compensation in a defined group of patients with chronic cervical spinal cord injury. Regulatory decision date: unspecified.\",reported"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/funding-index/foundings.csv",
+      "beforeSha256": "54852a5c8802e483f934ded00cae17f3fc0006b32100ad1c09aeaa97ec963928",
+      "afterSha256": "146d47cda8bf745612508dd9bfd6fc9b88f9f050305d3d5bbbe4732c17c5f532",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 27,
+            "afterLength": 33,
+            "edits": [
+              {
+                "beforeIndex": 26,
+                "afterIndex": 26,
+                "before": [],
+                "after": [
+                  "zhiran-medical,2022,https://bciflex.com/About,primary,2026-11-24,The company dates its founding to 2022 and lists offices in Beijing and Shanghai. Headquarters: unknown.",
+                  "nanochap,2014,https://www.nanochap.com,primary,2026-11-24,The company dates its founding to 2014. Its work covers retinal implants and visual-cortex research.",
+                  "conmind,2020,https://en.conmindmed.com/about.html,primary,2026-11-24,The group dates its founding in Shenzhen to 2020. Current headquarters: unknown.",
+                  "xinsheng-shijie,,https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,primary,2026-11-24,The investor’s announcement describes the university research behind the company. Founding year: unknown.",
+                  "active-technology,2026,https://zidonghua.com.cn/news/Finance/394874.html,primary,2026-11-24,The company announcement published on ZiDongHua dates its establishment to February 2026. Its core team completed a device inspection in November 2025.",
+                  "bci-sonics,,https://www.bcisonics.com/article/5786479998588415,primary,2026-11-24,The company announcement describes its financing and technology. Founding year: unknown."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/funding-index/fx-conversions.json",
+      "beforeSha256": "17b7907554ef9c79a0712f69c01207643a348c20cb5ead9927aa5cfc1de279e4",
+      "afterSha256": "fdd63dfbed7b4d5ffbe05c0ca80a322e62de835eee94cfd0794fd9e4e80d4b09",
+      "encoding": "json",
+      "beforeFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "afterFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 2,
+            "afterLength": 13,
+            "edits": [
+              {
+                "beforeIndex": 2,
+                "afterIndex": 2,
+                "before": [],
+                "after": [
+                  {
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                    "companySlug": "neuracle-technology",
+                    "currency": "CNY",
+                    "amountNativeM": 150,
+                    "investmentDate": null,
+                    "announcedOn": "2022-09-24",
+                    "dateBasis": "event_date",
+                    "rateDate": "2022-09-23",
+                    "nativePerUsd": 7.1266,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20220926/",
+                    "reviewedOn": "2026-11-24",
+                    "rateDateBasis": "previous_available_business_day"
+                  },
+                  {
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                    "companySlug": "neuracle-technology",
+                    "currency": "CNY",
+                    "amountNativeM": 250,
+                    "investmentDate": null,
+                    "announcedOn": "2024-11-08",
+                    "dateBasis": "event_date",
+                    "rateDate": "2024-11-08",
+                    "nativePerUsd": 7.1785,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20241112/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                    "companySlug": "neuracle-technology",
+                    "currency": "CNY",
+                    "amountNativeM": 300,
+                    "investmentDate": null,
+                    "announcedOn": "2025-10-28",
+                    "dateBasis": "event_date",
+                    "rateDate": "2025-10-28",
+                    "nativePerUsd": 7.0988,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20251103/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://gestala.com/news/22",
+                    "companySlug": "gestala",
+                    "currency": "CNY",
+                    "amountNativeM": 420,
+                    "investmentDate": null,
+                    "announcedOn": "2026-07-03",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-07-02",
+                    "nativePerUsd": 6.7886,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260706/",
+                    "reviewedOn": "2026-11-24",
+                    "rateDateBasis": "previous_available_business_day"
+                  },
+                  {
+                    "sourceUrl": "https://bciflex.com/News",
+                    "companySlug": "zhiran-medical",
+                    "currency": "CNY",
+                    "amountNativeM": 300,
+                    "investmentDate": null,
+                    "announcedOn": "2026-02-11",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-02-11",
+                    "nativePerUsd": 6.9125,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260217/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
+                    "companySlug": "nanochap",
+                    "currency": "CNY",
+                    "amountNativeM": 500,
+                    "investmentDate": null,
+                    "announcedOn": "2026-11-03",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-11-03",
+                    "nativePerUsd": 6.6701,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                    "companySlug": "conmind",
+                    "currency": "CNY",
+                    "amountNativeM": 200,
+                    "investmentDate": null,
+                    "announcedOn": "2026-04-08",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-04-08",
+                    "nativePerUsd": 6.8287,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260413/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                    "companySlug": "xinsheng-shijie",
+                    "currency": "CNY",
+                    "amountNativeM": 100,
+                    "investmentDate": null,
+                    "announcedOn": "2026-06-18",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-06-18",
+                    "nativePerUsd": 6.7686,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260622/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                    "companySlug": "active-technology",
+                    "currency": "CNY",
+                    "amountNativeM": 330,
+                    "investmentDate": null,
+                    "announcedOn": "2026-08-03",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-08-03",
+                    "nativePerUsd": 6.7657,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260810/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                    "companySlug": "active-technology",
+                    "currency": "CNY",
+                    "amountNativeM": 464,
+                    "investmentDate": null,
+                    "announcedOn": "2026-11-04",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-11-04",
+                    "nativePerUsd": 6.6731,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                    "companySlug": "bci-sonics",
+                    "currency": "CNY",
+                    "amountNativeM": 200,
+                    "investmentDate": null,
+                    "announcedOn": "2026-10-23",
+                    "dateBasis": "announcement_date",
+                    "rateDate": "2026-10-23",
+                    "nativePerUsd": 6.6702,
+                    "rateSource": "Federal Reserve H.10",
+                    "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261026/",
+                    "reviewedOn": "2026-11-24"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/market-memo-q1-2026/milestones.csv",
+      "beforeSha256": "c1c926e9984eac4d6c923b50665dd03a39e097cbed0671d5994c4770f4f0b2dc",
+      "afterSha256": "9bdfded60b26f5a8f0f3c6589e131d3ca4a5e87ad4ecff8916229a1fd95896ef",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 99,
+            "afterLength": 110,
+            "edits": [
+              {
+                "beforeIndex": 10,
+                "afterIndex": 10,
+                "before": [
+                  "Neuracle,neuracle,approval,commercial,,2026-03-13,day,\"World's first market approval of an invasive BCI: NMPA registration for implantable BCI for hand-motor augmentation — the memo's '1 market approval'\",https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use,bci,unverified"
+                ],
+                "after": [
+                  "Neuracle,neuracle,approval,commercial,,2026-03-13,day,\"Regulator publication confirms NMPA registration for epidural wireless BCI plus pneumatic glove for bounded chronic cervical spinal cord injury. March 13 is publication date, not established agency-action date. Does not imply broad reimbursement or generalized motor restoration.\",https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html,bci,reported"
+                ]
+              },
+              {
+                "beforeIndex": 98,
+                "afterIndex": 98,
+                "before": [],
+                "after": [
+                  "Neuracle,neuracle-technology,≈$21.0m,capital,,2022-09-24,day,\"Financing (stage undisclosed); RMB 150m (≈$21.0m). The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45,bci,event",
+                  "Neuracle,neuracle-technology,≈$34.8m,capital,,2024-11-08,day,\"Financing (stage undisclosed); RMB 250m (≈$34.8m). The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48,bci,event",
+                  "Neuracle,neuracle-technology,≈$42.3m,capital,,2025-10-28,day,\"Financing (stage undisclosed); RMB 300m (≈$42.3m). The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.\",https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52,bci,event",
+                  "Gestala,gestala,≈$61.9m,capital,,2026-07-03,day,\"Angel+; RMB 420m (≈$61.9m). The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.\",https://gestala.com/news/22,bci,reported",
+                  "Zhiran Medical (智冉医疗),zhiran-medical,≈$43.4m,capital,,2026-02-11,day,\"Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.\",https://bciflex.com/News,bci,announcement",
+                  "Nanochap (暖芯迦),nanochap,≈$75.0m,capital,,2026-11-03,day,\"Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.\",https://www.nanochap.com/news_info/id-105.html,bci,announcement",
+                  "Conmind (聚芯医疗),conmind,≈$29.3m,capital,,2026-04-08,day,\"Series C; Nearly RMB 200m (≈$29.3m). Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.\",https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html,bci,reported",
+                  "Xinsheng Shijie (芯生视界),xinsheng-shijie,≈$14.8m,capital,,2026-06-18,day,\"Seed; Nearly RMB 100m (≈$14.8m). Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.\",https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml,bci,reported",
+                  "Active Technology (主动科技),active-technology,≈$48.8m,capital,,2026-08-03,day,\"Angel; RMB 330m (≈$48.8m). Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.\",https://www.zidonghua.com.cn/news/Finance/270129.html,bci,announcement",
+                  "Active Technology (主动科技),active-technology,≈$69.5m,capital,,2026-11-04,day,\"Angel+; RMB 464m (≈$69.5m). Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.\",https://zidonghua.com.cn/news/Finance/394874.html,bci,reported",
+                  "BCI-Sonics (华超神控),bci-sonics,≈$30.0m,capital,,2026-10-23,day,\"Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.\",https://www.bcisonics.com/article/5786479998588415,bci,reported"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/data/funding-index.json",
+      "beforeSha256": "027f0cde0441802fc94fbc6826a09671da98e719d57efebef81f0d882738d2cb",
+      "afterSha256": "217599c51d977934e5792ade8a8b2d3b73f99d0c862776f40fc7e71dcaabbf47",
+      "encoding": "json",
+      "beforeFormat": {
+        "space": 0,
+        "finalNewline": false
+      },
+      "afterFormat": {
+        "space": 0,
+        "finalNewline": false
+      },
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [
+              "companies"
+            ],
+            "beforeLength": 25,
+            "afterLength": 31,
+            "edits": [
+              {
+                "beforeIndex": 16,
+                "afterIndex": 16,
+                "before": [
+                  {
+                    "slug": "neuracle-technology",
+                    "name": "Neuracle Technology",
+                    "hq": "Changzhou, China",
+                    "modality": "Implantable BCI",
+                    "interfaceDepth": "Cortical Surface",
+                    "indication": "Neurological disorders",
+                    "website": "https://www.neuracle.cn",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": 2011,
+                      "sourceUrl": "https://www.hsgcap.com/companies/neuracle/",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-10-15",
+                      "note": "Investor HSG states that Neuracle was founded in 2011."
+                    },
+                    "logo": "/logos/neuracle.png"
+                  }
+                ],
+                "after": [
+                  {
+                    "slug": "neuracle-technology",
+                    "name": "Neuracle Technology",
+                    "hq": "Shanghai, China",
+                    "modality": "Epidural wireless BCI",
+                    "interfaceDepth": "Epidural",
+                    "indication": "Hand-grasp compensation after cervical spinal cord injury",
+                    "website": "https://www.neuracle.cn",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": 2011,
+                      "sourceUrl": "https://www.hsgcap.com/companies/neuracle/",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-10-15",
+                      "note": "Investor HSG states that Neuracle was founded in 2011."
+                    },
+                    "logo": "/logos/neuracle.png"
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 20,
+                "afterIndex": 20,
+                "before": [
+                  {
+                    "slug": "gestala",
+                    "name": "Gestala",
+                    "hq": "Beijing, China",
+                    "modality": "Ultrasound BCI",
+                    "interfaceDepth": "Transcranial",
+                    "indication": "Neurological disorders (in development)",
+                    "website": "https://gestala.com",
+                    "scope": "Implant-adjacent",
+                    "founding": {
+                      "year": 2025,
+                      "sourceUrl": "https://www.gestala.com/news/7",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-10-15",
+                      "note": "Official history records formal registration and establishment on 5 September 2025. This is the corporate establishment year; the separate public establishment announcement and launch were on 1 January 2026."
+                    },
+                    "logo": "/logos/gestala.png"
+                  }
+                ],
+                "after": [
+                  {
+                    "slug": "gestala",
+                    "name": "Gestala",
+                    "hq": "Chengdu and Shanghai, China",
+                    "modality": "Ultrasound BCI",
+                    "interfaceDepth": "Transcranial",
+                    "indication": "Neurological disorders (in development)",
+                    "website": "https://gestala.com",
+                    "scope": "Implant-adjacent",
+                    "founding": {
+                      "year": 2025,
+                      "sourceUrl": "https://www.gestala.com/news/7",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-10-15",
+                      "note": "Official history records formal registration and establishment on 5 September 2025. This is the corporate establishment year; the separate public establishment announcement and launch were on 1 January 2026."
+                    },
+                    "logo": "/logos/gestala.png"
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 25,
+                "afterIndex": 25,
+                "before": [],
+                "after": [
+                  {
+                    "slug": "zhiran-medical",
+                    "name": "Zhiran Medical (智冉医疗)",
+                    "hq": "China (headquarters unknown)",
+                    "modality": "Ultra-thin flexible electrode BCI",
+                    "interfaceDepth": "Implanted neural interface",
+                    "indication": "Neurological disorders (in development)",
+                    "website": "https://bciflex.com",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": 2022,
+                      "sourceUrl": "https://bciflex.com/About",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The company dates its founding to 2022 and lists offices in Beijing and Shanghai. Headquarters: unknown."
+                    },
+                    "logo": ""
+                  },
+                  {
+                    "slug": "nanochap",
+                    "name": "Nanochap (暖芯迦)",
+                    "hq": "Hangzhou, China",
+                    "modality": "Retinal implant and cortical visual BCI",
+                    "interfaceDepth": "Retinal; cortical pipeline in R&D",
+                    "indication": "Vision restoration (in development)",
+                    "website": "https://www.nanochap.com",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": 2014,
+                      "sourceUrl": "https://www.nanochap.com",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The company dates its founding to 2014. Its work covers retinal implants and visual-cortex research."
+                    },
+                    "logo": ""
+                  },
+                  {
+                    "slug": "conmind",
+                    "name": "Conmind (聚芯医疗)",
+                    "hq": "China (headquarters unknown)",
+                    "modality": "Interventional BCI and closed-loop neuromodulation",
+                    "interfaceDepth": "Vascular platform (in development)",
+                    "indication": "Neurological disorders (in development)",
+                    "website": "https://www.conmindmed.com",
+                    "scope": "Implant-adjacent",
+                    "founding": {
+                      "year": 2020,
+                      "sourceUrl": "https://en.conmindmed.com/about.html",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The group dates its founding in Shenzhen to 2020. Current headquarters: unknown."
+                    },
+                    "logo": ""
+                  },
+                  {
+                    "slug": "xinsheng-shijie",
+                    "name": "Xinsheng Shijie (芯生视界)",
+                    "hq": "China (headquarters unknown)",
+                    "modality": "Visual cortical prosthesis",
+                    "interfaceDepth": "Cortical (in development)",
+                    "indication": "Vision restoration (in development)",
+                    "website": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                    "websiteLabel": "Investor announcement via Sina",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": null,
+                      "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The investor’s announcement describes the university research behind the company. Founding year: unknown."
+                    },
+                    "logo": ""
+                  },
+                  {
+                    "slug": "active-technology",
+                    "name": "Active Technology (主动科技)",
+                    "hq": "Shanghai, China",
+                    "modality": "Flexible electrode BCI",
+                    "interfaceDepth": "Implanted neural interface",
+                    "indication": "Motor restoration (in development)",
+                    "website": "https://zidonghua.com.cn/news/Finance/394874.html",
+                    "websiteLabel": "Company announcement via ZiDongHua",
+                    "scope": "Implanted",
+                    "founding": {
+                      "year": 2026,
+                      "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The company announcement published on ZiDongHua dates its establishment to February 2026. Its core team completed a device inspection in November 2025."
+                    },
+                    "logo": ""
+                  },
+                  {
+                    "slug": "bci-sonics",
+                    "name": "BCI-Sonics (华超神控)",
+                    "hq": "China (Shanghai office)",
+                    "modality": "Focused ultrasound BCI",
+                    "interfaceDepth": "Transcranial",
+                    "indication": "Neurological disorders (in development)",
+                    "website": "https://www.bcisonics.com",
+                    "scope": "Implant-adjacent",
+                    "founding": {
+                      "year": null,
+                      "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                      "sourceKind": "primary",
+                      "reviewedOn": "2026-11-24",
+                      "note": "The company announcement describes its financing and technology. Founding year: unknown."
+                    },
+                    "logo": ""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "path": [
+              "rounds"
+            ],
+            "beforeLength": 43,
+            "afterLength": 54,
+            "edits": [
+              {
+                "beforeIndex": 43,
+                "afterIndex": 43,
+                "before": [],
+                "after": [
+                  {
+                    "companySlug": "neuracle-technology",
+                    "announcedOn": "2022-09-24",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "stage": "Financing (stage undisclosed)",
+                    "amountUsdM": 21.047905031852498,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 150,
+                      "investmentDate": null,
+                      "announcedOn": "2022-09-24",
+                      "dateBasis": "event_date",
+                      "rateDate": "2022-09-23",
+                      "nativePerUsd": 7.1266,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20220926/",
+                      "reviewedOn": "2026-11-24",
+                      "rateDateBasis": "previous_available_business_day"
+                    },
+                    "amountNativeM": 150,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 150m (≈$21.0m)",
+                    "investors": [
+                      "松禾资本",
+                      "熔拓兴兆",
+                      "青岛华控",
+                      "杭州凯风",
+                      "红杉恒辰",
+                      "常州科教城",
+                      "中健隆岳",
+                      "百川致新"
+                    ],
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                    "note": "The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "neuracle-technology",
+                    "announcedOn": "2024-11-08",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "stage": "Financing (stage undisclosed)",
+                    "amountUsdM": 34.826217176290314,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 250,
+                      "investmentDate": null,
+                      "announcedOn": "2024-11-08",
+                      "dateBasis": "event_date",
+                      "rateDate": "2024-11-08",
+                      "nativePerUsd": 7.1785,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20241112/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 250,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 250m (≈$34.8m)",
+                    "investors": [
+                      "国孚领航",
+                      "浦东创投",
+                      "联新科技",
+                      "德同合心",
+                      "元科创新",
+                      "元科贰号"
+                    ],
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                    "note": "The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "neuracle-technology",
+                    "announcedOn": "2025-10-28",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "stage": "Financing (stage undisclosed)",
+                    "amountUsdM": 42.26066377415901,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 300,
+                      "investmentDate": null,
+                      "announcedOn": "2025-10-28",
+                      "dateBasis": "event_date",
+                      "rateDate": "2025-10-28",
+                      "nativePerUsd": 7.0988,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20251103/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 300,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 300m (≈$42.3m)",
+                    "investors": [
+                      "达晨中小",
+                      "上海宁鋆",
+                      "千骥资本",
+                      "熔拓景睿",
+                      "华控前沿基金",
+                      "天正投资",
+                      "产创壹号",
+                      "未来涌现",
+                      "达晨财智",
+                      "厦门雅恒",
+                      "太嘉杉基金",
+                      "雅瑞智友",
+                      "溢联投资",
+                      "百川致新",
+                      "德同合心"
+                    ],
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                    "note": "The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "gestala",
+                    "announcedOn": "2026-07-03",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "stage": "Angel+",
+                    "amountUsdM": 61.86842647968653,
+                    "fx": {
+                      "sourceUrl": "https://gestala.com/news/22",
+                      "companySlug": "gestala",
+                      "currency": "CNY",
+                      "amountNativeM": 420,
+                      "investmentDate": null,
+                      "announcedOn": "2026-07-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-07-02",
+                      "nativePerUsd": 6.7886,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260706/",
+                      "reviewedOn": "2026-11-24",
+                      "rateDateBasis": "previous_available_business_day"
+                    },
+                    "amountNativeM": 420,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 420m (≈$61.9m)",
+                    "investors": [
+                      "HSG",
+                      "Lens Technology",
+                      "Sinovation Ventures",
+                      "C Capital",
+                      "Dalton Venture",
+                      "Seas Capital",
+                      "Tsing Song Capital",
+                      "Gobi Partners"
+                    ],
+                    "sourceUrl": "https://gestala.com/news/22",
+                    "note": "The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "zhiran-medical",
+                    "announcedOn": "2026-02-11",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "stage": "Series A+",
+                    "amountUsdM": 43.3996383363472,
+                    "fx": {
+                      "sourceUrl": "https://bciflex.com/News",
+                      "companySlug": "zhiran-medical",
+                      "currency": "CNY",
+                      "amountNativeM": 300,
+                      "investmentDate": null,
+                      "announcedOn": "2026-02-11",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-02-11",
+                      "nativePerUsd": 6.9125,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260217/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 300,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 300m (≈$43.4m)",
+                    "investors": [
+                      "中科创星"
+                    ],
+                    "sourceUrl": "https://bciflex.com/News",
+                    "note": "The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "nanochap",
+                    "announcedOn": "2026-11-03",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "stage": "Series C+",
+                    "amountUsdM": 74.96139488163595,
+                    "fx": {
+                      "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
+                      "companySlug": "nanochap",
+                      "currency": "CNY",
+                      "amountNativeM": 500,
+                      "investmentDate": null,
+                      "announcedOn": "2026-11-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-11-03",
+                      "nativePerUsd": 6.6701,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 500,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 500m (≈$75.0m)",
+                    "investors": [
+                      "高榕创投",
+                      "人保股权",
+                      "Monolith砺思资本",
+                      "建发新兴投资",
+                      "东方嘉富",
+                      "丹合资本",
+                      "杭州产投集团",
+                      "君联资本"
+                    ],
+                    "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
+                    "note": "Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "conmind",
+                    "announcedOn": "2026-04-08",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "stage": "Series C",
+                    "amountUsdM": 29.288151478319445,
+                    "fx": {
+                      "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                      "companySlug": "conmind",
+                      "currency": "CNY",
+                      "amountNativeM": 200,
+                      "investmentDate": null,
+                      "announcedOn": "2026-04-08",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-04-08",
+                      "nativePerUsd": 6.8287,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260413/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 200,
+                    "currency": "CNY",
+                    "displayAmount": "Nearly RMB 200m (≈$29.3m)",
+                    "investors": [],
+                    "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                    "note": "Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "xinsheng-shijie",
+                    "announcedOn": "2026-06-18",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "stage": "Seed",
+                    "amountUsdM": 14.774103950595396,
+                    "fx": {
+                      "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                      "companySlug": "xinsheng-shijie",
+                      "currency": "CNY",
+                      "amountNativeM": 100,
+                      "investmentDate": null,
+                      "announcedOn": "2026-06-18",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-06-18",
+                      "nativePerUsd": 6.7686,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260622/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 100,
+                    "currency": "CNY",
+                    "displayAmount": "Nearly RMB 100m (≈$14.8m)",
+                    "investors": [
+                      "经纬创投"
+                    ],
+                    "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                    "note": "Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "active-technology",
+                    "announcedOn": "2026-08-03",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "stage": "Angel",
+                    "amountUsdM": 48.775440826522015,
+                    "fx": {
+                      "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                      "companySlug": "active-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 330,
+                      "investmentDate": null,
+                      "announcedOn": "2026-08-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-08-03",
+                      "nativePerUsd": 6.7657,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260810/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 330,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 330m (≈$48.8m)",
+                    "investors": [
+                      "中科创星",
+                      "联想之星",
+                      "九合创投",
+                      "道彤投资",
+                      "英诺天使基金",
+                      "华大松禾生科基金",
+                      "济峰资本",
+                      "嘉道资本"
+                    ],
+                    "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                    "note": "Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "active-technology",
+                    "announcedOn": "2026-11-04",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "stage": "Angel+",
+                    "amountUsdM": 69.5329007507755,
+                    "fx": {
+                      "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                      "companySlug": "active-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 464,
+                      "investmentDate": null,
+                      "announcedOn": "2026-11-04",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-11-04",
+                      "nativePerUsd": 6.6731,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 464,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 464m (≈$69.5m)",
+                    "investors": [
+                      "高榕创投",
+                      "国投先导",
+                      "上海科创投",
+                      "康君资本",
+                      "中网投",
+                      "国泰海通",
+                      "浦东创投",
+                      "上海科创基金",
+                      "广药资本",
+                      "闵金投",
+                      "云启资本",
+                      "道彤资本",
+                      "华大松禾",
+                      "英诺资本"
+                    ],
+                    "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                    "note": "Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  },
+                  {
+                    "companySlug": "bci-sonics",
+                    "announcedOn": "2026-10-23",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "stage": "Pre-A",
+                    "amountUsdM": 29.984108422536053,
+                    "fx": {
+                      "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                      "companySlug": "bci-sonics",
+                      "currency": "CNY",
+                      "amountNativeM": 200,
+                      "investmentDate": null,
+                      "announcedOn": "2026-10-23",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-10-23",
+                      "nativePerUsd": 6.6702,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261026/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "amountNativeM": 200,
+                    "currency": "CNY",
+                    "displayAmount": "RMB 200m (≈$30.0m)",
+                    "investors": [
+                      "红杉中国",
+                      "云启资本",
+                      "比邻星投资",
+                      "元禾控股",
+                      "徐汇科创投",
+                      "德石投资",
+                      "经纬创投",
+                      "德联资本"
+                    ],
+                    "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                    "note": "Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
+                    "sourceKind": "primary",
+                    "reviewedOn": "2026-11-24"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "path": [
+              "milestones"
+            ],
+            "beforeLength": 15,
+            "afterLength": 15,
+            "edits": [
+              {
+                "beforeIndex": 7,
+                "afterIndex": 7,
+                "before": [
+                  {
+                    "companySlug": "neuracle-technology",
+                    "announcedOn": "2026-03-13",
+                    "datePrecision": "day",
+                    "dateBasis": "unverified",
+                    "marker": "NMPA",
+                    "indication": "Hand-motor augmentation after spinal cord injury",
+                    "sourceUrl": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+                    "note": "NMPA registration for an implantable BCI."
+                  }
+                ],
+                "after": [
+                  {
+                    "companySlug": "neuracle-technology",
+                    "announcedOn": "2026-03-13",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "marker": "NMPA",
+                    "indication": "Hand-grasp compensation after chronic cervical spinal cord injury",
+                    "sourceUrl": "https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html",
+                    "note": "The regulator’s March 13, 2026 publication confirms NMPA registration for an epidural wireless BCI that controls a pneumatic glove. Its approved use is hand-grasp compensation in a defined group of patients with chronic cervical spinal cord injury. Regulatory decision date: unspecified."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "path": [
+              "investors"
+            ],
+            "beforeLength": 158,
+            "afterLength": 227,
+            "edits": [
+              {
+                "beforeIndex": 15,
+                "afterIndex": 15,
+                "before": [],
+                "after": [
+                  {
+                    "name": "中科创星",
+                    "roundCount": 2,
+                    "companyCount": 2,
+                    "associatedCapitalUsdM": 92.18
+                  },
+                  {
+                    "name": "云启资本",
+                    "roundCount": 2,
+                    "companyCount": 2,
+                    "associatedCapitalUsdM": 99.52
+                  },
+                  {
+                    "name": "浦东创投",
+                    "roundCount": 2,
+                    "companyCount": 2,
+                    "associatedCapitalUsdM": 104.36
+                  },
+                  {
+                    "name": "经纬创投",
+                    "roundCount": 2,
+                    "companyCount": 2,
+                    "associatedCapitalUsdM": 44.76
+                  },
+                  {
+                    "name": "高榕创投",
+                    "roundCount": 2,
+                    "companyCount": 2,
+                    "associatedCapitalUsdM": 144.49
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 21,
+                "afterIndex": 26,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Dalton Venture",
+                    "roundCount": 2,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 83.47
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 41,
+                "afterIndex": 47,
+                "before": [],
+                "after": [
+                  {
+                    "name": "德同合心",
+                    "roundCount": 2,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 77.09
+                  },
+                  {
+                    "name": "百川致新",
+                    "roundCount": 2,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 63.31
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 60,
+                "afterIndex": 68,
+                "before": [],
+                "after": [
+                  {
+                    "name": "C Capital",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 68,
+                "afterIndex": 77,
+                "before": [
+                  {
+                    "name": "Dalton Venture",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.6
+                  }
+                ],
+                "after": []
+              },
+              {
+                "beforeIndex": 90,
+                "afterIndex": 98,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Gobi Partners",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 96,
+                "afterIndex": 105,
+                "before": [],
+                "after": [
+                  {
+                    "name": "HSG",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 106,
+                "afterIndex": 116,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Lens Technology",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 119,
+                "afterIndex": 130,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Monolith砺思资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 135,
+                "afterIndex": 147,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Seas Capital",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 138,
+                "afterIndex": 151,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Sinovation Ventures",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 156,
+                "afterIndex": 170,
+                "before": [],
+                "after": [
+                  {
+                    "name": "Tsing Song Capital",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 61.87
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 158,
+                "afterIndex": 173,
+                "before": [],
+                "after": [
+                  {
+                    "name": "上海宁鋆",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "上海科创基金",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "上海科创投",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "东方嘉富",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "中健隆岳",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "中网投",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "丹合资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "九合创投",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "产创壹号",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "人保股权",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "元禾控股",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "元科创新",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 34.83
+                  },
+                  {
+                    "name": "元科贰号",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 34.83
+                  },
+                  {
+                    "name": "千骥资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "华大松禾",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "华大松禾生科基金",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "华控前沿基金",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "厦门雅恒",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "君联资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "嘉道资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "国孚领航",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 34.83
+                  },
+                  {
+                    "name": "国投先导",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "国泰海通",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "天正投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "太嘉杉基金",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "常州科教城",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "广药资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "康君资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "建发新兴投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "徐汇科创投",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "德石投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "德联资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "未来涌现",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "杭州产投集团",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 74.96
+                  },
+                  {
+                    "name": "杭州凯风",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "松禾资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "比邻星投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "济峰资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "溢联投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "熔拓兴兆",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "熔拓景睿",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "红杉中国",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 29.98
+                  },
+                  {
+                    "name": "红杉恒辰",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  },
+                  {
+                    "name": "联想之星",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "联新科技",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 34.83
+                  },
+                  {
+                    "name": "英诺天使基金",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "英诺资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "达晨中小",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "达晨财智",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "道彤投资",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 48.78
+                  },
+                  {
+                    "name": "道彤资本",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "闵金投",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 69.53
+                  },
+                  {
+                    "name": "雅瑞智友",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 42.26
+                  },
+                  {
+                    "name": "青岛华控",
+                    "roundCount": 1,
+                    "companyCount": 1,
+                    "associatedCapitalUsdM": 21.05
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "path": [
+              "summary",
+              "selectedCompanies"
+            ],
+            "before": {
+              "exists": true,
+              "value": 25
+            },
+            "after": {
+              "exists": true,
+              "value": 31
+            }
+          },
+          {
+            "path": [
+              "summary",
+              "indexedRounds"
+            ],
+            "before": {
+              "exists": true,
+              "value": 43
+            },
+            "after": {
+              "exists": true,
+              "value": 54
+            }
+          },
+          {
+            "path": [
+              "summary",
+              "observedCapitalUsdM"
+            ],
+            "before": {
+              "exists": true,
+              "value": 3579.33
+            },
+            "after": {
+              "exists": true,
+              "value": 4050.05
+            }
+          },
+          {
+            "path": [
+              "summary",
+              "asOf"
+            ],
+            "before": {
+              "exists": true,
+              "value": "2026-11-17"
+            },
+            "after": {
+              "exists": true,
+              "value": "2026-11-24"
+            }
+          },
+          {
+            "path": [
+              "methodology",
+              "coverage"
+            ],
+            "before": {
+              "exists": true,
+              "value": "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other coverage dates are unchanged."
+            },
+            "after": {
+              "exists": true,
+              "value": "Selected public financing records, including explicitly labeled philanthropic commitments. Combined multi-round disclosures are counted once at their published total. Associated capital sums the full financing amounts for records naming each backer; individual contributions require separate evidence. Dates identify announcements, reports or documented events; uncertain dates are labeled unverified. Amounts retain the published currency and historical exchange-rate estimates. Each saved conversion keeps its original rate and date; older estimates retain any unresolved rate-source qualifications. Company histories and source access remain partial. Standalone grants and lifetime cumulative totals remain outside the indexed sum. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other company histories retain their existing review status."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/data/milestones.json",
+      "beforeSha256": "a1ed0b5802ab577fa82dae8126012e125550ff51a8a3c6874f524c5d27052f71",
+      "afterSha256": "49ef1cd04c342791d53d4da4f28c83ff421ef0cd4fe2728941081540ca39cc4d",
+      "encoding": "json",
+      "beforeFormat": {
+        "space": 2,
+        "finalNewline": false
+      },
+      "afterFormat": {
+        "space": 2,
+        "finalNewline": false
+      },
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 97,
+            "afterLength": 108,
+            "edits": [
+              {
+                "beforeIndex": 9,
+                "afterIndex": 9,
+                "before": [
+                  {
+                    "company": "Neuracle",
+                    "slug": "neuracle",
+                    "activity": "approval",
+                    "stage": "commercial",
+                    "amountUsdM": null,
+                    "date": "2026-03-13",
+                    "datePrecision": "day",
+                    "dateBasis": "unverified",
+                    "note": "World's first market approval of an invasive BCI: NMPA registration for implantable BCI for hand-motor augmentation — the memo's '1 market approval'",
+                    "sourceUrl": "https://www.bloomberg.com/news/articles/2026-03-13/china-approves-first-brain-implant-for-commercial-use",
+                    "logo": "/logos/neuracle.png",
+                    "scope": "bci"
+                  }
+                ],
+                "after": [
+                  {
+                    "company": "Neuracle",
+                    "slug": "neuracle",
+                    "activity": "approval",
+                    "stage": "commercial",
+                    "amountUsdM": null,
+                    "date": "2026-03-13",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Regulator publication confirms NMPA registration for epidural wireless BCI plus pneumatic glove for bounded chronic cervical spinal cord injury. March 13 is publication date, not established agency-action date. Does not imply broad reimbursement or generalized motor restoration.",
+                    "sourceUrl": "https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html",
+                    "logo": "/logos/neuracle.png",
+                    "scope": "bci"
+                  }
+                ]
+              },
+              {
+                "beforeIndex": 97,
+                "afterIndex": 97,
+                "before": [],
+                "after": [
+                  {
+                    "company": "Neuracle",
+                    "slug": "neuracle",
+                    "activity": "≈$21.0m",
+                    "stage": "capital",
+                    "amountUsdM": 21.047905031852498,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 150,
+                      "investmentDate": null,
+                      "announcedOn": "2022-09-24",
+                      "dateBasis": "event_date",
+                      "rateDate": "2022-09-23",
+                      "nativePerUsd": 7.1266,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20220926/",
+                      "reviewedOn": "2026-11-24",
+                      "rateDateBasis": "previous_available_business_day"
+                    },
+                    "date": "2022-09-24",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "note": "Financing (stage undisclosed); RMB 150m (≈$21.0m). The company prospectus records an RMB 150m financing agreement signed on September 24, 2022 (pages 44–45). Corporate registration was completed on March 9, 2023. The chart uses the agreement date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1266 yuan per dollar on September 23, 2022. This is the previous published business-day rate.",
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                    "logo": "/logos/neuracle.png",
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Neuracle",
+                    "slug": "neuracle",
+                    "activity": "≈$34.8m",
+                    "stage": "capital",
+                    "amountUsdM": 34.826217176290314,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 250,
+                      "investmentDate": null,
+                      "announcedOn": "2024-11-08",
+                      "dateBasis": "event_date",
+                      "rateDate": "2024-11-08",
+                      "nativePerUsd": 7.1785,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20241112/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2024-11-08",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "note": "Financing (stage undisclosed); RMB 250m (≈$34.8m). The company prospectus records an RMB 250m financing agreement signed on November 8, 2024 (pages 47–48). The financing had two RMB 125m closings, in December 2024 and May 2025. The index counts the full agreement once, using its signing date. Payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.1785 yuan per dollar on November 8, 2024.",
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                    "logo": "/logos/neuracle.png",
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Neuracle",
+                    "slug": "neuracle",
+                    "activity": "≈$42.3m",
+                    "stage": "capital",
+                    "amountUsdM": 42.26066377415901,
+                    "fx": {
+                      "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                      "companySlug": "neuracle-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 300,
+                      "investmentDate": null,
+                      "announcedOn": "2025-10-28",
+                      "dateBasis": "event_date",
+                      "rateDate": "2025-10-28",
+                      "nativePerUsd": 7.0988,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20251103/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2025-10-28",
+                    "datePrecision": "day",
+                    "dateBasis": "event",
+                    "note": "Financing (stage undisclosed); RMB 300m (≈$42.3m). The company prospectus records an RMB 300m financing agreement signed on October 28, 2025 (pages 51–52). Corporate registration was completed on November 17, 2025. The chart uses the agreement date. Round stage and payment dates: undisclosed. Dollar estimate: Federal Reserve rate of 7.0988 yuan per dollar on October 28, 2025.",
+                    "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                    "logo": "/logos/neuracle.png",
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Gestala",
+                    "slug": "gestala",
+                    "activity": "≈$61.9m",
+                    "stage": "capital",
+                    "amountUsdM": 61.86842647968653,
+                    "fx": {
+                      "sourceUrl": "https://gestala.com/news/22",
+                      "companySlug": "gestala",
+                      "currency": "CNY",
+                      "amountNativeM": 420,
+                      "investmentDate": null,
+                      "announcedOn": "2026-07-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-07-02",
+                      "nativePerUsd": 6.7886,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260706/",
+                      "reviewedOn": "2026-11-24",
+                      "rateDateBasis": "previous_available_business_day"
+                    },
+                    "date": "2026-07-03",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Angel+; RMB 420m (≈$61.9m). The company lists this announcement on July 3. Its announcement title and August 26 release give RMB 420m for the July Angel+ round. A neighboring news headline gives RMB 430m; the index follows the company’s RMB 420m figure. March and July together total RMB 570m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7886 yuan per dollar on July 2, 2026. This is the previous published business-day rate.",
+                    "sourceUrl": "https://gestala.com/news/22",
+                    "logo": "/logos/gestala.png",
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Zhiran Medical (智冉医疗)",
+                    "slug": "zhiran-medical",
+                    "activity": "≈$43.4m",
+                    "stage": "capital",
+                    "amountUsdM": 43.3996383363472,
+                    "fx": {
+                      "sourceUrl": "https://bciflex.com/News",
+                      "companySlug": "zhiran-medical",
+                      "currency": "CNY",
+                      "amountNativeM": 300,
+                      "investmentDate": null,
+                      "announcedOn": "2026-02-11",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-02-11",
+                      "nativePerUsd": 6.9125,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260217/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-02-11",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "note": "Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
+                    "sourceUrl": "https://bciflex.com/News",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Nanochap (暖芯迦)",
+                    "slug": "nanochap",
+                    "activity": "≈$75.0m",
+                    "stage": "capital",
+                    "amountUsdM": 74.96139488163595,
+                    "fx": {
+                      "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
+                      "companySlug": "nanochap",
+                      "currency": "CNY",
+                      "amountNativeM": 500,
+                      "investmentDate": null,
+                      "announcedOn": "2026-11-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-11-03",
+                      "nativePerUsd": 6.6701,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-11-03",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "note": "Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
+                    "sourceUrl": "https://www.nanochap.com/news_info/id-105.html",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Conmind (聚芯医疗)",
+                    "slug": "conmind",
+                    "activity": "≈$29.3m",
+                    "stage": "capital",
+                    "amountUsdM": 29.288151478319445,
+                    "fx": {
+                      "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                      "companySlug": "conmind",
+                      "currency": "CNY",
+                      "amountNativeM": 200,
+                      "investmentDate": null,
+                      "announcedOn": "2026-04-08",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-04-08",
+                      "nativePerUsd": 6.8287,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260413/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-04-08",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Series C; Nearly RMB 200m (≈$29.3m). Announcement by existing investor and incubator NMED, published April 8, 2026. It describes the round as nearly RMB 200m. Investor names and closing date: undisclosed in this announcement. Dollar estimate: Federal Reserve rate of 6.8287 yuan per dollar on April 8, 2026.",
+                    "sourceUrl": "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Xinsheng Shijie (芯生视界)",
+                    "slug": "xinsheng-shijie",
+                    "activity": "≈$14.8m",
+                    "stage": "capital",
+                    "amountUsdM": 14.774103950595396,
+                    "fx": {
+                      "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                      "companySlug": "xinsheng-shijie",
+                      "currency": "CNY",
+                      "amountNativeM": 100,
+                      "investmentDate": null,
+                      "announcedOn": "2026-06-18",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-06-18",
+                      "nativePerUsd": 6.7686,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260622/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-06-18",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Seed; Nearly RMB 100m (≈$14.8m). Announcement by the investor 经纬创投, published on Sina on June 18, 2026. The round is described as nearly RMB 100m. The investor list follows this announcement. Closing date: undisclosed. Original WeChat post: https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg. Dollar estimate: Federal Reserve rate of 6.7686 yuan per dollar on June 18, 2026.",
+                    "sourceUrl": "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Active Technology (主动科技)",
+                    "slug": "active-technology",
+                    "activity": "≈$48.8m",
+                    "stage": "capital",
+                    "amountUsdM": 48.775440826522015,
+                    "fx": {
+                      "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                      "companySlug": "active-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 330,
+                      "investmentDate": null,
+                      "announcedOn": "2026-08-03",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-08-03",
+                      "nativePerUsd": 6.7657,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20260810/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-08-03",
+                    "datePrecision": "day",
+                    "dateBasis": "announcement",
+                    "note": "Angel; RMB 330m (≈$48.8m). Company announcement published on ZiDongHua on August 12, 2026, giving August 3 as the announcement date. A Shanghai government commission publication also confirms the RMB 330m Angel financing. Investor names follow the announcement. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.7657 yuan per dollar on August 3, 2026.",
+                    "sourceUrl": "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "Active Technology (主动科技)",
+                    "slug": "active-technology",
+                    "activity": "≈$69.5m",
+                    "stage": "capital",
+                    "amountUsdM": 69.5329007507755,
+                    "fx": {
+                      "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                      "companySlug": "active-technology",
+                      "currency": "CNY",
+                      "amountNativeM": 464,
+                      "investmentDate": null,
+                      "announcedOn": "2026-11-04",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-11-04",
+                      "nativePerUsd": 6.6731,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261109/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-11-04",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Angel+; RMB 464m (≈$69.5m). Company announcement published on ZiDongHua on November 4, 2026. The investor list uses the announcement’s names, including 国投先导; that investor identifies itself as 上海国投先导基金. The approximately RMB 800m headline is a cumulative total. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6731 yuan per dollar on November 4, 2026.",
+                    "sourceUrl": "https://zidonghua.com.cn/news/Finance/394874.html",
+                    "logo": null,
+                    "scope": "bci"
+                  },
+                  {
+                    "company": "BCI-Sonics (华超神控)",
+                    "slug": "bci-sonics",
+                    "activity": "≈$30.0m",
+                    "stage": "capital",
+                    "amountUsdM": 29.984108422536053,
+                    "fx": {
+                      "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                      "companySlug": "bci-sonics",
+                      "currency": "CNY",
+                      "amountNativeM": 200,
+                      "investmentDate": null,
+                      "announcedOn": "2026-10-23",
+                      "dateBasis": "announcement_date",
+                      "rateDate": "2026-10-23",
+                      "nativePerUsd": 6.6702,
+                      "rateSource": "Federal Reserve H.10",
+                      "rateSourceUrl": "https://www.federalreserve.gov/releases/h10/20261026/",
+                      "reviewedOn": "2026-11-24"
+                    },
+                    "date": "2026-10-23",
+                    "datePrecision": "day",
+                    "dateBasis": "reported",
+                    "note": "Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
+                    "sourceUrl": "https://www.bcisonics.com/article/5786479998588415",
+                    "logo": null,
+                    "scope": "bci"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/data/methodology-sources.json",
+      "beforeSha256": "fa90f16ff3566bd1a88fc7ee7b9ed3ad5262ad6645295db4191720060a7df58d",
+      "afterSha256": "4c3e66e856124358ed10aa9995bab7d6bf3098307680e901d56243a248a49c11",
+      "encoding": "json",
+      "beforeFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "afterFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [
+              "disclosures"
+            ],
+            "beforeLength": 195,
+            "afterLength": 214,
+            "edits": [
+              {
+                "beforeIndex": 195,
+                "afterIndex": 195,
+                "before": [],
+                "after": [
+                  [
+                    "https://bciflex.com/",
+                    "China financing backfill — bciflex.com"
+                  ],
+                  [
+                    "https://bciflex.com/About",
+                    "China financing backfill — bciflex.com"
+                  ],
+                  [
+                    "https://bciflex.com/News",
+                    "China financing backfill — bciflex.com"
+                  ],
+                  [
+                    "https://en.conmindmed.com/about.html",
+                    "China financing backfill — en.conmindmed.com"
+                  ],
+                  [
+                    "https://finance.sina.com.cn/wm/2026-06-18/doc-inicvfcv5537233.shtml",
+                    "China financing backfill — finance.sina.com.cn"
+                  ],
+                  [
+                    "https://mp.weixin.qq.com/s/c-8dgjlXQ1URUDzmNGm5Qg",
+                    "Xinsheng Shijie — canonical investor WeChat (blocked original; credited syndication used)"
+                  ],
+                  [
+                    "https://gestala.com/news/22",
+                    "China financing backfill — gestala.com"
+                  ],
+                  [
+                    "https://nmed.org.cn/Content/xwzx/xw/2026-04/147323.html",
+                    "China financing backfill — nmed.org.cn"
+                  ],
+                  [
+                    "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=45",
+                    "China financing backfill — static.sse.com.cn"
+                  ],
+                  [
+                    "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=48",
+                    "China financing backfill — static.sse.com.cn"
+                  ],
+                  [
+                    "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_0YC5.pdf#page=52",
+                    "China financing backfill — static.sse.com.cn"
+                  ],
+                  [
+                    "https://www.bcisonics.com/",
+                    "China financing backfill — www.bcisonics.com"
+                  ],
+                  [
+                    "https://www.bcisonics.com/article/5786479998588415",
+                    "China financing backfill — www.bcisonics.com"
+                  ],
+                  [
+                    "https://www.conmindmed.com/",
+                    "China financing backfill — www.conmindmed.com"
+                  ],
+                  [
+                    "https://www.nanochap.com/",
+                    "China financing backfill — www.nanochap.com"
+                  ],
+                  [
+                    "https://www.nanochap.com/news_info/id-105.html",
+                    "China financing backfill — www.nanochap.com"
+                  ],
+                  [
+                    "https://www.zidonghua.com.cn/news/Finance/270129.html",
+                    "China financing backfill — www.zidonghua.com.cn"
+                  ],
+                  [
+                    "https://yjj.sh.gov.cn/zjyw/20260313/04985a5fbe284e9c806ff5f370cb00b2.html",
+                    "China financing backfill — yjj.sh.gov.cn"
+                  ],
+                  [
+                    "https://zidonghua.com.cn/news/Finance/394874.html",
+                    "China financing backfill — zidonghua.com.cn"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "path": [
+              "reference"
+            ],
+            "beforeLength": 28,
+            "afterLength": 37,
+            "edits": [
+              {
+                "beforeIndex": 28,
+                "afterIndex": 28,
+                "before": [],
+                "after": [
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20220926/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20241112/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20251103/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20260217/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20260413/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20260622/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20260706/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20260810/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ],
+                  [
+                    "https://www.federalreserve.gov/releases/h10/20261026/",
+                    "China financing backfill — www.federalreserve.gov"
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
