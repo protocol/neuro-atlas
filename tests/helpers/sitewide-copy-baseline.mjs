@@ -33,5 +33,5 @@ assert.equal(sha256(bridgeText), lock.artifacts['tests/fixtures/merge-financing-
 export const FINANCING_OVER_COPY = validateCopyBridge(JSON.parse(bridgeText));
 // Historical-only entrypoints, not a generic normalization stack. Original
 // copy expects B, while archived finance expects F through a different edge.
-export const restoreCopyMainFile = (text, file) => restoreReviewedFile(text, FINANCING_OVER_COPY, file);
-export const restoreMerged151Copy = (text, file) => restoreReviewedFile(restoreCopyMainFile(restoreBeforeNeuronLinesFile(text, file), file), SITEWIDE_COPY_DELTA, file);
+export const restoreCopyMainFile = (text, file) => restoreReviewedFile(restoreBeforeNeuronLinesFile(text, file), FINANCING_OVER_COPY, file);
+export const restoreMerged151Copy = (text, file) => restoreReviewedFile(restoreCopyMainFile(text, file), SITEWIDE_COPY_DELTA, file);

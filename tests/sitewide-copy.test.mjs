@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readBeforeNeuronLinesFileSync as readFileSync} from './helpers/neuron-reference-baseline.mjs';
+import {readFileSync} from 'node:fs';
+import {currentNeuronFileHash} from './helpers/neuron-reference-current.mjs';
 import {createHash} from 'node:crypto';
 import {restoreReviewedFile,validateReviewedFilesFixture} from '../scripts/qa/build-reviewed-delta.mjs';
 import {parseCsv} from '../scripts/lib/funding-index.mjs';
@@ -10,7 +11,7 @@ const fixture=validateReviewedFilesFixture(JSON.parse(readFileSync(new URL('./fi
 const sha=s=>createHash('sha256').update(s).digest('hex');
 const root=new URL('../',import.meta.url);
 test('site-wide reader copy matches every independently reviewed exact source and generated file',()=>{
- for(const [file,digest] of Object.entries(lock.files))assert.equal(sha(readFileSync(new URL(file,root))),digest,file);
+ for(const [file,digest] of Object.entries(lock.files))assert.equal(sha(readFileSync(new URL(file,root))),currentNeuronFileHash(file,digest),file);
 });
 test('M→B restores every immutable original copy after hash before prose-only comparisons',()=>{
  for(const file of fixture.files)assert.equal(sha(restoreCopyMainFile(readFileSync(new URL(file.path,root),'utf8'),file.path)),file.afterSha256,file.path);

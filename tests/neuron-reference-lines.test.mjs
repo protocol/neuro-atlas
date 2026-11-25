@@ -87,7 +87,8 @@ test('preview and full modal draw static anatomical lines using the observation 
         assert.equal(svgs.length, 2, 'Real preview and deep-linked modal mount');
         for (const svg of svgs) checkReferences(svg);
         assert.equal(document.querySelector('[data-brain-scale-toggle]'), null);
-        assert.equal(document.querySelector('[role="switch"]'), null);
+        assert.equal(document.querySelectorAll('dialog [data-neuron-reference-toggle][role="switch"][aria-checked="true"]').length, 3);
+        assert.equal(document.querySelectorAll('[data-draft-preview] [role="switch"]').length, 0);
         assert.equal(window.location.hash, '#selected-published-connectomes-neuron-counts');
       } finally { await cleanup(); }
     }
@@ -159,6 +160,8 @@ test('both newly introduced primary-source URLs are inventoried and classified a
 
 import { createHash } from 'node:crypto';
 import { beforeNeuronReferences } from './helpers/neuron-reference-baseline.mjs';
+import { restoreReviewedFile } from '../scripts/qa/build-reviewed-delta.mjs';
+const financeCatalogDelta = JSON.parse(readFileSync(new URL('./fixtures/neuron-financing-catalog-delta.json', import.meta.url), 'utf8'));
 const baseline = JSON.parse(readFileSync(new URL('./fixtures/neuron-reference-baseline.json', import.meta.url), 'utf8'));
 const hash = s => createHash('sha256').update(s).digest('hex');
 const normalize = s => s.replace(/_r_[^" ]+/g, 'CHART_ID').replace(/_R_[^" ]+/g, 'CHART_ID');
@@ -219,8 +222,13 @@ test('historical byte reconstruction reverses only the three exact neuron featur
   assert.deepEqual(delta.files.map(file => file.path), ['src/components/draft-chart-plot.tsx', 'src/data/metric-chart-visibility.ts', 'src/data/methodology-sources.json']);
   for (const file of delta.files) {
     const current = readFileSync(new URL('../' + file.path, import.meta.url), 'utf8');
-    assert.equal(hash(current), file.afterSha256, file.path + ': exact feature code/catalog bytes');
-    assert.equal(hash(helpers.restoreBeforeNeuronLinesFile(current, file.path)), file.beforeSha256, file.path + ': original base bytes');
+    const withoutToggles = helpers.restoreBeforeNeuronTogglesFile(current, file.path);
+    // Concurrent financing adds its own exact catalog delta; do not erase it or refresh this original fixture.
+    const reviewedCurrent = restoreReviewedFile(withoutToggles, financeCatalogDelta, file.path);
+    const restored = helpers.restoreBeforeNeuronLinesFile(current, file.path);
+    assert.equal(hash(reviewedCurrent), file.afterSha256, file.path + ': exact feature code/catalog bytes');
+    const restoredBase = restoreReviewedFile(restored, financeCatalogDelta, file.path);
+    assert.equal(hash(restoredBase), file.beforeSha256, file.path + ': original base bytes');
     if (file.encoding === 'lines') {
       const mutated = '// unreviewed extra line\n' + current;
       let restored;

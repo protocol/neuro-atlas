@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "baselineSha": "8393a96823aeb4dfb43894392c78940da812949c",
+  "files": [
+    {
+      "path": "src/components/draft-chart-plot.tsx",
+      "beforeSha256": "7585d8b18cb32e2080e640adf2d13aa33fc4f5f273bdcee9563036831d08a64c",
+      "afterSha256": "12ee7a6dec841f74a0cd291daf78debe6e820ae1407c9cc53aa2d43f07da7ee1",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 679,
+            "afterLength": 690,
+            "edits": [
+              {
+                "beforeIndex": 19,
+                "afterIndex": 19,
+                "before": [
+                  "import { useAcquisitionMetric, useChartToggle } from \"@/lib/field-velocity/navigation\";"
+                ],
+                "after": [
+                  "import { useAcquisitionMetric, useChartToggle, useNeuronReferences } from \"@/lib/field-velocity/navigation\";"
+                ]
+              },
+              {
+                "beforeIndex": 196,
+                "afterIndex": 196,
+                "before": [],
+                "after": [
+                  "  const referenceControls = !preview && plot.id === \"largest-connectome-neurons\" && anatomicalReferences.length > 0;",
+                  "  const [referenceSelection, toggleReference] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);",
+                  "  const visibleReferences = referenceControls ? anatomicalReferences.filter(ref => referenceSelection.split(\",\").includes(ref.id)) : anatomicalReferences;"
+                ]
+              },
+              {
+                "beforeIndex": 244,
+                "afterIndex": 247,
+                "before": [
+                  "  if (anatomicalReferences.length) {",
+                  "    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...anatomicalReferences.map(ref => ref.value)))));",
+                  "    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...anatomicalReferences.map(ref => ref.value))) + .15));"
+                ],
+                "after": [
+                  "  if (visibleReferences.length) {",
+                  "    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...visibleReferences.map(ref => ref.value)))));",
+                  "    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...visibleReferences.map(ref => ref.value))) + .15));"
+                ]
+              },
+              {
+                "beforeIndex": 302,
+                "afterIndex": 305,
+                "before": [
+                  "  const anatomicalLabels = anatomicalReferences.map((ref, index) => {"
+                ],
+                "after": [
+                  "  const anatomicalLabels = visibleReferences.map((ref, index) => {"
+                ]
+              },
+              {
+                "beforeIndex": 406,
+                "afterIndex": 409,
+                "before": [
+                  "        ...anatomicalReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),"
+                ],
+                "after": [
+                  "        ...visibleReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),"
+                ]
+              },
+              {
+                "beforeIndex": 422,
+                "afterIndex": 425,
+                "before": [],
+                "after": [
+                  "    {referenceControls && <section className=\"brain-scale-controls neuron-reference-controls\">",
+                  "      <p>Whole-brain references</p>",
+                  "      <div className=\"brain-scale-controls neuron-reference-options\" role=\"group\" aria-label=\"Whole-brain references\">",
+                  "        {anatomicalReferences.map(ref => <button key={ref.id} type=\"button\" role=\"switch\" data-neuron-reference-toggle={ref.id}",
+                  "          aria-checked={visibleReferences.includes(ref)} onClick={() => { tooltip.clear(); toggleReference(ref.id); }}>",
+                  "          <span className=\"brain-scale-switch\" aria-hidden=\"true\" />{ref.label.split(\" \")[0]}</button>)}",
+                  "      </div>",
+                  "    </section>}"
+                ]
+              },
+              {
+                "beforeIndex": 436,
+                "afterIndex": 447,
+                "before": [
+                  "      {!preview && anatomicalReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill=\"var(--muted)\""
+                ],
+                "after": [
+                  "      {!preview && visibleReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill=\"var(--muted)\""
+                ]
+              },
+              {
+                "beforeIndex": 608,
+                "afterIndex": 619,
+                "before": [
+                  "      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? \" & fits\" : \" and sources\"} JSON</a>}"
+                ],
+                "after": [
+                  "      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(referenceControls ? { ...plot, visibleNeuronReferences: visibleReferences.map(ref => ref.id) } : plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? \" & fits\" : \" and sources\"} JSON</a>}"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/draft-chart-plot.css",
+      "beforeSha256": "8f1c28fca113ff09dc2d96f6851cf101dd7f1f763fa1430f501286c0cef955c6",
+      "afterSha256": "97951e760f3182ea944568b96100d75c38d5ad2359907ddd2dc910368a99d047",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 421,
+            "afterLength": 423,
+            "edits": [
+              {
+                "beforeIndex": 411,
+                "afterIndex": 411,
+                "before": [],
+                "after": [
+                  ".neuron-reference-controls > p { margin: 0 0 .35rem; }",
+                  ".neuron-reference-options { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/lib/field-velocity/navigation.ts",
+      "beforeSha256": "43c363d2cf813ee6e2cc6be44c748e391874866daaecbe859352488322032abe",
+      "afterSha256": "52fe7e8aac5c3a090b2462d2bbd2948087764e817d508d8322a1014134ce4306",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 172,
+            "afterLength": 197,
+            "edits": [
+              {
+                "beforeIndex": 5,
+                "afterIndex": 5,
+                "before": [],
+                "after": [
+                  "import { ALL_NEURON_REFERENCES, NEURON_REFERENCE_IDS, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from \"@/lib/neuron-reference-url\";"
+                ]
+              },
+              {
+                "beforeIndex": 31,
+                "afterIndex": 32,
+                "before": [],
+                "after": [
+                  "  const neuronRefs = neuronReferenceToken(neuronReferencesFromUrl(url, anchor));",
+                  "  if (neuronRefs) url.searchParams.set(neuronReferenceQuery, neuronRefs);",
+                  "  else url.searchParams.delete(neuronReferenceQuery);"
+                ]
+              },
+              {
+                "beforeIndex": 128,
+                "afterIndex": 132,
+                "before": [
+                  "  if (link && (anchor !== link.slug || clearMetric || clearReference)) {"
+                ],
+                "after": [
+                  "  const clearNeuronRefs = url.searchParams.has(neuronReferenceQuery)",
+                  "    && url.searchParams.getAll(neuronReferenceQuery).join(\";\") !== neuronReferenceToken(neuronReferencesFromUrl(url, anchor));",
+                  "  if (link && (anchor !== link.slug || clearMetric || clearReference || clearNeuronRefs)) {"
+                ]
+              },
+              {
+                "beforeIndex": 172,
+                "afterIndex": 178,
+                "before": [],
+                "after": [
+                  "/** Independent reference switches use the same history/subscription as other chart views. */",
+                  "export function useNeuronReferences(anchor?: string) {",
+                  "  const selection = useSyncExternalStore(subscribe,",
+                  "    () => anchor ? neuronReferencesFromUrl(new URL(window.location.href), anchor) : ALL_NEURON_REFERENCES,",
+                  "    () => ALL_NEURON_REFERENCES);",
+                  "  const toggleReference = (id: string) => {",
+                  "    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget || !NEURON_REFERENCE_IDS.some(known => known === id)) return;",
+                  "    const url = new URL(performanceUrl(window.location.href, anchor));",
+                  "    const current = neuronReferencesFromUrl(url, anchor).split(\",\");",
+                  "    const next = NEURON_REFERENCE_IDS.filter(known => known === id ? !current.includes(known) : current.includes(known)).join(\",\") || \"none\";",
+                  "    const token = neuronReferenceToken(next);",
+                  "    if (token) url.searchParams.set(neuronReferenceQuery, token);",
+                  "    else url.searchParams.delete(neuronReferenceQuery);",
+                  "    window.history.pushState({ ...window.history.state, atlasModalFrom: null }, \"\", url);",
+                  "    window.dispatchEvent(new Event(changedEvent));",
+                  "  };",
+                  "  return [selection, toggleReference] as const;",
+                  "}",
+                  ""
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/lib/chart-export.ts",
+      "beforeSha256": "3903653f772a9c46ea9c446736f0146174534f0b23ad54d1a2aa11830b2abf0d",
+      "afterSha256": "c018dd5a6a534d7e9d255d7e51d43d1e77380f0537732c8d224af5db61ff9abd",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 398,
+            "afterLength": 401,
+            "edits": [
+              {
+                "beforeIndex": 4,
+                "afterIndex": 4,
+                "before": [],
+                "after": [
+                  "import { neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceToken } from \"@/lib/neuron-reference-url\";"
+                ]
+              },
+              {
+                "beforeIndex": 69,
+                "afterIndex": 70,
+                "before": [],
+                "after": [
+                  "  const neuronRefs = neuronReferenceToken(neuronReferencesFromUrl(url, anchor));"
+                ]
+              },
+              {
+                "beforeIndex": 73,
+                "afterIndex": 75,
+                "before": [],
+                "after": [
+                  "  if (neuronRefs) url.searchParams.set(neuronReferenceQuery, neuronRefs);"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -13,15 +13,29 @@ study-reported map counts.
 - `metric-chart-visibility.ts` attaches `horizontalReferences` only to
   `largest-connectome-neurons`; all ten source observations remain unchanged.
 - The preview, modal and existing full-chart image export use the same logarithmic
-  value mapping. The axis expands to include the reference values with label room.
+  value mapping. The axis expands to include visible reference values with label
+  room; turning all three off restores the observation-only range.
 - Compact previews use a one-line “Neuron counts” caption and a 152px coordinate
   height, keeping the existing 300px card cap. The full modal/export title stays
   unchanged. Labels use separated vertical lanes and short association leaders;
   overlap-ring increments are bounded to the shared marker stroke width. Narrow
   modal layouts reserve extra vertical room for the existing observation badges.
-- Source links and species/method qualifiers are in the native Sources and data
-  disclosures; image metadata retains those details. No fit, extrapolation,
-  completion ratio, toggle, route or query state is added.
+- The full neuron modal has independent native Mouse, Macaque and Human switches
+  under Whole-brain references. All start on. Compact previews stay all-on and
+  have no switches. A change clears pinned inspection without restoring mark focus.
+- Source links and all three species/method definitions remain in the native
+  Sources and selected-data JSON even when their overlays are hidden. JSON adds
+  `visibleNeuronReferences` in source order. Image/clipboard exports serialize only
+  visible reference lines, labels and reference notes, preserving all observations.
+  No fit, extrapolation or completion ratio is added.
+- `neuronRefs=mouse,macaque` selects a subset on this chart only, in stable source
+  order; all-on omits it and all-off uses `neuronRefs=none`. Invalid, duplicate or
+  unknown tokens use the all-on default. Canonical and legacy chart fragments,
+  Copy link, fresh loads, reload and Back/Forward restore the selection. View
+  changes preserve router fields and repeated unrelated query entries; Close or
+  Escape dismisses in one action. Other chart links discard this parameter.
+  Export URLs preserve only valid chart-qualified state, never credentials or
+  unrelated queries. No route or fragment is replaced.
 - The public-data-size and acquisition benchmark implementations are untouched.
 
 ## Regression evidence
@@ -51,3 +65,13 @@ and two source-directory additions are reversed to immutable base bytes before
 older copy/funding deltas are applied. The fixture's complete current/base hashes
 are asserted separately. Unknown line or catalog edits survive reconstruction or
 fail closed. No original historical fixture or golden hash is regenerated.
+
+`tests/neuron-reference-toggles.test.mjs` exercises all eight subsets, source
+immutability, observation-only scaling, URL/history/copy behavior, malformed
+tokens, selected export metadata/JSON, preview invariance and focus-safe clearing.
+`neuron-toggle-file-delta.json` reverses only the four exact existing runtime-file
+changes onto PR154 base `8393a96823aeb4dfb43894392c78940da812949c`. Separate exact
+current-main and financing-catalog edges compose owner-approved main `866ce97`
+without modifying older fixtures. Raw financing locks validate the full current
+feature hashes and exact two added study definitions before comparing unchanged
+financing identity; they never import a historical reader.
