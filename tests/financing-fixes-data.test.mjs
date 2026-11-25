@@ -26,6 +26,10 @@ for (const file of fixture.files) {
   test(file.path + ' preserves exact reviewed record count', () => assert.equal(actual.length, file.recordCount));
 }
 
+test('the selective financing review checkpoint is November 25 without claiming complete lifetime cash coverage', () => {
+  assert.equal(funding().summary.asOf, '2026-11-25');
+});
+
 test('the full current funding payload is generated from actual canonical sources', async () => {
   const input = await loadFundingIndexSources(new URL('../data/funding-index/', import.meta.url).pathname);
   const built = buildFundingIndex(input);
@@ -34,6 +38,19 @@ test('the full current funding payload is generated from actual canonical source
   assert.deepEqual(generated.investors, built.investors);
   assert.deepEqual(generated.reportedTotals, built.reportedTotals);
   assert.equal(generated.summary.observedCapitalUsdM, Number(built.rounds.reduce((sum, r) => sum + countedCapital(r), 0).toFixed(2)));
+});
+
+test('supplementary participant citations remain attached to the corrected offering instead of relying on an amount-only principal source', () => {
+  const rounds = funding().rounds;
+  for (const [slug, stage, name, host] of [
+    ['neuralink', 'Series D', 'Founders Fund', 'cnn.com'],
+    ['merge-labs', 'Seed', 'Interface Fund', 'butterflynetwork.com'],
+    ['neuroxess', 'Series B', 'SDIC Unity Capital', 'en.neuroxess.com'],
+    ['conmind', 'Series C', '粤科金融', 'vbdata.cn'],
+  ]) {
+    const row = rounds.find(r => r.companySlug === slug && r.stage === stage);
+    assert.ok(row.investorEvidence?.some(e => e.investorName === name && e.sourceUrl.includes(host)), name);
+  }
 });
 
 test('material same-offering amendments and combined closes appear once', () => {

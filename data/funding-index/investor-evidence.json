@@ -128,5 +128,595 @@
     "sourceKind": "primary",
     "reviewedOn": "2026-11-24",
     "sourceExcerpt": "Paradromics Inc., the leading developer of high data-rate brain-computer interfaces (BCI), today announced a $33 million Series A funding round led by Prime Movers Lab. Additional investors include Westcott Investment Group, Dolby Family Ventures, and Green Sands Equity."
+  },
+  {
+    "companySlug": "synchron",
+    "announcedOn": "2025-11-06",
+    "stage": "Series D",
+    "investorName": "3C AGI",
+    "sourceUrl": "https://www.nrf.gov.au/news-and-media-releases/nrfc-invests-aud-54-million-synchrons-groundbreaking-brain-computer-interface-devices",
+    "sourceExcerpt": "NRFC is a key investor in Synchron’s AUD $305 million Series D funding round and investors include Double Point Ventures, QIA, IQT, K5 Global, 3C AGI, T.Rx Capital, Protocol Labs and others.  Synchron’s existing investors include ARCH Ventures, Gates Frontier, Bezos Expeditions, Khosla Ventures NTI and METIS.  ",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuralink",
+    "announcedOn": "2023-11-22",
+    "stage": "Series D",
+    "investorName": "Founders Fund",
+    "sourceUrl": "https://www.cnn.com/2023/08/08/tech/neuralink-brain-musk-fundraising-founders-fund",
+    "sourceExcerpt": "The Series D round was led by Founders Fund, a San Francisco-based VC firm established by Peter Thiel",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "science-corporation",
+    "announcedOn": "2025-04-14",
+    "stage": "Convertible notes",
+    "investorName": "Khosla Ventures",
+    "sourceUrl": "https://www.bloomberg.com/news/articles/2025-04-14/neuralink-rival-science-corp-raises-104-million-led-by-khosla",
+    "sourceExcerpt": "“We have a philosophy of investing in companies that are early and make bold bets and can be impactful for the future,” said [Shernaz Daver](https://www.khoslaventures.com/team/shernaz-daver/ \"Shernaz Daver bio\"), operating partner and chief marketing officer at Khosla Ventures, in an interview Monday. Daver said that Khosla led the round, but declined to say how much the firm contributed.",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neurobionics",
+    "announcedOn": "2025-12-16",
+    "stage": "Seed",
+    "investorName": "GreyMatter Capital",
+    "sourceUrl": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+    "sourceExcerpt": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neurobionics",
+    "announcedOn": "2025-12-16",
+    "stage": "Seed",
+    "investorName": "Focalpoint Partners",
+    "sourceUrl": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+    "sourceExcerpt": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neurobionics",
+    "announcedOn": "2025-12-16",
+    "stage": "Seed",
+    "investorName": "Jumpspace Ventures",
+    "sourceUrl": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+    "sourceExcerpt": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neurobionics",
+    "announcedOn": "2025-12-16",
+    "stage": "Seed",
+    "investorName": "Dr. Thomas Insel",
+    "sourceUrl": "https://neurobionics.io/press/neurobionics-seed-press-release/",
+    "sourceExcerpt": ", a neurotech company revolutionizing neuromodulation therapy with minimally invasive implantable devices, today announced the successful close of its $5 million Seed Round. The round was led by [Dolby Family Ventures](https://www.dolbyventures.com/)\n with [Future Ventures](https://future.ventures/)\n, [GreyMatter Capital](https://www.greymattercapital.com/)\n, [Focalpoint Partners](https://www.focalpointlp.com/)\n, [Lionheart Ventures](https://www.lionheart.vc/)\n, [Jumpspace Ventures](https://jumpspace.vc/)\n, and [Dr. Thomas Insel](https://www.linkedin.com/in/thomasinselmd/)\n, former Director of the National Institute of Mental Health.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "conmind",
+    "announcedOn": "2026-04-08",
+    "stage": "Series C",
+    "investorName": "中山创投旗下中山生物医药天使基金",
+    "sourceUrl": "https://www.vbdata.cn/1519070200",
+    "sourceExcerpt": "近日，致力于成为全球领先的脑医学科技平台聚芯医疗科技（中山）有限公司（下称：聚芯医疗）完成近2亿元人民币C 轮融资。本轮融资由**中山创投旗下中山生物医药天使基金**领投，**粤财中垠旗下生物医药基金、粤科金融、景泰资本、金航启盈基金**跟投。老股东**珠海高科金****投**持续加投。**熙桥资本**担任本轮融资的独家财务顾问。\n\n  \n\n此次融资顺利落地，标志着资本市场对聚芯医疗**“脑机接口和修心护脑”**双轮驱动策略的高度认可，为公司下一阶段高速发展注入强大资本动能。\n\n聚芯医疗通过微创介入技术与脑机接口平台，构建起脑医学疾病“预防、治疗和功能重建”的全周期解决方案。核心团队在脑医学领域拥有极为丰富的资源整合能力和商业化成功经验。公司早期通过打造脑血管疾病介入治疗的完整产品矩阵，攻克了材料、精密加工和输送系统等关键研发和生产工艺，同时完成了脑机接口核心部件和底层技术的布局。\n\n  \n\n公司基于对脑医学疾病和临床痛点的深刻洞见，突破性地研发出**全球创新的“修心护脑”器械解决方案**，相关产品已经顺利完成全部临床试验。不久的将来，公司将凭借创新的脑机接口技术结合扎实的器械研发生产能力，从介入脑机等闭环神经调节疗法切入，打造开放性创新的脑医",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "conmind",
+    "announcedOn": "2026-04-08",
+    "stage": "Series C",
+    "investorName": "粤财中垠旗下生物医药基金",
+    "sourceUrl": "https://www.vbdata.cn/1519070200",
+    "sourceExcerpt": "近日，致力于成为全球领先的脑医学科技平台聚芯医疗科技（中山）有限公司（下称：聚芯医疗）完成近2亿元人民币C 轮融资。本轮融资由**中山创投旗下中山生物医药天使基金**领投，**粤财中垠旗下生物医药基金、粤科金融、景泰资本、金航启盈基金**跟投。老股东**珠海高科金****投**持续加投。**熙桥资本**担任本轮融资的独家财务顾问。\n\n  \n\n此次融资顺利落地，标志着资本市场对聚芯医疗**“脑机接口和修心护脑”**双轮驱动策略的高度认可，为公司下一阶段高速发展注入强大资本动能。\n\n聚芯医疗通过微创介入技术与脑机接口平台，构建起脑医学疾病“预防、治疗和功能重建”的全周期解决方案。核心团队在脑医学领域拥有极为丰富的资源整合能力和商业化成功经验。公司早期通过打造脑血管疾病介入治疗的完整产品矩阵，攻克了材料、精密加工和输送系统等关键研发和生产工艺，同时完成了脑机接口核心部件和底层技术的布局。\n\n  \n\n公司基于对脑医学疾病和临床痛点的深刻洞见，突破性地研发出**全球创新的“修心护脑”器械解决方案**，相关产品已经顺利完成全部临床试验。不久的将来，公司将凭借创新的脑机接口技术结合扎实的器械研发生产能力，从介入脑机等闭环神经调节疗法切入，打造开放性创新的脑医",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "conmind",
+    "announcedOn": "2026-04-08",
+    "stage": "Series C",
+    "investorName": "粤科金融",
+    "sourceUrl": "https://www.vbdata.cn/1519070200",
+    "sourceExcerpt": "近日，致力于成为全球领先的脑医学科技平台聚芯医疗科技（中山）有限公司（下称：聚芯医疗）完成近2亿元人民币C 轮融资。本轮融资由**中山创投旗下中山生物医药天使基金**领投，**粤财中垠旗下生物医药基金、粤科金融、景泰资本、金航启盈基金**跟投。老股东**珠海高科金****投**持续加投。**熙桥资本**担任本轮融资的独家财务顾问。\n\n  \n\n此次融资顺利落地，标志着资本市场对聚芯医疗**“脑机接口和修心护脑”**双轮驱动策略的高度认可，为公司下一阶段高速发展注入强大资本动能。\n\n聚芯医疗通过微创介入技术与脑机接口平台，构建起脑医学疾病“预防、治疗和功能重建”的全周期解决方案。核心团队在脑医学领域拥有极为丰富的资源整合能力和商业化成功经验。公司早期通过打造脑血管疾病介入治疗的完整产品矩阵，攻克了材料、精密加工和输送系统等关键研发和生产工艺，同时完成了脑机接口核心部件和底层技术的布局。\n\n  \n\n公司基于对脑医学疾病和临床痛点的深刻洞见，突破性地研发出**全球创新的“修心护脑”器械解决方案**，相关产品已经顺利完成全部临床试验。不久的将来，公司将凭借创新的脑机接口技术结合扎实的器械研发生产能力，从介入脑机等闭环神经调节疗法切入，打造开放性创新的脑医",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "conmind",
+    "announcedOn": "2026-04-08",
+    "stage": "Series C",
+    "investorName": "景泰资本",
+    "sourceUrl": "https://www.vbdata.cn/1519070200",
+    "sourceExcerpt": "近日，致力于成为全球领先的脑医学科技平台聚芯医疗科技（中山）有限公司（下称：聚芯医疗）完成近2亿元人民币C 轮融资。本轮融资由**中山创投旗下中山生物医药天使基金**领投，**粤财中垠旗下生物医药基金、粤科金融、景泰资本、金航启盈基金**跟投。老股东**珠海高科金****投**持续加投。**熙桥资本**担任本轮融资的独家财务顾问。\n\n  \n\n此次融资顺利落地，标志着资本市场对聚芯医疗**“脑机接口和修心护脑”**双轮驱动策略的高度认可，为公司下一阶段高速发展注入强大资本动能。\n\n聚芯医疗通过微创介入技术与脑机接口平台，构建起脑医学疾病“预防、治疗和功能重建”的全周期解决方案。核心团队在脑医学领域拥有极为丰富的资源整合能力和商业化成功经验。公司早期通过打造脑血管疾病介入治疗的完整产品矩阵，攻克了材料、精密加工和输送系统等关键研发和生产工艺，同时完成了脑机接口核心部件和底层技术的布局。\n\n  \n\n公司基于对脑医学疾病和临床痛点的深刻洞见，突破性地研发出**全球创新的“修心护脑”器械解决方案**，相关产品已经顺利完成全部临床试验。不久的将来，公司将凭借创新的脑机接口技术结合扎实的器械研发生产能力，从介入脑机等闭环神经调节疗法切入，打造开放性创新的脑医",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "conmind",
+    "announcedOn": "2026-04-08",
+    "stage": "Series C",
+    "investorName": "金航启盈基金",
+    "sourceUrl": "https://www.vbdata.cn/1519070200",
+    "sourceExcerpt": "近日，致力于成为全球领先的脑医学科技平台聚芯医疗科技（中山）有限公司（下称：聚芯医疗）完成近2亿元人民币C 轮融资。本轮融资由**中山创投旗下中山生物医药天使基金**领投，**粤财中垠旗下生物医药基金、粤科金融、景泰资本、金航启盈基金**跟投。老股东**珠海高科金****投**持续加投。**熙桥资本**担任本轮融资的独家财务顾问。\n\n  \n\n此次融资顺利落地，标志着资本市场对聚芯医疗**“脑机接口和修心护脑”**双轮驱动策略的高度认可，为公司下一阶段高速发展注入强大资本动能。\n\n聚芯医疗通过微创介入技术与脑机接口平台，构建起脑医学疾病“预防、治疗和功能重建”的全周期解决方案。核心团队在脑医学领域拥有极为丰富的资源整合能力和商业化成功经验。公司早期通过打造脑血管疾病介入治疗的完整产品矩阵，攻克了材料、精密加工和输送系统等关键研发和生产工艺，同时完成了脑机接口核心部件和底层技术的布局。\n\n  \n\n公司基于对脑医学疾病和临床痛点的深刻洞见，突破性地研发出**全球创新的“修心护脑”器械解决方案**，相关产品已经顺利完成全部临床试验。不久的将来，公司将凭借创新的脑机接口技术结合扎实的器械研发生产能力，从介入脑机等闭环神经调节疗法切入，打造开放性创新的脑医",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "merge-labs",
+    "announcedOn": "2026-01-15",
+    "stage": "Seed",
+    "investorName": "Interface Fund",
+    "sourceUrl": "https://ir.butterflynetwork.com/News/press-releases/news-details/2026/Merge-Labs-and-Butterfly-Network-Partner-to-Advance-Ultrasound-Based-Brain-Computer-Interfaces/default.aspx",
+    "sourceExcerpt": "The company launched in January 2026 with $252 million in seed funding from investors including OpenAI, Bain Capital, Interface Fund, Fifty Years and Gabe Newell.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "merge-labs",
+    "announcedOn": "2026-01-15",
+    "stage": "Seed",
+    "investorName": "Fifty Years",
+    "sourceUrl": "https://ir.butterflynetwork.com/News/press-releases/news-details/2026/Merge-Labs-and-Butterfly-Network-Partner-to-Advance-Ultrasound-Based-Brain-Computer-Interfaces/default.aspx",
+    "sourceExcerpt": "The company launched in January 2026 with $252 million in seed funding from investors including OpenAI, Bain Capital, Interface Fund, Fifty Years and Gabe Newell.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "SDIC Unity Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "SCGC",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Triwise Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "China Fortune-Tech Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "Beyond the strategic backing of national and municipal state-owned funds, another prominent facet of this round is the concentrated entry of leading cross-sector capital. China Fortune-Tech Capital (a premier corporate VC deeply embedded in the semiconductor supply chain), Cornerstone Capital (a prominent private equity firm with a sustained focus on full-lifecycle deep tech), and top-tier global venture firm IDG Capital jointly form a diversified, institutional investment matrix. Furthermore, follow-on investments from established shareholders such as Shanda Group and Zhongping Capital reinforce the market’s long-term conviction in NeuroXess.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Huangpu Investment",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Cornerstone Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "Beyond the strategic backing of national and municipal state-owned funds, another prominent facet of this round is the concentrated entry of leading cross-sector capital. China Fortune-Tech Capital (a premier corporate VC deeply embedded in the semiconductor supply chain), Cornerstone Capital (a prominent private equity firm with a sustained focus on full-lifecycle deep tech), and top-tier global venture firm IDG Capital jointly form a diversified, institutional investment matrix. Furthermore, follow-on investments from established shareholders such as Shanda Group and Zhongping Capital reinforce the market’s long-term conviction in NeuroXess.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "IDG Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "Beyond the strategic backing of national and municipal state-owned funds, another prominent facet of this round is the concentrated entry of leading cross-sector capital. China Fortune-Tech Capital (a premier corporate VC deeply embedded in the semiconductor supply chain), Cornerstone Capital (a prominent private equity firm with a sustained focus on full-lifecycle deep tech), and top-tier global venture firm IDG Capital jointly form a diversified, institutional investment matrix. Furthermore, follow-on investments from established shareholders such as Shanda Group and Zhongping Capital reinforce the market’s long-term conviction in NeuroXess.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Xichen Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Junxi Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Huafu Securities",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Huasai Zhihui",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "ZWC Partners",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Jiangxi Financial Holding",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "**\\[Shanghai, October 28, 2026\\]** NeuroXess announced today the completion of its RMB 700 million Series B financing round. This round was jointly led by SDIC Unity Capital, Shenzhen Capital Group (SCGC), and Triwise Capital, with participation from renowned institutional co-investors including China Fortune-Tech Capital, Huangpu Investment,Cornerstone Capital, IDG Capital, Xichen Capital, Junxi Capital, Huafu Securities, Huasai Zhihui, ZWC Partners, and Jiangxi Financial Holding. Existing investors including Shanda Group and Zhongping Capital continued their steadfast support. The proceeds will be allocated toward multi-center registered clinical trials and regulatory approvals for the Fully-implanted, Fully-wireless, and Fully-functional (“Triple-F”) brain-computer interface (BCI) system, the construction and ramp-up of the Giga-factory, as well as next-generation product R&D and the exploration of BCI+AI convergence.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Shanda Group",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "Beyond the strategic backing of national and municipal state-owned funds, another prominent facet of this round is the concentrated entry of leading cross-sector capital. China Fortune-Tech Capital (a premier corporate VC deeply embedded in the semiconductor supply chain), Cornerstone Capital (a prominent private equity firm with a sustained focus on full-lifecycle deep tech), and top-tier global venture firm IDG Capital jointly form a diversified, institutional investment matrix. Furthermore, follow-on investments from established shareholders such as Shanda Group and Zhongping Capital reinforce the market’s long-term conviction in NeuroXess.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "neuroxess",
+    "announcedOn": "2026-10-28",
+    "stage": "Series B",
+    "investorName": "Zhongping Capital",
+    "sourceUrl": "https://en.neuroxess.com/news/neuroxess-completes-rmb-700-million-series-b-financing-co-led-by-sdic-unity-capital-scgc-and-triwise-capital/",
+    "sourceExcerpt": "Beyond the strategic backing of national and municipal state-owned funds, another prominent facet of this round is the concentrated entry of leading cross-sector capital. China Fortune-Tech Capital (a premier corporate VC deeply embedded in the semiconductor supply chain), Cornerstone Capital (a prominent private equity firm with a sustained focus on full-lifecycle deep tech), and top-tier global venture firm IDG Capital jointly form a diversified, institutional investment matrix. Furthermore, follow-on investments from established shareholders such as Shanda Group and Zhongping Capital reinforce the market’s long-term conviction in NeuroXess.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Alibaba",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Tencent",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "FountainBridge Capital",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "OrbiMed",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Oriza Seed",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Qiming Venture Partners",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Lilly Asia Ventures",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "Source Code Capital",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "SHANGHAI, April 2, 2026 /PRNewswire/ -- Shanghai StairMed Technology Co., Ltd. (\"StairMed\" or \"the Company\") recently announced the closing of a strategic financing round totaling RMB 500 million. The round was led by Alibaba, with strong continued participation from existing shareholders including Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures (LAV), and Source Code Capital, etc. Springhill Fund served as the exclusive financial advisor. This latest round brings StairMed's total funding raised in the past year to over RMB 1.1 billion. This round also marks a rare joint investment by Alibaba and Tencent in the brain-machine interface sector.",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "stairmed",
+    "announcedOn": "2026-03-13",
+    "stage": "Strategic round",
+    "investorName": "SDIC Unity Capital",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
+    "sourceExcerpt": "Li Xue, founder of StairMed, commented, \"We are grateful to our existing shareholders for their continued support since our early days, particularly Tencent as a core industrial investor. We also welcome Alibaba and SDIC Unity Capital to this round.\" Li noted the strategic importance of deep involvement from leading internet and technology companies, \"BMI is not only an emerging medical technology, but also a point of convergence between life sciences and information technology. The deep expertise of these industry leaders in multi-modal large models, computing infrastructure, intelligent hardware, and ecosystem development aligns closely with StairMed's strengths in BMI hardware and clinical translation. This partnership will enable us to co-develop next-generation intelligent BMI systems and cutting-edge application ecosystems. This is more than an investment in medical innovation—it is a strategic bet on the long-term potential of human-machine interaction.\"",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "xinsheng-shijie",
+    "announcedOn": "2026-06-18",
+    "stage": "Seed",
+    "investorName": "星连资本",
+    "sourceUrl": "https://finance.sina.cn/stock/jdts/2026-06-18/detail-inicuupx3340385.d.html?vt=4",
+    "sourceExcerpt": "「暗涌Waves」独家获悉，侵入式脑机接口公司「芯生视界」近日完成近亿元人民币种子轮融资。本轮融资由经纬创投领投，星连资本、燕缘创投、水木创投跟投。\n\n当下，侵入式脑机接口已经在治疗瘫痪、脑控外设等医疗场景落地，验证长期植入的安全、有效。与此同时，AI Agent和具身智能技术加速进化，也放大了市场对脑机接口的期待：改写未来“人机交互”的方式，实现人机融合、增强人类。马斯克和他的Neuralink，正是这一叙事的风向标。\n\n芯生视界团队",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "xinsheng-shijie",
+    "announcedOn": "2026-06-18",
+    "stage": "Seed",
+    "investorName": "燕缘创投",
+    "sourceUrl": "https://finance.sina.cn/stock/jdts/2026-06-18/detail-inicuupx3340385.d.html?vt=4",
+    "sourceExcerpt": "「暗涌Waves」独家获悉，侵入式脑机接口公司「芯生视界」近日完成近亿元人民币种子轮融资。本轮融资由经纬创投领投，星连资本、燕缘创投、水木创投跟投。\n\n当下，侵入式脑机接口已经在治疗瘫痪、脑控外设等医疗场景落地，验证长期植入的安全、有效。与此同时，AI Agent和具身智能技术加速进化，也放大了市场对脑机接口的期待：改写未来“人机交互”的方式，实现人机融合、增强人类。马斯克和他的Neuralink，正是这一叙事的风向标。\n\n芯生视界团队",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "xinsheng-shijie",
+    "announcedOn": "2026-06-18",
+    "stage": "Seed",
+    "investorName": "水木创投",
+    "sourceUrl": "https://finance.sina.cn/stock/jdts/2026-06-18/detail-inicuupx3340385.d.html?vt=4",
+    "sourceExcerpt": "「暗涌Waves」独家获悉，侵入式脑机接口公司「芯生视界」近日完成近亿元人民币种子轮融资。本轮融资由经纬创投领投，星连资本、燕缘创投、水木创投跟投。\n\n当下，侵入式脑机接口已经在治疗瘫痪、脑控外设等医疗场景落地，验证长期植入的安全、有效。与此同时，AI Agent和具身智能技术加速进化，也放大了市场对脑机接口的期待：改写未来“人机交互”的方式，实现人机融合、增强人类。马斯克和他的Neuralink，正是这一叙事的风向标。\n\n芯生视界团队",
+    "sourceKind": "reporting",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "社保基金中关村自主创新专项基金",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "元生创投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "国寿资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "北京市医药健康产业投资基金",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "联想创投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "美团龙珠",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2025-08-12",
+    "stage": "Series A",
+    "investorName": "BV百度风投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/886b0e576465ffa7b7e918b22e92f241",
+    "sourceExcerpt": "近日，专注于研发新一代侵入式柔性脑机接口平台的硬科技创新先锋——北京智冉医疗科技有限公司（简称：智冉医疗），宣布完成超3亿元A轮融资，本轮融资由社保基金中关村自主创新专项基金（君联资本担任管理人）、君联资本、IDG资本联合领投，老股东元生创投持续大额加注，国寿资本、北京市医药健康产业投资基金、联想创投及老股东美团龙珠、BV百度风投跟投。\n\n本轮所募资金将主要用于加速推进新一代技术研发及开展大规模临床试验。自2022年成立以来，智冉医疗发展迅猛，已融资总额近5亿元人民币，充分体现了资本市场对其技术路线与商业化前景的高度认可。\n\n元生创投曾于2023年8月领投了智冉医疗的天使轮融资，并于 2024年6月在天使+轮追加投资，此次 A轮融资再次加注。",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "君联资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "北京市医药健康产业投资基金",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "IDG资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "顺为资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "联想创投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "元生创投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "红杉资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "美团龙珠",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "BV百度风投",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "杏泽资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
+  },
+  {
+    "companySlug": "zhiran-medical",
+    "announcedOn": "2026-02-11",
+    "stage": "Series A+",
+    "investorName": "佳银资本",
+    "sourceUrl": "https://bydrug.pharmcube.com/news/detail/9bd3a548a9454efe82a1c8f8158d4f87",
+    "sourceExcerpt": "本轮融资由中科创星领投，老股东君联资本、北京市医药健康产业投资基金、IDG资本、顺为资本、联想创投、元生创投、红杉资本、美团龙珠、BV百度风投、杏泽资本、佳银资本持续跟投。本轮所募资金将主要用于推进大规模临床试验与高通量柔性脑机接口产品迭代，加速该技术向临床应用落地。\n\n  \n\n专注于AI投资的BV百度风投曾于2022年参与了智冉的种子轮融资，并在后续的天使轮及A轮融资中持续追加。\n\n内容来源｜智冉医疗\n\n从创立之初，智冉就坚定地走侵入式脑机接口技术路线，一方面是因为团队在侵入式脑机接口底层技术拥有深厚的技术积累；",
+    "sourceKind": "primary",
+    "reviewedOn": "2026-11-25"
   }
 ]

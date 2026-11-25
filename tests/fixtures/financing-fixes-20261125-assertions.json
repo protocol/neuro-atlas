@@ -2169,7 +2169,8 @@
             "note": "$252m seed financing reported by WIRED on January 15, 2026. OpenAI confirms its seed participation and the January 15 launch. Butterfly Network’s later partnership announcement names OpenAI, Bain Capital, Interface Fund, Fifty Years and Gabe Newell; PL Capital separately announces its participation. TechCrunch reports a rounded $250m seed figure. Each source describes the same financing.",
             "source_url": "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/",
             "scope": "bci",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
@@ -2198,7 +2199,8 @@
             "note": "Announced a $230m Series C to accelerate commercialization of the PRIMA retinal implant. Investors named by Science include Khosla Ventures, Lightspeed Venture Partners, Y Combinator, IQT and Quiet Capital. Science’s 2025 convertible-note disclosure is shown separately with its conversion overlap unresolved.",
             "source_url": "https://www.businesswire.com/news/home/20260305896789/en/Science-Corporation-Closes-%24230-Million-Series-C-to-Accelerate-Commercialization-of-Its-PRIMA-BCI-Retinal-Implant-the-Worlds-Most-Advanced-Vision-Restoration-Technology",
             "scope": "bci",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
@@ -2227,7 +2229,8 @@
             "note": "RMB 500m strategic financing announced by StairMed in its March 13 Chinese news entry; its English release followed April 2. Alibaba led, with SDIC Unity Capital participating. Existing investors Tencent, FountainBridge Capital, OrbiMed, Oriza Seed, Qiming Venture Partners, Lilly Asia Ventures, Source Code Capital and 上海国投先导 participated. Springhill Capital is the financial advisor. Historical USD estimate: approximately $72.50m using the ECB 2026-03-13 reference rates. The conversion uses the dated disclosure as a comparison basis; the cash receipt date is undisclosed.",
             "source_url": "https://www.stairmed.com/xinwenzaixian.html",
             "scope": "bci",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
@@ -2256,7 +2259,8 @@
             "note": "Axoft announced an oversubscribed $55m Series A led by C.P. Group Innovation, with Alumni Ventures, the Stanford President’s Venture Fund, Hillhouse Investment and Gaorong Ventures participating. The company release, published on Yahoo Finance, describes plans to expand clinical trials and manufacturing.",
             "source_url": "https://finance.yahoo.com/sectors/healthcare/articles/axoft-secures-55m-series-advance-133000078.html",
             "scope": "bci",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
@@ -2285,7 +2289,8 @@
             "note": "ONWARD Medical announced €40.6m gross proceeds from an institutional private placement, including a €25m investment from EQT Life Sciences. This is the final April 16 announced result of the April 15 bookbuild; settlement was expected April 20. Historical USD estimate: approximately $47.83m using the ECB 2026-04-16 reference rates. The conversion uses the dated disclosure as a comparison basis; the cash receipt date is undisclosed.",
             "source_url": "https://ir.onwd.com/static-files/72b4e1a8-b8fd-40a8-973b-7d0ff0814480",
             "scope": "broader",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
@@ -2314,7 +2319,8 @@
             "note": "RMB 150m Angel financing, co-led by Guosheng Capital and Dalton Venture, for non-invasive ultrasound BCI development. TechCrunch reports $21.6m and dates its article March 11 in Pacific time; the company dates the matching announcement March 12 in China. The separately reported valuation is a company-value estimate.",
             "source_url": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
             "scope": "bci",
-            "date_basis": "reported"
+            "date_basis": "reported",
+            "capital_treatment": ""
           }
         },
         {
@@ -2343,7 +2349,8 @@
             "note": "$10.3m Series B1 led by Genesys Capital, with Cleveland Clinic and JobsOhio Ventures participating, to advance DBS-enabled stroke rehabilitation. The company’s August 2023 Series B announcement described $17.6m of committed capital; the funded amount and relationship to B1 remain undisclosed.",
             "source_url": "https://www.prnewswire.com/news-releases/enspire-dbs-therapy-announces-10-3-million-series-b1-financing-to-advance-pivotal-development-of-dbs-enabled-stroke-rehabilitation-302659081.html",
             "scope": "broader",
-            "date_basis": "announcement"
+            "date_basis": "announcement",
+            "capital_treatment": ""
           }
         },
         {
