@@ -1,0 +1,40 @@
+{
+  "url": "http://127.0.0.1:35174/methodology",
+  "sourceRevision": "3202e164938577821e745fb8fc10e8d59fbf2ab4",
+  "records": [
+    {
+      "viewport": 1440,
+      "title": "Sources & methodology",
+      "firstSection": "data-gathering",
+      "firstHeading": "How data is gathered",
+      "removed": true,
+      "oldSection": false,
+      "sourceLinks": 620,
+      "categories": 6,
+      "contribution": true,
+      "width": {
+        "inner": 1440,
+        "client": 1425,
+        "scroll": 1425
+      },
+      "gap": 32
+    },
+    {
+      "viewport": 390,
+      "title": "Sources & methodology",
+      "firstSection": "data-gathering",
+      "firstHeading": "How data is gathered",
+      "removed": true,
+      "oldSection": false,
+      "sourceLinks": 620,
+      "categories": 6,
+      "contribution": true,
+      "width": {
+        "inner": 390,
+        "client": 390,
+        "scroll": 390
+      },
+      "gap": 32
+    }
+  ]
+}

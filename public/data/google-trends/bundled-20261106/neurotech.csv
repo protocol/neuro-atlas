@@ -1,5 +1,5 @@
 # Google Trends; Worldwide; Web Search; All categories; 2023-11-06 to 2026-11-06; captured 2026-11-06T09:07:36.676206+00:00
-# Joint normalization for the two search terms; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest.
+# Joint normalization for the two search terms; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks.
 week_start_utc,neurotechnology,brain-computer interface,partial
 2023-11-05,3,1,true
 2023-11-12,4,2,false

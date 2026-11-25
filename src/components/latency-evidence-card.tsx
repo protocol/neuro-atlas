@@ -3,7 +3,7 @@ import { ModalReading, ModalSources, ModalTable } from "@/components/chart-modal
 import { TRANSLATION_EVIDENCE as evidence, reportInterval, translationPlot } from "@/lib/field-velocity/translation-evidence";
 
 const intervalContext: Record<string, string> = {
-  'neurotrophic-cone': 'First listed NE implant: December 4, 1996; June 1, 1998 is publication. Earlier rat work is documented, so the starting point is the selected 1992 report.',
+  'neurotrophic-cone': 'First listed neurotrophic electrode (NE) implant: December 4, 1996; June 1, 1998 is the publication date. Earlier rat work is documented; the interval starts at the selected 1992 report.',
   'utah-braingate': 'Selected 2002 functional publication to the first BrainGate implant in June 2004. Blackrock belongs to this Utah/BrainGate device lineage.',
   'stentrode': 'February 2016 paper to the August 2019 implant; the public announcement followed in September.',
   'neuralink': 'Report precision: April 2021. Page metadata says April 18; the historical April 8 date remains unresolved. Human implant: January 2024. Earlier rodent and pig disclosures date to 2019 and 2020.',

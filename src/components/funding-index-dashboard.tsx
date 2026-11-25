@@ -142,7 +142,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
     <div>
       <section data-funding-toolbar className="sticky top-0 z-30 -mx-5 mt-8 border-y border-border bg-background/95 px-5 py-2 backdrop-blur-md sm:-mx-7 sm:px-7 sm:py-4 lg:-mx-9 lg:px-9">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-2 sm:flex sm:flex-wrap sm:gap-3 xl:justify-between">
-          <div className="inline-flex w-fit rounded-full border border-border bg-nav p-0.5" aria-label="Index lens">
+          <div className="inline-flex w-fit rounded-full border border-border bg-nav p-0.5" aria-label="Funding view">
             {(["companies", "investors"] as PrimaryView[]).map((view) => (
               <button
                 key={view}
@@ -335,7 +335,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                     </button>
                   );
                 })}
-                {rows.length === 0 && <div className="px-6 py-20 text-center text-sm text-muted">No companies match these filters.</div>}
+                {rows.length === 0 && <div className="px-6 py-20 text-center text-sm text-muted">Try another company name or filter.</div>}
               </div>
               <div className="flex flex-wrap items-center gap-5 border-t border-border bg-nav/40 px-5 py-3 text-xs text-muted">
                 <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full bg-accent align-middle" />Financing (width scales with disclosed amount)</span>
@@ -420,7 +420,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
 
           <div className="mt-10 grid gap-5 border-t border-border pt-8 lg:grid-cols-[1fr_1fr]">
             <div>
-              <div className="text-xs font-bold text-muted">Screen</div>
+              <div className="text-xs font-bold text-muted">Company criteria</div>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{data.methodology.scope}</p>
             </div>
             <div>

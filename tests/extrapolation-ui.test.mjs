@@ -141,11 +141,11 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
     const lastTusz = dialog.querySelector('[data-curve-point="tusz-scalp-eeg:2020-05-09"]');
     assert.equal(model.getAttribute('points').split(' ')[0], `${lastTusz.getAttribute('cx')},${lastTusz.getAttribute('cy')}`);
     const summary = dialog.querySelector('[data-extrapolation-summary]');
-    assert.match(summary.textContent, /TUSZ corpus-only scenario — not worldwide human data/);
+    assert.match(summary.textContent, /TUSZ corpus-only scenario/);
     assert.match(summary.textContent, /8.*2017.*2020/);
-    assert.match(summary.textContent, /overlapping.*not summed/);
+    assert.match(summary.textContent, /separate, overlapping corpus snapshots/);
     assert.match(summary.textContent, /plateaus/i);
-    assert.match(summary.textContent, /Worldwide human-data ETA unavailable/);
+    assert.match(summary.textContent, /worldwide human-data arrival date remains unknown/);
     assert.doesNotMatch(summary.textContent, /mixed.species|neuron count|7-year literature/);
     for (const label of dialog.querySelectorAll('[data-crossing-label]')) assert.match(label.textContent, /TUSZ corpus-only · ≈20(?:29|43)/);
     assert.match(summary.textContent, /100,000 h/);
@@ -158,7 +158,7 @@ test('hours opt-in switches to log scale, keeps TUSZ-only dates scoped, suppress
       assert.equal(dialog.querySelector('[data-extrapolation-line]'), null);
       assert.equal(dialog.querySelectorAll('[data-curve-point]').length, 1);
       assert.equal(dialog.querySelectorAll('[data-source-observation]').length, 11);
-      assert.match(dialog.querySelector('[data-extrapolation-summary]').textContent, /insufficient comparable history/i);
+      assert.match(dialog.querySelector('[data-extrapolation-summary]').textContent, /A fit requires comparable observations at three or more distinct dates, positive finite values and a positive growth rate\. The selected data fall short of these requirements/);
       assert.doesNotMatch(dialog.querySelector('[data-extrapolation-summary]').textContent, /≈2029|≈2043|Doubling time/);
       for (const [key, coordinate] of Object.entries(coordinates())) assert.deepEqual(coordinate, onCoordinates[key], 'Filtering keeps axes fixed');
     }
@@ -190,7 +190,7 @@ test('hours scenarios expose the old flat tail beside the chart and remove optim
   assert.equal(select.selectedOptions[0].textContent,'Expansion resumes');
   await act(async()=>{select.value='plateau';select.dispatchEvent(new Event('change',{bubbles:true}));});
   assert.match(dialog.querySelector('[data-fit-diagnostics]').textContent,/N\/A.*constant values/);
-  assert.ok([...dialog.querySelectorAll('[data-crossing-label]')].every(e=>e.textContent.includes('not reached if plateau continues')));
+  assert.ok([...dialog.querySelectorAll('[data-crossing-label]')].every(e=>e.textContent.includes('above the continued plateau')));
   assert.doesNotMatch(dialog.querySelector('[data-extrapolation-summary]').textContent,/≈2029|≈2043|Infinity/);
   await click(dialog.querySelector('[role="switch"]'));
   assert.equal(svgSha(dialog.querySelector('svg')),baseline['neural-recording-hours']);

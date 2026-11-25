@@ -52,7 +52,7 @@ test('channel-count frontier is only a noninteractive coming-soon chart in the P
     assert.match(placeholder.textContent, /Channel count frontier/);
     assert.match(placeholder.textContent, /Coming soon/);
     assert.match(placeholder.textContent, /human/);
-    assert.match(placeholder.textContent, /not.*neurons/i);
+    assert.match(placeholder.textContent, /Channels count recording inputs; neuron counts require separate measurements\./);
     assert.ok(placeholder.querySelector('.pc-placeholder-preview svg[aria-hidden="true"]'));
     assert.ok(placeholder.querySelector('.pc-coming-soon-label'));
     assert.equal(placeholder.querySelectorAll('a, button, [tabindex], [data-curve-point], [data-source-observation]').length, 0);

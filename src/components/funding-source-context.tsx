@@ -12,7 +12,7 @@ export function FundingSourceContext({ source }: { source: unknown }) {
   return (
     <section id="source-context" aria-labelledby="source-context-heading" className="mt-8 scroll-mt-6 rounded-xl border border-border p-5">
       <h2 id="source-context-heading" className="text-base font-semibold">Funding source context</h2>
-      <p className="mt-1 text-sm text-muted">References citing this source, with their evidence role. The full dashboard remains below.</p>
+      <p className="mt-1 text-sm text-muted">Company records citing this source, grouped by the fact it supports. The full dashboard is below.</p>
       <ul className="mt-4 space-y-4">
         {matches.map(({ company, website, founding, rounds, milestones }) => (
           <li key={company.slug} className="space-y-2 border-t border-border pt-4 first:border-t-0 first:pt-0">
@@ -25,15 +25,15 @@ export function FundingSourceContext({ source }: { source: unknown }) {
               )}
               {founding && company.founding && (
                 <li className="space-y-2">
-                  <p className="font-medium">{company.founding.year === null ? "Founding year not established" : `Founded ${company.founding.year}`}</p>
+                  <p className="font-medium">{company.founding.year === null ? "Founding year: unverified" : `Founded ${company.founding.year}`}</p>
                   <p>{company.founding.note}</p>
-                  <a href={company.founding.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (founding evidence)</a>
+                  <a href={company.founding.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Founding-year source</a>
                 </li>
               )}
               {rounds.map((round, index) => (
                 <li key={`round-${index}`} className="space-y-2">
                   {isSource(round.sourceUrl) && <>
-                    <p className="font-medium">Round evidence · {round.stage} · {round.displayAmount ?? formatCapital(round.amountUsdM)}</p>
+                    <p className="font-medium">Financing record · {round.stage} · {round.displayAmount ?? formatCapital(round.amountUsdM)}</p>
                     <p className="text-xs text-muted">
                       {round.dateBasis === "event" ? "Event date" : round.dateBasis === "announcement" ? "Announced" : round.dateBasis === "reported" ? "Reported" : "Date unverified"}{" "}
                       <time dateTime={round.datePrecision === "month" ? round.announcedOn.slice(0, 7) : round.datePrecision === "year" ? round.announcedOn.slice(0, 4) : round.announcedOn}>
@@ -41,14 +41,14 @@ export function FundingSourceContext({ source }: { source: unknown }) {
                       </time>
                     </p>
                     {round.note && <p>{round.note}</p>}
-                    <a href={round.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (round evidence)</a>
+                    <a href={round.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Financing source</a>
                   </>}
                   {round.investorEvidence?.filter((evidence) => isSource(evidence.sourceUrl)).map((evidence, evidenceIndex) => (
                     <div key={evidenceIndex} className="space-y-2">
-                      <p className="font-medium">Named-investor evidence · {evidence.investorName}</p>
+                      <p className="font-medium">Investor participation · {evidence.investorName}</p>
                       <blockquote>{evidence.sourceExcerpt}</blockquote>
-                      <p className="text-xs text-muted">Supports investor inclusion, not the indexed round amount.</p>
-                      <a href={evidence.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (named-investor evidence)</a>
+                      <p className="text-xs text-muted">This source supports the named investor’s participation. The indexed financing amount has its own source.</p>
+                      <a href={evidence.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Investor participation source</a>
                     </div>
                   ))}
                 </li>
@@ -63,7 +63,7 @@ export function FundingSourceContext({ source }: { source: unknown }) {
                     </time>
                   </p>
                   <p>{milestone.note}</p>
-                  <a href={milestone.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (regulatory milestone evidence)</a>
+                  <a href={milestone.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Regulatory milestone source</a>
                 </li>
               ))}
             </ul>

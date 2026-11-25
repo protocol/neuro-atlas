@@ -39,7 +39,7 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
   if (plotId === "public-data-size") return {
     toggleLabel: "Whole-brain scale",
     scopeLabel: `Model: ${sampling} nm · 8-bit raw`,
-    disclosure: `Whole-brain image-equivalent capacity scenarios. ${volumeBasis} ${imageBasis} Stored compressed public resources have heterogeneous resolution, encoding and included products; modeled image capacity is separate from connectome completion.`,
+    disclosure: `Whole-brain image-equivalent capacity scenarios. ${volumeBasis} ${imageBasis} The model describes raw image capacity at the stated sampling. Stored compressed public resources use different resolutions, encodings and included products; reconstruction completeness varies.`,
     sources: [mouseSource, volumeSource, samplingSource, macaqueSource],
     references: Object.entries(BRAIN_IMAGE_MODEL.volumesMm3).map(([id, volumeMm3]) => {
       const value = brainImageVoxels(volumeMm3) * BRAIN_IMAGE_MODEL.bytesPerVoxel / 1e15;
@@ -49,7 +49,7 @@ export function brainBenchmarkContext(plotId: string): BrainBenchmarkContext | u
   if (plotId === "acquisition-economics") return {
     toggleLabel: "Human-brain reference ($1B)",
     scopeLabel: `Human · ${sampling} nm · image-only`,
-    disclosure: `Single illustrative $1B human-brain acquisition scenario. Human volume ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³ at dense ${sampling} nm sampling gives 1.875×10²¹ voxels (~1.9 sextillion). Target voxels/$ = human voxels ÷ budget = 1.875×10¹² voxels/$. Image acquisition only; excludes preparation, reconstruction, proofreading and storage. Optical and EM scopes and resolutions differ; this is not a matched whole-brain project budget.`,
+    disclosure: `Single illustrative $1B human-brain acquisition scenario. Human volume ${number(BRAIN_IMAGE_MODEL.volumesMm3.human)} mm³ at dense ${sampling} nm sampling gives 1.875×10²¹ voxels (~1.9 sextillion). Target voxels/$ = human voxels ÷ budget = 1.875×10¹² voxels/$. Preparation, reconstruction, proofreading and storage add costs beyond this image-acquisition scenario. Optical and EM methods use different scopes and resolutions.`,
     sources: [volumeSource, samplingSource],
     references: [1e9].map(budget => {
       const value = brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human) / budget;

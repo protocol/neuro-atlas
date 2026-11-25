@@ -27,7 +27,7 @@ test('speech uses 1 assumed bit/character and 5 assumed characters/word while ha
       assert.doesNotMatch(row.calculation, /log2\(28\)/);
       assert.match(row.calculation, /context-dependent English-entropy model/);
     }
-    assert.match(row.calculation, /No (extra )?error (adjustment|penalty)/);
+    assert.match(row.calculation, /conversion retains the gross rate/);
     assert.doesNotMatch(row.calculation, /16\.06|2\.6|technical report/);
     assert.equal(row.nativeRateValue, point.nativeSource.rate.value);
     assert.equal(row.nativeRateUnit, point.nativeSource.rate.unit);
@@ -45,7 +45,7 @@ test('speech uses 1 assumed bit/character and 5 assumed characters/word while ha
 test('three selected text papers expose their native inputs and evaluation conditions', () => {
   const selected = [
     { suffix: '2015-lower', name: /Bacher/, value: 9.4, unit: 'correct characters/minute', expected: 9.4 * bits / 60, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4426256/#F3', date: '2014-11-10', task: /radial.*completion off/i, title: 'Neural point-and-click communication by a person with incomplete locked-in syndrome' },
-    { suffix: '2016', name: /Vansteensel/, value: 33, unit: 'seconds/letter', expected: bits / 33, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/', date: '2016-11-12', task: /scanning.*prediction/i, title: 'Fully Implanted Brain–Computer Interface in a Locked-In Patient with ALS' },
+    { suffix: '2016', name: /Vansteensel/, value: 33, unit: 'seconds/letter', expected: bits / 33, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5326682/', date: '2016-11-12', task: /Prediction-assisted scanning ECoG brain-click spelling/i, title: 'Fully Implanted Brain–Computer Interface in a Locked-In Patient with ALS' },
     { suffix: '2018', name: /Milekovic.*Sarma/, value: 6.88, unit: 'correct characters/minute', expected: 6.88 * bits / 60, url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6093965/#F0008', date: '2018-04-25', task: /T6.*FlashSpeller.*completion/i, title: 'Stable long-term BCI-enabled communication in ALS and locked-in syndrome using LFP signals' },
   ];
   for (const selection of selected) {
@@ -59,7 +59,7 @@ test('three selected text papers expose their native inputs and evaluation condi
     assert.match(row.task, selection.task);
     assert.equal(row.basisLabel, 'PL R&D estimate');
     assert.match(row.calculation, /log2\(28\)/);
-    assert.match(row.calculation, /No (extra )?error (penalty|adjustment)/);
+    assert.match(row.calculation, selection.suffix === '2016' ? /WER\/CER factors are omitted from the conversion/ : /Correct CPM includes correction time, so the conversion uses that rate directly/);
     assert.equal(point.sourceUrl, selection.url);
     assert.ok(point.sourceTitle.includes(selection.title));
     assert.match(point.label, selection.name);
@@ -165,14 +165,14 @@ test('the reader method distinguishes speech English-entropy and retained symbol
   assert.match(note, /normalization convention/);
   assert.match(note, /word.length.*assumptions/i);
   assert.match(note, /finite.codebook equivalent/i);
-  assert.match(note, /not.*(actual|task).*keyboard/i);
-  assert.match(note, /not.*English entropy/i);
-  assert.match(note, /not.*8.bit storage/i);
+  assert.match(note, /chosen modeling alphabet; task keyboards vary/i);
+  assert.match(note, /Measured English entropy and 8-bit storage use different definitions/i);
+  assert.match(note, /Measured English entropy and 8-bit storage use different definitions/i);
   assert.match(note, /correlations.*language.model/i);
-  assert.match(note, /not.*measured neural/i);
-  assert.match(note, /No extra WER\/CER penalty/);
+  assert.match(note, /estimates describe task output under these different forms of assistance/i);
+  assert.match(note, /Speech and handwriting conversions retain gross pace, with WER\/CER reported separately/);
   assert.match(note, /correct.*correction time/i);
-  assert.match(note, /gross.*(speech|handwriting)/i);
+  assert.match(note, /Speech and handwriting conversions retain gross pace/i);
   assert.match(note, /fit.*9.*text.*5.*context.*excluded/i);
   const activeCopy = [note, data.BCI_BITRATE_CHART.definition, data.BCI_BITRATE_EVIDENCE.summary, data.BCI_BITRATE_EVIDENCE.gapReason, ...plot.points.map(p => p.note)].join(' ');
   assert.doesNotMatch(activeCopy, /16\.06|6\.18|four anonymous.*unavailable/i);

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { beforeScientificCopy } from './helpers/sitewide-copy-scientific.mjs';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { JSDOM } from 'jsdom';
@@ -103,7 +104,7 @@ test('BrainGate compatibility normalization removes only the exact additive chec
   assert.equal(typeof helpers.beforeBrainGateAddition, 'function');
   const original = structuredClone(METRIC_CHART_EVIDENCE);
   const normalized = helpers.beforeBrainGateAddition(METRIC_CHART_EVIDENCE);
-  const before = original[title].plots[0];
+  const before = beforeScientificCopy(original)[title].plots[0];
   const after = normalized[title].plots[0];
   assert.deepEqual(after.points, before.points.slice(0, -1));
   assert.deepEqual(after.legend, before.legend.slice(0, -1));

@@ -36,7 +36,7 @@ test("Science's November 17 Series D appears once in both canonical datasets and
     ["science-corporation", "2026-11-17", "day", "announcement", "Series D", 400, "primary", "2026-11-17"],
   );
   assert.deepEqual(round.investors, ["Khosla Ventures", "Ackman Oxman Institute", "Tenet Healthcare", "885 Capital", "Y Combinator", "PLC Neurotech"]);
-  assert.match(round.note, /more than \$900m.*cumulative.*not indexed/i);
+  assert.match(round.note, /more than \$900m.*separate cumulative figure; the indexed amount covers this Series D round/i);
   assert.equal(index.rounds.filter((row) => row.companySlug === "science-corporation").length, 3);
   assert.equal(index.rounds.filter((row) => row.companySlug === "science-corporation").reduce((sum, row) => sum + row.amountUsdM, 0), 734);
   const funding = await readJson("src/data/funding-index.json");
@@ -64,8 +64,8 @@ test("Merge's existing seed retains its amount and date semantics while recordin
   assert.match(source.note, /WIRED reports \$252 million/);
   assert.match(source.note, /PL Capital.*\$250M\+/);
   assert.match(source.note, /TechCrunch.*\$250 million/);
-  assert.match(source.note, /(?:check size|checksize).*not disclosed/i);
-  assert.match(source.note, /(?:legal |investment )?vehicle.*not disclosed/i);
+  assert.match(source.note, /check size and investment vehicle are undisclosed/i);
+  assert.match(source.note, /investment vehicle are undisclosed/i);
   const index = buildFundingIndex(sources);
   const round = index.rounds.find((row) => row.companySlug === "merge-labs");
   assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital"]);

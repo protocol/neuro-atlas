@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { DraftChartPlotBeforeAxisCopy } from './helpers/sitewide-copy-svg.mjs';
 import assert from 'node:assert/strict';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -94,7 +95,7 @@ test('BCI local sensory context plots a qualified sourced retinal scenario, then
     assert.ok(assumptions.querySelector('a[href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/"]'));
     assert.match(assumptions.textContent, /875,000.*1,000,000.*100,000.*8,750,000/s);
     assert.match(assumptions.textContent, /independent.*correlation/s);
-    assert.match(assumptions.textContent, /not a direct human measurement.*capacity.*BCI target/s);
+    assert.match(assumptions.textContent, /estimates retinal sensory output under those assumptions; human channel capacity and task-specific BCI communication rates have different measurement bases/s);
     assert.equal(svg.querySelectorAll('[data-source-observation]').length, plot.points.length);
     assert.equal(svg.querySelectorAll('[data-annotation-key]').length, 14);
     assert.equal(normalize(document.querySelector('[data-draft-preview] svg')), preview);
@@ -160,7 +161,8 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   const plots = [...new Map(Object.values(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
-    const markup = renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }));
+    const renderer = plot.id === 'neuroai-imagenet' ? DraftChartPlotBeforeAxisCopy : DraftChartPlot;
+    const markup = renderToStaticMarkup(React.createElement(renderer, { plot, preview }));
     let svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
     assert.ok(svg, plot.id);
     // The ERL disclosure adds only these exact interaction attributes. Keep all

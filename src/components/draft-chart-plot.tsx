@@ -357,7 +357,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       })) : plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
       })) : undefined,
-      pointKeyNote: recordingPoints.length ? "Recording coverage · matched dataset/release; overlapping releases not additive" : plot.exportPointKey ? plot.exportPointKeyNote : undefined,
+      pointKeyNote: recordingPoints.length ? "Recording coverage · counts matched to each dataset/release; releases overlap" : plot.exportPointKey ? plot.exportPointKeyNote : undefined,
       pointKeyScaleNote: recordingPoints.length ? `Linear bars (largest displayed figures): ${hoursReference}; ${peopleReference}. Arrows mark lower bounds.` : undefined,
       notes: [plot.scope, plot.seriesNote ?? "",
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
@@ -450,7 +450,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition rates, not a forecast. Method resolutions, scope and cost definitions differ.</p>}
+    {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition-efficiency estimates at each method’s resolution, scope and cost definition.</p>}
     {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">{acquisition && acquisitionMetric === "dollars-per-voxel" ? "SI dollar ticks: n$ = nanodollars · p$ = picodollars · f$ = femtodollars · a$ = attodollars" : acquisition ? "M = million · B = billion · T = trillion · Q = quadrillion; scientific notation above 10¹⁵" : "M = million · B = billion · T = trillion · Q = quadrillion"}</p>}
 
     {benchmark && <div className="brain-scale-controls">
@@ -488,7 +488,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     </li>)}</ul>}
     {!preview && recordingPoints.length > 0 && <section className="recording-coverage" data-recording-coverage-list aria-label="Recording duration and participant coverage">
       <h4>Recording coverage</h4>
-      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Equal contributor counts produce equal bars even when sessions or averages differ. Contributor counts compare individuals, not recording quality. Overlapping releases are not additive.</p>
+      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Equal contributor counts produce equal bars even when sessions or averages differ. Contributor bars show the number of individuals; recording quality varies by dataset. Releases overlap.</p>
       <p className="recording-bar-legend">{hoursReference} · {peopleReference}</p>
       <ul>{recordingPoints.map(point => <li key={point.id} data-recording-coverage-row={point.id}>
         <button type="button" {...inspectProps(point, false)}>

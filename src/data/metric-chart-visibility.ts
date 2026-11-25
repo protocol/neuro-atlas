@@ -21,7 +21,7 @@ const recordingHoursPlot: DraftPlot = {
     ...point, group: point.group ?? plot.title, color: recordingColors[index],
   }))),
   // Successive releases of the same corpus; overlapping releases are not additive.
-  connections: [{ id: "tusz-releases", label: "TUSZ releases (overlapping, not summed)", pointIds: recordingHours.plots.find(plot => plot.id === "tusz-scalp-eeg")!.points.map(point => point.id) }],
+  connections: [{ id: "tusz-releases", label: "TUSZ releases (overlapping corpus snapshots)", pointIds: recordingHours.plots.find(plot => plot.id === "tusz-scalp-eeg")!.points.map(point => point.id) }],
   legend: recordingHours.plots.map((plot, index) => ({ label: plot.title, color: recordingColors[index] })),
 };
 
@@ -64,12 +64,12 @@ const acquisitionEconomics: DraftPlot = {
   previewYLabel: "≈ voxels/$ · log",
   yLabel: "Approx. voxels/$ (log)", valueSignificantDigits: 3,
   scope: "Rough order-of-magnitude author estimates at heterogeneous resolutions, labeling and biological scopes. Acquisition-only cost coverage is unspecified; cross-method performance equivalence is unverified. PEEM is prospective. ExA-SPIM 2024 is an author estimate.",
-  seriesNote: "Table A1 Approx. Voxels/$ values, rather than digitized Figure 2 marks or throughput/hour divided by cost/hour. Figure 2 has TEMCA-GridTape without an exact table row, omits mesoSPIM, and differs for MultiSEM 706. mesoSPIM stays separate from expansion microscopy. PEEM is excluded from the historical EM fit.",
+  seriesNote: "Values reproduce the Approx. Voxels/$ column in Table A1. Figure 2 has TEMCA-GridTape without an exact table row, omits mesoSPIM, and differs for MultiSEM 706. mesoSPIM is a separate optical method. The historical EM fit uses reported technologies; PEEM is prospective.",
   points: acquisitionPoints,
   exportPointKey: true, exportPointKeyNote: "All efficiencies ≈ author estimates; heterogeneous resolution and cost scope. PEEM prospective.",
   legend: [
     {label: "Expansion microscopy · estimates", color: "#9275ca"},
-    {label: "EM · reported-tech estimates", color: "#cd732f"},
+    {label: "EM · reported-technology estimates", color: "#cd732f"},
     {label: "mesoSPIM · optical", color: "#238e91", marker: "diamond"},
     {label: "PEEM · prospective", color: "#cd732f", marker: "triangle"},
   ],
@@ -128,7 +128,7 @@ export function isVisibleMetric(chart: DraftChart) {
 }
 // Retain the existing category DOM IDs while changing reader-facing order and grouping.
 export const METRIC_GROUPS: readonly { id: number; name: string; categories: readonly string[]; preview: string | null; summary: string }[] = [
-  { id: 6, name: "Neurotech field engagement", categories: [], preview: null, summary: "Pace, public attention and revealed commitments." },
+  { id: 6, name: "Neurotech field engagement", categories: [], preview: null, summary: "Research pace, search interest, publication activity and implanted BCI participants." },
   { id: 3, name: "Human interfaces and recordings", categories: ["Human interfaces and recordings"], preview: "Neural recording hours collected over time", summary: "Implanted interfaces, recording capability and neural data supply." },
   { id: 0, name: "Mapping Scale", categories: ["Mapping scale", "Data access and scientific use", "Tissue quality and annotation"], preview: "Open-access connectomics data over time", summary: "Mapped tissue, connectome size, acquisition throughput, paired datasets and open data." },
   { id: 1, name: "Cost and automation", categories: ["Cost and automation"], preview: "Connectomics imaging cost efficiency", summary: "Acquisition cost estimates, reconstruction quality and proofreading effort." },

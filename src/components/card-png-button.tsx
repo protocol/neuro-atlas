@@ -21,6 +21,6 @@ export function CardPngButton({ anchor, title, disabled = false }: { anchor: str
       const image = withCardExport(anchor, getChart => buildChartImage(getChart(), window.location.href));
       copyDeferredChartImage(image).then(() => settle("done"), () => settle("failed"));
     }}>{label}</button>
-    <span role="status" aria-live="polite" className="sr-only">{state === "done" ? "Chart PNG copied." : state === "failed" ? "PNG copy unavailable here. Open the chart to copy or download it." : ""}</span>
+    <span role="status" aria-live="polite" className="sr-only">{state === "done" ? "Chart PNG copied." : state === "failed" ? "PNG copy failed. Open the chart to copy or download it." : ""}</span>
   </span>;
 }

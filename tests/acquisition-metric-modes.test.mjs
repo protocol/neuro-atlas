@@ -104,8 +104,8 @@ test('separate historical rate fits never become a crossing forecast in either q
       await select(mode);
       for(const line of document.querySelectorAll('[data-fit-direct-label]')) assert.match(line.textContent,mode==='voxels-per-dollar'?/2×\/1\.5y/:/cost halves every 1\.5y/);
       assert.equal(document.querySelectorAll('[data-acquisition-extrapolation], [data-acquisition-crossing]').length,0);
-      assert.match(document.querySelector('[data-acquisition-scope]')?.textContent ?? '',/historical.*not.*forecast/i);
-      assert.match(document.querySelector('[data-acquisition-scope]')?.textContent ?? '',/resolutions.*scope.*cost definitions/i);
+      assert.match(document.querySelector('[data-acquisition-scope]')?.textContent ?? '',/Historical acquisition-efficiency estimates/);
+      assert.match(document.querySelector('[data-acquisition-scope]')?.textContent ?? '',/resolution, scope and cost definition/);
       assert.equal(document.querySelectorAll('[data-reference-trendline]').length,2);
       for(const line of document.querySelectorAll('[data-reference-trendline]')) assert.equal(line.getAttribute('stroke-dasharray'),null);
     }
@@ -131,8 +131,8 @@ test('pinned and focused source popups survive rendering in all modes and always
       assert.match(popup.textContent,/Illustrative human-brain acquisition cost/);
       assert.match(popup.textContent,/1\.875×10²¹ voxels.*4×4×40 nm.*1,200,000 mm³/);
       assert.match(popup.textContent,/source-estimated voxels per dollar/i);
-      assert.match(popup.textContent,/excludes preparation, reconstruction, proofreading and storage/);
-      assert.match(popup.textContent,/not a matched whole-brain project budget/);
+      assert.match(popup.textContent,/Preparation, reconstruction, proofreading and storage costs remain additional/);
+      assert.match(popup.textContent,/Optical and EM estimates use different scopes and resolutions/);
       assert.match(popup.textContent,/2024/);
       assert.match(popup.textContent,/author estimate/i);
       assert.match(popup.textContent,/author estimate.*Glaser.*2025/i);

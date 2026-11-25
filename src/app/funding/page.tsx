@@ -8,7 +8,7 @@ import { formatCapital, type FundingIndexData } from "@/lib/funding-index";
 export const metadata = atlasMetadata(
   "/funding",
   "BCI Funding Index · Neuro Atlas",
-  "A screened view of BCI financing rounds, investors, and regulatory milestones.",
+  "Financing rounds, investors, and regulatory milestones for selected BCI companies.",
 );
 
 export default async function FundingPage({
@@ -21,16 +21,16 @@ export default async function FundingPage({
   return (
     <>
       <PlateHero
-        kicker="Capital intelligence"
+        kicker="Funding"
         meta={["V1 · 2026"]}
         title="BCI Funding Index"
-        description={`A screened view of who has financed ${data.summary.selectedCompanies} implanted and implant-adjacent BCI companies — with round history, investor participation, and regulatory inflection points on one plate.`}
+        description={`Financing rounds, investors, and regulatory milestones for ${data.summary.selectedCompanies} implanted and implant-adjacent BCI companies selected for the index.`}
         status="partial"
         stats={[
           { value: String(data.summary.selectedCompanies), label: "selected companies" },
-          { value: formatCapital(data.summary.observedCapitalUsdM), label: "indexed financing · incl. commitments" },
-          { value: String(data.summary.indexedRounds), label: "sourced financings" },
-          { value: String(data.summary.regulatoryMilestones), label: "regulatory markers" },
+          { value: formatCapital(data.summary.observedCapitalUsdM), label: "indexed financing · including commitments" },
+          { value: String(data.summary.indexedRounds), label: "documented financings" },
+          { value: String(data.summary.regulatoryMilestones), label: "regulatory milestones" },
         ]}
       />
       <FundingSourceContext source={source} />

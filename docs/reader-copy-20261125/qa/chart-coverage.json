@@ -1,0 +1,177 @@
+[
+  {
+    "index": 0,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Neurotech search terms",
+    "open": true
+  },
+  {
+    "index": 1,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Citation latency",
+    "open": true
+  },
+  {
+    "index": 2,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Latency compression",
+    "open": true
+  },
+  {
+    "index": 3,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Implanted BCI participants over time",
+    "open": true
+  },
+  {
+    "index": 4,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Neurotech papers per year",
+    "open": true
+  },
+  {
+    "index": 5,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Publication growth by group",
+    "open": true
+  },
+  {
+    "index": 6,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Researchers by publication sector",
+    "open": true
+  },
+  {
+    "index": 7,
+    "id": "",
+    "category": "Neurotech field engagement",
+    "title": "Researchers’ first and latest affiliations",
+    "open": true
+  },
+  {
+    "index": 8,
+    "id": "draft-recording-hours",
+    "category": "Human interfaces and recordings",
+    "title": "Neural recording hours — selected datasets",
+    "open": true
+  },
+  {
+    "index": 9,
+    "id": "draft-implanted-bci-humans",
+    "category": "Human interfaces and recordings",
+    "title": "Selected chronic intracortical recipients",
+    "open": true
+  },
+  {
+    "index": 10,
+    "id": "draft-bci-bitrate",
+    "category": "Human interfaces and recordings",
+    "title": "BCI communication rates over time",
+    "open": true
+  },
+  {
+    "index": 11,
+    "id": "",
+    "category": "Human interfaces and recordings",
+    "title": "Neurons per experiment",
+    "open": true
+  },
+  {
+    "index": 12,
+    "id": "draft-open-access-data",
+    "category": "Mapping Scale",
+    "title": "Selected public image/resource footprints",
+    "open": true
+  },
+  {
+    "index": 13,
+    "id": "draft-brain-tissue-mapped",
+    "category": "Mapping Scale",
+    "title": "Selected tissue-volume checkpoints",
+    "open": true
+  },
+  {
+    "index": 14,
+    "id": "draft-largest-connectome",
+    "category": "Mapping Scale",
+    "title": "Selected published connectomes — neuron counts",
+    "open": true
+  },
+  {
+    "index": 15,
+    "id": "draft-panel-largest-connectome-synapses",
+    "category": "Mapping Scale",
+    "title": "Selected published maps — synapse counts",
+    "open": true
+  },
+  {
+    "index": 16,
+    "id": "draft-imaging-throughput",
+    "category": "Mapping Scale",
+    "title": "Selected EM acquisition rates",
+    "open": true
+  },
+  {
+    "index": 17,
+    "id": "draft-paired-structure-function",
+    "category": "Mapping Scale",
+    "title": "Selected structure–function matches",
+    "open": true
+  },
+  {
+    "index": 18,
+    "id": "draft-imaging-cost-efficiency",
+    "category": "Cost and automation",
+    "title": "Imaging efficiency",
+    "open": true
+  },
+  {
+    "index": 19,
+    "id": "draft-panel-connectomics-roboem-human-split-merge",
+    "category": "Cost and automation",
+    "title": "Human and mouse cortex: split–merge error trade-offs",
+    "open": true
+  },
+  {
+    "index": 20,
+    "id": "draft-proofreading-burden",
+    "category": "Cost and automation",
+    "title": "Reported project proofreading effort",
+    "open": true
+  },
+  {
+    "index": 21,
+    "id": "draft-reconstruction-accuracy",
+    "category": "Cost and automation",
+    "title": "PATHFINDER v1: axon tracing benchmark",
+    "open": true
+  },
+  {
+    "index": 22,
+    "id": "draft-neuroai-frontier",
+    "category": "Simulation and NeuroAI",
+    "title": "NeuroAI performance–cost frontier",
+    "open": true
+  },
+  {
+    "index": 23,
+    "id": "draft-simulation-fidelity",
+    "category": "Simulation and NeuroAI",
+    "title": "FlyVis: correct contrast preference",
+    "open": true
+  },
+  {
+    "index": 24,
+    "id": "draft-connectomics-applications",
+    "category": "Simulation and NeuroAI",
+    "title": "Selected application events",
+    "open": true
+  }
+]

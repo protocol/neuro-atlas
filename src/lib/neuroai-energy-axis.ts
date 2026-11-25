@@ -29,6 +29,6 @@ export function neuroaiEnergyAxis(plot: DraftPlot, left: number, right: number) 
   return {
     segments, x, ticks: ticks.sort((a, b) => a - b),
     center: (segments[0].end + segments[1].start) / 2,
-    note: "X-axis break: 6–40 mJ/image omitted (no observations). Same linear scale on both sides.",
+    note: "X-axis break: the unobserved 6–40 mJ/image range is omitted. Both sides use the same linear scale.",
   };
 }

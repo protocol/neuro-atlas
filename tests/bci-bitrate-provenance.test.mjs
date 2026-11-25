@@ -65,7 +65,7 @@ test('every chart coordinate has an explicit evidence basis rather than calling 
   assert.equal(plot.points.find(p=>p.id==='bci-slide-stentrode').y,0.46);
   assert.equal(plot.points.find(p=>p.id==='bci-slide-neuralink').y,8);
   assert.match(plot.scope, /9.*text-equivalent.*5 context.*2 paper.*1 company.*2 approximate.*unverified/i);
-  assert.match(plot.seriesNote, /not.*(measured neural|common.*benchmark)/i);
+  assert.match(plot.seriesNote, /estimates describe task output under these different forms of assistance/i);
   for (const point of plot.points) assert.doesNotMatch(point.note, /in this worker|Do not|6-bits\/word/, 'Reader-facing notes must not repeat archived research instructions');
 });
 
@@ -87,7 +87,7 @@ test('speech and handwriting conversions replay source-native inputs with their 
     const native = original.observations.find(p=>p.id===row.id).nativeSource;
     assert.equal(row.bps, native.rate.value * 5 / 60);
     assert.match(row.calculation, /5 assumed characters\/word × 1 assumed bit\/character/);
-    assert.match(row.calculation, /No error penalty/);
+    assert.match(row.calculation, /conversion retains the gross rate; the reported error metric is shown separately/);
   }
   const hand = BCI_BITRATE_ROWS.find(r=>r.id==='bci-slide-handwriting');
   assert.equal(hand.bps, 90 * Math.log2(28) / 60);
