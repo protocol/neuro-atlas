@@ -9,7 +9,7 @@ import { mount, click } from './modal-helpers.mjs';
 
 globalThis.React = React;
 const data = JSON.parse(readFileSync(new URL('../src/data/funding-index.json', import.meta.url)));
-const label = 'Excluded from indexed total — conversion overlap unresolved';
+const label = 'Excluded from indexed total — financing overlap unresolved';
 const held = data.rounds.find(r => r.companySlug === 'paradromics' && r.capitalTreatment);
 
 test('the funding timeline and detail show the held 2022 source amount without implying it enters the total', async () => {

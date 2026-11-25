@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 const canonical = require('../src/data/funding-index.json');
 globalThis.React = React;
 const reasons = [
-  ['overlap-unresolved', 'conversion overlap unresolved'],
+  ['overlap-unresolved', 'financing overlap unresolved'],
   ['superseded', 'superseded disclosure'],
   ['scope-unresolved', 'financing scope unresolved'],
 ];
@@ -74,7 +74,7 @@ test('company exclusion counts stay generic for mixed reasons in both total pres
       await click(row);
       const paragraphs = [...document.querySelector('[role="dialog"]').querySelectorAll('p')].filter(item => !item.closest('article'));
       assert.equal(paragraphs.some(item => item.textContent === (reportedTotals.length ? '3 financing records excluded from indexed financing.' : '3 records excluded from total.')), true);
-      assert.equal(paragraphs.some(item => item.textContent.includes('conversion overlap unresolved')), false);
+      assert.equal(paragraphs.some(item => item.textContent.includes('financing overlap unresolved')), false);
       await click(document.querySelector('[aria-label="Close detail panel"]'));
       await click([...document.querySelectorAll('button')].find(item => item.textContent === 'stage'));
       const stageRow = [...document.querySelectorAll('button')].find(item => item.textContent.includes('Fixture'));

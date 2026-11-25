@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 const canonical = require('../src/data/milestones.json');
 globalThis.React = React;
 const treatments = ['overlap-unresolved', 'superseded', 'scope-unresolved'];
-const reasons = ['conversion overlap unresolved', 'superseded disclosure', 'financing scope unresolved'];
+const reasons = ['financing overlap unresolved', 'superseded disclosure', 'financing scope unresolved'];
 const source = (company, date, amount, activity, capital_treatment = '') => milestoneFixture({
   company, date, amount_usd_m: amount, activity, capital_treatment,
   source_url: `https://source.example/${company.toLowerCase().replaceAll(' ', '-')}`,
