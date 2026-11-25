@@ -17,7 +17,7 @@ import { brainBenchmarkContext } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
 import { ACQUISITION_HUMAN_COST_NOTE, ACQUISITION_METRICS, HUMAN_IMAGE_VOXELS, acquisitionAxisTick, acquisitionBenchmark, acquisitionEfficiency, acquisitionMetricPlot, acquisitionNumber, acquisitionValue, supportsAcquisitionMetrics } from "@/lib/acquisition-metric";
 import { observationReferences, observationSourceDescription, type ConfirmedReference } from "@/lib/draft-chart-references";
-import { useAcquisitionMetric, useChartToggle } from "@/lib/field-velocity/navigation";
+import { useAcquisitionMetric, useChartToggle, useNeuronReferences } from "@/lib/field-velocity/navigation";
 import { useBrainScaleMotion } from "./use-brain-scale-motion";
 import { recordingAverages, recordingBar, recordingReferences, validRecordingCount } from "@/data/recording-hours-coverage";
 import { RETINAL_OUTPUT, humanRetinalScenario, retinalScenarioLabel, retinalScenarioAssumptions } from "@/data/sensory-context";
@@ -194,6 +194,9 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   }) : []);
   const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
   const anatomicalReferences = plot.horizontalReferences ?? [];
+  const referenceControls = !preview && plot.id === "largest-connectome-neurons" && anatomicalReferences.length > 0;
+  const [referenceSelection, toggleReference] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
+  const visibleReferences = referenceControls ? anatomicalReferences.filter(ref => referenceSelection.split(",").includes(ref.id)) : anatomicalReferences;
   const compactAnatomy = preview && anatomicalReferences.length > 0;
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
@@ -242,9 +245,9 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
   // Static anatomical context shares the observation axis in both card and modal.
   // A little headroom keeps the largest direct label clear of the upper edge.
-  if (anatomicalReferences.length) {
-    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...anatomicalReferences.map(ref => ref.value)))));
-    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...anatomicalReferences.map(ref => ref.value))) + .15));
+  if (visibleReferences.length) {
+    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...visibleReferences.map(ref => ref.value)))));
+    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...visibleReferences.map(ref => ref.value))) + .15));
   }
   if (maxPower === minPower) maxPower += 1;
   if (showSensory) maxPower = Math.max(maxPower, Math.ceil(Math.log10(humanRetinalScenario) + .15));
@@ -300,7 +303,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     ? (Math.log10(acquisition ? acquisitionEfficiency(value, acquisitionMetric) : value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
   const sensoryLabelY = y(humanRetinalScenario) - 6 - (sensoryLabel.length - 1) * 16;
-  const anatomicalLabels = anatomicalReferences.map((ref, index) => {
+  const anatomicalLabels = visibleReferences.map((ref, index) => {
     const position = y(ref.value);
     const above = position - 6;
     // Labels can extend into the axis gutter on very narrow cards. Keep their
@@ -404,7 +407,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       notes: [plot.scope, plot.seriesNote ?? "",
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
         ...referenceTrendlines.map(line => line.note),
-        ...anatomicalReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),
+        ...visibleReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),
 
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(showSensory ? [retinalScenarioAssumptions, `Koch et al. (2006): ${RETINAL_OUTPUT.source}`] : []),
@@ -420,6 +423,14 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{compactAnatomy ? "Neuron counts" : preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
+    {referenceControls && <section className="brain-scale-controls neuron-reference-controls">
+      <p>Whole-brain references</p>
+      <div className="brain-scale-controls neuron-reference-options" role="group" aria-label="Whole-brain references">
+        {anatomicalReferences.map(ref => <button key={ref.id} type="button" role="switch" data-neuron-reference-toggle={ref.id}
+          aria-checked={visibleReferences.includes(ref)} onClick={() => { tooltip.clear(); toggleReference(ref.id); }}>
+          <span className="brain-scale-switch" aria-hidden="true" />{ref.label.split(" ")[0]}</button>)}
+      </div>
+    </section>}
     {acquisition && !preview && <div className="brain-scale-controls acquisition-metric-controls">
       <div className="acquisition-metric-options" role="group" aria-label="Acquisition y-axis metric">
         {ACQUISITION_METRICS.map(option => <button key={option.id} type="button" data-acquisition-metric={option.id}
@@ -434,7 +445,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         {yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}
       </text>
       {costMetric && <text data-cheaper-direction x={0} y={fitLabelTop - 20} fill="var(--muted)" fontSize={CHART_PRESENTATION.labelFontSize}>↑ cheaper</text>}
-      {!preview && anatomicalReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill="var(--muted)"
+      {!preview && visibleReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill="var(--muted)"
         fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>Anatomical scale</text>}
       {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
         <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
@@ -606,7 +617,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       <summary>Data and sources ({plot.points.length})</summary>
       {!modalSlots && <p className="draft-plot-scope">{plot.scope}</p>}
       {!modalSlots && <AnatomicalSources references={anatomicalReferences} />}
-      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
+      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(referenceControls ? { ...plot, visibleNeuronReferences: visibleReferences.map(ref => ref.id) } : plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {acquisition && <p><a data-source-plot-json download={`neuro-atlas-${plot.id}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download original source data &amp; fits JSON (voxels/$)</a></p>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}

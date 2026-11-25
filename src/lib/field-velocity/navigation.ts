@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery, type AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 import { fieldVelocityLink, canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
+import { ALL_NEURON_REFERENCES, NEURON_REFERENCE_IDS, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from "@/lib/neuron-reference-url";
 
 export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink", "revealed_commitments", "publication-output", "publication-growth", "researcher-sectors", "researcher-sector-changes"] as const;
 const changedEvent = "atlas-performance-location";
@@ -29,6 +30,9 @@ export function performanceUrl(currentUrl: string, anchor: string) {
     if (query !== toggle?.query || !chartToggleEnabled(url, anchor)) url.searchParams.delete(query);
   }
   if (acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar") url.searchParams.delete(acquisitionMetricQuery);
+  const neuronRefs = neuronReferenceToken(neuronReferencesFromUrl(url, anchor));
+  if (neuronRefs) url.searchParams.set(neuronReferenceQuery, neuronRefs);
+  else url.searchParams.delete(neuronReferenceQuery);
   url.hash = canonicalPerformanceAnchor(anchor);
   return url.href;
 }
@@ -126,7 +130,9 @@ function canonicalizePerformanceLocation() {
   const clearMetric = url.searchParams.has(acquisitionMetricQuery) && acquisitionMetricFromUrl(url, anchor) === "voxels-per-dollar";
   const clearReference = performanceTarget(anchor) === "metric-panel-acquisition-economics"
     && acquisitionMetricFromUrl(url, anchor) === "dollars-per-voxel" && url.searchParams.has("brainScale");
-  if (link && (anchor !== link.slug || clearMetric || clearReference)) {
+  const clearNeuronRefs = url.searchParams.has(neuronReferenceQuery)
+    && url.searchParams.getAll(neuronReferenceQuery).join(";") !== neuronReferenceToken(neuronReferencesFromUrl(url, anchor));
+  if (link && (anchor !== link.slug || clearMetric || clearReference || clearNeuronRefs)) {
     window.history.replaceState(window.history.state, "", performanceUrl(window.location.href, anchor));
   }
 }
@@ -168,4 +174,23 @@ export function useAcquisitionMetric(anchor?: string) {
     window.dispatchEvent(new Event(changedEvent));
   };
   return [metric, setMetric] as const;
+}
+
+/** Independent reference switches use the same history/subscription as other chart views. */
+export function useNeuronReferences(anchor?: string) {
+  const selection = useSyncExternalStore(subscribe,
+    () => anchor ? neuronReferencesFromUrl(new URL(window.location.href), anchor) : ALL_NEURON_REFERENCES,
+    () => ALL_NEURON_REFERENCES);
+  const toggleReference = (id: string) => {
+    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget || !NEURON_REFERENCE_IDS.some(known => known === id)) return;
+    const url = new URL(performanceUrl(window.location.href, anchor));
+    const current = neuronReferencesFromUrl(url, anchor).split(",");
+    const next = NEURON_REFERENCE_IDS.filter(known => known === id ? !current.includes(known) : current.includes(known)).join(",") || "none";
+    const token = neuronReferenceToken(next);
+    if (token) url.searchParams.set(neuronReferenceQuery, token);
+    else url.searchParams.delete(neuronReferenceQuery);
+    window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+    window.dispatchEvent(new Event(changedEvent));
+  };
+  return [selection, toggleReference] as const;
 }
