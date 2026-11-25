@@ -3,8 +3,8 @@ import {atlasPath} from './atlas-path';
 import type {PublicFeedbackConfig, PublicFeedbackInput, PublicFeedbackReceipt} from './feedback-public/contracts';
 
 export class PublicFeedbackError extends Error {}
-const unavailable = () => new PublicFeedbackError('Could not confirm feedback was saved. Your draft is still here; try again.');
-const safeError = (status: number) => new PublicFeedbackError(({400:'Feedback could not be accepted. Your draft is still here; check it before retrying.',409:'Could not confirm this feedback. Your draft is still here; retry the unchanged note or contact the site team.',413:'Feedback is too long. Your draft is still here; shorten it before retrying.',429:'Feedback is temporarily limited. Your draft is still here; try again shortly.'} as Record<number, string>)[status] ?? unavailable().message);
+const unavailable = () => new PublicFeedbackError('The save could not be confirmed. Your draft is still here. Try again.');
+const safeError = (status: number) => new PublicFeedbackError(({400:'Feedback could not be accepted. Your draft is still here; check it before retrying.',409:'The save could not be confirmed. Your draft is still here. Retry the unchanged note or contact the site team.',413:'Feedback is too long. Your draft is still here; shorten it before retrying.',429:'Feedback is temporarily limited. Your draft is still here; try again shortly.'} as Record<number, string>)[status] ?? unavailable().message);
 
 export class PublicFeedbackClient {
   private readonly win: Window;

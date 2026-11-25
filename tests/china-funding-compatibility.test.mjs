@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { restoreMerged151Copy } from './helpers/sitewide-copy-baseline.mjs';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -41,7 +42,7 @@ test('every reviewed current file reconstructs the exact pinned historical bytes
   for (const entry of CHINA_FUNDING_DELTA.files) {
     const file = new URL('../' + entry.path, import.meta.url);
     const current = await readFile(file, 'utf8');
-    assert.equal(sha256(current), entry.afterSha256, entry.path + ': complete reviewed candidate bytes');
+    assert.equal(sha256(restoreMerged151Copy(current, entry.path)), entry.afterSha256, entry.path + ': complete reviewed merged-151 bytes');
     assert.equal(sha256(readHistoricalFileSync(file, 'utf8')), entry.beforeSha256, entry.path + ': exact original bytes, not a refreshed golden');
   }
 });

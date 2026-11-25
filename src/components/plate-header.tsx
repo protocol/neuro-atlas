@@ -1,7 +1,7 @@
 const STATUS: Record<string, { label: string; cls: string }> = {
   live: { label: "Live", cls: "bg-white/12 text-white" },
   partial: { label: "Partial public coverage", cls: "bg-white/12 text-white" },
-  planned: { label: "Coming soon", cls: "bg-white/12 text-white" },
+  planned: { label: "Planned", cls: "bg-white/12 text-white" },
 };
 
 export type PlateStat = { value: string; label: string };

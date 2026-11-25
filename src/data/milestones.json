@@ -8,7 +8,7 @@
     "date": "2026-01-15",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Boston Scientific announced a definitive agreement to acquire Penumbra at approximately $14.5b enterprise value ($374/share in cash and stock). This is an agreement, not a completed acquisition or capital raised.",
+    "note": "Boston Scientific announced a definitive agreement to acquire Penumbra at approximately $14.5b enterprise value ($374/share in cash and stock). The plotted value covers the acquisition agreement.",
     "sourceUrl": "https://news.bostonscientific.com/2026-01-15-Boston-Scientific-announces-agreement-to-acquire-Penumbra,-Inc",
     "logo": "/logos/penumbra.png",
     "scope": "broader"
@@ -22,7 +22,7 @@
     "date": "2026-01-15",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Seed raise of $252m with OpenAI participating (the dollar on the lane). Reported ~$850m valuation is a separate figure and is not plotted. Company came out of stealth the same day",
+    "note": "Seed raise of $252m with OpenAI participating. The lane shows the financing amount; the reported ~$850m valuation is separate. The company came out of stealth the same day.",
     "sourceUrl": "https://openai.com/index/investing-in-merge-labs/",
     "logo": "/logos/merge-labs.png",
     "scope": "bci"
@@ -64,7 +64,7 @@
     "date": "2026-02-12",
     "datePrecision": "day",
     "dateBasis": "event",
-    "note": "Upsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing; up to $48m in additional proceeds contingent on cash exercise of milestone-linked warrants, not included in the plotted amount.",
+    "note": "Upsized public offering (Nasdaq: COCH): approximately $30m in gross proceeds at closing. Up to $48m in additional proceeds depends on cash exercise of milestone-linked warrants and remains separate from the plotted amount.",
     "sourceUrl": "https://ir.envoymedical.com/news-events/press-releases/detail/80/envoy-medical-announces-closing-of-up-to-78-0-million-upsized-public-offering",
     "logo": null,
     "scope": "broader"
@@ -78,7 +78,7 @@
     "date": "2026-04-02",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "RMB 500m strategic financing led by Alibaba, with Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming, LAV, and Source Code participating. The approximate legacy USD estimate is retained; its exchange-rate source and date are unverified.",
+    "note": "RMB 500m strategic financing led by Alibaba, with Tencent, Fountainbridge Capital, OrbiMed, Oriza Seed, Qiming, LAV, and Source Code participating. The approximate older USD estimate is retained; its exchange-rate source and date remain unverified.",
     "sourceUrl": "https://www.prnewswire.com/news-releases/stairmed-secures-rmb-500-million-financing-led-by-alibaba-joined-by-tencent-302732525.html",
     "logo": "/logos/stairmed.png",
     "scope": "bci"
@@ -120,7 +120,7 @@
     "date": "2026-01-12",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a strategic partnership to co-develop an integrated Layer 7 cortical interface and Medtronic StealthStation surgical-navigation solution. Not a joint venture or evidence that the integrated product was already commercially deployed.",
+    "note": "Announced a partnership to co-develop an integrated Layer 7 cortical interface and Medtronic StealthStation surgical-navigation solution. The integrated product is in development; commercial deployment remains unverified.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/01/12/3217312/0/en/Precision-Neuroscience-and-Medtronic-Partner-to-Integrate-Layer-7-Brain-Computer-Interface-with-Medtronic-Neurosurgical-Platform.html",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -148,7 +148,7 @@
     "date": "2026-06-06",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date, not a trial-start date.",
+    "note": "Preparing a pivotal clinical trial of Stentrode in 2026. June 6 is the article date; trial start remains planned.",
     "sourceUrl": "https://www.techtimes.com/articles/317929/20260606/synchron-brain-implant-targets-2026-pivotal-trial-first-fda-approved-bci.htm",
     "logo": "/logos/synchron.png",
     "scope": "bci"
@@ -162,7 +162,7 @@
     "date": "2026-03-11",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Early-stage financing of $21.6m (CNY 150m), co-led by Guosheng Capital and Dalton Venture. The company is developing non-invasive ultrasound BCI technology. The separately reported $100–200m valuation is not plotted.",
+    "note": "Early-stage financing of $21.6m (CNY 150m), co-led by Guosheng Capital and Dalton Venture. The company is developing noninvasive ultrasound BCI technology. The lane shows financing; the separately reported $100–200m valuation is separate.",
     "sourceUrl": "https://techcrunch.com/2026/03/11/bci-startup-gestala-raises-21-million-for-non-invasive-ultrasound-brain-tech/",
     "logo": "/logos/gestala.png",
     "scope": "bci"
@@ -190,7 +190,7 @@
     "date": "2026-04-02",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Epia Neuro launched out of stealth (founder Michel Maharbiz, ex-iota Biosciences); minimally-invasive implant for post-stroke rehabilitation, FIH planned later in 2026 at Lenox Hill",
+    "note": "Epia Neuro launched out of stealth (founder Michel Maharbiz, ex-iota Biosciences). The company is developing a minimally invasive implant for post-stroke rehabilitation, with first-in-human use planned later in 2026 at Lenox Hill.",
     "sourceUrl": "https://www.businesswire.com/news/home/20260402282679/en/Epia-Neuro-Launches-to-Develop-Intent-Driven-Neural-Technology-to-Restore-Function-After-Stroke-and-Address-Cognitive-Decline",
     "logo": null,
     "scope": "broader"
@@ -246,7 +246,7 @@
     "date": "2026-04-21",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Selected as an ARPA-H EVIDENT performer for adjunctive neuromodulation data collection. The program-wide ceiling is up to $139.4m across teams; Motif-specific funding amount and award instrument are not disclosed. No program-wide amount is counted as Motif financing.",
+    "note": "Selected as an ARPA-H EVIDENT performer for adjunctive neuromodulation data collection. The program-wide ceiling is up to $139.4m across teams; Motif-specific funding amount and award instrument remain undisclosed. Motif’s financing amount is unknown and remains outside capital totals.",
     "sourceUrl": "https://arpa-h.gov/news-and-events/arpa-h-announces-first-research-teams-139-million-initiative-transform-behavioral",
     "logo": "/logos/motif-neurotech.png",
     "scope": "broader"
@@ -274,7 +274,7 @@
     "date": "2026-02-10",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Second human implantation of the Brain Interchange BCI system, performed in early February 2026 and announced February 10. The source does not specify the procedure day.",
+    "note": "Second human implantation of the Brain Interchange BCI system, performed in early February 2026 and announced February 10. Exact procedure day: undisclosed.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/02/10/3235251/0/en/CorTec-Announces-Successful-Second-Human-Implantation-of-Its-Brain-Computer-Interface-BCI-System.html",
     "logo": "/logos/cortec.png",
     "scope": "bci"
@@ -288,7 +288,7 @@
     "date": "2026-04-23",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "CorTec announced FDA TAP acceptance on April 23, 2026, following a recently granted Breakthrough Device Designation for therapeutic motor rehabilitation after stroke. The source places the designation in April but does not specify the agency-action days.",
+    "note": "CorTec announced FDA TAP acceptance on April 23, 2026, following a recently granted Breakthrough Device Designation for therapeutic motor rehabilitation after stroke. The source dates the designation to April; exact agency-action days remain undisclosed.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/04/23/3279854/0/en/CorTec-s-Brain-Interchange-Accepted-into-FDA-Total-Product-Life-Cycle-Advisory-Program-TAP.html",
     "logo": "/logos/cortec.png",
     "scope": "bci"
@@ -302,7 +302,7 @@
     "date": "2026-04-20",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Completed enrolment of the world's first-in-human study of graphene neural interfaces for brain decoding & mapping (tumour-resection surgery, Manchester)",
+    "note": "Completed enrollment of the world's first-in-human study of graphene neural interfaces for brain decoding and mapping during tumor-resection surgery in Manchester.",
     "sourceUrl": "https://www.businesswire.com/news/home/20260420000990/en/INBRAIN-Neuroelectronics-Completes-Enrolment-of-Worlds-First-in-Human-Study-of-Graphene-Neural-Interfaces-for-Brain-Decoding-Mapping",
     "logo": "/logos/inbrain-neuroelectronics.png",
     "scope": "bci"
@@ -316,7 +316,7 @@
     "date": "2026-04-15",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Australian approval to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array (Cabrini Health, Melbourne). Study authorization, not a completed implantation.",
+    "note": "Australian authorization to begin the CYBORG first-in-human study of Phantom X, a subcutaneous sensor array, at Cabrini Health in Melbourne. Implantation status: unverified in this announcement.",
     "sourceUrl": "https://insidebci.com/news/2026-04-15-phantom-neuro-gets-green-light-for-first-human-trial-of-its-subcutaneous-prosthetic-sensor/",
     "logo": "/logos/phantom-neuro.png",
     "scope": "broader"
@@ -330,7 +330,7 @@
     "date": "2026-04-23",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Second fully implanted, fully wireless, full-function ('three-full') BCI clinical case: BCI-FES restored self-feeding and painting in a paralyzed patient, following the first such clinical implant at the end of 2025. April 23 is the company announcement date, not a specified procedure day.",
+    "note": "Second fully implanted, fully wireless, full-function ('three-full') BCI clinical case: BCI-FES restored self-feeding and painting in a paralyzed patient, following the first such clinical implant at the end of 2025. April 23 is the company announcement date. Procedure day: undisclosed.",
     "sourceUrl": "https://www.neuroxess.com/news/kejixiangshan/",
     "logo": "/logos/neuroxess.png",
     "scope": "bci"
@@ -344,7 +344,7 @@
     "date": "2026-03-17",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "APEX academic research partnership program announced with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. This record describes the partnership, not an implantation.",
+    "note": "Announced the APEX academic research partnership program with researchers at Stanford, Mass General, Pitt, UC Davis, and Michigan. The milestone is the research partnership.",
     "sourceUrl": "https://paradromics.com/news/paradromics-launches-apex-partnership-program-to-boost-neurotechnology-discovery/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -442,7 +442,7 @@
     "date": "2024-01-01",
     "datePrecision": "month",
     "dateBasis": "event",
-    "note": "Accepted into FDA TAP in January 2024; exact day not disclosed.",
+    "note": "Accepted into FDA TAP in January 2024. Exact day: undisclosed.",
     "sourceUrl": "https://inbrain-neuroelectronics.com/",
     "logo": "/logos/inbrain-neuroelectronics.png",
     "scope": "bci"
@@ -498,7 +498,7 @@
     "date": "2024-09-17",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "FDA Breakthrough Device Designation for the investigational Blindsight vision-restoration device. Designation is not marketing approval; September 17 is the reported announcement date.",
+    "note": "FDA Breakthrough Device Designation for the investigational Blindsight vision-restoration device. September 17 is the reported announcement date; marketing approval requires a separate FDA decision.",
     "sourceUrl": "https://www.ny1.com/nyc/all-boroughs/health/2024/09/18/fda-breakthrough-devices-neuralink-blindsight-elon-musk",
     "logo": "/logos/neuralink.png",
     "scope": "bci"
@@ -526,7 +526,7 @@
     "date": "2024-11-25",
     "datePrecision": "day",
     "dateBasis": "event",
-    "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). The linked registry mirror does not establish a formal early-feasibility regulatory designation.",
+    "note": "CONVOY feasibility study start: N1 control of an investigational assistive robotic arm (NCT06710626). Formal early-feasibility regulatory designation: unverified in the linked registry mirror.",
     "sourceUrl": "https://www.hipa.ai/study/NCT06710626",
     "logo": "/logos/neuralink.png",
     "scope": "bci"
@@ -568,7 +568,7 @@
     "date": "2025-03-30",
     "datePrecision": "day",
     "dateBasis": "event",
-    "note": "FDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities, not clearance of a complete chronic wireless BCI.",
+    "note": "FDA 510(k) clearance letter K242618 for the Layer 7-T cortical electrode array, dated March 30, 2025. Temporary use for less than 30 days; a passive array without wireless capabilities. The clearance covers the temporary passive array.",
     "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K242618.pdf",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -624,7 +624,7 @@
     "date": "2024-10-24",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "€50m (~$54m) upsized private placement; Ottobock cornerstone (~10%). Label: public equity raise, not a priced VC round.",
+    "note": "€50m (~$54m) upsized private placement; Ottobock cornerstone investment (~10%). Funding type: public equity raise.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2024/10/24/2968347/0/en/ONWARD-Medical-Successfully-Raises-EUR-50-Million-in-an-Upsized-Capital-Increase-with-Cornerstone-Investment-from-Ottobock-SE-Co-KGaA.html",
     "logo": "/logos/onward-medical.png",
     "scope": "broader"
@@ -666,7 +666,7 @@
     "date": "2024-03-11",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Convergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received is not disclosed; other supporters are named separately without amounts and are not attributed to this commitment. Not a priced equity round.",
+    "note": "Convergent Research announced a $14m philanthropic commitment from Eric Schmidt to Forest Neurotech. Amount received: undisclosed. Other supporters are named separately with undisclosed amounts; their support is recorded separately from this commitment. Funding type: philanthropic commitment.",
     "sourceUrl": "https://www.biospace.com/convergent-research-announces-major-new-funding-commitment-to-forest-neurotech",
     "logo": null,
     "scope": "broader"
@@ -680,7 +680,7 @@
     "date": "2024-05-03",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "$8.5m equity financing; the linked Penn source does not identify a named round stage. May 3 is the article publication date.",
+    "note": "$8.5m equity financing. Round stage: undisclosed in the Penn source. May 3 is the article publication date.",
     "sourceUrl": "https://pci.upenn.edu/nia-therapeutics-raises-8-5-million/",
     "logo": "/logos/nia-therapeutics.png",
     "scope": "broader"
@@ -694,7 +694,7 @@
     "date": "2024-03-03",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "RMB 60m financing; round stage is not disclosed. The approximate legacy $8.5m estimate is retained; its exchange-rate source and date are unverified. March 3 is the source publication date.",
+    "note": "RMB 60m financing. Round stage: undisclosed. The approximate older $8.5m estimate is retained; its exchange-rate source and date remain unverified. March 3 is the source publication date.",
     "sourceUrl": "https://wiharper.com/brain-computer-interface-company-neuracle-raises-rmb-60-million/",
     "logo": "/logos/neuracle.png",
     "scope": "bci"
@@ -708,7 +708,7 @@
     "date": "2025-04-14",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Convertible-note financing; $104m rounded from $103,604,355 sold. April 14 is the SEC filing date, not an established closing date; first sale was March 28.",
+    "note": "Convertible-note financing; $104m rounded from $103,604,355 sold. April 14 is the SEC filing date; first sale was March 28. Closing date: unverified.",
     "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1873836/000187383625000001/0001873836-25-000001-index.htm",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -722,7 +722,7 @@
     "date": "2025-02-14",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "$65m underwritten public offering of common stock (Nasdaq: NPCE). Label: listed-company offering, not a VC round.",
+    "note": "$65m underwritten public offering of common stock (Nasdaq: NPCE). Funding type: listed-company offering.",
     "sourceUrl": "https://investors.neuropace.com/news/news-details/2025/NeuroPace-Announces-Pricing-of-Public-Offering-of-65-Million-of-Common-Stock-02-14-2025/",
     "logo": null,
     "scope": "broader"
@@ -806,7 +806,7 @@
     "date": "2025-12-11",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "$10m additional financing, bringing reported total funding to $27m. Only the $10m new financing is plotted; the linked source does not identify it as a seed extension.",
+    "note": "$10m additional financing, bringing reported total funding to $27m. The lane shows the $10m in new financing. A seed-extension label remains unverified in the linked source.",
     "sourceUrl": "https://hitconsultant.net/2025/12/11/subsense-raises-10m-to-replace-brain-implants-with-nasal-nanoparticles/",
     "logo": null,
     "scope": "bci"
@@ -820,7 +820,7 @@
     "date": "2025-01-21",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "$5m seed round close. The linked announcement does not establish a later second close or a $10m seed total.",
+    "note": "$5m seed round close. A later second close and a $10m seed total remain unverified in the linked announcement.",
     "sourceUrl": "https://neurobionics.io/press/neurobionics-seed-press-release/",
     "logo": null,
     "scope": "broader"
@@ -848,7 +848,7 @@
     "date": "2024-04-29",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "$200m investment from Tether Evo in Blackrock Neurotech. The linked company announcement does not state an ownership percentage.",
+    "note": "$200m investment from Tether Evo in Blackrock Neurotech. Ownership percentage: undisclosed in the company announcement.",
     "sourceUrl": "https://blackrockneurotech.com/insights/tether-invested-200m-in-blackrock-neurotech-accelerating-development-and-commercialization-of-implantable-bci-technology/",
     "logo": "/logos/blackrock-neurotech.png",
     "scope": "bci"
@@ -862,7 +862,7 @@
     "date": "2025-06-02",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Series E raise: $650m of new capital, not valuation or market capitalization.",
+    "note": "Series E raise of $650m in new capital.",
     "sourceUrl": "https://neuralink.com/updates/neuralink-raises-650m-series-e/",
     "logo": "/logos/neuralink.png",
     "scope": "bci"
@@ -932,7 +932,7 @@
     "date": "2026-08-26",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced an FDA approval letter expanding the investigational Connect-One pathway through Convey to compatible personal laptops, tablets, and phones after an agreed deployment and testing process. Not marketing authorization or evidence of completed use on every device type.",
+    "note": "Announced an FDA approval letter expanding the investigational Connect-One pathway through Convey to compatible personal laptops, tablets, and phones after an agreed deployment and testing process. This is authorization within the investigational study; completed use on each device type remains unverified.",
     "sourceUrl": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-bci-access-to-personal-computing-devices-in-connect-one-clinical-study/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -960,7 +960,7 @@
     "date": "2026-09-14",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "First Connect-One participant used the fully implanted Connexus BCI for real-time speech and text, including open-ended questions. Investigational; not a marketing approval.",
+    "note": "The first Connect-One participant used the fully implanted, investigational Connexus BCI for real-time speech and text, including open-ended questions.",
     "sourceUrl": "https://paradromics.com/news/paradromics-achieves-real-time-speech-connexus-brain-computer-interface/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -974,7 +974,7 @@
     "date": "2026-09-24",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Series D raise of $250m, co-led by Pershing Square Inc. and the Ackman Oxman Institute. The release's $430m total capital raised is a cumulative figure and is not plotted.",
+    "note": "Series D raise of $250m, co-led by Pershing Square Inc. and the Ackman Oxman Institute. The lane shows this round; the release's $430m total capital raised is a separate cumulative figure.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/09/24/3368254/0/en/precision-neuroscience-closes-oversubscribed-250m-series-d-led-by-pershing-square-inc-the-ackman-oxman-institute-and-a-leading-life-sciences-investment-fund.html",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -988,7 +988,7 @@
     "date": "2026-09-24",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Partnership with Mila to advance AI-powered neural interfaces and Neurosoft's cortical foundation model program. Neurosoft joins Mila's industry network; this is a research partnership, not a clinical efficacy result or regulatory approval.",
+    "note": "Research partnership with Mila to advance AI-powered neural interfaces and Neurosoft's cortical foundation model program. Neurosoft joins Mila's industry network. The milestone covers the partnership’s research scope.",
     "sourceUrl": "https://mila.quebec/en/news/neurosoft-bioelectronics-partners-with-mila-to-advance-ai-powered-brain-computer-interfaces",
     "logo": "/logos/neurosoft-bioelectronics.png",
     "scope": "bci"
@@ -1002,7 +1002,7 @@
     "date": "2026-09-17",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Science announced the promotion of Chief Strategy Officer Darius Shahida to President. CEO Max Hodak cited his role in the Series C and European commercial launch of PRIMA. Date is the company announcement, not a separately disclosed effective date.",
+    "note": "Science announced the promotion of Chief Strategy Officer Darius Shahida to President. CEO Max Hodak cited his role in the Series C and European commercial launch of PRIMA. Date shown: company announcement. Effective date: undisclosed.",
     "sourceUrl": "https://science.xyz/news/leadership-shahida/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -1016,7 +1016,7 @@
     "date": "2026-09-01",
     "datePrecision": "month",
     "dateBasis": "reported",
-    "note": "In a September 2026 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. The linked body does not establish the filing day or individual sale/implant dates; no revenue or IPO proceeds are inferred.",
+    "note": "In a September 2026 exchange disclosure, Neuracle reported 13 NEO-ONE SCI systems sold since July 2026 and 8 implanted as of the reply. Filing day and individual sale and implant dates remain unverified in the linked body. Revenue and IPO proceeds remain unknown.",
     "sourceUrl": "https://static.sse.com.cn/stock/disclosure/announcement/c/202609/002198_20260929_9IJE.pdf#page=137",
     "logo": "/logos/neuracle.png",
     "scope": "bci"
@@ -1030,7 +1030,7 @@
     "date": "2026-07-22",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. July 22 is the announcement date, not the grant dates. HUD designation is not FDA marketing approval; a separate Humanitarian Device Exemption review is required.",
+    "note": "Science announced two FDA Humanitarian Use Device designations for PRIMA: advanced geographic atrophy and Stargardt disease. July 22 is the announcement date. Grant dates: undisclosed. FDA marketing approval requires a separate Humanitarian Device Exemption review.",
     "sourceUrl": "https://science.xyz/news/hud-designation/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -1044,7 +1044,7 @@
     "date": "2026-10-05",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Science's announcement of PRIMAvera 36-month follow-up results: 18 patients evaluable for efficacy and 27 for safety from 38 implanted. Company-reported mean gain of 29 ETDRS letters; 14 of 18 achieved at least a 15-letter improvement. Conference follow-up disclosure, not a new FDA approval or a claim about all 38 patients.",
+    "note": "Science's announcement of PRIMAvera 36-month follow-up results: 18 patients evaluable for efficacy and 27 for safety from 38 implanted. Company-reported mean gain of 29 ETDRS letters; 14 of 18 achieved at least a 15-letter improvement. The conference disclosure reports follow-up results for these evaluable groups.",
     "sourceUrl": "https://science.xyz/news/long-term-prima-results/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -1058,7 +1058,7 @@
     "date": "2026-10-13",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Science disclosed early rehabilitation progress for the first PRIMAlia participant with Stargardt disease at Sydney Eye Hospital (NCT07266584): a letter in the first session and a word in the second. Implantation was in May 2026; this is the disclosure date. Company-reported single-patient observation, not trial-wide efficacy or commercial authorization for Stargardt disease.",
+    "note": "Science disclosed early rehabilitation progress for the first PRIMAlia participant with Stargardt disease at Sydney Eye Hospital (NCT07266584): a letter in the first session and a word in the second. Implantation was in May 2026; this is the disclosure date. Evidence covers a company-reported observation in one patient.",
     "sourceUrl": "https://science.xyz/news/stargardt-first-rehab/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -1072,7 +1072,7 @@
     "date": "2026-06-17",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Paradromics and University of Michigan announced the first fully implanted Connexus participant in the Connect-One Early Feasibility Study (NCT07357428). This is the announcement date, not a separately disclosed surgery date. Distinct from the 2025 temporary intraoperative recording; Connexus remains investigational, not commercially approved.",
+    "note": "Paradromics and University of Michigan announced the first fully implanted Connexus participant in the Connect-One Early Feasibility Study (NCT07357428). Date shown: announcement. Surgery date: undisclosed. The 2025 temporary intraoperative recording was a separate event. Connexus remains investigational; commercial approval requires a separate decision.",
     "sourceUrl": "https://paradromics.com/news/paradromics-completes-first-human-brain-computer-interface-bci-implantation/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -1086,7 +1086,7 @@
     "date": "2026-10-08",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Company-reported four-year preclinical durability milestone using two sheep with cortical modules representative of Connexus electrode technology. Disclosure date; stable longitudinal recording and decoding, not uninterrupted recording or four years of human use. A separate six-sheep full-platform study had nearly two years of follow-up.",
+    "note": "Company-reported four-year preclinical durability milestone using two sheep with cortical modules representative of Connexus electrode technology. Date shown: disclosure. The result covers longitudinal recording and decoding over four years in sheep; continuity of recording remains unestablished. A separate six-sheep full-platform study had nearly two years of follow-up.",
     "sourceUrl": "https://paradromics.com/news/paradromics-demonstrates-four-years-of-stable-neural-recording-in-major-brain-computer-interface-durability-milestone/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -1100,7 +1100,7 @@
     "date": "2026-10-08",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a preprint describing Layer 7 surface recordings from 70 patients across 12 academic centers, with more than 180 hours of synchronized neural and behavioral data. Separately, cumulative Precision system implants had surpassed 100 patients. Company-reported research disclosure, not 100 permanent implants or evidence of completed whole-brain coverage.",
+    "note": "Announced a preprint describing Layer 7 surface recordings from 70 patients across 12 academic centers, with more than 180 hours of synchronized neural and behavioral data. Separately, cumulative Precision system implants had surpassed 100 patients. These are company-reported research figures; permanent-implant counts remain unknown.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/10/08/3377330/0/en/precision-neuroscience-unveils-a-new-map-of-the-human-nervous-system.html",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -1114,7 +1114,7 @@
     "date": "2026-04-30",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a clinical research partnership with UChicago Medicine researchers on AI-driven sensorimotor function and neuroprosthetics. Research-network expansion using Layer 7; not a new FDA clearance, completed clinical efficacy result, or disclosed financing.",
+    "note": "Announced a clinical research partnership with UChicago Medicine researchers on AI-driven sensorimotor function and neuroprosthetics. The milestone covers expansion of the Layer 7 research network.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/04/30/3284938/0/en/precision-neuroscience-partners-with-uchicago-medicine-researchers-to-advance-brain-computer-interface-research.html",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -1128,7 +1128,7 @@
     "date": "2026-02-01",
     "datePrecision": "month",
     "dateBasis": "reported",
-    "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% and four-direction motor classification of 78–84%; the abstract does not specify the speech-task participant count. February 2026 is the publication month, not procedure dates. Small acute study, not unrestricted speech restoration or chronic implant efficacy.",
+    "note": "Neurosurgical Focus publication of Layer 7 intraoperative feasibility in four patients undergoing awake tumor surgery. Reported four-word speech classification of 77.5% and four-direction motor classification of 78–84%. Speech-task participant count: unspecified in the abstract. February 2026 is the publication month; procedure dates are undisclosed. The small acute study measures performance on these tasks.",
     "sourceUrl": "https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -1142,7 +1142,7 @@
     "date": "2026-09-21",
     "datePrecision": "day",
     "dateBasis": "event",
-    "note": "Newronika reported the first ADVENT participant received an αDBS implant in Monza on September 21; the September 30 announcement marked the first pivotal-study procedure, not U.S. marketing approval or comparative study results.",
+    "note": "Newronika reported the first ADVENT participant received an αDBS implant in Monza on September 21; the September 30 announcement reports the first pivotal-study procedure.",
     "sourceUrl": "https://newronika.com/news/newronika-announces-first-participant-implanted-in-advent-pivotal-study",
     "logo": "/logos/newronika.png",
     "scope": "broader"
@@ -1156,7 +1156,7 @@
     "date": "2026-10-01",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "Neuralink reported participants streamed over 50,000 hours of unlabeled neural data and participant-specific neural encoders were pretrained on thousands of hours of each participant's recordings; six participants reached personal records and one reached 11.32 BPS. Company-reported engineering update, not independent validation, peer-reviewed evidence, or regulatory approval.",
+    "note": "Neuralink reported participants streamed over 50,000 hours of unlabeled neural data and participant-specific neural encoders were pretrained on thousands of hours of each participant's recordings; six participants reached personal records and one reached 11.32 BPS. Evidence type: company-reported engineering update.",
     "sourceUrl": "https://neuralink.com/updates/pretraining-on-50000-hours/",
     "logo": "/logos/neuralink.png",
     "scope": "bci"
@@ -1170,7 +1170,7 @@
     "date": "2026-10-07",
     "datePrecision": "day",
     "dateBasis": "unverified",
-    "note": "INBRAIN and the MINIGRAPH consortium announced project completion: graphene probes, implant electronics, autonomous software, and a magnetic robotic implantation procedure were integrated into a functional prototype and validated in a translational model. Preclinical consortium outcome, not human implantation, regulatory clearance, or commercialization.",
+    "note": "INBRAIN and the MINIGRAPH consortium announced project completion: graphene probes, implant electronics, autonomous software, and a magnetic robotic implantation procedure were integrated into a functional prototype and validated in a translational model. This is a preclinical consortium prototype.",
     "sourceUrl": "https://www.businesswire.com/news/home/20261006841829/en/INBRAIN-Neuroelectronics-and-MINIGRAPH-European-Consortium-Develop-Magnetically-Guided-Robotic-Implantation-for-Ultra-Thin-Graphene-Brain-Computer-Interfaces",
     "logo": "/logos/inbrain-neuroelectronics.png",
     "scope": "bci"
@@ -1184,7 +1184,7 @@
     "date": "2026-10-21",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a $45m Series A co-led by Founders Fund and The OpenAI Startup Fund for cancer-directed therapeutic neurotechnology. New round capital, not valuation or cumulative funding. Chronic human trials and FDA Breakthrough Device designation are stated goals, not completed regulatory milestones.",
+    "note": "Announced a $45m Series A co-led by Founders Fund and The OpenAI Startup Fund for cancer-directed therapeutic neurotechnology. The amount is new round capital. Chronic human trials and FDA Breakthrough Device designation are stated future goals.",
     "sourceUrl": "https://coherenceneuro.substack.com/p/inventing-cancer-therapy-that-learns",
     "logo": null,
     "scope": "bci"
@@ -1212,7 +1212,7 @@
     "date": "2026-10-28",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced completion of RMB 700m Series B financing, co-led by SDIC Juli, Shenzhen Capital Group and Qinzhi Capital. Approximately $105m using the Federal Reserve H.10 rate of CNY 6.6662 per USD on October 28, 2026. This is an announcement-date fallback; the actual investment date is undisclosed. Historical FX estimate, not a company-reported USD amount.",
+    "note": "Announced completion of RMB 700m Series B financing, co-led by SDIC Juli, Shenzhen Capital Group and Qinzhi Capital. Approximately $105m is a historical exchange-rate estimate using the Federal Reserve H.10 rate of CNY 6.6662 per USD on October 28, 2026. The rate uses the announcement date because the investment date is undisclosed. The company reports the financing in RMB.",
     "sourceUrl": "https://www.neuroxess.com/news/naohukejiwancheng7yiyuanblunrongziguotoujulishenchuangtouyuqinzhizibenlingtou/",
     "logo": "/logos/neuroxess.png",
     "scope": "bci"
@@ -1226,7 +1226,7 @@
     "date": "2026-10-19",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a Siemens Healthineers collaboration to develop an end-to-end multimodal imaging workflow for BCI assessment, surgical planning, implantation and outcomes assessment. Development initiative, not an already deployed or cleared integrated product; Connexus remains investigational.",
+    "note": "Announced a Siemens Healthineers collaboration to develop an end-to-end multimodal imaging workflow for BCI assessment, surgical planning, implantation and outcomes assessment. The integrated workflow is in development; deployment and clearance remain unestablished. Connexus remains investigational.",
     "sourceUrl": "https://paradromics.com/news/paradromics-siemens-healthineers-launch-strategic-initiative-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -1240,7 +1240,7 @@
     "date": "2026-10-26",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced FDA approval of a Connect-One Early Feasibility Study protocol amendment removing the four-hour-drive residence restriction for prospective participants. Travel to a study site and all other eligibility requirements still apply. Expansion of an existing IDE study, not initial IDE authorization or marketing approval.",
+    "note": "Announced FDA approval of a Connect-One Early Feasibility Study protocol amendment removing the four-hour-drive residence restriction for prospective participants. Travel to a study site and all other eligibility requirements still apply. The amendment expands an existing investigational study; marketing approval requires a separate decision.",
     "sourceUrl": "https://paradromics.com/news/paradromics-receives-fda-approval-to-expand-connexus-brain-computer-interface-clinical-study-recruitment-nationwide/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -1254,7 +1254,7 @@
     "date": "2026-10-21",
     "datePrecision": "day",
     "dateBasis": "event",
-    "note": "Signed a two-year memorandum of understanding with Cleveland Clinic Abu Dhabi, supported by the Department of Health - Abu Dhabi, for Layer 7 clinical research at its first international research site. Signing date Oct 21; company announcement Oct 29. Not a new regulatory clearance, completed efficacy result or commercial launch.",
+    "note": "Signed a two-year memorandum of understanding with Cleveland Clinic Abu Dhabi, supported by the Department of Health - Abu Dhabi, for Layer 7 clinical research at its first international research site. Signing date Oct 21; company announcement Oct 29.",
     "sourceUrl": "https://www.globenewswire.com/news-release/2026/10/29/3391322/0/en/precision-neuroscience-expands-clinical-network-beyond-the-u-s-with-first-international-site-in-abu-dhabi.html",
     "logo": "/logos/precision-neuroscience.png",
     "scope": "bci"
@@ -1268,7 +1268,7 @@
     "date": "2026-10-28",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Company-reported early VOICE speech-restoration results: one participant with ALS reached 75 words per minute at 5.8% word error rate on a 125,000-word vocabulary in the first week. Disclosure/presentation date, not implantation date; preliminary single-participant evidence, not independent validation or marketing approval.",
+    "note": "Company-reported early VOICE speech-restoration results: one participant with ALS reached 75 words per minute at 5.8% word error rate on a 125,000-word vocabulary in the first week. Date shown: disclosure/presentation. Implantation date: undisclosed. Evidence is preliminary and covers one participant.",
     "sourceUrl": "https://x.com/neuralink/status/2115534593147187397",
     "logo": "/logos/neuralink.png",
     "scope": "bci"
@@ -1282,7 +1282,7 @@
     "date": "2026-11-17",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a $400m Series D with participation from Khosla Ventures, the Ackman Oxman Institute, Tenet Healthcare, 885 Capital, Y Combinator, and PLC Neurotech, among others. The more than $900m raised since founding is cumulative and is not added as a round. Announcement date, not a separately disclosed closing date.",
+    "note": "Announced a $400m Series D with participation from Khosla Ventures, the Ackman Oxman Institute, Tenet Healthcare, 885 Capital, Y Combinator, and PLC Neurotech, among others. The lane shows this round; the more than $900m raised since founding is a separate cumulative figure. Date shown: announcement. Closing date: undisclosed.",
     "sourceUrl": "https://science.xyz/news/series-d/",
     "logo": "/logos/science-corp.png",
     "scope": "bci"
@@ -1296,7 +1296,7 @@
     "date": "2025-12-30",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Untapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date, not a separately verified closing date.",
+    "note": "Untapped Ventures announced participation in EON Systems' $3.5m seed round led by Protocol Labs for brain emulation and connectomics. December 30 is the investor announcement date. Closing date: unverified.",
     "sourceUrl": "https://untappedventures.substack.com/p/untapped-ventures-invests-in-eon",
     "logo": null,
     "scope": "broader"
@@ -1310,7 +1310,7 @@
     "date": "2026-07-15",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Disclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A), not one $52m round. Protocol Labs is named among investors; per-round amounts, exact dates and Protocol Labs' specific round participation are not disclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; excluded from annual USD capital totals and the cumulative capital line.",
+    "note": "Disclosed $52m aggregate funding across three early-stage rounds (pre-seed, seed and Series A). Protocol Labs is named among investors. Per-round amounts, exact dates, and Protocol Labs' specific round participation are undisclosed. July 15 is the financing-disclosure announcement date. NeuroAI based on noninvasive EEG; the aggregate is kept outside annual USD capital totals and the cumulative capital line.",
     "sourceUrl": "https://www.calcalistech.com/ctechnews/article/rjentgbege",
     "logo": null,
     "scope": "broader"
@@ -1324,7 +1324,7 @@
     "date": "2025-02-12",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage are not disclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM; the announcement does not establish that the center is built or operational.",
+    "note": "Announced a strategic investment from NEOM and a partnership led by NEOM Investment Fund (NIF) to advance BCI-based therapies. Financing amount and round stage: undisclosed. The agreement plans a Brain-Computer Interface Center of Excellence within NEOM. Construction and operational status remain unverified in the announcement.",
     "sourceUrl": "https://paradromics.com/news/neom-investment-fund-partners-with-paradromics-to-drive-innovation-in-neurotechnology-healthcare/",
     "logo": "/logos/paradromics.png",
     "scope": "bci"
@@ -1352,7 +1352,7 @@
     "date": "2026-11-05",
     "datePrecision": "day",
     "dateBasis": "announcement",
-    "note": "Announced a £4.6m ARIA grant (6927) to advance endovascular neuromodulation and evStim preclinical validation. A 36-month preclinical feasibility project, not clinical approval. USD estimate uses Federal Reserve H.10 Nov 5 observation: $1.3483 per GBP (0.7416747014759326 GBP per USD), an announcement-date fallback because the grant-agreement date is undisclosed; not issuer-reported dollars or cash received. £50m is the full ARIA program, not this award.",
+    "note": "Announced a £4.6m ARIA grant (6927) for a 36-month preclinical feasibility project advancing endovascular neuromodulation and evStim validation. The USD figure is an exchange-rate estimate using the Federal Reserve H.10 Nov 5 observation: $1.3483 per GBP (0.7416747014759326 GBP per USD). The rate uses the announcement date because the grant-agreement date is undisclosed; cash received remains unknown. £50m covers the full ARIA program; this award is £4.6m.",
     "sourceUrl": "https://neurobionics.io/press/news/aria-grant-award/",
     "logo": null,
     "scope": "broader"
@@ -1366,7 +1366,7 @@
     "date": "2026-11-12",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "WIRED reported a voluntary enrollment pause for second-generation Stentrode studies after a lead performance issue. Synchron told WIRED no device-related safety issues had been identified and the pause was not FDA-directed; hardware upgrades were planned before resuming enrollment. Nov 12 is the report date, not the undisclosed pause-decision day. U.S. INTENT and FOCUS-AUS registries corroborate non-recruitment; Canada separately lists termination for insufficient recruitment.",
+    "note": "WIRED reported a voluntary enrollment pause for second-generation Stentrode studies after a lead performance issue. Synchron told WIRED it had identified no device-related safety issues and had initiated the pause voluntarily rather than at FDA direction; hardware upgrades were planned before resuming enrollment. Nov 12 is the report date. Pause-decision day: undisclosed. U.S. INTENT and FOCUS-AUS registries corroborate non-recruitment; Canada separately lists termination for insufficient recruitment.",
     "sourceUrl": "https://www.wired.com/story/synchron-pauses-trials-of-its-brain-implant-due-to-performance-issues/",
     "logo": "/logos/synchron.png",
     "scope": "bci"
@@ -1380,7 +1380,7 @@
     "date": "2026-11-13",
     "datePrecision": "day",
     "dateBasis": "reported",
-    "note": "Xinmin Evening News reported from the Nov 12 BCI conference briefing that Neuracle NEO had completed 12 commercial implants and was included in Shanghai Huibao supplementary insurance with reimbursement up to 30%. Nov 13 is the report date; individual implant dates and the coverage-effective date were not established. Reporting-only update, not national medical-insurance coverage, new regulatory approval, or an implant-count chart update. Original Chinese report names 博睿康 (Neuracle); the linked BigGo English summary misattributes NEO to NeuroXess.",
+    "note": "Xinmin Evening News reported from the Nov 12 BCI conference briefing that Neuracle NEO had completed 12 commercial implants and was included in Shanghai Huibao supplementary insurance with reimbursement up to 30%. Nov 13 is the report date. Individual implant dates and the coverage-effective date remain unverified. This reported update covers commercial adoption and Shanghai supplementary insurance. The implant-count chart is unchanged. The original Chinese report names 博睿康 (Neuracle); the linked BigGo English summary misattributes NEO to NeuroXess.",
     "sourceUrl": "https://paper.xinmin.cn/html/xmwb/2026-11-13/6/252131.html",
     "logo": "/logos/neuracle.png",
     "scope": "bci"

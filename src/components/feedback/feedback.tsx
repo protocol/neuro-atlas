@@ -244,7 +244,7 @@ export function Feedback() {
       {hover && <div ref={outline} data-feedback-outline aria-hidden="true" className="atlas-feedback-outline" />}
       <span id={pickerInstructions} className="atlas-feedback-sr-only">Select a page element. Press Escape or Feedback again to cancel.</span>
     </div>, selectionHost)}
-    {open && !selecting && <dialog ref={dialog} data-atlas-feedback data-feedback-composer className="atlas-feedback-layer" aria-label="Atlas feedback" aria-modal="true"
+    {open && !selecting && <dialog ref={dialog} data-atlas-feedback data-feedback-composer className="atlas-feedback-layer" aria-label="Neuro Atlas feedback" aria-modal="true"
       onCancel={event => { event.preventDefault(); event.stopPropagation(); close(); }}
       onKeyDown={event => {
         if (event.key !== "Tab") return;
@@ -257,10 +257,10 @@ export function Feedback() {
       <section className="atlas-feedback-panel">
         <header><h2 className="atlas-feedback-target">{saved ? "Feedback" : pinned?.label ?? target ?? "General page"}</h2><button type="button" data-feedback-close aria-label="Close feedback" onClick={close}>×</button></header>
         {saved ? <>
-          <div data-feedback-success role="status" aria-atomic="true"><p className="atlas-feedback-success-title">Thanks for your feedback.</p><p>It’s under review. Check back soon.</p></div>
+          <div data-feedback-success role="status" aria-atomic="true"><p className="atlas-feedback-success-title">Thanks for your feedback.</p><p>Your feedback has been saved for review.</p></div>
           <div className="atlas-feedback-actions"><button type="button" onClick={() => { setSaved(false); setPinned(undefined); setTarget(undefined); selectArea(); }}>New feedback</button><button ref={done} type="button" data-feedback-done onClick={close}>Done</button></div>
         </> : <>
-        {configLoading ? <p role="status">Checking feedback connection…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : !config.enabled ? <p role="status">Feedback is disabled. Draft kept here.</p> : !config.connected ? <p role="status">Feedback is disconnected. Draft kept here. <button type="button" onClick={() => void loadConfig()}>Retry connection</button></p> : null}
+        {configLoading ? <p role="status">Checking feedback availability…</p> : !config ? <p>Feedback connection unavailable. <button type="button" onClick={() => void loadConfig()}>Check again</button></p> : !config.enabled ? <p role="status">Feedback is turned off. Your draft is still here.</p> : !config.connected ? <p role="status">Feedback setup is incomplete. Your draft is still here. <button type="button" onClick={() => void loadConfig()}>Check again</button></p> : null}
         {error && <p role="alert">{error}</p>}
         <textarea ref={textarea} aria-label="Feedback" rows={1} maxLength={3000} placeholder="What should change?" value={comment} readOnly={busy} aria-busy={busy} onChange={event => setComment(event.target.value)} onKeyDown={event => {
           if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;

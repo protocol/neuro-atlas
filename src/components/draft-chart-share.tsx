@@ -18,7 +18,7 @@ export function DraftChartShare({ anchor: legacyAnchor, label, card = false, cla
         await navigator.clipboard.writeText(url);
         setResult({ url, fallback: "", status: "Copied" });
       } catch {
-        setResult({ url, fallback: url, status: "Copy failed — select the chart URL below" });
+        setResult({ url, fallback: url, status: "Copy failed. Select and copy the chart URL below." });
       }
     }}>Copy link</button>
     <span role="status">{status}</span>
