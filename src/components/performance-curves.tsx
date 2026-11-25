@@ -1,14 +1,19 @@
 "use client";
 
+import { GraphExportContext } from "@/components/graph-export-context";
+import { useGraphHref } from "@/components/field-velocity-route-context";
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 import { useMetricPreviewWidth } from "./use-metric-preview-width";
 
-import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
+import { updateStandaloneChartUrl } from "@/lib/standalone-chart-state";
+import { fieldVelocityGraph, canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
-import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExternalStore } from "react";
 import { recordingViewQuery, recordingViewToken, type RecordingViewId } from "@/lib/recording-view";
 import { ChartModal } from "@/components/chart-modal";
 import { ChartShare } from "@/components/chart-share";
+import { EmptySeries, SeriesButton, toggleSeries } from "@/components/exploration-legend";
+import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { ChartActions } from "@/components/chart-actions";
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { DraftChartShare } from "@/components/draft-chart-share";
@@ -41,7 +46,7 @@ export function pointValue(point: MeasurementPoint) {
 }
 
 type PlotPoint = { date: string; value: number; label: string; track: string; trackIndex: number; lo?: number; hi?: number; reliable?: boolean; qualifiedValueLabel?: string; sourceUrl?: string; sourceLabel?: string };
-export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean; exportPointKey?: {label: string; color: string}[]; exportPointKeyNote?: string };
+export type PlotData = { xLabel?: string; title: string; unit: string; scale: "log" | "linear"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; recordingView?: RecordingViewId; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean; exportPointKey?: {label: string; color: string}[]; exportPointKeyNote?: string };
 
 /** Axes always use the full source set; filtering never moves an observation. */
 export function chartGeometry(data: PlotData) {
@@ -127,6 +132,10 @@ function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
 }
 
 function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, inspectOnActivate = false }: { data: PlotData; compact?: boolean; extrapolation?: ExtrapolationKind; shareAnchor?: string; intro?: React.ReactNode; inspectOnActivate?: boolean }) {
+  const exploration = useContext(ChartExplorationContext);
+  const interactive = !compact && !!exploration && !!data.recordingView;
+  const hidden = interactive ? exploration.settings.hidden ?? [] : [];
+  const measurementVisible = !data.recordingView || !hidden.includes(data.recordingView);
   const plotRef = useRef<HTMLDivElement>(null);
   const previewWidth = useMetricPreviewWidth(plotRef, compact);
   const previewExtra = useMetricPreviewSpace(plotRef, compact, previewWidth);
@@ -145,11 +154,17 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     return () => observer.disconnect();
   }, [inspectOnActivate, singleObservation, data.title]);
   const [track, setTrack] = useState("");
-  const [extrapolate, setExtrapolate] = useChartToggle(!compact && extrapolation ? shareAnchor : undefined);
+  const [localExtrapolate, setLocalExtrapolate] = useChartToggle(!compact && extrapolation ? shareAnchor : undefined);
+  const controlledExtrapolation = !compact && !!extrapolation && !!exploration;
+  const extrapolate = controlledExtrapolation ? !!exploration.settings.extrapolate : localExtrapolate;
+  const setExtrapolate = (change: (current: boolean) => boolean) => {
+    if (controlledExtrapolation) exploration.update({ extrapolate: change(extrapolate) });
+    else setLocalExtrapolate(change);
+  };
   const [mode, setMode] = useState<ExtrapolationMode>("historical");
   // Validate against the visible source set so measurement/track changes clear
   // stale inspection without remounting the native selector.
-  const tooltip = usePointTooltip(data.points.filter(point => !track || point.track === track));
+  const tooltip = usePointTooltip(data.points.filter(point => measurementVisible && (!track || point.track === track)));
   const active = tooltip.active;
   const extrapolationHint = useId();
   const progress = useExtrapolationMotion(!compact && !!extrapolation && extrapolate);
@@ -184,7 +199,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   const tickY = (tick: number) => original.ticks.includes(tick) ? g.y(tick) : enteringY(tick);
   const reveal = Math.max(0, (progress - .75) / .25);
   const scale = scenario ? "log" : data.scale;
-  const points = data.points.filter(p => !track || p.track === track);
+  const points = data.points.filter(p => measurementVisible && (!track || p.track === track));
   const historicalYears = data.historicalFit ? Array.from({length: 8}, (_, i) => 1960 + i * 10).filter(year => year >= new Date(g.minTime).getUTCFullYear() + 8 && year <= new Date(g.maxTime).getUTCFullYear() - 8) : [];
   const recordingDateTicks = inspectOnActivate && !data.historicalFit ? [...new Set([g.minTime, g.maxTime])].map(time => ({
     date: new Date(time).toISOString(),
@@ -221,7 +236,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     {!compact && shareAnchor && <ChartActions anchor={shareAnchor} title={data.title}><ChartShare key={inspectOnActivate ? data.title : undefined} anchor={shareAnchor} title={data.title} disabled={moving} getChart={() => {
       const root = plotRef.current!;
       const detail = root.closest(".pc-detail")!;
-      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes, pointKey: data.exportPointKey, pointKeyNote: data.exportPointKeyNote,
+      return { svg: root.querySelector("svg")!, title: data.title, anchor: shareAnchor, recordingView: data.recordingView, captionNotes: data.exportCaptionNotes, pointKey: data.exportPointKey, pointKeyNote: data.exportPointKeyNote,
         legend: [...data.tracks.filter(t => !track || t.id === track).map(t => ({ label: t.label, color: colors[data.tracks.indexOf(t) % colors.length] })), ...(data.historicalFit ? [{ label: `Historical fit · N=${data.historicalFit.n} · R²(log10)=${data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈${data.historicalFit.doublingYears!.toFixed(1)} y`, color: "#087f8c", marker: "line" as const }] : [])],
         notes: [
           ...(data.exportNotes ?? []),
@@ -249,7 +264,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
         <span aria-hidden={!extrapolate} style={{ visibility: extrapolate ? "visible" : "hidden" }}>{extrapolation === "hours" ? "Axis switched from linear to log · targets span 100 million hours" : "Conditional model · expanded time range"}</span>
       </span>
     </div>}
-    {!compact && data.tracks.length > 1 && <label className="pc-track-select">Dataset / track
+    {!compact && !controlledExtrapolation && data.tracks.length > 1 && <label className="pc-track-select">Dataset / track
       <select value={track} onChange={e => setTrack(e.target.value)}>
         <option value="">All tracks</option>
         {data.tracks.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
@@ -267,7 +282,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           <line className="pc-gridline" x1={g.left} x2={g.width - g.right} y1={tickY(tick)} y2={tickY(tick)} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
           <text x={g.left - 9} y={tickY(tick) + 4} textAnchor="end">{scenario || compact ? new Intl.NumberFormat("en", { notation: "compact", maximumSignificantDigits: 3 }).format(tick) : number(tick)}</text>
         </g>)}
-        {data.historicalFit && <g data-historical-fit>
+        {measurementVisible && data.historicalFit && <g data-historical-fit>
           <polyline points={data.historicalFit.points.map(p => `${g.x(historicalYearDate(p.x))},${g.y(p.y)}`).join(" ")} fill="none" stroke="#087f8c" strokeWidth={2} vectorEffect="non-scaling-stroke" data-export-stroke-width={2} />
           <text data-historical-fit-label x={compact ? 0 : g.left} y={g.y(g.ticks.at(-1)!) - 12 * unitsPerPixel} textAnchor="start" fill="#087f8c" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{compact ? "≈" : "Fit · ≈"}{data.historicalFit.doublingYears!.toFixed(1)}{compact ? " y/2×" : " y doubling"}</text>
         </g>}
@@ -307,21 +322,27 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       <p data-point-description>{active.label}</p>
       {active.sourceUrl && <a href={active.sourceUrl} target="_blank" rel="noreferrer">{active.sourceLabel} ↗</a>}
     </>}</PointTooltip>}
-    {!compact && data.historicalFit && <div className="pc-chart-note" data-historical-fit-diagnostics>
+    {!compact && measurementVisible && data.historicalFit && <div className="pc-chart-note" data-historical-fit-diagnostics>
       <p>{data.historicalFit.n} selected papers · 1957–2022 · R²(log10)={data.historicalFit.rSquaredLog10!.toFixed(3)} · doubling ≈{data.historicalFit.doublingYears!.toFixed(1)} years.</p>
       <details><summary>Fit method &amp; selected inputs</summary><p>{HISTORICAL_RECORDING_FIT_NOTE}</p></details>
     </div>}
     {!compact && <p className="pc-chart-note">{data.line ? "Lines connect selected frontier checkpoints." : data.connectTracks?.length ? "Lines connect successive reliable observations within each measurement series; other source observations remain separate." : "Separate source observations; overlapping markers retain their coordinates."}</p>}
-    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}
+    {!compact && <ul className="pc-legend">{data.tracks.map((t, i) => {
+      const key = <><span aria-hidden="true" style={{ background: colors[i % colors.length] }} />{t.label}</>;
+      return <li key={t.id}>{interactive ? <SeriesButton id={t.id} visible={measurementVisible} toggle={() => {
+        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, t.id) });
+      }}>{key}</SeriesButton> : key}</li>;
+    })}</ul>}
+    {interactive && !measurementVisible && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
     {extrapolate && scenario && <>
       <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records end in 2014. Whole-brain live recording feasibility remains unverified by neuron-count equivalence." : "TUSZ corpus-only scenario. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
-      <label className="pc-track-select pc-scenario-select">Growth scenario
+      {!controlledExtrapolation && <label className="pc-track-select pc-scenario-select">Growth scenario
         <select data-scenario-select="true" aria-label="Growth scenario" value={mode} onChange={e => setMode(e.target.value as ExtrapolationMode)}>
           <option value="historical">{scenario.kind === "neurons" ? "Full-history fit · 1957–2014" : "Expansion resumes"}</option>
           {scenario.kind === "neurons" ? <><option value="recent">Later-history fit · 1991–2014</option><option value="literature">Literature pace · 7-year doubling</option></> : <option value="plateau">Latest plateau continues · no growth</option>}
         </select>
         <span>Alternative growth assumptions</span>
-      </label>
+      </label>}
       {scenario.fit && <div className="pc-fit-diagnostics" data-fit-diagnostics="true" role="status">
         <strong>R² (log, anchored scenario): {scenario.fit.anchoredRSquared == null ? "N/A — constant values" : scenario.fit.anchoredRSquared.toFixed(3)}</strong>
         <span>{scenario.fit.observationCount} observations · {Math.floor(scenario.fit.firstYear)}–{Math.floor(scenario.fit.anchor.year)}</span>
@@ -335,18 +356,33 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
   </div></>;
 }
 
-export function CurveCard({ id, title, previewTitle, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {
+type CurveCardProps = { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode };
+
+export function CurveCard({ detail = false, ...props }: CurveCardProps & { detail?: boolean }) {
+  return detail ? <CurveDetail {...props} /> : <CurvePreviewCard {...props} />;
+}
+
+function CurveDetail({ id, title, plot, children, modalIntro, modalPlot }: CurveCardProps) {
+  return <>
+    {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
+    {children}
+  </>;
+}
+
+function CurvePreviewCard(props: CurveCardProps) {
+  const { id, title, previewTitle, coverage, plot, sourceLinks, previewNote } = props;
   const ref = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash();
-  const open = hash === `#${canonicalPerformanceAnchor(id)}`;
+  const href = useGraphHref(id);
+  const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;
   const exporting = useCardExporting(id);
   const share = <DraftChartShare anchor={id} label={title} className="pc-share" />;
   return <article className="pc-card card" data-metric-tile data-performance-card={id}>
-    <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
-
-      <span className="pc-card-title">{previewTitle ?? title}</span>
-      {plot && <CurvePlot data={plot} compact />}
-    </button>
+    {href ? <a href={href} data-graph-link={id} className="pc-trigger" data-metric-card-body>
+      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+    </a> : <button ref={ref} type="button" className="pc-trigger" data-metric-card-body aria-haspopup="dialog" aria-expanded={open} onClick={() => navigatePerformance(id)}>
+      <span className="pc-card-title">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}
+    </button>}
     <div className="pc-card-share" data-metric-card-footer>
       {sourceLinks?.length ? <div className="pc-preview-sources">{sourceLinks.map(source => <a key={source.url} data-curve-source-link href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>)}</div> : null}
       {/* Coverage stays complete; in the footer a capped preview can never clip it. */}
@@ -354,17 +390,16 @@ export function CurveCard({ id, title, previewTitle, coverage, plot, children, s
       {share}
       {plot && <CardPngButton anchor={id} title={title} />}
     </div>
-    {(open || exporting) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>
-      {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === "neural-recording-hours" ? "hours" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}
-      {children}
+    {(open || (!href && exporting)) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>
+      <CurveDetail {...props} />
     </ChartModal>}
   </article>;
 }
 
-export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {
+export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks, detail }: { detail?: boolean; series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {
   const points = series.tracks.flatMap((t, trackIndex) => t.points.map(p => ({ ...p, track: t.id, trackIndex, qualifiedValueLabel: p.qualifier ? `${p.label}: ${pointValue(p)} ${series.unit}` : undefined, label: `${p.label}: ${pointValue(p)} ${series.unit}; ${pointDate(p)} (${p.datePrecision} precision, ${p.dateBasis}). ${p.sourceLabel}` })));
   const plot: PlotData = { title: series.title, unit: series.unit, scale: series.scale, line: false, points, tracks: series.tracks, connectTracks };
-  return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
+  return <CurveCard detail={detail} id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === "data-supply" ? "Data supply" : "Capability"} coverage={series.coverage} plot={plot}>
     <ModalReading><section className="pc-methodology" aria-label={`${series.title} definitions and methodology`}>
       <h4>Definitions &amp; methodology</h4>
       <p>{series.description}</p>
@@ -394,6 +429,7 @@ const ALL_RECORDING_VIEWS = [HISTORICAL_RECORDING, ...RECORDING_VIEWS];
 function recordingPlot(view: RecordingView): PlotData {
   return {
     title: `${recordingTitle} — ${view.label}`, unit: view.unit, scale: "log", line: false,
+    recordingView: view.id,
     xLabel: view.id === "historical" ? "Publication year · tracker month convention" : "Source publication / disclosure date",
     historicalFit: view.id === "historical" ? HISTORICAL_RECORDING_FIT : undefined,
     exportPointKey: view.id === "historical" ? view.points.filter(p => ["stevenson-r145", "stevenson-r154"].includes(p.id)).map(p => ({ label: `${p.label} · ${pointValue(p)} · ${p.id === "stevenson-r145" ? "isolated neonatal mouse retina" : "average units per session"}`, color: "#1266f1" })) : undefined,
@@ -421,28 +457,41 @@ function subscribeRecordingView(callback: () => void) {
   return () => events.forEach(event => window.removeEventListener(event, callback));
 }
 const recordingViewSnapshot = () => recordingViewToken(new URL(window.location.href)) ?? "historical";
-function selectRecordingView(id: RecordingViewId) {
-  const url = new URL(window.location.href);
-  url.searchParams.set(recordingViewQuery, id);
+function selectRecordingView(id: RecordingViewId, standalone = false) {
+  let url = new URL(window.location.href);
+  if (standalone && id === "historical") url.searchParams.delete(recordingViewQuery);
+  else url.searchParams.set(recordingViewQuery, id);
+  if (standalone) {
+    url = updateStandaloneChartUrl(url, fieldVelocityGraph(recordingAnchor)!, {});
+    if (url.href === window.location.href) return;
+  }
   // A view change gets its own Back/Forward entry. Close must dismiss the modal,
   // not just back into its previous view; direct-link close uses the same rule.
-  window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
+  if (standalone && window.history.state?.atlasModalFrom) window.history.replaceState(window.history.state, "", url);
+  else window.history.pushState(standalone ? window.history.state : { ...window.history.state, atlasModalFrom: null }, "", url);
   window.dispatchEvent(new Event("atlas-performance-location"));
 }
-function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
-  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
+function RecordingViewSelect({ viewId }: { viewId: RecordingViewId }) {
+  // Read exploration at the detail mount, not the overview card that created it.
+  const exploration = useContext(ChartExplorationContext);
+  return <label className="pc-track-select pc-recording-view">Measurement view
+    <select data-recording-view-select value={viewId} onChange={event => selectRecordingView(event.target.value as RecordingViewId, !!exploration)}>
+      {ALL_RECORDING_VIEWS.map(view => <option key={view.id} value={view.id}>{view.label}</option>)}
+    </select>
+  </label>;
+}
+function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData["record"]; historicalProvenance: React.ReactNode }) {
+  const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => "historical");
+  const exportRequest = useContext(GraphExportContext);
+  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? "historical" : liveView;
   const view = ALL_RECORDING_VIEWS.find(v => v.id === viewId)!;
-  return <CurveCard id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
+  return <CurveCard detail={detail} id={recordingAnchor} title={recordingTitle} previewTitle="Neurons per experiment" eyebrow="Recording evidence"
     coverage="Historical electrical recordings · 1957–2022 · selected tracker literature."
     previewNote="Historical reported neurons per experiment · mixed preparations."
     plot={recordingPlot(HISTORICAL_RECORDING)}
     modalPlot={<div data-recording-view={view.id}>
       <CurvePlot data={recordingPlot(view)} shareAnchor={recordingAnchor} inspectOnActivate intro={
-        <label className="pc-track-select pc-recording-view">Measurement view
-          <select data-recording-view-select value={view.id} onChange={event => selectRecordingView(event.target.value as RecordingViewId)}>
-            {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
-          </select>
-        </label>
+        <RecordingViewSelect viewId={view.id} />
       } />
     </div>}>
     <ModalReading><section className="pc-methodology" aria-label="Recording evidence definitions and methodology">
@@ -486,7 +535,7 @@ function RecordingCard({ historical, historicalProvenance }: { historical: Perfo
 }
 
 type Provenance = { providerCommit: string; sha256: string; exportGeneratedAt: string; source: { repository: string } };
-export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
+export function PerformanceCurves({ data, provenance, selection, flat = false, detail = false }: { detail?: boolean; data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {
   const includes = (id: string) => !selection || selection.includes(id);
   const provenanceDetails = <details className="pc-provenance"><summary>Export &amp; source provenance</summary>
       <p>Archived PL R&amp;D source snapshot.</p>
@@ -495,8 +544,8 @@ export function PerformanceCurves({ data, provenance, selection, flat = false }:
       <p>Export SHA-256: <code>{provenance.sha256}</code></p>
     </details>;
   const cards = <>
-      {includes("simultaneously-recorded-neurons") && <RecordingCard historical={data.record} historicalProvenance={provenanceDetails} />}
-      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} provenance={flat ? provenanceDetails : undefined} />)}
+      {includes("simultaneously-recorded-neurons") && <RecordingCard detail={detail} historical={data.record} historicalProvenance={provenanceDetails} />}
+      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} detail={detail} series={s} provenance={flat ? provenanceDetails : undefined} />)}
       {!flat && includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>
         <h3 className="pc-card-title" id="channel-count-title">Channel count frontier</h3>

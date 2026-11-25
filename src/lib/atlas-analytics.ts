@@ -1,7 +1,12 @@
+import { readChartShareAttribution } from "./chart-share-attribution";
+import { FIELD_VELOCITY_GRAPHS, graphPath } from "../data/field-velocity-links";
+
 export const ATLAS_COOKIE_SETTINGS_EVENT = "pl:open-cookie-settings";
 const storageKey = "pl-ga-consent";
 const origin = "https://www.plneuro.xyz";
 const namespace = "/neuro-atlas";
+const graphPaths = FIELD_VELOCITY_GRAPHS.map(entry => `${namespace}${graphPath(entry)}`);
+const eligibleGraphPaths = new Set(graphPaths);
 type Choice = "granted" | "denied" | null;
 export type AnalyticsState = { eligible: boolean; showBanner: boolean; choice: Choice };
 type AnalyticsWindow = Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void };
@@ -10,7 +15,7 @@ function canonicalPath(win: Window) {
   if (win.location.origin !== origin) return null;
   const path = win.location.pathname;
   // Only actual public app routes: no API/auth/assets or arbitrary user-provided path segments.
-  return /^\/neuro-atlas(?:\/(?:milestones|funding|field-velocity|methodology|ecosystem))?\/?$/.test(path) ? path : null;
+  return /^\/neuro-atlas(?:\/(?:milestones|funding|field-velocity|methodology|ecosystem))?\/?$/.test(path) || eligibleGraphPaths.has(path.replace(/\/$/, "")) ? path : null;
 }
 
 function sanitizedReferrer(value: string) {
@@ -32,7 +37,10 @@ export function createAtlasAnalytics(window: Window) {
   let failed = false;
   let script: HTMLScriptElement | null = null;
   let lastPath: string | null = null;
-  let pendingPaths: string[] = [];
+  let pendingPaths: { path: string; attribution: string }[] = [];
+  // Ephemeral landing-only evidence; never persisted or reused on internal navigation.
+  const landingPath = canonicalPath(win);
+  let landingAttribution = readChartShareAttribution(new URL(win.location.href));
   let permission = false;
   let settingsOpen = false;
   let localDenial = false;
@@ -51,7 +59,7 @@ export function createAtlasAnalytics(window: Window) {
   function purgeCookies() {
     try {
       const names = new Set(["_ga", `_ga_${measurementId?.slice(2)}`, ...win.document.cookie.split(";").map(cookie => cookie.split("=")[0].trim()).filter(name => name.startsWith("_ga"))]);
-      const paths = ["/", "/neuro-atlas", "/neuro-atlas/", ...["milestones", "funding", "field-velocity", "methodology", "ecosystem"].flatMap(route => [`/neuro-atlas/${route}`, `/neuro-atlas/${route}/`])];
+      const paths = ["/", "/neuro-atlas", "/neuro-atlas/", ...["milestones", "funding", "field-velocity", "methodology", "ecosystem"].flatMap(route => [`/neuro-atlas/${route}`, `/neuro-atlas/${route}/`]), ...graphPaths.flatMap(path => [path, `${path}/`])];
       for (const name of names) for (const path of paths) for (const domain of ["", "www.plneuro.xyz", ".www.plneuro.xyz", "plneuro.xyz", ".plneuro.xyz"]) {
         win.document.cookie = `${name}=; path=${path}; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT${domain ? `; domain=${domain}` : ""}; SameSite=Lax; Secure`;
       }
@@ -64,6 +72,7 @@ export function createAtlasAnalytics(window: Window) {
       purgeCookies();
       lastPath = null;
       pendingPaths = [];
+      landingAttribution = "";
     }
     permission = false;
   }
@@ -98,7 +107,10 @@ export function createAtlasAnalytics(window: Window) {
     if (failed) { disable(true); return; }
     const newlyAllowed = !permission;
     permission = true;
-    if ((pendingPaths.at(-1) ?? lastPath) !== path) pendingPaths.push(path);
+    if ((pendingPaths.at(-1)?.path ?? lastPath) !== path) {
+      pendingPaths.push({ path, attribution: path === landingPath ? landingAttribution : "" });
+      landingAttribution = "";
+    }
     if (!script) {
       disable(true);
       script = win.document.createElement("script");
@@ -120,10 +132,10 @@ export function createAtlasAnalytics(window: Window) {
       configured = true;
     }
     if (configured && newlyAllowed) command("consent", "update", consentFields("granted"));
-    for (const nextPath of pendingPaths) {
+    for (const { path: nextPath, attribution } of pendingPaths) {
       command("event", "page_view", {
         send_to: measurementId, ...fields,
-        page_location: `${origin}${nextPath}`,
+        page_location: `${origin}${nextPath}${attribution ? `?${attribution}` : ""}`,
         page_referrer: lastPath ? `${origin}${lastPath}` : fields.page_referrer,
       });
       lastPath = nextPath;
@@ -143,7 +155,7 @@ export function createAtlasAnalytics(window: Window) {
     refresh,
     choose(choice: Exclude<Choice, null>) {
       if (!connected || !state.eligible) return;
-      if (choice === "denied") { refuse(); purgeCookies(); }
+      if (choice === "denied") { landingAttribution = ""; refuse(); purgeCookies(); }
       settingsOpen = false;
       localDenial = false;
       try { win.localStorage.setItem(storageKey, choice); }

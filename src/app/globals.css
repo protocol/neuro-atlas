@@ -6,6 +6,7 @@
 @import "../components/landing.css";
 @import "../components/not-found.css";
 @import "../components/google-trends.css";
+@import "./field-velocity/graph-page.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

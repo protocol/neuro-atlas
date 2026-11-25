@@ -5,7 +5,7 @@ import { DRAFT_CHART_LINKS, canonicalMetricAnchor } from "@/data/draft-chart-lin
 import { DraftChartShare } from "@/components/draft-chart-share";
 import { METRIC_CHARTS as DRAFT_CHARTS, METRIC_CHART_EVIDENCE as DRAFT_CHART_EVIDENCE, isVisibleMetric, metricCategoryFor, METRIC_CHART_CATEGORIES } from "@/data/metric-chart-visibility";
 import { metricSizingVisibility } from "@/components/metric-sizing-visibility";
-import { DraftChartPanel, DraftTimelinePanel } from "@/components/draft-chart-panel";
+import { DraftChartPanel, DraftTimelinePanel, DraftChartMethodology as Methodology } from "@/components/draft-chart-panel";
 import { MetricCardScope } from "@/components/metric-card-scope";
 import { CardPngButton } from "@/components/card-png-button";
 import { chartAxesDescription } from "@/lib/chart-axis-help";
@@ -16,26 +16,6 @@ const COST_AUTOMATION_PLOT_ORDER = new Map<string, number>([
   ["proofreading-effort", 2],
   ["pathfinder-nerl", 3],
 ]);
-
-function Methodology({ chart, context, axes, alwaysVisible = false, summary }: { chart: DraftChart; context?: string; axes?: string; alwaysVisible?: boolean; summary?: string }) {
-  const content = <>
-    {summary && <p className="draft-chart-summary">{summary}</p>}
-    <dl>
-      <div><dt>Axes</dt><dd>{axes ?? chart.axes}</dd></div>
-      <div><dt>Definition</dt><dd>{chart.definition}</dd></div>
-      <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>
-      {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}
-    </dl>
-  </>;
-  if (alwaysVisible) return <section className="draft-chart-methodology" data-draft-methodology aria-label="Definition and comparability">
-    <h3 className="mx-k">Definition and comparability</h3>
-    {content}
-  </section>;
-  return <details className="draft-chart-methodology" data-draft-methodology>
-    <summary>Definition and comparability</summary>
-    {content}
-  </details>;
-}
 
 export function DraftChartsSection({ category: selectedCategory, query = "", showGaps = true, visibleTitles, flat = false, featuredTitle }: { category?: string; query?: string; showGaps?: boolean; visibleTitles?: readonly string[]; flat?: boolean; featuredTitle?: string } = {}) {
   const matches = (chart: DraftChart) => JSON.stringify([chart, DRAFT_CHART_EVIDENCE[chart.title]]).toLocaleLowerCase().includes(query);

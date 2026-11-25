@@ -66,7 +66,7 @@ test('the native image puts a compact two-column study key after the branded cro
     assert.ok(cropBottom > brandBottom);
     assert.ok(Math.min(...[...key.querySelectorAll('text')].map(text => Number(text.getAttribute('y')))) > cropBottom);
     assert.match(footer.textContent, /More information on Neuro Atlas/);
-    assert.ok(footer.textContent.includes(url + '#bci-information-transfer-over-time'));
+    assert.ok(footer.textContent.includes(url + '/bci-information-transfer-over-time'));
     const visible = [...doc.querySelectorAll('text')].map(text => text.textContent).join(' ');
     assert.doesNotMatch(visible, /log2\(28\)|gross WPM|correct CPM|fit included|Publication\//);
     assert.ok(visible.includes(`R²(log10) = ${data.BCI_BITRATE_FIT.rSquaredLog10.toFixed(3)}`));

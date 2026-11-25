@@ -9,9 +9,9 @@ import { projectCitationRecord } from "@/lib/field-velocity/citation-latency-fee
 import { atlasPath } from "@/lib/atlas-path";
 import { ModalReading, ModalSources, ModalTable } from "@/components/chart-modal-slots";
 
-export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: boolean }) {
+export function PaceReadings({ data, flat = false, detail = false }: { data: PaceData; flat?: boolean; detail?: boolean }) {
   const citation = useCitationView();
-  const cards = data.records.map(sourceRecord => {
+  const cards = data.records.filter(record => !detail || record.instrument === "idea_vintage").map(sourceRecord => {
       const record = sourceRecord.instrument === "idea_vintage" && sourceRecord.state === "reading" && citation.data ? projectCitationRecord(citation.data, sourceRecord) : sourceRecord;
       const definition = data.definitions.find(d => d.id === record.instrument)!;
       const reading = record.state === "reading";
@@ -29,7 +29,7 @@ export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: bo
           label: `${point.x}: ${point.y} years${point.lo != null && point.hi != null ? `; source interval ${point.lo}–${point.hi} years` : ""}${point.reliable === false ? "; Under-indexed" : ""}. ${record.sources!.map(s => s.label).join("; ")}`,
         })),
       } : undefined;
-      return <CurveCard key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "Reading unavailable")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
+      return <CurveCard detail={detail} key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "Reading unavailable")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
         <ModalReading><section className="pc-methodology" aria-label={`${title} definitions and methodology`}>
           <h4>Definition and methodology</h4>
           {vintage ? <>

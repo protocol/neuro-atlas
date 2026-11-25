@@ -20,8 +20,8 @@ const reportBasis: Record<string, string> = {
 };
 
 /** The archived animal-event metric is withdrawn; explicitly name this narrower, source-dated proxy. */
-export function LatencyEvidenceCard() {
-  return <CurveCard id="latency_compression" title="Latency compression" eyebrow="Reviewed source pairs"
+export function LatencyEvidenceCard({ detail = false }: { detail?: boolean } = {}) {
+  return <CurveCard detail={detail} id="latency_compression" title="Latency compression" eyebrow="Reviewed source pairs"
     coverage="Approximate report-to-human intervals · implant and temporary-placement endpoints"
     plot={translationPlot()} sourceLinks={evidence.previewSources}
     modalIntro={<section className="pc-methodology" data-latency-identity>

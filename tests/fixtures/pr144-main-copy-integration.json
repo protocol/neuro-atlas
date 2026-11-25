@@ -1,0 +1,1557 @@
+{
+  "version": 1,
+  "baselineSha": "df97d0d70736465657ac50bc9569bbc1b60e6095",
+  "files": [
+    {
+      "path": "src/app/funding/page.tsx",
+      "beforeSha256": "807553044667a080965280653d289f2fb089c5781f7d79d8e3d62ebd04f9bbe8",
+      "afterSha256": "699ca0c6d833051f2f8a51da8296c24069dc5e7402d8a948505ce827ffe837dc",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 41,
+            "afterLength": 41,
+            "edits": [
+              {
+                "beforeIndex": 17,
+                "afterIndex": 17,
+                "before": [
+                  "} = {}) {"
+                ],
+                "after": [
+                  "}) {"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/app/milestones/page.tsx",
+      "beforeSha256": "fe03071ef28f961ff911d13e2b0b1289ab7be6a781bc2353628530732bba9f01",
+      "afterSha256": "597bf62d84cddd86f8283052f1cfb8fbd84ce7a10d325899964fd16dfb9e875c",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 39,
+            "afterLength": 39,
+            "edits": [
+              {
+                "beforeIndex": 15,
+                "afterIndex": 15,
+                "before": [
+                  "} = {}) {"
+                ],
+                "after": [
+                  "}) {"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/chart-share.tsx",
+      "beforeSha256": "b5f60d523b52a8d5262ac2e9a1285f773585776d26de51d6273bea68a50bc99c",
+      "afterSha256": "1e3c01b542f033060c70b253e04ca45dde61307efc7f492d4a66958f21ead3d3",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 37,
+            "afterLength": 47,
+            "edits": [
+              {
+                "beforeIndex": 2,
+                "afterIndex": 2,
+                "before": [
+                  "import { useEffect, useRef, useState } from \"react\";"
+                ],
+                "after": [
+                  "import { useCallback, useContext, useEffect, useRef, useState } from \"react\";"
+                ]
+              },
+              {
+                "beforeIndex": 4,
+                "afterIndex": 4,
+                "before": [
+                  "import { registerChart, unregisterChart } from \"@/lib/chart-export-api\";"
+                ],
+                "after": [
+                  "import { ChartExplorationContext, explorationExportReason } from \"@/components/chart-exploration-context\";",
+                  "import { GraphExportContext } from \"@/components/graph-export-context\";",
+                  "import { registerChart } from \"@/lib/chart-export-api\";",
+                  "import { fieldVelocityGraph } from \"@/data/field-velocity-links\";",
+                  "import { standaloneChartParams } from \"@/lib/standalone-chart-state\";"
+                ]
+              },
+              {
+                "beforeIndex": 10,
+                "afterIndex": 14,
+                "before": [],
+                "after": [
+                  "  const exploration = useContext(ChartExplorationContext);",
+                  "  const unavailable = explorationExportReason(exploration);",
+                  "  const entry = fieldVelocityGraph(anchor);",
+                  "  const chartState = exploration && entry ? standaloneChartParams(entry, exploration.settings).toString() : \"\";",
+                  "  const captureChart = useCallback(() => ({ ...getChart(), chartState }), [getChart, chartState]);",
+                  "  const exportRequest = useContext(GraphExportContext);"
+                ]
+              },
+              {
+                "beforeIndex": 15,
+                "afterIndex": 25,
+                "before": [
+                  "    if (disabled) return;",
+                  "    registerChart(anchor, { title, getChart });",
+                  "    return () => unregisterChart(anchor);",
+                  "  }, [anchor, title, getChart, disabled]);"
+                ],
+                "after": [
+                  "    if (disabled || unavailable) return;",
+                  "    return registerChart(anchor, { title, getChart: captureChart }, exportRequest?.id);",
+                  "  }, [anchor, title, captureChart, disabled, exportRequest, unavailable]);"
+                ]
+              },
+              {
+                "beforeIndex": 23,
+                "afterIndex": 32,
+                "before": [
+                  "      const image = buildChartImage(getChart(), window.location.href);"
+                ],
+                "after": [
+                  "      const image = buildChartImage(captureChart(), window.location.href);"
+                ]
+              },
+              {
+                "beforeIndex": 30,
+                "afterIndex": 39,
+                "before": [],
+                "after": [
+                  "  if (unavailable) return <p className=\"exploration-export-note\" data-exploration-export-disabled>{unavailable}</p>;"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/draft-chart-plot.tsx",
+      "beforeSha256": "74180e71c7c06d6d5ccef1196bd5cc48cc02f86a1eddadaef833153e406c1385",
+      "afterSha256": "c58858cc517e73695f732df0a587b11aab04a33c1e4a0ad9311a598f36b70bc5",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 623,
+            "afterLength": 704,
+            "edits": [
+              {
+                "beforeIndex": 6,
+                "afterIndex": 6,
+                "before": [],
+                "after": [
+                  "import { ChartExplorationContext } from \"@/components/chart-exploration-context\";",
+                  "import { EmptySeries, SeriesButton, toggleSeries } from \"@/components/exploration-legend\";",
+                  "import { exploreFit } from \"@/lib/exploration-fit\";",
+                  "import { BCI_BITRATE_ROWS } from \"@/data/bci-bitrate\";"
+                ]
+              },
+              {
+                "beforeIndex": 9,
+                "afterIndex": 13,
+                "before": [
+                  "import { ModalData, ModalSources, ModalSlotsContext } from \"@/components/chart-modal-slots\";"
+                ],
+                "after": [
+                  "import { ModalData, ModalSources, ModalSlotsContext, InlineChartDetail } from \"@/components/chart-modal-slots\";"
+                ]
+              },
+              {
+                "beforeIndex": 15,
+                "afterIndex": 19,
+                "before": [
+                  "import { brainBenchmarkContext } from \"@/lib/connectomics-brain-benchmarks\";"
+                ],
+                "after": [
+                  "import { brainBenchmarkContext, brainImageVoxels, tissueBenchmark } from \"@/lib/connectomics-brain-benchmarks\";"
+                ]
+              },
+              {
+                "beforeIndex": 157,
+                "afterIndex": 161,
+                "before": [],
+                "after": [
+                  "  const inlineDetail = useContext(InlineChartDetail);",
+                  "  const exploration = useContext(ChartExplorationContext);",
+                  "  const tissue = !preview && !!exploration && sourcePlot.id === \"tissue-cm3\";",
+                  "  const voxels = tissue && !!exploration.settings.voxels;"
+                ]
+              },
+              {
+                "beforeIndex": 158,
+                "afterIndex": 166,
+                "before": [
+                  "  const [acquisitionMetric, setAcquisitionMetric] = useAcquisitionMetric(acquisition && !preview ? shareAnchor ?? `metric-panel-${sourcePlot.id}` : undefined);",
+                  "  const plot = useMemo(() => acquisition ? acquisitionMetricPlot(sourcePlot, acquisitionMetric) : sourcePlot, [acquisition, sourcePlot, acquisitionMetric]);"
+                ],
+                "after": [
+                  "  const [localAcquisitionMetric, setLocalAcquisitionMetric] = useAcquisitionMetric(acquisition && !preview && !exploration ? shareAnchor ?? `metric-panel-${sourcePlot.id}` : undefined);",
+                  "  const acquisitionMetric = exploration ? exploration.settings.acquisitionMetric ?? \"voxels-per-dollar\" : localAcquisitionMetric;",
+                  "  const plot = useMemo(() => acquisition ? acquisitionMetricPlot(sourcePlot, acquisitionMetric)",
+                  "    : voxels ? { ...sourcePlot, yLabel: \"Nominal image voxels · 4×4×40 nm\", points: sourcePlot.points.map(point => ({ ...point, y: brainImageVoxels(point.y * 1000) })) }",
+                  "      : sourcePlot, [acquisition, sourcePlot, acquisitionMetric, voxels]);"
+                ]
+              },
+              {
+                "beforeIndex": 162,
+                "afterIndex": 173,
+                "before": [
+                  "  const benchmarkBase = preview ? undefined : brainBenchmarkContext(plot.id);"
+                ],
+                "after": [
+                  "  const benchmarkBase = preview ? undefined : tissue ? tissueBenchmark(voxels) : brainBenchmarkContext(plot.id);"
+                ]
+              },
+              {
+                "beforeIndex": 164,
+                "afterIndex": 175,
+                "before": [],
+                "after": [
+                  "  const [localBenchmark, setLocalBenchmark] = useChartToggle(benchmark ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);",
+                  "  const controlledBenchmark = !!exploration && !!benchmark;",
+                  "  const benchmarkEnabled = controlledBenchmark ? !!exploration.settings.benchmark : localBenchmark;"
+                ]
+              },
+              {
+                "beforeIndex": 165,
+                "afterIndex": 179,
+                "before": [
+                  "  const [sensoryEnabled, setSensoryEnabled] = useState(false);"
+                ],
+                "after": [
+                  "  const [localSensory, setLocalSensory] = useState(false);",
+                  "  const sensoryEnabled = exploration ? !!exploration.settings.sensory : localSensory;"
+                ]
+              },
+              {
+                "beforeIndex": 167,
+                "afterIndex": 182,
+                "before": [
+                  "  const [benchmarkEnabled, setBenchmarkEnabled] = useChartToggle(benchmark ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);"
+                ],
+                "after": []
+              },
+              {
+                "beforeIndex": 174,
+                "afterIndex": 188,
+                "before": [
+                  "  const observationBasis = plot.observationBasis ?? \"Source-reported\";"
+                ],
+                "after": [
+                  "  const observationBasis = voxels ? \"Modeled equivalents\" : plot.observationBasis ?? \"Source-reported\";"
+                ]
+              },
+              {
+                "beforeIndex": 182,
+                "afterIndex": 196,
+                "before": [
+                  "  const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);"
+                ],
+                "after": [
+                  "  const isBitrate = plot.id === \"bci-bitrate\";",
+                  "  const isAcquisition = plot.id === \"acquisition-economics\";",
+                  "  const interactive = !preview && !!exploration && (isBitrate || isAcquisition);",
+                  "  const hidden = interactive ? exploration.settings.hidden ?? [] : [];",
+                  "  const extrapolate = interactive && !!exploration.settings.extrapolate;",
+                  "  const seriesOf = (point: DraftObservation) => isAcquisition",
+                  "    ? point.id === \"peem2024\" ? \"PEEM · prospective\" : point.group === \"Expansion microscopy\" ? \"Expansion microscopy · estimates\"",
+                  "      : point.id === \"mesospim2024\" ? \"mesoSPIM · optical\" : \"EM · reported-tech estimates\"",
+                  "    : point.group ?? \"Other observations\";",
+                  "  const shown = hidden.length ? plot.points.filter(point => !hidden.includes(seriesOf(point))) : plot.points;",
+                  "  const historicalLines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);",
+                  "  // Preserve the reviewed default descriptive lines; suppress them in filtered or modeled views.",
+                  "  const referenceTrendlines = hidden.length || extrapolate ? [] : historicalLines;",
+                  "  const fitTracks = extrapolate ? isBitrate",
+                  "    ? [{ ids: BCI_BITRATE_ROWS.filter(row => row.fitIncluded).map(row => row.id), label: \"Text equivalents · mixed conventions\", color: \"#7e8152\" }]",
+                  "    : historicalLines.map(line => ({ ids: line.fit?.inputIds ?? [], label: line.id === \"em\" ? \"EM · reported-technology estimates\" : \"Expansion microscopy · estimates\", color: line.color }))",
+                  "    : [];",
+                  "  const fits = fitTracks.flatMap(track => {",
+                  "    // Refit the selected historical observations in their original efficiency",
+                  "    // units; reciprocal costs are only a display projection.",
+                  "    const inputs = acquisition ? sourcePlot.points.filter(point => !hidden.includes(seriesOf(point))) : shown;",
+                  "    const fit = exploreFit(inputs.filter(point => track.ids.includes(point.id)), track.label, track.color);",
+                  "    return fit ? [fit] : [];",
+                  "  });"
+                ]
+              },
+              {
+                "beforeIndex": 184,
+                "afterIndex": 221,
+                "before": [
+                  "  const tooltip = usePointTooltip(plot.points);"
+                ],
+                "after": [
+                  "  const tooltip = usePointTooltip(shown);"
+                ]
+              },
+              {
+                "beforeIndex": 188,
+                "afterIndex": 225,
+                "before": [
+                  "  const tablePlot = acquisition ? sourcePlot : plot;",
+                  "  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? \"\"}${acquisition ? acquisitionNumber(point.y, acquisitionMetric) : plot.id === \"acquisition-economics\" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;"
+                ],
+                "after": [
+                  "  const tablePlot = sourcePlot;",
+                  "  const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? \"\"}${voxels ? point.y.toExponential(2) : acquisition ? acquisitionNumber(point.y, acquisitionMetric) : plot.id === \"acquisition-economics\" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;"
+                ]
+              },
+              {
+                "beforeIndex": 205,
+                "afterIndex": 242,
+                "before": [
+                  "  const yTitle = wrapLabel(yLabel, width - 12);"
+                ],
+                "after": [
+                  "  const yTitle = wrapLabel(voxels ? `${yLabel} · ${observationBasis}` : yLabel, width - 12);"
+                ]
+              },
+              {
+                "beforeIndex": 213,
+                "afterIndex": 250,
+                "before": [
+                  "  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);"
+                ],
+                "after": [
+                  "  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (benchmark && (fittedLabels.length || (tissue && benchmarkProgress > 0)) ? 16 : 0) + (showSensory ? 32 : 0);"
+                ]
+              },
+              {
+                "beforeIndex": 216,
+                "afterIndex": 253,
+                "before": [
+                  "  const xs = plot.points.map(point => point.x);",
+                  "  const ys = (acquisition ? sourcePlot : plot).points.map(point => point.y);"
+                ],
+                "after": [
+                  "  const xs = [...plot.points.map(point => point.x), ...fits.map(fit => fit.end)];",
+                  "  const ys = [...(acquisition ? sourcePlot : plot).points.map(point => point.y), ...fits.flatMap(fit => [...fit.points.map(p => p.y), fit.last])];"
+                ]
+              },
+              {
+                "beforeIndex": 226,
+                "afterIndex": 263,
+                "before": [
+                  "  if (maxPower === minPower) maxPower += 1;"
+                ],
+                "after": [
+                  "  // Context expands only the display domain, never observations or fit inputs.",
+                  "    if (maxPower === minPower) maxPower += 1;"
+                ]
+              },
+              {
+                "beforeIndex": 256,
+                "afterIndex": 294,
+                "before": [
+                  "    points: series.pointIds.map(id => plot.points.find(point => point.id === id)).filter((point): point is DraftObservation => !!point).sort((a, b) => a.x - b.x),"
+                ],
+                "after": [
+                  "    points: series.pointIds.map(id => shown.find(point => point.id === id)).filter((point): point is DraftObservation => !!point).sort((a, b) => a.x - b.x),"
+                ]
+              },
+              {
+                "beforeIndex": 259,
+                "afterIndex": 297,
+                "before": [
+                  "  const axisLabel = plot.id === \"acquisition-economics\" ? compactCount : preview ? previewTickLabel : tickLabel;"
+                ],
+                "after": [
+                  "  const axisLabel = voxels ? (value: number) => value.toExponential(0) : plot.id === \"acquisition-economics\" ? compactCount : preview ? previewTickLabel : tickLabel;"
+                ]
+              },
+              {
+                "beforeIndex": 279,
+                "afterIndex": 317,
+                "before": [
+                  "  const overlaps = plot.points.map(point => plot.points.filter(other => other.id !== point.id"
+                ],
+                "after": [
+                  "  const overlaps = shown.map(point => shown.filter(other => other.id !== point.id"
+                ]
+              },
+              {
+                "beforeIndex": 282,
+                "afterIndex": 320,
+                "before": [
+                  "  const markerRadius = (index: number) => baseRadius + baseRadius * plot.points.slice(index + 1)"
+                ],
+                "after": [
+                  "  const markerRadius = (index: number) => baseRadius + baseRadius * shown.slice(index + 1)"
+                ]
+              },
+              {
+                "beforeIndex": 296,
+                "afterIndex": 334,
+                "before": [],
+                "after": [
+                  "  const referenceLabelRegions = benchmarkLabelRegions;"
+                ]
+              },
+              {
+                "beforeIndex": 297,
+                "afterIndex": 336,
+                "before": [
+                  "  const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;"
+                ],
+                "after": [
+                  "  const keySlotStep = referenceLabelRegions.length ? 12 : 24;"
+                ]
+              },
+              {
+                "beforeIndex": 300,
+                "afterIndex": 339,
+                "before": [
+                  "  const annotations = plot.points.flatMap((point, index) => {"
+                ],
+                "after": [
+                  "  const annotations = shown.flatMap((point, index) => {"
+                ]
+              },
+              {
+                "beforeIndex": 312,
+                "afterIndex": 351,
+                "before": [
+                  "    const order = overlaps[index].filter(other => plot.points.indexOf(other) < index).length;"
+                ],
+                "after": [
+                  "    const order = overlaps[index].filter(other => shown.indexOf(other) < index).length;"
+                ]
+              },
+              {
+                "beforeIndex": 323,
+                "afterIndex": 362,
+                "before": [
+                  "        && benchmarkLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right"
+                ],
+                "after": [
+                  "        && referenceLabelRegions.every(region => candidate.x + 12 < region.left || candidate.x - 12 > region.right"
+                ]
+              },
+              {
+                "beforeIndex": 325,
+                "afterIndex": 364,
+                "before": [
+                  "        && plot.points.every((other, otherIndex) => Math.hypot("
+                ],
+                "after": [
+                  "        && shown.every((other, otherIndex) => Math.hypot("
+                ]
+              },
+              {
+                "beforeIndex": 343,
+                "afterIndex": 382,
+                "before": [
+                  "    onClick={() => { tooltip.clear(); setBenchmarkEnabled(enabled => !enabled); }}><span className=\"brain-scale-switch\" aria-hidden=\"true\" />{benchmark.toggleLabel}</button>;"
+                ],
+                "after": [
+                  "    onClick={() => {",
+                  "      tooltip.clear();",
+                  "      if (controlledBenchmark) exploration.update({ benchmark: !benchmarkEnabled });",
+                  "      else setLocalBenchmark(enabled => !enabled);",
+                  "    }}><span className=\"brain-scale-switch\" aria-hidden=\"true\" />{benchmark.toggleLabel}</button>;"
+                ]
+              },
+              {
+                "beforeIndex": 345,
+                "afterIndex": 388,
+                "before": [
+                  "  return <figure ref={figure} className=\"draft-plot\" data-draft-preview={preview || undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? \"animating\" : benchmarkEnabled ? \"on\" : \"off\" : undefined} aria-labelledby={`${id}-title`}>"
+                ],
+                "after": [
+                  "  const controlsBeforeSourceKey = interactive;",
+                  "  const studyList = !preview && annotations.length > 0 && <ul className=\"draft-point-annotations\" aria-label=\"Labeled observations\">{annotations.map(({ point, text }, index) => <li key={point.id}>",
+                  "    <button type=\"button\" data-point-annotation={point.id} {...inspectProps(point)}>",
+                  "      <span className=\"draft-annotation-number\" aria-hidden=\"true\" style={{ color: groupColor(point) }}>{index + 1}</span>",
+                  "      <span>{text}</span>",
+                  "    </button>",
+                  "  </li>)}</ul>;",
+                  "  const fitToggle = interactive && <button className=\"exploration-pill\" type=\"button\" role=\"switch\" aria-checked={extrapolate} data-exploration-fit-toggle onClick={() => {",
+                  "    tooltip.clear(); exploration.update({ extrapolate: !extrapolate });",
+                  "  }}>Extrapolation <span aria-hidden=\"true\">{extrapolate ? \"On\" : \"Off\"}</span></button>;",
+                  "  return <figure ref={figure} className=\"draft-plot\" data-draft-preview={preview || undefined} data-acquisition-metric-state={acquisition ? acquisitionMetric : undefined} data-brain-scale-state={benchmark ? benchmarkMoving ? \"animating\" : benchmarkEnabled ? \"on\" : \"off\" : undefined} aria-labelledby={`${id}-title`}>"
+                ]
+              },
+              {
+                "beforeIndex": 348,
+                "afterIndex": 401,
+                "before": [],
+                "after": [
+                  "      acquisitionMetric: acquisition ? acquisitionMetric : undefined,"
+                ]
+              },
+              {
+                "beforeIndex": 382,
+                "afterIndex": 436,
+                "before": [
+                  "          aria-pressed={acquisitionMetric === option.id} onClick={() => { tooltip.clear(); setAcquisitionMetric(option.id); }}>{option.label}</button>)}"
+                ],
+                "after": [
+                  "          aria-pressed={acquisitionMetric === option.id} onClick={() => {",
+                  "            tooltip.clear();",
+                  "            if (exploration) exploration.update({ acquisitionMetric: option.id });",
+                  "            else setLocalAcquisitionMetric(option.id);",
+                  "          }}>{option.label}</button>)}"
+                ]
+              },
+              {
+                "beforeIndex": 445,
+                "afterIndex": 503,
+                "before": [
+                  "      {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} data-acquisition-value={acquisition ? point.y : undefined} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}"
+                ],
+                "after": [
+                  "      {fits.map(fit => <g key={fit.label} pointerEvents=\"none\">",
+                  "        <polyline data-exploration-fit-window={fit.label} points={fit.points.map(p => `${x(p.x)},${y(displayedValue(p.y))}`).join(\" \")} fill=\"none\" stroke={fit.color} strokeWidth={2} />",
+                  "        <polyline data-exploration-fit-line={fit.label} data-fit-n={fit.n} points={`${x(fit.window[1])},${y(displayedValue(fit.points[1].y))} ${x(fit.end)},${y(displayedValue(fit.last))}`}",
+                  "          fill=\"none\" stroke={fit.color} strokeWidth={2} strokeDasharray=\"6 4\" />",
+                  "      </g>)}",
+                  "      {shown.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} data-acquisition-value={acquisition ? point.y : undefined} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}"
+                ]
+              },
+              {
+                "beforeIndex": 457,
+                "afterIndex": 520,
+                "before": [],
+                "after": [
+                  "      {tissue && <button type=\"button\" role=\"switch\" data-voxel-view-toggle aria-checked={voxels} onClick={() => {",
+                  "        tooltip.clear(); exploration.update({ voxels: !voxels });",
+                  "      }}>Nominal voxels · 4×4×40 nm</button>}"
+                ]
+              },
+              {
+                "beforeIndex": 465,
+                "afterIndex": 531,
+                "before": [
+                  "        onClick={() => { tooltip.clear(); setSensoryEnabled(enabled => !enabled); }}><span className=\"brain-scale-switch\" aria-hidden=\"true\" />Sensory context</button>"
+                ],
+                "after": [
+                  "        onClick={() => {",
+                  "          tooltip.clear();",
+                  "          if (exploration) exploration.update({ sensory: !sensoryEnabled });",
+                  "          else setLocalSensory(enabled => !enabled);",
+                  "        }}><span className=\"brain-scale-switch\" aria-hidden=\"true\" />Sensory context</button>"
+                ]
+              },
+              {
+                "beforeIndex": 471,
+                "afterIndex": 541,
+                "before": [
+                  "      {showSensory && <p>Sensory context is local to this view. Copy link opens the default chart.</p>}"
+                ],
+                "after": [
+                  "      {showSensory && !exploration && <p>Sensory context is local to this view. Copy link opens the default chart.</p>}"
+                ]
+              },
+              {
+                "beforeIndex": 477,
+                "afterIndex": 547,
+                "before": [
+                  "    {!preview && annotations.length > 0 && <ul className=\"draft-point-annotations\" aria-label=\"Labeled observations\">{annotations.map(({ point, text }, index) => <li key={point.id}>",
+                  "      <button type=\"button\" data-point-annotation={point.id} {...inspectProps(point)}>",
+                  "        <span className=\"draft-annotation-number\" aria-hidden=\"true\" style={{ color: groupColor(point) }}>{index + 1}</span>",
+                  "        <span>{text}</span>",
+                  "      </button>",
+                  "    </li>)}</ul>}",
+                  "    {legend.length > 0 && <ul className=\"draft-group-legend\" data-draft-group-legend aria-label=\"Observation scopes\">{legend.map(entry => <li key={entry.label}>",
+                  "      <span aria-hidden=\"true\" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox=\"0 0 14 14\" aria-hidden=\"true\" focusable=\"false\">"
+                ],
+                "after": [
+                  "    {!controlsBeforeSourceKey && studyList}",
+                  "    {legend.length > 0 && <ul className=\"draft-group-legend\" data-draft-group-legend aria-label=\"Observation scopes\">{legend.map(entry => {",
+                  "      // Reader-copy changes must not rename the persisted exploration series.",
+                  "      const series = isAcquisition && entry.label === \"EM · reported-technology estimates\" ? \"EM · reported-tech estimates\" : entry.label;",
+                  "      const key = <><span aria-hidden=\"true\" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox=\"0 0 14 14\" aria-hidden=\"true\" focusable=\"false\">"
+                ]
+              },
+              {
+                "beforeIndex": 486,
+                "afterIndex": 553,
+                "before": [
+                  "      </svg> : \"●\"}</span> {entry.label}",
+                  "    </li>)}</ul>}"
+                ],
+                "after": [
+                  "      </svg> : \"●\"}</span> {entry.label}</>;",
+                  "      return <li key={entry.label}>{interactive ? <SeriesButton id={series} visible={!hidden.includes(series)} toggle={() => {",
+                  "        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, series) });",
+                  "      }}>{key}</SeriesButton> : key}</li>;",
+                  "    })}</ul>}",
+                  "    {controlsBeforeSourceKey && <div className=\"exploration-plot-switches\" role=\"group\" aria-label=\"Plot options\">{fitToggle}</div>}",
+                  "    {interactive && !shown.length && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}",
+                  "    {interactive && (!controlsBeforeSourceKey || extrapolate) && <section className=\"exploration-model\" aria-label=\"Trend exploration\">",
+                  "      {!controlsBeforeSourceKey && fitToggle}",
+                  "      {extrapolate && <div data-exploration-fit-diagnostics>",
+                  "        {fits.length ? <><p>Dashed lines extend each eligible series ten years beyond its last input. R² describes historical fit quality in log₁₀ space.</p>",
+                  "          {fits.map(fit => <p key={fit.label}><strong>{fit.label}</strong> · {fit.window.join(\"–\")} · N={fit.n} · log-linear OLS · R²(log₁₀)={fit.rSquaredLog10?.toFixed(3)} · {fit.equation}</p>)}</>",
+                  "          : <p role=\"status\">No continuation for the visible series. The model needs at least three eligible points across multiple years and a positive slope.</p>}",
+                  "      </div>}",
+                  "    </section>}",
+                  "    {controlsBeforeSourceKey && studyList}"
+                ]
+              },
+              {
+                "beforeIndex": 551,
+                "afterIndex": 632,
+                "before": [
+                  "      {!modalSlots && <p className=\"draft-plot-scope\">{plot.scope}</p>}",
+                  "      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? \" & fits\" : \" and sources\"} JSON</a>}"
+                ],
+                "after": [
+                  "      {!modalSlots && !inlineDetail && <p className=\"draft-plot-scope\">{plot.scope}</p>}",
+                  "      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(acquisition ? plot : sourcePlot,null,2))}`}>Download selected data{plot.referenceTrendlines ? \" & fits\" : \" and sources\"} JSON</a>}"
+                ]
+              },
+              {
+                "beforeIndex": 555,
+                "afterIndex": 636,
+                "before": [
+                  "      {referenceTrendlines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}"
+                ],
+                "after": [
+                  "      {historicalLines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}"
+                ]
+              },
+              {
+                "beforeIndex": 563,
+                "afterIndex": 644,
+                "before": [
+                  "            <td>{recordingPair(point) ?? (acquisition ? `${point.qualifier ?? \"\"}${acquisitionNumber(point.y, \"voxels-per-dollar\")}` : qualifiedValue(point))}{point.recordingCoverage && <div data-recording-coverage-source>"
+                ],
+                "after": [
+                  "            <td>{recordingPair(point) ?? (acquisition ? `${point.qualifier ?? \"\"}${acquisitionNumber(point.y, \"voxels-per-dollar\")}` : voxels ? `${point.qualifier ?? \"\"}${exactNumber(point.y)}` : qualifiedValue(point))}{point.recordingCoverage && <div data-recording-coverage-source>"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/draft-chart-share.tsx",
+      "beforeSha256": "d90bf19e05d6ce41e48f26c53fcea6e5b356d2b065ac5b25fea20b2e02c4f84e",
+      "afterSha256": "43eac2d8de06357f98ba3f2d0c2baf5e9f93efc88a341f49ca80ccf6f3f53edf",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 36,
+            "afterLength": 34,
+            "edits": [
+              {
+                "beforeIndex": 3,
+                "afterIndex": 3,
+                "before": [],
+                "after": [
+                  "",
+                  "import { chartCopiedUrl } from \"@/lib/chart-export\";"
+                ]
+              },
+              {
+                "beforeIndex": 4,
+                "afterIndex": 6,
+                "before": [
+                  "import { navigatePerformance, performanceUrl } from \"@/lib/field-velocity/navigation\";"
+                ],
+                "after": []
+              },
+              {
+                "beforeIndex": 6,
+                "afterIndex": 7,
+                "before": [],
+                "after": [
+                  ""
+                ]
+              },
+              {
+                "beforeIndex": 8,
+                "afterIndex": 10,
+                "before": [],
+                "after": [
+                  "  const urlFor = chartCopiedUrl;"
+                ]
+              },
+              {
+                "beforeIndex": 11,
+                "afterIndex": 14,
+                "before": [
+                  "  const isCurrent = !!result.url && typeof window !== \"undefined\" && result.url === performanceUrl(window.location.href, anchor);"
+                ],
+                "after": [
+                  "  const isCurrent = !!result.url && typeof window !== \"undefined\" && result.url === urlFor(window.location.href, anchor);"
+                ]
+              },
+              {
+                "beforeIndex": 15,
+                "afterIndex": 18,
+                "before": [
+                  "      const url = performanceUrl(window.location.href, anchor);"
+                ],
+                "after": [
+                  "      const url = urlFor(window.location.href, anchor);"
+                ]
+              },
+              {
+                "beforeIndex": 26,
+                "afterIndex": 29,
+                "before": [
+                  "      <a href={fallback} onClick={event => {",
+                  "        if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {",
+                  "          event.preventDefault();",
+                  "          navigatePerformance(anchor);",
+                  "        }",
+                  "      }}>Open chart link</a>"
+                ],
+                "after": [
+                  "      <a href={fallback}>Open chart link</a>"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/latency-evidence-card.tsx",
+      "beforeSha256": "c2ea9d88df01faaca25ddb4b4f830cffc70a38fc5bc8dfa0f4f45c47dde15570",
+      "afterSha256": "443ae99c83ef62f9459f8ad314d45120edb47d70c8be692aa82074de0c3708cc",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 65,
+            "afterLength": 65,
+            "edits": [
+              {
+                "beforeIndex": 22,
+                "afterIndex": 22,
+                "before": [
+                  "export function LatencyEvidenceCard() {",
+                  "  return <CurveCard id=\"latency_compression\" title=\"Latency compression\" eyebrow=\"Reviewed source pairs\""
+                ],
+                "after": [
+                  "export function LatencyEvidenceCard({ detail = false }: { detail?: boolean } = {}) {",
+                  "  return <CurveCard detail={detail} id=\"latency_compression\" title=\"Latency compression\" eyebrow=\"Reviewed source pairs\""
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/pace-readings.tsx",
+      "beforeSha256": "037259118f16407ff55046118acbe7567e50b37c79808cf384e1caa9795a3487",
+      "afterSha256": "c4c4c83c181bd024e9fa85968fd1f72b6b62b2d7a6f9b67cd56af09c651b4789",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 72,
+            "afterLength": 72,
+            "edits": [
+              {
+                "beforeIndex": 11,
+                "afterIndex": 11,
+                "before": [
+                  "export function PaceReadings({ data, flat = false }: { data: PaceData; flat?: boolean }) {"
+                ],
+                "after": [
+                  "export function PaceReadings({ data, flat = false, detail = false }: { data: PaceData; flat?: boolean; detail?: boolean }) {"
+                ]
+              },
+              {
+                "beforeIndex": 13,
+                "afterIndex": 13,
+                "before": [
+                  "  const cards = data.records.map(sourceRecord => {"
+                ],
+                "after": [
+                  "  const cards = data.records.filter(record => !detail || record.instrument === \"idea_vintage\").map(sourceRecord => {"
+                ]
+              },
+              {
+                "beforeIndex": 31,
+                "afterIndex": 31,
+                "before": [
+                  "      return <CurveCard key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? \"Shared source reading\" : record.state.replaceAll(\"_\", \" \")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? \"Reading unavailable\")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>"
+                ],
+                "after": [
+                  "      return <CurveCard detail={detail} key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? \"Shared source reading\" : record.state.replaceAll(\"_\", \" \")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? \"Reading unavailable\")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/performance-curves.tsx",
+      "beforeSha256": "40cf305d7fbfdf3162427dbe17968fcaf22af2a3f4b9167f034733cccd7ee9c3",
+      "afterSha256": "6401d337056b6f862aa4779392d09610310f0a49f67c66f7f031b42820cc3956",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 523,
+            "afterLength": 572,
+            "edits": [
+              {
+                "beforeIndex": 2,
+                "afterIndex": 2,
+                "before": [],
+                "after": [
+                  "import { GraphExportContext } from \"@/components/graph-export-context\";",
+                  "import { useGraphHref } from \"@/components/field-velocity-route-context\";"
+                ]
+              },
+              {
+                "beforeIndex": 5,
+                "afterIndex": 7,
+                "before": [
+                  "import { canonicalPerformanceAnchor } from \"@/data/field-velocity-links\";"
+                ],
+                "after": [
+                  "import { updateStandaloneChartUrl } from \"@/lib/standalone-chart-state\";",
+                  "import { fieldVelocityGraph, canonicalPerformanceAnchor } from \"@/data/field-velocity-links\";"
+                ]
+              },
+              {
+                "beforeIndex": 7,
+                "afterIndex": 10,
+                "before": [
+                  "import React, { useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from \"react\";"
+                ],
+                "after": [
+                  "import React, { useId, useLayoutEffect, useRef, useState, useContext, useSyncExternalStore } from \"react\";"
+                ]
+              },
+              {
+                "beforeIndex": 11,
+                "afterIndex": 14,
+                "before": [],
+                "after": [
+                  "import { EmptySeries, SeriesButton, toggleSeries } from \"@/components/exploration-legend\";",
+                  "import { ChartExplorationContext } from \"@/components/chart-exploration-context\";"
+                ]
+              },
+              {
+                "beforeIndex": 43,
+                "afterIndex": 48,
+                "before": [
+                  "export type PlotData = { xLabel?: string; title: string; unit: string; scale: \"log\" | \"linear\"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean; exportPointKey?: {label: string; color: string}[]; exportPointKeyNote?: string };"
+                ],
+                "after": [
+                  "export type PlotData = { xLabel?: string; title: string; unit: string; scale: \"log\" | \"linear\"; line: boolean; connectTracks?: readonly string[]; points: PlotPoint[]; tracks: { id: string; label: string }[]; recordingView?: RecordingViewId; historicalFit?: HistoricalLogFit; exportNotes?: string[]; exportCaptionNotes?: string[]; yearLabels?: boolean; exportPointKey?: {label: string; color: string}[]; exportPointKeyNote?: string };"
+                ]
+              },
+              {
+                "beforeIndex": 129,
+                "afterIndex": 134,
+                "before": [],
+                "after": [
+                  "  const exploration = useContext(ChartExplorationContext);",
+                  "  const interactive = !compact && !!exploration && !!data.recordingView;",
+                  "  const hidden = interactive ? exploration.settings.hidden ?? [] : [];",
+                  "  const measurementVisible = !data.recordingView || !hidden.includes(data.recordingView);"
+                ]
+              },
+              {
+                "beforeIndex": 147,
+                "afterIndex": 156,
+                "before": [
+                  "  const [extrapolate, setExtrapolate] = useChartToggle(!compact && extrapolation ? shareAnchor : undefined);"
+                ],
+                "after": [
+                  "  const [localExtrapolate, setLocalExtrapolate] = useChartToggle(!compact && extrapolation ? shareAnchor : undefined);",
+                  "  const controlledExtrapolation = !compact && !!extrapolation && !!exploration;",
+                  "  const extrapolate = controlledExtrapolation ? !!exploration.settings.extrapolate : localExtrapolate;",
+                  "  const setExtrapolate = (change: (current: boolean) => boolean) => {",
+                  "    if (controlledExtrapolation) exploration.update({ extrapolate: change(extrapolate) });",
+                  "    else setLocalExtrapolate(change);",
+                  "  };"
+                ]
+              },
+              {
+                "beforeIndex": 151,
+                "afterIndex": 166,
+                "before": [
+                  "  const tooltip = usePointTooltip(data.points.filter(point => !track || point.track === track));"
+                ],
+                "after": [
+                  "  const tooltip = usePointTooltip(data.points.filter(point => measurementVisible && (!track || point.track === track)));"
+                ]
+              },
+              {
+                "beforeIndex": 186,
+                "afterIndex": 201,
+                "before": [
+                  "  const points = data.points.filter(p => !track || p.track === track);"
+                ],
+                "after": [
+                  "  const points = data.points.filter(p => measurementVisible && (!track || p.track === track));"
+                ]
+              },
+              {
+                "beforeIndex": 223,
+                "afterIndex": 238,
+                "before": [
+                  "      return { svg: root.querySelector(\"svg\")!, title: data.title, anchor: shareAnchor, captionNotes: data.exportCaptionNotes, pointKey: data.exportPointKey, pointKeyNote: data.exportPointKeyNote,"
+                ],
+                "after": [
+                  "      return { svg: root.querySelector(\"svg\")!, title: data.title, anchor: shareAnchor, recordingView: data.recordingView, captionNotes: data.exportCaptionNotes, pointKey: data.exportPointKey, pointKeyNote: data.exportPointKeyNote,"
+                ]
+              },
+              {
+                "beforeIndex": 251,
+                "afterIndex": 266,
+                "before": [
+                  "    {!compact && data.tracks.length > 1 && <label className=\"pc-track-select\">Dataset / track"
+                ],
+                "after": [
+                  "    {!compact && !controlledExtrapolation && data.tracks.length > 1 && <label className=\"pc-track-select\">Dataset / track"
+                ]
+              },
+              {
+                "beforeIndex": 269,
+                "afterIndex": 284,
+                "before": [
+                  "        {data.historicalFit && <g data-historical-fit>"
+                ],
+                "after": [
+                  "        {measurementVisible && data.historicalFit && <g data-historical-fit>"
+                ]
+              },
+              {
+                "beforeIndex": 309,
+                "afterIndex": 324,
+                "before": [
+                  "    {!compact && data.historicalFit && <div className=\"pc-chart-note\" data-historical-fit-diagnostics>"
+                ],
+                "after": [
+                  "    {!compact && measurementVisible && data.historicalFit && <div className=\"pc-chart-note\" data-historical-fit-diagnostics>"
+                ]
+              },
+              {
+                "beforeIndex": 314,
+                "afterIndex": 329,
+                "before": [
+                  "    {!compact && <ul className=\"pc-legend\">{data.tracks.map((t, i) => <li key={t.id}><span style={{ background: colors[i % colors.length] }} />{t.label}</li>)}</ul>}"
+                ],
+                "after": [
+                  "    {!compact && <ul className=\"pc-legend\">{data.tracks.map((t, i) => {",
+                  "      const key = <><span aria-hidden=\"true\" style={{ background: colors[i % colors.length] }} />{t.label}</>;",
+                  "      return <li key={t.id}>{interactive ? <SeriesButton id={t.id} visible={measurementVisible} toggle={() => {",
+                  "        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, t.id) });",
+                  "      }}>{key}</SeriesButton> : key}</li>;",
+                  "    })}</ul>}",
+                  "    {interactive && !measurementVisible && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}"
+                ]
+              },
+              {
+                "beforeIndex": 317,
+                "afterIndex": 338,
+                "before": [
+                  "      <label className=\"pc-track-select pc-scenario-select\">Growth scenario"
+                ],
+                "after": [
+                  "      {!controlledExtrapolation && <label className=\"pc-track-select pc-scenario-select\">Growth scenario"
+                ]
+              },
+              {
+                "beforeIndex": 323,
+                "afterIndex": 344,
+                "before": [
+                  "      </label>"
+                ],
+                "after": [
+                  "      </label>}"
+                ]
+              },
+              {
+                "beforeIndex": 337,
+                "afterIndex": 358,
+                "before": [
+                  "export function CurveCard({ id, title, previewTitle, coverage, plot, children, sourceLinks, previewNote, modalIntro, modalPlot }: { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode }) {"
+                ],
+                "after": [
+                  "type CurveCardProps = { id: string; title: string; previewTitle?: string; eyebrow: string; coverage: string; plot?: PlotData; children: React.ReactNode; sourceLinks?: readonly { label: string; url: string }[]; previewNote?: string; modalIntro?: React.ReactNode; modalPlot?: React.ReactNode };",
+                  "",
+                  "export function CurveCard({ detail = false, ...props }: CurveCardProps & { detail?: boolean }) {",
+                  "  return detail ? <CurveDetail {...props} /> : <CurvePreviewCard {...props} />;",
+                  "}",
+                  "",
+                  "function CurveDetail({ id, title, plot, children, modalIntro, modalPlot }: CurveCardProps) {",
+                  "  return <>",
+                  "    {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === \"neural-recording-hours\" ? \"hours\" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}",
+                  "    {children}",
+                  "  </>;",
+                  "}",
+                  "",
+                  "function CurvePreviewCard(props: CurveCardProps) {",
+                  "  const { id, title, previewTitle, coverage, plot, sourceLinks, previewNote } = props;"
+                ]
+              },
+              {
+                "beforeIndex": 340,
+                "afterIndex": 375,
+                "before": [
+                  "  const open = hash === `#${canonicalPerformanceAnchor(id)}`;"
+                ],
+                "after": [
+                  "  const href = useGraphHref(id);",
+                  "  const open = !href && hash === `#${canonicalPerformanceAnchor(id)}`;"
+                ]
+              },
+              {
+                "beforeIndex": 344,
+                "afterIndex": 380,
+                "before": [
+                  "    <button ref={ref} type=\"button\" className=\"pc-trigger\" data-metric-card-body aria-haspopup=\"dialog\" aria-expanded={open} onClick={() => navigatePerformance(id)}>",
+                  "",
+                  "      <span className=\"pc-card-title\">{previewTitle ?? title}</span>",
+                  "      {plot && <CurvePlot data={plot} compact />}",
+                  "    </button>"
+                ],
+                "after": [
+                  "    {href ? <a href={href} data-graph-link={id} className=\"pc-trigger\" data-metric-card-body>",
+                  "      <span className=\"pc-card-title\">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}",
+                  "    </a> : <button ref={ref} type=\"button\" className=\"pc-trigger\" data-metric-card-body aria-haspopup=\"dialog\" aria-expanded={open} onClick={() => navigatePerformance(id)}>",
+                  "      <span className=\"pc-card-title\">{previewTitle ?? title}</span>{plot && <CurvePlot data={plot} compact />}",
+                  "    </button>}"
+                ]
+              },
+              {
+                "beforeIndex": 356,
+                "afterIndex": 392,
+                "before": [
+                  "    {(open || exporting) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>",
+                  "      {modalPlot ?? (plot ? <CurvePlot data={plot} shareAnchor={id} intro={modalIntro} extrapolation={id === \"neural-recording-hours\" ? \"hours\" : undefined} /> : <><ChartActions anchor={id} title={title} />{modalIntro}</>)}",
+                  "      {children}"
+                ],
+                "after": [
+                  "    {(open || (!href && exporting)) && <ChartModal id={id} title={title} returnFocus={ref} offscreen={!open}>",
+                  "      <CurveDetail {...props} />"
+                ]
+              },
+              {
+                "beforeIndex": 363,
+                "afterIndex": 398,
+                "before": [
+                  "export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks }: { series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {"
+                ],
+                "after": [
+                  "export function MeasurementCard({ series, provenance, anchor = series.id, previewNote, connectTracks, detail }: { detail?: boolean; series: MeasurementSeries; provenance?: React.ReactNode; anchor?: string; previewNote?: string; connectTracks?: readonly string[] }) {"
+                ]
+              },
+              {
+                "beforeIndex": 366,
+                "afterIndex": 401,
+                "before": [
+                  "  return <CurveCard id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === \"data-supply\" ? \"Data supply\" : \"Capability\"} coverage={series.coverage} plot={plot}>"
+                ],
+                "after": [
+                  "  return <CurveCard detail={detail} id={anchor} title={series.title} previewNote={previewNote} eyebrow={series.lens === \"data-supply\" ? \"Data supply\" : \"Capability\"} coverage={series.coverage} plot={plot}>"
+                ]
+              },
+              {
+                "beforeIndex": 396,
+                "afterIndex": 431,
+                "before": [],
+                "after": [
+                  "    recordingView: view.id,"
+                ]
+              },
+              {
+                "beforeIndex": 423,
+                "afterIndex": 459,
+                "before": [
+                  "function selectRecordingView(id: RecordingViewId) {",
+                  "  const url = new URL(window.location.href);",
+                  "  url.searchParams.set(recordingViewQuery, id);"
+                ],
+                "after": [
+                  "function selectRecordingView(id: RecordingViewId, standalone = false) {",
+                  "  let url = new URL(window.location.href);",
+                  "  if (standalone && id === \"historical\") url.searchParams.delete(recordingViewQuery);",
+                  "  else url.searchParams.set(recordingViewQuery, id);",
+                  "  if (standalone) {",
+                  "    url = updateStandaloneChartUrl(url, fieldVelocityGraph(recordingAnchor)!, {});",
+                  "    if (url.href === window.location.href) return;",
+                  "  }"
+                ]
+              },
+              {
+                "beforeIndex": 428,
+                "afterIndex": 469,
+                "before": [
+                  "  window.history.pushState({ ...window.history.state, atlasModalFrom: null }, \"\", url);"
+                ],
+                "after": [
+                  "  if (standalone && window.history.state?.atlasModalFrom) window.history.replaceState(window.history.state, \"\", url);",
+                  "  else window.history.pushState(standalone ? window.history.state : { ...window.history.state, atlasModalFrom: null }, \"\", url);"
+                ]
+              },
+              {
+                "beforeIndex": 431,
+                "afterIndex": 473,
+                "before": [
+                  "function RecordingCard({ historical, historicalProvenance }: { historical: PerformanceData[\"record\"]; historicalProvenance: React.ReactNode }) {",
+                  "  const viewId = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => \"historical\");"
+                ],
+                "after": [
+                  "function RecordingViewSelect({ viewId }: { viewId: RecordingViewId }) {",
+                  "  // Read exploration at the detail mount, not the overview card that created it.",
+                  "  const exploration = useContext(ChartExplorationContext);",
+                  "  return <label className=\"pc-track-select pc-recording-view\">Measurement view",
+                  "    <select data-recording-view-select value={viewId} onChange={event => selectRecordingView(event.target.value as RecordingViewId, !!exploration)}>",
+                  "      {ALL_RECORDING_VIEWS.map(view => <option key={view.id} value={view.id}>{view.label}</option>)}",
+                  "    </select>",
+                  "  </label>;",
+                  "}",
+                  "function RecordingCard({ historical, historicalProvenance, detail }: { detail?: boolean; historical: PerformanceData[\"record\"]; historicalProvenance: React.ReactNode }) {",
+                  "  const liveView = useSyncExternalStore(subscribeRecordingView, recordingViewSnapshot, () => \"historical\");",
+                  "  const exportRequest = useContext(GraphExportContext);",
+                  "  const viewId = exportRequest ? recordingViewToken(new URL(exportRequest.url)) ?? \"historical\" : liveView;"
+                ]
+              },
+              {
+                "beforeIndex": 434,
+                "afterIndex": 487,
+                "before": [
+                  "  return <CurveCard id={recordingAnchor} title={recordingTitle} previewTitle=\"Neurons per experiment\" eyebrow=\"Recording evidence\""
+                ],
+                "after": [
+                  "  return <CurveCard detail={detail} id={recordingAnchor} title={recordingTitle} previewTitle=\"Neurons per experiment\" eyebrow=\"Recording evidence\""
+                ]
+              },
+              {
+                "beforeIndex": 440,
+                "afterIndex": 493,
+                "before": [
+                  "        <label className=\"pc-track-select pc-recording-view\">Measurement view",
+                  "          <select data-recording-view-select value={view.id} onChange={event => selectRecordingView(event.target.value as RecordingViewId)}>",
+                  "            {ALL_RECORDING_VIEWS.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}",
+                  "          </select>",
+                  "        </label>"
+                ],
+                "after": [
+                  "        <RecordingViewSelect viewId={view.id} />"
+                ]
+              },
+              {
+                "beforeIndex": 488,
+                "afterIndex": 537,
+                "before": [
+                  "export function PerformanceCurves({ data, provenance, selection, flat = false }: { data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {"
+                ],
+                "after": [
+                  "export function PerformanceCurves({ data, provenance, selection, flat = false, detail = false }: { detail?: boolean; data: PerformanceData; provenance: Provenance; selection?: readonly string[]; flat?: boolean }) {"
+                ]
+              },
+              {
+                "beforeIndex": 497,
+                "afterIndex": 546,
+                "before": [
+                  "      {includes(\"simultaneously-recorded-neurons\") && <RecordingCard historical={data.record} historicalProvenance={provenanceDetails} />}",
+                  "      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} series={s} provenance={flat ? provenanceDetails : undefined} />)}"
+                ],
+                "after": [
+                  "      {includes(\"simultaneously-recorded-neurons\") && <RecordingCard detail={detail} historical={data.record} historicalProvenance={provenanceDetails} />}",
+                  "      {data.measurements.filter(s => includes(s.id)).map(s => <MeasurementCard key={s.id} detail={detail} series={s} provenance={flat ? provenanceDetails : undefined} />)}"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/publication-charts.tsx",
+      "beforeSha256": "4391985c9ec7baec017e598a4939073faf317ba1e9a8dcc479ecb29a58387013",
+      "afterSha256": "418f108ce096d21a03dd6aa362d422388808c6800afb0e63ad480fb1c8e2bf39",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 384,
+            "afterLength": 409,
+            "edits": [
+              {
+                "beforeIndex": 2,
+                "afterIndex": 2,
+                "before": [],
+                "after": [
+                  "import { useGraphHref } from \"@/components/field-velocity-route-context\";"
+                ]
+              },
+              {
+                "beforeIndex": 4,
+                "afterIndex": 5,
+                "before": [
+                  "import React, { useLayoutEffect, useMemo, useRef, useState } from \"react\";"
+                ],
+                "after": [
+                  "import React, { useContext, useLayoutEffect, useMemo, useRef, useState } from \"react\";"
+                ]
+              },
+              {
+                "beforeIndex": 7,
+                "afterIndex": 8,
+                "before": [],
+                "after": [
+                  "import { ChartExplorationContext } from \"@/components/chart-exploration-context\";",
+                  "import { EmptySeries, SeriesButton, toggleSeries } from \"@/components/exploration-legend\";"
+                ]
+              },
+              {
+                "beforeIndex": 37,
+                "afterIndex": 40,
+                "before": [
+                  "function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null; previewHeight?: number }) {"
+                ],
+                "after": [
+                  "function AnnualPlot({ data, compact, inspect, activeInspection, previewHeight, hidden = [] }: { data: PublicationChartData; compact?: boolean; inspect?: Inspect; activeInspection?: string | null; previewHeight?: number; hidden?: readonly string[] }) {",
+                  "  const neuroOn = !hidden.includes(\"neurotech\");",
+                  "  const allOn = !hidden.includes(\"all-research\");",
+                  "  const bandOn = !hidden.includes(\"four-domain\");"
+                ]
+              },
+              {
+                "beforeIndex": 60,
+                "afterIndex": 66,
+                "before": [
+                  "    return `${year}: Neurotech papers ${number(actual.papers)}; ${science ? `All research index ${number(index(science.all))}; Four-domain index band ${number(index(science.low))}–${number(index(science.high))} (2022 = 100).` : \"Science index unavailable for this year.\"}`;"
+                ],
+                "after": [
+                  "    return `${year}: ${[neuroOn && `Neurotech papers ${number(actual.papers)}`, allOn && science && `All research index ${number(index(science.all))}`, bandOn && science && `Four-domain index band ${number(index(science.low))}–${number(index(science.high))}`, !science && (allOn || bandOn) && \"Science index unavailable for this year.\"].filter(Boolean).join(\"; \")}${science && (allOn || bandOn) ? \" (2022 = 100).\" : \"\"}`;"
+                ]
+              },
+              {
+                "beforeIndex": 68,
+                "afterIndex": 74,
+                "before": [
+                  "  const selected = data.annual.find(row => row.year === selectedYear);",
+                  "  const measure = useChartMeasure({ svgRef: ref, enabled: !compact, annual: true, unit: \" papers\", frame: { left, right, top, bottom },"
+                ],
+                "after": [
+                  "  const selected = neuroOn && data.annual.find(row => row.year === selectedYear);",
+                  "  const measure = useChartMeasure({ svgRef: ref, enabled: !compact && neuroOn, annual: true, unit: \" papers\", frame: { left, right, top, bottom },"
+                ]
+              },
+              {
+                "beforeIndex": 80,
+                "afterIndex": 86,
+                "before": [
+                  "    {hasScience && <polygon data-science-context fill={gray} fillOpacity=\".3\" points={[...data.baseline.map(row => `${x(row.year)},${scienceY(index(row.high))}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${scienceY(index(row.low))}`)].join(\" \")}/>}",
+                  "    {hasScience && <polyline data-science-context fill=\"none\" stroke={teal} strokeWidth=\"3\" points={line(data.baseline.map(row => ({year:row.year,value:index(row.all)})), scienceY)}/>}",
+                  "    <polyline fill=\"none\" stroke={blue} strokeWidth=\"3\" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>",
+                  "    {data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={blue} {...yearEvents(row.year)}/>)}",
+                  "    {inspect && hasScience && data.baseline.map(row => <circle key={row.year} data-publication-mark data-science-year={row.year} cx={x(row.year)} cy={scienceY(index(row.all))} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={teal} {...yearEvents(row.year)}/>)}"
+                ],
+                "after": [
+                  "    {hasScience && bandOn && <polygon data-science-context fill={gray} fillOpacity=\".3\" points={[...data.baseline.map(row => `${x(row.year)},${scienceY(index(row.high))}`), ...[...data.baseline].reverse().map(row => `${x(row.year)},${scienceY(index(row.low))}`)].join(\" \")}/>}",
+                  "    {hasScience && allOn && <polyline data-science-context fill=\"none\" stroke={teal} strokeWidth=\"3\" points={line(data.baseline.map(row => ({year:row.year,value:index(row.all)})), scienceY)}/>}",
+                  "    {neuroOn && <polyline fill=\"none\" stroke={blue} strokeWidth=\"3\" points={line(data.annual.map(row => ({year:row.year,value:row.papers})))}/>}",
+                  "    {neuroOn && data.annual.map(row => <circle key={row.year} data-publication-mark data-year={row.year} data-value={row.papers} cx={x(row.year)} cy={y(row.papers)} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={blue} {...yearEvents(row.year)}/>)}",
+                  "    {inspect && hasScience && allOn && data.baseline.map(row => <circle key={row.year} data-publication-mark data-science-year={row.year} cx={x(row.year)} cy={scienceY(index(row.all))} data-export-r={CHART_PRESENTATION.expandedRadius} r={radius} fill={teal} {...yearEvents(row.year)}/>)}"
+                ]
+              },
+              {
+                "beforeIndex": 86,
+                "afterIndex": 92,
+                "before": [
+                  "    {hasScience && <g data-annual-anchor pointerEvents=\"none\"><circle cx={x(2022)} cy={y(anchor)} r=\"8\" fill=\"none\" stroke=\"var(--foreground)\" strokeWidth=\"1.5\"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor=\"middle\">{compact ? \"2022 anchor · index 100\" : `2022 anchor · ${number(anchor)} papers = science index 100`}</text></g>}",
+                  "    {inspect && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden=\"true\" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill=\"transparent\" {...yearEvents(row.year)} tabIndex={-1}/>)}"
+                ],
+                "after": [
+                  "    {hasScience && neuroOn && allOn && <g data-annual-anchor pointerEvents=\"none\"><circle cx={x(2022)} cy={y(anchor)} r=\"8\" fill=\"none\" stroke=\"var(--foreground)\" strokeWidth=\"1.5\"/><text x={(left+right)/2} y={bottom+fontSize*3.3} textAnchor=\"middle\">{compact ? \"2022 anchor · index 100\" : `2022 anchor · ${number(anchor)} papers = science index 100`}</text></g>}",
+                  "    {inspect && (neuroOn || hasScience && (allOn || bandOn)) && data.annual.map(row => <rect key={row.year} data-annual-year-target={row.year} aria-hidden=\"true\" x={Math.max(left,x(row.year)-(right-left)/30)} y={top} width={(right-left)/(row.year===2010||row.year===2025?30:15)} height={bottom-top} fill=\"transparent\" {...yearEvents(row.year)} tabIndex={-1}/>)}"
+                ]
+              },
+              {
+                "beforeIndex": 92,
+                "afterIndex": 98,
+                "before": [
+                  "function AnnualTooltipContent({ data, active }: { data:PublicationChartData; active:string|null }) {"
+                ],
+                "after": [
+                  "function AnnualTooltipContent({ data, active, hidden = [] }: { data:PublicationChartData; active:string|null; hidden?: readonly string[] }) {"
+                ]
+              },
+              {
+                "beforeIndex": 98,
+                "afterIndex": 104,
+                "before": [
+                  "  const rows=[{label:\"Neurotech papers\",value:number(selected.papers),color:blue},...(science?[",
+                  "    {label:\"All research index\",value:number(index(science.all)),color:teal},",
+                  "    {label:\"Four-domain index\",value:`${number(index(science.low))}–${number(index(science.high))}`,color:gray},"
+                ],
+                "after": [
+                  "  const rows=[{id:\"neurotech\",label:\"Neurotech papers\",value:number(selected.papers),color:blue},...(science?[",
+                  "    {id:\"all-research\",label:\"All research index\",value:number(index(science.all)),color:teal},",
+                  "    {id:\"four-domain\",label:\"Four-domain index\",value:`${number(index(science.low))}–${number(index(science.high))}`,color:gray},"
+                ]
+              },
+              {
+                "beforeIndex": 102,
+                "afterIndex": 108,
+                "before": [
+                  "  return <div data-annual-tooltip={selected.year}><strong>{selected.year}</strong>{rows.map(row=><p key={row.label}><svg width=\"12\" height=\"12\" aria-hidden=\"true\"><circle data-annual-tooltip-key={row.label} cx=\"6\" cy=\"6\" r=\"4\" fill={row.color}/></svg> {row.label}: {row.value}</p>)}<p>{science?\"Science index · 2022 = 100\":\"Science index unavailable for this year\"}</p></div>;"
+                ],
+                "after": [
+                  "  return <div data-annual-tooltip={selected.year}><strong>{selected.year}</strong>{rows.filter(row=>!hidden.includes(row.id)).map(row=><p key={row.label}><svg width=\"12\" height=\"12\" aria-hidden=\"true\"><circle data-annual-tooltip-key={row.label} cx=\"6\" cy=\"6\" r=\"4\" fill={row.color}/></svg> {row.label}: {row.value}</p>)}<p>{science?\"Science index · 2022 = 100\":\"Science index unavailable for this year\"}</p></div>;"
+                ]
+              },
+              {
+                "beforeIndex": 269,
+                "afterIndex": 275,
+                "before": [
+                  "function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline; activeInspection?:string|null; previewHeight?:number }) {"
+                ],
+                "after": [
+                  "function Plot({ index, ...props }: { index:number; data:PublicationChartData; compact?:boolean; inspect?:Inspect; baseline?:GrowthBaseline; activeInspection?:string|null; previewHeight?:number; hidden?:readonly string[] }) {"
+                ]
+              },
+              {
+                "beforeIndex": 307,
+                "afterIndex": 313,
+                "before": [
+                  "  const [baseline,setBaseline]=useState<GrowthBaseline>(\"science\");"
+                ],
+                "after": [
+                  "  const [localBaseline,setLocalBaseline]=useState<GrowthBaseline>(\"science\");",
+                  "  const exploration=useContext(ChartExplorationContext);",
+                  "  const baseline=exploration?.settings.growthBaseline ?? localBaseline;",
+                  "  const setBaseline=(growthBaseline: GrowthBaseline) => {",
+                  "    if (exploration) exploration.update({growthBaseline});",
+                  "    else setLocalBaseline(growthBaseline);",
+                  "  };",
+                  "  const interactive=index===0 && !!exploration;",
+                  "  const hidden=interactive ? exploration.settings.hidden ?? [] : [];"
+                ]
+              },
+              {
+                "beforeIndex": 318,
+                "afterIndex": 332,
+                "before": [
+                  "    {index===0&&<p className=\"publication-legend\"><span data-series-key=\"neurotech\" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>}"
+                ],
+                "after": [
+                  "    {index===0&&(interactive ? <div className=\"publication-legend\" role=\"group\" aria-label=\"Publication series\">",
+                  "      {([[\"neurotech\", \"● Neurotech · left axis: papers\", blue], ...(hasScience ? [[\"all-research\", \"● All research · right axis: index\", teal], [\"four-domain\", \"■ Global science context · four-domain band\", gray]] : [])]).map(([id,label,color]) =>",
+                  "        <SeriesButton key={id} id={id} visible={!hidden.includes(id)} toggle={() => {tooltip.clear(); exploration.update({hidden:toggleSeries(hidden,id)});}}><span style={{color}}>{label}</span></SeriesButton>)}",
+                  "      {hasScience&&<span>Science index · 2022 = 100</span>}",
+                  "    </div> : <p className=\"publication-legend\"><span data-series-key=\"neurotech\" style={{color:blue}}>● Neurotech · left axis: papers</span>{hasScience&&<><span style={{color:teal}}>● All research · right axis: index</span><span>■ Global science context · four-domain band: index</span><span>Science index · 2022 = 100</span></>}</p>)}",
+                  "    {interactive && hidden.includes(\"neurotech\") && (!hasScience || hidden.includes(\"all-research\") && hidden.includes(\"four-domain\")) && <EmptySeries reset={() => exploration.update({hidden:[]})}/>}"
+                ]
+              },
+              {
+                "beforeIndex": 326,
+                "afterIndex": 345,
+                "before": [
+                  "    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role=\"region\" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps} baseline={baseline} activeInspection={tooltip.active}/></div>"
+                ],
+                "after": [
+                  "    <div ref={plot} className={`publication-full-plot publication-plot-${index}`} role=\"region\" aria-label={`${titles[index]} scrollable plot`} tabIndex={0}><Plot index={index} data={data} inspect={tooltip.pointProps} baseline={baseline} hidden={hidden} activeInspection={tooltip.active}/></div>"
+                ]
+              },
+              {
+                "beforeIndex": 329,
+                "afterIndex": 348,
+                "before": [
+                  "    <PointTooltip {...tooltip.tooltipProps}>{index===0?<AnnualTooltipContent data={data} active={tooltip.active}/>:<p>{tooltip.active}</p>}<p><a href={snapshot.source.url} target=\"_blank\" rel=\"noreferrer\">Source: OpenAlex ↗</a></p></PointTooltip>"
+                ],
+                "after": [
+                  "    <PointTooltip {...tooltip.tooltipProps}>{index===0?<AnnualTooltipContent data={data} active={tooltip.active} hidden={hidden}/>:<p>{tooltip.active}</p>}<p><a href={snapshot.source.url} target=\"_blank\" rel=\"noreferrer\">Source: OpenAlex ↗</a></p></PointTooltip>"
+                ]
+              },
+              {
+                "beforeIndex": 352,
+                "afterIndex": 371,
+                "before": [
+                  "  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), open=hash===`#${canonicalPerformanceAnchor(anchor)}`, trigger=useRef<HTMLButtonElement>(null);"
+                ],
+                "after": [
+                  "  const anchor=PUBLICATION_ANCHORS[index], hash=usePerformanceHash(), trigger=useRef<HTMLButtonElement>(null);",
+                  "  const href=useGraphHref(anchor), open=!href&&hash===`#${canonicalPerformanceAnchor(anchor)}`;"
+                ]
+              },
+              {
+                "beforeIndex": 360,
+                "afterIndex": 380,
+                "before": [
+                  "      <button ref={trigger} className=\"pc-trigger\" type=\"button\" aria-haspopup=\"dialog\" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className=\"pc-card-title\">{titles[index]}</span></button>",
+                  "      <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role=\"region\" aria-label={`${titles[index]} preview${index===1?\"; scroll for all groups\":\"\"}`} tabIndex={index===1?0:undefined}><button className=\"publication-preview-trigger\" type=\"button\" aria-label={`Enlarge ${titles[index]}`} aria-haspopup=\"dialog\" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button></div>"
+                ],
+                "after": [
+                  "      {href ? <a href={href} data-graph-link={anchor} className=\"pc-trigger\"><span className=\"pc-card-title\">{titles[index]}</span></a> : <button ref={trigger} className=\"pc-trigger\" type=\"button\" aria-haspopup=\"dialog\" aria-expanded={open} onClick={()=>navigatePerformance(anchor)}><span className=\"pc-card-title\">{titles[index]}</span></button>}",
+                  "      <div ref={preview} data-metric-preview-extra={previewExtra} style={{height:previewHeight}} className={`publication-preview publication-preview-${index}`} role=\"region\" aria-label={`${titles[index]} preview${index===1?\"; scroll for all groups\":\"\"}`} tabIndex={index===1?0:undefined}>{href ? <a href={href} data-graph-link={anchor} className=\"publication-preview-trigger\" aria-label={`Enlarge ${titles[index]}`}><Plot index={index} data={data} compact previewHeight={previewHeight}/></a> : <button className=\"publication-preview-trigger\" type=\"button\" aria-label={`Enlarge ${titles[index]}`} aria-haspopup=\"dialog\" onClick={()=>navigatePerformance(anchor)}><Plot index={index} data={data} compact previewHeight={previewHeight}/></button>}</div>"
+                ]
+              },
+              {
+                "beforeIndex": 371,
+                "afterIndex": 391,
+                "before": [
+                  "    {(open||exporting)&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger} offscreen={!open}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}"
+                ],
+                "after": [
+                  "    {(open||(!href&&exporting))&&<ChartModal id={anchor} title={titles[index]} returnFocus={trigger} offscreen={!open}><PublicationDetails key={`${anchor}:${snapshot.source.sourceHash}`} index={index} snapshot={snapshot} data={data} anchor={anchor}/></ChartModal>}"
+                ]
+              },
+              {
+                "beforeIndex": 375,
+                "afterIndex": 395,
+                "before": [
+                  "export function PublicationCharts({snapshot,query=\"\",allowTestFixture=false}:{snapshot:PublicationSnapshot|unknown;query?:string;allowTestFixture?:boolean}) {"
+                ],
+                "after": [
+                  "export function PublicationCharts({snapshot,query=\"\",allowTestFixture=false,detail}:{snapshot:PublicationSnapshot|unknown;query?:string;allowTestFixture?:boolean;detail?:string}) {"
+                ]
+              },
+              {
+                "beforeIndex": 380,
+                "afterIndex": 400,
+                "before": [],
+                "after": [
+                  "  if (detail) {",
+                  "    const index = PUBLICATION_ANCHORS.findIndex(anchor => anchor === detail);",
+                  "    const anchor = PUBLICATION_ANCHORS[index];",
+                  "    return anchor ? <PublicationDetails key={`${anchor}:${validated.source.sourceHash}`} index={index} snapshot={validated} data={data} anchor={anchor} /> : null;",
+                  "  }"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/sections/draft-charts-section.tsx",
+      "beforeSha256": "e62f64419516d7c16a4340083ef9d66babbbbe96e8602b12067ecc784c8e3638",
+      "afterSha256": "58682f476a7296a8a5be3c1d6c1981ddaa6abf07a14ecaa84c7b750ec36f1bbd",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 187,
+            "afterLength": 167,
+            "edits": [
+              {
+                "beforeIndex": 7,
+                "afterIndex": 7,
+                "before": [
+                  "import { DraftChartPanel, DraftTimelinePanel } from \"@/components/draft-chart-panel\";"
+                ],
+                "after": [
+                  "import { DraftChartPanel, DraftTimelinePanel, DraftChartMethodology as Methodology } from \"@/components/draft-chart-panel\";"
+                ]
+              },
+              {
+                "beforeIndex": 19,
+                "afterIndex": 19,
+                "before": [
+                  "function Methodology({ chart, context, axes, alwaysVisible = false, summary }: { chart: DraftChart; context?: string; axes?: string; alwaysVisible?: boolean; summary?: string }) {",
+                  "  const content = <>",
+                  "    {summary && <p className=\"draft-chart-summary\">{summary}</p>}",
+                  "    <dl>",
+                  "      <div><dt>Axes</dt><dd>{axes ?? chart.axes}</dd></div>",
+                  "      <div><dt>Definition</dt><dd>{chart.definition}</dd></div>",
+                  "      <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>",
+                  "      {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}",
+                  "    </dl>",
+                  "  </>;",
+                  "  if (alwaysVisible) return <section className=\"draft-chart-methodology\" data-draft-methodology aria-label=\"Definition and comparability\">",
+                  "    <h3 className=\"mx-k\">Definition and comparability</h3>",
+                  "    {content}",
+                  "  </section>;",
+                  "  return <details className=\"draft-chart-methodology\" data-draft-methodology>",
+                  "    <summary>Definition and comparability</summary>",
+                  "    {content}",
+                  "  </details>;",
+                  "}",
+                  ""
+                ],
+                "after": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/lib/connectomics-brain-benchmarks.ts",
+      "beforeSha256": "1764505b0712a4128966c5bc713d436bf4d1f434740ce71a649fb870dc7901e1",
+      "afterSha256": "975be3a355d68f3966295615f04ddc8031ec9776c31fbe5e11fbebd392e99a17",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 62,
+            "afterLength": 76,
+            "edits": [
+              {
+                "beforeIndex": 37,
+                "afterIndex": 37,
+                "before": [],
+                "after": [
+                  "export function tissueBenchmark(voxels: boolean): BrainBenchmarkContext {",
+                  "  return {",
+                  "    toggleLabel: \"Whole-brain scale\",",
+                  "    scopeLabel: voxels ? `Dense ${sampling} nm grid · modeled` : \"Anatomical volume references\",",
+                  "    disclosure: `${volumeBasis} The voxel view converts each reported tissue extent to a nominal image-grid equivalent at ${sampling} nm: volume in mm³ × 10¹⁸ ÷ 640. Reported volumes can represent bounding extent, imaged tissue or neuropil. These modeled capacities are separate from recorded voxel counts, storage and biological completeness.`,",
+                  "    sources: [mouseSource, macaqueSource, volumeSource, samplingSource],",
+                  "    references: Object.entries(BRAIN_IMAGE_MODEL.volumesMm3).map(([id, volumeMm3]) => {",
+                  "      const value = voxels ? brainImageVoxels(volumeMm3) : volumeMm3 / 1000;",
+                  "      const species = id === \"mouse\" ? \"Mouse\" : id === \"macaque\" ? \"Rhesus macaque\" : \"Human\";",
+                  "      return { id, volumeMm3, value, label: `${species} ≈${voxels ? value.toExponential(1) + \" voxels\" : number(value) + \" cm³\"}` };",
+                  "    }),",
+                  "  };",
+                  "}",
+                  ""
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React, { act } from 'react';
+import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
 import { DraftChartPanel } from '../src/components/draft-chart-panel.tsx';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
 import { mount, click, settle } from './modal-helpers.mjs';
@@ -9,6 +10,7 @@ import { PerformanceCurves } from '../src/components/performance-curves.tsx';
 import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { readFileSync } from 'node:fs';
 import { chartShareUrl } from '../src/lib/chart-export.ts';
+import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 const data = selectPerformance(JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json', 'utf8')));
 const provenance = JSON.parse(readFileSync('src/data/field-velocity/neurotech.snapshot.json.provenance.json', 'utf8'));
 const hours = () => React.createElement(PerformanceCurves, { data, provenance, flat: true, selection: ['neural-recording-hours'] });
@@ -37,10 +39,11 @@ test('image-export links retain the exact selected toggle but never arbitrary qu
   ]) {
     const current = `https://private:secret@atlas.example/neuro-atlas/field-velocity?token=private&ref=a&ref=b&recordingView=optical&${query}=${value}#${anchor}`;
     const exported = new URL(chartShareUrl(current, anchor));
-    assert.equal(exported.search, `?${query}=${value}`);
+    const slug = (fieldVelocityGraph(anchor)).slug;
+    assert.equal(exported.searchParams.get('chartModel'), `${slug}:${query === 'brainScale' ? 'brain-scale' : 'fit'}`);
     assert.equal(exported.username, '');
     assert.equal(exported.password, '');
-    assert.equal(exported.pathname, '/neuro-atlas/field-velocity');
+    assert.equal(exported.pathname, `/neuro-atlas/field-velocity/${slug}`);
     for (const suffix of [`${value}&${query}=${value}`, '', '0', '%3Cscript%3E']) {
       const invalid = current.replace(`${query}=${value}`, `${query}=${suffix}`);
       assert.equal(new URL(chartShareUrl(invalid, anchor)).search, '');
@@ -172,7 +175,7 @@ for (const item of switches) {
     } finally { await cleanup(); }
   });
 
-  test(`${item.id}: Copy link success/fallback refers to the current URL and fresh recipients restore it`, async () => {
+  test(`${item.id}: Copy link success/fallback shares standalone state without navigating and fresh recipients restore it`, async () => {
     const saved = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
     let denied = false, copied, attempts = 0, cleanup;
     try {
@@ -181,10 +184,18 @@ for (const item of switches) {
         attempts++; if (denied) throw new Error('Clipboard denied'); copied = text;
       } } } });
       await click(document.querySelector('dialog [role=switch]'));
+      const sender = window.location.href;
+      const length = window.history.length;
+      const state = window.history.state;
+      const model = item.query === 'brainScale' ? 'brain-scale' : 'fit';
+      const expected = `https://atlas.example/neuro-atlas/field-velocity/${item.slug}?chartModel=${encodeURIComponent(`${item.slug}:${model}`)}&utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${item.slug}`;
       await click(document.querySelector('dialog [data-copy-draft-link]'));
-      assert.equal(copied, window.location.href);
-      assert.equal(new URL(copied).searchParams.get(item.query), item.id);
-      assert.deepEqual(new URL(copied).searchParams.getAll('ref'), ['a', 'b']);
+      assert.equal(copied, expected);
+      assert.equal(window.location.href, sender, 'Copy never navigates its sender');
+      assert.equal(window.history.length, length);
+      assert.deepEqual(window.history.state, state);
+      assert.deepEqual(new URL(copied).searchParams.getAll('ref'), []);
+      assert.equal(new URL(copied).hash, '');
       assert.equal(document.querySelector('dialog [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, 'Copied');
       await click(document.querySelector('dialog [role=switch]'));
       assert.equal(document.querySelector('dialog [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, '');
@@ -193,10 +204,15 @@ for (const item of switches) {
       denied = true;
       await click(document.querySelector('dialog [data-copy-draft-link]'));
       const fallback = document.querySelector('dialog .chart-link-fallback input').value;
-      assert.equal(fallback, window.location.href);
+      assert.equal(fallback, expected);
+      assert.equal(window.location.href, sender, 'Denied clipboard never navigates its sender');
+      assert.equal(window.history.length, length + 2, 'Only the two intervening toggle changes add history');
       await cleanup(); cleanup = undefined;
-      cleanup = await mount(allCharts(), '', initial(fallback));
-      assert.equal(document.querySelector('dialog [role=switch]').getAttribute('aria-checked'), 'true');
+      cleanup = await mount(React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(item.anchor) }), '', initial(fallback));
+      const restored = document.querySelector(item.query === 'brainScale' ? '[data-brain-scale-toggle]' : '[role=switch]');
+      assert.equal(restored.getAttribute('aria-checked'), 'true');
+      assert.equal(window.location.href, fallback);
+      assert.equal(window.history.length, 1);
     } finally {
       if (cleanup) await cleanup();
       if (saved) Object.defineProperty(globalThis, 'navigator', saved); else delete globalThis.navigator;

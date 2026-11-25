@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import React, { act } from 'react';
 import { readFileSync } from 'node:fs';
 import { PerformanceCurves } from '../src/components/performance-curves.tsx';
+import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
+import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { mount, click } from './modal-helpers.mjs';
 
@@ -39,16 +41,16 @@ test('copy-link recovery and success state cannot outlive the selected recording
     assert.equal(fallback.querySelector('a').href, recipientUrl);
     assert.equal(new URL(recipientUrl).searchParams.get('recordingView'), 'optical');
     await cleanup(); cleanup = undefined;
-    cleanup = await mount(chart(), '', win => win.history.replaceState(null, '', recipientUrl));
+    cleanup = await mount(React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph('simultaneously-recorded-neurons') }), '', win => win.history.replaceState(null, '', recipientUrl));
     assert.equal(document.querySelector('[data-recording-view]').dataset.recordingView, 'optical');
     denied = false;
     await changeView('electrical');
-    await click(document.querySelector('dialog [data-copy-draft-link]'));
+    await click(document.querySelector('.graph-detail [data-copy-draft-link]'));
     assert.equal(new URL(copied).searchParams.get('recordingView'), 'electrical');
-    assert.equal(document.querySelector('dialog [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, 'Copied');
+    assert.equal(document.querySelector('.graph-detail [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, 'Copied');
     const afterCopy = attempts;
     await changeView('human-channels');
-    assert.equal(document.querySelector('dialog [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, '', 'A new view must not claim that its link was already copied');
+    assert.equal(document.querySelector('.graph-detail [data-copy-draft-link]').parentElement.querySelector('[role=status]').textContent, '', 'A new view must not claim that its link was already copied');
     assert.equal(attempts, afterCopy);
   } finally {
     if (cleanup) await cleanup();

@@ -1,18 +1,24 @@
 "use client";
 
 import { atlasPathname } from "../../lib/atlas-path";
+import { FIELD_VELOCITY_GRAPHS, graphPath } from "../../data/field-velocity-links";
 import { FEEDBACK_SELECTABLE_CHART_IDS, type FeedbackElementReference, type FeedbackInput } from "../../lib/feedback/contracts";
 
 const chartIds = new Set<string>(FEEDBACK_SELECTABLE_CHART_IDS);
 export const allowedTarget = (value: unknown): string | undefined => typeof value === "string" && chartIds.has(value) ? value : undefined;
 export type SemanticTarget = { id: string; bounds: DOMRect; element: Element };
 
+function elementChartTarget(element: Element) {
+  const graph = FIELD_VELOCITY_GRAPHS.find(entry => entry.slug === element.getAttribute("data-graph-page"));
+  return allowedTarget(element.getAttribute("data-performance-card") ?? element.getAttribute("data-draft-popout") ?? (element.hasAttribute("data-trends-card") ? `google-trends-${element.getAttribute("data-trends-card")}` : graph?.target));
+}
+
 /** Only curated identities + geometry. Never inspect DOM text, labels, HTML, inputs or URLs. */
 export function semanticTargets(doc: Document): SemanticTarget[] {
   const targets: SemanticTarget[] = [];
-  doc.querySelectorAll<HTMLElement>("[data-performance-card], [data-draft-popout], [data-trends-card]").forEach(element => {
-    const id = allowedTarget(element.dataset.performanceCard ?? element.dataset.draftPopout ?? `google-trends-${element.dataset.trendsCard}`);
-    if (!id || element.closest("[hidden], [data-atlas-feedback]")) return;
+  doc.querySelectorAll<HTMLElement>("[data-performance-card], [data-draft-popout], [data-trends-card], [data-graph-page]").forEach(element => {
+    const id = elementChartTarget(element);
+    if (!id || element.closest('[hidden], [inert], [aria-hidden="true"], [data-atlas-feedback]')) return;
     const bounds = element.getBoundingClientRect();
     if (bounds.width > 0 && bounds.height > 0) targets.push({ id, bounds, element });
   });
@@ -31,9 +37,10 @@ export function targetAt(doc: Document, x: number, y: number): string | undefine
 export function feedbackContext(win: Window, target?: string): FeedbackInput["context"] {
   const route = atlasPathname(win.location.pathname);
   const routes = ["/", "/field-velocity", "/funding", "/milestones", "/ecosystem", "/methodology"];
-  const id = allowedTarget(target);
+  const graph = FIELD_VELOCITY_GRAPHS.find(entry => graphPath(entry) === route);
+  const id = allowedTarget(target) ?? allowedTarget(graph?.target);
   return {
-    route: (routes.includes(route) ? route : "/") as FeedbackInput["context"]["route"],
+    route: (graph ? "/field-velocity" : routes.includes(route) ? route : "/") as FeedbackInput["context"]["route"],
     ...(id ? { targetId: id, chartId: id } : {}),
     viewport: { width: Math.max(1, Math.min(10000, Math.round(win.innerWidth))), height: Math.max(1, Math.min(10000, Math.round(win.innerHeight))) },
     theme: win.document.documentElement.classList.contains("dark") ? "dark" : win.document.documentElement.classList.contains("light") ? "light" : "system",
@@ -77,7 +84,7 @@ export function pickElement(element: Element | null): PickedElement | undefined 
   if (selector.length > 1024) return;
   let targetId: string | undefined;
   for (let node: Element | null = element; node && !targetId; node = node.parentElement) {
-    targetId = allowedTarget(node.getAttribute("data-performance-card") ?? node.getAttribute("data-draft-popout") ?? (node.hasAttribute("data-trends-card") ? `google-trends-${node.getAttribute("data-trends-card")}` : undefined));
+    targetId = elementChartTarget(node);
     if (!targetId && node.tagName === "DIALOG") targetId = allowedTarget((node.getAttribute("aria-labelledby") ?? "").replace(/(?:-popout)?-title$/, ""));
   }
   const tagName = element.localName.toLowerCase();

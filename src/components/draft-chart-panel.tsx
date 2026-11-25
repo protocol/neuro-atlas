@@ -1,5 +1,7 @@
 "use client";
 
+import { useGraphHref } from "@/components/field-velocity-route-context";
+import type { DraftChart } from "@/data/draft-charts";
 import { canonicalPerformanceAnchor } from "@/data/field-velocity-links";
 
 import { useRef, type ReactNode } from "react";
@@ -20,18 +22,20 @@ function DraftPanel({ anchor, aliases = [], title, preview, previewContext, meth
 }) {
   const trigger = useRef<HTMLButtonElement>(null);
   const hash = usePerformanceHash().slice(1);
-  const open = [anchor, ...aliases].some(id => hash === canonicalPerformanceAnchor(id));
+  const href = useGraphHref(anchor);
+  const open = !href && [anchor, ...aliases].some(id => hash === canonicalPerformanceAnchor(id));
   const exporting = useCardExporting(anchor);
   return <div className="draft-popout" data-draft-popout={anchor} data-draft-popout-aliases={aliases.join(" ")}>
     <div className="draft-popout-card" data-metric-card-body>
       <div className="draft-popout-preview" aria-hidden="true">{preview}</div>
       {previewContext}
-      <button ref={trigger} type="button" className="draft-popout-trigger" data-draft-popout-trigger={anchor}
+      {href ? <a href={href} data-graph-link={anchor} className="draft-popout-trigger" data-draft-popout-trigger={anchor} aria-label={`Enlarge ${title}`} title={previewHelp} />
+        : <button ref={trigger} type="button" className="draft-popout-trigger" data-draft-popout-trigger={anchor}
         aria-label={`Enlarge ${title}`} aria-haspopup="dialog" aria-expanded={open} title={previewHelp}
-        onClick={() => navigatePerformance(anchor)} />
+        onClick={() => navigatePerformance(anchor)} />}
     </div>
-    {(open || exporting) && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger} offscreen={!open}>
-      <div className="draft-popout-detail">{children}{methodology && <ModalReading>{methodology}</ModalReading>}</div>
+    {(open || (!href && exporting)) && <ChartModal id={`${anchor}-popout`} title={title} returnFocus={trigger} offscreen={!open}>
+      <DraftPanelDetail methodology={methodology}>{children}</DraftPanelDetail>
     </ChartModal>}
   </div>;
 }
@@ -46,4 +50,28 @@ export function DraftTimelinePanel({ timeline, ...location }: PanelLocation & { 
   return <DraftPanel {...location} title="Selected application events" preview={<DraftEventTimeline timeline={timeline} preview />}>
     <DraftEventTimeline timeline={timeline} shareAnchor={location.anchor} />
   </DraftPanel>;
+}
+
+export function DraftPanelDetail({ children, methodology }: { children: ReactNode; methodology?: ReactNode }) {
+  return <div className="draft-popout-detail">{children}{methodology && <ModalReading>{methodology}</ModalReading>}</div>;
+}
+
+export function DraftChartMethodology({ chart, context, axes, alwaysVisible = false, summary }: { chart: DraftChart; context?: string; axes?: string; alwaysVisible?: boolean; summary?: string }) {
+  const content = <>
+    {summary && <p className="draft-chart-summary">{summary}</p>}
+    <dl>
+      <div><dt>Axes</dt><dd>{axes ?? chart.axes}</dd></div>
+      <div><dt>Definition</dt><dd>{chart.definition}</dd></div>
+      <div><dt>Comparability condition</dt><dd>{chart.constraint}</dd></div>
+      {context && <div data-draft-context><dt>Context</dt><dd>{context}</dd></div>}
+    </dl>
+  </>;
+  if (alwaysVisible) return <section className="draft-chart-methodology" data-draft-methodology aria-label="Definition and comparability">
+    <h3 className="mx-k">Definition and comparability</h3>
+    {content}
+  </section>;
+  return <details className="draft-chart-methodology" data-draft-methodology>
+    <summary>Definition and comparability</summary>
+    {content}
+  </details>;
 }

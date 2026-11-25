@@ -53,7 +53,7 @@ test('the actual recording-hours export callback retains every paired value and 
     assert.deepEqual([...spec.svg.querySelectorAll('[data-source-observation]')].map(mark => [mark.dataset.sourceObservation, mark.getAttribute('cx'), mark.getAttribute('cy')]), before);
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 13);
     assert.ok(image.height < 2600, 'Keep a compact export, not a source-note dump');
-    assert.ok(image.url.endsWith('#neural-recording-hours-selected-datasets'), 'Retain the current canonical shared chart URL');
+    assert.ok(image.url.endsWith('/field-velocity/neural-recording-hours-selected-datasets'), 'Emit the canonical standalone URL while retaining legacy hash navigation');
   } finally { output?.window.close(); await cleanup(); }
 });
 

@@ -1,0 +1,902 @@
+[
+  {
+    "anchor": "metrics",
+    "slug": "metrics",
+    "kind": "tab",
+    "passed": true
+  },
+  {
+    "anchor": "performance_curves",
+    "slug": "metrics",
+    "kind": "tab",
+    "passed": true
+  },
+  {
+    "anchor": "draft-charts",
+    "slug": "metrics",
+    "kind": "tab",
+    "passed": true
+  },
+  {
+    "anchor": "inflection-points",
+    "slug": "inflection-points",
+    "kind": "tab",
+    "passed": true
+  },
+  {
+    "anchor": "expectations",
+    "slug": "inflection-points",
+    "kind": "tab",
+    "passed": true
+  },
+  {
+    "anchor": "citation-latency",
+    "slug": "citation-latency",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "idea_vintage",
+    "slug": "citation-latency",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "latency-compression",
+    "slug": "latency-compression",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "latency_compression",
+    "slug": "latency-compression",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "implanted-bci-participants-over-time",
+    "slug": "implanted-bci-participants-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "revealed_commitments",
+    "slug": "implanted-bci-participants-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neurotech-papers-per-year",
+    "slug": "neurotech-papers-per-year",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "publication-output",
+    "slug": "neurotech-papers-per-year",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "publication-growth-by-group",
+    "slug": "publication-growth-by-group",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "publication-growth",
+    "slug": "publication-growth-by-group",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "researchers-by-publication-sector",
+    "slug": "researchers-by-publication-sector",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "researcher-sectors",
+    "slug": "researchers-by-publication-sector",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "researchers-first-and-latest-affiliations",
+    "slug": "researchers-first-and-latest-affiliations",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "researcher-sector-changes",
+    "slug": "researchers-first-and-latest-affiliations",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neurotech-search-terms",
+    "slug": "neurotech-search-terms",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "google-trends-neurotech",
+    "slug": "neurotech-search-terms",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neuralink-brand-context",
+    "slug": "neuralink-brand-context",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "google-trends-neuralink",
+    "slug": "neuralink-brand-context",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "simultaneous-neural-recordings",
+    "slug": "simultaneous-neural-recordings",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "simultaneously-recorded-neurons",
+    "slug": "simultaneous-neural-recordings",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neural-recording-hours-selected-datasets",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neural-recording-hours",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-recording-hours",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-recording-hours",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-neuralink-private-intracortical-hours",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-neuralink-private-intracortical-hours",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-tusz-scalp-eeg",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-tusz-scalp-eeg",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-ajile12-intracranial",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-ajile12-intracranial",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-poyo-primate-training",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-poyo-primate-training",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-japaneeg-scalp-eeg",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-japaneeg-scalp-eeg",
+    "slug": "neural-recording-hours-selected-datasets",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-chronic-intracortical-recipients",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-neuralink-cumulative",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-implanted-bci-humans",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-implanted-bci-humans",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-neuralink-cumulative",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-paradromics-connect-one",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-paradromics-connect-one",
+    "slug": "selected-chronic-intracortical-recipients",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "bci-information-transfer-over-time",
+    "slug": "bci-information-transfer-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-bci-bitrate",
+    "slug": "bci-information-transfer-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-bci-bitrate",
+    "slug": "bci-information-transfer-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-bci-bitrate",
+    "slug": "bci-information-transfer-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-bci-bitrate",
+    "slug": "bci-information-transfer-over-time",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-public-image-resource-footprints",
+    "slug": "selected-public-image-resource-footprints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-public-data-size",
+    "slug": "selected-public-image-resource-footprints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-open-access-data",
+    "slug": "selected-public-image-resource-footprints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-open-access-data",
+    "slug": "selected-public-image-resource-footprints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-public-data-size",
+    "slug": "selected-public-image-resource-footprints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-tissue-volume-checkpoints",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "tissue-mapped",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-brain-tissue-mapped",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-brain-tissue-mapped",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-tissue-cm3",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-tissue-cm3",
+    "slug": "selected-tissue-volume-checkpoints",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-published-connectomes-neuron-counts",
+    "slug": "selected-published-connectomes-neuron-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-largest-connectome-neurons",
+    "slug": "selected-published-connectomes-neuron-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-largest-connectome",
+    "slug": "selected-published-connectomes-neuron-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-largest-connectome",
+    "slug": "selected-published-connectomes-neuron-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-largest-connectome-neurons",
+    "slug": "selected-published-connectomes-neuron-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-published-maps-synapse-counts",
+    "slug": "selected-published-maps-synapse-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-largest-connectome-synapses",
+    "slug": "selected-published-maps-synapse-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-largest-connectome-synapses",
+    "slug": "selected-published-maps-synapse-counts",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-em-acquisition-rates",
+    "slug": "selected-em-acquisition-rates",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-acquisition-rates",
+    "slug": "selected-em-acquisition-rates",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-imaging-throughput",
+    "slug": "selected-em-acquisition-rates",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-imaging-throughput",
+    "slug": "selected-em-acquisition-rates",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-acquisition-rates",
+    "slug": "selected-em-acquisition-rates",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-structure-function-matches",
+    "slug": "selected-structure-function-matches",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-paired-manual",
+    "slug": "selected-structure-function-matches",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-paired-structure-function",
+    "slug": "selected-structure-function-matches",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-paired-structure-function",
+    "slug": "selected-structure-function-matches",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-paired-manual",
+    "slug": "selected-structure-function-matches",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-acquisition-economics",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "estimated-acquisition-cost-per-10m-voxels-optical-and-em",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-imaging-cost-efficiency",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-imaging-cost-efficiency",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-acquisition-economics",
+    "slug": "estimated-acquisition-efficiency-voxels-per-dollar",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-connectomics-roboem-human-split-merge",
+    "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-connectomics-roboem-human-split-merge",
+    "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-connectomics-roboem-mouse-split-merge",
+    "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-connectomics-roboem-mouse-split-merge",
+    "slug": "human-and-mouse-cortex-split-merge-error-trade-offs",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "reported-project-proofreading-effort",
+    "slug": "reported-project-proofreading-effort",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-proofreading-effort",
+    "slug": "reported-project-proofreading-effort",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-proofreading-burden",
+    "slug": "reported-project-proofreading-effort",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-proofreading-burden",
+    "slug": "reported-project-proofreading-effort",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-proofreading-effort",
+    "slug": "reported-project-proofreading-effort",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "pathfinder-v1-axon-tracing-benchmark",
+    "slug": "pathfinder-v1-axon-tracing-benchmark",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-pathfinder-nerl",
+    "slug": "pathfinder-v1-axon-tracing-benchmark",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-reconstruction-accuracy",
+    "slug": "pathfinder-v1-axon-tracing-benchmark",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-reconstruction-accuracy",
+    "slug": "pathfinder-v1-axon-tracing-benchmark",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-pathfinder-nerl",
+    "slug": "pathfinder-v1-axon-tracing-benchmark",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "neuroai-performance-cost-frontier",
+    "slug": "neuroai-performance-cost-frontier",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-neuroai-imagenet",
+    "slug": "neuroai-performance-cost-frontier",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-neuroai-frontier",
+    "slug": "neuroai-performance-cost-frontier",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-neuroai-frontier",
+    "slug": "neuroai-performance-cost-frontier",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-neuroai-imagenet",
+    "slug": "neuroai-performance-cost-frontier",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "flyvis-correct-contrast-preference",
+    "slug": "flyvis-correct-contrast-preference",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-flyvis-contrast",
+    "slug": "flyvis-correct-contrast-preference",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-simulation-fidelity",
+    "slug": "flyvis-correct-contrast-preference",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-simulation-fidelity",
+    "slug": "flyvis-correct-contrast-preference",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-flyvis-contrast",
+    "slug": "flyvis-correct-contrast-preference",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "selected-application-events",
+    "slug": "selected-application-events",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-application-events",
+    "slug": "selected-application-events",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-connectomics-applications",
+    "slug": "selected-application-events",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "metric-connectomics-applications",
+    "slug": "selected-application-events",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-application-events",
+    "slug": "selected-application-events",
+    "kind": "chart",
+    "passed": true
+  },
+  {
+    "anchor": "mapping-scale",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-category-0-toggle",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-tissue-preservation",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-tissue-preservation",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-sectioning-loss",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-sectioning-loss",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-gauss-section-rejection",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-gauss-section-rejection",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-microns-section-loss",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-microns-section-loss",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-molecular-annotation",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-molecular-annotation",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-paired-auto",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-paired-auto",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-comparative-cohorts",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-comparative-cohorts",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-comparative-specimens",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-comparative-specimens",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-connectome-reuse",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-connectome-reuse",
+    "slug": "mapping-scale",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "cost-and-automation",
+    "slug": "cost-and-automation",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-category-1-toggle",
+    "slug": "cost-and-automation",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-mapping-cost",
+    "slug": "cost-and-automation",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-mapping-cost",
+    "slug": "cost-and-automation",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "simulation-and-neuroai",
+    "slug": "simulation-and-neuroai",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-category-5-toggle",
+    "slug": "simulation-and-neuroai",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-simulation-count",
+    "slug": "simulation-and-neuroai",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-simulation-count",
+    "slug": "simulation-and-neuroai",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "human-interfaces-and-recordings",
+    "slug": "human-interfaces-and-recordings",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-category-3-toggle",
+    "slug": "human-interfaces-and-recordings",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "draft-panel-precision-temporary-recording",
+    "slug": "human-interfaces-and-recordings",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-panel-precision-temporary-recording",
+    "slug": "human-interfaces-and-recordings",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "neurotech-field-engagement",
+    "slug": "neurotech-field-engagement",
+    "kind": "category",
+    "passed": true
+  },
+  {
+    "anchor": "metric-category-6-toggle",
+    "slug": "neurotech-field-engagement",
+    "kind": "category",
+    "passed": true
+  }
+]

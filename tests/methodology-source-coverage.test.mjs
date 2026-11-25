@@ -78,6 +78,13 @@ test("catalog labels distinguish investor disclosure, archived brand context, an
   assert.ok(catalog.reference.some(([url]) => url === producer[0]), "The selection script is method provenance, separate from the compiled data");
 });
 
+test("retinal context lists the underlying animal study with its real paper title", () => {
+  const catalog = JSON.parse(readFileSync("src/data/methodology-sources.json", "utf8"));
+  const entry = catalog.studies.find(([url]) => url === "https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/");
+  assert.ok(entry, "The sensory context source belongs in Studies and research findings");
+  assert.match(entry[1], /Koch.*How Much the Eye Tells the Brain.*2006/);
+});
+
 test("the classified directory covers the exact external evidence inventory", () => {
   const { paths, included } = scanSources();
   for (const path of ["src/data/field-velocity/neurotech.snapshot.json", "data/market-memo-q1-2026/milestones.csv", "src/data/funding-index.json", "scripts/publications/acquire.py", "public/data/google-trends/google-trends.json"]) assert.ok(paths.includes(path), path);

@@ -7,6 +7,8 @@ import { mount, click, settle } from './modal-helpers.mjs';
 import { JSDOM } from 'jsdom';
 import { buildChartImage, chartShareUrl } from '../src/lib/chart-export.ts';
 import { DraftChartShare } from '../src/components/draft-chart-share.tsx';
+import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
+import { fieldVelocityGraph } from '../src/data/field-velocity-links.ts';
 
 globalThis.React = React;
 const anchor = 'metric-panel-acquisition-economics';
@@ -127,10 +129,15 @@ test('native Copy link success and fallback share current quantity and restore f
       writes++; if (denied) throw new Error('Clipboard denied'); copied = text;
     } } } });
     await click(document.querySelector('[data-select=dollars-per-voxel]'));
+    const sender = window.location.href;
+    const length = window.history.length;
     await click(document.querySelector('[data-copy-draft-link]'));
-    assert.equal(copied, window.location.href);
+    const tags = `utm_source=neuro_atlas&utm_medium=share&utm_campaign=chart_share&utm_content=${slug}`;
+    assert.equal(copied, `https://atlas.example/neuro-atlas/field-velocity/${slug}?acquisitionMetric=dollars-per-voxel&${tags}`);
+    assert.equal(window.location.href, sender, 'Copy link never navigates its sender');
+    assert.equal(window.history.length, length);
     assert.equal(new URL(copied).searchParams.get('acquisitionMetric'), 'dollars-per-voxel');
-    assert.deepEqual(new URL(copied).searchParams.getAll('ref'), ['a', 'b']);
+    assert.deepEqual(new URL(copied).searchParams.getAll('ref'), []);
     assert.equal(document.querySelector('[role=status]').textContent, 'Copied');
     await click(document.querySelector('[data-select=voxels-per-dollar]'));
     assert.equal(document.querySelector('[role=status]').textContent, '');
@@ -138,11 +145,15 @@ test('native Copy link success and fallback share current quantity and restore f
     denied = true;
     await click(document.querySelector('[data-copy-draft-link]'));
     const fallback = document.querySelector('.chart-link-fallback input').value;
-    assert.equal(fallback, window.location.href);
+    assert.equal(fallback, `https://atlas.example/neuro-atlas/field-velocity/${slug}?${tags}`);
+    assert.equal(window.location.pathname, '/neuro-atlas/field-velocity');
     assert.equal(new URL(fallback).searchParams.has('acquisitionMetric'), false);
     await cleanup(); cleanup = undefined;
-    cleanup = await mount(probe(), '', initial(fallback));
-    assert.equal(document.querySelector('output').textContent, 'voxels-per-dollar');
+    cleanup = await mount(React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(anchor) }), '', initial(fallback));
+    assert.equal(document.querySelector('[data-acquisition-metric-state]').dataset.acquisitionMetricState, 'voxels-per-dollar');
+    await cleanup(); cleanup = undefined;
+    cleanup = await mount(React.createElement(FieldVelocityGraphDetail, { entry: fieldVelocityGraph(anchor) }), '', initial(copied));
+    assert.equal(document.querySelector('[data-acquisition-metric-state]').dataset.acquisitionMetricState, 'dollars-per-voxel');
   } finally {
     if (cleanup) await cleanup();
     if (saved) Object.defineProperty(globalThis, 'navigator', saved); else delete globalThis.navigator;
@@ -150,21 +161,25 @@ test('native Copy link success and fallback share current quantity and restore f
 });
 
 test('export links omit default/unpublished human mode and never carry reciprocal reference state or private query data', () => {
-  const dom = new JSDOM('<svg viewBox="0 0 720 300"><circle cx="100" cy="200" r="5"/></svg>');
+  const dom = new JSDOM('<div data-chart-state=""><svg viewBox="0 0 720 300"><circle cx="100" cy="200" r="5"/></svg></div>');
   try {
     for (const metric of [...modes, 'human-brain']) for (const reference of [false, true]) {
       const current = selectedUrl(`token=private&recordingView=optical&acquisitionMetric=${metric}${reference ? '&brainScale=acquisition-economics' : ''}`);
       current.username = 'private'; current.password = 'secret';
       const exported = new URL(chartShareUrl(current.href, anchor));
       assert.equal(exported.searchParams.get('acquisitionMetric'), token(metric));
-      assert.equal(exported.searchParams.get('brainScale'), reference && metric !== 'dollars-per-voxel' ? 'acquisition-economics' : null);
+      assert.equal(exported.searchParams.get('chartModel'), reference && metric !== 'dollars-per-voxel' ? `${slug}:brain-scale` : null);
       assert.deepEqual([...exported.searchParams.keys()].sort(), [
-        ...(token(metric) ? ['acquisitionMetric'] : []), ...(reference && metric !== 'dollars-per-voxel' ? ['brainScale'] : []),
+        ...(token(metric) ? ['acquisitionMetric'] : []), ...(reference && metric !== 'dollars-per-voxel' ? ['chartModel'] : []),
       ].sort());
       assert.equal(exported.username, ''); assert.equal(exported.password, '');
-      assert.equal(exported.pathname, '/neuro-atlas/field-velocity');
-      assert.equal(exported.hash, `#${slug}`);
-      const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), title: 'Quantity fixture', anchor, notes: [] }, current.href);
+      assert.equal(exported.pathname, `/neuro-atlas/field-velocity/${slug}`);
+      assert.equal(exported.hash, '');
+      // This fixture tests only the share allowlist; real rendered-quantity
+      // custody is exercised by standalone-acquisition-reconciliation.
+      const chartState = exported.searchParams.toString();
+      dom.window.document.querySelector('[data-chart-state]').setAttribute('data-chart-state', chartState);
+      const image = buildChartImage({ svg: dom.window.document.querySelector('svg'), chartState, title: 'Quantity fixture', anchor, notes: [] }, current.href);
       assert.equal(image.url, exported.href);
       const parsed = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
       try { assert.ok(parsed.window.document.querySelector('[data-export-footer]').textContent.includes(exported.href)); }
