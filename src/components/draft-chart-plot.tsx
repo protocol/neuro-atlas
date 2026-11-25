@@ -194,6 +194,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   }) : []);
   const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
   const anatomicalReferences = plot.horizontalReferences ?? [];
+  const compactAnatomy = preview && anatomicalReferences.length > 0;
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
   const axisHelp = chartYAxisHelp(plot);
@@ -225,10 +226,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const compactFit = preview && fittedLabels.length > 0;
   const fitLabelTop = 28 + yTitle.length * 16 + (costMetric ? 16 : 0);
   const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0) - (preview && anatomicalReferences.length ? 16 : 0);
-  const plotHeight = anatomicalReferences.length ? preview ? 100 : width < 280 ? 464 : 232
+  const plotHeight = anatomicalReferences.length ? preview ? 84 : width < 280 ? 464 : 232
     : compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232;
   const bottom = top + plotHeight + previewExtra;
-  const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
+  const baseHeight = bottom + (compactFit ? 28 : (compactAnatomy ? 40 : 64) + (xTitle.length - 1) * 16);
   const xs = plot.points.map(point => point.x);
   const ys = (acquisition ? sourcePlot : plot).points.map(point => point.y);
   const numericX = plot.xKind === "number";
@@ -304,11 +305,11 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     const above = position - 6;
     // Labels can extend into the axis gutter on very narrow cards. Keep their
     // full vertical strip clear of tick text; the quantitative line never moves.
-    const labelY = preview ? top + 18 + (anatomicalReferences.length - 1 - index) * 16
+    const labelY = preview ? top + 14 + (anatomicalReferences.length - 1 - index) * 16
       : baselineYTicks.some(tick => above + 2 > y(tick) + 4 - CHART_PRESENTATION.labelFontSize
       && above - CHART_PRESENTATION.labelFontSize < y(tick) + 6)
       ? position + CHART_PRESENTATION.labelFontSize + 4 : above;
-    return { ...ref, position, labelY };
+    return { ...ref, position, labelY, labelX: preview ? width - 2 : right - 4 };
   });
   // Preserve the quantitative centers. Earlier overlapping marks become outer
   // rings, so subsequent filled marks cannot paint them out of the chart.
@@ -332,7 +333,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
     bottom: y(ref.value),
   })) : []), ...anatomicalLabels.map(ref => ({
-    left: right - 4 - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
+    left: ref.labelX - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
     right, top: ref.labelY - CHART_PRESENTATION.labelFontSize - 3, bottom: ref.labelY + 3,
   })), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];
   const placedKeys: { x: number; y: number }[] = [];
@@ -418,7 +419,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           : plot.points.map(point => point.sourceTitle))].join("; ")}`,
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
-    <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
+    <figcaption id={`${id}-title`}>{compactAnatomy ? "Neuron counts" : preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
     {acquisition && !preview && <div className="brain-scale-controls acquisition-metric-controls">
       <div className="acquisition-metric-options" role="group" aria-label="Acquisition y-axis metric">
         {ACQUISITION_METRICS.map(option => <button key={option.id} type="button" data-acquisition-metric={option.id}
@@ -449,8 +450,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           {[-3, 3].map(offset => <line key={offset} x1={energyAxis.center + offset - 2} x2={energyAxis.center + offset + 2} y1={bottom + 4} y2={bottom - 4} />)}
         </g>
       </> : <line className="draft-plot-axis" x1={left} x2={right} y1={bottom} y2={bottom} />}
-      {(energyAxis?.ticks ?? calendarTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + 22} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
-      {!compactFit && <text className="draft-plot-axis-title" x={0} y={bottom + 52} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>}
+      {(energyAxis?.ticks ?? calendarTicks).map(tick => <text className="draft-plot-tick" key={tick} x={x(tick)} y={bottom + (compactAnatomy ? 16 : 22)} textAnchor="middle">{numericX ? axisLabel(tick) : String(tick)}</text>)}
+      {!compactFit && <text className="draft-plot-axis-title" x={0} y={bottom + (compactAnatomy ? 32 : 52)} textAnchor="start">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? " " : ""}</tspan>)}</text>}
       {energyAxis && <text id={`${id}-axis-break`} className="draft-plot-break-note" data-x-axis-break-note x={0} y={baseHeight + 16}>
         {breakNote.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < breakNote.length - 1 ? " " : ""}</tspan>)}
       </text>}
@@ -490,9 +491,9 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       {anatomicalLabels.map(ref => <g key={ref.id} pointerEvents="none" aria-label={`Whole-brain anatomical estimate: ${ref.label}`}>
         <line data-anatomical-reference={ref.id} data-value={ref.value} x1={left} x2={right} y1={ref.position} y2={ref.position}
           stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} strokeDasharray="2 5" vectorEffect="non-scaling-stroke" />
-        {preview && <line data-anatomical-label-leader={ref.id} x1={right - 1} x2={right - 1} y1={ref.position} y2={ref.labelY - 4}
-          stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} vectorEffect="non-scaling-stroke" />}
-        <text data-anatomical-reference-label={ref.id} x={right - 4} y={ref.labelY} textAnchor="end"
+        {preview && <polyline data-anatomical-label-leader={ref.id} points={`${right},${ref.position} ${width - 1},${ref.position} ${width - 1},${ref.labelY - 4}`}
+          fill="none" stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} vectorEffect="non-scaling-stroke" />}
+        <text data-anatomical-reference-label={ref.id} x={ref.labelX} y={ref.labelY} textAnchor="end"
           fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}
           fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{ref.label}</text>
       </g>)}

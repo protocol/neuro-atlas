@@ -14,8 +14,9 @@ study-reported map counts.
   `largest-connectome-neurons`; all ten source observations remain unchanged.
 - The preview, modal and existing full-chart image export use the same logarithmic
   value mapping. The axis expands to include the reference values with label room.
-- Compact previews keep their original 192px coordinate height and date-axis
-  positions. Labels use separated vertical lanes and short association leaders;
+- Compact previews use a one-line “Neuron counts” caption and a 152px coordinate
+  height, keeping the existing 300px card cap. The full modal/export title stays
+  unchanged. Labels use separated vertical lanes and short association leaders;
   overlap-ring increments are bounded to the shared marker stroke width. Narrow
   modal layouts reserve extra vertical room for the existing observation badges.
 - Source links and species/method qualifiers are in the native Sources and data

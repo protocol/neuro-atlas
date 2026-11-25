@@ -59,7 +59,8 @@ function checkReferences(svg) {
     assert.ok(box.top >= top && box.bottom <= bottom, `${id}: label inside plot bounds`);
     for (const tick of svg.querySelectorAll('.draft-plot-tick[text-anchor="end"]')) {
       const tickY = Number(tick.getAttribute('y'));
-      assert.ok(box.bottom + 2 <= tickY - CHART_PRESENTATION.labelFontSize || box.top >= tickY + 2, `${id}: clear of y-axis tick labels`);
+      const tickRight = Number(tick.getAttribute('x'));
+      assert.ok(box.left >= tickRight + 2 || box.bottom + 2 <= tickY - CHART_PRESENTATION.labelFontSize || box.top >= tickY + 2, `${id}: clear of y-axis tick labels`);
     }
     boxes.push(box);
   }
@@ -191,7 +192,7 @@ test('neuron observation source table remains byte-identical to current main', a
   finally { await cleanup(); }
 });
 
-test('anatomical compact previews retain the original 192px coordinate height so marks and date axis fit the capped card', async () => {
+test('neuron-only compact caption and 152px preview fit marks and date axes inside the existing 300px card cap', async () => {
   const previous = globalThis.ResizeObserver;
   try {
     for (const width of [271, 223, 153]) {
@@ -199,7 +200,9 @@ test('anatomical compact previews retain the original 192px coordinate height so
       const cleanup = await mount(React.createElement(DraftChartPlot, { plot, preview: true }));
       try {
         const svg = document.querySelector('svg.draft-plot-svg');
-        assert.equal(Number(svg.getAttribute('viewBox').split(' ')[3]), 192, 'No taller SVG can slip below the existing preview clipping ancestor');
+        assert.equal(document.querySelector('figcaption').textContent, 'Neuron counts', 'Scoped one-line caption leaves room for the scientific marks at 153px internal width');
+        assert.equal(Number(svg.getAttribute('viewBox').split(' ')[3]), 152, 'Compact axes use the spare lower margin, without a taller card');
+        assert.ok([...svg.querySelectorAll('.draft-plot-axis-title')].every(text => Number(text.getAttribute('y')) <= 144), 'Date-axis caption is inside the compact body budget');
         checkReferences(svg);
         const highestMark = Math.min(...[...svg.querySelectorAll('[data-source-observation]')].map(mark => Number(mark.getAttribute('cy')) - Number(mark.getAttribute('r'))));
         for (const label of svg.querySelectorAll('[data-anatomical-reference-label]')) assert.ok(Number(label.getAttribute('y')) + 1 < highestMark, `Stacked anatomical labels stay above the measured observations: ${JSON.stringify({ width, highestMark, labelY: label.getAttribute('y') })}`);
