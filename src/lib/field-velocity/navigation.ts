@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery, type AcquisitionMetricSelection } from "@/lib/chart-toggle-url";
 import { fieldVelocityLink, canonicalPerformanceAnchor, performanceTarget } from "@/data/field-velocity-links";
-import { ALL_NEURON_REFERENCES, NEURON_REFERENCE_IDS, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from "@/lib/neuron-reference-url";
+import { ALL_NEURON_REFERENCES, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from "@/lib/neuron-reference-url";
 
 export const performanceAnchors = ["performance_curves", "simultaneously-recorded-neurons", "tissue-mapped", "neural-recording-hours", "idea_vintage", "latency_compression", "expectations", "draft-charts", "google-trends-neurotech", "google-trends-neuralink", "revealed_commitments", "publication-output", "publication-growth", "researcher-sectors", "researcher-sector-changes"] as const;
 const changedEvent = "atlas-performance-location";
@@ -176,21 +176,19 @@ export function useAcquisitionMetric(anchor?: string) {
   return [metric, setMetric] as const;
 }
 
-/** Independent reference switches use the same history/subscription as other chart views. */
+/** One grouped reference switch shares the other chart views' history contract. */
 export function useNeuronReferences(anchor?: string) {
-  const selection = useSyncExternalStore(subscribe,
-    () => anchor ? neuronReferencesFromUrl(new URL(window.location.href), anchor) : ALL_NEURON_REFERENCES,
-    () => ALL_NEURON_REFERENCES);
-  const toggleReference = (id: string) => {
-    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget || !NEURON_REFERENCE_IDS.some(known => known === id)) return;
+  const enabled = useSyncExternalStore(subscribe,
+    () => !!anchor && neuronReferencesFromUrl(new URL(window.location.href), anchor) === ALL_NEURON_REFERENCES,
+    () => false);
+  const setEnabled = (update: (current: boolean) => boolean) => {
+    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget) return;
     const url = new URL(performanceUrl(window.location.href, anchor));
-    const current = neuronReferencesFromUrl(url, anchor).split(",");
-    const next = NEURON_REFERENCE_IDS.filter(known => known === id ? !current.includes(known) : current.includes(known)).join(",") || "none";
-    const token = neuronReferenceToken(next);
+    const token = neuronReferenceToken(update(neuronReferencesFromUrl(url, anchor) === ALL_NEURON_REFERENCES) ? ALL_NEURON_REFERENCES : "none");
     if (token) url.searchParams.set(neuronReferenceQuery, token);
     else url.searchParams.delete(neuronReferenceQuery);
     window.history.pushState({ ...window.history.state, atlasModalFrom: null }, "", url);
     window.dispatchEvent(new Event(changedEvent));
   };
-  return [selection, toggleReference] as const;
+  return [enabled, setEnabled] as const;
 }

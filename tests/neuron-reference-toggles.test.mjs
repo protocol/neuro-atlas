@@ -6,33 +6,40 @@ import { DraftChartPanel } from '../src/components/draft-chart-panel.tsx';
 import { mount, click, settle } from './modal-helpers.mjs';
 import { performanceUrl } from '../src/lib/field-velocity/navigation.ts';
 import { chartShareUrl } from '../src/lib/chart-export.ts';
+import { ALL_NEURON_REFERENCES, neuronReferencesFromUrl, neuronReferenceToken } from '../src/lib/neuron-reference-url.ts';
 globalThis.React = React;
 const plot = Object.values(METRIC_CHART_EVIDENCE).flatMap(e => e.plots).find(p => p.id === 'largest-connectome-neurons');
 const anchor = 'metric-panel-largest-connectome-neurons';
 const slug = 'selected-published-connectomes-neuron-counts';
 const ids = ['mouse', 'macaque', 'human'];
 const panel = () => React.createElement(DraftChartPanel, { plot, anchor });
-const toggle = id => document.querySelector(`dialog button[data-neuron-reference-toggle="${id}"]`);
+const toggle = () => document.querySelector('dialog button[data-neuron-reference-toggle]');
 
-test('three independent native reference switches hide only context and rescale all eight subsets without changing preview or source rows', async () => {
+test('one default-off switch below the SVG shows and hides all three references without changing preview or sources', async () => {
   const source = JSON.stringify(plot);
   const cleanup = await mount(panel(), '#' + slug);
   try {
     const switches = [...document.querySelectorAll('dialog button[role=switch]')];
-    assert.deepEqual(switches.map(b => b.textContent), ['Mouse', 'Macaque', 'Human']);
-    assert.equal(switches[0].parentElement.getAttribute('aria-label'), 'Whole-brain references');
-    assert.ok(switches.every(b => b.type === 'button' && b.getAttribute('aria-checked') === 'true'));
+    assert.deepEqual(switches.map(b => b.textContent), ['Whole-brain references']);
+    const control = switches[0];
+    assert.equal(control.type, 'button');
+    assert.equal(control.getAttribute('aria-checked'), 'false');
+    assert.ok(control.querySelector('.brain-scale-switch[aria-hidden=true]'));
+    assert.ok(control.parentElement.matches('.brain-scale-controls'));
+    assert.equal(control.parentElement.previousElementSibling.tagName.toLowerCase(), 'svg', 'Same under-plot placement as neighboring benchmark');
+    assert.equal(control.parentElement.querySelector('p, h2, h3, h4, [role=group]'), null, 'No redundant heading or species group');
     assert.equal(document.querySelector('[data-draft-preview] [role=switch]'), null);
     const preview = document.querySelector('[data-draft-preview] svg').outerHTML;
     const rows = document.querySelector('dialog tbody').outerHTML;
-    for (let mask = 0; mask < 8; mask++) {
-      const visible = ids.filter((id, i) => mask & (1 << i));
-      for (const id of ids) if ((toggle(id).getAttribute('aria-checked') === 'true') !== visible.includes(id)) await click(toggle(id));
+    const offSvg = document.querySelector('dialog svg.draft-plot-svg').outerHTML;
+    for (const enabled of [false, true, false]) {
+      if ((control.getAttribute('aria-checked') === 'true') !== enabled) await click(control);
+      const visible = enabled ? ids : [];
       const svg = document.querySelector('dialog svg.draft-plot-svg');
       assert.deepEqual([...svg.querySelectorAll('[data-anatomical-reference]')].map(n => n.dataset.anatomicalReference), visible);
       assert.deepEqual([...svg.querySelectorAll('[data-anatomical-reference-label]')].map(n => n.dataset.anatomicalReferenceLabel), visible);
       const ys = plot.points.map(p => p.y);
-      const refs = plot.horizontalReferences.filter(r => visible.includes(r.id));
+      const refs = enabled ? plot.horizontalReferences : [];
       const min = Math.floor(Math.log10(Math.min(...ys)));
       const max = Math.max(Math.ceil(Math.log10(Math.max(...ys))), ...refs.map(r => Math.ceil(Math.log10(r.value) + .15)));
       const bottom = Number(svg.querySelector('.draft-plot-axis').getAttribute('y1'));
@@ -42,6 +49,7 @@ test('three independent native reference switches hide only context and rescale 
       assert.equal(svg.querySelectorAll('[data-source-observation]').length, 10);
       assert.equal(document.querySelector('dialog tbody').outerHTML, rows);
       assert.equal(document.querySelector('[data-draft-preview] svg').outerHTML, preview);
+      if (!enabled) assert.equal(svg.outerHTML, offSvg, 'Turning off exactly restores the observation-only SVG');
     }
     assert.equal(JSON.stringify(plot), source, 'Source objects are never mutated');
   } finally { await cleanup(); }
@@ -51,27 +59,28 @@ const base = 'https://atlas.example/neuro-atlas/field-velocity?ref=a&ref=b';
 const initial = url => win => win.history.replaceState({ __NA: true, router: ['retained'], atlasModalFrom: null }, '', url);
 const visibleIds = () => [...document.querySelectorAll('dialog [data-anatomical-reference]')].map(n => n.dataset.anatomicalReference);
 
-test('URL-selected reference subsets survive fresh canonical and legacy entry, copy links, history and one-action dismissal', async () => {
+test('binary reference views survive fresh canonical and legacy entry, copy links, history and one-action dismissal', async () => {
   for (const fragment of [slug, anchor, 'draft-panel-largest-connectome-neurons']) {
     const cleanup = await mount(panel(), '', initial(`${base}&neuronRefs=none#${fragment}`));
     try {
       assert.deepEqual(visibleIds(), [], 'Fresh recipient restores all-off references');
       assert.equal(window.location.hash, '#' + slug);
       assert.equal(window.history.length, 1);
-      await click(toggle('human'));
-      const human = window.location.href;
-      assert.equal(new URL(human).searchParams.get('neuronRefs'), 'human');
-      await click(toggle('mouse'));
+      await click(toggle());
+      const on = window.location.href;
+      assert.equal(new URL(on).searchParams.get('neuronRefs'), ALL_NEURON_REFERENCES);
+      assert.deepEqual(visibleIds(), ids);
+      await click(toggle());
       const selected = window.location.href;
-      assert.equal(new URL(selected).searchParams.get('neuronRefs'), 'mouse,human', 'Stable source order');
+      assert.equal(new URL(selected).searchParams.has('neuronRefs'), false, 'Default-off omits the token');
       assert.deepEqual(new URL(selected).searchParams.getAll('ref'), ['a', 'b']);
       assert.deepEqual(window.history.state, { __NA: true, router: ['retained'], atlasModalFrom: null });
       await React.act(async () => window.history.back());
-      for (let n = 0; n < 30 && window.location.href !== human; n++) await settle();
-      assert.deepEqual(visibleIds(), ['human']);
+      for (let n = 0; n < 30 && window.location.href !== on; n++) await settle();
+      assert.deepEqual(visibleIds(), ids);
       await React.act(async () => window.history.forward());
       for (let n = 0; n < 30 && window.location.href !== selected; n++) await settle();
-      assert.deepEqual(visibleIds(), ['mouse', 'human']);
+      assert.deepEqual(visibleIds(), []);
       const saved = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
       let copied;
       try {
@@ -90,17 +99,17 @@ import { whenChartRegistered } from '../src/lib/chart-export-api.ts';
 import { buildChartImage } from '../src/lib/chart-export.ts';
 import { JSDOM } from 'jsdom';
 
-test('all eight selected image/clipboard specs and JSON preserve visible overlays, qualified URL and complete archived source', async () => {
-  for (let mask = 0; mask < 8; mask++) {
-    const visible = ids.filter((id, i) => mask & (1 << i));
-    const token = mask === 7 ? '' : `&neuronRefs=${visible.join(',') || 'none'}`;
+test('both selected image/clipboard specs and JSON preserve visible overlays, qualified URL and complete archived source', async () => {
+  for (const enabled of [false, true]) {
+    const visible = enabled ? ids : [];
+    const token = enabled ? `&neuronRefs=${ALL_NEURON_REFERENCES}` : '';
     const cleanup = await mount(panel(), '', initial(`${base}&token=private${token}#${slug}`));
     try {
       const spec = (await whenChartRegistered(anchor, 0)).getChart();
       const image = buildChartImage(spec, window.location.href);
       const imageUrl = new URL(image.url);
-      assert.equal(imageUrl.searchParams.get('neuronRefs'), mask === 7 ? null : visible.join(',') || 'none');
-      assert.deepEqual([...imageUrl.searchParams.keys()], mask === 7 ? [] : ['neuronRefs']);
+      assert.equal(imageUrl.searchParams.get('neuronRefs'), enabled ? ALL_NEURON_REFERENCES : null);
+      assert.deepEqual([...imageUrl.searchParams.keys()], enabled ? ['neuronRefs'] : []);
       const exported = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
       try {
         const text = [...exported.window.document.querySelectorAll('text')].map(n => n.textContent);
@@ -123,21 +132,32 @@ test('all eight selected image/clipboard specs and JSON preserve visible overlay
   }
 });
 
-test('invalid, duplicate, unknown and cross-chart reference tokens use all-on defaults while preserving repeated unrelated entries', async () => {
-  for (const query of ['neuronRefs=', 'neuronRefs=mouse,mouse', 'neuronRefs=human,unknown', 'neuronRefs=none,mouse', 'neuronRefs=mouse&neuronRefs=human', 'neuronRefs=none&neuronRefs=none']) {
-    const cleanup = await mount(panel(), '', initial(`${base}&${query}#${slug}`));
-    try {
-      assert.deepEqual(visibleIds(), ids);
-      assert.equal(new URL(window.location.href).searchParams.has('neuronRefs'), false);
-      assert.deepEqual(new URL(window.location.href).searchParams.getAll('ref'), ['a', 'b']);
-      assert.equal(window.history.length, 1);
-      assert.deepEqual(window.history.state.router, ['retained']);
-    } finally { await cleanup(); }
+test('reference URLs normalize every valid legacy subset to all-on and reject malformed or cross-chart state to off', () => {
+  for (const fragment of [slug, anchor, 'draft-panel-largest-connectome-neurons']) {
+    for (const token of ['mouse', 'macaque', 'human', 'human,mouse', 'macaque,human', 'macaque,mouse', 'human,macaque,mouse']) {
+      const url = new URL(`${base}&neuronRefs=${token}#${fragment}`);
+      assert.equal(neuronReferencesFromUrl(url, anchor), ALL_NEURON_REFERENCES, token + ': binary legacy on');
+      const canonical = new URL(performanceUrl(url.href, anchor));
+      assert.equal(canonical.searchParams.get('neuronRefs'), ALL_NEURON_REFERENCES);
+      assert.deepEqual(canonical.searchParams.getAll('ref'), ['a', 'b']);
+      assert.equal(canonical.hash, '#' + slug);
+    }
+    for (const query of ['', 'neuronRefs=none', 'neuronRefs=', 'neuronRefs=mouse,mouse', 'neuronRefs=human,unknown', 'neuronRefs=none,mouse', 'neuronRefs=mouse&neuronRefs=human', 'neuronRefs=none&neuronRefs=none']) {
+      const url = new URL(`${base}&${query}#${fragment}`);
+      assert.equal(neuronReferencesFromUrl(url, anchor), 'none', query + ': default off');
+      assert.equal(new URL(performanceUrl(url.href, anchor)).searchParams.has('neuronRefs'), false);
+    }
   }
-  const other = `${base}&neuronRefs=none#selected-public-image-resource-footprints`;
-  assert.equal(new URL(performanceUrl(other, anchor)).searchParams.has('neuronRefs'), false);
+  for (const other of ['metric-panel-public-data-size', 'metric-panel-acquisition-economics', 'performance_curves']) {
+    const wrongChart = new URL(`${base}&neuronRefs=${ALL_NEURON_REFERENCES}#${other}`);
+    assert.equal(neuronReferencesFromUrl(wrongChart, anchor), 'none');
+    assert.equal(new URL(performanceUrl(wrongChart.href, anchor)).searchParams.has('neuronRefs'), false);
+    assert.equal(neuronReferencesFromUrl(new URL(`${base}&neuronRefs=mouse#${slug}`), other), 'none');
+  }
+  assert.equal(neuronReferenceToken('none'), undefined);
+  assert.equal(neuronReferenceToken(ALL_NEURON_REFERENCES), ALL_NEURON_REFERENCES);
   const privateUrl = `https://private:secret@atlas.example/neuro-atlas/field-velocity?neuronRefs=human,mouse&secret=private#${slug}`;
-  assert.equal(chartShareUrl(privateUrl, anchor), `https://atlas.example/neuro-atlas/field-velocity?neuronRefs=mouse%2Chuman#${slug}`);
+  assert.equal(chartShareUrl(privateUrl, anchor), `https://atlas.example/neuro-atlas/field-velocity?neuronRefs=mouse%2Cmacaque%2Chuman#${slug}`);
 });
 
 test('rescaling clears pinned inspection without stealing switch focus and Escape dismisses the modal once', async () => {
@@ -145,10 +165,10 @@ test('rescaling clears pinned inspection without stealing switch focus and Escap
   try {
     await React.act(async () => document.querySelector('dialog [data-source-observation]').dispatchEvent(new MouseEvent('click', { bubbles: true })));
     assert.ok(document.querySelector('[data-point-tooltip][data-pinned]'));
-    await React.act(async () => toggle('human').focus());
-    await click(toggle('human'));
+    await React.act(async () => toggle().focus());
+    await click(toggle());
     assert.equal(document.querySelector('[data-point-tooltip]'), null);
-    assert.equal(document.activeElement, toggle('human'));
+    assert.equal(document.activeElement, toggle());
     await React.act(async () => document.querySelector('dialog').dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })));
     assert.equal(document.querySelector('dialog'), null);
   } finally { await cleanup(); }

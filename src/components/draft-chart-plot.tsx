@@ -195,8 +195,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
   const anatomicalReferences = plot.horizontalReferences ?? [];
   const referenceControls = !preview && plot.id === "largest-connectome-neurons" && anatomicalReferences.length > 0;
-  const [referenceSelection, toggleReference] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
-  const visibleReferences = referenceControls ? anatomicalReferences.filter(ref => referenceSelection.split(",").includes(ref.id)) : anatomicalReferences;
+  const [referencesEnabled, setReferencesEnabled] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);
+  const visibleReferences = referenceControls && !referencesEnabled ? [] : anatomicalReferences;
   const compactAnatomy = preview && anatomicalReferences.length > 0;
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
@@ -423,14 +423,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         ...(plot.curationSource ? [`Dataset discovery: ${plot.curationSource.title} · ${plot.curationSource.url}`] : [])],
     })} /></ChartActions>}
     <figcaption id={`${id}-title`}>{compactAnatomy ? "Neuron counts" : preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>
-    {referenceControls && <section className="brain-scale-controls neuron-reference-controls">
-      <p>Whole-brain references</p>
-      <div className="brain-scale-controls neuron-reference-options" role="group" aria-label="Whole-brain references">
-        {anatomicalReferences.map(ref => <button key={ref.id} type="button" role="switch" data-neuron-reference-toggle={ref.id}
-          aria-checked={visibleReferences.includes(ref)} onClick={() => { tooltip.clear(); toggleReference(ref.id); }}>
-          <span className="brain-scale-switch" aria-hidden="true" />{ref.label.split(" ")[0]}</button>)}
-      </div>
-    </section>}
+
     {acquisition && !preview && <div className="brain-scale-controls acquisition-metric-controls">
       <div className="acquisition-metric-options" role="group" aria-label="Acquisition y-axis metric">
         {ACQUISITION_METRICS.map(option => <button key={option.id} type="button" data-acquisition-metric={option.id}
@@ -515,6 +508,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
+    {referenceControls && <div className="brain-scale-controls">
+      <button type="button" role="switch" data-neuron-reference-toggle aria-checked={referencesEnabled}
+        onClick={() => { tooltip.clear(); setReferencesEnabled(enabled => !enabled); }}><span className="brain-scale-switch" aria-hidden="true" />Whole-brain references</button>
+    </div>}
     {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition-efficiency estimates at each method’s resolution, scope and cost definition.</p>}
     {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">{acquisition && acquisitionMetric === "dollars-per-voxel" ? "SI dollar ticks: n$ = nanodollars · p$ = picodollars · f$ = femtodollars · a$ = attodollars" : acquisition ? "M = million · B = billion · T = trillion · Q = quadrillion; scientific notation above 10¹⁵" : "M = million · B = billion · T = trillion · Q = quadrillion"}</p>}
 
