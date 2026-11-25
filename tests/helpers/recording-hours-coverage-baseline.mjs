@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { beforeScientificCopy } from './sitewide-copy-scientific.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 
@@ -24,7 +25,7 @@ function restore(target, change) {
   }
 }
 export function beforeBrainGateAddition(evidence) {
-  const restored = structuredClone(evidence);
+  const restored = beforeScientificCopy(evidence);
   const plots = restored[title].plots;
   const metric = plots.some(plot => plot.id === 'recording-hours');
   const addedPlot = addition.draftPlot;

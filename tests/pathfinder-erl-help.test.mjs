@@ -41,9 +41,9 @@ test('PATHFINDER Axes spells out the measure and explains 50%, 94.2% and a rule-
     assert.match(axes ?? '', /y-axis: Normalized expected run length \(%\)/);
     assert.match(axes, /50%.*half the ideal/);
     assert.match(axes, /94\.2%.*close to ideal/);
-    assert.match(axes, /100% is possible/);
+    assert.match(axes, /100% meets the benchmark’s error-free tracing criterion/);
     assert.match(axes, /evaluation rules/);
-    assert.match(axes, /[Mm]inor errors.*may remain/);
+    assert.match(axes, /smaller errors outside its evaluation rules may remain/);
     const preview = document.querySelector('button[aria-label="Enlarge PATHFINDER v1: axon tracing benchmark"]');
     assert.match(preview.title, /ERL stands for expected run length/);
     const dialog = document.querySelector('dialog[open]');

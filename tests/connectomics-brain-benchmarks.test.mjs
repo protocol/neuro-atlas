@@ -39,7 +39,7 @@ test('single human acquisition reference uses the unchanged whole-brain denomina
     assert.equal(ref.value, (1_200_000 * 1e18 / (4 * 4 * 40)) / ref.budget);
     assert.match(ref.label, /^\$/);
   }
-  assert.match(context.disclosure, /Image acquisition only/i);
+  assert.match(context.disclosure, /Preparation, reconstruction, proofreading and storage add costs beyond this image-acquisition scenario/i);
   assert.match(context.scopeLabel, /image-only/i);
   assert.match(context.disclosure, /reconstruction/);
   assert.equal(context.sources.length, 2);

@@ -38,7 +38,7 @@ test('recording hours renders one populated log scatter with six labeled series 
     const legend = [...el.querySelectorAll('[data-draft-group-legend] li')];
     assert.deepEqual(legend.map(n => n.textContent.trim()), raw.plots.map(p => p.title));
     assert.equal(new Set(legend.map(n => n.querySelector('span').style.color)).size, 6);
-    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Lines connect only TUSZ releases \(overlapping, not summed\); other observations remain separate/);
+    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Lines connect only TUSZ releases \(overlapping corpus snapshots\); other observations remain separate/);
     const svg = el.querySelector('svg.draft-plot-svg');
     assert.equal(svg.querySelectorAll('path, polyline').length, 1, 'Only the explicit TUSZ release path; no pooled fit');
     assert.equal(svg.querySelector('polyline').dataset.observationSeries, 'tusz-releases');
