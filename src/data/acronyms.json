@@ -17,7 +17,7 @@
   },
   "TAP": {
     "expansion": "Total Product Life Cycle Advisory Program",
-    "definition": "US FDA pilot providing early strategic engagement across a device's life cycle"
+    "definition": "US FDA pilot offering early advice throughout device development"
   },
   "JV": {
     "expansion": "Joint Venture",
@@ -197,7 +197,7 @@
   },
   "Pivotal (planned)": {
     "expansion": "Planned pivotal trial",
-    "definition": "A proposed or preparing late-stage clinical study; this marker does not establish that enrollment or implantation has begun"
+    "definition": "A late-stage clinical study in planning or preparation"
   },
   "trial": {
     "expansion": "Clinical trial",
@@ -205,6 +205,6 @@
   },
   "HUD": {
     "expansion": "Humanitarian Use Device",
-    "definition": "FDA rare-disease device designation enabling an HDE marketing application; designation alone is not marketing approval"
+    "definition": "FDA designation for rare-disease devices enabling an application for Humanitarian Device Exemption (HDE) marketing authorization"
   }
 }

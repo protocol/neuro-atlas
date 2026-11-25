@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { METRIC_CHART_EVIDENCE } from '../src/data/metric-chart-visibility.ts';
+import { DRAFT_CHART_EVIDENCE } from '../src/data/draft-chart-observations.ts';
 
 import * as coverageMetrics from '../src/data/recording-hours-coverage.ts';
 
@@ -20,6 +21,7 @@ export const expectedCoverage = [
   ['ajile12-intracranial-2022-01-27', 12, 'participants', undefined],
   ['poyo-primate-training-2023-10-24', 7, 'nonhuman primates', 158],
   ['japaneeg-scalp-eeg-2026-05-31', 3, 'participants', undefined],
+  ['braingate-t15-independent-use-2026-06-15', 1, 'participants', undefined],
 ];
 
 test('each duration has its own matched participant/animal denominator and release-specific sessions', () => {
@@ -75,8 +77,8 @@ test('JapanEEG uses dated v2 controlled-access evidence and a qualified calculat
   assert.equal(point.y, 1020);
   assert.equal(point.recordingCoverage.durationSummary, '≈60–814 h per participant (calculated from Table 4)');
   assert.match(point.recordingCoverage.detail, /P01.*813\.8.*P02.*146\.2.*P03.*60\.3/);
-  assert.match(point.recordingCoverage.detail, /shared.*once/);
-  assert.match(point.recordingCoverage.detail, /not.*continuous session/);
+  assert.match(point.recordingCoverage.detail, /Shared.*once/);
+  assert.match(point.recordingCoverage.detail, /Per-person durations accumulate across recordings; the displayed range is calculated from these cells/ );
 });
 
 
@@ -87,10 +89,42 @@ test('historical-golden normalization checks the exact coverage delta and reject
   assert.deepEqual(METRIC_CHART_EVIDENCE, original, 'Normalization is non-mutating');
   assert.ok(restored[title].plots[0].points.every(point => !point.recordingCoverage));
   for (const [id] of expectedCoverage) {
-    for (const mutate of [point => { point.recordingCoverage.count = 999; }, point => { delete point.recordingCoverage; }]) {
+    for (const mutate of [point => { point.recordingCoverage.count = 999; }, point => { point.recordingCoverage.detail += ' UNLISTED MUTATION'; }, point => { delete point.recordingCoverage; }]) {
       const changed = structuredClone(METRIC_CHART_EVIDENCE);
       mutate(changed[title].plots[0].points.find(point => point.id === id));
       assert.throws(() => beforeRecordingCoverage(changed), undefined, `${id}: do not mask unexpected changes`);
     }
   }
+  const id = 'braingate-t15-independent-use-2026-06-15';
+  for (const evidence of [DRAFT_CHART_EVIDENCE, METRIC_CHART_EVIDENCE]) {
+    const points = evidence[title].plots.flatMap(plot => plot.points);
+    for (const field of Object.keys(points.find(point => point.id === id))) {
+      const changed = structuredClone(evidence);
+      const point = changed[title].plots.flatMap(plot => plot.points).find(point => point.id === id);
+      point[field] = typeof point[field] === 'number' ? point[field] + 1 : `${point[field]} MUTATED`;
+      assert.throws(() => beforeRecordingCoverage(changed), undefined, `${id}.${field}: exact addition, not an unchecked exclusion`);
+    }
+    for (const action of ['remove', 'duplicate']) {
+      const changed = structuredClone(evidence);
+      const plot = changed[title].plots.find(plot => plot.points.some(point => point.id === id));
+      if (action === 'remove') plot.points = plot.points.filter(point => point.id !== id);
+      else plot.points.push(structuredClone(plot.points.find(point => point.id === id)));
+      assert.throws(() => beforeRecordingCoverage(changed), undefined, `${id}: ${action}`);
+    }
+  }
+  for (const field of ['legend', 'seriesNote']) {
+    const changed = structuredClone(METRIC_CHART_EVIDENCE);
+    changed[title].plots[0][field] = field === 'legend' ? [] : 'MUTATED';
+    assert.throws(() => beforeRecordingCoverage(changed), undefined, `BrainGate ${field}`);
+  }
+  // An unlisted mutation outside the reversed prose must survive to the old
+  // scientific golden, rather than being replaced by a canonical whole object.
+  const mutant = structuredClone(METRIC_CHART_EVIDENCE);
+  const changed = mutant[title].plots[0].points[0];
+  changed.y += 1;
+  changed.quote += ' UNLISTED SOURCE MUTATION';
+  const normalized = beforeRecordingCoverage(mutant)[title].plots[0].points[0];
+  assert.equal(normalized.y, changed.y);
+  assert.equal(normalized.quote, changed.quote);
+  assert.notDeepEqual(beforeRecordingCoverage(mutant), restored);
 });

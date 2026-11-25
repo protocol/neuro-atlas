@@ -37,7 +37,7 @@ function verifyBrokenGeometry(document) {
   const breakMark = svg.querySelector('[data-x-axis-break]');
   assert.equal(breakMark?.querySelectorAll('line').length, 2, 'Show an explicit // discontinuity');
   const note = svg.querySelector('[data-x-axis-break-note]');
-  assert.match(note?.textContent ?? '', /6–40 mJ\/image omitted \(no observations\)/);
+  assert.match(note?.textContent ?? '', /unobserved 6–40 mJ\/image range is omitted/);
   assert.match(note.textContent, /[Ss]ame linear scale/);
   near((lower.end-lower.start)/6,(upper.end-upper.start)/2,'One pixel-per-unit scale on both sides of the break');
   assert.ok(svg.getAttribute('aria-describedby')?.split(' ').includes(note.id), 'Expose the same visible explanation accessibly');
@@ -190,7 +190,7 @@ test('the existing export serializer retains the SVG break explanation, slashes 
         const exported = dom.window.document.querySelector('svg svg');
         const geometry = svg => [...svg.querySelectorAll('[data-source-observation]')].map(mark => ['data-source-observation', 'cx', 'cy', 'r'].map(key => mark.getAttribute(key)));
         assert.deepEqual(geometry(exported), geometry(source));
-        assert.ok([...exported.querySelectorAll('text')].some(text => /6–40 mJ\/image omitted \(no observations\)/.test(text.textContent)), 'SVG explanation survives without depending on an export caption');
+        assert.ok([...exported.querySelectorAll('text')].some(text => /unobserved 6–40 mJ\/image range is omitted/.test(text.textContent)), 'SVG explanation survives without depending on an export caption');
         const slashes = [...exported.querySelectorAll('line')].filter(line => Number(line.getAttribute('y1')) - Number(line.getAttribute('y2')) === 8);
         assert.equal(slashes.length, 2, 'Both break slashes survive the geometry allowlist');
         assert.ok(Number.isFinite(image.height) && image.height <= 6000);

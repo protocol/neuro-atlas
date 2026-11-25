@@ -3,6 +3,7 @@
 import { useContext, type ReactNode } from "react";
 import { GraphExportContext } from "@/components/graph-export-context";
 import { supportsAcquisitionMetrics } from "@/lib/acquisition-metric";
+import { chartAxesDescription } from "@/lib/chart-axis-help";
 import { ChartExplorationContext } from "@/components/chart-exploration-context";
 import { useStandaloneChartSettings } from "@/components/use-standalone-chart-settings";
 import { standaloneChartParams } from "@/lib/standalone-chart-state";
@@ -35,7 +36,7 @@ function DraftDetail({ entry }: { entry: FieldVelocityGraph }) {
     const plot = plotId ? evidence.plots.find(plot => plot.id === plotId) : undefined;
     const timeline = graph.renderer === "timeline" ? evidence.timeline : undefined;
     if (!plot && !timeline) continue;
-    const axes = plot ? `x-axis: ${plot.xLabel} · y-axis: ${plot.yLabel}` : "x-axis: Publication date · y-axis: Reported event stage";
+    const axes = plot ? chartAxesDescription(plot) : "x-axis: Publication date · y-axis: Reported event stage";
     return <DraftPanelDetail methodology={<DraftChartMethodology alwaysVisible chart={chart}
       summary={plot?.id === "bci-bitrate" ? undefined : evidence.summary} context={evidence.gapReason} axes={axes} />}>
       {plot ? <DraftChartPlot plot={supportsAcquisitionMetrics(plot) || plot.title === title ? plot : { ...plot, title }} shareAnchor={target} />

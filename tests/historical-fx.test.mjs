@@ -56,7 +56,7 @@ test('the reviewed NeuroXess round and timeline share the same historical conver
   assert.deepEqual(indexed[0].fx, fx);
   assert.equal(mark.amountUsdM, 700 / 6.6662);
   assert.equal(indexed[0].amountUsdM, mark.amountUsdM);
-  for (const row of [mark, indexed[0]]) assert.match(row.note, /announcement-date.*actual investment date.*undisclosed/i);
+  for (const row of [mark, indexed[0]]) assert.match(row.note, /announcement date because the investment date is undisclosed/i);
   assert.match(funding.methodology.coverage, /historical.*exchange|historical.*FX/i);
 });
 
@@ -70,3 +70,33 @@ test('a disclosed investment date drives FX and unsupported previous-business-da
 });
 
 
+
+test('documented agreement-event dates drive FX without inventing investment or announcement dates', () => {
+  const event = { ...conversion, investmentDate: null, dateBasis: 'event_date' };
+  const built = buildFundingIndex(fixture(event, { ...round, date_basis: 'event' }));
+  assert.deepEqual(built.rounds[0].fx, event);
+  assert.equal(built.rounds[0].fx.investmentDate, null);
+  assert.equal(built.rounds[0].dateBasis, 'event');
+  assert.equal(built.rounds[0].amountUsdM, 700 / 6.6662);
+  assert.throws(() => buildFundingIndex(fixture({ ...event, investmentDate: '2026-10-27' })), /historical FX/i);
+  assert.throws(() => buildFundingIndex(fixture({ ...event, rateDate: '2026-10-27' })), /historical FX/i);
+});
+
+test('a previous available observation is explicit, strictly earlier and bounded to four calendar days', () => {
+  const saturday = {
+    ...conversion, amountNativeM: 150, announcedOn: '2022-09-24', dateBasis: 'event_date',
+    rateDate: '2022-09-23', nativePerUsd: 7.1266, rateDateBasis: 'previous_available_business_day',
+  };
+  const eventRound = { ...round, announced_on: '2022-09-24', date_basis: 'event', amount_native_m: '150' };
+  assert.equal(buildFundingIndex(fixture(saturday, eventRound)).rounds[0].amountUsdM, 150 / 7.1266);
+  const fourthDay = { ...saturday, announcedOn: '2022-09-27' };
+  assert.deepEqual(buildFundingIndex(fixture(fourthDay, { ...eventRound, announced_on: '2022-09-27' })).rounds[0].fx, fourthDay);
+  const holiday = { ...conversion, announcedOn: '2026-07-03', rateDate: '2026-07-02', rateDateBasis: 'previous_available_business_day', nativePerUsd: 6.7886 };
+  assert.deepEqual(buildFundingIndex(fixture(holiday, { ...round, announced_on: '2026-07-03' })).rounds[0].fx, holiday);
+  for (const change of [
+    { rateDate: '2022-09-24' }, { rateDate: '2022-09-25' }, { rateDate: '2022-09-19' },
+    { rateDateBasis: 'previous_business_day' }, { rateDateBasis: '' }, { rateDateBasis: null },
+    { rateDateBasis: undefined }, { extra: 'unreviewed' }, { rateDate: '2022-02-30' },
+  ]) assert.throws(() => buildFundingIndex(fixture({ ...saturday, ...change }, eventRound)), /historical FX/i, JSON.stringify(change));
+  assert.throws(() => buildFundingIndex(fixture({ ...conversion, extra: true })), /historical FX/i);
+});

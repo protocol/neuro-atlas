@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const destinations = [
-  { href: "/milestones", title: "Milestones", description: "Scientific, clinical, and commercial breakthroughs." },
-  { href: "/field-velocity", title: "Field Velocity", description: "Measurements of how the field is advancing." },
-  { href: "/funding", title: "BCI Funding Index", description: "The companies and capital behind brain-computer interfaces." },
+  { href: "/milestones", title: "Milestones", description: "Funding events, clinical trials, regulatory decisions, and commercial milestones." },
+  { href: "/field-velocity", title: "Field Velocity", description: "Technical capabilities, research activity, and expected inflection points." },
+  { href: "/funding", title: "BCI Funding Index", description: "Financing rounds and investors in selected implanted and implant-adjacent BCI companies." },
 ];
 
 export default function NotFound() {
@@ -11,8 +11,8 @@ export default function NotFound() {
     <div className="atlas-not-found">
       <section className="atlas-not-found-hero" aria-labelledby="not-found-title">
         <div className="atlas-not-found-copy">
-          <p className="atlas-not-found-eyebrow">404 · Page not found</p>
-          <h1 id="not-found-title">Off the map.</h1>
+          <p className="atlas-not-found-eyebrow">404</p>
+          <h1 id="not-found-title">Page not found.</h1>
           <p className="atlas-not-found-intro">
             We couldn’t find this page. The link may be out of date, or the address may have a typo.
           </p>
@@ -33,7 +33,7 @@ export default function NotFound() {
         </div>
       </section>
       <section className="atlas-not-found-directory" aria-labelledby="not-found-explore">
-        <h2 id="not-found-explore">Find your way back</h2>
+        <h2 id="not-found-explore">Explore Neuro Atlas</h2>
         <div className="atlas-not-found-links">
           {destinations.map((destination) => (
             <Link key={destination.href} href={destination.href} className="atlas-not-found-link">

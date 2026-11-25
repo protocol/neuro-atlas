@@ -149,7 +149,7 @@ test('performance export retains the selected track, conditional scenario and ta
     assert.ok(boundary.svgs[0].includes(actual));
     assert.match(boundary.svgs[0], /plateau/i);
     assert.match(boundary.svgs[0], /TUSZ corpus only|TUSZ corpus-only/);
-    assert.match(boundary.svgs[0], /not.*forecast/);
+    assert.match(boundary.svgs[0], /Illustrative continuation under stated assumptions/);
     assert.match(boundary.svgs[0], /data-target-line/);
   } finally { await cleanup(); boundary.restore(); }
 });
@@ -162,7 +162,7 @@ for (const failure of ['unsupported', 'permission']) test(`${failure}: recover w
     const panel = document.querySelector('[data-draft-panel]');
     await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
-    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable.*Download PNG.*Copy link/);
+    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /^Chart copy failed\. Use Download PNG and Copy link\.$/);
     assert.equal(boundary.downloads.length, 0, 'Never silently download on failure');
     assert.equal(boundary.writes.filter(item => typeof item === 'string').length, 0, 'Never replace clipboard with URL after failed image write');
     await click(panel.querySelector('[data-download-chart]'));
@@ -187,7 +187,7 @@ test('image rendering failure is announced, releases object URLs and permits a r
     const panel = document.querySelector('[data-draft-panel]');
     await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
-    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable/);
+    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /^Chart copy failed\. Use Download PNG and Copy link\.$/);
     assert.equal(boundary.objects.size, 0);
     assert.equal(panel.querySelector('[data-copy-chart]').disabled, false);
     globalThis.Image = WorkingImage;
@@ -353,7 +353,7 @@ test('filtered POYO image keeps its selected point and nonvisual lower-bound evi
 });
 
 
-test('unified recording-hours export has one generic chart URL, all 12 marks and observation-linked lower bounds/scopes', async () => {
+test('unified recording-hours export has one generic chart URL, all 13 marks and observation-linked qualifiers/scopes', async () => {
   globalThis.React = React;
   let boundary;
   const cleanup = await mount(React.createElement(DraftChartsSection), '', win => { boundary = browserBoundaries(win); });
@@ -369,18 +369,18 @@ test('unified recording-hours export has one generic chart URL, all 12 marks and
     const exported = new JSDOM(boundary.svgs[0], { contentType: 'image/svg+xml' });
     const doc = exported.window.document;
     assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(n => n.getAttribute('data-source-observation')), [...card.querySelectorAll('[data-source-observation]')].map(n => n.dataset.sourceObservation));
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
+    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 13);
     const text = exportEvidence(doc);
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
-    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Lines connect only TUSZ releases (overlapping, not summed); other observations remain separate.']) assert.ok(text.includes(phrase), phrase);
+    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Lines connect only TUSZ releases (overlapping corpus snapshots); other observations remain separate.']) assert.ok(text.includes(phrase), phrase);
     const lines = [...doc.querySelectorAll('polyline')];
     assert.equal(lines.length, 1, 'Only the supported TUSZ release sequence is exported; no pooled fit');
     assert.equal(lines[0].getAttribute('points'), card.querySelector('[data-observation-series="tusz-releases"]').getAttribute('points'));
-    for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG']) assert.ok(text.includes(name));
+    for (const name of ['Neuralink', 'TUSZ', 'AJILE12', 'POYO-1', 'JapanEEG', 'BrainGate T15']) assert.ok(text.includes(name));
     assert.equal(doc.querySelectorAll('[data-export-note], [data-export-footnotes]').length, 0);
     const visible = [...doc.querySelectorAll('text')].map(node => node.textContent).join(' ');
     assert.ok(visible.includes('More information on Neuro Atlas.'));
-    assert.equal(card.querySelectorAll('[data-chart-note]').length, 5, 'On-site dataset notes are unchanged');
+    assert.equal(card.querySelectorAll('[data-chart-note]').length, 6, 'The five original dataset notes remain beside the new BrainGate note');
     assert.ok(!text.includes('#metric-panel-neuralink-private-intracortical-hours'));
     exported.window.close();
   } finally { await cleanup(); boundary.restore(); }

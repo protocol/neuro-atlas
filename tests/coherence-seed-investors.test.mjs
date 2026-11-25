@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { loadFundingIndexSources } from "../scripts/lib/funding-index.mjs";
+import { parseCsv } from "../scripts/lib/funding-index.mjs";
+import { readCopyDataFile } from "./helpers/sitewide-copy-data.mjs";
 
 const expected = JSON.parse(await readFile(new URL("./fixtures/coherence-seed-20261116.json", import.meta.url), "utf8"));
 const matches = (round) => round.companySlug === expected.companySlug
@@ -15,7 +16,7 @@ export function assertCoherenceSeed(round) {
 }
 
 test("Coherence's canonical seed investors match the full founder announcement", async () => {
-  const sources = await loadFundingIndexSources(new URL("../data/funding-index/", import.meta.url).pathname);
+  const sources = { rounds: parseCsv(await readCopyDataFile(new URL("../data/funding-index/rounds.csv", import.meta.url), "utf8")) };
   const rounds = sources.rounds.filter((round) => round.company_slug === expected.companySlug
     && round.announced_on === expected.announcedOn && round.stage === expected.stage);
   assert.equal(rounds.length, 1);
@@ -29,7 +30,7 @@ test("Coherence's canonical seed investors match the full founder announcement",
 });
 
 test("Coherence's shipped seed record preserves both leads and all named backers", async () => {
-  const data = JSON.parse(await readFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
+  const data = JSON.parse(await readCopyDataFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
   const rounds = data.rounds.filter(matches);
   assert.equal(rounds.length, 1);
   assertCoherenceSeed(rounds[0]);
@@ -40,7 +41,7 @@ test("Coherence's shipped seed record preserves both leads and all named backers
 });
 
 test("Coherence seed correction flows into existing investor identities and rollups", async () => {
-  const data = JSON.parse(await readFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
+  const data = JSON.parse(await readCopyDataFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
   const seed = data.rounds.find(matches);
   assertCoherenceSeed(seed);
   for (const name of expected.investors) {

@@ -3,7 +3,7 @@ BCI,Brain-Computer Interface,System that translates neural activity into command
 FIH,First in Human,First time a device is implanted in or used on a human subject
 BDD,FDA Breakthrough Device Designation,US FDA program granting priority review and interaction for devices treating serious conditions
 IDE,Investigational Device Exemption,US FDA approval to use an unapproved device in a clinical study
-TAP,Total Product Life Cycle Advisory Program,US FDA pilot providing early strategic engagement across a device's life cycle
+TAP,Total Product Life Cycle Advisory Program,US FDA pilot offering early advice throughout device development
 JV,Joint Venture,Business entity jointly owned by two or more partner companies
 FDA,US Food and Drug Administration,US regulator for medical devices and drugs
 NMPA,National Medical Products Administration,China's medical device and drug regulator
@@ -49,6 +49,6 @@ ECG,Electrocardiography,Recording of the heart's electrical activity
 EFS,Early Feasibility Study,A small first-in-human study to evaluate a device's basic safety and function
 EEG,Electroencephalography,Non-invasive recording of the brain's electrical activity via scalp electrodes
 Pivotal,Pivotal trial,Late-stage clinical study intended to support a marketing application
-Pivotal (planned),Planned pivotal trial,A proposed or preparing late-stage clinical study; this marker does not establish that enrollment or implantation has begun
+Pivotal (planned),Planned pivotal trial,A late-stage clinical study in planning or preparation
 trial,Clinical trial,A formal study of a device or therapy in human subjects
-HUD,Humanitarian Use Device,FDA rare-disease device designation enabling an HDE marketing application; designation alone is not marketing approval
+HUD,Humanitarian Use Device,FDA designation for rare-disease devices enabling an application for Humanitarian Device Exemption (HDE) marketing authorization

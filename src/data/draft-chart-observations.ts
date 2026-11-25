@@ -3,6 +3,32 @@ import { RECORDING_HOURS_REFERENCES, RECORDING_HOURS_COVERAGE } from "./recordin
 import { CONNECTOMICS_BACKFILL, CONNECTOMICS_CURATION_SOURCE, connectomicsCheckpoints } from "./connectomics-backfill";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
 
+// New public-source checkpoint; the archived provider corpus remains immutable.
+const braingateT15: DraftPlot = {
+  id: "braingate-t15-independent-use",
+  title: "BrainGate T15 · human intracortical, non-public",
+  xLabel: "Publication year", xKind: "year",
+  yLabel: "Approximate recording hours", scale: "linear",
+  scope: "One human participant using an intracortical speech and cursor BCI at home. Approximate recording duration is based on reported BCI-use time; session data were saved except during privacy mode. Independent-use neural data and transcripts are non-public; figure and statistical summaries are public.",
+  points: [{
+    id: "braingate-t15-independent-use-2026-06-15",
+    x: 2026.4520547945206, y: 3800, qualifier: "≈",
+    label: "BrainGate T15 · independent speech and cursor BCI use",
+    dateLabel: "2026-06-15 · publication",
+    sourceUrl: "https://www.nature.com/articles/s41591-026-04414-6",
+    sourceTitle: "Card et al. (2026) · Long-term independent use of an intracortical brain–computer interface for speech and cursor control",
+    sourceRole: "Reported BCI-use duration and recording/access methods",
+    quote: "As of 22.6\u2009months after the implant surgery, he had accumulated more than 3,800\u2009h of BCI use",
+    note: "Card et al. report >3,800 h of BCI use by participant T15. The plotted ≈3,800 h uses BCI-use time as an approximate recording-duration basis across speech and cursor operation. Methods state that session data were saved except during privacy mode; the exact retained recording duration is unspecified. Independent-use neural data and speech transcripts are withheld for participant privacy; figure and statistical summaries are public. Dated to June 15, 2026 publication.",
+    recordingCoverage: RECORDING_HOURS_COVERAGE["braingate-t15-independent-use-2026-06-15"],
+    supportingReferences: [{
+      role: "Public figure and statistical summaries",
+      title: "Card et al. · figure and statistical reproduction data",
+      url: "https://github.com/Neuroprosthetics-Lab/NatMed_independent_personal_use",
+    }],
+  }],
+};
+
 // Reader copy is projected separately so source quotations and archived evidence stay exact.
 const summaries: Record<string, Pick<DraftChartEvidence, "summary"> & Partial<Pick<DraftChartEvidence, "gapReason">>> = {
   "Brain tissue mapped over time": {
@@ -140,12 +166,12 @@ const pointNotes: Record<string, string> = {
   "neuralink-cumulative-2024-07-01": "August 21, 2024 disclosure: “Last month, Alex ... the second participant ... received his Neuralink implant.” July implantation month; cumulative two recipients.",
   "neuralink-cumulative-2025-02-05": "Source: “Today, there are three people with Telepathy: Noland, Alex, and Brad.” The point uses the disclosure date; individual surgery dates remain unspecified.",
   "neuralink-cumulative-2025-06-02": "Source: “Five individuals with severe paralysis are now using Neuralink to control digital and physical devices with their thoughts.” The disclosure describes post-implant use by five recipients.",
-  "neuralink-cumulative-2026-01-28": "Company headline: “21 Neuralnauts enrolled”. Implantation is supported by the body text, “higher signal quality across 18 of the subsequent 20 participants”, following the first recipient. Company-reported cumulative checkpoint dated Jan 28; the page was modified Feb 2. Current active-user status remains unaudited.",
+  "neuralink-cumulative-2026-01-28": "Company headline: “21 Neuralnauts enrolled”. Implantation is supported by the body text, “higher signal quality across 18 of the subsequent 20 participants”, following the first recipient. Company-reported cumulative checkpoint dated Jan 28; the page was modified Feb 2. Current active-user status remains unverified.",
   "paradromics-connect-one-2026-06-17": "June 17, 2026 disclosure: “The first participant ... was enrolled and implanted ... and will be followed and evaluated over the next six years.” At least one long-term recipient; surgery timing is unspecified. The cohort covers long-term implantation, with the earlier temporary 2025 epilepsy implantation counted separately.",
   "neuralink-reported-hours-2026-10-01": "Company-reported accumulated unlabeled freeform neural recording duration from human trial participants. Live-use results use participant-specific encoders pretrained on thousands of hours each. Formal session-union, gap and quality-control rules, contributor count and public access remain unspecified. The first participant's >9,000 hours is a subset of the disclosed total.",
   "ajile12-intracranial-2022-01-27": "Release metadata: “Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.” Published January 27, 2022. Duration counts recording time once across electrodes; gaps and preprocessing affect quality-valid hours.",
   "poyo-primate-training-2023-10-24": "Abstract: “over 100 hours of recordings” from seven nonhuman primates and over 158 sessions. The strict lower bound describes existing recordings reused for training; access varies by constituent dataset.",
-  "japaneeg-scalp-eeg-2026-05-31": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the release manifest remains unenumerated.",
+  "japaneeg-scalp-eeg-2026-05-31": "Abstract: “1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio”. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the released file inventory remains unverified.",
   "lee2016-paired": "GCaMP3 two-photon calcium + serial TEM, with vascular/morphology alignment and manual tracing. 50 functionally characterized identities: 46 L2/3 excitatory cells plus 4 deep-layer neurons represented by apical dendrites. Connectivity is reconstructed locally within the larger set of 1,278 anatomical targets.",
   "turner2022-paired": "Two-photon calcium + EM, with manual soma registration and EM-assisted EASE trace extraction. Matched usable responses for 112 of 363 reconstructed pyramidal cells, restricted to overlapping visually responsive cells. The point uses the 2022 publication year; the anatomical preprint appeared in 2019.",
   "microns2025-manual": "GCaMP6s two-photon + serial TEM, with transform-guided expert matching of unique EM neurons. The 19,181 ROIs are a separate count. The automated table reports 37,364 matches at 83% precision against manual matching and overlaps the same dataset. Matching establishes neuronal identity; proofreading of individual neurites remains partial.",
@@ -154,7 +180,7 @@ const pointNotes: Record<string, string> = {
   "hemibrain-v1": "The release page reports 26+ TB of data; encoding and included products are unspecified for that figure. Public products include images and derived data. The 25 MB connectivity graph is a separate product.",
   "h01-2021": "The June 1, 2021 announcement describes a 1.4 PB rendering, captioned as 1.4 petabytes of images, for roughly 1 mm³ of human cortex. Images and derived products are public; byte membership of the headline total is unspecified. Current imagery is JPEG at 4 × 4 × 33 nm. The 2024 paper describes the same specimen.",
   "microns-2025-size": "The April 9, 2025 producer report gives 1.6 PB for the wiring diagram and its data; included byte products are unspecified. First public release: July 2021. The v117 manifest separately lists 117 TB and 55 TB of EM images (172 TB combined). Source: https://www.microns-explorer.org/manifests/mm3-v117 . AWS and Google mirror the same specimen.",
-  "malecns-jpeg-inventory-2026": "Public inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery: 44,428,865,656,516 bytes. Initial release: October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 imagery, segmentation, meshes and tables have separate footprints. The linked audit retains the complete snapshot and two-API verification. Tissue volume is 0.054 mm³, including brain and ventral nerve cord.",
+  "malecns-jpeg-inventory-2026": "Public inventory of gs://flyem-male-cns/em/em-clahe-jpeg/ on November 3, 2026: 50,910,260,068,834 bytes across 27,594 image shards and one 633-byte metadata file, including all 11 resolution levels. Native 8 nm imagery: 44,428,865,656,516 bytes. Initial release: October 2025; v1.0 in June 2026 refined proofreading and annotations. Separate N5 imagery, segmentation, meshes and tables have separate footprints. The linked inventory documents the complete snapshot and verification through two APIs. Tissue volume is 0.054 mm³, including brain and ventral nerve cord.",
   "flyvis-0": "Correct contrast preference for 32 of 32 cell-type/compartment labels, using the aggregated ensemble prediction.",
   "flyvis-1": "Correct contrast preference for 30 of the same 32 labels. The single model was selected by optic-flow task performance; physiological contrast measurements were held out from fitting.",
 };
@@ -228,7 +254,7 @@ export const DRAFT_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.f
           ...additions,
         ],
       };
-    }),
+    }).concat(title === "Neural recording hours collected over time" ? [braingateT15] : []),
     ...(evidence.timeline ? { timeline: {
       ...evidence.timeline,
       scope: "Selected synaptic-connectome research applications, grouped by demonstration or biological-validation stage. Dates identify publications; first-use timing remains uncertain. The selection covers synaptic-connectome studies.",

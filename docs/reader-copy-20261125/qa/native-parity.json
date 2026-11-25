@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "394cfd56fbe859f88ee461a310ee6b31632d7bc9",
+  "nativeReceiptRecordedUniquePrefix": "394cfd5",
+  "nativeReceiptSha256": "84828e693179cd73f178320505e4ee2d8e24961c54aa574e3d03c11e6380107b",
+  "baselineCommit": "9c1ddcca0bb49daf1c825d9b3b6e318fd870ac3b",
+  "pageCases": 46,
+  "chartDialogCases": 50,
+  "distinctCharts": 25,
+  "capturedSourceMarkInstances": 1722,
+  "exactParity": [
+    "chart identity",
+    "category",
+    "captured source mark attributes",
+    "external source links",
+    "dialog horizontal bounds"
+  ],
+  "dataUriDownloads": {
+    "changedInstances": 10,
+    "proseOnlyLeafChanges": 424,
+    "allOtherFieldsAndSourceUrlsExact": true
+  },
+  "staticCsvDownloadsServedExact": 4,
+  "existingDesktopScrollWidthMinusClientWidthPx": 10,
+  "newHorizontalOverflowCases": 0,
+  "evidence": "Local production runtime; real Chrome; desktop1440/mobile390 pointer/viewport emulation, not physical-phone touch or hosted authentication."
+}

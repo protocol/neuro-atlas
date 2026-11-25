@@ -16,7 +16,7 @@ test('Field velocity hero stays focused on charts, without inventory KPI tiles',
 });
 
 test('PlateHero keeps explicit status badges on other pages', () => {
-  for (const [status, label] of [['partial', 'Partial public coverage'], ['live', 'Live'], ['planned', 'Coming soon']]) {
+  for (const [status, label] of [['partial', 'Partial public coverage'], ['live', 'Live'], ['planned', 'Planned']]) {
     const html = renderToStaticMarkup(React.createElement(PlateHero, { kicker: 'Test', title: 'Test', description: 'Test', stats: [], status }));
     assert.ok(html.includes(label));
   }

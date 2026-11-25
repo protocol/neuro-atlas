@@ -12,7 +12,7 @@ const raw = DRAFT_CHART_EVIDENCE[title];
 const sourcePoints = raw.plots.flatMap(plot => plot.points);
 const card = () => document.getElementById('draft-recording-hours');
 
-test('recording hours renders one populated log scatter with five labeled series and all 12 unchanged observations', async () => {
+test('recording hours renders one populated log scatter with six labeled series and 13 source observations', async () => {
   const before = JSON.stringify(raw);
   const cleanup = await mount(React.createElement(DraftChartsSection));
   try {
@@ -27,7 +27,7 @@ test('recording hours renders one populated log scatter with five labeled series
     assert.equal(el.querySelectorAll('[data-copy-draft-link="metric-recording-hours"]').length, 1);
     assert.equal([...el.querySelectorAll('a')].filter(a => a.textContent === 'Direct link').length, 0);
     const points = METRIC_CHART_EVIDENCE[title].plots[0].points;
-    assert.equal(points.length, 12);
+    assert.equal(points.length, 13);
     for (const original of sourcePoints) {
       const projected = points.find(point => point.id === original.id);
       for (const [key, value] of Object.entries(original)) assert.deepEqual(projected[key], value, `${original.id}: ${key}`);
@@ -37,8 +37,8 @@ test('recording hours renders one populated log scatter with five labeled series
     assert.deepEqual(marks.map(n => n.dataset.sourceObservation), sourcePoints.map(p => p.id));
     const legend = [...el.querySelectorAll('[data-draft-group-legend] li')];
     assert.deepEqual(legend.map(n => n.textContent.trim()), raw.plots.map(p => p.title));
-    assert.equal(new Set(legend.map(n => n.querySelector('span').style.color)).size, 5);
-    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Lines connect only TUSZ releases \(overlapping, not summed\); other observations remain separate/);
+    assert.equal(new Set(legend.map(n => n.querySelector('span').style.color)).size, 6);
+    assert.match(el.querySelector('.draft-plot-legend').textContent, /Log scale.*Lines connect only TUSZ releases \(overlapping corpus snapshots\); other observations remain separate/);
     const svg = el.querySelector('svg.draft-plot-svg');
     assert.equal(svg.querySelectorAll('path, polyline').length, 1, 'Only the explicit TUSZ release path; no pooled fit');
     assert.equal(svg.querySelector('polyline').dataset.observationSeries, 'tusz-releases');
@@ -48,7 +48,7 @@ test('recording hours renders one populated log scatter with five labeled series
     const y = id => Number(pos(id).getAttribute('cy'));
     assert.ok(Math.abs((y('poyo-primate-training-2023-10-24') - y('neuralink-reported-hours-2026-10-01')) / Math.log10(50000 / 100) - 232 / 3) < 1e-9, 'shared logarithmic hours coordinates');
     const rows = [...el.querySelectorAll('tbody tr')];
-    assert.equal(rows.length, 12);
+    assert.equal(rows.length, 13);
     sourcePoints.forEach((point, i) => {
       assert.ok(rows[i].textContent.includes(point.dateLabel));
       assert.equal(rows[i].querySelector('a').href, point.sourceUrl);
@@ -124,7 +124,7 @@ for (const anchor of ['neural-recording-hours', ...['draft', 'metric'].flatMap(p
       assert.deepEqual(scrolled, [], 'popup entry does not scroll the page');
       const modal = document.querySelector('dialog[open]');
       assert.ok(modal);
-      assert.equal(modal.querySelectorAll('[data-source-observation]').length, 12);
+      assert.equal(modal.querySelectorAll('[data-source-observation]').length, 13);
       assert.equal(visible('#draft-recording-hours [data-draft-preview] svg.draft-plot-svg').length, 1);
       assert.equal(document.activeElement === modal.querySelector('.pc-modal-header button'), true);
       await click(modal.querySelector('.pc-modal-header button')); await settle(); await settle();

@@ -1,5 +1,5 @@
 # Google Trends; Worldwide; Web Search; All categories; 2023-10-15 to 2026-10-15; captured 2026-10-15T18:59:19.629966+00:00
-# Independent normalization for brand context; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest.
+# Independent normalization for brand context; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks.
 week_start_utc,Neuralink,partial
 2023-10-15,3,false
 2023-10-22,4,false

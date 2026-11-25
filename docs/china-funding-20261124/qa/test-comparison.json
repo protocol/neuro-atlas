@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "tests": 1633,
+    "pass": 1597,
+    "fail": 36,
+    "cancelled": 0,
+    "skipped": 0,
+    "duration_ms": 445483.97804
+  },
+  "candidate": {
+    "tests": 1651,
+    "pass": 1615,
+    "fail": 36,
+    "cancelled": 0,
+    "skipped": 0,
+    "duration_ms": 824106.647265
+  },
+  "new_failure_ids": [],
+  "resolved_baseline_failure_ids": [],
+  "changed_error_diagnostics": [],
+  "status": "PASS_NO_NEW_FAILURES"
+}

@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
+import { beforeScientificAcquisitionCopy } from './sitewide-copy-scientific.mjs';
 import { readFileSync } from 'node:fs';
 const before = JSON.parse(readFileSync(new URL('../fixtures/exaspim-reference-before.json', import.meta.url), 'utf8'));
 
 // Preserve the independent pre-backfill golden: restore only this separately
 // asserted citation delta, never values, source coordinates or complete plots.
 export function beforeExaspimReferenceCorrection(evidence) {
-  const copy = structuredClone(evidence);
+  const copy = beforeScientificAcquisitionCopy(evidence);
   const plot = copy['Connectomics imaging cost efficiency'].plots[0];
   const point = plot.points.find(p => p.id === 'exaspim2024');
   assert.equal(point.x, 2024);

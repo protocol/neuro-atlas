@@ -103,7 +103,7 @@
       "report": {
         "date": "2021-04",
         "precision": "month",
-        "basis": "public demonstration/disclosure; current page metadata April 18; historical April 8 conflict not resolved",
+        "basis": "public demonstration/disclosure; current page metadata April 18; historical April 8 date remains unresolved",
         "url": "https://neuralink.com/updates/pager-plays-mindpong/",
         "sourceLabel": "Preclinical report / demo",
         "quotes": [
@@ -134,7 +134,7 @@
       "report": {
         "date": "2022-01-02",
         "precision": "day",
-        "basis": "v1 preprint publication; original PDF verified, not shared API abstract",
+        "basis": "v1 preprint publication; date verified against the original PDF",
         "url": "https://www.biorxiv.org/content/10.1101/2022.01.02.474656v1.full.pdf",
         "sourceLabel": "Original v1 preprint",
         "quotes": [
@@ -146,7 +146,7 @@
       "human": {
         "date": "2023-04",
         "precision": "month",
-        "basis": "temporary intraoperative placement, not chronic assistive implantation",
+        "basis": "temporary intraoperative placement",
         "url": "https://www.globenewswire.com/news-release/2023/06/06/2682588/0/en/Precision-Neuroscience-Begins-First-in-Human-Study-of-its-Neural-Interface-Technology.html",
         "sourceLabel": "First human procedure announcement",
         "quotes": [

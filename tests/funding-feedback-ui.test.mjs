@@ -119,7 +119,7 @@ for (const width of [320, 390]) {
         modality.value = 'Ultrasound';
         modality.dispatchEvent(new window.Event('change', { bubbles: true }));
       });
-      assert.match(document.body.textContent, /No companies match/);
+      assert.match(document.body.textContent, /Try another company name or filter\./);
       await click([...filters.querySelectorAll('button')].find(el => el.textContent === 'Reset filters'));
       assert.ok(companyButton('Alpha'));
       assert.ok(companyButton('Beta'));
@@ -198,7 +198,7 @@ test('mounted Investors explains reviewed family counting without promoting a pa
   const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }), '', win => win.history.replaceState(null, '', '/funding?view=investors'));
   try {
     const aside = document.querySelector('aside');
-    assert.ok(aside?.textContent.includes('Reviewed investor families are grouped for counting only; company records retain the original investor names. A grouping does not imply a single legal entity.'), 'the shared reading guide explains the counting rule and legal-identity limitation');
+    assert.ok(aside?.textContent.includes('Reviewed investor families group related names for counting. Company records retain the original investor names; legal identities follow the sources.'), 'the shared reading guide explains the counting rule and legal-identity limitation');
     assert.doesNotMatch(aside.textContent, /Protocol Labs|PLC Neurotech/);
   } finally { await cleanup(); }
 });

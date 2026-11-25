@@ -26,6 +26,8 @@
 .draft-plot-overlap-note { margin: .45rem 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
 .draft-plot-tick { font-size: 12px; font-variant-numeric: tabular-nums; fill: var(--muted); }
 .draft-plot-axis-title { font-size: 12px; font-weight: 500; fill: var(--muted); }
+.draft-plot-axis-title[data-erl-axis-help] { cursor: help; text-decoration: underline dotted; text-underline-offset: .2em; }
+.draft-plot-axis-title[data-erl-axis-help]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .draft-plot-gridline { stroke: var(--border); stroke-width: 1; }
 .draft-plot-axis { stroke: var(--border-strong); stroke-width: 1; }
 .draft-plot-axis-break { stroke: var(--muted); stroke-width: 1.5; }

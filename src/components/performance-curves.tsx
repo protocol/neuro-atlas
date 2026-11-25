@@ -109,25 +109,25 @@ function crossingLabel(crossing: Crossing, kind: ExtrapolationKind) {
     case "in-range": return `${scope}≈${Math.round(crossing.year)}`;
     case "beyond-range": return `${scope}beyond 2200 display range`;
     case "already-reached": return `${scope}at or below last source value`;
-    case "no-crossing": return `${scope}not reached if plateau continues`;
-    case "unavailable": return "No crossing estimate available";
+    case "no-crossing": return `${scope}above the continued plateau`;
+    case "unavailable": return "Crossing estimate unavailable";
   }
 }
 
 function ExtrapolationNotes({ scenario }: { scenario: ExtrapolationScenario }) {
   return <section className="pc-extrapolation-notes" data-extrapolation-summary="true" aria-label="Extrapolation methodology and limitations">
-    <h4>{scenario.kind === "neurons" ? "Historical exponential continuation" : "TUSZ corpus-only scenario — not worldwide human data"}</h4>
-    <p>Conditional scenario, not a current forecast or a deadline. Dashed lines are model output, not new observations.</p>
-    {scenario.fit ? scenario.mode === "plateau" ? <p>No growth assumed: continue the last three equal release totals at 1,074 hours. Neither higher threshold is reached under that assumption.</p> : <p>Doubling time ≈{scenario.fit.doublingYears.toFixed(1)} years, {scenario.mode === "literature" ? "assumed from the literature, compared against" : "fitted to"} {scenario.fit.observationCount} selected points. {scenario.mode === "literature" ? "This is a separate 7-year literature assumption, not a fitted rate." : "The fit uses the natural log of each value against decimal year."} The continuation starts at the last actual value rather than the regression intercept.</p> : <p>No fit: insufficient comparable history or invalid/non-growing data. At least three distinct dates, positive finite values and a positive growth rate are required.</p>}
-    {scenario.kind === "neurons" ? <p>These mixed-species historical electrical records end in 2014 and are not human-specific. {scenario.mode === "literature" ? <a href="https://stevenson.lab.uconn.edu/scaling/" target="_blank" rel="noreferrer">7-year literature pace source ↗</a> : "This selected-point fit is not the 7-year literature estimate."} Matching a neuron count does not establish the spatial or temporal coverage needed for successful whole-brain live simultaneous recording, or its feasibility.</p> : <>
-      <p>Only the 8 full TUSZ release totals from 2017–2020 supply comparable history here. They are overlapping corpus snapshots, not summed; unchanged plateaus remain in the historical-expansion fit. The plateau scenario uses only the last three equal release totals. Other datasets and the nonhuman-primate POYO training corpus are never fitted or pooled.</p>
-      <p>Worldwide human-data ETA unavailable. These milestones describe human-data scale, not a worldwide total established by these selected datasets. The article goal is 100 million hours, distinct from the 100,000-hour milestone.</p>
+    <h4>{scenario.kind === "neurons" ? "Historical exponential continuation" : "TUSZ corpus-only scenario"}</h4>
+    <p>Illustrative continuation under stated assumptions. Dashed lines show model output beyond the historical observations.</p>
+    {scenario.fit ? scenario.mode === "plateau" ? <p>The plateau scenario continues the last three equal release totals at 1,074 hours, below both higher thresholds.</p> : <p>Doubling time ≈{scenario.fit.doublingYears.toFixed(1)} years, {scenario.mode === "literature" ? "assumed from the literature, compared against" : "fitted to"} {scenario.fit.observationCount} selected points. {scenario.mode === "literature" ? "The separate 7-year literature rate is an assumed comparison." : "The fit uses the natural log of each value against decimal year."} The continuation starts at the last observed value.</p> : <p>A fit requires comparable observations at three or more distinct dates, positive finite values and a positive growth rate. The selected data fall short of these requirements.</p>}
+    {scenario.kind === "neurons" ? <p>These historical electrical records cover multiple species and end in 2014. {scenario.mode === "literature" ? <a href="https://stevenson.lab.uconn.edu/scaling/" target="_blank" rel="noreferrer">7-year literature pace source ↗</a> : "This rate is fitted to the selected historical points."} Matching a neuron count establishes count equivalence alone. The spatial and temporal coverage required for successful whole-brain live simultaneous recording, and its feasibility, remain unverified.</p> : <>
+      <p>The fit uses the 8 full TUSZ release totals from 2017–2020 as separate, overlapping corpus snapshots, including unchanged plateaus. The plateau scenario uses the last three equal release totals. Both scenarios are limited to TUSZ; other datasets, including the nonhuman-primate POYO training corpus, remain separate.</p>
+      <p>The worldwide human-data arrival date remains unknown. These reference milestones describe human-data scale; worldwide totals remain unverified by the selected datasets. The article goal is 100 million hours; the separate milestone is 100,000 hours.</p>
     </>}
     <ul className="pc-target-summary">{scenario.targets.map(target => <li key={target.id}>
       <span>{target.label}</span><strong data-crossing-label={target.id}>{crossingLabel(target.crossing, scenario.kind)}</strong>
       {target.sourceUrl && <a href={target.sourceUrl} target="_blank" rel="noreferrer">{target.sourceLabel} ↗</a>}
     </li>)}</ul>
-    <p>{scenario.kind === "neurons" ? "Target counts are approximate reference assumptions, not recorded achievements. " : "Corpus growth does not establish worldwide data availability, quality, access or unique subject-hours. "}Long extrapolations are highly sensitive to the selected historical window; no confidence interval is claimed. Display capped at 2200.</p>
+    <p>{scenario.kind === "neurons" ? "Target counts are approximate reference assumptions. " : "Worldwide data availability, quality, access and unique subject-hours remain unverified by this corpus history. "}Long extrapolations are highly sensitive to the selected historical window. Their uncertainty is unquantified; the display ends at 2200.</p>
   </section>;
 }
 
@@ -245,9 +245,9 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
           ...Array.from(detail.querySelectorAll(".pc-methodology dl > div"))
             .filter(node => !track || node.querySelector("dt")?.textContent === data.tracks.find(t => t.id === track)?.label)
             .map(node => `${node.querySelector("dt")?.textContent}: ${node.querySelector("dd")?.textContent}`),
-          data.connectTracks ? "Lines connect successive reliable observations within the same measurement series; not a fitted trend." : data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates.",
+          data.connectTracks ? "Lines connect successive reliable observations within the same measurement series." : data.line ? "Lines connect selected frontier checkpoints." : "Separate source observations; overlapping markers retain their coordinates.",
           ...(data.points.some(p => p.lo != null) ? ["Whiskers: source intervals. Hollow markers: under-indexed observations."] : []),
-          ...(scenario ? [`Scenario: ${root.querySelector<HTMLSelectElement>("[data-scenario-select]")?.selectedOptions[0]?.textContent ?? mode}. Conditional continuation, not a forecast.`,
+          ...(scenario ? [`Scenario: ${root.querySelector<HTMLSelectElement>("[data-scenario-select]")?.selectedOptions[0]?.textContent ?? mode}. Illustrative continuation under stated assumptions.`,
             ...Array.from(root.querySelectorAll(".pc-scenario-warning, .pc-extrapolation-notes > p, .pc-fit-diagnostics > strong, .pc-fit-diagnostics > span"), node => node.textContent ?? "")] : []),
           `Sources: ${Array.from(detail.querySelectorAll(".pc-sources a"), node => node.textContent?.replace(/ ↗$/, "")).join("; ") || [...new Set(data.points.map(p => p.label.split(". ").at(-1)))].join("; ")}`,
         ],
@@ -275,7 +275,7 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
       "--pc-chart-min-width": `${mix(560, 720)}px`,
       "--pc-chart-max-height": `calc(410px + ${progress} * max(0px, 100vw - 410px))`,
     } as React.CSSProperties : undefined} role={compact ? undefined : "region"} aria-label={compact ? undefined : `${data.title} chart`} tabIndex={compact ? undefined : 0}>
-      <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.connectTracks ? "Lines connect successive reliable observations within each measurement series." : data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed conditional extrapolation and reference targets; not a forecast." : ""}`}>
+      <svg ref={presentationRef} data-metric-preview-extra={compact ? previewExtra / unitsPerPixel : undefined} style={{ fontSize: previewFontSize }} data-export-font-size={CHART_PRESENTATION.labelFontSize} viewBox={`0 0 ${g.width} ${g.height}`} aria-hidden={compact || undefined} role={compact ? undefined : "img"} aria-label={compact ? undefined : `${data.title}. ${scale} ${data.unit} axis. ${data.connectTracks ? "Lines connect successive reliable observations within each measurement series." : data.line ? "Historical frontier checkpoints." : "Separate source observations."}${scenario ? " Dashed lines show a conditional extrapolation with reference targets." : ""}`}>
         <text x={0} y={compact ? Math.max(16, previewFontSize * 1.2) : 16}>{compact && data.historicalFit ? "Neurons · log" : `${data.unit} · ${scale} scale`}</text>
         <ChartYearGuides years={data.historicalFit ? historicalYears : annualDateYears(original.minTime, original.maxTime)} x={year => g.x(`${year}-01-01`)} top={g.y(g.ticks.at(-1)!)} bottom={g.y(g.ticks[0])} />
         {ticks.map(tick => <g key={tick} opacity={tickOpacity(tick)}>
@@ -335,20 +335,20 @@ function CurvePlot({ data, compact = false, extrapolation, shareAnchor, intro, i
     })}</ul>}
     {interactive && !measurementVisible && <EmptySeries reset={() => exploration.update({ hidden: [] })} />}
     {extrapolate && scenario && <>
-      <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records stop in 2014. Neuron-count equivalence is not successful whole-brain live recording." : "TUSZ corpus only — not worldwide human data. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
+      <p className="pc-scenario-warning" data-scenario-warning="true">{scenario.kind === "neurons" ? "Historical records end in 2014. Whole-brain live recording feasibility remains unverified by neuron-count equivalence." : "TUSZ corpus-only scenario. The last three releases stay at 1,074 h; the expansion scenario assumes earlier growth resumes indefinitely."}</p>
       {!controlledExtrapolation && <label className="pc-track-select pc-scenario-select">Growth scenario
         <select data-scenario-select="true" aria-label="Growth scenario" value={mode} onChange={e => setMode(e.target.value as ExtrapolationMode)}>
           <option value="historical">{scenario.kind === "neurons" ? "Full-history fit · 1957–2014" : "Expansion resumes"}</option>
           {scenario.kind === "neurons" ? <><option value="recent">Later-history fit · 1991–2014</option><option value="literature">Literature pace · 7-year doubling</option></> : <option value="plateau">Latest plateau continues · no growth</option>}
         </select>
-        <span>Alternative assumptions, not confidence bounds</span>
+        <span>Alternative growth assumptions</span>
       </label>}
       {scenario.fit && <div className="pc-fit-diagnostics" data-fit-diagnostics="true" role="status">
         <strong>R² (log, anchored scenario): {scenario.fit.anchoredRSquared == null ? "N/A — constant values" : scenario.fit.anchoredRSquared.toFixed(3)}</strong>
         <span>{scenario.fit.observationCount} observations · {Math.floor(scenario.fit.firstYear)}–{Math.floor(scenario.fit.anchor.year)}</span>
         <details><summary>How to read the fit</summary>
-          <p>R² describes historical fit in log space, not forecast confidence or the probability of reaching a target. The anchored scenario is evaluated against the same historical window.</p>
-          <p>{scenario.fit.rSquared == null ? "No unconstrained OLS R² is claimed for an assumed literature pace or a constant-value plateau." : `Unconstrained historical log-linear fit R²: ${scenario.fit.rSquared.toFixed(3)}. Its slope is retained, but the dashed continuation is re-anchored at the latest observation; the two R² values therefore differ.`} No statistical prediction interval is shown.</p>
+          <p>R² measures fit to historical values in log space. Forecast confidence and target probabilities remain unestimated. The anchored scenario is evaluated against the same historical window.</p>
+          <p>{scenario.fit.rSquared == null ? "Unconstrained ordinary least squares (OLS) R² is unavailable for an assumed literature pace or a constant-value plateau." : `Unconstrained historical log-linear fit R²: ${scenario.fit.rSquared.toFixed(3)}. Its slope is retained, but the dashed continuation is re-anchored at the latest observation; the two R² values therefore differ.`} Prediction uncertainty is unquantified.</p>
         </details>
       </div>}
     </>}
@@ -549,7 +549,7 @@ export function PerformanceCurves({ data, provenance, selection, flat = false, d
       {!flat && includes("channel-count-frontier") && <article className="pc-card card pc-placeholder" data-coming-soon="channel-count-frontier" aria-labelledby="channel-count-title">
         <span className="pc-eyebrow">Planned capability metric</span>
         <h3 className="pc-card-title" id="channel-count-title">Channel count frontier</h3>
-        <p className="pc-coverage">Maximum simultaneously recorded channels in a human, over time. Not yet wired; channels are not recorded neurons.</p>
+        <p className="pc-coverage">Planned series: maximum simultaneously recorded channels in a human over time. Channels count recording inputs; neuron counts require separate measurements.</p>
         <div className="pc-preview pc-placeholder-preview">
           {/* Decorative placeholder only: no observations, values or inferred frontier. */}
           <svg viewBox="0 0 720 300" aria-hidden="true" focusable="false">
@@ -558,13 +558,13 @@ export function PerformanceCurves({ data, provenance, selection, flat = false, d
           </svg>
           <span className="pc-coming-soon-label">Coming soon</span>
         </div>
-        <p className="pc-chart-note">Source series not assembled yet. Preview is illustrative, not data.</p>
+        <p className="pc-chart-note">Source series awaiting compilation. Illustrative preview.</p>
       </article>}
   </>;
   if (flat) return cards;
   return <section className="performance-curves" id={selection ? undefined : "performance_curves"} aria-label="Performance curves">
     {!selection && <><header className="pc-section-header"><div><p className="pc-eyebrow">Neurotech · capability &amp; data supply</p><h2 id="performance-title">Performance curves</h2></div><span className="pc-bounded">Selected sourced checkpoints</span></header>
-    <p className="pc-intro">Recording capability, mapped tissue and neural data supply. Different units and coverage, not a single score for the field. Expand a card to inspect definitions, dates and source evidence.</p></>}
+    <p className="pc-intro">Recording capability, mapped tissue and neural data supply, each with its own units and coverage. Expand a card for definitions, dates and source evidence.</p></>}
     <div className="pc-grid">{cards}</div>
     {provenanceDetails}
   </section>;

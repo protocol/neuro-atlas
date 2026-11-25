@@ -29,7 +29,7 @@ export function PaceReadings({ data, flat = false, detail = false }: { data: Pac
           label: `${point.x}: ${point.y} years${point.lo != null && point.hi != null ? `; source interval ${point.lo}–${point.hi} years` : ""}${point.reliable === false ? "; Under-indexed" : ""}. ${record.sources!.map(s => s.label).join("; ")}`,
         })),
       } : undefined;
-      return <CurveCard detail={detail} key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "No reading available")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
+      return <CurveCard detail={detail} key={record.instrument} id={record.instrument} title={title} eyebrow={reading ? "Shared source reading" : record.state.replaceAll("_", " ")} coverage={reading ? record.value! : (record.blocker ?? record.reason ?? "Reading unavailable")} plot={plot} sourceLinks={reading && !vintage ? record.sources : undefined}>
         <ModalReading><section className="pc-methodology" aria-label={`${title} definitions and methodology`}>
           <h4>Definition and methodology</h4>
           {vintage ? <>
@@ -55,7 +55,7 @@ export function PaceReadings({ data, flat = false, detail = false }: { data: Pac
             <table><caption>Sources &amp; chart data · {record.series!.length} observations</caption>
               <thead><tr><th scope="col">{vintage ? "Publication year" : "Preclinical year"}</th><th scope="col">{vintage ? "Median reference age (years)" : "Lag to first-in-human (years)"}</th>{vintage && <th scope="col">Source interval (years)</th>}<th scope="col">Coverage</th></tr></thead>
               <tbody>{record.series!.map(point => <tr key={String(point.x)} data-source-observation={`${record.instrument}:${point.x}`}>
-                <th scope="row">{point.x}</th><td>{point.y} years</td>{vintage && <td>{point.lo ?? "Not supplied"}–{point.hi ?? "Not supplied"}</td>}<td>{point.reliable === false ? "Under-indexed" : "Source observation"} · year precision</td>
+                <th scope="row">{point.x}</th><td>{point.y} years</td>{vintage && <td>{point.lo ?? "Unavailable"}–{point.hi ?? "Unavailable"}</td>}<td>{point.reliable === false ? "Under-indexed" : "Source observation"} · year precision</td>
               </tr>)}</tbody>
             </table>
           </div></ModalTable>

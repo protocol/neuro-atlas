@@ -51,7 +51,7 @@ test('native chart survives selection → composer → chart Escape ordering, fo
     await key('Escape');
     assert.ok(chart.open); assert.ok(document.querySelector('[data-feedback-composer][open]'));
     assert.equal(document.querySelector('[aria-label="Feedback"]').value, 'Keep this private');
-    assert.match(document.querySelector('[data-feedback-composer]').textContent, /disabled/i);
+    assert.match(document.querySelector('[data-feedback-composer]').textContent, /Feedback is turned off\. Your draft is still here\./);
     await key('Escape');
     assert.ok(chart.open); assert.equal(document.activeElement, origin);
     await key('f', { altKey: true, shiftKey: true });
@@ -146,7 +146,7 @@ test('one visitor field sends without sign-in, retains exact failed retry and cl
     assert.equal(document.querySelector('[data-feedback-composer]'),activeComposer,'confirmation replaces content in the same native dialog');
     assert.ok(activeComposer.open);assert.ok(underlying.open,'underlying native chart stays open');
     const status=activeComposer.querySelector('[role="status"]');
-    assert.equal(status.textContent,'Thanks for your feedback.It’s under review. Check back soon.');
+    assert.equal(status.textContent,'Thanks for your feedback.Your feedback has been saved for review.');
     assert.equal(activeComposer.querySelector('textarea'),null);assert.equal(activeComposer.querySelector('[data-feedback-submit]'),null);
     assert.equal(document.querySelector('[data-feedback-toast]'),null,'confirmation is not a transient toast');
     assert.equal(document.activeElement,byText('Done'),'focus moves to an accessible completion control');

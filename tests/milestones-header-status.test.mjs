@@ -20,7 +20,7 @@ test('Milestones omits the reported Live pill and its separator while preserving
     assert.equal(metadata[0].textContent, 'Field events');
     assert.match(metadata[1].textContent, /^\d+ years$/);
     assert.match(hero.textContent, /tracked events/);
-    assert.match(hero.textContent, /companies on the axis/);
+    assert.match(hero.textContent, /\d+companies/);
   } finally {
     dom.window.close();
   }

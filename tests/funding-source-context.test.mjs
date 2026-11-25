@@ -77,10 +77,10 @@ test("named-investor evidence does not imply source support for the indexed roun
   const dom = contextFor(evidence.sourceUrl);
   try {
     const context = dom.window.document.querySelector("#source-context");
-    assert.match(context.textContent, /Named-investor evidence/);
+    assert.match(context.textContent, /Investor participation/);
     assert.ok(context.textContent.includes(evidence.investorName));
     assert.ok(context.textContent.includes(evidence.sourceExcerpt));
-    assert.match(context.textContent, /not the indexed round amount/);
+    assert.match(context.textContent, /This source supports the named investor’s participation\. The indexed financing amount has its own source\./);
     assert.ok(!context.textContent.includes(round.displayAmount));
     assert.ok(!context.textContent.includes(round.note));
     assert.equal(context.querySelector("a").getAttribute("href"), evidence.sourceUrl);

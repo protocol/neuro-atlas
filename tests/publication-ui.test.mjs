@@ -45,7 +45,7 @@ test('growth selects one baseline per group without a second numerator or silent
    else assert.equal(Number(mark.querySelector('[data-growth-reference-tick]').dataset.value),row.referenceGrowth);
   }
   assert.match(svg.querySelector('[data-growth-legend]').textContent,/Baseline unavailable/);
-  assert.match(modal.querySelector('[data-growth-coverage]').textContent,/9.*12.*no.*fallback/i);
+  assert.match(modal.querySelector('[data-growth-coverage]').textContent,/9 category baselines available; 12 unavailable \(hollow dots\)\. Gray ticks mark each available category baseline\./);
   assert.equal(Number(svg.querySelector('[data-neurotech-average]').dataset.value),data.neurotechGrowth);
   assert.doesNotMatch(modal.textContent,/Above science band|Within science band|Below science band|OpenAlex via Artio|authors as of|two-topic author snapshot/i);
   const asia=svg.querySelector('[data-growth-row="asia"]');
@@ -472,7 +472,7 @@ test('a zero matched reference denominator is unavailable rather than a global f
  try {
   const modal=document.querySelector('dialog');await chooseBaseline(modal,'matched');
   assert.match(modal.querySelector('[data-growth-baseline]').textContent,/8 available/);
-  assert.match(modal.querySelector('[data-growth-coverage]').textContent,/8.*13.*no.*fallback/);
+  assert.match(modal.querySelector('[data-growth-coverage]').textContent,/8 category baselines available; 13 unavailable \(hollow dots\)\. Gray ticks mark each available category baseline\./);
   const svg=modal.querySelector('[data-growth-export]'),mark=svg.querySelector('[data-growth-row="asia"]');
   assert.equal(mark.dataset.baselineStatus,'unavailable');assert.equal(mark.querySelector('[data-growth-reference-tick]'),null);
   assert.match(mark.textContent,/No 2022 base/);assert.doesNotMatch(svg.outerHTML,/NaN|Infinity/);

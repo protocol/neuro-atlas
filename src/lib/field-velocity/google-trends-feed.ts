@@ -46,7 +46,7 @@ export function validateTrendsBundle(input: unknown) {
   const outputs = new Map<string, string>([['google-trends.json', JSON.stringify(snapshot, null, 2) + '\n']]);
   for (const group of data) outputs.set(`${group.id}.csv`, [
     `# Google Trends; Worldwide; Web Search; All categories; ${group.start} to ${group.end}; captured ${group.capturedAt}`,
-    `# ${group.id === 'neurotech' ? 'Joint normalization for the two search terms' : 'Independent normalization for brand context'}; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest.`,
+    `# ${group.id === 'neurotech' ? 'Joint normalization for the two search terms' : 'Independent normalization for brand context'}; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks.`,
     ['week_start_utc', ...group.terms, 'partial'].join(','),
     ...group.rows.map(row => [row.date, ...row.displayValues, row.partial].join(',')),
   ].join('\n') + '\n');

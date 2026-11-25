@@ -194,7 +194,7 @@ test("renders source provenance, reviewed dates, and partial-history coverage", 
   assert.match(text, /Latest selective review Sep 30, 2026/);
   assert.doesNotMatch(text, /Data through/);
   assert.match(text, /Financing histories remain partial/);
-  assert.match(text, /indexed sum is not an all-time total/i);
+  assert.match(text, /Indexed totals cover the financing records shown/i);
   assert.match(text, /2024/);
   assert.doesNotMatch(text, /Jan 2024/);
 });

@@ -19,8 +19,8 @@ test('Envoy capital counts closing proceeds, not contingent warrant proceeds', (
   assert.equal(row.amount_usd_m, '30');
   assert.equal(row.activity, '$30m');
   assert.match(row.note, /\$30m.*gross proceeds at closing/);
-  assert.match(row.note, /up to \$48m.*contingent on cash exercise of milestone-linked warrants/);
-  assert.match(row.note, /not included in the plotted amount/);
+  assert.match(row.note, /Up to \$48m in additional proceeds depends on cash exercise of milestone-linked warrants/);
+  assert.match(row.note, /remains separate from the plotted amount/);
 });
 
 test('Synchron describes a planned pivotal trial at the article date in both canonical sources', () => {
@@ -35,7 +35,7 @@ test('Synchron describes a planned pivotal trial at the article date in both can
   assert.equal(marker.announced_on, '2026-06-06');
   for (const canonical of [row, marker]) {
     assert.match(canonical.note, /Preparing a pivotal clinical trial of Stentrode in 2026/);
-    assert.match(canonical.note, /June 6 is the article date, not a trial-start date/);
+    assert.match(canonical.note, /June 6 is the article date; trial start remains planned/);
     assert.doesNotMatch(canonical.note, /initiated|initiation|first|PMA|Series D|closed/i);
   }
 });
@@ -45,9 +45,9 @@ test('Phantom records Australian authorization to begin CYBORG, not a completed 
   assert.equal(row.company, 'Phantom Neuro');
   assert.equal(row.date, '2026-04-15');
   assert.equal(row.activity, 'FIH approved');
-  assert.match(row.note, /Australian approval to begin the CYBORG first-in-human study of Phantom X/);
-  assert.match(row.note, /subcutaneous sensor array \(Cabrini Health, Melbourne\)/);
-  assert.match(row.note, /Study authorization, not a completed implantation/);
+  assert.match(row.note, /Australian authorization to begin the CYBORG first-in-human study of Phantom X/);
+  assert.match(row.note, /subcutaneous sensor array, at Cabrini Health in Melbourne/);
+  assert.match(row.note, /Implantation status: unverified in this announcement/);
   assert.doesNotMatch(row.note, /FDA|EMG/);
 });
 
@@ -83,7 +83,7 @@ test('INBRAIN TAP is January 2024 with month precision in both canonical sources
   assert.equal(marker.announced_on, '2024-01-01');
   for (const canonical of [row, marker]) {
     assert.equal(canonical.date_precision, 'month');
-    assert.equal(canonical.note, 'Accepted into FDA TAP in January 2024; exact day not disclosed.');
+    assert.equal(canonical.note, 'Accepted into FDA TAP in January 2024. Exact day: undisclosed.');
     assert.doesNotMatch(canonical.note, /digest|March|January 1\b|January 01\b/i);
   }
 });

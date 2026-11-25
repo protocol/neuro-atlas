@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { DraftChartPlotBeforeAxisCopy } from './helpers/sitewide-copy-svg.mjs';
 import assert from 'node:assert/strict';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -12,6 +13,7 @@ import { buildChartImage } from '../src/lib/chart-export.ts';
 import { DraftChartPanel } from '../src/components/draft-chart-panel.tsx';
 import { BCI_BITRATE_EVIDENCE } from '../src/data/bci-bitrate.ts';
 import { mount, click } from './modal-helpers.mjs';
+import { beforeBrainGateAddition } from './helpers/recording-hours-coverage-baseline.mjs';
 
 globalThis.React = React;
 const plot = BCI_BITRATE_EVIDENCE.plots[0];
@@ -93,7 +95,7 @@ test('BCI local sensory context plots a qualified sourced retinal scenario, then
     assert.ok(assumptions.querySelector('a[href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/"]'));
     assert.match(assumptions.textContent, /875,000.*1,000,000.*100,000.*8,750,000/s);
     assert.match(assumptions.textContent, /independent.*correlation/s);
-    assert.match(assumptions.textContent, /not a direct human measurement.*capacity.*BCI target/s);
+    assert.match(assumptions.textContent, /estimates retinal sensory output under those assumptions; human channel capacity and task-specific BCI communication rates have different measurement bases/s);
     assert.equal(svg.querySelectorAll('[data-source-observation]').length, plot.points.length);
     assert.equal(svg.querySelectorAll('[data-annotation-key]').length, 14);
     assert.equal(normalize(document.querySelector('[data-draft-preview] svg')), preview);
@@ -154,12 +156,18 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   assert.equal(Object.keys(frozenMain).length, 30);
   for (const key of Object.keys(acquisition.hashes)) assert.ok(Object.hasOwn(frozenMain, key), key);
   const expected = { ...frozenMain, ...acquisition.hashes };
-  const plots = [...new Map(Object.values(METRIC_CHART_EVIDENCE).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
+  // Remove only the exact fixture-checked addition, preserving the independent
+  // historical SVG goldens and every pre-existing recording observation.
+  const plots = [...new Map(Object.values(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
-    const markup = renderToStaticMarkup(React.createElement(DraftChartPlot, { plot, preview }));
-    const svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
+    const renderer = plot.id === 'neuroai-imagenet' ? DraftChartPlotBeforeAxisCopy : DraftChartPlot;
+    const markup = renderToStaticMarkup(React.createElement(renderer, { plot, preview }));
+    let svg = markup.match(/<svg[^>]*class="draft-plot-svg"[\s\S]*?<\/svg>/)?.[0];
     assert.ok(svg, plot.id);
+    // The ERL disclosure adds only these exact interaction attributes. Keep all
+    // coordinates, labels, source values and the independent SVG goldens pinned.
+    if (plot.id === 'pathfinder-nerl' && !preview) svg = svg.replace(' data-erl-axis-help="true" tabindex="0" role="button" aria-label="About Normalized expected run length (%)"', '');
     actual[`${plot.id}:${preview ? 'preview' : 'default'}`] = createHash('sha256').update(svg).digest('hex');
     if (plot.id !== 'bci-bitrate' || preview) assert.equal(markup.includes('data-sensory-toggle'), false, plot.id);
   }

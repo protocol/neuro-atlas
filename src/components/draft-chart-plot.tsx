@@ -15,6 +15,7 @@ import { ModalData, ModalSources, ModalSlotsContext, InlineChartDetail } from "@
 import { PointTooltip, usePointTooltip } from "@/components/point-source-tooltip";
 import { ChartYearGuides, annualYears } from "@/components/chart-year-guides";
 import { CHART_PRESENTATION } from "@/lib/chart-presentation";
+import { chartYAxisHelp } from "@/lib/chart-axis-help";
 import { neuroaiEnergyAxis } from "@/lib/neuroai-energy-axis";
 import { brainBenchmarkContext, brainImageVoxels, tissueBenchmark } from "@/lib/connectomics-brain-benchmarks";
 import { compactCount, countWords } from "@/lib/large-count-label";
@@ -80,8 +81,9 @@ function ObservationMarker({ marker = "circle", cx, cy, r, ...props }: SVGAttrib
 }
 
 function recordingCoverageLabel(coverage: NonNullable<DraftObservation["recordingCoverage"]>) {
+  const unit = coverage.count === 1 ? coverage.unit.replace(/s$/, "") : coverage.unit;
   const people = coverage.count == null ? `${coverage.unit} not disclosed`
-    : validRecordingCount(coverage.count) ? `${exactNumber(coverage.count)} ${coverage.unit}` : `${coverage.unit} unavailable (invalid count)`;
+    : validRecordingCount(coverage.count) ? `${exactNumber(coverage.count)} ${unit}` : `${coverage.unit} unavailable (invalid count)`;
   const sessions = coverage.sessions === undefined ? "" : validRecordingCount(coverage.sessions)
     ? ` · ${coverage.sessionsQualifier ?? ""}${exactNumber(coverage.sessions)} sessions` : " · sessions unavailable (invalid count)";
   return `${people}${sessions}`;
@@ -207,7 +209,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const referenceTrendlines = hidden.length || extrapolate ? [] : historicalLines;
   const fitTracks = extrapolate ? isBitrate
     ? [{ ids: BCI_BITRATE_ROWS.filter(row => row.fitIncluded).map(row => row.id), label: "Text equivalents · mixed conventions", color: "#7e8152" }]
-    : historicalLines.map(line => ({ ids: line.fit?.inputIds ?? [], label: line.id === "em" ? "EM · reported-tech estimates" : "Expansion microscopy · estimates", color: line.color }))
+    : historicalLines.map(line => ({ ids: line.fit?.inputIds ?? [], label: line.id === "em" ? "EM · reported-technology estimates" : "Expansion microscopy · estimates", color: line.color }))
     : [];
   const fits = fitTracks.flatMap(track => {
     // Refit the selected historical observations in their original efficiency
@@ -218,6 +220,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   });
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(shown);
+  const axisHelp = chartYAxisHelp(plot);
+  const axisTooltip = usePointTooltip<string>();
   const active = tooltip.active;
   const tablePlot = sourcePlot;
   const qualifiedValue = (point: DraftObservation) => `${point.qualifier ?? ""}${voxels ? point.y.toExponential(2) : acquisition ? acquisitionNumber(point.y, acquisitionMetric) : plot.id === "acquisition-economics" ? countWords(point.y) : exactNumber(plot.valueSignificantDigits ? Number(point.y.toPrecision(plot.valueSignificantDigits)) : point.y)}`;
@@ -407,7 +411,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       })) : plot.exportPointKey ? annotations.map(({ point, text }, index) => ({
         label: `${index + 1}. ${point.exportAnnotation ?? text}`, color: groupColor(point), marker: point.marker,
       })) : undefined,
-      pointKeyNote: recordingPoints.length ? "Recording coverage · matched dataset/release; overlapping releases not additive" : plot.exportPointKey ? plot.exportPointKeyNote : undefined,
+      pointKeyNote: recordingPoints.length ? "Recording coverage · counts matched to each dataset/release; releases overlap" : plot.exportPointKey ? plot.exportPointKeyNote : undefined,
       pointKeyScaleNote: recordingPoints.length ? `Linear bars (largest displayed figures): ${hoursReference}; ${peopleReference}. Arrows mark lower bounds.` : undefined,
       notes: [plot.scope, plot.seriesNote ?? "",
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
@@ -440,7 +444,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     </div>}
     <svg data-metric-preview-extra={preview ? previewExtra : undefined} className="draft-plot-svg" viewBox={`0 0 ${width} ${height}`} aria-labelledby={`${id}-title`} aria-describedby={energyAxis ? `${id}-axis-break` : undefined}
       data-brain-scale-progress={benchmark ? benchmarkProgress : undefined} data-brain-scale-log-min={benchmark ? minPower : undefined} data-brain-scale-log-max={benchmark ? maxPower : undefined}>
-      <text className="draft-plot-axis-title" x={0} y={18}>{yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}</text>
+      <text className="draft-plot-axis-title" x={0} y={18}
+        {...(!preview && axisHelp ? { "data-erl-axis-help": true, tabIndex: 0, role: "button", "aria-label": `About ${axisHelp.label}`, ...axisTooltip.pointProps(axisHelp.hover) } : {})}>
+        {yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}
+      </text>
       {costMetric && <text data-cheaper-direction x={0} y={fitLabelTop - 20} fill="var(--muted)" fontSize={CHART_PRESENTATION.labelFontSize}>↑ cheaper</text>}
       {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
         <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
@@ -506,7 +513,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         {...(!preview ? inspectProps(point) : {})}
       />)}
     </svg>
-    {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition rates, not a forecast. Method resolutions, scope and cost definitions differ.</p>}
+    {!preview && acquisition && <p className="draft-plot-qualifications" data-acquisition-scope>Historical acquisition-efficiency estimates at each method’s resolution, scope and cost definition.</p>}
     {!preview && plot.id === "acquisition-economics" && <p className="draft-plot-qualifications">{acquisition && acquisitionMetric === "dollars-per-voxel" ? "SI dollar ticks: n$ = nanodollars · p$ = picodollars · f$ = femtodollars · a$ = attodollars" : acquisition ? "M = million · B = billion · T = trillion · Q = quadrillion; scientific notation above 10¹⁵" : "M = million · B = billion · T = trillion · Q = quadrillion"}</p>}
 
     {benchmark && <div className="brain-scale-controls">
@@ -540,11 +547,13 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     </p>}
     {!controlsBeforeSourceKey && studyList}
     {legend.length > 0 && <ul className="draft-group-legend" data-draft-group-legend aria-label="Observation scopes">{legend.map(entry => {
+      // Reader-copy changes must not rename the persisted exploration series.
+      const series = isAcquisition && entry.label === "EM · reported-technology estimates" ? "EM · reported-tech estimates" : entry.label;
       const key = <><span aria-hidden="true" style={{ color: entry.color }}>{plot.legend || entry.marker ? <svg width={14} height={14} viewBox="0 0 14 14" aria-hidden="true" focusable="false">
         <ObservationMarker marker={entry.marker} cx={7} cy={7} r={6} fill={entry.color} />
       </svg> : "●"}</span> {entry.label}</>;
-      return <li key={entry.label}>{interactive ? <SeriesButton id={entry.label} visible={!hidden.includes(entry.label)} toggle={() => {
-        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, entry.label) });
+      return <li key={entry.label}>{interactive ? <SeriesButton id={series} visible={!hidden.includes(series)} toggle={() => {
+        tooltip.clear(); exploration.update({ hidden: toggleSeries(hidden, series) });
       }}>{key}</SeriesButton> : key}</li>;
     })}</ul>}
     {controlsBeforeSourceKey && <div className="exploration-plot-switches" role="group" aria-label="Plot options">{fitToggle}</div>}
@@ -560,7 +569,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     {controlsBeforeSourceKey && studyList}
     {!preview && recordingPoints.length > 0 && <section className="recording-coverage" data-recording-coverage-list aria-label="Recording duration and participant coverage">
       <h4>Recording coverage</h4>
-      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Equal contributor counts produce equal bars even when sessions or averages differ. Contributor counts compare individuals, not recording quality. Overlapping releases are not additive.</p>
+      <p>Linear bars use the largest displayed figure for each metric. Arrows mark lower bounds. Equal contributor counts produce equal bars even when sessions or averages differ. Contributor bars show the number of individuals; recording quality varies by dataset. Releases overlap.</p>
       <p className="recording-bar-legend">{hoursReference} · {peopleReference}</p>
       <ul>{recordingPoints.map(point => <li key={point.id} data-recording-coverage-row={point.id}>
         <button type="button" {...inspectProps(point, false)}>
@@ -600,7 +609,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         </p>)}
           <p data-acquisition-tooltip-value="human-brain">Illustrative human-brain acquisition cost: <strong>{acquisitionNumber(HUMAN_IMAGE_VOXELS / sourcePlot.points.find(point => point.id === active.id)!.y, "human-brain")}</strong> per human brain</p>
           <p>{ACQUISITION_HUMAN_COST_NOTE}</p>
-        </> : <p>{plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>}
+        </> : <p>{axisHelp?.label ?? plot.yLabel}: <strong>{recordingPair(active) ?? qualifiedValue(active)}</strong></p>}
         {active.recordingCoverage && <div data-recording-coverage-readout>
           <p>{recordingAverages(active)}</p>
           {active.recordingCoverage.durationSummary && <p>{active.recordingCoverage.durationSummary}</p>}
@@ -612,6 +621,9 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         <CalculationSource source={active.calculationSource} />
       </> : null}
     </PointTooltip>
+    {axisHelp && <PointTooltip {...axisTooltip.tooltipProps}>
+      {axisTooltip.active && <p>{axisTooltip.active}</p>}
+    </PointTooltip>}
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
       {plot.curationSource && <p className="mx-scope-line">Dataset discovery: <a href={plot.curationSource.url} target="_blank" rel="noreferrer">{plot.curationSource.title} ↗</a></p>}
@@ -619,7 +631,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       {!modalSlots && !inlineDetail && <p className="draft-plot-scope">{plot.scope}</p>}
-      {(plot.referenceTrendlines || plot.curationSource) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(acquisition ? plot : sourcePlot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
+      {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(acquisition ? plot : sourcePlot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {acquisition && <p><a data-source-plot-json download={`neuro-atlas-${plot.id}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download original source data &amp; fits JSON (voxels/$)</a></p>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
       {historicalLines.map(line => <p key={line.id ?? plot.id}>{line.note}</p>)}
