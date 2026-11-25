@@ -1,6 +1,6 @@
 # Financing + reader-copy compatibility (2026-11-25)
 
-The application/canonical checkpoint is **f6a963f27ab279e0faaef23342b825749d23f554** (M). These test-only artifacts follow that frozen checkpoint; their own commit is not a data checkpoint or a new source approval.
+The application/canonical checkpoint is **7144407300995d61cf7c971c9d8405c6efab16aa** (M). The earlier integration checkpoint `f6a963f27ab279e0faaef23342b825749d23f554` has identical data; the sole runtime successor caps and wraps qualified native amounts in narrow company detail cards. The bridge and current lock bind that source-only successor exactly. These test-only artifacts follow the frozen checkpoint; their own commit is a compatibility artifact revision.
 
 ## Disjoint historical entrypoints
 

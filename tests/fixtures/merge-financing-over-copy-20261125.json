@@ -530,7 +530,7 @@
     {
       "path": "src/components/funding-index-dashboard.tsx",
       "beforeSha256": "56024675213d58fc67c8c92f3c7b5a1017869a9435c6b230e4d0420b7de25e4e",
-      "afterSha256": "efa3d5f820b3ef1d7d6e3e9c14d3d30f116a9458baf06e0a9865398cd52c0815",
+      "afterSha256": "c3b136620457cf8a234f1929158ec99af97a28e76634bc717a44b1bd77d79556",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -705,6 +705,16 @@
                   "                <summary className=\"cursor-pointer font-semibold text-foreground\">Source notes</summary>",
                   "                <p className=\"mt-2\">{selectedReportedTotal.note}</p>",
                   "              </details>}"
+                ]
+              },
+              {
+                "beforeIndex": 484,
+                "afterIndex": 522,
+                "before": [
+                  "                        <div className=\"shrink-0 text-lg font-semibold tabular-nums text-accent\">{round.displayAmount}</div>"
+                ],
+                "after": [
+                  "                        <div className=\"max-w-full shrink-0 text-lg font-semibold tabular-nums text-accent [overflow-wrap:anywhere]\">{round.displayAmount}</div>"
                 ]
               },
               {

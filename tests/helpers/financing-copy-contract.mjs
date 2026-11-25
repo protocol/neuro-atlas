@@ -11,7 +11,7 @@ export const CHECKPOINTS = Object.freeze({
   copyParentSha: 'df97d0d70736465657ac50bc9569bbc1b60e6095',
   financingBaselineSha: 'b3b901831da6ed7e50cd0dee15d636e4cdbbe4fc',
   copyBaselineSha: '9c1ddcca0bb49daf1c825d9b3b6e318fd870ac3b',
-  candidateSha: 'f6a963f27ab279e0faaef23342b825749d23f554',
+  candidateSha: '7144407300995d61cf7c971c9d8405c6efab16aa',
 });
 export const FINANCE_PATHS = Object.freeze([
   'data/funding-index/rounds.csv', 'data/market-memo-q1-2026/milestones.csv',
