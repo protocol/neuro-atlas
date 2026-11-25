@@ -56,7 +56,7 @@ test('the reviewed NeuroXess round and timeline share the same historical conver
   assert.deepEqual(indexed[0].fx, fx);
   assert.equal(mark.amountUsdM, 700 / 6.6662);
   assert.equal(indexed[0].amountUsdM, mark.amountUsdM);
-  assert.match(mark.note, /announcement-date.*(?:actual )?investment date.*undisclosed/i);
+  for (const row of [mark, indexed[0]]) assert.match(row.note, /announcement date because the investment date is undisclosed/i);
   assert.equal(mark.dateBasis, 'announcement');
   assert.equal(mark.fx.dateBasis, 'announcement_date');
   assert.equal(mark.fx.investmentDate, null, 'The timeline does not invent an actual investment date');

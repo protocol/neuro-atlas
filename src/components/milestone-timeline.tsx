@@ -83,7 +83,7 @@ function fmtDateFull(dateStr: string, precision: string): string {
   });
 }
 function milestoneDateLabel(m: Milestone): string {
-  if (!m.date) return "exact date TBD";
+  if (!m.date) return "Exact date unknown";
   const basis = (m as Milestone & { dateBasis?: string }).dateBasis;
   const label = basis === "event" ? "Event date" : basis === "announcement" ? "Announced" : basis === "reported" ? "Reported" : "Date unverified";
   return `${label} ${fmtDateFull(m.date, m.datePrecision)}`;
@@ -623,7 +623,7 @@ export function MilestoneTimeline() {
             </button>
           ))}
         </div>
-        <span className="text-[12px] text-muted">{viewMode === "fit" ? "Jan–Dec visible · same-size marks, more rows" : "Roomier timeline · scroll to explore"}</span>
+        <span className="text-[12px] text-muted">{viewMode === "fit" ? "Jan–Dec visible · full-size markers in more rows" : "Detailed timeline · scroll to explore"}</span>
       </div>
 
       <div className="flex gap-4">
@@ -680,7 +680,7 @@ export function MilestoneTimeline() {
 
           {focusYear === 2026 && undated.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-dashed border-border pt-3">
-              <span className="mr-1 text-[12px] font-semibold text-muted">date TBD</span>
+              <span className="mr-1 text-[12px] font-semibold text-muted">Date unknown</span>
               {undated.map((m) => (
                 <a key={`${m.company}-${m.activity}-${m.date ?? "undated"}`} href={m.sourceUrl ?? undefined} target="_blank" rel="noreferrer"
                   onMouseEnter={(e) => showTip(e, m)} onMouseLeave={() => setTip(null)}
@@ -688,7 +688,7 @@ export function MilestoneTimeline() {
                   onKeyDown={(e) => { if (e.key === "Escape") setTip(null); }}
                   aria-describedby={tip?.m === m ? `${filterId}-detail` : undefined}
                   className={`grid place-items-center rounded-full border-2 border-dashed bg-surface transition-transform hover:scale-110 ${m.sourceUrl ? "cursor-pointer hover:border-solid" : "cursor-default"}`}
-                  style={{ width: MARKER, height: MARKER, borderColor: stageColor(m.stage) }} aria-label={`${m.company} — ${m.activity} (date TBD)`}>
+                  style={{ width: MARKER, height: MARKER, borderColor: stageColor(m.stage) }} aria-label={`${m.company} — ${m.activity} (date unknown)`}>
                   <FirmLogo src={m.logo} name={m.company} size={LOGO} />
                 </a>
               ))}
@@ -717,7 +717,7 @@ export function MilestoneTimeline() {
                 {year === 2026 && cumulativeCapital(2026, scopeFilter).length > 1 && <span className="mt-0.5 block"><Sparkline series={cumulativeCapital(2026, scopeFilter)} width={166} height={22} /></span>}
               </button>
             ))}
-            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Disclosed financing, including labeled commitments — not cash receipts, valuations, or transaction values. Use Fit year to see Jan–Dec without scrolling, with this panel open or folded.</div>
+            <div className="mt-1 px-1 text-[12px] leading-snug text-muted">Sum of disclosed financing, including labeled commitments. Use Fit year to see Jan–Dec with this panel open or closed.</div>
 
             <div className="mt-4 border-t border-border pt-3">
               <div className="mb-1 flex items-center justify-between">
@@ -744,7 +744,7 @@ export function MilestoneTimeline() {
                       </>
                     ) : (
                       <>
-                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)} transaction value (not capital raised)</span>}</div>
+                        <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)} transaction value</span>}</div>
                         <div className="text-[12px] leading-snug text-muted">{r.breakdown || "—"}</div>
                         {r.uncertainCount > 0 && <div className="mt-1 text-[12px] leading-snug text-muted">{r.uncertainCount} period-level record{r.uncertainCount === 1 ? " overlaps" : "s overlap"} · window timing unknown</div>}
                       </>
@@ -789,8 +789,8 @@ export function MilestoneTimeline() {
             <div className="mt-1 text-[12px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>
           )}
           {tip.m.fx && <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{formatFundingFxBasis(tip.m.fx)}</div>}
-          <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{tip.m.note ?? "Details coming soon."}</div>
-          {tip.m.sourceUrl && <div className="mt-1.5 text-[12px] font-medium text-background/50">click to open source ↗</div>}
+          <div className="mt-1.5 text-[12px] leading-relaxed text-background/75">{tip.m.note ?? "Details unavailable."}</div>
+          {tip.m.sourceUrl && <div className="mt-1.5 text-[12px] font-medium text-background/50">Open source ↗</div>}
         </div>
       )}
     </div>

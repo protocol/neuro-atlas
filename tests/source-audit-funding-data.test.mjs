@@ -44,6 +44,7 @@ test('NeuroXess combined angel and pre-Series A disclosure is indexed once witho
   const generic = index.investors.find(i => i.name === 'Sequoia Capital');
   assert.equal(generic.roundCount, 1);
   assert.equal(generic.associatedCapitalUsdM, 650);
-  assert.match(row.note, /allocation by round remains undisclosed/i);
+  assert.match(row.note, /allocation of amounts and investor participation between rounds is undisclosed/i);
+  assert.match(row.note, /counted once/i);
   assert.equal(index.rounds.filter(r => r.companySlug === 'neuroxess' && r.stage === 'Angel + pre-Series A (combined)').length, 1, 'The combined disclosure is counted once');
 });

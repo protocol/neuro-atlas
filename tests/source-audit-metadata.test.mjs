@@ -74,7 +74,7 @@ test("Blackrock retains its 2008 Blackrock Microsystems business history without
 });
 
 test("Neurosoft retains source-reported 2020 cofounding without unlinked database claims", () => {
-  foundingFields("neurosoft-bioelectronics", {"founding_year": "2020", "note": "Startupticker's press-release account explicitly states Neurosoft Bioelectronics was co-founded in 2020."});
+  foundingFields("neurosoft-bioelectronics", {"founding_year": "2020", "note": "Startupticker's press-release account states Neurosoft Bioelectronics was co-founded in 2020."});
 });
 
 test("Neuracle retains HSG's 2011 founding without unproven namesake exclusions", () => {

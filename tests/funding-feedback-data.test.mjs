@@ -37,7 +37,7 @@ test("Science's November 17 Series D appears once in both canonical datasets and
     ["science-corporation", "2026-11-17", "day", "announcement", "Series D", 400, "primary", "2026-11-25"],
   );
   assert.deepEqual(round.investors, ["Khosla Ventures", "Ackman Oxman Institute", "Tenet Healthcare", "885 Capital", "Y Combinator", "PLC Neurotech"]);
-  assert.match(round.note, /more than \$900m raised since founding/i);
+  assert.match(round.note, /more than \$900m.*separate cumulative figure; the indexed amount covers this Series D round/i);
   assert.match(round.note, /earlier note disclosure is held separately to avoid possible conversion overlap/i);
   const scienceRounds = index.rounds.filter((row) => row.companySlug === "science-corporation");
   assert.equal(scienceRounds.length, 5, 'Two additional SEC equity offerings retain their own source identities');
@@ -69,6 +69,7 @@ test("Merge's existing seed retains its amount and source-backed announcement da
   assert.match(source.note, /PL Capital.*\$250M\+/);
   assert.match(source.note, /TechCrunch.*\$250m/);
   assert.match(source.note, /Interface Fund and Fifty Years.*TechCrunch and Butterfly Network/);
+  assert.match(source.note, /check size and investment vehicle are undisclosed/i);
   const index = buildFundingIndex(sources);
   const round = index.rounds.find((row) => row.companySlug === "merge-labs");
   assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital", "Interface Fund", "Fifty Years"]);

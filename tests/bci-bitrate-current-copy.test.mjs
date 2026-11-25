@@ -29,7 +29,7 @@ test('current BCI runtime, inspection, export and methods explain the chart rath
   assert.match(plot.seriesNote, /2021.*2020/);
   assert.match(plot.seriesNote, /2025.*2026/);
   assert.match(plot.referenceTrendline.note, /R² in log10 space/);
-  assert.match(plot.referenceTrendline.note, /not a common performance benchmark/);
+  assert.match(plot.referenceTrendline.note, /summarizes heterogeneous model-derived text-output rates across the observed years/);
   assert.match(plot.exportPointKeyNote, /speech 1 bit\/char × 5 char\/word; other text 28-symbol/);
 
   for (const row of BCI_BITRATE_ROWS) {

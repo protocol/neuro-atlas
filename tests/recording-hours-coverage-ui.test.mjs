@@ -37,7 +37,7 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
     assert.match(comparison.textContent, /linear bars.*largest displayed/i);
     assert.match(comparison.textContent, /50,000 h \(lower bound\)/);
     assert.match(comparison.textContent, /692 individuals/);
-    assert.match(comparison.textContent, /not recording quality/i);
+    assert.match(comparison.textContent, /Contributor bars show the number of individuals; recording quality varies by dataset/i);
     const averages = [
       '— h/participant (count undisclosed) · — h/session (count not reported)',
       '≈1.5 h/patient · ≈20.0 min/session',
@@ -82,7 +82,7 @@ test('the current shared chart exposes matched coverage at rest, on selected poi
     }
     await act(async () => dialog.querySelector('[data-source-observation="japaneeg-scalp-eeg-2026-05-31"]').dispatchEvent(new Event('focusin', { bubbles: true })));
     assert.match(dialog.querySelector('[role=tooltip]').textContent, /≈60–814 h per participant \(calculated from Table 4\)/);
-    assert.match(dialog.querySelector('[role=tooltip]').textContent, /not a continuous session/);
+    assert.match(dialog.querySelector('[role=tooltip]').textContent, /Per-person durations accumulate across recordings/ );
     assert.doesNotMatch(dialog.textContent, /OpenNeuro|CC0|open release claim/);
     assert.ok(dialog.querySelector('a[href="https://arxiv.org/html/2606.01264v2"]'));
     assert.ok(dialog.querySelector('a[href="https://www.nature.com/articles/s41597-022-01280-y"]'));

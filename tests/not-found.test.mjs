@@ -13,7 +13,7 @@ test("unmatched URLs have a branded explanation and safe paths back into Neuro A
   const NotFound = typeof imported.default === "function" ? imported.default : imported.default.default;
   const document = new JSDOM(renderToStaticMarkup(React.createElement(NotFound))).window.document;
   assert.equal(document.querySelectorAll("h1").length, 1);
-  assert.equal(document.querySelector("h1").textContent, "Off the map.");
+  assert.equal(document.querySelector("h1").textContent, "Page not found.");
   assert.match(document.body.textContent, /404/);
   assert.match(document.body.textContent, /page.*(find|found)|find.*page/i);
   assert.match(document.body.textContent, /link|address/i);

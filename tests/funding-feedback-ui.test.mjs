@@ -119,7 +119,7 @@ for (const width of [320, 390]) {
         modality.value = 'Ultrasound';
         modality.dispatchEvent(new window.Event('change', { bubbles: true }));
       });
-      assert.match(document.body.textContent, /No companies match/);
+      assert.match(document.body.textContent, /Try another company name or filter\./);
       await click([...filters.querySelectorAll('button')].find(el => el.textContent === 'Reset filters'));
       assert.ok(companyButton('Alpha'));
       assert.ok(companyButton('Beta'));

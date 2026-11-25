@@ -6,7 +6,7 @@ import type { DraftPlot } from "./draft-chart-types";
 const PATHFINDER_ERL = {
   label: "Normalized expected run length (%)",
   hover: "ERL stands for expected run length. The normalized score compares correctly traced axon lengths with an error-free reconstruction of the same reference sample. Higher is better.",
-  explanation: "Higher scores mean longer correctly traced stretches of axon, with fewer breaks or false joins. 50% is half the ideal tracing-length score for this reference sample; 94.2% is close to ideal. 100% is possible: no tracing errors counted by the benchmark’s evaluation rules. Minor errors excluded by those rules may remain. This is a tracing-quality score, not the percentage of fully correct neurons.",
+  explanation: "Higher scores mean longer correctly traced stretches of axon, with fewer breaks or false joins. 50% is half the ideal tracing-length score for this reference sample; 94.2% is close to ideal. 100% meets the benchmark’s error-free tracing criterion; smaller errors outside its evaluation rules may remain. The score measures axon-tracing continuity within the reference sample.",
 };
 
 export function chartYAxisHelp(plot: Pick<DraftPlot, "id">) {

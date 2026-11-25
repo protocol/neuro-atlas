@@ -91,7 +91,7 @@ test('full pre-backfill evidence projections are unchanged outside the explicitl
   // Restore only the separately asserted FAFB attribution delta from PR128;
   // never substitute raw archive notes for the original reader projection.
   assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(DRAFT_CHART_EVIDENCE)))), 'c231dfa219a15927b66ddafe492b3975d2457c8dab1b76082b1e1091acda4731');
-  assert.equal(digest(JSON.stringify(beforeFafbAttribution(withoutConnectomicsBackfill(beforeExaspimReferenceCorrection(METRIC_CHART_EVIDENCE))))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
+  assert.equal(digest(JSON.stringify(beforeFafbAttribution(beforeExaspimReferenceCorrection(withoutConnectomicsBackfill(METRIC_CHART_EVIDENCE))))), 'dfbfce299a553a3aff505b70522291a74668940297ebbd011c2ecc5e3d45ee43');
 });
 
 test('only the exact source-supported TUSZ releases and Neuralink checkpoints gain connection metadata', () => {
@@ -103,7 +103,7 @@ test('only the exact source-supported TUSZ releases and Neuralink checkpoints ga
       'neuralink-cumulative-2024-01-01', 'neuralink-cumulative-2024-07-01', 'neuralink-cumulative-2025-02-05',
       'neuralink-cumulative-2025-06-02', 'neuralink-cumulative-2026-01-28',
     ] }],
-    'recording-hours': [{ id: 'tusz-releases', label: 'TUSZ releases (overlapping, not summed)', pointIds: [
+    'recording-hours': [{ id: 'tusz-releases', label: 'TUSZ releases (overlapping corpus snapshots)', pointIds: [
       'tusz-scalp-eeg-2017-04-17', 'tusz-scalp-eeg-2017-08-04', 'tusz-scalp-eeg-2018-04-15', 'tusz-scalp-eeg-2018-08-16',
       'tusz-scalp-eeg-2018-11-14', 'tusz-scalp-eeg-2019-07-22', 'tusz-scalp-eeg-2020-04-23', 'tusz-scalp-eeg-2020-05-09',
     ] }],
@@ -160,7 +160,7 @@ test('cost and throughput retain acquisition boundaries, estimates, resolution a
   assert.match(point('autotem-2020').note, />70.*40 nm/);
   assert.match(plot('acquisition-economics').scope, /acquisition.*cost.*coverage.*unspecified/i);
   assert.match(plot('acquisition-economics').scope, /heterogeneous resolutions.*PEEM.*prospective/i);
-  assert.match(plot('acquisition-economics').seriesNote, /Table A1.*Voxels\/\$.*rather than.*Figure 2.*throughput\/hour divided by cost\/hour/);
+  assert.match(plot('acquisition-economics').seriesNote, /Values reproduce the Approx\. Voxels\/\$ column in Table A1\. Figure 2/);
   assert.match(point('exllsm2019').note, /1,000,000,000/);
   assert.match(point('peem2024').note, /2024.*2025/);
   assert.match(point('peem2024').note, /8x8x30 nm.*prospective/);

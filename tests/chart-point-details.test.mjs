@@ -78,7 +78,7 @@ test('milestone tooltip is absent until hover; source navigation and exit stay u
     await act(async () => point.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })));
     const tooltip = document.querySelector('.fixed.w-72');
     assert.ok(tooltip.textContent.includes(point.getAttribute('aria-label').split(' — ')[0]));
-    assert.match(tooltip.textContent, /click to open source/);
+    assert.match(tooltip.textContent, /Open source ↗/);
     let navigates = false;
     point.addEventListener('click', event => { navigates = !event.defaultPrevented; event.preventDefault(); }, { once: true });
     await act(async () => point.click());

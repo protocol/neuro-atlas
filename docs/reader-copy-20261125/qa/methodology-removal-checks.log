@@ -1,0 +1,23 @@
+✔ historical reader restores only explicit reviewed source/generated paths and leaves live files untouched (10.328852ms)
+✔ every reviewed current file reconstructs the exact pinned historical bytes without a runtime git lookup (58.423803ms)
+✔ unprojected current source data and generated funding consumers retain exact builder parity as the roster grows (16.876214ms)
+✔ the canonical methodology page begins with data gathering and preserves selection and refresh limits (478.038661ms)
+✔ the methodology Feedback button opens the existing selector without a login or submission (383.56586ms)
+✔ the rebuilt page removes old principles and status/history sections and keeps a compact header (300.12972ms)
+✔ closed source-family summaries identify the actual providers before expanding hundreds of links (345.479981ms)
+✔ the methodology directory renders every classified link under its own disclosure (270.812071ms)
+✔ Field Velocity credits researcher correspondence and invites missing references through Feedback (178.156697ms)
+✔ NeuroAI historical axis-copy projection preserves the original SVG golden and every observation (preview=false) (138.772692ms)
+✔ NeuroAI historical axis-copy projection preserves the original SVG golden and every observation (preview=true) (30.333227ms)
+✔ site-wide reader copy matches every independently reviewed exact source and generated file (4.71122ms)
+✔ every reviewed copy edit reverses to the exact merged-151 bytes without refreshing a historical golden (74.627657ms)
+✔ all canonical CSV and generated/curated JSON changes are prose-only: values, dates, IDs and source fields stay exact (28.401697ms)
+✔ unlisted numeric or source-field mutations cannot pass the reviewed byte reconstruction (3.881332ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3457.433154

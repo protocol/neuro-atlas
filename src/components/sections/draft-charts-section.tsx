@@ -159,13 +159,13 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
                 <Methodology chart={chart} context={evidence.gapReason} axes={evidence.plots.map(plot => `${plot.title}: ${chartAxesDescription(plot)}`).join("; ") || "x-axis: Publication date · y-axis: Reported event stage"} />
               </article>;
             })}
-          </div> : <p className="draft-chart-category-gap">No plotted observations yet. See the evidence gaps below.</p>}
+          </div> : <p className="draft-chart-category-gap">Observations awaiting compilation. See the evidence gaps below.</p>}
         </section>;
       })}
     </div>
     {showGaps && gaps.length > 0 && <section className="draft-evidence-gaps" data-draft-evidence-gaps aria-label="Evidence gaps">
       <h3>Evidence gaps <span>({gaps.length})</span></h3>
-      <p>Candidate definitions without a defensible plotted series yet. No measurements are inferred.</p>
+      <p>Candidate definitions awaiting source-backed measurements.</p>
       {METRIC_CHART_CATEGORIES.filter(category => !selectedCategory || category === selectedCategory).map(category => {
         const categoryGaps = gaps.filter(chart => metricCategoryFor(chart) === category);
         return categoryGaps.length > 0 && <div key={category} className="draft-gap-group">
@@ -175,7 +175,7 @@ export function DraftChartsSection({ category: selectedCategory, query = "", sho
             <DraftChartShare anchor={linksFor(chart).id} label={chart.title} />
             <details data-draft-gap-details>
               <summary><span>{chart.title}</span><span className="draft-gap-label">Evidence gap</span></summary>
-              <p>{DRAFT_CHART_EVIDENCE[chart.title]?.gapReason ?? "Source-backed observations have not yet been assembled for this definition."}</p>
+              <p>{DRAFT_CHART_EVIDENCE[chart.title]?.gapReason ?? "Source-backed observations for this definition await compilation."}</p>
               <Methodology chart={chart} />
             </details>
           </article>)}

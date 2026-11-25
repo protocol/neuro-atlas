@@ -23,9 +23,9 @@ export function ChartShare({ anchor, title, getChart, disabled = false }: {
     try {
       const image = buildChartImage(getChart(), window.location.href);
       if (download) { await downloadChartImage(image); setStatus("PNG downloaded."); }
-      else { await copyChartImage(image); setStatus("Chart copied. The receiving app chooses which clipboard formats to paste."); }
+      else { await copyChartImage(image); setStatus("Chart copied. The app you paste into chooses the clipboard format."); }
     } catch {
-      setStatus(download ? "PNG unavailable. Try again, or use Copy link." : "Chart copy unavailable. Use Download PNG and Copy link instead.");
+      setStatus(download ? "PNG download failed. Try again, or use Copy link." : "Chart copy failed. Use Download PNG and Copy link.");
     } finally { pending.current = false; setBusy(false); }
   }
   return <div className="pc-share" data-chart-share>

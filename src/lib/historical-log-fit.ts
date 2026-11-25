@@ -24,5 +24,5 @@ export function fitHistoricalLog(rows: readonly { id: string; x: number; y: numb
 }
 export type HistoricalLogFit = NonNullable<ReturnType<typeof fitHistoricalLog>>;
 export function historicalFitNote(fit: HistoricalLogFit) {
-  return `Equal-weight unconstrained OLS of log10(y) against year; N=${fit.n}, ${fit.window.join("–")}. ${fit.equation}. R² in log10 space = ${fit.rSquaredLog10?.toFixed(3) ?? "undefined (constant values)"}; doubling time = ${fit.doublingYears?.toFixed(2) ?? "undefined"} years. Input IDs: ${fit.inputIds.join(", ")}. Descriptive fit, confined to observed years; no future projection or confidence interval.`;
+  return `Equal-weight unconstrained OLS of log10(y) against year; N=${fit.n}, ${fit.window.join("–")}. ${fit.equation}. R² in log10 space = ${fit.rSquaredLog10?.toFixed(3) ?? "undefined (constant values)"}; doubling time = ${fit.doublingYears?.toFixed(2) ?? "undefined"} years. Input IDs: ${fit.inputIds.join(", ")}. Descriptive fit confined to observed years, shown without a confidence interval.`;
 }

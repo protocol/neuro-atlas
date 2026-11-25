@@ -1,0 +1,359 @@
+{
+  "baseline": {
+    "commit": "9c1ddcca0bb49daf1c825d9b3b6e318fd870ac3b",
+    "command": "npm test",
+    "exitCode": 1,
+    "tests": 1652,
+    "pass": 1616,
+    "fail": 36,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 1234009.840101
+  },
+  "integratedRun": {
+    "commit": "eecb1c0bd2cac478e003f1f82e5490e5d8c9db52",
+    "command": "node --import tsx --test --test-concurrency=6 tests/*.test.mjs",
+    "exitCode": 1,
+    "tests": 1657,
+    "pass": 1620,
+    "fail": 37,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 492662.554677
+  },
+  "laterCorrection": {
+    "commit": "61102a4d1fcb62b8f32535bd7939e3c6b1e56ef9",
+    "test": "BrainGate compatibility normalization removes only the exact additive checkpoint without mutating scientific data",
+    "fileSha256": "b594a53d054fdbbd1db0dfd808372727f67e1b3d2159ad92f96bcf94637ec350",
+    "command": "node --import tsx --test --test-concurrency=1 tests/braingate-t15-recording-hours.test.mjs",
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "exitCode": 0,
+    "independentExactPatchReview": "PASS"
+  },
+  "unresolvedNewFailingCases": [],
+  "remainingBaselineFailingCases": [
+    "all default and preview plot SVGs match pinned main plus the isolated acquisition display baseline",
+    "rendered metric cards omit the generic Bounded evidence eyebrow, retaining observed counts and scientific caveats",
+    "all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote",
+    "application configuration suppresses only the three approved data branches",
+    "original shared snapshot and provenance retain initial-main byte hashes",
+    "both exact branch deltas restore original full runtime goldens and normalization is non-mutating",
+    "cost and throughput retain acquisition boundaries, estimates, resolution and prospective scope",
+    "a missing observation URL renders plain provenance, never a fabricated source link",
+    "a blank observation URL renders plain provenance, never a fabricated source link",
+    "plot previews open source-qualified detail without a paragraph wall above the SVG",
+    "confirmed supporting references carry distinct roles through rendered details, sources, accessibility and export metadata",
+    "duplicate exact URLs retain the principal citation and one confirmed supporting link without promoting candidates",
+    "legacy single-source output remains unchanged, including unlinked unresolved sources and export titles",
+    "tissue-cm3: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+    "largest-connectome-neurons: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+    "largest-connectome-synapses: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+    "proofreading-effort: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+    "public-data-size: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+    "canonical source bytes and unmodified tissue chart are preserved",
+    "metric-panel-pathfinder-nerl: methodology names the plotted axes",
+    "app config suppresses only the three approved data branches and leaves application deployments enabled",
+    "the classified directory covers the exact external evidence inventory",
+    "draft acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+    "metric acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+    "Metrics is one full-rail-default, keyboard-native index in the five-group order",
+    "archived source snapshots and provenance remain byte-identical to base",
+    "preview cards avoid generic source-status labels while retaining scope, qualifiers and full chart notes",
+    "acquisition preview and details use voxels per dollar with the exact unit conversion",
+    "the actual Field velocity page contains readings, not Markets or channel-count placeholders",
+    "five ordered groups default to all charts, with independent collapsed/full states",
+    "all pre-addition canonical bytes and generated milestone objects retain their base hashes",
+    "Notables 66 adds only its eleven source-directory links, retaining every prior classification",
+    "all three isolated data feeds are suppressed without disabling app deployments",
+    "recording evidence separates audited electrical units, human implant channels and optical signals",
+    "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view",
+    "retired panels are unmounted, with every other source observation retained exactly once"
+  ],
+  "baselineDiagnosticComparison": [
+    {
+      "test": "all default and preview plot SVGs match pinned main plus the isolated acquisition display baseline",
+      "sameNormalizedDiagnostic": false,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "d3b40db116e3ed83ba519188aaf31e79a231ad354fe09e212d4d83c8744685dc",
+      "integratedDiagnosticSha256": "c4938774b0b1fe6c364866a81eec02a0646321b4f441096cfad33c69c1c9b064"
+    },
+    {
+      "test": "rendered metric cards omit the generic Bounded evidence eyebrow, retaining observed counts and scientific caveats",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3",
+      "integratedDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3"
+    },
+    {
+      "test": "all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3",
+      "integratedDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3"
+    },
+    {
+      "test": "application configuration suppresses only the three approved data branches",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa",
+      "integratedDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa"
+    },
+    {
+      "test": "original shared snapshot and provenance retain initial-main byte hashes",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d",
+      "integratedDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d"
+    },
+    {
+      "test": "both exact branch deltas restore original full runtime goldens and normalization is non-mutating",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "257baa7d970e01c6637485942b994e1e5e8b703cc2544f511bcc4bf42ed27967",
+      "integratedDiagnosticSha256": "257baa7d970e01c6637485942b994e1e5e8b703cc2544f511bcc4bf42ed27967"
+    },
+    {
+      "test": "cost and throughput retain acquisition boundaries, estimates, resolution and prospective scope",
+      "sameNormalizedDiagnostic": false,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "06015a8c3c3f8c0ca9a4626c474558b74e21a933a9a1e6fe3b12f0d003b45cb7",
+      "integratedDiagnosticSha256": "92882af669fd3dd404203081520568a499f890672a34c18be991983d4e816b76"
+    },
+    {
+      "test": "a missing observation URL renders plain provenance, never a fabricated source link",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "86b776ff188a8736bbac0dac601ad1c27f2bb8301d076738b8e1ea7483f9f94f",
+      "integratedDiagnosticSha256": "86b776ff188a8736bbac0dac601ad1c27f2bb8301d076738b8e1ea7483f9f94f"
+    },
+    {
+      "test": "a blank observation URL renders plain provenance, never a fabricated source link",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "86b776ff188a8736bbac0dac601ad1c27f2bb8301d076738b8e1ea7483f9f94f",
+      "integratedDiagnosticSha256": "86b776ff188a8736bbac0dac601ad1c27f2bb8301d076738b8e1ea7483f9f94f"
+    },
+    {
+      "test": "plot previews open source-qualified detail without a paragraph wall above the SVG",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "498041e0275f89776f1f6d61f3a32ebb2b169c92bfc265d747b203f8c8c41e5f",
+      "integratedDiagnosticSha256": "498041e0275f89776f1f6d61f3a32ebb2b169c92bfc265d747b203f8c8c41e5f"
+    },
+    {
+      "test": "confirmed supporting references carry distinct roles through rendered details, sources, accessibility and export metadata",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "9098472824142f63453b73018d59c970f16ae3d24e05ad38e00297d23ebdf1af",
+      "integratedDiagnosticSha256": "9098472824142f63453b73018d59c970f16ae3d24e05ad38e00297d23ebdf1af"
+    },
+    {
+      "test": "duplicate exact URLs retain the principal citation and one confirmed supporting link without promoting candidates",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "9098472824142f63453b73018d59c970f16ae3d24e05ad38e00297d23ebdf1af",
+      "integratedDiagnosticSha256": "9098472824142f63453b73018d59c970f16ae3d24e05ad38e00297d23ebdf1af"
+    },
+    {
+      "test": "legacy single-source output remains unchanged, including unlinked unresolved sources and export titles",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3",
+      "integratedDiagnosticSha256": "d66e9208a0687821f417a90b0b9aabe77d4d994d1d1c74d94b34b3cf96320cc3"
+    },
+    {
+      "test": "tissue-cm3: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e",
+      "integratedDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e"
+    },
+    {
+      "test": "largest-connectome-neurons: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e",
+      "integratedDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e"
+    },
+    {
+      "test": "largest-connectome-synapses: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e",
+      "integratedDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e"
+    },
+    {
+      "test": "proofreading-effort: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e",
+      "integratedDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e"
+    },
+    {
+      "test": "public-data-size: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e",
+      "integratedDiagnosticSha256": "58eb8e90e9c00d531dfce84e3ebbb05743a7f5121c96d0574f9279bed09a0c3e"
+    },
+    {
+      "test": "canonical source bytes and unmodified tissue chart are preserved",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d",
+      "integratedDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d"
+    },
+    {
+      "test": "metric-panel-pathfinder-nerl: methodology names the plotted axes",
+      "sameNormalizedDiagnostic": false,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "ebb6f1bb2e80b4fa8f46b11822185efb19aaefe930532d3cccd4f5b6bc603da1",
+      "integratedDiagnosticSha256": "e1824e7fb81265ab91ff7574c18e04b2a7f70e2d2a8e26e8bbd5b9030bb12c97"
+    },
+    {
+      "test": "app config suppresses only the three approved data branches and leaves application deployments enabled",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa",
+      "integratedDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa"
+    },
+    {
+      "test": "the classified directory covers the exact external evidence inventory",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "d42fe3e327ba056ef7afa2eb7889005c29ec499642fe252b24ce2cdee4baf856",
+      "integratedDiagnosticSha256": "d42fe3e327ba056ef7afa2eb7889005c29ec499642fe252b24ce2cdee4baf856"
+    },
+    {
+      "test": "draft acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "cc30a782a19197ffd37d5fddee8b7b1fffa6d70586585f78feca2df229f6cc79",
+      "integratedDiagnosticSha256": "cc30a782a19197ffd37d5fddee8b7b1fffa6d70586585f78feca2df229f6cc79"
+    },
+    {
+      "test": "metric acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "cc30a782a19197ffd37d5fddee8b7b1fffa6d70586585f78feca2df229f6cc79",
+      "integratedDiagnosticSha256": "cc30a782a19197ffd37d5fddee8b7b1fffa6d70586585f78feca2df229f6cc79"
+    },
+    {
+      "test": "Metrics is one full-rail-default, keyboard-native index in the five-group order",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d",
+      "integratedDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d"
+    },
+    {
+      "test": "archived source snapshots and provenance remain byte-identical to base",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "e7e6d830815adfb563cd0c44180e3600c1f057a924de1320ed3a5811f27cd5b0",
+      "integratedDiagnosticSha256": "e7e6d830815adfb563cd0c44180e3600c1f057a924de1320ed3a5811f27cd5b0"
+    },
+    {
+      "test": "preview cards avoid generic source-status labels while retaining scope, qualifiers and full chart notes",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d",
+      "integratedDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d"
+    },
+    {
+      "test": "acquisition preview and details use voxels per dollar with the exact unit conversion",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "960dbc6c30e45eb828b2e7113fd5784fa736416092cf25964c91d7d4da281b6b",
+      "integratedDiagnosticSha256": "960dbc6c30e45eb828b2e7113fd5784fa736416092cf25964c91d7d4da281b6b"
+    },
+    {
+      "test": "the actual Field velocity page contains readings, not Markets or channel-count placeholders",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d",
+      "integratedDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d"
+    },
+    {
+      "test": "five ordered groups default to all charts, with independent collapsed/full states",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d",
+      "integratedDiagnosticSha256": "4668e5b9c3b7e74be56dd718ac27f6e3301d1af172f870159d9e148aa6f8de5d"
+    },
+    {
+      "test": "all pre-addition canonical bytes and generated milestone objects retain their base hashes",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "91222a6e0578ef223851945157681d4a8b111773ca8a76f779330732d115c3ed",
+      "integratedDiagnosticSha256": "91222a6e0578ef223851945157681d4a8b111773ca8a76f779330732d115c3ed"
+    },
+    {
+      "test": "Notables 66 adds only its eleven source-directory links, retaining every prior classification",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "753a4dd64551cf9cd477b65534a5db0317ab2f4a9aa54394da9498faacbd4f48",
+      "integratedDiagnosticSha256": "753a4dd64551cf9cd477b65534a5db0317ab2f4a9aa54394da9498faacbd4f48"
+    },
+    {
+      "test": "all three isolated data feeds are suppressed without disabling app deployments",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa",
+      "integratedDiagnosticSha256": "bf4f3d8029d68d25d14ac08679c4f154731cb1b25425249879ec2566db0985fa"
+    },
+    {
+      "test": "recording evidence separates audited electrical units, human implant channels and optical signals",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d",
+      "integratedDiagnosticSha256": "4dc6d51df066438687795944df82140b86f2658e7a6370fea195bcb0bb15d20d"
+    },
+    {
+      "test": "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "65712750c1dccfab6bc9cf776bfa99a3b6017bc145e2d0edf9ab8a6cc1b36a45",
+      "integratedDiagnosticSha256": "65712750c1dccfab6bc9cf776bfa99a3b6017bc145e2d0edf9ab8a6cc1b36a45"
+    },
+    {
+      "test": "retired panels are unmounted, with every other source observation retained exactly once",
+      "sameNormalizedDiagnostic": true,
+      "sameDiagnosticSourceUrls": true,
+      "baselineDiagnosticSha256": "7e384e4bf7efabb6e6cc96ea23c5737ebcd96ad6f9d81579887c4f859bb23709",
+      "integratedDiagnosticSha256": "7e384e4bf7efabb6e6cc96ea23c5737ebcd96ad6f9d81579887c4f859bb23709"
+    }
+  ],
+  "scope": "The full run is not relabeled green. Its one additional historical consumer-order mismatch was corrected and the complete affected file replayed separately. Other application source is unchanged. Baseline diagnostics with intentional prose/serialization differences are retained for inspection.",
+  "laterDiagnosticClosures": [
+    {
+      "test": "all default and preview plot SVGs match pinned main plus the isolated acquisition display baseline",
+      "result": "Full 30-entry actual SVG hash dictionary exactly equals the real merged-main baseline after restoring only the reviewed historical axis-note dependency. The original expected hashes remain unchanged; its existing acquisition/recording baseline failures remain.",
+      "newNumericAndMarkGuards": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0
+      },
+      "log": "diagnostic-closure-fixed.log"
+    },
+    {
+      "test": "cost and throughput retain acquisition boundaries, estimates, resolution and prospective scope",
+      "result": "Stale Table A1 negative-copy regex updated to reviewed positive source-column wording. Replay reaches the same original all-in-cost-boundary assertion as the baseline, not the newly introduced stale regex.",
+      "log": "diagnostic-closure-fixed.log"
+    },
+    {
+      "test": "metric-panel-pathfinder-nerl: methodology names the plotted axes",
+      "result": "Same original strict axis-label assertion and expected short label; only the intentionally reviewed explanatory prose in the actual value differs."
+    }
+  ],
+  "finalFocused": {
+    "command": "node --import tsx --test --test-concurrency=1 tests/sitewide-copy-svg.test.mjs tests/sitewide-copy.test.mjs tests/china-funding-compatibility.test.mjs",
+    "tests": 9,
+    "pass": 9,
+    "fail": 0,
+    "exitCode": 0
+  }
+}

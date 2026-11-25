@@ -14,7 +14,7 @@ export function MilestoneSourceContext({ source }: { source: unknown }) {
       className="mt-8 scroll-mt-6 rounded-xl border border-border p-5"
     >
       <h2 id="source-context-heading" className="text-base font-semibold">Milestone source context</h2>
-      <p className="mt-1 text-sm text-muted">Milestone references citing this source. The full timeline remains below.</p>
+      <p className="mt-1 text-sm text-muted">Milestones citing this source. The full timeline is below.</p>
       <ul className="mt-4 space-y-4">
         {matches.map((row, index) => (
           <li key={`${row.company}-${row.date}-${row.activity}-${index}`} className="space-y-2 border-t border-border pt-4 first:border-t-0 first:pt-0">

@@ -19,12 +19,12 @@ export default async function MilestonesPage(props: {
         kicker="Field events"
         meta={[`${years} years`]}
         title="Milestones"
-        description="Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and the broader neurotech ecosystem — on one time axis, year by year."
+        description="Deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and the broader neurotechnology field, shown year by year."
         stats={[
           { value: String(MILESTONES.length), label: "tracked events" },
-          { value: String(companies), label: "companies on the axis" },
+          { value: String(companies), label: "companies" },
           { value: "3", label: "lanes · capital, clinical/regulatory, commercial" },
-          { value: "2024–26", label: "years on the timeline" },
+          { value: "2024–26", label: "visible timeline years" },
         ]}
       />
       <MilestoneSourceContext source={source} />

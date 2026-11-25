@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { loadFundingIndexSources } from "../scripts/lib/funding-index.mjs";
+import { parseCsv } from "../scripts/lib/funding-index.mjs";
 
 // Current source contract, not a historical projection. The founder post's
 // datePublished is 2025-11-03T22:01:00.944Z; Nov 4 is later reporting.
@@ -12,7 +12,7 @@ const expected = {
   stage: "Seed", amountUsdM: 10,
   sourceUrl: "https://www.linkedin.com/posts/elise-jenkins-_coherence-neuro-has-raised-a-10m-seed-round-activity-7391232963549487105-N1eH/",
   investors: ["Topology", "Artesian", "Blackbird", "Possible", "XEIA", "Michael Akilian/Thales", "Jumpspace Ventures", "Xtal", "Divergent", "SmartGateVC", "Spacewalk VC", "Matt Krisiloff", "Linhao Zhang", "Tim Shi"],
-  note: "Seed co-led by Topology Ventures and Artesian. Blackbird and Possible Ventures are identified as continuing pre-seed backers; the remaining named investors and angels are retained from the founder’s announcement. Michael Akilian/Thales preserves the source’s combined label.",
+  note: "Seed co-led by Topology Ventures and Artesian. Blackbird and Possible Ventures are identified as continuing pre-seed backers; other investor and angel names follow the founder’s announcement. Michael Akilian/Thales follows the source’s combined label.",
   sourceKind: "primary", reviewedOn: "2026-11-25",
   previousStoredInvestors: ["SV Health Investors", "BrightEdge", "Innovation Endeavors", "Astellas Venture Management"],
 };
@@ -27,7 +27,7 @@ export function assertCoherenceSeed(round) {
 }
 
 test("Coherence's current canonical seed preserves the founder publication date and full investor roster", async () => {
-  const sources = await loadFundingIndexSources(new URL("../data/funding-index/", import.meta.url).pathname);
+  const sources = { rounds: parseCsv(await readFile(new URL("../data/funding-index/rounds.csv", import.meta.url), "utf8")) };
   const rounds = sources.rounds.filter((round) => round.company_slug === expected.companySlug
     && round.announced_on === expected.announcedOn && round.stage === expected.stage);
   assert.equal(rounds.length, 1);

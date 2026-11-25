@@ -25,14 +25,14 @@ test('Paradromics separates the first Connect-One implant from the APEX partners
   const [implant, durability] = paradromicsSources.map(one);
   assert.equal(implant.date, '2026-06-17');
   assert.equal(implant.activity, 'trial');
-  assert.match(implant.note, /announcement date/i);
+  assert.match(implant.note, /Date shown: announcement\. Surgery date: undisclosed/i);
   assert.match(implant.note, /2025.*temporary/);
   assert.match(implant.note, /investigational/i);
   assert.equal(durability.date, '2026-10-08');
   assert.equal(durability.activity, 'preclinical');
   assert.match(durability.note, /two sheep/);
   assert.match(durability.note, /cortical modules/);
-  assert.match(durability.note, /not.*human/i);
+  assert.match(durability.note, /preclinical durability milestone using two sheep/i);
   for (const row of [implant, durability]) {
     assert.equal(row.stage, 'clinical');
     assert.equal(row.amountUsdM, null);
@@ -56,10 +56,10 @@ test('Precision distinguishes its 70-patient research cohort from cumulative imp
   assert.match(atlas.note, /more than 180 hours/);
   assert.match(atlas.note, /Separately.*surpassed 100/);
   assert.match(atlas.note, /preprint/i);
-  assert.match(atlas.note, /not.*permanent/);
+  assert.match(atlas.note, /permanent-implant counts remain unknown/);
   assert.equal(partnership.date, '2026-04-30');
   assert.equal(partnership.activity, 'partner');
-  assert.match(partnership.note, /not.*clinical efficacy/);
+  assert.match(partnership.note, /milestone covers expansion of the Layer 7 research network/);
   for (const row of [atlas, partnership]) assert.equal(row.amountUsdM, null);
   assert.equal(milestones.filter(row => row.slug === 'precision-neuroscience' && row.date === '2026-09-24' && row.stage === 'capital').length, 1);
   assert.equal(milestones.some(row => row.slug === 'precision-neuroscience' && row.date === '2026-10-15'), false);
@@ -84,17 +84,17 @@ test('Science blog review adds qualified clinical disclosures, not marketing app
   }
   assert.equal(hud.activity, 'HUD');
   assert.match(hud.note, /two FDA Humanitarian Use Device/);
-  assert.match(hud.note, /not FDA marketing approval/);
+  assert.match(hud.note, /FDA marketing approval requires a separate Humanitarian Device Exemption review/);
   assert.match(followup.note, /18.*efficacy/);
   assert.match(followup.note, /27.*safety/);
   assert.match(followup.note, /14 of 18/);
   assert.match(followup.note, /29.*ETDRS/);
   assert.match(stargardt.note, /May 2026/);
-  assert.match(stargardt.note, /single-patient/);
-  assert.match(stargardt.note, /not.*trial-wide efficacy/i);
+  assert.match(stargardt.note, /observation in one patient/);
+  assert.match(stargardt.note, /company-reported observation in one patient/i);
   const glossary = JSON.parse(readFileSync(new URL('../src/data/acronyms.json', import.meta.url)));
   assert.equal(glossary.HUD.expansion, 'Humanitarian Use Device');
-  assert.match(glossary.HUD.definition, /not marketing approval/);
+  assert.match(glossary.HUD.definition, /FDA designation.*enabling an application for Humanitarian Device Exemption \(HDE\) marketing authorization/);
 });
 
 const studySource = 'https://pure.johnshopkins.edu/en/publications/initial-experience-with-the-precision-neuroscience-layer-7-micro-/';
@@ -106,7 +106,7 @@ test('Precision source corrections distinguish acute feasibility, co-development
   assert.equal(study.activity, 'study');
   assert.match(study.note, /four patients/i);
   assert.match(study.note, /publication month/);
-  assert.match(study.note, /not.*chronic/i);
+  assert.match(study.note, /small acute study measures performance on these tasks/i);
   const medtronic = milestones.find(row => row.slug === 'precision-neuroscience' && row.date === '2026-01-12');
   assert.equal(medtronic.activity, 'partner');
   assert.match(medtronic.note, /co-develop/);
@@ -114,7 +114,7 @@ test('Precision source corrections distinguish acute feasibility, co-development
   assert.equal(clearance.date, '2025-03-30');
   assert.match(clearance.note, /March 30, 2025/);
   assert.match(clearance.note, /less than 30 days/);
-  assert.match(clearance.note, /not.*chronic wireless BCI/);
+  assert.match(clearance.note, /passive array without wireless capabilities\. The clearance covers the temporary passive array/);
 });
 
 test('All blog-review additions render once in the 2026 Milestone timeline with their direct source links', () => {

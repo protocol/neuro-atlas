@@ -23,7 +23,7 @@ export function historicalYearDate(year: number) {
 export const HISTORICAL_RECORDING: RecordingView = {
   id: "historical", label: "Historical electrical recordings", unit: "reported neurons / experiment",
   description: "Stevenson–Kording historical electrical-recording tracker, 1957–2022: first 10 papers to achieve at least each reported count (94 of 162 tracker rows). Counts retain the tracker’s original curation and mixed preparations.",
-  caveat: "Publication months and reported neuron counts reproduce the tracker. Species, preparation and unit-quality criteria are incomplete; retina and culture experiments are included. Preprints and later papers may overlap. This selected literature history is not an exhaustive census or a uniform in-vivo single-session benchmark.",
+  caveat: "Publication months and reported neuron counts reproduce the tracker’s selected literature history. Species, preparation and unit-quality criteria are incomplete; included studies span in-vivo, retina and culture experiments. Preprints and later papers may overlap. Count criteria and experimental conditions vary by study.",
   chartKind: "scatter", extrapolation: false,
   points: HISTORICAL_RECORDING_SELECTED.map(row => ({
     id: row.id, date: `${row.Year}-${String(Number(row.Month) || 7).padStart(2,"0")}-01`,
@@ -33,7 +33,7 @@ export const HISTORICAL_RECORDING: RecordingView = {
     sourceUrl: sourceLinkAlternates[row.DOI.trim().toLowerCase() as keyof typeof sourceLinkAlternates] ?? (row.DOI.trim() || source.sourceUrl), sourceLabel: `${row.Authors.trim()}, ${row.Publication} (${row.Year}) · tracker entry`,
     qualifier: /approximate|average/i.test(row["Method Note"]) ? "approximate" as const : undefined,
     quote: `${row.Year}, ${row.Month}, ${row.Neurons}, ${row.Authors}, ${row.Publication}, ${row["Method Note"]}, ${row.DOI}`,
-    note: `Tracker transcription, CSV row ${Number(row.id.slice(-3))}. Original neuron-count criteria retained; individual primary-study criteria are not harmonized. ${row["Method Note"] || "No method note in tracker."} Plot date follows producer: year + (month − 0.5)/12; missing month is 6.5.`,
+    note: `Tracker transcription, CSV row ${Number(row.id.slice(-3))}. Neuron counts follow the tracker; primary-study criteria remain unharmonized. ${row["Method Note"] || "Method note unspecified in tracker."} Plot date follows producer: year + (month − 0.5)/12; missing month is 6.5.`,
   })),
 };
 export const HISTORICAL_RECORDING_SOURCE = { ...source, rows: undefined };

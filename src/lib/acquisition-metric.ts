@@ -9,7 +9,7 @@ export const ACQUISITION_METRICS = [
 export type AcquisitionMetric = typeof ACQUISITION_METRICS[number]["id"];
 export const ACQUISITION_CHART_TITLE = "Estimated acquisition efficiency";
 export const HUMAN_IMAGE_VOXELS = brainImageVoxels(BRAIN_IMAGE_MODEL.volumesMm3.human);
-export const ACQUISITION_HUMAN_COST_NOTE = "Illustrative conversion: 1.875×10²¹ voxels (~1.9 sextillion), at 4×4×40 nm across 1,200,000 mm³, ÷ source-estimated voxels per dollar. Image acquisition only; excludes preparation, reconstruction, proofreading and storage. Optical and EM scopes and resolutions differ; this is not a matched whole-brain project budget.";
+export const ACQUISITION_HUMAN_COST_NOTE = "Illustrative image-acquisition cost: 1.875×10²¹ voxels (~1.9 sextillion), at 4×4×40 nm across 1,200,000 mm³, ÷ source-estimated voxels per dollar. Preparation, reconstruction, proofreading and storage costs remain additional. Optical and EM estimates use different scopes and resolutions.";
 
 function scientific(value: number, digits: number) {
   const [mantissa, exponent] = value.toExponential(digits - 1).split("e");

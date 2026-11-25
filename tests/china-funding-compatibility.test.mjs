@@ -2,6 +2,7 @@ import test from 'node:test';
 import { countedCapital } from '../src/lib/funding-capital.mjs';
 import { beforeMergeParadromicsFile } from './helpers/financing-merge-baseline.mjs';
 import { beforeFinancingFixesFile } from './helpers/financing-fixes-baseline.mjs';
+import { restoreMerged151Copy } from './helpers/sitewide-copy-baseline.mjs';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -43,8 +44,8 @@ test('every reviewed current file reconstructs the exact pinned historical bytes
   assert.equal(CHINA_FUNDING_DELTA.baselineSha, CHINA_FUNDING_BASELINE_SHA);
   for (const entry of CHINA_FUNDING_DELTA.files) {
     const file = new URL('../' + entry.path, import.meta.url);
-    const current = beforeMergeParadromicsFile(beforeFinancingFixesFile(await readFile(file, 'utf8'), entry.path), entry.path);
-    assert.equal(sha256(current), entry.afterSha256, entry.path + ': complete reviewed candidate bytes');
+    const current = beforeMergeParadromicsFile(beforeFinancingFixesFile(restoreMerged151Copy(await readFile(file, 'utf8'), entry.path), entry.path), entry.path);
+    assert.equal(sha256(current), entry.afterSha256, entry.path + ': complete reviewed candidate bytes after copy and financing reversals');
     assert.equal(sha256(readHistoricalFileSync(file, 'utf8')), entry.beforeSha256, entry.path + ': exact original bytes, not a refreshed golden');
   }
 });
