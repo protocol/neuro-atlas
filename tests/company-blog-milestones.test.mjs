@@ -125,9 +125,17 @@ test('All blog-review additions render once in the 2026 Milestone timeline with 
     assert.ok(timeline);
     for (const url of [...scienceSources, ...paradromicsSources, ...precisionSources, studySource]) {
       const row = one(url);
-      const links = timeline.querySelectorAll(`a[href="${url}"]`);
+      const links = dom.window.document.querySelectorAll(`a[href="${url}"]`);
       assert.equal(links.length, 1, url);
       assert.equal(links[0].getAttribute('aria-label'), `${row.company} — ${row.activity}`);
+      if (row.datePrecision === 'day') {
+        assert.equal(timeline.contains(links[0]), true, 'Day-dated additions retain a timed plot marker');
+      } else {
+        const periods = dom.window.document.querySelector('[data-milestone-period-records]');
+        assert.equal(periods?.contains(links[0]), true, 'Month-level study remains visible once at its disclosed precision');
+        assert.equal(timeline.contains(links[0]), false, 'A publication month never receives a fabricated first-day plot position');
+        assert.match(links[0].textContent, /Feb 2026/);
+      }
     }
   } finally {
     dom.window.close();
