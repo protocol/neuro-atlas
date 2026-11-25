@@ -10,7 +10,7 @@ import { SiteFooter } from "../src/components/site-footer.tsx";
 import { atlasPath } from "../src/lib/atlas-path.ts";
 import { NEUROFOUNDERS_MAP_URL } from "../src/lib/ecosystem.ts";
 
-test("the canonical methodology page explains purpose, selection and refresh limits", () => {
+test("the canonical methodology page begins with data gathering and preserves selection and refresh limits", () => {
   const { window } = new JSDOM(renderToStaticMarkup(React.createElement(React.Fragment, null,
     React.createElement("main", null, React.createElement(MethodologyPage)), React.createElement(SiteFooter))));
   try {
@@ -18,8 +18,13 @@ test("the canonical methodology page explains purpose, selection and refresh lim
     assert.equal(document.querySelector("h1")?.textContent, "Sources & methodology");
     const main = document.querySelector("main");
     const copy = main.textContent.replace(/\s+/g, " ");
-    assert.ok(copy.includes("At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves."));
-    assert.ok(copy.includes("This is the kind of field building we’re proud to do at PL Neuro: turning scattered evidence into a useful public resource that researchers, builders, and funders can work from – and we hope to work with the community to improve it together."));
+    for (const removed of [
+      "Why we built Neuro Atlas",
+      "At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves.",
+      "This is the kind of field building we’re proud to do at PL Neuro: turning scattered evidence into a useful public resource that researchers, builders, and funders can work from – and we hope to work with the community to improve it together.",
+    ]) assert.ok(!copy.includes(removed), `Removed rationale must stay absent: ${removed}`);
+    assert.equal(main.querySelector('[aria-labelledby="why-we-built-it"], #why-we-built-it'), null);
+    assert.equal(main.querySelector("section")?.getAttribute("aria-labelledby"), "data-gathering");
     for (const phrase of ["We aim to review and update Neuro Atlas daily", "weekly", "observation date", "USD 2 million", "Capital sums included disclosed financings, including labeled philanthropic commitments"]) assert.ok(copy.includes(phrase), phrase);
     const hrefs = [...main.querySelectorAll("a[href]")].map((a) => a.getAttribute("href"));
     for (const href of [NEUROFOUNDERS_MAP_URL, "https://neurotechnology.substack.com/p/representations2", atlasPath("/funding"), "https://www.plrd.org/", "https://github.com/protocol/neuro-atlas/pulls", "#data-disclaimer"]) assert.ok(hrefs.includes(href), href);

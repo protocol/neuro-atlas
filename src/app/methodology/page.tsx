@@ -23,12 +23,7 @@ export default function MethodologyPage() {
       <header className="-mx-5 -mt-5 rounded-t-2xl border-b border-border bg-[#101217] px-5 py-8 text-white sm:-mx-7 sm:-mt-7 sm:px-7 sm:py-10 lg:-mx-9 lg:-mt-9 lg:px-9">
         <h1 className="text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-tight tracking-[-0.045em]">Sources &amp; methodology</h1>
       </header>
-      <section aria-labelledby="why-we-built-it" className="my-8 max-w-3xl space-y-3 text-sm leading-relaxed text-muted">
-        <h2 id="why-we-built-it" className="text-base font-semibold text-foreground">Why we built Neuro Atlas</h2>
-        <p>At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves.</p>
-        <p>This is the kind of field building we’re proud to do at PL Neuro: turning scattered evidence into a useful public resource that researchers, builders, and funders can work from – and we hope to work with the community to improve it together.</p>
-      </section>
-      <section aria-labelledby="data-gathering" className="mb-8">
+      <section aria-labelledby="data-gathering" className="my-8">
         <h2 id="data-gathering" className="mb-3 text-base font-semibold">How data is gathered</h2>
         <div className="card space-y-3 p-5 text-sm leading-relaxed text-muted">
           <p><strong className="text-foreground">Milestones.</strong> The initial data was compiled from the <a href="https://neurotechnology.substack.com/p/representations2" className="underline underline-offset-4">January–April 2026 BCI Market Memo</a> by Neurotech Futures and PL Neuro. The timeline now includes selected clinical, commercial, and financing events across neurotechnology. Entries cite public evidence and distinguish event, announcement, and reported dates where known. Date precision reflects the source.</p>

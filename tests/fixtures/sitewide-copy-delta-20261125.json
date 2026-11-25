@@ -811,7 +811,7 @@
     {
       "path": "src/app/methodology/page.tsx",
       "beforeSha256": "050831d088e8e2fa51f43bff0b2ac970413070dd23db93c7ae544b80e88ca878",
-      "afterSha256": "f6ce4e79c979cd9725fbbe30aafb9494bc60c00b7ac0dd3357ba1c3311392f00",
+      "afterSha256": "4151ded693274579fea70e305cd7fbf0201eb95581aa8fb3f9b7167a8ec2d9cb",
       "encoding": "lines",
       "delta": {
         "version": 1,
@@ -819,7 +819,7 @@
           {
             "path": [],
             "beforeLength": 102,
-            "afterLength": 102,
+            "afterLength": 97,
             "edits": [
               {
                 "beforeIndex": 13,
@@ -834,8 +834,23 @@
                 ]
               },
               {
+                "beforeIndex": 25,
+                "afterIndex": 25,
+                "before": [
+                  "      <section aria-labelledby=\"why-we-built-it\" className=\"my-8 max-w-3xl space-y-3 text-sm leading-relaxed text-muted\">",
+                  "        <h2 id=\"why-we-built-it\" className=\"text-base font-semibold text-foreground\">Why we built Neuro Atlas</h2>",
+                  "        <p>At PL Neuro, we wanted one place to follow how neurotechnology was progressing: what researchers could measure and build, which companies were reaching clinical and commercial milestones, and where capital was going. We couldn’t quite find the combination we were looking for, so we built it ourselves.</p>",
+                  "        <p>This is the kind of field building we’re proud to do at PL Neuro: turning scattered evidence into a useful public resource that researchers, builders, and funders can work from – and we hope to work with the community to improve it together.</p>",
+                  "      </section>",
+                  "      <section aria-labelledby=\"data-gathering\" className=\"mb-8\">"
+                ],
+                "after": [
+                  "      <section aria-labelledby=\"data-gathering\" className=\"my-8\">"
+                ]
+              },
+              {
                 "beforeIndex": 34,
-                "afterIndex": 34,
+                "afterIndex": 29,
                 "before": [
                   "          <p><strong className=\"text-foreground\"><a className=\"underline underline-offset-4\" href={atlasPath(\"/funding\")}>BCI Funding Index.</a></strong> The narrower index tracks disclosed financings of at least USD 2 million (or the qualifying local-currency equivalent) across a screened set of implanted and implant-adjacent companies. Capital means the amount raised in included rounds. Investor-associated capital is the total size of rounds the investor appears in; separately sourced portfolio relationships do not contribute to round totals. A financing can appear in both views.</p>"
                 ],
@@ -845,7 +860,7 @@
               },
               {
                 "beforeIndex": 37,
-                "afterIndex": 37,
+                "afterIndex": 32,
                 "before": [
                   "            <p>We’ve contacted and corresponded with many of the original researchers around the world. We’re grateful for their feedback, which helps us represent their work accurately, and for the research that makes this resource so valuable. Please use <a href=\"#contribute\" className=\"font-medium text-accent underline underline-offset-4\">Feedback</a> to flag any missing credit or references so we can add them.</p>"
                 ],
@@ -855,7 +870,7 @@
               },
               {
                 "beforeIndex": 44,
-                "afterIndex": 44,
+                "afterIndex": 39,
                 "before": [
                   "        <p className=\"mb-4 max-w-3xl text-sm leading-relaxed text-muted\">Open a category to see source links, including retained research and methodology references. Each record or chart’s own citations show which evidence supports that observation.</p>"
                 ],
@@ -865,7 +880,7 @@
               },
               {
                 "beforeIndex": 89,
-                "afterIndex": 89,
+                "afterIndex": 84,
                 "before": [
                   "            We welcome corrections and new sources from the community. We plan to enable contributions through GitHub pull requests. In the meantime, use Feedback to select the part of the page you’re commenting on and include a source link and date if available."
                 ],
