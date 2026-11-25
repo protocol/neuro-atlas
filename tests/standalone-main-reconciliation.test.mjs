@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import React from 'react';
+import {readFileSync} from 'node:fs';
+import {METRIC_CHART_EVIDENCE} from '../src/data/metric-chart-visibility.ts';
+import {beforeBrainGateAddition} from './helpers/recording-hours-coverage-baseline.mjs';
+const recordingParents=JSON.parse(readFileSync(new URL('./fixtures/pr144-recording-parent-points.json',import.meta.url),'utf8'));
+assert.equal(recordingParents.mainSha,'df97d0d70736465657ac50bc9569bbc1b60e6095');
+assert.equal(recordingParents.prSha,'85ceb1a0d55e0d2a139b3d1105a577b2497b0f1c');
+const recordingTitle='Neural recording hours collected over time';
+const recordingIds=recordingParents.main.map(point=>point.id);
+assert.deepEqual(METRIC_CHART_EVIDENCE[recordingTitle].plots[0].points,recordingParents.main,'All 13 exact approved-main scientific records');
+assert.deepEqual(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)[recordingTitle].plots[0].points,recordingParents.pr,'All 12 exact original PR recording observations survive');
 import { JSDOM } from 'jsdom';
 import { DraftChartPlot } from '../src/components/draft-chart-plot.tsx';
 import { FieldVelocityGraphDetail } from '../src/components/field-velocity-graph.tsx';
@@ -108,7 +118,7 @@ test('legacy component-only hours extrapolation stays an explicit compatibility 
   } finally { await close(); }
   close = await standalone(entry);
   try {
-    assert.equal(document.querySelectorAll('[data-recording-coverage-row]').length, 12);
+    assert.deepEqual([...document.querySelectorAll('[data-recording-coverage-row]')].map(row=>row.dataset.recordingCoverageRow),recordingIds);
     assert.equal(document.querySelector('[data-legacy-hours-view]'), null);
   } finally { await close(); }
 });
@@ -145,12 +155,12 @@ test('the actual standalone recording-hours SVG export retains merged paired bar
   try {
     const spec = (await whenChartRegistered(entry.target)).getChart();
     assert.equal(spec.svg, svg());
-    assert.equal(spec.pointKey.length, 12);
+    assert.deepEqual(spec.pointKey.map(point=>point.pointId),recordingIds);
     const image = buildChartImage(spec, window.location.href);
     output = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
     const doc = output.window.document;
-    assert.equal(doc.querySelectorAll('[data-source-observation]').length, 12);
-    assert.equal(doc.querySelectorAll('[data-export-bar-fill]').length, 23);
+    assert.deepEqual([...doc.querySelectorAll('[data-source-observation]')].map(mark=>mark.dataset.sourceObservation),recordingIds);
+    assert.equal(doc.querySelectorAll('[data-export-bar-fill]').length, 25);
     assert.equal(doc.querySelectorAll('[data-export-bar-lower-bound]').length, 2);
     assert.match(doc.documentElement.textContent, /Calculated average.*340\.0 h\/participant/s);
     assert.match(doc.querySelector('desc').textContent, /P01 ≈813\.8 h, P02 ≈146\.2 h, P03 ≈60\.3 h/);

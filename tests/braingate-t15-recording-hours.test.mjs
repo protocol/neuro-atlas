@@ -83,7 +83,7 @@ test('BrainGate T15 is one qualified non-public recording observation throughout
     assert.deepEqual(key.bars.map(bar => bar.fraction), [3800 / 50000, 1 / 692]);
     assert.ok(key.bars.every(bar => !bar.lowerBound), 'Approximation is distinct from a strict retained-duration lower bound');
     const image = buildChartImage(spec, window.location.href);
-    assert.ok(image.url.endsWith('#neural-recording-hours-selected-datasets'));
+    assert.equal(image.url, new URL('/field-velocity/neural-recording-hours-selected-datasets', window.location.href).href);
     imageDom = new JSDOM(image.svg, { contentType: 'image/svg+xml' });
     const doc = imageDom.window.document;
     const painted = doc.querySelector(`[data-export-point-id="${id}"]`);

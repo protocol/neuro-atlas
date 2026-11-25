@@ -117,7 +117,7 @@ test('retinal context adds an opt-in exact-rate dotted log-axis reference withou
     const panel = el('[data-sensory-assumptions]');
     assert.match(panel.textContent, /guinea pig/);
     assert.match(panel.textContent, /8,750,000/);
-    assert.match(panel.textContent, /not a direct human measurement.*capacity.*BCI target/i);
+    assert.ok(panel.textContent.includes('This animal-scaled human scenario assumes independent channels and ignores inter-cell correlations. It estimates retinal sensory output under those assumptions; human channel capacity and task-specific BCI communication rates have different measurement bases.'));
     assert.equal(el('[data-sensory-context]'), null);
     assert.equal(panel.querySelector('a').href, 'https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/');
     await click(el('[data-sensory-toggle]'));
@@ -335,12 +335,12 @@ test('acquisition continuations stay in separate method families and omit prospe
     await click(chart.querySelector('[data-exploration-fit-toggle]'));
     const fitted = () => [...chart.querySelectorAll('[data-exploration-fit-line]')].map(node => [node.dataset.explorationFitLine, node.dataset.fitN, node.getAttribute('points')]);
     const before = fitted();
-    assert.deepEqual(before.map(row => row.slice(0,2)), [['Expansion microscopy · estimates','4'], ['EM · reported-tech estimates','4']]);
+    assert.deepEqual(before.map(row => row.slice(0,2)), [['Expansion microscopy · estimates','4'], ['EM · reported-technology estimates','4']]);
     await click(chart.querySelector('[data-exploration-series="PEEM · prospective"]'));
     assert.equal(chart.querySelector('svg [data-source-observation="peem2024"]'), null);
     assert.deepEqual(fitted(), before);
     await click(chart.querySelector('[data-exploration-series="Expansion microscopy · estimates"]'));
-    assert.deepEqual(fitted().map(row => row.slice(0,2)), [['EM · reported-tech estimates','4']]);
+    assert.deepEqual(fitted().map(row => row.slice(0,2)), [['EM · reported-technology estimates','4']]);
   } finally { await close(); }
 });
 

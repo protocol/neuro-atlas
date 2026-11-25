@@ -1,0 +1,552 @@
+{
+  "mainSha": "df97d0d70736465657ac50bc9569bbc1b60e6095",
+  "prSha": "85ceb1a0d55e0d2a139b3d1105a577b2497b0f1c",
+  "main": [
+    {
+      "id": "neuralink-reported-hours-2026-10-01",
+      "x": 2026.7479452054795,
+      "y": 50000,
+      "label": "Neuralink \u00b7 >50,000 accumulated recording hours",
+      "dateLabel": "2026-10-01 \u00b7 disclosure",
+      "sourceUrl": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+      "sourceTitle": "Neuralink \u00b7 >50,000 accumulated recording hours \u2014 primary source",
+      "quote": "In the two years since our clinical trial began, our participants have streamed over 50,000 hours of unlabeled, freeform neural data.",
+      "qualifier": ">",
+      "note": "Company-reported accumulated unlabeled freeform neural recording duration from human trial participants. Live-use results use participant-specific encoders pretrained on thousands of hours each. Formal session-union, gap and quality-control rules, contributor count and public access remain unspecified. The first participant's >9,000 hours is a subset of the disclosed total.",
+      "group": "Company-held human intracortical",
+      "recordingCoverage": {
+        "count": null,
+        "unit": "participants",
+        "detail": "The contributor count for >50,000 h is undisclosed. Trial enrollment and the six participants in the performance analysis describe different populations. The first participant\u2019s >9,000 h is part of the total; other per-person durations are unspecified."
+      },
+      "color": "#9275ca"
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-04-17",
+      "x": 2017.2904109589042,
+      "y": 170,
+      "label": "TUSZ v1.0.0",
+      "dateLabel": "2017-04-17 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.0.0 \u2013 04/17/2017: 170",
+      "qualifier": "",
+      "note": "Table 1 reports v1.0.0, 2017-04-17, Total Duration (Hours): 170. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 114,
+        "unit": "patients",
+        "sessions": 510,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-08-04",
+      "x": 2017.5890410958905,
+      "y": 425,
+      "label": "TUSZ v1.1.0",
+      "dateLabel": "2017-08-04 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.1.0 \u2013 08/04/2017: 425",
+      "qualifier": "",
+      "note": "Table 1 reports v1.1.0, 2017-08-04, Total Duration (Hours): 425. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 246,
+        "unit": "patients",
+        "sessions": 686,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-04-15",
+      "x": 2018.2849315068493,
+      "y": 504,
+      "label": "TUSZ v1.2.0",
+      "dateLabel": "2018-04-15 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.2.0 \u2013 04/15/2018: 504",
+      "qualifier": "",
+      "note": "Table 1 reports v1.2.0, 2018-04-15, Total Duration (Hours): 504. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 315,
+        "unit": "patients",
+        "sessions": 822,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-08-16",
+      "x": 2018.6219178082192,
+      "y": 651,
+      "label": "TUSZ v1.3.0",
+      "dateLabel": "2018-08-16 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.3.0 \u2013 08/16/2018: 651",
+      "qualifier": "",
+      "note": "Table 1 reports v1.3.0, 2018-08-16, Total Duration (Hours): 651. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 364,
+        "unit": "patients",
+        "sessions": 970,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-11-14",
+      "x": 2018.868493150685,
+      "y": 651,
+      "label": "TUSZ v1.4.0",
+      "dateLabel": "2018-11-14 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.4.0 \u2013 11/14/2018: 651",
+      "qualifier": "",
+      "note": "Table 1 reports v1.4.0, 2018-11-14, Total Duration (Hours): 651. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 364,
+        "unit": "patients",
+        "sessions": 969,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2019-07-22",
+      "x": 2019.5534246575342,
+      "y": 1074,
+      "label": "TUSZ v1.5.0",
+      "dateLabel": "2019-07-22 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.0 \u2013 07/22/2019: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.0, 2019-07-22, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 1661,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-04-23",
+      "x": 2020.308743169399,
+      "y": 1074,
+      "label": "TUSZ v1.5.1",
+      "dateLabel": "2020-04-23 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.1 \u2013 04/23/2020: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.1, 2020-04-23, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 1575,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-05-09",
+      "x": 2020.3524590163934,
+      "y": 1074,
+      "label": "TUSZ v1.5.2",
+      "dateLabel": "2020-05-09 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.2 \u2013 05/09/2020: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.2, 2020-05-09, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 2608,
+        "detail": "Table 1 patient and session counts cover this exact full-corpus release, including held-out evaluation. Releases overlap. Sessions count recording occasions; patient counts identify people, and per-person durations accumulate across sessions."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "ajile12-intracranial-2022-01-27",
+      "x": 2022.0712328767124,
+      "y": 1280,
+      "label": "AJILE12 frozen release",
+      "dateLabel": "2022-01-27 \u00b7 release",
+      "sourceUrl": "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
+      "sourceTitle": "DANDI AJILE12 frozen release 0.220127.0436",
+      "quote": "Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.",
+      "qualifier": "",
+      "note": "Release metadata: \u201cNeural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.\u201d Published January 27, 2022. Duration counts recording time once across electrodes; gaps and preprocessing affect quality-valid hours.",
+      "recordingCoverage": {
+        "count": 12,
+        "unit": "participants",
+        "detail": "DANDI 000055/0.220127.0436 reports 12 subjects and 1,280 h. The descriptor gives 3\u20135 recording days per participant and 55 semi-continuous days total. Exact session counts and quality-valid hour ranges are unspecified."
+      },
+      "supportingReferences": [
+        {
+          "role": "Recording days per participant",
+          "title": "AJILE12 Scientific Data descriptor \u00b7 3\u20135 recording days per participant",
+          "url": "https://www.nature.com/articles/s41597-022-01280-y"
+        }
+      ],
+      "group": "AJILE12 \u00b7 human intracranial, open",
+      "color": "#cd732f"
+    },
+    {
+      "id": "poyo-primate-training-2023-10-24",
+      "x": 2023.8109589041096,
+      "y": 100,
+      "label": "POYO-1 training corpus",
+      "dateLabel": "2023-10-24 \u00b7 publication",
+      "sourceUrl": "https://arxiv.org/abs/2310.16046",
+      "sourceTitle": "POYO-1 training corpus \u2014 primary source",
+      "quote": "over 100 hours of recordings",
+      "qualifier": ">",
+      "note": "Abstract: \u201cover 100 hours of recordings\u201d from seven nonhuman primates and over 158 sessions. The strict lower bound describes existing recordings reused for training; access varies by constituent dataset.",
+      "recordingCoverage": {
+        "count": 7,
+        "unit": "nonhuman primates",
+        "sessions": 158,
+        "sessionsQualifier": ">",
+        "detail": "The paper\u2019s >100 h training corpus spans seven nonhuman primates and >158 sessions. Existing recordings are reused; constituent access varies. Typical session length and the distribution of per-animal durations remain unspecified."
+      },
+      "group": "POYO-1 \u00b7 primate spikes, training corpus",
+      "color": "#647d3d"
+    },
+    {
+      "id": "japaneeg-scalp-eeg-2026-05-31",
+      "x": 2026.4109589041095,
+      "y": 1020,
+      "label": "JapanEEG descriptor",
+      "dateLabel": "2026-05-31 \u00b7 publication",
+      "sourceUrl": "https://arxiv.org/abs/2606.01264",
+      "sourceTitle": "JapanEEG descriptor \u2014 primary source",
+      "quote": "1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio from three healthy native Japanese speakers",
+      "qualifier": "",
+      "note": "Abstract: \u201c1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio\u201d. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the released file inventory remains unverified.",
+      "recordingCoverage": {
+        "count": 3,
+        "unit": "participants",
+        "durationSummary": "\u224860\u2013814 h per participant (calculated from Table 4)",
+        "detail": "Calculated from descriptor v2 Table 4 recording-hour cells: P01 \u2248813.8 h, P02 \u2248146.2 h, P03 \u224860.3 h. Shared covert-repetition/listening recordings are counted once. Rounded cells sum to 1,020.3 h versus Table 3\u2019s 1,020.4 h; the plotted abstract total stays 1,020 h. Per-person durations accumulate across recordings; the displayed range is calculated from these cells."
+      },
+      "supportingReferences": [
+        {
+          "role": "Current access and participant-duration evidence",
+          "title": "JapanEEG descriptor v2 \u00b7 November 17, 2026 \u00b7 Tables 3\u20134 and Data Records",
+          "url": "https://arxiv.org/html/2606.01264v2"
+        },
+        {
+          "role": "Author-reported controlled-access repository",
+          "title": "Harvard Dataverse \u00b7 JapanEEG (files not inspected)",
+          "url": "https://doi.org/10.7910/DVN/5RM3OT"
+        }
+      ],
+      "group": "JapanEEG \u00b7 human scalp EEG, controlled access",
+      "color": "#cb6285"
+    },
+    {
+      "id": "braingate-t15-independent-use-2026-06-15",
+      "x": 2026.4520547945206,
+      "y": 3800,
+      "qualifier": "\u2248",
+      "label": "BrainGate T15 \u00b7 independent speech and cursor BCI use",
+      "dateLabel": "2026-06-15 \u00b7 publication",
+      "sourceUrl": "https://www.nature.com/articles/s41591-026-04414-6",
+      "sourceTitle": "Card et al. (2026) \u00b7 Long-term independent use of an intracortical brain\u2013computer interface for speech and cursor control",
+      "sourceRole": "Reported BCI-use duration and recording/access methods",
+      "quote": "As of 22.6\u2009months after the implant surgery, he had accumulated more than 3,800\u2009h of BCI use",
+      "note": "Card et al. report >3,800 h of BCI use by participant T15. The plotted \u22483,800 h uses BCI-use time as an approximate recording-duration basis across speech and cursor operation. Methods state that session data were saved except during privacy mode; the exact retained recording duration is unspecified. Independent-use neural data and speech transcripts are withheld for participant privacy; figure and statistical summaries are public. Dated to June 15, 2026 publication.",
+      "recordingCoverage": {
+        "count": 1,
+        "unit": "participants",
+        "durationSummary": "Duration basis: reported BCI-use time",
+        "detail": "Participant T15 is the single human contributor to the reported >3,800 h of BCI use. The plotted \u22483,800 h is an approximate recording duration across speech and cursor operation. Session data were saved except during privacy mode; the exact retained recording duration is unspecified. Session counts matched to retained recordings are unreported."
+      },
+      "supportingReferences": [
+        {
+          "role": "Public figure and statistical summaries",
+          "title": "Card et al. \u00b7 figure and statistical reproduction data",
+          "url": "https://github.com/Neuroprosthetics-Lab/NatMed_independent_personal_use"
+        }
+      ],
+      "group": "BrainGate T15 \u00b7 human intracortical, non-public",
+      "color": "#4b79b8"
+    }
+  ],
+  "pr": [
+    {
+      "id": "neuralink-reported-hours-2026-10-01",
+      "x": 2026.7479452054795,
+      "y": 50000,
+      "label": "Neuralink \u00b7 >50,000 accumulated recording hours",
+      "dateLabel": "2026-10-01 \u00b7 disclosure",
+      "sourceUrl": "https://neuralink.com/updates/pretraining-on-50000-hours/",
+      "sourceTitle": "Neuralink \u00b7 >50,000 accumulated recording hours \u2014 primary source",
+      "quote": "In the two years since our clinical trial began, our participants have streamed over 50,000 hours of unlabeled, freeform neural data.",
+      "qualifier": ">",
+      "note": "Company-reported accumulated unlabeled freeform neural recording duration from human trial participants. Live-use results use participant-specific encoders pretrained on thousands of hours each. Formal session-union, gap and quality-control rules, contributor count and public access remain unspecified. The first participant's >9,000 hours is a subset of the disclosed total.",
+      "group": "Company-held human intracortical",
+      "recordingCoverage": {
+        "count": null,
+        "unit": "participants",
+        "detail": "Recording contributors are not disclosed. Trial enrollment and the six participants in the performance analysis are not the denominator of >50,000 h. The first participant\u2019s >9,000 h is a subset, not a per-person distribution."
+      },
+      "color": "#9275ca"
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-04-17",
+      "x": 2017.2904109589042,
+      "y": 170,
+      "label": "TUSZ v1.0.0",
+      "dateLabel": "2017-04-17 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.0.0 \u2013 04/17/2017: 170",
+      "qualifier": "",
+      "note": "Table 1 reports v1.0.0, 2017-04-17, Total Duration (Hours): 170. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 114,
+        "unit": "patients",
+        "sessions": 510,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2017-08-04",
+      "x": 2017.5890410958905,
+      "y": 425,
+      "label": "TUSZ v1.1.0",
+      "dateLabel": "2017-08-04 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.1.0 \u2013 08/04/2017: 425",
+      "qualifier": "",
+      "note": "Table 1 reports v1.1.0, 2017-08-04, Total Duration (Hours): 425. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 246,
+        "unit": "patients",
+        "sessions": 686,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-04-15",
+      "x": 2018.2849315068493,
+      "y": 504,
+      "label": "TUSZ v1.2.0",
+      "dateLabel": "2018-04-15 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.2.0 \u2013 04/15/2018: 504",
+      "qualifier": "",
+      "note": "Table 1 reports v1.2.0, 2018-04-15, Total Duration (Hours): 504. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 315,
+        "unit": "patients",
+        "sessions": 822,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-08-16",
+      "x": 2018.6219178082192,
+      "y": 651,
+      "label": "TUSZ v1.3.0",
+      "dateLabel": "2018-08-16 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.3.0 \u2013 08/16/2018: 651",
+      "qualifier": "",
+      "note": "Table 1 reports v1.3.0, 2018-08-16, Total Duration (Hours): 651. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 364,
+        "unit": "patients",
+        "sessions": 970,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2018-11-14",
+      "x": 2018.868493150685,
+      "y": 651,
+      "label": "TUSZ v1.4.0",
+      "dateLabel": "2018-11-14 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.4.0 \u2013 11/14/2018: 651",
+      "qualifier": "",
+      "note": "Table 1 reports v1.4.0, 2018-11-14, Total Duration (Hours): 651. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 364,
+        "unit": "patients",
+        "sessions": 969,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2019-07-22",
+      "x": 2019.5534246575342,
+      "y": 1074,
+      "label": "TUSZ v1.5.0",
+      "dateLabel": "2019-07-22 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.0 \u2013 07/22/2019: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.0, 2019-07-22, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 1661,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-04-23",
+      "x": 2020.308743169399,
+      "y": 1074,
+      "label": "TUSZ v1.5.1",
+      "dateLabel": "2020-04-23 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.1 \u2013 04/23/2020: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.1, 2020-04-23, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 1575,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "tusz-scalp-eeg-2020-05-09",
+      "x": 2020.3524590163934,
+      "y": 1074,
+      "label": "TUSZ v1.5.2",
+      "dateLabel": "2020-05-09 \u00b7 release",
+      "sourceUrl": "https://isip.piconepress.com/conferences/ieee_spmb/2020/papers/p01_10.pdf",
+      "sourceTitle": "Rahman et al., TUSZ release history, Table 1",
+      "quote": "Table 1, Total Duration (Hours), v1.5.2 \u2013 05/09/2020: 1,074",
+      "qualifier": "",
+      "note": "Table 1 reports v1.5.2, 2020-05-09, Total Duration (Hours): 1,074. Full recording duration includes held-out evaluation; the accompanying poster withholds the evaluation partition. Registration-controlled releases overlap; annotation revisions can retain the same duration.",
+      "recordingCoverage": {
+        "count": 692,
+        "unit": "patients",
+        "sessions": 2608,
+        "detail": "Table 1 full-corpus patients and sessions for this exact release, including held-out evaluation. Overlapping releases are not additive; sessions are not unique people or continuous per-person durations."
+      },
+      "group": "TUSZ \u00b7 human scalp EEG, controlled access",
+      "color": "#238e91"
+    },
+    {
+      "id": "ajile12-intracranial-2022-01-27",
+      "x": 2022.0712328767124,
+      "y": 1280,
+      "label": "AJILE12 frozen release",
+      "dateLabel": "2022-01-27 \u00b7 release",
+      "sourceUrl": "https://api.dandiarchive.org/api/dandisets/000055/versions/0.220127.0436/",
+      "sourceTitle": "DANDI AJILE12 frozen release 0.220127.0436",
+      "quote": "Neural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.",
+      "qualifier": "",
+      "note": "Release metadata: \u201cNeural recordings are available at 500 Hz from at least 64 electrodes per participant, for a total of 1280 hours.\u201d Published January 27, 2022. Duration counts recording time once across electrodes; gaps and preprocessing affect quality-valid hours.",
+      "recordingCoverage": {
+        "count": 12,
+        "unit": "participants",
+        "detail": "Frozen DANDI 000055/0.220127.0436 assetsSummary.numberOfSubjects = 12, matching its reported 1,280 h. The descriptor reports 3\u20135 recording days per participant and 55 semi-continuous days total; these are not exact session counts or quality-valid hour ranges."
+      },
+      "supportingReferences": [
+        {
+          "role": "Recording-day context (not QC-hour distribution)",
+          "title": "AJILE12 Scientific Data descriptor \u00b7 3\u20135 recording days per participant",
+          "url": "https://www.nature.com/articles/s41597-022-01280-y"
+        }
+      ],
+      "group": "AJILE12 \u00b7 human intracranial, open",
+      "color": "#cd732f"
+    },
+    {
+      "id": "poyo-primate-training-2023-10-24",
+      "x": 2023.8109589041096,
+      "y": 100,
+      "label": "POYO-1 training corpus",
+      "dateLabel": "2023-10-24 \u00b7 publication",
+      "sourceUrl": "https://arxiv.org/abs/2310.16046",
+      "sourceTitle": "POYO-1 training corpus \u2014 primary source",
+      "quote": "over 100 hours of recordings",
+      "qualifier": ">",
+      "note": "Abstract: \u201cover 100 hours of recordings\u201d from seven nonhuman primates and over 158 sessions. The strict lower bound describes existing recordings reused for training; access varies by constituent dataset.",
+      "recordingCoverage": {
+        "count": 7,
+        "unit": "nonhuman primates",
+        "sessions": 158,
+        "sessionsQualifier": ">",
+        "detail": "The paper\u2019s >100 h training corpus spans seven nonhuman primates and >158 sessions. Existing recordings are reused; constituent access varies. Neither lower bound gives a typical session or a per-animal duration distribution."
+      },
+      "group": "POYO-1 \u00b7 primate spikes, training corpus",
+      "color": "#647d3d"
+    },
+    {
+      "id": "japaneeg-scalp-eeg-2026-05-31",
+      "x": 2026.4109589041095,
+      "y": 1020,
+      "label": "JapanEEG descriptor",
+      "dateLabel": "2026-05-31 \u00b7 publication",
+      "sourceUrl": "https://arxiv.org/abs/2606.01264",
+      "sourceTitle": "JapanEEG descriptor \u2014 primary source",
+      "quote": "1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio from three healthy native Japanese speakers",
+      "qualifier": "",
+      "note": "Abstract: \u201c1020 hours of simultaneously recorded scalp electroencephalography (EEG), facial electromyography (EMG), and speech audio\u201d. In descriptor v2 (November 17, 2026), authors report controlled access through Harvard Dataverse, with voice-masked audio. The point retains initial descriptor submission timing; archive upload timing remains unverified. Version 2 adds current access and duration evidence. Duration counts simultaneous modalities once; the release manifest remains unenumerated.",
+      "recordingCoverage": {
+        "count": 3,
+        "unit": "participants",
+        "durationSummary": "\u224860\u2013814 h per participant (calculated from Table 4)",
+        "detail": "Calculated from descriptor v2 Table 4 recording-hour cells: P01 \u2248813.8 h, P02 \u2248146.2 h, P03 \u224860.3 h. The shared covert-repetition/listening recordings are counted once. Rounded cells sum to 1,020.3 h versus Table 3\u2019s 1,020.4 h; the plotted abstract total stays 1,020 h. These are accumulated per-person durations, not a continuous session or a publisher-reported range."
+      },
+      "supportingReferences": [
+        {
+          "role": "Current access and participant-duration evidence",
+          "title": "JapanEEG descriptor v2 \u00b7 November 17, 2026 \u00b7 Tables 3\u20134 and Data Records",
+          "url": "https://arxiv.org/html/2606.01264v2"
+        },
+        {
+          "role": "Author-reported controlled-access repository",
+          "title": "Harvard Dataverse \u00b7 JapanEEG (files not inspected)",
+          "url": "https://doi.org/10.7910/DVN/5RM3OT"
+        }
+      ],
+      "group": "JapanEEG \u00b7 human scalp EEG, controlled access",
+      "color": "#cb6285"
+    }
+  ]
+}
