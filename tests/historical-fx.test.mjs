@@ -57,6 +57,10 @@ test('the reviewed NeuroXess round and timeline share the same historical conver
   assert.equal(mark.amountUsdM, 700 / 6.6662);
   assert.equal(indexed[0].amountUsdM, mark.amountUsdM);
   for (const row of [mark, indexed[0]]) assert.match(row.note, /announcement date because the investment date is undisclosed/i);
+  assert.equal(mark.dateBasis, 'announcement');
+  assert.equal(mark.fx.dateBasis, 'announcement_date');
+  assert.equal(mark.fx.investmentDate, null, 'The timeline does not invent an actual investment date');
+  assert.match(indexed[0].note, /historical USD estimate.*Federal Reserve.*CNY 6\.6662 per USD.*October 28, 2026/i);
   assert.match(funding.methodology.coverage, /historical.*exchange|historical.*FX/i);
 });
 

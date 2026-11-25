@@ -1,5 +1,7 @@
 import test from 'node:test';
-import { restoreMerged151Copy } from './helpers/sitewide-copy-baseline.mjs';
+import { countedCapital } from '../src/lib/funding-capital.mjs';
+import { beforeMergeParadromicsFile } from './helpers/financing-merge-baseline.mjs';
+import { beforeFinancingFixesFile } from './helpers/financing-fixes-baseline.mjs';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -41,8 +43,8 @@ test('every reviewed current file reconstructs the exact pinned historical bytes
   assert.equal(CHINA_FUNDING_DELTA.baselineSha, CHINA_FUNDING_BASELINE_SHA);
   for (const entry of CHINA_FUNDING_DELTA.files) {
     const file = new URL('../' + entry.path, import.meta.url);
-    const current = await readFile(file, 'utf8');
-    assert.equal(sha256(restoreMerged151Copy(current, entry.path)), entry.afterSha256, entry.path + ': complete reviewed merged-151 bytes');
+    const current = beforeMergeParadromicsFile(beforeFinancingFixesFile(await readFile(file, 'utf8'), entry.path), entry.path);
+    assert.equal(sha256(current), entry.afterSha256, entry.path + ': complete reviewed candidate bytes after copy and financing reversals');
     assert.equal(sha256(readHistoricalFileSync(file, 'utf8')), entry.beforeSha256, entry.path + ': exact original bytes, not a refreshed golden');
   }
 });
@@ -58,5 +60,5 @@ test('unprojected current source data and generated funding consumers retain exa
   assert.equal(current.summary.selectedCompanies, built.companies.length);
   assert.equal(current.summary.indexedRounds, built.rounds.length);
   assert.equal(current.summary.regulatoryMilestones, built.milestones.length);
-  assert.equal(current.summary.observedCapitalUsdM, Number(built.rounds.reduce((sum, round) => sum + round.amountUsdM, 0).toFixed(2)));
+  assert.equal(current.summary.observedCapitalUsdM, Number(built.rounds.reduce((sum, round) => sum + countedCapital(round), 0).toFixed(2)));
 });

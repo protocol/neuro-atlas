@@ -8,10 +8,16 @@ import { selectPerformance } from '../src/lib/field-velocity/performance.ts';
 import { mount, click } from './modal-helpers.mjs';
 
 const milestones = JSON.parse(readFileSync('src/data/milestones.json', 'utf8'));
+// Independent oracle: disclosed amounts survive a hold, but do not add a point
+// or dollars to the cumulative capital line. Unknown treatments must not hide.
+const heldTreatments = ['overlap-unresolved', 'superseded', 'scope-unresolved'];
 
 test('Milestones plots sourced cumulative capital only, scaled to observations in every year and scope', async () => {
   const cleanup = await mount(React.createElement(MilestoneTimeline));
   try {
+    for (const row of milestones.filter(row => row.stage === 'capital')) {
+      assert.ok([undefined, '', ...heldTreatments].includes(row.capitalTreatment), `Known capital treatment: ${row.company} ${row.date}`);
+    }
     for (const scope of ['all', 'bci']) {
       await click([...document.querySelectorAll('button')].find(button => button.textContent.startsWith(scope === 'all' ? 'All neurotech' : 'BCI only')));
       for (const year of [2026, 2025, 2024]) {
@@ -25,8 +31,11 @@ test('Milestones plots sourced cumulative capital only, scaled to observations i
         const line = svg.querySelector('polyline');
         assert.equal(line.hasAttribute('stroke-dasharray'), false);
         const actual = line.getAttribute('points').split(' ').map(point => point.split(',').map(Number));
-        const rows = milestones.filter(m => m.stage === 'capital' && !['grant', 'award'].includes(m.activity.trim().toLowerCase()) && m.amountUsdM && m.date && Number(m.date.slice(0, 4)) === year && (scope === 'all' || m.scope === 'bci')).sort((a, b) => a.date.localeCompare(b.date));
-        assert.equal(actual.length, rows.length + 1, 'One point per source record plus origin');
+        // Year-level proceeds belong in the annual total, not at an invented
+        // January 1 position on an intra-year curve. Partial-date coverage is
+        // also exercised by the dedicated precision regressions.
+        const rows = milestones.filter(m => m.stage === 'capital' && !['grant', 'award'].includes(m.activity.trim().toLowerCase()) && !heldTreatments.includes(m.capitalTreatment) && m.amountUsdM && m.date && m.datePrecision === 'day' && Number(m.date.slice(0, 4)) === year && (scope === 'all' || m.scope === 'bci')).sort((a, b) => a.date.localeCompare(b.date));
+        assert.equal(actual.length, rows.length + 1, 'One point per included day-dated source record plus origin; held and year-only disclosures add no timed point');
         const total = rows.reduce((sum, m) => sum + m.amountUsdM, 0);
         const height = Number(svg.getAttribute('height'));
         const t0 = Date.UTC(year, 0, 1), t1 = Date.UTC(year, 11, 31);

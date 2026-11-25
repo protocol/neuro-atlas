@@ -1,5 +1,6 @@
 import { milestoneRecordsForSource } from "@/lib/source-context-records";
-import { formatFundingDate } from "@/lib/funding-index";
+import { capitalExclusionLabel } from "@/lib/funding-capital.mjs";
+import { formatCapital, formatFundingDate } from "@/lib/funding-index";
 
 /** A quoted reference to existing records, not a timeline selection or inferred match. */
 export function MilestoneSourceContext({ source }: { source: unknown }) {
@@ -20,10 +21,14 @@ export function MilestoneSourceContext({ source }: { source: unknown }) {
             <h3 className="text-sm font-semibold">{row.company} · {row.activity}</h3>
             <p className="text-xs text-muted">
               {row.dateBasis === "event" ? "Event date" : row.dateBasis === "announcement" ? "Announced" : row.dateBasis === "reported" ? "Reported" : "Date unverified"}{" "}
-              <time dateTime={row.datePrecision === "month" ? row.date.slice(0, 7) : row.datePrecision === "year" ? row.date.slice(0, 4) : row.date}>
+              {row.date && <time dateTime={row.datePrecision === "month" ? row.date.slice(0, 7) : row.datePrecision === "year" ? row.date.slice(0, 4) : row.date}>
                 {formatFundingDate(row.date, row.datePrecision)}
-              </time>
+              </time>}
             </p>
+            {row.capitalTreatment && <div className="text-sm font-medium">
+              {row.amountUsdM !== null && <p>Disclosed amount · {formatCapital(row.amountUsdM)}</p>}
+              <p>{capitalExclusionLabel(row, "financing totals")}</p>
+            </div>}
             <p className="text-sm leading-relaxed">{row.note}</p>
             <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block text-sm underline underline-offset-4">
               Original source<span className="sr-only"> for {row.company} · {row.activity} (opens in a new tab)</span>

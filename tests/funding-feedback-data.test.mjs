@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { buildFundingIndex, loadFundingIndexSources, parseCsv } from "../scripts/lib/funding-index.mjs";
+import { countedCapital } from "../src/lib/funding-capital.mjs";
 
 import { loadHistoricalFundingSources, readHistoricalFile } from "./helpers/china-funding-baseline.mjs";
 
@@ -33,12 +34,15 @@ test("Science's November 17 Series D appears once in both canonical datasets and
   const round = index.rounds.find((row) => row.sourceUrl === scienceSource);
   assert.deepEqual(
     [round.companySlug, round.announcedOn, round.datePrecision, round.dateBasis, round.stage, round.amountUsdM, round.sourceKind, round.reviewedOn],
-    ["science-corporation", "2026-11-17", "day", "announcement", "Series D", 400, "primary", "2026-11-17"],
+    ["science-corporation", "2026-11-17", "day", "announcement", "Series D", 400, "primary", "2026-11-25"],
   );
   assert.deepEqual(round.investors, ["Khosla Ventures", "Ackman Oxman Institute", "Tenet Healthcare", "885 Capital", "Y Combinator", "PLC Neurotech"]);
   assert.match(round.note, /more than \$900m.*separate cumulative figure; the indexed amount covers this Series D round/i);
-  assert.equal(index.rounds.filter((row) => row.companySlug === "science-corporation").length, 3);
-  assert.equal(index.rounds.filter((row) => row.companySlug === "science-corporation").reduce((sum, row) => sum + row.amountUsdM, 0), 734);
+  assert.match(round.note, /earlier note disclosure is held separately to avoid possible conversion overlap/i);
+  const scienceRounds = index.rounds.filter((row) => row.companySlug === "science-corporation");
+  assert.equal(scienceRounds.length, 5, 'Two additional SEC equity offerings retain their own source identities');
+  assert.equal(Number(scienceRounds.reduce((sum, row) => sum + countedCapital(row), 0).toFixed(6)), 703.324984);
+  assert.equal(scienceRounds.find(row => row.stage === 'Convertible notes').capitalTreatment, 'overlap-unresolved');
   const funding = await readJson("src/data/funding-index.json");
   const milestones = await readJson("src/data/milestones.json");
   assert.deepEqual(funding.rounds.filter((row) => row.sourceUrl === scienceSource), [round]);
@@ -48,27 +52,27 @@ test("Science's November 17 Series D appears once in both canonical datasets and
   ]);
 });
 
-test("Merge's existing seed retains its amount and date semantics while recording the verified named participants", () => {
+test("Merge's existing seed retains its amount and source-backed announcement date while recording the verified named participants", () => {
   const rows = sources.rounds.filter((row) => row.company_slug === "merge-labs");
   assert.equal(rows.length, 1, "Attribution corrects the existing financing, never creates a round");
   const [source] = rows;
   assert.deepEqual(
     [source.announced_on, source.date_precision, source.date_basis, source.stage, source.amount_usd_m, source.amount_native_m, source.currency, source.display_amount],
-    ["2026-01-15", "day", "unverified", "Seed", "252", "", "USD", "$252m"],
-    "No promotion of the original unverified date basis or reported amount",
+    ["2026-01-15", "day", "announcement", "Seed", "252", "", "USD", "$252m"],
+    "The reviewed WIRED/partner announcements establish the date basis without changing the reported amount",
   );
-  assert.equal(source.investors, "OpenAI;Bain Capital;Gabe Newell;PL Capital");
+  assert.equal(source.investors, "OpenAI;Bain Capital;Gabe Newell;PL Capital;Interface Fund;Fifty Years");
   assert.equal(source.source_url, "https://www.wired.com/story/openai-invests-in-sam-altmans-new-brain-tech-startup-merge-labs/");
-  assert.equal(source.source_kind, "reporting", "The precise $252M is reporting, not an issuer-confirmed amount");
-  assert.equal(source.reviewed_on, "2026-11-17");
-  assert.match(source.note, /WIRED reports \$252 million/);
+  assert.equal(source.source_kind, "reporting", "The principal WIRED citation retains reporting provenance");
+  assert.equal(source.reviewed_on, "2026-11-25");
+  assert.match(source.note, /WIRED reports \$252m/);
   assert.match(source.note, /PL Capital.*\$250M\+/);
-  assert.match(source.note, /TechCrunch.*\$250 million/);
+  assert.match(source.note, /TechCrunch.*\$250m/);
+  assert.match(source.note, /Interface Fund and Fifty Years.*TechCrunch and Butterfly Network/);
   assert.match(source.note, /check size and investment vehicle are undisclosed/i);
-  assert.match(source.note, /investment vehicle are undisclosed/i);
   const index = buildFundingIndex(sources);
   const round = index.rounds.find((row) => row.companySlug === "merge-labs");
-  assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital"]);
+  assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital", "Interface Fund", "Fifty Years"]);
   assert.equal(round.amountUsdM, 252);
   const historicalIndex = buildFundingIndex(historicalSources);
   assert.equal(historicalIndex.rounds.length, 42);
@@ -85,23 +89,30 @@ const scienceInvestorEvidence = {
 };
 
 test("participant evidence loads from the canonical sidecar onto only the exact existing rounds", async () => {
-  assert.deepEqual(sources.investorEvidence, [{
+  assert.deepEqual(sources.investorEvidence, await readJson('data/funding-index/investor-evidence.json'), 'Native loader retains the entire actual canonical sidecar');
+  const originalCitations = sources.investorEvidence.filter(row => row.sourceUrl === mergeInvestorEvidence.sourceUrl || row.sourceUrl === scienceInvestorEvidence.sourceUrl);
+  assert.deepEqual(originalCitations, [{
     companySlug: "merge-labs", announcedOn: "2026-01-15", stage: "Seed", ...mergeInvestorEvidence,
   }, {
-    companySlug: "science-corporation", announcedOn: "2025-04-14", stage: "Financing", ...scienceInvestorEvidence,
+    companySlug: "science-corporation", announcedOn: "2025-04-14", stage: "Convertible notes", ...scienceInvestorEvidence,
   }]);
   const before = structuredClone(sources);
   const index = buildFundingIndex(sources);
   const merge = index.rounds.find((row) => row.companySlug === "merge-labs");
-  assert.deepEqual(merge.investorEvidence, [mergeInvestorEvidence]);
+  assert.deepEqual(merge.investorEvidence.filter(row => row.sourceUrl === mergeInvestorEvidence.sourceUrl), [mergeInvestorEvidence]);
   const generated = await readJson("src/data/funding-index.json");
   assert.deepEqual(generated.rounds, index.rounds, "Every generated financing matches the canonical builder, including participant evidence");
   assert.deepEqual(generated.investors, index.investors);
   const historical = await historicalFunding();
   assert.deepEqual([historical.summary.indexedRounds, historical.summary.selectedCompanies, historical.summary.observedCapitalUsdM], [42, 25, 3553.96]);
   const science = index.rounds.find((row) => row.companySlug === "science-corporation" && row.announcedOn === "2025-04-14");
-  assert.deepEqual(science.investorEvidence, [scienceInvestorEvidence]);
-  assert.ok(index.rounds.filter((row) => row !== merge && row !== science).every((row) => !Object.hasOwn(row, "investorEvidence")));
+  assert.deepEqual(science.investorEvidence.filter(row => row.sourceUrl === scienceInvestorEvidence.sourceUrl), [scienceInvestorEvidence]);
+  for (const round of index.rounds) {
+    const expected = sources.investorEvidence.filter(row => row.companySlug === round.companySlug && row.announcedOn === round.announcedOn && row.stage === round.stage)
+      .map(row => Object.fromEntries(Object.entries(row).filter(([key]) => !['companySlug', 'announcedOn', 'stage'].includes(key))));
+    if (expected.length) assert.deepEqual(round.investorEvidence, expected, 'All and only exact event-bound citations: ' + round.companySlug + ' ' + round.announcedOn);
+    else assert.equal(Object.hasOwn(round, 'investorEvidence'), false, 'No manufactured citations: ' + round.companySlug + ' ' + round.announcedOn);
+  }
   const withoutEvidence = buildFundingIndex({ ...sources, investorEvidence: [] });
   const comparableRounds = structuredClone(index.rounds);
   for (const round of comparableRounds) delete round.investorEvidence;
@@ -157,7 +168,7 @@ test("participant evidence rejects repeated event-investor-source citations", ()
   distinct.investorEvidence.push({ ...distinct.investorEvidence[0], sourceUrl: "https://example.org/second-disclosure" });
   distinct.investorEvidence.push({ ...distinct.investorEvidence[0], investorName: "Bain Capital" });
   const index = buildFundingIndex(distinct);
-  assert.equal(index.rounds.find((row) => row.companySlug === "merge-labs").investorEvidence.length, 3, "Separate sources or named participants are not duplicate citations");
+  assert.equal(index.rounds.find((row) => row.companySlug === "merge-labs").investorEvidence.length, 5, "Three source-backed current citations plus two distinct test additions are not duplicate citations");
 });
 
 test("PLC's ten published portfolio relationships stay separate from indexed financing and exact investor identities", async () => {
@@ -190,9 +201,9 @@ test("PLC's ten published portfolio relationships stay separate from indexed fin
   // remain reproducible without grouping and round histories remain exact.
   const ungrouped = buildFundingIndex({ ...sources, investorGroups: [] });
   assert.deepEqual(ungrouped.investors.filter((investor) => ["Protocol Labs", "PLC Neurotech", "PL Capital"].includes(investor.name)).sort((a, b) => a.name.localeCompare(b.name)), [
-    { name: "PL Capital", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 252 },
+    { name: "PL Capital", roundCount: 2, companyCount: 2, associatedCapitalUsdM: 259.5 },
     { name: "PLC Neurotech", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 400 },
-    { name: "Protocol Labs", roundCount: 2, companyCount: 2, associatedCapitalUsdM: 207.5 },
+    { name: "Protocol Labs", roundCount: 1, companyCount: 1, associatedCapitalUsdM: 200 },
   ]);
   assert.deepEqual(index.rounds, ungrouped.rounds, "Display grouping does not rename source investors in financing histories");
   assert.deepEqual(index.investors.find((investor) => investor.name === "Protocol Labs (incl. PLC Neuro)"), {
@@ -244,9 +255,9 @@ test("latest-stage grouping unifies unlabeled investment and financing without m
   }
   const index = buildFundingIndex(sources);
   const [blackrock] = helpers.buildCompanyRows(index.companies, index.rounds, { query: "Blackrock", scope: "All", modality: "All" });
-  assert.equal(blackrock.latestStage, "Undisclosed");
-  assert.equal(blackrock.rounds[0].stage, "Investment");
+  assert.equal(blackrock.latestStage, "Equity financing (Form D)");
+  assert.equal(blackrock.rounds[0].stage, "Financing", 'The retained source label is not rewritten by display grouping');
   const [neuracle] = helpers.buildCompanyRows(index.companies, index.rounds, { query: "Neuracle", scope: "All", modality: "All" });
-  assert.equal(neuracle.latestStage, "Undisclosed");
-  assert.equal(neuracle.rounds[0].stage, "Financing (stage undisclosed)");
+  assert.equal(neuracle.latestStage, "Series E");
+  assert.equal(neuracle.rounds.find(row => row.announcedOn === '2025-10-28').stage, 'Series E');
 });

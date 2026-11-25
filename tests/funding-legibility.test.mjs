@@ -9,6 +9,13 @@ import { mount, click } from './modal-helpers.mjs';
 const data = JSON.parse(await readFile(new URL('../src/data/funding-index.json', import.meta.url), 'utf8'));
 globalThis.React = React;
 const button = text => [...document.querySelectorAll('button')].find(el => el.textContent === text);
+// Literal contract, not the production label function: every hold has its own
+// source-specific reason rather than inheriting the overlap-only label.
+const exclusionReasons = {
+  'overlap-unresolved': 'financing overlap unresolved',
+  'superseded': 'superseded disclosure',
+  'scope-unresolved': 'financing scope unresolved',
+};
 
 test('mounted funding views keep supporting type at least 12px with calm label typography', async () => {
   const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }));
@@ -33,15 +40,20 @@ test('every financing amount has a readable visible readout without expanding th
       const readouts = [...company.querySelectorAll('[data-financing-readout]')];
       assert.equal(readouts.length, row.rounds.length);
       row.rounds.forEach((round, index) => {
-        const mark = [...company.querySelectorAll('[title]')].find(el => el.title === `${row.name} · ${round.stage} · ${round.displayAmount}`);
+        assert.ok([undefined, '', ...Object.keys(exclusionReasons)].includes(round.capitalTreatment), `Known treatment: ${row.name} ${round.stage}`);
+        const exclusion = round.capitalTreatment ? `Excluded from indexed total — ${exclusionReasons[round.capitalTreatment]}` : '';
+        const mark = [...company.querySelectorAll('[title]')].find(el => el.title === `${row.name} · ${round.stage} · ${round.displayAmount}${exclusion ? ` · ${exclusion}` : ''}`);
+        assert.ok(mark, `Source-amount marker: ${row.name} ${round.stage}`);
         const width = Math.min(76, 20 + Math.sqrt(round.amountUsdM) * 2.1);
         assert.equal(mark.style.width, `${width}px`, 'amount-encoded width is unchanged');
         const expected = document.createElement('span');
         expected.style.left = `calc(${getTimelinePosition(round.announcedOn, data.summary.firstYear, data.summary.lastYear)}% - ${width / 2}px)`;
         assert.equal(mark.style.left, expected.style.left);
         assert.equal(mark.textContent, '', 'narrow marks do not contain enlarged overflowing text');
-        assert.match(mark.className, /bg-accent/);
+        assert.match(mark.className, round.capitalTreatment ? /border-dashed.*bg-surface-raised/ : /bg-accent/);
+        if (exclusion) assert.equal(mark.classList.contains('bg-accent'), false, 'held disclosure is hollow, not a solid included-capital bar');
         const readout = readouts[index];
+        if (exclusion) assert.ok(readout.textContent.includes(exclusion), 'visible source amount names the actual exclusion reason');
         assert.ok(readout.textContent.includes(round.displayAmount));
         assert.ok(readout.textContent.includes(round.stage));
         assert.ok(readout.textContent.includes(formatFundingDate(round.announcedOn, round.datePrecision)));

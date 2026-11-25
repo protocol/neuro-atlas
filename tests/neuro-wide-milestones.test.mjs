@@ -14,7 +14,7 @@ const one = (rows, source, key) => {
 
 function assertRecord(raw, expected) {
   const row = one(canonical, expected.sourceUrl, 'source_url');
-  assert.deepEqual(row, raw, 'Canonical record retains the reviewed exact source values');
+  assert.deepEqual(row, { ...raw, capital_treatment: '' }, 'Canonical record retains every exact source value and the explicit blank treatment');
   assert.deepEqual(one(milestones, expected.sourceUrl, 'sourceUrl'), expected,
     'Generated record retains every reviewed canonical value');
   assert.equal(funding.rounds.some(round => round.sourceUrl === expected.sourceUrl), false,

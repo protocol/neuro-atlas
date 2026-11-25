@@ -1,0 +1,22 @@
+{
+  "runtimeRevision": "9b8b035bc0d5948c88019c7a15894612b42015fc",
+  "scope": "Actual localhost production-build captures; 390px is viewport/pointer emulation, not a physical-phone test. Theme names reflect observed document theme.",
+  "files": [
+    {
+      "path": "precision-detail-light-1440.png",
+      "sha256": "f59b552cb0186d463dc7f4813d378d742da9beeccf38bb2d5b2919b128d2603a"
+    },
+    {
+      "path": "precision-detail-light-390.png",
+      "sha256": "d7d4654d9a8fbf175bf273e598271a06b297375ac0ea45baa31b16c265ed70b1"
+    },
+    {
+      "path": "precision-detail-dark-390.png",
+      "sha256": "06bc99a9d7017556577b1c7a4abcc77f39ae55e2a8c3232ea93ea6c8b2a4762c"
+    },
+    {
+      "path": "precision-source-light-390.png",
+      "sha256": "d5c97aab32b5b0923741deaa0f08841db0df5792c0b3ed69cf5452ed9a23f444"
+    }
+  ]
+}

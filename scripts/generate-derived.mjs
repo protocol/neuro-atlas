@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { buildFundingIndex, loadFundingIndexSources, sourceDateBasis } from "./lib/funding-index.mjs";
 import { historicalFxFor } from "./lib/historical-fx.mjs";
+import { countedCapital } from "../src/lib/funding-capital.mjs";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const DATA = path.join(ROOT, "data");
@@ -51,12 +52,13 @@ const milestones = msRows.map((r) => {
   if (logoFile) usedLogos.add(logoFile);
   const converted = historicalFxFor(r.source_url, r.date, fxConversions);
   if (converted && r.amount_usd_m) throw new Error(`Conflicting historical FX milestone: ${r.source_url}`);
-  return {
+  const milestone = {
     company: r.company,
     slug,
     activity: r.activity,
     stage: r.stage,
     amountUsdM: converted?.amountUsdM ?? (r.amount_usd_m ? Number(r.amount_usd_m) : null),
+    ...(r.capital_treatment !== undefined && r.capital_treatment !== "" ? { capitalTreatment: r.capital_treatment } : {}),
     ...(converted ? { fx: converted.fx } : {}),
     date: r.date || null,
     datePrecision: r.date_precision || "window",
@@ -66,6 +68,8 @@ const milestones = msRows.map((r) => {
     logo: logoFile ? `/logos/${logoFile}` : null,
     scope: r.scope || "bci",
   };
+  countedCapital(milestone); // Validate every treatment, including null-amount disclosures.
+  return milestone;
 });
 fs.writeFileSync(path.join(OUT, "milestones.json"), JSON.stringify(milestones, null, 2));
 
@@ -110,7 +114,7 @@ fundingIndex.companies = fundingIndex.companies.map((company) => {
   }
   return { ...company, logo: logoFile ? `/logos/${logoFile}` : "" };
 });
-const observedCapitalUsdM = fundingIndex.rounds.reduce((total, round) => total + round.amountUsdM, 0);
+const observedCapitalUsdM = fundingIndex.rounds.reduce((total, round) => total + countedCapital(round), 0);
 const years = fundingIndex.rounds.map((round) => Number(round.announcedOn.slice(0, 4)));
 fundingIndex.summary = {
   ...fundingIndex.summary,
@@ -120,12 +124,12 @@ fundingIndex.summary = {
   observedCapitalUsdM: Number(observedCapitalUsdM.toFixed(2)),
   firstYear: Math.min(...years),
   lastYear: Math.max(...years),
-  asOf: "2026-11-24",
+  asOf: "2026-11-25",
 };
 fundingIndex.methodology = {
   thresholdUsdM: 2,
   scope: "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
-  coverage: "Selected public financing records, including explicitly labeled philanthropic commitments. Combined multi-round disclosures are counted once at their published total. Associated capital sums the full financing amounts for records naming each backer; individual contributions require separate evidence. Dates identify announcements, reports or documented events; uncertain dates are labeled unverified. Amounts retain the published currency and historical exchange-rate estimates. Each saved conversion keeps its original rate and date; older estimates retain any unresolved rate-source qualifications. Company histories and source access remain partial. Standalone grants and lifetime cumulative totals remain outside the indexed sum.",
+  coverage: "Selected public financing records, including explicitly labeled philanthropic commitments. Combined multi-round disclosures are counted once at their published total. Associated capital sums the full financing amounts for records naming each backer; individual contributions require separate evidence. Dates identify announcements, reports or documented events; uncertain dates are labeled unverified. Amounts retain the published currency and historical exchange-rate estimates. Each saved conversion keeps its original rate and date; older estimates retain any unresolved rate-source qualifications. Company histories and source access remain partial. Standalone grants and lifetime cumulative totals remain outside the indexed sum. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other company histories retain their existing review status.",
 };
 fs.writeFileSync(path.join(OUT, "funding-index.json"), JSON.stringify(fundingIndex));
 

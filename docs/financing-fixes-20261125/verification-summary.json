@@ -1,0 +1,247 @@
+{
+  "dataRevision": "43ffb9cdd85cf329a93b0391efeaf586ea1775c6",
+  "runtimeRevision": "acdd4f138d21ea24bd1ab6e0a6aaf2cb7520927e",
+  "standardFullSuite": {
+    "baselineRevision": "9c1ddcca0bb49daf1c825d9b3b6e318fd870ac3b",
+    "testedRevision": "48dcb97767a9b26e5cf4a509ed89fa27d455c10f",
+    "standardCommand": "node --import tsx --test tests/*.test.mjs (structured reporter only)",
+    "baselineCounts": {
+      "tests": 1652,
+      "failed": 36,
+      "passed": 1616,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "topLevel": 1636,
+      "suites": 0
+    },
+    "candidateCounts": {
+      "tests": 1847,
+      "failed": 36,
+      "passed": 1811,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "topLevel": 1831,
+      "suites": 0
+    },
+    "baselineExit": 1,
+    "candidateExit": 1,
+    "newFailureIdentities": [],
+    "removedFailureIdentities": [],
+    "changedFailureDiagnostics": [],
+    "sameFailureDiagnostics": [
+      {
+        "file": "tests/bci-sensory-context.test.mjs",
+        "name": "all default and preview plot SVGs match pinned main plus the isolated acquisition display baseline",
+        "diagnosticSha256": "1a17515f240afc0799d0a9bcfe8005c9ed0b9a991ebddc85de4a21eff48b08cc"
+      },
+      {
+        "file": "tests/chart-sharing.test.mjs",
+        "name": "all 15 curated images keep exact geometry, refer to Atlas, and retain source evidence without painting a footnote",
+        "diagnosticSha256": "67a8bba2f905523220e0da9e884b0a21a1472302493e87b446b3e42c059e6903"
+      },
+      {
+        "file": "tests/chart-sharing.test.mjs",
+        "name": "rendered metric cards omit the generic Bounded evidence eyebrow, retaining observed counts and scientific caveats",
+        "diagnosticSha256": "67a8bba2f905523220e0da9e884b0a21a1472302493e87b446b3e42c059e6903"
+      },
+      {
+        "file": "tests/citation-cli.test.mjs",
+        "name": "application configuration suppresses only the three approved data branches",
+        "diagnosticSha256": "f665d45836adf844c496659d5c93fa5534fa4cc7ca96b6aa7a0ee6d6edb8556c"
+      },
+      {
+        "file": "tests/citation-source-pins.test.mjs",
+        "name": "original shared snapshot and provenance retain initial-main byte hashes",
+        "diagnosticSha256": "16897c574a1628985285f1e201f4951d0c8206e439aedd8598a4e91f58c4807f"
+      },
+      {
+        "file": "tests/connectomics-merged-provenance.test.mjs",
+        "name": "both exact branch deltas restore original full runtime goldens and normalization is non-mutating",
+        "diagnosticSha256": "002c356256afd41c2a1308aa4f195c4ed5725f377228be2865ac898f317a7030"
+      },
+      {
+        "file": "tests/curated-reader-copy.test.mjs",
+        "name": "cost and throughput retain acquisition boundaries, estimates, resolution and prospective scope",
+        "diagnosticSha256": "8115b7ea646bc62eaf8313dc6aaa47a5b246df6ff560ca49b13efe0a9dfc0c10"
+      },
+      {
+        "file": "tests/draft-chart-unresolved-sources.test.mjs",
+        "name": "a blank observation URL renders plain provenance, never a fabricated source link",
+        "diagnosticSha256": "0419ae20d190946bd7df589894cafd127d0654886a6a326a48e2a32ac33b049a"
+      },
+      {
+        "file": "tests/draft-chart-unresolved-sources.test.mjs",
+        "name": "a missing observation URL renders plain provenance, never a fabricated source link",
+        "diagnosticSha256": "0419ae20d190946bd7df589894cafd127d0654886a6a326a48e2a32ac33b049a"
+      },
+      {
+        "file": "tests/draft-charts.test.mjs",
+        "name": "plot previews open source-qualified detail without a paragraph wall above the SVG",
+        "diagnosticSha256": "1add6f8bae76e2a577ab8b5f438ef5420840e79f1594d8b5778e625741f7f5c6"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "confirmed supporting references carry distinct roles through rendered details, sources, accessibility and export metadata",
+        "diagnosticSha256": "d77ac5b281d1cf234ac13d7a20dd78c160d8864350034faeaac2dc5f5c52ecbc"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "duplicate exact URLs retain the principal citation and one confirmed supporting link without promoting candidates",
+        "diagnosticSha256": "d77ac5b281d1cf234ac13d7a20dd78c160d8864350034faeaac2dc5f5c52ecbc"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "largest-connectome-neurons: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+        "diagnosticSha256": "46e8464eb3946a53a3d0b19fe0fb17dfe5936d335cc437553546d000d848a8d3"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "largest-connectome-synapses: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+        "diagnosticSha256": "46e8464eb3946a53a3d0b19fe0fb17dfe5936d335cc437553546d000d848a8d3"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "legacy single-source output remains unchanged, including unlinked unresolved sources and export titles",
+        "diagnosticSha256": "67a8bba2f905523220e0da9e884b0a21a1472302493e87b446b3e42c059e6903"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "proofreading-effort: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+        "diagnosticSha256": "46e8464eb3946a53a3d0b19fe0fb17dfe5936d335cc437553546d000d848a8d3"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "public-data-size: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+        "diagnosticSha256": "46e8464eb3946a53a3d0b19fe0fb17dfe5936d335cc437553546d000d848a8d3"
+      },
+      {
+        "file": "tests/draft-confirmed-references.test.mjs",
+        "name": "tissue-cm3: actual reader evidence exposes the confirmed credit and exports only the compact paired dataset credit",
+        "diagnosticSha256": "46e8464eb3946a53a3d0b19fe0fb17dfe5936d335cc437553546d000d848a8d3"
+      },
+      {
+        "file": "tests/extrapolation-ui.test.mjs",
+        "name": "canonical source bytes and unmodified tissue chart are preserved",
+        "diagnosticSha256": "16897c574a1628985285f1e201f4951d0c8206e439aedd8598a4e91f58c4807f"
+      },
+      {
+        "file": "tests/field-velocity-critic-copy.test.mjs",
+        "name": "metric-panel-pathfinder-nerl: methodology names the plotted axes",
+        "diagnosticSha256": "35026b19ea2626b9519a5d534fef9968d0277e6056b2c9467b081d1fb4e9f386"
+      },
+      {
+        "file": "tests/google-trends-producer.test.mjs",
+        "name": "app config suppresses only the three approved data branches and leaves application deployments enabled",
+        "diagnosticSha256": "f665d45836adf844c496659d5c93fa5534fa4cc7ca96b6aa7a0ee6d6edb8556c"
+      },
+      {
+        "file": "tests/methodology-source-coverage.test.mjs",
+        "name": "the classified directory covers the exact external evidence inventory",
+        "diagnosticSha256": "9f16ac701f8e0a78996b1d06d20441fc88301dd6d01de64137d79e4a68052a5b"
+      },
+      {
+        "file": "tests/metric-presentation-followups.test.mjs",
+        "name": "draft acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+        "diagnosticSha256": "752dda57f0f570d997cbb5c1f24ea580029dd6cd1503d285cd59e51266487c8d"
+      },
+      {
+        "file": "tests/metric-presentation-followups.test.mjs",
+        "name": "metric acquisition economics belongs to Cost and automation with reciprocal units and preserved source evidence",
+        "diagnosticSha256": "752dda57f0f570d997cbb5c1f24ea580029dd6cd1503d285cd59e51266487c8d"
+      },
+      {
+        "file": "tests/metrics-navigation.test.mjs",
+        "name": "Metrics is one full-rail-default, keyboard-native index in the five-group order",
+        "diagnosticSha256": "4412cfb056c2ef2dcba0c6ca241df33493373cd69a9165f4dd3dfd8d058fdf58"
+      },
+      {
+        "file": "tests/metrics-navigation.test.mjs",
+        "name": "archived source snapshots and provenance remain byte-identical to base",
+        "diagnosticSha256": "8b3ad9d9e4759201d3b7d64dbb2ff5be38337a540ca2e5ba2511d4b3500b0669"
+      },
+      {
+        "file": "tests/metrics-preview-noise.test.mjs",
+        "name": "preview cards avoid generic source-status labels while retaining scope, qualifiers and full chart notes",
+        "diagnosticSha256": "4412cfb056c2ef2dcba0c6ca241df33493373cd69a9165f4dd3dfd8d058fdf58"
+      },
+      {
+        "file": "tests/metrics-readable-copy.test.mjs",
+        "name": "acquisition preview and details use voxels per dollar with the exact unit conversion",
+        "diagnosticSha256": "2761f852a0e7f3e26ae21854095f54fdebffd640527e4a21df604595583f313e"
+      },
+      {
+        "file": "tests/metrics-reader-policy.test.mjs",
+        "name": "the actual Field velocity page contains readings, not Markets or channel-count placeholders",
+        "diagnosticSha256": "4412cfb056c2ef2dcba0c6ca241df33493373cd69a9165f4dd3dfd8d058fdf58"
+      },
+      {
+        "file": "tests/metrics-three-state-groups.test.mjs",
+        "name": "five ordered groups default to all charts, with independent collapsed/full states",
+        "diagnosticSha256": "4412cfb056c2ef2dcba0c6ca241df33493373cd69a9165f4dd3dfd8d058fdf58"
+      },
+      {
+        "file": "tests/neuro-wide-milestones-baseline.test.mjs",
+        "name": "all pre-addition canonical bytes and generated milestone objects retain their base hashes",
+        "diagnosticSha256": "e4b4c55742fccdf2d2ca28f17aaacb6b14b7ef6a1b5e04cecfb341f173ce7195"
+      },
+      {
+        "file": "tests/notables-66.test.mjs",
+        "name": "Notables 66 adds only its eleven source-directory links, retaining every prior classification",
+        "diagnosticSha256": "c3398a349ba19bc9f542483298bab5bb3de9efcf4b5c7d37de75ec552e354cb0"
+      },
+      {
+        "file": "tests/publications-config.test.mjs",
+        "name": "all three isolated data feeds are suppressed without disabling app deployments",
+        "diagnosticSha256": "f665d45836adf844c496659d5c93fa5534fa4cc7ca96b6aa7a0ee6d6edb8556c"
+      },
+      {
+        "file": "tests/recording-evidence-data.test.mjs",
+        "name": "recording evidence separates audited electrical units, human implant channels and optical signals",
+        "diagnosticSha256": "16897c574a1628985285f1e201f4951d0c8206e439aedd8598a4e91f58c4807f"
+      },
+      {
+        "file": "tests/recording-evidence-ui.test.mjs",
+        "name": "fresh recording query recordingView=optical%20 resolves only an exact unambiguous view",
+        "diagnosticSha256": "a50573204bd2a44e8c5e33e7a947ae563f3040459a5bf31b861db8d9c1fb0faa"
+      },
+      {
+        "file": "tests/retired-metrics.test.mjs",
+        "name": "retired panels are unmounted, with every other source observation retained exactly once",
+        "diagnosticSha256": "711fd202fcf1f5e662627db028f40616188537f3b25b84e2e624b0b960cc25f4"
+      }
+    ],
+    "fullSuiteGreen": false,
+    "comparisonPassed": true
+  },
+  "build": {
+    "status": "PASS",
+    "command": "npm run build -- --webpack",
+    "logSha256": "62ab30fd74db2a17397f7296c30933c734a5af8b249a2d76301d239e5386980e"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "npm run typecheck",
+    "logSha256": "e3719c390933e49d5faee1883678347999baca4c3d094ee5552fc511c9ff0362"
+  },
+  "changedFileLint": {
+    "errors": 0,
+    "warnings": 2,
+    "warningRules": [
+      "@typescript-eslint/no-unused-vars"
+    ],
+    "baselineWarningCount": 1
+  },
+  "publicSourceLiteralChecks": {
+    "checks": 446,
+    "issues": 0
+  },
+  "officialProviderFxReplay": {
+    "checks": 34,
+    "issues": 0
+  },
+  "independentSourceReview": "PASS after located findings closed",
+  "independentCodeReview": "PASS after located findings closed",
+  "nativeScope": "Local production build; see qa.md and screenshot-manifest.json. Hosted identity is verified separately in PR."
+}

@@ -9,10 +9,13 @@ import {
   formatFundingDate,
   formatFundingFxBasis,
   formatFundingRecordDate,
+  reportedTotalFootnote,
   getTimelinePosition,
   type FundingCompanyRow,
   type FundingIndexData,
+  type FundingReportedTotal,
 } from "@/lib/funding-index";
+import { capitalExclusionLabel } from "@/lib/funding-capital.mjs";
 import { clampCenteredTooltipX } from "@/lib/tooltip-position";
 
 function sourceReviewLabel(date: string) {
@@ -22,6 +25,16 @@ function sourceReviewLabel(date: string) {
 
 function sourceKindLabel(kind: "primary" | "reporting") {
   return kind === "primary" ? "Primary source" : "Reported source";
+}
+
+function ReportedTotalAnnotation({ total }: { total?: FundingReportedTotal }) {
+  if (!total) return null;
+  const footnote = reportedTotalFootnote(total);
+  return <span data-reported-company-total title={total.sourceUrl} className="mt-2 block text-xs leading-relaxed text-foreground">
+    <span className="font-semibold">{formatCapital(total.amountUsdM)}{footnote && <sup aria-label="See possible-overlap note">*</sup>} company-reported total</span>
+    <span className="block text-muted">{total.scope} · Reported <time dateTime={total.reportedOn}>{formatFundingDate(total.reportedOn, "day")}</time> · Source in detail</span>
+    {footnote && <span data-reported-total-footnote className="block text-muted">* {footnote}</span>}
+  </span>;
 }
 
 function markerTitle(marker: string, indication?: string) {
@@ -83,6 +96,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
     () => buildCompanyRows(data.companies, data.rounds, { query: "", scope: "All", modality: "All" }).find((row) => row.slug === selectedSlug) ?? null,
     [data.companies, data.rounds, selectedSlug],
   );
+  const selectedReportedTotal = data.reportedTotals?.find((total) => total.companySlug === selectedSlug);
+  const selectedReportedTotalFootnote = selectedReportedTotal ? reportedTotalFootnote(selectedReportedTotal) : null;
   const selectedMilestones = useMemo(
     () => data.milestones.filter((milestone) => milestone.companySlug === selectedSlug),
     [data.milestones, selectedSlug],
@@ -299,9 +314,9 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                           return (
                             <span
                               key={`${round.announcedOn}-${round.stage}`}
-                              className="absolute z-10 h-5 rounded-full border border-accent/20 bg-accent shadow-sm"
+                              className={`absolute z-10 h-5 rounded-full border shadow-sm ${round.capitalTreatment ? "border-dashed border-foreground bg-surface-raised" : "border-accent/20 bg-accent"}`}
                               style={{ left: `calc(${position}% - ${width / 2}px)`, top: `${4 + (index % 2) * 22}px`, width: `${width}px` }}
-                              title={`${row.name} · ${round.stage} · ${round.displayAmount}`}
+                              title={`${row.name} · ${round.stage} · ${round.displayAmount}${round.capitalTreatment ? ` · ${capitalExclusionLabel(round)}` : ""}`}
                             />
                           );
                         })}
@@ -322,13 +337,16 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                         {row.rounds.map((round) => (
                           <span key={`${round.announcedOn}-${round.stage}`} data-financing-readout className="text-xs leading-relaxed">
                             {formatFundingRecordDate(round.announcedOn, round.datePrecision, round.dateBasis)} · {round.stage} · <span className="font-semibold tabular-nums text-foreground">{round.displayAmount}</span>
+                            {round.capitalTreatment && <span className="block font-medium text-foreground">{capitalExclusionLabel(round)}</span>}
                           </span>
                         ))}
                       </div>
+                      <ReportedTotalAnnotation total={data.reportedTotals?.find((total) => total.companySlug === row.slug)} />
                       </div>
                       <div className="pl-4 text-right">
                         <div className="text-sm font-semibold">{formatCapital(row.observedCapitalUsdM)}</div>
                         <div className="mt-0.5 text-xs text-muted">{row.rounds.length} financing {row.rounds.length === 1 ? "record" : "records"}</div>
+                        {row.rounds.some((round) => round.capitalTreatment) && <div className="mt-1 text-xs font-medium">{row.rounds.filter((round) => round.capitalTreatment).length} {row.rounds.filter((round) => round.capitalTreatment).length === 1 ? "record" : "records"} excluded from total</div>}
                         {row.rounds.some((round) => round.sourceKind) && <div className="mt-1 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.sourceKind ? [sourceKindLabel(round.sourceKind)] : []))].join(" · ")}</div>}
                         {row.rounds.some((round) => round.reviewedOn) && <div className="mt-0.5 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => round.reviewedOn ? [sourceReviewLabel(round.reviewedOn)] : []))].join(" · ")}</div>}
                       </div>
@@ -339,6 +357,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               </div>
               <div className="flex flex-wrap items-center gap-5 border-t border-border bg-nav/40 px-5 py-3 text-xs text-muted">
                 <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full bg-accent align-middle" />Financing (width scales with disclosed amount)</span>
+                <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full border border-dashed border-foreground align-middle" />Disclosed amount excluded from totals · reason shown per record</span>
                 <span className="inline-flex items-center"><b className="mr-1.5 cursor-help rounded bg-[#151821] px-1 py-0.5 text-xs text-white" onMouseEnter={(event) => showMarkerTip(event, "IDE")} onMouseLeave={() => setMarkerTip(null)}>IDE</b>Regulatory marker</span>
                 <span className="ml-auto">{rows.length} of {data.summary.selectedCompanies} companies</span>
               </div>
@@ -367,6 +386,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                           <div className="flex items-center justify-between gap-3 text-xs font-semibold"><span className="truncate">{row.name}</span><span>{formatCapital(row.observedCapitalUsdM)}</span></div>
                           <div className="mt-1 text-xs text-muted" data-founding-year={row.slug}>Founding year · <span className="font-medium tabular-nums text-foreground">{row.founding?.year ?? "Unknown"}</span></div>
                           {row.rounds.some((round) => round.sourceKind || round.reviewedOn) && <div className="mt-1 text-xs text-muted">{[...new Set(row.rounds.flatMap((round) => [round.sourceKind ? sourceKindLabel(round.sourceKind) : "", round.reviewedOn ? sourceReviewLabel(round.reviewedOn) : ""].filter(Boolean)))].join(" · ")}</div>}
+                          {row.rounds.some((round) => round.capitalTreatment) && <div className="mt-1 text-xs font-medium">{row.rounds.filter((round) => round.capitalTreatment).length} {row.rounds.filter((round) => round.capitalTreatment).length === 1 ? "record" : "records"} excluded from total</div>}
+                          <ReportedTotalAnnotation total={data.reportedTotals?.find((total) => total.companySlug === row.slug)} />
                           <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-accent" style={{ width: `${Math.max(4, (row.observedCapitalUsdM / Math.max(group.companies[0]?.observedCapitalUsdM ?? 1, 1)) * 100)}%` }} /></div>
                         </div>
                       </button>
@@ -425,7 +446,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
             </div>
             <div>
               <div className="text-xs font-bold text-muted">Coverage</div>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{data.methodology.coverage} Latest selective review {formatFundingDate(data.summary.asOf, "day")}. Financing histories remain partial. Indexed totals cover the financing records shown.</p>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{data.methodology.coverage} Latest selective review {formatFundingDate(data.summary.asOf, "day")}. Financing histories remain partial, and the indexed sum is not an all-time total. Indexed totals cover the financing records shown.</p>
             </div>
           </div>
         </div>
@@ -461,11 +482,28 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 {[selected.scope, selected.modality, selected.interfaceDepth].filter(Boolean).map((item) => <span key={item} className="rounded-full border border-border bg-surface-raised px-3 py-1.5 text-xs font-semibold">{item}</span>)}
               </div>
               <div className="mt-6 rounded-2xl bg-[#11131a] p-6 text-white">
-                <div className="text-xs font-bold text-white/70">Indexed financing</div>
-                <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selected.observedCapitalUsdM)}</div>
+                <div className="text-xs font-bold text-white/70">{selectedReportedTotal ? "Company-reported total" : "Indexed financing"}</div>
+                <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selectedReportedTotal?.amountUsdM ?? selected.observedCapitalUsdM)}{selectedReportedTotalFootnote && <sup className="ml-0.5 align-super text-lg" aria-label="See possible-overlap note">*</sup>}</div>
+                {selectedReportedTotal && <div className="mt-3 space-y-2 text-sm text-white/85">
+                  <p className="font-semibold">{selectedReportedTotal.scope}</p>
+                  {selectedReportedTotalFootnote && <p data-reported-total-footnote className="text-xs leading-relaxed">* {selectedReportedTotalFootnote}</p>}
+                  <p className="text-xs">Public company self-report · Reported <time dateTime={selectedReportedTotal.reportedOn}>{formatFundingDate(selectedReportedTotal.reportedOn, "day")}</time></p>
+                  <a href={selectedReportedTotal.sourceUrl} target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold underline underline-offset-4">Company-reported total source ↗</a>
+                  <div data-indexed-financing-summary className="border-t border-white/20 pt-3">
+                    <p className="font-semibold">Indexed financing · <span className="text-xl tabular-nums">{formatCapital(selected.observedCapitalUsdM)}</span></p>
+                    {selected.rounds.some((round) => round.capitalTreatment) && <p className="mt-2 text-xs leading-relaxed text-white/70">{selected.rounds.filter((round) => round.capitalTreatment).length} financing {selected.rounds.filter((round) => round.capitalTreatment).length === 1 ? "record" : "records"} excluded from indexed financing.</p>}
+                  </div>
+                </div>}
                 <p className="mt-3 text-sm text-white/75">{selected.indication}</p>
-                <p className="mt-2 text-xs leading-relaxed text-white/65">Sum of indexed financing amounts, including labeled commitments.</p>
+                {!selectedReportedTotal && <>
+                  <p className="mt-2 text-xs leading-relaxed text-white/65">Sum of indexed financing amounts, including labeled commitments.</p>
+                  {selected.rounds.some((round) => round.capitalTreatment) && <p className="mt-2 text-xs font-medium text-white">{selected.rounds.filter((round) => round.capitalTreatment).length} {selected.rounds.filter((round) => round.capitalTreatment).length === 1 ? "record" : "records"} excluded from total.</p>}
+                </>}
               </div>
+              {selectedReportedTotal && <details className="mt-3 rounded-xl border border-border p-3 text-xs leading-relaxed text-muted">
+                <summary className="cursor-pointer font-semibold text-foreground">Source notes</summary>
+                <p className="mt-2">{selectedReportedTotal.note}</p>
+              </details>}
 
               <section className="mt-8 rounded-2xl border border-border bg-surface-raised p-4">
                 <h3 className="text-sm font-bold text-muted">Founding year</h3>
@@ -482,8 +520,9 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                     <article key={`${round.announcedOn}-${round.stage}`} className="rounded-2xl border border-border bg-surface-raised p-4">
                       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                         <div className="min-w-0 [overflow-wrap:anywhere]"><div className="text-sm font-semibold">{round.stage}</div><div className="mt-1 text-xs text-muted">{formatFundingRecordDate(round.announcedOn, round.datePrecision, round.dateBasis)}</div></div>
-                        <div className="shrink-0 text-lg font-semibold tabular-nums text-accent">{round.displayAmount}</div>
+                        <div className="max-w-full shrink-0 text-lg font-semibold tabular-nums text-accent [overflow-wrap:anywhere]">{round.displayAmount}</div>
                       </div>
+                      {round.capitalTreatment && <p className="mt-3 text-xs font-semibold">{capitalExclusionLabel(round)}</p>}
                       {round.sourceKind && <p className="mt-3 text-xs font-semibold">{sourceKindLabel(round.sourceKind)}{round.reviewedOn ? ` · ${sourceReviewLabel(round.reviewedOn)}` : ""}</p>}
                       {round.investors && round.investors.length > 0 && <p className="mt-3 text-xs leading-relaxed text-muted">{round.investors.join(" · ")}</p>}
                       {round.fx && <p className="mt-2 text-xs leading-relaxed text-muted">{formatFundingFxBasis(round.fx)} · {round.fx.nativePerUsd} {round.fx.currency}/USD · <a href={round.fx.rateSourceUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2">Exchange-rate source</a></p>}

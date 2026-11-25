@@ -1,9 +1,9 @@
 import MILESTONES from "../data/milestones.json";
 import FUNDING from "../data/funding-index.json";
-import type { FundingCompany, FundingRound, FundingMilestone, FundingIndexData } from "./funding-index";
+import type { FundingCompany, FundingRound, FundingMilestone, FundingIndexData, FundingReportedTotal } from "./funding-index";
 import { normalizeSourceContextUrl } from "./source-context-url";
 
-export type SourceMilestone = (typeof MILESTONES)[number];
+export type SourceMilestone = (typeof MILESTONES)[number] & { capitalTreatment?: string };
 export type FundingSourceMatch = {
   company: FundingCompany;
   /** Only the company fields actually citing this source are selected. */
@@ -12,11 +12,12 @@ export type FundingSourceMatch = {
   /** Includes a round if its own citation or a named-investor citation matches. */
   rounds: FundingRound[];
   milestones: FundingMilestone[];
+  reportedTotals: FundingReportedTotal[];
 };
 
 // Match the existing Funding page’s canonical JSON projection.
 const data = FUNDING as FundingIndexData;
-const { companies, rounds, milestones } = data;
+const { companies, rounds, milestones, reportedTotals = [] } = data;
 const sameSource = (candidate: unknown, key: string) => normalizeSourceContextUrl(candidate) === key;
 
 /** Canonical records, never a company/domain heuristic or an invented timeline item. */
@@ -34,7 +35,8 @@ export function fundingRecordsForSource(url: unknown): FundingSourceMatch[] {
     founding: sameSource(company.founding?.sourceUrl, key),
     rounds: rounds.filter(round => round.companySlug === company.slug && (sameSource(round.sourceUrl, key) || round.investorEvidence?.some(evidence => sameSource(evidence.sourceUrl, key)))),
     milestones: milestones.filter(record => record.companySlug === company.slug && sameSource(record.sourceUrl, key)),
-  })).filter(match => match.website || match.founding || match.rounds.length || match.milestones.length);
+    reportedTotals: reportedTotals.filter(total => total.companySlug === company.slug && sameSource(total.sourceUrl, key)),
+  })).filter(match => match.website || match.founding || match.rounds.length || match.milestones.length || match.reportedTotals.length);
 }
 
 /** Exact URLs already bound to rendered company facts or timeline events. */
@@ -43,6 +45,7 @@ export const RECORD_CONTEXT_SOURCE_URLS: readonly string[] = [...new Set([
   ...companies.flatMap(company => [company.website, company.founding?.sourceUrl]),
   ...rounds.flatMap(round => [round.sourceUrl, ...round.investorEvidence?.map(evidence => evidence.sourceUrl) ?? []]),
   ...milestones.map(record => record.sourceUrl),
+  ...reportedTotals.map(total => total.sourceUrl),
 ].filter((url): url is string => !!normalizeSourceContextUrl(url)))].sort();
 
 /** Receivers render a matched-record block at #source-context; they must be integrated together. */

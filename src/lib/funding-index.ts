@@ -1,3 +1,4 @@
+import { countedCapital } from "./funding-capital.mjs";
 export type FundingFounding = {
   year: number | null;
   sourceUrl: string;
@@ -19,6 +20,23 @@ export type FundingCompany = {
   logo?: string;
   founding?: FundingFounding | null;
 };
+
+export type FundingReportedTotal = {
+  companySlug: string;
+  amountUsdM: number;
+  reportedOn: string;
+  sourceUrl: string;
+  sourceKind: "primary" | "reporting";
+  scope: string;
+  reviewedOn: string;
+  note: string;
+};
+
+export function reportedTotalFootnote(total: FundingReportedTotal): string | null {
+  return total.companySlug === "precision-neuroscience"
+    ? "Possible overlap between round and SAFE disclosures."
+    : null;
+}
 
 export type FundingHistoricalFx = {
   sourceUrl: string;
@@ -43,6 +61,7 @@ export type FundingRound = {
   dateBasis?: string;
   stage: string;
   amountUsdM: number;
+  capitalTreatment?: string;
   amountNativeM?: number | null;
   fx?: FundingHistoricalFx;
   currency?: string;
@@ -108,7 +127,7 @@ export function buildCompanyRows(
       );
       return {
         ...company,
-        observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + round.amountUsdM, 0).toFixed(2)),
+        observedCapitalUsdM: Number(companyRounds.reduce((total, round) => total + countedCapital(round), 0).toFixed(2)),
         latestStage: normalizeFundingStage(companyRounds.at(-1)?.stage ?? "Undisclosed"),
         rounds: companyRounds,
       };
@@ -184,7 +203,7 @@ export function summarizePortfolioEvidence(
     records.set(identity, record);
   }
   const indexed = [...records.values()];
-  const capital = (items: typeof indexed) => Number(items.reduce((sum, item) => sum + item.round.amountUsdM, 0).toFixed(2));
+  const capital = (items: typeof indexed) => Number(items.reduce((sum, item) => sum + countedCapital(item.round), 0).toFixed(2));
   return {
     matchedCompanyCount: matchedSlugs.size,
     indexedFinancingCount: indexed.length,
@@ -204,6 +223,7 @@ export function summarizePortfolioEvidence(
 
 export type FundingIndexData = {
   companies: FundingCompany[];
+  reportedTotals?: FundingReportedTotal[];
   portfolioDisclosures?: FundingPortfolioDisclosure[];
   rounds: FundingRound[];
   milestones: FundingMilestone[];

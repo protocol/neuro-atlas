@@ -1,0 +1,32 @@
+{
+  "runtimeRevision": "9b8b035bc0d5948c88019c7a15894612b42015fc",
+  "standardFullSuite": {
+    "tests": 1850,
+    "failed": 36,
+    "passed": 1814,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "topLevel": 1834,
+    "suites": 0
+  },
+  "fullSuiteExit": 1,
+  "baselineFailures": 36,
+  "newFailureIdentities": [],
+  "worsenedDiagnosticObjects": [],
+  "comparisonPassed": true,
+  "focusedParentTests": {
+    "passed": 25,
+    "failed": 0
+  },
+  "independentReview": {
+    "verdict": "PASS",
+    "focusedPassed": 22,
+    "independentMountedPassed": 4,
+    "expectedBaselineRedTests": 3
+  },
+  "canonicalGeneratedAndHistoricalDataUnchanged": true,
+  "build": "PASS",
+  "typecheck": "PASS",
+  "changedFileLint": "PASS"
+}

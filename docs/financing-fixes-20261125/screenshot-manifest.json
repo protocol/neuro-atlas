@@ -1,0 +1,54 @@
+{
+  "runtimeRevision": "acdd4f138d21ea24bd1ab6e0a6aaf2cb7520927e",
+  "testOnlyRevision": "48dcb97767a9b26e5cf4a509ed89fa27d455c10f",
+  "dataRevision": "43ffb9cdd85cf329a93b0391efeaf586ea1775c6",
+  "captureScope": "Actual local production build in headed Chrome. 1440px desktop and 390px viewport-emulated mobile; not physical-phone touch or hosted captures.",
+  "servedAppAssetsExactlyMatched": 12,
+  "files": [
+    {
+      "path": "precision-detail-light-1440.png",
+      "sha256": "ddd2cf2426913232490c8602d3d72dd165280a94060395404fcae1a5dcfedcd7",
+      "bytes": 243526
+    },
+    {
+      "path": "funding-stage-dark-1440.png",
+      "sha256": "61f1ff1dc07675fb623da2c9f2ea4148d642bb53443ad01af2534605c090d9d7",
+      "bytes": 179214
+    },
+    {
+      "path": "funding-exclusion-legend-dark-1440.png",
+      "sha256": "8eef70c5aec0e4f2b1a4b49404661e916b1e7e72e2fb7ea9223dd59b879d4dad",
+      "bytes": 179226
+    },
+    {
+      "path": "science-source-dark-390.png",
+      "sha256": "02c5842b4dd0e3f75452a2d4d29968798dc241b5e70c11ae8f4b21ab86877a70",
+      "bytes": 65446
+    },
+    {
+      "path": "cortec-source-dark-390.png",
+      "sha256": "5bd9205f358b73f3be9c7097c0394fa28ad1ecca4c6d8c47005ea284a4a7c45d",
+      "bytes": 70331
+    },
+    {
+      "path": "annual-2024-selected-window-dark-1440.png",
+      "sha256": "47e20e13c9acf137b09dfc3e93cfe03ea7cc056673d0d5bd334494bbf840610f",
+      "bytes": 196533
+    },
+    {
+      "path": "annual-2024-period-shelf-dark-1440.png",
+      "sha256": "f7aad1edf7fd5930cbf2301d15d7913fbf9c3ac80f4d536e9e161b897c791c4d",
+      "bytes": 196871
+    },
+    {
+      "path": "annual-period-shelf-dark-390.png",
+      "sha256": "c69fb40a75d894f47de19e2fabfa1d362075a145ac4f7291b75de1ca83e45799",
+      "bytes": 57447
+    },
+    {
+      "path": "zhiran-qualified-tooltip-dark-1440.png",
+      "sha256": "3b60f18a35cd219579fc5634ba6fa9989ad6db1a764d6ce31459bde473c39241",
+      "bytes": 209945
+    }
+  ]
+}
