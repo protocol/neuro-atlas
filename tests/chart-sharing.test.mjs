@@ -369,7 +369,7 @@ test('unified recording-hours export has one generic chart URL, all 13 marks and
     assert.equal(doc.querySelectorAll('[data-source-observation]').length, 13);
     const text = exportEvidence(doc);
     assert.match(text, /Qualified values \(Recording hours\).*Neuralink · >50,000 accumulated recording hours: >50,000; POYO-1 training corpus: >100/);
-    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Lines connect only TUSZ releases (overlapping, not summed); other observations remain separate.']) assert.ok(text.includes(phrase), phrase);
+    for (const phrase of ['company-held', 'participant-specific pretraining', 'held-out evaluation', 'existing recordings', 'seven nonhuman primates', 'Log scale', 'Lines connect only TUSZ releases (overlapping corpus snapshots); other observations remain separate.']) assert.ok(text.includes(phrase), phrase);
     const lines = [...doc.querySelectorAll('polyline')];
     assert.equal(lines.length, 1, 'Only the supported TUSZ release sequence is exported; no pooled fit');
     assert.equal(lines[0].getAttribute('points'), card.querySelector('[data-observation-series="tusz-releases"]').getAttribute('points'));

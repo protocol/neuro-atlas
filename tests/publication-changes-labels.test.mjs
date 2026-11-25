@@ -34,7 +34,7 @@ test('first/latest affiliations use every full-cohort cell in preview, detail, s
     assert.deepEqual(download.tables.nt_talent_moves, snapshot.tables.nt_talent_moves);
     const { buildChartImage } = await import('../src/lib/chart-export.ts');
     const image = buildChartImage({ svg: modal.querySelector('.publication-full-plot svg'), title: 'First and latest affiliations', anchor: 'researcher-sector-changes', notes: publicationExportNotes(3, parsed, data) }, 'https://atlas.example/field-velocity');
-    assert.match(image.svg, /One shared people-count scale/);
+    assert.match(image.svg, /All four origin and destination sectors share one people-count scale/);
     const exported = new window.DOMParser().parseFromString(image.svg, 'image/svg+xml');
     for (const [label, x] of [['First paper', '0'], ['Latest paper', '714']]) {
       const heading = [...exported.querySelectorAll('text')].find(node => node.textContent === label);

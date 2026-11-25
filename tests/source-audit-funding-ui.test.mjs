@@ -45,6 +45,6 @@ test('combined financings and philanthropic commitments are counted as records, 
     const row = [...document.querySelectorAll('button')].find(el => el.textContent.includes('NeuroXess'));
     assert.match(row.textContent, /2 financing records/);
     assert.doesNotMatch(row.textContent, /2 rounds/);
-    assert.doesNotMatch(document.querySelector('[aria-label="Index lens"]').parentElement.parentElement.parentElement.parentElement.textContent, /Raised/);
+    assert.doesNotMatch(document.querySelector('[aria-label="Funding view"]').parentElement.parentElement.parentElement.parentElement.textContent, /Raised/);
   } finally { await cleanup(); }
 });

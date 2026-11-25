@@ -77,7 +77,7 @@ test('Milestone timeline intro renders exactly the owner-approved replacement pa
     const heading = [...dom.window.document.querySelectorAll('h2')].find(el => el.textContent === 'Milestone timeline');
     assert.ok(heading);
     assert.equal(heading.nextElementSibling.textContent,
-      'Tracked deals, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and neurotechnology. Filter by BCI only or view the broader neurotech ecosystem. Click a year to put it into focus.');
+      'Financing, acquisitions, partnerships, first-in-human trials, and regulatory milestones across neural interfaces and neurotechnology. Choose BCI only or all neurotech. Click a year to explore it.');
   } finally {
     dom.window.close();
   }
@@ -94,7 +94,7 @@ test('Milestones omits the entire Memo cut comparison while retaining the source
     assert.ok(!rowTexts.includes(`${year}$${usdM}m`), `Remove the ${year} memo comparison amount`);
   }
   assert.match(panel.textContent, /Indexed financing/);
-  assert.match(panel.textContent, /Disclosed financing, including labeled commitments/);
+  assert.match(panel.textContent, /Sum of disclosed financing, including labeled commitments/);
   assert.match(panel.textContent, /Full period/);
   assert.ok(panel.querySelector('button[aria-label="Fold side panel to show the full year"]'));
 });

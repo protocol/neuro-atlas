@@ -88,9 +88,9 @@ test('growth inspection names its cohort while provenance retains exact source m
     const notes = publicationExportNotes(1, parsed, data).join(' ');
     assert.match(notes, /venue N = wider-corpus \(NT10\).*region\/institution N = P2 two-topic whole-work involvement/i);
     assert.match(notes, /author-fractional works.*quarterly known coverage/i);
-    assert.match(modal.textContent, /full byline/);
+    assert.match(modal.textContent, /Each work is divided among all listed authors/);
     assert.match(modal.textContent, /citations received in the prior five years/);
-    assert.match(modal.textContent, /plotted career\/citation endpoints use unrounded fractions/);
+    assert.match(modal.textContent, /plotted career and citation endpoints use unrounded fractions/);
   } finally { await cleanup(); }
 });
 
@@ -109,8 +109,8 @@ test('complete affiliation copy preserves topic scope, full-origin denominator a
     assert.match(detail, /brain–computer interfaces\/EEG or neural engineering/);
     assert.match(detail, /two active publication years.*widths show people.*same-sector/i);
     assert.match(notes, /two-topic cohort \(P2\).*T10429 and T11601/i);
-    assert.match(notes, /one shared people-count scale.*all four origin and destination sectors/i);
-    assert.match(notes, /same-sector ribbons.*intervening changes are not measured/i);
+    assert.match(notes, /All four origin and destination sectors share one people-count scale/);
+    assert.match(notes, /Same-sector ribbons show equal sectors at the first and latest observed papers\. Intermediate changes and employment history remain unmeasured\./);
     assert.doesNotMatch(notes, /starting sector.*changers|employment transitions are unverified/i);
     const first = modal.querySelector('[data-publication-mark]');
     assert.match(first.getAttribute('aria-label'), /starting sector’s cohort/);

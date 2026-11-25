@@ -28,7 +28,11 @@ test('Milestones commercial transaction values are explicitly separate from capi
   try {
     assert.ok(document.querySelector('aside'), 'Latest main keeps the financing summary open by default');
     const aside = document.querySelector('aside');
-    assert.match(aside.textContent, /transaction value.*not capital raised/i);
+    const commercial = [...aside.querySelectorAll('.space-y-3 > div')].find(row => row.firstElementChild?.textContent === 'Commercial');
+    const capital = [...aside.querySelectorAll('.space-y-3 > div')].find(row => row.firstElementChild?.textContent === 'Capital');
+    assert.ok(commercial && capital, 'Financing and commercial transactions keep distinct summary rows');
+    assert.match(commercial.textContent, /transaction value/);
+    assert.doesNotMatch(capital.textContent, /transaction value/);
   } finally { await cleanup(); }
 });
 

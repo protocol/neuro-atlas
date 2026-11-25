@@ -23,7 +23,7 @@ function assertInitialSummary(document) {
   const capital = [...panel.querySelectorAll('.space-y-3 > div')].find(row => row.querySelector('span.text-\\[12px\\]')?.textContent === 'Capital');
   assert.equal(capital.querySelector('.tnum').textContent, formatUsd(usd2026), 'Full-period capital uses the existing sourced 2026 total');
   assert.match(panel.textContent, /Indexed financing/);
-  assert.match(panel.textContent, /including labeled commitments — not cash receipts, valuations, or transaction values/);
+  assert.match(panel.textContent, /Sum of disclosed financing, including labeled commitments\./);
   assert.ok(panel.querySelector('button[aria-label="Fold side panel to show the full year"]'));
   assert.equal(document.querySelector('button[aria-label="Open side panel"]'), null);
   return panel;
