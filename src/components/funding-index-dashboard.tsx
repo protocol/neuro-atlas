@@ -520,7 +520,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                     <article key={`${round.announcedOn}-${round.stage}`} className="rounded-2xl border border-border bg-surface-raised p-4">
                       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                         <div className="min-w-0 [overflow-wrap:anywhere]"><div className="text-sm font-semibold">{round.stage}</div><div className="mt-1 text-xs text-muted">{formatFundingRecordDate(round.announcedOn, round.datePrecision, round.dateBasis)}</div></div>
-                        <div className="shrink-0 text-lg font-semibold tabular-nums text-accent">{round.displayAmount}</div>
+                        <div className="max-w-full shrink-0 text-lg font-semibold tabular-nums text-accent [overflow-wrap:anywhere]">{round.displayAmount}</div>
                       </div>
                       {round.capitalTreatment && <p className="mt-3 text-xs font-semibold">{capitalExclusionLabel(round)}</p>}
                       {round.sourceKind && <p className="mt-3 text-xs font-semibold">{sourceKindLabel(round.sourceKind)}{round.reviewedOn ? ` · ${sourceReviewLabel(round.reviewedOn)}` : ""}</p>}

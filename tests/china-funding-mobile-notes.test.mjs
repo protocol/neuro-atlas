@@ -27,3 +27,18 @@ test('source-corrected China financing notes and long literal evidence URLs wrap
   assert.ok(longNote.classList.contains('[overflow-wrap:anywhere]'),'Long literal evidence URLs must wrap within the note, not force horizontal scrolling');
  }finally {await cleanup();}
 });
+
+test('qualified native amounts stay bounded and wrap inside narrow company financing cards', async () => {
+ const disclosed = data.rounds.find(round => round.sourceUrl === 'https://m.10jqka.com.cn/20261028/c681199560.shtml');
+ assert.ok(disclosed?.displayAmount, 'Use the actual source-qualified native amount');
+ const original = structuredClone(data);
+ const cleanup = await mount(React.createElement(FundingIndexDashboard, { data }));
+ try {
+  await click(document.querySelector('[data-funding-company-identity="stairmed"]').closest('button'));
+  const amount = [...document.querySelectorAll('[role="dialog"] article .shrink-0')].find(element => element.textContent === disclosed.displayAmount);
+  assert.ok(amount, 'The complete qualified native amount is rendered');
+  assert.ok(amount.classList.contains('max-w-full'), 'A nonshrinking amount must be capped at the financing card width');
+  assert.ok(amount.classList.contains('[overflow-wrap:anywhere]'), 'Long native amounts retain every qualifier through wrapping');
+  assert.deepEqual(data, original, 'Narrow presentation leaves source data unchanged');
+ } finally { await cleanup(); }
+});
