@@ -1,0 +1,22 @@
+{
+  "runtimeCheckpoint": "7144407300995d61cf7c971c9d8405c6efab16aa",
+  "scope": "Actual local production-build Chrome captures; mobile viewport emulation",
+  "files": {
+    "paradromics-desktop.png": {
+      "sha256": "a5f059c6ac964d526d24a902024097a4c57026eab8d311177f10ae95ae21225f",
+      "bytes": 226758
+    },
+    "paradromics-mobile.png": {
+      "sha256": "2955a87f076e3f77b3e47a4fbdb5ee35c7eb864656d439f9ece52857b906bc64",
+      "bytes": 52424
+    },
+    "precision-desktop.png": {
+      "sha256": "1d9e1b2f4f87fc42b69f38f22af4b321c583d141621f1ab6d47675d00bd104a8",
+      "bytes": 242857
+    },
+    "precision-mobile.png": {
+      "sha256": "3d44b9db50108000ff5253004255b6577dc63017d59d56275fc43df9d1be49f0",
+      "bytes": 57681
+    }
+  }
+}

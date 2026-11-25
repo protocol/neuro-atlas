@@ -1,0 +1,47 @@
+{
+  "runtimeCheckpoint": "7144407300995d61cf7c971c9d8405c6efab16aa",
+  "verifiedCodeAndTestHead": "35774fc9f29f8d0aac0fbea62320987743d6a10a",
+  "baselineHead": "df97d0d70736465657ac50bc9569bbc1b60e6095",
+  "baseline": {
+    "tests": 1659,
+    "failed": 36,
+    "passed": 1623,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "topLevel": 1643,
+    "suites": 0
+  },
+  "candidate": {
+    "tests": 1880,
+    "failed": 36,
+    "passed": 1844,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "topLevel": 1864,
+    "suites": 0
+  },
+  "exactInheritedDiagnostics": 36,
+  "newFailures": 0,
+  "changedDiagnostics": 0,
+  "standardCommand": "node --import tsx --test tests/*.test.mjs",
+  "reporting": "Custom reporter preserves actual error fields; only explicit checkout roots normalized for comparison",
+  "canonicalCounts": {
+    "companies": 31,
+    "fundingRecords": 78,
+    "milestones": 126
+  },
+  "currentLockPaths": 53,
+  "originalFixturesRetained": 33,
+  "checks": {
+    "webpackProductionBuild": "PASS",
+    "typecheck": "PASS",
+    "independentRuntimeIntegrationReview": "PASS",
+    "independentCompatibilityReview": "PASS",
+    "boundedMobilePresentationReReview": "PASS",
+    "native1440And390CompanyTotals": "PASS",
+    "native320QualifiedAmountBounds": "PASS",
+    "servedBuiltAssetParity": 11
+  }
+}
