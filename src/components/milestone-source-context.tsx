@@ -21,9 +21,9 @@ export function MilestoneSourceContext({ source }: { source: unknown }) {
             <h3 className="text-sm font-semibold">{row.company} · {row.activity}</h3>
             <p className="text-xs text-muted">
               {row.dateBasis === "event" ? "Event date" : row.dateBasis === "announcement" ? "Announced" : row.dateBasis === "reported" ? "Reported" : "Date unverified"}{" "}
-              <time dateTime={row.datePrecision === "month" ? row.date.slice(0, 7) : row.datePrecision === "year" ? row.date.slice(0, 4) : row.date}>
+              {row.date && <time dateTime={row.datePrecision === "month" ? row.date.slice(0, 7) : row.datePrecision === "year" ? row.date.slice(0, 4) : row.date}>
                 {formatFundingDate(row.date, row.datePrecision)}
-              </time>
+              </time>}
             </p>
             {row.capitalTreatment && <div className="text-sm font-medium">
               {row.amountUsdM !== null && <p>Disclosed amount · {formatCapital(row.amountUsdM)}</p>}

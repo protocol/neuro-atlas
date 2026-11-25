@@ -6,15 +6,13 @@ import MILESTONES from "@/data/milestones.json";
 
 export const metadata = atlasMetadata("/milestones", "Milestones — Neuro Atlas");
 
-const years = new Set(MILESTONES.map((row) => (row.date ?? "").slice(0, 4))).size;
+const years = new Set(MILESTONES.filter((row) => row.date).map((row) => row.date!.slice(0, 4))).size;
 const companies = new Set(MILESTONES.map((row) => row.company)).size;
 
-export default async function MilestonesPage({
-  searchParams,
-}: {
+export default async function MilestonesPage(props: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
-} = {}) {
-  const source = (await searchParams)?.source;
+}) {
+  const source = (await props?.searchParams)?.source;
   return (
     <>
       <PlateHero
