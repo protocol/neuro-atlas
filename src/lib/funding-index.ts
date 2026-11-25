@@ -32,6 +32,12 @@ export type FundingReportedTotal = {
   note: string;
 };
 
+export function reportedTotalFootnote(total: FundingReportedTotal): string | null {
+  return total.companySlug === "precision-neuroscience"
+    ? "Possible overlap between round and SAFE disclosures."
+    : null;
+}
+
 export type FundingHistoricalFx = {
   sourceUrl: string;
   companySlug: string;

@@ -9,6 +9,7 @@ import {
   formatFundingDate,
   formatFundingFxBasis,
   formatFundingRecordDate,
+  reportedTotalFootnote,
   getTimelinePosition,
   type FundingCompanyRow,
   type FundingIndexData,
@@ -28,9 +29,11 @@ function sourceKindLabel(kind: "primary" | "reporting") {
 
 function ReportedTotalAnnotation({ total }: { total?: FundingReportedTotal }) {
   if (!total) return null;
+  const footnote = reportedTotalFootnote(total);
   return <span data-reported-company-total title={total.sourceUrl} className="mt-2 block text-xs leading-relaxed text-foreground">
-    <span className="font-semibold">{formatCapital(total.amountUsdM)} company-reported total</span>
+    <span className="font-semibold">{formatCapital(total.amountUsdM)}{footnote && <sup aria-label="See possible-overlap note">*</sup>} company-reported total</span>
     <span className="block text-muted">{total.scope} · Reported <time dateTime={total.reportedOn}>{formatFundingDate(total.reportedOn, "day")}</time> · Source in detail</span>
+    {footnote && <span data-reported-total-footnote className="block text-muted">* {footnote}</span>}
   </span>;
 }
 
@@ -94,6 +97,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
     [data.companies, data.rounds, selectedSlug],
   );
   const selectedReportedTotal = data.reportedTotals?.find((total) => total.companySlug === selectedSlug);
+  const selectedReportedTotalFootnote = selectedReportedTotal ? reportedTotalFootnote(selectedReportedTotal) : null;
   const selectedMilestones = useMemo(
     () => data.milestones.filter((milestone) => milestone.companySlug === selectedSlug),
     [data.milestones, selectedSlug],
@@ -479,9 +483,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               </div>
               <div className="mt-6 rounded-2xl bg-[#11131a] p-6 text-white">
                 <div className="text-xs font-bold text-white/70">{selectedReportedTotal ? "Company-reported total" : "Indexed financing"}</div>
-                <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selectedReportedTotal?.amountUsdM ?? selected.observedCapitalUsdM)}</div>
+                <div className="mt-1 text-4xl font-semibold tracking-[-0.05em]">{formatCapital(selectedReportedTotal?.amountUsdM ?? selected.observedCapitalUsdM)}{selectedReportedTotalFootnote && <sup className="ml-0.5 align-super text-lg" aria-label="See possible-overlap note">*</sup>}</div>
                 {selectedReportedTotal && <div className="mt-3 space-y-2 text-sm text-white/85">
                   <p className="font-semibold">{selectedReportedTotal.scope}</p>
+                  {selectedReportedTotalFootnote && <p data-reported-total-footnote className="text-xs leading-relaxed">* {selectedReportedTotalFootnote}</p>}
                   <p className="text-xs">Public company self-report · Reported <time dateTime={selectedReportedTotal.reportedOn}>{formatFundingDate(selectedReportedTotal.reportedOn, "day")}</time></p>
                   <a href={selectedReportedTotal.sourceUrl} target="_blank" rel="noreferrer" className="inline-block text-xs font-semibold underline underline-offset-4">Company-reported total source ↗</a>
                   <div data-indexed-financing-summary className="border-t border-white/20 pt-3">

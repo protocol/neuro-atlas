@@ -1,7 +1,7 @@
 import { capitalExclusionLabel } from "@/lib/funding-capital.mjs";
 import { fundingRecordsForSource } from "@/lib/source-context-records";
 import { normalizeSourceContextUrl } from "@/lib/source-context-url";
-import { formatCapital, formatFundingDate } from "@/lib/funding-index";
+import { formatCapital, formatFundingDate, reportedTotalFootnote } from "@/lib/funding-index";
 
 /** Only the facts and evidence actually bound to the requested canonical source. */
 export function FundingSourceContext({ source }: { source: unknown }) {
@@ -33,9 +33,10 @@ export function FundingSourceContext({ source }: { source: unknown }) {
               )}
               {reportedTotals.map((total) => (
                 <li key={`reported-total-${total.reportedOn}`} className="space-y-2">
-                  <p className="font-medium">Company-reported total · {formatCapital(total.amountUsdM)}</p>
+                  <p className="font-medium">Company-reported total · {formatCapital(total.amountUsdM)}{reportedTotalFootnote(total) && <sup aria-label="See possible-overlap note">*</sup>}</p>
                   <p className="font-medium">{total.scope}</p>
-                  <p className="text-xs text-muted">Public company self-report · Reported <time dateTime={total.reportedOn}>{formatFundingDate(total.reportedOn, "day")}</time> (interview published)</p>
+                  {reportedTotalFootnote(total) && <p data-reported-total-footnote className="text-xs text-muted">* {reportedTotalFootnote(total)}</p>}
+                  <p className="text-xs text-muted">Public company self-report · Reported <time dateTime={total.reportedOn}>{formatFundingDate(total.reportedOn, "day")}</time></p>
                   <p>{total.note}</p>
                   <a href={total.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (company-reported total)</a>
                 </li>
