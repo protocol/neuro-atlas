@@ -2141,7 +2141,7 @@
     },
     {
       "path": "data/market-memo-q1-2026/milestones.csv",
-      "recordCount": 122,
+      "recordCount": 126,
       "changes": [
         {
           "id": "main-timeline-002",
@@ -3375,6 +3375,171 @@
             "date_precision": "day",
             "note": "Gestala’s July 3 issuer article names Meridian Capital Asia as lead and twelve further participants in RMB 420m Angel+ financing. Its August 26 release on PR Newswire confirms RMB 420m. The July 8 article’s heading gives RMB 430m while its own body gives RMB 420m. The index follows the repeated RMB 420m disclosure. Federal Reserve rate: CNY 6.7886 per USD on July 2, the previous published business day. March and July are reported together as RMB 570m cumulative funding; the July closing day is undisclosed.",
             "source_url": "https://www.gestala.com/news/22",
+            "scope": "bci",
+            "date_basis": "announcement",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-blackrock-neurotech-2024-05-06",
+          "before": null,
+          "after": {
+            "company": "Blackrock Neurotech",
+            "nf_slug": "blackrock-neurotech",
+            "activity": "$12.368642m",
+            "stage": "capital",
+            "amount_usd_m": "12.368642",
+            "date": "2024-05-06",
+            "date_precision": "day",
+            "note": "Equity financing (Form D); $12.368642m. Blackrock’s SEC Form D reports $12,368,642 sold, with first sale April 29, 2024. Its relationship to Tether’s same-day $200m control transaction is unresolved; purchaser names are unspecified.",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/2022264/000202226424000001/xslFormDX01/primary_doc.xml",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-bci-sonics-2026-06-09",
+          "before": null,
+          "after": {
+            "company": "BCI-Sonics (华超神控)",
+            "nf_slug": "bci-sonics",
+            "activity": "~RMB 100m angel series (≈$14.8m)",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-06-09",
+            "date_precision": "day",
+            "note": "Angel + Angel+ (combined); ~RMB 100m angel series (≈$14.8m). BCI-Sonics’ issuer announcement on ZiDongHua describes combined angel-series financing at the hundred-million-yuan scale (亿元人民币). RMB 100m is a comparison anchor rather than an exact per-round cash amount. 经纬创投 led the angel round; 德联资本 and 道远资本 co-led Angel+. Individual allocations and closing dates are undisclosed. Federal Reserve rate: CNY 6.7722 per USD on June 9, 2026.",
+            "source_url": "https://www.zidonghua.com.cn/news/Finance/130707.html",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-nanochap-2026-05-06",
+          "before": null,
+          "after": {
+            "company": "Nanochap (暖芯迦)",
+            "nf_slug": "nanochap",
+            "activity": "RMB 300m (≈$44.0m)",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-05-06",
+            "date_precision": "day",
+            "note": "Strategic round; RMB 300m (≈$44.0m). ChinaVenture’s May 6 report on Tencent describes RMB 300m strategic financing co-led by Legend Capital and unnamed industrial investment institutions, with Harvest Capital, GF Xinde and Caitong participating. Nanochap’s history separately labels a 2026 Series C; this record keeps the contemporaneous strategic-financing label pending exact mapping. Federal Reserve rate: CNY 6.8110 per USD on May 6, 2026.",
+            "source_url": "https://news.qq.com/rain/a/20260506A059OH00?media_id=&suid=",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-zhiran-medical-2025-08-12",
+          "before": null,
+          "after": {
+            "company": "Zhiran Medical (智冉医疗)",
+            "nf_slug": "zhiran-medical",
+            "activity": "Over RMB 300m (over ≈$41.8m)",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2025-08-12",
+            "date_precision": "day",
+            "note": "Series A; Over RMB 300m (over ≈$41.8m). Zhiran’s issuer archive dates the Series A announcement August 12, 2025 and describes more than RMB 300m. YuanBio’s investor announcement on ByDrug names the round participants, including the social-security fund managed by Legend Capital. The numeric comparison uses the RMB 300m lower bound; actual proceeds exceed it. Federal Reserve rate: CNY 7.1785 per USD on August 12, 2025.",
+            "source_url": "https://bciflex.com/News/dpage",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-bci-sonics-later-note",
+          "before": {
+            "company": "BCI-Sonics (华超神控)",
+            "nf_slug": "bci-sonics",
+            "activity": "≈$30.0m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-10-23",
+            "date_precision": "day",
+            "note": "Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. An earlier approximately RMB 100m angel-series total remains under review. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
+            "source_url": "https://www.bcisonics.com/article/5786479998588415",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          },
+          "after": {
+            "company": "BCI-Sonics (华超神控)",
+            "nf_slug": "bci-sonics",
+            "activity": "≈$30.0m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-10-23",
+            "date_precision": "day",
+            "note": "Pre-A; RMB 200m (≈$30.0m). Company announcement published October 23, 2026. Earlier September coverage describes the same RMB 200m round; the index records it once, using the company’s publication date. The nearly RMB 300m figure is cumulative. The separately indexed June 9 combined angel/Angel+ disclosure is at the hundred-million-yuan scale; RMB 100m is a comparison anchor, not an exact per-close amount. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6702 yuan per dollar on October 23, 2026.",
+            "source_url": "https://www.bcisonics.com/article/5786479998588415",
+            "scope": "bci",
+            "date_basis": "reported",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-nanochap-later-note",
+          "before": {
+            "company": "Nanochap (暖芯迦)",
+            "nf_slug": "nanochap",
+            "activity": "≈$75.0m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-11-03",
+            "date_precision": "day",
+            "note": "Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. An earlier reported May financing remains under review for its amount and stage. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
+            "source_url": "https://www.nanochap.com/news_info/id-105.html",
+            "scope": "bci",
+            "date_basis": "announcement",
+            "capital_treatment": ""
+          },
+          "after": {
+            "company": "Nanochap (暖芯迦)",
+            "nf_slug": "nanochap",
+            "activity": "≈$75.0m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-11-03",
+            "date_precision": "day",
+            "note": "Series C+; RMB 500m (≈$75.0m). Company announcement dated November 3, 2026, also confirmed by existing investor Caitong. The reported RMB 1bn is a cumulative total. The separately indexed May 6 report gives RMB 300m strategic financing. Mapping its contemporaneous strategic label to the issuer chronology’s Series C remains qualified; the amount is supported, and no extra Series C is inferred. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.6701 yuan per dollar on November 3, 2026.",
+            "source_url": "https://www.nanochap.com/news_info/id-105.html",
+            "scope": "bci",
+            "date_basis": "announcement",
+            "capital_treatment": ""
+          }
+        },
+        {
+          "id": "evid01-zhiran-medical-later-note",
+          "before": {
+            "company": "Zhiran Medical (智冉医疗)",
+            "nf_slug": "zhiran-medical",
+            "activity": "≈$43.4m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-02-11",
+            "date_precision": "day",
+            "note": "Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The earlier 2025 Series A remains a separate research lead, reported as over RMB 300m. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
+            "source_url": "https://bciflex.com/News",
+            "scope": "bci",
+            "date_basis": "announcement",
+            "capital_treatment": ""
+          },
+          "after": {
+            "company": "Zhiran Medical (智冉医疗)",
+            "nf_slug": "zhiran-medical",
+            "activity": "≈$43.4m",
+            "stage": "capital",
+            "amount_usd_m": "",
+            "date": "2026-02-11",
+            "date_precision": "day",
+            "note": "Series A+; RMB 300m (≈$43.4m). The company news listing gives February 11, 2026 for this RMB 300m Series A+ announcement. The review used the company news listing. The linked WeChat article required verification to open. The separately indexed August 12, 2025 Series A reports more than RMB 300m; its numeric comparison is a lower bound, not exact proceeds. Closing date: undisclosed. Dollar estimate: Federal Reserve rate of 6.9125 yuan per dollar on February 11, 2026.",
+            "source_url": "https://bciflex.com/News",
             "scope": "bci",
             "date_basis": "announcement",
             "capital_treatment": ""

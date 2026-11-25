@@ -26,6 +26,48 @@ for (const file of fixture.files) {
   test(file.path + ' preserves exact reviewed record count', () => assert.equal(actual.length, file.recordCount));
 }
 
+// EVID-01: use the real canonical and generated payloads, never a historical reader.
+for (const [slug, date, qualifier] of [
+  ['blackrock-neurotech', '2024-05-06', /first sale April 29, 2024/],
+  ['bci-sonics', '2026-06-09', /comparison anchor rather than an exact per-round cash amount/],
+  ['nanochap', '2026-05-06', /contemporaneous strategic-financing label/],
+  ['zhiran-medical', '2025-08-12', /lower bound; actual proceeds exceed it/],
+]) {
+  test('EVID-01 counted disclosure is present once on both real surfaces: ' + slug, () => {
+    const canonicalFunding = parseCsv(readFileSync(new URL('../data/funding-index/rounds.csv', import.meta.url), 'utf8'))
+      .filter(row => row.company_slug === slug && row.announced_on === date);
+    assert.equal(canonicalFunding.length, 1);
+    const source = canonicalFunding[0];
+    const round = funding().rounds.find(row => row.companySlug === slug && row.announcedOn === date && row.sourceUrl === source.source_url);
+    assert.ok(round && countedCapital(round) > 0, 'actual Funding disclosure is counted');
+    const canonical = parseCsv(readFileSync(new URL('../data/market-memo-q1-2026/milestones.csv', import.meta.url), 'utf8'))
+      .filter(row => row.nf_slug === slug && row.date === date && row.source_url === source.source_url);
+    assert.equal(canonical.length, 1, 'one corresponding canonical Milestone: ' + slug);
+    assert.equal(canonical[0].scope, 'bci');
+    assert.equal(canonical[0].stage, 'capital');
+    assert.equal(canonical[0].date_precision, source.date_precision);
+    assert.equal(canonical[0].date_basis, source.date_basis);
+    assert.equal(canonical[0].amount_usd_m, source.amount_usd_m, 'reuse native FX rather than a rounded USD scalar');
+    assert.equal(canonical[0].capital_treatment, source.capital_treatment);
+    assert.match(canonical[0].note, qualifier);
+    const generated = timeline().filter(row => row.company === canonical[0].company && row.date === date && row.sourceUrl === source.source_url);
+    assert.equal(generated.length, 1, 'one generated Milestone: ' + slug);
+    assert.equal(generated[0].amountUsdM, round.amountUsdM);
+    assert.equal(countedCapital(generated[0]), countedCapital(round));
+    assert.equal(generated[0].dateBasis, round.dateBasis);
+    assert.deepEqual(generated[0].fx, round.fx, 'identical existing source/date historical FX');
+    assert.match(generated[0].note, qualifier);
+    if (slug !== 'blackrock-neurotech') {
+      const later = timeline().find(row => row.company === canonical[0].company && row.stage === 'capital' && row.date > date);
+      assert.ok(later, 'separately supported later round remains present');
+      assert.doesNotMatch(later.note, /remains under review|separate research lead/);
+    }
+    if (slug === 'bci-sonics') {
+      assert.equal(timeline().filter(row => row.company === canonical[0].company && row.sourceUrl === source.source_url).length, 1, 'combined angel series is not split into invented closes');
+    }
+  });
+}
+
 test('the selective financing review checkpoint is November 25 without claiming complete lifetime cash coverage', () => {
   assert.equal(funding().summary.asOf, '2026-11-25');
 });
