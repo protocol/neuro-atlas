@@ -12,7 +12,7 @@ test('Penumbra remains an acquisition agreement at enterprise value, not a compl
   assert.equal(row.activity, '$14.5b EV');
   assert.equal(row.amount_usd_m, '14500');
   assert.match(row.note, /agreement to acquire/i);
-  assert.match(row.note, /not.*completed.*acquisition/i);
+  assert.match(row.note, /The plotted value covers the acquisition agreement\./i);
   assert.doesNotMatch(row.note, /memo author|neural-access bet/);
 });
 
