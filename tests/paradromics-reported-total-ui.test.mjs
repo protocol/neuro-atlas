@@ -60,7 +60,7 @@ test('timeline and stage retain indexed capital columns and bars while showing a
     const timeline = timelineRow();
     assert.equal(timeline.lastElementChild.firstElementChild.textContent, '$85.4M', 'Indexed financing header matches its column');
     assertAnnotation(timeline);
-    assert.equal(document.querySelectorAll('[data-reported-company-total]').length, 1);
+    assert.equal(timeline.querySelectorAll('[data-reported-company-total]').length, 1, 'one Paradromics annotation, independent of other company reports');
     await click([...document.querySelectorAll('button')].find(e => e.textContent === 'stage'));
     const stage = stageRow();
     assertAnnotation(stage);
@@ -69,11 +69,11 @@ test('timeline and stage retain indexed capital columns and bars while showing a
     await click(stage);
     assert.equal(document.querySelector('[role="dialog"] .text-4xl').textContent, '$180M');
   } finally { await cleanup(); }
-  const { reportedTotals, ...legacy } = data;
-  assert.deepEqual(reportedTotals, fixture.reportedTotals, 'the legacy replay removes only the reviewed report metadata');
-  cleanup = await mount(React.createElement(FundingIndexDashboard, { data: legacy }));
+  assert.deepEqual(data.reportedTotals.filter(report => report.companySlug === 'paradromics'), fixture.reportedTotals, 'the exact reviewed Paradromics report remains unchanged');
+  const withoutParadromicsReport = { ...data, reportedTotals: data.reportedTotals.filter(report => report.companySlug !== 'paradromics') };
+  cleanup = await mount(React.createElement(FundingIndexDashboard, { data: withoutParadromicsReport }));
   try {
-    assert.equal(document.querySelectorAll('[data-reported-company-total]').length, 0);
+    assert.equal(timelineRow().querySelectorAll('[data-reported-company-total]').length, 0, 'only the Paradromics annotation is removed');
     await click([...document.querySelectorAll('button')].find(e => e.textContent === 'stage'));
     const stage = stageRow();
     assert.equal(stage.querySelector('.bg-accent[style]').style.width, reportedBarWidth, 'reported total never changes the indexed-capital bar');
