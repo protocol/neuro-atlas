@@ -1,0 +1,157 @@
+{
+  "base": "df97d0d70736465657ac50bc9569bbc1b60e6095",
+  "evidence": "6ea7f86285580884848ac5f507e82ce12fa13a9b62f2abd43d5045493ad1d9f2",
+  "plots": {
+    "tissue-cm3": {
+      "data": "ee23e977e144ee7065f8d36eea4f93d50afaa830d784192f1a846228b1de9e23",
+      "points": "f1a081f389b38942addfac049081ca94968d9e43b02a1058766f4bddd9a71493",
+      "markup": {
+        "preview": "79fed8540b6841454244fe9e6237871d3493a44eb952f79255b8b65855320520",
+        "modal": "d4cbb2fbb3b9710a270110e8ed143e6a9677e54e14838b28acce20aa41821da7"
+      },
+      "exportSpec": "09271435ac73334bb8798f179aba18bf00a0df266f3df80bf979bb3f46d19517",
+      "exportSvg": "f9d0e655278cb749823ff1a047d50a727a30aee1e416912dd0825514090ab942"
+    },
+    "largest-connectome-neurons": {
+      "data": "a487d271443d5566190dfba2bfe68992402d974aed7cb5c117fe84acf72bd551",
+      "points": "f4d98cb8d2249dd79d32cd4f0d5c939c7ad9f133981473397fe4efd42558ceaa",
+      "markup": {
+        "preview": "df5931ed65c08339d5a89dd9a775a2b2c7b4d3877e006152333590807db3dad0",
+        "modal": "12a929ddc5df90c96ca8a54e47e311b1e69912a05bd19759e23bf65e4ac999bf"
+      },
+      "exportSpec": "aaa15c4320d4c24d9dccc2bfc16798d2853749da06e0aee1b4fa5891ef42df8e",
+      "exportSvg": "766ea3e9f0607bf4c1fd4037aad1fb774b315a4c46c618d889e449105a6cbbad",
+      "observationRows": "4f33a784a98837130495536c81aa8a02d9208b3f5b24b52c5b233ab394891b77"
+    },
+    "largest-connectome-synapses": {
+      "data": "ed2f75b513e493b7c6d4d496438082f853a456011a0efec0eae284a94a587685",
+      "points": "0faddc379681351be0f95d54489128369c20fa41c35dfa59cd6e3262e8367e9f",
+      "markup": {
+        "preview": "809241ababc5695d4dbe33d94dd8accb8f108881abbc548b4f8aba9e54efdd5a",
+        "modal": "65688ca0685b6874532b1041ddcc1df7ef92483c8bb5b9fe4a2446064345abfd"
+      },
+      "exportSpec": "e0be538548544d09db06e84d3aaeb1299bc493b2b5689e63eff36a7beb27af32",
+      "exportSvg": "44ab78d67ca1e02c39c07b70d4cbcc61425b8344ac36164eeb73ec83f0dbafd6"
+    },
+    "acquisition-rates": {
+      "data": "bbd7085a0f73a2b96d2e3c248e4249cea64aa48aa748497d7b4823213c98d464",
+      "points": "0121406adeae790500d7c86c7558325c2bec3170eb058972c318586d6ca78309",
+      "markup": {
+        "preview": "fbb981e8b5b85490d2754d81a68e69ace5a63f36e1aeffb9c2972733043197b6",
+        "modal": "80cc4c344d7bed522ef26cfc293c07df2122d7cd8b671818d257a4096f589906"
+      },
+      "exportSpec": "b1d6e0bbe71c0897c91a5e3021dc54add4c6a2e22673560e729effdbd46618d0",
+      "exportSvg": "08ce2f7ac53e9336d212c45e9fed74fe49f45a04f435a9e6f7f826ae20ee8415"
+    },
+    "pathfinder-nerl": {
+      "data": "69fd2b477226a164e26ae44bdd92f3edf4f095a627a9a87363a23f1dc82d15c4",
+      "points": "6c7cd8f7af2e76eefef99ac4b32182ba2559f54998ec76ad9c865af00dd6587b",
+      "markup": {
+        "preview": "2dd36d47e78a67fdc841a0516db01d3ab46dcad5215a25c28f918bb5e30ac0a4",
+        "modal": "e4b917617e00d8f8dad64f7c3fddfcaf1dcaab45e85099ae2eaa9f23cd390f52"
+      },
+      "exportSpec": "e25a919601a0e406ae0e051751b06637df29b128cd5c00c3bd35560234f38fe6",
+      "exportSvg": "e4aa120c722e98565c27595e3a747984cd8aa9543f176c5b51330ec1ae2dff2f"
+    },
+    "connectomics-roboem-human-split-merge": {
+      "data": "30c1e6a7c0e11d448b7dae8c667467c9c3ed5d5b3cc574f5e69e22c71d1619a2",
+      "points": "fdb71fbed81878996b2927311ffdbd0c74812fc27e98dbca9a53a0ac4d95b75e",
+      "markup": {
+        "preview": "ed8502c6f21624ca06c3c4f5a3c1a1015311e3c54ceab5d39654868e97ac8174",
+        "modal": "f893bf2c38c46c73288263ef81564dbc8ce2b5e35cfc724f8c53e809a03352ce"
+      },
+      "exportSpec": "ec280b09e6d78378bd7580bd931ce32d85ec9c3195498cc8052bd3da5f98faf8",
+      "exportSvg": "a789439d5a149f3fee015882b9d52f98858b88b2416be4cc17eef801704f8709"
+    },
+    "proofreading-effort": {
+      "data": "79477bcf499365105956bb70e8a9515517e9502e984fda7bd489071001335ca1",
+      "points": "646f7df9747d252bf101e8bfbf123638d210a6248803682300a65a541d6e1793",
+      "markup": {
+        "preview": "7fa896603ba2672702be2bfff00514c9a2903b3c69fd3816035741b580ce9ccd",
+        "modal": "f97e03497d2bcb3b4dae821fbbe0745a10d8d6bb173ae3eaca41117789b5de12"
+      },
+      "exportSpec": "794a74663d0d828f7a73bf0d15b300f598fda9a5a37648f64787189293e0fb46",
+      "exportSvg": "d63e15caf4e941f890b4cc03f50320355e2938766848686d8bafd3fb53b3759e"
+    },
+    "neuralink-cumulative": {
+      "data": "2255a320862e3b16d35f274757885f8f3f9f2361d678e001d5d4e56ac8c26736",
+      "points": "fc56a435430c8815b2787ae740a1760411a8da6605c6d9c75d1ed02960a26bc9",
+      "markup": {
+        "preview": "072360cc665d44756793a23490a779d7d5df2e3ea6fbc65d8d671c44047bd174",
+        "modal": "1cbe78cce949f472841086d2228ebb610bb0bde091874c027e7533afe231fbcc"
+      },
+      "exportSpec": "92c9d8abb2d48a5599f7d7e907cf5e42729d9410b7263d7510b64ca1b493e512",
+      "exportSvg": "2e56f7694ae96b483531bf80a730c27c4731578c255663825e56cf674add8633"
+    },
+    "recording-hours": {
+      "data": "a3975273f1947462fefbb5e48dc2f042ccac6d5dead50cb11499d5fe351989e3",
+      "points": "842f9db279455a501360dff55afb0a55540ccd9aae8a49d6943176d5113a5b1b",
+      "markup": {
+        "preview": "b2df96638a202c35a5b1dafecc1a729fa920e6a88cd5355e424ac2aa3e266a8d",
+        "modal": "7f335565234673be43a3177c8ea254984c963a68b518861fdcdcb2d31f272365"
+      },
+      "exportSpec": "0942aa163d3577df5b0fd29030047aa1d40035e117f1d92494d8117d687e43c1",
+      "exportSvg": "5dc8ec53bb9eaab64dd68d9bd44e138341c58a8a919d02aba0caaf5c8983502a"
+    },
+    "paired-manual": {
+      "data": "03d8376f02f2d31cde9a6e86b933744b50b818c6f43c6540230e552c7d2a1379",
+      "points": "0e7244fd13008c7d51ec2efe580b422e0e12c23107ebebc759e1102d9148e618",
+      "markup": {
+        "preview": "44dd0f15445c63960f25f540189263c70115aefd40a866623ea2c1951e093fdc",
+        "modal": "61c72c061cb5717769dd12f17381df2ed95becc11fd3b8d0dd2d31e6a0e4012d"
+      },
+      "exportSpec": "149210a17dac508b336426f67f06a49f21b9564c1ac1c14cf13279c6515d3bdf",
+      "exportSvg": "988fc467bc3201b825c4ce01490b13ea3a4dc6aae26b6607f76c11e3a4285604"
+    },
+    "public-data-size": {
+      "data": "ad17112d7c650ad75d563da5c8bc60f74b9dfa2ac8ce610a281555889b6dfbbb",
+      "points": "f9efcdfde1cf849e35dc1319f3faf585e966fcd4ca0950db271dc420236275ba",
+      "markup": {
+        "preview": "0002065e64df5f1f2a064cd8dd666737fded77ec0c45502c5cbcfb607124f12d",
+        "modal": "52278c3ddd0b20816bb9675d60e0a0f8fef4c6fb716f0e6e9d51f448fa82a6a7"
+      },
+      "exportSpec": "9206314cf4d2daa0c9b3aedcc432980491104c98d23c2e893908206dcba097e2",
+      "exportSvg": "061c2c782fa3ec24568da5387e58ca5c513993b8695c8b29ef16c7bf87f4775f"
+    },
+    "flyvis-contrast": {
+      "data": "3d83a607aac08b717b08a4cf94b0fc187d799974e0468fbcfa9b9c6de2137b1d",
+      "points": "b669e7aa88a0a3c2fcea8e10434b1be14ce08379f10c95ac1eafdbd321a7039e",
+      "markup": {
+        "preview": "2d479fb2f3fb79cfbe28a19e527690736b37ff3092fb199549e7e2fb7e2b6bd1",
+        "modal": "e0b17a0250bb2907421fe70a7f0f9c5eecd0c82b837a441efb9784dfcbc91015"
+      },
+      "exportSpec": "2d483898eb0baba3187f990adde8f6e9d5d85fe2ea41b00f4524e173b5b14af2",
+      "exportSvg": "b124a0673460e3821ba3f6c2f3600353c8d484380fb27592bcd57837db6af0f5"
+    },
+    "neuroai-imagenet": {
+      "data": "88df0cc6553f5135b4bfae3b4cc316513b2f7e7b7a4c49360a60ddb7e0b6433a",
+      "points": "c04b5fc7a702b00f108a691093fa2f6e8009c0dea02c876034f1901e729c136b",
+      "markup": {
+        "preview": "c2d09367bdc438d638f1ef0904cfa03044259661468e8812afe3970dd7eb16f8",
+        "modal": "f88f5544227a645f9360173b6975c6c4c531e46eefb8cc23b4b74d515620568e"
+      },
+      "exportSpec": "30a445d65289e4055340d97241a329197946940eb6c5d8db53edb2e9e43de78c",
+      "exportSvg": "483a80f68640a65b5efe4f888ab0915fce9fbaeac3144104feda8f6faac0d33e"
+    },
+    "acquisition-economics": {
+      "data": "f6a390c241107ddc4b139cfd2eb8420be8d9a25b5f75ddeb767670a8be5dd7f6",
+      "points": "c223af4e864c492c1728bfbb4305afb08fc7f89d0e5d3dd0bdf95056bfd468e1",
+      "markup": {
+        "preview": "4cc8c3bd1898092c7eb75e34a6a2216a0467872d66df338113fee727aaab807a",
+        "modal": "68d2dc08235a6d6b1db4084ffb963d697555e757225e36781215e25801051a43"
+      },
+      "exportSpec": "44ec6858f7d2bc6a19f93cd8ead367790f5faf857e9858fb4e79617d91b20ad3",
+      "exportSvg": "c5510fb3f671fc36aed5a021d1bac000ccf44eb093ac3bb597505269bcabc5e4"
+    },
+    "bci-bitrate": {
+      "data": "7fbd0deaddfb34b14d325407182df9dec4909a022b60f4044dabadffd8e66813",
+      "points": "c9f01fb69f4e8c3176364d8b03fcb2a62ab6a3e374661ef0be1127a24781ff89",
+      "markup": {
+        "preview": "0228f9b91b6ceed0f1167dabe7b257c3b2c61f9b8ea3bc3ed53d943ff0339639",
+        "modal": "bcc561e840cf5773a581d6508b2f59a046b48cbd084a1cb61804ab65ad2ebcb2"
+      },
+      "exportSpec": "b86bde32818b38d1e4b86644e260a5b0892c0cbba9f8816d3e5d46c84fd3e965",
+      "exportSvg": "c86aae9d029ae10265bbceb8b0c41717dcdaf79efd2fed6a19e7a5ff6953689b"
+    }
+  }
+}

@@ -3,7 +3,7 @@
 import { useMetricPreviewSpace } from "./use-metric-preview-space";
 
 import { useContext, useEffect, useId, useMemo, useRef, useState, type SVGAttributes } from "react";
-import type { DraftChartEvidence, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
+import type { DraftChartEvidence, DraftHorizontalReference, DraftObservation, DraftPlot } from "@/lib/draft-chart-types";
 import { ChartShare } from "@/components/chart-share";
 import { ChartNoteList } from "@/components/chart-note-list";
 import { ChartActions } from "@/components/chart-actions";
@@ -110,6 +110,18 @@ function ObservationSources({ point }: { point: DraftObservation }) {
     : <ReferenceLink reference={references[0]} />;
 }
 
+function AnatomicalSources({ references }: { references: readonly DraftHorizontalReference[] }) {
+  if (!references.length) return null;
+  return <section data-anatomical-sources>
+    <h4>Whole-brain anatomical estimates</h4>
+    <ul>{references.map(ref => <li key={ref.id}>
+      <p><strong>{ref.label}</strong> · {exactNumber(ref.value)} neurons</p>
+      <p><a href={ref.sourceUrl} target="_blank" rel="noreferrer">{ref.sourceTitle} ↗</a></p>
+      <p>{ref.scope}</p>
+    </li>)}</ul>
+  </section>;
+}
+
 function CalculationSource({ source }: { source?: DraftObservation["calculationSource"] }) {
   return source ? <p data-calculation-source>Calculation source: <a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></p> : null;
 }
@@ -181,6 +193,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     return { label: group, color: groupColor(point ?? { group }), marker: point?.marker };
   }) : []);
   const referenceTrendlines = plot.referenceTrendlines ?? (plot.referenceTrendline ? [plot.referenceTrendline] : []);
+  const anatomicalReferences = plot.horizontalReferences ?? [];
   const exportLegend = [...legend, ...referenceTrendlines.map(line => ({ label: line.label, color: line.color, marker: "line" as const }))];
   const tooltip = usePointTooltip(plot.points);
   const axisHelp = chartYAxisHelp(plot);
@@ -211,8 +224,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     : costMetric ? wrapLabel(line.directLabel ?? line.label, width - 12) : [line.directLabel ?? line.label]);
   const compactFit = preview && fittedLabels.length > 0;
   const fitLabelTop = 28 + yTitle.length * 16 + (costMetric ? 16 : 0);
-  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);
-  const bottom = top + (compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232) + previewExtra;
+  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0) - (preview && anatomicalReferences.length ? 16 : 0);
+  const plotHeight = anatomicalReferences.length ? preview ? 100 : width < 280 ? 464 : 232
+    : compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232;
+  const bottom = top + plotHeight + previewExtra;
   const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);
   const xs = plot.points.map(point => point.x);
   const ys = (acquisition ? sourcePlot : plot).points.map(point => point.y);
@@ -224,6 +239,12 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
   const log = plot.scale === "log";
   let minPower = Math.floor(Math.log10(Math.min(...ys)));
   let maxPower = Math.ceil(Math.log10(Math.max(...ys)));
+  // Static anatomical context shares the observation axis in both card and modal.
+  // A little headroom keeps the largest direct label clear of the upper edge.
+  if (anatomicalReferences.length) {
+    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...anatomicalReferences.map(ref => ref.value)))));
+    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...anatomicalReferences.map(ref => ref.value))) + .15));
+  }
   if (maxPower === minPower) maxPower += 1;
   if (showSensory) maxPower = Math.max(maxPower, Math.ceil(Math.log10(humanRetinalScenario) + .15));
   const rawYMax = Math.max(...ys) || 1;
@@ -237,7 +258,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     : integerAxis
       ? Array.from({ length: Math.round((yMax - yMin) / integerStep) + 1 }, (_, i) => yMin + i * integerStep)
       : Array.from({ length: 5 }, (_, i) => Number((yMin + (yMax - yMin) * i / 4).toPrecision(12)));
-  const baselineYTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
+  // Direct anatomical labels supply the intermediate scale context in compact
+  // cards; endpoint ticks leave their narrow label gutter uncluttered.
+  const baselineYTicks = preview && anatomicalReferences.length ? [yMin, yMax]
+    : preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;
   // Interpolate the bounds in log space, never the underlying observations.
   // Padding leaves room for direct labels at the extremes of the expanded view.
   const referencePowers = benchmarkBase?.references.map(ref => Math.log10(ref.value)) ?? [];
@@ -275,12 +299,26 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     ? (Math.log10(acquisition ? acquisitionEfficiency(value, acquisitionMetric) : value) - minPower) / (maxPower - minPower)
     : (value - yMin) / (yMax - yMin)) * (bottom - top);
   const sensoryLabelY = y(humanRetinalScenario) - 6 - (sensoryLabel.length - 1) * 16;
+  const anatomicalLabels = anatomicalReferences.map((ref, index) => {
+    const position = y(ref.value);
+    const above = position - 6;
+    // Labels can extend into the axis gutter on very narrow cards. Keep their
+    // full vertical strip clear of tick text; the quantitative line never moves.
+    const labelY = preview ? top + 18 + (anatomicalReferences.length - 1 - index) * 16
+      : baselineYTicks.some(tick => above + 2 > y(tick) + 4 - CHART_PRESENTATION.labelFontSize
+      && above - CHART_PRESENTATION.labelFontSize < y(tick) + 6)
+      ? position + CHART_PRESENTATION.labelFontSize + 4 : above;
+    return { ...ref, position, labelY };
+  });
   // Preserve the quantitative centers. Earlier overlapping marks become outer
   // rings, so subsequent filled marks cannot paint them out of the chart.
   const overlaps = plot.points.map(point => plot.points.filter(other => other.id !== point.id
     && Math.hypot(x(point.x) - x(other.x), y(point.y) - y(other.y)) < 14));
   const baseRadius = preview ? CHART_PRESENTATION.previewRadius : CHART_PRESENTATION.expandedRadius;
-  const markerRadius = (index: number) => baseRadius + baseRadius * plot.points.slice(index + 1)
+  // The wider anatomical domain clusters card marks. Keep each concentric step
+  // at the shared stroke width so rings cannot grow into the reference labels.
+  const ringStep = preview && anatomicalReferences.length ? CHART_PRESENTATION.markerStrokeWidth : baseRadius;
+  const markerRadius = (index: number) => baseRadius + ringStep * plot.points.slice(index + 1)
     .filter(point => overlaps[index].includes(point)).length;
   const overlapNote = overlaps.some(points => points.length > 0)
     ? "Rings keep overlapping observations visible at their source positions." : undefined;
@@ -293,7 +331,10 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     right,
     top: y(ref.value) - 6 - CHART_PRESENTATION.labelFontSize - 3,
     bottom: y(ref.value),
-  })) : []), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];
+  })) : []), ...anatomicalLabels.map(ref => ({
+    left: right - 4 - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,
+    right, top: ref.labelY - CHART_PRESENTATION.labelFontSize - 3, bottom: ref.labelY + 3,
+  })), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];
   const placedKeys: { x: number; y: number }[] = [];
   const keySlotStep = benchmarkLabelRegions.length ? 12 : 24;
   const keySlots = Array.from({ length: Math.max(1, Math.floor((right - left - 24) / keySlotStep) + 1) }, (_, column) =>
@@ -362,6 +403,7 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
       notes: [plot.scope, plot.seriesNote ?? "",
         ...recordingPoints.map(point => `${recordingKey(point)}. ${point.dateLabel}. ${recordingAverages(point)}. ${point.recordingCoverage!.detail}`),
         ...referenceTrendlines.map(line => line.note),
+        ...anatomicalReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),
 
         ...(benchmarkEnabled && benchmark ? [benchmark.disclosure, ...benchmark.sources.map(source => `${source.title}: ${source.url}`)] : []),
         ...(showSensory ? [retinalScenarioAssumptions, `Koch et al. (2006): ${RETINAL_OUTPUT.source}`] : []),
@@ -391,6 +433,8 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
         {yTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < yTitle.length - 1 ? " " : ""}</tspan>)}
       </text>
       {costMetric && <text data-cheaper-direction x={0} y={fitLabelTop - 20} fill="var(--muted)" fontSize={CHART_PRESENTATION.labelFontSize}>↑ cheaper</text>}
+      {!preview && anatomicalReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill="var(--muted)"
+        fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>Anatomical scale</text>}
       {benchmark && benchmarkProgress > 0 && <g opacity={benchmarkReveal}>
         <text data-brain-scale-scope x={0} y={top - 10} fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize} fill="var(--muted)">{benchmark.scopeLabel}</text>
       </g>}
@@ -443,6 +487,15 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
           {sensoryLabel.map((line, index) => <tspan key={index} x={left + 4} dy={index ? 16 : 0}>{line}{index < sensoryLabel.length - 1 ? " " : ""}</tspan>)}
         </text>
       </g>}
+      {anatomicalLabels.map(ref => <g key={ref.id} pointerEvents="none" aria-label={`Whole-brain anatomical estimate: ${ref.label}`}>
+        <line data-anatomical-reference={ref.id} data-value={ref.value} x1={left} x2={right} y1={ref.position} y2={ref.position}
+          stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} strokeDasharray="2 5" vectorEffect="non-scaling-stroke" />
+        {preview && <line data-anatomical-label-leader={ref.id} x1={right - 1} x2={right - 1} y1={ref.position} y2={ref.labelY - 4}
+          stroke="var(--muted)" strokeOpacity={.45} strokeWidth={1} vectorEffect="non-scaling-stroke" />}
+        <text data-anatomical-reference-label={ref.id} x={right - 4} y={ref.labelY} textAnchor="end"
+          fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}
+          fill="var(--muted)" stroke="var(--surface)" strokeWidth={3} paintOrder="stroke">{ref.label}</text>
+      </g>)}
       {plot.points.map((point, index) => <ObservationMarker key={point.id} marker={point.marker} data-source-observation={point.id} data-acquisition-value={acquisition ? point.y : undefined} cx={x(point.x)} cy={y(point.y)} r={markerRadius(index)}
         fill={markerRadius(index) > baseRadius ? "none" : groupColor(point)} stroke={markerRadius(index) > baseRadius ? groupColor(point) : "var(--surface)"}
         strokeWidth={CHART_PRESENTATION.markerStrokeWidth} vectorEffect="non-scaling-stroke"
@@ -546,10 +599,12 @@ export function DraftChartPlot({ plot: sourcePlot, shareAnchor, preview = false 
     <ModalSources modalOnly>
       <p className="mx-scope-line" data-draft-sources-scope>{plot.scope}</p>
       {plot.curationSource && <p className="mx-scope-line">Dataset discovery: <a href={plot.curationSource.url} target="_blank" rel="noreferrer">{plot.curationSource.title} ↗</a></p>}
+      <AnatomicalSources references={anatomicalReferences} />
     </ModalSources>
     <ModalData><details className="draft-plot-data">
       <summary>Data and sources ({plot.points.length})</summary>
       {!modalSlots && <p className="draft-plot-scope">{plot.scope}</p>}
+      {!modalSlots && <AnatomicalSources references={anatomicalReferences} />}
       {(plot.referenceTrendlines || plot.curationSource || recordingPoints.length > 0) && <a data-selected-plot-json download={`neuro-atlas-${plot.id}.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(plot,null,2))}`}>Download selected data{plot.referenceTrendlines ? " & fits" : " and sources"} JSON</a>}
       {acquisition && <p><a data-source-plot-json download={`neuro-atlas-${plot.id}-source.json`} href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(sourcePlot,null,2))}`}>Download original source data &amp; fits JSON (voxels/$)</a></p>}
       {plot.seriesNote && <ChartNoteList notes={[plot.seriesNote]} legend={legend} />}
