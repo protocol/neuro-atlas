@@ -166,10 +166,7 @@ test('plot previews open source-qualified detail without a paragraph wall above 
       assert.ok(document.querySelector('dialog[open] .mx-sources [data-draft-sources-scope]'), 'Scope sits once in source notes below the plot');
       assert.ok(document.querySelector('dialog[open] .mx-data details tbody'), 'Citations stay with the full-width observation table');
       const preceding = figure.querySelector('svg').previousElementSibling;
-      if (preceding.matches('.neuron-reference-controls')) {
-        assert.equal(preceding.querySelectorAll('[data-neuron-reference-toggle]').length, 3);
-        assert.equal(preceding.previousElementSibling.tagName, 'FIGCAPTION');
-      } else assert.equal(preceding.tagName, 'FIGCAPTION');
+      assert.equal(preceding.tagName, 'FIGCAPTION');
       await click(document.querySelector('dialog[open] .pc-modal-header button')); await settle(); await settle();
     }
   } finally { await cleanup(); }

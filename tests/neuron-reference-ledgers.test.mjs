@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { sha256, restoreReviewedFile } from '../scripts/qa/build-reviewed-delta.mjs';
 import { applyReviewedDelta } from '../scripts/qa/reviewed-delta.mjs';
-import { NEURON_CURRENT_DELTA, currentNeuronFileHash, withoutCurrentNeuronStudies } from './helpers/neuron-reference-current.mjs';
+import { NEURON_CURRENT_DELTA, NEURON_SINGLE_TOGGLE_DELTA, currentNeuronFileHash, withoutCurrentNeuronStudies } from './helpers/neuron-reference-current.mjs';
 import { restoreBeforeNeuronTogglesFile } from './helpers/neuron-reference-baseline.mjs';
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const fixture = name => JSON.parse(read('tests/fixtures/' + name));
@@ -13,9 +13,10 @@ test('exact neuron delta edges reconstruct frozen main and PR154 source bytes wh
     ['neuron-reference-current-main-file-delta.json', 'e3b0d161c729aded58358b93f90248a406ce20cc86d876071a791185d1a74cb6'],
     ['neuron-toggle-file-delta.json', 'dc47147e9d1a25ab35a27b5c229241b0c15240117f6e3f219d6f86c2aa1332fe'],
     ['neuron-financing-catalog-delta.json', '463f2c1650465559d8f85f34d294eebb27eedaabb966e0acd0726c96ace4fb6c'],
+    ['neuron-single-toggle-file-delta.json', '001cbdc73e7c0413327f104ed30aa75862f4552a8f67acae8fe8cc7dd51375ee'],
   ]) assert.equal(sha256(read('tests/fixtures/' + name)), hash, name + ': exact reviewed edge');
-  for (const delta of [NEURON_CURRENT_DELTA, fixture('neuron-toggle-file-delta.json')]) for (const file of delta.files) {
-    const current = read(file.path);
+  for (const delta of [NEURON_SINGLE_TOGGLE_DELTA, NEURON_CURRENT_DELTA, fixture('neuron-toggle-file-delta.json')]) for (const file of delta.files) {
+    const current = delta === NEURON_SINGLE_TOGGLE_DELTA ? read(file.path) : restoreReviewedFile(read(file.path), NEURON_SINGLE_TOGGLE_DELTA, file.path);
     assert.equal(sha256(current), file.afterSha256, file.path + ': exact candidate bytes');
     const original = restoreReviewedFile(current, delta, file.path);
     assert.equal(sha256(original), file.beforeSha256, file.path + ': independent exact baseline bytes');
@@ -38,7 +39,9 @@ test('exact neuron delta edges reconstruct frozen main and PR154 source bytes wh
 
 test('raw financing acceptance binds both immutable old hashes and exact new bytes; catalog projection removes only two approved studies', () => {
   for (const file of NEURON_CURRENT_DELTA.files) {
-    assert.equal(currentNeuronFileHash(file.path, file.beforeSha256), file.afterSha256);
+    const correction = NEURON_SINGLE_TOGGLE_DELTA.files.find(entry => entry.path === file.path);
+    if (correction) assert.equal(correction.beforeSha256, file.afterSha256, 'Correction starts at the frozen prior feature endpoint');
+    assert.equal(currentNeuronFileHash(file.path, file.beforeSha256), correction?.afterSha256 ?? file.afterSha256);
     assert.equal(currentNeuronFileHash(file.path, 'a'.repeat(64)), 'a'.repeat(64), 'A forged baseline hash cannot enter the allowance');
   }
   const file = 'src/data/methodology-sources.json';

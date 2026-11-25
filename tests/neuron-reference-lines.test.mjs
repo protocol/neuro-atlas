@@ -31,6 +31,7 @@ import { CHART_PRESENTATION } from '../src/lib/chart-presentation.ts';
 import { mount } from './modal-helpers.mjs';
 globalThis.React = React;
 const anchor = 'metric-panel-largest-connectome-neurons';
+const referencesOn = win => win.history.replaceState(null, '', '?neuronRefs=mouse,macaque,human#selected-published-connectomes-neuron-counts');
 
 function checkReferences(svg) {
   const lines = [...svg.querySelectorAll('[data-anatomical-reference]')];
@@ -81,13 +82,13 @@ test('preview and full modal draw static anatomical lines using the observation 
   try {
     for (const width of [560, 320, 240, 147]) {
       globalThis.ResizeObserver = class { constructor(cb) { this.cb = cb; } observe(target) { this.cb([{ target, contentRect: { width } }]); } disconnect() {} };
-      const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), '#selected-published-connectomes-neuron-counts');
+      const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), '', referencesOn);
       try {
         const svgs = document.querySelectorAll('svg.draft-plot-svg');
         assert.equal(svgs.length, 2, 'Real preview and deep-linked modal mount');
         for (const svg of svgs) checkReferences(svg);
         assert.equal(document.querySelector('[data-brain-scale-toggle]'), null);
-        assert.equal(document.querySelectorAll('dialog [data-neuron-reference-toggle][role="switch"][aria-checked="true"]').length, 3);
+        assert.equal(document.querySelectorAll('dialog [data-neuron-reference-toggle][role="switch"][aria-checked="true"]').length, 1);
         assert.equal(document.querySelectorAll('[data-draft-preview] [role="switch"]').length, 0);
         assert.equal(window.location.hash, '#selected-published-connectomes-neuron-counts');
       } finally { await cleanup(); }
@@ -125,7 +126,7 @@ test('native Sources and selected-data disclosure retain anatomical population, 
 });
 
 test('existing full-chart PNG serialization includes all reference lines, readable labels and primary-source scope', async () => {
-  const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), '#selected-published-connectomes-neuron-counts');
+  const cleanup = await mount(React.createElement(DraftChartPanel, { plot, anchor }), '', referencesOn);
   try {
     const spec = (await whenChartRegistered(anchor, 0)).getChart();
     const image = new JSDOM(buildChartImage(spec, window.location.href).svg, { contentType: 'image/svg+xml' });

@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "baselineSha": "102e4bdd324d2e9070f57a9c52e0faad94960559",
+  "files": [
+    {
+      "path": "src/components/draft-chart-plot.tsx",
+      "beforeSha256": "12ee7a6dec841f74a0cd291daf78debe6e820ae1407c9cc53aa2d43f07da7ee1",
+      "afterSha256": "c79ee5bf793267e54934611212bcece468a4159807b5d1b306f860794f421b55",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 690,
+            "afterLength": 687,
+            "edits": [
+              {
+                "beforeIndex": 197,
+                "afterIndex": 197,
+                "before": [
+                  "  const [referenceSelection, toggleReference] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);",
+                  "  const visibleReferences = referenceControls ? anatomicalReferences.filter(ref => referenceSelection.split(\",\").includes(ref.id)) : anatomicalReferences;"
+                ],
+                "after": [
+                  "  const [referencesEnabled, setReferencesEnabled] = useNeuronReferences(referenceControls ? shareAnchor ?? `metric-panel-${plot.id}` : undefined);",
+                  "  const visibleReferences = referenceControls && !referencesEnabled ? [] : anatomicalReferences;"
+                ]
+              },
+              {
+                "beforeIndex": 425,
+                "afterIndex": 425,
+                "before": [
+                  "    {referenceControls && <section className=\"brain-scale-controls neuron-reference-controls\">",
+                  "      <p>Whole-brain references</p>",
+                  "      <div className=\"brain-scale-controls neuron-reference-options\" role=\"group\" aria-label=\"Whole-brain references\">",
+                  "        {anatomicalReferences.map(ref => <button key={ref.id} type=\"button\" role=\"switch\" data-neuron-reference-toggle={ref.id}",
+                  "          aria-checked={visibleReferences.includes(ref)} onClick={() => { tooltip.clear(); toggleReference(ref.id); }}>",
+                  "          <span className=\"brain-scale-switch\" aria-hidden=\"true\" />{ref.label.split(\" \")[0]}</button>)}",
+                  "      </div>",
+                  "    </section>}"
+                ],
+                "after": [
+                  ""
+                ]
+              },
+              {
+                "beforeIndex": 517,
+                "afterIndex": 510,
+                "before": [],
+                "after": [
+                  "    {referenceControls && <div className=\"brain-scale-controls\">",
+                  "      <button type=\"button\" role=\"switch\" data-neuron-reference-toggle aria-checked={referencesEnabled}",
+                  "        onClick={() => { tooltip.clear(); setReferencesEnabled(enabled => !enabled); }}><span className=\"brain-scale-switch\" aria-hidden=\"true\" />Whole-brain references</button>",
+                  "    </div>}"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/components/draft-chart-plot.css",
+      "beforeSha256": "97951e760f3182ea944568b96100d75c38d5ad2359907ddd2dc910368a99d047",
+      "afterSha256": "01fd9d76e29a3719c118d3056fe1042c6f50b8a5c6921643fa111a75d61bb273",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 423,
+            "afterLength": 422,
+            "edits": [
+              {
+                "beforeIndex": 411,
+                "afterIndex": 411,
+                "before": [
+                  ".neuron-reference-controls > p { margin: 0 0 .35rem; }",
+                  ".neuron-reference-options { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }"
+                ],
+                "after": [
+                  ""
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/lib/field-velocity/navigation.ts",
+      "beforeSha256": "52fe7e8aac5c3a090b2462d2bbd2948087764e817d508d8322a1014134ce4306",
+      "afterSha256": "bee1e65eddf1bb4469f751c1f3bf37b364131988d95f757bd7dd9c4fcb29a1aa",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 197,
+            "afterLength": 195,
+            "edits": [
+              {
+                "beforeIndex": 5,
+                "afterIndex": 5,
+                "before": [
+                  "import { ALL_NEURON_REFERENCES, NEURON_REFERENCE_IDS, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from \"@/lib/neuron-reference-url\";"
+                ],
+                "after": [
+                  "import { ALL_NEURON_REFERENCES, neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceTarget, neuronReferenceToken } from \"@/lib/neuron-reference-url\";"
+                ]
+              },
+              {
+                "beforeIndex": 178,
+                "afterIndex": 178,
+                "before": [
+                  "/** Independent reference switches use the same history/subscription as other chart views. */"
+                ],
+                "after": [
+                  "/** One grouped reference switch shares the other chart views' history contract. */"
+                ]
+              },
+              {
+                "beforeIndex": 180,
+                "afterIndex": 180,
+                "before": [
+                  "  const selection = useSyncExternalStore(subscribe,",
+                  "    () => anchor ? neuronReferencesFromUrl(new URL(window.location.href), anchor) : ALL_NEURON_REFERENCES,",
+                  "    () => ALL_NEURON_REFERENCES);",
+                  "  const toggleReference = (id: string) => {",
+                  "    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget || !NEURON_REFERENCE_IDS.some(known => known === id)) return;"
+                ],
+                "after": [
+                  "  const enabled = useSyncExternalStore(subscribe,",
+                  "    () => !!anchor && neuronReferencesFromUrl(new URL(window.location.href), anchor) === ALL_NEURON_REFERENCES,",
+                  "    () => false);",
+                  "  const setEnabled = (update: (current: boolean) => boolean) => {",
+                  "    if (!anchor || performanceTarget(anchor) !== neuronReferenceTarget) return;"
+                ]
+              },
+              {
+                "beforeIndex": 186,
+                "afterIndex": 186,
+                "before": [
+                  "    const current = neuronReferencesFromUrl(url, anchor).split(\",\");",
+                  "    const next = NEURON_REFERENCE_IDS.filter(known => known === id ? !current.includes(known) : current.includes(known)).join(\",\") || \"none\";",
+                  "    const token = neuronReferenceToken(next);"
+                ],
+                "after": [
+                  "    const token = neuronReferenceToken(update(neuronReferencesFromUrl(url, anchor) === ALL_NEURON_REFERENCES) ? ALL_NEURON_REFERENCES : \"none\");"
+                ]
+              },
+              {
+                "beforeIndex": 194,
+                "afterIndex": 192,
+                "before": [
+                  "  return [selection, toggleReference] as const;"
+                ],
+                "after": [
+                  "  return [enabled, setEnabled] as const;"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/lib/neuron-reference-url.ts",
+      "beforeSha256": "5a2644bcb9ea08568e5381cac3dc6c027b6498d85127009ebb347a199b913569",
+      "afterSha256": "1a6290d507a92f37a10917f6769c1dd70043c90a6e90b67bd7a9bbabf93879cc",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 24,
+            "afterLength": 24,
+            "edits": [
+              {
+                "beforeIndex": 7,
+                "afterIndex": 7,
+                "before": [
+                  "/** A stable primitive snapshot; only an exact single chart-qualified selection is read. */"
+                ],
+                "after": [
+                  "/** A stable binary snapshot; valid legacy nonempty subsets all enable the group. */"
+                ]
+              },
+              {
+                "beforeIndex": 10,
+                "afterIndex": 10,
+                "before": [
+                  "    || performanceTarget(url.hash.slice(1)) !== neuronReferenceTarget) return ALL_NEURON_REFERENCES;"
+                ],
+                "after": [
+                  "    || performanceTarget(url.hash.slice(1)) !== neuronReferenceTarget) return \"none\";"
+                ]
+              },
+              {
+                "beforeIndex": 12,
+                "afterIndex": 12,
+                "before": [
+                  "  if (values.length !== 1) return ALL_NEURON_REFERENCES;"
+                ],
+                "after": [
+                  "  if (values.length !== 1) return \"none\";"
+                ]
+              },
+              {
+                "beforeIndex": 15,
+                "afterIndex": 15,
+                "before": [
+                  "  if (new Set(ids).size !== ids.length || ids.some(id => !NEURON_REFERENCE_IDS.some(known => known === id))) return ALL_NEURON_REFERENCES;",
+                  "  return NEURON_REFERENCE_IDS.filter(id => ids.includes(id)).join(\",\");"
+                ],
+                "after": [
+                  "  if (new Set(ids).size !== ids.length || ids.some(id => !NEURON_REFERENCE_IDS.some(known => known === id))) return \"none\";",
+                  "  return ALL_NEURON_REFERENCES;"
+                ]
+              },
+              {
+                "beforeIndex": 19,
+                "afterIndex": 19,
+                "before": [
+                  "/** Default all-on omits the parameter; the empty subset is explicit. */"
+                ],
+                "after": [
+                  "/** Default-off carries no token; all references share one explicit on state. */"
+                ]
+              },
+              {
+                "beforeIndex": 21,
+                "afterIndex": 21,
+                "before": [
+                  "  return selection === ALL_NEURON_REFERENCES ? undefined : selection;"
+                ],
+                "after": [
+                  "  return selection === ALL_NEURON_REFERENCES ? ALL_NEURON_REFERENCES : undefined;"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

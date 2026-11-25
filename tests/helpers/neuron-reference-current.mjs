@@ -13,9 +13,19 @@ assert.deepEqual(NEURON_CURRENT_DELTA.files.map(f => f.path), [
   'src/lib/field-velocity/navigation.ts', 'src/lib/chart-export.ts',
   'src/data/metric-chart-visibility.ts', 'src/data/methodology-sources.json',
 ]);
+const singleToggleText = readFileSync(new URL('../fixtures/neuron-single-toggle-file-delta.json', import.meta.url), 'utf8');
+assert.equal(sha256(singleToggleText), '001cbdc73e7c0413327f104ed30aa75862f4552a8f67acae8fe8cc7dd51375ee', 'Exact owner-requested single-switch correction; older feature edges remain frozen');
+export const NEURON_SINGLE_TOGGLE_DELTA = validateReviewedFilesFixture(JSON.parse(singleToggleText));
+assert.equal(NEURON_SINGLE_TOGGLE_DELTA.baselineSha, '102e4bdd324d2e9070f57a9c52e0faad94960559');
+assert.deepEqual(NEURON_SINGLE_TOGGLE_DELTA.files.map(f => f.path), [
+  'src/components/draft-chart-plot.tsx', 'src/components/draft-chart-plot.css',
+  'src/lib/field-velocity/navigation.ts', 'src/lib/neuron-reference-url.ts',
+]);
 export function currentNeuronFileHash(file, originalHash) {
   const delta = NEURON_CURRENT_DELTA.files.find(entry => entry.path === file);
-  return delta?.beforeSha256 === originalHash ? delta.afterSha256 : originalHash;
+  if (delta?.beforeSha256 !== originalHash) return originalHash;
+  const correction = NEURON_SINGLE_TOGGLE_DELTA.files.find(entry => entry.path === file);
+  return correction?.beforeSha256 === delta.afterSha256 ? correction.afterSha256 : delta.afterSha256;
 }
 const addedStudies = [
   ['https://pmc.ncbi.nlm.nih.gov/articles/PMC1567708/', 'Herculano-Houzel et al. (2006) — rodent brain cellular scaling, mouse anatomical neuron estimate (Table 1)'],

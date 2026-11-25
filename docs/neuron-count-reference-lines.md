@@ -20,17 +20,19 @@ study-reported map counts.
   unchanged. Labels use separated vertical lanes and short association leaders;
   overlap-ring increments are bounded to the shared marker stroke width. Narrow
   modal layouts reserve extra vertical room for the existing observation badges.
-- The full neuron modal has independent native Mouse, Macaque and Human switches
-  under Whole-brain references. All start on. Compact previews stay all-on and
-  have no switches. A change clears pinned inspection without restoring mark focus.
+- The full neuron modal has one native “Whole-brain references” switch below the
+  SVG, using the neighboring benchmark's pill styling. It starts off and shows or
+  hides Mouse, Macaque and Human together. Compact previews stay all-on and have
+  no switches. A change clears pinned inspection without restoring mark focus.
 - Source links and all three species/method definitions remain in the native
   Sources and selected-data JSON even when their overlays are hidden. JSON adds
   `visibleNeuronReferences` in source order. Image/clipboard exports serialize only
   visible reference lines, labels and reference notes, preserving all observations.
   No fit, extrapolation or completion ratio is added.
-- `neuronRefs=mouse,macaque` selects a subset on this chart only, in stable source
-  order; all-on omits it and all-off uses `neuronRefs=none`. Invalid, duplicate or
-  unknown tokens use the all-on default. Canonical and legacy chart fragments,
+- `neuronRefs=mouse,macaque,human` enables the group on this chart only; the off
+  default omits the parameter. Valid nonempty legacy subsets normalize to all-on;
+  legacy `none` normalizes to off. Invalid, duplicate, unknown or cross-chart
+  tokens use the off default. Canonical and legacy chart fragments,
   Copy link, fresh loads, reload and Back/Forward restore the selection. View
   changes preserve router fields and repeated unrelated query entries; Close or
   Escape dismisses in one action. Other chart links discard this parameter.
@@ -66,12 +68,22 @@ older copy/funding deltas are applied. The fixture's complete current/base hashe
 are asserted separately. Unknown line or catalog edits survive reconstruction or
 fail closed. No original historical fixture or golden hash is regenerated.
 
-`tests/neuron-reference-toggles.test.mjs` exercises all eight subsets, source
-immutability, observation-only scaling, URL/history/copy behavior, malformed
-tokens, selected export metadata/JSON, preview invariance and focus-safe clearing.
+`tests/neuron-reference-toggles.test.mjs` exercises both grouped states, one
+default-off under-plot switch, exact off-SVG restoration, source immutability,
+observation-only scaling, URL/history/copy behavior, all valid legacy subsets and
+malformed tokens, selected export metadata/JSON, preview invariance and focus-safe
+clearing. Its single-switch and URL-normalization tests failed against the old
+behavior before the corresponding runtime changes.
 `neuron-toggle-file-delta.json` reverses only the four exact existing runtime-file
 changes onto PR154 base `8393a96823aeb4dfb43894392c78940da812949c`. Separate exact
 current-main and financing-catalog edges compose owner-approved main `866ce97`
 without modifying older fixtures. Raw financing locks validate the full current
 feature hashes and exact two added study definitions before comparing unchanged
 financing identity; they never import a historical reader.
+
+The single-switch correction adds `neuron-single-toggle-file-delta.json`, pinned
+to `102e4bdd324d2e9070f57a9c52e0faad94960559`. Its four exact runtime-file deltas
+compose ahead of those frozen edges. Tests assert the correction's complete
+current/baseline hashes, forward and reverse bytes, exact file inventory, and
+rejection of unlisted changes. No older fixture, scientific value or golden was
+regenerated.
