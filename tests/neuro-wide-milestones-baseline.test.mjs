@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readHistoricalFileSync as readFileSync } from './helpers/china-funding-baseline.mjs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeNeuroWideMilestones } from './helpers/neuro-wide-milestones-baseline.mjs';
 import { beforeNotables66 } from './helpers/notables-66-baseline.mjs';

@@ -121,12 +121,12 @@ fundingIndex.summary = {
   observedCapitalUsdM: Number(observedCapitalUsdM.toFixed(2)),
   firstYear: Math.min(...years),
   lastYear: Math.max(...years),
-  asOf: "2026-11-17",
+  asOf: "2026-11-24",
 };
 fundingIndex.methodology = {
   thresholdUsdM: 2,
   scope: "Selected implanted, minimally invasive, and implant-adjacent BCI companies with at least one publicly sourced financing of $2m or more.",
-  coverage: "Publicly disclosed financing records, not an exhaustive funding-to-date or cash-receipts total. Explicitly labeled philanthropic commitments are included; combined multi-round disclosures are counted once without inventing an allocation. Backer participation and associated capital refer to the whole disclosed financing record, not check sizes. Dates distinguish announcements and reports from actual events; unestablished dates retain an unverified label. Amounts are source-reported financing values or sourced historical FX estimates. Legacy estimates with unresolved FX provenance remain explicitly qualified; pinned conversions are not revalued at current rates. Company histories and source-access coverage remain partial; standalone grants and lifetime cumulative totals are not added. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other coverage dates are unchanged.",
+  coverage: "Selected public financing records, including explicitly labeled philanthropic commitments. Combined multi-round disclosures are counted once at their published total. Associated capital sums the full financing amounts for records naming each backer; individual contributions require separate evidence. Dates identify announcements, reports or documented events; uncertain dates are labeled unverified. Amounts retain the published currency and historical exchange-rate estimates. Each saved conversion keeps its original rate and date; older estimates retain any unresolved rate-source qualifications. Company histories and source access remain partial. Standalone grants and lifetime cumulative totals remain outside the indexed sum. Financing records with unresolved conversion overlap remain visible but are excluded from indexed and associated capital totals. Paradromics financing correction reviewed Nov 24, 2026; other company histories retain their existing review status.",
 };
 fs.writeFileSync(path.join(OUT, "funding-index.json"), JSON.stringify(fundingIndex));
 

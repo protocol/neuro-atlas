@@ -1,8 +1,7 @@
-import { beforeParadromicsFunding } from './helpers/paradromics-funding-baseline.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readHistoricalFileSync as readFileSync } from './helpers/china-funding-baseline.mjs';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
@@ -14,7 +13,7 @@ import { beforeNeuroWideMilestones } from './helpers/neuro-wide-milestones-basel
 const load = file => JSON.parse(readFileSync(new URL(file, import.meta.url)));
 const fixture = load('./fixtures/notables-65.json');
 const milestones = load('../src/data/milestones.json');
-const funding = beforeParadromicsFunding(load('../src/data/funding-index.json'));
+const funding = load('../src/data/funding-index.json');
 const canonical = parseCsv(readFileSync(new URL('../data/market-memo-q1-2026/milestones.csv', import.meta.url), 'utf8'));
 const sources = fixture.milestones.map(row => row.sourceUrl);
 // Retain the frozen historical hashes; later additions have their own exact-source regressions.

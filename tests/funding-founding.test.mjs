@@ -1,13 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildFundingIndex, loadFundingIndexSources, parseCsv } from "../scripts/lib/funding-index.mjs";
+import { buildFundingIndex, parseCsv } from "../scripts/lib/funding-index.mjs";
 import { readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import { loadHistoricalFundingSources, readHistoricalFile } from "./helpers/china-funding-baseline.mjs";
 
 const directory = new URL("../data/funding-index/", import.meta.url).pathname;
 
 test("canonical founding research covers the entire unchanged roster exactly once and regenerates deterministically", async () => {
-  const sources = await loadFundingIndexSources(directory);
+  const sources = await loadHistoricalFundingSources(directory);
   assert.ok(Array.isArray(sources.foundings), "loader must read canonical founding research");
   assert.equal(sources.foundings.length, 25);
   assert.equal(new Set(sources.foundings.map((row) => row.company_slug)).size, 25);
@@ -24,7 +25,8 @@ test("canonical founding research covers the entire unchanged roster exactly onc
   const first = await readFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8");
   execFileSync(process.execPath, ["scripts/generate-derived.mjs"]);
   assert.equal(await readFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"), first);
-  assert.deepEqual(JSON.parse(first).companies.map((c) => c.founding), index.companies.map((c) => c.founding));
+  const historical = JSON.parse(await readHistoricalFile(new URL("../src/data/funding-index.json", import.meta.url), "utf8"));
+  assert.deepEqual(historical.companies.map((c) => c.founding), index.companies.map((c) => c.founding));
 });
 
 test("CSV parsing preserves commas, quoted notes and blank years", () => {

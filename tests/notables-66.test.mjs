@@ -1,21 +1,22 @@
-import { beforeParadromicsFunding, beforeParadromicsCatalog } from './helpers/paradromics-funding-baseline.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readHistoricalFileSync as readFileSync } from './helpers/china-funding-baseline.mjs';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
 import { MilestoneTimeline } from '../src/components/milestone-timeline.tsx';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeNotables66 } from './helpers/notables-66-baseline.mjs';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const load = path => JSON.parse(read(path));
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const fixture = load('./fixtures/notables-66.json');
 const milestones = load('../src/data/milestones.json');
-const funding = beforeParadromicsFunding(load('../src/data/funding-index.json'));
+const funding = load('../src/data/funding-index.json');
 const sources = fixture.sources;
 const one = source => {
   const rows = milestones.filter(row => row.sourceUrl === source);
@@ -45,7 +46,7 @@ test('Notables 66 historical exclusion rejects changed, missing, duplicate and e
 
 test('Notables 66 adds only its eleven source-directory links, retaining every prior classification', async () => {
   const { scanSources } = await import('./helpers/methodology-source-inventory.mjs');
-  const catalog = beforeParadromicsCatalog(load('../src/data/methodology-sources.json'));
+  const catalog = load('../src/data/methodology-sources.json');
   const { included } = scanSources();
   const additions = Object.values(fixture.sourceCatalogAdditions).flat();
   assert.equal(additions.length, 11);
@@ -131,11 +132,24 @@ test('Notables 66 renders all three once in 2026 and counts the ARIA event as a 
       assert.equal(timeline.querySelectorAll(`a[href="${source}"]`).length, 1, source);
       assert.equal(timeline.querySelector(`a[href="${source}"]`).getAttribute('aria-label'), `${row.company} — ${row.activity}`);
     }
-    const summary = [...before.window.document.querySelectorAll('aside .space-y-3 > div')]
-      .find(row => [...row.querySelectorAll('span')].some(span => span.textContent === 'Capital'));
-    assert.ok(summary, 'real rendered capital summary');
-    const baseline = fixture.baseline2026Capital;
-    assert.match(summary.textContent, new RegExp(`${baseline.financingRecords} financing records · ${baseline.awards + 1} award`));
-    assert.equal(summary.querySelector('.tnum').textContent, `$${(baseline.usdM / 1000).toFixed(1)}b`, 'ARIA grant must not inflate the financing total');
+    // The source/link assertions above exercise the live timeline. For this
+    // historical capital golden, render the exact reviewed-delta reconstruction
+    // through the same component; restore its module data even if render throws.
+    const live = require('../src/data/milestones.json');
+    const snapshot = [...live];
+    let historicalMarkup;
+    try {
+      live.splice(0, live.length, ...structuredClone(milestones));
+      historicalMarkup = renderToStaticMarkup(React.createElement(MilestoneTimeline));
+    } finally { live.splice(0, live.length, ...snapshot); }
+    const historical = new JSDOM(historicalMarkup);
+    try {
+      const summary = [...historical.window.document.querySelectorAll('aside .space-y-3 > div')]
+        .find(row => [...row.querySelectorAll('span')].some(span => span.textContent === 'Capital'));
+      assert.ok(summary, 'real rendered capital summary');
+      const baseline = fixture.baseline2026Capital;
+      assert.match(summary.textContent, new RegExp(`${baseline.financingRecords} financing records · ${baseline.awards + 1} award`));
+      assert.equal(summary.querySelector('.tnum').textContent, `$${(baseline.usdM / 1000).toFixed(1)}b`, 'ARIA grant must not inflate the financing total');
+    } finally { historical.window.close(); }
   } finally { before.window.close(); }
 });

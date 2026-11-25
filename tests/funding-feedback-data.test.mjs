@@ -1,12 +1,15 @@
-import { countedCapital } from "../src/lib/funding-capital.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { buildFundingIndex, loadFundingIndexSources, parseCsv } from "../scripts/lib/funding-index.mjs";
 
+import { loadHistoricalFundingSources, readHistoricalFile } from "./helpers/china-funding-baseline.mjs";
+
 const root = new URL("../", import.meta.url);
 const readJson = async (name) => JSON.parse(await readFile(new URL(name, root), "utf8"));
 const sources = await loadFundingIndexSources(new URL("data/funding-index/", root).pathname);
+const historicalSources = await loadHistoricalFundingSources(new URL("data/funding-index/", root).pathname);
+const historicalFunding = () => readHistoricalFile(new URL("src/data/funding-index.json", root), "utf8").then(JSON.parse);
 const scienceSource = "https://science.xyz/news/series-d/";
 const mergeInvestorEvidence = {
   investorName: "PL Capital",
@@ -39,7 +42,7 @@ test("Science's November 17 Series D appears once in both canonical datasets and
   const funding = await readJson("src/data/funding-index.json");
   const milestones = await readJson("src/data/milestones.json");
   assert.deepEqual(funding.rounds.filter((row) => row.sourceUrl === scienceSource), [round]);
-  assert.equal(funding.summary.asOf, "2026-11-17");
+  assert.equal((await historicalFunding()).summary.asOf, "2026-11-17");
   assert.deepEqual(milestones.filter((row) => row.sourceUrl === scienceSource).map((row) => [row.company, row.date, row.stage, row.amountUsdM, row.dateBasis]), [
     ["Science Corp", "2026-11-17", "capital", 400, "announcement"],
   ]);
@@ -67,9 +70,10 @@ test("Merge's existing seed retains its amount and date semantics while recordin
   const round = index.rounds.find((row) => row.companySlug === "merge-labs");
   assert.deepEqual(round.investors, ["OpenAI", "Bain Capital", "Gabe Newell", "PL Capital"]);
   assert.equal(round.amountUsdM, 252);
-  assert.equal(index.rounds.length, 43);
-  assert.equal(index.companies.length, 25);
-  assert.equal(Number(index.rounds.reduce((sum, row) => sum + countedCapital(row), 0).toFixed(2)), 3579.33);
+  const historicalIndex = buildFundingIndex(historicalSources);
+  assert.equal(historicalIndex.rounds.length, 42);
+  assert.equal(historicalIndex.companies.length, 25);
+  assert.equal(Number(historicalIndex.rounds.reduce((sum, row) => sum + row.amountUsdM, 0).toFixed(2)), 3553.96);
 });
 
 const scienceInvestorEvidence = {
@@ -93,7 +97,8 @@ test("participant evidence loads from the canonical sidecar onto only the exact 
   const generated = await readJson("src/data/funding-index.json");
   assert.deepEqual(generated.rounds, index.rounds, "Every generated financing matches the canonical builder, including participant evidence");
   assert.deepEqual(generated.investors, index.investors);
-  assert.deepEqual([generated.summary.indexedRounds, generated.summary.selectedCompanies, generated.summary.observedCapitalUsdM], [43, 25, 3579.33]);
+  const historical = await historicalFunding();
+  assert.deepEqual([historical.summary.indexedRounds, historical.summary.selectedCompanies, historical.summary.observedCapitalUsdM], [42, 25, 3553.96]);
   const science = index.rounds.find((row) => row.companySlug === "science-corporation" && row.announcedOn === "2025-04-14");
   assert.deepEqual(science.investorEvidence, [scienceInvestorEvidence]);
   assert.ok(index.rounds.filter((row) => row !== merge && row !== science && row.companySlug !== "paradromics").every((row) => !Object.hasOwn(row, "investorEvidence")));

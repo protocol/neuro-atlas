@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { beforeMergeChinaFile } from './helpers/financing-merge-baseline.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -58,13 +59,14 @@ test('Paradromics retains four public records while only the reconciled offering
   const company = buildCompanyRows(funding.companies, funding.rounds, { query: 'Paradromics', scope: 'All', modality: 'All' })[0];
   assert.equal(company.observedCapitalUsdM, 85.37);
   assert.equal(formatCapital(company.observedCapitalUsdM), '$85.4M');
-  assert.equal(funding.summary.observedCapitalUsdM, 3579.33);
-  assert.equal(funding.summary.indexedRounds, 43);
-  assert.equal(funding.summary.asOf, '2026-11-17', 'bounded row review is not a whole-index refresh');
+  assert.equal(funding.summary.observedCapitalUsdM, 4050.05);
+  assert.equal(funding.summary.indexedRounds, 54);
+  assert.equal(funding.summary.asOf, '2026-11-24', 'China selective additions advance the date, not a whole-index audit');
 });
 
 test('the correction leaves every unrelated canonical record and provenance file unchanged', () => {
-  const raw = parseCsv(read('data/funding-index/rounds.csv'));
+  const projectedRead = file => beforeMergeChinaFile(read(file), file);
+  const raw = parseCsv(projectedRead('data/funding-index/rounds.csv'));
   // New optional metadata is empty for legacy records, not a change in their meaning.
   const legacy = raw.filter(r => r.company_slug !== 'paradromics').map(({ capital_treatment, ...row }) => {
     assert.equal(capital_treatment, '');
@@ -72,9 +74,9 @@ test('the correction leaves every unrelated canonical record and provenance file
   });
   assert.equal(hash(legacy), fixture.unrelatedCanonicalSha256);
   const funding = load('src/data/funding-index.json');
-  assert.equal(hash(funding.rounds.filter(r => r.companySlug !== 'paradromics')), fixture.unrelatedRoundsSha256);
+  assert.equal(hash(JSON.parse(projectedRead('src/data/funding-index.json')).rounds.filter(r => r.companySlug !== 'paradromics')), fixture.unrelatedRoundsSha256);
   for (const [path, digest] of Object.entries(fixture.unchangedFiles)) {
-    assert.equal(createHash('sha256').update(read(path)).digest('hex'), digest, path);
+    assert.equal(createHash('sha256').update(projectedRead(path)).digest('hex'), digest, path);
   }
 });
 

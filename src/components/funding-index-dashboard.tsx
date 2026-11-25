@@ -7,6 +7,7 @@ import {
   buildCompanyRows,
   formatCapital,
   formatFundingDate,
+  formatFundingFxBasis,
   formatFundingRecordDate,
   getTimelinePosition,
   type FundingCompanyRow,
@@ -399,7 +400,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-[0_20px_60px_rgba(28,34,55,0.08)]">
                 <div className="border-b border-border px-6 py-5">
                   <h2 className="text-base font-semibold tracking-[-0.01em]">Most active indexed investors and funders</h2>
-                  <p className="mt-1 text-sm text-muted">Ranked by appearances in the sourced financing records below. Associated capital is the full disclosed financing amount, including commitments and combined rounds, not an attributed check size.</p>
+                  <p className="mt-1 text-sm text-muted">Ranked by appearances in the financing records below. Associated capital sums the full financing amounts for records naming each backer, including disclosed commitments and combined rounds.</p>
                 </div>
                 <div className="divide-y divide-black/[0.07]">
                   {data.investors.slice(0, 24).map((investor, index) => (
@@ -426,10 +427,10 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               </div>
               <aside className="self-start rounded-3xl bg-[#171a21] p-7 text-white lg:sticky lg:top-40">
                 <div className="text-xs font-bold text-white/80">How to read this</div>
-                <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em]">Participation, not portfolio exposure.</h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts named backer appearances in indexed financing records, including funding commitments. It does not estimate check size, cash received, ownership, reserves, or returns.</p>
-                <p className="mt-4 text-sm leading-relaxed text-white/75">Reviewed investor families are grouped for counting only; company records retain the original investor names. A grouping does not imply a single legal entity.</p>
-                <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Round announcements do not always publish every participant. A low count may mean incomplete disclosure, not low conviction.</div>
+                <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em]">Named participation in indexed financings.</h3>
+                <p className="mt-4 text-sm leading-relaxed text-white/75">The leaderboard counts financing records that name each backer, including disclosed funding commitments.</p>
+                <p className="mt-4 text-sm leading-relaxed text-white/75">Reviewed investor families group related names for counting. Company records retain the original investor names; legal identities follow the sources.</p>
+                <div className="mt-7 border-t border-white/12 pt-5 text-xs leading-relaxed text-white/65">Participant lists reflect each announcement’s disclosures. Counts depend on how fully sources name backers.</div>
               </aside>
             </div>
           )}
@@ -441,7 +442,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
             </div>
             <div>
               <div className="text-xs font-bold text-muted">Coverage</div>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{data.methodology.coverage} Index coverage checkpoint {formatFundingDate(data.summary.asOf, "day")}. Financing histories remain partial, and the indexed sum is not an all-time total.</p>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{data.methodology.coverage} Latest selective review {formatFundingDate(data.summary.asOf, "day")}. Financing histories remain partial, and the indexed sum is not an all-time total. Indexed totals cover the financing records shown.</p>
             </div>
           </div>
         </div>
@@ -490,7 +491,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                 </div>}
                 <p className="mt-3 text-sm text-white/75">{selected.indication}</p>
                 {!selectedReportedTotal && <>
-                  <p className="mt-2 text-xs leading-relaxed text-white/65">Disclosed financing, including commitments where labeled; not a cash-receipts total.</p>
+                  <p className="mt-2 text-xs leading-relaxed text-white/65">Sum of indexed financing amounts, including labeled commitments.</p>
                   {selected.rounds.some((round) => round.capitalTreatment) && <p className="mt-2 text-xs font-medium text-white">{selected.rounds.filter((round) => round.capitalTreatment).length} record excluded from total — conversion overlap unresolved.</p>}
                 </>}
               </div>
@@ -502,7 +503,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               <section className="mt-8 rounded-2xl border border-border bg-surface-raised p-4">
                 <h3 className="text-sm font-bold text-muted">Founding year</h3>
                 <p className="mt-2 text-2xl font-semibold tabular-nums">{selected.founding?.year ?? "Unknown"}</p>
-                <p className="mt-2 text-xs leading-relaxed text-muted">{selected.founding?.note ?? "Founding year not yet verified. No date is inferred from financing history."}</p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">{selected.founding?.note ?? "Founding year: unknown."}</p>
                 {selected.founding?.reviewedOn && <p className="mt-3 text-xs text-muted">{selected.founding.sourceKind ? `${sourceKindLabel(selected.founding.sourceKind)} · ` : ""}{sourceReviewLabel(selected.founding.reviewedOn)}</p>}
                 {selected.founding?.sourceUrl && <a href={selected.founding.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-accent underline decoration-accent/35 underline-offset-4 hover:decoration-accent">Founding source ↗</a>}
               </section>
@@ -519,7 +520,8 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
                       {round.capitalTreatment && <p className="mt-3 text-xs font-semibold">{CAPITAL_EXCLUSION_LABEL}</p>}
                       {round.sourceKind && <p className="mt-3 text-xs font-semibold">{sourceKindLabel(round.sourceKind)}{round.reviewedOn ? ` · ${sourceReviewLabel(round.reviewedOn)}` : ""}</p>}
                       {round.investors && round.investors.length > 0 && <p className="mt-3 text-xs leading-relaxed text-muted">{round.investors.join(" · ")}</p>}
-                      {round.note && <p className="mt-2 text-xs leading-relaxed text-muted">{round.note}</p>}
+                      {round.fx && <p className="mt-2 text-xs leading-relaxed text-muted">{formatFundingFxBasis(round.fx)} · {round.fx.nativePerUsd} {round.fx.currency}/USD · <a href={round.fx.rateSourceUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2">Exchange-rate source</a></p>}
+                      {round.note && <p className="mt-2 text-xs leading-relaxed text-muted [overflow-wrap:anywhere]">{round.note}</p>}
                       {round.sourceUrl && <a href={round.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-accent underline decoration-accent/35 underline-offset-4 hover:decoration-accent">Source ↗</a>}
                       {round.investorEvidence?.map((evidence) => <div key={`${evidence.investorName}-${evidence.sourceUrl}`} className="mt-2">
                         <a href={evidence.sourceUrl} target="_blank" rel="noreferrer" className="text-xs font-semibold text-accent underline decoration-accent/35 underline-offset-4 hover:decoration-accent">{evidence.investorName} participation source ↗</a>

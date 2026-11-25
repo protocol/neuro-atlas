@@ -6,6 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
+import { loadHistoricalFundingSources, readHistoricalFile } from "./helpers/china-funding-baseline.mjs";
 
 test("excludes disclosed rounds below the $2m screen", () => {
   const index = buildFundingIndex({
@@ -27,7 +28,7 @@ test("excludes disclosed rounds below the $2m screen", () => {
 
 test("loads a bounded 25-company capital index", async () => {
   const here = path.dirname(fileURLToPath(import.meta.url));
-  const sources = await loadFundingIndexSources(path.join(here, "..", "data", "funding-index"));
+  const sources = await loadHistoricalFundingSources(path.join(here, "..", "data", "funding-index"));
   const index = buildFundingIndex(sources);
 
   assert.equal(index.companies.length, 25);
@@ -80,7 +81,8 @@ test("derived-data generation emits the funding index without a copied ecosystem
   assert.equal(result.status, 0, result.stderr);
 
   const funding = JSON.parse(await readFile(output, "utf8"));
-  assert.equal(funding.companies.length, 25);
+  const historicalFunding = JSON.parse(await readHistoricalFile(output, "utf8"));
+  assert.equal(historicalFunding.companies.length, 25);
   await assert.rejects(readFile(path.join(root, "src", "data", "landscape.json")), { code: "ENOENT" });
   for (const company of funding.companies) {
     assert.ok(!company.logo || company.logo.startsWith("/logos/"), "Only independently sourced local logos");

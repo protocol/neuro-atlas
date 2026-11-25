@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { beforeMergeChinaFunding, beforeMergeChinaCatalog } from './financing-merge-baseline.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 
@@ -31,7 +32,8 @@ export function beforeParadromicsRows(rows, collection) {
   return result;
 }
 
-export function beforeParadromicsFunding(funding) {
+export function beforeParadromicsFunding(input) {
+  const funding = beforeMergeChinaFunding(input);
   const restored = structuredClone(funding);
   assert.deepEqual(restored.reportedTotals, reportedDelta.reportedTotals, 'exact reviewed public company-total metadata');
   delete restored.reportedTotals;
@@ -48,7 +50,8 @@ export function beforeParadromicsFunding(funding) {
   return restored;
 }
 
-export function beforeParadromicsCatalog(catalog) {
+export function beforeParadromicsCatalog(input) {
+  const catalog = beforeMergeChinaCatalog(input);
   const restored = structuredClone(catalog);
   for (const [category, items] of Object.entries(reportedDelta.catalogAdditions)) {
     for (const pair of items) {

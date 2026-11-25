@@ -64,9 +64,9 @@ test('generated company total preserves all indexed metrics and has an exact his
   const { beforeParadromicsFunding } = await import('./helpers/paradromics-funding-baseline.mjs');
   const current = load('src/data/funding-index.json');
   assert.deepEqual(current.reportedTotals, fixture.reportedTotals);
-  assert.equal(current.summary.observedCapitalUsdM, 3579.33);
-  assert.equal(current.summary.indexedRounds, 43);
-  assert.equal(current.companies.length, 25);
+  assert.equal(current.summary.observedCapitalUsdM, 4050.05);
+  assert.equal(current.summary.indexedRounds, 54);
+  assert.equal(current.companies.length, 31);
   assert.equal(Object.hasOwn(beforeParadromicsFunding(current), 'reportedTotals'), false);
   for (const field of Object.keys(fixture.reportedTotals[0])) {
     const changed = structuredClone(current);

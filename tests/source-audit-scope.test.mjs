@@ -1,18 +1,16 @@
-import { beforeParadromicsFunding, beforeParadromicsRows } from './helpers/paradromics-funding-baseline.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readHistoricalFileSync as readFileSync } from './helpers/china-funding-baseline.mjs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeSourceAudit, SOURCE_AUDIT_DELTA } from './helpers/source-audit-baseline.mjs';
 import { beforeNov17Feedback } from './helpers/nov17-feedback-baseline.mjs';
 import { beforeNeuroWideMilestones } from './helpers/neuro-wide-milestones-baseline.mjs';
 import { beforeNotables66 } from './helpers/notables-66-baseline.mjs';
 const load = name => JSON.parse(readFileSync(new URL('../src/data/' + name, import.meta.url)));
-const funding = beforeParadromicsFunding(load('funding-index.json'));
+const funding = load('funding-index.json');
 const current = { milestones: load('milestones.json'), fundingRounds: funding.rounds, fundingMilestones: funding.milestones, fundingCompanies: funding.companies };
 for (const [key, file] of Object.entries({ canonicalMilestones: 'market-memo-q1-2026/milestones.csv', canonicalRounds: 'funding-index/rounds.csv', canonicalRegulatory: 'funding-index/milestones.csv', canonicalCompanies: 'funding-index/companies.csv', canonicalFoundings: 'funding-index/foundings.csv' })) current[key] = parseCsv(readFileSync(new URL('../data/' + file, import.meta.url), 'utf8'));
-current.canonicalRounds = beforeParadromicsRows(current.canonicalRounds, 'canonicalRounds');
 const baselineHashes = {
   "milestones": "c79d3d4fad34e00b74375772067cced0146f03874f81a1bdb06db27503a0ffe3",
   "fundingRounds": "62b182992223112b1b9f53fb12f58dc19abdf0a59361bc03633b1cd508a83703",

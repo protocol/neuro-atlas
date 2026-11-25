@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "evidenceClass": "Local production Next.js runtime; Chrome pointer/keyboard checks at desktop and mobile viewport sizes on a local production build",
+  "sourceCommit": "703b72bc00d12aefb44aeb0347b4db4afee82300",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "companies": 31,
+      "newCompaniesPresent": true,
+      "detailAmountsAndSourcesMatch": true,
+      "stageCount": 31,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "companies": 31,
+      "newCompaniesPresent": true,
+      "detailAmountsAndSourcesMatch": true,
+      "stageCount": 31,
+      "pageBounds": {
+        "scroll": 1425,
+        "client": 1425
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "companies": 31,
+      "newCompaniesPresent": true,
+      "detailAmountsAndSourcesMatch": true,
+      "stageCount": 31,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "companies": 31,
+      "newCompaniesPresent": true,
+      "detailAmountsAndSourcesMatch": true,
+      "stageCount": 31,
+      "pageBounds": {
+        "scroll": 375,
+        "client": 375
+      }
+    }
+  ],
+  "screenshots": {
+    "detail-nanochap-light-1440.png": "b87adac7f09f4a5767f92c62af1ba3ac85b877fd88154d3109716d44a11a1d8b",
+    "detail-neuracle-technology-light-1440.png": "d1236c698b66e4d032420c3f494bb4d3050fd1fa894c59136a3a4a060a3acae2",
+    "detail-xinsheng-financing-light-390.png": "131b0a95b6484e030d581417011e3f63b507994be4726eb054d5540202f48367",
+    "detail-xinsheng-shijie-light-390.png": "47f037b03ca7d518ae28e74adf7b83bde36d57871227bf7cdbb5c6984f40dd31",
+    "detail-zhiran-medical-light-1440.png": "1714d0be6aff40f1dad3d4c97e50ad66dc90d01bad9f34a9141752359ab341d8",
+    "funding-dark-1440.png": "13f154feac33e5b4015e56a9c8a47a0f6990ab80e07b7cb7fc7e4c1698520426",
+    "funding-light-1440.png": "d3c2c1b4886baccdde7677f3330189bbff4e26b89e65d018d3bd754743850a96",
+    "investor-guide-light-1440.png": "50ef028eed97e19933af04930c1c7525e31c9f6bd5bf0d27b39e76f05b14e92d",
+    "stage-dark-390.png": "bb3f1bfbfa29caaebc1b03101953bc63f7b882374c296465af0b6386285d388e",
+    "stage-light-390.png": "3d1709bee17b754a801d754004a9659f203e1d20a4f29c33a74c8886d6623edf"
+  }
+}
