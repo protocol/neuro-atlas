@@ -27,7 +27,7 @@ The v1 list was seeded from the project's BCI company tracker, then screened and
 
 The optional generated top-level `reportedTotals` collection leaves the company roster, financing records, indexed-capital calculations, stage bars, investor-associated capital, and portfolio metrics unchanged. Company detail presents the reported total with scope, report date, and a source link; indexed financing remains separately labeled. Timeline and stage company rows show a distinct reported-total annotation, with the source available in detail. Full source notes are in a native collapsed disclosure and exact-source context.
 
-Paradromics has a **$180M company-reported total**, **Includes federal funding**, reported in an interview published November 18, 2026. Its separately itemized indexed financing remains **$85.37M** (displayed **$85.4M**). See the [November 24 source review](source-review-20261124.md) for the public source, date basis, and evidence limits.
+Paradromics' [company-reported $180 million total](https://www.youtube.com/watch?v=JMQoWtsMBh0&t=2587s), published November 18, 2026, includes federal funding. Itemized indexed financing is presented separately. The [November 24 source review](source-review-20261124.md) preserves the date basis and evidence limits; the [November 25 addendum](source-review-20261125.md) lists all current company-reported totals.
 
 ## Investor view
 
@@ -54,12 +54,18 @@ The set is illustrative and source-linked, not a complete regulatory history.
 
 - `companies.csv` — the screened company universe and classification fields
 - `foundings.csv` — one reviewed founding-year record per company, with source URL, source kind, review date and a concise origin/registration/rebrand note; blank years remain unknown
-- `rounds.csv` — disclosed financing events, investor participants, and sources
+- `rounds.csv` — disclosed financing events, investor participants, sources, and explicit capital treatments
+- `fx-conversions.json` — source-bound historical currency conversions, provider links, and rate dates
+- `investor-evidence.json` — additional source excerpts supporting named financing participants
 - `reported-totals.json` — separately scoped public company funding self-reports; context outside indexed-capital totals
 - `portfolio-disclosures.json` — independently sourced selected portfolio relationships; never financing events
+- [November 25 financing correction](source-review-20261125.md) — current implementation, cross-surface treatment, exclusions, exact counts, and remaining evidence limits
+- [Company change ledger and entry dispositions](../../docs/financing-fixes-20261125/README.md) — company-level changes and remaining public-evidence questions, with all 90 reviewed entries accounted for
+- [November 24 source reviews](source-review-20261124.md) — historical Paradromics and China branch-specific reviews, retained with their original scope
 - `source-review-20261117.md` — Science Series D and PLC portfolio evidence, identity matches, and coverage limits
 - `milestones.csv` — selected regulatory inflection points and sources
-- `src/data/funding-index.json` — generated client payload; do not edit by hand
+- [`data/market-memo-q1-2026/milestones.csv`](../market-memo-q1-2026/milestones.csv) — canonical neuro-wide Milestones events, including financing disclosures
+- [`src/data/funding-index.json`](../../src/data/funding-index.json) and [`src/data/milestones.json`](../../src/data/milestones.json) — generated client payloads; regenerate from canonical inputs
 
 ## Updating
 
