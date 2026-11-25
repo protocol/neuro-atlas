@@ -60,6 +60,17 @@ const SCATTER = [
 ];
 
 const dateOf = (s: string) => new Date(s + "T00:00:00Z").getTime();
+function milestonePeriod(m: Milestone): { start: number; end: number } | null {
+  if (!m.date) return null;
+  if (m.datePrecision === "day") return { start: dateOf(m.date), end: dateOf(m.date) };
+  const year = yearOf(m.date);
+  if (m.datePrecision === "year") return { start: Date.UTC(year, 0, 1), end: Date.UTC(year, 11, 31) };
+  if (m.datePrecision === "month") {
+    const month = Number(m.date.slice(5, 7)) - 1;
+    return { start: Date.UTC(year, month, 1), end: Date.UTC(year, month + 1, 0) };
+  }
+  return null;
+}
 const pctIn = (dateStr: string, t0: number, t1: number) => Math.min(Math.max((dateOf(dateStr) - t0) / (t1 - t0), 0), 1) * 100;
 const pctToT = (p: number, t0: number, t1: number) => t0 + (p / 100) * (t1 - t0);
 function fmtDate(t: number): string {
@@ -99,7 +110,8 @@ function disclosedAmountLabel(amountUsdM: number): string {
   return `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}${amountUsdM >= 1000 ? "b" : "m"}`;
 }
 function capitalActivityLabel(m: Milestone): string {
-  if (m.stage !== "capital" || !m.amountUsdM || isAward(m) || m.capitalTreatment) return m.activity;
+  if (m.stage !== "capital" || !m.amountUsdM || isAward(m) || m.capitalTreatment || m.datePrecision !== "day"
+    || /^(?:over\b|>|≥)/i.test(m.activity.trim())) return m.activity;
   return `${m.activity.startsWith("~") ? "~" : ""}${disclosedAmountLabel(m.amountUsdM)} ${m.activity.includes("committed") ? "committed" : "financing"}`;
 }
 function expandActivity(activity: string): [string, string | null][] {
@@ -132,6 +144,7 @@ function cumulativeCapital(year: number, scope: "all" | "bci" = "all") {
       !isAward(m) &&
       countedCapital(m) > 0 &&
       m.date &&
+      m.datePrecision === "day" &&
       yearOf(m.date) === year &&
       (scope === "all" || (m as { scope?: string }).scope === "bci"),
   ).sort((a, b) => (a.date! < b.date! ? -1 : 1));
@@ -204,11 +217,11 @@ export function MilestoneTimeline() {
     return subcatsOf(m).some((sub) => sel[m.stage as StageKey]?.has(sub));
   };
 
-  const { lanes, totalH, undated } = useMemo(() => {
+  const { lanes, totalH, undated, periodRecords } = useMemo(() => {
     let y = PLOT_TOP;
     const lanes = [];
     for (const stage of STAGES.filter((s) => sel[s.key].size > 0)) {
-      const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m)).sort((a, b) => (a.date! < b.date! ? -1 : 1));
+      const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && m.datePrecision === "day" && yearOf(m.date) === focusYear && matches(m)).sort((a, b) => (a.date! < b.date! ? -1 : 1));
       if (evs.length === 0) continue;
       const rowLast: number[] = [];
       const placed = evs.map((m) => {
@@ -224,7 +237,8 @@ export function MilestoneTimeline() {
       lanes.push({ stage, placed, height, top });
     }
     const undated = MILESTONES.filter((m) => !m.date && matches(m));
-    return { lanes, totalH: Math.max(y, PLOT_TOP + 120), undated };
+    const periodRecords = MILESTONES.filter((m) => m.date && m.datePrecision !== "day" && yearOf(m.date) === focusYear && matches(m));
+    return { lanes, totalH: Math.max(y, PLOT_TOP + 120), undated, periodRecords };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sel, focusYear, scopeFilter, plotWidth]);
 
@@ -234,13 +248,21 @@ export function MilestoneTimeline() {
       ? [pctToT(Math.min(selRange.a, selRange.b), t0, yearEnd), pctToT(Math.max(selRange.a, selRange.b), t0, yearEnd)]
       : [t0, yearEnd];
     const rows = STAGES.filter((s) => sel[s.key].size > 0).map((stage) => {
-      const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m) && dateOf(m.date) >= t1 && dateOf(m.date) <= t2);
+      const candidates = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m))
+        .map((m) => ({ m, period: milestonePeriod(m) }));
+      // A partial date belongs to the window only when its entire disclosed
+      // interval fits. Overlap alone leaves its allocation and count unknown.
+      const evs = candidates.filter(({ period }) => period && period.start >= t1 && period.end <= t2).map(({ m }) => m);
+      const uncertain = candidates.filter(({ period }) => period && period.start <= t2 && period.end >= t1
+        && !(period.start >= t1 && period.end <= t2)).map(({ m }) => m);
+      const uncertainFinancing = uncertain.filter((m) => m.stage === "capital" && !isAward(m));
       const usd = evs.filter((m) => !isAward(m)).reduce((s, m) => s + countedCapital(m), 0);
       const rounds = evs.filter((m) => m.stage === "capital" && !isAward(m)).length;
       const byType: Record<string, number> = {};
       evs.forEach((m) => subcatsOf(m).forEach((sub) => { if (sub !== "$") byType[sub] = (byType[sub] ?? 0) + 1; }));
       const breakdown = Object.entries(byType).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${v} ${k}`).join(" · ");
-      return { stage, count: evs.length, usd, rounds, breakdown };
+      return { stage, count: evs.length, usd, rounds, breakdown, uncertainCount: uncertain.length,
+        uncertainRounds: uncertainFinancing.length, uncertainUsd: uncertainFinancing.reduce((sum, m) => sum + countedCapital(m), 0) };
     });
     return { t1, t2, rows };
   }, [sel, selRange, focusYear, scopeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -635,6 +657,27 @@ export function MilestoneTimeline() {
             })}
           </div>
 
+          {periodRecords.length > 0 && (
+            <section data-milestone-period-records aria-label="Period-level records" className="mt-3 border-t border-dashed border-border pt-3">
+              <h3 className="text-[12px] font-semibold text-foreground">Period-level records</h3>
+              <p className="mt-1 text-[12px] text-muted">Shown at disclosed year or month precision. Annual totals include supported amounts; the cumulative line uses day-dated financing.</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {periodRecords.map((m) => (
+                  <a key={`${m.company}-${m.activity}-${m.date}`} href={m.sourceUrl ?? undefined} target="_blank" rel="noreferrer"
+                    onMouseEnter={(e) => showTip(e, m)} onMouseLeave={() => setTip(null)}
+                    onFocus={(e) => showTip(e, m)} onBlur={() => setTip(null)}
+                    onKeyDown={(e) => { if (e.key === "Escape") setTip(null); }}
+                    aria-describedby={tip?.m === m ? `${filterId}-detail` : undefined}
+                    aria-label={`${m.company} — ${m.activity}`}
+                    className="flex min-w-0 max-w-full items-center gap-2 rounded-lg border border-dashed border-border-strong bg-surface px-2 py-1.5 text-[12px] focus-visible:outline-2 focus-visible:outline-accent">
+                    <FirmLogo src={m.logo} name={m.company} size={LOGO} />
+                    <span className="min-w-0"><span className="font-semibold">{m.company}</span> · {m.activity}<span className="block text-muted">{milestoneDateLabel(m)}</span></span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
           {focusYear === 2026 && undated.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-dashed border-border pt-3">
               <span className="mr-1 text-[12px] font-semibold text-muted">date TBD</span>
@@ -689,15 +732,21 @@ export function MilestoneTimeline() {
                       <span className="h-2 w-2 rounded-full" style={{ background: r.stage.color }} />
                       <span className="text-[12px] font-semibold">{r.stage.label}</span>
                     </div>
+                    {r.uncertainCount > 0 && <div className="text-[12px] text-muted">Located in window</div>}
                     {r.stage.key === "capital" ? (
                       <>
                         <div className="tnum text-[15px] font-semibold">{fmtUsd(r.usd)}</div>
-                        <div className="text-[12px] text-muted">{r.rounds} financing record{r.rounds === 1 ? "" : "s"}{r.count > r.rounds ? ` · ${r.count - r.rounds} award` : ""}</div>
+                        <div className="text-[12px] text-muted">{r.rounds} {r.uncertainCount > 0 ? "located " : ""}financing record{r.rounds === 1 ? "" : "s"}{r.count > r.rounds ? ` · ${r.count - r.rounds} award` : ""}</div>
+                        {r.uncertainRounds > 0 && <div className="mt-1 text-[12px] leading-snug text-muted">
+                          Window allocation unknown · {r.uncertainUsd > 0 ? `${disclosedAmountLabel(r.uncertainUsd)} across ` : ""}{r.uncertainRounds} period-level record{r.uncertainRounds === 1 ? "" : "s"}
+                        </div>}
+                        {r.uncertainCount > r.uncertainRounds && <div className="mt-1 text-[12px] leading-snug text-muted">{r.uncertainCount - r.uncertainRounds} period-level award{r.uncertainCount - r.uncertainRounds === 1 ? " overlaps" : "s overlap"} · window timing unknown</div>}
                       </>
                     ) : (
                       <>
                         <div className="tnum text-[15px] font-semibold">{r.count}{r.usd > 0 && <span className="ml-1 text-[12px] font-medium text-muted">· {fmtUsd(r.usd)} transaction value (not capital raised)</span>}</div>
                         <div className="text-[12px] leading-snug text-muted">{r.breakdown || "—"}</div>
+                        {r.uncertainCount > 0 && <div className="mt-1 text-[12px] leading-snug text-muted">{r.uncertainCount} period-level record{r.uncertainCount === 1 ? " overlaps" : "s overlap"} · window timing unknown</div>}
                       </>
                     )}
                   </div>

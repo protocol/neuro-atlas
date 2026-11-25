@@ -353,7 +353,7 @@ export function FundingIndexDashboard({ data }: { data: FundingIndexData }) {
               </div>
               <div className="flex flex-wrap items-center gap-5 border-t border-border bg-nav/40 px-5 py-3 text-xs text-muted">
                 <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full bg-accent align-middle" />Financing (width scales with disclosed amount)</span>
-                <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full border border-dashed border-foreground align-middle" />Disclosed amount excluded from totals (conversion overlap unresolved)</span>
+                <span><b className="mr-1.5 inline-block h-2.5 w-5 rounded-full border border-dashed border-foreground align-middle" />Disclosed amount excluded from totals · reason shown per record</span>
                 <span className="inline-flex items-center"><b className="mr-1.5 cursor-help rounded bg-[#151821] px-1 py-0.5 text-xs text-white" onMouseEnter={(event) => showMarkerTip(event, "IDE")} onMouseLeave={() => setMarkerTip(null)}>IDE</b>Regulatory marker</span>
                 <span className="ml-auto">{rows.length} of {data.summary.selectedCompanies} companies</span>
               </div>
