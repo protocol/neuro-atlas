@@ -148,7 +148,7 @@ test('performance export retains the selected track, conditional scenario and ta
     assert.ok(boundary.svgs[0].includes(actual));
     assert.match(boundary.svgs[0], /plateau/i);
     assert.match(boundary.svgs[0], /TUSZ corpus only|TUSZ corpus-only/);
-    assert.match(boundary.svgs[0], /not.*forecast/);
+    assert.match(boundary.svgs[0], /Illustrative continuation under stated assumptions/);
     assert.match(boundary.svgs[0], /data-target-line/);
   } finally { await cleanup(); boundary.restore(); }
 });
@@ -161,7 +161,7 @@ for (const failure of ['unsupported', 'permission']) test(`${failure}: recover w
     const panel = document.querySelector('[data-draft-panel]');
     await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
-    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable.*Download PNG.*Copy link/);
+    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /^Chart copy failed\. Use Download PNG and Copy link\.$/);
     assert.equal(boundary.downloads.length, 0, 'Never silently download on failure');
     assert.equal(boundary.writes.filter(item => typeof item === 'string').length, 0, 'Never replace clipboard with URL after failed image write');
     await click(panel.querySelector('[data-download-chart]'));
@@ -184,7 +184,7 @@ test('image rendering failure is announced, releases object URLs and permits a r
     const panel = document.querySelector('[data-draft-panel]');
     await openPanel(panel);
     await click(panel.querySelector('[data-copy-chart]'));
-    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /unavailable/);
+    assert.match(panel.querySelector('[data-chart-share] [role=status]').textContent, /^Chart copy failed\. Use Download PNG and Copy link\.$/);
     assert.equal(boundary.objects.size, 0);
     assert.equal(panel.querySelector('[data-copy-chart]').disabled, false);
     globalThis.Image = WorkingImage;

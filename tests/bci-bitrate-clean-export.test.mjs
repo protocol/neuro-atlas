@@ -30,7 +30,7 @@ test('PNG study identities are concise while full conversion and task notes rema
     }
   }
   assert.match(plot.exportPointKeyNote, /PL R&D estimates/);
-  assert.match(plot.exportPointKeyNote, /context not fitted/);
+  assert.match(plot.exportPointKeyNote, /context outside the fit/);
   assert.match(plot.exportPointKeyNote, /speech.*5 char\/word/i);
   assert.match(plot.exportPointKeyNote, /speech 1 bit\/char × 5 char\/word; other text 28-symbol/);
   assert.match(plot.exportPointKeyNote, /mixed.model fit/i);

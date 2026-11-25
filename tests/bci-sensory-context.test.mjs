@@ -94,7 +94,7 @@ test('BCI local sensory context plots a qualified sourced retinal scenario, then
     assert.ok(assumptions.querySelector('a[href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1564115/"]'));
     assert.match(assumptions.textContent, /875,000.*1,000,000.*100,000.*8,750,000/s);
     assert.match(assumptions.textContent, /independent.*correlation/s);
-    assert.match(assumptions.textContent, /not a direct human measurement.*capacity.*BCI target/s);
+    assert.match(assumptions.textContent, /estimates retinal sensory output under those assumptions; human channel capacity and task-specific BCI communication rates have different measurement bases/s);
     assert.equal(svg.querySelectorAll('[data-source-observation]').length, plot.points.length);
     assert.equal(svg.querySelectorAll('[data-annotation-key]').length, 14);
     assert.equal(normalize(document.querySelector('[data-draft-preview] svg')), preview);

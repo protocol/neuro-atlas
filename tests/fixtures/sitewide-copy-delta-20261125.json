@@ -635,6 +635,118 @@
       }
     },
     {
+      "path": "public/data/google-trends/bundled-20261106/neuralink.csv",
+      "beforeSha256": "3c91abaf299a8498c9b955ee636126eedc21d2b3bdf8f74c4e80028887787fa6",
+      "afterSha256": "9db62083c666f8da1862ee009dc090f71280886f90b56dac2ec76287143ad654",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 161,
+            "afterLength": 161,
+            "edits": [
+              {
+                "beforeIndex": 1,
+                "afterIndex": 1,
+                "before": [
+                  "# Independent normalization for brand context; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest."
+                ],
+                "after": [
+                  "# Independent normalization for brand context; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "public/data/google-trends/bundled-20261106/neurotech.csv",
+      "beforeSha256": "d7e110b897348ce82d843697335ce39878deadd2fb72fd6f96c3275ee3b876c3",
+      "afterSha256": "0591db7ef499ef767d0dea9953f3177449a69ba6208410385d4112d689ed1434",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 161,
+            "afterLength": 161,
+            "edits": [
+              {
+                "beforeIndex": 1,
+                "afterIndex": 1,
+                "before": [
+                  "# Joint normalization for the two search terms; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest."
+                ],
+                "after": [
+                  "# Joint normalization for the two search terms; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "public/data/google-trends/neuralink.csv",
+      "beforeSha256": "9ac12aeab99216cff5e69c22d7f1e4224278a01648d7c54f43bfad2abd3feba0",
+      "afterSha256": "333eeed00774a8bc86c2a22a46e4fcf8908365f70e1ee625019cd1c25cf07033",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 161,
+            "afterLength": 161,
+            "edits": [
+              {
+                "beforeIndex": 1,
+                "afterIndex": 1,
+                "before": [
+                  "# Independent normalization for brand context; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest."
+                ],
+                "after": [
+                  "# Independent normalization for brand context; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "public/data/google-trends/neurotech.csv",
+      "beforeSha256": "5e035d875e5b1c9e25586c113d45cde456dc85067d10b8dba128722ebb60c725",
+      "afterSha256": "9c991779c301a8e5ef24337e1a4eb2f2d750680bc033ee31b4f0cfefbe94158d",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 161,
+            "afterLength": 161,
+            "edits": [
+              {
+                "beforeIndex": 1,
+                "afterIndex": 1,
+                "before": [
+                  "# Joint normalization for the two search terms; index 0-100, not search counts. Unavailable is a gap. Partial rows excluded from charts/latest."
+                ],
+                "after": [
+                  "# Joint normalization for the two search terms; relative search-interest index 0-100. Unavailable values appear as gaps. Charts and latest readings use complete weeks."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "path": "src/app/funding/page.tsx",
       "beforeSha256": "86607df236c10ace244d26707e0761f30dbce4583c51c1328adc2349f4188274",
       "afterSha256": "807553044667a080965280653d289f2fb089c5781f7d79d8e3d62ebd04f9bbe8",
