@@ -1,5 +1,6 @@
 import test from 'node:test';
 import { beforeMergeChinaFile } from './helpers/financing-merge-baseline.mjs';
+import { readFinancingFixesBaselineFileSync } from './helpers/financing-fixes-baseline.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -9,6 +10,8 @@ import { buildCompanyRows, formatCapital } from '../src/lib/funding-index.ts';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const load = file => JSON.parse(read(file));
+const historicalRead = file => readFinancingFixesBaselineFileSync(new URL('../' + file, import.meta.url), 'utf8');
+const historicalLoad = file => JSON.parse(historicalRead(file));
 const fixture = load('tests/fixtures/paradromics-funding-20261124.json');
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const sec = [
@@ -59,13 +62,14 @@ test('Paradromics retains four public records while only the reconciled offering
   const company = buildCompanyRows(funding.companies, funding.rounds, { query: 'Paradromics', scope: 'All', modality: 'All' })[0];
   assert.equal(company.observedCapitalUsdM, 85.37);
   assert.equal(formatCapital(company.observedCapitalUsdM), '$85.4M');
-  assert.equal(funding.summary.observedCapitalUsdM, 4050.05);
-  assert.equal(funding.summary.indexedRounds, 54);
-  assert.equal(funding.summary.asOf, '2026-11-24', 'China selective additions advance the date, not a whole-index audit');
+  const historicalSummary = historicalLoad('src/data/funding-index.json').summary;
+  assert.equal(historicalSummary.observedCapitalUsdM, 4050.05);
+  assert.equal(historicalSummary.indexedRounds, 54);
+  assert.equal(historicalSummary.asOf, '2026-11-24', 'China selective additions advance the date, not a whole-index audit');
 });
 
 test('the correction leaves every unrelated canonical record and provenance file unchanged', () => {
-  const projectedRead = file => beforeMergeChinaFile(read(file), file);
+  const projectedRead = file => beforeMergeChinaFile(historicalRead(file), file);
   const raw = parseCsv(projectedRead('data/funding-index/rounds.csv'));
   // New optional metadata is empty for legacy records, not a change in their meaning.
   const legacy = raw.filter(r => r.company_slug !== 'paradromics').map(({ capital_treatment, ...row }) => {
@@ -83,15 +87,15 @@ test('the correction leaves every unrelated canonical record and provenance file
 
 test('the public source catalog registers this correction without reclassifying other evidence', async () => {
   const { beforeParadromicsCatalog } = await import('./helpers/paradromics-funding-baseline.mjs');
-  beforeParadromicsCatalog(load('src/data/methodology-sources.json'));
+  beforeParadromicsCatalog(historicalLoad('src/data/methodology-sources.json'));
 });
 
 
 test('historical normalization rejects missing, duplicate, extra-field or changed Paradromics records without weakening older hashes', async () => {
   const { beforeParadromicsRows, beforeParadromicsFunding } = await import('./helpers/paradromics-funding-baseline.mjs');
   for (const [kind, rows, key] of [
-    ['fundingRounds', load('src/data/funding-index.json').rounds, 'companySlug'],
-    ['canonicalRounds', parseCsv(read('data/funding-index/rounds.csv')), 'company_slug'],
+    ['fundingRounds', historicalLoad('src/data/funding-index.json').rounds, 'companySlug'],
+    ['canonicalRounds', parseCsv(historicalRead('data/funding-index/rounds.csv')), 'company_slug'],
   ]) {
     const snapshot = structuredClone(rows);
     const restored = beforeParadromicsRows(rows, kind);
@@ -108,7 +112,7 @@ test('historical normalization rejects missing, duplicate, extra-field or change
     assert.throws(() => beforeParadromicsRows(rows.filter((_, j) => j !== i), kind), assert.AssertionError);
     assert.throws(() => beforeParadromicsRows([...rows, rows[i]], kind), assert.AssertionError);
   }
-  const funding = load('src/data/funding-index.json');
+  const funding = historicalLoad('src/data/funding-index.json');
   for (const mutate of [
     f => { f.investors[0].associatedCapitalUsdM += 1; },
     f => { f.summary.observedCapitalUsdM += 1; },

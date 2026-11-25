@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+// Row-number fixtures predate the reviewed all-company financing fixes.
+import { readFinancingFixesBaselineFileSync as readFileSync } from './helpers/financing-fixes-baseline.mjs';
 import { parseCsv } from '../scripts/lib/funding-index.mjs';
 import { beforeParadromicsRows } from './helpers/paradromics-funding-baseline.mjs';
 const cases = JSON.parse(readFileSync(new URL('./fixtures/source-audit-records-20261116.json', import.meta.url)));

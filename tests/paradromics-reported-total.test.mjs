@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { readFinancingFixesBaselineFileSync } from './helpers/financing-fixes-baseline.mjs';
 import { mkdtemp, cp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -8,6 +9,7 @@ import { buildFundingIndex, loadFundingIndexSources } from '../scripts/lib/fundi
 import { buildCompanyRows } from '../src/lib/funding-index.ts';
 const load = file => JSON.parse(readFileSync(new URL('../' + file, import.meta.url)));
 const fixture = load('tests/fixtures/paradromics-reported-total-20261124.json');
+const historicalLoad = file => JSON.parse(readFinancingFixesBaselineFileSync(new URL('../' + file, import.meta.url), 'utf8'));
 const sources = await loadFundingIndexSources(new URL('../data/funding-index/', import.meta.url).pathname);
 
 test('public company totals are a separate evidence class and leave every itemized metric unchanged', () => {
@@ -45,7 +47,8 @@ test('reported company totals reject invalid identity, amount, date, source, and
 
 test('canonical reported totals load independently of itemized financing', async () => {
   const loaded = await loadFundingIndexSources(new URL('../data/funding-index/', import.meta.url).pathname);
-  assert.deepEqual(loaded.reportedTotals, fixture.reportedTotals);
+  assert.deepEqual(loaded.reportedTotals, load('data/funding-index/reported-totals.json'));
+  assert.deepEqual(historicalLoad('data/funding-index/reported-totals.json'), fixture.reportedTotals);
 });
 
 test('legacy canonical directories may omit the optional reported-total file', async () => {
@@ -62,7 +65,7 @@ test('legacy canonical directories may omit the optional reported-total file', a
 
 test('generated company total preserves all indexed metrics and has an exact historical allowance', async () => {
   const { beforeParadromicsFunding } = await import('./helpers/paradromics-funding-baseline.mjs');
-  const current = load('src/data/funding-index.json');
+  const current = historicalLoad('src/data/funding-index.json');
   assert.deepEqual(current.reportedTotals, fixture.reportedTotals);
   assert.equal(current.summary.observedCapitalUsdM, 4050.05);
   assert.equal(current.summary.indexedRounds, 54);
@@ -88,7 +91,7 @@ test('generated company total preserves all indexed metrics and has an exact his
 
 test('the public source catalog registers the exact interview and preserves previous historical goldens', async () => {
   const { beforeParadromicsCatalog } = await import('./helpers/paradromics-funding-baseline.mjs');
-  const catalog = load('src/data/methodology-sources.json');
+  const catalog = historicalLoad('src/data/methodology-sources.json');
   for (const [category, pairs] of Object.entries(fixture.catalogAdditions)) {
     for (const pair of pairs) assert.deepEqual(catalog[category].filter(([url]) => url === pair[0]), [pair]);
   }

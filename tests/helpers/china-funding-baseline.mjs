@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { beforeMergeParadromicsFile } from './financing-merge-baseline.mjs';
+import { beforeFinancingFixesFile } from './financing-fixes-baseline.mjs';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -42,7 +43,7 @@ export function createHistoricalFileReader(fixture, directory, beforeReviewed = 
   };
 }
 
-const readChinaHistoricalFileSync = createHistoricalFileReader(CHINA_FUNDING_DELTA, root, beforeMergeParadromicsFile);
+const readChinaHistoricalFileSync = createHistoricalFileReader(CHINA_FUNDING_DELTA, root, (text, file) => beforeMergeParadromicsFile(beforeFinancingFixesFile(text, file), file));
 export const readHistoricalFileSync = readChinaHistoricalFileSync;
 export const readHistoricalFile = async (file, options) => readHistoricalFileSync(file, options);
 

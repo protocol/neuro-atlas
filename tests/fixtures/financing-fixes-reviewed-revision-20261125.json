@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baselineSha": "b3b901831da6ed7e50cd0dee15d636e4cdbbe4fc",
+  "candidateSha": "ee91773cb89c15a4a1387bd3423b9130204e1577",
+  "files": {
+    "data/funding-index/rounds.csv": "a908381e193549a7bc378a535ee1c74c59497a06e902e0e8803bf469f5962c66",
+    "data/market-memo-q1-2026/milestones.csv": "d790417e224bddb7a854d9bc7f19a7d034eac3b1e61293c589329e1ee9ba4437",
+    "data/funding-index/fx-conversions.json": "0b5eef404693f6a64735391ad438483c04a9048fea807de01a8ba0ef8e9360ed",
+    "data/funding-index/reported-totals.json": "e2f63f3d0dc2a347a0677f5bc5f2ed1629bc129f20b17bb8adc561e6ca11aa6e",
+    "src/data/funding-index.json": "4e01a4a8f8d1d2e429731d9ad730865cc0b3b2fa719885533431896eae4cc374",
+    "src/data/milestones.json": "c52a51b76565ca7128380504b71c0987a174286b900331889f35068ec2b4bbff",
+    "src/data/methodology-sources.json": "43c6b3dd00e2d8012a91404a3d23f10b98deea4e45425236bb30f277d56cda2b",
+    "data/funding-index/investor-evidence.json": "525eda49809a3df8d38c13f08b17034de9157c3cf2e014682446e5eabe984084"
+  }
+}

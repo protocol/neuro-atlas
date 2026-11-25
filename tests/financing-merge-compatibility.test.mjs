@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+// Frozen merge tests explicitly opt in to the new-layer reversal only.
+import { readFinancingFixesBaselineFileSync as readFileSync } from './helpers/financing-fixes-baseline.mjs';
 import { sha256, restoreReviewedFile } from '../scripts/qa/build-reviewed-delta.mjs';
 import { PARADROMICS_OVER_CHINA, CHINA_OVER_PARADROMICS, beforeMergeChinaFunding } from './helpers/financing-merge-baseline.mjs';
 import { beforeParadromicsFunding } from './helpers/paradromics-funding-baseline.mjs';

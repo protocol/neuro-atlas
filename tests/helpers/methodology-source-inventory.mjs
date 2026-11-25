@@ -81,6 +81,21 @@ export function scanSources() {
   for (const path of paths) {
     const content = readFileSync(path, "utf8");
     let relevant = content;
+    if (['data/funding-index/investor-evidence.json', 'src/data/funding-index.json'].includes(path)) {
+      // An excerpt quotes its cited page; organization/bio hyperlinks inside that
+      // quotation are not additional financing citations. Preserve sourceUrl and
+      // every other field, and keep those incidental links in the excluded ledger.
+      relevant = JSON.stringify(JSON.parse(content), (key, value) => {
+        if (key !== 'sourceExcerpt' || typeof value !== 'string') return value;
+        for (const match of value.matchAll(links)) {
+          const literal = cleanLiteral(match[0]);
+          const href = canonicalSource(literal);
+          if (!excluded.has(href)) excluded.set(href, []);
+          excluded.get(href).push({ path, literal, reason: 'organization hyperlink inside a participant-source quotation' });
+        }
+        return '';
+      });
+    }
     if (path === "src/data/field-velocity/neurotech.snapshot.json") {
       // Schema validation retains the upstream toolkit, but no current Neuro Atlas
       // route renders it or uses its examples as measurement/method evidence.
