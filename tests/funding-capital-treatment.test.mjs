@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { capitalExclusionLabel, CAPITAL_EXCLUSION_LABEL, countedCapital } from '../src/lib/funding-capital.mjs';
 import { buildFundingIndex, buildCompanyRows } from '../scripts/lib/funding-index.mjs';
 import { buildCompanyRows as clientRows, summarizePortfolioEvidence } from '../src/lib/funding-index.ts';
 
@@ -43,5 +44,64 @@ test('capital treatment rejects unknown statuses and unexplained holds even on u
       edit(sources.rounds[1]);
       assert.throws(() => buildFundingIndex(sources), /Invalid capital treatment/);
     }
+  }
+});
+
+
+test('superseded disclosures remain visible while only the replacing financing contributes capital', () => {
+  const sources = fixture();
+  sources.rounds[1].capital_treatment = 'superseded';
+  sources.rounds[1].note = 'The later filing replaces this preliminary announcement.';
+  const index = buildFundingIndex(sources);
+  assert.equal(index.rounds.length, 2);
+  assert.equal(index.rounds[1].amountUsdM, 8.864853);
+  assert.equal(index.investors[0].roundCount, 2);
+  assert.equal(index.investors[0].associatedCapitalUsdM, 28.23);
+  for (const rows of [buildCompanyRows, clientRows]) {
+    assert.equal(rows(index.companies, index.rounds, filters)[0].observedCapitalUsdM, 28.23);
+  }
+});
+
+
+test('scope-unresolved disclosures retain participation with no assumed additive capital', () => {
+  const sources = fixture();
+  sources.rounds[1].capital_treatment = 'scope-unresolved';
+  sources.rounds[1].note = 'The disclosed total includes secondary sales with no primary allocation.';
+  const index = buildFundingIndex(sources);
+  assert.equal(index.rounds[1].amountUsdM, 8.864853);
+  assert.equal(index.investors[0].associatedCapitalUsdM, 28.23);
+  const result = summarizePortfolioEvidence({ investorName: 'Fixture Capital', companies: [{ name: 'Fixture', companySlug: 'fixture' }] }, index.companies, index.rounds);
+  assert.equal(result.indexedFinancingCount, 2);
+  assert.equal(result.associatedCapitalUsdM, 28.23);
+  assert.equal(result.members[0].associatedCapitalUsdM, 28.23);
+});
+
+
+test('capital holds require a written source note for every supported reason', () => {
+  for (const capitalTreatment of ['overlap-unresolved', 'superseded', 'scope-unresolved']) {
+    for (const note of [undefined, null, '', ' ', false, 42, {}, []]) {
+      assert.throws(() => countedCapital({ amountUsdM: null, capitalTreatment, note }), /Invalid capital treatment/);
+    }
+  }
+});
+
+
+test('null capital is unconverted while malformed amounts fail before aggregation', () => {
+  assert.equal(countedCapital({ amountUsdM: null }), 0);
+  for (const amountUsdM of [undefined, '', '10', false, NaN, Infinity, -1]) {
+    for (const capitalTreatment of [undefined, 'overlap-unresolved', 'superseded', 'scope-unresolved']) {
+      assert.throws(() => countedCapital({ amountUsdM, capitalTreatment, note: 'Source scope requires a hold.' }), /Invalid capital amount/);
+    }
+  }
+});
+
+
+test('exclusion labels share the strict treatment boundary and preserve the established overlap wording', () => {
+  const record = { amountUsdM: 20, note: 'Source explanation.' };
+  assert.equal(capitalExclusionLabel(record), null);
+  assert.equal(capitalExclusionLabel({ ...record, capitalTreatment: '' }), null);
+  assert.equal(capitalExclusionLabel({ ...record, capitalTreatment: 'overlap-unresolved' }), CAPITAL_EXCLUSION_LABEL);
+  for (const capitalTreatment of ['unknown', null, false, 42, [], {}]) {
+    assert.throws(() => capitalExclusionLabel({ ...record, capitalTreatment }), /Invalid capital treatment/);
   }
 });

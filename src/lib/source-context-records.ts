@@ -3,7 +3,7 @@ import FUNDING from "../data/funding-index.json";
 import type { FundingCompany, FundingRound, FundingMilestone, FundingIndexData, FundingReportedTotal } from "./funding-index";
 import { normalizeSourceContextUrl } from "./source-context-url";
 
-export type SourceMilestone = (typeof MILESTONES)[number];
+export type SourceMilestone = (typeof MILESTONES)[number] & { capitalTreatment?: string };
 export type FundingSourceMatch = {
   company: FundingCompany;
   /** Only the company fields actually citing this source are selected. */

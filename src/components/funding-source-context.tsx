@@ -1,4 +1,4 @@
-import { CAPITAL_EXCLUSION_LABEL } from "@/lib/funding-capital.mjs";
+import { capitalExclusionLabel } from "@/lib/funding-capital.mjs";
 import { fundingRecordsForSource } from "@/lib/source-context-records";
 import { normalizeSourceContextUrl } from "@/lib/source-context-url";
 import { formatCapital, formatFundingDate } from "@/lib/funding-index";
@@ -50,7 +50,7 @@ export function FundingSourceContext({ source }: { source: unknown }) {
                         {formatFundingDate(round.announcedOn, round.datePrecision)}
                       </time>
                     </p>
-                    {round.capitalTreatment && <p className="font-medium">{CAPITAL_EXCLUSION_LABEL}</p>}
+                    {round.capitalTreatment && <p className="font-medium">{capitalExclusionLabel(round)}</p>}
                     {round.note && <p>{round.note}</p>}
                     <a href={round.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block underline underline-offset-4">Original source (round evidence)</a>
                   </>}

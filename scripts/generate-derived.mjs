@@ -52,12 +52,13 @@ const milestones = msRows.map((r) => {
   if (logoFile) usedLogos.add(logoFile);
   const converted = historicalFxFor(r.source_url, r.date, fxConversions);
   if (converted && r.amount_usd_m) throw new Error(`Conflicting historical FX milestone: ${r.source_url}`);
-  return {
+  const milestone = {
     company: r.company,
     slug,
     activity: r.activity,
     stage: r.stage,
     amountUsdM: converted?.amountUsdM ?? (r.amount_usd_m ? Number(r.amount_usd_m) : null),
+    ...(r.capital_treatment !== undefined && r.capital_treatment !== "" ? { capitalTreatment: r.capital_treatment } : {}),
     ...(converted ? { fx: converted.fx } : {}),
     date: r.date || null,
     datePrecision: r.date_precision || "window",
@@ -67,6 +68,8 @@ const milestones = msRows.map((r) => {
     logo: logoFile ? `/logos/${logoFile}` : null,
     scope: r.scope || "bci",
   };
+  countedCapital(milestone); // Validate every treatment, including null-amount disclosures.
+  return milestone;
 });
 fs.writeFileSync(path.join(OUT, "milestones.json"), JSON.stringify(milestones, null, 2));
 

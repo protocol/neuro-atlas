@@ -58,7 +58,11 @@ export function parseCsv(text) {
   if (rows.length === 0) return [];
   const headers = rows[0].map((value) => value.trim());
   return rows.slice(1).filter((values) => values.some(Boolean)).map((values) =>
-    Object.fromEntries(headers.map((header, index) => [header, (values[index] ?? "").trim()])),
+    Object.fromEntries(headers.map((header, index) => {
+      const value = values[index] ?? "";
+      // Treatment is a literal accounting token; padding must reach validation.
+      return [header, header === "capital_treatment" ? value : value.trim()];
+    })),
   );
 }
 
@@ -214,7 +218,7 @@ export function buildFundingIndex({ companies, rounds, milestones, foundings, fx
         converted.fx.currency !== round.currency || converted.fx.amountNativeM !== Number(round.amount_native_m))) {
       throw new Error(`Conflicting historical FX round: ${round.source_url}`);
     }
-    const amountUsdM = converted?.amountUsdM ?? (rawAmount ? Number(rawAmount) : Number.NaN);
+    const amountUsdM = converted?.amountUsdM ?? (rawAmount ? Number(rawAmount) : null);
     if (rawAmount && (!Number.isFinite(amountUsdM) || amountUsdM < 0)) throw new Error(`Invalid disclosed amount: ${rawAmount}`);
     return {
       companySlug: round.company_slug,

@@ -16,8 +16,9 @@ import { Sparkline } from "@/components/sparkline";
 import { lookupAcronym } from "@/components/abbr";
 import { clampCenteredTooltipX } from "@/lib/tooltip-position";
 import { formatFundingFxBasis } from "@/lib/funding-index";
+import { capitalExclusionLabel, countedCapital } from "@/lib/funding-capital.mjs";
 
-type Milestone = (typeof MILESTONES)[number];
+type Milestone = (typeof MILESTONES)[number] & { capitalTreatment?: string };
 
 const yearOf = (dateStr: string) => Number(dateStr.slice(0, 4));
 const boundsOf = (year: number) => ({ t0: Date.UTC(year, 0, 1), t1: Date.UTC(year, 11, 31) });
@@ -91,13 +92,15 @@ function financingInYear(year: number, scope: "all" | "bci" = "all"): number {
       m.date &&
       yearOf(m.date) === year &&
       (scope === "all" || (m as { scope?: string }).scope === "bci"),
-  ).reduce((sum, m) => sum + (m.amountUsdM ?? 0), 0);
+  ).reduce((sum, m) => sum + countedCapital(m), 0);
+}
+function disclosedAmountLabel(amountUsdM: number): string {
+  const value = amountUsdM >= 1000 ? amountUsdM / 1000 : amountUsdM;
+  return `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}${amountUsdM >= 1000 ? "b" : "m"}`;
 }
 function capitalActivityLabel(m: Milestone): string {
-  if (m.stage !== "capital" || !m.amountUsdM || isAward(m)) return m.activity;
-  const value = m.amountUsdM >= 1000 ? m.amountUsdM / 1000 : m.amountUsdM;
-  const amount = `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)}${m.amountUsdM >= 1000 ? "b" : "m"}`;
-  return `${m.activity.startsWith("~") ? "~" : ""}${amount} ${m.activity.includes("committed") ? "committed" : "financing"}`;
+  if (m.stage !== "capital" || !m.amountUsdM || isAward(m) || m.capitalTreatment) return m.activity;
+  return `${m.activity.startsWith("~") ? "~" : ""}${disclosedAmountLabel(m.amountUsdM)} ${m.activity.includes("committed") ? "committed" : "financing"}`;
 }
 function expandActivity(activity: string): [string, string | null][] {
   return activity.split("/").map((tok) => [tok, lookupAcronym(tok.trim())?.expansion ?? null]);
@@ -127,13 +130,13 @@ function cumulativeCapital(year: number, scope: "all" | "bci" = "all") {
     (m) =>
       m.stage === "capital" &&
       !isAward(m) &&
-      m.amountUsdM &&
+      countedCapital(m) > 0 &&
       m.date &&
       yearOf(m.date) === year &&
       (scope === "all" || (m as { scope?: string }).scope === "bci"),
   ).sort((a, b) => (a.date! < b.date! ? -1 : 1));
   let s = 0;
-  return caps.map((m) => { s += m.amountUsdM!; return { x: m.date as string, y: s }; });
+  return caps.map((m) => { s += countedCapital(m); return { x: m.date as string, y: s }; });
 }
 
 export function MilestoneTimeline() {
@@ -232,7 +235,7 @@ export function MilestoneTimeline() {
       : [t0, yearEnd];
     const rows = STAGES.filter((s) => sel[s.key].size > 0).map((stage) => {
       const evs = MILESTONES.filter((m) => m.stage === stage.key && m.date && yearOf(m.date) === focusYear && matches(m) && dateOf(m.date) >= t1 && dateOf(m.date) <= t2);
-      const usd = evs.filter((m) => !isAward(m)).reduce((s, m) => s + (m.amountUsdM ?? 0), 0);
+      const usd = evs.filter((m) => !isAward(m)).reduce((s, m) => s + countedCapital(m), 0);
       const rounds = evs.filter((m) => m.stage === "capital" && !isAward(m)).length;
       const byType: Record<string, number> = {};
       evs.forEach((m) => subcatsOf(m).forEach((sub) => { if (sub !== "$") byType[sub] = (byType[sub] ?? 0) + 1; }));
@@ -729,6 +732,10 @@ export function MilestoneTimeline() {
             {capitalActivityLabel(tip.m)}
             <span className="text-background/60">{" · "}{milestoneDateLabel(tip.m)}</span>
           </div>
+          {tip.m.capitalTreatment && <div className="mt-1 text-[12px] font-medium text-background/90">
+            {tip.m.amountUsdM !== null && <p>Disclosed amount · {disclosedAmountLabel(tip.m.amountUsdM)}</p>}
+            <p>{capitalExclusionLabel(tip.m, "financing totals")}</p>
+          </div>}
           {expandActivity(tip.m.activity).filter(([, ex]) => ex).length > 0 && (
             <div className="mt-1 text-[12px] leading-snug text-background/60">{expandActivity(tip.m.activity).filter(([, ex]) => ex).map(([tok, ex]) => `${tok} — ${ex}`).join(" · ")}</div>
           )}
