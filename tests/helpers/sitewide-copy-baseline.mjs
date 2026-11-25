@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { restoreBeforeNeuronLinesFile } from './neuron-reference-baseline.mjs';
 import { readFileSync } from 'node:fs';
 import { restoreReviewedFile, sha256, validateReviewedFilesFixture } from '../../scripts/qa/build-reviewed-delta.mjs';
 const read = name => readFileSync(new URL('../fixtures/' + name, import.meta.url), 'utf8');
@@ -32,5 +33,5 @@ assert.equal(sha256(bridgeText), lock.artifacts['tests/fixtures/merge-financing-
 export const FINANCING_OVER_COPY = validateCopyBridge(JSON.parse(bridgeText));
 // Historical-only entrypoints, not a generic normalization stack. Original
 // copy expects B, while archived finance expects F through a different edge.
-export const restoreCopyMainFile = (text, file) => restoreReviewedFile(text, FINANCING_OVER_COPY, file);
+export const restoreCopyMainFile = (text, file) => restoreReviewedFile(restoreBeforeNeuronLinesFile(text, file), FINANCING_OVER_COPY, file);
 export const restoreMerged151Copy = (text, file) => restoreReviewedFile(restoreCopyMainFile(text, file), SITEWIDE_COPY_DELTA, file);

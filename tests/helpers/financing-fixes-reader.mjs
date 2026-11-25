@@ -38,7 +38,7 @@ export function validateFinancingFixesFixture(fixture) {
 // Historical tests opt in. Never import this reader into runtime/current-data
 // tests. Exact changed slices are checked by the existing reviewed-delta engine;
 // every unlisted value survives to the original golden instead of being erased.
-export function createFinancingFixesReader(fixture, directory, fallback = text => text) {
+export function createFinancingFixesReader(fixture, directory, fallback = text => text, prepare = text => text) {
   validateFinancingFixesFixture(fixture);
   assert.equal(typeof fallback, 'function', 'Expected a pure optional fallback');
   const base = path.resolve(directory);
@@ -48,7 +48,7 @@ export function createFinancingFixesReader(fixture, directory, fallback = text =
     if (typeof file !== 'string' || file.includes('\\') || path.isAbsolute(file)
       || file.split('/').some(part => !part || part === '.' || part === '..')) return text;
     return FINANCING_FIXES_REVIEWABLE_PATHS.includes(file)
-      ? restoreReviewedFile(text, fixture, file) : fallback(text, file);
+      ? restoreReviewedFile(prepare(text, file), fixture, file) : fallback(text, file);
   };
   const read = (file, options) => {
     const resolved = path.resolve(file instanceof URL ? fileURLToPath(file) : file);

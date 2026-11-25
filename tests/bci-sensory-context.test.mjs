@@ -13,6 +13,7 @@ import { buildChartImage } from '../src/lib/chart-export.ts';
 import { DraftChartPanel } from '../src/components/draft-chart-panel.tsx';
 import { BCI_BITRATE_EVIDENCE } from '../src/data/bci-bitrate.ts';
 import { mount, click } from './modal-helpers.mjs';
+import { beforeNeuronReferences } from './helpers/neuron-reference-baseline.mjs';
 import { beforeBrainGateAddition } from './helpers/recording-hours-coverage-baseline.mjs';
 
 globalThis.React = React;
@@ -158,7 +159,7 @@ test('all default and preview plot SVGs match pinned main plus the isolated acqu
   const expected = { ...frozenMain, ...acquisition.hashes };
   // Remove only the exact fixture-checked addition, preserving the independent
   // historical SVG goldens and every pre-existing recording observation.
-  const plots = [...new Map(Object.values(beforeBrainGateAddition(METRIC_CHART_EVIDENCE)).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
+  const plots = [...new Map(Object.values(beforeBrainGateAddition(beforeNeuronReferences(METRIC_CHART_EVIDENCE))).flatMap(evidence => evidence.plots ?? []).map(plot => [plot.id, plot])).values()];
   const actual = {};
   for (const plot of plots) for (const preview of [false, true]) {
     const renderer = plot.id === 'neuroai-imagenet' ? DraftChartPlotBeforeAxisCopy : DraftChartPlot;

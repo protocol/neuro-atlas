@@ -45,6 +45,16 @@ export type DraftObservation = {
   calculationSource?: { title: string; url: string };
 };
 
+/** Static anatomical context on the plot's quantitative axis, separate from observations. */
+export type DraftHorizontalReference = {
+  id: string;
+  value: number;
+  label: string;
+  sourceUrl: string;
+  sourceTitle: string;
+  scope: string;
+};
+
 export type DraftPlot = {
   id: string;
   title: string;
@@ -60,6 +70,7 @@ export type DraftPlot = {
   valueSignificantDigits?: number;
   scope: string;
   points: DraftObservation[];
+  horizontalReferences?: readonly DraftHorizontalReference[];
   xKind?: "year" | "number";
   /** Positive whole-year calendar spacing; invalid or >100 labels fall back to default ticks. */
   yearTickStep?: number;

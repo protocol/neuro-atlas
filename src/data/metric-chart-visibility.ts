@@ -4,6 +4,7 @@ import { DRAFT_CHART_EVIDENCE } from "./draft-chart-observations";
 import { BCI_BITRATE_CHART, BCI_BITRATE_EVIDENCE } from "./bci-bitrate";
 import { fitHistoricalLog, historicalFitNote } from "@/lib/historical-log-fit";
 import type { DraftChartEvidence, DraftPlot } from "@/lib/draft-chart-types";
+import { WHOLE_BRAIN_NEURON_REFERENCES } from "./whole-brain-neuron-references";
 
 // Shared axes change presentation, not source records, dates or measured values.
 const recordingHours = DRAFT_CHART_EVIDENCE["Neural recording hours collected over time"];
@@ -108,6 +109,8 @@ export const METRIC_CHART_EVIDENCE: Record<string, DraftChartEvidence> = Object.
       // The source names these company checkpoints as cumulative recipients.
       // BrainGate and Paradromics are different cohorts and remain unconnected.
       connections: [{ id: "neuralink-recipients", label: "Neuralink cumulative recipients", pointIds: plot.points.filter(point => point.group === "Neuralink").map(point => point.id) }],
+    } : plot.id === "largest-connectome-neurons" ? {
+      ...plot, horizontalReferences: WHOLE_BRAIN_NEURON_REFERENCES,
     } : plot),
     ...(title === "Connectomics imaging throughput over time" ? {
       summary: "Selected source-reported EM acquisition rates at each protocol's stated resolution.",

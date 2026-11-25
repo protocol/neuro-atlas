@@ -1,0 +1,18 @@
+{
+  "runtimeSha": "9440da5a409e4706d9d627b58d8f75894c70d8fb",
+  "origin": "task-owned loopback production build, synthetic guarded auth boundary outside branch",
+  "images": {
+    "desktop-on.png": {
+      "source": "controls-1440-on.png",
+      "sha256": "e01a2ffef064b2a384f4ed931e82fa6d7cf13ec2fcec075ab33cca4dad99ca30"
+    },
+    "mobile-on.png": {
+      "source": "controls-390-on.png",
+      "sha256": "eed90a854b00b54c1e957ba755abee3e8e7c52e8c33a770c602265788f4485af"
+    },
+    "mobile-off.png": {
+      "source": "controls-390-off.png",
+      "sha256": "b5fc6c276c664be92f55f9a2852a2ab6101e424935311a55c1d0b5f5efcae5b8"
+    }
+  }
+}

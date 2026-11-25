@@ -1,0 +1,25 @@
+{
+  "sourceRevision": "bf0352fc774228df14cee47ba6af67383a0e6cdc",
+  "nativeRuntimeRevision": "634296415d74d33172ca90e2398bbe0a5663988e",
+  "runtimeDiffToSource": "empty across src/public/data/package/config",
+  "captureKind": "Actual headed browser, isolated local production build; loopback-only QA fixture not part of source branch. Not a production capture.",
+  "files": {
+    "native-export.png": "308d66c161d682bf6faba3689fab3e545736b6c117578018141dd072c5b6f741",
+    "mobile.png": "c029054103ab182807798e9b0750895d3348bc970469f70fef3046258d5a0d1d",
+    "compact-320.png": "7c94cc68882f8b5d5e8a17c2280937fee26dbeccbbbbb4b193fb944bb268cbf5",
+    "desktop.png": "773a8a5b8cba63ac8888bbf1cfc68754dfee40fa09f54aefa1ac72a26788ae23"
+  },
+  "desktopViewport": [
+    1440,
+    1000
+  ],
+  "mobileViewport": [
+    390,
+    1000
+  ],
+  "compactViewport": [
+    320,
+    1000
+  ],
+  "physicalPhoneTest": false
+}

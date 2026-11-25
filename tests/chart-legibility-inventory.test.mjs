@@ -19,11 +19,12 @@ test('the frozen historical inventory plus the explicit BCI addition enumerate e
       ? { ...chart, title: 'Estimated acquisition efficiency — voxels per dollar' }
       : chart);
   const native = JSON.parse(readFileSync('tests/fixtures/chart-design-inventory.json', 'utf8'));
-  // Only these two previews use compact copy; modal/export/canonical identities
+  // Only these three previews use compact copy; modal/export/canonical identities
   // remain the full titles in both inventories and their sharing contracts.
   const previewTitle = title => ({
     'Estimated acquisition efficiency — voxels per dollar': 'Imaging efficiency',
     'Simultaneous neural recordings': 'Neurons per experiment',
+    'Selected published connectomes — neuron counts': 'Neuron counts',
   }[title] ?? title);
   const Page = FieldVelocityPage.default ?? FieldVelocityPage;
   const dom = new JSDOM(renderToStaticMarkup(React.createElement(Page)));

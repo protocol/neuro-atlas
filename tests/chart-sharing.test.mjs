@@ -66,8 +66,13 @@ test('each curated numeric panel offers a single-item PNG + absolute chart URL +
       assert.equal(button.dataset.copyChart, anchor);
     }
     const panel = panels.find(panel => panel.closest('article').querySelectorAll('[data-draft-panel]').length > 1);
-    await openPanel(panel);
-    const title = panel.querySelector('figcaption').textContent;
+    const modal = await openPanel(panel);
+    const title = modal.querySelector('figcaption').textContent;
+    assert.equal(title, modal.querySelector('h2').textContent, 'Image identity retains the expanded chart title');
+    if (panel.querySelector('.metric-anchor').id === 'metric-panel-largest-connectome-neurons') {
+      assert.equal(panel.querySelector('figcaption').textContent, 'Neuron counts');
+      assert.equal(title, 'Selected published connectomes — neuron counts');
+    }
     await click(panel.querySelector('[data-copy-chart]'));
     assert.equal(boundary.writes.length, 1);
     const items = boundary.writes[0];

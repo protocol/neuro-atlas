@@ -1,0 +1,17 @@
+{
+  "runtimeRevision": "cba20eb3c618ecb6b7e83bf5f76fab8d21d1f68b",
+  "captureKind": "Actual headed-browser local production build with isolated loopback-only fixture, not production or mocks",
+  "pointerEmulatedViewports": [
+    1440,
+    390,
+    320
+  ],
+  "physicalDeviceTest": false,
+  "statesVerifiedPerViewport": 8,
+  "files": {
+    "mobile-mouse-only.png": "f83edbe2b3031d8d87dcbc55a802f350958f080cd6a4a76cc09db9e7c8a20091",
+    "selected-export-none.png": "8ecacb6656644c12cf33dd03f62958b82f9918e0e335a6d2f9500c5080b9bbd8",
+    "desktop-all-on.png": "ebb81e02f63f4f4bb38d7412da1ab3062909f5ae4dcdbf0c5ff9ec14786fc351",
+    "mobile-all-off.png": "a484e6c22f1b3c131fe2b0e40c95cb3e1cb19e09c31fcebe207ee5eeba73e405"
+  }
+}

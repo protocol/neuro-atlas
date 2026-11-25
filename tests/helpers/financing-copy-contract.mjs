@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { sha256, validateReviewedFilesFixture } from '../../scripts/qa/build-reviewed-delta.mjs';
 import { parseCsv } from '../../scripts/lib/funding-index.mjs';
+import { currentNeuronFileHash, withoutCurrentNeuronStudies } from './neuron-reference-current.mjs';
 
 // Raw-only contract. No historical reader imports, including transitively.
 // Checkpoints and the independent parent projection are pinned separately from
@@ -52,7 +53,8 @@ const digest = value => assert.match(value, /^[a-f0-9]{64}$/);
 export function projectNonprose(text, file) {
   // Only these ten explicitly reviewed canonical/generated schemas participate.
   assert.ok([...FINANCE_PATHS, 'data/funding-index/foundings.csv', 'data/funding-index/milestones.csv'].includes(file));
-  const value = file.endsWith('.csv') ? parseCsv(text.toString()) : JSON.parse(text);
+  const parsed = file.endsWith('.csv') ? parseCsv(text.toString()) : JSON.parse(text);
+  const value = file === 'src/data/methodology-sources.json' ? withoutCurrentNeuronStudies(parsed) : parsed;
   for (const route of PROSE_PATHS[file] ?? []) {
     const visit = (parent, offset) => {
       if (parent === null || typeof parent !== 'object') return;
@@ -98,7 +100,7 @@ export function validateCurrentContract(lock, read) {
   assert.equal(union.length, 53); assert.equal(copy.files.length, 49);
   inventory(Object.keys(lock.files), union);
   for (const [file, hash] of Object.entries(lock.files)) {
-    digest(hash); assert.equal(sha256(read(file)), hash, file + ': raw frozen M bytes');
+    digest(hash); assert.equal(sha256(read(file)), currentNeuronFileHash(file, hash), file + ': raw frozen M bytes plus exact approved neuron feature');
   }
   const composite = validateReviewedFilesFixture(load('financing-copy-composite'));
   const bridge = validateReviewedFilesFixture(load('merge-financing-over-copy'));

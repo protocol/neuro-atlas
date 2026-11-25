@@ -247,6 +247,14 @@
   ],
   "studies": [
     [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC1567708/",
+      "Herculano-Houzel et al. (2006) — rodent brain cellular scaling, mouse anatomical neuron estimate (Table 1)"
+    ],
+    [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC1805542/",
+      "Herculano-Houzel et al. (2007) — primate brain cellular scaling, rhesus macaque anatomical neuron estimate (Table 1)"
+    ],
+    [
       "https://www.nature.com/articles/s41597-022-01280-y",
       "AJILE12 — long-term naturalistic ECoG and behavior dataset descriptor"
     ],

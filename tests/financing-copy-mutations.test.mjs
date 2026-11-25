@@ -5,8 +5,12 @@ import { applyReviewedDelta } from '../scripts/qa/reviewed-delta.mjs';
 import { restoreReviewedFile, sha256 } from '../scripts/qa/build-reviewed-delta.mjs';
 import { FINANCING_COPY_COMPOSITE, beforeFinancingFixesFile } from './helpers/financing-fixes-baseline.mjs';
 import { FINANCING_OVER_COPY, SITEWIDE_COPY_DELTA, restoreCopyMainFile, restoreMerged151Copy } from './helpers/sitewide-copy-baseline.mjs';
+import { restoreBeforeNeuronLinesFile } from './helpers/neuron-reference-baseline.mjs';
 
-const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+const read = file => {
+  const text = readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+  return file === 'src/data/methodology-sources.json' ? restoreBeforeNeuronLinesFile(text, file) : text;
+};
 const at = (value, keys) => keys.reduce((parent, key) => parent[key], value);
 const encode = (entry, value, format = entry.afterFormat) => entry.encoding === 'json'
   ? JSON.stringify(value, null, format.space) + (format.finalNewline ? '\n' : '') : value.join('\n');

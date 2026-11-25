@@ -2,6 +2,7 @@ import { performanceUrl } from "@/lib/field-velocity/navigation";
 import { performanceTarget } from "@/data/field-velocity-links";
 import { recordingViewQuery, recordingViewToken } from "@/lib/recording-view";
 import { chartToggle, chartToggleEnabled, acquisitionMetricFromUrl, acquisitionMetricQuery } from "@/lib/chart-toggle-url";
+import { neuronReferenceQuery, neuronReferencesFromUrl, neuronReferenceToken } from "@/lib/neuron-reference-url";
 import { EXPORT_BLUE, PL_RESEARCH_LOGO } from "@/lib/chart-export-brand";
 
 export type ChartLegendEntry = { label: string; color: string; marker?: "circle" | "square" | "triangle" | "diamond" | "line" | "dashed" };
@@ -67,10 +68,12 @@ export function chartShareUrl(current: string, anchor: string) {
   const recordingView = performanceTarget(anchor) === "simultaneously-recorded-neurons" ? recordingViewToken(url) : undefined;
   const toggle = chartToggleEnabled(url, anchor) ? chartToggle(anchor) : undefined;
   const acquisitionMetric = acquisitionMetricFromUrl(url, anchor);
+  const neuronRefs = neuronReferenceToken(neuronReferencesFromUrl(url, anchor));
   url.username = ""; url.password = ""; url.search = "";
   if (recordingView) url.searchParams.set(recordingViewQuery, recordingView);
   if (toggle) url.searchParams.set(toggle.query, toggle.value);
   if (acquisitionMetric !== "voxels-per-dollar") url.searchParams.set(acquisitionMetricQuery, acquisitionMetric);
+  if (neuronRefs) url.searchParams.set(neuronReferenceQuery, neuronRefs);
   return url.href;
 }
 

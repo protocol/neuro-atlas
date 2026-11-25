@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "baselineSha": "df97d0d70736465657ac50bc9569bbc1b60e6095",
+  "files": [
+    {
+      "path": "src/components/draft-chart-plot.tsx",
+      "beforeSha256": "74180e71c7c06d6d5ccef1196bd5cc48cc02f86a1eddadaef833153e406c1385",
+      "afterSha256": "7585d8b18cb32e2080e640adf2d13aa33fc4f5f273bdcee9563036831d08a64c",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 623,
+            "afterLength": 679,
+            "edits": [
+              {
+                "beforeIndex": 5,
+                "afterIndex": 5,
+                "before": [
+                  "import type { DraftChartEvidence, DraftObservation, DraftPlot } from \"@/lib/draft-chart-types\";"
+                ],
+                "after": [
+                  "import type { DraftChartEvidence, DraftHorizontalReference, DraftObservation, DraftPlot } from \"@/lib/draft-chart-types\";"
+                ]
+              },
+              {
+                "beforeIndex": 112,
+                "afterIndex": 112,
+                "before": [],
+                "after": [
+                  "function AnatomicalSources({ references }: { references: readonly DraftHorizontalReference[] }) {",
+                  "  if (!references.length) return null;",
+                  "  return <section data-anatomical-sources>",
+                  "    <h4>Whole-brain anatomical estimates</h4>",
+                  "    <ul>{references.map(ref => <li key={ref.id}>",
+                  "      <p><strong>{ref.label}</strong> · {exactNumber(ref.value)} neurons</p>",
+                  "      <p><a href={ref.sourceUrl} target=\"_blank\" rel=\"noreferrer\">{ref.sourceTitle} ↗</a></p>",
+                  "      <p>{ref.scope}</p>",
+                  "    </li>)}</ul>",
+                  "  </section>;",
+                  "}",
+                  ""
+                ]
+              },
+              {
+                "beforeIndex": 183,
+                "afterIndex": 195,
+                "before": [],
+                "after": [
+                  "  const anatomicalReferences = plot.horizontalReferences ?? [];",
+                  "  const compactAnatomy = preview && anatomicalReferences.length > 0;"
+                ]
+              },
+              {
+                "beforeIndex": 213,
+                "afterIndex": 227,
+                "before": [
+                  "  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0);",
+                  "  const bottom = top + (compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232) + previewExtra;",
+                  "  const baseHeight = bottom + (compactFit ? 28 : 64 + (xTitle.length - 1) * 16);"
+                ],
+                "after": [
+                  "  const top = fitLabelTop + (compactAcquisition ? 16 : fitTextLines.flat().length * 16) + (fittedLabels.length && benchmark ? 16 : 0) + (showSensory ? 32 : 0) - (preview && anatomicalReferences.length ? 16 : 0);",
+                  "  const plotHeight = anatomicalReferences.length ? preview ? 84 : width < 280 ? 464 : 232",
+                  "    : compactFit ? 56 : preview ? 84 : showSensory ? 464 : 232;",
+                  "  const bottom = top + plotHeight + previewExtra;",
+                  "  const baseHeight = bottom + (compactFit ? 28 : (compactAnatomy ? 40 : 64) + (xTitle.length - 1) * 16);"
+                ]
+              },
+              {
+                "beforeIndex": 226,
+                "afterIndex": 242,
+                "before": [],
+                "after": [
+                  "  // Static anatomical context shares the observation axis in both card and modal.",
+                  "  // A little headroom keeps the largest direct label clear of the upper edge.",
+                  "  if (anatomicalReferences.length) {",
+                  "    minPower = Math.min(minPower, Math.floor(Math.log10(Math.min(...anatomicalReferences.map(ref => ref.value)))));",
+                  "    maxPower = Math.max(maxPower, Math.ceil(Math.log10(Math.max(...anatomicalReferences.map(ref => ref.value))) + .15));",
+                  "  }"
+                ]
+              },
+              {
+                "beforeIndex": 239,
+                "afterIndex": 261,
+                "before": [
+                  "  const baselineYTicks = preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;"
+                ],
+                "after": [
+                  "  // Direct anatomical labels supply the intermediate scale context in compact",
+                  "  // cards; endpoint ticks leave their narrow label gutter uncluttered.",
+                  "  const baselineYTicks = preview && anatomicalReferences.length ? [yMin, yMax]",
+                  "    : preview && !log && !integerAxis ? readerTicks(yMin, yMax) : naturalYTicks;"
+                ]
+              },
+              {
+                "beforeIndex": 277,
+                "afterIndex": 302,
+                "before": [],
+                "after": [
+                  "  const anatomicalLabels = anatomicalReferences.map((ref, index) => {",
+                  "    const position = y(ref.value);",
+                  "    const above = position - 6;",
+                  "    // Labels can extend into the axis gutter on very narrow cards. Keep their",
+                  "    // full vertical strip clear of tick text; the quantitative line never moves.",
+                  "    const labelY = preview ? top + 14 + (anatomicalReferences.length - 1 - index) * 16",
+                  "      : baselineYTicks.some(tick => above + 2 > y(tick) + 4 - CHART_PRESENTATION.labelFontSize",
+                  "      && above - CHART_PRESENTATION.labelFontSize < y(tick) + 6)",
+                  "      ? position + CHART_PRESENTATION.labelFontSize + 4 : above;",
+                  "    return { ...ref, position, labelY, labelX: preview ? width - 2 : right - 4 };",
+                  "  });"
+                ]
+              },
+              {
+                "beforeIndex": 282,
+                "afterIndex": 318,
+                "before": [
+                  "  const markerRadius = (index: number) => baseRadius + baseRadius * plot.points.slice(index + 1)"
+                ],
+                "after": [
+                  "  // The wider anatomical domain clusters card marks. Keep each concentric step",
+                  "  // at the shared stroke width so rings cannot grow into the reference labels.",
+                  "  const ringStep = preview && anatomicalReferences.length ? CHART_PRESENTATION.markerStrokeWidth : baseRadius;",
+                  "  const markerRadius = (index: number) => baseRadius + ringStep * plot.points.slice(index + 1)"
+                ]
+              },
+              {
+                "beforeIndex": 295,
+                "afterIndex": 334,
+                "before": [
+                  "  })) : []), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];"
+                ],
+                "after": [
+                  "  })) : []), ...anatomicalLabels.map(ref => ({",
+                  "    left: ref.labelX - ref.label.length * CHART_PRESENTATION.labelFontSize * .62 - 3,",
+                  "    right, top: ref.labelY - CHART_PRESENTATION.labelFontSize - 3, bottom: ref.labelY + 3,",
+                  "  })), ...(showSensory ? [{ left, right, top: sensoryLabelY - 16, bottom: y(humanRetinalScenario) }] : [])];"
+                ]
+              },
+              {
+                "beforeIndex": 364,
+                "afterIndex": 406,
+                "before": [],
+                "after": [
+                  "        ...anatomicalReferences.map(ref => `Whole-brain anatomical estimate: ${ref.label} · ${exactNumber(ref.value)} neurons. ${ref.scope} ${ref.sourceTitle}: ${ref.sourceUrl}`),"
+                ]
+              },
+              {
+                "beforeIndex": 378,
+                "afterIndex": 421,
+                "before": [
+                  "    <figcaption id={`${id}-title`}>{preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>"
+                ],
+                "after": [
+                  "    <figcaption id={`${id}-title`}>{compactAnatomy ? \"Neuron counts\" : preview ? plot.previewTitle ?? plot.title : plot.title}</figcaption>"
+                ]
+              },
+              {
+                "beforeIndex": 393,
+                "afterIndex": 436,
+                "before": [],
+                "after": [
+                  "      {!preview && anatomicalReferences.length > 0 && <text data-anatomical-scope x={0} y={top - 10} fill=\"var(--muted)\"",
+                  "        fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}>Anatomical scale</text>}"
+                ]
+              },
+              {
+                "beforeIndex": 407,
+                "afterIndex": 452,
+                "before": [
+                  "      {(energyAxis?.ticks ?? calendarTicks).map(tick => <text className=\"draft-plot-tick\" key={tick} x={x(tick)} y={bottom + 22} textAnchor=\"middle\">{numericX ? axisLabel(tick) : String(tick)}</text>)}",
+                  "      {!compactFit && <text className=\"draft-plot-axis-title\" x={0} y={bottom + 52} textAnchor=\"start\">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? \" \" : \"\"}</tspan>)}</text>}"
+                ],
+                "after": [
+                  "      {(energyAxis?.ticks ?? calendarTicks).map(tick => <text className=\"draft-plot-tick\" key={tick} x={x(tick)} y={bottom + (compactAnatomy ? 16 : 22)} textAnchor=\"middle\">{numericX ? axisLabel(tick) : String(tick)}</text>)}",
+                  "      {!compactFit && <text className=\"draft-plot-axis-title\" x={0} y={bottom + (compactAnatomy ? 32 : 52)} textAnchor=\"start\">{xTitle.map((line, index) => <tspan key={index} x={0} dy={index ? 16 : 0}>{line}{index < xTitle.length - 1 ? \" \" : \"\"}</tspan>)}</text>}"
+                ]
+              },
+              {
+                "beforeIndex": 445,
+                "afterIndex": 490,
+                "before": [],
+                "after": [
+                  "      {anatomicalLabels.map(ref => <g key={ref.id} pointerEvents=\"none\" aria-label={`Whole-brain anatomical estimate: ${ref.label}`}>",
+                  "        <line data-anatomical-reference={ref.id} data-value={ref.value} x1={left} x2={right} y1={ref.position} y2={ref.position}",
+                  "          stroke=\"var(--muted)\" strokeOpacity={.45} strokeWidth={1} strokeDasharray=\"2 5\" vectorEffect=\"non-scaling-stroke\" />",
+                  "        {preview && <polyline data-anatomical-label-leader={ref.id} points={`${right},${ref.position} ${width - 1},${ref.position} ${width - 1},${ref.labelY - 4}`}",
+                  "          fill=\"none\" stroke=\"var(--muted)\" strokeOpacity={.45} strokeWidth={1} vectorEffect=\"non-scaling-stroke\" />}",
+                  "        <text data-anatomical-reference-label={ref.id} x={ref.labelX} y={ref.labelY} textAnchor=\"end\"",
+                  "          fontSize={CHART_PRESENTATION.labelFontSize} data-export-font-size={CHART_PRESENTATION.labelFontSize}",
+                  "          fill=\"var(--muted)\" stroke=\"var(--surface)\" strokeWidth={3} paintOrder=\"stroke\">{ref.label}</text>",
+                  "      </g>)}"
+                ]
+              },
+              {
+                "beforeIndex": 548,
+                "afterIndex": 602,
+                "before": [],
+                "after": [
+                  "      <AnatomicalSources references={anatomicalReferences} />"
+                ]
+              },
+              {
+                "beforeIndex": 552,
+                "afterIndex": 607,
+                "before": [],
+                "after": [
+                  "      {!modalSlots && <AnatomicalSources references={anatomicalReferences} />}"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/data/metric-chart-visibility.ts",
+      "beforeSha256": "0a371fc80ae6a416fab3af02a5113cb7cb4ba0c0c92b0c0c82c2cbd1c1b30570",
+      "afterSha256": "543f4c1dfa0595a69375cd40de0ea36cee3ed7813d0322cc0e9c79a6049cfd77",
+      "encoding": "lines",
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [],
+            "beforeLength": 143,
+            "afterLength": 146,
+            "edits": [
+              {
+                "beforeIndex": 6,
+                "afterIndex": 6,
+                "before": [],
+                "after": [
+                  "import { WHOLE_BRAIN_NEURON_REFERENCES } from \"./whole-brain-neuron-references\";"
+                ]
+              },
+              {
+                "beforeIndex": 110,
+                "afterIndex": 111,
+                "before": [],
+                "after": [
+                  "    } : plot.id === \"largest-connectome-neurons\" ? {",
+                  "      ...plot, horizontalReferences: WHOLE_BRAIN_NEURON_REFERENCES,"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "path": "src/data/methodology-sources.json",
+      "beforeSha256": "8f6c9e741ffb68f3a22a0e781cf21d32254e0c1f05dc13397cc638372c7c7a02",
+      "afterSha256": "95d46051ea8431ffcc4add20df55113e7b14b7f2aea5b57c68a53277b9999730",
+      "encoding": "json",
+      "beforeFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "afterFormat": {
+        "space": 2,
+        "finalNewline": true
+      },
+      "delta": {
+        "version": 1,
+        "changes": [
+          {
+            "path": [
+              "studies"
+            ],
+            "beforeLength": 265,
+            "afterLength": 267,
+            "edits": [
+              {
+                "beforeIndex": 0,
+                "afterIndex": 0,
+                "before": [],
+                "after": [
+                  [
+                    "https://pmc.ncbi.nlm.nih.gov/articles/PMC1567708/",
+                    "Herculano-Houzel et al. (2006) — rodent brain cellular scaling, mouse anatomical neuron estimate (Table 1)"
+                  ],
+                  [
+                    "https://pmc.ncbi.nlm.nih.gov/articles/PMC1805542/",
+                    "Herculano-Houzel et al. (2007) — primate brain cellular scaling, rhesus macaque anatomical neuron estimate (Table 1)"
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
