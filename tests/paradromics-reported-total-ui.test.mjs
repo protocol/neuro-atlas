@@ -102,6 +102,6 @@ test('the exact interview source resolves only its public company-total evidence
     }
     assert.equal(context.querySelector('a').href, total.sourceUrl);
     assert.equal(context.querySelector('time').dateTime, total.reportedOn);
-    assert.equal(context.textContent.includes('Round evidence'), false);
+    assert.equal(context.textContent.includes('Financing record · '), false);
   } finally { await cleanup(); }
 });

@@ -58,7 +58,11 @@ test('Paradromics retains four public records while only the reconciled offering
       assert.ok(evidence.sourceExcerpt.includes(evidence.investorName));
     }
   }
-  assert.deepEqual(byYear('2018'), fixture.before.fundingRounds[0]);
+  const { note: currentNote, ...current2018 } = byYear('2018');
+  const { note: originalNote, ...original2018 } = fixture.before.fundingRounds[0];
+  assert.deepEqual(current2018, original2018, 'raw 2018 economic/source fields remain unchanged');
+  assert.equal(currentNote, 'The release separately reports more than $18m in DARPA research funding. The indexed amount covers the seed round; DARPA grants remain separate.', 'exact approved current reader copy');
+  assert.deepEqual(historicalLoad('src/data/funding-index.json').rounds.find(row => row.companySlug === 'paradromics' && row.announcedOn === '2018-06-11'), fixture.before.fundingRounds[0], 'complete original record remains on its F checkpoint');
   const company = buildCompanyRows(funding.companies, funding.rounds, { query: 'Paradromics', scope: 'All', modality: 'All' })[0];
   assert.equal(company.observedCapitalUsdM, 85.37);
   assert.equal(formatCapital(company.observedCapitalUsdM), '$85.4M');

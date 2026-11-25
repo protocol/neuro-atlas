@@ -5,7 +5,7 @@ import { parseCsv, buildFundingIndex, loadFundingIndexSources } from '../scripts
 import { countedCapital } from '../src/lib/funding-capital.mjs';
 import { buildCompanyRows } from '../src/lib/funding-index.ts';
 
-const fixture = JSON.parse(readFileSync(new URL('./fixtures/financing-fixes-20261125-assertions.json', import.meta.url)));
+const fixture = JSON.parse(readFileSync(new URL('./fixtures/financing-copy-current-assertions-20261125.json', import.meta.url)));
 const funding = () => JSON.parse(readFileSync(new URL('../src/data/funding-index.json', import.meta.url)));
 const timeline = () => JSON.parse(readFileSync(new URL('../src/data/milestones.json', import.meta.url)));
 const filter = { query: '', scope: 'All', modality: 'All' };
@@ -70,6 +70,18 @@ for (const [slug, date, qualifier] of [
 
 test('the selective financing review checkpoint is November 25 without claiming complete lifetime cash coverage', () => {
   assert.equal(funding().summary.asOf, '2026-11-25');
+});
+
+test('raw integrated inventory and real counted capital preserve the accepted financing checkpoint', () => {
+  const index = funding(), rows = timeline();
+  assert.equal(index.rounds.length, 78);
+  assert.equal(rows.length, 126);
+  assert.equal(rows.filter(row => row.stage === 'capital').length, 70);
+  assert.equal(rows.filter(row => row.stage !== 'capital').length, 56);
+  assert.equal(index.companies.length, 31);
+  assert.equal(index.milestones.length, 15);
+  assert.equal(Number(index.rounds.reduce((sum, round) => sum + countedCapital(round), 0).toFixed(2)), 4316.65);
+  assert.equal(index.summary.observedCapitalUsdM, 4316.65);
 });
 
 test('the full current funding payload is generated from actual canonical sources', async () => {

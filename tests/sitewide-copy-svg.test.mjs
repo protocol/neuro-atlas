@@ -24,6 +24,20 @@ for(const preview of [false,true])test(`NeuroAI historical axis-copy projection 
   assert.match(current.window.document.documentElement.textContent,/unobserved 6–40 mJ\/image/);
   assert.match(old.window.document.documentElement.textContent,/6–40 mJ\/image omitted \(no observations\)/);
  } finally {current.window.close();old.window.close();}
- const mutated=structuredClone(plot);mutated.points[0].y+=1;
- assert.notEqual(hash(svg(DraftChartPlotBeforeAxisCopy,mutated,preview)),frozen[`neuroai-imagenet:${preview?'preview':'default'}`],'An unlisted scientific-value mutation still fails the unchanged original full SVG golden');
+ for (const [field,value] of [['y',plot.points[0].y+1],['x',plot.points[0].x+1],['id','unreviewed-observation']]) {
+  const mutated=structuredClone(plot);mutated.points[0][field]=value;
+  assert.notEqual(hash(svg(DraftChartPlotBeforeAxisCopy,mutated,preview)),frozen[`neuroai-imagenet:${preview?'preview':'default'}`],`Unlisted scientific ${field} mutation fails the unchanged original full SVG golden`);
+ }
+});
+test('scientific prose reversal preserves every nonprose mutation and plot inventory instead of normalizing it',()=>{
+ for(const [field,value] of [['sourceUrl','https://unreviewed.invalid'],['qualifier','>'],['id','unreviewed-observation'],['dateLabel','1900'],['x',1900],['y',123]]) {
+  const input=structuredClone(METRIC_CHART_EVIDENCE);
+  const actual=Object.values(input).flatMap(x=>x.plots??[]).find(x=>x.id==='neuroai-imagenet');
+  actual.points[0][field]=value;
+  const snapshot=structuredClone(input),projected=beforeScientificCopy(input);
+  const restored=Object.values(projected).flatMap(x=>x.plots??[]).find(x=>x.id==='neuroai-imagenet');
+  assert.equal(restored.points[0][field],value,field+': unlisted scientific value cannot disappear');
+  assert.deepEqual(input,snapshot,'input remains untouched');
+  assert.deepEqual(Object.keys(projected),Object.keys(input),'plot collection inventory remains exact');
+ }
 });

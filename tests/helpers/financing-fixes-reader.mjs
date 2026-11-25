@@ -38,17 +38,26 @@ export function validateFinancingFixesFixture(fixture) {
 // Historical tests opt in. Never import this reader into runtime/current-data
 // tests. Exact changed slices are checked by the existing reviewed-delta engine;
 // every unlisted value survives to the original golden instead of being erased.
-export function createFinancingFixesReader(fixture, directory) {
+export function createFinancingFixesReader(fixture, directory, fallback = text => text) {
   validateFinancingFixesFixture(fixture);
+  assert.equal(typeof fallback, 'function', 'Expected a pure optional fallback');
   const base = path.resolve(directory);
-  const beforeFile = (text, file) => restoreReviewedFile(text, fixture, file);
+  const beforeFile = (text, file) => {
+    // The pure API accepts only literal, inside-root relative paths. In
+    // particular a finance path can never receive both inverse transforms.
+    if (typeof file !== 'string' || file.includes('\\') || path.isAbsolute(file)
+      || file.split('/').some(part => !part || part === '.' || part === '..')) return text;
+    return FINANCING_FIXES_REVIEWABLE_PATHS.includes(file)
+      ? restoreReviewedFile(text, fixture, file) : fallback(text, file);
+  };
   const read = (file, options) => {
     const resolved = path.resolve(file instanceof URL ? fileURLToPath(file) : file);
     const relative = path.relative(base, resolved).split(path.sep).join('/');
     const inside = relative !== '..' && !relative.startsWith('../') && !path.isAbsolute(relative);
     const bytes = readFileSync(file);
-    const reviewed = inside && fixture.files.some(entry => entry.path === relative);
-    const result = reviewed ? Buffer.from(beforeFile(bytes.toString('utf8'), relative)) : bytes;
+    const text = bytes.toString('utf8');
+    const projected = inside ? beforeFile(text, relative) : text;
+    const result = projected === text ? bytes : Buffer.from(projected);
     const encoding = typeof options === 'string' ? options : options?.encoding;
     return encoding ? result.toString(encoding) : result;
   };

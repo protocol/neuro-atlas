@@ -39,6 +39,10 @@ test('financing layer restores only the exact reviewed delta and leaves every un
   assert.equal(readFileSync(join(current, file), 'utf8'), candidate, 'Reading history must not write current data');
   assert.equal(reader.readFileSync(join(base, file), 'utf8'), before, 'Outside paths are not matched by basename');
   await writeFile(join(current, 'untouched.json'), '{"unreviewed":true}');
+  const binary = Buffer.from([0xff, 0xfe, 0x00, 0x61]);
+  await writeFile(join(current, 'untouched.bin'), binary);
+  assert.deepEqual(reader.readFileSync(join(current, 'untouched.bin')), binary, 'untouched Buffer bytes cannot be decoded/re-encoded');
+  assert.deepEqual(await reader.readFile(join(current, 'untouched.bin')), binary);
   assert.equal(reader.readFileSync(join(current, 'untouched.json'), 'utf8'), '{"unreviewed":true}');
   assert.equal(reader.beforeFile('{"unreviewed":true}', 'unlisted.json'), '{"unreviewed":true}');
   const rejected = [

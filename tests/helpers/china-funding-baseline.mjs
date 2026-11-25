@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import { beforeMergeParadromicsFile } from './financing-merge-baseline.mjs';
 import { beforeFinancingFixesFile } from './financing-fixes-baseline.mjs';
-import { restoreMerged151Copy } from './sitewide-copy-baseline.mjs';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,9 +35,7 @@ export function createHistoricalFileReader(fixture, directory, beforeReviewed = 
     const relative = path.relative(base, resolved).split(path.sep).join('/');
     const inside = relative !== '..' && !relative.startsWith('../') && !path.isAbsolute(relative);
     const rawBytes = readFileSync(file);
-    const bytes = base === root.replace(/\/$/, '') && inside
-      ? Buffer.from(restoreMerged151Copy(rawBytes.toString('utf8'), relative))
-      : rawBytes;
+    const bytes = rawBytes;
     const reviewed = inside && fixture.files.some(entry => entry.path === relative);
     const projected = inside ? beforeReviewed(bytes.toString('utf8'), relative) : bytes.toString('utf8');
     const result = Buffer.from(reviewed ? restoreReviewedFile(projected, fixture, relative) : projected);

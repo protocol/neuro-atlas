@@ -32,7 +32,7 @@ test('Science April 2025 cites its real filing and separately sources the suppor
     assert.match(row.note, /first sale (?:was )?March 28/i);
   }
   assert.match(round.note, /April 14, 2025 SEC Form D reports \$103,604,355 in convertible notes sold toward a \$110m target/);
-  assert.match(milestone.note, /April 14 is the SEC filing date, not an established closing date/);
+  assert.match(milestone.note, /April 14 is the SEC filing date; first sale was March 28\. Closing date: unverified\./);
   const evidence = json('data/funding-index/investor-evidence.json').filter(row => row.companySlug === 'science-corporation' && row.announcedOn === '2025-04-14' && row.stage === 'Convertible notes' && row.sourceUrl === scienceNews);
   assert.equal(evidence.length, 1, 'the separate Crunchbase investor evidence remains attached to the exact note financing');
   assert.equal(evidence[0].investorName, 'Khosla Ventures');

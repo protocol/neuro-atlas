@@ -56,8 +56,8 @@ test('original announcement source deep links still resolve to participant evide
   const fixture = JSON.parse(readFileSync(new URL('./fixtures/paradromics-funding-20261124.json', import.meta.url)));
   for (const original of fixture.before.fundingRounds.slice(1)) {
     const html = renderToStaticMarkup(React.createElement(FundingSourceContext, { source: original.sourceUrl }));
-    assert.equal(html.includes('Named-investor evidence'), true, original.sourceUrl);
-    assert.equal(html.includes('Supports investor inclusion, not the indexed round amount'), true);
-    assert.equal(html.includes('Round evidence'), false, 'earlier source must not be presented as proof of the amended amount');
+    assert.equal(html.includes('Investor participation · '), true, original.sourceUrl);
+    assert.equal(html.includes('This source supports the named investor’s participation. The indexed financing amount has its own source.'), true);
+    assert.equal(html.includes('Financing record · '), false, 'earlier source must not be presented as proof of the amended amount');
   }
 });

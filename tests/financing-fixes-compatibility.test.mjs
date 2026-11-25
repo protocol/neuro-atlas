@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { sha256, restoreReviewedFile } from '../scripts/qa/build-reviewed-delta.mjs';
-import { FINANCING_FIXES_DELTA, beforeFinancingFixesFile, readFinancingFixesBaselineFileSync } from './helpers/financing-fixes-baseline.mjs';
+import { FINANCING_COPY_COMPOSITE, beforeFinancingFixesFile, readFinancingFixesBaselineFileSync } from './helpers/financing-fixes-baseline.mjs';
 import { FINANCING_FIXES_BASELINE_SHA, FINANCING_FIXES_MERGED_BASELINE } from './helpers/financing-fixes-reader.mjs';
 import { readHistoricalFileSync } from './helpers/china-funding-baseline.mjs';
 import { PARADROMICS_OVER_CHINA } from './helpers/financing-merge-baseline.mjs';
@@ -10,7 +10,7 @@ import { CHINA_FUNDING_DELTA } from './helpers/china-funding-baseline.mjs';
 import { beforeParadromicsFunding } from './helpers/paradromics-funding-baseline.mjs';
 
 test('the reviewed financing delta restores the exact merged baseline and composes through both older histories', () => {
-  assert.equal(FINANCING_FIXES_DELTA.baselineSha, FINANCING_FIXES_BASELINE_SHA);
+  assert.equal(FINANCING_COPY_COMPOSITE.baselineSha, FINANCING_FIXES_BASELINE_SHA);
   for (const [file, digest] of Object.entries(FINANCING_FIXES_MERGED_BASELINE.files)) {
     const url = new URL('../' + file, import.meta.url);
     assert.equal(sha256(readFinancingFixesBaselineFileSync(url)), digest, file + ': complete original merged bytes');
@@ -28,7 +28,7 @@ test('the reviewed financing delta restores the exact merged baseline and compos
 
 test('actual reviewed financing operations reject changed, missing, duplicate and extra-field values', () => {
   let reviewedOperations = 0;
-  for (const entry of FINANCING_FIXES_DELTA.files) {
+  for (const entry of FINANCING_COPY_COMPOSITE.files) {
     const text = readFileSync(new URL('../' + entry.path, import.meta.url), 'utf8');
     const current = entry.encoding === 'json' ? JSON.parse(text) : text.split('\n');
     const encode = value => entry.encoding === 'json' ? JSON.stringify(value) : value.join('\n');

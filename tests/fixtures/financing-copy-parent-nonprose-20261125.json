@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "financeParentSha": "ba3a4dfa5769f7837a03bbf506cb6f11b1200def",
+  "financeDataCheckpointSha": "43ffb9cdd85cf329a93b0391efeaf586ea1775c6",
+  "marker": "<reviewed-row-prose>",
+  "prosePaths": {
+    "data/funding-index/rounds.csv": [
+      [
+        "*",
+        "note"
+      ]
+    ],
+    "data/market-memo-q1-2026/milestones.csv": [
+      [
+        "*",
+        "note"
+      ]
+    ],
+    "data/funding-index/foundings.csv": [
+      [
+        "*",
+        "note"
+      ]
+    ],
+    "data/funding-index/milestones.csv": [
+      [
+        "*",
+        "note"
+      ]
+    ],
+    "src/data/funding-index.json": [
+      [
+        "rounds",
+        "*",
+        "note"
+      ],
+      [
+        "milestones",
+        "*",
+        "note"
+      ],
+      [
+        "companies",
+        "*",
+        "founding",
+        "note"
+      ]
+    ],
+    "src/data/milestones.json": [
+      [
+        "*",
+        "note"
+      ]
+    ]
+  },
+  "files": {
+    "data/funding-index/foundings.csv": {
+      "sourceSha256": "146d47cda8bf745612508dd9bfd6fc9b88f9f050305d3d5bbbe4732c17c5f532",
+      "projectionSha256": "8014261747e0348ff67337a4486a85368d135a79e6ae354a393c8252e169ff56"
+    },
+    "data/funding-index/fx-conversions.json": {
+      "sourceSha256": "0b5eef404693f6a64735391ad438483c04a9048fea807de01a8ba0ef8e9360ed",
+      "projectionSha256": "8a88a01d330530b393337c89777958eb9d9293fb16397aabd8f8df87204e909e"
+    },
+    "data/funding-index/investor-evidence.json": {
+      "sourceSha256": "525eda49809a3df8d38c13f08b17034de9157c3cf2e014682446e5eabe984084",
+      "projectionSha256": "71abe03ae1c1eb777a3d206434950fad26692b3845b0c7eca89ea6f7048319ab"
+    },
+    "data/funding-index/milestones.csv": {
+      "sourceSha256": "d86a2a25e2c576dbb1f5eb440d81d9ff17b29ec356388de50b35352a8de986fa",
+      "projectionSha256": "dd93574f36a1d3fc63706aee4f0beb078f52a97e93145b4a743330db9e538388"
+    },
+    "data/funding-index/reported-totals.json": {
+      "sourceSha256": "e2f63f3d0dc2a347a0677f5bc5f2ed1629bc129f20b17bb8adc561e6ca11aa6e",
+      "projectionSha256": "6ec8a792b9890f8719641c30ee8d99cba98e06da4b1d6959d45bcc4f287ba81d"
+    },
+    "data/funding-index/rounds.csv": {
+      "sourceSha256": "a908381e193549a7bc378a535ee1c74c59497a06e902e0e8803bf469f5962c66",
+      "projectionSha256": "c952faf66e70d2bbe6ea97fc2c8d8321f67eb390580ca7bca48eed30558dbc60"
+    },
+    "data/market-memo-q1-2026/milestones.csv": {
+      "sourceSha256": "efc76cf2e7f30e8a16e920a1127445b1d5e5e3109494aa0c4469d2e5c0dedb5c",
+      "projectionSha256": "09b986e9d91fb4a29625c0b3e0316b40665fec7603a8ed085ce1f8a9d027248c"
+    },
+    "src/data/funding-index.json": {
+      "sourceSha256": "4e01a4a8f8d1d2e429731d9ad730865cc0b3b2fa719885533431896eae4cc374",
+      "projectionSha256": "5b8b51b4369fac1993108a8d4981ad441158adf3bd0c66a87684d95ce1a29932"
+    },
+    "src/data/methodology-sources.json": {
+      "sourceSha256": "43c6b3dd00e2d8012a91404a3d23f10b98deea4e45425236bb30f277d56cda2b",
+      "projectionSha256": "ff74c0f18b373ffa091ecef23e2f99ac77b5d07c331ed1376bf53a5df8c3b5fb"
+    },
+    "src/data/milestones.json": {
+      "sourceSha256": "77bdf4a8728025ff8e4d3ae2c1beafa7df9ef1cb6556e40605080285a18a6db7",
+      "projectionSha256": "f51a5f7f978e4109f05be45292029cef3547585179bf7314208008f870b2fe5c"
+    }
+  }
+}

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { parseCsv } from "../scripts/lib/funding-index.mjs";
+import { countedCapital } from "../src/lib/funding-capital.mjs";
 
 // Current source contract, not a historical projection. The founder post's
 // datePublished is 2025-11-03T22:01:00.944Z; Nov 4 is later reporting.
@@ -62,8 +63,7 @@ test("Coherence's current seed flows into the source-specific investor identitie
     assert.equal(actual.length, 1, name);
     assert.equal(actual[0].roundCount, associated.length, name);
     assert.equal(actual[0].companyCount, new Set(associated.map((round) => round.companySlug)).size, name);
-    const included = associated.filter(round => !['overlap-unresolved', 'superseded', 'scope-unresolved'].includes(round.capitalTreatment));
-    assert.equal(actual[0].associatedCapitalUsdM, Number(included.reduce((sum, round) => sum + round.amountUsdM, 0).toFixed(2)), name);
+    assert.equal(actual[0].associatedCapitalUsdM, Number(associated.reduce((sum, round) => sum + countedCapital(round), 0).toFixed(2)), name);
   }
   for (const name of expected.previousStoredInvestors) assert.ok(!seed.investors.includes(name), name);
   for (const name of ["Topology", "Artesian", "Blackbird", "Possible", "XEIA", "Xtal", "Divergent"]) {
